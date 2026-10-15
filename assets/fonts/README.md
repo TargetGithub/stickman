@@ -4,3 +4,5 @@ Bundled fonts only (spec 15.2). Planned: a comic display font for text pops and 
 
 | File | Family | License | Source |
 |---|---|---|---|
+| Bangers-Regular.ttf | Bangers | SIL OFL 1.1 (Bangers-OFL.txt) | github.com/google/fonts ofl/bangers |
+| Inter.ttf | Inter (variable, opsz+wght) | SIL OFL 1.1 (Inter-OFL.txt) | github.com/google/fonts ofl/inter |

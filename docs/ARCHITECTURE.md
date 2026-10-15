@@ -86,7 +86,7 @@ export const easings: Record<string, (u:number)=>number>;
 export function mulberry32(seed): () => number;          // [0, 1)
 export function hash32(str): number;                      // FNV-1a
 export function deriveRng(seed, name): () => number;      // mulberry32(seed ^ hash32(name))
-export function valueNoise1D(rng, t): number;            // for shake
+export function valueNoise1D(rng): (t:number) => number;  // for shake; lattice drawn once from rng
 ```
 
 ### expr.js
@@ -206,6 +206,12 @@ export function frameView(store, n): FrameView;      // zero-copy view
 export function jointsAt(store, n, charIndex): Float32Array;
 ```
 
+### renderer/character.js
+```js
+export function drawCharacter(ctx, joints, style:{ color, scale, facing, mouth?, outline?, outlineColor?, farBrightness?, alpha? }): void;
+export function shade(hex, k): string;
+```
+
 ### renderer/index.js
 ```js
 export function createRenderer(ctxFactory, themes, fonts): Renderer;
@@ -246,7 +252,8 @@ See spec 15.1.
 ### ADR-001 Record in Node, not in a headless browser
 - **Context**: browser canvas capture costs 40-100 ms per frame and adds Playwright and GPU nondeterminism.
 - **Decision**: render frames in Node with a Skia canvas and pipe raw RGBA to ffmpeg. The browser is for preview and authoring only.
-- **Consequences**: two canvas backends to support; pixel parity between them is not required. The M0 benchmark picks `skia-canvas` or `@napi-rs/canvas`.
+- **Consequences**: two canvas backends to support (browser and Node); pixel parity between them is not required.
+- **Result (M0.7)**: `@napi-rs/canvas` chosen; see `docs/benchmarks.md`. Tools load it through `tools/lib/canvas.mjs`.
 
 ### ADR-002 Three clocks
 - **Context**: v1.0 contradicted itself on slowmo and did not say what time beats use.

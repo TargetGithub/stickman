@@ -14,7 +14,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 
 ## Milestones
 
-### M0 Foundations (2-3 days)
+### M0 Foundations (2-3 days) — DONE 2026-10-15, awaiting review
 | Task | Output |
 |---|---|
 | M0.1 Repo scaffold, `npm test`, lint conventions, `CLAUDE.md` | runnable empty test suite (done in setup) |

@@ -2,23 +2,165 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Stickman Player</title>
+  <title>Stickman Pose Viewer</title>
   <style>
-    body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
-    main { padding: 16px; }
-    canvas { background: #fff; max-width: 100%; display: block; }
+    @font-face { font-family: "Inter"; src: url("../assets/fonts/Inter.ttf"); }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 13px Inter, system-ui, sans-serif; background: #15161a; color: #e8e8ea; display: flex; height: 100vh; }
+    aside { width: 340px; padding: 14px; overflow-y: auto; background: #1d1f24; border-right: 1px solid #2b2e35; }
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px; }
+    canvas { background: #fff; max-width: 100%; max-height: 100%; border-radius: 6px; }
+    h1 { font-size: 15px; margin: 0 0 4px; }
+    p.note { color: #9a9ca3; margin: 0 0 12px; }
+    fieldset { border: 1px solid #2b2e35; border-radius: 6px; margin: 0 0 12px; padding: 8px 10px; }
+    legend { color: #9a9ca3; padding: 0 4px; }
+    .row { display: grid; grid-template-columns: 52px 1fr 44px; gap: 8px; align-items: center; margin: 3px 0; }
+    .row input[type=range] { width: 100%; }
+    .row output { text-align: right; font-variant-numeric: tabular-nums; }
+    select, button { font: inherit; background: #2b2e35; color: inherit; border: 1px solid #3a3e47; border-radius: 4px; padding: 4px 6px; }
+    button { cursor: pointer; }
+    label.inline { display: inline-flex; gap: 6px; align-items: center; margin-right: 12px; }
+    textarea { width: 100%; height: 70px; font: 11px ui-monospace, monospace; background: #111216; color: #cfd2d8; border: 1px solid #2b2e35; border-radius: 4px; }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Stickman Player</h1>
-    <p>Script player with scrubber. M0: pose viewer with channel sliders. (milestone M0/M5)</p>
-    <canvas id="view" width="1920" height="1080"></canvas>
-  </main>
+  <aside>
+    <h1>Pose viewer</h1>
+    <p class="note">M0 tool: inspect named poses, drag channel sliders, blend between two poses. Serve with <code>npm run serve</code>.</p>
+
+    <fieldset>
+      <legend>Pose</legend>
+      <div class="row"><span>From</span><select id="from"></select><span></span></div>
+      <div class="row"><span>To</span><select id="to"></select><span></span></div>
+      <div class="row"><span>Blend</span><input id="blend" type="range" min="0" max="1" step="0.01" value="0"><output id="blendOut">0</output></div>
+      <label class="inline"><input id="play" type="checkbox"> loop blend</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Body</legend>
+      <div class="row"><span>Scale</span><input id="scale" type="range" min="0.4" max="4" step="0.05" value="1.5"><output id="scaleOut">1.5</output></div>
+      <label class="inline"><input id="facing" type="checkbox"> face left</label>
+      <label class="inline"><input id="joints" type="checkbox" checked> joints</label>
+      <label class="inline"><input id="ground" type="checkbox" checked> ground contact</label>
+      <div class="row" style="margin-top:6px"><span>Color</span><input id="color" type="color" value="#22aaff"><span></span></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Channels (edit = override)</legend>
+      <div id="channels"></div>
+      <button id="reset">Clear overrides</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>Current pose JSON</legend>
+      <textarea id="json" readonly></textarea>
+      <button id="copy">Copy</button>
+    </fieldset>
+  </aside>
+  <main><canvas id="view" width="1200" height="800"></canvas></main>
+
   <script type="module">
-    // Served by: npm run serve  →  http://localhost:5173/web/index.html
-    import { catalog } from "../data/index.js";
-    console.log("catalog loaded:", Object.keys(catalog.poses).length, "poses");
+    import { poses } from "../data/poses.js";
+    import { POSE_CHANNELS } from "../engine/types.js";
+    import { computeJoints, lowestPoint } from "../engine/skeleton.js";
+    import { drawCharacter } from "../engine/renderer/character.js";
+
+    const $ = (id) => document.getElementById(id);
+    const canvas = $("view");
+    const ctx = canvas.getContext("2d");
+    const GROUND = 680;
+    const RANGES = { rot: [-360, 360], dx: [-120, 120], dy: [-120, 120] };
+    const overrides = {};
+
+    for (const sel of [$("from"), $("to")]) {
+      for (const name of Object.keys(poses)) sel.add(new Option(name, name));
+    }
+    $("from").value = "stand";
+    $("to").value = "guard";
+
+    for (const ch of POSE_CHANNELS) {
+      const [min, max] = RANGES[ch] || [-180, 180];
+      const row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML = `<span>${ch}</span><input type="range" min="${min}" max="${max}" step="1" data-ch="${ch}"><output></output>`;
+      $("channels").append(row);
+      row.querySelector("input").addEventListener("input", (e) => {
+        overrides[ch] = Number(e.target.value);
+        draw();
+      });
+    }
+
+    function basePose() {
+      const u = Number($("blend").value);
+      const a = { ...poses.stand, ...poses[$("from").value] };
+      const b = { ...poses.stand, ...poses[$("to").value] };
+      const out = {};
+      for (const ch of POSE_CHANNELS) out[ch] = (a[ch] ?? 0) + ((b[ch] ?? 0) - (a[ch] ?? 0)) * u;
+      return out;
+    }
+
+    function draw() {
+      const pose = { ...basePose(), ...overrides };
+      const scale = Number($("scale").value);
+      const facing = $("facing").checked ? -1 : 1;
+
+      let root = { x: canvas.width / 2, y: GROUND - 94 * scale };
+      if ($("ground").checked) {
+        const raw = computeJoints(pose, { x: root.x, y: 0 }, facing, scale);
+        root = { x: root.x, y: GROUND - lowestPoint(raw, scale) };
+      }
+      const j = computeJoints(pose, root, facing, scale);
+
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = "#e3e3e3";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 50) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
+      for (let y = GROUND % 50; y < canvas.height; y += 50) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
+      ctx.strokeStyle = "#999999";
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(0, GROUND); ctx.lineTo(canvas.width, GROUND); ctx.stroke();
+
+      drawCharacter(ctx, j, { color: $("color").value, scale, facing });
+
+      if ($("joints").checked) {
+        ctx.font = "12px Inter";
+        for (const [name, p] of Object.entries(j)) {
+          ctx.fillStyle = name === "center" ? "#ff8800" : "#e0245e";
+          ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill();
+          ctx.fillStyle = "#555555";
+          ctx.fillText(name, p.x + 7, p.y - 6);
+        }
+      }
+
+      for (const input of document.querySelectorAll("#channels input")) {
+        const ch = input.dataset.ch;
+        input.value = pose[ch];
+        input.nextElementSibling.textContent = Math.round(pose[ch]);
+        input.parentElement.style.color = ch in overrides ? "#ffcc55" : "";
+      }
+      $("blendOut").textContent = Number($("blend").value).toFixed(2);
+      $("scaleOut").textContent = Number($("scale").value).toFixed(2);
+      const rounded = Object.fromEntries(POSE_CHANNELS.map((ch) => [ch, Math.round(pose[ch])]));
+      $("json").value = JSON.stringify(rounded).replace(/"(\w+)":/g, "$1: ").replace(/,/g, ", ");
+    }
+
+    for (const id of ["from", "to", "blend", "scale", "facing", "joints", "ground", "color"]) $(id).addEventListener("input", draw);
+    $("reset").addEventListener("click", () => { for (const k of Object.keys(overrides)) delete overrides[k]; draw(); });
+    $("copy").addEventListener("click", () => navigator.clipboard.writeText($("json").value));
+
+    let t0 = null;
+    function loop(ts) {
+      if ($("play").checked) {
+        t0 ??= ts;
+        $("blend").value = (0.5 - 0.5 * Math.cos(((ts - t0) / 1000) * Math.PI)).toFixed(3);
+        draw();
+      } else t0 = null;
+      requestAnimationFrame(loop);
+    }
+    await document.fonts.ready;
+    draw();
+    requestAnimationFrame(loop);
   </script>
 </body>
 </html>
