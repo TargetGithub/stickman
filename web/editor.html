@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stickman Pose and Move Editor</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
+    main { padding: 16px; }
+    canvas { background: #fff; max-width: 100%; display: block; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Stickman Pose and Move Editor</h1>
+    <p>Drag joints, edit keyframes and root motion, preview IK against dummies, export move data. (milestone M1)</p>
+    <canvas id="view" width="1920" height="1080"></canvas>
+  </main>
+  <script type="module">
+    // Served by: npm run serve  →  http://localhost:5173/web/editor.html
+    import { catalog } from "../data/index.js";
+    console.log("catalog loaded:", Object.keys(catalog.poses).length, "poses");
+  </script>
+</body>
+</html>

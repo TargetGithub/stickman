@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "meta": {
+    "title": "Showdown",
+    "format": "landscape",
+    "seed": 7,
+    "mode": "choreographed",
+    "theme": "dojo_dusk"
+  },
+  "characters": [
+    {
+      "id": "hero",
+      "x": 700,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1,
+      "hp": 100
+    },
+    {
+      "id": "boss",
+      "x": 1500,
+      "facing": -1,
+      "color": "#ff3b3b",
+      "scale": 2,
+      "hp": 200
+    }
+  ],
+  "camera": [
+    {
+      "at": 0,
+      "mode": "follow",
+      "targets": [
+        "hero",
+        "boss"
+      ],
+      "zoom": "auto",
+      "padding": 300
+    }
+  ],
+  "beats": [
+    {
+      "id": "t1",
+      "at": 0.5,
+      "who": "boss",
+      "do": "taunt",
+      "say": "Is that all?"
+    },
+    {
+      "id": "d1",
+      "at": {
+        "after": "t1",
+        "delay": 0.3
+      },
+      "who": "hero",
+      "do": "dash",
+      "target": "boss"
+    },
+    {
+      "id": "k1",
+      "at": {
+        "after": "d1"
+      },
+      "who": "hero",
+      "do": "flying_kick",
+      "target": "boss",
+      "approach": "run",
+      "outcome": "hit"
+    },
+    {
+      "at": {
+        "on": "k1.hit"
+      },
+      "who": "world",
+      "do": "slowmo",
+      "params": {
+        "scale": 0.3,
+        "duration": 0.5
+      }
+    },
+    {
+      "id": "h1",
+      "at": {
+        "after": "k1",
+        "delay": 0.4
+      },
+      "who": "boss",
+      "do": "haymaker",
+      "target": "hero",
+      "outcome": "dodged"
+    },
+    {
+      "id": "f1",
+      "at": {
+        "after": "h1",
+        "delay": 0.2
+      },
+      "who": "hero",
+      "do": "flurry",
+      "target": "boss",
+      "approach": "run",
+      "outcome": "hit"
+    },
+    {
+      "id": "ko",
+      "at": {
+        "after": "f1"
+      },
+      "who": "boss",
+      "do": "ko_fall"
+    },
+    {
+      "id": "v1",
+      "at": {
+        "after": "ko",
+        "delay": 0.3
+      },
+      "who": "hero",
+      "do": "victory",
+      "fx": [
+        "aura"
+      ]
+    },
+    {
+      "at": {
+        "with": "v1"
+      },
+      "who": "world",
+      "do": "text_pop",
+      "params": {
+        "text": "K.O.!"
+      }
+    },
+    {
+      "at": {
+        "after": "v1",
+        "delay": 0.5
+      },
+      "who": "world",
+      "do": "fade",
+      "params": {
+        "to": "black",
+        "dur": 1,
+        "dir": "out"
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "stickman-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Deterministic 2D stickman action engine: JSON scripts in, MP4 out.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "test:unit": "node --test tests/unit/",
+    "test:integration": "node --test tests/integration/",
+    "serve": "node tools/serve.mjs 5173",
+    "validate": "node tools/validate.mjs",
+    "record": "node tools/record.mjs",
+    "sfx": "node tools/sfxgen.mjs",
+    "catalog": "node tools/catalog.mjs",
+    "generate": "node tools/generate.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

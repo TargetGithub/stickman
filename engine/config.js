@@ -1,0 +1,59 @@
+// Engine constants and defaults. Spec: sections 2, 4, 5, 9, 11.5, 13.
+export const FPS = 60;
+export const ENGINE_VERSION = "0.1.0";
+
+export const FORMATS = {
+  landscape: { width: 1920, height: 1080, groundScreenRatio: 0.82 },
+  portrait: { width: 1080, height: 1920, groundScreenRatio: 0.7 },
+};
+
+export const STAGE = { width: 3200, groundY: 880, margin: 60 };
+
+export const PHYSICS = {
+  gravity: 2600,
+  groundFriction: 0.86,
+  minGap: 40,
+  wallRestitution: 0.4,
+  launchSpin: 540,
+  dustImpactSpeed: 900,
+  shakeImpactSpeed: 1600,
+};
+
+export const COMBAT = {
+  hitRadius: 26,
+  blockDamageFactor: 0.2,
+  whiffGap: 40,
+  maxNudge: 60,
+  reactionThresholds: { light: 8, heavy: 16 },
+};
+
+export const MOTION = {
+  blend: 0.06,
+  snapRate: 10,
+  overlap: { k: 180, damping: 18 },
+  breathing: { amplitude: 2, period: 2.4, armDeg: 2 },
+};
+
+export const SHAKE = {
+  small: { amplitude: 6, duration: 0.15 },
+  med: { amplitude: 14, duration: 0.25 },
+  big: { amplitude: 28, duration: 0.45 },
+};
+
+export const CAMERA = { omega: 8, padding: 300 };
+
+export const LIMITS = {
+  scriptBytes: 64 * 1024,
+  beats: 200,
+  characters: 6,
+  particles: 2000,
+  say: 40,
+  textPop: 16,
+  caption: 80,
+  minDuration: 3,
+  maxDuration: 180,
+  maxApproach: 3,
+  queueDriftWarn: 0.5,
+};
+
+export const RNG_STREAMS = ["physics", "fx", "camera", "bg", "director", "audio"];
