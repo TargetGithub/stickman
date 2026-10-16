@@ -424,6 +424,8 @@ To add a provider, copy an entry and change it:
 | `reasoningEffort` | `true` to pass the stage effort as `reasoning_effort` (reasoning models only) |
 | `vision` | `false` if the model can't read images; `--critique` is then skipped |
 | `headers` | Extra HTTP headers, if a service needs them |
+| `stream` | `false` turns off streaming (on by default, so slow models don't time out) |
+| `timeoutSec` | Give up on one request after this many seconds (default 1800) |
 | `prices` | USD per million tokens, for the cost estimate in the run summary |
 
 The default provider is the `"provider"` field at the top of the config.

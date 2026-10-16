@@ -12,6 +12,9 @@
 //   maxTokensField   "max_tokens" (default) or "max_completion_tokens" (newer OpenAI models)
 //   reasoningEffort  true to send the stage effort as reasoning_effort (reasoning models only)
 //   vision           false if the model cannot read images (critique is then skipped)
+//   stream           false to disable streaming (default on: slow models would otherwise hit Node's
+//                    5-minute wait-for-headers limit before the first byte arrives)
+//   timeoutSec       give up on one request after this many seconds (default 1800)
 
 import { SchemaRejected, LlmError } from "./index.mjs";
 
@@ -45,11 +48,18 @@ export function createOpenAICompatAdapter(cfg, name = "openai-compatible", fetch
       if (req.schema && mode === "json_schema") body.response_format = { type: "json_schema", json_schema: { name: "output", schema: req.schema, strict: false } };
       else if (req.schema && mode === "json_object") body.response_format = { type: "json_object" };
 
+      if (cfg.stream !== false) {
+        body.stream = true;
+        body.stream_options = { include_usage: true };
+      }
+
       const res = await fetchImpl(url, {
         method: "POST",
         headers: { "content-type": "application/json", ...(key ? { authorization: `Bearer ${key}` } : {}), ...(cfg.headers || {}) },
         body: JSON.stringify(body),
+        signal: AbortSignal.timeout((cfg.timeoutSec ?? 1800) * 1000),
       });
+      if (res.ok && /event-stream/.test(res.headers?.get?.("content-type") || "")) return readStream(res, req.model);
       const text = await res.text();
       if (!res.ok) {
         // Schema not supported: step down json_schema → json_object → off, then let the core retry.
@@ -64,18 +74,56 @@ export function createOpenAICompatAdapter(cfg, name = "openai-compatible", fetch
         err.status = res.status;
         throw err;
       }
+      // Non-streaming reply (stream: false, or a server that ignores "stream").
       const data = JSON.parse(text);
       const choice = data.choices?.[0] || {};
       const msg = choice.message || {};
-      const u = data.usage || {};
-      return {
-        text: typeof msg.content === "string" ? msg.content : (msg.content || []).map((p) => p.text || "").join(""),
-        stop: msg.refusal ? "refusal" : choice.finish_reason === "length" ? "max_tokens" : "end",
-        refusalCategory: msg.refusal || undefined,
-        model: data.model || req.model,
-        // prompt_tokens includes cached tokens; count them once, at the cached rate.
-        usage: { input: (u.prompt_tokens || 0) - (u.prompt_tokens_details?.cached_tokens || 0), output: u.completion_tokens, cacheRead: u.prompt_tokens_details?.cached_tokens || 0, cacheWrite: 0 },
-      };
+      const content = typeof msg.content === "string" ? msg.content : (msg.content || []).map((p) => p.text || "").join("");
+      return result(content, choice.finish_reason, msg.refusal, data.model || req.model, data.usage);
     },
   };
+}
+
+// prompt_tokens includes cached tokens; count them once, at the cached rate.
+function result(text, finish, refusal, model, u = {}) {
+  const cached = u?.prompt_tokens_details?.cached_tokens || 0;
+  return {
+    text,
+    stop: refusal ? "refusal" : finish === "length" ? "max_tokens" : "end",
+    refusalCategory: refusal || undefined,
+    model,
+    usage: { input: (u?.prompt_tokens || 0) - cached, output: u?.completion_tokens || 0, cacheRead: cached, cacheWrite: 0 },
+  };
+}
+
+/** Read a server-sent-events stream of chat.completion.chunk objects. */
+async function readStream(res, fallbackModel) {
+  const decoder = new TextDecoder();
+  let buf = "";
+  let text = "";
+  let refusal = "";
+  let finish = null;
+  let usage = null;
+  let model = fallbackModel;
+  for await (const chunk of res.body) {
+    buf += decoder.decode(chunk, { stream: true });
+    let nl;
+    while ((nl = buf.indexOf("\n")) >= 0) {
+      const line = buf.slice(0, nl).trim();
+      buf = buf.slice(nl + 1);
+      if (!line.startsWith("data:")) continue;
+      const payload = line.slice(5).trim();
+      if (payload === "[DONE]") continue;
+      const ev = JSON.parse(payload);
+      if (ev.error) throw Object.assign(new Error(`stream error: ${JSON.stringify(ev.error).slice(0, 300)}`), { status: ev.error.code || 500 });
+      model = ev.model || model;
+      if (ev.usage) usage = ev.usage;
+      const c = ev.choices?.[0];
+      if (!c) continue;
+      text += c.delta?.content || "";
+      refusal += c.delta?.refusal || "";
+      finish = c.finish_reason || finish;
+    }
+  }
+  return result(text, finish, refusal || null, model, usage || {});
 }

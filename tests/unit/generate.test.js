@@ -183,6 +183,28 @@ test("openai-compatible adapter: chat/completions body, key from env, images, us
   assert.throws(() => createOpenAICompatAdapter({ baseURL: "http://x/v1", apiKeyEnv: "NOT_SET_ANYWHERE_123" }, "p"), /NOT_SET_ANYWHERE_123/);
 });
 
+test("openai-compatible adapter: reads a streamed (SSE) reply with usage", async () => {
+  const sse = [
+    { model: "m1", choices: [{ delta: { content: '{"a":' } }] },
+    { choices: [{ delta: { content: "1}" }, finish_reason: "stop" }] },
+    { choices: [], usage: { prompt_tokens: 50, completion_tokens: 4 } },
+  ].map((e) => `data: ${JSON.stringify(e)}\n\n`).join("") + "data: [DONE]\n\n";
+  let sent;
+  const fetchImpl = async (url, init) => {
+    sent = JSON.parse(init.body);
+    const bytes = new TextEncoder().encode(sse);
+    // Split mid-line to exercise buffering.
+    const body = (async function* () { yield bytes.slice(0, 17); yield bytes.slice(17); })();
+    return { ok: true, status: 200, headers: new Headers({ "content-type": "text/event-stream" }), body };
+  };
+  const a = createOpenAICompatAdapter({ baseURL: "http://x/v1" }, "local", fetchImpl);
+  const r = await a.complete({ model: "m", system: "S", messages: [{ role: "user", content: "x" }], stage: "t" });
+  assert.equal(sent.stream, true);
+  assert.equal(r.text, '{"a":1}');
+  assert.equal(r.model, "m1");
+  assert.deepEqual(r.usage, { input: 50, output: 4, cacheRead: 0, cacheWrite: 0 });
+});
+
 test("openai-compatible adapter: unsupported response_format steps down json_schema → json_object → off", async () => {
   const f = fakeFetch((body) =>
     body.response_format ? { status: 400, json: { error: { message: `response_format ${body.response_format.type} not supported` } } } : { json: { choices: [{ finish_reason: "stop", message: { content: '{"a":1}' } }] } });
