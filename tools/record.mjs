@@ -4,6 +4,7 @@
 //   --out-dir out          parent folder; output goes to <out-dir>/<slug>/
 //   --slug name            output folder name (default: from meta.title)
 //   --from N --to N        render only frames N..M (inclusive; audio is cut to match)
+//   --scene N              render only scene N (0-based index or scene id) of a story script
 //   --frames-only          write frames/00000.png ... instead of a video (debugging)
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
 //   --no-audio             skip the audio mix
@@ -25,15 +26,16 @@ import { catalog } from "../data/index.js";
 const args = process.argv.slice(2);
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset)$/));
+const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene)$/));
 if (!file) {
-  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N] [--frames-only] [--hash] [--no-audio]");
+  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio]");
   process.exit(2);
 }
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "video";
 const script = JSON.parse(readFileSync(file, "utf8"));
-const engine = createEngine({ catalog });
+const backend = await loadBackend();
+const engine = createEngine({ catalog, createCanvas: backend.createCanvas });
 const loaded = engine.load(script);
 if (loaded.warnings.length) console.log(formatIssues(loaded.warnings));
 if (!loaded.ok) {
@@ -41,14 +43,19 @@ if (!loaded.ok) {
   process.exit(1);
 }
 const meta = engine.getMeta();
-const slug = opt("--slug", null) || slugify(meta.title || basename(file, ".json"));
+const sceneArg = opt("--scene", null);
+const scene = sceneArg === null ? null : engine.getScenes().find((sc) => String(sc.index) === sceneArg || sc.id === sceneArg);
+if (sceneArg !== null && !scene) {
+  console.error(`no scene ${sceneArg}; scenes: ${engine.getScenes().map((sc) => `${sc.index} (${sc.id})`).join(", ")}`);
+  process.exit(2);
+}
+const slug = (opt("--slug", null) || slugify(meta.title || basename(file, ".json"))) + (scene ? `-scene-${scene.index}` : "");
 const dir = join(opt("--out-dir", "out"), slug);
 mkdirSync(dir, { recursive: true });
-const from = Math.max(0, Number(opt("--from", 0)));
-const to = Math.min(meta.totalFrames - 1, Number(opt("--to", meta.totalFrames - 1)));
+const from = scene ? scene.startFrame : Math.max(0, Number(opt("--from", 0)));
+const to = scene ? scene.startFrame + scene.frames - 1 : Math.min(meta.totalFrames - 1, Number(opt("--to", meta.totalFrames - 1)));
 const t0 = process.hrtime.bigint();
 const seconds = () => Number(process.hrtime.bigint() - t0) / 1e9;
-const backend = await loadBackend();
 const canvas = backend.createCanvas(meta.width, meta.height);
 const ctx = canvas.getContext("2d");
 

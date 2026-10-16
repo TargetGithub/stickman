@@ -373,7 +373,7 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 
 ### ADR-010 One schema for validation and for the LLM
 - **Decision**: the script schema is a JSON Schema object (`engine/validator/schema.js`). A small checker validates scripts against it; `buildJsonSchema(catalog)` exports it with move/theme/prop enums for structured output. Checker-only keywords (`x-formMessage`) are stripped on export.
-- **Consequences**: the LLM and the validator cannot drift apart. The v1 snapshot lives in `docs/schema/script-v1.schema.json`; any change to it must stay backward-compatible.
+- **Consequences**: the LLM and the validator cannot drift apart. The v1 snapshot lives in `docs/schema/script-v1.schema.json`; any change to it must stay backward-compatible (S1 widened duration to 900 s and beats to 600).
 
 ### ADR-011 Director-owned queues
 - **Decision**: beats for busy characters wait in the director, not in the actor's move queue.
@@ -429,6 +429,44 @@ export function checkValue(value, schema, path?): Issue[];   // checker for any 
 export function exportSchema(schema): object;                // deep copy without x-* keywords
 ```
 The checker gains one checker-only keyword, `x-select: "<key>"` on a `oneOf`: the presence of that key picks the branch, so a macro beat or an action beat gets precise messages instead of a generic form error. v1 does not use it, so v1 messages are unchanged.
+
+### Scenes and story modules (S1)
+```js
+// story/normalize.js
+export function normalize(script): Story;                 // v1 → one legacy scene "main"; v2 → { ...script, legacy: false }
+export function resolveLocation(story, scene, catalog): Location | null;   // location id, else a theme name
+export function sceneLook(scene, location): { time, weather, ambience };
+export function flatScene(story, i, catalog): { meta, characters, camera, beats, scene, location, look, hidden:Set };
+export function transitionInto(story, i): Transition | null;   // next.transitionIn ?? prev.transitionOut
+export function transitionDuration(t): number;                // seconds of hold frames (0 for cut)
+// story/timing.js
+export const CARD_COMMANDS; export function cardKind(cmd), cardDuration(cmd, params), narrateDuration(params);
+// framestore.js (segments)
+export function createStore(chars | null, estFrames, propNames): Store;   // null: start empty
+export function startScene(store, chars, { scene }, estFrames): void;
+export function addHold(store, frames, info): void;            // transition frames, no per-frame data
+export function segmentIndexAt(store, n), segmentLength(store, i), storyTimeAt(store, n);
+export function frameView(store, n, fps): SceneFrame | HoldFrame;   // hold: { hold, u, prevFrame, nextFrame, chars: [] }
+// clock.js
+export function holdTick(clock): void;                         // a frame with story and fx clocks held
+// director.js
+export function createDirector(script, moves, { t0, prefix, tag, dead }?): Director;
+// presentation.js
+export function createPresentation(script, catalog, { suffix, fx }?): Presentation;   // per-scene streams, shared fx log
+// sim.js: simulate(...) also returns { story, scenes: [{ index, id, theme, stageWidth, look, location, set,
+//   startFrame, frames, storyStart, fxStart, fxEnd, fxT0, characters }] }
+// validator/story.js
+export function checkStory(story, catalog, moves): Issue[];   // story checks + v1 checks per flat scene
+export function softWordIssues(text, path, catalog, audience): Issue[];
+// validator/semantic.js: checkSemantics(script, catalog, moves, { worldCommands }?); WORLD_COMMANDS_V2
+// renderer: transitions.js drawHold; cards.js drawCard, drawNarration; grade.js gradeState, drawGrade;
+//   objects.js drawSetPieces; background_kinds.js STORY_KINDS; layer_util.js (shared layer helpers)
+// index.js: createEngine({ catalog, createCanvas? }); engine.getScenes()
+```
+- Validation of a v2 script: `E_VERSION` check → v2 schema (`checkValue` + authored-beat limit) → `checkStory` → dry run → `W_STORY_SHORT`/`W_FIGHT_SHORT` → pacing (`W_NO_IMPACT` only for fight videos).
+- Each scene gets new actors (hp and held prop carried over), a new world, director, camera and presentation; the fx log is shared, with each scene's range recorded so the renderer never draws another scene's particles, trails, flashes, captions or fades.
+- Hold frames call back into the scene renderer for the neighbouring frames; dissolves need a scratch canvas from the host (`createCanvas`), and fall back to a fade without one.
+- Cards as world commands request a freeze for their duration; their `end` anchor fires when the hold ends.
 
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.

@@ -62,6 +62,11 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** themes and transitions (15 min).
 
+**Status (2026-10-16):** built; waiting for the review. Demo: `out/demos/s1_scenes/final.mp4` from `scripts/samples/s1_scenes.json` (5 scenes, all five new themes, every transition type, narration, time/weather changes, cards). Notes:
+- Set pieces are drawn statically from a first `data/objects.js` (11 objects); S4 turns it into the full object catalog.
+- Macro beats are accepted by the schema but report `E_MACRO_UNKNOWN` until S6.
+- The narration chime (S2.6) and per-scene music/ambience (S7) are not in yet; stories render with SFX only.
+
 ### S2 Faces, emotions, dialogue (3-4 days)
 
 | Task | Output |

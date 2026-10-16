@@ -4,43 +4,10 @@
 
 import { mulberry32, hash32 } from "../math.js";
 import { STAGE } from "../config.js";
+import { layerTransform, screen, glowDisc, polygonBand } from "./layer_util.js";
+import { STORY_KINDS } from "./background_kinds.js";
 
 const SPAN = [-2400, 8000]; // world x range covered by generated geometry (any stage up to 8000 px)
-
-/** Screen transform for a layer: world x scrolls by `factor`, y is measured from the ground line. */
-function layerTransform(ctx, view, factor) {
-  const { cam, W, H } = view;
-  const z = 1 + (cam.zoom - 1) * factor;
-  const groundScreen = H / 2 + (STAGE.groundY - cam.y + cam.shakeY) * cam.zoom;
-  ctx.setTransform(z, 0, 0, z, W / 2 - (cam.x - cam.shakeX) * factor * z, groundScreen);
-  const left = (cam.x - cam.shakeX) * factor - W / (2 * z) - 50;
-  const right = (cam.x - cam.shakeX) * factor + W / (2 * z) + 50;
-  return { z, left, right };
-}
-
-const screen = (ctx) => ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-function glowDisc(ctx, x, y, r, color, glow) {
-  const g = ctx.createRadialGradient(x, y, r * 0.6, x, y, r * 2.4);
-  g.addColorStop(0, glow);
-  g.addColorStop(1, "rgba(0,0,0,0)");
-  ctx.fillStyle = g;
-  ctx.fillRect(x - r * 2.4, y - r * 2.4, r * 4.8, r * 4.8);
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.arc(x, y, r, 0, Math.PI * 2);
-  ctx.fill();
-}
-
-function polygonBand(ctx, pts, left, right, color) {
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.moveTo(left, 4000);
-  for (const p of pts) if (p.x >= left - 400 && p.x <= right + 400) ctx.lineTo(p.x, p.y);
-  ctx.lineTo(right, 4000);
-  ctx.closePath();
-  ctx.fill();
-}
 
 const KINDS = {
   sun: {
@@ -255,6 +222,8 @@ const KINDS = {
     },
   },
 };
+
+Object.assign(KINDS, STORY_KINDS);
 
 export const LAYER_KINDS = Object.keys(KINDS);
 

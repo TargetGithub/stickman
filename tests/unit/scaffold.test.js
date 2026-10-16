@@ -39,7 +39,8 @@ test("default catalog loads", async () => {
   const { catalog } = await import("../../data/index.js");
   assert.ok(catalog.poses.stand, "stand pose exists");
   assert.equal(catalog.sfxKeys.length, 23);
-  assert.equal(catalog.themeNames.length, 7);
+  assert.equal(catalog.themeNames.length, 12); // 7 fight themes + 5 story themes (S1)
+  assert.ok(Object.keys(catalog.objects).length >= 11, "S1 set pieces");
 });
 
 test("engine code avoids forbidden time and randomness sources", async () => {

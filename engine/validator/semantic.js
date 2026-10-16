@@ -25,6 +25,18 @@ export const WORLD_COMMANDS = {
   cut: {},
 };
 
+/** World commands added for story scripts (v2 only; STORY_SPEC 5.2, 7.3). Later milestones add more. */
+export const WORLD_COMMANDS_V2 = {
+  ...WORLD_COMMANDS,
+  narrate: { text: { text: 160, required: true }, pos: { enum: ["top", "bottom"] }, dur: { min: 0.5, max: 15 }, style: { enum: ["box", "plain"] } },
+  title_card: { title: { text: 60, required: true }, subtitle: { text: 80 }, dur: { min: 0.5, max: 10 }, bg: HEX },
+  chapter_card: { text: { text: 80, required: true }, dur: { min: 0.5, max: 10 }, bg: HEX },
+  time_card: { text: { text: 80, required: true }, dur: { min: 0.5, max: 10 }, bg: HEX },
+  end_card: { text: { text: 80, required: true }, dur: { min: 0.5, max: 10 }, bg: HEX },
+  set_time: { time: { enum: ["dawn", "day", "dusk", "night"], required: true }, dur: { min: 0, max: 10 } },
+  set_weather: { weather: { enum: ["clear", "cloudy", "rain", "snow", "wind", "fog"], required: true }, dur: { min: 0, max: 10 } },
+};
+
 const MIN_CONTRAST = 1.6;
 
 /** WCAG contrast ratio between two #rrggbb colors. */
@@ -54,7 +66,7 @@ export function checkText(text, path, blocklist, out) {
 }
 
 function checkWorldParams(beat, path, ctx, out) {
-  const spec = WORLD_COMMANDS[beat.do];
+  const spec = ctx.worldCommands[beat.do];
   const params = beat.params || {};
   for (const [name, rule] of Object.entries(spec)) {
     if (rule.required && !(name in params)) {
@@ -127,7 +139,8 @@ function findCycles(beats, out) {
  * @param {Map<string, object>} moves  prepared moves
  * @returns {Array<object>} issues (errors and warnings)
  */
-export function checkSemantics(script, catalog, moves) {
+export function checkSemantics(script, catalog, moves, opts = {}) {
+  const worldCommands = opts.worldCommands || WORLD_COMMANDS;
   const out = [];
   const meta = script.meta;
   const stageWidth = meta.stageWidth ?? STAGE.width;
@@ -161,9 +174,9 @@ export function checkSemantics(script, catalog, moves) {
     if (beatsById.has(b.id)) out.push({ code: "E_REF_DUPLICATE", path: `beats[${i}].id`, message: `Beat id '${b.id}' is used twice.`, fix: "Give every beat a unique id." });
     beatsById.set(b.id, b);
   });
-  const ctx = { catalog, moves, charIds, beatsById };
+  const ctx = { catalog, moves, charIds, beatsById, worldCommands };
   const moveNames = [...moves.keys()];
-  const worldNames = Object.keys(WORLD_COMMANDS);
+  const worldNames = Object.keys(worldCommands);
 
   script.beats.forEach((b, i) => {
     const p = `beats[${i}]`;
@@ -173,7 +186,7 @@ export function checkSemantics(script, catalog, moves) {
       if (!catalog.fxNames.includes(fx)) out.push({ code: "E_FX_UNKNOWN", path: `${p}.fx`, message: `Unknown effect '${fx}'.`, fix: `Use one of: ${nearest(fx, catalog.fxNames).join(", ")}.` });
     }
     if (b.who === "world") {
-      if (!WORLD_COMMANDS[b.do]) {
+      if (!worldCommands[b.do]) {
         const asMove = moves.has(b.do) ? ` '${b.do}' is a move: set "who" to a character.` : "";
         out.push({ code: "E_WORLD_UNKNOWN", path: `${p}.do`, message: `Unknown world command '${b.do}'.${asMove}`, fix: `Use one of: ${worldNames.join(", ")}.` });
       } else checkWorldParams(b, p, ctx, out);
@@ -192,7 +205,7 @@ export function checkSemantics(script, catalog, moves) {
       // A beat with a target or outcome wants an attack: suggest attacks first.
       const pool = b.target || b.outcome ? moveNames.filter((n) => moves.get(n).category === "attack") : moveNames;
       const near = closestMatch(b.do, pool) || closestMatch(b.do, moveNames);
-      const isWorld = WORLD_COMMANDS[b.do] ? ` '${b.do}' is a world command: set "who": "world".` : "";
+      const isWorld = worldCommands[b.do] ? ` '${b.do}' is a world command: set "who": "world".` : "";
       out.push({ code: "E_MOVE_UNKNOWN", path: `${p}.do`, message: `Unknown move '${b.do}'.${isWorld}`, fix: `Use one of: ${nearest(b.do, pool).join(", ")}${near ? ` (closest match: ${near})` : ""}.` });
       return;
     }

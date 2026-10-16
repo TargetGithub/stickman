@@ -43,22 +43,22 @@ export const SHAKE = {
 export const CAMERA = { omega: 8, padding: 300 };
 
 export const LIMITS = {
-  scriptBytes: 64 * 1024,
-  beats: 200,
+  scriptBytes: 512 * 1024,
+  beats: 600,
   characters: 6,
   particles: 2000,
   say: 40,
   textPop: 16,
   caption: 80,
   minDuration: 3,
-  maxDuration: 180,
+  maxDuration: 900,
   maxApproach: 3,
   queueDriftWarn: 0.5,
 };
 
 export const RNG_STREAMS = ["physics", "fx", "camera", "bg", "director", "audio"];
 
-// Story scripts (schema v2, STORY_SPEC 19). v1 keeps LIMITS until S1.10 raises its duration.
+// Story scripts (schema v2, STORY_SPEC 19). v1 shares the long-form limits since S1.10 (900 s, 600 beats, 512 KB).
 export const LIMITS_V2 = {
   scriptBytes: 512 * 1024,
   maxDuration: 900,

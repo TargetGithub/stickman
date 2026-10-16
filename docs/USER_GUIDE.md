@@ -293,6 +293,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `--out-dir DIR` | Parent output folder (default `out`) |
 | `--slug NAME` | Output folder name (default: from the title) |
 | `--from N --to M` | Render only frames N to M (quick checks of one moment) |
+| `--scene N` | Render only scene N of a story (index from 0, or the scene id) |
 | `--no-audio` | Skip the sound mix |
 | `--frames-only` | Write PNG frames instead of a video |
 | `--hash` | Write a SHA-256 per frame (determinism checks) |
@@ -302,7 +303,7 @@ Browser pages (after `npm run serve`):
 
 | Page | Use |
 |---|---|
-| `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file |
+| `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file. Stories show scene markers above the scrubber (click one to jump) |
 | `/web/catalog.html` | Every move looping, with hit windows shown |
 | `/web/editor.html` | Pose and move editor, for adding or changing moves |
 | `/web/index.html` | Pose viewer |
@@ -561,6 +562,9 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 | Fonts look wrong | Check `assets/fonts/` has `Bangers-Regular.ttf` and `Inter.ttf` |
 
 ## 11. Known limits
+
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards and narration; see `scripts/samples/s1_scenes.json`. Faces, body plans, objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
+- Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.
 - No secondary "overlap" motion on limbs yet; accessories carry the follow-through.

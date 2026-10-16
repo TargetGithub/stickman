@@ -32,7 +32,8 @@ for (const group of ["bad", "warn"]) {
 }
 
 test("good scripts validate cleanly and include a timeline", () => {
-  for (const url of [new URL("../fixtures/good/minimal.json", import.meta.url), new URL("../../scripts/samples/m3_duel.json", import.meta.url)]) {
+  for (const url of [new URL("../fixtures/good/minimal.json", import.meta.url), new URL("../../scripts/samples/m3_duel.json", import.meta.url),
+    new URL("../fixtures/good/story_min.json", import.meta.url), new URL("../fixtures/good/transitions.json", import.meta.url), new URL("../../scripts/samples/s1_scenes.json", import.meta.url)]) {
     const r = validate(load(url), catalog);
     assert.deepEqual([...r.errors, ...r.warnings], [], url.pathname);
     assert.match(r.timeline, /video length/);

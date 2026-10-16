@@ -18,21 +18,25 @@ export function anchorPoint(actor, anchor) {
  * @param {object} script  for meta (format, seed, stageWidth, autoCamera)
  * @param {object} catalog  for fxPresets
  */
-export function createPresentation(script, catalog) {
+export function createPresentation(script, catalog, opts = {}) {
   const meta = script.meta || {};
   const format = FORMATS[meta.format] || FORMATS.landscape;
   const seed = meta.seed ?? 1;
+  // Scenes (ADR-016): RNG streams are scoped per scene (suffix "@<sceneId>"); one fx log is shared.
+  const suffix = opts.suffix ?? "";
+  const fxRng = deriveRng(seed, `fx${suffix}`);
+  if (opts.fx) opts.fx.rng = fxRng;
   return {
     format,
     autoCamera: meta.autoCamera !== false,
-    fx: createFx(deriveRng(seed, "fx"), catalog.fxPresets),
+    fx: opts.fx ?? createFx(fxRng, catalog.fxPresets),
     cam: createCamera({
       width: format.width,
       height: format.height,
       groundScreenRatio: format.groundScreenRatio,
       stageWidth: meta.stageWidth ?? STAGE.width,
       groundY: STAGE.groundY,
-      rng: deriveRng(seed, "camera"),
+      rng: deriveRng(seed, `camera${suffix}`),
     }),
     pendingCut: false,
     lastKeyVideo: -Infinity,

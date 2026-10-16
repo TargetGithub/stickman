@@ -22,7 +22,9 @@ export function scriptSchema(catalog) {
 }
 
 /**
- * @param {{ catalog: object }} opts  data catalog (see /data/index.js); the engine never imports /data
+ * @param {{ catalog: object, createCanvas?: (w:number, h:number) => object }} opts
+ *   catalog: data catalog (see /data/index.js); the engine never imports /data.
+ *   createCanvas: optional host canvas factory, used for scratch canvases (dissolve transitions).
  */
 export function createEngine(opts) {
   if (!opts || !opts.catalog) throw new Error("createEngine: catalog is required");
@@ -46,7 +48,7 @@ export function createEngine(opts) {
       const base = { errors: v.errors, warnings: v.warnings, timeline: v.timeline, fps: FPS, width: format.width, height: format.height };
       if (!v.ok) return { ok: false, ...base, totalFrames: 0, durationSec: 0 };
       const sim = simulate(script, catalog);
-      state = { script, sim, renderer: createRenderer(catalog, sim), audio: null };
+      state = { script, sim, renderer: createRenderer(catalog, sim, { createCanvas: opts.createCanvas }), audio: null };
       return { ok: true, ...base, totalFrames: sim.totalFrames, durationSec: sim.durationSec };
     },
 
@@ -80,6 +82,14 @@ export function createEngine(opts) {
       return frameAt(loaded().sim, n);
     },
 
+    /** Scenes in video order: [{ index, id, theme, startFrame, frames, startT, endT }] (one for v1 scripts). */
+    getScenes() {
+      return loaded().sim.scenes.map((sc) => ({
+        index: sc.index, id: sc.id, theme: sc.theme, startFrame: sc.startFrame, frames: sc.frames,
+        startT: sc.startFrame / FPS, endT: (sc.startFrame + sc.frames) / FPS,
+      }));
+    },
+
     /** The full simulation event log (hits, moves, world beats, ...), with story and video times. */
     getEvents() {
       return loaded().sim.events;
@@ -92,7 +102,8 @@ export function createEngine(opts) {
         title: m.title,
         format: m.format,
         seed: m.seed,
-        theme: m.theme ?? "white_stage",
+        theme: m.theme ?? s.sim.scenes[0]?.theme ?? "white_stage",
+        scenes: s.sim.scenes.length,
         width: s.sim.format.width,
         height: s.sim.format.height,
         fps: FPS,

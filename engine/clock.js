@@ -93,3 +93,17 @@ export function storyToVideo(clock, storyT) {
   }
   return lo * VIDEO_DT;
 }
+
+/**
+ * Advance one video frame with the story and fx clocks held (scene transitions and cards between
+ * scenes, ADR-016). Clears time effects so the next scene starts clean.
+ */
+export function holdTick(clock) {
+  clock.slowmo = null;
+  clock.hitstopLeft = 0;
+  clock.freezeLeft = 0;
+  clock.frame++;
+  clock.videoT = clock.frame * VIDEO_DT;
+  clock.storyAt.push(clock.storyT);
+  clock.fxAt.push(clock.fxT);
+}

@@ -12,7 +12,10 @@
     #stage { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
     canvas { max-width: 100%; max-height: 100%; background: #000; border-radius: 6px; }
     .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    #scrub { flex: 1; min-width: 200px; }
+    #scrubWrap { flex: 1; min-width: 200px; position: relative; padding-top: 16px; }
+    #scrub { width: 100%; }
+    #markers { position: absolute; left: 0; right: 0; top: 0; height: 16px; pointer-events: none; }
+    #markers span { position: absolute; top: 0; border-left: 2px solid #7fd8ff; padding-left: 3px; font-size: 10px; color: #7fd8ff; white-space: nowrap; pointer-events: auto; cursor: pointer; }
     aside { background: #1d1f24; border-left: 1px solid #2b2e35; padding: 12px; overflow-y: auto; }
     h1 { font-size: 15px; margin: 0 0 10px; }
     h2 { font-size: 12px; color: #9a9ca3; text-transform: uppercase; letter-spacing: .04em; margin: 14px 0 6px; }
@@ -29,6 +32,7 @@
   <main>
     <div class="bar">
       <select id="sample">
+        <option value="../scripts/samples/s1_scenes.json">s1_scenes (story: 5 scenes, cards, transitions)</option>
         <option value="../scripts/samples/rooftop_rumble.json">rooftop_rumble (rooftop, 3 fighters)</option>
         <option value="../scripts/samples/m4_dojo.json">m4_dojo (dojo, landscape)</option>
         <option value="../scripts/samples/m5_portrait.json">m5_portrait (void grid, 9:16)</option>
@@ -42,7 +46,7 @@
     <div class="bar">
       <button id="play">▶ Play</button>
       <select id="speed"><option value="0.25">0.25x</option><option value="0.5">0.5x</option><option value="1" selected>1x</option></select>
-      <input id="scrub" type="range" min="0" max="0" value="0">
+      <div id="scrubWrap"><div id="markers"></div><input id="scrub" type="range" min="0" max="0" value="0"></div>
       <span id="frameLabel"></span>
     </div>
   </main>
@@ -62,18 +66,36 @@
     const $ = (id) => document.getElementById(id);
     const canvas = $("view");
     const ctx = canvas.getContext("2d");
-    const engine = createEngine({ catalog });
+    const createCanvas = (w, h) => Object.assign(document.createElement("canvas"), { width: w, height: h });
+    const engine = createEngine({ catalog, createCanvas });
     let total = 0;
     let frame = 0;
     let playing = false;
     let clock = 0;
+    let scenes = [];
+
+    /** Scene markers above the scrubber (stories only); click one to jump to its scene. */
+    function drawMarkers() {
+      const box = $("markers");
+      box.innerHTML = "";
+      if (scenes.length < 2) return;
+      for (const sc of scenes) {
+        const el = document.createElement("span");
+        el.style.left = `${(sc.startFrame / Math.max(1, total - 1)) * 100}%`;
+        el.textContent = sc.id;
+        el.title = `scene ${sc.index}: ${sc.id} (${sc.theme})`;
+        el.addEventListener("click", () => { playing = false; show(sc.startFrame); });
+        box.appendChild(el);
+      }
+    }
 
     function show(n) {
       if (!total) return;
       frame = Math.max(0, Math.min(total - 1, n));
       engine.renderFrame(ctx, frame);
       $("scrub").value = frame;
-      $("frameLabel").textContent = `frame ${frame} / ${total - 1}  ·  ${(frame / 60).toFixed(2)}s`;
+      const sc = scenes.filter((x) => x.startFrame <= frame).pop();
+      $("frameLabel").textContent = `frame ${frame} / ${total - 1}  ·  ${(frame / 60).toFixed(2)}s${scenes.length > 1 && sc ? `  ·  scene ${sc.index} (${sc.id})` : ""}`;
     }
 
     function load(script, label) {
@@ -90,6 +112,8 @@
       canvas.width = r.width;
       canvas.height = r.height;
       $("scrub").max = Math.max(0, total - 1);
+      scenes = r.ok ? engine.getScenes() : [];
+      drawMarkers();
       if (!r.ok) {
         ctx.fillStyle = "#1d1f24";
         ctx.fillRect(0, 0, canvas.width, canvas.height);

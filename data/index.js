@@ -4,7 +4,8 @@ import { props } from "./props.js";
 import { fxPresets, FX_NAMES } from "./fx.js";
 import { themes, THEME_NAMES } from "./themes.js";
 import { SFX_KEYS } from "./sfx.js";
-import { blocklist } from "./blocklist.js";
+import { blocklist, softWords } from "./blocklist.js";
+import { objects } from "./objects.js";
 import { moves as movement } from "./moves/movement.js";
 import { moves as unarmed } from "./moves/unarmed.js";
 import { moves as armed } from "./moves/armed.js";
@@ -23,4 +24,6 @@ export const catalog = {
   themeNames: THEME_NAMES,
   sfxKeys: SFX_KEYS,
   blocklist,
+  softWords,
+  objects,
 };

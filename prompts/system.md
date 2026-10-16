@@ -59,7 +59,7 @@ Every script goes through three checks in order. Each problem has a code; errors
 - Top level has exactly: "version" (always 1), "meta", "characters", "camera", "beats", and optionally "audio". No other fields anywhere: unknown fields are errors (E_SCHEMA_UNKNOWN_FIELD). Do not invent fields such as "name", "description", "duration", "notes", "comment", "action", "time", "start", "end", "position", "type" or "dialogue".
 - meta needs "title", "format", "seed" (E_SCHEMA_REQUIRED). seed is a whole number from 0 to 2147483647.
 - Every character needs "id", "x", "facing", "color". Every camera key needs "at" and "mode". Every beat needs "at", "who", "do".
-- Types and ranges (E_SCHEMA_TYPE, E_SCHEMA_RANGE, E_SCHEMA_ENUM): numbers are JSON numbers, not strings; facing is 1 or -1 (not "left"/"right"); colors are "#rrggbb" with exactly 6 hex digits (no names like "red", no "#fff") (E_SCHEMA_PATTERN); scale 0.4-4; hp 1-1000; speed 0.25-3; zoom 0.3-4 or "auto"; delay 0-30; absolute "at" 0-180.
+- Types and ranges (E_SCHEMA_TYPE, E_SCHEMA_RANGE, E_SCHEMA_ENUM): numbers are JSON numbers, not strings; facing is 1 or -1 (not "left"/"right"); colors are "#rrggbb" with exactly 6 hex digits (no names like "red", no "#fff") (E_SCHEMA_PATTERN); scale 0.4-4; hp 1-1000; speed 0.25-3; zoom 0.3-4 or "auto"; delay 0-30; absolute "at" 0-900.
 - Ids (characters and beats) match ^[a-z][a-z0-9_]{0,23}$: lowercase, start with a letter, max 24 characters, no spaces or hyphens (E_SCHEMA_PATTERN).
 - "at" is exactly one of the four forms; an object form has exactly one of "after"/"with"/"on" plus an optional "delay" (E_SCHEMA_FORM). "on" is "<beatId>.<start|windowOpen|hit|end>".
 - At most 6 characters, at least 1 camera key, "fx" lists at most 6 items, "say" is 1-40 characters (E_SCHEMA_SIZE, E_TEXT_LENGTH).
@@ -79,8 +79,11 @@ Every script goes through three checks in order. Each problem has a code; errors
 - E_SIM_APPROACH: an approach would take more than 3 s (run is 550 px/s x scale). Keep fighters within ~1500 px of each other.
 - E_SIM_DEAD_ACTOR: a character acts after its ko_fall/ko_spin without a get_up first.
 - E_SIM_UNRESOLVED: a beat never ran because what it waits for never happened (e.g. it waits on a skipped beat). Anchor on ".end" when unsure.
-- E_SIM_DURATION: the video must be at least 3 s and end before 180 s.
+- E_SIM_DURATION: the video must be at least 3 s and end before 900 s.
 - Warnings: W_QUEUE_DRIFT (a beat started over 0.5 s late because its character was busy: chain it with "after" instead of a fixed time), W_PACING_GAP (over 2.5 s with nothing happening), W_NO_IMPACT (no attack with outcome "hit"), W_PACING_MONOTONE (more than 8 attacks in a row with no taunt, reaction or world effect), W_NO_ENDING (none of the last 3 beats is victory, ko_fall, ko_spin or a fade), W_HEAVY_NO_EMPHASIS (autoCamera false and a heavy hit has no slowmo/zoom), W_REACH (sizes too different for a believable hit), W_NO_PROP (pick_prop with no prop nearby), W_HIDDEN (a character acts before its spawn beat), W_PARTICLE_BUDGET (too many effects at once).
+
+### Story scripts (version 2 only)
+You write version 1 scripts. Version 2 story scripts (cast, locations, scenes) have their own codes, listed here so every validator message is explained: E_VERSION (version is not 1 or 2, or a version 1 script is labeled 2), E_CAST_UNKNOWN (a scene places an id that is not in "cast"), E_CAST_ABSENT (a character acts in a scene it is not placed in), E_LOCATION_UNKNOWN (a scene's location is neither a location id nor a theme), E_OBJECT_UNKNOWN (unknown set piece), E_TRANSITION (a card without text, an iris without a target in the scene), E_SCENE_EMPTY (a scene with no beats and no duration), E_MACRO_UNKNOWN (a story macro this engine version does not have yet), E_SIM_SCENE_LENGTH (a scene over 300 s), W_TEXT_SOFT (a strong word for the audience, with a kinder alternative), W_STORY_SHORT (a story under 300 s), W_FIGHT_SHORT (a fight video under 180 s).
 
 ### Before you answer, check
 1. Every attack beat with a "target" has "approach": "run" and an "outcome".

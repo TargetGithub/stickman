@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "meta": { "title": "Transitions", "format": "landscape", "seed": 7, "kind": "clip", "audience": "kids" },
+  "cast": [
+    { "id": "kai", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" } },
+    { "id": "pip", "color": "#2fd3c0", "scale": 0.8 }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "set": [ { "id": "bench1", "object": "bench", "x": 1300 } ] },
+    { "id": "home", "theme": "home_interior" }
+  ],
+  "scenes": [
+    { "id": "a", "location": "park", "duration": 1.2,
+      "transitionIn": { "type": "card", "kind": "title", "title": "Transitions", "subtitle": "one of each", "dur": 1.5 },
+      "cast": [ { "id": "kai", "x": 1500, "facing": 1 }, { "id": "pip", "x": 1750, "facing": -1 } ],
+      "beats": [ { "at": 0.1, "who": "world", "do": "narrate", "params": { "text": "A short test.", "dur": 1 } } ] },
+    { "id": "b", "location": "home", "duration": 1.2, "transitionIn": { "type": "fade", "dur": 0.8 },
+      "cast": [ { "id": "kai", "x": 1400, "facing": 1 } ], "beats": [ { "at": 0.1, "who": "kai", "do": "wave" } ] },
+    { "id": "c", "location": "city_street", "time": "night", "weather": "rain", "duration": 1.2, "transitionIn": { "type": "dissolve", "dur": 0.8 },
+      "cast": [ { "id": "kai", "x": 1400, "facing": 1 } ], "beats": [ { "at": 0.1, "who": "kai", "do": "point" } ] },
+    { "id": "d", "location": "alley_night", "weather": "fog", "duration": 1.2, "transitionIn": { "type": "wipe", "dir": "right", "dur": 0.8 },
+      "cast": [ { "id": "pip", "x": 1500, "facing": -1 } ], "beats": [ { "at": 0.1, "who": "pip", "do": "shrug" } ] },
+    { "id": "e", "location": "villain_lair", "time": "dusk", "duration": 1.2, "transitionIn": { "type": "iris", "target": "kai", "dur": 0.8 },
+      "transitionOut": { "type": "card", "kind": "end", "text": "The End", "dur": 1.2 },
+      "cast": [ { "id": "kai", "x": 1400, "facing": 1 }, { "id": "pip", "x": 1700, "facing": -1 } ], "beats": [ { "at": 0.1, "who": "kai", "do": "victory" } ] }
+  ]
+}

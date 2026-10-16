@@ -1,0 +1,74 @@
+{
+  "version": 2,
+  "meta": { "title": "Five Places", "format": "landscape", "seed": 2024, "kind": "clip", "audience": "kids" },
+  "cast": [
+    { "id": "kai", "name": "Kai", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" } },
+    { "id": "pip", "name": "Pip", "color": "#2fd3c0", "scale": 0.8 },
+    { "id": "guard", "color": "#ffb13d", "scale": 1.3, "hp": 60 },
+    { "id": "vex", "name": "Vex", "color": "#8a2be2", "style": { "cape": "#1a1a1a" }, "hp": 120 }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "stageWidth": 3600,
+      "set": [ { "id": "tree1", "object": "tree_big", "x": 900, "layer": "back" }, { "id": "bench1", "object": "bench", "x": 1250 }, { "id": "net", "object": "tennis_net", "x": 2350 }, { "id": "bush1", "object": "bush", "x": 2900, "layer": "front" } ] },
+    { "id": "home", "theme": "home_interior", "stageWidth": 2800, "set": [ { "id": "table1", "object": "table", "x": 1500 }, { "id": "chair1", "object": "chair", "x": 1330 } ] },
+    { "id": "street", "theme": "city_street", "stageWidth": 4000, "set": [ { "id": "lamp1", "object": "lamppost", "x": 1100 }, { "id": "sign1", "object": "sign", "x": 2500 } ] },
+    { "id": "alley", "theme": "alley_night", "stageWidth": 3200, "set": [ { "id": "crate1", "object": "crate", "x": 1000 }, { "id": "crate2", "object": "crate", "x": 1090, "y": 0 } ] },
+    { "id": "lair", "theme": "villain_lair", "stageWidth": 3200 }
+  ],
+  "scenes": [
+    { "id": "s1", "location": "park", "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Five Places", "subtitle": "Scenes, cards and transitions" },
+      "cast": [ { "id": "kai", "x": 1500, "facing": 1 }, { "id": "pip", "x": 1800, "facing": -1 } ],
+      "camera": [ { "at": 0, "mode": "follow", "targets": ["kai", "pip"], "zoom": "auto", "padding": 420 } ],
+      "beats": [
+        { "id": "n1", "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "Kai and Pip were the best of friends." } },
+        { "id": "w1", "at": 0.8, "who": "kai", "do": "wave", "say": "Morning, Pip!" },
+        { "id": "d1", "at": { "after": "w1" }, "who": "pip", "do": "dance_a", "say": "Let's play!" },
+        { "id": "l1", "at": { "after": "d1" }, "who": "kai", "do": "laugh" },
+        { "id": "dusk", "at": { "with": "l1" }, "who": "world", "do": "set_time", "params": { "time": "dusk", "dur": 2.5 } },
+        { "id": "p1", "at": { "after": "l1", "delay": 0.6 }, "who": "pip", "do": "point", "say": "Look, sunset!" }
+      ] },
+    { "id": "s2", "location": "home", "time": "night",
+      "transitionIn": { "type": "dissolve", "dur": 1 },
+      "cast": [ { "id": "kai", "x": 1150, "facing": 1 }, { "id": "pip", "x": 1700, "facing": -1 } ],
+      "beats": [
+        { "id": "n2", "at": 0.2, "who": "world", "do": "narrate", "params": { "text": "That night, Pip was gone.", "pos": "bottom" } },
+        { "id": "s2a", "at": 0.6, "who": "pip", "do": "despawn" },
+        { "id": "s2b", "at": { "after": "s2a", "delay": 0.4 }, "who": "kai", "do": "shrug", "say": "Pip?" },
+        { "id": "s2c", "at": { "after": "s2b" }, "who": "kai", "do": "charge_up", "say": "I will find you!", "fx": ["aura"] }
+      ] },
+    { "id": "s3", "location": "street", "time": "night", "weather": "rain",
+      "transitionIn": { "type": "card", "kind": "chapter", "text": "The path to save Pip" },
+      "cast": [ { "id": "kai", "x": 500, "facing": 1 }, { "id": "guard", "x": 1700, "facing": -1 } ],
+      "beats": [
+        { "id": "r1", "at": 0.3, "who": "kai", "do": "run", "params": { "distance": 600 } },
+        { "id": "t1", "at": 0.5, "who": "guard", "do": "taunt", "say": "Nobody passes!" },
+        { "id": "j1", "at": { "after": "r1" }, "who": "kai", "do": "jab", "target": "guard", "approach": "run", "outcome": "blocked" },
+        { "id": "c1", "at": { "after": "j1" }, "who": "kai", "do": "cross", "target": "guard", "outcome": "hit" },
+        { "id": "k1", "at": { "after": "c1", "delay": 0.2 }, "who": "kai", "do": "spinning_kick", "target": "guard", "approach": "run", "outcome": "hit", "params": { "damage": 40 } },
+        { "at": { "on": "k1.hit" }, "who": "world", "do": "text_pop", "params": { "text": "BONK!" } },
+        { "id": "ko1", "at": { "after": "k1", "delay": 0.4 }, "who": "guard", "do": "ko_fall" },
+        { "id": "clear", "at": { "after": "ko1" }, "who": "world", "do": "set_weather", "params": { "weather": "clear", "dur": 2 } }
+      ] },
+    { "id": "s4", "location": "alley", "time": "night", "weather": "fog",
+      "transitionIn": { "type": "wipe", "dir": "left", "dur": 0.8 },
+      "cast": [ { "id": "kai", "x": 700, "facing": 1 } ],
+      "beats": [
+        { "id": "a1", "at": 0.3, "who": "kai", "do": "walk", "params": { "distance": 500 } },
+        { "id": "a2", "at": { "after": "a1" }, "who": "world", "do": "time_card", "params": { "text": "Deep in the night...", "dur": 2 } },
+        { "id": "a3", "at": { "after": "a2" }, "who": "kai", "do": "point", "say": "There!" }
+      ] },
+    { "id": "s5", "location": "lair", "time": "night",
+      "transitionIn": { "type": "iris", "target": "kai", "dur": 1.2 },
+      "transitionOut": { "type": "fade", "dur": 1.2 },
+      "cast": [ { "id": "kai", "x": 1100, "facing": 1 }, { "id": "vex", "x": 2000, "facing": -1 } ],
+      "beats": [
+        { "id": "v1", "at": 0.4, "who": "vex", "do": "taunt", "say": "You came all this way?" },
+        { "id": "k2", "at": { "after": "v1" }, "who": "kai", "do": "flying_kick", "target": "vex", "approach": "run", "outcome": "hit", "params": { "damage": 130 }, "say": "Give Pip back!" },
+        { "at": { "on": "k2.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.3, "duration": 0.4 } },
+        { "id": "ko2", "at": { "after": "k2", "delay": 0.3 }, "who": "vex", "do": "ko_fall" },
+        { "id": "vic", "at": { "after": "ko2" }, "who": "kai", "do": "victory" },
+        { "at": { "after": "vic" }, "who": "world", "do": "end_card", "params": { "text": "To be continued" } }
+      ] }
+  ]
+}

@@ -15,17 +15,20 @@ const PAN_WIDTH = 0.8; // keep stereo placement subtle
 export function collectAudioEvents(sim) {
   const W = sim.format.width;
   const last = sim.store.length - 1;
-  const index = new Map(sim.store.chars.map((c, i) => [c.id, i]));
+  // Hold frames (transitions) have no camera or characters: use the nearest scene frame before them.
+  const sceneFrame = (t) => {
+    let f = frameView(sim.store, Math.min(last, Math.max(0, Math.round(t * FPS))), FPS);
+    if (f.hold) f = frameView(sim.store, f.prevFrame ?? f.nextFrame, FPS);
+    return f;
+  };
   const panAt = (t, x) => {
-    const f = frameView(sim.store, Math.min(last, Math.max(0, Math.round(t * FPS))), FPS);
+    const f = sceneFrame(t);
     const sx = W / 2 + (x - f.cam.x + f.cam.shakeX) * f.cam.zoom;
     return Math.max(-1, Math.min(1, (sx / W) * 2 - 1)) * PAN_WIDTH;
   };
   const actorX = (t, id) => {
-    const i = index.get(id);
-    if (i === undefined) return null;
-    const f = frameView(sim.store, Math.min(last, Math.max(0, Math.round(t * FPS))), FPS);
-    return unpackJoints(f.chars[i].joints).hip.x;
+    const c = sceneFrame(t).chars.find((ch) => ch.id === id);
+    return c ? unpackJoints(c.joints).hip.x : null;
   };
   const out = [];
   const add = (t, sfx, volume, x) => out.push({ t, sfx, volume, pan: x == null ? 0 : panAt(t, x) });

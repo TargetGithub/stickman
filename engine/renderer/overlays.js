@@ -5,6 +5,8 @@
 import { toScreen } from "../camera.js";
 import { easings } from "../math.js";
 import { STAGE } from "../config.js";
+import { drawCard, drawNarration } from "./cards.js";
+import { CARD_COMMANDS, cardDuration, cardKind, narrateDuration } from "../story/timing.js";
 
 const SAFE = { landscape: { top: 0.06, bottom: 0.06 }, portrait: { top: 0.12, bottom: 0.2 } };
 
@@ -170,6 +172,17 @@ export function drawOverlays(ctx, view) {
     ctx.textAlign = "center";
     lines.forEach((l, i) => ctx.fillText(l, W / 2, top + size * 0.25 + lineH * (i + 0.5) + size * 0.35));
     ctx.globalAlpha = 1;
+  }
+
+  for (const e of worldEvents.filter((w) => w.do === "narrate" && t >= w.videoT)) {
+    drawNarration(ctx, W, H, e.params, t - e.videoT, narrateDuration(e.params), safe);
+  }
+  for (const e of worldEvents.filter((w) => CARD_COMMANDS.includes(w.do) && t >= w.videoT)) {
+    const dur = cardDuration(e.do, e.params);
+    const age = t - e.videoT;
+    if (age >= dur) continue;
+    const alpha = Math.min(1, age / 0.3, (dur - age) / 0.3);
+    drawCard(ctx, W, H, { kind: cardKind(e.do), title: e.params.title, subtitle: e.params.subtitle, text: e.params.text, color: e.params.bg }, alpha, age);
   }
 
   const flashes = [

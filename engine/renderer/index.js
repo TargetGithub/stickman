@@ -9,17 +9,45 @@ import { propTransform } from "../props.js";
 import { createBackground, drawBackground } from "./background.js";
 import { drawParticles } from "./particles.js";
 import { drawPostWorld, drawOverlays } from "./overlays.js";
+import { drawHold } from "./transitions.js";
+import { drawGrade, gradeState } from "./grade.js";
+import { drawSetPieces } from "./objects.js";
 import { STAGE, FPS } from "../config.js";
-import { frameView } from "../framestore.js";
+import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
+
+/** Per-scene views of the event log and fx records (overlays and particles never leak across scenes). */
+function sceneViews(sim) {
+  const scenes = sim.scenes || [{ index: 0, theme: sim.meta?.theme, fxStart: 0, fxEnd: sim.fx.log.length, fxT0: 0, set: [] }];
+  return scenes.map((sc, i) => {
+    const ev = sim.events.filter((e) => (e.scene ?? 0) === sc.index);
+    const world = ev.filter((e) => e.type === "world");
+    const fxT1 = i + 1 < scenes.length ? scenes[i + 1].fxT0 : Infinity;
+    const inRange = (t) => t >= sc.fxT0 && t < fxT1;
+    return {
+      ...sc,
+      worldEvents: world,
+      themeChanges: world.filter((e) => e.do === "set_theme"),
+      looks: world.filter((e) => e.do === "set_time" || e.do === "set_weather"),
+      says: ev.filter((e) => e.type === "say"),
+      squashEvents: ev.filter((e) => e.type === "land" || e.type === "hit"),
+      fxLog: sc.fxStart === 0 && sc.fxEnd === sim.fx.log.length ? sim.fx.log : sim.fx.log.slice(sc.fxStart, sc.fxEnd),
+      trails: sim.fx.trails.filter((t) => inRange(t.t0)),
+      flashes: sim.fx.flashes.filter((f) => inRange(f.t0)),
+    };
+  });
+}
 
 /**
  * @param {object} catalog  for themes
- * @param {object} sim  result of simulate() (frames, events, fx, format, meta)
+ * @param {object} sim  result of simulate() (frames, events, fx, format, meta, scenes)
+ * @param {{ createCanvas?: (w:number, h:number) => object }} opts  scratch canvases for dissolves (host-provided)
  */
-export function createRenderer(catalog, sim) {
+export function createRenderer(catalog, sim, opts = {}) {
   const meta = sim.meta || {};
-  const worldEvents = sim.events.filter((e) => e.type === "world");
   return {
+    scenes: sceneViews(sim),
+    createCanvas: opts.createCanvas || null,
+    scratch: null,
     catalog,
     sim,
     W: sim.format.width,
@@ -28,11 +56,7 @@ export function createRenderer(catalog, sim) {
     seed: meta.seed ?? 1,
     defaultTheme: meta.theme || "white_stage",
     hpBars: !!meta.hpBars,
-    worldEvents,
-    themeChanges: worldEvents.filter((e) => e.do === "set_theme"),
     styles: new Map((sim.characters || []).map((c) => [c.id, c.style])),
-    squashEvents: sim.events.filter((e) => e.type === "land" || e.type === "hit"),
-    says: sim.events.filter((e) => e.type === "say"),
     backgrounds: new Map(),
     charCache: new Map(), // frame index → unpacked characters (small LRU for afterimages)
   };
@@ -72,7 +96,9 @@ function drawItems(ctx, r, items, flying) {
   }
 }
 
-function drawWorld(ctx, r, n, f, chars) {
+function drawWorld(ctx, r, n, f, chars, sv) {
+  drawSetPieces(ctx, r.catalog, sv.set, "back");
+  drawSetPieces(ctx, r.catalog, sv.set, "mid");
   drawItems(ctx, r, f.items, false);
   for (const c of chars) {
     if (c.alpha <= 0.01) continue;
@@ -83,7 +109,7 @@ function drawWorld(ctx, r, n, f, chars) {
     ctx.ellipse(c.j.hip.x, STAGE.groundY + 3, 44 * c.scale * (0.6 + 0.4 * k), 8 * c.scale * (0.6 + 0.4 * k), 0, 0, Math.PI * 2);
     ctx.fill();
   }
-  const trails = r.sim.fx.trails.filter((t) => f.fxT >= t.t0 && f.fxT < t.until);
+  const trails = sv.trails.filter((t) => f.fxT >= t.t0 && f.fxT < t.until);
   for (const t of trails.filter((x) => x.kind === "afterimage")) {
     [12, 8, 4].forEach((back, i) => {
       if (n - back < 0) return;
@@ -95,11 +121,12 @@ function drawWorld(ctx, r, n, f, chars) {
     if (c.alpha <= 0.01) continue;
     const style = r.styles.get(c.id) || {};
     const index = chars.indexOf(c);
-    const past = (k) => (n - k >= 0 ? charsAt(r, n - k)[index].j : null);
+    // Frame history (cape and scarf lag) stays inside the scene's segment.
+    const past = (k) => (n - k >= 0 && segmentIndexAt(r.sim.store, n - k) === f.segment ? charsAt(r, n - k)[index].j : null);
     ctx.save();
     if (style.squash) {
       // Flatten around the feet briefly after a landing or a hit.
-      const k = squashAt(r.squashEvents, c.id, f.videoT);
+      const k = squashAt(sv.squashEvents, c.id, f.videoT);
       if (k < 1) ctx.transform(1 / k, 0, 0, k, (c.j.hip.x) * (1 - 1 / k), STAGE.groundY * (1 - k));
     }
     if (style.glow) {
@@ -127,11 +154,12 @@ function drawWorld(ctx, r, n, f, chars) {
       ctx.beginPath(); ctx.moveTo(pts[i - 1].x, pts[i - 1].y); ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke();
     }
   }
-  drawParticles(ctx, r.sim.fx.log, f.fxT, (actorId, joint) => {
+  drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
     const c = chars.find((x) => x.id === actorId);
     if (!c) return null;
     return joint === "feet" ? { x: c.j.hip.x, y: STAGE.groundY } : c.j[joint] || c.j.hip;
   });
+  drawSetPieces(ctx, r.catalog, sv.set, "front");
 }
 
 /** Number of frames available. */
@@ -139,25 +167,37 @@ export function frameCount(r) {
   return r.sim.store.length;
 }
 
-/** Draw frame n of a simulated script into ctx (a W×H 2D context). */
-export function renderFrame(r, ctx, n) {
+/** Draw scene frame n (not a hold frame). */
+export function renderScene(r, ctx, n) {
   const f = frameView(r.sim.store, n, FPS);
+  const sv = r.scenes[f.scene] || r.scenes[0];
   const cam = f.cam;
   const { W, H } = r;
-  const theme = r.themeChanges.filter((e) => e.videoT <= f.videoT).pop()?.params.theme || r.defaultTheme;
+  const theme = sv.themeChanges.filter((e) => e.videoT <= f.videoT).pop()?.params.theme || sv.theme || r.defaultTheme;
   ctx.save();
   drawBackground(ctx, background(r, theme), cam, W, H, f.fxT);
   ctx.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
-  drawWorld(ctx, r, n, f, chars);
+  drawWorld(ctx, r, n, f, chars, sv);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
-  const storyRate = n > 0 ? (f.storyT - r.sim.store.times[(n - 1) * 2]) * FPS : 1;
+  const grade = gradeState(sv.look, sv.looks, f.videoT);
+  if (grade) drawGrade(ctx, grade, { W, H, fxT: f.fxT, cam });
+  const prevSame = n > 0 && segmentIndexAt(r.sim.store, n - 1) === f.segment;
+  const storyRate = prevSame ? (f.storyT - storyTimeAt(r.sim.store, n - 1)) * FPS : 1;
   const view = {
     W, H, format: r.format, t: f.videoT, fxT: f.fxT, cam, chars,
-    says: r.says, worldEvents: r.worldEvents, flashes: r.sim.fx.flashes, hpBars: r.hpBars,
+    says: sv.says, worldEvents: sv.worldEvents, flashes: sv.flashes, hpBars: r.hpBars,
     slowness: storyRate > 0 && storyRate < 0.95 ? 1 - storyRate : 0,
+    names: r.names,
   };
   drawPostWorld(ctx, view);
   drawOverlays(ctx, view);
   ctx.restore();
+}
+
+/** Draw frame n of a simulated script into ctx (a W×H 2D context). Hold frames draw transitions and cards. */
+export function renderFrame(r, ctx, n) {
+  const f = frameView(r.sim.store, n, FPS);
+  if (f.hold) drawHold(r, ctx, f, renderScene);
+  else renderScene(r, ctx, n);
 }

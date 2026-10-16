@@ -1,5 +1,7 @@
 // Golden frames (M5.4): 5 scripts × 10 frames, compared at quarter size against stored PNGs.
+// S1 adds a story with one transition of each type: 30% into every hold plus each scene's first frame.
 // Update deliberately and review by eye: npm run golden:update (then look at tests/golden/*/).
+// GOLDEN_ONLY=<name> limits a run (or an update) to one script.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, existsSync, mkdirSync } from "node:fs";
@@ -13,7 +15,24 @@ export const GOLDEN_SCRIPTS = {
   m4_dojo: "scripts/samples/m4_dojo.json",
   m5_portrait: "scripts/samples/m5_portrait.json",
   m5_fx: "scripts/samples/m5_fx.json",
+  s1_transitions: "tests/fixtures/good/transitions.json",
 };
+const ONLY = process.env.GOLDEN_ONLY;
+
+/** Frames to compare: 10 evenly spaced, or (stories) 30% into each hold and each scene's first frame. */
+function framesFor(engine, r) {
+  const scenes = engine.getScenes();
+  if (scenes.length < 2) return Array.from({ length: 10 }, (_, i) => Math.floor((i * (r.totalFrames - 1)) / 9));
+  const out = [];
+  let prevEnd = 0;
+  for (const sc of scenes) {
+    if (sc.startFrame > prevEnd) out.push(Math.floor(prevEnd + (sc.startFrame - prevEnd) * 0.3));
+    out.push(sc.startFrame + 30);
+    prevEnd = sc.startFrame + sc.frames;
+  }
+  if (r.totalFrames > prevEnd) out.push(Math.floor(prevEnd + (r.totalFrames - prevEnd) * 0.3));
+  return out;
+}
 const UPDATE = process.env.GOLDEN_UPDATE === "1";
 const TOLERANCE = 0.005; // fraction of pixels allowed to differ
 const CHANNEL = 16; // per-channel difference that counts as a changed pixel
@@ -21,8 +40,9 @@ const root = new URL("../../", import.meta.url);
 const backend = await loadBackend();
 
 for (const [name, file] of Object.entries(GOLDEN_SCRIPTS)) {
+  if (ONLY && ONLY !== name) continue;
   test(`golden: ${name}`, async () => {
-    const engine = createEngine({ catalog });
+    const engine = createEngine({ catalog, createCanvas: backend.createCanvas });
     const r = engine.load(JSON.parse(readFileSync(new URL(file, root), "utf8")));
     assert.ok(r.ok, JSON.stringify(r.errors));
     const full = backend.createCanvas(r.width, r.height);
@@ -30,8 +50,7 @@ for (const [name, file] of Object.entries(GOLDEN_SCRIPTS)) {
     const sctx = small.getContext("2d");
     const dir = new URL(`tests/golden/${name}/`, root);
     if (UPDATE) mkdirSync(dir, { recursive: true });
-    for (let i = 0; i < 10; i++) {
-      const n = Math.floor((i * (r.totalFrames - 1)) / 9);
+    for (const n of framesFor(engine, r)) {
       engine.renderFrame(full.getContext("2d"), n);
       sctx.clearRect(0, 0, small.width, small.height);
       sctx.drawImage(full, 0, 0, small.width, small.height);

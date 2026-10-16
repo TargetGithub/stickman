@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.10 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH. 1.1.8 adds batch D: props, prop angles, throw/catch/pick/drop/break/spawn, W_NO_PROP. 1.1.9 completes M7: visibility (teleport/spawn/despawn, W_HIDDEN), full theme art, accessories, squash, glow, portrait camera rules. 1.1.10 adds the M8 results: structured-output parameter and schema adaptation, attempt ladder, score formula, output files (18.3-18.6); a KO beat that fires mid-air lands into `ko_fall`.
+Version 1.1.11 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH. 1.1.8 adds batch D: props, prop angles, throw/catch/pick/drop/break/spawn, W_NO_PROP. 1.1.9 completes M7: visibility (teleport/spawn/despawn, W_HIDDEN), full theme art, accessories, squash, glow, portrait camera rules. 1.1.10 adds the M8 results: structured-output parameter and schema adaptation, attempt ladder, score formula, output files (18.3-18.6); a KO beat that fires mid-air lands into `ko_fall`. 1.1.11 (story milestone S1) raises the long-form limits, a backward-compatible widening of schema v1: duration up to 900 s, up to 600 beats, scripts up to 512 KB; a v1 script runs as a one-scene story (docs/STORY_SPEC.md 20) with unchanged output.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -743,7 +743,7 @@ It runs in three stages and stops at the first stage with errors:
 ### 16.1 Schema (`schema.js`)
 - Required fields and types, `version` supported, enum values, numeric ranges (scale 0.4-4, speed 0.25-3, hp 1-1000, x within stage, colors as `#rrggbb`).
 - Unique character ids and beat ids.
-- Size limits: script ≤ 64 KB, ≤ 200 beats, ≤ 6 characters, text length limits.
+- Size limits: script ≤ 512 KB, ≤ 600 beats, ≤ 6 characters, text length limits (raised from 64 KB and 200 beats in 1.1.11).
 - `schema.js` also exports the JSON Schema used for LLM structured output (17.3).
 
 ### 16.2 Semantics (`semantic.js`)
@@ -760,7 +760,7 @@ It runs in three stages and stops at the first stage with errors:
 Runs the full simulation without rendering, then checks:
 - Attack beats: required start x is reachable (with `approach` within 3 s, or within `maxNudge` without it). Errors suggest `approach: "run"`.
 - Queued beats that start more than 0.5 s after their `at` (warning, shows the actual start).
-- Total video duration between 3 and 180 s.
+- Total video duration between 3 and 900 s (180 s before 1.1.11).
 - Particle budget overflow (warning).
 - Particle budget overflow (`W_PARTICLE_BUDGET`).
 - Character color contrast against the theme's `characterBg` (`W_CONTRAST`, WCAG ratio below 1.6; checked in the semantic stage).
@@ -936,7 +936,7 @@ System prompt about 4-6K tokens (cached). Output about 1-2K tokens per script.
 ## 21. Security and safety
 
 - No `eval`, `Function` or dynamic import of script content. `expr.js` whitelists tokens.
-- Limits: script 64 KB, 200 beats, 6 characters, string lengths per field.
+- Limits: script 512 KB, 600 beats, 6 characters, string lengths per field.
 - No network calls in `/engine`. Only `tools/generate.mjs` talks to the Anthropic API, using `ANTHROPIC_API_KEY` from the environment (never stored in the repo).
 - Content policy: no blood or gore, no real people or brands, no hateful imagery. Text fields are checked against `data/blocklist.js`.
 

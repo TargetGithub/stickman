@@ -6,6 +6,7 @@ import { command } from "./world.js";
 import { requestSlowmo, requestFreeze } from "./clock.js";
 import { requiredStartX } from "./combat.js";
 import { COMBAT, LIMITS } from "./config.js";
+import { CARD_COMMANDS, cardDuration, narrateDuration } from "./story/timing.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
@@ -21,6 +22,13 @@ const WORLD_DURATION = {
   zoom_punch: (p) => p.dur ?? 0.2,
   text_pop: (p) => p.dur ?? 0.8,
   shake: () => 0.3,
+  narrate: (p) => narrateDuration(p),
+  title_card: (p) => cardDuration("title_card", p),
+  chapter_card: (p) => cardDuration("chapter_card", p),
+  time_card: (p) => cardDuration("time_card", p),
+  end_card: (p) => cardDuration("end_card", p),
+  set_time: (p) => p.dur ?? 0,
+  set_weather: (p) => p.dur ?? 0,
 };
 
 /** Parse a beat's `at` into a dependency. */
@@ -42,18 +50,23 @@ export function parseAt(at) {
  * @param {object} script  a schema-valid script
  * @param {Map<string, object>} moves  prepared catalog
  */
-export function createDirector(script, moves) {
+export function createDirector(script, moves, opts = {}) {
+  // Scenes (S1): absolute times are scene-local, so they are offset by the scene's story start t0;
+  // paths get the scene prefix; KO status carries over from earlier scenes through `dead`.
+  const t0 = opts.t0 ?? 0;
+  const prefix = opts.prefix ?? "";
+  const tag = opts.tag ?? "";
   // Camera keys run through the same scheduler as beats (same `at` forms), as who: "camera".
-  const cameraBeats = (script.camera || []).map((k, i) => ({ at: k.at, who: "camera", do: k.mode, key: k, id: `camera#${i}`, path: `camera[${i}]` }));
+  const cameraBeats = (script.camera || []).map((k, i) => ({ at: k.at, who: "camera", do: k.mode, key: k, id: `camera#${tag}${i}`, path: `${prefix}camera[${i}]` }));
   const beats = [...(script.beats || []), ...cameraBeats].map((b, index) => {
     const dep = parseAt(b.at);
     return {
       ...b,
       index,
-      path: b.path ?? `beats[${index}]`,
-      id: b.id ?? `#${index}`,
+      path: b.path ?? `${prefix}beats[${index}]`,
+      id: b.id ?? `#${tag}${index}`,
       dep,
-      due: dep?.kind === "abs" ? dep.t : null,
+      due: dep?.kind === "abs" ? dep.t + t0 : null,
       state: "pending", // pending → (waiting | approaching) → running → done | skipped
       firedAt: null,
       startedAt: null,
@@ -70,7 +83,7 @@ export function createDirector(script, moves) {
     timers: [], // world beat end anchors { t, beat }
     anchors: [],
     issues: [],
-    dead: new Set(),
+    dead: new Set(opts.dead || []),
   };
 }
 
@@ -136,8 +149,10 @@ function dispatchWorld(director, beat, ctx) {
   }
   if (beat.do === "slowmo") requestSlowmo(clock, { scale: p.scale ?? 0.3, duration: p.duration ?? 0.5, easeIn: p.easeIn, easeOut: p.easeOut });
   else if (beat.do === "freeze") requestFreeze(clock, p.duration ?? 0.5);
+  else if (CARD_COMMANDS.includes(beat.do)) requestFreeze(clock, WORLD_DURATION[beat.do](p));
   emit({ type: "world", do: beat.do, params: p, beatId: beat.id });
-  const dur = (WORLD_DURATION[beat.do] || (() => 0))(p);
+  // Cards hold the story clock, so in story time they end where they start.
+  const dur = CARD_COMMANDS.includes(beat.do) ? 0 : (WORLD_DURATION[beat.do] || (() => 0))(p);
   director.timers.push({ t: storyT + dur, beat });
   director.timers.sort((a, b) => a.t - b.t || a.beat.index - b.beat.index);
 }
@@ -242,6 +257,8 @@ function execute(director, beat, ctx) {
 export function stepDirector(director, ctx) {
   const { storyT } = ctx;
   while (director.timers.length && director.timers[0].t <= storyT + 1e-9) {
+    // A card ends when its hold ends (the story clock does not move while it shows).
+    if (CARD_COMMANDS.includes(director.timers[0].beat.do) && ctx.clock.freezeLeft > 1e-9) break;
     const { beat } = director.timers.shift();
     anchor(director, beat, "end", storyT);
   }

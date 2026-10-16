@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -230,6 +230,8 @@ A location bundles:
 Themes grow from 7 to 15-20, using the existing layer-kind registry and new layer kinds:
 - **New layer kinds:** `buildings` (street level, doors/windows), `trees`, `bushes`, `benches`, `lampposts`, `fence`, `clouds`, `rain`, `interior_wall`, `windows`, `furniture`, `cave`, `lair`.
 - **New themes:** `city_street`, `city_park`, `home_interior`, `alley_night`, `rooftop_city` (exists), `forest_path`, `bridge`, `warehouse`, `villain_lair`, `tennis_court`, `cemetery_hill` (for a respectful memorial scene), `sunset_hill`.
+- **Built in S1:** themes `city_park`, `city_street`, `home_interior`, `alley_night`, `villain_lair`; layer kinds `clouds`, `hills`, `trees`, `bushes`, `fence`, `buildings`, `lampposts`, `bricks`, `puddles`, `interior_wall`, `windows`, `furniture`, `cave`, `crystals`. The backdrop behind characters is kept mid-tone so both light and dark character colors pass `W_CONTRAST`.
+- **Set pieces in S1** are drawn statically from `data/objects.js`: `bench`, `chair`, `table`, `tree_big`, `bush`, `lamppost`, `tennis_net`, `sign`, `crate`, `fountain`, `door` (with `state` open/closed). Back-layer pieces draw at 0.75 scale and 80% opacity, front-layer pieces at 1.15 after the characters. S4 adds behaviors.
 
 ```json
 "locations": [
@@ -243,7 +245,8 @@ Themes grow from 7 to 15-20, using the existing layer-kind registry and new laye
 
 - Each scene sets `time` (`dawn`, `day`, `dusk`, `night`) and `weather` (`clear`, `cloudy`, `rain`, `snow`, `wind`, `fog`). Both are presentation layers over the theme.
 - `time` sets a color grade (tint, sky gradient shift, lit windows at night). `weather` adds particle layers and ambience.
-- Both can change mid-scene with world commands `set_time` and `set_weather`, with a `dur` for the transition (a happy scene turning grey and rainy).
+- Both can change mid-scene with world commands `set_time` (`time`*, `dur` 0-10) and `set_weather` (`weather`*, `dur` 0-10), blending over `dur` (a happy scene turning grey and rainy).
+- Grades: `dawn` warm pink, `day` none, `dusk` orange, `night` deep blue (multiply tints over the whole picture). Weather: `cloudy` grey tint, `rain` tint plus slanted streaks, `snow` flakes, `wind` drifting streaks, `fog` a light gradient, heavier near the floor.
 
 ### 5.3 Transitions
 
@@ -255,7 +258,7 @@ Transitions are set per scene (`transitionIn`, `transitionOut`). At a boundary t
 | `fade` | Through black (or `color`) |
 | `dissolve` | Cross-fade between the last frame of one scene and the first of the next (both are rendered; random access keeps this simple) |
 | `wipe` | Directional wipe (`dir`) |
-| `iris` | Circle closing on a character (`target`) and opening on the next scene |
+| `iris` | Circle closing on a character (`target`; the first character if it is not in the previous scene) and opening on it in the next scene |
 | `card` | A full-screen card between scenes: `kind` `title` (`title`, `subtitle`), `chapter`, `time` or `end` (`text`) (section 7.3) |
 
 ### 5.4 Timeline model
@@ -366,13 +369,13 @@ New world commands:
 
 | do | params | Look |
 |---|---|---|
-| `narrate` | `text` (max 160), `pos` (top/bottom), `dur`, `style` (box, plain) | Narration box with an optional typewriter reveal and a soft chime (section 15) |
-| `title_card` | `title`, `subtitle`, `dur`, `bg` | Full-screen title, for example at the start |
-| `chapter_card` | `text`, `dur` | "Chapter 2: The Path" |
-| `time_card` | `text`, `dur` | "One sudden day..." between scenes |
-| `end_card` | `text`, `dur` | "The End" / "To be continued" |
+| `narrate` | `text`* (max 160), `pos` (top, default; bottom), `dur` (default: reading time), `style` (box, default; plain) | Narration box with a typewriter reveal and a soft chime (S2, section 15) |
+| `title_card` | `title`* (max 60), `subtitle`, `dur` (default 3), `bg` | Full-screen title, for example at the start |
+| `chapter_card` | `text`* (max 80), `dur` (default 2.5), `bg` | "Chapter 2: The Path" |
+| `time_card` | `text`*, `dur` (default 2.5), `bg` | "One sudden day..." between scenes |
+| `end_card` | `text`*, `dur` (default 3), `bg` | "The End" / "To be continued" |
 
-Cards pause character simulation: the story clock holds, like `freeze`, and the card has its own duration.
+Cards pause character simulation: the story clock holds, like `freeze`, and the card has its own duration. A beat chained `after` a card starts when the card ends.
 
 ## 8. Objects and set pieces
 
@@ -764,11 +767,12 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `E_OBJECT_STATE` | semantic | Invalid state for that object |
 | `E_PARTNER_MISSING` | semantic | Paired move without `partner`, or partner absent |
 | `E_PARTNER_SELF` | semantic | Partner is the acting character |
-| `E_MACRO_UNKNOWN` | semantic | Unknown `@macro` |
+| `E_MACRO_UNKNOWN` | semantic | Unknown `@macro`; until the story compiler lands (S6), every macro reports this code with "not available yet" |
 | `E_MACRO_PARAM` | semantic | Bad or missing macro param |
 | `E_ACTIVITY_OBJECT` | semantic | Activity needs an object that isn't available |
 | `E_TRANSITION` | semantic | Unknown transition type or bad params |
 | `E_SCENE_EMPTY` | semantic | Scene with no beats and no duration |
+| `E_THEME_UNKNOWN`, `E_REF_BEAT`, `E_REF_DUPLICATE` (v1 codes) | semantic | Also used for locations (unknown theme), references to a beat in another scene, and ids repeated across scenes |
 | `E_DEFEAT_STYLE` | semantic | Defeat style not allowed for `meta.audience` |
 | `E_MOVE_RIG` | semantic | Move not available for the character's rig |
 | `E_SIM_PARTNER_UNREACHABLE` | dry run | Partner can't be reached for an interaction (add approach) |

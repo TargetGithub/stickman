@@ -31,3 +31,9 @@ ffmpeg prints one "Truncating packet of size 8294400 to 8192" line on the raw pi
 ## M6 recorder (2026-10-16)
 
 `node tools/record.mjs scripts/samples/m4_dojo.json`: 878 frames rendered and encoded at ~59 fps, audio mixed and muxed; 16.4 s total for a 14.6 s video (spec 20.2 target: 30 s video in under 2 minutes). Audio: peaks -1.5 dBFS, -18.7 LUFS integrated (SFX only, no music).
+
+## S1 scenes (2026-10-16)
+
+- `node tools/record.mjs scripts/samples/s1_scenes.json` (5 scenes, 5 story themes, card/dissolve/wipe/iris/fade transitions, rain and fog): 3,089 frames (51.5 s) rendered and encoded at ~55 fps on the M3 Pro, 57.9 s total. Slightly under real time; the weather and grade layers cost a few ms per frame. Profiling is part of S9.3.
+- Validating a generated ~346 s story (10 scenes, 130 beats) including the dry run: ~130 ms (target: under 5 s; `tests/unit/long_story.test.js`).
+
