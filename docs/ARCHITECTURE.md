@@ -16,7 +16,8 @@ This document describes how the engine is built: module boundaries, interfaces, 
 Arrows mean "imports". There are no cycles.
 
 ```
-index.js ──► sim.js ──► director.js ──► moves.js ──► pose.js ──► skeleton.js ──► math.js
+index.js ──► sim.js ──► actor.js ──► moves.js ──► pose.js ──► skeleton.js ──► math.js
+   │           ├──► director.js
    │           │            │             │                                        ▲
    │           │            │             └──► expr.js                             │
    │           │            └──► combat.js (reach, required start x)               │
@@ -110,18 +111,29 @@ export function unpackJoints(buf: Float32Array, offset?): Joints;
 ```js
 export function fillPose(partial: Pose, base: Pose): Pose;
 export function blendPose(a: Pose, b: Pose, u: number): Pose;
-export function samplePoseKeys(keys, t, poses, easings): Pose;   // t normalized
+export function segmentAt(keys, t): number;
+export function samplePoseKeys(preparedKeys, t): Pose;   // t normalized; a key's ease shapes the segment leaving it
 ```
 
 ### moves.js
 ```js
-export function prepareCatalog(rawMoves, poses): Map<string, MoveDef>;   // validates, fills, derives reach
-export function startMove(char, def, opts:{ speed, params, beatId, target, outcome, blend }): void;
-export function stepMove(char, dt, ctx): MoveStepResult;
-//   ctx: { catalog, poses, emit(event) }
-//   result: { pose, rootDelta:{dx,dy}, openWindows:[...], ended:boolean, events:[...] }
+export const CATEGORIES, HIT_PARTS, SHAKES, MIN_WINDUP;
+export function prepareCatalog(rawMoves, poses): Map<string, MoveDef>;   // validates (throws listing all problems), resolves poses
+export function startMove(actor, def, opts:{ speed, params, beatId, target, outcome, blend }): void;
+export function stepMove(actor, dt): { pose, rootDx, rootDy, openWindows, events, ended, snapHard, mouth };
+//   rootDx: forward travel this tick; rootDy: current visual root offset (absolute)
+//   events: moveEvent (sfx/fx from data), windowOpen
 export function rootOffsetAt(def, t, params): { dx, dy };
 ```
+Reach derivation (`deriveReach`) is added to the catalog in M2.
+
+### actor.js
+```js
+export function createActor({ id, x, facing, scale, groundY }): Actor;
+export function playMove(actor, name, moves, opts:{ queue?, speed?, params?, blend?, beatId? }): void;
+export function stepActor(actor, dt, moves): { joints, events, openWindows };   // events add moveEnd
+```
+Owns the queue (chain → queue → idle) and ground contact (spec 5.4). From M3, `sim.js` drives actors and adds physics, combat and IK on top.
 
 ### props.js
 ```js

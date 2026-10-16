@@ -2,23 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Stickman Pose and Move Editor</title>
+  <title>Stickman Move Editor</title>
   <style>
-    body { margin: 0; font-family: system-ui, sans-serif; background: #111; color: #eee; }
-    main { padding: 16px; }
-    canvas { background: #fff; max-width: 100%; display: block; }
+    @font-face { font-family: "Inter"; src: url("../assets/fonts/Inter.ttf"); }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 12px Inter, system-ui, sans-serif; background: #15161a; color: #e8e8ea; height: 100vh; display: grid;
+           grid-template-columns: 270px 1fr 330px; grid-template-rows: 1fr auto; grid-template-areas: "left stage right" "left timeline right"; }
+    aside { overflow-y: auto; padding: 10px 12px; background: #1d1f24; }
+    #left { grid-area: left; border-right: 1px solid #2b2e35; }
+    #right { grid-area: right; border-left: 1px solid #2b2e35; }
+    #stage { grid-area: stage; display: flex; align-items: center; justify-content: center; padding: 10px; min-height: 0; }
+    #stage canvas { background: #fff; border-radius: 6px; max-width: 100%; max-height: 100%; cursor: crosshair; }
+    #timelineWrap { grid-area: timeline; padding: 6px 10px 10px; border-top: 1px solid #2b2e35; }
+    #timeline { width: 100%; height: 120px; background: #111216; border-radius: 6px; display: block; cursor: pointer; }
+    h1 { font-size: 14px; margin: 0 0 8px; }
+    h2 { font-size: 12px; margin: 12px 0 6px; color: #9a9ca3; text-transform: uppercase; letter-spacing: .04em; }
+    label { display: block; margin: 4px 0; }
+    .grid2 { display: grid; grid-template-columns: 80px 1fr; gap: 4px 8px; align-items: center; }
+    .ch { display: grid; grid-template-columns: 38px 1fr 40px; gap: 6px; align-items: center; margin: 2px 0; }
+    .ch.explicit span { color: #ffcc55; }
+    .ch output { text-align: right; font-variant-numeric: tabular-nums; }
+    input[type=text], input[type=number], select, textarea, button { font: inherit; background: #2b2e35; color: inherit; border: 1px solid #3a3e47; border-radius: 4px; padding: 3px 5px; }
+    input[type=number] { width: 100%; }
+    textarea { width: 100%; font: 11px ui-monospace, monospace; background: #111216; color: #cfd2d8; resize: vertical; }
+    button { cursor: pointer; margin: 2px 2px 2px 0; }
+    button.primary { background: #2f5dd8; border-color: #2f5dd8; }
+    .bar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-bottom: 6px; }
+    .problems { color: #ff7b7b; white-space: pre-wrap; font: 11px ui-monospace, monospace; }
+    .ok { color: #7bd88f; }
+    .hint { color: #8a8d95; }
+    kbd { background: #2b2e35; border-radius: 3px; padding: 0 4px; }
+    @media (max-width: 1150px) {
+      body { display: block; height: auto; }
+      #stage canvas { width: 100%; }
+      aside { border: none !important; }
+      #timeline { height: 90px; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Stickman Pose and Move Editor</h1>
-    <p>Drag joints, edit keyframes and root motion, preview IK against dummies, export move data. (milestone M1)</p>
-    <canvas id="view" width="1920" height="1080"></canvas>
-  </main>
-  <script type="module">
-    // Served by: npm run serve  →  http://localhost:5173/web/editor.html
-    import { catalog } from "../data/index.js";
-    console.log("catalog loaded:", Object.keys(catalog.poses).length, "poses");
-  </script>
+  <aside id="left">
+    <h1>Move editor</h1>
+    <div class="bar">
+      <select id="moveSelect"></select>
+      <button id="newMove">New</button>
+    </div>
+    <div class="grid2">
+      <span>name</span><input id="f_name" type="text">
+      <span>category</span><select id="f_category"></select>
+      <span>duration (s)</span><input id="f_duration" type="number" step="0.01" min="0.05">
+      <span>mouth</span><select id="f_mouth"><option>neutral</option><option>shout</option><option>grin</option></select>
+      <span>chain</span><input id="f_chain" type="text" placeholder="(none)">
+    </div>
+    <label><input id="f_loop" type="checkbox"> loop</label>
+    <label><input id="f_airborne" type="checkbox"> airborne</label>
+
+    <h2>Params (JSON)</h2>
+    <textarea id="t_params" rows="2"></textarea>
+    <h2>Root keys (JSON)</h2>
+    <textarea id="t_root" rows="5"></textarea>
+    <h2>Hits (JSON)</h2>
+    <textarea id="t_hits" rows="5"></textarea>
+    <h2>Events (JSON)</h2>
+    <textarea id="t_events" rows="3"></textarea>
+
+    <h2>Validation</h2>
+    <div id="problems" class="problems"></div>
+
+    <h2>Export</h2>
+    <div class="bar">
+      <button id="copyMove" class="primary">Copy move</button>
+      <button id="saveDraft">Save draft</button>
+      <button id="revert">Revert</button>
+    </div>
+    <textarea id="exportBox" rows="10" readonly></textarea>
+    <p class="hint">Paste the copied move into <code>data/moves/&lt;category&gt;.js</code>. Drafts are kept in this browser only.</p>
+  </aside>
+
+  <div id="stage"><canvas id="view" width="1100" height="640"></canvas></div>
+
+  <div id="timelineWrap">
+    <div class="bar">
+      <button id="play">▶ Play</button>
+      <label style="display:inline"><input id="loopPlay" type="checkbox" checked> loop</label>
+      <select id="speed"><option value="0.25">0.25x</option><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="2">2x</option></select>
+      <span id="timeLabel" class="hint"></span>
+      <span class="hint" style="margin-left:auto"><kbd>Space</kbd> play · <kbd>←</kbd><kbd>→</kbd> frame · <kbd>K</kbd> add key · <kbd>Del</kbd> delete key · drag joints when paused on a key</span>
+    </div>
+    <canvas id="timeline" width="1600" height="120"></canvas>
+  </div>
+
+  <aside id="right">
+    <h2>View</h2>
+    <div class="grid2">
+      <span>scale</span><select id="v_scale"><option>0.6</option><option selected>1.4</option><option>2.2</option></select>
+      <span>facing</span><select id="v_facing"><option value="1">right</option><option value="-1">left</option></select>
+      <span>dummy</span><select id="v_dummy"><option value="">none</option><option value="0.6">0.6</option><option value="1" selected>1.0</option><option value="2.2">2.2</option></select>
+      <span>dummy gap</span><input id="v_gap" type="number" value="160" step="10">
+    </div>
+    <label><input id="v_onion" type="checkbox" checked> onion skin (neighbour keys)</label>
+    <label><input id="v_inplace" type="checkbox"> hold in place (ignore root dx)</label>
+    <label><input id="v_handles" type="checkbox" checked> joint handles</label>
+
+    <h2>Selected key <span id="keyLabel" class="hint"></span></h2>
+    <div class="bar">
+      <button id="addKey">+ Key at playhead</button>
+      <button id="delKey">Delete key</button>
+      <button id="prevKey">◀</button><button id="nextKey">▶</button>
+    </div>
+    <div class="grid2">
+      <span>t</span><input id="k_t" type="number" step="0.01" min="0" max="1">
+      <span>ease (leaving)</span><select id="k_ease"></select>
+      <span>pose name</span><select id="k_named"></select>
+      <span>snapHard</span><input id="k_snap" type="checkbox">
+    </div>
+    <div class="bar" style="margin-top:6px">
+      <button id="makeNamed">Use named pose</button>
+      <button id="copyPose">Copy pose literal</button>
+    </div>
+    <div id="channels"></div>
+    <p class="hint">Yellow channels are set on this key; others inherit from the previous key.</p>
+  </aside>
+
+  <script type="module" src="./editor.js"></script>
 </body>
 </html>

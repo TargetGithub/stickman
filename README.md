@@ -2,7 +2,7 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** M0 (foundations) complete and awaiting visual review. Next: M1 (move runtime and editor).
+**Status:** M1 (move runtime and editor) complete and awaiting visual review. Next: M2 (physics and combat).
 
 ## Documents
 
@@ -38,4 +38,4 @@ npm test
 npm run serve
 ```
 
-Then open http://localhost:5173/web/index.html (pose viewer). Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Recording (`npm run record -- scripts/samples/showdown.json`) arrives in milestone M6 and needs ffmpeg.
+Then open http://localhost:5173/web/index.html (pose viewer), /web/editor.html (move editor) or /web/catalog.html (every move looping). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`). Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Recording (`npm run record -- scripts/samples/showdown.json`) arrives in milestone M6 and needs ffmpeg.

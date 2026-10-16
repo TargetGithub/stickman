@@ -1,2 +1,76 @@
 // movement moves (spec 8.4). Authored with web/editor.html. Schema: spec 8.1.
-export const moves = [];
+// A key's ease shapes the segment leaving it. Loop moves repeat until replaced, or until
+// params.distance (px travelled) or params.cycles is reached.
+export const moves = [
+  {
+    name: "idle",
+    category: "movement",
+    duration: 2.4,
+    flags: { loop: true },
+    keys: [
+      { t: 0, pose: "stand", ease: "inOutQuad" },
+      { t: 0.5, pose: { lUA: 15, rUA: -15, lFA: 12, rFA: 12, head: 2, dy: 2 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+  },
+  {
+    name: "walk",
+    category: "movement",
+    duration: 1.0,
+    params: { stride: 120 },
+    flags: { loop: true },
+    keys: [
+      { t: 0, pose: "walkA" },
+      { t: 0.25, pose: "walkPassA" },
+      { t: 0.5, pose: "walkB" },
+      { t: 0.75, pose: "walkPassB" },
+      { t: 1, pose: "walkA" },
+    ],
+    root: [{ t: 0, dx: 0, dy: 0 }, { t: 1, dx: "stride", dy: 0 }],
+    events: [{ t: 0.0, sfx: "step" }, { t: 0.5, sfx: "step" }],
+  },
+  {
+    name: "run",
+    category: "movement",
+    duration: 0.6,
+    params: { stride: 330 },
+    flags: { loop: true },
+    keys: [
+      { t: 0, pose: "runA", ease: "inOutQuad" },
+      { t: 0.5, pose: "runB", ease: "inOutQuad" },
+      { t: 1, pose: "runA" },
+    ],
+    root: [
+      { t: 0, dx: 0, dy: 0, ease: "outQuad" },
+      { t: 0.25, dx: "stride*0.25", dy: -10, ease: "inQuad" },
+      { t: 0.5, dx: "stride*0.5", dy: 0, ease: "outQuad" },
+      { t: 0.75, dx: "stride*0.75", dy: -10, ease: "inQuad" },
+      { t: 1, dx: "stride", dy: 0 },
+    ],
+    events: [{ t: 0.0, sfx: "step", fx: ["dust_run"] }, { t: 0.5, sfx: "step", fx: ["dust_run"] }],
+  },
+  {
+    name: "jump",
+    category: "movement",
+    duration: 1.0,
+    params: { height: 150, travel: 0 },
+    flags: { airborne: true },
+    keys: [
+      { t: 0, pose: "stand", ease: "outQuad" },
+      { t: 0.18, pose: "crouch", ease: "outCubic" },
+      { t: 0.3, pose: "jumpUp", ease: "outQuad" },
+      { t: 0.52, pose: "jumpPeak", ease: "inOutQuad" },
+      { t: 0.72, pose: "jumpFall", ease: "outQuad" },
+      { t: 0.82, pose: "crouch", snapHard: true, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    root: [
+      { t: 0, dx: 0, dy: 0 },
+      { t: 0.24, dx: 0, dy: 0, ease: "outQuad" },
+      { t: 0.52, dx: "travel*0.5", dy: "-height", ease: "inQuad" },
+      { t: 0.8, dx: "travel", dy: 0 },
+      { t: 1, dx: "travel", dy: 0 },
+    ],
+    events: [{ t: 0.24, sfx: "whoosh" }, { t: 0.8, sfx: "land", fx: ["dust_land"] }],
+  },
+];

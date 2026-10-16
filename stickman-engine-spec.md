@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`)
+Version 1.1.1 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2).
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -94,6 +94,7 @@ This document is the source of truth for behavior and the script schema. When th
   skeleton.js           forward kinematics, 2-bone IK, body rotation, ground contact
   pose.js               pose blending and channel defaults
   moves.js              move runtime (keyframes, root motion, events, hit windows)
+  actor.js              one character's move state, queue and ground contact
   props.js              prop attachment, prop tip, prop state changes
   physics.js            bodies, gravity, friction, bounds, separation, projectiles
   combat.js             hurtboxes, hit resolution, aim, reach, outcomes, reactions
@@ -225,7 +226,7 @@ While a character is **grounded** (see 8.1) the engine shifts the root verticall
 
 To avoid pops when the lowest joint switches (for example between feet during a walk), the vertical correction is rate-limited to `snapRate = 10 px * scale` per tick. Moves can set `flags.snapHard: true` on landing keys to apply the correction instantly.
 
-Ground contact is disabled when any of these is true: the body is airborne in physics, the current move has `flags.airborne`, or the current root key has `dy < 0`.
+While the root is lifted (current root `dy < 0`) or the body is airborne in physics, the offset is held and only corrected upward, so the body never sinks into the ground. `flags.airborne` does not affect contact; it only marks the move as airborne for physics and combat.
 
 ---
 
@@ -264,6 +265,7 @@ down:  { rot:-90, lean:0, head:0, lUA:20, lFA:10, rUA:-15, rFA:10, lTH:8, lSH:4,
 
 ### 7.2 Interpolation
 - Channel-by-channel `lerp(a, b, ease(u))`.
+- A key's `ease` shapes the segment that **leaves** that key (toward the next key). The last key's ease is unused. Root keys follow the same rule.
 - Angles are not wrapped. Poses and keys are authored so the numeric path is the intended path (a frontflip goes `rot: 0 → 360`).
 - Missing channels in a partial pose key inherit from the previous key (or from `stand` at the start of a move).
 
@@ -292,8 +294,8 @@ A **move** is a data object plus the shared runtime in `moves.js`.
   needsProp: null,                 // or a prop kind, e.g. "sword"
   keys: [                          // pose keyframes, t normalized 0..1, sorted
     { t:0.00, pose:"crouch", ease:"outQuad" },
-    { t:0.30, pose:"jumpUp", ease:"outCubic" },
-    { t:0.55, pose:{ lean:50, rTH:80, rSH:0, lTH:-30, lSH:30 }, ease:"holdThenSnap" },
+    { t:0.30, pose:"jumpUp", ease:"holdThenSnap" },     // holds jumpUp, then snaps into the kick
+    { t:0.55, pose:{ lean:50, rTH:80, rSH:0, lTH:-30, lSH:30 }, ease:"outCubic" },
     { t:1.00, pose:"jumpFall", snapHard:true }
   ],
   root: [                          // root motion offsets from the move-start anchor, facing space
@@ -307,7 +309,7 @@ A **move** is a data object plus the shared runtime in `moves.js`.
       fx:["impact_big"], shake:"med", sfx:"kick_heavy" }
   ],
   events: [ { t:0.00, sfx:"whoosh" }, { t:0.95, fx:["dust_land"], sfx:"land" } ],
-  flags: { airborne:true, lockFacing:true, invulnerable:false, passThrough:false },
+  flags: { airborne:true, lockFacing:true, invulnerable:false, passThrough:false, loop:false },
   mouth: "shout",                  // neutral | shout | grin (optional)
   chain: null                      // optional follow-up move name
 }
@@ -322,6 +324,8 @@ A **move** is a data object plus the shared runtime in `moves.js`.
 - A character has one **current move**, a **move time** (normalized), and a **queue**.
 - When a move ends, the character continues with `chain`, then the queue, else returns to `idle`.
 - `speed` (script, default 1.0, range 0.25-3) divides the duration.
+- **Loop moves** (`flags.loop`, e.g. `idle`, `walk`, `run`) repeat until replaced, or until `params.distance` (px travelled; the last step is clamped to land exactly) or `params.cycles` is reached. Events fire once per cycle.
+- A key with `snapHard: true` applies ground contact instantly when the move passes it (landings).
 - Switching moves blends from the last displayed pose to the new move's first key over `blend` seconds (default 0.06; 0 for reactions).
 - Root motion is applied each tick as the delta `offset(t) - offset(t_prev)` rotated into facing space. `dx` moves the physics body. `dy` is a visual offset while grounded. For `airborne` moves `dy` drives body y, and at move end the body's `vy` is set from the last root derivative so physics takes over smoothly.
 

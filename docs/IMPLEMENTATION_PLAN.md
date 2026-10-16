@@ -14,7 +14,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 
 ## Milestones
 
-### M0 Foundations (2-3 days) — DONE 2026-10-15, awaiting review
+### M0 Foundations (2-3 days) — DONE 2026-10-15, reviewed
 | Task | Output |
 |---|---|
 | M0.1 Repo scaffold, `npm test`, lint conventions, `CLAUDE.md` | runnable empty test suite (done in setup) |
@@ -28,7 +28,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: FK/IK tests pass; poses render to PNG from Node and in the browser; backend chosen.
 **Review**: Sridhar checks pose proportions and line style.
 
-### M1 Move runtime + editor (3-4 days)
+### M1 Move runtime + editor (3-4 days) — DONE 2026-10-15, awaiting review
 | Task | Output |
 |---|---|
 | M1.1 `pose.js` blending and key sampling | |
