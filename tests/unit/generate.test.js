@@ -1,4 +1,5 @@
-// M8: prompt pack, structured-output schema, LLM wrapper and generation pipeline (offline, mock client).
+// M8: prompt pack, structured-output schema, provider-neutral LLM layer and adapters, generation
+// pipeline, and the copy-paste workflow. Everything runs offline (fake clients, fake fetch).
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { catalog } from "../../data/index.js";
@@ -8,19 +9,27 @@ import { WORLD_COMMANDS } from "../../engine/validator/index.js";
 import { catalogData, catalogMarkdown } from "../../tools/lib/prompt_tables.mjs";
 import { exampleScripts, writerSystem, ideationSystem, repairRequest } from "../../tools/lib/prompt_pack.mjs";
 import { scriptOutputSchema, toStructured } from "../../tools/lib/llm_schema.mjs";
-import { createLlm, parseJsonText, LlmError } from "../../tools/lib/llm.mjs";
+import { createLlm, parseJsonText, LlmError, loadProvider } from "../../tools/lib/llm/index.mjs";
+import { createAnthropicAdapter } from "../../tools/lib/llm/anthropic.mjs";
+import { createOpenAICompatAdapter } from "../../tools/lib/llm/openai_compat.mjs";
+import { createMockAdapter } from "../../tools/lib/llm/mock.mjs";
 import { generateOne, evaluate } from "../../tools/lib/pipeline.mjs";
 import { avoidList, historyEntry } from "../../tools/lib/history.mjs";
-import { createMockClient } from "../../tools/lib/mock_client.mjs";
+import { manualWritePrompt, checkReply } from "../../tools/lib/manual.mjs";
 
 const cfg = {
-  models: { write: "claude-sonnet-5-5", flagship: "claude-opus-5-5", repair: "claude-haiku-5-5", repairEscalate: "claude-sonnet-5-5", critique: "claude-opus-5-5", metadata: "claude-haiku-5-5" },
+  models: { write: "w-model", flagship: "f-model", repair: "r-model", repairEscalate: "e-model", critique: "c-model", metadata: "m-model" },
   maxAttempts: 3,
   minScore: 60,
 };
 const silent = () => {};
 const example = (i) => JSON.parse(exampleScripts()[i].text);
-const isMeta = (p) => /Write YouTube metadata/.test(p.system[0].text);
+const isMeta = (r) => /Write YouTube metadata/.test(r.system);
+const META = '{"title":"T","description":"D","tags":["x"]}';
+const ctxFor = (adapter, extra = {}) => ({ llm: createLlm(adapter, {}), catalog, cfg, log: silent, ...extra });
+const PREMISE = { title: "x", logline: "y" };
+
+// ---------- prompt pack and schema ----------
 
 test("catalog tables list every move, world command, fx and theme", () => {
   const d = catalogData(catalog);
@@ -50,10 +59,9 @@ test("system prompts are fully filled and byte-stable (cacheable)", () => {
   assert.doesNotMatch(ideationSystem(catalog), /\{\{\w+\}\}/);
 });
 
-test("structured-output schema uses only the supported subset", () => {
+test("structured-output schema uses only the portable subset", () => {
   const s = scriptOutputSchema(catalog);
-  const json = JSON.stringify(s);
-  assert.doesNotMatch(json, /"(oneOf|minimum|maximum|minLength|maxLength|pattern|minItems|maxItems|\$schema)"/);
+  assert.doesNotMatch(JSON.stringify(s), /"(oneOf|minimum|maximum|minLength|maxLength|pattern|minItems|maxItems|\$schema)"/);
   (function walk(n) {
     if (!n || typeof n !== "object") return;
     if (Array.isArray(n)) return n.forEach(walk);
@@ -68,79 +76,167 @@ test("structured-output schema uses only the supported subset", () => {
   assert.deepEqual(toStructured({ type: ["string", "null"] }), { anyOf: [{ type: "string" }, { type: "null" }] });
 });
 
-test("parseJsonText tolerates fences and surrounding prose", () => {
+test("parseJsonText tolerates fences, prose and <think> blocks", () => {
   assert.deepEqual(parseJsonText('```json\n{"a":1}\n```'), { a: 1 });
   assert.deepEqual(parseJsonText('Here it is: {"a":{"b":2}} done'), { a: { b: 2 } });
+  assert.deepEqual(parseJsonText('<think>maybe {"no":1}</think>\n{"a":3}'), { a: 3 });
   assert.throws(() => parseJsonText("no json"));
 });
 
-test("llm: caches the system prompt, sends the schema, uses refusal fallbacks on Sonnet/Opus", async () => {
-  const client = createMockClient(() => ({ text: '{"ok":true}' }));
-  const llm = createLlm(client, { prices: { "claude-sonnet-5-5": { input: 2, output: 10 } } });
-  const r = await llm.json({ model: "claude-sonnet-5-5", system: "S", messages: [{ role: "user", content: "x" }], schema: { type: "object" }, effort: "medium", stage: "t" });
-  assert.deepEqual(r.json, { ok: true });
-  const p = client.calls[0];
-  assert.deepEqual(p.system[0].cache_control, { type: "ephemeral" });
-  assert.deepEqual(p.output_config, { effort: "medium", format: { type: "json_schema", schema: { type: "object" } } });
-  assert.equal(p.fallbacks, "default");
-  assert.deepEqual(p.betas, ["server-side-fallback-2026-07-01"]);
-  await llm.json({ model: "claude-haiku-5-5", system: "S", messages: [{ role: "user", content: "x" }], stage: "t" });
-  assert.equal(client.calls[1].fallbacks, undefined, "no fallbacks on Haiku");
-  assert.equal(llm.state.usage["claude-sonnet-5-5"].calls, 1);
-  assert.ok(llm.cost() > 0);
-});
+// ---------- provider-neutral core ----------
 
-test("llm: a rejected schema downgrades to plain-JSON mode and retries", async () => {
-  const client = createMockClient((p) => (p.output_config.format ? { error: Object.assign(new Error("output_config.format: schema too complex"), { status: 400 }) } : { text: '{"a":1}' }));
-  const llm = createLlm(client, {});
-  const r = await llm.json({ model: "claude-haiku-5-5", system: "S", messages: [{ role: "user", content: "x" }], schema: { type: "object" }, stage: "t" });
+test("core: a rejected schema downgrades to plain-JSON mode and retries", async () => {
+  const { SchemaRejected } = await import("../../tools/lib/llm/index.mjs");
+  const adapter = createMockAdapter((r) => (r.schema ? { error: new SchemaRejected("too complex") } : { text: '{"a":1}' }));
+  const llm = createLlm(adapter, {});
+  const r = await llm.json({ model: "m", system: "S", messages: [{ role: "user", content: "x" }], schema: { type: "object" }, stage: "t" });
   assert.deepEqual(r.json, { a: 1 });
   assert.equal(llm.state.structured, false);
   assert.equal(llm.state.downgrades.length, 1);
 });
 
-test("llm: refusal and truncation become typed errors", async () => {
-  const refuse = createLlm(createMockClient(() => ({ text: "", stop_reason: "refusal", stop_details: { category: "cyber" } })), {});
-  await assert.rejects(refuse.json({ model: "claude-haiku-5-5", system: "S", messages: [], stage: "t" }), (e) => e instanceof LlmError && e.kind === "refusal");
-  const cut = createLlm(createMockClient(() => ({ text: '{"a":', stop_reason: "max_tokens" })), {});
-  await assert.rejects(cut.json({ model: "claude-haiku-5-5", system: "S", messages: [], stage: "t" }), (e) => e.kind === "max_tokens");
+test("core: refusal and truncation become typed errors; usage and cost accumulate", async () => {
+  const refuse = createLlm(createMockAdapter(() => ({ text: "", stop: "refusal", refusalCategory: "cyber" })), {});
+  await assert.rejects(refuse.json({ model: "m", system: "S", messages: [], stage: "t" }), (e) => e instanceof LlmError && e.kind === "refusal");
+  const cut = createLlm(createMockAdapter(() => ({ text: '{"a":', stop: "max_tokens" })), {});
+  await assert.rejects(cut.json({ model: "m", system: "S", messages: [], stage: "t" }), (e) => e.kind === "max_tokens");
+  const ok = createLlm(createMockAdapter(() => ({ text: "{}" })), { prices: { m: { input: 2, output: 10 } } });
+  await ok.json({ model: "m", system: "S", messages: [], stage: "t" });
+  assert.equal(ok.state.usage.m.calls, 1);
+  assert.ok(ok.cost() > 0);
 });
+
+test("loadProvider resolves stage models, honors --model, and explains missing config", async () => {
+  const config = {
+    provider: "local",
+    providers: {
+      local: { type: "openai-compatible", baseURL: "http://localhost:1/v1", models: { default: "SET-ME" } },
+      mixed: { type: "openai-compatible", baseURL: "http://localhost:1/v1", models: { default: "small", write: "big" } },
+    },
+  };
+  await assert.rejects(loadProvider(config), /no model for: ideation/);
+  const p = await loadProvider(config, { model: "qwen" });
+  assert.equal(p.models.write, "qwen");
+  assert.equal(p.adapter.name, "local");
+  const m = await loadProvider(config, { provider: "mixed" });
+  assert.equal(m.models.write, "big");
+  assert.equal(m.models.repair, "small");
+  await assert.rejects(loadProvider(config, { provider: "nope" }), /unknown provider 'nope'/);
+  assert.equal((await loadProvider(config, { mock: true })).adapter.name, "mock");
+});
+
+// ---------- adapters ----------
+
+test("anthropic adapter: cached system block, output_config, refusal fallbacks, image blocks", async () => {
+  const sent = [];
+  const reply = { model: "claude-sonnet-5-5", stop_reason: "end_turn", content: [{ type: "text", text: '{"ok":true}' }], usage: { input_tokens: 10, output_tokens: 5, cache_read_input_tokens: 100 } };
+  const stream = (params) => ({ finalMessage: async () => (sent.push(params), reply) });
+  const adapter = await createAnthropicAdapter({}, { messages: { stream }, beta: { messages: { stream } } });
+  const res = await adapter.complete({
+    model: "claude-sonnet-5-5", system: "S", effort: "medium", schema: { type: "object" }, stage: "t",
+    messages: [{ role: "user", content: [{ type: "image", mediaType: "image/png", data: "AAA" }, { type: "text", text: "hi" }] }],
+  });
+  assert.equal(res.text, '{"ok":true}');
+  assert.deepEqual(res.usage, { input: 10, output: 5, cacheRead: 100, cacheWrite: undefined });
+  const p = sent[0];
+  assert.deepEqual(p.system[0].cache_control, { type: "ephemeral" });
+  assert.deepEqual(p.output_config, { effort: "medium", format: { type: "json_schema", schema: { type: "object" } } });
+  assert.equal(p.fallbacks, "default");
+  assert.deepEqual(p.messages[0].content[0], { type: "image", source: { type: "base64", media_type: "image/png", data: "AAA" } });
+  await adapter.complete({ model: "claude-haiku-5-5", system: "S", messages: [{ role: "user", content: "x" }], stage: "t" });
+  assert.equal(sent[1].fallbacks, undefined, "no fallbacks on Haiku");
+});
+
+function fakeFetch(handler) {
+  const calls = [];
+  const fn = async (url, init) => {
+    const body = JSON.parse(init.body);
+    calls.push({ url, headers: init.headers, body });
+    const { status = 200, json } = handler(body, calls.length);
+    return { ok: status < 300, status, text: async () => JSON.stringify(json) };
+  };
+  fn.calls = calls;
+  return fn;
+}
+
+test("openai-compatible adapter: chat/completions body, key from env, images, usage, length", async () => {
+  process.env.TEST_LLM_KEY = "k-123";
+  const f = fakeFetch(() => ({ json: { model: "gpt-x", choices: [{ finish_reason: "stop", message: { content: '{"a":1}' } }], usage: { prompt_tokens: 100, completion_tokens: 20, prompt_tokens_details: { cached_tokens: 60 } } } }));
+  const a = createOpenAICompatAdapter({ baseURL: "https://api.example.com/v1/", apiKeyEnv: "TEST_LLM_KEY", maxTokensField: "max_completion_tokens", reasoningEffort: true }, "ex", f);
+  const res = await a.complete({
+    model: "gpt-x", system: "SYS", effort: "low", maxTokens: 500, schema: { type: "object" }, stage: "t",
+    messages: [{ role: "user", content: [{ type: "image", mediaType: "image/png", data: "AAA" }, { type: "text", text: "hi" }] }],
+  });
+  const c = f.calls[0];
+  assert.equal(c.url, "https://api.example.com/v1/chat/completions");
+  assert.equal(c.headers.authorization, "Bearer k-123");
+  assert.deepEqual(c.body.messages[0], { role: "system", content: "SYS" });
+  assert.deepEqual(c.body.messages[1].content[0], { type: "image_url", image_url: { url: "data:image/png;base64,AAA" } });
+  assert.equal(c.body.max_completion_tokens, 500);
+  assert.equal(c.body.reasoning_effort, "low");
+  assert.equal(c.body.response_format.type, "json_schema");
+  assert.deepEqual(res.usage, { input: 40, output: 20, cacheRead: 60, cacheWrite: 0 });
+  assert.equal(res.stop, "end");
+
+  const cut = createOpenAICompatAdapter({ baseURL: "http://x/v1" }, "local", fakeFetch(() => ({ json: { choices: [{ finish_reason: "length", message: { content: "{" } }] } })));
+  assert.equal((await cut.complete({ model: "m", system: "S", messages: [], stage: "t" })).stop, "max_tokens");
+  assert.throws(() => createOpenAICompatAdapter({ baseURL: "http://x/v1", apiKeyEnv: "NOT_SET_ANYWHERE_123" }, "p"), /NOT_SET_ANYWHERE_123/);
+});
+
+test("openai-compatible adapter: unsupported response_format steps down json_schema → json_object → off", async () => {
+  const f = fakeFetch((body) =>
+    body.response_format ? { status: 400, json: { error: { message: `response_format ${body.response_format.type} not supported` } } } : { json: { choices: [{ finish_reason: "stop", message: { content: '{"a":1}' } }] } });
+  const llm = createLlm(createOpenAICompatAdapter({ baseURL: "http://x/v1" }, "local", f), {});
+  const r = await llm.json({ model: "m", system: "S", messages: [{ role: "user", content: "x" }], schema: { type: "object" }, stage: "t" });
+  assert.deepEqual(r.json, { a: 1 });
+  assert.deepEqual(f.calls.map((c) => c.body.response_format?.type ?? "none"), ["json_schema", "none"]);
+});
+
+test("openai-compatible adapter: a too-long prompt explains the context window", async () => {
+  const f = fakeFetch(() => ({ status: 400, json: { error: { message: "request (7120 tokens) exceeds the available context size (4096 tokens)" } } }));
+  const a = createOpenAICompatAdapter({ baseURL: "http://x/v1" }, "ollama", f);
+  await assert.rejects(a.complete({ model: "m", system: "S", messages: [], stage: "t" }), /OLLAMA_CONTEXT_LENGTH/);
+});
+
+// ---------- pipeline ----------
 
 test("pipeline: a broken first draft is repaired by the repair model with errors and timeline", async () => {
   const broken = example(0);
   broken.beats[3].do = "jabb";
-  const client = createMockClient((p) => {
-    if (isMeta(p)) return { text: '{"title":"T","description":"D","tags":["x"]}' };
-    return { text: JSON.stringify(p.messages.length === 1 ? broken : example(0)) };
-  });
-  const rec = await generateOne({ llm: createLlm(client, {}), catalog, cfg, log: silent }, { title: "x", logline: "y" }, { format: "landscape", length: 20, seed: 5 });
+  const adapter = createMockAdapter((r) => (isMeta(r) ? { text: META } : { text: JSON.stringify(r.messages.length === 1 ? broken : example(0)) }));
+  const rec = await generateOne(ctxFor(adapter), PREMISE, { format: "landscape", length: 20, seed: 5 });
   assert.equal(rec.status, "accepted");
   assert.equal(rec.firstPassValid, false);
   assert.equal(rec.validAtAttempt, 2);
-  assert.deepEqual(rec.attempts.map((a) => a.model), ["claude-sonnet-5-5", "claude-haiku-5-5"]);
-  const repairMsg = client.calls[1].messages.at(-1).content;
-  assert.match(repairMsg, /E_MOVE_UNKNOWN/);
-  assert.equal(client.calls[1].messages[1].role, "assistant");
-  assert.deepEqual(rec.metadata, { title: "T", description: "D", tags: ["x"] });
+  assert.deepEqual(rec.attempts.map((a) => a.model), ["w-model", "r-model"]);
+  assert.match(adapter.calls[1].messages.at(-1).content, /E_MOVE_UNKNOWN/);
+  assert.equal(adapter.calls[1].messages[1].role, "assistant");
+  assert.deepEqual(rec.metadata, JSON.parse(META));
 });
 
 test("pipeline: three failures discard the premise and escalate the last attempt", async () => {
   const bad = example(1);
   bad.beats[0].who = "nobody";
-  const client = createMockClient(() => ({ text: JSON.stringify(bad) }));
-  const rec = await generateOne({ llm: createLlm(client, {}), catalog, cfg, log: silent }, { title: "x", logline: "y" }, { format: "landscape", length: 20, seed: 5, flagship: true });
+  const adapter = createMockAdapter(() => ({ text: JSON.stringify(bad) }));
+  const rec = await generateOne(ctxFor(adapter), PREMISE, { format: "landscape", length: 20, seed: 5, flagship: true });
   assert.equal(rec.status, "invalid");
-  assert.deepEqual(rec.attempts.map((a) => a.model), ["claude-opus-5-5", "claude-haiku-5-5", "claude-sonnet-5-5"]);
+  assert.deepEqual(rec.attempts.map((a) => a.model), ["f-model", "r-model", "e-model"]);
   assert.equal(rec.validAtAttempt, null);
 });
 
 test("pipeline: unparseable output counts as an attempt and asks again", async () => {
   let n = 0;
-  const client = createMockClient((p) => (isMeta(p) ? { text: '{"title":"T","description":"D","tags":[]}' } : { text: n++ === 0 ? "Sure! Here is a script." : JSON.stringify(example(2)) }));
-  const rec = await generateOne({ llm: createLlm(client, {}), catalog, cfg, log: silent }, { title: "x", logline: "y" }, { format: "portrait", length: 10, seed: 5 });
+  const adapter = createMockAdapter((r) => (isMeta(r) ? { text: META } : { text: n++ === 0 ? "Sure! Here is a script." : JSON.stringify(example(2)) }));
+  const rec = await generateOne(ctxFor(adapter), PREMISE, { format: "portrait", length: 10, seed: 5 });
   assert.equal(rec.status, "accepted");
   assert.equal(rec.attempts[0].failure, "parse");
-  assert.match(client.calls[1].messages.at(-1).content, /could not be used/);
+  assert.match(adapter.calls[1].messages.at(-1).content, /could not be used/);
+});
+
+test("pipeline: a client error (e.g. prompt too long) is not retried", async () => {
+  const adapter = createMockAdapter(() => ({ error: Object.assign(new Error("context too long"), { status: 400 }) }));
+  await assert.rejects(generateOne(ctxFor(adapter), PREMISE, { format: "landscape", length: 20, seed: 5 }), /context too long/);
+  assert.equal(adapter.calls.length, 1);
 });
 
 test("pipeline: a low score triggers one improvement round, then discards", async () => {
@@ -151,29 +247,26 @@ test("pipeline: a low score triggers one improvement round, then discards", asyn
     camera: [{ at: 0, mode: "follow", targets: ["a", "b"], zoom: "auto" }],
     beats: [{ id: "w", at: 0.2, who: "a", do: "wave" }, { id: "w2", at: { after: "w" }, who: "b", do: "wave" }, { at: { after: "w2" }, who: "a", do: "bow" }],
   };
-  const client = createMockClient(() => ({ text: JSON.stringify(dull) }));
-  const rec = await generateOne({ llm: createLlm(client, {}), catalog, cfg, log: silent }, { title: "x", logline: "y" }, { format: "landscape", length: 20, seed: 5 });
+  const adapter = createMockAdapter(() => ({ text: JSON.stringify(dull) }));
+  const rec = await generateOne(ctxFor(adapter), PREMISE, { format: "landscape", length: 20, seed: 5 });
   assert.equal(rec.status, "low_score");
   assert.ok(rec.score < 60);
   assert.ok(rec.attempts.some((a) => a.improve));
-  assert.match(client.calls[1].messages.at(-1).content, /scored low/);
+  assert.match(adapter.calls[1].messages.at(-1).content, /scored low/);
 });
 
-test("pipeline: critique sends the contact sheet image and can trigger a revision", async () => {
-  const client = createMockClient((p) => {
-    const sys = p.system[0].text;
-    if (/You review/.test(sys)) return { text: '{"score":5,"revise":true,"notes":["Add a taunt at the start."]}' };
-    if (isMeta(p)) return { text: '{"title":"T","description":"D","tags":[]}' };
+test("pipeline: critique sends the contact sheet as a neutral image part and can trigger a revision", async () => {
+  const adapter = createMockAdapter((r) => {
+    if (/You review/.test(r.system)) return { text: '{"score":5,"revise":true,"notes":["Add a taunt at the start."]}' };
+    if (isMeta(r)) return { text: META };
     return { text: JSON.stringify(example(1)) };
   });
-  const renderSheet = async () => Buffer.from("png");
-  const rec = await generateOne({ llm: createLlm(client, {}), catalog, cfg, log: silent, renderSheet }, { title: "x", logline: "y" }, { format: "landscape", length: 20, seed: 5, critique: true });
+  const rec = await generateOne(ctxFor(adapter, { renderSheet: async () => Buffer.from("png") }), PREMISE, { format: "landscape", length: 20, seed: 5, critique: true });
   assert.equal(rec.status, "accepted");
   assert.equal(rec.revised, true);
-  const crit = client.calls.find((c) => /You review/.test(c.system[0].text));
-  assert.equal(crit.model, "claude-opus-5-5");
-  assert.equal(crit.messages[0].content[0].type, "image");
-  assert.equal(crit.messages[0].content[0].source.media_type, "image/png");
+  const crit = adapter.calls.find((c) => /You review/.test(c.system));
+  assert.equal(crit.model, "c-model");
+  assert.deepEqual(crit.messages[0].content[0], { type: "image", mediaType: "image/png", data: Buffer.from("png").toString("base64") });
 });
 
 test("scoring rewards variety and emphasis; examples clear the threshold", () => {
@@ -200,6 +293,35 @@ test("repair request carries every issue and the timeline", () => {
   assert.match(msg, /E_MOVE_UNKNOWN/);
   assert.match(msg, /Return the corrected full JSON script/);
 });
+
+// ---------- copy-paste workflow ----------
+
+test("manual: the write prompt is self-contained (rules, catalog, examples, task, reply format)", () => {
+  const p = manualWritePrompt(catalog, { title: "Ninja", logline: "A ninja vs a robot" }, { format: "portrait", length: 25, seed: 7 });
+  assert.match(p, /You write JSON scripts/);
+  assert.match(p, /\| flying_kick \| attack \|/);
+  assert.match(p, /cookie_duel\.json/);
+  assert.match(p, /A ninja vs a robot/);
+  assert.match(p, /Format: portrait/);
+  assert.match(p, /Reply with only the JSON object/);
+});
+
+test("manual: checking a pasted reply validates it, or produces a fix prompt for the same chat", () => {
+  const good = checkReply(`Here you go!\n\`\`\`json\n${exampleScripts()[0].text}\n\`\`\`\nEnjoy.`, catalog);
+  assert.equal(good.ok, true);
+  assert.ok(good.score.score >= 60);
+  const s = example(0);
+  s.beats[3].do = "jabb";
+  const bad = checkReply(JSON.stringify(s), catalog);
+  assert.equal(bad.ok, false);
+  assert.match(bad.fixPrompt, /E_MOVE_UNKNOWN/);
+  assert.match(bad.fixPrompt, /Reply with only the JSON object/);
+  const junk = checkReply("I can't help with that.", catalog);
+  assert.equal(junk.parsed, false);
+  assert.match(junk.fixPrompt, /did not contain a JSON object/);
+});
+
+// ---------- engine fix found while writing the examples ----------
 
 test("a KO beat that fires while the target is airborne lands into ko_fall, not knockdown", () => {
   const engine = createEngine({ catalog });

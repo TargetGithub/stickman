@@ -11,10 +11,14 @@
 //     --critique           vision critique of a contact sheet, plus one revision round
 //     --no-render          stop after the script (no video); for batch metrics
 //     --out DIR            output root (default out)
-//     --mock               offline: fake model responses, no network, no cost
+//     --provider NAME      provider entry in llm.config.json: anthropic, openai, gemini, openrouter,
+//                          ollama, lmstudio, or any you add (default: config "provider")
+//     --model ID           use this model for every stage (overrides the provider's models)
+//     --mock               offline: fake model responses, no network, no cost (= --provider mock)
 //     --print-prompt       print the writer system prompt and exit (no API call)
-//     --config FILE        model/effort/price config (default tools/llm.config.json)
-// Needs ANTHROPIC_API_KEY in the environment (read by the SDK, never written anywhere).
+//     --config FILE        provider/model/price config (default tools/llm.config.json)
+// API keys are read from the environment variable each provider names (ANTHROPIC_API_KEY,
+// OPENAI_API_KEY, ...); they are never written anywhere. No key? Use tools/manual.mjs (copy-paste).
 // Writes: <out>/scripts/<slug>.json, <out>/<slug>/ (video, thumb, contact sheet, youtube.json),
 // appends <out>/review_queue.json and <out>/history.json, and a run summary in <out>/runs/.
 // Nothing is uploaded anywhere.
@@ -26,12 +30,11 @@ import { spawnSync } from "node:child_process";
 import { randomInt } from "node:crypto";
 import { catalog } from "../data/index.js";
 import { createEngine } from "../engine/index.js";
-import { createLlm, LlmError } from "./lib/llm.mjs";
+import { createLlm, loadProvider, LlmError } from "./lib/llm/index.mjs";
 import { IDEATION_SCHEMA } from "./lib/llm_schema.mjs";
 import { ideationSystem, ideationRequest, writerSystem } from "./lib/prompt_pack.mjs";
 import { generateOne } from "./lib/pipeline.mjs";
 import { loadHistory, saveHistory, avoidList, historyEntry, appendReviewQueue } from "./lib/history.mjs";
-import { createMockClient } from "./lib/mock_client.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
@@ -45,7 +48,7 @@ if (flag("--print-prompt")) {
   process.exit(0);
 }
 
-const cfg = JSON.parse(readFileSync(opt("--config", join(HERE, "llm.config.json")), "utf8"));
+const config = JSON.parse(readFileSync(opt("--config", join(HERE, "llm.config.json")), "utf8"));
 const OUT = opt("--out", "out");
 const count = Math.max(1, Number(opt("--count", 1)));
 const opts = {
@@ -60,19 +63,22 @@ if (!["landscape", "portrait"].includes(opts.format)) {
   process.exit(2);
 }
 
-let client;
-if (flag("--mock")) client = createMockClient();
-else {
-  try {
-    const { default: Anthropic } = await import("@anthropic-ai/sdk");
-    client = new Anthropic();
-  } catch (e) {
-    console.error(`Cannot create the Anthropic client: ${e.message}\nSet ANTHROPIC_API_KEY in your shell (it is read from the environment only), or use --mock.`);
-    process.exit(2);
-  }
-}
 const log = (line) => console.log(line);
-const llm = createLlm(client, { ...cfg, log });
+let provider;
+try {
+  provider = await loadProvider(config, { provider: opt("--provider", null), model: opt("--model", null), mock: flag("--mock") });
+} catch (e) {
+  const hint = /anthropic-ai\/sdk|ANTHROPIC|credential|api key/i.test(e.message) ? "\nSet ANTHROPIC_API_KEY in your shell, pick another --provider, use --mock, or use tools/manual.mjs (copy-paste, no key)." : "";
+  console.error(`Cannot set up the LLM provider: ${e.message}${hint}`);
+  process.exit(2);
+}
+const cfg = { models: provider.models, effort: provider.effort, maxAttempts: config.maxAttempts ?? 3, minScore: config.minScore ?? 60 };
+const llm = createLlm(provider.adapter, { prices: provider.prices, structured: provider.structured, log });
+if (opts.critique && provider.adapter.vision === false) {
+  log(`note: provider '${provider.name}' is configured without vision; skipping --critique`);
+  opts.critique = false;
+}
+log(`provider: ${provider.name} (write: ${cfg.models.write}, repair: ${cfg.models.repair})`);
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "video";
 function uniqueSlug(title) {
@@ -132,7 +138,7 @@ for (const [i, premise] of premises.entries()) {
     rec = await generateOne({ llm, catalog, cfg, log, renderSheet }, premise, { ...opts, seed: randomInt(1, 2 ** 31 - 1) });
   } catch (e) {
     if (e instanceof LlmError && [401, 403].includes(e.status)) {
-      console.error(`authentication failed: ${e.message}`);
+      console.error(`authentication failed: ${e.message}\nCheck the API key environment variable for this provider, or use tools/manual.mjs (copy-paste, no key).`);
       process.exit(1);
     }
     log(`    error: ${e.message}`);
@@ -185,7 +191,7 @@ const rate = (k) => (written.length ? Number((written.filter(k).length / written
 const summary = {
   startedAt: started.toISOString(),
   finishedAt: new Date().toISOString(),
-  mock: flag("--mock"),
+  provider: provider.name,
   options: { count, ...opts },
   premises: results.length,
   accepted: results.filter((r) => r.status === "accepted").length,
@@ -205,5 +211,5 @@ const runFile = join(OUT, "runs", `${started.toISOString().replace(/[:.]/g, "-")
 writeFileSync(runFile, JSON.stringify(summary, null, 2) + "\n");
 log(`\n${summary.accepted}/${summary.premises} accepted (low score ${summary.lowScore}, invalid ${summary.invalid}, errors ${summary.errors})`);
 log(`first-pass validity ${summary.firstPassValidity ?? "-"}, valid within ${cfg.maxAttempts} attempts ${summary.validWithinAttempts ?? "-"}`);
-log(`estimated cost $${summary.estimatedCostUsd}${summary.mock ? " (mock)" : ""}; run summary: ${runFile}`);
+log(`estimated cost $${summary.estimatedCostUsd}${provider.name === "mock" ? " (mock)" : ""}; run summary: ${runFile}`);
 if (summary.downgrades.length) log(`notes: ${summary.downgrades.join("; ")}`);

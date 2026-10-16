@@ -394,10 +394,13 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 | `tools/lib/prompt_tables.mjs` | catalog → prompt tables (moves, world commands, fx, props, themes); used by `tools/catalog.mjs` |
 | `tools/lib/prompt_pack.mjs` | assembles `prompts/*.md` + tables + examples into byte-stable system prompts; builds user turns |
 | `tools/lib/llm_schema.mjs` | script schema → structured-output subset; ideation/critique/metadata schemas |
-| `tools/lib/llm.mjs` | Messages API wrapper: cached system block, `output_config` (effort, format), refusal fallbacks, plain-JSON downgrade, usage and cost |
-| `tools/lib/pipeline.mjs` | one premise: write → validate → repair ladder → score/improve → critique/revise → metadata |
+| `tools/lib/llm/index.mjs` | provider-neutral core: one request shape, schema downgrade, typed failures (refusal, max_tokens, parse), usage and cost; `loadProvider` from `tools/llm.config.json` |
+| `tools/lib/llm/anthropic.mjs` | Claude API adapter (official SDK, loaded only when used): cached system block, `output_config`, refusal fallbacks |
+| `tools/lib/llm/openai_compat.mjs` | any `/chat/completions` endpoint via fetch (OpenAI, Gemini, OpenRouter, Groq, Ollama, LM Studio, vLLM ...): `response_format` ladder json_schema → json_object → off, image parts as data URLs |
+| `tools/lib/llm/mock.mjs` | offline adapter (tests, `--mock`) |
+| `tools/lib/manual.mjs` + `tools/manual.mjs` | copy-paste workflow for chat apps: self-contained prompts, reply checking, fix prompts; no network |
+| `tools/lib/pipeline.mjs` | one premise: write → validate → repair ladder → score/improve → critique/revise → metadata (provider-agnostic) |
 | `tools/lib/scoring.mjs`, `history.mjs` | quality score and feedback; history avoid list and review queue |
-| `tools/lib/mock_client.mjs` | offline client with the SDK's `messages.stream().finalMessage()` shape (tests, `--mock`) |
 | `tools/lib/wav.mjs` | WAV writing, ffmpeg-based decoding of any audio file |
 | `tools/lib/encode.mjs` | raw RGBA → ffmpeg → H.264 with backpressure |
 | `tools/lib/review_images.mjs` | thumbnail choice and contact sheets via the public API |

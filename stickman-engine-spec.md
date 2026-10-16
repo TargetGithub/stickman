@@ -845,7 +845,7 @@ Flags: `--out-dir`, `--from`, `--to` (frame range for quick checks; audio is cut
 | Critique (optional) | Contact sheet + timeline → pacing notes (JSON) | `claude-opus-5-5` (vision) |
 | Metadata | Title, description, tags | `claude-haiku-5-5` |
 
-Model ids live in one config file so they can be changed without code changes.
+Model ids live in one config file (`tools/llm.config.json`) so they can be changed without code changes. The models above are the defaults for the `anthropic` provider. The pipeline is provider-neutral: adapters exist for the Claude API and for any OpenAI-compatible `/chat/completions` endpoint (OpenAI, Gemini, OpenRouter, Groq, Ollama, LM Studio, ...). It also has a copy-paste mode (`tools/manual.mjs`) for chat apps with no API access: it builds self-contained prompts and checks pasted replies with the same validator.
 
 ### 18.2 Prompt pack for script writing
 System prompt, in order (static, cached):
@@ -1025,7 +1025,7 @@ After M3, the public API and script schema are backward-compatible only: older s
 
 | Area | Change |
 |---|---|
-| LLM loop (1.1.10) | Structured-output schema adapter, cached prompt pack, attempt ladder, score formula, run metrics, `--mock` |
+| LLM loop (1.1.10) | Provider-neutral adapters (Claude API, OpenAI-compatible), copy-paste mode, structured-output schema adapter, cached prompt pack, attempt ladder, score formula, run metrics, `--mock` |
 | Kinematics | Fixed `head` sign in `headCenter`. Added `rot` channel and body-center pivot for flips, rolls and lying poses |
 | Ground contact | Snap to the lowest point of any joint, rate-limited; disabled for airborne moves and negative root `dy` |
 | Aiming | Added 2-bone IK during hit windows and `aim` on hits, so different-size characters connect believably |

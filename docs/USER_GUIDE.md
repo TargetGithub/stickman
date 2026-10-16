@@ -1,6 +1,6 @@
 # User Guide
 
-This guide shows you how to make stickman action videos with the engine. You write a short JSON script (or ask Claude to write one). The engine simulates it, renders every frame, mixes sound, and writes an MP4 you can review and upload yourself.
+This guide shows you how to make stickman action videos with the engine. You write a short JSON script, or have an LLM write one: copy-paste with ChatGPT, Claude.ai or any chat app, or automatically through any provider's API. The engine simulates it, renders every frame, mixes sound, and writes an MP4 you can review and upload yourself.
 
 Contents:
 1. [Setup](#1-setup)
@@ -9,7 +9,7 @@ Contents:
 4. [Moves, effects and other catalog items](#4-moves-effects-and-other-catalog-items)
 5. [Fixing validator errors](#5-fixing-validator-errors)
 6. [Tools reference](#6-tools-reference)
-7. [Generating scripts with Claude](#7-generating-scripts-with-claude)
+7. [Generating scripts with an LLM](#7-generating-scripts-with-an-llm) (copy-paste, any API, offline)
 8. [Sound and music](#8-sound-and-music)
 9. [Using the engine from code](#9-using-the-engine-from-code)
 10. [Troubleshooting](#10-troubleshooting)
@@ -280,7 +280,8 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `npm run record -- <script> [options]` | Render the final video (see below) |
 | `npm run serve` | Start the local web server for the browser pages (port 5173) |
 | `node tools/catalog.mjs [--format json]` | Print the move, effect and world-command tables |
-| `node tools/generate.mjs [options]` | Generate scripts and videos with Claude (section 7) |
+| `node tools/manual.mjs <prompt\|check\|ideas\|critique\|meta>` | Copy-paste workflow with any chat app, no API key (section 7.1) |
+| `node tools/generate.mjs [options]` | Automatic generation with any LLM provider (section 7.2) |
 | `node tools/move_clip.mjs [--strip <move>]` | Render every move as a grid video, or one move as a filmstrip PNG |
 | `node tools/sfxgen.mjs [--force]` | Regenerate the built-in sound effects |
 | `node tools/pose_sheet.mjs` | Render all poses into one image |
@@ -306,57 +307,170 @@ Browser pages (after `npm run serve`):
 | `/web/editor.html` | Pose and move editor, for adding or changing moves |
 | `/web/index.html` | Pose viewer |
 
-## 7. Generating scripts with Claude
+## 7. Generating scripts with an LLM
 
-`tools/generate.mjs` turns ideas into reviewed videos:
+Any capable LLM can write scripts. The engine doesn't depend on any AI company: the validator checks every script no matter who wrote it. There are three ways to work:
 
-1. **Ideation**: Claude pitches premises, avoiding recent ones from `out/history.json`.
-2. **Writing**: Claude writes each script using the catalog and example scripts.
-3. **Repair**: if the validator finds errors, Claude gets the errors and timeline and fixes them (up to 3 attempts in total).
+| Option | Needs | Best for |
+|---|---|---|
+| **A. Copy-paste** with ChatGPT, Claude.ai, Gemini, Copilot or any chat app | Just a browser, no API key | Trying ideas, one-off videos, no setup |
+| **B. Automatic** through an API: Anthropic, OpenAI, Google Gemini, OpenRouter, Groq, Mistral, a local model (Ollama, LM Studio), ... | An API key, or a local model server | Batches of videos, unattended runs |
+| **C. Offline mock** | Nothing | Checking the pipeline works, no cost |
+
+All three use the same prompt pack (`prompts/`), the same validator and the same output folders.
+
+### 7.1 Option A: copy-paste with any chat (no API key)
+
+`tools/manual.mjs` writes the prompts for you and checks the replies you paste back. Nothing is sent anywhere by the tool.
+
+**Step 1. Make the prompt.**
+
+```bash
+node tools/manual.mjs prompt --premise "A tiny ninja outsmarts a giant robot guard on a snowy mountain" --length 25 --copy
+```
+
+This writes `out/manual/prompt.md` (about 20,000 characters: the rules, the full move catalog, three example scripts and your request) and, with `--copy`, puts it on the clipboard. Options: `--format portrait`, `--tone comedic`, `--length 30`.
+
+**Step 2. Paste it into a new chat** in ChatGPT, Claude.ai, Gemini or any other chat app. The reply is a JSON script in a code block.
+
+**Step 3. Check the reply.** Copy the whole reply; it's fine if it includes extra text or the code fence. Then run:
+
+```bash
+node tools/manual.mjs check --paste
+```
+
+(Or save the reply to a file and run `node tools/manual.mjs check reply.txt`.)
+
+- **Valid**: the script is saved to `out/scripts/<title>.json` with its score. Add `--render` to make the video right away, or run `npm run record -- out/scripts/<title>.json`.
+- **Not valid yet**: the tool lists the problems and writes `out/manual/fix_prompt.md`. Add `--copy` to put it on the clipboard. Paste it into the **same chat**, copy the new reply, and run `check --paste` again. One or two rounds is normal.
+
+**Optional extras:**
+
+| Command | What it gives you |
+|---|---|
+| `node tools/manual.mjs ideas --count 5 --copy` | A brainstorm prompt: the chat pitches 5 premises; pick one and use its logline in step 1 |
+| `node tools/manual.mjs critique out/scripts/<title>.json --copy` | `out/manual/contact_sheet.png` plus a review prompt. Attach the image in a chat that reads images, paste the prompt, then paste its notes into the writing chat and ask it to apply them. |
+| `node tools/manual.mjs meta out/scripts/<title>.json --copy` | A prompt for a YouTube title, description and tags |
+
+Tips:
+- Use the strongest model your chat app offers; small models make more mistakes with a prompt this long.
+- Start a new chat for each video, and send fix prompts in the same chat as the script they fix.
+- If the chat app limits message length, attach `out/manual/prompt.md` as a file and write "Follow the instructions in the attached file".
+
+### 7.2 Option B: automatic generation through an API
+
+`tools/generate.mjs` runs the whole loop by itself:
+
+1. **Ideation**: the model pitches premises, avoiding recent ones from `out/history.json`.
+2. **Writing**: it writes each script.
+3. **Repair**: when the validator finds errors, the model gets the errors and the timeline and fixes them (up to 3 attempts in total).
 4. **Scoring**: an automatic score (variety, effects, emphasis, camera, ending). Low scorers get one improvement round, then are dropped.
-5. **Critique** (optional, `--critique`): Claude looks at the contact sheet and suggests changes; one revision round.
+5. **Critique** (optional, `--critique`): a vision model looks at the contact sheet and suggests changes; one revision round.
 6. **Render and queue**: the video is rendered and added to `out/review_queue.json` with a suggested YouTube title, description and tags.
 
 Nothing is ever uploaded. You review the queue and upload what you like by hand.
 
-### API key
+#### Choosing a provider
 
-The tool reads `ANTHROPIC_API_KEY` from your environment; the key is never written to any file. Exporting it in one terminal window only works in that window. To make it available everywhere (including to Claude Code's tools), add it to `~/.zshrc`:
+Providers are listed in `tools/llm.config.json`. Pick one with `--provider` and a model with `--model` (or set the models in the config):
 
-```bash
-echo 'export ANTHROPIC_API_KEY="your-key-here"' >> ~/.zshrc
-```
+| Provider name | Service | API key variable |
+|---|---|---|
+| `anthropic` (default) | Claude API | `ANTHROPIC_API_KEY` |
+| `openai` | OpenAI | `OPENAI_API_KEY` |
+| `gemini` | Google Gemini (OpenAI-compatible endpoint) | `GEMINI_API_KEY` |
+| `openrouter` | OpenRouter (hundreds of models from many companies) | `OPENROUTER_API_KEY` |
+| `ollama` | Local models with Ollama (free, private) | none |
+| `lmstudio` | Local models with LM Studio | none |
+| `mock` | Offline canned replies | none |
 
-Then open a new terminal window. Never put the key in a file inside this project.
-
-### Commands
-
-Try the whole pipeline offline first (no key, no cost, canned answers):
-
-```bash
-node tools/generate.mjs --mock --count 2
-```
-
-One real video:
+Examples:
 
 ```bash
-node tools/generate.mjs --count 1 --tone comedic --length 25
+node tools/generate.mjs --provider anthropic --count 1
 ```
+
+```bash
+node tools/generate.mjs --provider openai --model <model-id> --count 1
+```
+
+```bash
+node tools/generate.mjs --provider ollama --model <local-model-name> --no-render
+```
+
+Two kinds of provider are built in:
+
+- `"type": "anthropic"` uses the Claude API with its extras: prompt caching, structured output, effort levels, and automatic fallback to another model if one declines a request.
+- `"type": "openai-compatible"` works with any service that offers an OpenAI-style `/chat/completions` endpoint. That covers most providers, including Azure OpenAI, Groq, Together, Mistral, DeepSeek, vLLM and llama.cpp.
+
+To add a provider, copy an entry and change it:
+
+```json
+"groq": {
+  "type": "openai-compatible",
+  "baseURL": "https://api.groq.com/openai/v1",
+  "apiKeyEnv": "GROQ_API_KEY",
+  "models": { "default": "<model-id>", "critique": "<vision-model-id>" },
+  "prices": { "<model-id>": { "input": 0.5, "output": 1.5 } }
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `models` | Model per stage: `ideation`, `write`, `flagship`, `repair`, `repairEscalate`, `critique`, `metadata`. Missing stages use `default`. `--model` overrides all of them. |
+| `apiKeyEnv` | Name of the environment variable holding the key (omit for local servers) |
+| `structured` | `json_schema` (default), `json_object` (for servers without schema support) or `off`. If the server rejects a mode, the tool steps down automatically. |
+| `maxTokensField` | `max_tokens` (default) or `max_completion_tokens` (newer OpenAI models) |
+| `reasoningEffort` | `true` to pass the stage effort as `reasoning_effort` (reasoning models only) |
+| `vision` | `false` if the model can't read images; `--critique` is then skipped |
+| `headers` | Extra HTTP headers, if a service needs them |
+| `prices` | USD per million tokens, for the cost estimate in the run summary |
+
+The default provider is the `"provider"` field at the top of the config.
+
+#### API keys
+
+Keys are read from environment variables and are never written to any file. Exporting a key in one terminal window only works in that window. To make it available everywhere, add it to `~/.zshrc` and open a new terminal:
+
+```bash
+echo 'export OPENAI_API_KEY="your-key-here"' >> ~/.zshrc
+```
+
+(Use the variable name for your provider.) Never put keys in a file inside this project.
+
+#### Local models (Ollama, LM Studio)
+
+Local models are free and private, but small ones make more mistakes, so expect more repair rounds. The prompt is about 7,000 tokens, and Ollama's default context window is only 4,096 tokens. Raise it to 16K or more, either for the whole server:
+
+```bash
+OLLAMA_CONTEXT_LENGTH=16384 ollama serve
+```
+
+or for one model, by creating a copy with a bigger window (it reuses the same model files):
+
+```bash
+printf 'FROM <local-model-name>\nPARAMETER num_ctx 16384\n' > Modelfile && ollama create <local-model-name>-16k -f Modelfile
+```
+
+#### Options
 
 | Option | Effect |
 |---|---|
+| `--provider NAME` | Provider from `tools/llm.config.json` |
+| `--model ID` | Model for every stage |
 | `--count N` | Number of premises (videos) |
 | `--premise "text"` | Skip ideation and use your own idea |
 | `--tone T` | `epic`, `comedic`, `parody`, ... |
 | `--format F` | `landscape` or `portrait` |
 | `--length S` | Target length in seconds (default 30) |
-| `--flagship` | Write with Claude Opus instead of Sonnet |
+| `--flagship` | Use the provider's `flagship` model for writing |
 | `--critique` | Vision review of the contact sheet plus one revision |
-| `--no-render` | Scripts only (fast, for measuring validity) |
+| `--no-render` | Scripts only (fast; for measuring validity rates) |
 | `--out DIR` | Output root (default `out`) |
-| `--print-prompt` | Show the full system prompt the writer model gets |
+| `--config FILE` | Another config file |
+| `--print-prompt` | Show the full system prompt |
 
-### Outputs
+#### Outputs
 
 | Path | Contents |
 |---|---|
@@ -364,15 +478,31 @@ node tools/generate.mjs --count 1 --tone comedic --length 25
 | `out/<slug>/` | The rendered video folder, plus `youtube.json` (title, description, tags) |
 | `out/review_queue.json` | Every accepted video with status `pending_review`, score, critique and metadata |
 | `out/history.json` | Premises, themes, moves and palettes used so far (keeps videos varied) |
-| `out/runs/<time>.json` | Run summary: validity rates, failure codes, tokens and estimated cost |
+| `out/runs/<time>.json` | Run summary: provider, validity rates, failure codes, tokens and estimated cost |
 
-### Models and cost
+Default Claude models: Sonnet 5.5 pitches and writes, Haiku 5.5 repairs and writes metadata (Sonnet 5.5 takes the last repair attempt), Opus 5.5 critiques and writes `--flagship` scripts. Each run prints its estimated cost.
 
-Models, effort levels and prices are in `tools/llm.config.json`. Defaults: Sonnet 5.5 pitches and writes, Haiku 5.5 repairs and writes metadata (Sonnet 5.5 takes the last repair attempt), Opus 5.5 critiques and writes `--flagship` scripts. The large system prompt is cached between requests. Each run prints its estimated cost; expect roughly $0.05-0.30 per video depending on repairs and critique.
+### 7.3 Option C: offline mock
 
-### Changing what Claude writes
+```bash
+node tools/generate.mjs --mock --count 2
+```
 
-The prompts are plain text in `prompts/`: `system.md` (script-writing rules), `ideation.md`, `repair.md`, `critique.md`, `metadata.md`. The example scripts in `prompts/examples/` teach the format by example; keep them valid (the tests check this). Catalog tables are generated from `data/`, so new moves appear in the prompt automatically.
+Runs the full pipeline with canned replies: ideation, a deliberate mistake and its repair, scoring, critique, metadata and rendering. No network, no cost. Useful after changing the pipeline or the config.
+
+### 7.4 Changing what the model writes
+
+The prompts are plain text in `prompts/`:
+
+| File | Used for |
+|---|---|
+| `system.md` | Script-writing rules |
+| `ideation.md` | Premise brainstorming |
+| `repair.md` | Fix requests |
+| `critique.md` | Video review |
+| `metadata.md` | YouTube title and description |
+
+The example scripts in `prompts/examples/` teach the format by example; keep them valid (the tests check this). Catalog tables are generated from `data/`, so new moves appear in every prompt automatically, in all three options. To see exactly what a model receives, run `node tools/generate.mjs --print-prompt`.
 
 ## 8. Sound and music
 
@@ -414,7 +544,10 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 | Problem | Fix |
 |---|---|
 | `ffmpeg: command not found` | `brew install ffmpeg` |
-| `Cannot create the Anthropic client` or 401 errors | `ANTHROPIC_API_KEY` isn't set in the shell running the command; see section 7 |
+| `Cannot set up the LLM provider` or 401 errors | The provider's API key variable isn't set in the shell running the command (section 7.2), or use copy-paste mode (7.1) |
+| `has no model for: ...` | Set the provider's `models` in `tools/llm.config.json` or pass `--model` |
+| `exceeds the available context size` | The local model's context window is too small; see 7.2, Local models |
+| The chat reply has no JSON | Run `check` anyway: it writes a fix prompt asking for JSON only |
 | A move looks wrong for a giant/tiny pairing | Check the frame with `--from`/`--to`; try a different move or outcome |
 | A fighter walks for ages before attacking | Use `"approach": "run"`, or start the fighters closer |
 | A beat starts later than expected | It waited for a busy character; chain it with `after`, or set `"interrupt": true` |

@@ -1,10 +1,10 @@
 // Generation pipeline for one premise (spec 18): write → validate → repair (up to maxAttempts) →
 // score (regenerate once if low) → optional vision critique and one revision → metadata.
-// All model calls go through tools/lib/llm.mjs; rendering is injected (renderSheet) so the
+// All model calls go through tools/lib/llm/ (any provider); rendering is injected (renderSheet) so the
 // pipeline runs offline in tests.
 
 import { validate, createEngine } from "../../engine/index.js";
-import { LlmError } from "./llm.mjs";
+import { LlmError } from "./llm/index.mjs";
 import { scriptOutputSchema, CRITIQUE_SCHEMA, METADATA_SCHEMA } from "./llm_schema.mjs";
 import { scoreScript, scoreFeedback } from "./scoring.mjs";
 import {
@@ -18,7 +18,8 @@ function pack(catalog) {
   return memo.get(catalog);
 }
 
-const fatal = (e) => e instanceof LlmError && e.kind === "api" && [401, 403, 404].includes(e.status);
+// Client errors (bad key, unknown model, prompt too long) will not fix themselves on retry.
+const fatal = (e) => e instanceof LlmError && e.kind === "api" && e.status >= 400 && e.status < 500 && e.status !== 408 && e.status !== 429;
 
 /**
  * Ask for a script until it validates or the attempt budget runs out.
@@ -63,7 +64,7 @@ export function evaluate(script, catalog) {
 
 /**
  * Generate one script from a premise.
- * @param {object} ctx  { llm, catalog, cfg (llm.config.json), log(line), renderSheet?(script) → Promise<Buffer PNG> }
+ * @param {object} ctx  { llm, catalog, cfg { models, effort, maxAttempts, minScore }, log(line), renderSheet?(script) → Promise<Buffer PNG> }
  * @param {object} premise  from ideation
  * @param {object} opts  { format, length, seed, flagship, critique }
  */
@@ -113,7 +114,7 @@ export async function generateOne(ctx, premise, opts) {
       messages: [{
         role: "user",
         content: [
-          { type: "image", source: { type: "base64", media_type: "image/png", data: png.toString("base64") } },
+          { type: "image", mediaType: "image/png", data: png.toString("base64") },
           { type: "text", text: `Timeline:\n${ev.loaded.timeline}\n\nScript:\n${JSON.stringify(script)}` },
         ],
       }],

@@ -2,7 +2,7 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** M8 built: LLM script generation (`tools/generate.mjs`), tested offline with a mock client; first live API run pending. Next: M9 (hardening). New here? Read the [User Guide](docs/USER_GUIDE.md).
+**Status:** M8 built: LLM script generation with any provider or by copy-paste (`tools/generate.mjs`, `tools/manual.mjs`); tested offline and with a local model. Next: M9 (hardening). New here? Read the [User Guide](docs/USER_GUIDE.md).
 
 ## Documents
 
@@ -20,7 +20,8 @@ A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; 
 ```
 engine/    runtime logic, zero dependencies (runs in Node and the browser)
 data/      poses, moves, props, FX presets, themes, SFX keys
-tools/     Node CLIs: validate, record, mix, sfxgen, catalog, generate, serve
+tools/     Node CLIs: validate, record, mix, sfxgen, catalog, generate, manual, serve
+prompts/   LLM prompt pack and example scripts
 web/       browser pages: player, pose/move editor, move catalog
 assets/    fonts, sfx, music (with license records)
 scripts/   sample scripts
@@ -47,16 +48,12 @@ npm run record -- scripts/samples/m4_dojo.json
 
 Output lands in `out/<title-slug>/` (final.mp4, thumb.png, contact_sheet.png, meta.json). Drop your own sounds into `assets/sfx/` (e.g. `punch_heavy.wav`, `punch_heavy_2.mp3`) or music into `assets/music/` to replace the generated ones.
 
-### Generating scripts with Claude (M8)
+### Generating scripts with an LLM (M8)
 
-`tools/generate.mjs` pitches premises, writes scripts, repairs them with validator feedback, scores them, renders the accepted ones and appends them to `out/review_queue.json` for human review. Nothing is uploaded. Models, effort and prices live in `tools/llm.config.json`. It needs `ANTHROPIC_API_KEY` in your shell environment (never put it in a file in this repo).
+Any LLM can write scripts; the validator checks them all. Three ways, all described in [docs/USER_GUIDE.md](docs/USER_GUIDE.md#7-generating-scripts-with-an-llm):
 
-```bash
-node tools/generate.mjs --mock --count 3
-```
+- **Copy-paste, no API key** (ChatGPT, Claude.ai, Gemini, any chat app): `node tools/manual.mjs prompt --premise "..." --copy`, paste into a chat, then `node tools/manual.mjs check --paste`.
+- **Automatic, any provider** (Anthropic, OpenAI, Gemini, OpenRouter, Ollama, LM Studio, or any OpenAI-compatible endpoint): `node tools/generate.mjs --provider openai --model <id> --count 3`. Providers live in `tools/llm.config.json`; keys come from environment variables only.
+- **Offline mock**: `node tools/generate.mjs --mock --count 2`.
 
-```bash
-node tools/generate.mjs --count 1 --tone comedic --length 25
-```
-
-Other options: `--premise "text"`, `--format portrait`, `--flagship` (Opus writes), `--critique` (vision review of the contact sheet plus one revision), `--no-render` (scripts only, for batch metrics), `--print-prompt` (show the system prompt). Each run writes a summary with validity rates and estimated cost to `out/runs/`. `node tools/catalog.mjs` prints the catalog tables the prompt uses.
+Nothing is uploaded. Accepted videos go to `out/review_queue.json` for human review.

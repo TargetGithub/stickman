@@ -1,27 +1,59 @@
 {
-  "models": {
-    "ideation": "claude-sonnet-5-5",
-    "write": "claude-sonnet-5-5",
-    "flagship": "claude-opus-5-5",
-    "repair": "claude-haiku-5-5",
-    "repairEscalate": "claude-sonnet-5-5",
-    "critique": "claude-opus-5-5",
-    "metadata": "claude-haiku-5-5"
-  },
-  "effort": {
-    "ideation": "medium",
-    "write": "medium",
-    "repair": "medium",
-    "critique": "medium",
-    "metadata": "low"
-  },
-  "structured": "auto",
-  "refusalFallback": true,
+  "provider": "anthropic",
   "maxAttempts": 3,
   "minScore": 60,
-  "prices": {
-    "claude-opus-5-5": { "input": 4, "output": 20, "cacheRead": 0.2 },
-    "claude-sonnet-5-5": { "input": 2, "output": 10, "cacheRead": 0.2 },
-    "claude-haiku-5-5": { "input": 0.1, "output": 0.5 }
+  "providers": {
+    "anthropic": {
+      "type": "anthropic",
+      "models": {
+        "ideation": "claude-sonnet-5-5",
+        "write": "claude-sonnet-5-5",
+        "flagship": "claude-opus-5-5",
+        "repair": "claude-haiku-5-5",
+        "repairEscalate": "claude-sonnet-5-5",
+        "critique": "claude-opus-5-5",
+        "metadata": "claude-haiku-5-5"
+      },
+      "effort": { "ideation": "medium", "write": "medium", "repair": "medium", "critique": "medium", "metadata": "low" },
+      "refusalFallback": true,
+      "prices": {
+        "claude-opus-5-5": { "input": 4, "output": 20, "cacheRead": 0.2 },
+        "claude-sonnet-5-5": { "input": 2, "output": 10, "cacheRead": 0.2 },
+        "claude-haiku-5-5": { "input": 0.1, "output": 0.5 }
+      }
+    },
+    "openai": {
+      "type": "openai-compatible",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKeyEnv": "OPENAI_API_KEY",
+      "maxTokensField": "max_completion_tokens",
+      "models": { "default": "SET-ME" }
+    },
+    "gemini": {
+      "type": "openai-compatible",
+      "baseURL": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "apiKeyEnv": "GEMINI_API_KEY",
+      "models": { "default": "SET-ME" }
+    },
+    "openrouter": {
+      "type": "openai-compatible",
+      "baseURL": "https://openrouter.ai/api/v1",
+      "apiKeyEnv": "OPENROUTER_API_KEY",
+      "models": { "default": "SET-ME" }
+    },
+    "ollama": {
+      "type": "openai-compatible",
+      "baseURL": "http://localhost:11434/v1",
+      "structured": "json_object",
+      "vision": false,
+      "models": { "default": "SET-ME" }
+    },
+    "lmstudio": {
+      "type": "openai-compatible",
+      "baseURL": "http://localhost:1234/v1",
+      "structured": "json_object",
+      "vision": false,
+      "models": { "default": "SET-ME" }
+    }
   }
 }
