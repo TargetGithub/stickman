@@ -14,6 +14,7 @@
 //     --provider NAME      provider entry in llm.config.json: anthropic, openai, gemini, openrouter,
 //                          ollama, lmstudio, or any you add (default: config "provider")
 //     --model ID           use this model for every stage (overrides the provider's models)
+//     --attempts N         write + repair attempts per script (default config maxAttempts, 3)
 //     --mock               offline: fake model responses, no network, no cost (= --provider mock)
 //     --print-prompt       print the writer system prompt and exit (no API call)
 //     --config FILE        provider/model/price config (default tools/llm.config.json)
@@ -72,7 +73,7 @@ try {
   console.error(`Cannot set up the LLM provider: ${e.message}${hint}`);
   process.exit(2);
 }
-const cfg = { models: provider.models, effort: provider.effort, maxAttempts: config.maxAttempts ?? 3, minScore: config.minScore ?? 60 };
+const cfg = { models: provider.models, effort: provider.effort, maxAttempts: Math.max(1, Number(opt("--attempts", config.maxAttempts ?? 3))), minScore: config.minScore ?? 60 };
 const llm = createLlm(provider.adapter, { prices: provider.prices, structured: provider.structured, log });
 if (opts.critique && provider.adapter.vision === false) {
   log(`note: provider '${provider.name}' is configured without vision; skipping --critique`);

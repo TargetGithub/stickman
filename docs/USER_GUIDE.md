@@ -442,7 +442,7 @@ echo 'export OPENAI_API_KEY="your-key-here"' >> ~/.zshrc
 
 #### Local models (Ollama, LM Studio)
 
-Local models are free and private, but small ones make more mistakes, so expect more repair rounds. The prompt is about 7,000 tokens, and Ollama's default context window is only 4,096 tokens. Raise it to 16K or more, either for the whole server:
+Local models are free and private, but small ones make more mistakes, so expect more repair rounds (`--attempts 6`). In a test with an 8B model, each round fixed most of the remaining errors, but 3 attempts weren't enough; models of 30B+ or a cloud model do much better. The prompt is about 7,000 tokens, and Ollama's default context window is only 4,096 tokens. Raise it to 16K or more, either for the whole server:
 
 ```bash
 OLLAMA_CONTEXT_LENGTH=16384 ollama serve
@@ -460,6 +460,7 @@ printf 'FROM <local-model-name>\nPARAMETER num_ctx 16384\n' > Modelfile && ollam
 |---|---|
 | `--provider NAME` | Provider from `tools/llm.config.json` |
 | `--model ID` | Model for every stage |
+| `--attempts N` | Write + repair attempts per script (default 3; small local models may need 5-6) |
 | `--count N` | Number of premises (videos) |
 | `--premise "text"` | Skip ideation and use your own idea |
 | `--tone T` | `epic`, `comedic`, `parody`, ... |
