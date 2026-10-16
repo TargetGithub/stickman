@@ -2,7 +2,7 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** M5 (frame store, public API, determinism) complete and awaiting review. Next: M6 (recorder and audio).
+**Status:** M6 (recorder and audio) complete and awaiting review. One command turns a script into a finished video. Next: M7 (full move catalog, themes, portrait).
 
 ## Documents
 
@@ -38,4 +38,10 @@ npm test
 npm run serve
 ```
 
-Then open http://localhost:5173/web/player.html (script player with scrubber), /web/editor.html (move editor), /web/catalog.html (every move looping) or /web/index.html (pose viewer). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema) and render one with `node tools/play_script.mjs scripts/samples/m3_duel.json` (engine renderer; audio arrives in M6).
+Then open http://localhost:5173/web/player.html (script player with scrubber), /web/editor.html (move editor), /web/catalog.html (every move looping) or /web/index.html (pose viewer). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema). Make a finished video with sound:
+
+```bash
+npm run record -- scripts/samples/m4_dojo.json
+```
+
+Output lands in `out/<title-slug>/` (final.mp4, thumb.png, contact_sheet.png, meta.json). Drop your own sounds into `assets/sfx/` (e.g. `punch_heavy.wav`, `punch_heavy_2.mp3`) or music into `assets/music/` to replace the generated ones.

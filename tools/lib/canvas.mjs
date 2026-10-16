@@ -1,7 +1,7 @@
 // Node canvas backend adapter (ADR-001). Tools use this instead of importing a backend directly,
 // so switching backends is one line.
 //
-//   const backend = await loadBackend("napi");   // or "skia"
+//   const backend = await loadBackend("napi");   // or "skia" (not installed by default: npm i -D skia-canvas)
 //   const canvas = backend.createCanvas(1920, 1080);
 //   const ctx = canvas.getContext("2d");
 //   await backend.savePng(canvas, "out/x.png");

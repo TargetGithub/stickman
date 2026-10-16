@@ -23,7 +23,9 @@ test("audio events are sorted, in range, and use known SFX keys", () => {
 
 test("every landed hit has a sound at the moment of contact", () => {
   const hits = sim.events.filter((e) => e.type === "hit");
-  for (const h of hits) assert.ok(audio.some((a) => a.t === h.videoT && a.sfx === h.sfx), `${h.move} ${h.kind}`);
+  for (const h of hits) assert.ok(audio.some((a) => a.t === h.videoT && a.sfx.split("_")[0] === h.sfx.split("_")[0]), `${h.move} ${h.kind}`);
+  const big = hits.find((h) => h.damage >= 16 && h.sfx.endsWith("_light"));
+  assert.ok(big && audio.some((a) => a.t === big.videoT && a.sfx === big.sfx.replace("_light", "_heavy")), "heavy hits use the heavy sound");
   assert.ok(audio.some((a) => a.sfx === "block"));
   assert.ok(audio.some((a) => a.sfx === "parry"));
 });

@@ -320,7 +320,7 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 - **Context**: browser canvas capture costs 40-100 ms per frame and adds Playwright and GPU nondeterminism.
 - **Decision**: render frames in Node with a Skia canvas and pipe raw RGBA to ffmpeg. The browser is for preview and authoring only.
 - **Consequences**: two canvas backends to support (browser and Node); pixel parity between them is not required.
-- **Result (M0.7)**: `@napi-rs/canvas` chosen; see `docs/benchmarks.md`. Tools load it through `tools/lib/canvas.mjs`.
+- **Result (M0.7)**: `@napi-rs/canvas` chosen; see `docs/benchmarks.md`. Tools load it through `tools/lib/canvas.mjs`. `skia-canvas` removed in M6.
 
 ### ADR-002 Three clocks
 - **Context**: v1.0 contradicted itself on slowmo and did not say what time beats use.
@@ -369,3 +369,15 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 ### ADR-012 Overlays drawn from the event log
 - **Decision**: speech bubbles, captions, text pops, flashes, fades and desaturate are computed at render time from logged events and the frame's video time; only the camera (stateful smoothing) is stored per frame.
 - **Consequences**: frames stay small; overlay styling can change without re-simulating; random access is preserved.
+
+## 8. Tools layer (M6)
+
+| Module | Role |
+|---|---|
+| `tools/record.mjs` | script → `out/<slug>/` (final.mp4, thumb.png, contact_sheet.png, script.json, meta.json) |
+| `tools/sfxgen.mjs`, `tools/lib/synth.mjs` | deterministic procedural SFX for every required key |
+| `tools/lib/mixer.mjs` | pure mixing: pan, events, music cues and ducking, lookahead limiter |
+| `tools/lib/sfx_library.mjs` | override/variant lookup in `assets/sfx`, generated fallback, music lookup |
+| `tools/lib/wav.mjs` | WAV writing, ffmpeg-based decoding of any audio file |
+| `tools/lib/encode.mjs` | raw RGBA → ffmpeg → H.264 with backpressure |
+| `tools/lib/review_images.mjs` | thumbnail choice and contact sheets via the public API |

@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method.
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -797,13 +797,14 @@ t=3.80  world  slowmo x0.3    (story 3.80-4.30, video +1.17 s)
    ```
 6. Write the thumbnail, contact sheet and metadata (17.4).
 
-Flags: `--format`, `--from`, `--to` (frame range for quick checks), `--frames-only` (PNG sequence for debugging), `--hash` (print per-frame hashes for determinism tests).
+Flags: `--out-dir`, `--from`, `--to` (frame range for quick checks; audio is cut to match), `--frames-only` (PNG sequence for debugging), `--hash` (writes `hashes.txt`, SHA-256 per frame), `--no-audio`, `--crf`, `--preset`. The output folder is `out/<slug of meta.title>/`.
 
 ### 17.2 Audio mixing (`mix.mjs`)
 - The mixer runs in Node, not in an ffmpeg filtergraph, so any number of events works.
 - SFX files are 48 kHz 16-bit WAV. Variants `punch_heavy_1.wav`, `punch_heavy_2.wav` are chosen with the seeded `audio` stream.
 - Each event is summed into a Float32 stereo buffer with constant-power pan and volume. Music is decoded by ffmpeg to raw float PCM, then looped or trimmed, ducked by 4 dB under heavy hits and faded out at the end.
-- A lookahead peak limiter keeps output at or below -1 dBFS. Output is a 48 kHz stereo WAV.
+- The SFX bus runs at +4 dB (gain 1.6) because effect-only mixes are sparse; a lookahead peak limiter (5 ms lookahead, 50 ms release) keeps output at or below -1 dBFS. Output is a 48 kHz stereo WAV, muxed as AAC 192 kbps.
+- A landed hit with damage ≥ 16 plays the `_heavy` variant of its sound even if the move names `_light`.
 
 ### 17.3 SFX sources
 - `sfxgen.mjs` generates every required SFX key procedurally and deterministically (noise bursts, filtered sweeps, envelopes), so the pipeline works with no downloaded assets.
@@ -813,7 +814,7 @@ Flags: `--format`, `--from`, `--to` (frame range for quick checks), `--frames-on
 ### 17.4 Outputs
 - `out/<slug>/final.mp4` (H.264 + AAC, 60 fps, format size)
 - `out/<slug>/script.json` (exact script used)
-- `out/<slug>/thumb.png` (frame with the highest action score: live particles near center, plus a heavy-hit bonus)
+- `out/<slug>/thumb.png` (3 frames after the strongest landed hit, scored by damage +10 with slowmo, +5 with a big shake; 40% mark if nothing lands)
 - `out/<slug>/contact_sheet.png` (4x4 grid of evenly spaced frames)
 - `out/<slug>/meta.json` (title, duration, seed, engine version, validator warnings, timeline, render time)
 

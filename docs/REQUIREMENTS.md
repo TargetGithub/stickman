@@ -17,7 +17,6 @@ Items marked **Needed from Sridhar** are things Claude cannot or should not do a
 | Package | Purpose | Milestone |
 |---|---|---|
 | `@napi-rs/canvas` | Node canvas backend for recording (chosen in M0.7) | M0 |
-| `skia-canvas` | fallback backend, remove after M6 if unused | M0 |
 | `@anthropic-ai/sdk` | LLM script generation | M8 |
 | `ffmpeg-static` (optional) | bundled ffmpeg if Homebrew is not used | M6 |
 

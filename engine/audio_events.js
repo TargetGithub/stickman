@@ -3,7 +3,7 @@
 
 import { frameView } from "./framestore.js";
 import { unpackJoints } from "./skeleton.js";
-import { FPS, PHYSICS } from "./config.js";
+import { FPS, PHYSICS, COMBAT } from "./config.js";
 
 const VOLUME = { step: 0.35, whoosh: 0.55, crowd_cheer: 0.6, crowd_gasp: 0.6 };
 const PAN_WIDTH = 0.8; // keep stereo placement subtle
@@ -32,7 +32,11 @@ export function collectAudioEvents(sim) {
 
   for (const e of sim.events) {
     if (e.type === "moveEvent" && e.sfx) add(e.videoT, e.sfx, VOLUME[e.sfx] ?? 0.8, actorX(e.videoT, e.actor));
-    else if (e.type === "hit" && e.sfx) add(e.videoT, e.sfx, e.kind === "hit" ? 1 : 0.8, e.point.x);
+    else if (e.type === "hit" && e.sfx) {
+      // Heavy hits sound heavy even when the move names its light variant.
+      const heavy = e.kind === "hit" && e.damage >= COMBAT.reactionThresholds.heavy;
+      add(e.videoT, heavy ? e.sfx.replace(/_light$/, "_heavy") : e.sfx, e.kind === "hit" ? 1 : 0.8, e.point.x);
+    }
     else if (e.type === "land" && !e.launched) {
       if (e.speed > PHYSICS.shakeImpactSpeed) add(e.videoT, "land_heavy", 0.9, actorX(e.videoT, e.actor));
       else if (e.speed > PHYSICS.dustImpactSpeed) add(e.videoT, "land", 0.7, actorX(e.videoT, e.actor));

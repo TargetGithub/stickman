@@ -19,7 +19,7 @@ const flag = (name, dflt) => {
   return i >= 0 ? args[i + 1] : dflt;
 };
 const FRAMES = Number(flag("--frames", 300));
-const BACKENDS = flag("--backends", "skia,napi").split(",");
+const BACKENDS = flag("--backends", "napi").split(","); // "skia" needs: npm i -D skia-canvas
 const W = 1920;
 const H = 1080;
 
