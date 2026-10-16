@@ -1,0 +1,505 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StickmanScript",
+  "type": "object",
+  "required": [
+    "version",
+    "meta",
+    "characters",
+    "camera",
+    "beats"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "title",
+        "format",
+        "seed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "format": {
+          "enum": [
+            "landscape",
+            "portrait"
+          ]
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "mode": {
+          "enum": [
+            "choreographed",
+            "simulated"
+          ]
+        },
+        "stageWidth": {
+          "type": "number",
+          "minimum": 1600,
+          "maximum": 8000
+        },
+        "theme": {
+          "type": "string",
+          "enum": [
+            "white_stage",
+            "void_grid",
+            "dojo_dusk",
+            "rooftop_city",
+            "desert_noon",
+            "arena",
+            "snow_mountain"
+          ]
+        },
+        "hpBars": {
+          "type": "boolean"
+        },
+        "autoCamera": {
+          "type": "boolean"
+        },
+        "tail": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3
+        }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "x",
+          "facing",
+          "color"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,23}$"
+          },
+          "x": {
+            "type": "number",
+            "description": "Start position in world px (stage is 0..stageWidth)."
+          },
+          "facing": {
+            "enum": [
+              1,
+              -1
+            ]
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "scale": {
+            "type": "number",
+            "minimum": 0.4,
+            "maximum": 4
+          },
+          "hp": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "prop": {
+            "enum": [
+              "sword",
+              "club_big",
+              "staff",
+              "bat",
+              "shield",
+              null
+            ]
+          },
+          "style": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "overlap": {
+                "type": "boolean"
+              },
+              "outline": {
+                "type": "boolean"
+              },
+              "squash": {
+                "type": "boolean"
+              },
+              "glow": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "headband": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "cape": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "hat": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "scarf": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "camera": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "required": [
+          "at",
+          "mode"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "at": {
+            "description": "When the beat runs: story seconds, or relative to another beat.",
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 180
+              },
+              {
+                "type": "object",
+                "required": [
+                  "after"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "after": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,23}$"
+                  },
+                  "delay": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30,
+                    "description": "Seconds after the referenced moment."
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "with"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "with": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,23}$"
+                  },
+                  "delay": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30,
+                    "description": "Seconds after the referenced moment."
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "on"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "on": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,23}\\.(start|windowOpen|hit|end)$"
+                  },
+                  "delay": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30,
+                    "description": "Seconds after the referenced moment."
+                  }
+                }
+              }
+            ]
+          },
+          "mode": {
+            "enum": [
+              "follow",
+              "focus",
+              "fixed",
+              "pan",
+              "push"
+            ]
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 6
+          },
+          "target": {
+            "type": "string"
+          },
+          "zoom": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0.3,
+                "maximum": 4
+              },
+              {
+                "const": "auto"
+              }
+            ]
+          },
+          "padding": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1200
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          },
+          "ease": {
+            "type": "string"
+          },
+          "dur": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10
+          }
+        }
+      }
+    },
+    "beats": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "required": [
+          "at",
+          "who",
+          "do"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,23}$"
+          },
+          "at": {
+            "description": "When the beat runs: story seconds, or relative to another beat.",
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 180
+              },
+              {
+                "type": "object",
+                "required": [
+                  "after"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "after": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,23}$"
+                  },
+                  "delay": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30,
+                    "description": "Seconds after the referenced moment."
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "with"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "with": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,23}$"
+                  },
+                  "delay": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30,
+                    "description": "Seconds after the referenced moment."
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "on"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "on": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,23}\\.(start|windowOpen|hit|end)$"
+                  },
+                  "delay": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30,
+                    "description": "Seconds after the referenced moment."
+                  }
+                }
+              }
+            ]
+          },
+          "who": {
+            "type": "string",
+            "description": "A character id, or \"world\" for effects and camera cuts."
+          },
+          "do": {
+            "type": "string",
+            "description": "A move name (characters) or a world command.",
+            "enum": [
+              "idle",
+              "walk",
+              "run",
+              "dodge_back",
+              "jump",
+              "jab",
+              "cross",
+              "front_kick",
+              "block",
+              "parry",
+              "duck",
+              "hit_light",
+              "hit_heavy",
+              "hit_launch",
+              "knockdown",
+              "get_up",
+              "stagger",
+              "ko_fall",
+              "taunt",
+              "victory",
+              "wait",
+              "face",
+              "shake",
+              "slowmo",
+              "freeze",
+              "zoom_punch",
+              "flash",
+              "fade",
+              "desaturate",
+              "text_pop",
+              "caption",
+              "explosion",
+              "spawn_prop",
+              "prop_break",
+              "set_theme",
+              "music_cue",
+              "cut"
+            ]
+          },
+          "target": {
+            "type": "string"
+          },
+          "outcome": {
+            "enum": [
+              "hit",
+              "whiff",
+              "blocked",
+              "parried",
+              "dodged"
+            ]
+          },
+          "params": {
+            "type": "object",
+            "additionalProperties": {
+              "type": [
+                "number",
+                "string",
+                "boolean"
+              ]
+            }
+          },
+          "speed": {
+            "type": "number",
+            "minimum": 0.25,
+            "maximum": 3
+          },
+          "approach": {
+            "enum": [
+              "run",
+              "walk",
+              false
+            ]
+          },
+          "interrupt": {
+            "type": "boolean"
+          },
+          "fx": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 6
+          },
+          "say": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "sayDur": {
+            "type": "number",
+            "minimum": 0.2,
+            "maximum": 10
+          }
+        }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "music": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "musicVolume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}

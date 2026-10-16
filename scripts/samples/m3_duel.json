@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "meta": { "title": "Small Hero, Big Problem", "format": "landscape", "seed": 42, "mode": "choreographed", "theme": "white_stage" },
+  "characters": [
+    { "id": "hero", "x": 800, "facing": 1, "color": "#22aaff", "scale": 1.0, "hp": 100 },
+    { "id": "boss", "x": 1650, "facing": -1, "color": "#ff3b3b", "scale": 2.2, "hp": 200 }
+  ],
+  "camera": [
+    { "at": 0, "mode": "follow", "targets": ["hero", "boss"], "zoom": "auto", "padding": 300 }
+  ],
+  "beats": [
+    { "id": "t1", "at": 0.4, "who": "boss", "do": "taunt", "say": "Come here, tiny!" },
+    { "id": "j1", "at": { "after": "t1", "delay": 0.2 }, "who": "hero", "do": "jab", "target": "boss", "approach": "run", "outcome": "hit" },
+    { "id": "c1", "at": { "after": "j1" }, "who": "hero", "do": "cross", "target": "boss", "outcome": "blocked" },
+    { "id": "k1", "at": { "after": "c1", "delay": 0.3 }, "who": "boss", "do": "front_kick", "target": "hero", "outcome": "dodged" },
+    { "id": "x1", "at": { "after": "k1", "delay": 0.2 }, "who": "boss", "do": "cross", "target": "hero", "approach": "walk", "outcome": "parried", "say": "Hmph!" },
+    { "id": "c2", "at": { "after": "x1", "delay": 0.1 }, "who": "hero", "do": "cross", "target": "boss", "approach": "run", "outcome": "hit" },
+    { "id": "j2", "at": { "after": "c2", "delay": 0.3 }, "who": "boss", "do": "jab", "target": "hero", "approach": "walk", "outcome": "hit" },
+    { "id": "fk", "at": { "after": "j2", "delay": 0.4 }, "who": "hero", "do": "front_kick", "target": "boss", "approach": "run", "outcome": "hit", "params": { "damage": 22 }, "say": "HYAAA!" },
+    { "at": { "on": "fk.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.3, "duration": 0.4 } },
+    { "at": { "on": "fk.hit" }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+    { "id": "g1", "at": { "after": "fk", "delay": 1.2 }, "who": "boss", "do": "get_up" },
+    { "id": "ko", "at": { "after": "g1", "delay": 0.2 }, "who": "boss", "do": "ko_fall" },
+    { "id": "v1", "at": { "after": "ko", "delay": 0.2 }, "who": "hero", "do": "victory", "fx": ["aura"] },
+    { "at": { "with": "v1" }, "who": "world", "do": "text_pop", "params": { "text": "K.O.!" } },
+    { "at": { "after": "v1", "delay": 0.6 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 1, "dir": "out" } }
+  ],
+  "audio": { "music": null }
+}

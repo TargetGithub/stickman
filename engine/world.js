@@ -26,7 +26,7 @@ export function createWorld({ actors, moves, mode = "choreographed", stageWidth 
     advanceMove(a, 0, moves); // start idle (or a pre-queued move) so every actor has a pose
     poseActor(a, 0);
   }
-  return { actors, byId: new Map(actors.map((a) => [a.id, a])), moves, mode, stageWidth, time: 0, scheduled: [], seq: 0 };
+  return { actors, byId: new Map(actors.map((a) => [a.id, a])), moves, mode, stageWidth, time: 0, scheduled: [], seq: 0, current: new Map() };
 }
 
 const toward = (from, to) => Math.sign(to.x - from.x) || from.facing;
@@ -63,14 +63,13 @@ function setupAttack(world, actor, events) {
   m.aims = [];
   m.prevPart = {};
   m.hitIds = new Set();
-  events.push({ type: "anchor", beatId: m.beatId, anchor: "start", actor: actor.id, move: m.def.name });
   if (world.mode !== "choreographed") return;
 
   const d = deriveReach(m.def)[0];
   const required = requiredStartX(actor, target, m.def, m.params, m.outcome);
   const error = required - actor.x;
   const max = COMBAT.maxNudge * actor.scale;
-  if (Math.abs(error) > max) events.push({ type: "positionError", actor: actor.id, move: m.def.name, error });
+  if (Math.abs(error) > max) events.push({ type: "positionError", actor: actor.id, move: m.def.name, beatId: m.beatId, error });
   m.nudge = { total: Math.max(-max, Math.min(max, error)), applied: 0, until: d.tmid };
 
   const secondsToHit = ((m.def.hits[0].t0 - m.t) * m.def.duration) / m.speed;
@@ -169,7 +168,7 @@ function applyHit(world, attacker, target, hit, kind, point) {
   }
   const fx = kind === "hit" ? hit.fx || [] : ["block_spark"];
   const sfx = kind === "hit" ? hit.sfx : kind;
-  events.push({ type: "hit", kind, attacker: attacker.id, target: target.id, move: m.def.name, part: hit.part, damage: dealt, point, fx, shake: kind === "hit" ? hit.shake : null, sfx });
+  events.push({ type: "hit", kind, beatId: m.beatId, attacker: attacker.id, target: target.id, move: m.def.name, part: hit.part, damage: dealt, point, fx, shake: kind === "hit" ? hit.shake : null, sfx });
   events.push({ type: "anchor", beatId: m.beatId, anchor: "hit", actor: attacker.id, move: m.def.name });
   return events;
 }
@@ -229,6 +228,26 @@ function onLand(world, actor, e) {
   else playMove(actor, world.moves.has("ko_fall") ? "ko_fall" : "knockdown", world.moves, { blend: 0.12 });
 }
 
+/**
+ * Report beat-tagged moves starting, and moves that were replaced before finishing (interrupted by a
+ * reaction or a new command) as ended, so the director's start/end anchors always fire.
+ */
+function announce(world, events) {
+  for (const actor of world.actors) {
+    const prev = world.current.get(actor);
+    const cur = actor.move;
+    if (prev && prev !== cur && prev.beatId && !prev.endAnnounced) {
+      prev.endAnnounced = true;
+      events.push({ type: "moveEnd", actor: actor.id, move: prev.def.name, beatId: prev.beatId, interrupted: true });
+    }
+    if (cur && cur.beatId && !cur.startAnnounced) {
+      cur.startAnnounced = true;
+      events.push({ type: "anchor", anchor: "start", actor: actor.id, move: cur.def.name, beatId: cur.beatId });
+    }
+    world.current.set(actor, cur);
+  }
+}
+
 function separationSkip(a, b) {
   const engaged = (x, y) => x.move && x.move.target === y.id && x.move.def.category === "attack";
   const ghost = (x) => x.move?.def.flags.passThrough || x.holding || x.launched;
@@ -249,6 +268,7 @@ export function stepWorld(world, dt) {
       const s = world.scheduled.shift();
       command(world, s.actorId, s.name, s.opts);
     }
+    announce(world, events);
     for (const actor of world.actors) {
       const r = advanceMove(actor, dt, world.moves);
       for (const e of r.events) events.push({ ...e, actor: actor.id });
@@ -265,6 +285,9 @@ export function stepWorld(world, dt) {
   }
   for (const actor of world.actors) poseActor(actor, dt, snapHard.get(actor));
   for (const actor of world.actors) aimLimbs(world, actor);
-  if (dt > 0) events.push(...resolveHits(world, windowsByActor));
+  if (dt > 0) {
+    events.push(...resolveHits(world, windowsByActor));
+    announce(world, events);
+  }
   return events;
 }

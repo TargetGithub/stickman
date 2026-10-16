@@ -1,17 +1,238 @@
-// Beat scheduling, anchors, approach insertion, queue/interrupt.
-// Milestone: M3. Spec: section 11. Interfaces: docs/ARCHITECTURE.md section 4.
+// Director: turns script beats into commands at the right story time (spec 11).
+// Milestone: M3. Resolves the four `at` forms, records anchors, inserts approaches, queues beats
+// for busy characters, dispatches world beats, and reports runtime issues for the validator.
 
-/** Static schedule: ids, references, absolute beats sorted. */
-export function resolveSchedule(script, catalog) {
-  throw new Error("not implemented: resolveSchedule");
+import { command } from "./world.js";
+import { requestSlowmo, requestFreeze } from "./clock.js";
+import { requiredStartX } from "./combat.js";
+import { COMBAT, LIMITS } from "./config.js";
+
+export const ANCHORS = ["start", "windowOpen", "hit", "end"];
+export const KO_MOVES = ["ko_fall", "ko_spin"];
+export const REVIVE_MOVES = ["get_up", "spawn"];
+
+/** World beat durations in story seconds, for their end anchor. */
+const WORLD_DURATION = {
+  slowmo: (p) => p.duration ?? 0,
+  fade: (p) => p.dur ?? 1,
+  flash: (p) => p.dur ?? 0.1,
+  caption: (p) => p.dur ?? 2,
+  desaturate: (p) => p.dur ?? 0.5,
+  zoom_punch: (p) => p.dur ?? 0.2,
+  text_pop: (p) => p.dur ?? 0.8,
+  shake: () => 0.3,
+};
+
+/** Parse a beat's `at` into a dependency. */
+export function parseAt(at) {
+  if (typeof at === "number") return { kind: "abs", t: at };
+  if (at && typeof at === "object") {
+    const delay = at.delay ?? 0;
+    if (typeof at.after === "string") return { kind: "after", ref: at.after, anchor: "end", delay };
+    if (typeof at.with === "string") return { kind: "with", ref: at.with, anchor: "start", delay };
+    if (typeof at.on === "string") {
+      const dot = at.on.lastIndexOf(".");
+      return { kind: "on", ref: at.on.slice(0, dot), anchor: at.on.slice(dot + 1), delay };
+    }
+  }
+  return null;
 }
 
-/** Fire beats due at the current story time. */
-export function stepDirector(director, world, clock) {
-  throw new Error("not implemented: stepDirector");
+/**
+ * @param {object} script  a schema-valid script
+ * @param {Map<string, object>} moves  prepared catalog
+ */
+export function createDirector(script, moves) {
+  const beats = (script.beats || []).map((b, index) => {
+    const dep = parseAt(b.at);
+    return {
+      ...b,
+      index,
+      id: b.id ?? `#${index}`,
+      dep,
+      due: dep?.kind === "abs" ? dep.t : null,
+      state: "pending", // pending → (waiting | approaching) → running → done | skipped
+      firedAt: null,
+      startedAt: null,
+      hitAt: null,
+      endedAt: null,
+      notes: [],
+    };
+  });
+  return {
+    beats,
+    byId: new Map(beats.map((b) => [b.id, b])),
+    moves,
+    waiting: new Map(), // actorId → beats in order
+    timers: [], // world beat end anchors { t, beat }
+    anchors: [],
+    issues: [],
+    dead: new Set(),
+  };
 }
 
-/** Record an anchor and release beats waiting on it. */
-export function onAnchor(director, beatId, anchor, storyT) {
-  throw new Error("not implemented: onAnchor");
+function issue(director, code, beat, message, fix, severity = "error") {
+  director.issues.push({ code, path: beat ? `beats[${beat.index}]` : "", message, fix, severity });
+}
+
+/** Record an anchor of a beat and release beats waiting on it. */
+function anchor(director, beat, name, t) {
+  const field = { start: "startedAt", hit: "hitAt", end: "endedAt", windowOpen: "windowAt" }[name];
+  if (beat[field] != null) return;
+  beat[field] = t;
+  director.anchors.push({ beatId: beat.id, anchor: name, t });
+  for (const b of director.beats) {
+    if (b.state === "pending" && b.due === null && b.dep && b.dep.ref === beat.id && b.dep.anchor === name) b.due = t + b.dep.delay;
+  }
+}
+
+/** Feed world events (anchors, windowOpen, moveEnd) to the director. */
+export function onEvents(director, events, storyT) {
+  for (const e of events) {
+    const beat = e.beatId ? director.byId.get(e.beatId) : null;
+    if (e.type === "positionError") {
+      issue(director, "E_SIM_UNREACHABLE", beat, `'${e.actor}' starts ${Math.abs(e.error).toFixed(0)}px from where '${e.move}' needs to start (max ${COMBAT.maxNudge}px x scale without approach).`,
+        `Add "approach": "run" to ${beat ? `beat '${beat.id}'` : "the beat"}, or move the characters closer first.`);
+    }
+    if (!beat) continue;
+    if (e.type === "anchor") anchor(director, beat, e.anchor, storyT);
+    if (e.type === "windowOpen") {
+      anchor(director, beat, "windowOpen", storyT);
+      if (beat.outcome === "whiff" || beat.outcome === "dodged") anchor(director, beat, "hit", storyT);
+    }
+    if (e.type === "moveEnd") {
+      anchor(director, beat, "end", storyT);
+      beat.state = "done";
+      if (e.interrupted) beat.notes.push("interrupted");
+    }
+    if (e.type === "hit" && e.attacker && beat) beat.notes.push(`${e.kind} ${e.target} @${storyT.toFixed(2)}`);
+  }
+}
+
+const isFree = (actor) => !actor.move || actor.move.def.name === "idle" || actor.holding;
+
+function dispatchWorld(director, beat, ctx) {
+  const p = beat.params || {};
+  const { clock, emit, storyT } = ctx;
+  if (beat.do === "slowmo") requestSlowmo(clock, { scale: p.scale ?? 0.3, duration: p.duration ?? 0.5, easeIn: p.easeIn, easeOut: p.easeOut });
+  else if (beat.do === "freeze") requestFreeze(clock, p.duration ?? 0.5);
+  emit({ type: "world", do: beat.do, params: p, beatId: beat.id });
+  const dur = (WORLD_DURATION[beat.do] || (() => 0))(p);
+  director.timers.push({ t: storyT + dur, beat });
+  director.timers.sort((a, b) => a.t - b.t || a.beat.index - b.beat.index);
+}
+
+/** Start movement toward the spot an attack needs (spec 11.4); the attack then waits for it to finish. */
+function approach(director, beat, actor, ctx) {
+  const target = ctx.world.byId.get(beat.target);
+  const def = director.moves.get(beat.do);
+  const params = { ...def.params, ...(beat.params || {}) };
+  const dir = Math.sign(target.x - actor.x) || actor.facing;
+  const need = (requiredStartX(actor, target, def, params, beat.outcome || "hit") - actor.x) * dir;
+  const slack = COMBAT.maxNudge * actor.scale * 0.5;
+  if (Math.abs(need) <= slack) return false;
+  if (need > 0) {
+    const mode = beat.approach === "walk" ? "walk" : "run";
+    const speed = (mode === "walk" ? 120 : 550) * actor.scale; // px/s from the walk/run strides
+    const seconds = need / speed;
+    if (seconds > LIMITS.maxApproach) {
+      issue(director, "E_SIM_APPROACH", beat, `'${beat.who}' would ${mode} ${seconds.toFixed(1)}s to reach '${beat.target}' (max ${LIMITS.maxApproach}s).`,
+        `Start the characters closer, add a "run" beat earlier, or use "approach": "run" instead of "walk".`);
+    }
+    command(ctx.world, beat.who, mode, { target: beat.target, params: { distance: need } });
+    beat.notes.push(`${mode} ${need.toFixed(0)}px`);
+  } else {
+    command(ctx.world, beat.who, "dodge_back", { target: beat.target, params: { distance_back: -need / (1.08 * actor.scale) } });
+    beat.notes.push(`step back ${(-need).toFixed(0)}px`);
+  }
+  return true;
+}
+
+function execute(director, beat, ctx) {
+  const { world, emit, storyT } = ctx;
+  if (beat.who === "world") {
+    beat.firedAt = storyT;
+    beat.state = "done";
+    anchor(director, beat, "start", storyT);
+    return dispatchWorld(director, beat, ctx);
+  }
+  const actor = world.byId.get(beat.who);
+  if (director.dead.has(beat.who) && !REVIVE_MOVES.includes(beat.do)) {
+    beat.firedAt = storyT;
+    issue(director, "E_SIM_DEAD_ACTOR", beat, `'${beat.who}' was knocked out and cannot '${beat.do}'.`, `Add a "get_up" beat for '${beat.who}' first, or remove this beat.`);
+    beat.state = "skipped";
+    anchor(director, beat, "start", storyT);
+    anchor(director, beat, "end", storyT);
+    return;
+  }
+  if (!isFree(actor) && !beat.interrupt) {
+    beat.state = "waiting";
+    const q = director.waiting.get(actor.id) || [];
+    if (!q.includes(beat)) q.push(beat);
+    director.waiting.set(actor.id, q);
+    return;
+  }
+  const def = director.moves.get(beat.do);
+  if (beat.approach && beat.target && def.category === "attack" && beat.state !== "approached" && approach(director, beat, actor, ctx)) {
+    beat.state = "approached";
+    director.waiting.set(actor.id, [beat, ...(director.waiting.get(actor.id) || []).filter((b) => b !== beat)]);
+    return;
+  }
+  const lateBy = storyT - beat.due;
+  if (lateBy > LIMITS.queueDriftWarn && beat.state !== "approached") {
+    issue(director, "W_QUEUE_DRIFT", beat, `Beat '${beat.id}' (${beat.who} ${beat.do}) starts ${lateBy.toFixed(2)}s after its time because '${beat.who}' was busy.`,
+      `Use "at": {"after": "<previous beat id>"} to chain it, or set "interrupt": true.`, "warning");
+  }
+  if (def.needsProp && actor.prop?.kind !== def.needsProp) {
+    issue(director, "E_MOVE_NEEDS_PROP", beat, `'${beat.do}' needs a ${def.needsProp}, but '${beat.who}' has ${actor.prop ? `a ${actor.prop.kind}` : "no prop"} at this point.`,
+      `Give '${beat.who}' "prop": "${def.needsProp}" or add a "pick_prop" beat first.`);
+  }
+  beat.firedAt = storyT;
+  command(world, beat.who, beat.do, {
+    target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,
+  });
+  beat.state = "running";
+  if (KO_MOVES.includes(beat.do)) {
+    director.dead.add(beat.who);
+    actor.hp = 0;
+  }
+  if (REVIVE_MOVES.includes(beat.do)) director.dead.delete(beat.who);
+  if (beat.fx?.length) emit({ type: "fx", names: beat.fx, actor: beat.who, beatId: beat.id });
+  if (beat.say) emit({ type: "say", actor: beat.who, text: beat.say, dur: beat.sayDur ?? 1.2, beatId: beat.id });
+}
+
+/** Fire every beat that is due, then start queued beats for characters that became free. */
+export function stepDirector(director, ctx) {
+  const { storyT } = ctx;
+  while (director.timers.length && director.timers[0].t <= storyT + 1e-9) {
+    const { beat } = director.timers.shift();
+    anchor(director, beat, "end", storyT);
+  }
+  const due = director.beats
+    .filter((b) => b.state === "pending" && b.due !== null && b.due <= storyT + 1e-9)
+    .sort((a, b) => a.due - b.due || a.index - b.index);
+  for (const beat of due) execute(director, beat, ctx);
+  for (const [actorId, q] of director.waiting) {
+    const actor = ctx.world.byId.get(actorId);
+    while (q.length && isFree(actor)) execute(director, q.shift(), ctx);
+  }
+}
+
+/** True when nothing is left to fire or run. */
+export function directorIdle(director) {
+  return !director.timers.length
+    && [...director.waiting.values()].every((q) => !q.length)
+    && director.beats.every((b) => b.state === "done" || b.state === "skipped" || (b.state === "pending" && b.due === null));
+}
+
+/** Issues for beats that never fired (their anchor never happened). */
+export function finishDirector(director) {
+  for (const b of director.beats) {
+    if (b.state !== "pending") continue;
+    const dep = b.dep;
+    const why = dep?.kind === "on" ? `'${dep.ref}.${dep.anchor}' never happened` : `'${dep?.ref}' never ${dep?.kind === "with" ? "started" : "ended"}`;
+    issue(director, "E_SIM_UNRESOLVED", b, `Beat '${b.id}' never ran: ${why}.`,
+      dep?.anchor === "hit" ? `'${dep.ref}' may miss (whiff/dodged fall back to windowOpen) or never start; anchor on "${dep.ref}.end" instead.` : "Check the referenced beat runs.");
+  }
+  return director.issues;
 }

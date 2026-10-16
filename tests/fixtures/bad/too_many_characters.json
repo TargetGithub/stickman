@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "meta": {
+    "title": "Fixture",
+    "format": "landscape",
+    "seed": 3,
+    "mode": "choreographed",
+    "theme": "white_stage"
+  },
+  "characters": [
+    {
+      "id": "c0",
+      "x": 200,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    },
+    {
+      "id": "c1",
+      "x": 500,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    },
+    {
+      "id": "c2",
+      "x": 800,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    },
+    {
+      "id": "c3",
+      "x": 1100,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    },
+    {
+      "id": "c4",
+      "x": 1400,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    },
+    {
+      "id": "c5",
+      "x": 1700,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    },
+    {
+      "id": "c6",
+      "x": 2000,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    }
+  ],
+  "camera": [
+    {
+      "at": 0,
+      "mode": "follow",
+      "targets": [
+        "hero",
+        "foe"
+      ],
+      "zoom": "auto"
+    }
+  ],
+  "beats": [
+    {
+      "id": "t1",
+      "at": 0.3,
+      "who": "foe",
+      "do": "taunt",
+      "say": "Try me!"
+    },
+    {
+      "id": "j1",
+      "at": {
+        "after": "t1"
+      },
+      "who": "hero",
+      "do": "jab",
+      "target": "foe",
+      "approach": "walk",
+      "outcome": "hit"
+    },
+    {
+      "id": "c1",
+      "at": {
+        "after": "j1"
+      },
+      "who": "hero",
+      "do": "cross",
+      "target": "foe",
+      "outcome": "hit"
+    },
+    {
+      "id": "ko",
+      "at": {
+        "after": "c1",
+        "delay": 0.2
+      },
+      "who": "foe",
+      "do": "ko_fall"
+    },
+    {
+      "id": "v1",
+      "at": {
+        "after": "ko"
+      },
+      "who": "hero",
+      "do": "victory"
+    },
+    {
+      "at": {
+        "after": "v1",
+        "delay": 0.3
+      },
+      "who": "world",
+      "do": "fade",
+      "params": {
+        "to": "black",
+        "dur": 0.8
+      }
+    }
+  ]
+}

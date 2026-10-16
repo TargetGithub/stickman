@@ -90,6 +90,7 @@ export function advanceMove(actor, dt, moves) {
   actor.mouth = r.mouth;
   actor.pose = r.pose;
   if (r.ended) {
+    actor.move.endAnnounced = true;
     events.push({ type: "moveEnd", actor: actor.id, move: actor.move.def.name, beatId: actor.move.beatId });
     startNext(actor, moves);
   }

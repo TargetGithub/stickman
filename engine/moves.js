@@ -145,9 +145,12 @@ export function rootOffsetAt(def, t, params) {
  */
 export function startMove(actor, def, opts = {}) {
   const params = { ...def.params, ...(opts.params || {}) };
+  const durParam = def.flags.durationParam;
   actor.move = {
     def,
     t: 0,
+    duration: durParam && params[durParam] > 0 ? params[durParam] : def.duration,
+    keepPose: def.flags.keepPose ? actor.pose : null, // utility moves (wait, face) hold the current pose
     speed: opts.speed ?? 1,
     params,
     beatId: opts.beatId ?? null,
@@ -177,7 +180,7 @@ export function stepMove(actor, dt) {
   const loop = !!def.flags.loop;
   const events = [];
   const tPrev = m.t;
-  let t = m.t + (dt * m.speed) / def.duration;
+  let t = m.t + (dt * m.speed) / m.duration;
   let ended = false;
   let snapHard = false;
 
@@ -239,7 +242,7 @@ export function stepMove(actor, dt) {
     }
   });
 
-  let pose = samplePoseKeys(def.keys, t);
+  let pose = m.keepPose || samplePoseKeys(def.keys, t);
   if (m.blendFrom && m.blendT < m.blendDur) {
     pose = blendPose(m.blendFrom, pose, easings.outQuad(m.blendT / m.blendDur));
     m.blendT += dt;

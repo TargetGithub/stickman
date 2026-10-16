@@ -40,7 +40,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: 8 moves loop cleanly in the catalog page.
 **Review**: Sridhar rates the 8 moves; feedback becomes authoring rules in `docs/ANIMATION_GUIDE.md`.
 
-### M2 Physics + combat (3-4 days) — DONE 2026-10-15, awaiting review
+### M2 Physics + combat (3-4 days) — DONE 2026-10-15, reviewed
 | Task | Output |
 |---|---|
 | M2.1 `physics.js`: bodies, gravity, friction, landing events, bounds, wall bounce, separation | |
@@ -52,7 +52,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 | M2.7 Hit connectivity test matrix (every attack × outcome × target scale) | |
 **Exit**: a hard-coded fight between a 1.0 and a 2.2 character shows all five outcomes.
 
-### M3 Clocks + director + validator (4-5 days)
+### M3 Clocks + director + validator (4-5 days) — DONE 2026-10-15, awaiting review. Schema v1 frozen.
 | Task | Output |
 |---|---|
 | M3.1 `clock.js`: story/fx/video, slowmo ramps, hitstop, freeze, story→video mapping | |

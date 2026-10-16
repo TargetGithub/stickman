@@ -70,4 +70,20 @@ export const moves = [
     root: [{ t: 0, dx: 0, dy: 0, ease: "outQuad" }, { t: 0.5, dx: -40, dy: 0, ease: "outQuad" }, { t: 1, dx: -46, dy: 0 }],
     events: [{ t: 0, fx: ["stars_dizzy"] }],
   },
+  {
+    name: "ko_fall",
+    category: "reaction",
+    duration: 1.3,
+    mouth: "shout",
+    flags: { hold: true },
+    keys: [
+      { t: 0, pose: "hitHeavy", ease: "outQuad" },
+      { t: 0.25, pose: "stagger", ease: "inOutQuad" },
+      { t: 0.55, pose: "koKneel", ease: "inQuad" },
+      { t: 0.8, pose: "downFace", ease: "outQuad", snapHard: true },
+      { t: 1, pose: "downFace" },
+    ],
+    root: [{ t: 0, dx: 0, dy: 0, ease: "outQuad" }, { t: 0.3, dx: -30, dy: 0 }, { t: 1, dx: -20, dy: 0 }],
+    events: [{ t: 0.8, sfx: "ko", fx: ["dust_land"], shake: "small" }],
+  },
 ];

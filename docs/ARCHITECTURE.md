@@ -184,12 +184,14 @@ sim.js (M3) owns the clock: it passes storyDt = 0 during hitstop/freeze and hand
 
 ### clock.js
 ```js
-export function createClock(): Clock;          // { storyT, fxT, videoT, frame }
-export function requestSlowmo(clock, { scale, duration, easeIn, easeOut }): void;
-export function requestHitstop(clock, seconds): void;
+export function createClock(): Clock;   // { frame, videoT, storyT, fxT, slowmo, hitstopLeft, freezeLeft, storyAt[], fxAt[] }
+export function requestSlowmo(clock, { scale, duration, easeIn?, easeOut? }): void;   // newest wins
+export function requestHitstop(clock, seconds): void;   // overlapping → longer
 export function requestFreeze(clock, seconds): void;
-export function tick(clock): { storyDt, fxDt, videoDt };  // exactly one call per video frame
-export function storyToVideo(clock, storyT): number;      // uses the recorded mapping
+export function slowmoFactor(clock): number;
+export function timeEffectsActive(clock): boolean;
+export function tick(clock): { storyDt, fxDt, videoDt };   // exactly one call per video frame
+export function storyToVideo(clock, storyT): number;       // from the recorded storyAt[] mapping
 ```
 
 ### fx.js
@@ -211,26 +213,36 @@ export function cameraState(cam): { x, y, zoom };
 
 ### director.js
 ```js
-export function resolveSchedule(script, catalog): Schedule;   // static part: ids, references, cycles
-export function stepDirector(director, world, clock): void;   // fires due beats, inserts approaches
-export function onAnchor(director, beatId, anchor, storyT): void;
+export const ANCHORS, KO_MOVES, REVIVE_MOVES;
+export function parseAt(at): { kind: "abs"|"after"|"with"|"on", t?, ref?, anchor?, delay? };
+export function createDirector(script, moves): Director;
+export function stepDirector(director, { world, clock, storyT, emit }): void;   // timers → due beats → waiting queues
+export function onEvents(director, worldEvents, storyT): void;                  // anchors, windowOpen, moveEnd, positionError
+export function directorIdle(director): boolean;
+export function finishDirector(director): Issue[];                              // + E_SIM_UNRESOLVED
 ```
-Beats whose `at` depends on anchors are resolved during simulation, when the anchor happens. Absolute beats are sorted up front. Ties are broken by script order.
+Beats whose `at` depends on an anchor get a due time when that anchor happens. Ties run in script order. The director keeps its own per-character waiting queues (not the actor queue) so approach is computed when the beat actually starts. Runtime problems are collected as validator issues (`E_SIM_*`, `W_QUEUE_DRIFT`).
 
 ### sim.js
 ```js
-export function simulate(script, catalog, opts:{ dryRun?:boolean }): SimResult;
-//   SimResult: { store, events, anchors, timeline, warnings, totalFrames }
+export function movesFor(catalog): Map<string, MoveDef>;   // prepared once per catalog object
+export function simulate(script, catalog, opts:{ dryRun?, maxSeconds? }):
+  { frames, events, anchors, beats, issues, totalFrames, durationSec, clock };
 ```
-Per-frame order (one video frame):
-1. `clock.tick()` → deltas
-2. `director.step` (fires beats due at the current story time)
-3. for each character: `stepMove` → pose, root delta, windows
-4. FK → IK aiming → ground contact → springs
-5. `physics.stepBody`, `separate`, `stepProjectiles`
-6. `combat.resolveHits` (may request hitstop, emit FX, start reactions, fire anchors)
-7. `fx.stepFx`, `camera.stepCamera`
-8. `framestore.write(frame)`
+Frame 0 is the initial state. Each later frame:
+1. `tick(clock)` → `storyDt` (0 during hitstop/freeze, scaled during slowmo)
+2. `stepDirector` (fires due beats → `command(world, …)`, world beats → clock / events)
+3. `stepWorld(world, storyDt)` (moves, physics, aim IK, hits)
+4. `hitstop` events → `requestHitstop`; all events logged with story and video time; `onEvents(director, …)`
+5. snapshot (M3: plain object per frame; M5: packed frame store)
+The run ends after `meta.tail` seconds of quiet: director idle, everyone settled, no time effects.
+
+### validator/index.js
+```js
+export function validate(script, catalog): { ok, errors, warnings, timeline, durationSec, stage };
+export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues, formatTimeline };
+```
+Stages: `schema.js` (JSON Schema subset checker over the exported schema) → `semantic.js` → dry run (`simulate` with `dryRun`) + pacing. Each stage stops the next on errors.
 
 ### framestore.js
 ```js
@@ -253,11 +265,7 @@ export function renderFrame(renderer, ctx, store, n): void;
 ```
 `ctxFactory(w, h)` returns an offscreen canvas for background caching (`OffscreenCanvas` in the browser, a new Skia canvas in Node).
 
-### validator/index.js
-```js
-export function validate(script, catalog): { ok, errors: Issue[], warnings: Issue[], timeline: string };
-export { jsonSchema } from "./schema.js";
-```
+
 
 ### index.js (public)
 See spec 15.1.
@@ -324,3 +332,11 @@ See spec 15.1.
 ### ADR-009 Choreographed contact is positioned, aimed, then guaranteed
 - **Decision**: `requiredStartX` + a nudge spread over the windup put the authored contact point on a near-surface aim point; IK corrects height; a `hit`/`blocked`/`parried` outcome applies at the window middle even if geometry is a few px off. Whiffs start `whiffGap` further back and aim short; dodges lock the aim where the target was.
 - **Consequences**: verified by the connectivity matrix in `tests/unit/world.test.js` (attack × outcome × 5 size pairings).
+
+### ADR-010 One schema for validation and for the LLM
+- **Decision**: the script schema is a JSON Schema object (`engine/validator/schema.js`). A small checker validates scripts against it; `buildJsonSchema(catalog)` exports it with move/theme/prop enums for structured output. Checker-only keywords (`x-formMessage`) are stripped on export.
+- **Consequences**: the LLM and the validator cannot drift apart. The v1 snapshot lives in `docs/schema/script-v1.schema.json`; any change to it must stay backward-compatible.
+
+### ADR-011 Director-owned queues
+- **Decision**: beats for busy characters wait in the director, not in the actor's move queue.
+- **Consequences**: `approach` is planned when the beat actually starts, and queue drift can be measured and reported.

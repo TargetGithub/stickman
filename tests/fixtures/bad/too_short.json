@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "meta": {
+    "title": "Fixture",
+    "format": "landscape",
+    "seed": 3,
+    "mode": "choreographed",
+    "theme": "white_stage"
+  },
+  "characters": [
+    {
+      "id": "hero",
+      "x": 900,
+      "facing": 1,
+      "color": "#22aaff",
+      "scale": 1.0,
+      "hp": 100
+    },
+    {
+      "id": "foe",
+      "x": 1010,
+      "facing": -1,
+      "color": "#ff3b3b",
+      "scale": 1.0,
+      "hp": 100
+    }
+  ],
+  "camera": [
+    {
+      "at": 0,
+      "mode": "follow",
+      "targets": [
+        "hero",
+        "foe"
+      ],
+      "zoom": "auto"
+    }
+  ],
+  "beats": [
+    {
+      "at": 0,
+      "who": "hero",
+      "do": "jab",
+      "target": "foe"
+    }
+  ]
+}

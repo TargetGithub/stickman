@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap.
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -359,7 +359,7 @@ Fixed angles cannot hit targets of different sizes, so attack limbs aim during h
 
 **Emotes:** `taunt`, `wave`, `bow`, `flex`, `laugh`, `shrug`, `facepalm`, `victory`, `cower`, `dance_a`, `dance_b`, `point`
 
-**Utility:** `face`, `wait`, `teleport`, `spawn`, `despawn`, `pick_prop`, `drop_prop`
+**Utility:** `face`, `wait`, `teleport`, `spawn`, `despawn`, `pick_prop`, `drop_prop`. `wait` and `face` hold the current pose (`flags.keepPose`); `wait` takes `params.seconds` (`flags.durationParam`).
 
 Deferred to v1.x: `wall_run`.
 
@@ -492,7 +492,9 @@ A **beat** is one command.
 
 Other fields:
 - `approach`: `"run" | "walk" | false` (default false). Before the move, the director inserts movement toward the position `snap_range` needs. The beat's `start` anchor is the start of the attack itself, not the approach. Maximum 3 s; longer is a validator error.
-- `interrupt`: when `false` (default), a beat for a character that is still moving is queued after the current move. When `true`, it cuts the current move. Reactions always interrupt.
+- `interrupt`: when `false` (default), a beat for a busy character waits until it is free. A character is **free** when it is idle or holding a pose (lying down after `knockdown`/`ko_fall`, posing after `victory`); any other move makes it busy. When `true`, the beat cuts the current move. Reactions always interrupt. A move that is cut still fires its beat's `end` anchor.
+- Beats due at the same moment run in script order.
+- World beats have `start` and `end` anchors. `end` is `start` plus their duration (`slowmo.duration`, `fade/flash/caption/desaturate/zoom_punch.dur`, `text_pop` 0.8 s, `shake` 0.3 s, others 0).
 - `say` is at most 40 characters; `sayDur` is in story seconds (default 1.2).
 
 ### 11.3 World beats
@@ -526,7 +528,7 @@ required  = aimX - facing * (reach + travel(tmid) + gap)  // outcome whiff (star
 // gap = whiffGap * attackerScale + (lineWidth/2 + 14) * targetScale, so limbs clearly miss big targets
 ```
 
-- With `approach`, the director inserts `run`/`walk` to `required` (ending facing the target).
+- With `approach`, the director inserts `run` (550 px/s × scale) or `walk` (120 px/s × scale) to `required`, ending facing the target. If the attacker is too close it steps back with `dodge_back` instead. The attack starts when that movement ends; the beat's `start` anchor is the attack itself.
 - In choreographed mode `snap_range` (always on) nudges the attacker to `required` at move start if the error is at most `maxNudge = 60 * scale` px. Larger errors are a validator error that suggests `approach`.
 
 ### 11.5 Camera track
@@ -752,7 +754,16 @@ t=3.35  hero   flying_kick    3.35-4.25  hit@3.80 → boss hit_heavy
 t=3.80  world  slowmo x0.3    (story 3.80-4.30, video +1.17 s)
 ```
 
-### 16.4 Pacing heuristics (warnings)
+### 16.4 Error codes (v1)
+
+| Stage | Codes |
+|---|---|
+| schema | `E_SCHEMA_TYPE`, `E_SCHEMA_REQUIRED`, `E_SCHEMA_ENUM`, `E_SCHEMA_RANGE`, `E_SCHEMA_PATTERN`, `E_SCHEMA_SIZE`, `E_SCHEMA_FORM`, `E_SCHEMA_UNKNOWN_FIELD`, `E_TEXT_LENGTH` |
+| semantic | `E_REF_DUPLICATE`, `E_REF_CHARACTER`, `E_REF_BEAT`, `E_REF_ANCHOR`, `E_REF_CYCLE`, `E_MOVE_UNKNOWN`, `E_MOVE_PARAM`, `E_MOVE_TARGET`, `E_MOVE_OUTCOME`, `E_MOVE_APPROACH`, `E_WORLD_UNKNOWN`, `E_WORLD_PARAM`, `E_WORLD_FIELD`, `E_CAMERA_START`, `E_CAMERA_FIELD`, `E_THEME_UNKNOWN`, `E_PROP_UNKNOWN`, `E_FX_UNKNOWN`, `E_TEXT_GLYPH`, `E_TEXT_BLOCKED` |
+| dry run | `E_SIM_UNREACHABLE`, `E_SIM_APPROACH`, `E_SIM_DEAD_ACTOR`, `E_SIM_UNRESOLVED`, `E_SIM_DURATION`, `E_MOVE_NEEDS_PROP` |
+| warnings | `W_QUEUE_DRIFT`, `W_ATTACK_NO_TARGET`, `W_PACING_GAP`, `W_NO_IMPACT`, `W_PACING_MONOTONE`, `W_NO_ENDING`, `W_HEAVY_NO_EMPHASIS` |
+
+### 16.5 Pacing heuristics (warnings)
 - A gap with no action longer than 2.5 s.
 - No hit with shake or hitstop in the whole script.
 - More than 8 consecutive attacks without a reaction or dramatic beat.
