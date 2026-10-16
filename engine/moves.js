@@ -153,6 +153,7 @@ export function startMove(actor, def, opts = {}) {
     beatId: opts.beatId ?? null,
     target: opts.target ?? null,
     outcome: opts.outcome ?? null,
+    scale: actor.scale ?? 1, // root motion is authored at scale 1 and scales with the character
     blendFrom: actor.pose || null,
     blendT: 0,
     blendDur: opts.blend ?? (def.category === "reaction" ? 0 : MOTION.blend),
@@ -168,6 +169,7 @@ export function startMove(actor, def, opts = {}) {
  * Advance the actor's current move by dt story seconds.
  * @returns {{ pose, rootDx, rootDy, openWindows, events, ended, snapHard, mouth }}
  *   rootDx: forward distance moved this tick (facing space); rootDy: current visual root offset.
+ *   Both are in world px: authored values times the actor's scale. params.distance is in world px too.
  */
 export function stepMove(actor, dt) {
   const m = actor.move;
@@ -214,6 +216,7 @@ export function stepMove(actor, dt) {
   const root = rootOffsetAt(def, t, m.params);
   if (!(ended && loop)) rootDx += root.dx - m.lastRoot.dx;
   m.lastRoot = root;
+  rootDx *= m.scale;
 
   if (m.params.distance !== undefined) {
     const remaining = m.params.distance - m.traveled;
@@ -241,5 +244,5 @@ export function stepMove(actor, dt) {
     pose = blendPose(m.blendFrom, pose, easings.outQuad(m.blendT / m.blendDur));
     m.blendT += dt;
   }
-  return { pose, rootDx, rootDy: root.dy, openWindows, events, ended, snapHard, mouth: def.mouth };
+  return { pose, rootDx, rootDy: root.dy * m.scale, openWindows, events, ended, snapHard, mouth: def.mouth };
 }

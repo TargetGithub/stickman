@@ -1,5 +1,7 @@
-// Actor: one character's move state, queue and ground contact, without physics or combat.
-// Milestone: M1. Spec: sections 5.4, 8.2. Used by the editor, the catalog page and (from M3) sim.js.
+// Actor: one character's move state, queue, body (physics fields) and ground contact.
+// Milestone: M1, extended in M2. Spec: sections 5.4, 8.2, 9.
+// Used by the editor and catalog page directly (stepActor) and by world.js, which runs physics
+// between advanceMove and poseActor.
 
 import { computeJoints, lowestPoint, BODY } from "./skeleton.js";
 import { fillPose } from "./pose.js";
@@ -7,22 +9,33 @@ import { startMove, stepMove } from "./moves.js";
 import { MOTION, STAGE } from "./config.js";
 
 /**
- * @param {{ id?:string, x:number, facing?:1|-1, scale?:number, groundY?:number }} opts
+ * @param {{ id?:string, x:number, facing?:1|-1, scale?:number, groundY?:number, hp?:number, color?:string }} opts
  */
 export function createActor(opts) {
   return {
     id: opts.id ?? "actor",
+    color: opts.color ?? "#22aaff",
     x: opts.x,
     groundY: opts.groundY ?? STAGE.groundY,
     facing: opts.facing ?? 1,
     scale: opts.scale ?? 1,
+    hp: opts.hp ?? 100,
+    maxHp: opts.hp ?? 100,
+    alive: true,
     move: null,
     queue: [],
+    holding: false, // a move with flags.hold ended: keep its last pose until the next command
     pose: null,
     rootDy: 0,
     snapOffset: 0,
     snapReady: false,
-    airborne: false, // set by physics from M2
+    // body (spec 9): airY is height offset above contact (negative = up)
+    vx: 0,
+    vy: 0,
+    airY: 0,
+    airborne: false,
+    launched: false,
+    spinRot: 0,
     mouth: "neutral",
     joints: null,
   };
@@ -31,13 +44,17 @@ export function createActor(opts) {
 /**
  * Play a move now (interrupting) or queue it after the current one.
  * @param {Map<string, object>} moves  prepared catalog
- * @param {{ queue?:boolean, speed?:number, params?:object, blend?:number, beatId?:string }} opts
+ * @param {{ queue?:boolean, speed?:number, params?:object, blend?:number, beatId?:string, target?:string, outcome?:string }} opts
  */
 export function playMove(actor, name, moves, opts = {}) {
   const def = moves.get(name);
   if (!def) throw new Error(`unknown move '${name}'`);
-  if (opts.queue && actor.move) actor.queue.push({ def, opts });
-  else startMove(actor, def, opts);
+  if (opts.queue && (actor.move || actor.holding)) {
+    actor.queue.push({ def, opts });
+    return;
+  }
+  actor.holding = false;
+  startMove(actor, def, opts);
 }
 
 function startNext(actor, moves) {
@@ -45,8 +62,38 @@ function startNext(actor, moves) {
   actor.move = null;
   if (ended && ended.def.chain) return startMove(actor, moves.get(ended.def.chain));
   const next = actor.queue.shift();
-  if (next) return startMove(actor, next.def, next.opts);
-  if (moves.has("idle")) startMove(actor, moves.get("idle"));
+  if (next) {
+    actor.holding = false;
+    return startMove(actor, next.def, next.opts);
+  }
+  if (ended && ended.def.flags.hold) {
+    actor.holding = true;
+    return;
+  }
+  if (!actor.holding && moves.has("idle")) startMove(actor, moves.get("idle"));
+}
+
+/**
+ * Advance the current move (or start the next one). Applies root motion to x.
+ * @returns {{ events, openWindows, snapHard }}
+ */
+export function advanceMove(actor, dt, moves) {
+  if (!actor.move && (!actor.holding || actor.queue.length)) startNext(actor, moves);
+  if (!actor.move) {
+    actor.pose ||= fillPose({}, {});
+    return { events: [], openWindows: [], snapHard: false };
+  }
+  const r = stepMove(actor, dt);
+  const events = r.events;
+  actor.x += actor.facing * r.rootDx;
+  actor.rootDy = r.rootDy;
+  actor.mouth = r.mouth;
+  actor.pose = r.pose;
+  if (r.ended) {
+    events.push({ type: "moveEnd", actor: actor.id, move: actor.move.def.name, beatId: actor.move.beatId });
+    startNext(actor, moves);
+  }
+  return { events, openWindows: r.openWindows, snapHard: r.snapHard };
 }
 
 /**
@@ -57,7 +104,7 @@ function startNext(actor, moves) {
  */
 function groundContact(actor, pose, dt, snapHard) {
   const hipBase = actor.groundY - (BODY.thigh + BODY.shin) * actor.scale;
-  const rootY = hipBase + actor.rootDy;
+  const rootY = hipBase + actor.rootDy + actor.airY;
   const raw = computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale);
   const target = actor.groundY - lowestPoint(raw, actor.scale);
   if (actor.rootDy < 0 || actor.airborne) {
@@ -73,36 +120,26 @@ function groundContact(actor, pose, dt, snapHard) {
   return rootY + actor.snapOffset;
 }
 
+/** Pose shown this tick: the move pose plus launch spin. */
+export function displayPose(actor) {
+  return actor.spinRot ? { ...actor.pose, rot: actor.pose.rot + actor.spinRot } : actor.pose;
+}
+
+/** Forward kinematics + ground contact for the current pose and body position. */
+export function poseActor(actor, dt, snapHard = false) {
+  const pose = displayPose(actor);
+  const rootY = groundContact(actor, pose, dt, snapHard);
+  actor.joints = computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale);
+  return actor.joints;
+}
+
 /**
- * Advance one tick.
+ * Advance one tick without physics (editor, catalog page).
  * @param {Map<string, object>} moves  prepared catalog
  * @returns {{ joints, events, openWindows }}
  */
 export function stepActor(actor, dt, moves) {
-  if (!actor.move) startNext(actor, moves);
-  let pose;
-  let events = [];
-  let openWindows = [];
-  let snapHard = false;
-  if (actor.move) {
-    const r = stepMove(actor, dt);
-    pose = r.pose;
-    events = r.events;
-    openWindows = r.openWindows;
-    snapHard = r.snapHard;
-    actor.x += actor.facing * r.rootDx;
-    actor.rootDy = r.rootDy;
-    actor.mouth = r.mouth;
-    actor.pose = pose;
-    if (r.ended) {
-      events.push({ type: "moveEnd", move: actor.move.def.name, beatId: actor.move.beatId });
-      startNext(actor, moves);
-    }
-  } else {
-    pose = actor.pose || fillPose({}, {});
-    actor.pose = pose;
-  }
-  const rootY = groundContact(actor, pose, dt, snapHard);
-  actor.joints = computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale);
-  return { joints: actor.joints, events, openWindows };
+  const r = advanceMove(actor, dt, moves);
+  const joints = poseActor(actor, dt, r.snapHard);
+  return { joints, events: r.events, openWindows: r.openWindows };
 }

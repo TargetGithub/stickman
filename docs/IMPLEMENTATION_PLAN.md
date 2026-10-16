@@ -28,7 +28,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: FK/IK tests pass; poses render to PNG from Node and in the browser; backend chosen.
 **Review**: Sridhar checks pose proportions and line style.
 
-### M1 Move runtime + editor (3-4 days) — DONE 2026-10-15, awaiting review
+### M1 Move runtime + editor (3-4 days) — DONE 2026-10-15, reviewed
 | Task | Output |
 |---|---|
 | M1.1 `pose.js` blending and key sampling | |
@@ -40,7 +40,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: 8 moves loop cleanly in the catalog page.
 **Review**: Sridhar rates the 8 moves; feedback becomes authoring rules in `docs/ANIMATION_GUIDE.md`.
 
-### M2 Physics + combat (3-4 days)
+### M2 Physics + combat (3-4 days) — DONE 2026-10-15, awaiting review
 | Task | Output |
 |---|---|
 | M2.1 `physics.js`: bodies, gravity, friction, landing events, bounds, wall bounce, separation | |

@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.1 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2).
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -94,7 +94,8 @@ This document is the source of truth for behavior and the script schema. When th
   skeleton.js           forward kinematics, 2-bone IK, body rotation, ground contact
   pose.js               pose blending and channel defaults
   moves.js              move runtime (keyframes, root motion, events, hit windows)
-  actor.js              one character's move state, queue and ground contact
+  actor.js              one character's move state, queue, body fields and ground contact
+  world.js              actors + physics + aim IK + hit resolution + choreographed outcomes, per story tick
   props.js              prop attachment, prop tip, prop state changes
   physics.js            bodies, gravity, friction, bounds, separation, projectiles
   combat.js             hurtboxes, hit resolution, aim, reach, outcomes, reactions
@@ -309,7 +310,10 @@ A **move** is a data object plus the shared runtime in `moves.js`.
       fx:["impact_big"], shake:"med", sfx:"kick_heavy" }
   ],
   events: [ { t:0.00, sfx:"whoosh" }, { t:0.95, fx:["dust_land"], sfx:"land" } ],
-  flags: { airborne:true, lockFacing:true, invulnerable:false, passThrough:false, loop:false },
+  flags: { airborne:true, lockFacing:true, passThrough:false, loop:false },
+  // other flags: hold:true (keep the last pose until the next command, e.g. knockdown),
+  //   guard:[t0, t1, "block"|"parry"] (defending in that move-time window),
+  //   invulnerable:[t0, t1] (hits pass through in that window)
   mouth: "shout",                  // neutral | shout | grin (optional)
   chain: null                      // optional follow-up move name
 }
@@ -327,6 +331,7 @@ A **move** is a data object plus the shared runtime in `moves.js`.
 - **Loop moves** (`flags.loop`, e.g. `idle`, `walk`, `run`) repeat until replaced, or until `params.distance` (px travelled; the last step is clamped to land exactly) or `params.cycles` is reached. Events fire once per cycle.
 - A key with `snapHard: true` applies ground contact instantly when the move passes it (landings).
 - Switching moves blends from the last displayed pose to the new move's first key over `blend` seconds (default 0.06; 0 for reactions).
+- Root motion is authored at scale 1 and multiplied by the character's `scale` (a 2.2x boss's jab travels 2.2x as far). `params.distance` is in world px.
 - Root motion is applied each tick as the delta `offset(t) - offset(t_prev)` rotated into facing space. `dx` moves the physics body. `dy` is a visual offset while grounded. For `airborne` moves `dy` drives body y, and at move end the body's `vy` is set from the last root derivative so physics takes over smoothly.
 
 ### 8.3 Hit aiming with IK
@@ -334,7 +339,8 @@ Fixed angles cannot hit targets of different sizes, so attack limbs aim during h
 
 1. When a hit window opens, the engine resolves an **aim point** on the target:
    - `aim: "head" | "torso" | "legs"` → head center, torso midpoint, knee midpoint.
-   - `aim: "auto"` (default) → the first point in `[head, upper torso, torso mid, hip, knees]` that the hitting limb can reach. If none is reachable, the closest one.
+   - `aim: "auto"` (default) → among `[head, upper torso, torso mid, hip, knees]`, the points the hitting limb can reach; of those, the one closest to where the authored FK pose would make contact. If none is reachable, the closest one overall.
+   - Aim points sit on the near surface of the target's body (offset toward the attacker by the limb or head radius), not on its centre line.
 2. The hitting limb chain (shoulder→elbow→hand, or hip→knee→foot) blends from FK toward the IK solution with weight `w`: 0 → 1 over the 30% of move time before `t0`, held at 1 through `t1`, then back to 0 by `t1 + 0.15`. For `propTip`, the chain is upper arm plus (forearm + prop length).
 3. The aim point tracks the target every tick while the window is open.
 4. Result: a small hero punching a 2.2x boss hits the hip; a `flying_kick` reaches the boss's chest; the boss's haymaker on a small hero comes down to head height.
@@ -395,7 +401,7 @@ During a hit window the hitbox is the `part` joint as a circle (`hitRadius`, def
 3. Each window hits a given target at most once (`hitId` guard).
 4. Apply the target's state: `invulnerable` skips; `block` → 20% damage, `block_spark` FX, `sfx: block`; `parry` → no damage, attacker plays `stagger`.
 5. Apply damage, knock (mirrored by attacker facing) and hitstop.
-6. Trigger the reaction: the hit's `reaction`, else by damage (`< 8` hit_light, `< 16` hit_heavy, else hit_launch).
+6. Trigger the reaction: the hit's `reaction`, else by damage (`< 8` hit_light, `< 16` hit_heavy, else hit_launch). The target turns to face the attacker. A launched character spins backward, lands into `knockdown` and stays down (`flags.hold`) until a `get_up` command.
 7. Emit FX, shake and SFX events, and record a `hit` anchor event for the beat (11.2).
 
 ### 10.4 Modes
@@ -411,7 +417,7 @@ Attack beats take `outcome` (default `"hit"`):
 | `whiff` | The attacker is positioned so the contact point stops `whiffGap = 40 * scale` px short. No damage |
 | `blocked` | The target is forced into `block` before `t0` (if not already) and the hit resolves as blocked |
 | `parried` | The target plays `parry` timed to `t0`; the attacker plays `stagger` |
-| `dodged` | The target auto-plays `dodge_back` (or `duck` for head-height aims) so it is clear of the window at `t0`; no damage |
+| `dodged` | The target auto-plays `duck` (hand strikes aimed at the head) or `dodge_back` (everything else; kicks rise through a duck), timed to be clear at `t0`. Smaller defenders dodge further. The attacking limb aims where the target was. No damage |
 
 ### 10.6 Health and KO
 `hp` defaults to 100. In simulated mode `hp <= 0` triggers `ko_fall` or `ko_spin`. In choreographed mode KO happens only when scripted; HP bars (if `meta.hpBars`) still animate and clamp at a minimum of 1 until the KO beat.
@@ -516,7 +522,8 @@ For an attack beat with a target, the director computes the **required start x**
 ```
 aimX      = aim point x on the target at the move's hit-window middle (predicted)
 required  = aimX - facing * (reach + travel(tmid))          // outcome hit/blocked/parried
-required  = aimX - facing * (reach + travel(tmid) - whiffGap)  // outcome whiff
+required  = aimX - facing * (reach + travel(tmid) + gap)  // outcome whiff (starts further back)
+// gap = whiffGap * attackerScale + (lineWidth/2 + 14) * targetScale, so limbs clearly miss big targets
 ```
 
 - With `approach`, the director inserts `run`/`walk` to `required` (ending facing the target).

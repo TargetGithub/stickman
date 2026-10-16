@@ -16,7 +16,8 @@ This document describes how the engine is built: module boundaries, interfaces, 
 Arrows mean "imports". There are no cycles.
 
 ```
-index.js ──► sim.js ──► actor.js ──► moves.js ──► pose.js ──► skeleton.js ──► math.js
+index.js ──► sim.js ──► world.js ──► actor.js ──► moves.js ──► pose.js ──► skeleton.js ──► math.js
+   │           │           ├──► physics.js, combat.js
    │           ├──► director.js
    │           │            │             │                                        ▲
    │           │            │             └──► expr.js                             │
@@ -143,22 +144,43 @@ export function detachProp(char): PropState;
 ```
 
 ### physics.js
+Bodies are actors (no separate Body object): `x, vx, vy, airY, airborne, launched, spin, spinRot`.
 ```js
-export function createBody(x, y, scale): Body;
-export function stepBody(body, dt, opts:{ controlledX, controlledY, groundY, stageWidth }): Event[];
-export function separate(chars, minGapBase): void;
-export function stepProjectiles(list, dt, ctx): Event[];
+export function stepBody(actor, dt, opts:{ stageWidth?, margin?, wallBounce? }): Event[];   // land, wall
+export function launch(actor, vx, vy, spinDegPerSec): void;
+export function separate(actors, skip(a, b) => boolean): Array<[actor, shift]>;
+export function stepProjectiles(list, dt): Event[];   // ballistic only; hit tests in combat.js
 ```
 
-### combat.js
+### combat.js (geometry only)
 ```js
-export function buildHurtboxes(joints, scale): Capsule[];
-export function resolveAimPoint(attacker, target, hit, catalog): Vec;
-export function applyAimIK(joints, chain, aimPoint, weight): Joints;
-export function requiredStartX(attacker, target, def, params, outcome): number;  // spec 11.4
-export function resolveHits(world, dt): HitEvent[];        // spec 10.3 order
-export function deriveReach(def, poses): Array<{ reach, contactHeight, tmid }>;
+export const CHAINS, IK_RAMP, IK_RELEASE;
+export function buildHurtboxes(joints, scale): Array<{ part, a, b, r }>;
+export function segSegDist2(p1, q1, p2, q2): number;
+export function sweptHit(prev, cur, radius, hurtboxes): hurtbox | null;
+export function deriveReach(def): Array<{ tmid, reach, height }>;     // cached on def.derived
+export function aimCandidates(joints, scale?, side?): Array<{ name, point }>;   // near-surface when side given
+export function aimPointByName(joints, name, scale?, side?): Vec;
+export function resolveAimPoint(attackerJoints, part, scale, targetJoints, aim, fkPoint, targetScale?, side?): { name, point };
+export function ikWeight(t, hit): number;
+export function applyAimIK(joints, part, aimPoint, weight, scale): Joints;
+export function whiffGap(attacker, target): number;
+export function requiredStartX(attacker, target, def, params, outcome, hitIndex?): number;  // spec 11.4
 ```
+
+### world.js
+```js
+export const OUTCOMES;   // hit, whiff, blocked, parried, dodged
+export function createWorld({ actors, moves, mode?, stageWidth? }): World;
+export function command(world, actorId, moveName, opts:{ target?, outcome?, params?, speed?, queue?, beatId?, blend? }): void;
+export function stepWorld(world, storyDt): Event[];
+//   dt > 0: scheduled defender commands → advanceMove → attack setup (nudge, defender timing) → nudge
+//           → stepBody (land → knockdown) → separate
+//   always: poseActor → aim IK
+//   dt > 0: resolve hits (spec 10.3) → hit, hitstop, anchor events
+//   events: moveEvent, windowOpen, moveEnd, anchor(start|hit), hit, hitstop, land, wall, positionError
+```
+sim.js (M3) owns the clock: it passes storyDt = 0 during hitstop/freeze and handles `hitstop` events.
 
 ### clock.js
 ```js
@@ -293,3 +315,12 @@ See spec 15.1.
 
 ### ADR-007 Procedural SFX first
 - **Decision**: `sfxgen.mjs` makes every required sound so the pipeline needs no downloads or licenses. Real assets override them later.
+
+### ADR-008 World layer between actors and sim
+- **Context**: physics, aim IK, hit resolution and outcome scheduling need one place that sees all actors, and M2 needed it before the clock and director exist.
+- **Decision**: `world.js` runs one story tick for all actors. `sim.js` (M3) wraps it with clocks, director, FX, camera and the frame store. Hitstop is reported as an event; the caller passes `dt = 0`.
+- **Consequences**: combat.js stays pure geometry; world.js is the only module that mutates several actors at once.
+
+### ADR-009 Choreographed contact is positioned, aimed, then guaranteed
+- **Decision**: `requiredStartX` + a nudge spread over the windup put the authored contact point on a near-surface aim point; IK corrects height; a `hit`/`blocked`/`parried` outcome applies at the window middle even if geometry is a few px off. Whiffs start `whiffGap` further back and aim short; dodges lock the aim where the target was.
+- **Consequences**: verified by the connectivity matrix in `tests/unit/world.test.js` (attack × outcome × 5 size pairings).

@@ -17,7 +17,7 @@ export const moves = [
     root: [{ t: 0, dx: 0, dy: 0 }, { t: 0.25, dx: 0, dy: 0, ease: "outQuad" }, { t: 0.45, dx: "travel", dy: 0 }, { t: 1, dx: "travel", dy: 0 }],
     hits: [
       { t0: 0.38, t1: 0.58, part: "rHand", aim: "auto", damage: "damage", knock: [120, 0], hitstop: 0.05,
-        reaction: "hit_light", fx: ["impact_small"], sfx: "punch_light" },
+        fx: ["impact_small"], sfx: "punch_light" },
     ],
     events: [{ t: 0.26, sfx: "whoosh" }],
   },
@@ -37,7 +37,7 @@ export const moves = [
     root: [{ t: 0, dx: 0, dy: 0 }, { t: 0.3, dx: 0, dy: 0, ease: "outQuad" }, { t: 0.5, dx: "travel", dy: 0 }, { t: 1, dx: "travel", dy: 0 }],
     hits: [
       { t0: 0.44, t1: 0.64, part: "lHand", aim: "auto", damage: "damage", knock: [220, -20], hitstop: 0.07,
-        reaction: "hit_light", fx: ["impact_med"], sfx: "punch_heavy" },
+        fx: ["impact_med"], sfx: "punch_heavy" },
     ],
     events: [{ t: 0.31, sfx: "whoosh" }],
   },
@@ -58,7 +58,7 @@ export const moves = [
     root: [{ t: 0, dx: 0, dy: 0 }, { t: 0.28, dx: 0, dy: 0, ease: "outQuad" }, { t: 0.46, dx: "travel", dy: 0 }, { t: 1, dx: "travel", dy: 0 }],
     hits: [
       { t0: 0.4, t1: 0.58, part: "rFoot", aim: "auto", damage: "damage", knock: [380, -40], hitstop: 0.08,
-        reaction: "hit_light", fx: ["impact_med"], shake: "small", sfx: "kick_light" },
+        fx: ["impact_med"], shake: "small", sfx: "kick_light" },
     ],
     events: [{ t: 0.3, sfx: "whoosh" }],
   },

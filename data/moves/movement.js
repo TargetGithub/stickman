@@ -50,6 +50,21 @@ export const moves = [
     events: [{ t: 0.0, sfx: "step", fx: ["dust_run"] }, { t: 0.5, sfx: "step", fx: ["dust_run"] }],
   },
   {
+    name: "dodge_back",
+    category: "movement",
+    duration: 0.5,
+    params: { distance_back: 120 },
+    flags: { invulnerable: [0.1, 0.6] },
+    keys: [
+      { t: 0, pose: "guard", ease: "outCubic" },
+      { t: 0.35, pose: "dodgeBack", ease: "linear" },
+      { t: 0.55, pose: "dodgeBack", ease: "inOutQuad" },
+      { t: 1, pose: "guard" },
+    ],
+    root: [{ t: 0, dx: 0, dy: 0, ease: "outCubic" }, { t: 0.4, dx: "-distance_back", dy: 0, ease: "outQuad" }, { t: 1, dx: "-distance_back*1.08", dy: 0 }],
+    events: [{ t: 0.05, sfx: "whoosh" }],
+  },
+  {
     name: "jump",
     category: "movement",
     duration: 1.0,
