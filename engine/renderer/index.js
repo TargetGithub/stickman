@@ -72,9 +72,10 @@ function drawItems(ctx, r, items, flying) {
 function drawWorld(ctx, r, n, f, chars) {
   drawItems(ctx, r, f.items, false);
   for (const c of chars) {
+    if (c.alpha <= 0.01) continue;
     const h = STAGE.groundY - lowestPoint(c.j, c.scale);
     const k = Math.max(0, 1 - h / 400);
-    ctx.fillStyle = `rgba(0,0,0,${0.18 * k})`;
+    ctx.fillStyle = `rgba(0,0,0,${0.18 * k * c.alpha})`;
     ctx.beginPath();
     ctx.ellipse(c.j.hip.x, STAGE.groundY + 3, 44 * c.scale * (0.6 + 0.4 * k), 8 * c.scale * (0.6 + 0.4 * k), 0, 0, Math.PI * 2);
     ctx.fill();
@@ -87,7 +88,7 @@ function drawWorld(ctx, r, n, f, chars) {
       if (ghost) drawCharacter(ctx, ghost.j, { color: ghost.color, scale: ghost.scale, facing: ghost.facing, alpha: 0.12 + 0.1 * i, outline: false });
     });
   }
-  for (const c of order(chars)) drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle });
+  for (const c of order(chars)) if (c.alpha > 0.01) drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha });
   drawItems(ctx, r, f.items, true);
   for (const t of trails.filter((x) => x.kind === "slash" && x.part)) {
     const pts = [];

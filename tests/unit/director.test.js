@@ -114,3 +114,33 @@ test("non-dry runs record one snapshot per frame; runs are deterministic", () =>
   const last = (r) => Array.from(frameAt(r, r.totalFrames - 1).chars[0].joints);
   assert.deepEqual(last(a), last(b));
 });
+
+test("spawn, teleport behind a target, and despawn", () => {
+  const r = simulate(script([
+    { id: "s", at: 0.5, who: "b", do: "spawn" },
+    { id: "t", at: { after: "s", delay: 0.2 }, who: "b", do: "teleport", target: "a" },
+    { id: "d", at: { after: "t", delay: 0.3 }, who: "b", do: "despawn" },
+  ], [{ id: "a", x: 1000, facing: 1, color: "#22aaff" }, { id: "b", x: 1400, facing: -1, color: "#ff3b3b" }]), catalog);
+  const at = (t) => frameAt(r, Math.round(t * 60));
+  const bIndex = 1;
+  assert.equal(at(0.1).chars[bIndex].alpha, 0, "hidden before spawning");
+  const s = r.beats.find((b) => b.id === "s");
+  const tBeat = r.beats.find((b) => b.id === "t");
+  const d = r.beats.find((b) => b.id === "d");
+  assert.ok(at(s.endedAt + 0.05).chars[bIndex].alpha > 0.9, "visible after spawning");
+  const after = at(tBeat.endedAt + 0.05);
+  const hipX = (c) => c.joints[0];
+  assert.ok(hipX(after.chars[bIndex]) < hipX(after.chars[0]), "landed on the far side of the target");
+  assert.equal(after.chars[bIndex].facing, 1, "facing the target");
+  assert.equal(frameAt(r, r.totalFrames - 1).chars[bIndex].alpha, 0, "gone after despawning");
+  assert.deepEqual(codes(r), []);
+  assert.ok(d.endedAt > tBeat.endedAt);
+});
+
+test("acting before spawning warns W_HIDDEN", () => {
+  const r = run([
+    { id: "x", at: 0.2, who: "b", do: "taunt" },
+    { id: "s", at: 2, who: "b", do: "spawn" },
+  ]);
+  assert.ok(codes(r).includes("W_HIDDEN"));
+});

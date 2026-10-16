@@ -39,4 +39,40 @@ export const moves = [
     ],
     events: [{ t: 0.35, drop: true, sfx: "land" }],
   },
+  {
+    name: "teleport",
+    category: "utility",
+    duration: 0.8,
+    params: { dx: 300 },
+    keys: [
+      { t: 0, pose: "guard", ease: "outQuad" },
+      { t: 0.3, pose: "crouch", ease: "linear" },
+      { t: 0.65, pose: "crouch", ease: "outBack" },
+      { t: 1, pose: "guard" },
+    ],
+    events: [{ t: 0.32, hide: true, sfx: "pop" }, { t: 0.5, teleport: true }, { t: 0.62, show: true, sfx: "pop" }],
+  },
+  {
+    name: "spawn",
+    category: "utility",
+    duration: 0.7,
+    keys: [
+      { t: 0, pose: "crouch", ease: "outBack" },
+      { t: 0.6, pose: "guard", ease: "inOutQuad" },
+      { t: 1, pose: "guard" },
+    ],
+    events: [{ t: 0, show: true, sfx: "pop" }],
+  },
+  {
+    name: "despawn",
+    category: "utility",
+    duration: 0.7,
+    keys: [
+      { t: 0, pose: "guard", ease: "inOutQuad" },
+      { t: 0.45, pose: "crouch", ease: "linear" },
+      { t: 1, pose: "crouch" },
+    ],
+    flags: { hold: true },
+    events: [{ t: 0.45, hide: true, sfx: "pop" }],
+  },
 ];

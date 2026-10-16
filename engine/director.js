@@ -198,6 +198,10 @@ function execute(director, beat, ctx) {
     anchor(director, beat, "end", storyT);
     return;
   }
+  if (actor.hidden && beat.do !== "spawn" && !beat.warnedHidden) {
+    beat.warnedHidden = true;
+    issue(director, "W_HIDDEN", beat, `'${beat.who}' is hidden (not spawned yet, or despawned) when '${beat.do}' runs.`, `Add a "spawn" beat for '${beat.who}' before this one.`, "warning");
+  }
   if (!isFree(actor) && !beat.interrupt) {
     beat.state = "waiting";
     const q = director.waiting.get(actor.id) || [];

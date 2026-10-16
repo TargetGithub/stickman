@@ -5,7 +5,7 @@
 import { packJoints } from "./skeleton.js";
 
 export const MOUTHS = ["neutral", "shout", "grin"];
-const CHAR_STRIDE = 32; // 26 joint floats + facing, mouth index, hp, airborne, prop index (-1 none), prop angle
+const CHAR_STRIDE = 33; // 26 joint floats + facing, mouth index, hp, airborne, prop index (-1 none), prop angle, alpha
 const CAM_STRIDE = 5; // x, y, zoom, shakeX, shakeY
 
 /**
@@ -62,6 +62,7 @@ export function writeFrame(store, actors, clock, cam, items = null) {
     store.body[o + 29] = a.airborne ? 1 : 0;
     store.body[o + 30] = a.prop ? store.propNames.indexOf(a.prop.name) : -1;
     store.body[o + 31] = a.propAngle || 0;
+    store.body[o + 32] = a.alpha ?? 1;
   });
   if (items && items.length) store.items[n] = items;
   store.length++;
@@ -94,6 +95,7 @@ export function frameView(store, n, fps = 60) {
         mouth: MOUTHS[store.body[o + 27]],
         hp: store.body[o + 28],
         airborne: store.body[o + 29] === 1,
+        alpha: store.body[o + 32],
         prop: store.body[o + 30] >= 0 ? { name: store.propNames[store.body[o + 30]], angle: store.body[o + 31] } : null,
       };
     }),

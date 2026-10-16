@@ -228,7 +228,7 @@ function resolveHits(world, windowsByActor) {
       const part = attacker.joints[hit.part] || attacker.joints.rHand;
       const prev = m.prevPart[index] || part;
       m.prevPart[index] = part;
-      const targets = world.mode === "choreographed" ? [world.byId.get(m.target)] : world.actors.filter((t) => t !== attacker && t.alive);
+      const targets = (world.mode === "choreographed" ? [world.byId.get(m.target)] : world.actors.filter((t) => t !== attacker && t.alive)).filter((t) => !t.hidden);
       for (const target of targets) {
         const key = `${index}:${target.id}`;
         if (m.hitIds.has(key)) continue;
@@ -285,7 +285,41 @@ function announce(world, events) {
   }
 }
 
+/**
+ * Visibility and teleport events (teleport, spawn, despawn). Hidden actors vanish in a puff of smoke.
+ * A teleport with a target lands behind the target; otherwise it moves params.dx forward.
+ */
+function visibility(world, actor, e, events) {
+  const puff = () => events.push({ type: "fx", names: ["smoke", "spark"], actor: actor.id, at: { x: actor.x, y: actor.joints.hip.y } });
+  if (e.hide) {
+    actor.hidden = true;
+    puff();
+  }
+  if (e.teleport) {
+    const m = actor.move;
+    const target = m?.target ? world.byId.get(m.target) : null;
+    if (target) {
+      const side = Math.sign(target.x - actor.x) || actor.facing;
+      actor.x = target.x + side * 130 * Math.max(actor.scale, target.scale);
+      actor.facing = -side;
+    } else actor.x += actor.facing * (m?.params.dx ?? 300) * actor.scale;
+    actor.x = Math.max(STAGE.margin, Math.min(world.stageWidth - STAGE.margin, actor.x));
+  }
+  if (e.show) {
+    actor.hidden = false;
+    puff();
+  }
+}
+
+/** Fade alpha toward the visibility state (0.15 s), on story time. */
+function fadeVisibility(actor, dt) {
+  const target = actor.hidden ? 0 : 1;
+  const step = dt / 0.15;
+  actor.alpha = actor.alpha < target ? Math.min(target, actor.alpha + step) : Math.max(target, actor.alpha - step);
+}
+
 function separationSkip(a, b) {
+  if (a.hidden || b.hidden) return true;
   const engaged = (x, y) => x.move && x.move.target === y.id && x.move.def.category === "attack";
   const ghost = (x) => x.move?.def.flags.passThrough || x.holding || x.launched;
   return engaged(a, b) || engaged(b, a) || ghost(a) || ghost(b);
@@ -313,11 +347,13 @@ export function stepWorld(world, dt) {
         if (e.type === "moveEvent" && e.projectile && actor.move) spawnProjectile(world, actor, e.projectile, events);
         if (e.type === "moveEvent" && e.pick) pickProp(world, actor, events, e.beatId ?? actor.move?.beatId);
         if (e.type === "moveEvent" && e.drop) dropProp(world, actor, events);
+        if (e.type === "moveEvent" && (e.hide || e.show || e.teleport)) visibility(world, actor, e, events);
       }
       windowsByActor.set(actor, r.openWindows);
       snapHard.set(actor, r.snapHard);
       if (actor.move && !actor.move.setup) setupAttack(world, actor, events);
       applyNudge(actor);
+      fadeVisibility(actor, dt);
       for (const e of stepBody(actor, dt, { stageWidth: world.stageWidth })) {
         events.push(e);
         if (e.type === "land") onLand(world, actor, e);

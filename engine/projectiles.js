@@ -68,7 +68,7 @@ export function stepWorldProjectiles(world, dt) {
     }
     const owner = world.byId.get(p.owner);
     const choreo = world.mode === "choreographed";
-    const targets = choreo ? [world.byId.get(p.target)].filter(Boolean) : world.actors.filter((a) => a.id !== p.owner && a.alive);
+    const targets = (choreo ? [world.byId.get(p.target)].filter(Boolean) : world.actors.filter((a) => a.id !== p.owner && a.alive)).filter((a) => !a.hidden);
     let done = p.life <= 0 || p.x < -200 || p.x > world.stageWidth + 200;
     for (const target of targets) {
       if (done) break;

@@ -23,6 +23,8 @@ export function createActor(opts) {
     hp: opts.hp ?? 100,
     maxHp: opts.hp ?? 100,
     alive: true,
+    hidden: false, // spawned later, despawned, or mid-teleport: not drawn, framed, collided or hit
+    alpha: 1, // fades toward hidden ? 0 : 1
     move: null,
     queue: [],
     holding: false, // a move with flags.hold ended: keep its last pose until the next command

@@ -40,6 +40,11 @@ export function simulate(script, catalog, opts = {}) {
   const actors = script.characters.map((c) =>
     createActor({ id: c.id, x: c.x, facing: c.facing, scale: c.scale ?? 1, hp: c.hp ?? 100, color: c.color, groundY: STAGE.groundY }));
   for (const [i, c] of script.characters.entries()) {
+    // A character that has a spawn beat starts off-stage (hidden) until it spawns.
+    if (script.beats.some((b) => b.who === c.id && b.do === "spawn")) {
+      actors[i].hidden = true;
+      actors[i].alpha = 0;
+    }
     const data = c.prop ? catalog.props[c.prop] : null;
     actors[i].prop = data ? { name: c.prop, kind: data.kind, data } : null;
   }

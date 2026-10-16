@@ -57,7 +57,10 @@ export function addZoomPunch(cam, amount, dur, videoT) {
   cam.punches.push({ amount, dur, t0: videoT });
 }
 
-function bounds(actors) {
+function bounds(all) {
+  // Hidden characters (not spawned yet, despawned, mid-teleport) do not pull the camera.
+  const visible = all.filter((a) => !a.hidden);
+  const actors = visible.length ? visible : all;
   let minX = Infinity;
   let maxX = -Infinity;
   let minY = Infinity;
