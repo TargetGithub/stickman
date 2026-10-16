@@ -16,7 +16,8 @@
     "record": "node tools/record.mjs",
     "sfx": "node tools/sfxgen.mjs",
     "catalog": "node tools/catalog.mjs",
-    "generate": "node tools/generate.mjs"
+    "generate": "node tools/generate.mjs",
+    "golden:update": "GOLDEN_UPDATE=1 node --test tests/integration/golden.test.js"
   },
   "devDependencies": {
     "@napi-rs/canvas": "^1.0.11",

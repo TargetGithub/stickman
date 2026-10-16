@@ -157,7 +157,8 @@ export function drawOverlays(ctx, view) {
     const h = lines.length * lineH + size * 0.5;
     // Bottom captions sit in the safe area but never above the ground line (they would cover feet).
     const groundScreen = H / 2 + (STAGE.groundY - cam.y) * cam.zoom;
-    const top = pos === "top" ? H * safe.top : pos === "center" ? H / 2 - h / 2 : Math.max(groundScreen + 12, H * (1 - safe.bottom) - h);
+    const barsBelow = view.hpBars ? 100 * Math.max(0.8, k) * Math.ceil(chars.length / 2) : 0; // keep top captions under HP bars
+    const top = pos === "top" ? H * safe.top + barsBelow : pos === "center" ? H / 2 - h / 2 : Math.max(groundScreen + 12, H * (1 - safe.bottom) - h);
     const age = t - e.videoT;
     ctx.globalAlpha = Math.min(1, age / 0.15, ((e.params.dur ?? 2) - age) / 0.15);
     ctx.fillStyle = "rgba(15,15,20,0.72)";

@@ -1,20 +1,109 @@
 // Public API (spec 15.1). Milestone M5.
-// Usage:
+//
+//   import { createEngine } from "./engine/index.js";
 //   const engine = createEngine({ catalog });
-//   const result = engine.load(script);
-//   engine.renderFrame(ctx, n);
+//   const result = engine.load(script);          // validates, then simulates the whole script
+//   if (result.ok) engine.renderFrame(ctx, n);    // any n in 0..totalFrames-1, any order
+//
+// The engine never reads the clock, the network or files. Hosts (tools/, web/) own canvases and fonts.
+
+import { validate, buildJsonSchema, WORLD_COMMANDS, formatIssues } from "./validator/index.js";
+import { simulate, frameAt, movesFor } from "./sim.js";
+import { storyToVideo } from "./clock.js";
+import { createRenderer, renderFrame as drawFrame } from "./renderer/index.js";
+import { collectAudioEvents, collectMusicCues } from "./audio_events.js";
+import { FPS, FORMATS, ENGINE_VERSION } from "./config.js";
+
+export { validate, formatIssues, ENGINE_VERSION };
+
+/** JSON Schema for scripts with this catalog's enums (for LLM structured output). */
+export function scriptSchema(catalog) {
+  return buildJsonSchema(catalog, [...movesFor(catalog).keys()], Object.keys(WORLD_COMMANDS));
+}
 
 /**
- * @param {{ catalog: object }} opts  Data catalog (see /data/index.js). The engine never imports /data itself.
+ * @param {{ catalog: object }} opts  data catalog (see /data/index.js); the engine never imports /data
  */
 export function createEngine(opts) {
   if (!opts || !opts.catalog) throw new Error("createEngine: catalog is required");
+  const { catalog } = opts;
+  let state = null;
+
+  const loaded = () => {
+    if (!state) throw new Error("no script loaded: call load(script) first and check result.ok");
+    return state;
+  };
+
   return {
-    load(script) { throw new Error("not implemented: load"); },
-    renderFrame(ctx, n) { throw new Error("not implemented: renderFrame"); },
-    getAudioEvents() { throw new Error("not implemented: getAudioEvents"); },
-    getAnchors() { throw new Error("not implemented: getAnchors"); },
-    getMeta() { throw new Error("not implemented: getMeta"); },
-    dispose() {},
+    /**
+     * Validate and simulate a script.
+     * @returns {{ ok, errors, warnings, timeline, totalFrames, fps, width, height, durationSec }}
+     */
+    load(script) {
+      state = null;
+      const format = FORMATS[script?.meta?.format] || FORMATS.landscape;
+      const v = validate(script, catalog);
+      const base = { errors: v.errors, warnings: v.warnings, timeline: v.timeline, fps: FPS, width: format.width, height: format.height };
+      if (!v.ok) return { ok: false, ...base, totalFrames: 0, durationSec: 0 };
+      const sim = simulate(script, catalog);
+      state = { script, sim, renderer: createRenderer(catalog, sim), audio: null };
+      return { ok: true, ...base, totalFrames: sim.totalFrames, durationSec: sim.durationSec };
+    },
+
+    /** Draw frame n into ctx (a width×height CanvasRenderingContext2D). Pure with respect to (script, n). */
+    renderFrame(ctx, n) {
+      const s = loaded();
+      if (!Number.isInteger(n) || n < 0 || n >= s.sim.totalFrames) throw new RangeError(`frame ${n} is outside 0..${s.sim.totalFrames - 1}`);
+      drawFrame(s.renderer, ctx, n);
+    },
+
+    /** SFX events [{ t, sfx, volume, pan }] in video seconds (spec 15.4). */
+    getAudioEvents() {
+      const s = loaded();
+      s.audio ??= collectAudioEvents(s.sim);
+      return s.audio;
+    },
+
+    /** Music cues from world beats [{ t, cue, volume }]. */
+    getMusicCues() {
+      return collectMusicCues(loaded().sim);
+    },
+
+    /** Resolved anchors [{ beatId, anchor, t (story s), videoT }]. */
+    getAnchors() {
+      const s = loaded();
+      return s.sim.anchors.map((a) => ({ ...a, videoT: storyToVideo(s.sim.clock, a.t) }));
+    },
+
+    /** Per-frame state view (camera, characters, clocks) for tools such as thumbnail scoring. */
+    getFrame(n) {
+      return frameAt(loaded().sim, n);
+    },
+
+    /** The full simulation event log (hits, moves, world beats, ...), with story and video times. */
+    getEvents() {
+      return loaded().sim.events;
+    },
+
+    getMeta() {
+      const s = loaded();
+      const m = s.script.meta;
+      return {
+        title: m.title,
+        format: m.format,
+        seed: m.seed,
+        theme: m.theme ?? "white_stage",
+        width: s.sim.format.width,
+        height: s.sim.format.height,
+        fps: FPS,
+        totalFrames: s.sim.totalFrames,
+        durationSec: s.sim.durationSec,
+        engineVersion: ENGINE_VERSION,
+      };
+    },
+
+    dispose() {
+      state = null;
+    },
   };
 }

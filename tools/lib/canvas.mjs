@@ -6,6 +6,7 @@
 //   const ctx = canvas.getContext("2d");
 //   await backend.savePng(canvas, "out/x.png");
 //   const rgba = backend.readRGBA(canvas);        // Uint8Array/Uint8ClampedArray, w*h*4
+//   const img = await backend.loadImage(path);    // drawable with ctx.drawImage
 
 import { writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -30,6 +31,7 @@ export async function loadBackend(name = DEFAULT_BACKEND) {
         return c;
       },
       readRGBA: (canvas) => canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height).data,
+      loadImage: (path) => sk.loadImage(path),
       async encodePng(canvas) {
         return canvas.toBuffer("png");
       },
@@ -46,6 +48,7 @@ export async function loadBackend(name = DEFAULT_BACKEND) {
       name: "@napi-rs/canvas",
       createCanvas: (w, h) => nr.createCanvas(w, h),
       readRGBA: (canvas) => canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height).data,
+      loadImage: (path) => nr.loadImage(path),
       async encodePng(canvas) {
         return canvas.encode("png");
       },

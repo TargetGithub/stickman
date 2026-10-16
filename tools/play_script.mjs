@@ -39,11 +39,11 @@ const draw = args.includes("--preview") ? createPreview(sim, { width: W, height:
 const stills = new Set(args.includes("--frames") ? args[args.indexOf("--frames") + 1].split(",").map(Number) : []);
 const enc = startEncoder(out, W, H);
 const t0 = process.hrtime.bigint();
-for (let n = 0; n < sim.frames.length; n++) {
+for (let n = 0; n < sim.totalFrames; n++) {
   draw(ctx, n);
   await enc.write(backend.readRGBA(canvas));
   if (stills.has(n)) await backend.savePng(canvas, out.replace(/\.mp4$/, `_f${n}.png`));
 }
 await enc.close();
 const sec = Number(process.hrtime.bigint() - t0) / 1e9;
-console.log(`wrote ${out}: ${sim.frames.length} frames (${sim.durationSec.toFixed(1)}s video) in ${sec.toFixed(1)}s`);
+console.log(`wrote ${out}: ${sim.totalFrames} frames (${sim.durationSec.toFixed(1)}s video) in ${sec.toFixed(1)}s`);

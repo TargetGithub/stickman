@@ -1,10 +1,11 @@
 // Interim preview renderer for simulated scripts (M3). Draws characters, simple follow camera,
-// hit flashes, shake, speech bubbles, text pops, captions and fades from sim.frames + sim.events.
+// hit flashes, shake, speech bubbles, text pops, captions and fades from sim.store + sim.events.
 // M4/M5 replace this with engine/renderer (real FX, camera, themes) driven by the frame store.
 
 import { unpackJoints } from "../../engine/skeleton.js";
 import { drawCharacter } from "../../engine/renderer/character.js";
 import { mulberry32 } from "../../engine/math.js";
+import { frameView } from "../../engine/framestore.js";
 import { SHAKE, STAGE } from "../../engine/config.js";
 
 export function createPreview(sim, { width = 1920, height = 1080, seed = 1 } = {}) {
@@ -19,7 +20,7 @@ export function createPreview(sim, { width = 1920, height = 1080, seed = 1 } = {
   const active = (list, n, dur) => list.filter((e) => n / 60 >= e.videoT && n / 60 < e.videoT + dur(e));
 
   return function draw(ctx, n) {
-    const f = sim.frames[n];
+    const f = frameView(sim.store, n);
     const chars = f.chars.map((c) => ({ ...c, j: unpackJoints(c.joints) }));
     const target = chars.reduce((s, c) => s + c.j.hip.x, 0) / chars.length;
     camX = camX === null ? target : camX + (target - camX) * 0.08;
@@ -104,7 +105,7 @@ export function createPreview(sim, { width = 1920, height = 1080, seed = 1 } = {
       ctx.fillStyle = w.params.to === "white" ? `rgba(255,255,255,${alpha})` : `rgba(0,0,0,${alpha})`;
       ctx.fillRect(0, 0, width, height);
     }
-    const slow = f.storyT - (sim.frames[n - 1]?.storyT ?? 0);
+    const slow = f.storyT - (n > 0 ? sim.store.times[(n - 1) * 2] : 0);
     if (n > 0 && slow > 0 && slow < 0.9 / 60) {
       ctx.font = "24px Inter";
       ctx.fillStyle = "#888888";

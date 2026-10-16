@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET.
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -676,11 +676,15 @@ const result = engine.load(script);
 // → { ok, errors:[{code,path,message,fix}], warnings:[...],
 //     totalFrames, fps:60, width, height, timeline:[...] }
 
-engine.renderFrame(ctx, n);                   // draws frame n into ctx; pure w.r.t. (store, n)
+engine.renderFrame(ctx, n);                   // draws frame n into ctx; pure w.r.t. (script, n); any order
 engine.getAudioEvents();                      // → [{ t, sfx, volume, pan }]   (t in video seconds)
-engine.getAnchors();                          // → [{ beatId, anchor, t }]   (resolved anchor times)
-engine.getMeta();                             // → { title, format, seed, durationSec, ... }
+engine.getMusicCues();                        // → [{ t, cue, volume }]
+engine.getAnchors();                          // → [{ beatId, anchor, t (story), videoT }]
+engine.getFrame(n);                           // → { storyT, fxT, videoT, cam, chars[] }   (for tools)
+engine.getEvents();                           // → full event log with story and video times
+engine.getMeta();                             // → { title, format, seed, theme, width, height, fps, totalFrames, durationSec, engineVersion }
 engine.dispose();
+// also exported: validate(script, catalog), scriptSchema(catalog), formatIssues(issues), ENGINE_VERSION
 ```
 
 Tools and the browser use the same API. `web/index.html` adds a preview loop on top (requestAnimationFrame calling `renderFrame`); that loop is not part of the engine.
@@ -694,18 +698,15 @@ Tools and the browser use the same API. `web/index.html` adds a preview loop on 
 6. Fonts are bundled files registered explicitly (Node) or loaded with `@font-face` and awaited via `document.fonts.ready` (browser). No system fonts.
 
 ### 15.3 Frame store
-Per video frame:
+Packed typed arrays (`engine/framestore.js`), one record per video frame:
 
-```js
-{ storyT, fxT,
-  cam: { x, y, zoom, shakeX, shakeY },
-  chars: [{ id, joints: Float32Array(26), facing, scale, hp, mouth, alpha,
-            prop: { kind, angle, state } | null, accessory: Float32Array }],
-  projectiles: [...],
-  overlay: { flash, fade, desat, vignette, slowmo, texts:[...], bubbles:[...] } }
-```
+| Array | Per frame |
+|---|---|
+| `times` (Float64) | storyT, fxT |
+| `cam` (Float32) | x, y, zoom, shakeX, shakeY |
+| `body` (Float32) | per character: 26 joint floats, facing, mouth index, hp, airborne |
 
-Plus one shared **emit log** for particles (13.2) and one **events** list (audio, anchors). Size is about 1-2 KB per frame, so a 180 s video (10,800 frames) needs about 20 MB.
+Constant per-character data (id, color, scale, maxHp) is stored once. `frameView(store, n)` returns `{ storyT, fxT, videoT, cam, chars[] }` with zero-copy joint views. Particles come from the shared **emit log** (13.2) and overlays from the **event log** (ADR-012), so nothing else is stored per frame. A 180 s two-character video (10,800 frames) needs about 3 MB. Props and accessories add fields in M7.
 
 ### 15.4 Audio events
 Moves, hits and FX emit named SFX in story time. `audio_events.js` converts them to video time (so slowmo and hitstop are accounted for) and adds `pan` from screen x (-1..1).
@@ -890,7 +891,7 @@ System prompt about 4-6K tokens (cached). Output about 1-2K tokens per script.
 - **Validator**: a bad-script corpus (30+ fixtures) with expected error codes; every sample script valid.
 - **Integration**:
   - Determinism: load and render the same script twice; SHA-256 of every frame's RGBA must match.
-  - Golden frames: 5 scripts x 10 frames vs stored PNGs (tolerance 0.5% pixels, per backend).
+  - Golden frames: 5 scripts x 10 evenly spaced frames, compared at quarter size against PNGs in `tests/golden/` (a pixel counts as changed if any channel differs by more than 16; at most 0.5% may change). Regenerate only deliberately with `npm run golden:update` and review the images by eye.
   - Hit connectivity: every attack, every outcome, against dummies at scale 0.6, 1.0, 2.2 and 3.5.
   - Fuzz: 200 random valid scripts; no NaN joints, nobody outside the stage, no exceptions, particle budget respected.
 

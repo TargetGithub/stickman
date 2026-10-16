@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "meta": { "title": "FX and Camera Showcase", "format": "landscape", "seed": 33, "mode": "choreographed", "theme": "white_stage" },
+  "characters": [
+    { "id": "ace", "x": 1300, "facing": 1, "color": "#2f7bff", "scale": 1.0, "hp": 100 },
+    { "id": "bob", "x": 1520, "facing": -1, "color": "#ff7a1a", "scale": 1.0, "hp": 100 }
+  ],
+  "camera": [
+    { "at": 0, "mode": "fixed", "x": 1400, "zoom": 1.0 },
+    { "at": 1.0, "mode": "push", "targets": ["ace", "bob"], "zoom": 1.4, "dur": 1.2 },
+    { "at": { "with": "boom" }, "mode": "follow", "targets": ["ace", "bob"], "zoom": "auto", "padding": 300 },
+    { "at": { "after": "jmp", "delay": 0.2 }, "mode": "pan", "x": 2200, "dur": 1.0, "zoom": 0.9 },
+    { "at": { "after": "jmp", "delay": 1.4 }, "mode": "focus", "target": "bob", "zoom": 1.5 }
+  ],
+  "beats": [
+    { "id": "sw", "at": 0.3, "who": "bob", "do": "wait", "params": { "seconds": 1.2 }, "fx": ["sweat_drop"], "say": "Uh oh." },
+    { "id": "boom", "at": 2.4, "who": "world", "do": "explosion", "params": { "x": 1900 } },
+    { "at": { "with": "boom" }, "who": "world", "do": "zoom_punch", "params": { "amount": 0.2, "dur": 0.25 } },
+    { "id": "sm", "at": { "with": "boom", "delay": 0.1 }, "who": "bob", "do": "duck", "fx": ["smoke"] },
+    { "id": "c", "at": { "after": "sm", "delay": 0.2 }, "who": "ace", "do": "cross", "target": "bob", "approach": "walk", "outcome": "hit", "params": { "damage": 12 } },
+    { "at": { "on": "c.hit" }, "who": "world", "do": "freeze", "params": { "duration": 0.3 } },
+    { "id": "jmp", "at": { "after": "c", "delay": 0.3 }, "who": "ace", "do": "jump", "params": { "travel": 160 }, "fx": ["shockwave"] },
+    { "at": { "after": "jmp" }, "who": "world", "do": "flash", "params": { "color": "#fff3b0", "dur": 0.2 } },
+    { "at": { "after": "jmp", "delay": 0.6 }, "who": "world", "do": "desaturate", "params": { "amount": 1, "dur": 0.8 } },
+    { "at": { "after": "jmp", "delay": 1.0 }, "who": "world", "do": "cut" },
+    { "id": "st", "at": { "after": "jmp", "delay": 1.4 }, "who": "bob", "do": "stagger" },
+    { "id": "ko", "at": { "after": "st" }, "who": "bob", "do": "ko_fall" },
+    { "at": { "after": "ko", "delay": 0.2 }, "who": "world", "do": "caption", "params": { "text": "Every effect, every camera mode.", "pos": "bottom", "dur": 1.6 } },
+    { "at": { "after": "ko", "delay": 1.0 }, "who": "world", "do": "fade", "params": { "to": "white", "dur": 0.8 } }
+  ]
+}

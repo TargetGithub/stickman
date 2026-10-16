@@ -7,6 +7,7 @@ import { createBackground, drawBackground } from "./background.js";
 import { drawParticles } from "./particles.js";
 import { drawPostWorld, drawOverlays } from "./overlays.js";
 import { STAGE, FPS } from "../config.js";
+import { frameView } from "../framestore.js";
 
 /**
  * @param {object} catalog  for themes
@@ -40,7 +41,7 @@ function background(r, name) {
 
 function charsAt(r, n) {
   if (!r.charCache.has(n)) {
-    r.charCache.set(n, r.sim.frames[n].chars.map((c) => ({ ...c, j: unpackJoints(c.joints) })));
+    r.charCache.set(n, frameView(r.sim.store, n, FPS).chars.map((c) => ({ ...c, j: unpackJoints(c.joints) })));
     if (r.charCache.size > 64) r.charCache.delete(r.charCache.keys().next().value);
   }
   return r.charCache.get(n);
@@ -87,9 +88,14 @@ function drawWorld(ctx, r, n, f, chars) {
   });
 }
 
+/** Number of frames available. */
+export function frameCount(r) {
+  return r.sim.store.length;
+}
+
 /** Draw frame n of a simulated script into ctx (a W×H 2D context). */
 export function renderFrame(r, ctx, n) {
-  const f = r.sim.frames[n];
+  const f = frameView(r.sim.store, n, FPS);
   const cam = f.cam;
   const { W, H } = r;
   const theme = r.themeChanges.filter((e) => e.videoT <= f.videoT).pop()?.params.theme || r.defaultTheme;
@@ -99,7 +105,7 @@ export function renderFrame(r, ctx, n) {
   const chars = charsAt(r, n);
   drawWorld(ctx, r, n, f, chars);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
-  const storyRate = n > 0 ? (f.storyT - r.sim.frames[n - 1].storyT) * FPS : 1;
+  const storyRate = n > 0 ? (f.storyT - r.sim.store.times[(n - 1) * 2]) * FPS : 1;
   const view = {
     W, H, format: r.format, t: f.videoT, fxT: f.fxT, cam, chars,
     says: r.says, worldEvents: r.worldEvents, flashes: r.sim.fx.flashes, hpBars: r.hpBars,

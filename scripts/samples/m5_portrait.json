@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "meta": { "title": "Short: Who Started It?", "format": "portrait", "seed": 21, "mode": "choreographed", "theme": "void_grid", "hpBars": true },
+  "characters": [
+    { "id": "neo", "x": 1400, "facing": 1, "color": "#3df2ff", "scale": 1.0, "hp": 100 },
+    { "id": "rex", "x": 1640, "facing": -1, "color": "#ff5af0", "scale": 1.2, "hp": 120 }
+  ],
+  "camera": [{ "at": 0, "mode": "follow", "targets": ["neo", "rex"], "zoom": "auto", "padding": 160 }],
+  "beats": [
+    { "at": 0.2, "who": "world", "do": "caption", "params": { "text": "Two fighters. One grid.", "pos": "top", "dur": 1.8 } },
+    { "id": "q", "at": 0.4, "who": "neo", "do": "wait", "params": { "seconds": 0.8 }, "fx": ["question"], "say": "You again?" },
+    { "id": "t", "at": { "after": "q" }, "who": "rex", "do": "taunt", "fx": ["anger_mark"] },
+    { "id": "j", "at": { "after": "t" }, "who": "neo", "do": "jab", "target": "rex", "approach": "walk", "outcome": "hit", "fx": ["exclaim"] },
+    { "id": "x", "at": { "after": "j", "delay": 0.2 }, "who": "rex", "do": "cross", "target": "neo", "approach": "walk", "outcome": "dodged" },
+    { "id": "k", "at": { "after": "x", "delay": 0.1 }, "who": "neo", "do": "front_kick", "target": "rex", "approach": "walk", "outcome": "hit", "params": { "damage": 30 }, "fx": ["afterimage"] },
+    { "at": { "on": "k.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.3, "duration": 0.4 } },
+    { "id": "ko", "at": { "after": "k", "delay": 0.8 }, "who": "rex", "do": "ko_fall" },
+    { "id": "v", "at": { "after": "ko" }, "who": "neo", "do": "victory", "fx": ["aura", "heart"] },
+    { "at": { "with": "v" }, "who": "world", "do": "text_pop", "params": { "text": "WIN!", "color": "#3df2ff" } },
+    { "at": { "after": "v", "delay": 0.3 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+  ]
+}

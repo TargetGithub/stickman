@@ -167,7 +167,7 @@ function applyHit(world, attacker, target, hit, kind, point) {
     playMove(target, world.moves.has("ko_fall") ? "ko_fall" : "knockdown", world.moves, { blend: 0 });
   }
   const fx = kind === "hit" ? hit.fx || [] : ["block_spark"];
-  const sfx = kind === "hit" ? hit.sfx : kind;
+  const sfx = kind === "hit" ? hit.sfx : kind === "blocked" ? "block" : "parry";
   events.push({ type: "hit", kind, beatId: m.beatId, attacker: attacker.id, target: target.id, move: m.def.name, part: hit.part, damage: dealt, point, fx, shake: kind === "hit" ? hit.shake : null, sfx });
   events.push({ type: "anchor", beatId: m.beatId, anchor: "hit", actor: attacker.id, move: m.def.name });
   return events;

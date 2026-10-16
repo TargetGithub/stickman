@@ -242,14 +242,15 @@ Beats whose `at` depends on an anchor get a due time when that anchor happens. T
 ```js
 export function movesFor(catalog): Map<string, MoveDef>;   // prepared once per catalog object
 export function simulate(script, catalog, opts:{ dryRun?, maxSeconds? }):
-  { frames, events, anchors, beats, issues, totalFrames, durationSec, clock };
+  { store, events, anchors, beats, issues, totalFrames, durationSec, clock, fx, format, meta };
+export function frameAt(sim, n): FrameView;
 ```
 Frame 0 is the initial state. Each later frame:
 1. `tick(clock)` → `storyDt` (0 during hitstop/freeze, scaled during slowmo)
 2. `stepDirector` (fires due beats → `command(world, …)`, world beats → clock / events)
 3. `stepWorld(world, storyDt)` (moves, physics, aim IK, hits)
 4. `hitstop` events → `requestHitstop`; all events logged with story and video time; `onEvents(director, …)`
-5. snapshot (M3: plain object per frame; M5: packed frame store)
+5. `stepPresentation` (FX sustain, camera) → `writeFrame` into the packed store
 The run ends after `meta.tail` seconds of quiet: director idle, everyone settled, no time effects.
 
 ### validator/index.js
@@ -261,10 +262,18 @@ Stages: `schema.js` (JSON Schema subset checker over the exported schema) → `s
 
 ### framestore.js
 ```js
-export function createStore(charCount, estFrames): Store;
-export function writeFrame(store, world, clock): void;
-export function frameView(store, n): FrameView;      // zero-copy view
+export const MOUTHS;
+export function createStore(chars:[{ id, color, scale, maxHp }], estFrames): Store;   // grows by doubling
+export function writeFrame(store, actors, clock, camState): void;
+export function frameView(store, n, fps?): { storyT, fxT, videoT, cam, chars[] };   // zero-copy joints
 export function jointsAt(store, n, charIndex): Float32Array;
+export function storeBytes(store): number;
+```
+
+### audio_events.js
+```js
+export function collectAudioEvents(sim): Array<{ t, sfx, volume, pan }>;   // video seconds; pan from screen x
+export function collectMusicCues(sim): Array<{ t, cue, volume }>;
 ```
 
 ### renderer/character.js
@@ -275,15 +284,16 @@ export function shade(hex, k): string;
 
 ### renderer/index.js
 ```js
-export function createRenderer(catalog, sim): Renderer;   // sim = simulate() result (frames, events, fx, format, meta)
+export function createRenderer(catalog, sim): Renderer;   // sim = simulate() result (store, events, fx, format, meta)
 export function renderFrame(renderer, ctx, n): void;      // pure in (sim, n); random access
+export function frameCount(renderer): number;
 ```
 Modules: `background.js` (procedural theme layers with parallax; geometry generated once per theme from the seeded `bg` stream), `particles.js` (analytic particles, glyphs), `overlays.js` (post-world desaturate and slow-motion vignette, then bubbles, HP bars, text pops, captions, flashes, fades), `character.js`. Fonts are referenced by family name ("Bangers", "Inter"); the host registers them (Node: `tools/lib/canvas.mjs`; browser: `@font-face`). Background layers are drawn as shapes each frame (no offscreen cache yet): render cost is ~10 ms/frame at 1080p, so caching was not needed.
 
 
 
 ### index.js (public)
-See spec 15.1.
+See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
 ## 5. Error code families
 

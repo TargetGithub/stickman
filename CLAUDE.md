@@ -26,7 +26,8 @@ Working rules for developing this project.
 - `npm test` runs `node --test`. Unit tests must not need a canvas backend; tag canvas tests as integration.
 - New module → table-driven unit tests in `tests/unit/<module>.test.js`.
 - Validator changes → add fixtures in `tests/fixtures/bad/` with expected codes.
-- Golden frames are updated only deliberately and reviewed by eye.
+- Golden frames are updated only deliberately (`npm run golden:update`) and reviewed by eye.
+- Use the public API (`engine/index.js`) from tools and pages; reach into engine modules only for engine work.
 
 ## Milestone workflow
 - Finish a milestone with green tests and a demo artifact in `out/demos/`.

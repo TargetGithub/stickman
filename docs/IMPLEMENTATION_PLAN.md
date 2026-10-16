@@ -66,7 +66,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: Appendix A plays from JSON; validator returns errors and a timeline. **Script schema v1 frozen.**
 **Review**: Sridhar reads validator output for 5 broken scripts and confirms it is understandable.
 
-### M4 FX + camera + themes + overlays (4-5 days) — DONE 2026-10-16, awaiting review
+### M4 FX + camera + themes + overlays (4-5 days) — DONE 2026-10-16, reviewed
 | Task | Output |
 |---|---|
 | M4.1 `fx.js` emit log, analytic particles, presets: impacts, block_spark, dust, shockwave, speed_lines | |
@@ -78,7 +78,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: a 15 s clip with impacts, shake, slowmo, hitstop and follow cam.
 **Review**: Sridhar watches the clip ("does it feel punchy?").
 
-### M5 Frame store + API + determinism (2 days)
+### M5 Frame store + API + determinism (2 days) — DONE 2026-10-16, awaiting review
 | Task | Output |
 |---|---|
 | M5.1 `framestore.js` packed layout, accessors | |

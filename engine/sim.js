@@ -1,12 +1,12 @@
 // Simulation loop: clock → director → world → events, one step per video frame (spec 3, 6).
-// Milestone: M3, M4 (FX and camera via presentation.js). Frames are plain snapshots until M5's packed store.
+// Milestone: M3, M4 (FX and camera via presentation.js), M5 (packed frame store).
 
 import { createActor } from "./actor.js";
 import { prepareCatalog } from "./moves.js";
 import { createWorld, stepWorld } from "./world.js";
 import { createClock, tick, requestHitstop, timeEffectsActive } from "./clock.js";
 import { createDirector, stepDirector, onEvents, directorIdle, finishDirector } from "./director.js";
-import { packJoints } from "./skeleton.js";
+import { createStore, writeFrame, frameView } from "./framestore.js";
 import { createPresentation, presentEvent, stepPresentation } from "./presentation.js";
 import { FPS, STAGE, LIMITS } from "./config.js";
 
@@ -18,17 +18,9 @@ export function movesFor(catalog) {
   return prepared.get(catalog);
 }
 
-function snapshot(world, clock, cam) {
-  return {
-    storyT: clock.storyT,
-    fxT: clock.fxT,
-    videoT: clock.videoT,
-    cam: { ...cam },
-    chars: world.actors.map((a) => ({
-      id: a.id, joints: packJoints(a.joints, new Float32Array(26)), facing: a.facing, scale: a.scale,
-      color: a.color, mouth: a.mouth, hp: a.hp, maxHp: a.maxHp, airborne: a.airborne,
-    })),
-  };
+/** Frame n of a simulation result as a plain view (see framestore.frameView). */
+export function frameAt(sim, n) {
+  return frameView(sim.store, n, FPS);
 }
 
 const settled = (a) => (!a.move || a.move.def.name === "idle" || a.holding) && !a.airborne;
@@ -37,8 +29,8 @@ const settled = (a) => (!a.move || a.move.def.name === "idle" || a.holding) && !
  * Run a whole script.
  * @param {object} script  schema-valid script
  * @param {object} catalog  data catalog (poses, moves, ...)
- * @param {{ dryRun?:boolean, maxSeconds?:number }} opts  dryRun skips frame snapshots (validator)
- * @returns {{ frames, events, anchors, beats, issues, totalFrames, durationSec, clock, fx, format }}
+ * @param {{ dryRun?:boolean, maxSeconds?:number }} opts  dryRun skips the frame store (validator)
+ * @returns {{ store, events, anchors, beats, issues, totalFrames, durationSec, clock, fx, format, meta }}
  *   fx: { log, trails, flashes } for the renderer; format: { width, height, groundScreenRatio }
  */
 export function simulate(script, catalog, opts = {}) {
@@ -58,7 +50,8 @@ export function simulate(script, catalog, opts = {}) {
     presentEvent(present, e, world, clock);
   };
   let cam = stepPresentation(present, world, clock, 0, 0);
-  const frames = opts.dryRun ? null : [snapshot(world, clock, cam)];
+  const store = opts.dryRun ? null : createStore(actors, Math.round(20 * FPS));
+  if (store) writeFrame(store, world.actors, clock, cam);
   const maxFrames = Math.round((opts.maxSeconds ?? LIMITS.maxDuration + 5) * FPS);
   const tailFrames = Math.round((meta.tail ?? 0.5) * FPS);
   let quietFrames = 0;
@@ -74,7 +67,7 @@ export function simulate(script, catalog, opts = {}) {
     }
     onEvents(director, events, clock.storyT);
     cam = stepPresentation(present, world, clock, d.fxDt, d.videoDt);
-    if (frames) frames.push(snapshot(world, clock, cam));
+    if (store) writeFrame(store, world.actors, clock, cam);
 
     const quiet = directorIdle(director) && world.actors.every(settled) && !timeEffectsActive(clock);
     quietFrames = quiet ? quietFrames + 1 : 0;
@@ -94,7 +87,7 @@ export function simulate(script, catalog, opts = {}) {
       message: `The script is still running after ${(maxFrames / FPS).toFixed(0)}s of video.`, fix: `Keep videos under ${LIMITS.maxDuration}s; check for long waits or slowmo.` });
   }
   return {
-    frames,
+    store,
     events: log,
     anchors: director.anchors,
     beats: director.beats,

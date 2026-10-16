@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stickman Player</title>
+  <style>
+    @font-face { font-family: "Bangers"; src: url("../assets/fonts/Bangers-Regular.ttf"); }
+    @font-face { font-family: "Inter"; src: url("../assets/fonts/Inter.ttf"); }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 13px Inter, system-ui, sans-serif; background: #15161a; color: #e8e8ea; height: 100vh; display: grid; grid-template-columns: 1fr 380px; }
+    main { display: flex; flex-direction: column; min-width: 0; padding: 12px; gap: 10px; }
+    #stage { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
+    canvas { max-width: 100%; max-height: 100%; background: #000; border-radius: 6px; }
+    .bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    #scrub { flex: 1; min-width: 200px; }
+    aside { background: #1d1f24; border-left: 1px solid #2b2e35; padding: 12px; overflow-y: auto; }
+    h1 { font-size: 15px; margin: 0 0 10px; }
+    h2 { font-size: 12px; color: #9a9ca3; text-transform: uppercase; letter-spacing: .04em; margin: 14px 0 6px; }
+    select, button, input[type=file] { font: inherit; background: #2b2e35; color: inherit; border: 1px solid #3a3e47; border-radius: 4px; padding: 4px 8px; }
+    button { cursor: pointer; }
+    pre { white-space: pre-wrap; font: 11px ui-monospace, monospace; background: #111216; border-radius: 4px; padding: 8px; margin: 0; }
+    .err { color: #ff7b7b; }
+    .warn { color: #ffcc55; }
+    .ok { color: #7bd88f; }
+    #frameLabel { font-variant-numeric: tabular-nums; color: #9a9ca3; min-width: 150px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="bar">
+      <select id="sample">
+        <option value="../scripts/samples/m4_dojo.json">m4_dojo (dojo, landscape)</option>
+        <option value="../scripts/samples/m5_portrait.json">m5_portrait (void grid, 9:16)</option>
+        <option value="../scripts/samples/m5_fx.json">m5_fx (effects + camera)</option>
+        <option value="../scripts/samples/m3_duel.json">m3_duel (white stage)</option>
+        <option value="../scripts/samples/showdown.json">showdown (spec appendix: not valid yet)</option>
+      </select>
+      <input id="file" type="file" accept=".json,application/json">
+    </div>
+    <div id="stage"><canvas id="view" width="1920" height="1080"></canvas></div>
+    <div class="bar">
+      <button id="play">▶ Play</button>
+      <select id="speed"><option value="0.25">0.25x</option><option value="0.5">0.5x</option><option value="1" selected>1x</option></select>
+      <input id="scrub" type="range" min="0" max="0" value="0">
+      <span id="frameLabel"></span>
+    </div>
+  </main>
+  <aside>
+    <h1>Stickman player</h1>
+    <div id="status"></div>
+    <h2>Issues</h2>
+    <pre id="issues"></pre>
+    <h2>Timeline</h2>
+    <pre id="timeline"></pre>
+  </aside>
+
+  <script type="module">
+    import { createEngine, formatIssues } from "../engine/index.js";
+    import { catalog } from "../data/index.js";
+
+    const $ = (id) => document.getElementById(id);
+    const canvas = $("view");
+    const ctx = canvas.getContext("2d");
+    const engine = createEngine({ catalog });
+    let total = 0;
+    let frame = 0;
+    let playing = false;
+    let clock = 0;
+
+    function show(n) {
+      if (!total) return;
+      frame = Math.max(0, Math.min(total - 1, n));
+      engine.renderFrame(ctx, frame);
+      $("scrub").value = frame;
+      $("frameLabel").textContent = `frame ${frame} / ${total - 1}  ·  ${(frame / 60).toFixed(2)}s`;
+    }
+
+    function load(script, label) {
+      playing = false;
+      const r = engine.load(script);
+      const issues = [...r.errors, ...r.warnings];
+      $("status").innerHTML = r.ok
+        ? `<span class="ok">Valid</span> · ${label} · ${r.durationSec.toFixed(1)}s · ${r.totalFrames} frames · ${r.width}×${r.height}`
+        : `<span class="err">Invalid</span> · ${label} · ${r.errors.length} error(s)`;
+      $("issues").textContent = issues.length ? formatIssues(issues) : "none";
+      $("issues").className = r.ok ? (issues.length ? "warn" : "ok") : "err";
+      $("timeline").textContent = r.timeline || "(the validator stopped before the dry run)";
+      total = r.ok ? r.totalFrames : 0;
+      canvas.width = r.width;
+      canvas.height = r.height;
+      $("scrub").max = Math.max(0, total - 1);
+      if (!r.ok) {
+        ctx.fillStyle = "#1d1f24";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        $("frameLabel").textContent = "";
+        return;
+      }
+      show(0);
+    }
+
+    async function loadUrl(url) {
+      const script = await (await fetch(url)).json();
+      load(script, url.split("/").pop());
+    }
+
+    $("sample").addEventListener("change", () => loadUrl($("sample").value));
+    $("file").addEventListener("change", async () => {
+      const f = $("file").files[0];
+      if (!f) return;
+      try {
+        load(JSON.parse(await f.text()), f.name);
+      } catch (e) {
+        $("issues").textContent = `Not valid JSON: ${e.message}`;
+      }
+    });
+    $("scrub").addEventListener("input", () => {
+      playing = false;
+      show(Number($("scrub").value));
+    });
+    $("play").addEventListener("click", () => {
+      if (!total) return;
+      playing = !playing;
+      if (playing && frame >= total - 1) frame = 0;
+      clock = frame / 60;
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" && e.target.type !== "range") return;
+      if (e.code === "Space") { e.preventDefault(); $("play").click(); }
+      if (e.code === "ArrowRight") { playing = false; show(frame + 1); }
+      if (e.code === "ArrowLeft") { playing = false; show(frame - 1); }
+    });
+
+    let last = null;
+    function tick(ts) {
+      if (playing && last !== null) {
+        clock += ((ts - last) / 1000) * Number($("speed").value);
+        const n = Math.floor(clock * 60);
+        if (n >= total) playing = false;
+        if (n !== frame) show(n);
+      }
+      last = ts;
+      $("play").textContent = playing ? "❚❚ Pause" : "▶ Play";
+      requestAnimationFrame(tick);
+    }
+
+    await Promise.all([document.fonts.load("40px Bangers"), document.fonts.load("20px Inter")]);
+    await loadUrl($("sample").value);
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>

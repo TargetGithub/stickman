@@ -17,7 +17,7 @@ function hashes(frames) {
   const canvas = backend.createCanvas(sim.format.width, sim.format.height);
   const ctx = canvas.getContext("2d");
   return frames.map((n) => {
-    renderFrame(r, ctx, Math.min(n, sim.frames.length - 1));
+    renderFrame(r, ctx, Math.min(n, sim.totalFrames - 1));
     return createHash("sha256").update(backend.readRGBA(canvas)).digest("hex");
   });
 }

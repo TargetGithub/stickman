@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { simulate } from "../../engine/sim.js";
+import { simulate, frameAt } from "../../engine/sim.js";
 import { parseAt } from "../../engine/director.js";
 import { catalog } from "../../data/index.js";
 
@@ -109,8 +109,8 @@ test("slowmo stretches video time relative to story time", () => {
 test("non-dry runs record one snapshot per frame; runs are deterministic", () => {
   const a = simulate(sample, catalog);
   const b = simulate(sample, catalog);
-  assert.equal(a.frames.length, a.totalFrames);
+  assert.equal(a.store.length, a.totalFrames);
   assert.deepEqual(a.anchors, b.anchors);
-  const last = (r) => Array.from(r.frames[r.frames.length - 1].chars[0].joints);
+  const last = (r) => Array.from(frameAt(r, r.totalFrames - 1).chars[0].joints);
   assert.deepEqual(last(a), last(b));
 });

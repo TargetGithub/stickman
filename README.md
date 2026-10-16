@@ -2,7 +2,7 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** M4 (FX, camera, themes, overlays) complete and awaiting review. Next: M5 (frame store, public API, determinism).
+**Status:** M5 (frame store, public API, determinism) complete and awaiting review. Next: M6 (recorder and audio).
 
 ## Documents
 
@@ -38,4 +38,4 @@ npm test
 npm run serve
 ```
 
-Then open http://localhost:5173/web/index.html (pose viewer), /web/editor.html (move editor) or /web/catalog.html (every move looping). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema) and render one with `node tools/play_script.mjs scripts/samples/m3_duel.json` (engine renderer; audio arrives in M6).
+Then open http://localhost:5173/web/player.html (script player with scrubber), /web/editor.html (move editor), /web/catalog.html (every move looping) or /web/index.html (pose viewer). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema) and render one with `node tools/play_script.mjs scripts/samples/m3_duel.json` (engine renderer; audio arrives in M6).
