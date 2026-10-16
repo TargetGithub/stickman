@@ -55,8 +55,26 @@ test("system prompts are fully filled and byte-stable (cacheable)", () => {
   const a = writerSystem(catalog);
   assert.equal(a, writerSystem(catalog));
   assert.doesNotMatch(a, /\{\{\w+\}\}/);
-  assert.ok(a.length > 12000 && a.length < 40000, `writer prompt is ${a.length} chars`);
+  assert.ok(a.length > 12000 && a.length < 45000, `writer prompt is ${a.length} chars`);
   assert.doesNotMatch(ideationSystem(catalog), /\{\{\w+\}\}/);
+});
+
+test("the writer prompt documents every validator code, and only real ones", async () => {
+  const { readFileSync, readdirSync } = await import("node:fs");
+  const src = (dir) => readdirSync(dir).filter((f) => f.endsWith(".js")).map((f) => readFileSync(`${dir}/${f}`, "utf8")).join("\n");
+  const engine = src("engine") + src("engine/validator");
+  const codes = (text) => new Set(text.match(/\b[EW]_[A-Z]+(?:_[A-Z]+)*\b/g));
+  const real = codes(engine);
+  const prompt = writerSystem(catalog);
+  const mentioned = codes(prompt.replace(/E_SCHEMA_\*|E_REF_\*|E_MOVE_\*|E_WORLD_\*|E_CAMERA_\*|E_TEXT_\*|E_SIM_\*/g, ""));
+  for (const c of real) assert.ok(mentioned.has(c), `prompt does not explain ${c}`);
+  for (const c of mentioned) assert.ok(real.has(c), `prompt mentions ${c}, which the validator never reports`);
+});
+
+test("every example puts approach on each targeted attack (the rule the prompt teaches)", () => {
+  for (let i = 0; i < 3; i++) {
+    for (const b of example(i).beats.filter((x) => x.target && x.who !== "world")) assert.equal(b.approach, "run", `${exampleScripts()[i].name} ${b.id}`);
+  }
 });
 
 test("structured-output schema uses only the portable subset", () => {

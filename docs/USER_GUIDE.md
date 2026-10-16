@@ -329,7 +329,7 @@ All three use the same prompt pack (`prompts/`), the same validator and the same
 node tools/manual.mjs prompt --premise "A tiny ninja outsmarts a giant robot guard on a snowy mountain" --length 25 --copy
 ```
 
-This writes `out/manual/prompt.md` (about 20,000 characters: the rules, the full move catalog, three example scripts and your request) and, with `--copy`, puts it on the clipboard. Options: `--format portrait`, `--tone comedic`, `--length 30`.
+This writes `out/manual/prompt.md` (about 26,000 characters: the script format, every validation rule with its error code, a pre-answer checklist, the full move catalog, three example scripts and your request) and, with `--copy`, puts it on the clipboard. Options: `--format portrait`, `--tone comedic`, `--length 30`.
 
 **Step 2. Paste it into a new chat** in ChatGPT, Claude.ai, Gemini or any other chat app. The reply is a JSON script in a code block.
 
@@ -353,6 +353,8 @@ node tools/manual.mjs check --paste
 | `node tools/manual.mjs meta out/scripts/<title>.json --copy` | A prompt for a YouTube title, description and tags |
 
 Tips:
+- Make a fresh prompt for each video: it always includes the current rules and catalog. An old `prompt.md` may be missing rules added since.
+- If the model keeps repeating one mistake, add a line to the fix prompt like "Every attack with a target needs \"approach\": \"run\"".
 - Use the strongest model your chat app offers; small models make more mistakes with a prompt this long.
 - Start a new chat for each video, and send fix prompts in the same chat as the script they fix.
 - If the chat app limits message length, attach `out/manual/prompt.md` as a file and write "Follow the instructions in the attached file".
@@ -499,7 +501,7 @@ The prompts are plain text in `prompts/`:
 
 | File | Used for |
 |---|---|
-| `system.md` | Script-writing rules |
+| `system.md` | Script format, how fights resolve, every validation rule with its code, a self-check list, pacing (a test keeps its code list in sync with the validator) |
 | `ideation.md` | Premise brainstorming |
 | `repair.md` | Fix requests |
 | `critique.md` | Video review |

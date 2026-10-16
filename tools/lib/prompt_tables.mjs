@@ -37,6 +37,13 @@ function anchors(def) {
   return hasWindow ? "start, windowOpen, hit, end" : "start, end";
 }
 
+/** Relative luminance below ~0.2 counts as a dark background. */
+function isDark(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const lin = (c) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255) < 0.2;
+}
+
 const fmtParams = (p) => Object.entries(p).map(([k, v]) => `${k}=${v}`).join(" ") || "-";
 
 /** One row object per move, in catalog order. */
@@ -100,7 +107,8 @@ export function catalogMarkdown(catalog) {
     `Hit-only fx (spawned automatically by hits, explosions and props; do not list them in beats): ${d.fx.filter((f) => f.anchor === "point" && !TRAILS.includes(f.name)).map((f) => f.name).join(", ")}`,
     "",
     `### Props (characters[].prop or spawn_prop): ${d.props.map((p) => `${p.name} (${p.kind})`).join(", ")}`,
-    `### Themes (meta.theme): ${d.themes.join(", ")}`,
+    "### Themes (meta.theme). Character colors must contrast with the background color behind the characters:",
+    table(["theme", "background behind characters", "good character colors"], d.themes.map((t) => [t, catalog.themes[t].characterBg, isDark(catalog.themes[t].characterBg) ? "bright: light blue, yellow, orange, pink, white" : "strong or dark: red, blue, purple, dark green, black"])),
     `### Sound keys (automatic from moves and hits; listed for reference): ${d.sfx.join(", ")}`,
   ].join("\n");
 }

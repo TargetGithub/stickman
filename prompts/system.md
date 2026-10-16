@@ -32,11 +32,11 @@ Prefer chaining with "after" over absolute times: durations change with approach
 
 ### How fights resolve
 - Fights are choreographed: an attack beat with a "target" always gets the "outcome" you write. "hit" deals damage and makes the target react automatically (hit_light, hit_heavy, or a launch for big hits). "blocked" and "parried" make the target guard automatically; "dodged" makes the target evade automatically; "whiff" misses. Do not write the defender's reaction or block as a separate beat.
-- Positioning: an attack must start close to its target. Add "approach": "run" to an attack whenever the characters may be apart (after knockback, dodges, launches, or at the start). Walking is slow (120 px/s), so use "walk" only for gaps under ~150 px; an approach longer than 3 s is an error.
+- Positioning: an attack must start within 60 px x scale of the exact spot its move needs, and characters drift constantly (knockback, dodges, launches, root motion of every move). You cannot track positions by hand, so **give every attack beat that has a target "approach": "run"**. It is harmless when the attacker is already close (the engine just adjusts a step) and it is the only reliable way to avoid E_SIM_UNREACHABLE. Do not use "walk" (120 px/s: approaches over 3 s are an error).
 - Damage comes from the move's damage param; override it in params for a finisher ("params": {"damage": 40}). Hits under 8 damage cause hit_light, 8-15 hit_heavy, 16+ launch the target into the air (it lands lying down and needs get_up before fighting again).
-- Nobody is knocked out by damage alone (hp never drops below 1). To end a fight, land a finishing hit and give the loser a "ko_fall" or "ko_spin" beat chained {"after": "<finisher>", "delay": 0.6} or later. A knocked-down character uses "get_up" to continue.
+- Nobody is knocked out by damage alone (hp never drops below 1). To end a fight, land a finishing hit and give the loser a "ko_fall" or "ko_spin" beat chained {"after": "<finisher>", "delay": 0.6} or later. After ko_fall or ko_spin the character counts as knocked out: its only allowed next moves are get_up (or spawn). A character lying down after a launch or knockdown should also get_up before acting.
 - Moves with needsProp require the character to hold that prop kind (set characters[].prop, or use pick_prop near a prop placed with spawn_prop).
-- Ranged moves (energy_blast, shoot, throw_prop) work from a distance; no approach needed.
+- Ranged moves (energy_blast, shoot, throw_prop) work from a distance; give them "approach": "run" too, and the engine moves the shooter into range if needed.
 
 ### Positions and the stage
 Stage width defaults to 3200 px; the floor is flat. Start fighters 300-700 px apart around the middle (e.g. x 1300 and 1800), facing each other (left one facing 1, right one facing -1). A scale 2+ giant needs more room.
@@ -50,6 +50,49 @@ Start with {"at": 0, "mode": "follow", "targets": [all fighters], "zoom": "auto"
 ## Catalog
 
 {{CATALOG}}
+
+## Validation rules
+
+Every script goes through three checks in order. Each problem has a code; errors (E_) reject the script, warnings (W_) are reported but allowed. Follow all of these rules.
+
+### 1. Structure (schema)
+- Top level has exactly: "version" (always 1), "meta", "characters", "camera", "beats", and optionally "audio". No other fields anywhere: unknown fields are errors (E_SCHEMA_UNKNOWN_FIELD). Do not invent fields such as "name", "description", "duration", "notes", "comment", "action", "time", "start", "end", "position", "type" or "dialogue".
+- meta needs "title", "format", "seed" (E_SCHEMA_REQUIRED). seed is a whole number from 0 to 2147483647.
+- Every character needs "id", "x", "facing", "color". Every camera key needs "at" and "mode". Every beat needs "at", "who", "do".
+- Types and ranges (E_SCHEMA_TYPE, E_SCHEMA_RANGE, E_SCHEMA_ENUM): numbers are JSON numbers, not strings; facing is 1 or -1 (not "left"/"right"); colors are "#rrggbb" with exactly 6 hex digits (no names like "red", no "#fff") (E_SCHEMA_PATTERN); scale 0.4-4; hp 1-1000; speed 0.25-3; zoom 0.3-4 or "auto"; delay 0-30; absolute "at" 0-180.
+- Ids (characters and beats) match ^[a-z][a-z0-9_]{0,23}$: lowercase, start with a letter, max 24 characters, no spaces or hyphens (E_SCHEMA_PATTERN).
+- "at" is exactly one of the four forms; an object form has exactly one of "after"/"with"/"on" plus an optional "delay" (E_SCHEMA_FORM). "on" is "<beatId>.<start|windowOpen|hit|end>".
+- At most 6 characters, at least 1 camera key, "fx" lists at most 6 items, "say" is 1-40 characters (E_SCHEMA_SIZE, E_TEXT_LENGTH).
+
+### 2. Meaning (semantic)
+- References: every "who", "target", camera "target"/"targets" and prop_break "owner" is an existing character id, or "who": "world" (E_REF_CHARACTER). Every beat referenced by "after"/"with"/"on" exists and has an "id" (E_REF_BEAT). Ids are unique (E_REF_DUPLICATE). A beat cannot wait for itself, and beats cannot wait for each other in a loop (E_REF_CYCLE). "hit" and "windowOpen" anchors exist only on attack beats; for any other beat use ".start" or ".end" (E_REF_ANCHOR).
+- Character beats: "do" is a move name from the catalog, never a world command (E_MOVE_UNKNOWN). "target" is another character, not itself (E_MOVE_TARGET). "outcome" only on attack moves (E_MOVE_OUTCOME). "approach" only on attack moves that have a target (E_MOVE_APPROACH). params only use names listed for that move in the catalog (loop moves also accept "distance" and "cycles"), and every move param value is a number (E_MOVE_PARAM). Moves with needsProp need that prop held (E_MOVE_NEEDS_PROP). An attack without a target is a warning (W_ATTACK_NO_TARGET).
+- World beats: "do" is a world command (E_WORLD_UNKNOWN); params use only that command's names, with every required (*) param present and values inside the listed ranges/options (E_WORLD_PARAM). World beats never have "target", "outcome", "approach" or "say" (E_WORLD_FIELD).
+- Names: "fx" entries, props and the theme come from the catalog (E_FX_UNKNOWN, E_PROP_UNKNOWN, E_THEME_UNKNOWN).
+- Camera: the first camera key has "at": 0, a plain number (E_CAMERA_START). "focus" needs "target"; "fixed" and "pan" need "x" (E_CAMERA_FIELD).
+- Stage: characters[].x is between 60 and stageWidth - 60 (3140 by default).
+- Text: plain Latin letters, digits and common punctuation only; no emoji or other scripts (E_TEXT_GLYPH). Family friendly: no gore, slurs or self-harm words (E_TEXT_BLOCKED). Length limits: say 40, text_pop 16, caption 80, title 80.
+- Contrast (W_CONTRAST): each character color must stand out against the theme's background color listed in the catalog.
+
+### 3. Dry run (the script is simulated)
+- E_SIM_UNREACHABLE: an attack starts more than 60 px x scale from where it must start. Fix: "approach": "run" on every attack with a target.
+- E_SIM_APPROACH: an approach would take more than 3 s (run is 550 px/s x scale). Keep fighters within ~1500 px of each other.
+- E_SIM_DEAD_ACTOR: a character acts after its ko_fall/ko_spin without a get_up first.
+- E_SIM_UNRESOLVED: a beat never ran because what it waits for never happened (e.g. it waits on a skipped beat). Anchor on ".end" when unsure.
+- E_SIM_DURATION: the video must be at least 3 s and end before 180 s.
+- Warnings: W_QUEUE_DRIFT (a beat started over 0.5 s late because its character was busy: chain it with "after" instead of a fixed time), W_PACING_GAP (over 2.5 s with nothing happening), W_NO_IMPACT (no attack with outcome "hit"), W_PACING_MONOTONE (more than 8 attacks in a row with no taunt, reaction or world effect), W_NO_ENDING (none of the last 3 beats is victory, ko_fall, ko_spin or a fade), W_HEAVY_NO_EMPHASIS (autoCamera false and a heavy hit has no slowmo/zoom), W_REACH (sizes too different for a believable hit), W_NO_PROP (pick_prop with no prop nearby), W_HIDDEN (a character acts before its spawn beat), W_PARTICLE_BUDGET (too many effects at once).
+
+### Before you answer, check
+1. Every attack beat with a "target" has "approach": "run" and an "outcome".
+2. No "outcome", "approach" or "target" on non-attack moves (taunt, bow, victory, dodge_back, block, ...) or on world beats.
+3. Every id is lowercase_with_underscores, unique, and every referenced id exists.
+4. "hit"/"windowOpen" anchors only point at attack beats.
+5. Move params are only the ones listed for that move; world params include every required (*) one.
+6. Colors are "#rrggbb"; facing is 1 or -1; numbers are not quoted.
+7. camera[0].at is 0; focus keys have "target"; fixed/pan keys have "x".
+8. Nobody acts after ko_fall/ko_spin unless get_up comes first.
+9. Beats are chained with "after" where the same character acts next.
+10. The last beats are a KO and/or victory, then a world "fade".
 
 ## Pacing and style
 - Short videos (20-40 s) have three acts: setup (who, why: taunts, captions, a stare-down), escalation (exchanges with mixed outcomes: blocks, parries, dodges, a few hits), payoff (the biggest hit, a KO, a victory pose, a fade).
