@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "meta": { "title": "Dojo at Dusk", "format": "landscape", "seed": 11, "mode": "choreographed", "theme": "dojo_dusk", "hpBars": true },
+  "characters": [
+    { "id": "hero", "x": 900, "facing": 1, "color": "#3fb8ff", "scale": 1.0, "hp": 100 },
+    { "id": "boss", "x": 1700, "facing": -1, "color": "#ff4646", "scale": 2.2, "hp": 200 }
+  ],
+  "camera": [
+    { "at": 0, "mode": "follow", "targets": ["hero", "boss"], "zoom": "auto", "padding": 280 },
+    { "at": { "on": "fk.hit" }, "mode": "focus", "target": "boss", "zoom": 1.15 },
+    { "at": { "after": "fk", "delay": 0.6 }, "mode": "follow", "targets": ["hero", "boss"], "zoom": "auto", "padding": 280 }
+  ],
+  "beats": [
+    { "at": 0.2, "who": "world", "do": "caption", "params": { "text": "The dojo. Dusk. One last challenger.", "pos": "bottom", "dur": 2.2 } },
+    { "id": "t1", "at": 0.6, "who": "boss", "do": "taunt", "say": "Come here, tiny!" },
+    { "id": "j1", "at": { "after": "t1", "delay": 0.1 }, "who": "hero", "do": "jab", "target": "boss", "approach": "run", "outcome": "hit", "fx": ["speed_lines"] },
+    { "id": "c1", "at": { "after": "j1" }, "who": "hero", "do": "cross", "target": "boss", "outcome": "blocked" },
+    { "id": "k1", "at": { "after": "c1", "delay": 0.2 }, "who": "boss", "do": "front_kick", "target": "hero", "outcome": "dodged" },
+    { "id": "x1", "at": { "after": "k1", "delay": 0.1 }, "who": "boss", "do": "cross", "target": "hero", "approach": "walk", "outcome": "parried", "say": "Hmph?!" },
+    { "id": "fk", "at": { "after": "x1", "delay": 0.1 }, "who": "hero", "do": "front_kick", "target": "boss", "approach": "run", "outcome": "hit", "params": { "damage": 40 }, "say": "HYAAA!", "fx": ["afterimage"] },
+    { "at": { "on": "fk.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.25, "duration": 0.45 } },
+    { "at": { "on": "fk.hit" }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+    { "id": "ko", "at": { "after": "fk", "delay": 0.9 }, "who": "boss", "do": "ko_fall" },
+    { "at": { "with": "ko" }, "who": "world", "do": "desaturate", "params": { "amount": 0.85, "dur": 1.6 } },
+    { "id": "v1", "at": { "after": "ko", "delay": 0.1 }, "who": "hero", "do": "victory", "fx": ["aura"] },
+    { "at": { "with": "v1" }, "who": "world", "do": "text_pop", "params": { "text": "K.O.!" } },
+    { "at": { "after": "v1", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 1, "dir": "out" } }
+  ]
+}

@@ -25,6 +25,22 @@ export const WORLD_COMMANDS = {
   cut: {},
 };
 
+const MIN_CONTRAST = 1.6;
+
+/** WCAG contrast ratio between two #rrggbb colors. */
+export function contrastRatio(a, b) {
+  const lum = (hex) => {
+    const n = parseInt(hex.slice(1), 16);
+    const [r, g, bl] = [16, 8, 0].map((sh) => {
+      const c = ((n >> sh) & 255) / 255;
+      return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * bl;
+  };
+  const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+}
+
 const GLYPHS = /^[\x20-\x7E -ÿ’…]*$/;
 
 export function checkText(text, path, blocklist, out) {
@@ -125,6 +141,16 @@ export function checkSemantics(script, catalog, moves) {
     }
     if (c.prop && !(c.prop in catalog.props)) out.push({ code: "E_PROP_UNKNOWN", path: `${p}.prop`, message: `Unknown prop '${c.prop}'.`, fix: `Use one of: ${Object.keys(catalog.props).join(", ")}.` });
   });
+  const theme = catalog.themes[meta.theme ?? "white_stage"];
+  if (theme) {
+    script.characters.forEach((c, i) => {
+      const ratio = contrastRatio(c.color, theme.characterBg);
+      if (ratio < MIN_CONTRAST) {
+        out.push({ code: "W_CONTRAST", path: `characters[${i}].color`, message: `'${c.id}' (${c.color}) is hard to see on ${meta.theme ?? "white_stage"} (contrast ${ratio.toFixed(2)}).`,
+          fix: `Pick a color that stands out against ${theme.characterBg}.` });
+      }
+    });
+  }
   if (meta.theme && !catalog.themeNames.includes(meta.theme)) {
     out.push({ code: "E_THEME_UNKNOWN", path: "meta.theme", message: `Unknown theme '${meta.theme}'.`, fix: `Use one of: ${catalog.themeNames.join(", ")}.` });
   }

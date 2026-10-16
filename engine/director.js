@@ -43,11 +43,14 @@ export function parseAt(at) {
  * @param {Map<string, object>} moves  prepared catalog
  */
 export function createDirector(script, moves) {
-  const beats = (script.beats || []).map((b, index) => {
+  // Camera keys run through the same scheduler as beats (same `at` forms), as who: "camera".
+  const cameraBeats = (script.camera || []).map((k, i) => ({ at: k.at, who: "camera", do: k.mode, key: k, id: `camera#${i}`, path: `camera[${i}]` }));
+  const beats = [...(script.beats || []), ...cameraBeats].map((b, index) => {
     const dep = parseAt(b.at);
     return {
       ...b,
       index,
+      path: b.path ?? `beats[${index}]`,
       id: b.id ?? `#${index}`,
       dep,
       due: dep?.kind === "abs" ? dep.t : null,
@@ -72,7 +75,7 @@ export function createDirector(script, moves) {
 }
 
 function issue(director, code, beat, message, fix, severity = "error") {
-  director.issues.push({ code, path: beat ? `beats[${beat.index}]` : "", message, fix, severity });
+  director.issues.push({ code, path: beat ? beat.path : "", message, fix, severity });
 }
 
 /** Record an anchor of a beat and release beats waiting on it. */
@@ -150,6 +153,13 @@ function approach(director, beat, actor, ctx) {
 
 function execute(director, beat, ctx) {
   const { world, emit, storyT } = ctx;
+  if (beat.who === "camera") {
+    beat.firedAt = storyT;
+    beat.state = "done";
+    anchor(director, beat, "start", storyT);
+    anchor(director, beat, "end", storyT);
+    return emit({ type: "camera", key: beat.key });
+  }
   if (beat.who === "world") {
     beat.firedAt = storyT;
     beat.state = "done";

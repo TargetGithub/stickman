@@ -1,22 +1,170 @@
-// Camera modes, framing, smoothing, zoom punch.
-// Milestone: M4. Spec: section 11.5. Interfaces: docs/ARCHITECTURE.md section 4.
+// Camera: modes, framing, spring smoothing, shake, zoom punch (spec 11.5, 13.3).
+// Milestone: M4. Smoothing runs on video time; shake decays on the fx clock.
 
-/** Camera for a format. */
-export function createCamera(format) {
-  throw new Error("not implemented: createCamera");
+import { BODY } from "./skeleton.js";
+import { valueNoise1D, easings } from "./math.js";
+import { CAMERA, SHAKE } from "./config.js";
+
+const ZOOM_MIN = 0.4;
+const ZOOM_MAX = 1.8;
+const TOP_MARGIN = 0.17; // fraction of frame height kept free above the tallest head (clears HP bars)
+
+/**
+ * @param {{ width, height, groundScreenRatio, stageWidth, groundY, rng }} opts
+ */
+export function createCamera({ width, height, groundScreenRatio, stageWidth, groundY, rng }) {
+  return {
+    W: width,
+    H: height,
+    gsr: groundScreenRatio,
+    stageWidth,
+    groundY,
+    x: stageWidth / 2,
+    zoom: 1,
+    vx: 0,
+    vz: 0,
+    key: { mode: "follow" },
+    keyT0: 0,
+    keyFrom: null,
+    cut: true, // the first frame snaps
+    widen: 1,
+    shakes: [],
+    punches: [],
+    noiseX: valueNoise1D(rng),
+    noiseY: valueNoise1D(rng),
+    state: { x: stageWidth / 2, y: groundY, zoom: 1, shakeX: 0, shakeY: 0 },
+  };
 }
 
-/** Apply a resolved camera key. */
-export function setCameraKey(cam, key) {
-  throw new Error("not implemented: setCameraKey");
+/** Apply a camera key (spec 11.5). Transitions start from the current framing. */
+export function setCameraKey(cam, key, videoT) {
+  cam.key = key;
+  cam.keyT0 = videoT;
+  cam.keyFrom = { x: cam.x, zoom: cam.zoom };
 }
 
-/** Advance smoothing and framing one video frame. */
-export function stepCamera(cam, videoDt, world) {
-  throw new Error("not implemented: stepCamera");
+/** Hard cut: the next frame jumps to the target framing without smoothing. */
+export function cutCamera(cam) {
+  cam.cut = true;
 }
 
-/** Current { x, y, zoom }. */
+export function addShake(cam, preset, fxT) {
+  const p = SHAKE[preset] || SHAKE.small;
+  cam.shakes.push({ amp: p.amplitude, dur: p.duration, t0: fxT });
+}
+
+export function addZoomPunch(cam, amount, dur, videoT) {
+  cam.punches.push({ amount, dur, t0: videoT });
+}
+
+function bounds(actors) {
+  let minX = Infinity;
+  let maxX = -Infinity;
+  let minY = Infinity;
+  for (const a of actors) {
+    for (const p of Object.values(a.joints)) {
+      minX = Math.min(minX, p.x);
+      maxX = Math.max(maxX, p.x);
+    }
+    minY = Math.min(minY, a.joints.head.y - BODY.headR * a.scale);
+  }
+  return { minX, maxX, minY };
+}
+
+/** Zoom that fits a horizontal span plus padding, and keeps the top of the group inside the frame. */
+function fitZoom(cam, span, top, padding) {
+  const byWidth = cam.W / (span + 2 * padding);
+  const above = cam.groundY - top;
+  const byHeight = above > 0 ? (cam.H * (cam.gsr - TOP_MARGIN)) / above : ZOOM_MAX;
+  return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, byWidth, byHeight));
+}
+
+/** Target framing { x, zoom, y? } for the current key. */
+function desired(cam, actors, videoT) {
+  const k = cam.key;
+  const byId = (id) => actors.find((a) => a.id === id);
+  const u = k.dur ? Math.min(1, (videoT - cam.keyT0) / k.dur) : 1;
+  const ease = easings[k.ease] || easings.inOutCubic;
+  if (k.mode === "focus") {
+    const t = byId(k.target);
+    const b = t ? bounds([t]) : null;
+    const zoom = typeof k.zoom === "number" ? k.zoom : fitZoom(cam, b.maxX - b.minX, b.minY, 220);
+    return { x: t ? (b.minX + b.maxX) / 2 : cam.x, zoom };
+  }
+  if (k.mode === "fixed") return { x: k.x, zoom: typeof k.zoom === "number" ? k.zoom : 1, y: k.y };
+  if (k.mode === "pan") {
+    const from = cam.keyFrom || { x: cam.x, zoom: cam.zoom };
+    const zoom = typeof k.zoom === "number" ? k.zoom : from.zoom;
+    return { x: from.x + (k.x - from.x) * ease(u), zoom: from.zoom + (zoom - from.zoom) * ease(u), y: k.y, direct: true };
+  }
+  if (k.mode === "push") {
+    const from = cam.keyFrom || { x: cam.x, zoom: cam.zoom };
+    const to = typeof k.zoom === "number" ? k.zoom : from.zoom * 1.3;
+    const group = (k.targets || []).map(byId).filter(Boolean);
+    const b = bounds(group.length ? group : actors);
+    return { x: (b.minX + b.maxX) / 2, zoom: from.zoom + (to - from.zoom) * ease(u), direct: true };
+  }
+  const group = (k.targets || []).map(byId).filter(Boolean);
+  const b = bounds(group.length ? group : actors);
+  const padding = (k.padding ?? CAMERA.padding) * cam.widen;
+  const zoom = typeof k.zoom === "number" ? k.zoom : fitZoom(cam, b.maxX - b.minX, b.minY, padding);
+  return { x: (b.minX + b.maxX) / 2, zoom };
+}
+
+function spring(value, vel, target, dt) {
+  const w = CAMERA.omega;
+  const acc = w * w * (target - value) - 2 * w * vel;
+  const v = vel + acc * dt;
+  return [value + v * dt, v];
+}
+
+/**
+ * Advance one video frame and return the camera state for that frame:
+ * { x, y, zoom, shakeX, shakeY } with shake in world units.
+ * @param {object[]} actors  world actors (joints, scale, launched, vx)
+ */
+export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = true } = {}) {
+  const fast = autoCamera && actors.some((a) => a.launched || Math.abs(a.vx) > 300);
+  cam.widen += ((fast ? 1.3 : 1) - cam.widen) * Math.min(1, videoDt * 3);
+  const d = desired(cam, actors, videoT);
+  if (cam.cut || d.direct) {
+    cam.x = d.x;
+    cam.zoom = d.zoom;
+    cam.vx = 0;
+    cam.vz = 0;
+    cam.cut = false;
+  } else {
+    [cam.x, cam.vx] = spring(cam.x, cam.vx, d.x, videoDt);
+    [cam.zoom, cam.vz] = spring(cam.zoom, cam.vz, d.zoom, videoDt);
+  }
+  cam.zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX * 1.2, cam.zoom));
+
+  let punch = 1;
+  cam.punches = cam.punches.filter((p) => videoT - p.t0 < p.dur);
+  for (const p of cam.punches) punch *= 1 + p.amount * Math.sin(Math.PI * ((videoT - p.t0) / p.dur));
+  const zoom = cam.zoom * punch;
+
+  const half = cam.W / (2 * zoom);
+  const x = cam.stageWidth <= 2 * half ? cam.stageWidth / 2 : Math.max(half, Math.min(cam.stageWidth - half, cam.x));
+  const y = d.y ?? cam.groundY - (cam.H * cam.gsr - cam.H / 2) / zoom;
+
+  let sx = 0;
+  let sy = 0;
+  cam.shakes = cam.shakes.filter((s) => fxT - s.t0 < s.dur);
+  for (const s of cam.shakes) {
+    const k = (1 - (fxT - s.t0) / s.dur) ** 2;
+    sx += s.amp * k * cam.noiseX(fxT * 30);
+    sy += s.amp * k * cam.noiseY(fxT * 30 + 100);
+  }
+  cam.state = { x, y, zoom, shakeX: sx / zoom, shakeY: sy / zoom };
+  return cam.state;
+}
+
 export function cameraState(cam) {
-  throw new Error("not implemented: cameraState");
+  return cam.state;
+}
+
+/** World → screen for a camera state (used by the renderer for screen-space overlays). */
+export function toScreen(state, W, H, p) {
+  return { x: W / 2 + (p.x - state.x + state.shakeX) * state.zoom, y: H / 2 + (p.y - state.y + state.shakeY) * state.zoom };
 }

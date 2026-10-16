@@ -52,7 +52,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 | M2.7 Hit connectivity test matrix (every attack × outcome × target scale) | |
 **Exit**: a hard-coded fight between a 1.0 and a 2.2 character shows all five outcomes.
 
-### M3 Clocks + director + validator (4-5 days) — DONE 2026-10-15, awaiting review. Schema v1 frozen.
+### M3 Clocks + director + validator (4-5 days) — DONE 2026-10-15, reviewed. Schema v1 frozen.
 | Task | Output |
 |---|---|
 | M3.1 `clock.js`: story/fx/video, slowmo ramps, hitstop, freeze, story→video mapping | |
@@ -66,7 +66,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: Appendix A plays from JSON; validator returns errors and a timeline. **Script schema v1 frozen.**
 **Review**: Sridhar reads validator output for 5 broken scripts and confirms it is understandable.
 
-### M4 FX + camera + themes + overlays (4-5 days)
+### M4 FX + camera + themes + overlays (4-5 days) — DONE 2026-10-16, awaiting review
 | Task | Output |
 |---|---|
 | M4.1 `fx.js` emit log, analytic particles, presets: impacts, block_spark, dust, shockwave, speed_lines | |

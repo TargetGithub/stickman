@@ -1,13 +1,15 @@
 #!/usr/bin/env node
-// Validate, simulate and render a script to MP4 with the interim preview renderer (M3).
-// Usage: node tools/play_script.mjs <script.json> [--out out/<name>.mp4]
-// M6 replaces this with tools/record.mjs (real renderer, audio, thumbnail).
+// Validate, simulate and render a script to MP4 with the engine renderer (no audio yet).
+// Usage: node tools/play_script.mjs <script.json> [--out out/<name>.mp4] [--preview] [--frames a,b,c]
+//   --preview  use the old M3 interim renderer; --frames  also save those frame numbers as PNGs.
+// M6 replaces this with tools/record.mjs (audio, thumbnail, metadata).
 
 import { readFileSync } from "node:fs";
 import { basename } from "node:path";
 import { loadBackend } from "./lib/canvas.mjs";
 import { startEncoder } from "./lib/encode.mjs";
 import { createPreview } from "./lib/preview.mjs";
+import { createRenderer, renderFrame } from "../engine/renderer/index.js";
 import { validate, formatIssues } from "../engine/validator/index.js";
 import { simulate } from "../engine/sim.js";
 import { catalog } from "../data/index.js";
@@ -28,17 +30,19 @@ if (!check.ok) {
 }
 
 const sim = simulate(script, catalog);
-const W = script.meta.format === "portrait" ? 1080 : 1920;
-const H = script.meta.format === "portrait" ? 1920 : 1080;
+const { width: W, height: H } = sim.format;
 const backend = await loadBackend();
 const canvas = backend.createCanvas(W, H);
 const ctx = canvas.getContext("2d");
-const draw = createPreview(sim, { width: W, height: H, seed: script.meta.seed });
+const renderer = createRenderer(catalog, sim);
+const draw = args.includes("--preview") ? createPreview(sim, { width: W, height: H, seed: script.meta.seed }) : (c, n) => renderFrame(renderer, c, n);
+const stills = new Set(args.includes("--frames") ? args[args.indexOf("--frames") + 1].split(",").map(Number) : []);
 const enc = startEncoder(out, W, H);
 const t0 = process.hrtime.bigint();
 for (let n = 0; n < sim.frames.length; n++) {
   draw(ctx, n);
   await enc.write(backend.readRGBA(canvas));
+  if (stills.has(n)) await backend.savePng(canvas, out.replace(/\.mp4$/, `_f${n}.png`));
 }
 await enc.close();
 const sec = Number(process.hrtime.bigint() - t0) / 1e9;

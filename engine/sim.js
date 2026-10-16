@@ -1,5 +1,5 @@
 // Simulation loop: clock → director → world → events, one step per video frame (spec 3, 6).
-// Milestone: M3 (frames as plain snapshots; M5 replaces them with the packed frame store).
+// Milestone: M3, M4 (FX and camera via presentation.js). Frames are plain snapshots until M5's packed store.
 
 import { createActor } from "./actor.js";
 import { prepareCatalog } from "./moves.js";
@@ -7,6 +7,7 @@ import { createWorld, stepWorld } from "./world.js";
 import { createClock, tick, requestHitstop, timeEffectsActive } from "./clock.js";
 import { createDirector, stepDirector, onEvents, directorIdle, finishDirector } from "./director.js";
 import { packJoints } from "./skeleton.js";
+import { createPresentation, presentEvent, stepPresentation } from "./presentation.js";
 import { FPS, STAGE, LIMITS } from "./config.js";
 
 const prepared = new WeakMap();
@@ -17,11 +18,12 @@ export function movesFor(catalog) {
   return prepared.get(catalog);
 }
 
-function snapshot(world, clock) {
+function snapshot(world, clock, cam) {
   return {
     storyT: clock.storyT,
     fxT: clock.fxT,
     videoT: clock.videoT,
+    cam: { ...cam },
     chars: world.actors.map((a) => ({
       id: a.id, joints: packJoints(a.joints, new Float32Array(26)), facing: a.facing, scale: a.scale,
       color: a.color, mouth: a.mouth, hp: a.hp, maxHp: a.maxHp, airborne: a.airborne,
@@ -36,7 +38,8 @@ const settled = (a) => (!a.move || a.move.def.name === "idle" || a.holding) && !
  * @param {object} script  schema-valid script
  * @param {object} catalog  data catalog (poses, moves, ...)
  * @param {{ dryRun?:boolean, maxSeconds?:number }} opts  dryRun skips frame snapshots (validator)
- * @returns {{ frames, events, anchors, beats, issues, totalFrames, durationSec, clock }}
+ * @returns {{ frames, events, anchors, beats, issues, totalFrames, durationSec, clock, fx, format }}
+ *   fx: { log, trails, flashes } for the renderer; format: { width, height, groundScreenRatio }
  */
 export function simulate(script, catalog, opts = {}) {
   const moves = movesFor(catalog);
@@ -48,9 +51,14 @@ export function simulate(script, catalog, opts = {}) {
   const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth });
   const clock = createClock();
   const director = createDirector(script, moves);
-  const frames = opts.dryRun ? null : [snapshot(world, clock)];
+  const present = createPresentation(script, catalog);
   const log = []; // every event with its story/video time
-  const emit = (e) => log.push({ ...e, storyT: clock.storyT, videoT: clock.videoT });
+  const emit = (e) => {
+    log.push({ ...e, storyT: clock.storyT, videoT: clock.videoT });
+    presentEvent(present, e, world, clock);
+  };
+  let cam = stepPresentation(present, world, clock, 0, 0);
+  const frames = opts.dryRun ? null : [snapshot(world, clock, cam)];
   const maxFrames = Math.round((opts.maxSeconds ?? LIMITS.maxDuration + 5) * FPS);
   const tailFrames = Math.round((meta.tail ?? 0.5) * FPS);
   let quietFrames = 0;
@@ -65,7 +73,8 @@ export function simulate(script, catalog, opts = {}) {
       emit(e);
     }
     onEvents(director, events, clock.storyT);
-    if (frames) frames.push(snapshot(world, clock));
+    cam = stepPresentation(present, world, clock, d.fxDt, d.videoDt);
+    if (frames) frames.push(snapshot(world, clock, cam));
 
     const quiet = directorIdle(director) && world.actors.every(settled) && !timeEffectsActive(clock);
     quietFrames = quiet ? quietFrames + 1 : 0;
@@ -76,6 +85,10 @@ export function simulate(script, catalog, opts = {}) {
     }
   }
   const issues = finishDirector(director);
+  if (present.fx.dropped) {
+    issues.push({ code: "W_PARTICLE_BUDGET", path: "beats", severity: "warning",
+      message: `${present.fx.dropped} particles were dropped (more than ${LIMITS.particles} at once).`, fix: "Spread big effects out or use smaller impact presets." });
+  }
   if (overran) {
     issues.push({ code: "E_SIM_DURATION", path: "beats", severity: "error",
       message: `The script is still running after ${(maxFrames / FPS).toFixed(0)}s of video.`, fix: `Keep videos under ${LIMITS.maxDuration}s; check for long waits or slowmo.` });
@@ -89,5 +102,8 @@ export function simulate(script, catalog, opts = {}) {
     totalFrames: clock.frame + 1,
     durationSec: clock.videoT,
     clock,
+    fx: { log: present.fx.log, trails: present.fx.trails, flashes: present.fx.flashes },
+    format: present.format,
+    meta: { ...meta },
   };
 }

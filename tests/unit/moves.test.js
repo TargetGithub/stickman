@@ -121,3 +121,13 @@ test("blending eases from the previous pose into the new move", () => {
   const after = stepMove(actor, DT).pose.lean;
   assert.ok(after < 5, "blend finished");
 });
+
+test("every effect and shake named in move data exists", () => {
+  for (const def of prepareCatalog(catalog.moves, catalog.poses).values()) {
+    for (const e of def.events) {
+      for (const name of e.fx || []) assert.ok(name in catalog.fxPresets, `${def.name} uses unknown fx ${name}`);
+      if (e.shake) assert.ok(["small", "med", "big"].includes(e.shake), `${def.name} shake ${e.shake}`);
+    }
+    for (const h of def.hits) for (const name of h.fx || []) assert.ok(name in catalog.fxPresets, `${def.name} hit fx ${name}`);
+  }
+});

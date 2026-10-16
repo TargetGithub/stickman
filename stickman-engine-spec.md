@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list.
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -101,6 +101,7 @@ This document is the source of truth for behavior and the script schema. When th
   combat.js             hurtboxes, hit resolution, aim, reach, outcomes, reactions
   clock.js              story/FX/video clocks, slowmo, hitstop, freeze
   fx.js                 FX preset runtime, analytic particle emit log
+  presentation.js       events → FX emissions and camera actions; steps FX and camera per video frame
   camera.js             camera modes, framing, shake, zoom punch
   director.js           beat scheduling, anchors, approach, queue/interrupt
   sim.js                world step loop, builds the frame store
@@ -542,7 +543,9 @@ required  = aimX - facing * (reach + travel(tmid) + gap)  // outcome whiff (star
 ```
 
 - Modes: `follow` (fit all targets plus padding), `focus` (one target), `fixed` (x, optional y), `pan` (to x over `dur`), `push` (slow zoom-in over `dur`).
-- Smoothing: critically damped spring (`omega = 8`) in video time. `cut` world beats skip smoothing.
+- Camera keys are scheduled by the director like beats (same `at` forms) and appear in the timeline as `camera <mode>`.
+- Smoothing: critically damped spring (`omega = 8`) in video time on x and zoom. `cut` world beats make the next camera key snap. `pan` and `push` follow their eased path directly.
+- Auto zoom stays within 0.4-1.8 and keeps 17% of the frame height free above the tallest head (clears HP bars and the top safe area).
 - **Vertical framing**: unless `y` is given, the camera keeps `groundY` at `groundScreenRatio` of the frame height (landscape 0.82, portrait 0.70) and keeps the tallest target's head inside the top safe margin by zooming out.
 - `zoom: "auto"` fits targets horizontally; portrait uses a narrower horizontal fit and allows more zoom-out.
 - Clamped to stage bounds.
@@ -550,7 +553,7 @@ required  = aimX - facing * (reach + travel(tmid) + gap)  // outcome whiff (star
 
 ### 11.6 Speech, captions, safe areas
 - Speech bubbles: rounded rectangle, tail toward the head, bundled comic font, auto-sized, ≤ 40 characters, kept inside the frame.
-- Captions: bottom/top/center bands with safe margins. Portrait safe area keeps text out of the bottom 20% and top 12% (Shorts UI).
+- Captions: bottom/top/center bands with safe margins, word-wrapped to 86% of the frame width. Portrait safe area keeps text out of the bottom 20% and top 12% (Shorts UI). Bottom captions never sit above the ground line (they would cover feet).
 
 ---
 
@@ -611,10 +614,13 @@ Position at age `a = fxT(n) - fxT0` is closed form:
 - Budget: at most 2,000 live particles. Emissions over budget are dropped deterministically (in emission order) and reported as a validator warning.
 - Particles that need per-tick physics beyond this (collisions) are out of scope for v1.
 
+### 13.2.1 Preset data (`data/fx.js`)
+A preset is `{ anchor: point|head|hip|feet, layers: [...], sustain?, glow?, trail?, flash? }`. A layer describes one particle group: `shape` (line, dot, ring, ellipse, star, puff, glow, glyph), `count`, `angle` (degrees; 0 = the effect's facing, -90 = up), `speed`, `life` (≤ 3 s), `size` [start, end], `width`, `gravity`, `drag`, `color` (one or a list), `alpha` [start, end], `offset`, `spreadY`, `vrot`, `attach` (follow a joint), `orbit`, `glyph`, `tintable`. Sizes and speeds scale with the triggering character. Effects are triggered by hit `fx`, move `events[].fx`, beat `fx`, landings (dust above 900 px/s), and world `explosion`.
+
 ### 13.3 Stateful effects
 - `afterimage` and `slash_arc` read joint and tip positions from previous frames in the frame store.
 - `shake`: seeded value noise, amplitude decaying exponentially on the fx clock. Presets: `small` 6 px / 0.15 s, `med` 14 px / 0.25 s, `big` 28 px / 0.45 s.
-- `zoom_punch`, `flash`, `fade`, `desaturate`, `vignette_pulse` are overlay state stored per frame.
+- `zoom_punch` is camera state stored per frame. `flash`, `fade`, `desaturate`, `caption`, `text_pop` and speech bubbles are drawn from the event log at the frame's video time (no stored state). A vignette darkens the edges automatically while slow motion is active.
 - `desaturate` is drawn with `globalCompositeOperation = "saturation"` and a grey fill, which works in both canvas backends.
 
 ---
@@ -742,7 +748,8 @@ Runs the full simulation without rendering, then checks:
 - Queued beats that start more than 0.5 s after their `at` (warning, shows the actual start).
 - Total video duration between 3 and 180 s.
 - Particle budget overflow (warning).
-- Character color contrast against the theme (warning).
+- Particle budget overflow (`W_PARTICLE_BUDGET`).
+- Character color contrast against the theme's `characterBg` (`W_CONTRAST`, WCAG ratio below 1.6; checked in the semantic stage).
 
 Every result, valid or not, includes a **timeline** the LLM can read:
 
@@ -761,7 +768,7 @@ t=3.80  world  slowmo x0.3    (story 3.80-4.30, video +1.17 s)
 | schema | `E_SCHEMA_TYPE`, `E_SCHEMA_REQUIRED`, `E_SCHEMA_ENUM`, `E_SCHEMA_RANGE`, `E_SCHEMA_PATTERN`, `E_SCHEMA_SIZE`, `E_SCHEMA_FORM`, `E_SCHEMA_UNKNOWN_FIELD`, `E_TEXT_LENGTH` |
 | semantic | `E_REF_DUPLICATE`, `E_REF_CHARACTER`, `E_REF_BEAT`, `E_REF_ANCHOR`, `E_REF_CYCLE`, `E_MOVE_UNKNOWN`, `E_MOVE_PARAM`, `E_MOVE_TARGET`, `E_MOVE_OUTCOME`, `E_MOVE_APPROACH`, `E_WORLD_UNKNOWN`, `E_WORLD_PARAM`, `E_WORLD_FIELD`, `E_CAMERA_START`, `E_CAMERA_FIELD`, `E_THEME_UNKNOWN`, `E_PROP_UNKNOWN`, `E_FX_UNKNOWN`, `E_TEXT_GLYPH`, `E_TEXT_BLOCKED` |
 | dry run | `E_SIM_UNREACHABLE`, `E_SIM_APPROACH`, `E_SIM_DEAD_ACTOR`, `E_SIM_UNRESOLVED`, `E_SIM_DURATION`, `E_MOVE_NEEDS_PROP` |
-| warnings | `W_QUEUE_DRIFT`, `W_ATTACK_NO_TARGET`, `W_PACING_GAP`, `W_NO_IMPACT`, `W_PACING_MONOTONE`, `W_NO_ENDING`, `W_HEAVY_NO_EMPHASIS` |
+| warnings | `W_QUEUE_DRIFT`, `W_ATTACK_NO_TARGET`, `W_PACING_GAP`, `W_NO_IMPACT`, `W_PACING_MONOTONE`, `W_NO_ENDING`, `W_HEAVY_NO_EMPHASIS`, `W_PARTICLE_BUDGET`, `W_CONTRAST` |
 
 ### 16.5 Pacing heuristics (warnings)
 - A gap with no action longer than 2.5 s.

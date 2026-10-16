@@ -23,3 +23,7 @@ Feature checks, both backends:
 **Decision: `@napi-rs/canvas`** (ADR-001). The two are equal on speed and determinism. @napi-rs/canvas has prebuilt binaries with no system libraries and a smaller API surface. `skia-canvas` stays installed as a fallback until M6, then is removed if unused.
 
 Follow-up for M6: ffmpeg prints one "Truncating packet of size 8294400 to 8192" line on the raw pipe. All 600 frames decode correctly (first and last checked), but `record.mjs` should set explicit `-video_size`/`-framerate` input options and confirm the warning is gone.
+
+## M4 renderer (2026-10-16)
+
+`node tools/play_script.mjs scripts/samples/m4_dojo.json` (dojo_dusk theme, 2 characters, impacts, aura, overlays): 878 frames (14.6 s video) simulated, rendered and encoded in 14.5 s, about 60 frames/s end to end on the M3 Pro. Spec 14.4 target: ≥ 25 frames/s.

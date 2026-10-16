@@ -18,6 +18,7 @@ Arrows mean "imports". There are no cycles.
 ```
 index.js ──► sim.js ──► world.js ──► actor.js ──► moves.js ──► pose.js ──► skeleton.js ──► math.js
    │           │           ├──► physics.js, combat.js
+   │           ├──► presentation.js ──► fx.js, camera.js
    │           ├──► director.js
    │           │            │             │                                        ▲
    │           │            │             └──► expr.js                             │
@@ -196,19 +197,33 @@ export function storyToVideo(clock, storyT): number;       // from the recorded 
 
 ### fx.js
 ```js
-export function createFx(rng, presets): FxState;
-export function emitFx(fx, name, at: Vec, params, fxT): void;   // appends to emit log
-export function stepFx(fx, fxDt, world): void;                   // emitters like dust_run, aura
-export function liveParticles(emitLog, fxT, out): number;        // used by renderer
-export function shakeOffset(fx, fxT): Vec;
+export const MAX_LIFE;   // 3 s
+export function createFx(rng, presets, budget?): { log, trails, sustains, flashes, dropped, ... };
+export function emitFx(fx, name, at: Vec, opts:{ dir, scale, actorId, part, color }, fxT): boolean;
+export function stepFx(fx, fxDt, fxT, anchorOf(sustain) => Vec): void;   // sustained emitters (aura)
+export function particleAt(record, fxT): { x, y, size, alpha, rot, vx, vy } | null;   // closed form
+export function liveParticles(log, fxT): record[];                                      // binary search + window
+```
+Shake moved to camera.js.
+
+### presentation.js
+```js
+export function createPresentation(script, catalog): { fx, cam, format, autoCamera, ... };
+export function presentEvent(p, event, world, clock): void;   // hit/moveEvent/land/fx/world/camera → FX + camera
+export function stepPresentation(p, world, clock, fxDt, videoDt): CameraState;
+export function anchorPoint(actor, "head"|"hip"|"feet"|"point"): Vec;
 ```
 
 ### camera.js
 ```js
-export function createCamera(format): Camera;
-export function setCameraKey(cam, key): void;
-export function stepCamera(cam, videoDt, world): void;
-export function cameraState(cam): { x, y, zoom };
+export function createCamera({ width, height, groundScreenRatio, stageWidth, groundY, rng }): Camera;
+export function setCameraKey(cam, key, videoT): void;
+export function cutCamera(cam): void;
+export function addShake(cam, preset, fxT): void;
+export function addZoomPunch(cam, amount, dur, videoT): void;
+export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera }): { x, y, zoom, shakeX, shakeY };
+export function cameraState(cam): CameraState;
+export function toScreen(state, W, H, worldPoint): Vec;
 ```
 
 ### director.js
@@ -260,10 +275,10 @@ export function shade(hex, k): string;
 
 ### renderer/index.js
 ```js
-export function createRenderer(ctxFactory, themes, fonts): Renderer;
-export function renderFrame(renderer, ctx, store, n): void;
+export function createRenderer(catalog, sim): Renderer;   // sim = simulate() result (frames, events, fx, format, meta)
+export function renderFrame(renderer, ctx, n): void;      // pure in (sim, n); random access
 ```
-`ctxFactory(w, h)` returns an offscreen canvas for background caching (`OffscreenCanvas` in the browser, a new Skia canvas in Node).
+Modules: `background.js` (procedural theme layers with parallax; geometry generated once per theme from the seeded `bg` stream), `particles.js` (analytic particles, glyphs), `overlays.js` (post-world desaturate and slow-motion vignette, then bubbles, HP bars, text pops, captions, flashes, fades), `character.js`. Fonts are referenced by family name ("Bangers", "Inter"); the host registers them (Node: `tools/lib/canvas.mjs`; browser: `@font-face`). Background layers are drawn as shapes each frame (no offscreen cache yet): render cost is ~10 ms/frame at 1080p, so caching was not needed.
 
 
 
@@ -340,3 +355,7 @@ See spec 15.1.
 ### ADR-011 Director-owned queues
 - **Decision**: beats for busy characters wait in the director, not in the actor's move queue.
 - **Consequences**: `approach` is planned when the beat actually starts, and queue drift can be measured and reported.
+
+### ADR-012 Overlays drawn from the event log
+- **Decision**: speech bubbles, captions, text pops, flashes, fades and desaturate are computed at render time from logged events and the frame's video time; only the camera (stateful smoothing) is stored per frame.
+- **Consequences**: frames stay small; overlay styling can change without re-simulating; random access is preserved.
