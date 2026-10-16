@@ -34,13 +34,14 @@ const appearance = {
   type: "object",
   additionalProperties: false,
   properties: {
-    eyes: { enum: E.eyes },
-    brows: { enum: E.brows },
-    mouthStyle: { enum: E.mouthStyle },
+    // Option names are catalog data (data/appearance.js), checked semantically (E_APPEARANCE).
+    eyes: { type: "string" },
+    brows: { type: "string" },
+    mouthStyle: { type: "string" },
     cheeks: color,
-    hair: { enum: E.hair },
+    hair: { type: "string" },
     hairColor: color,
-    outfit: { enum: E.outfit },
+    outfit: { type: "string" },
     outfitColor: color,
     accessories: {
       type: "object",
@@ -58,7 +59,7 @@ const castEntry = {
   properties: {
     id: idRef,
     name: { type: "string", minLength: 1, maxLength: 16, description: "Display name for HP bars and speaker labels." },
-    body: { enum: E.body, description: "Body plan (default stickman)." },
+    body: { type: "string", description: "Body plan from the catalog (default stickman; E_BODY_UNKNOWN)." },
     color,
     scale: { type: "number", minimum: 0.4, maximum: 4 },
     hp: { type: "number", minimum: 1, maximum: 1000 },

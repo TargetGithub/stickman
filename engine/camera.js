@@ -1,7 +1,7 @@
 // Camera: modes, framing, spring smoothing, shake, zoom punch (spec 11.5, 13.3).
 // Milestone: M4. Smoothing runs on video time; shake decays on the fx clock.
 
-import { BODY } from "./skeleton.js";
+import { dimsOf } from "./skeleton.js";
 import { valueNoise1D, easings } from "./math.js";
 import { CAMERA, SHAKE } from "./config.js";
 
@@ -70,7 +70,7 @@ function bounds(all) {
       minX = Math.min(minX, p.x);
       maxX = Math.max(maxX, p.x);
     }
-    minY = Math.min(minY, a.joints.head.y - BODY.headR * a.scale);
+    minY = Math.min(minY, a.joints.head.y - dimsOf(a).headR * a.scale);
   }
   return { minX, maxX, minY };
 }

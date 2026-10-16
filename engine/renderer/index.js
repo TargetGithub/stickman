@@ -13,6 +13,8 @@ import { drawHold } from "./transitions.js";
 import { drawGrade, gradeState } from "./grade.js";
 import { drawSetPieces } from "./objects.js";
 import { faceStyle } from "./face_state.js";
+import { lookFor, lookAt } from "./looks.js";
+import { bodyPlan } from "../story/bodies.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 
@@ -58,6 +60,8 @@ export function createRenderer(catalog, sim, opts = {}) {
     defaultTheme: meta.theme || "white_stage",
     hpBars: !!meta.hpBars,
     styles: new Map((sim.characters || []).map((c) => [c.id, c.style])),
+    looks: new Map((sim.story?.legacy === false ? sim.story.cast : []).map((c) => [c.id, lookFor(catalog, c)])),
+    lookChanges: sim.events.filter((e) => e.type === "world" && e.do === "set_appearance"),
     voices: new Map((sim.story?.cast || []).map((c) => [c.id, c.voice])),
     names: sim.story?.meta?.speakerNames ? new Map(sim.story.cast.map((c) => [c.id, c.name || c.id])) : null,
     syllables: new Map(), // say event → syllables (mouth flap)
@@ -78,7 +82,9 @@ function charsAt(r, n) {
       const j = unpackJoints(c.joints);
       const data = c.prop ? r.catalog.props[c.prop.name] : null;
       if (data) j.propTip = propTransform(j, data, c.prop.angle, c.facing, c.scale).tip; // slash trails follow the tip
-      return { ...c, j, propStyle: data ? { data, angle: c.prop.angle } : undefined };
+      const plan = c.plan ? r.catalog.bodies?.[c.plan] : null; // story body plans (S3)
+      const body = plan ? { dims: bodyPlan(r.catalog, c.plan).dims, draw: plan.draw, torsoWidth: plan.torsoWidth } : {};
+      return { ...c, ...body, j, propStyle: data ? { data, angle: c.prop.angle } : undefined };
     }));
     if (r.charCache.size > 64) r.charCache.delete(r.charCache.keys().next().value);
   }
@@ -106,7 +112,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
   drawItems(ctx, r, f.items, false);
   for (const c of chars) {
     if (c.alpha <= 0.01) continue;
-    const h = STAGE.groundY - lowestPoint(c.j, c.scale);
+    const h = STAGE.groundY - lowestPoint(c.j, c.scale, c.dims);
     const k = Math.max(0, 1 - h / 400);
     ctx.fillStyle = `rgba(0,0,0,${0.18 * k * c.alpha})`;
     ctx.beginPath();
@@ -123,7 +129,8 @@ function drawWorld(ctx, r, n, f, chars, sv) {
   }
   for (const c of order(chars)) {
     if (c.alpha <= 0.01) continue;
-    const style = r.styles.get(c.id) || {};
+    const look = lookAt(r.looks.get(c.id), r.lookChanges.filter((e) => e.params.who === c.id), f.videoT);
+    const style = look?.style || r.styles.get(c.id) || {};
     const index = chars.indexOf(c);
     // Frame history (cape and scarf lag) stays inside the scene's segment.
     const past = (k) => (n - k >= 0 && segmentIndexAt(r.sim.store, n - k) === f.segment ? charsAt(r, n - k)[index].j : null);
@@ -139,7 +146,8 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     }
     drawBehind(ctx, c, past, style);
     const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
-    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false, ...face });
+    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false, ...face,
+      ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}) });
     ctx.shadowBlur = 0;
     drawFront(ctx, c, past, style);
     ctx.restore();

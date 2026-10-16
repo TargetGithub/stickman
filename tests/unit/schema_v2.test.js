@@ -46,7 +46,7 @@ const mutate = (fn) => {
 const BAD = [
   ["version 3", (s) => { s.version = 3; }, "E_SCHEMA_ENUM"],
   ["v1 'characters' at top level", (s) => { s.characters = []; }, "E_SCHEMA_UNKNOWN_FIELD"],
-  ["unknown body plan", (s) => { s.cast[1].body = "minion"; }, "E_SCHEMA_ENUM"],
+  ["body plan of the wrong type", (s) => { s.cast[1].body = 2; }, "E_SCHEMA_TYPE"],
   ["face of the wrong type", (s) => { s.scenes[0].cast[0].face = 3; }, "E_SCHEMA_TYPE"],
   ["accessory singular (pre-freeze name)", (s) => { s.cast[1].appearance.accessory = { antenna: "#ffcc00" }; }, "E_SCHEMA_UNKNOWN_FIELD"],
   ["macro written as who:@fight (no 'do')", (s) => { s.scenes[3].beats[1] = { at: 1, who: "@fight", params: {} }; }, "E_SCHEMA_REQUIRED"],

@@ -7,6 +7,8 @@ import { SFX_KEYS } from "./sfx.js";
 import { blocklist, softWords } from "./blocklist.js";
 import { objects } from "./objects.js";
 import { faces, FACE_NAMES } from "./faces.js";
+import { bodies, BODY_NAMES } from "./bodies.js";
+import { appearance } from "./appearance.js";
 import { moves as movement } from "./moves/movement.js";
 import { moves as unarmed } from "./moves/unarmed.js";
 import { moves as armed } from "./moves/armed.js";
@@ -29,4 +31,7 @@ export const catalog = {
   objects,
   faces,
   faceNames: FACE_NAMES,
+  bodies,
+  bodyNames: BODY_NAMES,
+  appearance,
 };

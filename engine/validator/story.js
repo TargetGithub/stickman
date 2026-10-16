@@ -54,6 +54,37 @@ function checkTransition(t, path, story, si, out) {
   }
 }
 
+/** E_BODY_UNKNOWN and E_APPEARANCE for one cast entry (catalog option lists, and things worn in the same place). */
+export function castLookIssues(c, path, catalog) {
+  const out = [];
+  if (c.body !== undefined && !catalog.bodies?.[c.body]) {
+    const names = Object.keys(catalog.bodies || {});
+    const near = closestMatch(c.body, names);
+    out.push(issue("E_BODY_UNKNOWN", `${path}.body`, `Unknown body plan '${c.body}'.`, `Use one of: ${names.join(", ")}${near ? ` (closest: ${near})` : ""}.`));
+  }
+  const opts = catalog.appearance || {};
+  const look = c.appearance || {};
+  for (const key of ["eyes", "brows", "mouthStyle", "hair", "outfit"]) {
+    const v = look[key];
+    if (v === undefined || !opts[key] || opts[key].includes(v)) continue;
+    const near = closestMatch(v, opts[key]);
+    out.push(issue("E_APPEARANCE", `${path}.appearance.${key}`, `Unknown ${key} '${v}'.`, `Use one of: ${opts[key].join(", ")}${near ? ` (closest: ${near})` : ""}.`));
+  }
+  const worn = new Set([...Object.keys(look.accessories || {}), ...Object.keys(c.style || {}), ...["eyes", "hair"].filter((k) => look[k]).map((k) => `${k}:${look[k]}`)]);
+  for (const [a, b] of opts.conflicts || []) {
+    if (worn.has(a) && worn.has(b)) {
+      out.push(issue("E_APPEARANCE", `${path}.appearance`, `'${a}' and '${b}' sit in the same place and cannot be worn together.`, `Remove one of them.`));
+    }
+  }
+  if (look.hairColor && (!look.hair || look.hair === "none")) {
+    out.push(issue("E_APPEARANCE", `${path}.appearance.hairColor`, "hairColor is set but there is no hair.", `Add "hair" (${(opts.hair || []).filter((h) => h !== "none").join(", ")}) or remove hairColor.`));
+  }
+  if (look.outfitColor && (!look.outfit || look.outfit === "none")) {
+    out.push(issue("E_APPEARANCE", `${path}.appearance.outfitColor`, "outfitColor is set but there is no outfit.", `Add "outfit" (${(opts.outfit || []).filter((h) => h !== "none").join(", ")}) or remove outfitColor.`));
+  }
+  return out;
+}
+
 /**
  * @param {object} story  normalized v2 story (schema-valid)
  * @returns {object[]} issues
@@ -63,6 +94,7 @@ export function checkStory(story, catalog, moves) {
   story = { ...story, catalogBlocklist: catalog.blocklist };
   const audience = story.meta.audience ?? "kids";
   const castIds = new Set();
+  story.cast.forEach((c, i) => out.push(...castLookIssues(c, `cast[${i}]`, catalog)));
   story.cast.forEach((c, i) => {
     if (castIds.has(c.id)) out.push(issue("E_REF_DUPLICATE", `cast[${i}].id`, `Cast id '${c.id}' is used twice.`, "Give every cast member a unique id."));
     castIds.add(c.id);

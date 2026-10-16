@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards and S2 faces, dialogue and speech sounds implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -193,9 +193,9 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | `meta.kind` | `story`, `fight`, `clip` |
 | `meta.audience` | `kids` (default), `general` |
 | `meta.style` | `default`, `soft`, `ink` |
-| Body plans | `stickman`, `buddy`, `kid`, `bulky`, `slim`, `elder` (all `rig: "humanoid"`) |
+| Body plans | `stickman`, `buddy`, `kid`, `bulky`, `slim`, `elder` (all `rig: "humanoid"`; catalog names, checked by `E_BODY_UNKNOWN` since S3) |
 | Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt` (catalog names: the schema takes a string and the semantic stage checks it, `E_FACE_UNKNOWN`, like moves and themes) |
-| Appearance | `eyes`, `brows`, `mouthStyle`, `cheeks`, `hair`, `hairColor`, `outfit`, `outfitColor`, `accessories` (name → color) |
+| Appearance | `eyes`, `brows`, `mouthStyle`, `cheeks`, `hair`, `hairColor`, `outfit`, `outfitColor`, `accessories` (name → color); option values are catalog strings checked by `E_APPEARANCE` since S3 |
 | Voice | `pitch` 0.5-2, `speed` 0.7-1.4, `timbre`: `soft`, `squeaky`, `deep`, `robot` |
 | Time / weather | `dawn`, `day`, `dusk`, `night` / `clear`, `cloudy`, `rain`, `snow`, `wind`, `fog` |
 | Layers | `back`, `mid`, `front` |
@@ -299,14 +299,17 @@ Every body plan keeps the **same joint topology and pose channels** as the stick
 | `kid` | Small, big head ratio | Children, younger siblings |
 | `bulky` | Wide chest (filled trapezoid torso), thick limbs | Guards, brutes; combines with `scale` |
 | `slim` | Long limbs, small head | Villain, elegant characters |
-| `elder` | Slight stoop baked into the default pose offsets, cane prop | Mentors, shopkeepers |
+| `elder` | Slight stoop baked into the default pose offsets (a cane comes with the S4 objects) | Mentors, shopkeepers |
 
-Implementation consequences:
-- `BODY` (engine/skeleton.js) becomes per-character data. `computeJoints(pose, root, facing, scale, plan)` takes the plan.
-- Ground contact, reach, aim (`limbReach`, `canReach`), hurtboxes and auto camera framing all read bone lengths from the plan.
-- Moves stay authored for the stickman. Root motion and reach scale by the plan's leg and arm length ratios, the same way they scale by `scale` today.
-- The renderer gets a per-plan draw function (registry like layer kinds): `drawBody(ctx, joints, plan, appearance)`.
-- Frame store: add one body-plan index per character (constant, stored once in the store header, not per frame).
+Implementation (S3, ADR-015):
+- Plans are data (`data/bodies.js`): bone lengths and line width (`dims`), a draw style (`stick`, `capsule` for the buddy, `trapezoid` for bulky), `torsoWidth` for filled torsos, an optional `posture` (the elder's stoop) and default `appearance`.
+- `computeJoints(pose, root, facing, scale, dims)` and `lowestPoint(joints, scale, dims)` take the plan's dims (default: the stickman). Ground contact, reach and aim (`limbReach`, `canReach`, `resolveAimPoint`, `applyAimIK`), hurtboxes (filled torsos have wider torso hurtboxes), whiff gaps, projectile heights, the camera and the accessories all read them.
+- Moves stay authored for the stickman. Reach is derived per plan (cached per dims). Forward root motion (steps, travel, approach speed, dodge distance) scales with the plan's leg ratio; heights (jumps) scale with `scale` only, so contact heights stay comparable across plans.
+- The elder's stoop eases out over about 0.17 s while attacking, so strikes use the plan's plain geometry (the geometry reach derivation assumes).
+- The reach check gives the lean assist only to shoulder-rooted strikes (arms, weapons); kicks and knees get none, so impossible kicks (a tall slim fighter's flying kick on a kid) are reported (`W_REACH`) instead of faked.
+- Frame store: the plan name is stored once per character per scene segment (constant), not per frame.
+- Renderer: `renderer/bodies.js` draws filled torsos and outfits (below the hips, garments hang straight down); `renderer/appearance.js` draws hair, masks, eyepatches, antennas, crowns, bowties and backpacks; `renderer/looks.js` merges plan defaults, the cast appearance and `set_appearance` changes.
+- The stickman plan is the v1 body object itself, so v1 scripts compute and render exactly as before (golden frames and every sample's warnings unchanged).
 
 ### 6.2 Future: other topologies
 
@@ -324,7 +327,11 @@ Animals, birds and vehicles need different skeletons. The design keeps the door 
 | `accessories` | Name → color. Existing (headband, scarf, cape, hat; also accepted in the v1 `style`) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch` |
 | `outfit`, `outfitColor` | Optional filled torso garment: `none`, `shirt`, `coat`, `armor`, `robe`; a color |
 
-Appearance may change in a beat with the `set_appearance` world command (`target` is the character; flat params such as `"accessory": "headband", "color": "#ff3b5c"` or `"remove": true`), for example the hero tying on a headband before the journey.
+- Option names are catalog data (`data/appearance.js`); the schema takes strings and the validator checks them (`E_APPEARANCE`), together with things worn in the same place (`hat` + `crown`, a `cap` hairstyle with a hat or crown, `mask` or `eyepatch` with `visor` eyes) and colors without their item (`hairColor` without `hair`, `outfitColor` without `outfit`). An unknown body plan is `E_BODY_UNKNOWN`.
+- A body plan's `appearance` gives defaults (buddy: big eyes; elder: sleepy eyes, thick brows, white bob); the cast entry's appearance wins.
+- Eye styles replace the plain dot of neutral-type faces (`big`, `oval`, `sleepy`); `visor` replaces the eyes with a glowing band; `glasses` adds rings. Expressive eyes (happy arcs, tears, spirals) still win. `brows: "none"` hides brows; `thick` draws them heavier. `mouthStyle: "cartoon"` makes mouths about a third bigger. `cheeks` adds a soft blush in that color.
+
+Appearance may change in a beat with the `set_appearance` world command: `params.who`* is the character, plus flat fields such as `"accessory": "headband", "color": "#ff3b5c"`, `"remove": true`, or any of `eyes`, `brows`, `mouthStyle`, `hair`, `hairColor`, `outfit`, `outfitColor`, `cheeks`. Changes carry across scenes. For example, the hero ties on a headband before the journey.
 
 ### 6.4 Visual style presets
 

@@ -20,7 +20,7 @@ function sceneSegment(store, chars, info, estFrames) {
     kind: "scene",
     start: store.length,
     scene: info.scene ?? 0,
-    chars: chars.map((c) => ({ id: c.id, color: c.color, scale: c.scale, maxHp: c.maxHp })),
+    chars: chars.map((c) => ({ id: c.id, color: c.color, scale: c.scale, maxHp: c.maxHp, ...(c.plan ? { plan: c.plan } : {}) })),
     capacity: cap,
     times: new Float64Array(cap * 2), // storyT, fxT
     cam: new Float32Array(cap * CAM_STRIDE),

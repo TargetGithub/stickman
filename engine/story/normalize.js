@@ -58,7 +58,7 @@ export function flatScene(story, i, catalog) {
   const characters = (scene.cast || []).map((p) => {
     const def = castById.get(p.id) || { id: p.id, color: "#22aaff" };
     const out = { id: p.id, x: p.x, facing: p.facing ?? 1, color: def.color };
-    for (const k of ["scale", "hp", "prop", "style"]) if (def[k] !== undefined) out[k] = def[k];
+    for (const k of ["scale", "hp", "prop", "style", "body", "appearance"]) if (def[k] !== undefined) out[k] = def[k];
     if (p.hp !== undefined) out.hp = p.hp;
     if (p.prop !== undefined) out.prop = p.prop;
     return out;

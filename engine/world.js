@@ -6,12 +6,12 @@
 //   const events = stepWorld(world, 1 / 60);   // dt = 0 during hitstop: poses only
 
 import { advanceMove, poseActor, playMove, displayPose, withPropTip } from "./actor.js";
-import { computeJoints, BODY } from "./skeleton.js";
+import { computeJoints, dimsOf } from "./skeleton.js";
 import { stepBody, separate } from "./physics.js";
 import { applyHit, inWindow } from "./hit_apply.js";
 import { spawnProjectile, stepWorldProjectiles, projectileArrival } from "./projectiles.js";
 import {
-  deriveReach, requiredStartX, whiffGap, canReach, limbReach, MAX_ASSIST_LEAN, resolveAimPoint, aimPointByName, aimCandidates, applyAimIK, ikWeight, sweptHit, buildHurtboxes,
+  deriveReach, requiredStartX, whiffGap, canReach, motionScale, limbReach, MAX_ASSIST_LEAN, resolveAimPoint, aimPointByName, aimCandidates, applyAimIK, ikWeight, sweptHit, buildHurtboxes,
 } from "./combat.js";
 import { rootOffsetAt } from "./moves.js";
 import { COMBAT, STAGE } from "./config.js";
@@ -66,7 +66,7 @@ function setupAttack(world, actor, events) {
   if (world.mode !== "choreographed") return;
   if (m.def.flags.ranged) return setupRanged(world, actor, target, m, events);
 
-  const d = deriveReach(m.def)[0];
+  const d = deriveReach(m.def, dimsOf(actor))[0];
   const required = requiredStartX(actor, target, m.def, m.params, m.outcome);
   const error = required - actor.x;
   const max = COMBAT.maxNudge * actor.scale;
@@ -87,7 +87,7 @@ function setupAttack(world, actor, events) {
     // distance_back is in the defender's units: at least its own 120, and far enough to clear the attacker's reach.
     // World distance ≈ 130 px per unit of attacker size + 50, at least 130 px of the defender's own size.
     const dodgePx = Math.max(130 * target.scale, 130 * actor.scale + 50);
-    const params = defense === "dodge_back" ? { distance_back: dodgePx / (1.08 * target.scale) } : undefined;
+    const params = defense === "dodge_back" ? { distance_back: dodgePx / (1.08 * motionScale(target)) } : undefined;
     // Dodges start up to 0.35 s ahead so the attacker's windup never grazes the defender.
     const lead = defense === "dodge_back" || defense === "duck" ? Math.max(DEFENSE_LEAD[defense], Math.min(secondsToHit, 0.35)) : DEFENSE_LEAD[defense];
     schedule(world, world.time + Math.max(0, secondsToHit - lead), target.id, defense, { target: actor.id, params });
@@ -123,9 +123,9 @@ function dodgeFor(actor, target, m) {
 
 /** Where an auto-aimed hit would land, judged from the authored contact height. */
 function predictAimName(actor, target, m) {
-  const d = deriveReach(m.def)[0];
+  const d = deriveReach(m.def, dimsOf(actor))[0];
   const y = actor.groundY - d.height * actor.scale;
-  const cands = aimCandidates(target.joints);
+  const cands = aimCandidates(target.joints, 0, 0, dimsOf(target));
   return cands.reduce((b, c) => (Math.abs(c.point.y - y) < Math.abs(b.point.y - y) ? c : b)).name;
 }
 
@@ -147,25 +147,27 @@ function aimLimbs(world, actor) {
     const w = ikWeight(m.t, hit);
     if (w <= 0 || !target.joints) return;
     const s = actor.scale;
+    const dims = dimsOf(actor);
+    const tdims = dimsOf(target);
     if (!m.aims[i]) {
-      const d = deriveReach(m.def)[i];
-      const travelLeft = (rootOffsetAt(m.def, d.tmid, m.params).dx - rootOffsetAt(m.def, m.t, m.params).dx) * s;
+      const d = deriveReach(m.def, dims)[i];
+      const travelLeft = (rootOffsetAt(m.def, d.tmid, m.params).dx - rootOffsetAt(m.def, m.t, m.params).dx) * motionScale(actor);
       const nudgeLeft = m.nudge ? (m.nudge.total - m.nudge.applied) * actor.facing : 0;
       const fk = { x: actor.x + actor.facing * (d.reach * s + travelLeft + nudgeLeft), y: actor.groundY - d.height * s };
       const shift = actor.facing * (travelLeft + nudgeLeft);
-      m.aims[i] = resolveAimPoint(actor.joints, hit.part, s, target.joints, hit.aim || "auto", fk, target.scale, -actor.facing, shift).name;
+      m.aims[i] = resolveAimPoint(actor.joints, hit.part, s, target.joints, hit.aim || "auto", fk, target.scale, -actor.facing, shift, dims, tdims).name;
     }
-    const near = () => aimPointByName(target.joints, m.aims[i], target.scale, -actor.facing);
+    const near = () => aimPointByName(target.joints, m.aims[i], target.scale, -actor.facing, tdims);
     // Dodges lock the aim where the target was, so the limb does not follow it out of the way.
     // A ducked swing aims just over the head so it clearly passes above.
     const lock = () => {
       const p = near();
-      return m.defense === "duck" ? { x: p.x, y: p.y - BODY.headR * target.scale * 1.3 } : p;
+      return m.defense === "duck" ? { x: p.x, y: p.y - tdims.headR * target.scale * 1.3 } : p;
     };
     let point = m.outcome === "dodged" ? ((m.aimLock ||= {})[i] ||= lock()) : near();
     if (m.outcome === "whiff") point = { x: point.x - actor.facing * whiffGap(actor, target), y: point.y };
     reachAssist(actor, hit.part, point, w);
-    actor.joints = applyAimIK(actor.joints, hit.part, point, w, s);
+    actor.joints = applyAimIK(actor.joints, hit.part, point, w, s, dims);
   });
 }
 
@@ -175,16 +177,17 @@ function aimLimbs(world, actor) {
  */
 function reachAssist(actor, part, point, w) {
   const s = actor.scale;
-  const limb = limbReach(actor.joints, part, s);
+  const dims = dimsOf(actor);
+  const limb = limbReach(actor.joints, part, s, dims);
   if (!limb) return;
-  const out = (j) => Math.hypot(point.x - limbReach(j, part, s).root.x, point.y - limbReach(j, part, s).root.y) - limbReach(j, part, s).len;
+  const out = (j) => Math.hypot(point.x - limbReach(j, part, s, dims).root.x, point.y - limbReach(j, part, s, dims).root.y) - limbReach(j, part, s, dims).len;
   if (out(actor.joints) <= 0 || point.y < limb.root.y) return; // reachable already, or the target is above (no ducking help)
   const pose = displayPose(actor);
   const hip = actor.joints.hip;
   const root = { x: hip.x - actor.facing * (pose.dx || 0), y: hip.y - (pose.dy || 0) };
   let best = actor.joints;
   for (let extra = 8; extra <= MAX_ASSIST_LEAN; extra += 8) {
-    best = withPropTip(actor, computeJoints({ ...pose, lean: pose.lean + extra * w }, root, actor.facing, s));
+    best = withPropTip(actor, computeJoints({ ...pose, lean: pose.lean + extra * w }, root, actor.facing, s, dims));
     if (out(best) <= 0) break;
   }
   actor.joints = best;
@@ -237,12 +240,12 @@ function resolveHits(world, windowsByActor) {
         let kind = null;
         if (world.mode === "choreographed") {
           if (m.outcome === "whiff" || m.outcome === "dodged") continue;
-          const touched = sweptHit(prev, part, hitRadiusOf(attacker, hit), buildHurtboxes(target.joints, target.scale));
-          const forced = m.t >= deriveReach(m.def)[index].tmid;
+          const touched = sweptHit(prev, part, hitRadiusOf(attacker, hit), buildHurtboxes(target.joints, target.scale, dimsOf(target)));
+          const forced = m.t >= deriveReach(m.def, dimsOf(attacker))[index].tmid;
           if (touched || forced) kind = m.outcome === "blocked" ? "blocked" : m.outcome === "parried" ? "parried" : "hit";
         } else {
           if (inWindow(target.move, "invulnerable")) continue;
-          if (!sweptHit(prev, part, hitRadiusOf(attacker, hit), buildHurtboxes(target.joints, target.scale))) continue;
+          if (!sweptHit(prev, part, hitRadiusOf(attacker, hit), buildHurtboxes(target.joints, target.scale, dimsOf(target)))) continue;
           const guard = inWindow(target.move, "guard");
           kind = guard === "parry" ? "parried" : guard ? "blocked" : "hit";
         }

@@ -55,8 +55,26 @@ function heart(ctx, p, s, color) {
 function eye(ctx, kind, p, r, at, side, o) {
   const w = r * 0.09;
   const e = (df, du) => at.off(p, df, du);
+  // The character's own eye style (appearance) replaces the plain dot of neutral-type faces.
+  if (kind === "dot" && o.eyeStyle === "big") kind = "big";
+  else if (kind === "dot" && o.eyeStyle === "oval") kind = "oval";
+  else if (kind === "dot" && o.eyeStyle === "sleepy") kind = "half";
   if (o.blink && (kind === "dot" || kind === "wide" || kind === "half")) return line(ctx, e(-0.12, 0), e(0.12, 0), w);
   switch (kind) {
+    case "big": {
+      if (o.blink) return curve(ctx, e(-0.15, 0.02), e(0, -0.06), e(0.15, 0.02), w);
+      ctx.fillStyle = INK;
+      ctx.beginPath();
+      ctx.ellipse(p.x, p.y, r * 0.15, r * 0.2, Math.atan2(at.u.y, at.u.x) + Math.PI / 2, 0, Math.PI * 2);
+      ctx.fill();
+      return disc(ctx, e(0.05 + o.gaze.f * 0.03, 0.08 + o.gaze.u * 0.03), r * 0.06, "#ffffff");
+    }
+    case "oval":
+      if (o.blink) return line(ctx, e(-0.1, 0), e(0.1, 0), w);
+      ctx.fillStyle = INK;
+      ctx.beginPath();
+      ctx.ellipse(e(o.gaze.f * 0.03, 0).x, e(o.gaze.f * 0.03, 0).y, r * 0.08, r * 0.15, Math.atan2(at.u.y, at.u.x) + Math.PI / 2, 0, Math.PI * 2);
+      return ctx.fill();
     case "wide":
       disc(ctx, p, r * 0.2, "#ffffff");
       ctx.strokeStyle = INK;
@@ -99,9 +117,9 @@ function eye(ctx, kind, p, r, at, side, o) {
   }
 }
 
-function mouth(ctx, kind, at, r) {
-  const w = r * 0.09;
-  const m = (df, du) => at.pt(0.4 + df, -0.4 + du);
+function mouth(ctx, kind, at, r, k = 1) {
+  const w = r * 0.09 * Math.sqrt(k);
+  const m = (df, du) => at.pt(0.4 + df * k, -0.4 + du * k);
   switch (kind) {
     case "line": return line(ctx, m(-0.14, 0), m(0.14, 0), w);
     case "smile": return curve(ctx, m(-0.2, 0.06), m(0, -0.14), m(0.2, 0.06), w);
@@ -110,9 +128,9 @@ function mouth(ctx, kind, at, r) {
     case "o":
       ctx.lineWidth = w;
       ctx.beginPath();
-      ctx.arc(m(0, 0).x, m(0, 0).y, r * 0.09, 0, Math.PI * 2);
+      ctx.arc(m(0, 0).x, m(0, 0).y, r * 0.09 * k, 0, Math.PI * 2);
       return ctx.stroke();
-    case "open": return disc(ctx, m(0, -0.02), r * 0.13, INK);
+    case "open": return disc(ctx, m(0, -0.02), r * 0.13 * k, INK);
     case "wavy": {
       ctx.lineWidth = w * 0.8;
       ctx.beginPath();
@@ -145,15 +163,18 @@ function mouth(ctx, kind, at, r) {
   }
 }
 
-function extras(ctx, list, at, r, t) {
+function extras(ctx, list, at, r, t, color) {
   for (const x of list || []) {
-    if (x === "blush") {
-      ctx.fillStyle = PINK;
+    if (x === "blush" || x === "cheeks") {
+      ctx.save();
+      ctx.fillStyle = x === "cheeks" ? color : PINK;
+      if (x === "cheeks") ctx.globalAlpha *= 0.55;
       for (const p of [at.pt(0.55, -0.22), at.pt(0.08, -0.22)]) {
         ctx.beginPath();
         ctx.ellipse(p.x, p.y, r * 0.14, r * 0.08, 0, 0, Math.PI * 2);
         ctx.fill();
       }
+      ctx.restore();
     } else if (x === "tears") {
       // Two streams falling from the eyes, looping every 0.6 s.
       for (const [fa, ph] of [[0.5, 0], [0.12, 0.3]]) {
@@ -220,17 +241,40 @@ export function drawFace(ctx, c, r, axes, face, o = {}) {
   const { u, f } = axes;
   const pt = (fa, ua) => ({ x: c.x + f.x * fa * r + u.x * ua * r, y: c.y + f.y * fa * r + u.y * ua * r });
   const off = (p, fa, ua) => ({ x: p.x + f.x * fa * r + u.x * ua * r, y: p.y + f.y * fa * r + u.y * ua * r });
-  const at = { pt, off };
-  const opts = { blink: !!o.blink, gaze: o.gaze || { f: 0, u: 0 }, t: o.t ?? 0 };
+  const at = { pt, off, u, f };
+  const look = o.look || {};
+  const opts = { blink: !!o.blink, gaze: o.gaze || { f: 0, u: 0 }, t: o.t ?? 0, eyeStyle: look.eyes };
   ctx.save();
   ctx.strokeStyle = INK;
   ctx.fillStyle = INK;
   ctx.lineCap = "round";
   const simple = o.detail === "simple" && o.neutral && !o.talking;
-  eye(ctx, face.eyes, pt(0.5, 0.12), r, at, "front", opts);
-  eye(ctx, face.eyes, pt(0.12, 0.12), r, at, "back", opts);
+  if (look.cheeks) extras(ctx, ["cheeks"], at, r, opts.t, look.cheeks);
+  if (look.eyes === "visor") {
+    // A visor replaces the eyes: a glowing band across them.
+    const a = pt(-0.05, 0.12);
+    const b = pt(0.75, 0.12);
+    ctx.strokeStyle = INK;
+    line(ctx, a, b, r * 0.34);
+    ctx.strokeStyle = "#7ff3ff";
+    line(ctx, a, b, r * 0.2);
+    ctx.strokeStyle = INK;
+  } else {
+    eye(ctx, face.eyes, pt(0.5, 0.12), r, at, "front", opts);
+    eye(ctx, face.eyes, pt(0.12, 0.12), r, at, "back", opts);
+  }
+  if (look.eyes === "glasses") {
+    ctx.lineWidth = r * 0.06;
+    for (const fa of [0.5, 0.12]) {
+      const p = pt(fa, 0.12);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r * 0.19, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    line(ctx, pt(-0.07, 0.14), pt(-0.62, 0.22), r * 0.06); // the arm toward the ear
+  }
   if (!simple) {
-    if (face.brows) {
+    if (face.brows && look.brows !== "none") {
       const tilt = (face.brows.tilt * Math.PI) / 180;
       const lift = 0.36 + face.brows.lift;
       for (const [fa, inner] of [[0.5, -1], [0.12, 1]]) {
@@ -238,10 +282,10 @@ export function drawFace(ctx, c, r, axes, face, o = {}) {
         const d = 0.13;
         const a = pt(fa + inner * d, lift + Math.sin(tilt) * 0.12);
         const b = pt(fa - inner * d, lift - Math.sin(tilt) * 0.12);
-        line(ctx, a, b, r * 0.08);
+        line(ctx, a, b, r * (look.brows === "thick" ? 0.13 : 0.08));
       }
     }
-    mouth(ctx, o.talking ? face.talk || "open" : face.mouth, at, r);
+    mouth(ctx, o.talking ? face.talk || "open" : face.mouth, at, r, look.mouthStyle === "cartoon" ? 1.35 : 1);
     extras(ctx, face.extras, at, r, opts.t);
   }
   ctx.restore();

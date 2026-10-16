@@ -12,6 +12,7 @@ import { createStore, startScene, addHold, writeFrame, frameView } from "./frame
 import { createPresentation, presentEvent, stepPresentation } from "./presentation.js";
 import { normalize, flatScene, transitionInto, transitionDuration } from "./story/normalize.js";
 import { faceEvents, updateFaces } from "./story/faces.js";
+import { bodyPlan } from "./story/bodies.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
 const prepared = new WeakMap();
@@ -35,6 +36,7 @@ function sceneActors(flat, catalog, carry, faces) {
     const kept = carry.get(c.id);
     const placed = (flat.scene.cast || []).find((p) => p.id === c.id) || {};
     const a = createActor({ id: c.id, x: c.x, facing: c.facing, scale: c.scale ?? 1, hp: c.hp ?? 100, color: c.color, groundY: STAGE.groundY });
+    if (c.body && c.body !== "stickman") Object.assign(a, bodyPlan(catalog, c.body)); // dims, stride, posture, plan
     if (kept && placed.hp === undefined) a.hp = kept.hp;
     // A character with a spawn beat, or placed hidden, starts invisible until it appears.
     if (flat.hidden.has(c.id) || flat.beats.some((b) => b.who === c.id && b.do === "spawn")) {

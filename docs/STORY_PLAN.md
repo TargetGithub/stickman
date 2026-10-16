@@ -109,6 +109,11 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** body plan look and the buddy design (15 min).
 
+**Status (2026-10-16):** built; waiting for the review. Demos: `out/demos/s3_bodies.png` (`node tools/body_sheet.mjs`: 6 plans × 8 moves) and `out/demos/s3_bodies/final.mp4` (from `scripts/samples/s3_bodies.json`: all six plans in one scene, a buddy-vs-bulky exchange, a `set_appearance` change). Notes:
+- The combat matrix runs every attack × outcome over six plan pairings; to pass it, jump heights do not scale with leg length and the elder's stoop is released while attacking.
+- Kicks get no lean assist in the reach check, so impossible kicks warn (`W_REACH`); no v1 sample's warnings changed.
+- `set_appearance` (frozen in S0) is implemented here. The elder's cane comes with the S4 objects.
+
 ### S4 Objects and set pieces (4-5 days)
 
 | Task | Output |

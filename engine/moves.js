@@ -190,7 +190,10 @@ export function startMove(actor, def, opts = {}) {
     beatId: opts.beatId ?? null,
     target: opts.target ?? null,
     outcome: opts.outcome ?? null,
-    scale: actor.scale ?? 1, // root motion is authored at scale 1 and scales with the character
+    // Root motion is authored at scale 1 for the stickman. It scales with the character; forward travel
+    // also scales with leg length (body plans, S3), heights do not (contact heights stay comparable).
+    scale: actor.scale ?? 1,
+    strideScale: (actor.scale ?? 1) * (actor.stride ?? 1),
     // A finished flip ends at rot ±360: wrap to (-180, 180] so the next move does not spin back.
     blendFrom: actor.pose ? { ...actor.pose, rot: wrapAngle(actor.pose.rot) } : null,
     blendT: 0,
@@ -255,7 +258,7 @@ export function stepMove(actor, dt) {
   const root = rootOffsetAt(def, t, m.params);
   if (!(ended && loop)) rootDx += root.dx - m.lastRoot.dx;
   m.lastRoot = root;
-  rootDx *= m.scale;
+  rootDx *= m.strideScale ?? m.scale;
 
   if (m.params.distance !== undefined) {
     const remaining = m.params.distance - m.traveled;

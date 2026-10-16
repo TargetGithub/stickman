@@ -25,6 +25,7 @@
     <h1>Move catalog</h1>
     <label>category <select id="category"><option value="">all</option></select></label>
     <label>speed <select id="speed"><option>0.25</option><option>0.5</option><option selected>1</option></select></label>
+    <label>body <select id="body"></select></label>
     <label>scale <select id="scale"><option>0.6</option><option selected>1</option><option>2.2</option></select></label>
     <label>facing <select id="facing"><option value="1">right</option><option value="-1">left</option></select></label>
     <label><input id="hitboxes" type="checkbox" checked> hit windows</label>
@@ -37,6 +38,7 @@
     import { prepareCatalog, CATEGORIES } from "../engine/moves.js";
     import { createActor, playMove, stepActor } from "../engine/actor.js";
     import { computeJoints, lowestPoint } from "../engine/skeleton.js";
+    import { bodyPlan } from "../engine/story/bodies.js";
     import { drawCharacter } from "../engine/renderer/character.js";
     import { propByKind } from "../engine/props.js";
 
@@ -49,6 +51,8 @@
     }
     const W = 680, H = 440, GROUND = 400, DT = 1 / 60;
     for (const c of CATEGORIES) $("category").add(new Option(c, c));
+    for (const b of Object.keys(catalog.bodies)) $("body").add(new Option(b, b)); // body plans (S3)
+    const plan = () => catalog.bodies[$("body").value];
 
     let cards = [];
     function build() {
@@ -68,7 +72,7 @@
           $("grid").append(el);
           const loop = def.flags.loop && def.name !== "idle";
           const x0 = facing === 1 ? (loop ? 60 : W * 0.32) : (loop ? W - 60 : W * 0.68);
-          const actor = createActor({ x: x0, facing, scale, groundY: GROUND });
+          const actor = Object.assign(createActor({ x: x0, facing, scale, groundY: GROUND }), bodyPlan(catalog, $("body").value));
           const card = { def, el, ctx: el.querySelector("canvas").getContext("2d"), actor, x0, wait: 0, acc: 0, joints: null, windows: [] };
           const restart = () => { actor.x = x0; arm(actor, def); playMove(actor, def.name, moves, { blend: 0 }); };
           card.restart = restart;
@@ -104,7 +108,8 @@
         const raw = computeJoints(catalog.poses.stand, { x: dx, y: 0 }, -facing, 1);
         drawCharacter(ctx, computeJoints(catalog.poses.stand, { x: dx, y: GROUND - lowestPoint(raw, 1) }, -facing, 1), { color: "#c4c4c4", scale: 1, facing: -facing });
       }
-      drawCharacter(ctx, card.joints, { color: "#22aaff", scale, facing, mouth: actor.mouth, prop: actor.prop ? { data: actor.prop.data, angle: actor.propAngle } : undefined });
+      drawCharacter(ctx, card.joints, { color: "#22aaff", scale, facing, mouth: actor.mouth, prop: actor.prop ? { data: actor.prop.data, angle: actor.propAngle } : undefined,
+        dims: actor.dims, draw: plan().draw, torsoWidth: plan().torsoWidth });
       if ($("hitboxes").checked) {
         for (const { hit } of card.windows) {
           const p = card.joints[hit.part];
@@ -128,7 +133,7 @@
       requestAnimationFrame(frame);
     }
 
-    for (const id of ["category", "scale", "facing"]) $(id).addEventListener("change", build);
+    for (const id of ["category", "body", "scale", "facing"]) $(id).addEventListener("change", build);
     await document.fonts.ready;
     build();
     for (const c of cards) step(c);

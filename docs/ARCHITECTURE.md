@@ -490,6 +490,28 @@ export function mouthOpenAt(syllables, age): boolean;
 - `collectAudioEvents` adds one `voice:*` event per syllable and a `narrate_chime` per narration for story scripts; `createSfxLibrary().sampleFor` synthesizes `voice:*` keys on demand.
 - `tools/face_sheet.mjs` renders every face at three on-screen sizes (review sheet).
 
+### Body plans and appearance (S3)
+```js
+// skeleton.js
+export const BODY;                                          // the stickman (and the stickman plan's dims object)
+export const dimsOf = (actorOrChar) => dims;                // its plan's dims or BODY
+export function strideOf(dims): number;                     // (thigh + shin) / 94
+export function withPosture(pose, posture, w?): Pose;       // the elder's stoop at weight w
+export function computeJoints(pose, root, facing, scale, dims = BODY): Joints;
+export function lowestPoint(joints, scale, dims = BODY): number;
+// combat.js: fkJoints, limbReach, buildHurtboxes, aimCandidates, aimPointByName, applyAimIK, maxForward
+//   take dims (default BODY); resolveAimPoint(..., rootShift, dims, targetDims); deriveReach(def, dims)
+//   caches per dims object; whiffGap/requiredStartX/canReach read actor dims; motionScale(actor) = scale × stride
+// story/bodies.js
+export function bodyPlan(catalog, name): { dims, stride, posture, plan };   // actor fields; one dims object per plan
+// renderer: bodies.js drawTorso, drawOutfit; appearance.js drawHair, drawHairBack, drawMask, drawEyepatch,
+//   drawHeadTop, drawBowtie, drawBackpack; looks.js lookFor(catalog, cast), lookAt(look, changes, t)
+// validator/story.js: castLookIssues(cast, path, catalog) → E_BODY_UNKNOWN, E_APPEARANCE
+```
+- Move state keeps `scale` (heights) and `strideScale` (forward root motion). Actors with a posture keep `postureW`, eased toward 0 during attack moves.
+- `drawCharacter` style gains `dims`, `draw`, `torsoWidth` and `look`; draw order: backpack, far limbs, torso (filled or stroked), outfit, bowtie, head (ponytail, head, mask, face, hair, eyepatch, antenna/crown), near leg, near arm.
+- Tools: `tools/body_sheet.mjs` (plans × moves review sheet); the catalog page and the pose viewer have a body-plan selector.
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:
@@ -506,7 +528,7 @@ export function mouthOpenAt(syllables, age): boolean;
 ### ADR-015 Body plans share the humanoid skeleton
 - **Context**: stories need characters that are not stickmen (a round sidekick, bulky guards), while 72 tuned moves and the aiming/reach system must keep working.
 - **Decision**: a body plan is data: bone-length ratios, head size, hurtbox scale, a draw function key and `rig: "humanoid"`. Every plan keeps the same 13 joints and pose channels. `BODY` becomes `bodyFor(plan)`. The `stickman` plan's values are exactly today's `BODY`, so v1 output is bit-identical. Moves are authored once (for the stickman); root motion and reach scale by the plan's leg and arm ratios, as they already scale by `scale`. The plan index is stored once per character in the frame store header.
-- **Consequences**: every move works on every plan. The combat matrix (attack × outcome × size pairing) runs once per plan in S3. Non-humanoid rigs later need a new `rig` value and `E_MOVE_RIG`; nothing in v2 assumes they never come.
+- **Consequences**: every move works on every plan. The combat matrix (every attack × outcome) runs across six plan pairings (`tests/unit/bodies.test.js`). Two rules came out of it: jump heights do not scale with leg length (only forward travel does), and a posture is released while attacking. Non-humanoid rigs later need a new `rig` value and `E_MOVE_RIG`; nothing in v2 assumes they never come.
 
 ### ADR-016 Scenes in one world with state carry-over
 - **Context**: stories move between places, but characters must keep hp, defeats, held objects and looks across scenes, and the engine must stay simulate-once, render-anywhere.

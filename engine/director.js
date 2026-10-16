@@ -4,7 +4,7 @@
 
 import { command } from "./world.js";
 import { requestSlowmo, requestFreeze } from "./clock.js";
-import { requiredStartX } from "./combat.js";
+import { requiredStartX, motionScale } from "./combat.js";
 import { COMBAT, LIMITS } from "./config.js";
 import { CARD_COMMANDS, cardDuration, narrateDuration } from "./story/timing.js";
 import { readingTime } from "./story/speech.js";
@@ -176,7 +176,7 @@ function approach(director, beat, actor, ctx) {
   if (Math.abs(need) <= slack) return false;
   if (need > 0) {
     const mode = beat.approach === "walk" ? "walk" : "run";
-    const speed = (mode === "walk" ? 120 : 550) * actor.scale; // px/s from the walk/run strides
+    const speed = (mode === "walk" ? 120 : 550) * motionScale(actor); // px/s from the walk/run strides
     const seconds = need / speed;
     if (seconds > LIMITS.maxApproach) {
       issue(director, "E_SIM_APPROACH", beat, `'${beat.who}' would ${mode} ${seconds.toFixed(1)}s to reach '${beat.target}' (max ${LIMITS.maxApproach}s).`,
@@ -185,7 +185,7 @@ function approach(director, beat, actor, ctx) {
     command(ctx.world, beat.who, mode, { target: beat.target, params: { distance: need } });
     beat.notes.push(`${mode} ${need.toFixed(0)}px`);
   } else {
-    command(ctx.world, beat.who, "dodge_back", { target: beat.target, params: { distance_back: -need / (1.08 * actor.scale) } });
+    command(ctx.world, beat.who, "dodge_back", { target: beat.target, params: { distance_back: -need / (1.08 * motionScale(actor)) } });
     beat.notes.push(`step back ${(-need).toFixed(0)}px`);
   }
   return true;

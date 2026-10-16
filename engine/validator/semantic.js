@@ -4,6 +4,7 @@
 import { parseAt, ANCHORS } from "../director.js";
 import { closestMatch, nearest } from "./report.js";
 import { STAGE } from "../config.js";
+import { V2_ENUMS } from "./v2_names.js";
 
 const HEX = { type: "color" };
 /** World commands and their params (spec 11.3). */
@@ -35,6 +36,13 @@ export const WORLD_COMMANDS_V2 = {
   end_card: { text: { text: 80, required: true }, dur: { min: 0.5, max: 10 }, bg: HEX },
   set_time: { time: { enum: ["dawn", "day", "dusk", "night"], required: true }, dur: { min: 0, max: 10 } },
   set_weather: { weather: { enum: ["clear", "cloudy", "rain", "snow", "wind", "fog"], required: true }, dur: { min: 0, max: 10 } },
+  // Appearance changes (S3): who* plus any of the appearance fields; accessory with color, or remove.
+  set_appearance: {
+    who: { character: true, required: true },
+    accessory: { enum: V2_ENUMS.accessory }, color: HEX, remove: { enum: [true, false] },
+    eyes: { enum: V2_ENUMS.eyes }, brows: { enum: V2_ENUMS.brows }, mouthStyle: { enum: V2_ENUMS.mouthStyle },
+    hair: { enum: V2_ENUMS.hair }, hairColor: HEX, outfit: { enum: V2_ENUMS.outfit }, outfitColor: HEX, cheeks: HEX,
+  },
 };
 
 const MIN_CONTRAST = 1.6;

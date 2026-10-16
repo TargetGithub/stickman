@@ -3,15 +3,16 @@
 
 import { applyHit, inWindow } from "./hit_apply.js";
 import { sweptHit, buildHurtboxes, aimCandidates } from "./combat.js";
-import { BODY } from "./skeleton.js";
+import { dimsOf } from "./skeleton.js";
 import { STAGE, PHYSICS } from "./config.js";
 
 /** Aim height on the target for an outcome: chest for hits, clearly over the head for whiffs. */
 function aimY(target, outcome, radius) {
   const head = target.joints.head;
-  if (outcome === "whiff") return head.y - BODY.headR * target.scale - radius - 20 * target.scale;
-  if (outcome === "dodged") return head.y - BODY.headR * target.scale; // passes over the ducked head and guard
-  return aimCandidates(target.joints).find((c) => c.name === "upperTorso").point.y;
+  const headR = dimsOf(target).headR;
+  if (outcome === "whiff") return head.y - headR * target.scale - radius - 20 * target.scale;
+  if (outcome === "dodged") return head.y - headR * target.scale; // passes over the ducked head and guard
+  return aimCandidates(target.joints, 0, 0, dimsOf(target)).find((c) => c.name === "upperTorso").point.y;
 }
 
 /**
@@ -73,7 +74,7 @@ export function stepWorldProjectiles(world, dt) {
     for (const target of targets) {
       if (done) break;
       if (choreo && (p.outcome === "whiff" || p.outcome === "dodged")) continue;
-      const touched = sweptHit({ x: p.prevX, y: p.prevY }, p, p.radius, buildHurtboxes(target.joints, target.scale));
+      const touched = sweptHit({ x: p.prevX, y: p.prevY }, p, p.radius, buildHurtboxes(target.joints, target.scale, dimsOf(target)));
       const crossed = choreo && Math.sign(p.x - target.x) === p.facing;
       if (!touched && !crossed) continue;
       let kind = "hit";

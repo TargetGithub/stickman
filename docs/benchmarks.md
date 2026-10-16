@@ -41,3 +41,7 @@ ffmpeg prints one "Truncating packet of size 8294400 to 8192" line on the raw pi
 
 `node tools/record.mjs scripts/samples/s2_dialogue.json`: 1,485 frames (24.8 s) at ~66 fps including speech babble synthesis and mixing; 23.3 s total. Faces add no measurable cost.
 
+## S3 body plans (2026-10-16)
+
+`node tools/record.mjs scripts/samples/s3_bodies.json` (six characters on stage, all plans, filled torsos and outfits): 1,132 frames (18.9 s) at ~60 fps, 20.1 s total.
+

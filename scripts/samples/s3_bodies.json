@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "meta": { "title": "Six Friends", "format": "landscape", "seed": 77, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "accessories": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5, "timbre": "squeaky" } },
+    { "id": "mo", "name": "Mo", "body": "kid", "color": "#ff9f43", "appearance": { "hair": "cap", "hairColor": "#3a6df0", "accessories": { "backpack": "#7a4fd8" } }, "voice": { "pitch": 1.3 } },
+    { "id": "brick", "name": "Brick", "body": "bulky", "color": "#ffc04d", "appearance": { "outfit": "armor", "outfitColor": "#8a96a8" }, "voice": { "pitch": 0.7, "timbre": "deep" } },
+    { "id": "vex", "name": "Vex", "body": "slim", "color": "#8a2be2", "style": { "cape": "#1a1a1a" }, "appearance": { "hair": "spiky", "hairColor": "#222222", "eyes": "oval" }, "voice": { "pitch": 0.8, "timbre": "deep" } },
+    { "id": "gran", "name": "Gran", "body": "elder", "color": "#f2dfb8", "appearance": { "outfit": "robe", "outfitColor": "#5b6e9a", "eyes": "glasses", "accessories": { "bowtie": "#d94b4b" } }, "voice": { "pitch": 1.1, "speed": 0.8 } }
+  ],
+  "scenes": [
+    { "id": "line", "location": "city_park", "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Six Friends", "subtitle": "body plans", "dur": 2 },
+      "transitionOut": { "type": "fade", "dur": 1 },
+      "cast": [
+        { "id": "gran", "x": 900, "facing": 1 }, { "id": "mo", "x": 1150, "facing": 1 }, { "id": "kai", "x": 1400, "facing": 1 },
+        { "id": "pip", "x": 1650, "facing": -1 }, { "id": "brick", "x": 1950, "facing": -1 }, { "id": "vex", "x": 2250, "facing": -1 }
+      ],
+      "camera": [
+        { "at": 0, "mode": "follow", "zoom": "auto", "padding": 160 },
+        { "at": { "with": "f1" }, "mode": "follow", "targets": ["pip", "brick"], "zoom": "auto", "padding": 260, "dur": 0.6 },
+        { "at": { "after": "ko", "delay": 0.4 }, "mode": "follow", "zoom": "auto", "padding": 160, "dur": 0.8 }
+      ],
+      "beats": [
+        { "id": "w1", "at": 0.4, "who": "kai", "do": "wave", "face": "happy", "say": "Hi everyone!" },
+        { "id": "w2", "at": 0.9, "who": "pip", "do": "jump_joy", "face": "laugh" },
+        { "id": "w3", "at": 1.3, "who": "mo", "do": "wave", "face": "happy" },
+        { "id": "w4", "at": 1.7, "who": "gran", "do": "nod", "face": "happy", "say": "Hello, dears." },
+        { "id": "w5", "at": 2.2, "who": "brick", "do": "flex", "face": "smug" },
+        { "id": "w6", "at": 2.6, "who": "vex", "do": "taunt", "face": "smug", "say": "Hmph." },
+        { "id": "t1", "at": { "after": "w5", "delay": 0.8 }, "who": "brick", "do": "taunt", "say": "Spar with me, small one!", "bubble": "shout" },
+        { "id": "f1", "at": { "after": "t1", "delay": 0.4 }, "who": "pip", "do": "jab", "target": "brick", "approach": "run", "outcome": "blocked", "face": "determined" },
+        { "id": "f2", "at": { "after": "f1" }, "who": "brick", "do": "haymaker", "target": "pip", "approach": "run", "outcome": "dodged" },
+        { "id": "f3", "at": { "after": "f2", "delay": 0.1 }, "who": "pip", "do": "front_kick", "target": "brick", "approach": "run", "outcome": "hit" },
+        { "id": "f4", "at": { "after": "f3", "delay": 0.2 }, "who": "pip", "do": "flying_kick", "target": "brick", "approach": "run", "outcome": "hit", "params": { "damage": 40 } },
+        { "at": { "on": "f4.hit" }, "who": "world", "do": "text_pop", "params": { "text": "BONK!" } },
+        { "id": "ko", "at": { "after": "f4", "delay": 0.3 }, "who": "brick", "do": "ko_fall" },
+        { "id": "c1", "at": { "after": "ko", "delay": 0.2 }, "who": "mo", "do": "jump_joy", "face": "laugh", "say": "Go Pip!" },
+        { "id": "c2", "at": { "with": "c1" }, "who": "gran", "do": "shake_head", "face": "tired", "say": "Young people...", "bubble": "whisper" },
+        { "id": "c3", "at": { "after": "ko", "delay": 0.6 }, "who": "pip", "do": "victory", "face": "laugh" },
+        { "at": { "with": "c3" }, "who": "world", "do": "set_appearance", "params": { "who": "pip", "accessory": "scarf", "color": "#ff3b5c" } }
+      ] }
+  ]
+}

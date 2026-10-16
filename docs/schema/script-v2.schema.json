@@ -110,15 +110,8 @@
             "description": "Display name for HP bars and speaker labels."
           },
           "body": {
-            "enum": [
-              "stickman",
-              "buddy",
-              "kid",
-              "bulky",
-              "slim",
-              "elder"
-            ],
-            "description": "Body plan (default stickman)."
+            "type": "string",
+            "description": "Body plan from the catalog (default stickman; E_BODY_UNKNOWN)."
           },
           "color": {
             "type": "string",
@@ -181,53 +174,27 @@
             "additionalProperties": false,
             "properties": {
               "eyes": {
-                "enum": [
-                  "dot",
-                  "big",
-                  "oval",
-                  "sleepy",
-                  "visor",
-                  "glasses"
-                ]
+                "type": "string"
               },
               "brows": {
-                "enum": [
-                  "none",
-                  "thin",
-                  "thick"
-                ]
+                "type": "string"
               },
               "mouthStyle": {
-                "enum": [
-                  "line",
-                  "cartoon"
-                ]
+                "type": "string"
               },
               "cheeks": {
                 "type": "string",
                 "pattern": "^#[0-9a-fA-F]{6}$"
               },
               "hair": {
-                "enum": [
-                  "none",
-                  "spiky",
-                  "bob",
-                  "ponytail",
-                  "cap"
-                ]
+                "type": "string"
               },
               "hairColor": {
                 "type": "string",
                 "pattern": "^#[0-9a-fA-F]{6}$"
               },
               "outfit": {
-                "enum": [
-                  "none",
-                  "shirt",
-                  "coat",
-                  "armor",
-                  "robe"
-                ]
+                "type": "string"
               },
               "outfitColor": {
                 "type": "string",

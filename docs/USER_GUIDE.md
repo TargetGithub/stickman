@@ -286,6 +286,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `node tools/sfxgen.mjs [--force]` | Regenerate the built-in sound effects |
 | `node tools/pose_sheet.mjs` | Render all poses into one image |
 | `node tools/face_sheet.mjs` | Render every story face at three sizes into one image |
+| `node tools/body_sheet.mjs` | Render every body plan doing 8 moves into one image |
 
 `record` options:
 
@@ -305,7 +306,7 @@ Browser pages (after `npm run serve`):
 | Page | Use |
 |---|---|
 | `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file. Stories show scene markers above the scrubber (click one to jump) |
-| `/web/catalog.html` | Every move looping, with hit windows shown |
+| `/web/catalog.html` | Every move looping, with hit windows shown; pick a body plan to see the moves on it |
 | `/web/editor.html` | Pose and move editor, for adding or changing moves |
 | `/web/index.html` | Pose viewer |
 
@@ -564,7 +565,7 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 
 ## 11. Known limits
 
-- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards, narration, faces and emotions, thought/shout/whisper bubbles with speaker names, and speech sounds; see `scripts/samples/s1_scenes.json` and `scripts/samples/s2_dialogue.json`. Body plans, objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards, narration, faces and emotions, thought/shout/whisper bubbles with speaker names, speech sounds, six body plans (stickman, buddy, kid, bulky, slim, elder) and appearance options; see `scripts/samples/s1_scenes.json`, `s2_dialogue.json` and `s3_bodies.json`. objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
 - Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.

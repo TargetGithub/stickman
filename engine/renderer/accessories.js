@@ -3,16 +3,16 @@
 // (from the frame store), plus a backward offset and droop, so ribbons stream behind a runner and
 // hang when still. Pure functions of (history, style).
 
-import { BODY } from "../skeleton.js";
+import { dimsOf } from "../skeleton.js";
 
 /** Back-of-head, neck and shoulder anchors for a joint set. */
-function anchors(j, facing, scale) {
+function anchors(j, facing, scale, dims) {
   const ux = j.head.x - j.neckTop.x;
   const uy = j.head.y - j.neckTop.y;
   const l = Math.hypot(ux, uy) || 1;
   const up = { x: ux / l, y: uy / l };
   const fwd = facing === 1 ? { x: -up.y, y: up.x } : { x: up.y, y: -up.x };
-  const r = BODY.headR * scale;
+  const r = dims.headR * scale;
   return {
     up,
     fwd,
@@ -28,12 +28,12 @@ function anchors(j, facing, scale) {
  */
 function tail(c, past, which, segments, seg, droop) {
   const s = c.scale;
-  const now = anchors(c.j, c.facing, s);
+  const now = anchors(c.j, c.facing, s, dimsOf(c));
   const back = { x: -c.facing, y: 0 };
   const pts = [now[which]];
   for (let k = 1; k <= segments; k++) {
     const old = past(k * 2);
-    const a = old ? anchors(old, c.facing, s)[which] : now[which];
+    const a = old ? anchors(old, c.facing, s, dimsOf(c))[which] : now[which];
     pts.push({ x: a.x + back.x * seg * s * k * 0.65, y: a.y + droop * s * k * k });
   }
   return pts;
@@ -88,8 +88,8 @@ export function drawBehind(ctx, c, past, style) {
 /** Accessories drawn over the body (headband, scarf, hat). */
 export function drawFront(ctx, c, past, style) {
   const s = c.scale;
-  const r = BODY.headR * s;
-  const a = anchors(c.j, c.facing, s);
+  const r = dimsOf(c).headR * s;
+  const a = anchors(c.j, c.facing, s, dimsOf(c));
   ctx.save();
   ctx.globalAlpha = c.alpha;
   if (style.headband) {

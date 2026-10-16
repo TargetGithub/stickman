@@ -2,7 +2,7 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** fight engine finished (M0-M8). Story engine: S0 (spec freeze) signed off; S1 (scenes, locations, transitions, cards, narration, time and weather) done; S2 (faces, emotions, dialogue bubbles, speech sounds) built, awaiting review: `npm run record -- scripts/samples/s2_dialogue.json`. Next: S3 (body plans); see docs/STORY_PLAN.md. New here? Read the [User Guide](docs/USER_GUIDE.md).
+**Status:** fight engine finished (M0-M8). Story engine: S0 (spec freeze) signed off; S1 (scenes, locations, transitions, cards, narration, time and weather) done; S2 (faces, emotions, dialogue bubbles, speech sounds) done; S3 (six body plans, appearance) built, awaiting review: `npm run record -- scripts/samples/s3_bodies.json`. Next: S4 (objects and set pieces); see docs/STORY_PLAN.md. New here? Read the [User Guide](docs/USER_GUIDE.md).
 
 ## Documents
 

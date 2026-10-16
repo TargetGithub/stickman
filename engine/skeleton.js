@@ -4,8 +4,24 @@
 import { DEG } from "./math.js";
 import { JOINT_ORDER } from "./types.js";
 
-/** Body dimensions at scale 1.0 (spec 5.1). */
+/** Body dimensions at scale 1.0 (spec 5.1): the stickman. Body plans (S3) pass their own dims. */
 export const BODY = { headR: 22, neck: 8, torso: 78, upperArm: 38, forearm: 36, thigh: 48, shin: 46, lineWidth: 9 };
+
+/** An actor's (or frame character's) body dims: its plan's, or the stickman's. */
+export const dimsOf = (a) => (a && a.dims) || BODY;
+
+/**
+ * A pose with a body plan's posture added at weight w (the elder's stoop): the torso leans and the
+ * thighs turn with it so the legs stay upright.
+ */
+export function withPosture(pose, posture, w = 1) {
+  if (!posture || w <= 0) return pose;
+  const lean = (posture.lean || 0) * w;
+  return { ...pose, lean: (pose.lean || 0) + lean, head: (pose.head || 0) + (posture.head || 0) * w, lTH: (pose.lTH || 0) + lean, rTH: (pose.rTH || 0) + lean };
+}
+
+/** Leg-length ratio to the stickman: root motion (steps, travel, jumps) scales with it (ADR-015). */
+export const strideOf = (dims) => (dims.thigh + dims.shin) / (BODY.thigh + BODY.shin);
 
 /**
  * Pose angles → joint positions (spec 5.3, incl. rot).
@@ -13,19 +29,20 @@ export const BODY = { headR: 22, neck: 8, torso: 78, upperArm: 38, forearm: 36, 
  * @param {{x:number, y:number}} root  anchor (hip position before dx/dy)
  * @param {1|-1} facing
  * @param {number} scale
+ * @param {object} dims  body dimensions (a body plan's; default the stickman)
  * @returns {import("./types.js").Joints}
  */
-export function computeJoints(pose, root, facing, scale) {
+export function computeJoints(pose, root, facing, scale, dims = BODY) {
   const p = (k) => pose[k] || 0;
   const lean = p("lean");
   const L = {
-    torso: BODY.torso * scale,
-    neck: BODY.neck * scale,
-    headR: BODY.headR * scale,
-    upperArm: BODY.upperArm * scale,
-    forearm: BODY.forearm * scale,
-    thigh: BODY.thigh * scale,
-    shin: BODY.shin * scale,
+    torso: dims.torso * scale,
+    neck: dims.neck * scale,
+    headR: dims.headR * scale,
+    upperArm: dims.upperArm * scale,
+    forearm: dims.forearm * scale,
+    thigh: dims.thigh * scale,
+    shin: dims.shin * scale,
   };
 
   // dir(a) = (facing * sin a, cos a): 0° down, 90° forward, 180° up.
@@ -102,8 +119,8 @@ export function bendSignOf(a, mid, end) {
 }
 
 /** Max y over all joints, head counted at head.y + headRadius. */
-export function lowestPoint(joints, scale) {
-  let y = joints.head.y + BODY.headR * scale;
+export function lowestPoint(joints, scale, dims = BODY) {
+  let y = joints.head.y + dims.headR * scale;
   for (const name of JOINT_ORDER) {
     if (name !== "head" && name !== "center" && joints[name].y > y) y = joints[name].y;
   }

@@ -3,7 +3,7 @@
 // Used by the editor and catalog page directly (stepActor) and by world.js, which runs physics
 // between advanceMove and poseActor.
 
-import { computeJoints, lowestPoint, BODY } from "./skeleton.js";
+import { computeJoints, lowestPoint, dimsOf, withPosture } from "./skeleton.js";
 import { fillPose } from "./pose.js";
 import { startMove, stepMove } from "./moves.js";
 import { MOTION, STAGE } from "./config.js";
@@ -112,10 +112,11 @@ export function advanceMove(actor, dt, moves) {
  * airborne in physics, the offset is held and only corrected upward, so the body never sinks into the ground.
  */
 function groundContact(actor, pose, dt, snapHard) {
-  const hipBase = actor.groundY - (BODY.thigh + BODY.shin) * actor.scale;
+  const dims = dimsOf(actor);
+  const hipBase = actor.groundY - (dims.thigh + dims.shin) * actor.scale;
   const rootY = hipBase + actor.rootDy + actor.airY;
-  const raw = computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale);
-  const target = actor.groundY - lowestPoint(raw, actor.scale);
+  const raw = computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale, dims);
+  const target = actor.groundY - lowestPoint(raw, actor.scale, dims);
   if (actor.rootDy < 0 || actor.airborne) {
     if (target < actor.snapOffset) actor.snapOffset = target;
     return rootY + actor.snapOffset;
@@ -129,16 +130,24 @@ function groundContact(actor, pose, dt, snapHard) {
   return rootY + actor.snapOffset;
 }
 
-/** Pose shown this tick: the move pose plus launch spin. */
+/** Pose shown this tick: the move pose plus launch spin and the body plan's posture (S3). */
 export function displayPose(actor) {
-  return actor.spinRot ? { ...actor.pose, rot: actor.pose.rot + actor.spinRot } : actor.pose;
+  const pose = actor.spinRot ? { ...actor.pose, rot: actor.pose.rot + actor.spinRot } : actor.pose;
+  return withPosture(pose, actor.posture, actor.postureW ?? 1);
 }
 
 /** Forward kinematics + ground contact for the current pose and body position. */
 export function poseActor(actor, dt, snapHard = false) {
+  // A posture (the elder's stoop) eases out while attacking: strikes use the plan's plain geometry,
+  // which is what reach derivation and positioning assume.
+  if (actor.posture) {
+    const want = actor.move?.def.category === "attack" ? 0 : 1;
+    const w = actor.postureW ?? want;
+    actor.postureW = w + Math.sign(want - w) * Math.min(Math.abs(want - w), dt * 6);
+  }
   const pose = displayPose(actor);
   const rootY = groundContact(actor, pose, dt, snapHard);
-  actor.joints = withPropTip(actor, computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale));
+  actor.joints = withPropTip(actor, computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale, dimsOf(actor)));
   return actor.joints;
 }
 

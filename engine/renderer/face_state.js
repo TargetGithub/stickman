@@ -5,7 +5,7 @@
 
 import { blinkAt } from "./face.js";
 import { syllables, mouthOpenAt } from "../story/speech.js";
-import { BODY } from "../skeleton.js";
+import { dimsOf } from "../skeleton.js";
 
 const DETAIL_PX = 30; // head radius on screen above which the neutral face shows its full features
 
@@ -45,7 +45,7 @@ export function faceStyle(r, c, chars, sv, f) {
     gaze = { f: dx >= 0 ? 1 : -1, u: Math.max(-1, Math.min(1, (c.j.head.y - o.j.head.y) / 200)) };
     break;
   }
-  const screenR = BODY.headR * c.scale * f.cam.zoom;
+  const screenR = dimsOf(c).headR * c.scale * f.cam.zoom;
   return {
     face: data,
     faceOpts: { blink: blinkAt(r.seed, c.id, t), talking, gaze, t, neutral, detail: screenR >= DETAIL_PX ? "full" : "simple" },
