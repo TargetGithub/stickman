@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  segSegDist2, sweptHit, buildHurtboxes, deriveReach, aimCandidates, resolveAimPoint, ikWeight, applyAimIK, requiredStartX, whiffGap,
+  segSegDist2, sweptHit, buildHurtboxes, deriveReach, aimCandidates, resolveAimPoint, ikWeight, applyAimIK, requiredStartX, whiffGap, maxForward,
 } from "../../engine/combat.js";
 import { computeJoints } from "../../engine/skeleton.js";
 import { prepareCatalog, rootOffsetAt } from "../../engine/moves.js";
@@ -48,7 +48,9 @@ test("auto aim picks a reachable point closest to the authored contact", () => {
   const onGiant = resolveAimPoint(hero, "rHand", 1, giant, "auto", contact);
   assert.equal(onSmall.name, "head", "small target: punch comes down to the head");
   assert.ok(["hip", "knees"].includes(onGiant.name), `giant: lands low (${onGiant.name})`);
-  assert.equal(resolveAimPoint(hero, "rHand", 1, giant, "head", contact).name, "head", "explicit aim respected");
+  const close = computeJoints({}, P(1050, 786), -1, 1);
+  assert.ok(["upperTorso", "torsoMid"].includes(resolveAimPoint(hero, "rHand", 1, close, "torso", contact).name), "explicit aim respected when reachable");
+  assert.notEqual(resolveAimPoint(hero, "rHand", 1, giant, "head", contact).name, "head", "out-of-reach explicit aim falls back");
 });
 
 test("ikWeight ramps in, holds, releases", () => {
@@ -83,7 +85,8 @@ test("requiredStartX puts the FK contact point on the aim point at the window mi
       const aimXs = aimCandidates(target.joints, ts, -1).map((c) => c.point.x);
       assert.ok(aimXs.some((x) => Math.abs(x - contactX) < 1e-6), `${name} ${as}v${ts}`);
       const whiffX = requiredStartX(attacker, target, def, def.params, "whiff");
-      assert.ok(Math.abs(x0 - whiffX - whiffGap(attacker, target)) < 1e-6, "whiff starts whiffGap further back");
+      const extra = (maxForward(def, 0, def.params) - d.reach - rootOffsetAt(def, d.tmid, def.params).dx) * as;
+      assert.ok(Math.abs(x0 - whiffX - whiffGap(attacker, target) - extra) < 1e-6, "whiff starts further back by gap + extra recovery reach");
       assert.ok(samplePoseKeys(def.keys, d.tmid));
     }
   }

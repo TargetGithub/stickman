@@ -85,6 +85,8 @@ export function advanceMove(actor, dt, moves) {
   }
   const r = stepMove(actor, dt);
   const events = r.events;
+  // Move events with `turn: true` flip the character mid-move (spinning attacks).
+  for (const e of events) if (e.type === "moveEvent" && e.turn) actor.facing = -actor.facing;
   actor.x += actor.facing * r.rootDx;
   actor.rootDy = r.rootDy;
   actor.mouth = r.mouth;

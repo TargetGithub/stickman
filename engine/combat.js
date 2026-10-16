@@ -14,6 +14,25 @@ export const CHAINS = {
   lFoot: ["hip", "lKnee", "lFoot", "thigh", "shin"],
 };
 
+/** One-bone aiming for strikes with a middle joint: [root, joint, bone, joint that follows rigidly]. */
+export const LEVERS = {
+  rElbow: ["shoulder", "rElbow", "upperArm", "rHand"],
+  lElbow: ["shoulder", "lElbow", "upperArm", "lHand"],
+  rKnee: ["hip", "rKnee", "thigh", "rFoot"],
+  lKnee: ["hip", "lKnee", "thigh", "lFoot"],
+};
+
+export const MAX_ASSIST_LEAN = 40; // degrees an attacker may lean into a strike to reach a lower target
+
+/** Root joint and reach of the limb that delivers a hit part (null when it cannot aim, e.g. head). */
+export function limbReach(joints, part, scale) {
+  const c = CHAINS[part];
+  if (c) return { root: joints[c[0]], len: 0.98 * (BODY[c[3]] + BODY[c[4]]) * scale };
+  const l = LEVERS[part];
+  if (l) return { root: joints[l[0]], len: BODY[l[2]] * scale * 1.15 };
+  return null;
+}
+
 export const IK_RAMP = 0.3; // normalized move time before t0 over which aiming blends in
 export const IK_RELEASE = 0.15; // normalized move time after t1 over which aiming blends out
 
@@ -90,6 +109,7 @@ export function sweptHit(prev, cur, radius, hurtboxes) {
  */
 export function deriveReach(def) {
   if (def.derived) return def.derived;
+  if (!def.hits.length) return (def.derived = []);
   def.derived = def.hits.map((hit) => {
     const tmid = (hit.t0 + hit.t1) / 2;
     const j = computeJoints(samplePoseKeys(def.keys, tmid), { x: 0, y: 0 }, 1, 1);
@@ -126,21 +146,24 @@ export function aimPointByName(j, name, scale = 0, side = 0) {
  * Choose where a hit lands on the target: among the candidates allowed by `aim`, those the hitting
  * limb can reach; of those, the one closest to where the authored FK pose would make contact.
  * If none is reachable, the closest candidate overall (IK then extends as far as it can).
+ * rootShift: how far the limb root will still move in x before contact (approach travel and nudge).
  * @returns {{ name:string, point:{x,y} }}
  */
-export function resolveAimPoint(attackerJoints, part, scale, targetJoints, aim, fkPoint, targetScale = 0, side = 0) {
+export function resolveAimPoint(attackerJoints, part, scale, targetJoints, aim, fkPoint, targetScale = 0, side = 0, rootShift = 0) {
+  const all = aimCandidates(targetJoints, targetScale, side);
   const allowed = AIM_GROUPS[aim] || null;
-  const cands = aimCandidates(targetJoints, targetScale, side).filter((c) => !allowed || allowed.includes(c.name));
-  const chain = CHAINS[part];
+  const preferred = allowed ? all.filter((c) => allowed.includes(c.name)) : all;
   const d2 = (a, b) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
-  let pool = cands;
-  if (chain) {
-    const root = attackerJoints[chain[0]];
-    const len = 0.98 * (BODY[chain[3]] + BODY[chain[4]]) * scale;
-    const reachable = cands.filter((c) => d2(root, c.point) <= len * len);
-    if (reachable.length) pool = reachable;
-  }
-  return pool.reduce((best, c) => (d2(c.point, fkPoint) < d2(best.point, fkPoint) ? c : best));
+  const closest = (pool) => pool.reduce((best, c) => (d2(c.point, fkPoint) < d2(best.point, fkPoint) ? c : best));
+  const limb = limbReach(attackerJoints, part, scale);
+  if (!limb) return closest(preferred);
+  // Judge reach from where the limb root will be at contact (the attacker is still stepping in).
+  limb.root = { x: limb.root.x + rootShift, y: limb.root.y };
+  const reachable = (pool) => pool.filter((c) => d2(limb.root, c.point) <= limb.len * limb.len);
+  // An explicit aim is a preference: when that region is out of reach (a small fighter aiming at a
+  // giant's head), fall back to the closest reachable point anywhere on the body.
+  const pool = reachable(preferred).length ? reachable(preferred) : reachable(all).length ? reachable(all) : all;
+  return closest(pool);
 }
 
 /** IK blend weight for a hit at normalized move time t: ramps in before t0, holds, releases after t1. */
@@ -164,8 +187,24 @@ function lerpAngle(a, b, w) {
 
 /** Blend the hitting limb from its FK angles toward the 2-bone IK solution for aimPoint (weight w). */
 export function applyAimIK(joints, part, aimPoint, w, scale) {
+  if (w <= 0) return joints;
+  const lever = LEVERS[part];
+  if (lever) {
+    // Rotate the bone toward the aim point; the joint below follows rigidly.
+    const [rootName, jointName, , followName] = lever;
+    const root = joints[rootName];
+    const cur = Math.atan2(joints[jointName].y - root.y, joints[jointName].x - root.x);
+    const want = Math.atan2(aimPoint.y - root.y, aimPoint.x - root.x);
+    const delta = lerpAngle(cur, want, w) - cur;
+    const turn = (p) => {
+      const x = p.x - root.x;
+      const y = p.y - root.y;
+      return { x: root.x + x * Math.cos(delta) - y * Math.sin(delta), y: root.y + x * Math.sin(delta) + y * Math.cos(delta) };
+    };
+    return { ...joints, [jointName]: turn(joints[jointName]), [followName]: turn(joints[followName]) };
+  }
   const chain = CHAINS[part];
-  if (!chain || w <= 0) return joints;
+  if (!chain) return joints;
   const [rootName, midName, endName, b1, b2] = chain;
   const root = joints[rootName];
   const mid = joints[midName];
@@ -202,6 +241,50 @@ export function requiredStartX(attacker, target, def, params, outcome, hitIndex 
   const tj = target.joints || computeJoints({}, { x: target.x, y: target.groundY - (BODY.thigh + BODY.shin) * target.scale }, target.facing, target.scale);
   const cands = aimCandidates(tj, target.scale, -f);
   const aim = cands.reduce((best, c) => (Math.abs(c.point.y - contactY) < Math.abs(best.point.y - contactY) ? c : best));
-  const gap = outcome === "whiff" ? whiffGap(attacker, target) : 0;
-  return aim.point.x - f * (d.reach * s + travel + gap);
+  if (outcome === "whiff") {
+    // Whiffs keep the limb short of the body for the whole move (recoveries can reach further than the strike).
+    return aim.point.x - f * (maxForward(def, hitIndex, params) * s + whiffGap(attacker, target));
+  }
+  // Dodged attacks start a little further back so the windup never brushes the defender before it moves.
+  const dodgeGap = outcome === "dodged" ? whiffGap(attacker, target) * 0.5 : 0;
+  return aim.point.x - f * (d.reach * s + travel + dodgeGap);
+}
+
+/** Furthest forward the hit part gets at any time in the move (FK plus root travel), at scale 1. */
+export function maxForward(def, hitIndex, params) {
+  const part = def.hits[hitIndex].part === "propTip" ? "rHand" : def.hits[hitIndex].part;
+  let best = -Infinity;
+  for (let i = 0; i <= 40; i++) {
+    const t = i / 40;
+    const j = computeJoints(samplePoseKeys(def.keys, t), { x: 0, y: 0 }, 1, 1);
+    best = Math.max(best, j[part].x + rootOffsetAt(def, t, params).dx);
+  }
+  return best;
+}
+
+/**
+ * Can the hitting limb physically reach any aim point on the target from where the attack lands?
+ * (A giant's elbow cannot reach a small fighter's head.) Uses the FK pose at the window middle.
+ */
+export function canReach(attacker, target, def, params, hitIndex = 0) {
+  const hit = def.hits[hitIndex];
+  const d = deriveReach(def)[hitIndex];
+  const s = attacker.scale;
+  const f = Math.sign(target.x - attacker.x) || attacker.facing;
+  const startX = requiredStartX(attacker, target, def, params, "hit", hitIndex);
+  const base = samplePoseKeys(def.keys, d.tmid);
+  const d2 = (a, b) => (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
+  const cands = aimCandidates(target.joints, target.scale, -f);
+  // Try the authored pose, then with the reach-assist lean the runtime may add.
+  return [0, MAX_ASSIST_LEAN].some((extra) => {
+    const pose = { ...base, lean: base.lean + extra };
+    const raw = computeJoints(pose, { x: 0, y: 0 }, f, s);
+    const lift = attacker.groundY - lowestPoint(raw, s);
+    const root = rootOffsetAt(def, d.tmid, params);
+    const j = computeJoints(pose, { x: startX + f * root.dx * s, y: lift + Math.min(0, root.dy) * s }, f, s); // jumps lift the body
+    // Parts that cannot aim (the head) must make contact from their own FK position.
+    const limb = limbReach(j, hit.part, s) || { root: j[hit.part] || j.head, len: 0 };
+    const range = limb.len * 1.05 + COMBAT.hitRadius * s * 0.5; // limb length plus half a fist of contact slack
+    return cands.some((c) => d2(limb.root, c.point) <= range * range);
+  });
 }

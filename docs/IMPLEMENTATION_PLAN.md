@@ -87,7 +87,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 | M5.4 Golden frame tests (5 scripts × 10 frames) | |
 **Exit**: determinism and golden tests pass.
 
-### M6 Recorder + audio (2-3 days) — DONE 2026-10-16, awaiting review
+### M6 Recorder + audio (2-3 days) — DONE 2026-10-16, reviewed
 | Task | Output |
 |---|---|
 | M6.1 `record.mjs`: raw RGBA → ffmpeg with backpressure, flags `--from/--to/--frames-only/--hash` | |
@@ -97,7 +97,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: `npm run record -- scripts/samples/showdown.json` produces `out/showdown/final.mp4` with sound.
 **Review**: Sridhar watches the first full MP4.
 
-### M7 Catalog completion (10-15 days, iterative)
+### M7 Catalog completion (10-15 days, iterative) — IN PROGRESS: batches A-C done 2026-10-16 (awaiting review); D-G next
 | Batch | Moves |
 |---|---|
 | A Movement | dash, slide, backflip, frontflip, dodge_roll, side_step, land_roll |

@@ -6,17 +6,17 @@
 //   const events = stepWorld(world, 1 / 60);   // dt = 0 during hitstop: poses only
 
 import { advanceMove, poseActor, playMove, displayPose } from "./actor.js";
-import { stepBody, launch, separate } from "./physics.js";
+import { computeJoints, BODY } from "./skeleton.js";
+import { stepBody, separate } from "./physics.js";
+import { applyHit, inWindow } from "./hit_apply.js";
+import { spawnProjectile, stepWorldProjectiles, projectileArrival } from "./projectiles.js";
 import {
-  deriveReach, requiredStartX, whiffGap, resolveAimPoint, aimPointByName, aimCandidates, applyAimIK, ikWeight, sweptHit, buildHurtboxes,
+  deriveReach, requiredStartX, whiffGap, canReach, limbReach, MAX_ASSIST_LEAN, resolveAimPoint, aimPointByName, aimCandidates, applyAimIK, ikWeight, sweptHit, buildHurtboxes,
 } from "./combat.js";
 import { rootOffsetAt } from "./moves.js";
-import { evalParam } from "./expr.js";
 import { COMBAT, STAGE } from "./config.js";
 
 export const OUTCOMES = ["hit", "whiff", "blocked", "parried", "dodged"];
-const LAUNCH_SPIN = -540; // deg/s, backward
-const MIN_LAUNCH_VY = -750;
 
 /**
  * @param {{ actors:object[], moves:Map, mode?:"choreographed"|"simulated", stageWidth?:number }} opts
@@ -26,7 +26,7 @@ export function createWorld({ actors, moves, mode = "choreographed", stageWidth 
     advanceMove(a, 0, moves); // start idle (or a pre-queued move) so every actor has a pose
     poseActor(a, 0);
   }
-  return { actors, byId: new Map(actors.map((a) => [a.id, a])), moves, mode, stageWidth, time: 0, scheduled: [], seq: 0, current: new Map() };
+  return { actors, byId: new Map(actors.map((a) => [a.id, a])), moves, mode, stageWidth, time: 0, scheduled: [], seq: 0, current: new Map(), projectiles: [] };
 }
 
 const toward = (from, to) => Math.sign(to.x - from.x) || from.facing;
@@ -64,26 +64,54 @@ function setupAttack(world, actor, events) {
   m.prevPart = {};
   m.hitIds = new Set();
   if (world.mode !== "choreographed") return;
+  if (m.def.flags.ranged) return setupRanged(world, actor, target, m, events);
 
   const d = deriveReach(m.def)[0];
   const required = requiredStartX(actor, target, m.def, m.params, m.outcome);
   const error = required - actor.x;
   const max = COMBAT.maxNudge * actor.scale;
-  if (Math.abs(error) > max) events.push({ type: "positionError", actor: actor.id, move: m.def.name, beatId: m.beatId, error });
+  // Judge reachability against the plain hit spot; dodged spacing is a refinement the nudge aims for.
+  const judged = m.outcome === "dodged" ? requiredStartX(actor, target, m.def, m.params, "hit") - actor.x : error;
+  if (Math.abs(judged) > max) events.push({ type: "positionError", actor: actor.id, move: m.def.name, beatId: m.beatId, error: judged });
   m.nudge = { total: Math.max(-max, Math.min(max, error)), applied: 0, until: d.tmid };
+  if (m.outcome !== "whiff" && !canReach(actor, target, m.def, m.params)) {
+    events.push({ type: "reachWarning", actor: actor.id, target: target.id, move: m.def.name, beatId: m.beatId });
+  }
 
   const secondsToHit = ((m.def.hits[0].t0 - m.t) * m.def.duration) / m.speed;
   const defense = { blocked: "block", parried: "parry" }[m.outcome]
     || (m.outcome === "dodged" ? dodgeFor(actor, target, m) : null);
+  m.defense = defense;
   if (defense && world.moves.has(defense)) {
     // Small defenders dodge further (in their own units) so a bigger attacker's limb clearly misses.
-    const params = defense === "dodge_back" ? { distance_back: 120 * Math.max(1, actor.scale / target.scale) } : undefined;
-    schedule(world, world.time + Math.max(0, secondsToHit - DEFENSE_LEAD[defense]), target.id, defense, { target: actor.id, params });
+    // distance_back is in the defender's units: at least its own 120, and far enough to clear the attacker's reach.
+    const params = defense === "dodge_back" ? { distance_back: Math.max(120, (180 * actor.scale) / target.scale) } : undefined;
+    // Dodges start up to 0.35 s ahead so the attacker's windup never grazes the defender.
+    const lead = defense === "dodge_back" || defense === "duck" ? Math.max(DEFENSE_LEAD[defense], Math.min(secondsToHit, 0.35)) : DEFENSE_LEAD[defense];
+    schedule(world, world.time + Math.max(0, secondsToHit - lead), target.id, defense, { target: actor.id, params });
+  }
+}
+
+/** Ranged attacks: no contact positioning, just a distance band; defenders react to the projectile's arrival. */
+function setupRanged(world, actor, target, m, events) {
+  const [min, max] = m.def.flags.ranged.map((v) => v * actor.scale);
+  const dist = Math.abs(target.x - actor.x);
+  if (dist < min || dist > max) events.push({ type: "positionError", actor: actor.id, move: m.def.name, beatId: m.beatId, error: dist < min ? dist - min : dist - max });
+  // Dodging a projectile: duck under it, or (a much bigger defender, hit low) jump over a flat shot.
+  const dodge = target.scale > actor.scale * 1.3 ? "jump" : "duck";
+  const defense = { blocked: "block", parried: "parry", dodged: dodge }[m.outcome];
+  m.defense = defense;
+  if (defense && world.moves.has(defense)) {
+    // Projectiles reach the body surface before its centre line: defend a little earlier than melee.
+    const at = projectileArrival(actor, target, m.def, m) - (defense === "jump" ? 0.5 : DEFENSE_LEAD[defense] + 0.15);
+    schedule(world, world.time + Math.max(0, at), target.id, defense, { target: actor.id });
   }
 }
 
 /** Duck under head-height hand strikes; step back from everything else (kicks rise through a duck). */
 function dodgeFor(actor, target, m) {
+  const declared = m.def.hits[0].dodge; // moves may declare it (an uppercut rises into a duck)
+  if (declared) return declared === "duck" ? "duck" : "dodge_back";
   const handStrike = ["rHand", "lHand", "rElbow", "lElbow"].includes(m.def.hits[0].part);
   return handStrike && predictAimName(actor, target, m) === "head" ? "duck" : "dodge_back";
 }
@@ -119,65 +147,42 @@ function aimLimbs(world, actor) {
       const travelLeft = (rootOffsetAt(m.def, d.tmid, m.params).dx - rootOffsetAt(m.def, m.t, m.params).dx) * s;
       const nudgeLeft = m.nudge ? (m.nudge.total - m.nudge.applied) * actor.facing : 0;
       const fk = { x: actor.x + actor.facing * (d.reach * s + travelLeft + nudgeLeft), y: actor.groundY - d.height * s };
-      m.aims[i] = resolveAimPoint(actor.joints, hit.part, s, target.joints, hit.aim || "auto", fk, target.scale, -actor.facing).name;
+      const shift = actor.facing * (travelLeft + nudgeLeft);
+      m.aims[i] = resolveAimPoint(actor.joints, hit.part, s, target.joints, hit.aim || "auto", fk, target.scale, -actor.facing, shift).name;
     }
     const near = () => aimPointByName(target.joints, m.aims[i], target.scale, -actor.facing);
     // Dodges lock the aim where the target was, so the limb does not follow it out of the way.
-    let point = m.outcome === "dodged" ? ((m.aimLock ||= {})[i] ||= near()) : near();
+    // A ducked swing aims just over the head so it clearly passes above.
+    const lock = () => {
+      const p = near();
+      return m.defense === "duck" ? { x: p.x, y: p.y - BODY.headR * target.scale * 1.3 } : p;
+    };
+    let point = m.outcome === "dodged" ? ((m.aimLock ||= {})[i] ||= lock()) : near();
     if (m.outcome === "whiff") point = { x: point.x - actor.facing * whiffGap(actor, target), y: point.y };
+    reachAssist(actor, hit.part, point, w);
     actor.joints = applyAimIK(actor.joints, hit.part, point, w, s);
   });
 }
 
-function reactionFor(world, hit, damage) {
-  if (hit.reaction && world.moves.has(hit.reaction)) return hit.reaction;
-  const t = COMBAT.reactionThresholds;
-  const name = damage < t.light ? "hit_light" : damage < t.heavy ? "hit_heavy" : "hit_launch";
-  return world.moves.has(name) ? name : "hit_light";
-}
-
-/** Apply one landed hit (spec 10.3 steps 4-7). kind: hit | blocked | parried. */
-function applyHit(world, attacker, target, hit, kind, point) {
-  const m = attacker.move;
-  const f = attacker.facing;
-  const damage = evalParam(hit.damage ?? 0, m.params);
-  const knock = hit.knock || [0, 0];
-  const events = [];
-  let dealt = 0;
-  target.facing = -f;
-  if (kind === "parried") {
-    playMove(attacker, world.moves.has("stagger") ? "stagger" : "hit_light", world.moves, {});
-    events.push({ type: "hitstop", seconds: 0.06 });
-  } else if (kind === "blocked") {
-    dealt = damage * COMBAT.blockDamageFactor;
-    target.vx = f * knock[0] * 0.3;
-    events.push({ type: "hitstop", seconds: (hit.hitstop ?? 0.06) * 0.6 });
-  } else {
-    dealt = damage;
-    const reaction = reactionFor(world, hit, damage);
-    playMove(target, reaction, world.moves, { blend: 0 });
-    if (reaction === "hit_launch") launch(target, f * knock[0], Math.min(knock[1], MIN_LAUNCH_VY), LAUNCH_SPIN);
-    else target.vx = f * knock[0];
-    if (hit.hitstop) events.push({ type: "hitstop", seconds: hit.hitstop });
+/**
+ * When the aim point is below the limb's reach (a giant punching a small fighter), lean the torso
+ * into the strike, up to MAX_ASSIST_LEAN degrees, just enough to bring the point into reach.
+ */
+function reachAssist(actor, part, point, w) {
+  const s = actor.scale;
+  const limb = limbReach(actor.joints, part, s);
+  if (!limb) return;
+  const out = (j) => Math.hypot(point.x - limbReach(j, part, s).root.x, point.y - limbReach(j, part, s).root.y) - limbReach(j, part, s).len;
+  if (out(actor.joints) <= 0 || point.y < limb.root.y) return; // reachable already, or the target is above (no ducking help)
+  const pose = displayPose(actor);
+  const hip = actor.joints.hip;
+  const root = { x: hip.x - actor.facing * (pose.dx || 0), y: hip.y - (pose.dy || 0) };
+  let best = actor.joints;
+  for (let extra = 8; extra <= MAX_ASSIST_LEAN; extra += 8) {
+    best = computeJoints({ ...pose, lean: pose.lean + extra * w }, root, actor.facing, s);
+    if (out(best) <= 0) break;
   }
-  target.hp -= dealt;
-  if (world.mode === "choreographed") target.hp = Math.max(1, target.hp);
-  else if (target.hp <= 0 && target.alive) {
-    target.alive = false;
-    playMove(target, world.moves.has("ko_fall") ? "ko_fall" : "knockdown", world.moves, { blend: 0 });
-  }
-  const fx = kind === "hit" ? hit.fx || [] : ["block_spark"];
-  const sfx = kind === "hit" ? hit.sfx : kind === "blocked" ? "block" : "parry";
-  events.push({ type: "hit", kind, beatId: m.beatId, attacker: attacker.id, target: target.id, move: m.def.name, part: hit.part, damage: dealt, point, fx, shake: kind === "hit" ? hit.shake : null, sfx });
-  events.push({ type: "anchor", beatId: m.beatId, anchor: "hit", actor: attacker.id, move: m.def.name });
-  return events;
-}
-
-function inWindow(move, flag) {
-  const w = move?.def.flags[flag];
-  if (!w) return null;
-  if (w === true) return true;
-  return move.t >= w[0] && move.t <= w[1] ? (w[2] || true) : null;
+  actor.joints = best;
 }
 
 /** Resolve open hit windows in stable order (spec 10.3). */
@@ -209,7 +214,7 @@ function resolveHits(world, windowsByActor) {
         }
         if (!kind) continue;
         m.hitIds.add(key);
-        events.push(...applyHit(world, attacker, target, hit, kind, { x: part.x, y: part.y }));
+        events.push(...applyHit(world, attacker, target, hit, kind, { x: part.x, y: part.y }, { params: m.params, beatId: m.beatId, moveName: m.def.name, facing: attacker.facing }));
         if (kind === "parried") break;
       }
       if (attacker.move !== m) break; // parried: the attack was cut
@@ -271,7 +276,10 @@ export function stepWorld(world, dt) {
     announce(world, events);
     for (const actor of world.actors) {
       const r = advanceMove(actor, dt, world.moves);
-      for (const e of r.events) events.push({ ...e, actor: actor.id });
+      for (const e of r.events) {
+        events.push({ ...e, actor: actor.id });
+        if (e.type === "moveEvent" && e.projectile && actor.move) spawnProjectile(world, actor, e.projectile, events);
+      }
       windowsByActor.set(actor, r.openWindows);
       snapHard.set(actor, r.snapHard);
       if (actor.move && !actor.move.setup) setupAttack(world, actor, events);
@@ -287,6 +295,7 @@ export function stepWorld(world, dt) {
   for (const actor of world.actors) aimLimbs(world, actor);
   if (dt > 0) {
     events.push(...resolveHits(world, windowsByActor));
+    events.push(...stepWorldProjectiles(world, dt));
     announce(world, events);
   }
   return events;

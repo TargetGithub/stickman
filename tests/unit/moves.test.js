@@ -31,9 +31,10 @@ test("the shipped catalog prepares without problems", () => {
 test("attacks in the catalog obey choreography rules", () => {
   for (const def of prepareCatalog(catalog.moves, catalog.poses).values()) {
     if (def.category !== "attack") continue;
-    assert.ok(def.hits.length > 0, `${def.name} has hits`);
-    assert.ok(def.hits[0].t0 >= MIN_WINDUP, `${def.name} windup ≥ ${MIN_WINDUP}`);
-    assert.ok(def.events.some((e) => e.sfx === "whoosh"), `${def.name} has a whoosh`);
+    const projectile = def.events.find((e) => e.projectile);
+    assert.ok(def.hits.length > 0 || projectile, `${def.name} has hits or a projectile`);
+    assert.ok((def.hits[0]?.t0 ?? projectile.t) >= MIN_WINDUP, `${def.name} windup ≥ ${MIN_WINDUP}`);
+    assert.ok(def.events.some((e) => e.sfx === "whoosh" || e.projectile), `${def.name} has a whoosh (or fires a projectile)`);
   }
 });
 

@@ -28,4 +28,17 @@ export const moves = [
     ],
     events: [{ t: 0.3, sfx: "crowd_cheer" }],
   },
+  {
+    name: "charge_up",
+    category: "emote",
+    duration: 1.4,
+    mouth: "shout",
+    keys: [
+      { t: 0, pose: "guard", ease: "outQuad" },
+      { t: 0.2, pose: "chargePose", ease: "linear" },
+      { t: 0.85, pose: "chargePose", ease: "inOutQuad" },
+      { t: 1, pose: "guard" },
+    ],
+    events: [{ t: 0.05, sfx: "energy_charge", fx: ["aura"], shake: "small" }],
+  },
 ];

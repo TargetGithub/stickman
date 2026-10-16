@@ -94,6 +94,8 @@ export function presentEvent(p, e, world, clock) {
 
 /** Advance sustained FX and the camera one video frame; returns the camera state for the frame. */
 export function stepPresentation(p, world, clock, fxDt, videoDt) {
+  // Projectiles are drawn as FX: a glow emitted at their position every frame leaves a trail.
+  if (fxDt > 0) for (const pr of world.projectiles || []) emitFx(p.fx, pr.kind, { x: pr.x, y: pr.y }, { dir: pr.facing, scale: pr.scale }, clock.fxT);
   stepFx(p.fx, fxDt, clock.fxT, (s) => {
     const actor = world.byId.get(s.opts.actorId);
     return actor ? anchorPoint(actor, p.fx.presets[s.name].anchor) : null;

@@ -23,17 +23,20 @@ function exchange(attackName, outcome, [as, ts], offset = 25) {
   const foe = createActor({ id: "foe", x: 1000 + 220 * Math.max(as, ts), facing: -1, scale: ts });
   const world = createWorld({ actors: [hero, foe], moves });
   const def = moves.get(attackName);
-  hero.x = requiredStartX(hero, foe, def, def.params, outcome) + offset * as; // off by a nudge-able amount
+  if (def.flags.ranged) foe.x = hero.x + 500 * as + 150 * ts; // inside the distance band
+  else hero.x = requiredStartX(hero, foe, def, def.params, outcome) + offset * as; // off by a nudge-able amount
   command(world, "hero", attackName, { target: "foe", outcome, beatId: "b1" });
-  const log = { hits: [], errors: [], minClear: Infinity, foeMoves: new Set(), heroMoves: new Set(), anchors: [] };
-  const part = def.hits[0].part;
-  for (let i = 0; i < 150; i++) {
+  const log = { hits: [], errors: [], minClear: Infinity, foeMoves: new Set(), heroMoves: new Set(), anchors: [], reachWarning: false };
+  const part = def.hits[0]?.part;
+  for (let i = 0; i < 200; i++) {
     for (const e of stepWorld(world, DT)) {
       if (e.type === "hit") log.hits.push({ ...e, clear: clearance(e.point, foe.joints, ts), foeMove: foe.move?.def.name });
       if (e.type === "positionError") log.errors.push(e);
+      if (e.type === "reachWarning") log.reachWarning = true;
       if (e.type === "anchor") log.anchors.push(e.anchor);
     }
-    if (hero.move?.def.name === attackName) log.minClear = Math.min(log.minClear, clearance(hero.joints[part], foe.joints, ts));
+    if (part && hero.move?.def.name === attackName) log.minClear = Math.min(log.minClear, clearance(hero.joints[part], foe.joints, ts));
+    for (const p of world.projectiles) log.minClear = Math.min(log.minClear, clearance(p, foe.joints, ts) - p.radius);
     if (foe.move) log.foeMoves.add(foe.move.def.name);
     if (hero.move) log.heroMoves.add(hero.move.def.name);
   }
@@ -49,10 +52,12 @@ for (const attack of ATTACKS) {
         assert.equal(log.errors.length, 0, `${tag}: positioning error`);
         const { hits } = log;
         if (outcome === "hit" || outcome === "blocked" || outcome === "parried") {
-          assert.equal(hits.length, 1, `${tag}: exactly one contact`);
+          const expected = outcome === "parried" ? 1 : moves.get(attack).hits.length || 1;
+          assert.equal(hits.length, expected, `${tag}: one contact per hit window`);
           assert.equal(hits[0].kind, outcome === "hit" ? "hit" : outcome, tag);
           const slack = COMBAT.hitRadius * pair[0] + 12;
-          assert.ok(hits[0].clear <= slack, `${tag}: contact ${hits[0].clear.toFixed(1)}px from the body (max ${slack})`);
+          // Physically impossible size pairings must be flagged (W_REACH) instead of faking contact.
+          assert.ok(log.reachWarning || hits[0].clear <= slack, `${tag}: contact ${hits[0].clear.toFixed(1)}px from the body (max ${slack})`);
           assert.ok(log.anchors.includes("hit"), `${tag}: hit anchor`);
         } else {
           assert.equal(hits.length, 0, `${tag}: no contact`);
@@ -60,8 +65,9 @@ for (const attack of ATTACKS) {
         }
         if (outcome === "hit") assert.ok([...log.foeMoves].some((n) => n.startsWith("hit_")), `${tag}: reaction played`);
         if (outcome === "blocked") assert.equal(hits[0].foeMove, "block", `${tag}: defender was blocking`);
-        if (outcome === "parried") assert.ok(log.heroMoves.has("stagger"), `${tag}: attacker staggered`);
-        if (outcome === "dodged") assert.ok(log.foeMoves.has("dodge_back") || log.foeMoves.has("duck"), `${tag}: defender dodged`);
+        // A parried projectile is deflected; only a parried melee attacker staggers.
+        if (outcome === "parried") assert.ok(moves.get(attack).flags.ranged ? log.foeMoves.has("parry") : log.heroMoves.has("stagger"), `${tag}: parry reaction`);
+        if (outcome === "dodged") assert.ok(["dodge_back", "duck", "jump"].some((n) => log.foeMoves.has(n)), `${tag}: defender dodged`);
       }
     });
   }

@@ -30,12 +30,12 @@ export const moves = [
   {
     name: "duck",
     category: "defensive",
-    duration: 0.6,
-    flags: { invulnerable: [0.15, 0.75] },
+    duration: 0.85,
+    flags: { invulnerable: [0.12, 0.85] },
     keys: [
       { t: 0, pose: "guard", ease: "outCubic" },
-      { t: 0.22, pose: "duck", ease: "linear" },
-      { t: 0.7, pose: "duck", ease: "inOutQuad" },
+      { t: 0.16, pose: "duck", ease: "linear" },
+      { t: 0.82, pose: "duck", ease: "inOutQuad" },
       { t: 1, pose: "guard" },
     ],
   },

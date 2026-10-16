@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule.
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -323,6 +323,9 @@ A **move** is a data object plus the shared runtime in `moves.js`.
 - String expressions (`"travel*0.7"`) are evaluated by `expr.js` against `params`: numbers, param names, `+ - * / ( )` and unary minus only. No `eval`.
 - `hits[].part` is one of `rHand`, `lHand`, `rFoot`, `lFoot`, `rKnee`, `lKnee`, `rElbow`, `lElbow`, `head`, `propTip`.
 - `hits[].shake` is `small | med | big` (a camera shake preset), never an FX name.
+- `hits[].dodge` (`duck | back`, optional) tells choreography how this attack is dodged (an uppercut rises into a duck; long flurries outlast one).
+- `events[].turn: true` flips the character's facing at that moment (spinning attacks turn twice; place turns at near-symmetric poses).
+- `events[].projectile: { kind, from, speed, radius, damage, life, knock, hitstop, fx, shake, sfx }` spawns a projectile (9.3). A move with projectiles needs `flags.ranged: [minDistance, maxDistance]` (world px at scale 1) and may have no `hits`.
 - **Reach is derived, not authored.** At catalog load the engine samples each attack's FK contact point at the middle of each hit window and stores `reach` (forward distance from root) and `contactHeight`. `approach` and `snap_range` use these values (see 11.4).
 
 ### 8.2 Runtime behavior
@@ -344,7 +347,11 @@ Fixed angles cannot hit targets of different sizes, so attack limbs aim during h
    - Aim points sit on the near surface of the target's body (offset toward the attacker by the limb or head radius), not on its centre line.
 2. The hitting limb chain (shoulder→elbow→hand, or hip→knee→foot) blends from FK toward the IK solution with weight `w`: 0 → 1 over the 30% of move time before `t0`, held at 1 through `t1`, then back to 0 by `t1 + 0.15`. For `propTip`, the chain is upper arm plus (forearm + prop length).
 3. The aim point tracks the target every tick while the window is open.
-4. Result: a small hero punching a 2.2x boss hits the hip; a `flying_kick` reaches the boss's chest; the boss's haymaker on a small hero comes down to head height.
+4. An explicit `aim` is a preference: if that region is out of reach from where the limb will be at contact, the closest reachable point is used instead.
+5. Elbows and knees aim with one bone (the upper arm or thigh rotates toward the point; the lower joint follows). The head cannot aim.
+6. **Reach assist**: if the aim point is below the limb's reach (a giant striking a small fighter), the attacker leans into the strike, up to 40°, just enough to reach.
+7. If an attack still cannot reach at the given sizes, the dry run warns `W_REACH` instead of faking contact.
+8. Result: a small hero punching a 2.2x boss hits the hip; a `flying_kick` reaches the boss's chest; the boss's jab leans down to the small hero's head.
 
 ### 8.4 Required move catalog (v1)
 
@@ -384,7 +391,7 @@ Intentionally minimal. Body: `{ x, y, vx, vy, grounded, facing, mass, scale }`.
 `hit_launch` sets velocity from the hit's `knock` (mirrored by attacker facing). While launched, `rot` spins at `spin` deg/s (default 540) until landing, then `knockdown` plays.
 
 ### 9.3 Projectiles and thrown props
-Projectile: `{ x, y, vx, vy, gravity, radius, damage, owner, life, fx }`. Hit test: swept circle vs target hurtboxes. On hit or `life` expiry: spawn FX and remove. A thrown prop is a projectile that becomes a dropped prop on landing.
+Spawned by a move event's `projectile` spec from a joint (`from`, default `rHand`). In choreographed mode the shot flies straight at the outcome's height on the target (chest for hits, over the head for whiffs and ducks, flat for jumps). Hit test: swept circle vs target hurtboxes; choreographed hits also land when the projectile crosses the target's centre line. On hit, expiry or leaving the stage it is removed. Projectiles are drawn as FX (their preset is emitted at their position every frame, leaving a trail). `approach` moves a ranged attacker into its distance band. Thrown props (M7 batch D) reuse this path.
 
 ---
 
@@ -418,7 +425,8 @@ Attack beats take `outcome` (default `"hit"`):
 | `whiff` | The attacker is positioned so the contact point stops `whiffGap = 40 * scale` px short. No damage |
 | `blocked` | The target is forced into `block` before `t0` (if not already) and the hit resolves as blocked |
 | `parried` | The target plays `parry` timed to `t0`; the attacker plays `stagger` |
-| `dodged` | The target auto-plays `duck` (hand strikes aimed at the head) or `dodge_back` (everything else; kicks rise through a duck), timed to be clear at `t0`. Smaller defenders dodge further. The attacking limb aims where the target was. No damage |
+| `dodged` | The target auto-plays `duck` (hand strikes aimed at the head) or `dodge_back` (everything else, or as the hit's `dodge` says), starting up to 0.35 s before contact so the windup never grazes it. Dodged attacks start half a whiff gap further back. The attacking limb aims where the target was (just over the head for a duck). Projectiles are ducked, or jumped over by a defender more than 1.3x bigger (the shot then flies flat). No damage |
+| | A parried projectile is deflected: the far attacker does not stagger. |
 
 ### 10.6 Health and KO
 `hp` defaults to 100. In simulated mode `hp <= 0` triggers `ko_fall` or `ko_spin`. In choreographed mode KO happens only when scripted; HP bars (if `meta.hpBars`) still animate and clamp at a minimum of 1 until the KO beat.
@@ -769,7 +777,7 @@ t=3.80  world  slowmo x0.3    (story 3.80-4.30, video +1.17 s)
 | schema | `E_SCHEMA_TYPE`, `E_SCHEMA_REQUIRED`, `E_SCHEMA_ENUM`, `E_SCHEMA_RANGE`, `E_SCHEMA_PATTERN`, `E_SCHEMA_SIZE`, `E_SCHEMA_FORM`, `E_SCHEMA_UNKNOWN_FIELD`, `E_TEXT_LENGTH` |
 | semantic | `E_REF_DUPLICATE`, `E_REF_CHARACTER`, `E_REF_BEAT`, `E_REF_ANCHOR`, `E_REF_CYCLE`, `E_MOVE_UNKNOWN`, `E_MOVE_PARAM`, `E_MOVE_TARGET`, `E_MOVE_OUTCOME`, `E_MOVE_APPROACH`, `E_WORLD_UNKNOWN`, `E_WORLD_PARAM`, `E_WORLD_FIELD`, `E_CAMERA_START`, `E_CAMERA_FIELD`, `E_THEME_UNKNOWN`, `E_PROP_UNKNOWN`, `E_FX_UNKNOWN`, `E_TEXT_GLYPH`, `E_TEXT_BLOCKED` |
 | dry run | `E_SIM_UNREACHABLE`, `E_SIM_APPROACH`, `E_SIM_DEAD_ACTOR`, `E_SIM_UNRESOLVED`, `E_SIM_DURATION`, `E_MOVE_NEEDS_PROP` |
-| warnings | `W_QUEUE_DRIFT`, `W_ATTACK_NO_TARGET`, `W_PACING_GAP`, `W_NO_IMPACT`, `W_PACING_MONOTONE`, `W_NO_ENDING`, `W_HEAVY_NO_EMPHASIS`, `W_PARTICLE_BUDGET`, `W_CONTRAST` |
+| warnings | `W_QUEUE_DRIFT`, `W_REACH`, `W_ATTACK_NO_TARGET`, `W_PACING_GAP`, `W_NO_IMPACT`, `W_PACING_MONOTONE`, `W_NO_ENDING`, `W_HEAVY_NO_EMPHASIS`, `W_PARTICLE_BUDGET`, `W_CONTRAST` |
 
 ### 16.5 Pacing heuristics (warnings)
 - A gap with no action longer than 2.5 s.

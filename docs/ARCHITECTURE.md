@@ -169,6 +169,19 @@ export function whiffGap(attacker, target): number;
 export function requiredStartX(attacker, target, def, params, outcome, hitIndex?): number;  // spec 11.4
 ```
 
+### hit_apply.js, projectiles.js (M7)
+```js
+// hit_apply.js — shared by melee and projectiles
+export function applyHit(world, attacker, target, hit, kind, point, src:{ params, beatId, moveName, facing, ranged? }): Event[];
+export function reactionFor(world, hit, damage): string;
+export function inWindow(move, flag): value | null;
+// projectiles.js
+export function spawnProjectile(world, actor, spec, events): void;
+export function stepWorldProjectiles(world, dt): Event[];
+export function projectileArrival(actor, target, def, move): number;   // seconds, for defender timing
+```
+combat.js also exports `LEVERS` (one-bone aiming for elbows and knees), `limbReach`, `canReach` (W_REACH), `maxForward` (whiff spacing) and `MAX_ASSIST_LEAN`.
+
 ### world.js
 ```js
 export const OUTCOMES;   // hit, whiff, blocked, parried, dodged
@@ -381,3 +394,8 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 | `tools/lib/wav.mjs` | WAV writing, ffmpeg-based decoding of any audio file |
 | `tools/lib/encode.mjs` | raw RGBA → ffmpeg → H.264 with backpressure |
 | `tools/lib/review_images.mjs` | thumbnail choice and contact sheets via the public API |
+
+### ADR-013 Reach assist and honest reach warnings
+- **Context**: scale contrast (spec 19.8) means giants strike small fighters; fixed poses plus arm IK stopped ~30 px short, and the matrix tolerance hid it.
+- **Decision**: at runtime the attacker leans into the strike (up to 40°) until the aim point is in reach; the dry run checks reach (with that lean and with jump height) and warns `W_REACH` when contact is physically impossible, instead of faking it.
+- **Consequences**: big-vs-small fights look right; impossible choices (a giant's headbutt on a small fighter) reach the LLM as a warning with a fix.

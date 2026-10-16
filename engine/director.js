@@ -97,6 +97,10 @@ export function onEvents(director, events, storyT) {
       issue(director, "E_SIM_UNREACHABLE", beat, `'${e.actor}' starts ${Math.abs(e.error).toFixed(0)}px from where '${e.move}' needs to start (max ${COMBAT.maxNudge}px x scale without approach).`,
         `Add "approach": "run" to ${beat ? `beat '${beat.id}'` : "the beat"}, or move the characters closer first.`);
     }
+    if (e.type === "reachWarning") {
+      issue(director, "W_REACH", beat, `'${e.actor}' ${e.move} cannot physically reach '${e.target}' at these sizes; the hit will look like it lands in the air.`,
+        `Use a move that reaches (a kick, jump or flying attack for big height differences), or bring the sizes closer.`, "warning");
+    }
     if (!beat) continue;
     if (e.type === "anchor") anchor(director, beat, e.anchor, storyT);
     if (e.type === "windowOpen") {
@@ -131,7 +135,13 @@ function approach(director, beat, actor, ctx) {
   const def = director.moves.get(beat.do);
   const params = { ...def.params, ...(beat.params || {}) };
   const dir = Math.sign(target.x - actor.x) || actor.facing;
-  const need = (requiredStartX(actor, target, def, params, beat.outcome || "hit") - actor.x) * dir;
+  let need;
+  if (def.flags.ranged) {
+    // Ranged attacks only need to be inside their distance band.
+    const [min, max] = def.flags.ranged.map((v) => v * actor.scale);
+    const dist = Math.abs(target.x - actor.x);
+    need = dist > max ? dist - max * 0.85 : dist < min ? dist - min * 1.15 : 0;
+  } else need = (requiredStartX(actor, target, def, params, beat.outcome || "hit") - actor.x) * dir;
   const slack = COMBAT.maxNudge * actor.scale * 0.5;
   if (Math.abs(need) <= slack) return false;
   if (need > 0) {

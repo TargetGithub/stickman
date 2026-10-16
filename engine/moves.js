@@ -66,11 +66,18 @@ function prepareMove(raw, poses, problems) {
   });
 
   const hits = raw.hits || [];
-  if (raw.category === "attack" && hits.length === 0) p("attacks need at least one hits entry");
+  const projectiles = (raw.events || []).filter((e) => e.projectile);
+  if (raw.category === "attack" && hits.length === 0 && projectiles.length === 0) p("attacks need at least one hits entry (or a projectile event)");
+  projectiles.forEach((e) => {
+    if (!(e.projectile.speed > 0)) p("projectile events need speed > 0");
+    if (e.t < MIN_WINDUP) p(`projectile spawns at t=${e.t}; windup must take at least ${MIN_WINDUP * 100}% of the move`);
+  });
+  if (projectiles.length && !Array.isArray(raw.flags?.ranged)) p("moves with projectiles need flags.ranged: [minDistance, maxDistance]");
   hits.forEach((h, i) => {
     if (!(h.t0 >= 0 && h.t1 <= 1 && h.t0 < h.t1)) p(`hits[${i}] needs 0 <= t0 < t1 <= 1`);
     if (!HIT_PARTS.includes(h.part)) p(`hits[${i}].part must be one of ${HIT_PARTS.join(", ")}`);
     if (h.shake && !SHAKES.includes(h.shake)) p(`hits[${i}].shake must be small, med or big`);
+    if (h.dodge && !["duck", "back"].includes(h.dodge)) p(`hits[${i}].dodge must be duck or back`);
     checkExpr(h.damage ?? 0, names, `move '${raw.name}' hits[${i}].damage`, problems);
   });
   if (raw.category === "attack" && hits.length && hits[0].t0 < MIN_WINDUP) {
@@ -121,6 +128,12 @@ export function prepareCatalog(rawMoves, poses) {
 
 // ---------- runtime ----------
 
+/** Equivalent angle in (-180, 180]. */
+export function wrapAngle(deg) {
+  const a = ((deg % 360) + 360) % 360;
+  return a > 180 ? a - 360 : a;
+}
+
 /** Root offset {dx, dy} at normalized time t, in facing space. */
 export function rootOffsetAt(def, t, params) {
   const keys = def.root;
@@ -157,7 +170,8 @@ export function startMove(actor, def, opts = {}) {
     target: opts.target ?? null,
     outcome: opts.outcome ?? null,
     scale: actor.scale ?? 1, // root motion is authored at scale 1 and scales with the character
-    blendFrom: actor.pose || null,
+    // A finished flip ends at rot ±360: wrap to (-180, 180] so the next move does not spin back.
+    blendFrom: actor.pose ? { ...actor.pose, rot: wrapAngle(actor.pose.rot) } : null,
     blendT: 0,
     blendDur: opts.blend ?? (def.category === "reaction" ? 0 : MOTION.blend),
     lastRoot: rootOffsetAt(def, 0, params),

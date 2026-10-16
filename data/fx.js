@@ -100,7 +100,15 @@ export const fxPresets = {
   question: { anchor: "head", layers: [{ shape: "glyph", glyph: "question", count: 1, attach: "head", offsetXY: [0, -52], life: [1.1, 1.1], size: [22, 22], color: "#222222", alpha: [1, 0] }] },
   afterimage: { anchor: "hip", trail: { kind: "afterimage", duration: 0.6 } },
   slash_arc: { anchor: "point", trail: { kind: "slash", duration: 0.25 } },
-  energy_ball: { anchor: "point", layers: [{ shape: "glow", count: 1, speed: [0, 0], life: [0.3, 0.3], size: [40, 60], color: "#7fd4ff", alpha: [0.9, 0] }] },
+  // Emitted every frame at a flying projectile: a bright core plus a fading glow leaves the trail.
+  energy_ball: {
+    anchor: "point",
+    layers: [
+      { shape: "glow", count: 1, speed: [0, 0], life: [0.25, 0.25], size: [46, 20], color: "rgba(80, 190, 255, 0.85)", alpha: [0.9, 0] },
+      { shape: "dot", count: 1, speed: [0, 0], life: [0.05, 0.05], size: [30, 26], color: "#eaf8ff", alpha: [1, 1] },
+      { shape: "dot", count: 1, angle: [150, 210], speed: [60, 160], life: [0.2, 0.35], size: [6, 1], color: ["#9fe0ff", "#ffffff"], alpha: [1, 0] },
+    ],
+  },
 };
 
 export const FX_NAMES = Object.keys(fxPresets);

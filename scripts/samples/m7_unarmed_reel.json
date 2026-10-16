@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "meta": { "title": "M7 Unarmed Reel", "format": "landscape", "seed": 70, "mode": "choreographed", "theme": "dojo_dusk", "hpBars": true },
+  "characters": [
+    { "id": "hero", "x": 1000, "facing": 1, "color": "#3fb8ff", "scale": 1.0, "hp": 100 },
+    { "id": "rival", "x": 1900, "facing": -1, "color": "#ff9a2e", "scale": 1.15, "hp": 140 }
+  ],
+  "camera": [{ "at": 0, "mode": "follow", "targets": ["hero", "rival"], "zoom": "auto", "padding": 300 }],
+  "beats": [
+    { "at": 0.2, "who": "world", "do": "caption", "params": { "text": "Batches A-C: movement, strikes, specials", "dur": 2.2 } },
+    { "id": "cu", "at": 0.4, "who": "rival", "do": "charge_up", "say": "Power up!" },
+    { "id": "ds", "at": { "after": "cu" }, "who": "hero", "do": "dash", "params": { "travel": 300 } },
+    { "id": "hk", "at": { "after": "ds" }, "who": "hero", "do": "hook", "target": "rival", "approach": "run", "outcome": "hit" },
+    { "id": "rh", "at": { "after": "hk", "delay": 0.2 }, "who": "rival", "do": "roundhouse", "target": "hero", "approach": "walk", "outcome": "dodged" },
+    { "id": "bf", "at": { "after": "rh", "delay": 0.1 }, "who": "hero", "do": "backflip" },
+    { "id": "eb1", "at": { "after": "bf", "delay": 0.2 }, "who": "rival", "do": "energy_blast", "target": "hero", "approach": "walk", "outcome": "dodged" },
+    { "id": "eb2", "at": { "after": "eb1", "delay": 0.2 }, "who": "hero", "do": "energy_blast", "target": "rival", "approach": "walk", "outcome": "blocked" },
+    { "id": "fk", "at": { "after": "eb2", "delay": 0.2 }, "who": "hero", "do": "flying_kick", "target": "rival", "approach": "run", "outcome": "hit", "say": "HYAAA!" },
+    { "at": { "on": "fk.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.3, "duration": 0.35 } },
+    { "id": "g1", "at": { "after": "fk", "delay": 0.8 }, "who": "rival", "do": "get_up" },
+    { "id": "hm", "at": { "after": "g1", "delay": 0.2 }, "who": "rival", "do": "haymaker", "target": "hero", "approach": "walk", "outcome": "dodged" },
+    { "id": "ct", "at": { "after": "hm" }, "who": "hero", "do": "counter", "target": "rival", "approach": "walk", "outcome": "hit" },
+    { "id": "up", "at": { "after": "ct", "delay": 0.1 }, "who": "hero", "do": "uppercut", "target": "rival", "approach": "walk", "outcome": "hit" },
+    { "id": "g2", "at": { "after": "up", "delay": 0.8 }, "who": "rival", "do": "get_up" },
+    { "id": "sw", "at": { "after": "g2", "delay": 0.2 }, "who": "rival", "do": "sweep", "target": "hero", "approach": "walk", "outcome": "hit" },
+    { "id": "g3", "at": { "after": "sw", "delay": 0.7 }, "who": "hero", "do": "get_up" },
+    { "id": "fl", "at": { "after": "g3", "delay": 0.1 }, "who": "hero", "do": "flurry", "target": "rival", "approach": "run", "outcome": "hit" },
+    { "id": "sk", "at": { "after": "fl", "delay": 0.1 }, "who": "hero", "do": "spinning_kick", "target": "rival", "approach": "walk", "outcome": "hit" },
+    { "id": "gp", "at": { "after": "sk", "delay": 0.3 }, "who": "rival", "do": "ground_pound", "target": "hero", "approach": "walk", "outcome": "dodged" },
+    { "id": "ax", "at": { "after": "gp", "delay": 0.1 }, "who": "hero", "do": "axe_kick", "target": "rival", "approach": "run", "outcome": "hit" },
+    { "id": "kn", "at": { "after": "ax", "delay": 0.2 }, "who": "rival", "do": "knee", "target": "hero", "approach": "walk", "outcome": "blocked" },
+    { "id": "el", "at": { "after": "kn" }, "who": "hero", "do": "elbow", "target": "rival", "approach": "walk", "outcome": "hit" },
+    { "id": "hb", "at": { "after": "el" }, "who": "hero", "do": "headbutt", "target": "rival", "approach": "walk", "outcome": "hit" },
+    { "id": "ko", "at": { "after": "hb", "delay": 0.3 }, "who": "rival", "do": "ko_fall" },
+    { "id": "v", "at": { "after": "ko" }, "who": "hero", "do": "victory", "fx": ["aura"] },
+    { "at": { "with": "v" }, "who": "world", "do": "text_pop", "params": { "text": "K.O.!" } },
+    { "at": { "after": "v", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 1 } }
+  ]
+}
