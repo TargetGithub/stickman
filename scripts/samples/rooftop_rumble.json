@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "meta": { "title": "Rooftop Rumble", "format": "landscape", "seed": 31337, "theme": "rooftop_city", "hpBars": true },
+  "characters": [
+    { "id": "kai", "x": 1250, "facing": 1, "color": "#3fd8ff", "hp": 100, "style": { "headband": "#ff3b5c" } },
+    { "id": "zed", "x": 1800, "facing": -1, "color": "#ffa62b", "hp": 100, "prop": "staff", "style": { "cape": "#5a1f8a" } },
+    { "id": "brute", "x": 2400, "facing": -1, "color": "#c86bff", "scale": 2.3, "hp": 300, "style": { "scarf": "#ffe14d" } }
+  ],
+  "camera": [
+    { "at": 0, "mode": "push", "zoom": 1.15, "dur": 2.2 },
+    { "at": 2.2, "mode": "follow", "targets": ["kai", "zed"], "zoom": "auto", "padding": 300 },
+    { "at": { "on": "fk.hit" }, "mode": "focus", "target": "zed", "zoom": 1.4, "dur": 0.3 },
+    { "at": { "with": "sp" }, "mode": "follow", "targets": ["kai", "brute"], "zoom": "auto", "padding": 320 },
+    { "at": { "on": "sk.hit" }, "mode": "focus", "target": "brute", "zoom": 1.2, "dur": 0.3 },
+    { "at": { "after": "sk", "delay": 0.6 }, "mode": "follow", "targets": ["kai", "brute"], "zoom": "auto", "padding": 320 }
+  ],
+  "beats": [
+    { "at": 0.3, "who": "world", "do": "caption", "params": { "text": "Midnight. One rooftop. Two rivals.", "pos": "top", "dur": 2.2 } },
+    { "id": "t1", "at": 0.6, "who": "zed", "do": "taunt", "fx": ["anger_mark"], "say": "You're on MY roof." },
+    { "id": "b1", "at": { "after": "t1", "delay": 0.1 }, "who": "kai", "do": "bow", "say": "Not for long." },
+
+    { "id": "s1", "at": { "after": "b1", "delay": 0.2 }, "who": "zed", "do": "staff_swing", "target": "kai", "approach": "run", "outcome": "blocked" },
+    { "id": "s2", "at": { "after": "s1", "delay": 0.1 }, "who": "zed", "do": "staff_spin", "target": "kai", "outcome": "dodged" },
+    { "id": "j1", "at": { "after": "s2", "delay": 0.1 }, "who": "kai", "do": "jab", "target": "zed", "approach": "run", "outcome": "hit" },
+    { "id": "c1", "at": { "after": "j1" }, "who": "kai", "do": "cross", "target": "zed", "outcome": "hit" },
+    { "id": "r1", "at": { "after": "c1", "delay": 0.1 }, "who": "kai", "do": "roundhouse", "target": "zed", "approach": "walk", "outcome": "parried" },
+    { "id": "s3", "at": { "after": "r1", "delay": 0.1 }, "who": "zed", "do": "staff_swing", "target": "kai", "approach": "walk", "outcome": "hit" },
+
+    { "id": "cu", "at": { "after": "s3", "delay": 0.6 }, "who": "kai", "do": "charge_up", "fx": ["aura"], "say": "My turn." },
+    { "id": "fk", "at": { "after": "cu" }, "who": "kai", "do": "flying_kick", "target": "zed", "approach": "run", "outcome": "hit", "params": { "damage": 22 }, "fx": ["afterimage"] },
+    { "at": { "on": "fk.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.25, "duration": 0.45 } },
+    { "at": { "on": "fk.hit" }, "who": "world", "do": "shake", "params": { "preset": "med" } },
+    { "id": "zko", "at": { "after": "fk", "delay": 0.8 }, "who": "zed", "do": "ko_fall" },
+
+    { "id": "sp", "at": { "after": "zko", "delay": 0.3 }, "who": "brute", "do": "spawn", "say": "WHO KICKED MY FRIEND?" },
+    { "at": { "with": "sp" }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+    { "id": "uh", "at": { "with": "sp", "delay": 0.5 }, "who": "kai", "do": "cower", "fx": ["sweat_drop"], "say": "...uh oh." },
+
+    { "id": "gp", "at": { "after": "sp", "delay": 0.8 }, "who": "brute", "do": "ground_pound", "target": "kai", "approach": "run", "outcome": "dodged" },
+    { "id": "hm", "at": { "after": "gp", "delay": 0.2 }, "who": "brute", "do": "haymaker", "target": "kai", "approach": "walk", "outcome": "whiff" },
+    { "id": "up", "at": { "after": "hm", "delay": 0.1 }, "who": "kai", "do": "uppercut", "target": "brute", "approach": "run", "outcome": "blocked" },
+    { "id": "sk", "at": { "after": "up", "delay": 0.2 }, "who": "kai", "do": "spinning_kick", "target": "brute", "approach": "walk", "outcome": "hit", "params": { "damage": 40 }, "fx": ["afterimage"] },
+    { "at": { "on": "sk.hit" }, "who": "world", "do": "freeze", "params": { "duration": 0.2 } },
+    { "at": { "on": "sk.hit" }, "who": "world", "do": "flash", "params": { "color": "#ffffff", "dur": 0.12 } },
+    { "at": { "on": "sk.hit", "delay": 0.1 }, "who": "world", "do": "text_pop", "params": { "text": "BOOM!" } },
+    { "id": "bko", "at": { "after": "sk", "delay": 0.7 }, "who": "brute", "do": "ko_spin" },
+    { "at": { "with": "bko", "delay": 0.5 }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+
+    { "id": "v1", "at": { "after": "bko", "delay": 0.2 }, "who": "kai", "do": "victory", "fx": ["aura"], "say": "Roof's mine now." },
+    { "at": { "with": "v1" }, "who": "world", "do": "desaturate", "params": { "amount": 0.6, "dur": 1.2 } },
+    { "at": { "after": "v1", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 1 } }
+  ]
+}

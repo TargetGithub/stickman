@@ -87,6 +87,7 @@ function hpBars(ctx, chars, W, H, safe) {
   const n = chars.length;
   const barW = Math.min(560, (W - 80) / Math.min(n, 2) - 40);
   chars.forEach((c, i) => {
+    if (c.alpha <= 0.01) return; // not on stage yet (spawn) or gone (despawn); slots keep their places
     const left = i % 2 === 0;
     const row = Math.floor(i / 2);
     const x = left ? 40 : W - 40 - barW;
