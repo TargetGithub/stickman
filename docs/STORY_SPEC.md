@@ -1,0 +1,669 @@
+# Story Engine Specification (v2)
+
+Status: **draft for review**. Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+
+Contents:
+1. Goal and scope
+2. Reference story and gap analysis
+3. Design principles
+4. Script format v2
+5. Scenes, locations and transitions
+6. Cast: body plans, appearance and faces
+7. Emotions, dialogue and narration
+8. Objects and set pieces
+9. Interactions (paired moves)
+10. Activities
+11. Story macros and the compiler
+12. Fights at story scale
+13. Defeat, sadness and content policy
+14. Depth, extras and crowds
+15. Audio: moods, ambience, voice
+16. Camera for stories
+17. Validator v2
+18. LLM generation for stories
+19. Limits and performance
+20. Backward compatibility
+21. Open decisions
+22. Appendix A: the reference story as a v2 script
+23. Appendix B: new error codes
+
+---
+
+## 1. Goal and scope
+
+**Goal:** turn the engine from a fight-clip generator into a short-story generator. Scripts describe a cast, places, scenes, narration, dialogue, everyday activities, emotions and fights. One script still produces one deterministic MP4.
+
+Target output:
+- Stories of 1-5 minutes, landscape or portrait.
+- 2-12 named characters, plus background extras.
+- Several locations.
+- Narration and dialogue.
+- Slice-of-life activities, emotional beats, travel and multi-opponent fights.
+
+**In scope:**
+- Scenes and locations.
+- New body plans (non-stickman characters).
+- Faces and emotions.
+- Objects and set pieces.
+- Paired interactions.
+- Activity macros.
+- Story-level fight macros.
+- Narration cards.
+- Mood music and ambience.
+- Optional voice-over.
+- A story compiler.
+- Validator v2.
+- An LLM story pipeline.
+
+**Out of scope (v2):**
+- Free-form character rigs with different skeleton topologies (animals, vehicles as characters). They are planned for a later version; section 6 keeps the door open.
+- Lip-sync to voice.
+- Physics-driven ragdolls.
+- 3D.
+
+The hard rules stay:
+- Determinism, so the same script and seed give the same frames.
+- No network in `/engine`.
+- No blood or gore.
+- Simulate first, then random-access rendering.
+- Catalog injected as data.
+
+## 2. Reference story and gap analysis
+
+The reference story, used as the acceptance test (Appendix A has the full script):
+
+> Kai (a stickman) and Pip (a small round sidekick) are best friends in the city. They blow bubbles in the park and play tennis. One day a villain, Vex, appears and defeats Pip. Furious, Kai sets out to find Vex. On the way he beats four guards, then defeats Vex in a final fight.
+
+| Story need | v1 today | Gap |
+|---|---|---|
+| A non-stickman friend (Pip) | Every character is the same stickman skeleton and proportions (`BODY` is global) | Per-character **body plans**: proportions, body shape, face |
+| Friendship, happiness, grief, fury | Mouth: neutral/shout/grin; a few emotes | **Faces**: eyes, brows, mouths, tears, blush; emotion state per beat; slice-of-life moves |
+| Blowing bubbles, playing tennis | Props are held weapons; FX are effects only | **Objects** with simple behaviors (ball arcs, floating bubbles); **activities** that sync moves with objects |
+| Hugs, high fives, walking together | Moves are single-character (except attack/defense) | **Paired interactions** with partner positioning |
+| City, park, streets, the villain's lair | One theme per script (`set_theme` swaps the background) | **Scenes and locations**, each with its own stage, set pieces and lighting |
+| "One sudden day..." | Captions | **Narration cards**, title and chapter cards, time-skip transitions, optional voice-over |
+| Pip is "killed" | KO poses; validator blocklist | A **stylized defeat** vocabulary (faint, fade to sparkles, ghost) and a content policy |
+| A journey to find the villain | Approach runs up to 3 s | **Travel** macro: long walks, montage cuts, scrolling scenery |
+| Four guards, then the boss | 1v1 choreography beat by beat | **Fight macros**: gauntlet, group fight, boss fight compiled into beats |
+| A 2-4 minute script from an LLM | ~60 beats, one prompt | A **story compiler** (macros → beats) and a **two-stage LLM pipeline** (outline → per-scene scripts) |
+| Mood | Synth SFX; one optional music file | **Mood music** per scene with crossfades, ambience beds, new SFX |
+
+## 3. Design principles
+
+1. **Two levels, one engine.**
+   - Authors (people and LLMs) write a **story script** (v2) with high-level intent: scenes, macros like `fight` and `rally`, narration.
+   - A deterministic **story compiler** expands it into **shot-level beats**: the v1 beat model, plus new commands.
+   - The engine simulates and renders the compiled form. Every macro can also be written out by hand as beats.
+2. **Data, not code.** Body plans, faces, objects, activities, locations and moods are catalog data, like moves and themes today. New content needs no engine changes.
+3. **Fights stay first-class.** The v1 fight system (choreographed outcomes, approach, aim, reactions, hitstop, camera emphasis) is reused unchanged inside fight scenes and fight macros.
+4. **Readable silhouettes and family-friendly tone**, in every style.
+5. **v1 compatibility.** A v1 script is a v2 story with one scene, and it renders exactly as before (golden frames unchanged).
+6. **Validation explains itself.** Every new rule gets an error code with a fix line, and appears in the LLM prompt (a test keeps them in sync, as in M8).
+
+## 4. Script format v2
+
+```json
+{
+  "version": 2,
+  "meta": { "title": "Bubbles and Revenge", "format": "landscape", "seed": 2024, "style": "default" },
+  "cast": [ ... ],
+  "locations": [ ... ],
+  "scenes": [ ... ],
+  "audio": { "musicLibrary": "default" }
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `meta` | As v1 (title, format, seed, hpBars, autoCamera), plus `style` (a visual style preset, section 6.4). No theme here: themes move to locations. |
+| `cast` | Every character in the story, defined once: id, name, body plan, appearance, voice. Positions are set per scene. |
+| `locations` | Reusable places: background theme, set pieces, stage width, default lighting and ambience. |
+| `scenes` | Ordered list. Each scene has a location, the cast present and their starting positions, a camera track, beats, and transitions in and out. |
+| `audio` | Global audio options; per-scene music is set in scenes. |
+
+### 4.1 Cast entry
+
+```json
+{ "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0",
+  "appearance": { "eyes": "big", "accessory": { "antenna": "#ffcc00" } },
+  "voice": { "pitch": 1.4 }, "hp": 60 }
+```
+
+| Field | Meaning |
+|---|---|
+| `id` | Lowercase id used everywhere |
+| `name` | Display name for HP bars, narration and the speaker label (optional) |
+| `body` | Body plan from the catalog (section 6): `stickman` (default), `buddy`, `kid`, `bulky`, `slim`, `elder` |
+| `color`, `scale`, `hp`, `prop`, `style` | As v1 characters |
+| `appearance` | Face and decoration options (section 6.3) |
+| `voice` | Optional speech-sound / voice-over settings (section 15) |
+
+### 4.2 Scene entry
+
+```json
+{
+  "id": "park",
+  "location": "city_park",
+  "time": "day",
+  "weather": "clear",
+  "transitionIn": { "type": "fade", "dur": 0.8 },
+  "music": { "mood": "happy", "volume": 0.35 },
+  "cast": [ { "id": "kai", "x": 900, "facing": 1 }, { "id": "pip", "x": 1100, "facing": -1, "face": "happy" } ],
+  "camera": [ { "at": 0, "mode": "follow", "targets": ["kai", "pip"], "zoom": "auto" } ],
+  "beats": [ ... ]
+}
+```
+
+- Scene timing is local: `at` numbers are seconds from the scene start. Beat ids are global (unique across the story), so later scenes can refer to earlier anchors only through narration ordering, not timing.
+- `cast[]` entries place characters for this scene, and may override `face`, `prop`, `hp` and `layer`. Characters not listed are absent.
+- Character state carries over between scenes unless overridden:
+  - **Carries over:** hp, defeated status, held prop and appearance changes.
+  - **Does not carry over:** position (set per scene).
+- A scene ends when its last beat ends plus `tail` (default 0.5 s), or at `duration` if given.
+
+### 4.3 Beats in v2
+
+Beats keep the v1 shape. The full v1 field list stays: `id`, `at`, `who`, `do`, `target`, `outcome`, `params`, `speed`, `approach`, `interrupt`, `fx`, `say`, `sayDur`.
+
+New fields:
+
+| Field | Meaning |
+|---|---|
+| `face` | Emotion to show from this beat on (section 7): `"face": "angry"` |
+| `partner` | The other character in a paired interaction (section 9) |
+| `object` | The object a beat acts on (section 8) |
+| `to` | A destination: `{ "x": 2400 }`, `{ "near": "<character or object id>" }`, or `{ "exit": "right" }` |
+| `think` | A thought bubble (like `say`) |
+| `layer` | Depth layer change (section 14) |
+
+The `who` field takes:
+- a character id;
+- `"world"` (effects, camera, objects and narration commands);
+- a **macro** name prefixed with `@`, for example `"who": "@fight"`. The compiler expands it into beats (section 11).
+
+## 5. Scenes, locations and transitions
+
+### 5.1 Locations (catalog + script)
+
+A location bundles:
+- a background theme;
+- set pieces: static or interactive objects at stage positions;
+- stage width;
+- floor style;
+- default ambience.
+
+Themes grow from 7 to 15-20, using the existing layer-kind registry and new layer kinds:
+- **New layer kinds:** `buildings` (street level, doors/windows), `trees`, `bushes`, `benches`, `lampposts`, `fence`, `clouds`, `rain`, `interior_wall`, `windows`, `furniture`, `cave`, `lair`.
+- **New themes:** `city_street`, `city_park`, `home_interior`, `alley_night`, `rooftop_city` (exists), `forest_path`, `bridge`, `warehouse`, `villain_lair`, `tennis_court`, `cemetery_hill` (for a respectful memorial scene), `sunset_hill`.
+
+```json
+"locations": [
+  { "id": "city_park", "theme": "city_park", "stageWidth": 3600,
+    "set": [ { "id": "bench1", "object": "bench", "x": 1500 }, { "id": "tree1", "object": "tree_big", "x": 600, "layer": "back" } ],
+    "ambience": "park_birds" }
+]
+```
+
+### 5.2 Time of day and weather
+
+- Each scene sets `time` (`dawn`, `day`, `dusk`, `night`) and `weather` (`clear`, `cloudy`, `rain`, `snow`, `wind`, `fog`). Both are presentation layers over the theme.
+- `time` sets a color grade (tint, sky gradient shift, lit windows at night). `weather` adds particle layers and ambience.
+- Both can change mid-scene with world commands `set_time` and `set_weather`, with a `dur` for the transition (a happy scene turning grey and rainy).
+
+### 5.3 Transitions
+
+Transitions are set per scene (`transitionIn`, `transitionOut`) or as world commands:
+
+| type | Look |
+|---|---|
+| `cut` | Instant |
+| `fade` | Through black (or `color`) |
+| `dissolve` | Cross-fade between the last frame of one scene and the first of the next (both are rendered; random access keeps this simple) |
+| `wipe` | Directional wipe (`dir`) |
+| `iris` | Circle closing on a character (`target`) and opening on the next scene |
+| `card` | A full-screen title, chapter or time-skip card (section 7.3) between scenes |
+
+### 5.4 Timeline model
+
+- The story clock runs continuously across scenes. Scene k starts when scene k-1 ends (plus the transition overlap).
+- The engine simulates scenes one after another in one world. At a scene boundary it resets stage, positions, camera and set pieces, and keeps character state.
+- The frame store records a scene index per frame, so the renderer picks the location.
+
+## 6. Cast: body plans, appearance and faces
+
+### 6.1 Body plans (same skeleton, different bodies)
+
+Every body plan keeps the **same joint topology and pose channels** as the stickman: head, neck, torso, two arms and two legs. **All 72 existing moves therefore work for every body plan.** A body plan changes:
+- bone lengths and head size (proportions);
+- the body shape drawn over the bones;
+- the face;
+- default style and hurtboxes.
+
+| Body plan | Look | Notes |
+|---|---|---|
+| `stickman` | Today's figure | Default |
+| `buddy` | Short, round capsule body (torso drawn as a filled capsule), short limbs, large eyes, optional antenna or hat | The "sidekick" friend. **Must be an original design**: not yellow with goggles and overalls, which is trademarked trade dress (section 21). |
+| `kid` | Small, big head ratio | Children, younger siblings |
+| `bulky` | Wide chest (filled trapezoid torso), thick limbs | Guards, brutes; combines with `scale` |
+| `slim` | Long limbs, small head | Villain, elegant characters |
+| `elder` | Slight stoop baked into the default pose offsets, cane prop | Mentors, shopkeepers |
+
+Implementation consequences:
+- `BODY` (engine/skeleton.js) becomes per-character data. `computeJoints(pose, root, facing, scale, plan)` takes the plan.
+- Ground contact, reach, aim (`limbReach`, `canReach`), hurtboxes and auto camera framing all read bone lengths from the plan.
+- Moves stay authored for the stickman. Root motion and reach scale by the plan's leg and arm length ratios, the same way they scale by `scale` today.
+- The renderer gets a per-plan draw function (registry like layer kinds): `drawBody(ctx, joints, plan, appearance)`.
+- Frame store: add one body-plan index per character (constant, stored once in the store header, not per frame).
+
+### 6.2 Future: other topologies
+
+Animals, birds and vehicles need different skeletons. The design keeps the door open: a body plan has a `rig` field (`"humanoid"` for all v2 plans). A later version can add `quadruped` with its own pose channels and move set. The validator rejects humanoid moves on non-humanoid rigs (`E_MOVE_RIG`).
+
+### 6.3 Appearance
+
+| Field | Options |
+|---|---|
+| `eyes` | `dot` (default stickman), `big`, `oval`, `sleepy`, `visor`, `glasses` |
+| `brows` | `none`, `thin`, `thick` |
+| `mouthStyle` | `line` (default), `cartoon` |
+| `cheeks` | color (blush) |
+| `hair` | `none`, `spiky`, `bob`, `ponytail`, `cap` (with color) |
+| `accessory` | Existing (headband, scarf, cape, hat) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch` |
+| `outfit` | Optional filled torso garment: `shirt`, `coat`, `armor`, `robe` (with color) |
+
+Appearance may change in a beat (`"do": "change_outfit"` world command or `params`), for example the hero tying on a headband before the journey.
+
+### 6.4 Visual style presets
+
+`meta.style` picks the line and face style:
+- `default`: today's outlined sticks.
+- `soft`: rounder joints, thicker outline.
+- `ink`: hand-drawn wobble, deterministic from the seed.
+
+Faces scale with the camera so they read in close-ups.
+
+## 7. Emotions, dialogue and narration
+
+### 7.1 Emotions (faces)
+
+- `face` values: `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt`.
+- Each face is catalog data: eye shape, brow angle, mouth shape, and extras such as tears, a vein mark, a sweat drop or hearts.
+- A face is set by a beat's `face` field, by a scene cast entry, or automatically:
+  - hits → `hurt` for 0.4 s;
+  - attacks → `determined`;
+  - KO → `dizzy`.
+  An explicit `face` wins.
+- Blinking is automatic: deterministic per character from the seed. Eyes look toward `target`, `partner` or the speaker.
+- Mouth flaps while a character has an active `say`: a simple open/close cycle, no lip-sync.
+- Frame store: the mouth index is replaced by a face index plus a mouth-open bit. CHAR_STRIDE grows by 1.
+
+### 7.2 Dialogue
+
+| Field / command | Effect |
+|---|---|
+| `say` | Speech bubble (as v1) with the speaker's name when `meta.speakerNames` is true |
+| `think` | Cloud-shaped thought bubble |
+| `shout` | Jagged bubble, larger font |
+| `whisper` | Small dotted bubble |
+| `sayDur` | As v1. Default becomes reading time: 0.9 s + 0.06 s per character. |
+
+- Dialogue exchanges use the `@dialogue` macro (section 11): a list of `[speaker, line]` pairs, timed automatically, with faces and `talk` gestures.
+- The text limit per bubble stays at 40 characters. The macro splits longer lines into consecutive bubbles.
+
+### 7.3 Narration and cards
+
+New world commands:
+
+| do | params | Look |
+|---|---|---|
+| `narrate` | `text` (max 160), `pos` (top/bottom), `dur`, `style` (box, plain) | Narration box with an optional typewriter reveal; voice-over if enabled (section 15) |
+| `title_card` | `title`, `subtitle`, `dur`, `bg` | Full-screen title, for example at the start |
+| `chapter_card` | `text`, `dur` | "Chapter 2: The Path" |
+| `time_card` | `text`, `dur` | "One sudden day..." between scenes |
+| `end_card` | `text`, `dur` | "The End" / "To be continued" |
+
+Cards pause character simulation: the story clock holds, like `freeze`, and the card has its own duration.
+
+## 8. Objects and set pieces
+
+Objects are non-character things in the world: catalog data with a shape, a size, and one **behavior**.
+
+| Behavior | Examples | What it does |
+|---|---|---|
+| `static` | bench, tree, lamppost, car, door, sign, table, fountain | Drawn at x (and layer); characters can stand in front of or behind it; doors and boxes have open/closed states |
+| `seat` | bench, chair, rock | `sit` moves snap the character's hip to the seat point |
+| `holdable` | racket, bubble wand, balloon, phone, ice cream, flower, book, the v1 weapons | Held like v1 props (grip hand, angle), picked up, given, dropped, thrown |
+| `ball` | tennis ball, football, basketball | Follows deterministic arcs between points; bounces on the floor; hit events |
+| `floater` | bubbles, balloons, leaves, petals | Rises or drifts with seeded wobble; pops or fades after a lifetime |
+| `vehicle` | car, bike, scooter, bus | Moves along the floor with wheels turning; characters can ride (hip snapped to the seat) |
+| `breakable` | crate, vase, wall panel | Breaks into pieces (reuses `prop_break` FX) when hit |
+
+- v1 `props` become `holdable` objects. The `prop` field and `pick_prop`, `drop_prop` and `throw_prop` keep working.
+- Objects are simulated in the world and stored in the frame store's sparse item list: position, angle, state and a visibility frame range.
+- Object commands (who `world`, or a character acting on `object`):
+
+| Command | Meaning |
+|---|---|
+| `spawn_object` / `remove_object` | Place or remove an object (x, y, layer) |
+| `set_object` | Change state (door open, light on, color) |
+| `give` | Character hands a holdable to `partner` (paired move) |
+| `use` | Character uses a holdable: the object's `use` animation, for example the bubble wand emitting bubbles |
+| `ride` / `dismount` | Get on or off a vehicle |
+
+## 9. Interactions (paired moves)
+
+Paired moves are move data with two tracks: the **lead** (the beat's `who`) and the **partner**.
+
+```js
+{ name: "hug", category: "interaction", duration: 1.6, pair: { gap: 18, partnerMove: "hug_partner" },
+  keys: [...], partnerKeys: [...] }
+```
+
+- **Positioning:** like attacks today, the lead needs to stand at `gap` from the partner, facing them. `approach` works for interactions too: walk is fine here, and the default is `"walk"`.
+- **Timing:** the partner is busy for the duration. A partner that is busy waits, like the v1 queue.
+- **Body-plan aware:** the gap and hand targets use 2-bone IK so a hug between a stickman and a short buddy lines up. This is the same aiming system attacks use.
+- **Starter set (S5):** `hug`, `high_five`, `fist_bump`, `handshake`, `pat_head`, `carry` / `put_down`, `give` / `receive`, `piggyback`, `lift_up`, `drag`, `lean_on`, `comfort` (hand on shoulder), `walk_together` (synchronized walking, hand in hand optional).
+
+## 10. Activities
+
+An activity is a short loop of moves synchronized with objects. It is catalog data and is used through the `@activity` macro or the activity's own command.
+
+| Activity | Parts | Compiles to |
+|---|---|---|
+| `blow_bubbles` | wand (holdable), bubbles (floater) | `use` loops; each puff spawns 3-6 bubbles with seeded wobble; a partner can `pop_bubble` (poke move + pop FX + `pop` SFX) |
+| `tennis_rally` | two rackets, a ball, an optional net set piece | Both players `swing_forehand` / `swing_backhand` with the ball arcing between racket tips; `rallies: N`; a `miss` ending (ball bounces past one player, who laughs or flops) |
+| `play_catch` | ball | throw/catch moves with arcs |
+| `kick_ball` | football | dribble/kick/goal |
+| `eat_together` | food items, table | sit, eat loops, laugh |
+| `dance_together` | none | Mirrored dance moves (existing `dance_a`/`dance_b`, plus new ones) |
+| `selfie` | phone | Pose plus a flash FX |
+| `sleep` | bench or bed | lie down, `zzz` FX |
+| `cry_together`, `comfort` | none | sad faces, `comfort` paired move, tears FX |
+
+Each activity is parameterized:
+- duration or repetitions;
+- intensity;
+- an ending: `win`, `miss`, `laugh` or `interrupted`.
+
+**Interruptions:** an activity can be cut off by any later beat with `interrupt`. The villain's arrival interrupts the tennis.
+
+## 11. Story macros and the compiler
+
+Macros are written as beats with `"who": "@<macro>"`. The **story compiler** (deterministic; `engine/story/compile.js`) expands them into ordinary beats with generated ids (`<macroId>.<n>`). It also exposes the macro's anchors (`start`, `end`, plus macro-specific ones) so other beats can chain on them.
+
+| Macro | Params (main) | Expands to |
+|---|---|---|
+| `@dialogue` | `lines: [[who, text, face?], ...]`, `gap` | Alternating `say` beats with talk gestures, automatic timing, faces |
+| `@activity` | `name`, `with: [ids]`, `reps` or `dur`, `ending` | The activity's synchronized moves and object events (section 10) |
+| `@walk_together` | `who: [ids]`, `to`, `pace` | Synchronized walk/run, optional hand-holding |
+| `@travel` | `who`, `to` (x or exit), `mode` (walk/run/sneak), `montage: [locations]` | A long move with camera follow; with `montage`, a series of short cut scenes |
+| `@enter` / `@exit` | `who`, `side`, `mode` | Walk or run in or out of frame |
+| `@fight` | `sides`, `winner`, `exchanges`, `intensity`, `finisher`, `style` | A full choreographed 1v1 using v1 attacks (section 12) |
+| `@gauntlet` | `hero`, `opponents: [ids]`, `per`, `finisher` | Sequential fights: each opponent engages in turn, the others wait in a ring |
+| `@brawl` | `sides: {a: [ids], b: [ids]}`, `winner`, `dur` | Group fight with turn-taking attackers |
+| `@chase` | `runner`, `chasers`, `dur`, `obstacles` | Runs, jumps over obstacles, near misses |
+| `@defeat` | `who`, `by`, `style` | The stylized defeat sequence (section 13) |
+| `@grief` | `who`, `over` | Kneel, cry, rain, desaturate, slow music |
+| `@montage` | `clips: [...]`, `clipDur` | Short sub-scenes with quick cuts and one music bed |
+
+Compiler rules:
+- **Deterministic:** the same input and seed give the same beats, using a derived RNG stream `compile`.
+- **Inspectable:** `node tools/compile.mjs story.json` prints the expanded beats, and the validator's timeline shows them.
+- **Expansions respect the catalog:** move pools come from catalog categories and tags, and filter by held prop and body plan.
+- An author can "eject" a macro, replacing it with its expanded beats to hand-tune them.
+
+## 12. Fights at story scale
+
+- `@fight` generates a 1v1:
+  - opening stance and taunt;
+  - N exchanges with mixed outcomes, weighted toward the eventual winner as `intensity` rises;
+  - a mid-fight reversal for `style: "comeback"`;
+  - an emphasized finisher (slowmo, focus camera, text pop).
+  It uses the v1 approach/aim system, so every attack has `"approach": "run"` by construction.
+- `@gauntlet` and `@brawl` handle many opponents:
+  - Opponents not currently engaged hold a **waiting ring** at 300-600 px. They taunt, circle or hold guard.
+  - At most two attack at once, with staggered timing.
+  - Defeated opponents stay down; they are faded out after the fight, or kept.
+- **Boss fights** use the same machinery, with phases (`phases: [{ exchanges, style }]`) and optional `charge_up` and energy moves between phases.
+- Positions and the camera are handled by the compiler. Scripts only state who fights whom, how long, and who wins.
+
+## 13. Defeat, sadness and content policy
+
+The engine stays **family friendly and gore free**. Stories may include loss and revenge, shown in a stylized way.
+
+| Defeat style | Look | Use |
+|---|---|---|
+| `ko` | v1 KO: falls and stays down | Ordinary fight losers |
+| `faint` | Slumps, eyes become X or spirals | Comedic or mild |
+| `vanish` | Falls, then dissolves into rising sparkles | A sidekick's loss, non-graphic |
+| `ghost` | A translucent copy floats up with a halo; the body fades | Emotional loss, still non-graphic |
+| `captured` | Bound by a stylized rope/cage effect, dragged off | Villain defeat that isn't lethal |
+| `flee` | Defeated character runs off-screen | Comedic villain ending |
+
+- **On-screen text:** narration and dialogue avoid explicit words such as "killed" and "dead body". Use "defeated", "taken from him", "gone", "lost". The blocklist keeps graphic terms and gains a **soft list**: words that produce warnings (`W_TEXT_SOFT`) with a suggested alternative, rather than errors.
+- The villain's final defeat should prefer `ko`, `captured`, `vanish` or `flee` over anything that reads as an execution.
+- An age-audience setting, `meta.audience: "kids" | "general"`, tightens or loosens the soft list and defeat styles. The default is `general`.
+
+## 14. Depth, extras and crowds
+
+- **Layers:** `back` (scaled 0.75, desaturated a little, behind set pieces), `mid` (default, interactive), and `front` (scaled 1.15, may blur by alpha, drawn last).
+- Characters and objects have a layer. Only `mid` takes part in combat and interactions.
+- **Extras:** non-named background characters, generated by a location or scene `extras` entry:
+  `{ "count": 6, "layer": "back", "behavior": "walk_by" | "idle_chat" | "cheer" | "flee" }`.
+  They use seeded colors and body plans and do not need cast entries. They are rendered with reduced detail so they never compete with the leads.
+- **Crowds** (the v1 `crowd` layer kind) gain reactions tied to events: cheering on hits, gasping on a defeat.
+
+## 15. Audio: moods, ambience, voice
+
+**Music.** `assets/music/` gets a manifest (`music.json`). Each track has:
+- a mood (`happy`, `playful`, `sad`, `tense`, `heroic`, `battle`, `boss`, `mysterious`, `triumphant`);
+- a tempo;
+- loop points;
+- a license.
+
+Scenes ask for a mood; the mixer picks a track deterministically by seed and crossfades at scene boundaries. With no tracks installed, scenes play without music and the run reports it.
+
+**Ambience beds** per location or weather (`city_traffic`, `park_birds`, `rain`, `wind`, `crowd_murmur`, `cave_drip`). They are procedural, like the SFX, or come from files.
+
+**New SFX keys:**
+- `bubble_blow`, `bubble_pop`, `racket_hit`, `ball_bounce`;
+- `footstep_soft` / `footstep_hard`, `door_open`, `car_pass`;
+- `sad_sting`, `heartbeat`, `magic_sparkle`, `gasp`, `laugh_small`, `cry_small`;
+- `card_whoosh`.
+
+**Voice:**
+- **Default:** "speech sounds", procedural babble per character tuned by `voice.pitch`, played while the mouth flaps. It is language-free and deterministic.
+- **Optional voice-over:** narration and dialogue rendered by a TTS provider in `/tools` (macOS `say` for drafts, or any pluggable cloud TTS). It is never used inside `/engine`.
+- **Determinism with TTS:** a pre-pass writes `voice/manifest.json` with each line's clip and duration. The script is then simulated with those durations as `sayDur` and narration `dur`, so audio and visuals stay in sync. With no manifest, reading-time durations are used.
+
+## 16. Camera for stories
+
+- **New shot modes:**
+  - `two_shot` (frame two characters tightly);
+  - `close_up` (head and shoulders on `target`, for emotional beats);
+  - `wide` (whole stage);
+  - `over_shoulder` (offset toward `target`, past `from`);
+  - `track` (follow one character during travel with lead room).
+- **Auto camera for stories (`meta.autoCamera: "story"`):**
+  - picks two-shots for dialogue;
+  - close-ups on `cry`, `furious` and `determined` faces;
+  - wides on scene starts;
+  - v1 fight rules during fights.
+  Explicit camera keys always win.
+- `shot` beats for quick cut sequences: `{ "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "kai" } }`.
+
+## 17. Validator v2
+
+The validator keeps its three stages:
+1. **Structure:** the v2 schema; the v1 schema is still accepted.
+2. **Meaning:** semantic checks.
+3. **Dry run:** compile, then simulate.
+
+New semantic checks:
+- Cast, locations, scenes and objects are referenced correctly.
+- Macro params are valid.
+- Paired moves have a partner.
+- Activities have their objects.
+- Faces exist.
+- Body plans exist.
+- The defeat style is allowed for the audience.
+- Characters act only in scenes where they are present.
+
+New dry-run checks:
+- Interaction partners are reachable.
+- Ball and object paths stay on stage.
+- Macro expansions are valid.
+- Scene lengths are within limits.
+- Dialogue reading speed is not too fast.
+
+The timeline report groups events by scene and shows macro expansions indented under the macro beat. The full list of new codes is in Appendix B. Every code appears in the LLM prompt, enforced by the existing prompt/validator sync test.
+
+## 18. LLM generation for stories
+
+**Two-stage generation** keeps prompts small and lets each stage be repaired on its own:
+
+1. **Story outline** (one call): logline, cast (with body plans and looks), locations, and a scene list (purpose, mood, approximate length, key events, narration lines).
+2. **Scene scripts** (one call per scene): each gets the outline, the cast and location definitions, the previous scene's end state, the catalog subset relevant to it, and the scene-writing rules. Macros are preferred, so scenes stay short.
+3. **Assembly and validation:** scenes are assembled into one v2 script and validated. Repairs target the failing scene only, with the error codes and the scene's timeline.
+4. **Critique** (optional): a contact sheet per scene plus a story-level critique (does the arc land?).
+
+Other changes:
+- **Copy-paste mode** (`tools/manual.mjs story ...`) follows the same flow: an outline prompt, then one prompt per scene, `check` per scene, and `assemble`.
+- **Prompt pack additions:** a story rules section, a macro reference, face/activity/object tables generated from the catalog, two example stories (one slice-of-life, one with the full arc), and the content policy (section 13).
+- **Scoring for stories:**
+  - an arc (setup → incident → journey → climax → resolution);
+  - variety of scene types (not all fights);
+  - emotional beats (faces other than neutral);
+  - narration coverage;
+  - the v1 fight score inside fight scenes.
+
+## 19. Limits and performance
+
+| Limit | v1 | v2 |
+|---|---|---|
+| Duration | 180 s | 600 s (default target 60-240 s) |
+| Characters on stage | 6 | 8 named + 12 extras per scene; 16 in the cast |
+| Beats | 200 | 1,500 after compilation; 400 authored |
+| Script size | 64 KB | 256 KB |
+| Scenes | 1 | 30 |
+
+- **Performance target:** rendering at least real time at 1080p60 on an M-series Mac for typical scenes. Extras use simplified drawing.
+- **Frame store:** per-frame size grows with characters on stage, not with the cast size, because absent characters aren't stored. About 1 KB/frame at 8 characters, or 36 MB for 10 minutes: fine.
+- **Long videos:** `record.mjs --scene N` renders one scene for quick review.
+
+## 20. Backward compatibility
+
+- `version: 1` scripts are converted on load into a v2 story: one cast built from `characters`, one location from `meta.theme`, one scene. Golden frames and determinism hashes for v1 samples must not change.
+- **v1 field names stay valid inside v2 scenes:**
+  - `characters` inside a scene is an alias for `cast` with inline definitions;
+  - `set_theme` still works.
+- v1 tools (`validate`, `record`, `generate`, `manual`) accept both versions.
+
+## 21. Open decisions (need the product owner)
+
+1. **Defeat depiction for "kills":**
+   - **Proposed:** sidekick → `vanish` or `ghost`;
+   - **Proposed:** villain → `ko` or `captured`;
+   - **Proposed:** "kill" and "dead" become soft-list words with suggested alternatives.
+   - Acceptable?
+2. **The sidekick design:** an original `buddy` body plan is required. A yellow capsule with goggles and overalls is a recognizable trademarked character (Minions, Universal/Illumination), which risks YouTube claims and demonetization. Proposed default: a teal round buddy with one antenna and big eyes. Any preferences?
+3. **Voice-over:** speech sounds only, or TTS narration in v2? If TTS, which provider: macOS `say` for drafts plus one cloud TTS?
+4. **Music:** will you supply or license mood tracks, or should v2 include a procedural music generator (simple chiptune/ambient loops per mood)? This is extra scope, estimated at about 4-6 days.
+5. **Target length and format:** mostly 1-3 minute landscape stories, or Shorts (≤ 60 s portrait) too? This affects camera and pacing defaults.
+6. **Art direction:** stay purely procedural (shapes drawn in code) or allow imported SVG backgrounds and objects? Procedural keeps everything deterministic and license-free; SVG import is about +3 days.
+7. **Audience setting:** default `general` or `kids`?
+
+---
+
+## 22. Appendix A: the reference story as a v2 script (abridged)
+
+This is the acceptance script for the story milestones. Macro params are illustrative; S0 freezes the exact names.
+
+```json
+{
+  "version": 2,
+  "meta": { "title": "Bubbles and Revenge", "format": "landscape", "seed": 2024, "audience": "general" },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "eyes": "big", "accessory": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5 } },
+    { "id": "vex", "name": "Vex", "body": "slim", "color": "#8a2be2", "style": { "cape": "#1a1a1a" }, "hp": 200 },
+    { "id": "g1", "body": "bulky", "color": "#ff7a3d" }, { "id": "g2", "body": "bulky", "color": "#ffb13d" },
+    { "id": "g3", "body": "bulky", "color": "#e04f8a", "prop": "staff" }, { "id": "g4", "body": "bulky", "color": "#c8c84a", "scale": 1.6 }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "set": [ { "id": "net", "object": "tennis_net", "x": 1700 } ], "ambience": "park_birds" },
+    { "id": "street", "theme": "city_street", "stageWidth": 6000, "ambience": "city_traffic" },
+    { "id": "lair", "theme": "villain_lair", "ambience": "cave_drip" }
+  ],
+  "scenes": [
+    { "id": "s1", "location": "park", "time": "day", "music": { "mood": "happy" },
+      "transitionIn": { "type": "card", "params": { "title": "Bubbles and Revenge" } },
+      "cast": [ { "id": "kai", "x": 1300, "facing": 1, "face": "happy" }, { "id": "pip", "x": 1550, "facing": -1, "face": "happy" } ],
+      "beats": [
+        { "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "Kai and Pip were the best of friends." } },
+        { "id": "bub", "at": 1, "who": "@activity", "params": { "name": "blow_bubbles", "with": ["pip", "kai"], "dur": 6, "ending": "laugh" } },
+        { "id": "ten", "at": { "after": "bub", "delay": 0.4 }, "who": "@activity", "params": { "name": "tennis_rally", "with": ["kai", "pip"], "rallies": 4, "ending": "miss" } },
+        { "id": "hf", "at": { "after": "ten" }, "who": "kai", "do": "high_five", "partner": "pip", "approach": "walk", "face": "laugh" }
+      ] },
+    { "id": "s2", "location": "park", "time": "dusk", "transitionIn": { "type": "card", "params": { "text": "One sudden day..." } },
+      "music": { "mood": "tense" },
+      "cast": [ { "id": "kai", "x": 1200, "facing": 1 }, { "id": "pip", "x": 1450, "facing": -1 }, { "id": "vex", "x": 2600, "facing": -1, "layer": "back" } ],
+      "beats": [
+        { "id": "arrive", "at": 0.5, "who": "@enter", "params": { "who": "vex", "side": "right", "mode": "walk" } },
+        { "at": { "with": "arrive" }, "who": "pip", "do": "point", "face": "scared", "say": "Who is that?" },
+        { "id": "blast", "at": { "after": "arrive" }, "who": "vex", "do": "energy_blast", "target": "pip", "approach": "run", "outcome": "hit", "face": "smug" },
+        { "id": "gone", "at": { "after": "blast", "delay": 0.4 }, "who": "@defeat", "params": { "who": "pip", "by": "vex", "style": "vanish" } },
+        { "at": { "with": "gone" }, "who": "@exit", "params": { "who": "vex", "side": "right", "mode": "walk" } },
+        { "id": "grief", "at": { "after": "gone" }, "who": "@grief", "params": { "who": "kai", "over": "pip" } },
+        { "at": { "after": "grief" }, "who": "kai", "do": "clench_fist", "face": "furious", "say": "I will find you." }
+      ] },
+    { "id": "s3", "location": "street", "time": "night", "weather": "rain", "music": { "mood": "heroic" },
+      "transitionIn": { "type": "card", "params": { "text": "The path to Vex" } },
+      "cast": [ { "id": "kai", "x": 300, "facing": 1, "face": "determined" }, { "id": "g1", "x": 1600, "facing": -1 }, { "id": "g2", "x": 2600, "facing": -1 },
+                { "id": "g3", "x": 3600, "facing": -1 }, { "id": "g4", "x": 4800, "facing": -1 } ],
+      "beats": [
+        { "id": "path", "at": 0.3, "who": "@gauntlet", "params": { "hero": "kai", "opponents": ["g1", "g2", "g3", "g4"], "per": 3, "travel": "run", "finisher": "spinning_kick" } }
+      ] },
+    { "id": "s4", "location": "lair", "time": "night", "music": { "mood": "boss" },
+      "cast": [ { "id": "kai", "x": 1100, "facing": 1, "face": "furious" }, { "id": "vex", "x": 2000, "facing": -1, "face": "smug" } ],
+      "beats": [
+        { "id": "talk", "at": 0.4, "who": "@dialogue", "params": { "lines": [["vex", "You came all this way?"], ["kai", "For Pip."]] } },
+        { "id": "boss", "at": { "after": "talk" }, "who": "@fight", "params": { "sides": ["kai", "vex"], "winner": "kai", "exchanges": 10, "intensity": "high", "style": "comeback", "finisher": "flying_kick" } },
+        { "id": "end", "at": { "after": "boss" }, "who": "@defeat", "params": { "who": "vex", "by": "kai", "style": "captured" } },
+        { "at": { "after": "end", "delay": 0.5 }, "who": "world", "do": "narrate", "params": { "text": "Pip would be proud." } },
+        { "at": { "after": "end", "delay": 3 }, "who": "world", "do": "end_card", "params": { "text": "The End" } }
+      ] }
+  ]
+}
+```
+
+## 23. Appendix B: new error codes
+
+| Code | Stage | Meaning |
+|---|---|---|
+| `E_VERSION` | structure | `version` is not 1 or 2 |
+| `E_CAST_UNKNOWN` | semantic | A beat or scene uses an id not in `cast` |
+| `E_CAST_ABSENT` | semantic | A character acts in a scene it isn't placed in |
+| `E_BODY_UNKNOWN` | semantic | Unknown body plan |
+| `E_APPEARANCE` | semantic | Unknown appearance option or value |
+| `E_FACE_UNKNOWN` | semantic | Unknown face/emotion |
+| `E_LOCATION_UNKNOWN` | semantic | Scene uses an unknown location |
+| `E_OBJECT_UNKNOWN` | semantic | Unknown object kind or object id |
+| `E_OBJECT_STATE` | semantic | Invalid state for that object |
+| `E_PARTNER_MISSING` | semantic | Paired move without `partner`, or partner absent |
+| `E_PARTNER_SELF` | semantic | Partner is the acting character |
+| `E_MACRO_UNKNOWN` | semantic | Unknown `@macro` |
+| `E_MACRO_PARAM` | semantic | Bad or missing macro param |
+| `E_ACTIVITY_OBJECT` | semantic | Activity needs an object that isn't available |
+| `E_TRANSITION` | semantic | Unknown transition type or bad params |
+| `E_SCENE_EMPTY` | semantic | Scene with no beats and no duration |
+| `E_DEFEAT_STYLE` | semantic | Defeat style not allowed for `meta.audience` |
+| `E_MOVE_RIG` | semantic | Move not available for the character's rig |
+| `E_SIM_PARTNER_UNREACHABLE` | dry run | Partner can't be reached for an interaction (add approach) |
+| `E_SIM_OBJECT_OFFSTAGE` | dry run | A ball, vehicle or floater path leaves the stage |
+| `E_SIM_SCENE_LENGTH` | dry run | Scene longer than the limit |
+| `W_DIALOGUE_FAST` | dry run | A line shows for less than its reading time |
+| `W_TEXT_SOFT` | semantic | Soft-listed word (for example "killed"); suggests an alternative |
+| `W_SCENE_STATIC` | dry run | A scene with over 4 s of no movement and no narration |
+| `W_NO_ARC` | dry run | The story has no climax or resolution scene (story pacing heuristic) |
+| `W_CAST_UNUSED` | semantic | A cast member never appears |

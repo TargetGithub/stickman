@@ -2,13 +2,15 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** M8 built: LLM script generation with any provider or by copy-paste (`tools/generate.mjs`, `tools/manual.mjs`); tested offline and with a local model. Next: M9 (hardening). New here? Read the [User Guide](docs/USER_GUIDE.md).
+**Status:** M8 built: LLM script generation with any provider or by copy-paste (`tools/generate.mjs`, `tools/manual.mjs`); tested offline and with a local model. Next: M9 (hardening), then the story engine (docs/STORY_PLAN.md). New here? Read the [User Guide](docs/USER_GUIDE.md).
 
 ## Documents
 
 | Document | What it covers |
 |---|---|
 | [docs/USER_GUIDE.md](docs/USER_GUIDE.md) | **Start here:** setup, writing scripts, tools, generating with Claude, troubleshooting |
+| [docs/STORY_SPEC.md](docs/STORY_SPEC.md) | Next: story engine v2 (scenes, cast, faces, objects, interactions, macros, narration) — draft |
+| [docs/STORY_PLAN.md](docs/STORY_PLAN.md) | Execution plan S0-S9 for the story engine, with a kickoff prompt for a new session |
 | [stickman-engine-spec.md](stickman-engine-spec.md) | Behavior and script schema (source of truth), v1.1 |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Modules, interfaces, data shapes, decision records |
 | [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | Milestones, tasks, schedule, risks |
