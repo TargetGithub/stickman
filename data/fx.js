@@ -98,6 +98,22 @@ export const fxPresets = {
   heart: { anchor: "head", layers: [{ shape: "glyph", glyph: "heart", count: 1, attach: "head", offsetXY: [0, -48], life: [1.2, 1.2], size: [18, 22], color: "#ff4f8b", alpha: [1, 0] }] },
   exclaim: { anchor: "head", layers: [{ shape: "glyph", glyph: "exclaim", count: 1, attach: "head", offsetXY: [0, -52], life: [0.9, 0.9], size: [22, 22], color: "#222222", alpha: [1, 0] }] },
   question: { anchor: "head", layers: [{ shape: "glyph", glyph: "question", count: 1, attach: "head", offsetXY: [0, -52], life: [1.1, 1.1], size: [22, 22], color: "#222222", alpha: [1, 0] }] },
+  // Emitted every frame at a blaster bolt.
+  bolt: {
+    anchor: "point",
+    layers: [
+      { shape: "line", count: 1, angle: [0, 0], speed: [1, 1], life: [0.06, 0.06], size: [46, 40], width: 8, color: "#ff5a5a", alpha: [0.9, 0.6] },
+      { shape: "glow", count: 1, speed: [0, 0], life: [0.15, 0.15], size: [26, 10], color: "rgba(255, 90, 90, 0.8)", alpha: [0.8, 0] },
+    ],
+  },
+  // A breaking prop: two tinted halves spin away and fall.
+  prop_break: {
+    anchor: "point",
+    layers: [
+      { shape: "line", count: 2, angle: [-150, -30], speed: [280, 480], life: [0.8, 1.0], size: [40, 40], width: 9, gravity: 1800, vrot: [-900, 900], color: "#cccccc", tintable: true, alpha: [1, 0.8] },
+      { shape: "dot", count: 8, angle: [-170, -10], speed: [200, 500], life: [0.3, 0.5], size: [6, 2], gravity: 1600, color: ["#ffffff", "#ffd23f"], alpha: [1, 0] },
+    ],
+  },
   afterimage: { anchor: "hip", trail: { kind: "afterimage", duration: 0.6 } },
   slash_arc: { anchor: "point", trail: { kind: "slash", duration: 0.25 } },
   // Emitted every frame at a flying projectile: a bright core plus a fading glow leaves the trail.

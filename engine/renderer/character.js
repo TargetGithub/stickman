@@ -2,6 +2,8 @@
 // Milestone: M0 (body and face), M7 (props, accessories). Spec: section 14.2.
 
 import { BODY } from "../skeleton.js";
+import { propTransform } from "../props.js";
+import { drawProp } from "./props.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
 
@@ -79,7 +81,8 @@ function drawHead(ctx, j, r, lw, style, facing) {
  * @param {CanvasRenderingContext2D} ctx
  * @param {import("../types.js").Joints} j
  * @param {{ color?:string, outline?:boolean, outlineColor?:string, farBrightness?:number,
- *           mouth?:string, scale:number, facing:1|-1, alpha?:number }} style
+ *           mouth?:string, scale:number, facing:1|-1, alpha?:number,
+ *           prop?:{ data:object, angle:number } }} style  a held prop is drawn in its grip hand
  */
 export function drawCharacter(ctx, j, style) {
   const s = { ...DEFAULTS, ...style };
@@ -90,10 +93,14 @@ export function drawCharacter(ctx, j, style) {
   ctx.lineJoin = "round";
 
   const far = shade(s.color, s.farBrightness);
+  const prop = s.prop ? propTransform(j, s.prop.data, s.prop.angle, s.facing, s.scale) : null;
   strokeGroup(ctx, [[j.hip, j.lKnee, j.lFoot], [j.shoulder, j.lElbow, j.lHand]], far, lw, s);
+  if (prop && s.prop.data.grip === "lHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
   strokeGroup(ctx, [[j.hip, j.shoulder, j.neckTop]], s.color, lw, s);
   drawHead(ctx, j, BODY.headR * s.scale, lw, s, s.facing);
-  strokeGroup(ctx, [[j.hip, j.rKnee, j.rFoot], [j.shoulder, j.rElbow, j.rHand]], s.color, lw, s);
+  strokeGroup(ctx, [[j.hip, j.rKnee, j.rFoot]], s.color, lw, s);
+  if (prop && s.prop.data.grip === "rHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
+  strokeGroup(ctx, [[j.shoulder, j.rElbow, j.rHand]], s.color, lw, s);
 
   ctx.restore();
 }

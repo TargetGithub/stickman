@@ -3,7 +3,8 @@
 
 import { BODY, computeJoints, lowestPoint, solveIK2, bendSignOf } from "./skeleton.js";
 import { samplePoseKeys } from "./pose.js";
-import { rootOffsetAt } from "./moves.js";
+import { rootOffsetAt, samplePropAngle } from "./moves.js";
+import { propTransform } from "./props.js";
 import { COMBAT } from "./config.js";
 
 /** IK chains per hit part: [root joint, middle joint, end joint, upper bone, lower bone]. */
@@ -16,11 +17,19 @@ export const CHAINS = {
 
 /** One-bone aiming for strikes with a middle joint: [root, joint, bone, joint that follows rigidly]. */
 export const LEVERS = {
-  rElbow: ["shoulder", "rElbow", "upperArm", "rHand"],
-  lElbow: ["shoulder", "lElbow", "upperArm", "lHand"],
-  rKnee: ["hip", "rKnee", "thigh", "rFoot"],
-  lKnee: ["hip", "lKnee", "thigh", "lFoot"],
+  rElbow: ["shoulder", "rElbow", "upperArm", ["rHand"]],
+  lElbow: ["shoulder", "lElbow", "upperArm", ["lHand"]],
+  rKnee: ["hip", "rKnee", "thigh", ["rFoot"]],
+  lKnee: ["hip", "lKnee", "thigh", ["lFoot"]],
+  propTip: ["shoulder", "propTip", null, ["rElbow", "rHand"]], // the whole arm swings the weapon
 };
+
+/** FK joints for a move at normalized time t, including propTip for armed moves (scale-1 data). */
+export function fkJoints(def, t, root, facing, scale) {
+  const j = computeJoints(samplePoseKeys(def.keys, t), root, facing, scale);
+  if (def.propData) j.propTip = propTransform(j, def.propData, samplePropAngle(def.keys, t), facing, scale).tip;
+  return j;
+}
 
 export const MAX_ASSIST_LEAN = 40; // degrees an attacker may lean into a strike to reach a lower target
 
@@ -29,6 +38,7 @@ export function limbReach(joints, part, scale) {
   const c = CHAINS[part];
   if (c) return { root: joints[c[0]], len: 0.98 * (BODY[c[3]] + BODY[c[4]]) * scale };
   const l = LEVERS[part];
+  if (l && part === "propTip") return joints.propTip ? { root: joints.shoulder, len: Math.hypot(joints.propTip.x - joints.shoulder.x, joints.propTip.y - joints.shoulder.y) * 1.05 } : null;
   if (l) return { root: joints[l[0]], len: BODY[l[2]] * scale * 1.15 };
   return null;
 }
@@ -112,8 +122,8 @@ export function deriveReach(def) {
   if (!def.hits.length) return (def.derived = []);
   def.derived = def.hits.map((hit) => {
     const tmid = (hit.t0 + hit.t1) / 2;
-    const j = computeJoints(samplePoseKeys(def.keys, tmid), { x: 0, y: 0 }, 1, 1);
-    const p = j[hit.part === "propTip" ? "rHand" : hit.part];
+    const j = fkJoints(def, tmid, { x: 0, y: 0 }, 1, 1);
+    const p = j[hit.part] || j.rHand;
     return { tmid, reach: p.x, height: lowestPoint(j, 1) - p.y };
   });
   return def.derived;
@@ -191,7 +201,8 @@ export function applyAimIK(joints, part, aimPoint, w, scale) {
   const lever = LEVERS[part];
   if (lever) {
     // Rotate the bone toward the aim point; the joint below follows rigidly.
-    const [rootName, jointName, , followName] = lever;
+    const [rootName, jointName, , follows] = lever;
+    if (!joints[jointName]) return joints;
     const root = joints[rootName];
     const cur = Math.atan2(joints[jointName].y - root.y, joints[jointName].x - root.x);
     const want = Math.atan2(aimPoint.y - root.y, aimPoint.x - root.x);
@@ -201,7 +212,9 @@ export function applyAimIK(joints, part, aimPoint, w, scale) {
       const y = p.y - root.y;
       return { x: root.x + x * Math.cos(delta) - y * Math.sin(delta), y: root.y + x * Math.sin(delta) + y * Math.cos(delta) };
     };
-    return { ...joints, [jointName]: turn(joints[jointName]), [followName]: turn(joints[followName]) };
+    const out = { ...joints, [jointName]: turn(joints[jointName]) };
+    for (const name of follows) out[name] = turn(joints[name]);
+    return out;
   }
   const chain = CHAINS[part];
   if (!chain) return joints;
@@ -252,12 +265,12 @@ export function requiredStartX(attacker, target, def, params, outcome, hitIndex 
 
 /** Furthest forward the hit part gets at any time in the move (FK plus root travel), at scale 1. */
 export function maxForward(def, hitIndex, params) {
-  const part = def.hits[hitIndex].part === "propTip" ? "rHand" : def.hits[hitIndex].part;
+  const part = def.hits[hitIndex].part;
   let best = -Infinity;
   for (let i = 0; i <= 40; i++) {
     const t = i / 40;
-    const j = computeJoints(samplePoseKeys(def.keys, t), { x: 0, y: 0 }, 1, 1);
-    best = Math.max(best, j[part].x + rootOffsetAt(def, t, params).dx);
+    const j = fkJoints(def, t, { x: 0, y: 0 }, 1, 1);
+    best = Math.max(best, (j[part] || j.rHand).x + rootOffsetAt(def, t, params).dx);
   }
   return best;
 }
@@ -282,6 +295,7 @@ export function canReach(attacker, target, def, params, hitIndex = 0) {
     const lift = attacker.groundY - lowestPoint(raw, s);
     const root = rootOffsetAt(def, d.tmid, params);
     const j = computeJoints(pose, { x: startX + f * root.dx * s, y: lift + Math.min(0, root.dy) * s }, f, s); // jumps lift the body
+    if (def.propData) j.propTip = propTransform(j, def.propData, samplePropAngle(def.keys, d.tmid), f, s).tip;
     // Parts that cannot aim (the head) must make contact from their own FK position.
     const limb = limbReach(j, hit.part, s) || { root: j[hit.part] || j.head, len: 0 };
     const range = limb.len * 1.05 + COMBAT.hitRadius * s * 0.5; // limb length plus half a fist of contact slack

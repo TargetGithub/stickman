@@ -71,7 +71,7 @@ export function drawParticles(ctx, log, fxT, attachAt) {
     ctx.strokeStyle = p.color;
     switch (p.shape) {
       case "line": {
-        const a = Math.atan2(s.vy, s.vx) || p.rot0;
+        const a = p.vrot ? s.rot : Math.atan2(s.vy, s.vx) || p.rot0; // spinning debris follows its own rotation
         const dx = (Math.cos(a) * s.size) / 2;
         const dy = (Math.sin(a) * s.size) / 2;
         ctx.lineWidth = p.width;

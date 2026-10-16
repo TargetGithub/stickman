@@ -11,6 +11,7 @@ import { prepareCatalog } from "../engine/moves.js";
 import { computeJoints, lowestPoint } from "../engine/skeleton.js";
 import { drawCharacter } from "../engine/renderer/character.js";
 import { catalog } from "../data/index.js";
+import { propByKind } from "../engine/props.js";
 
 const args = process.argv.slice(2);
 const flag = (name, dflt) => {
@@ -18,7 +19,16 @@ const flag = (name, dflt) => {
   return i >= 0 ? args[i + 1] : dflt;
 };
 const DT = 1 / 60;
-const moves = prepareCatalog(catalog.moves, catalog.poses);
+const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+
+/** Armed moves are previewed holding their prop ("any" → sword). */
+function arm(actor, def) {
+  if (!def.needsProp) return;
+  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(catalog.props, def.needsProp);
+  const name = Object.keys(catalog.props).find((k) => catalog.props[k] === data);
+  actor.prop = { name, kind: data.kind, data };
+}
+const propStyle = (actor) => (actor.prop ? { data: actor.prop.data, angle: actor.propAngle } : undefined);
 const names = flag("--moves", [...moves.keys()].join(",")).split(",");
 const scale = Number(flag("--scale", 1.4));
 const backend = await loadBackend();
@@ -30,6 +40,7 @@ function makeCell(name, x0, groundY) {
   let wait = 0;
   const restart = () => {
     actor.x = x0;
+    arm(actor, def);
     playMove(actor, name, moves);
   };
   restart();
@@ -73,7 +84,7 @@ function drawCell(ctx, cell, box, frameInfo) {
     drawCharacter(ctx, j, { color: "#bbbbbb", scale, facing: -1 });
   }
   const r = frameInfo;
-  drawCharacter(ctx, r.joints, { color: "#22aaff", scale, facing: cell.actor.facing, mouth: cell.actor.mouth });
+  drawCharacter(ctx, r.joints, { color: "#22aaff", scale, facing: cell.actor.facing, mouth: cell.actor.mouth, prop: propStyle(cell.actor) });
   for (const win of r.openWindows) {
     const p = r.joints[win.hit.part];
     if (!p) continue;
@@ -100,6 +111,7 @@ if (args.includes("--strip")) {
   const canvas = backend.createCanvas(cellW * count, cellH);
   const ctx = canvas.getContext("2d");
   const actor = createActor({ x: 0, groundY: cellH - 50, scale: 1.2, facing: 1 });
+  arm(actor, def);
   playMove(actor, name, moves, { blend: 0 });
   const total = Math.ceil(def.duration * 60);
   const pick = new Set(Array.from({ length: count }, (_, i) => Math.round((i * (total - 1)) / (count - 1))));

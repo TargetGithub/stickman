@@ -7,6 +7,7 @@ import { computeJoints, lowestPoint, BODY } from "./skeleton.js";
 import { fillPose } from "./pose.js";
 import { startMove, stepMove } from "./moves.js";
 import { MOTION, STAGE } from "./config.js";
+import { propTransform } from "./props.js";
 
 /**
  * @param {{ id?:string, x:number, facing?:1|-1, scale?:number, groundY?:number, hp?:number, color?:string }} opts
@@ -37,6 +38,8 @@ export function createActor(opts) {
     launched: false,
     spinRot: 0,
     mouth: "neutral",
+    prop: null, // { name, kind, data } while holding a prop
+    propAngle: 0,
     joints: null,
   };
 }
@@ -91,6 +94,7 @@ export function advanceMove(actor, dt, moves) {
   actor.rootDy = r.rootDy;
   actor.mouth = r.mouth;
   actor.pose = r.pose;
+  if (r.propAngle !== null) actor.propAngle = r.propAngle;
   if (r.ended) {
     actor.move.endAnnounced = true;
     events.push({ type: "moveEnd", actor: actor.id, move: actor.move.def.name, beatId: actor.move.beatId });
@@ -132,8 +136,14 @@ export function displayPose(actor) {
 export function poseActor(actor, dt, snapHard = false) {
   const pose = displayPose(actor);
   const rootY = groundContact(actor, pose, dt, snapHard);
-  actor.joints = computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale);
+  actor.joints = withPropTip(actor, computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale));
   return actor.joints;
+}
+
+/** Add the held prop's tip to a joint set (a hit part and a slash-trail source). */
+export function withPropTip(actor, joints) {
+  if (actor.prop) joints.propTip = propTransform(joints, actor.prop.data, actor.propAngle, actor.facing, actor.scale).tip;
+  return joints;
 }
 
 /**

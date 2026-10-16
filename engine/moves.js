@@ -6,6 +6,7 @@ import { easings } from "./math.js";
 import { compileExpr, evalParam, ExprError } from "./expr.js";
 import { fillPose, blendPose, samplePoseKeys, segmentAt } from "./pose.js";
 import { MOTION } from "./config.js";
+import { propByKind } from "./props.js";
 
 export const CATEGORIES = ["attack", "movement", "reaction", "defensive", "emote", "utility"];
 export const HIT_PARTS = ["rHand", "lHand", "rFoot", "lFoot", "rKnee", "lKnee", "rElbow", "lElbow", "head", "propTip"];
@@ -43,6 +44,7 @@ function prepareMove(raw, poses, problems) {
   if (rawKeys.length === 0) p("needs at least one key");
   checkTimes(rawKeys, `move '${raw.name}' keys`, problems, { first0: true, last1: true });
   let prev = poses.stand;
+  let prevAngle = 0;
   const keys = rawKeys.map((k, i) => {
     let partial = k.pose;
     if (typeof partial === "string") {
@@ -54,7 +56,8 @@ function prepareMove(raw, poses, problems) {
     if (k.ease && !easings[k.ease]) p(`keys[${i}].ease '${k.ease}' is unknown`);
     const pose = fillPose(partial || {}, prev);
     prev = pose;
-    return { t: k.t, pose, ease: k.ease || "linear", snapHard: !!k.snapHard, propAngle: k.propAngle };
+    prevAngle = k.propAngle ?? prevAngle; // prop angle inherits like pose channels
+    return { t: k.t, pose, ease: k.ease || "linear", snapHard: !!k.snapHard, propAngle: prevAngle };
   });
 
   const root = raw.root && raw.root.length ? raw.root : [{ t: 0, dx: 0, dy: 0 }, { t: 1, dx: 0, dy: 0 }];
@@ -107,7 +110,7 @@ function prepareMove(raw, poses, problems) {
  * Validate and normalize move data (spec 8.1). Throws one Error listing every problem.
  * @returns {Map<string, object>} prepared moves by name
  */
-export function prepareCatalog(rawMoves, poses) {
+export function prepareCatalog(rawMoves, poses, props = null) {
   const problems = [];
   const out = new Map();
   if (!poses || !poses.stand) throw new Error("prepareCatalog: poses.stand is required");
@@ -117,7 +120,12 @@ export function prepareCatalog(rawMoves, poses) {
       continue;
     }
     if (out.has(raw.name)) problems.push(`duplicate move name '${raw.name}'`);
-    out.set(raw.name, prepareMove(raw, poses, problems));
+    const def = prepareMove(raw, poses, problems);
+    if (def.needsProp && def.needsProp !== "any" && props) {
+      def.propData = propByKind(props, def.needsProp);
+      if (!def.propData) problems.push(`move '${def.name}': needsProp '${def.needsProp}' matches no prop kind`);
+    }
+    out.set(raw.name, def);
   }
   for (const def of out.values()) {
     if (def.chain && !out.has(def.chain)) problems.push(`move '${def.name}': chain '${def.chain}' is not a move`);
@@ -127,6 +135,18 @@ export function prepareCatalog(rawMoves, poses) {
 }
 
 // ---------- runtime ----------
+
+/** Prop angle (degrees) at normalized time t, shaped by the same key easing as the pose. */
+export function samplePropAngle(keys, t) {
+  if (keys.length === 1 || t <= keys[0].t) return keys[0].propAngle;
+  const last = keys[keys.length - 1];
+  if (t >= last.t) return last.propAngle;
+  const i = segmentAt(keys, t);
+  const a = keys[i];
+  const b = keys[i + 1];
+  const u = easings[a.ease]((t - a.t) / (b.t - a.t));
+  return a.propAngle + (b.propAngle - a.propAngle) * u;
+}
 
 /** Equivalent angle in (-180, 180]. */
 export function wrapAngle(deg) {
@@ -173,6 +193,7 @@ export function startMove(actor, def, opts = {}) {
     // A finished flip ends at rot ±360: wrap to (-180, 180] so the next move does not spin back.
     blendFrom: actor.pose ? { ...actor.pose, rot: wrapAngle(actor.pose.rot) } : null,
     blendT: 0,
+    blendFromAngle: actor.propAngle ?? 0,
     blendDur: opts.blend ?? (def.category === "reaction" ? 0 : MOTION.blend),
     lastRoot: rootOffsetAt(def, 0, params),
     eventIndex: 0,
@@ -261,5 +282,11 @@ export function stepMove(actor, dt) {
     pose = blendPose(m.blendFrom, pose, easings.outQuad(m.blendT / m.blendDur));
     m.blendT += dt;
   }
-  return { pose, rootDx, rootDy: root.dy * m.scale, openWindows, events, ended, snapHard, mouth: def.mouth };
+  let propAngle = m.keepPose ? null : samplePropAngle(def.keys, t);
+  if (propAngle !== null && m.blendFrom && m.blendDur > 0 && m.blendT < m.blendDur + 1 / 60) {
+    // Blend the prop angle the short way round, like the pose.
+    const d = ((((propAngle - m.blendFromAngle) % 360) + 540) % 360) - 180;
+    propAngle = m.blendFromAngle + d * easings.outQuad(Math.min(1, m.blendT / m.blendDur));
+  }
+  return { pose, rootDx, rootDy: root.dy * m.scale, openWindows, events, ended, snapHard, mouth: def.mouth, propAngle };
 }

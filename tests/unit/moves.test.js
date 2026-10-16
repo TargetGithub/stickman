@@ -132,3 +132,10 @@ test("every effect and shake named in move data exists", () => {
     for (const h of def.hits) for (const name of h.fx || []) assert.ok(name in catalog.fxPresets, `${def.name} hit fx ${name}`);
   }
 });
+
+test("zero-length blends (reactions) keep the prop angle finite", () => {
+  const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+  const actor = { pose: { ...catalog.poses.guard, rot: 0, dx: 0, dy: 0 }, propAngle: 55 };
+  startMove(actor, moves.get("hit_heavy"));
+  assert.ok(Number.isFinite(stepMove(actor, DT).propAngle));
+});

@@ -5,17 +5,20 @@
 import { packJoints } from "./skeleton.js";
 
 export const MOUTHS = ["neutral", "shout", "grin"];
-const CHAR_STRIDE = 30; // 26 joint floats + facing, mouth index, hp, airborne
+const CHAR_STRIDE = 32; // 26 joint floats + facing, mouth index, hp, airborne, prop index (-1 none), prop angle
 const CAM_STRIDE = 5; // x, y, zoom, shakeX, shakeY
 
 /**
  * @param {Array<{ id, color, scale, maxHp }>} chars  constant per-character data, in actor order
  * @param {number} estFrames  initial capacity (grows by doubling)
+ * @param {string[]} propNames  prop keys, for the per-character held-prop index
  */
-export function createStore(chars, estFrames = 600) {
+export function createStore(chars, estFrames = 600, propNames = []) {
   const cap = Math.max(16, estFrames);
   return {
     chars: chars.map((c) => ({ id: c.id, color: c.color, scale: c.scale, maxHp: c.maxHp })),
+    propNames,
+    items: [], // sparse: frame → [{ name, x, y, angle, flying }] (props lying on the floor or thrown)
     length: 0,
     capacity: cap,
     times: new Float64Array(cap * 2), // storyT, fxT
@@ -37,8 +40,8 @@ function grow(store) {
   store.capacity = cap;
 }
 
-/** Append the current world state as the next frame. */
-export function writeFrame(store, actors, clock, cam) {
+/** Append the current world state as the next frame. items: loose props this frame. */
+export function writeFrame(store, actors, clock, cam, items = null) {
   if (store.length >= store.capacity) grow(store);
   const n = store.length;
   store.times[n * 2] = clock.storyT;
@@ -57,7 +60,10 @@ export function writeFrame(store, actors, clock, cam) {
     store.body[o + 27] = Math.max(0, MOUTHS.indexOf(a.mouth));
     store.body[o + 28] = a.hp;
     store.body[o + 29] = a.airborne ? 1 : 0;
+    store.body[o + 30] = a.prop ? store.propNames.indexOf(a.prop.name) : -1;
+    store.body[o + 31] = a.propAngle || 0;
   });
+  if (items && items.length) store.items[n] = items;
   store.length++;
 }
 
@@ -88,8 +94,10 @@ export function frameView(store, n, fps = 60) {
         mouth: MOUTHS[store.body[o + 27]],
         hp: store.body[o + 28],
         airborne: store.body[o + 29] === 1,
+        prop: store.body[o + 30] >= 0 ? { name: store.propNames[store.body[o + 30]], angle: store.body[o + 31] } : null,
       };
     }),
+    items: store.items[n] || [],
   };
 }
 

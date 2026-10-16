@@ -97,6 +97,9 @@ export function onEvents(director, events, storyT) {
       issue(director, "E_SIM_UNREACHABLE", beat, `'${e.actor}' starts ${Math.abs(e.error).toFixed(0)}px from where '${e.move}' needs to start (max ${COMBAT.maxNudge}px x scale without approach).`,
         `Add "approach": "run" to ${beat ? `beat '${beat.id}'` : "the beat"}, or move the characters closer first.`);
     }
+    if (e.type === "propMissing") {
+      issue(director, "W_NO_PROP", beat, `'${e.actor}' tried to pick up a prop, but none was lying within reach.`, "Spawn one nearby (world spawn_prop) or drop/throw one there first.", "warning");
+    }
     if (e.type === "reachWarning") {
       issue(director, "W_REACH", beat, `'${e.actor}' ${e.move} cannot physically reach '${e.target}' at these sizes; the hit will look like it lands in the air.`,
         `Use a move that reaches (a kick, jump or flying attack for big height differences), or bring the sizes closer.`, "warning");
@@ -121,6 +124,16 @@ const isFree = (actor) => !actor.move || actor.move.def.name === "idle" || actor
 function dispatchWorld(director, beat, ctx) {
   const p = beat.params || {};
   const { clock, emit, storyT } = ctx;
+  if (beat.do === "spawn_prop") {
+    const data = ctx.catalog?.props?.[p.prop];
+    if (data) ctx.world.groundProps.push({ name: p.prop, kind: data.kind, data, x: p.x, y: p.y ?? ctx.world.actors[0].groundY - 4, angle: 0 });
+  } else if (beat.do === "prop_break") {
+    const owner = ctx.world.byId.get(p.owner);
+    if (owner?.prop) {
+      emit({ type: "fx", names: ["prop_break"], actor: owner.id, color: owner.prop.data.color, at: owner.joints.rHand });
+      owner.prop = null;
+    }
+  }
   if (beat.do === "slowmo") requestSlowmo(clock, { scale: p.scale ?? 0.3, duration: p.duration ?? 0.5, easeIn: p.easeIn, easeOut: p.easeOut });
   else if (beat.do === "freeze") requestFreeze(clock, p.duration ?? 0.5);
   emit({ type: "world", do: beat.do, params: p, beatId: beat.id });
@@ -203,7 +216,7 @@ function execute(director, beat, ctx) {
     issue(director, "W_QUEUE_DRIFT", beat, `Beat '${beat.id}' (${beat.who} ${beat.do}) starts ${lateBy.toFixed(2)}s after its time because '${beat.who}' was busy.`,
       `Use "at": {"after": "<previous beat id>"} to chain it, or set "interrupt": true.`, "warning");
   }
-  if (def.needsProp && actor.prop?.kind !== def.needsProp) {
+  if (def.needsProp && (def.needsProp === "any" ? !actor.prop : actor.prop?.kind !== def.needsProp)) {
     issue(director, "E_MOVE_NEEDS_PROP", beat, `'${beat.do}' needs a ${def.needsProp}, but '${beat.who}' has ${actor.prop ? `a ${actor.prop.kind}` : "no prop"} at this point.`,
       `Give '${beat.who}' "prop": "${def.needsProp}" or add a "pick_prop" beat first.`);
   }

@@ -4,6 +4,7 @@
 import { applyHit, inWindow } from "./hit_apply.js";
 import { sweptHit, buildHurtboxes, aimCandidates } from "./combat.js";
 import { BODY } from "./skeleton.js";
+import { STAGE, PHYSICS } from "./config.js";
 
 /** Aim height on the target for an outcome: chest for hits, clearly over the head for whiffs. */
 function aimY(target, outcome, radius) {
@@ -30,7 +31,11 @@ export function spawnProjectile(world, actor, spec, events) {
     const t = Math.abs(target.x - from.x) / Math.abs(vx);
     if (t > 0) vy = (aimY(target, m.outcome, radius) - from.y) / t;
   }
+  // Throwing the held prop: it leaves the hand and flies spinning (drawn from the frame store).
+  const item = spec.kind === "prop" && actor.prop ? actor.prop : null;
+  if (spec.kind === "prop") actor.prop = null;
   world.projectiles.push({
+    item, angle: 0, spin: item ? (spec.spin ?? 14) * actor.facing : 0, falling: false,
     x: from.x, y: from.y, prevX: from.x, prevY: from.y, vx, vy, gravity: 0,
     radius, life: spec.life ?? 2, kind: spec.kind || "energy_ball", scale: s,
     owner: actor.id, target: m.target, outcome: m.outcome, facing: actor.facing,
@@ -47,9 +52,20 @@ export function stepWorldProjectiles(world, dt) {
     const p = world.projectiles[i];
     p.prevX = p.x;
     p.prevY = p.y;
+    p.vy += p.gravity * dt;
     p.x += p.vx * dt;
     p.y += p.vy * dt;
+    p.angle += p.spin * dt;
     p.life -= dt;
+    if (p.falling) {
+      // A spent thrown prop tumbles to the floor and stays there.
+      if (p.y >= STAGE.groundY - 4) {
+        world.groundProps.push({ ...p.item, x: p.x, y: STAGE.groundY - 4, angle: 0 });
+        events.push({ type: "propLand", x: p.x, name: p.item.name });
+        world.projectiles.splice(i, 1);
+      }
+      continue;
+    }
     const owner = world.byId.get(p.owner);
     const choreo = world.mode === "choreographed";
     const targets = choreo ? [world.byId.get(p.target)].filter(Boolean) : world.actors.filter((a) => a.id !== p.owner && a.alive);
@@ -65,10 +81,24 @@ export function stepWorldProjectiles(world, dt) {
       else {
         if (inWindow(target.move, "invulnerable")) continue;
         const guard = inWindow(target.move, "guard");
-        kind = guard === "parry" ? "parried" : guard ? "blocked" : "hit";
+        kind = guard === "parry" || (guard === "catch" && p.item) ? "parried" : guard ? "blocked" : "hit";
       }
-      events.push(...applyHit(world, owner, target, p.hit, kind, { x: p.x, y: p.y }, p.src));
+      if (kind === "parried" && p.item) {
+        // A parried thrown weapon is caught.
+        target.prop = p.item;
+        events.push({ type: "catch", actor: target.id, name: p.item.name, beatId: p.src.beatId });
+        events.push({ type: "anchor", beatId: p.src.beatId, anchor: "hit", actor: p.owner, move: p.src.moveName });
+        p.item = null;
+      } else events.push(...applyHit(world, owner, target, p.hit, kind, { x: p.x, y: p.y }, p.src));
       done = true;
+    }
+    if (done && p.item) {
+      // Bounce off (or fly past) and fall.
+      p.falling = true;
+      if (Math.abs(p.x - (world.byId.get(p.target)?.x ?? p.x)) < 200) p.vx *= -0.25;
+      p.vy = -350;
+      p.gravity = PHYSICS.gravity;
+      continue;
     }
     if (done) {
       events.push({ type: "projectileEnd", kind: p.kind, x: p.x, y: p.y });

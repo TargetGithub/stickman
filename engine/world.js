@@ -5,7 +5,7 @@
 //   command(world, "hero", "jab", { target: "boss", outcome: "hit" });
 //   const events = stepWorld(world, 1 / 60);   // dt = 0 during hitstop: poses only
 
-import { advanceMove, poseActor, playMove, displayPose } from "./actor.js";
+import { advanceMove, poseActor, playMove, displayPose, withPropTip } from "./actor.js";
 import { computeJoints, BODY } from "./skeleton.js";
 import { stepBody, separate } from "./physics.js";
 import { applyHit, inWindow } from "./hit_apply.js";
@@ -26,7 +26,7 @@ export function createWorld({ actors, moves, mode = "choreographed", stageWidth 
     advanceMove(a, 0, moves); // start idle (or a pre-queued move) so every actor has a pose
     poseActor(a, 0);
   }
-  return { actors, byId: new Map(actors.map((a) => [a.id, a])), moves, mode, stageWidth, time: 0, scheduled: [], seq: 0, current: new Map(), projectiles: [] };
+  return { actors, byId: new Map(actors.map((a) => [a.id, a])), moves, mode, stageWidth, time: 0, scheduled: [], seq: 0, current: new Map(), projectiles: [], groundProps: [] };
 }
 
 const toward = (from, to) => Math.sign(to.x - from.x) || from.facing;
@@ -49,7 +49,7 @@ function schedule(world, at, actorId, name, opts) {
   world.scheduled.sort((a, b) => a.at - b.at || a.seq - b.seq);
 }
 
-const DEFENSE_LEAD = { block: 0.12, parry: 0.1, dodge_back: 0.16, duck: 0.12 }; // s before contact
+const DEFENSE_LEAD = { block: 0.12, parry: 0.1, dodge_back: 0.16, duck: 0.12, catch_weapon: 0.12 }; // s before contact
 
 /** First tick of a targeted attack: positioning nudge (spec 11.4) and defender timing (spec 10.5). */
 function setupAttack(world, actor, events) {
@@ -99,7 +99,10 @@ function setupRanged(world, actor, target, m, events) {
   if (dist < min || dist > max) events.push({ type: "positionError", actor: actor.id, move: m.def.name, beatId: m.beatId, error: dist < min ? dist - min : dist - max });
   // Dodging a projectile: duck under it, or (a much bigger defender, hit low) jump over a flat shot.
   const dodge = target.scale > actor.scale * 1.3 ? "jump" : "duck";
-  const defense = { blocked: "block", parried: "parry", dodged: dodge }[m.outcome];
+  // A parried thrown weapon is caught instead.
+  const throws = m.def.events.some((e) => e.projectile?.kind === "prop");
+  const parry = throws && world.moves.has("catch_weapon") ? "catch_weapon" : "parry";
+  const defense = { blocked: "block", parried: parry, dodged: dodge }[m.outcome];
   m.defense = defense;
   if (defense && world.moves.has(defense)) {
     // Projectiles reach the body surface before its centre line: defend a little earlier than melee.
@@ -179,10 +182,39 @@ function reachAssist(actor, part, point, w) {
   const root = { x: hip.x - actor.facing * (pose.dx || 0), y: hip.y - (pose.dy || 0) };
   let best = actor.joints;
   for (let extra = 8; extra <= MAX_ASSIST_LEAN; extra += 8) {
-    best = computeJoints({ ...pose, lean: pose.lean + extra * w }, root, actor.facing, s);
+    best = withPropTip(actor, computeJoints({ ...pose, lean: pose.lean + extra * w }, root, actor.facing, s));
     if (out(best) <= 0) break;
   }
   actor.joints = best;
+}
+
+/** Pick up the nearest lying prop within reach of the hands (pick_prop). */
+function pickProp(world, actor, events, beatId) {
+  if (actor.prop) return;
+  const reach = 160 * actor.scale;
+  let best = null;
+  for (const g of world.groundProps) {
+    const d = Math.abs(g.x - actor.joints.rHand.x);
+    if (d <= reach && (!best || d < best.d)) best = { g, d };
+  }
+  if (!best) return events.push({ type: "propMissing", actor: actor.id, beatId });
+  world.groundProps.splice(world.groundProps.indexOf(best.g), 1);
+  const { x, y, angle, ...item } = best.g;
+  actor.prop = item;
+  events.push({ type: "pick", actor: actor.id, name: item.name });
+}
+
+/** Lay the held prop on the floor below the hand (drop_prop). */
+function dropProp(world, actor, events) {
+  if (!actor.prop) return;
+  world.groundProps.push({ ...actor.prop, x: actor.joints.rHand.x, y: actor.groundY - 4, angle: 0 });
+  events.push({ type: "drop", actor: actor.id, name: actor.prop.name });
+  actor.prop = null;
+}
+
+/** Contact radius of a hitting part: the prop's for weapon tips, else the default fist/foot size. */
+function hitRadiusOf(attacker, hit) {
+  return (hit.part === "propTip" && attacker.prop ? attacker.prop.data.hitRadius : COMBAT.hitRadius) * attacker.scale;
 }
 
 /** Resolve open hit windows in stable order (spec 10.3). */
@@ -203,12 +235,12 @@ function resolveHits(world, windowsByActor) {
         let kind = null;
         if (world.mode === "choreographed") {
           if (m.outcome === "whiff" || m.outcome === "dodged") continue;
-          const touched = sweptHit(prev, part, COMBAT.hitRadius * attacker.scale, buildHurtboxes(target.joints, target.scale));
+          const touched = sweptHit(prev, part, hitRadiusOf(attacker, hit), buildHurtboxes(target.joints, target.scale));
           const forced = m.t >= deriveReach(m.def)[index].tmid;
           if (touched || forced) kind = m.outcome === "blocked" ? "blocked" : m.outcome === "parried" ? "parried" : "hit";
         } else {
           if (inWindow(target.move, "invulnerable")) continue;
-          if (!sweptHit(prev, part, COMBAT.hitRadius * attacker.scale, buildHurtboxes(target.joints, target.scale))) continue;
+          if (!sweptHit(prev, part, hitRadiusOf(attacker, hit), buildHurtboxes(target.joints, target.scale))) continue;
           const guard = inWindow(target.move, "guard");
           kind = guard === "parry" ? "parried" : guard ? "blocked" : "hit";
         }
@@ -279,6 +311,8 @@ export function stepWorld(world, dt) {
       for (const e of r.events) {
         events.push({ ...e, actor: actor.id });
         if (e.type === "moveEvent" && e.projectile && actor.move) spawnProjectile(world, actor, e.projectile, events);
+        if (e.type === "moveEvent" && e.pick) pickProp(world, actor, events, e.beatId ?? actor.move?.beatId);
+        if (e.type === "moveEvent" && e.drop) dropProp(world, actor, events);
       }
       windowsByActor.set(actor, r.openWindows);
       snapHard.set(actor, r.snapHard);

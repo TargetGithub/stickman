@@ -39,4 +39,17 @@ export const moves = [
       { t: 1, pose: "guard" },
     ],
   },
+  {
+    name: "catch_weapon",
+    category: "defensive",
+    duration: 0.8,
+    flags: { guard: [0.1, 0.8, "catch"] },
+    keys: [
+      { t: 0, pose: "guard", ease: "outCubic" },
+      { t: 0.2, pose: "catchPose", ease: "linear" },
+      { t: 0.7, pose: "catchPose", ease: "inOutQuad" },
+      { t: 1, pose: "swordGuard", propAngle: 55 },
+    ],
+    events: [{ t: 0.15, sfx: "whoosh" }],
+  },
 ];

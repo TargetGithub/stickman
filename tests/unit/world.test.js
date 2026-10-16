@@ -9,7 +9,15 @@ import { COMBAT } from "../../engine/config.js";
 import { catalog } from "../../data/index.js";
 
 const DT = 1 / 60;
-const moves = prepareCatalog(catalog.moves, catalog.poses);
+import { propByKind } from "../../engine/props.js";
+const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+
+/** Give an attacker the prop its move needs ("any" → sword). */
+function arm(actor, def) {
+  if (!def.needsProp) return;
+  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(catalog.props, def.needsProp);
+  actor.prop = { name: Object.keys(catalog.props).find((k) => catalog.props[k] === data), kind: data.kind, data };
+}
 const ATTACKS = [...moves.values()].filter((d) => d.category === "attack").map((d) => d.name);
 const PAIRS = [[1, 1], [1, 0.6], [1, 2.2], [1, 3.5], [2.2, 1]];
 
@@ -21,8 +29,9 @@ function clearance(point, joints, scale) {
 function exchange(attackName, outcome, [as, ts], offset = 25) {
   const hero = createActor({ id: "hero", x: 1000, facing: 1, scale: as });
   const foe = createActor({ id: "foe", x: 1000 + 220 * Math.max(as, ts), facing: -1, scale: ts });
-  const world = createWorld({ actors: [hero, foe], moves });
   const def = moves.get(attackName);
+  arm(hero, def);
+  const world = createWorld({ actors: [hero, foe], moves });
   if (def.flags.ranged) foe.x = hero.x + 500 * as + 150 * ts; // inside the distance band
   else hero.x = requiredStartX(hero, foe, def, def.params, outcome) + offset * as; // off by a nudge-able amount
   command(world, "hero", attackName, { target: "foe", outcome, beatId: "b1" });
@@ -33,6 +42,8 @@ function exchange(attackName, outcome, [as, ts], offset = 25) {
       if (e.type === "hit") log.hits.push({ ...e, clear: clearance(e.point, foe.joints, ts), foeMove: foe.move?.def.name });
       if (e.type === "positionError") log.errors.push(e);
       if (e.type === "reachWarning") log.reachWarning = true;
+      // A parried thrown weapon is caught: that is the contact, and the defender now holds it.
+      if (e.type === "catch") log.hits.push({ kind: "parried", clear: 0, foeMove: foe.move?.def.name, caught: e.name });
       if (e.type === "anchor") log.anchors.push(e.anchor);
     }
     if (part && hero.move?.def.name === attackName) log.minClear = Math.min(log.minClear, clearance(hero.joints[part], foe.joints, ts));
@@ -66,7 +77,8 @@ for (const attack of ATTACKS) {
         if (outcome === "hit") assert.ok([...log.foeMoves].some((n) => n.startsWith("hit_")), `${tag}: reaction played`);
         if (outcome === "blocked") assert.equal(hits[0].foeMove, "block", `${tag}: defender was blocking`);
         // A parried projectile is deflected; only a parried melee attacker staggers.
-        if (outcome === "parried") assert.ok(moves.get(attack).flags.ranged ? log.foeMoves.has("parry") : log.heroMoves.has("stagger"), `${tag}: parry reaction`);
+        if (outcome === "parried" && attack === "throw_prop") assert.ok(hits[0].caught, `${tag}: thrown weapon caught`);
+        if (outcome === "parried") assert.ok(moves.get(attack).flags.ranged ? log.foeMoves.has("parry") || log.foeMoves.has("catch_weapon") : log.heroMoves.has("stagger"), `${tag}: parry reaction`);
         if (outcome === "dodged") assert.ok(["dodge_back", "duck", "jump"].some((n) => log.foeMoves.has(n)), `${tag}: defender dodged`);
       }
     });

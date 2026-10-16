@@ -3,6 +3,8 @@
 
 import { unpackJoints, lowestPoint } from "../skeleton.js";
 import { drawCharacter } from "./character.js";
+import { drawProp } from "./props.js";
+import { propTransform } from "../props.js";
 import { createBackground, drawBackground } from "./background.js";
 import { drawParticles } from "./particles.js";
 import { drawPostWorld, drawOverlays } from "./overlays.js";
@@ -41,7 +43,12 @@ function background(r, name) {
 
 function charsAt(r, n) {
   if (!r.charCache.has(n)) {
-    r.charCache.set(n, frameView(r.sim.store, n, FPS).chars.map((c) => ({ ...c, j: unpackJoints(c.joints) })));
+    r.charCache.set(n, frameView(r.sim.store, n, FPS).chars.map((c) => {
+      const j = unpackJoints(c.joints);
+      const data = c.prop ? r.catalog.props[c.prop.name] : null;
+      if (data) j.propTip = propTransform(j, data, c.prop.angle, c.facing, c.scale).tip; // slash trails follow the tip
+      return { ...c, j, propStyle: data ? { data, angle: c.prop.angle } : undefined };
+    }));
     if (r.charCache.size > 64) r.charCache.delete(r.charCache.keys().next().value);
   }
   return r.charCache.get(n);
@@ -49,7 +56,21 @@ function charsAt(r, n) {
 
 const order = (chars) => [...chars].sort((a, b) => b.scale - a.scale);
 
+/** Loose props: lying ones before the characters, thrown (flying) ones after. */
+function drawItems(ctx, r, items, flying) {
+  for (const it of items.filter((i) => i.flying === flying)) {
+    const data = r.catalog.props[it.name];
+    if (!data) continue;
+    const scale = 1;
+    const half = (data.len * scale) / 2;
+    const dx = Math.cos(it.angle) * half;
+    const dy = Math.sin(it.angle) * half;
+    drawProp(ctx, data, { butt: { x: it.x - dx, y: it.y - dy }, tip: { x: it.x + dx, y: it.y + dy }, grip: { x: it.x, y: it.y } }, scale);
+  }
+}
+
 function drawWorld(ctx, r, n, f, chars) {
+  drawItems(ctx, r, f.items, false);
   for (const c of chars) {
     const h = STAGE.groundY - lowestPoint(c.j, c.scale);
     const k = Math.max(0, 1 - h / 400);
@@ -66,7 +87,8 @@ function drawWorld(ctx, r, n, f, chars) {
       if (ghost) drawCharacter(ctx, ghost.j, { color: ghost.color, scale: ghost.scale, facing: ghost.facing, alpha: 0.12 + 0.1 * i, outline: false });
     });
   }
-  for (const c of order(chars)) drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth });
+  for (const c of order(chars)) drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle });
+  drawItems(ctx, r, f.items, true);
   for (const t of trails.filter((x) => x.kind === "slash" && x.part)) {
     const pts = [];
     for (let back = 8; back >= 0; back--) {

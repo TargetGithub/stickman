@@ -139,10 +139,10 @@ Owns the queue (chain → queue → idle) and ground contact (spec 5.4). From M3
 
 ### props.js
 ```js
-export function attachProp(char, kind, propsData): void;
-export function propTransform(char, joints, propsData): { grip:Vec, tip:Vec, angle:number } | null;
-export function detachProp(char): PropState;
+export function propTransform(joints, propData, propAngleDeg, facing, scale): { grip, butt, tip, angle };
+export function propByKind(props, kind): propData | null;
 ```
+Prop state lives on the actor: `actor.prop = { name, kind, data } | null`, `actor.propAngle`. `poseActor` adds `joints.propTip` (`withPropTip`). World keeps `groundProps`; thrown props are projectiles with an `item`. Drawing: `renderer/props.js` `drawProp(ctx, data, { butt, tip, grip }, scale)`. Frame store: `CHAR_STRIDE` 32 (adds prop index and angle) plus sparse per-frame `items`.
 
 ### physics.js
 Bodies are actors (no separate Body object): `x, vx, vy, airY, airborne, launched, spin, spinRot`.

@@ -60,7 +60,7 @@ export function presentEvent(p, e, world, clock) {
       break;
     }
     case "moveEvent":
-      for (const name of e.fx || []) emitAt(p, world, name, e.actor, fxT);
+      for (const name of e.fx || []) emitAt(p, world, name, e.actor, fxT, e.part ? { part: e.part } : {});
       if (e.shake) addShake(p.cam, e.shake, fxT);
       break;
     case "land":
@@ -68,7 +68,10 @@ export function presentEvent(p, e, world, clock) {
       if (e.speed > PHYSICS.shakeImpactSpeed) addShake(p.cam, "small", fxT);
       break;
     case "fx":
-      for (const name of e.names) emitAt(p, world, name, e.actor, fxT);
+      for (const name of e.names) {
+        if (e.at) emitFx(p.fx, name, e.at, { dir: world.byId.get(e.actor)?.facing ?? 1, scale: world.byId.get(e.actor)?.scale ?? 1, color: e.color }, fxT);
+        else emitAt(p, world, name, e.actor, fxT);
+      }
       break;
     case "world": {
       const q = e.params || {};
@@ -95,7 +98,7 @@ export function presentEvent(p, e, world, clock) {
 /** Advance sustained FX and the camera one video frame; returns the camera state for the frame. */
 export function stepPresentation(p, world, clock, fxDt, videoDt) {
   // Projectiles are drawn as FX: a glow emitted at their position every frame leaves a trail.
-  if (fxDt > 0) for (const pr of world.projectiles || []) emitFx(p.fx, pr.kind, { x: pr.x, y: pr.y }, { dir: pr.facing, scale: pr.scale }, clock.fxT);
+  if (fxDt > 0) for (const pr of world.projectiles || []) if (!pr.item && !pr.falling) emitFx(p.fx, pr.kind, { x: pr.x, y: pr.y }, { dir: pr.facing, scale: pr.scale }, clock.fxT);
   stepFx(p.fx, fxDt, clock.fxT, (s) => {
     const actor = world.byId.get(s.opts.actorId);
     return actor ? anchorPoint(actor, p.fx.presets[s.name].anchor) : null;

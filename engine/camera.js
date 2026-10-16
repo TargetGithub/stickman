@@ -63,6 +63,7 @@ function bounds(actors) {
   let minY = Infinity;
   for (const a of actors) {
     for (const p of Object.values(a.joints)) {
+      if (!p || !Number.isFinite(p.x)) continue; // never let one bad point poison the camera springs
       minX = Math.min(minX, p.x);
       maxX = Math.max(maxX, p.x);
     }

@@ -10,7 +10,7 @@ const expected = {
   "../../engine/skeleton.js": ["BODY", "computeJoints", "solveIK2", "bendSignOf", "lowestPoint", "packJoints", "unpackJoints"],
   "../../engine/pose.js": ["fillPose", "blendPose", "samplePoseKeys"],
   "../../engine/moves.js": ["prepareCatalog", "startMove", "stepMove", "rootOffsetAt"],
-  "../../engine/props.js": ["attachProp", "propTransform", "detachProp"],
+  "../../engine/props.js": ["propTransform", "propByKind"],
   "../../engine/physics.js": ["stepBody", "launch", "separate", "stepProjectiles"],
   "../../engine/combat.js": ["buildHurtboxes", "sweptHit", "resolveAimPoint", "applyAimIK", "requiredStartX", "deriveReach", "ikWeight"],
   "../../engine/world.js": ["createWorld", "command", "stepWorld", "OUTCOMES"],

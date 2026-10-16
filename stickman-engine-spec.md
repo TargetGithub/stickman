@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH.
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH. 1.1.8 adds batch D: props, prop angles, throw/catch/pick/drop/break/spawn, W_NO_PROP.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -568,17 +568,19 @@ required  = aimX - facing * (reach + travel(tmid) + gap)  // outcome whiff (star
 ## 12. Props (`data/props.js`, `engine/props.js`)
 
 ```js
-sword:    { kind:"sword", shape:"line", len:70,  width:7,  grip:"rHand", color:"#dddddd", hitRadius:16 },
-club_big: { kind:"club",  shape:"club", len:120, width:14, grip:"rHand", color:"#6b4a2b", hitRadius:30 },
-staff:    { kind:"staff", shape:"line", len:150, width:6,  grip:"rHand", twoHand:true },
-bat:      { kind:"bat",   shape:"line", len:90,  width:9,  grip:"rHand" },
-shield:   { kind:"shield",shape:"disc", radius:36, grip:"lHand" },
+sword:    { kind:"sword",   shape:"sword",   len:78,  width:7,  gripAt:0.18, grip:"rHand", color, trim, hitRadius:18 },
+club_big: { kind:"club",    shape:"club",    len:120, width:16, gripAt:0.12, grip:"rHand", ..., hitRadius:30 },
+staff:    { kind:"staff",   shape:"staff",   len:150, width:7,  gripAt:0.4,  grip:"rHand", twoHand:true },
+bat:      { kind:"bat",     shape:"bat",     len:92,  width:10, gripAt:0.12, grip:"rHand" },
+shield:   { kind:"shield",  shape:"disc",    len:36 (radius), grip:"lHand" },
+blaster:  { kind:"blaster", shape:"blaster", len:40,  width:12, gripAt:0.3,  grip:"rHand" },   // stylized, fires energy bolts
 ```
 
-- A prop is attached to its grip joint, oriented along the forearm plus an optional per-key `propAngle`.
-- `propTip` is a hit part and an FX trail source (`slash_arc`).
-- Prop state changes: `pick_prop`, `drop_prop` (moves), `throw_prop` (becomes a projectile), `prop_break` (world beat: two spinning halves, then removed).
-- A move's `needsProp` names a prop `kind`. The validator tracks each character's prop over time.
+- A held prop sits in its grip hand, pointing along the forearm rotated by the move's per-key `propAngle` (degrees; positive raises the tip; inherits between keys, blends between moves the short way round). `gripAt` is the fraction of the length behind the hand.
+- `propTip` is a hit part (contact radius = the prop's `hitRadius` × scale), aims by swinging the whole arm around the shoulder, and is the source of `slash_arc` trails (move events with `part: "propTip"`).
+- `needsProp` names a prop `kind`, or `"any"` (throw_prop). The dry run checks the prop actually held at each beat (`E_MOVE_NEEDS_PROP`).
+- Prop state changes: `pick_prop` (grabs the nearest lying prop within reach; `W_NO_PROP` if none), `drop_prop` (lays it on the floor), `throw_prop` (the prop flies spinning as a projectile, then falls and lies on the floor; `outcome: "parried"` means the defender plays `catch_weapon` and catches it), world `spawn_prop` (lays a prop at x), world `prop_break` (the owner's prop splits into two spinning halves and is gone).
+- Held props are stored per frame (prop index and angle per character); lying and flying props are stored as a per-frame item list.
 
 ---
 
@@ -777,7 +779,7 @@ t=3.80  world  slowmo x0.3    (story 3.80-4.30, video +1.17 s)
 | schema | `E_SCHEMA_TYPE`, `E_SCHEMA_REQUIRED`, `E_SCHEMA_ENUM`, `E_SCHEMA_RANGE`, `E_SCHEMA_PATTERN`, `E_SCHEMA_SIZE`, `E_SCHEMA_FORM`, `E_SCHEMA_UNKNOWN_FIELD`, `E_TEXT_LENGTH` |
 | semantic | `E_REF_DUPLICATE`, `E_REF_CHARACTER`, `E_REF_BEAT`, `E_REF_ANCHOR`, `E_REF_CYCLE`, `E_MOVE_UNKNOWN`, `E_MOVE_PARAM`, `E_MOVE_TARGET`, `E_MOVE_OUTCOME`, `E_MOVE_APPROACH`, `E_WORLD_UNKNOWN`, `E_WORLD_PARAM`, `E_WORLD_FIELD`, `E_CAMERA_START`, `E_CAMERA_FIELD`, `E_THEME_UNKNOWN`, `E_PROP_UNKNOWN`, `E_FX_UNKNOWN`, `E_TEXT_GLYPH`, `E_TEXT_BLOCKED` |
 | dry run | `E_SIM_UNREACHABLE`, `E_SIM_APPROACH`, `E_SIM_DEAD_ACTOR`, `E_SIM_UNRESOLVED`, `E_SIM_DURATION`, `E_MOVE_NEEDS_PROP` |
-| warnings | `W_QUEUE_DRIFT`, `W_REACH`, `W_ATTACK_NO_TARGET`, `W_PACING_GAP`, `W_NO_IMPACT`, `W_PACING_MONOTONE`, `W_NO_ENDING`, `W_HEAVY_NO_EMPHASIS`, `W_PARTICLE_BUDGET`, `W_CONTRAST` |
+| warnings | `W_QUEUE_DRIFT`, `W_REACH`, `W_NO_PROP`, `W_ATTACK_NO_TARGET`, `W_PACING_GAP`, `W_NO_IMPACT`, `W_PACING_MONOTONE`, `W_NO_ENDING`, `W_HEAVY_NO_EMPHASIS`, `W_PARTICLE_BUDGET`, `W_CONTRAST` |
 
 ### 16.5 Pacing heuristics (warnings)
 - A gap with no action longer than 2.5 s.

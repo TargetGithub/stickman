@@ -38,9 +38,15 @@
     import { createActor, playMove, stepActor } from "../engine/actor.js";
     import { computeJoints, lowestPoint } from "../engine/skeleton.js";
     import { drawCharacter } from "../engine/renderer/character.js";
+    import { propByKind } from "../engine/props.js";
 
     const $ = (id) => document.getElementById(id);
-    const moves = prepareCatalog(catalog.moves, catalog.poses);
+    const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+    function arm(actor, def) {
+      if (!def.needsProp) return;
+      const data = def.needsProp === "any" ? catalog.props.sword : propByKind(catalog.props, def.needsProp);
+      actor.prop = { name: Object.keys(catalog.props).find((k) => catalog.props[k] === data), kind: data.kind, data };
+    }
     const W = 680, H = 440, GROUND = 400, DT = 1 / 60;
     for (const c of CATEGORIES) $("category").add(new Option(c, c));
 
@@ -64,7 +70,7 @@
           const x0 = facing === 1 ? (loop ? 60 : W * 0.32) : (loop ? W - 60 : W * 0.68);
           const actor = createActor({ x: x0, facing, scale, groundY: GROUND });
           const card = { def, el, ctx: el.querySelector("canvas").getContext("2d"), actor, x0, wait: 0, acc: 0, joints: null, windows: [] };
-          const restart = () => { actor.x = x0; playMove(actor, def.name, moves, { blend: 0 }); };
+          const restart = () => { actor.x = x0; arm(actor, def); playMove(actor, def.name, moves, { blend: 0 }); };
           card.restart = restart;
           restart();
           return card;
@@ -98,7 +104,7 @@
         const raw = computeJoints(catalog.poses.stand, { x: dx, y: 0 }, -facing, 1);
         drawCharacter(ctx, computeJoints(catalog.poses.stand, { x: dx, y: GROUND - lowestPoint(raw, 1) }, -facing, 1), { color: "#c4c4c4", scale: 1, facing: -facing });
       }
-      drawCharacter(ctx, card.joints, { color: "#22aaff", scale, facing, mouth: actor.mouth });
+      drawCharacter(ctx, card.joints, { color: "#22aaff", scale, facing, mouth: actor.mouth, prop: actor.prop ? { data: actor.prop.data, angle: actor.propAngle } : undefined });
       if ($("hitboxes").checked) {
         for (const { hit } of card.windows) {
           const p = card.joints[hit.part];

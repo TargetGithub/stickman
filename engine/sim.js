@@ -14,7 +14,7 @@ const prepared = new WeakMap();
 
 /** Prepared move map for a catalog, cached per catalog object. */
 export function movesFor(catalog) {
-  if (!prepared.has(catalog)) prepared.set(catalog, prepareCatalog(catalog.moves, catalog.poses));
+  if (!prepared.has(catalog)) prepared.set(catalog, prepareCatalog(catalog.moves, catalog.poses, catalog.props));
   return prepared.get(catalog);
 }
 
@@ -39,7 +39,10 @@ export function simulate(script, catalog, opts = {}) {
   const stageWidth = meta.stageWidth ?? STAGE.width;
   const actors = script.characters.map((c) =>
     createActor({ id: c.id, x: c.x, facing: c.facing, scale: c.scale ?? 1, hp: c.hp ?? 100, color: c.color, groundY: STAGE.groundY }));
-  for (const [i, c] of script.characters.entries()) actors[i].prop = c.prop ? { kind: c.prop } : null;
+  for (const [i, c] of script.characters.entries()) {
+    const data = c.prop ? catalog.props[c.prop] : null;
+    actors[i].prop = data ? { name: c.prop, kind: data.kind, data } : null;
+  }
   const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth });
   const clock = createClock();
   const director = createDirector(script, moves);
@@ -50,8 +53,12 @@ export function simulate(script, catalog, opts = {}) {
     presentEvent(present, e, world, clock);
   };
   let cam = stepPresentation(present, world, clock, 0, 0);
-  const store = opts.dryRun ? null : createStore(actors, Math.round(20 * FPS));
-  if (store) writeFrame(store, world.actors, clock, cam);
+  const store = opts.dryRun ? null : createStore(actors, Math.round(20 * FPS), Object.keys(catalog.props || {}));
+  const items = () => [
+    ...world.groundProps.map((g) => ({ name: g.name, x: g.x, y: g.y, angle: g.angle, flying: false })),
+    ...world.projectiles.filter((p) => p.item).map((p) => ({ name: p.item.name, x: p.x, y: p.y, angle: p.angle, flying: true })),
+  ];
+  if (store) writeFrame(store, world.actors, clock, cam, items());
   const maxFrames = Math.round((opts.maxSeconds ?? LIMITS.maxDuration + 5) * FPS);
   const tailFrames = Math.round((meta.tail ?? 0.5) * FPS);
   let quietFrames = 0;
@@ -59,7 +66,7 @@ export function simulate(script, catalog, opts = {}) {
 
   while (true) {
     const d = tick(clock);
-    stepDirector(director, { world, clock, storyT: clock.storyT, emit });
+    stepDirector(director, { world, clock, catalog, storyT: clock.storyT, emit });
     const events = stepWorld(world, d.storyDt);
     for (const e of events) {
       if (e.type === "hitstop") requestHitstop(clock, e.seconds);
@@ -67,7 +74,11 @@ export function simulate(script, catalog, opts = {}) {
     }
     onEvents(director, events, clock.storyT);
     cam = stepPresentation(present, world, clock, d.fxDt, d.videoDt);
-    if (store) writeFrame(store, world.actors, clock, cam);
+    if (!Number.isFinite(cam.x) || !Number.isFinite(cam.zoom)) {
+      // Fail with a clear message instead of handing NaN to a native canvas later.
+      throw new Error(`simulation produced a non-finite camera at frame ${clock.frame}; check actor joints and props`);
+    }
+    if (store) writeFrame(store, world.actors, clock, cam, items());
 
     const quiet = directorIdle(director) && world.actors.every(settled) && !timeEffectsActive(clock);
     quietFrames = quiet ? quietFrames + 1 : 0;

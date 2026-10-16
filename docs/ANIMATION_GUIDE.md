@@ -22,6 +22,12 @@ Rules for authoring poses and moves, collected from M0-M2 reviews. Use with `web
 - Spinning attacks use two `turn` events; put them at near-symmetric poses (arms in, feet together) so the mirror flip does not pop.
 - Multi-hit moves that outlast a duck (flurries) and rising strikes (uppercuts) should declare `dodge: "back"` on their hits.
 
+## Weapons
+- The near hand (r) holds the weapon. Animate the blade with key `propAngle`, not only the arm: windups raise it (positive), strikes bring it level or below (0 to -25).
+- Put a `slash_arc` event with `part: "propTip"` just before the swing so the trail draws through the strike.
+- Staff twirls animate `propAngle` through multiples of 360; the next move picks up the angle modulo 360.
+- Two-handed props (staff, bat) need both arms posed near the shaft; there is no second-hand IK.
+
 ## Reactions and defense
 - Reactions start in their hit pose (no blend) and recover to `guard`.
 - Lying-down moves use `flags.hold` so the character stays down until `get_up`.

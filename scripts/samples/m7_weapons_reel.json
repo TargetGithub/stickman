@@ -1,0 +1,266 @@
+{
+  "version": 1,
+  "meta": {
+    "title": "M7 Weapons Reel",
+    "format": "landscape",
+    "seed": 71,
+    "mode": "choreographed",
+    "theme": "dojo_dusk",
+    "hpBars": true
+  },
+  "characters": [
+    {
+      "id": "knight",
+      "x": 900,
+      "facing": 1,
+      "color": "#3fb8ff",
+      "scale": 1.0,
+      "hp": 100,
+      "prop": "sword"
+    },
+    {
+      "id": "monk",
+      "x": 1450,
+      "facing": -1,
+      "color": "#5fd36a",
+      "scale": 1.05,
+      "hp": 110,
+      "prop": "staff"
+    },
+    {
+      "id": "gunner",
+      "x": 2150,
+      "facing": -1,
+      "color": "#ff9a2e",
+      "scale": 0.9,
+      "hp": 80,
+      "prop": "blaster"
+    }
+  ],
+  "camera": [
+    {
+      "at": 0,
+      "mode": "follow",
+      "targets": [
+        "knight",
+        "monk"
+      ],
+      "zoom": "auto",
+      "padding": 320
+    },
+    {
+      "at": {
+        "after": "oh"
+      },
+      "mode": "follow",
+      "targets": [
+        "knight",
+        "monk",
+        "gunner"
+      ],
+      "zoom": "auto",
+      "padding": 260
+    }
+  ],
+  "beats": [
+    {
+      "at": 0.2,
+      "who": "world",
+      "do": "caption",
+      "params": {
+        "text": "Batch D: weapons and props",
+        "dur": 2
+      }
+    },
+    {
+      "id": "s1",
+      "at": 0.6,
+      "who": "knight",
+      "do": "sword_slash",
+      "target": "monk",
+      "approach": "run",
+      "outcome": "blocked"
+    },
+    {
+      "id": "st1",
+      "at": {
+        "after": "s1",
+        "delay": 0.2
+      },
+      "who": "monk",
+      "do": "staff_swing",
+      "target": "knight",
+      "approach": "walk",
+      "outcome": "hit"
+    },
+    {
+      "id": "th",
+      "at": {
+        "after": "st1",
+        "delay": 0.3
+      },
+      "who": "knight",
+      "do": "sword_thrust",
+      "target": "monk",
+      "approach": "walk",
+      "outcome": "dodged"
+    },
+    {
+      "id": "sp",
+      "at": {
+        "after": "th",
+        "delay": 0.2
+      },
+      "who": "monk",
+      "do": "staff_spin",
+      "target": "knight",
+      "approach": "walk",
+      "outcome": "hit"
+    },
+    {
+      "id": "ss",
+      "at": {
+        "after": "sp",
+        "delay": 0.3
+      },
+      "who": "knight",
+      "do": "sword_spin",
+      "target": "monk",
+      "approach": "walk",
+      "outcome": "hit"
+    },
+    {
+      "id": "tw",
+      "at": {
+        "after": "ss",
+        "delay": 0.3
+      },
+      "who": "monk",
+      "do": "throw_prop",
+      "target": "knight",
+      "approach": "walk",
+      "outcome": "hit",
+      "say": "Catch!"
+    },
+    {
+      "id": "oh",
+      "at": {
+        "after": "tw",
+        "delay": 0.4
+      },
+      "who": "knight",
+      "do": "sword_overhead",
+      "target": "monk",
+      "approach": "walk",
+      "outcome": "blocked"
+    },
+    {
+      "id": "brk",
+      "at": {
+        "on": "oh.hit",
+        "delay": 0.15
+      },
+      "who": "world",
+      "do": "prop_break",
+      "params": {
+        "owner": "knight"
+      }
+    },
+    {
+      "id": "oops",
+      "at": {
+        "after": "oh"
+      },
+      "who": "knight",
+      "do": "wait",
+      "params": {
+        "seconds": 0.8
+      },
+      "fx": [
+        "sweat_drop"
+      ],
+      "say": "My sword!"
+    },
+    {
+      "id": "toss",
+      "at": {
+        "after": "oops"
+      },
+      "who": "gunner",
+      "do": "throw_prop",
+      "target": "knight",
+      "approach": "walk",
+      "outcome": "parried",
+      "say": "Use this!"
+    },
+    {
+      "id": "sh",
+      "at": {
+        "after": "toss",
+        "delay": 0.3
+      },
+      "who": "knight",
+      "do": "shoot",
+      "target": "monk",
+      "approach": "walk",
+      "outcome": "hit"
+    },
+    {
+      "at": {
+        "on": "sh.hit"
+      },
+      "who": "world",
+      "do": "slowmo",
+      "params": {
+        "scale": 0.3,
+        "duration": 0.35
+      }
+    },
+    {
+      "id": "hm",
+      "at": {
+        "after": "sh",
+        "delay": 0.3
+      },
+      "who": "knight",
+      "do": "haymaker",
+      "target": "monk",
+      "approach": "run",
+      "outcome": "hit"
+    },
+    {
+      "id": "v",
+      "at": {
+        "after": "hm",
+        "delay": 0.8
+      },
+      "who": "knight",
+      "do": "victory",
+      "fx": [
+        "aura"
+      ]
+    },
+    {
+      "at": {
+        "with": "v"
+      },
+      "who": "world",
+      "do": "text_pop",
+      "params": {
+        "text": "K.O.!"
+      }
+    },
+    {
+      "at": {
+        "after": "v",
+        "delay": 0.4
+      },
+      "who": "world",
+      "do": "fade",
+      "params": {
+        "to": "black",
+        "dur": 1
+      }
+    }
+  ]
+}
