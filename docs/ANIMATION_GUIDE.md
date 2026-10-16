@@ -8,6 +8,9 @@ Rules for authoring poses and moves, collected from M0-M2 reviews. Use with `web
 - A key's `ease` shapes the segment that leaves it. To snap into an extended pose, put `holdThenSnap` or `outCubic` on the key *before* it.
 - Root motion is authored at scale 1; the engine scales it with the character.
 
+## Standing poses
+- Thigh angles are relative to the torso. When a standing pose leans, add the lean to both thighs (thigh ≈ lean ± a few degrees) or the whole figure tips over like a plank (the first bow did).
+
 ## Attacks
 - Windup: the first hit window opens at t ≥ 0.15 (enforced). 0.25-0.4 reads best.
 - Hold the extended pose for 0.1-0.2 of the move (two keys with the same pose) so hitstop lands on a clear silhouette.

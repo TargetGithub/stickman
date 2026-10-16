@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "meta": { "title": "M7 Emotes Reel", "format": "landscape", "seed": 72, "mode": "choreographed", "theme": "white_stage" },
+  "characters": [
+    { "id": "hero", "x": 1200, "facing": 1, "color": "#2f7bff", "scale": 1.0, "hp": 100 },
+    { "id": "rival", "x": 1560, "facing": -1, "color": "#ff7a1a", "scale": 1.1, "hp": 100 }
+  ],
+  "camera": [{ "at": 0, "mode": "follow", "targets": ["hero", "rival"], "zoom": "auto", "padding": 340 }],
+  "beats": [
+    { "at": 0.2, "who": "world", "do": "caption", "params": { "text": "Batch E: reactions and emotes", "dur": 2 } },
+    { "id": "w", "at": 0.4, "who": "hero", "do": "wave", "say": "Hi!" },
+    { "id": "p", "at": { "after": "w" }, "who": "rival", "do": "point", "target": "hero", "say": "You!" },
+    { "id": "b", "at": { "after": "p" }, "who": "hero", "do": "bow" },
+    { "id": "l", "at": { "after": "b" }, "who": "rival", "do": "laugh" },
+    { "id": "f", "at": { "after": "l" }, "who": "hero", "do": "flex" },
+    { "id": "s", "at": { "after": "f" }, "who": "rival", "do": "shrug", "say": "Meh." },
+    { "at": { "after": "s" }, "who": "world", "do": "caption", "params": { "text": "Dance-off!", "pos": "top", "dur": 1.5 } },
+    { "id": "da", "at": { "after": "s", "delay": 0.2 }, "who": "hero", "do": "dance_a" },
+    { "id": "db", "at": { "after": "da" }, "who": "rival", "do": "dance_b" },
+    { "id": "fp", "at": { "after": "db" }, "who": "hero", "do": "facepalm" },
+    { "id": "cu", "at": { "after": "fp" }, "who": "rival", "do": "charge_up", "say": "Enough!" },
+    { "id": "cw", "at": { "with": "cu", "delay": 0.4 }, "who": "hero", "do": "cower", "say": "Uh oh..." },
+    { "id": "j", "at": { "after": "cu", "delay": 0.1 }, "who": "rival", "do": "hook", "target": "hero", "approach": "walk", "outcome": "hit" },
+    { "id": "dz", "at": { "after": "j" }, "who": "hero", "do": "dizzy" },
+    { "id": "hm", "at": { "after": "dz", "delay": 0.1 }, "who": "hero", "do": "haymaker", "target": "rival", "approach": "walk", "outcome": "hit", "params": { "damage": 12 } },
+    { "id": "ko", "at": { "after": "hm" }, "who": "rival", "do": "ko_spin" },
+    { "id": "v", "at": { "after": "ko", "delay": 0.1 }, "who": "hero", "do": "victory", "fx": ["heart"] },
+    { "at": { "with": "v" }, "who": "world", "do": "text_pop", "params": { "text": "WIN!" } },
+    { "at": { "after": "v", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "white", "dur": 1 } }
+  ]
+}

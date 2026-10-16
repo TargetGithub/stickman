@@ -97,7 +97,7 @@ Estimates are working days of focused development. Calendar time depends mostly 
 **Exit**: `npm run record -- scripts/samples/showdown.json` produces `out/showdown/final.mp4` with sound.
 **Review**: Sridhar watches the first full MP4.
 
-### M7 Catalog completion (10-15 days, iterative) — IN PROGRESS: batches A-C reviewed; D done 2026-10-16 (awaiting review); E-G next
+### M7 Catalog completion (10-15 days, iterative) — IN PROGRESS: batches A-D reviewed; E done 2026-10-16 (awaiting review); F-G next
 | Batch | Moves |
 |---|---|
 | A Movement | dash, slide, backflip, frontflip, dodge_roll, side_step, land_roll |

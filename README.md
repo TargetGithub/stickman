@@ -2,7 +2,7 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** M7 in progress: batches A-D done (57 moves incl. weapons and props); batch D awaiting review. Next: batch E (reactions and emotes).
+**Status:** M7 in progress: batches A-E done (69 moves); batch E awaiting review. Next: batch F (utility: teleport, spawn, despawn), then G (themes, portrait, accessories).
 
 ## Documents
 
