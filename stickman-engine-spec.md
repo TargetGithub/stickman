@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH. 1.1.8 adds batch D: props, prop angles, throw/catch/pick/drop/break/spawn, W_NO_PROP.
+Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH. 1.1.8 adds batch D: props, prop angles, throw/catch/pick/drop/break/spawn, W_NO_PROP. 1.1.9 completes M7: visibility (teleport/spawn/despawn, W_HIDDEN), full theme art, accessories, squash, glow, portrait camera rules.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -367,7 +367,8 @@ Fixed angles cannot hit targets of different sizes, so attack limbs aim during h
 
 **Emotes:** `taunt`, `wave`, `bow`, `flex`, `laugh`, `shrug`, `facepalm`, `victory`, `cower`, `dance_a`, `dance_b`, `point`
 
-**Utility:** `face`, `wait`, `teleport`, `spawn`, `despawn`, `pick_prop`, `drop_prop`. `wait` and `face` hold the current pose (`flags.keepPose`); `wait` takes `params.seconds` (`flags.durationParam`).
+**Utility:** `face`, `wait`, `teleport`, `spawn`, `despawn`, `pick_prop`, `drop_prop`. `wait` and `face` hold the current pose (`flags.keepPose`); `wait` takes `params.seconds` (`flags.durationParam`). `teleport` vanishes in a puff and reappears behind its `target` (or `params.dx` forward). A character that has a `spawn` beat starts hidden until it spawns; `despawn` hides it. Hidden characters are not drawn, framed, collided with or hit (`W_HIDDEN` if a beat uses one).
+- Loop moves also accept `params.distance` and `params.cycles` in scripts.
 
 Deferred to v1.x: `wall_run`.
 
@@ -557,6 +558,7 @@ required  = aimX - facing * (reach + travel(tmid) + gap)  // outcome whiff (star
 - **Vertical framing**: unless `y` is given, the camera keeps `groundY` at `groundScreenRatio` of the frame height (landscape 0.82, portrait 0.70) and keeps the tallest target's head inside the top safe margin by zooming out.
 - `zoom: "auto"` fits targets horizontally; portrait uses a narrower horizontal fit and allows more zoom-out.
 - Clamped to stage bounds.
+- Narrow (portrait) frames: padding scales with frame width (at least 0.7x), auto zoom is capped at 1.4, and the camera follows sideways 1.6x faster. On every format the camera zooms out twice as fast as it zooms in, so jumps and launches stay in frame. Hidden characters do not pull the camera.
 - `meta.autoCamera` (default true) adds `zoom_punch` on hits with `damage > 15` and widens framing during dashes and launches, unless the script already has a camera key within 0.3 s.
 
 ### 11.6 Speech, captions, safe areas
@@ -651,7 +653,8 @@ A preset is `{ anchor: point|head|hip|feet, layers: [...], sustain?, glow?, trai
 - Limbs and torso: round caps and joins.
 - Head: filled circle with outline; two eye dots by facing; mouth `neutral | shout | grin` from the move.
 - Styles: `outline` (dark stroke under the color, default on), `glow`, `overlap`, `squash`.
-- Accessories from joint positions: `headband` (two-segment spring ribbon), `cape`, `hat`, `scarf`. Accessory springs are simulated in story time and stored in the frame store.
+- Accessories from joint positions: `headband` (forehead band + two ribbon tails), `scarf`, `cape` (drawn behind the body), `hat`. Trailing parts are stateless: each tail point follows where its anchor was a few frames earlier (from the frame store) plus a backward offset and droop, so they stream behind a runner and hang when still.
+- `glow`: a coloured halo (canvas shadow blur). `squash`: a brief vertical squash (up to 8%) after landings and hits. `outline: false` removes the dark outline. `overlap` (secondary motion) is deferred to v1.x.
 - Far limbs at 85% brightness.
 
 ### 14.3 Themes (`data/themes.js`)
@@ -659,14 +662,14 @@ A preset is `{ anchor: point|head|hip|feet, layers: [...], sustain?, glow?, trai
 | Theme | Background | Palette |
 |---|---|---|
 | `white_stage` | Plain white with soft shadow (classic look) | Mono |
-| `void_grid` | Dark gradient, faint perspective grid | Neon |
-| `dojo_dusk` | Silhouette wall, lanterns, warm sky | Warm |
-| `rooftop_city` | Skyline parallax, stars, moon | Cool |
-| `desert_noon` | Dunes, sun, heat haze | Sandy |
-| `arena` | Crowd silhouettes, floor lines | Neutral |
-| `snow_mountain` | Layered mountains, falling snow | White/blue |
+| `void_grid` | Starfield, distant ridge, neon perspective floor grid | Neon |
+| `dojo_dusk` | Sunset, mountains, wall with lanterns, plank floor | Warm |
+| `rooftop_city` | Stars, moon, two skyline layers with lit windows, rooftop | Cool |
+| `desert_noon` | Sun, far mesa, two dune layers | Sandy |
+| `arena` | Spotlights, bobbing crowd, barrier, striped floor | Neutral |
+| `snow_mountain` | Two snow-capped ranges, falling snow | White/blue |
 
-Backgrounds are procedural. Animated elements (snow, haze, crowd) use the fx clock and the seeded `bg` stream. Each theme defines `characterContrast` so the validator can warn when a character color is too close to the background.
+Backgrounds are procedural, built from a registry of layer kinds (`sun`, `stars`, `mountains` with optional caps, `dunes`, `skyline`, `wall`, `lanterns`, `crowd`, `spotlights`, `floorGrid`, `floorStripes`, `planks`, `snowfall`). Geometry comes from the seeded `bg` stream; animated layers (stars, crowd, snow) use the fx clock. Each theme defines `characterBg` for the validator's contrast check. World `set_theme` switches themes mid-video.
 
 ### 14.4 Performance targets (Node Skia backend, Apple Silicon laptop)
 - `renderFrame` ≤ 12 ms at 1080p for two characters and 500 particles.

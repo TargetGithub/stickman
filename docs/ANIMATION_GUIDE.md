@@ -37,6 +37,8 @@ Rules for authoring poses and moves, collected from M0-M2 reviews. Use with `web
 - Defensive moves declare `flags.guard: [t0, t1, "block"|"parry"]` or `flags.invulnerable: [t0, t1]`.
 - A duck drops straight down (torso nearly upright). Leaning forward pushes the head into the strike.
 
-## Known gaps (later milestones)
-- Block is a high guard only; low hits from small attackers still read as blocked (low block in M7).
-- Props (`propTip`) aim with the hand chain until M7.
+## Known gaps (v1.x)
+- Block is a high guard only; low hits from small attackers still read as blocked.
+- No `overlap` secondary motion yet; accessories carry the follow-through.
+- Portrait framing keeps everyone in frame, but far-apart fighters render small in 9:16.
+- No club-specific moves; `club_big` works with throw_prop and as a held prop.

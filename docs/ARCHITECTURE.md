@@ -142,7 +142,7 @@ Owns the queue (chain → queue → idle) and ground contact (spec 5.4). From M3
 export function propTransform(joints, propData, propAngleDeg, facing, scale): { grip, butt, tip, angle };
 export function propByKind(props, kind): propData | null;
 ```
-Prop state lives on the actor: `actor.prop = { name, kind, data } | null`, `actor.propAngle`. `poseActor` adds `joints.propTip` (`withPropTip`). World keeps `groundProps`; thrown props are projectiles with an `item`. Drawing: `renderer/props.js` `drawProp(ctx, data, { butt, tip, grip }, scale)`. Frame store: `CHAR_STRIDE` 32 (adds prop index and angle) plus sparse per-frame `items`.
+Prop state lives on the actor: `actor.prop = { name, kind, data } | null`, `actor.propAngle`. `poseActor` adds `joints.propTip` (`withPropTip`). World keeps `groundProps`; thrown props are projectiles with an `item`. Drawing: `renderer/props.js` `drawProp(ctx, data, { butt, tip, grip }, scale)`. Frame store: `CHAR_STRIDE` 33 (adds prop index, prop angle, alpha) plus sparse per-frame `items`. Actors also carry `hidden`/`alpha` (visibility for teleport, spawn, despawn).
 
 ### physics.js
 Bodies are actors (no separate Body object): `x, vx, vy, airY, airborne, launched, spin, spinRot`.
@@ -301,7 +301,7 @@ export function createRenderer(catalog, sim): Renderer;   // sim = simulate() re
 export function renderFrame(renderer, ctx, n): void;      // pure in (sim, n); random access
 export function frameCount(renderer): number;
 ```
-Modules: `background.js` (procedural theme layers with parallax; geometry generated once per theme from the seeded `bg` stream), `particles.js` (analytic particles, glyphs), `overlays.js` (post-world desaturate and slow-motion vignette, then bubbles, HP bars, text pops, captions, flashes, fades), `character.js`. Fonts are referenced by family name ("Bangers", "Inter"); the host registers them (Node: `tools/lib/canvas.mjs`; browser: `@font-face`). Background layers are drawn as shapes each frame (no offscreen cache yet): render cost is ~10 ms/frame at 1080p, so caching was not needed.
+Modules: `background.js` (registry of procedural layer kinds with parallax; geometry generated once per theme from the seeded `bg` stream; animated kinds use fx time), `accessories.js` (headband, scarf, cape, hat from frame history; squash), `particles.js` (analytic particles, glyphs), `overlays.js` (post-world desaturate and slow-motion vignette, then bubbles, HP bars, text pops, captions, flashes, fades), `character.js`. Fonts are referenced by family name ("Bangers", "Inter"); the host registers them (Node: `tools/lib/canvas.mjs`; browser: `@font-face`). Background layers are drawn as shapes each frame (no offscreen cache yet): render cost is ~10 ms/frame at 1080p, so caching was not needed.
 
 
 

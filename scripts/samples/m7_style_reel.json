@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "meta": { "title": "M7 Style Reel", "format": "landscape", "seed": 73, "mode": "choreographed", "theme": "rooftop_city" },
+  "characters": [
+    { "id": "ninja", "x": 700, "facing": 1, "color": "#e8e8f0", "scale": 1.0, "hp": 100, "style": { "headband": "#ff3355", "scarf": "#2f7bff", "squash": true } },
+    { "id": "baron", "x": 1500, "facing": -1, "color": "#9b6bff", "scale": 1.3, "hp": 140, "style": { "cape": "#3a0f4a", "hat": "#1a1a1a", "glow": "#c49bff", "squash": true } }
+  ],
+  "camera": [{ "at": 0, "mode": "follow", "targets": ["ninja", "baron"], "zoom": "auto", "padding": 320 }],
+  "beats": [
+    { "at": 0.2, "who": "world", "do": "caption", "params": { "text": "Batch G: themes and accessories", "dur": 2 } },
+    { "id": "b0", "at": 0.4, "who": "baron", "do": "bow", "say": "Good evening." },
+    { "id": "r", "at": { "after": "b0" }, "who": "ninja", "do": "run", "params": { "distance": 420 } },
+    { "id": "fk", "at": { "after": "r" }, "who": "ninja", "do": "flying_kick", "target": "baron", "approach": "run", "outcome": "blocked" },
+    { "id": "tp", "at": { "after": "fk", "delay": 0.2 }, "who": "baron", "do": "teleport", "target": "ninja" },
+    { "id": "hk", "at": { "after": "tp" }, "who": "baron", "do": "hook", "target": "ninja", "approach": "walk", "outcome": "hit" },
+    { "id": "bf", "at": { "after": "hk", "delay": 0.2 }, "who": "ninja", "do": "backflip" },
+    { "id": "ds", "at": { "after": "bf" }, "who": "ninja", "do": "dash" },
+    { "id": "rh", "at": { "after": "ds" }, "who": "ninja", "do": "roundhouse", "target": "baron", "approach": "run", "outcome": "hit", "params": { "damage": 20 } },
+    { "at": { "on": "rh.hit" }, "who": "world", "do": "set_theme", "params": { "theme": "snow_mountain" } },
+    { "at": { "on": "rh.hit" }, "who": "world", "do": "flash", "params": { "dur": 0.15 } },
+    { "id": "g", "at": { "after": "rh", "delay": 0.9 }, "who": "baron", "do": "get_up" },
+    { "id": "dp", "at": { "after": "g", "delay": 0.2 }, "who": "baron", "do": "despawn", "say": "Until next time!" },
+    { "id": "v", "at": { "after": "dp", "delay": 0.2 }, "who": "ninja", "do": "victory" },
+    { "at": { "after": "v", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 1 } }
+  ]
+}

@@ -4,6 +4,7 @@
 import { unpackJoints, lowestPoint } from "../skeleton.js";
 import { drawCharacter } from "./character.js";
 import { drawProp } from "./props.js";
+import { drawBehind, drawFront, squashAt } from "./accessories.js";
 import { propTransform } from "../props.js";
 import { createBackground, drawBackground } from "./background.js";
 import { drawParticles } from "./particles.js";
@@ -29,6 +30,8 @@ export function createRenderer(catalog, sim) {
     hpBars: !!meta.hpBars,
     worldEvents,
     themeChanges: worldEvents.filter((e) => e.do === "set_theme"),
+    styles: new Map((sim.characters || []).map((c) => [c.id, c.style])),
+    squashEvents: sim.events.filter((e) => e.type === "land" || e.type === "hit"),
     says: sim.events.filter((e) => e.type === "say"),
     backgrounds: new Map(),
     charCache: new Map(), // frame index → unpacked characters (small LRU for afterimages)
@@ -88,7 +91,27 @@ function drawWorld(ctx, r, n, f, chars) {
       if (ghost) drawCharacter(ctx, ghost.j, { color: ghost.color, scale: ghost.scale, facing: ghost.facing, alpha: 0.12 + 0.1 * i, outline: false });
     });
   }
-  for (const c of order(chars)) if (c.alpha > 0.01) drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha });
+  for (const c of order(chars)) {
+    if (c.alpha <= 0.01) continue;
+    const style = r.styles.get(c.id) || {};
+    const index = chars.indexOf(c);
+    const past = (k) => (n - k >= 0 ? charsAt(r, n - k)[index].j : null);
+    ctx.save();
+    if (style.squash) {
+      // Flatten around the feet briefly after a landing or a hit.
+      const k = squashAt(r.squashEvents, c.id, f.videoT);
+      if (k < 1) ctx.transform(1 / k, 0, 0, k, (c.j.hip.x) * (1 - 1 / k), STAGE.groundY * (1 - k));
+    }
+    if (style.glow) {
+      ctx.shadowColor = style.glow;
+      ctx.shadowBlur = 22 * c.scale;
+    }
+    drawBehind(ctx, c, past, style);
+    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false });
+    ctx.shadowBlur = 0;
+    drawFront(ctx, c, past, style);
+    ctx.restore();
+  }
   drawItems(ctx, r, f.items, true);
   for (const t of trails.filter((x) => x.kind === "slash" && x.part)) {
     const pts = [];
@@ -123,7 +146,7 @@ export function renderFrame(r, ctx, n) {
   const { W, H } = r;
   const theme = r.themeChanges.filter((e) => e.videoT <= f.videoT).pop()?.params.theme || r.defaultTheme;
   ctx.save();
-  drawBackground(ctx, background(r, theme), cam, W, H);
+  drawBackground(ctx, background(r, theme), cam, W, H, f.fxT);
   ctx.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
   drawWorld(ctx, r, n, f, chars);

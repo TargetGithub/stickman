@@ -85,7 +85,9 @@ function setupAttack(world, actor, events) {
   if (defense && world.moves.has(defense)) {
     // Small defenders dodge further (in their own units) so a bigger attacker's limb clearly misses.
     // distance_back is in the defender's units: at least its own 120, and far enough to clear the attacker's reach.
-    const params = defense === "dodge_back" ? { distance_back: Math.max(120, (180 * actor.scale) / target.scale) } : undefined;
+    // World distance ≈ 130 px per unit of attacker size + 50, at least 130 px of the defender's own size.
+    const dodgePx = Math.max(130 * target.scale, 130 * actor.scale + 50);
+    const params = defense === "dodge_back" ? { distance_back: dodgePx / (1.08 * target.scale) } : undefined;
     // Dodges start up to 0.35 s ahead so the attacker's windup never grazes the defender.
     const lead = defense === "dodge_back" || defense === "duck" ? Math.max(DEFENSE_LEAD[defense], Math.min(secondsToHit, 0.35)) : DEFENSE_LEAD[defense];
     schedule(world, world.time + Math.max(0, secondsToHit - lead), target.id, defense, { target: actor.id, params });

@@ -1,84 +1,152 @@
-// Procedural theme backgrounds with parallax (spec 14.1 step 1, 14.3). Milestone: M4.
-// Geometry is generated once per theme from a seeded stream; drawing is a pure function of the camera.
+// Procedural theme backgrounds with parallax (spec 14.1 step 1, 14.3). Milestone: M4, M7.
+// Each layer kind has a generator (geometry, once per theme, from a seeded stream) and a drawer
+// (a pure function of camera and fx time). Layers with onGround draw over the floor.
 
 import { mulberry32, hash32 } from "../math.js";
 import { STAGE } from "../config.js";
 
 const SPAN = [-2400, 8000]; // world x range covered by generated geometry (any stage up to 8000 px)
 
-function mountains(rng, layer) {
-  const pts = [];
-  for (let x = SPAN[0]; x <= SPAN[1]; x += layer.step) {
-    const h = layer.height * (1 - layer.rough + layer.rough * rng());
-    pts.push({ x, y: -h });
-  }
-  return pts;
-}
-
-/** Background for one theme: cached geometry plus the theme data. */
-export function createBackground(theme, name, seed = 1) {
-  const rng = mulberry32((seed ^ hash32(`bg:${name}`)) >>> 0);
-  const geom = theme.layers.map((layer) => (layer.kind === "mountains" ? mountains(rng, layer) : null));
-  return { theme, geom };
-}
-
 /** Screen transform for a layer: world x scrolls by `factor`, y is measured from the ground line. */
-function layerTransform(ctx, cam, W, H, factor) {
+function layerTransform(ctx, view, factor) {
+  const { cam, W, H } = view;
   const z = 1 + (cam.zoom - 1) * factor;
   const groundScreen = H / 2 + (STAGE.groundY - cam.y + cam.shakeY) * cam.zoom;
   ctx.setTransform(z, 0, 0, z, W / 2 - (cam.x - cam.shakeX) * factor * z, groundScreen);
-  return z;
+  const left = (cam.x - cam.shakeX) * factor - W / (2 * z) - 50;
+  const right = (cam.x - cam.shakeX) * factor + W / (2 * z) + 50;
+  return { z, left, right };
 }
 
-/**
- * Draw sky, parallax layers and ground for a camera state.
- * Leaves the transform reset; the caller sets the world transform afterwards.
- */
-export function drawBackground(ctx, bg, cam, W, H) {
-  const t = bg.theme;
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  const sky = ctx.createLinearGradient(0, 0, 0, H);
-  sky.addColorStop(0, t.sky.top);
-  sky.addColorStop(1, t.sky.bottom);
-  ctx.fillStyle = sky;
-  ctx.fillRect(0, 0, W, H);
+const screen = (ctx) => ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-  t.layers.forEach((layer, i) => {
-    const z = layerTransform(ctx, cam, W, H, layer.factor);
-    const left = (cam.x - cam.shakeX) * layer.factor - W / (2 * z) - 50;
-    const right = (cam.x - cam.shakeX) * layer.factor + W / (2 * z) + 50;
-    if (layer.kind === "sun") {
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      const x = layer.x * W - (cam.x - STAGE.width / 2) * layer.factor;
-      const y = layer.y * H;
-      const g = ctx.createRadialGradient(x, y, layer.r * 0.6, x, y, layer.r * 2.4);
-      g.addColorStop(0, layer.glow);
-      g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g;
-      ctx.fillRect(x - layer.r * 2.4, y - layer.r * 2.4, layer.r * 4.8, layer.r * 4.8);
+function glowDisc(ctx, x, y, r, color, glow) {
+  const g = ctx.createRadialGradient(x, y, r * 0.6, x, y, r * 2.4);
+  g.addColorStop(0, glow);
+  g.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(x - r * 2.4, y - r * 2.4, r * 4.8, r * 4.8);
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function polygonBand(ctx, pts, left, right, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(left, 4000);
+  for (const p of pts) if (p.x >= left - 400 && p.x <= right + 400) ctx.lineTo(p.x, p.y);
+  ctx.lineTo(right, 4000);
+  ctx.closePath();
+  ctx.fill();
+}
+
+const KINDS = {
+  sun: {
+    draw(ctx, layer, _g, view) {
+      screen(ctx);
+      const x = layer.x * view.W - (view.cam.x - STAGE.width / 2) * layer.factor;
+      glowDisc(ctx, x, layer.y * view.H, layer.r, layer.color, layer.glow);
+    },
+  },
+  stars: {
+    gen: (rng, l) => Array.from({ length: l.count }, () => ({ x: rng(), y: rng() * (l.top ?? 0.6), r: 0.8 + rng() * 1.8, ph: rng() * 6.28 })),
+    draw(ctx, layer, stars, view) {
+      screen(ctx);
       ctx.fillStyle = layer.color;
-      ctx.beginPath();
-      ctx.arc(x, y, layer.r, 0, Math.PI * 2);
-      ctx.fill();
-    } else if (layer.kind === "mountains") {
-      const pts = bg.geom[i];
-      ctx.fillStyle = layer.color;
-      ctx.beginPath();
-      ctx.moveTo(left, 4000);
-      for (const p of pts) if (p.x >= left - layer.step && p.x <= right + layer.step) ctx.lineTo(p.x, p.y);
-      ctx.lineTo(right, 4000);
-      ctx.closePath();
-      ctx.fill();
-    } else if (layer.kind === "wall") {
+      for (const s of stars) {
+        ctx.globalAlpha = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(view.fxT * 2.2 + s.ph));
+        ctx.beginPath();
+        ctx.arc(s.x * view.W, s.y * view.H, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    },
+  },
+  mountains: {
+    gen(rng, l) {
+      const pts = [];
+      for (let x = SPAN[0]; x <= SPAN[1]; x += l.step) pts.push({ x, y: -l.height * (1 - l.rough + l.rough * rng()) });
+      return pts;
+    },
+    draw(ctx, layer, pts, view) {
+      const { left, right } = layerTransform(ctx, view, layer.factor);
+      polygonBand(ctx, pts, left, right, layer.color);
+      if (layer.caps) {
+        // Snow caps: a lighter triangle over each peak above the cap line.
+        ctx.fillStyle = layer.caps;
+        pts.forEach((p, i) => {
+          if (p.x < left - 400 || p.x > right + 400 || -p.y < layer.height * 0.82) return;
+          const prev = pts[i - 1] || p;
+          const next = pts[i + 1] || p;
+          const capY = p.y * 0.86; // only the top of tall peaks is snowy
+          const lerpTo = (q) => ({ x: p.x + (q.x - p.x) * ((capY - p.y) / (q.y - p.y || 1)), y: capY });
+          const a = lerpTo(prev);
+          const b = lerpTo(next);
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(p.x, p.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.lineTo(p.x, capY + 8);
+          ctx.closePath();
+          ctx.fill();
+        });
+      }
+    },
+  },
+  dunes: {
+    gen(rng, l) {
+      const pts = [];
+      for (let x = SPAN[0]; x <= SPAN[1]; x += l.wavelength / 8) {
+        pts.push({ x, y: -l.height * (0.55 + 0.45 * Math.sin((x / l.wavelength) * Math.PI * 2 + rng() * 0.15)) });
+      }
+      return pts;
+    },
+    draw(ctx, layer, pts, view) {
+      const { left, right } = layerTransform(ctx, view, layer.factor);
+      polygonBand(ctx, pts, left, right, layer.color);
+    },
+  },
+  skyline: {
+    gen(rng, l) {
+      const out = [];
+      for (let x = SPAN[0]; x < SPAN[1];) {
+        const w = l.minW + rng() * (l.maxW - l.minW);
+        const h = l.minH + rng() * (l.maxH - l.minH);
+        const lit = [];
+        for (let wy = 20; wy < h - 20; wy += 34) for (let wx = 14; wx < w - 20; wx += 26) if (rng() < (l.lit ?? 0.35)) lit.push({ x: wx, y: wy });
+        out.push({ x, w, h, lit });
+        x += w + 6 + rng() * 30;
+      }
+      return out;
+    },
+    draw(ctx, layer, blocks, view) {
+      const { left, right } = layerTransform(ctx, view, layer.factor);
+      for (const b of blocks) {
+        if (b.x + b.w < left || b.x > right) continue;
+        ctx.fillStyle = layer.color;
+        ctx.fillRect(b.x, -b.h, b.w, b.h + 4000);
+        if (!layer.windows) continue;
+        ctx.fillStyle = layer.windows;
+        for (const w of b.lit) ctx.fillRect(b.x + w.x, -b.h + w.y, 10, 14);
+      }
+    },
+  },
+  wall: {
+    draw(ctx, layer, _g, view) {
+      const { left, right } = layerTransform(ctx, view, layer.factor);
       ctx.fillStyle = layer.color;
       ctx.fillRect(left, layer.top, right - left, 4000);
       ctx.fillStyle = layer.beam;
       ctx.fillRect(left, layer.top, right - left, 18);
-      const first = Math.floor(left / layer.spacing) * layer.spacing;
-      for (let x = first; x < right; x += layer.spacing) ctx.fillRect(x - 9, layer.top, 18, -layer.top);
-    } else if (layer.kind === "lanterns") {
-      const first = Math.floor(left / layer.spacing) * layer.spacing + layer.spacing / 2;
-      for (let x = first; x < right; x += layer.spacing) {
+      for (let x = Math.floor(left / layer.spacing) * layer.spacing; x < right; x += layer.spacing) ctx.fillRect(x - 9, layer.top, 18, -layer.top);
+    },
+  },
+  lanterns: {
+    draw(ctx, layer, _g, view) {
+      const { left, right } = layerTransform(ctx, view, layer.factor);
+      for (let x = Math.floor(left / layer.spacing) * layer.spacing + layer.spacing / 2; x < right; x += layer.spacing) {
         const g = ctx.createRadialGradient(x, layer.y, 6, x, layer.y, 90);
         g.addColorStop(0, layer.glow);
         g.addColorStop(1, "rgba(0,0,0,0)");
@@ -93,34 +161,135 @@ export function drawBackground(ctx, bg, cam, W, H) {
         ctx.fillRect(x - 12, layer.y - 28, 24, 5);
         ctx.fillRect(x - 12, layer.y + 23, 24, 5);
       }
-    } else if (layer.kind === "grid") {
+    },
+  },
+  crowd: {
+    gen(rng, l) {
+      const out = [];
+      for (let row = 0; row < l.rows; row++) for (let x = SPAN[0]; x < SPAN[1]; x += 34 + rng() * 14) out.push({ x, row, ph: rng() * 6.28, s: 0.85 + rng() * 0.3 });
+      return out;
+    },
+    draw(ctx, layer, people, view) {
+      const { left, right } = layerTransform(ctx, view, layer.factor);
+      ctx.fillStyle = layer.color;
+      for (const p of people) {
+        if (p.x < left - 40 || p.x > right + 40) continue;
+        const bob = Math.max(0, Math.sin(view.fxT * 7 + p.ph)) * 8 * (layer.excite ?? 1);
+        const y = layer.y - p.row * 42 - bob;
+        ctx.beginPath();
+        ctx.arc(p.x, y - 30 * p.s, 13 * p.s, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(p.x, y, 22 * p.s, 18 * p.s, 0, Math.PI, 0);
+        ctx.fill();
+        ctx.fillRect(p.x - 22 * p.s, y, 44 * p.s, 120);
+      }
+    },
+  },
+  spotlights: {
+    draw(ctx, layer, _g, view) {
+      screen(ctx);
+      for (const sx of layer.at) {
+        const x = sx * view.W;
+        const g = ctx.createLinearGradient(x, 0, x, view.H);
+        g.addColorStop(0, layer.color);
+        g.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.moveTo(x - 30, 0);
+        ctx.lineTo(x + 30, 0);
+        ctx.lineTo(x + view.W * 0.18, view.H);
+        ctx.lineTo(x - view.W * 0.18, view.H);
+        ctx.closePath();
+        ctx.fill();
+      }
+    },
+  },
+  floorGrid: {
+    onGround: true,
+    draw(ctx, layer, _g, view) {
+      const { left, right } = layerTransform(ctx, view, 1);
       ctx.strokeStyle = layer.color;
       ctx.lineWidth = 2;
-      const first = Math.floor(left / layer.spacing) * layer.spacing;
-      for (let x = first; x < right; x += layer.spacing) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x + (x - (cam.x - cam.shakeX)) * 0.6, 600); ctx.stroke();
+      const cx = view.cam.x - view.cam.shakeX;
+      for (let x = Math.floor(left / layer.spacing) * layer.spacing; x < right; x += layer.spacing) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x + (x - cx) * 0.8, 500); ctx.stroke();
       }
-      for (let y = 30; y < 600; y *= 1.6) {
+      for (let y = 18; y < 500; y *= 1.55) {
         ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke();
       }
-    }
-  });
+    },
+  },
+  floorStripes: {
+    onGround: true,
+    draw(ctx, layer, _g, view) {
+      const { left, right } = layerTransform(ctx, view, 1);
+      ctx.fillStyle = layer.color;
+      for (const y of layer.at) ctx.fillRect(left, y, right - left, layer.width);
+    },
+  },
+  snowfall: {
+    gen: (rng, l) => Array.from({ length: l.count }, () => ({ x: rng(), y: rng(), r: 1.5 + rng() * 3, sp: 0.5 + rng(), ph: rng() * 6.28 })),
+    draw(ctx, layer, flakes, view) {
+      screen(ctx);
+      ctx.fillStyle = layer.color;
+      for (const f of flakes) {
+        const y = (((f.y + (view.fxT * layer.speed * f.sp) / view.H) % 1) + 1) % 1;
+        const x = ((((f.x * view.W + Math.sin(view.fxT * 0.8 + f.ph) * 18) % view.W) + view.W) % view.W);
+        ctx.beginPath();
+        ctx.arc(x, y * view.H, f.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    },
+  },
+  planks: {
+    onGround: true,
+    draw(ctx, layer, _g, view) {
+      const { left, right } = layerTransform(ctx, view, 1);
+      ctx.strokeStyle = layer.color;
+      ctx.lineWidth = 3;
+      const cx = view.cam.x - view.cam.shakeX;
+      for (let x = Math.floor(left / layer.spacing) * layer.spacing; x < right; x += layer.spacing) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x - (x - cx) * 0.35, 400); ctx.stroke();
+      }
+    },
+  },
+};
 
-  layerTransform(ctx, cam, W, H, 1);
-  const left = cam.x - cam.shakeX - W / (2 * cam.zoom) - 50;
-  const right = cam.x - cam.shakeX + W / (2 * cam.zoom) + 50;
+export const LAYER_KINDS = Object.keys(KINDS);
+
+/** Background for one theme: cached geometry plus the theme data. */
+export function createBackground(theme, name, seed = 1) {
+  const rng = mulberry32((seed ^ hash32(`bg:${name}`)) >>> 0);
+  const geom = theme.layers.map((layer) => (KINDS[layer.kind]?.gen ? KINDS[layer.kind].gen(rng, layer) : null));
+  return { theme, geom };
+}
+
+/**
+ * Draw sky, parallax layers, floor and floor layers for a camera state at fx time fxT.
+ * Leaves the transform reset; the caller sets the world transform afterwards.
+ */
+export function drawBackground(ctx, bg, cam, W, H, fxT = 0) {
+  const t = bg.theme;
+  const view = { cam, W, H, fxT };
+  screen(ctx);
+  const sky = ctx.createLinearGradient(0, 0, 0, H);
+  sky.addColorStop(0, t.sky.top);
+  sky.addColorStop(1, t.sky.bottom);
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, W, H);
+  const draw = (onGround) => t.layers.forEach((layer, i) => {
+    const kind = KINDS[layer.kind];
+    if (kind && !!kind.onGround === onGround) kind.draw(ctx, layer, bg.geom[i], view);
+  });
+  draw(false);
+  const { left, right } = layerTransform(ctx, view, 1);
   ctx.fillStyle = t.ground.color;
   ctx.fillRect(left, 0, right - left, 4000);
-  if (t.ground.planks) {
-    ctx.strokeStyle = t.ground.planks.color;
-    ctx.lineWidth = 3;
-    const sp = t.ground.planks.spacing;
-    for (let x = Math.floor(left / sp) * sp; x < right; x += sp) {
-      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x - (x - (cam.x - cam.shakeX)) * 0.35, 400); ctx.stroke();
-    }
-  }
+  draw(true);
+  layerTransform(ctx, view, 1);
   ctx.strokeStyle = t.ground.line;
   ctx.lineWidth = 4;
   ctx.beginPath(); ctx.moveTo(left, 0); ctx.lineTo(right, 0); ctx.stroke();
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  screen(ctx);
 }

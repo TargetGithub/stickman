@@ -200,9 +200,11 @@ export function checkSemantics(script, catalog, moves) {
       if (!charIds.has(b.target)) out.push({ code: "E_REF_CHARACTER", path: `${p}.target`, message: `No character '${b.target}'.`, fix: `Use one of: ${[...charIds].join(", ")}.` });
       else if (b.target === b.who) out.push({ code: "E_MOVE_TARGET", path: `${p}.target`, message: `'${b.who}' cannot target itself.`, fix: "Target another character." });
     }
+    // Loop moves (walk, run, dances) also take distance and cycles (spec 8.2).
+    const accepted = [...Object.keys(def.params), ...(def.flags.loop ? ["distance", "cycles"] : [])];
     for (const k of Object.keys(b.params || {})) {
-      if (!(k in def.params)) {
-        const allowed = Object.keys(def.params);
+      if (!accepted.includes(k)) {
+        const allowed = accepted;
         out.push({ code: "E_MOVE_PARAM", path: `${p}.params.${k}`, message: `'${b.do}' has no param '${k}'.`, fix: allowed.length ? `Allowed: ${allowed.join(", ")}.` : `'${b.do}' takes no params.` });
       } else if (typeof b.params[k] !== "number") {
         out.push({ code: "E_MOVE_PARAM", path: `${p}.params.${k}`, message: `params.${k} must be a number.`, fix: "Use a number." });

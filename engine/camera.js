@@ -80,7 +80,9 @@ function fitZoom(cam, span, top, padding) {
   const byWidth = cam.W / (span + 2 * padding);
   const above = cam.groundY - top;
   const byHeight = above > 0 ? (cam.H * (cam.gsr - TOP_MARGIN)) / above : ZOOM_MAX;
-  return Math.max(ZOOM_MIN, Math.min(ZOOM_MAX, byWidth, byHeight));
+  // Narrow frames cap auto zoom lower: a quick dodge would otherwise leave the frame before the camera catches up.
+  const max = cam.W < cam.H ? 1.4 : ZOOM_MAX;
+  return Math.max(ZOOM_MIN, Math.min(max, byWidth, byHeight));
 }
 
 /** Target framing { x, zoom, y? } for the current key. */
@@ -110,13 +112,14 @@ function desired(cam, actors, videoT) {
   }
   const group = (k.targets || []).map(byId).filter(Boolean);
   const b = bounds(group.length ? group : actors);
-  const padding = (k.padding ?? CAMERA.padding) * cam.widen;
+  // Padding is authored for a 1920-wide frame; narrow (portrait) frames scale it down so fighters stay large.
+  const padding = (k.padding ?? CAMERA.padding) * cam.widen * Math.max(0.7, Math.min(1, cam.W / 1920));
   const zoom = typeof k.zoom === "number" ? k.zoom : fitZoom(cam, b.maxX - b.minX, b.minY, padding);
   return { x: (b.minX + b.maxX) / 2, zoom };
 }
 
-function spring(value, vel, target, dt) {
-  const w = CAMERA.omega;
+function spring(value, vel, target, dt, omega = CAMERA.omega) {
+  const w = omega;
   const acc = w * w * (target - value) - 2 * w * vel;
   const v = vel + acc * dt;
   return [value + v * dt, v];
@@ -138,8 +141,10 @@ export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = tru
     cam.vz = 0;
     cam.cut = false;
   } else {
-    [cam.x, cam.vx] = spring(cam.x, cam.vx, d.x, videoDt);
-    [cam.zoom, cam.vz] = spring(cam.zoom, cam.vz, d.zoom, videoDt);
+    // Narrow frames leave less room: follow sideways faster.
+    [cam.x, cam.vx] = spring(cam.x, cam.vx, d.x, videoDt, cam.W < cam.H ? CAMERA.omega * 1.6 : CAMERA.omega);
+    // Zoom out quickly (keep jumps and launches in frame), zoom back in gently.
+    [cam.zoom, cam.vz] = spring(cam.zoom, cam.vz, d.zoom, videoDt, d.zoom < cam.zoom ? CAMERA.omega * 2 : CAMERA.omega);
   }
   cam.zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX * 1.2, cam.zoom));
 

@@ -114,5 +114,6 @@ export function simulate(script, catalog, opts = {}) {
     fx: { log: present.fx.log, trails: present.fx.trails, flashes: present.fx.flashes },
     format: present.format,
     meta: { ...meta },
+    characters: script.characters.map((c) => ({ id: c.id, style: c.style || {} })),
   };
 }
