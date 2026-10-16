@@ -442,7 +442,7 @@ echo 'export OPENAI_API_KEY="your-key-here"' >> ~/.zshrc
 
 #### Local models (Ollama, LM Studio)
 
-Local models are free and private, but small ones make more mistakes, so expect more repair rounds (`--attempts 6`). In a test with an 8B model, each round fixed most of the remaining errors, but 3 attempts weren't enough; models of 30B+ or a cloud model do much better. The prompt is about 7,000 tokens, and Ollama's default context window is only 4,096 tokens. Raise it to 16K or more, either for the whole server:
+Local models are free and private, but small ones make more mistakes, so expect more repair rounds (`--attempts 6`). In a test, an 8B model (deepseek-r1:8b) never produced a valid script, even with 6 attempts: it fixed some errors each round but introduced new ones. Use a larger local model (30B or more) or a cloud model for automatic generation; for copy-paste, use the strongest model your chat app offers. The prompt is about 7,000 tokens, and Ollama's default context window is only 4,096 tokens. Raise it to 16K or more, either for the whole server:
 
 ```bash
 OLLAMA_CONTEXT_LENGTH=16384 ollama serve
