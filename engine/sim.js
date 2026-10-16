@@ -13,14 +13,14 @@ import { createPresentation, presentEvent, stepPresentation } from "./presentati
 import { normalize, flatScene, transitionInto, transitionDuration } from "./story/normalize.js";
 import { faceEvents, updateFaces } from "./story/faces.js";
 import { bodyPlan } from "./story/bodies.js";
-import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy } from "./objects.js";
+import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy, holdableProps } from "./objects.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
 const prepared = new WeakMap();
 
 /** Prepared move map for a catalog, cached per catalog object. */
 export function movesFor(catalog) {
-  if (!prepared.has(catalog)) prepared.set(catalog, prepareCatalog(catalog.moves, catalog.poses, catalog.props));
+  if (!prepared.has(catalog)) prepared.set(catalog, prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog)));
   return prepared.get(catalog);
 }
 
@@ -125,6 +125,7 @@ export function simulate(script, catalog, opts = {}) {
       { catalog, seed: meta.seed ?? 1, sceneId: sid, groundY: STAGE.groundY, stageWidth: flat.meta.stageWidth });
     world.onMoveEvent = (actor, e, events) => {
       if (e.use && world.objects && actor.prop) events.push(...useHeld(world.objects, actor, actor.joints.propTip || actor.joints.rHand, clock.storyT));
+      if (e.unseat) actor.seatY = actor.seatId = null;
     };
     const t0 = clock.storyT;
     const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `scenes[${si}].`, tag: story.legacy ? "" : `${sid}.`, dead, story: !story.legacy });

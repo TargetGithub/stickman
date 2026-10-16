@@ -132,7 +132,12 @@ function groundContact(actor, pose, dt, snapHard) {
 
 /** Pose shown this tick: the move pose plus launch spin and the body plan's posture (S3). */
 export function displayPose(actor) {
-  const pose = actor.spinRot ? { ...actor.pose, rot: actor.pose.rot + actor.spinRot } : actor.pose;
+  let pose = actor.spinRot ? { ...actor.pose, rot: actor.pose.rot + actor.spinRot } : actor.pose;
+  // Seated (S5): thighs forward along the seat, shins hanging down, whatever the upper body does.
+  if (actor.seatY != null && !pose.rot) {
+    const lean = pose.lean || 0;
+    pose = { ...pose, lTH: lean + 90, lSH: 90, rTH: lean + 84, rSH: 86 };
+  }
   return withPosture(pose, actor.posture, actor.postureW ?? 1);
 }
 
@@ -146,7 +151,8 @@ export function poseActor(actor, dt, snapHard = false) {
     actor.postureW = w + Math.sign(want - w) * Math.min(Math.abs(want - w), dt * 6);
   }
   const pose = displayPose(actor);
-  const rootY = groundContact(actor, pose, dt, snapHard);
+  // On a seat the hip rests at the seat's height instead of the feet on the floor.
+  const rootY = actor.seatY != null ? actor.groundY - actor.seatY * actor.scale - (pose.dy || 0) : groundContact(actor, pose, dt, snapHard);
   actor.joints = withPropTip(actor, computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale, dimsOf(actor)));
   return actor.joints;
 }

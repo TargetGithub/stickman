@@ -8,7 +8,7 @@ import { fillPose, blendPose, samplePoseKeys, segmentAt } from "./pose.js";
 import { MOTION } from "./config.js";
 import { propByKind } from "./props.js";
 
-export const CATEGORIES = ["attack", "movement", "reaction", "defensive", "emote", "utility"];
+export const CATEGORIES = ["attack", "movement", "reaction", "defensive", "emote", "utility", "life", "interaction"]; // life, interaction: story moves (S5)
 export const HIT_PARTS = ["rHand", "lHand", "rFoot", "lFoot", "rKnee", "lKnee", "rElbow", "lElbow", "head", "propTip"];
 export const SHAKES = ["small", "med", "big"];
 export const MIN_WINDUP = 0.15;

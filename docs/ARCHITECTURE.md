@@ -533,6 +533,11 @@ export function movingItems(objs, groundY): Item[];
 - Presentation turns object events into effects; `collectAudioEvents` adds their sounds. `E_SIM_OBJECT_OFFSTAGE` comes from "offstage" events.
 - Tools: `tools/lib/svg.mjs` + `tools/svg_import.mjs` (SVG → path data), `tools/lib/draft.mjs` + `tools/draft.mjs` (LLM drafts with checks and a review sheet).
 
+### Slice-of-life moves and seats (S5 batch 1)
+- `moves.js` `CATEGORIES` adds `life` and `interaction`. `objects.js` `holdableProps(catalog)` is the prop table the move loader resolves `needsProp` against (v1 props first); every `prepareCatalog` call in the engine, tools, page and tests passes it.
+- Seats: the director's `walkToSeat` walks a sitting character to the nearest free slot of a seat, then sets `actor.seatY`, `seatId`, `seatSlot`; `poseActor` places the hip at the seat height and `displayPose` applies the seated leg mask. The `unseat` move event (and movement or attack moves) clears it.
+- Tools: `tools/lib/filmstrip.mjs` `moveSheet(defs, out, { plans, frames })` (used by `tools/draft.mjs move` and `tools/move_sheet.mjs`); `tools/lib/draft.mjs` `checkMove(def, catalog)`.
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:

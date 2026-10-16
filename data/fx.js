@@ -133,6 +133,10 @@ export const fxPresets = {
       { shape: "dot", count: 6, angle: [0, 360], speed: [80, 160], life: [0.15, 0.3], size: [4, 1], color: ["#d8f2ff", "#ffffff"], alpha: [0.9, 0] },
     ],
   },
+  zzz: {
+    anchor: "head",
+    layers: [{ shape: "glyph", glyph: "zzz", count: 1, attach: "head", offsetXY: [20, -34], angle: [-75, -60], speed: [26, 34], life: [1.4, 1.4], size: [9, 18], color: "#5a6aa8", alpha: [1, 0] }],
+  },
   camera_flash: {
     anchor: "point",
     flash: { color: "#ffffff", dur: 0.15 },

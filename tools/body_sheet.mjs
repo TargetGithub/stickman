@@ -9,6 +9,7 @@ import { bodyPlan } from "../engine/story/bodies.js";
 import { lookFor } from "../engine/renderer/looks.js";
 import { drawCharacter } from "../engine/renderer/character.js";
 import { drawBehind, drawFront } from "../engine/renderer/accessories.js";
+import { holdableProps } from "../engine/objects.js";
 import { catalog } from "../data/index.js";
 
 const args = process.argv.slice(2);
@@ -16,7 +17,7 @@ const flag = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1]
 const out = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").startsWith("--")) || "out/demos/s3_bodies.png";
 const MOVES = flag("--moves", "idle,walk,jab,front_kick,flying_kick,hit_heavy,cry,victory").split(",");
 const scale = Number(flag("--scale", 1.3));
-const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));
 
 // Each plan in a look from the reference story (STORY_SPEC Appendix A) or a typical role.
 const CAST = {

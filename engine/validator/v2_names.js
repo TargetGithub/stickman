@@ -10,7 +10,7 @@ export const V2_ENUMS = {
   audience: ["kids", "general"],
   style: ["default", "soft", "ink"],
   body: ["stickman", "buddy", "kid", "bulky", "slim", "elder"], // catalog
-  face: ["neutral", "happy", "laugh", "sad", "cry", "angry", "furious", "scared", "surprised", "determined", "smug", "tired", "love", "dizzy", "hurt"], // catalog
+  face: ["neutral", "happy", "laugh", "sad", "cry", "angry", "furious", "scared", "surprised", "determined", "smug", "tired", "love", "dizzy", "hurt", "asleep"], // catalog (asleep: S5)
   eyes: ["dot", "big", "oval", "sleepy", "visor", "glasses"],
   brows: ["none", "thin", "thick"],
   mouthStyle: ["line", "cartoon"],

@@ -10,6 +10,7 @@ import { createActor, playMove, stepActor } from "../engine/actor.js";
 import { prepareCatalog } from "../engine/moves.js";
 import { computeJoints, lowestPoint } from "../engine/skeleton.js";
 import { drawCharacter } from "../engine/renderer/character.js";
+import { holdableProps } from "../engine/objects.js";
 import { catalog } from "../data/index.js";
 import { propByKind } from "../engine/props.js";
 
@@ -19,13 +20,14 @@ const flag = (name, dflt) => {
   return i >= 0 ? args[i + 1] : dflt;
 };
 const DT = 1 / 60;
-const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));
 
 /** Armed moves are previewed holding their prop ("any" → sword). */
 function arm(actor, def) {
   if (!def.needsProp) return;
-  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(catalog.props, def.needsProp);
-  const name = Object.keys(catalog.props).find((k) => catalog.props[k] === data);
+  const held = holdableProps(catalog);
+  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(held, def.needsProp);
+  const name = Object.keys(held).find((k) => held[k] === data);
   actor.prop = { name, kind: data.kind, data };
 }
 const propStyle = (actor) => (actor.prop ? { data: actor.prop.data, angle: actor.propAngle } : undefined);

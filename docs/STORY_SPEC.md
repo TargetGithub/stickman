@@ -194,7 +194,7 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | `meta.audience` | `kids` (default), `general` |
 | `meta.style` | `default`, `soft`, `ink` |
 | Body plans | `stickman`, `buddy`, `kid`, `bulky`, `slim`, `elder` (all `rig: "humanoid"`; catalog names, checked by `E_BODY_UNKNOWN` since S3) |
-| Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt` (catalog names: the schema takes a string and the semantic stage checks it, `E_FACE_UNKNOWN`, like moves and themes) |
+| Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt`, plus `asleep` (added in S5 for `sleep`) (catalog names: the schema takes a string and the semantic stage checks it, `E_FACE_UNKNOWN`, like moves and themes) |
 | Appearance | `eyes`, `brows`, `mouthStyle`, `cheeks`, `hair`, `hairColor`, `outfit`, `outfitColor`, `accessories` (name → color); option values are catalog strings checked by `E_APPEARANCE` since S3 |
 | Voice | `pitch` 0.5-2, `speed` 0.7-1.4, `timbre`: `soft`, `squeaky`, `deep`, `robot` |
 | Time / weather | `dawn`, `day`, `dusk`, `night` / `clear`, `cloudy`, `rain`, `snow`, `wind`, `fog` |
@@ -429,6 +429,13 @@ Objects are non-character things in the world: catalog data with a shape, a size
 - **Storage and drawing:** moving objects (balls, floaters, vehicles) are frame items; static ones are drawn from the scene's set pieces plus the "object" events up to the frame's time (spawn, state, break, remove), so they cost nothing per frame. Balls, bubbles and vehicles draw in front of the characters; back-layer pieces behind; front-layer pieces last.
 - **Effects and sounds:** `bubble_pop` and `camera_flash` effects; sounds `bubble_blow`, `bubble_pop`, `racket_hit` (ball launches), `ball_bounce`, `door_open`, `car_pass`.
 - **Validator:** `E_OBJECT_UNKNOWN` (an unknown kind, or an object id that is not in the scene), `E_OBJECT_STATE` (a state the object does not have, a change that does not suit it such as launching a bench, riding something that is not a vehicle), `E_SIM_OBJECT_OFFSTAGE` (a ball or vehicle leaves the stage; vehicles leave with `exit`).
+
+### 8.2 Seats and slice-of-life moves (S5, batch 1)
+
+- **Solo moves** (`data/moves/life.js`, category `life` unless they travel): `sit`, `stand_up`, `lie_down`, `sleep` (face `asleep`, floating Zs), `eat`, `drink`, `read`, `phone_talk`, `cheer`, `clap`, `kneel`, `wave_goodbye`, `sneak` and `tiptoe` (movement loops with `stride`), `peek`, `hide`, `push`, `pull`, `climb_up` (climbing in place), `jump_down` (a hop down with a soft landing), `swing_forehand` and `swing_backhand` (need a racket; a `contact` event at t 0.5 for the tennis activity), `blow_wand` (needs a bubble wand; blows bubbles), `poke` (a `poke` event that pops bubbles), `stretch`.
+- **Seats:** `sit` with a beat `object` naming a seat walks there first, then sits with the hip at the seat's `seatY` and the legs hanging; seats have `slots` (a bench seats two, a chair one) and each character takes the free slot nearest to it. Upper-body moves (eat, read, talk, clap) keep the seated legs. `stand_up` (its `unseat` event), any walk or run, or an attack leaves the seat. `sit` without an object sits on the floor. `E_OBJECT_STATE` if the object is not a seat.
+- **Moves can hold story holdables:** `needsProp` kinds resolve against the v1 props and the holdable objects (racket, wand, phone, ...).
+- **Drafting moves:** `node tools/draft.mjs move "<description>"` (any provider, `--mock`, `--manual`, `--reply`) uses `prompts/draft_move.md` (format, channel conventions, rules) plus the most similar moves; the checks run the catalog loader's rules and then play the move on every body plan (finite joints, never below the floor, feet on the floor at the start and the end unless it holds a pose or jumps); the review image is a filmstrip on the stickman and the buddy. `node tools/move_sheet.mjs --category life --plans stickman,buddy` renders review sheets for a batch.
 
 ## 9. Interactions (paired moves)
 

@@ -6,17 +6,19 @@ import { createActor } from "../../engine/actor.js";
 import { prepareCatalog } from "../../engine/moves.js";
 import { requiredStartX, buildHurtboxes, segSegDist2 } from "../../engine/combat.js";
 import { COMBAT } from "../../engine/config.js";
+import { holdableProps } from "../../engine/objects.js";
 import { catalog } from "../../data/index.js";
 
 const DT = 1 / 60;
 import { propByKind } from "../../engine/props.js";
-const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));
 
 /** Give an attacker the prop its move needs ("any" → sword). */
 function arm(actor, def) {
   if (!def.needsProp) return;
-  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(catalog.props, def.needsProp);
-  actor.prop = { name: Object.keys(catalog.props).find((k) => catalog.props[k] === data), kind: data.kind, data };
+  const held = holdableProps(catalog);
+  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(held, def.needsProp);
+  actor.prop = { name: Object.keys(held).find((k) => held[k] === data), kind: data.kind, data };
 }
 const ATTACKS = [...moves.values()].filter((d) => d.category === "attack").map((d) => d.name);
 const PAIRS = [[1, 1], [1, 0.6], [1, 2.2], [1, 3.5], [2.2, 1]];

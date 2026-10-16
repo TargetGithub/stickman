@@ -288,7 +288,8 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `node tools/face_sheet.mjs` | Render every story face at three sizes into one image |
 | `node tools/body_sheet.mjs` | Render every body plan doing 8 moves into one image |
 | `node tools/svg_import.mjs <file.svg> --name <kind>` | Turn an SVG drawing into an object entry (review image in out/drafts/) |
-| `node tools/draft.mjs object\|theme "<description>"` | Draft a new object or theme with an LLM (`--mock`, `--manual` for copy-paste), checked and rendered for review |
+| `node tools/draft.mjs object\|theme\|move "<description>"` | Draft a new object, theme or move with an LLM (`--mock`, `--manual` for copy-paste), checked and rendered for review |
+| `node tools/move_sheet.mjs out.png --category life --plans stickman,buddy` | Filmstrips of a batch of moves on chosen body plans |
 
 `record` options:
 

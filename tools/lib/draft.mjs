@@ -1,11 +1,17 @@
-// Drafting catalog data with an LLM (STORY_SPEC 5.5, S4.10): prompts, automatic checks and an offline
-// mock reply. Kinds: object, theme (moves come in S5.0). Pure functions; tools/draft.mjs is the CLI.
+// Drafting catalog data with an LLM (STORY_SPEC 5.5, S4.10, S5.0): prompts, automatic checks and an
+// offline mock reply. Kinds: object, theme, move. Pure functions; tools/draft.mjs is the CLI.
 // The person reviews the rendered sheet and copies an accepted draft into data/*.js.
 
 import { OBJECT_SHAPES } from "../../engine/renderer/objects.js";
 import { PROP_SHAPES } from "../../engine/renderer/props.js";
 import { LAYER_KINDS } from "../../engine/renderer/background.js";
 import { contrastRatio } from "../../engine/validator/semantic.js";
+import { readFileSync } from "node:fs";
+import { prepareCatalog, CATEGORIES } from "../../engine/moves.js";
+import { createActor, playMove, stepActor } from "../../engine/actor.js";
+import { lowestPoint } from "../../engine/skeleton.js";
+import { bodyPlan } from "../../engine/story/bodies.js";
+import { holdableData, holdableProps } from "../../engine/objects.js";
 
 const BEHAVIORS = ["static", "seat", "holdable", "ball", "floater", "vehicle", "breakable"];
 const HEX = /^#[0-9a-fA-F]{6}$/;
@@ -15,6 +21,9 @@ const CAST_COLORS = ["#3fd8ff", "#2fd3c0", "#8a2be2", "#ffc04d", "#ff3b3b", "#1a
 
 const words = (s) => new Set(String(s).toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 2));
 
+/** The table a kind drafts into (moves are a list in the catalog; keyed by name here). */
+export const tableOf = (kind, catalog) => (kind === "object" ? catalog.objects : kind === "theme" ? catalog.themes : Object.fromEntries(catalog.moves.map((m) => [m.name, m])));
+
 /** The existing entries most like the description (shared words in name and data), at most n. */
 export function similarEntries(table, description, n = 3) {
   const want = words(description);
@@ -23,6 +32,8 @@ export function similarEntries(table, description, n = 3) {
     .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
     .slice(0, n);
 }
+
+const MOVE_FORMAT = () => readFileSync(new URL("../../prompts/draft_move.md", import.meta.url), "utf8");
 
 const FORMAT = {
   object: `An object entry:
@@ -43,11 +54,12 @@ Copy each layer kind's fields from the examples; y values are measured from the 
 
 /** System and user prompt for a draft. */
 export function draftPrompt(kind, description, catalog) {
-  const table = kind === "object" ? catalog.objects : catalog.themes;
+  const table = tableOf(kind, catalog);
   const examples = similarEntries(table, description).map((e) => `"${e.name}": ${JSON.stringify(e.entry)}`).join("\n");
   const system = `You draft catalog data for a deterministic 2D stick-figure animation engine for kids' videos. You reply with JSON only.
 
-${FORMAT[kind]}
+${kind === "move" ? `${MOVE_FORMAT()}
+Named poses: ${Object.keys(catalog.poses).join(", ")}.` : FORMAT[kind]}
 
 Rules: original designs only (no look-alikes of trademarked characters or logos); family friendly; colors as "#rrggbb".
 Reply with {"name": "<lowercase_name>", "entry": { ... }}.`;
@@ -67,9 +79,10 @@ export function checkDraft(kind, draft, catalog) {
   const e = draft?.entry;
   if (!draft || typeof draft !== "object" || !e || typeof e !== "object") return ['Reply with {"name": ..., "entry": {...}}.'];
   if (!NAME.test(draft.name || "")) p.push(`name "${draft.name}" must be lowercase letters, digits and _ (2-32 characters)`);
-  const table = kind === "object" ? catalog.objects : catalog.themes;
+  const table = tableOf(kind, catalog);
   if (table[draft.name]) p.push(`"${draft.name}" already exists; pick a new name`);
   const color = (v, where) => { if (!HEX.test(v || "")) p.push(`${where} must be a "#rrggbb" color (got ${JSON.stringify(v)})`); };
+  if (kind === "move") return [...p, ...checkMove({ ...e, name: draft.name }, catalog)];
   if (kind === "object") {
     if (!BEHAVIORS.includes(e.behavior)) p.push(`behavior must be one of ${BEHAVIORS.join(", ")}`);
     if (e.draw === "paths" || e.paths) {
@@ -118,10 +131,56 @@ export function checkDraft(kind, draft, catalog) {
   return p;
 }
 
+/**
+ * Move data checks: the catalog loader's rules (keys, poses, expressions, hits, wind-up), then a run on
+ * every body plan: finite joints, the body never below the floor, feet on the floor at the start and
+ * the end (unless the move holds a pose or jumps).
+ */
+export function checkMove(def, catalog) {
+  const p = [];
+  if (!CATEGORIES.includes(def.category)) p.push(`category must be one of ${CATEGORIES.join(", ")}`);
+  if (!(def.duration >= 0.2 && def.duration <= 6)) p.push("duration must be 0.2-6 s");
+  if (def.face && !catalog.faces?.[def.face]) p.push(`face "${def.face}" is unknown`);
+  let moves;
+  try {
+    moves = prepareCatalog([...catalog.moves.filter((m) => m.name !== def.name), def], catalog.poses, holdableProps(catalog));
+  } catch (err) {
+    return [...p, ...err.message.split("\n").filter((l) => l.includes(def.name) || !l.startsWith("move '")).map((l) => l.replace(/^\s*-\s*/, ""))];
+  }
+  const prepared = moves.get(def.name);
+  const GROUND = 880;
+  for (const plan of Object.keys(catalog.bodies || { stickman: {} })) {
+    const a = Object.assign(createActor({ id: "a", x: 1000, facing: 1, groundY: GROUND }), bodyPlan(catalog, plan));
+    if (prepared.needsProp) {
+      const name = Object.keys(catalog.objects || {}).find((k) => catalog.objects[k].hold?.kind === prepared.needsProp) || Object.keys(catalog.props).find((k) => catalog.props[k].kind === prepared.needsProp);
+      const data = name ? holdableData(catalog, name) : null;
+      if (!data) { p.push(`needsProp "${prepared.needsProp}" matches no holdable`); break; }
+      a.prop = { name, kind: data.kind, data };
+    }
+    playMove(a, def.name, moves);
+    const steps = Math.ceil(prepared.duration * (prepared.params.cycles || 1) * 60) + 2;
+    let start = null;
+    let end = null;
+    for (let i = 0; i <= steps; i++) {
+      const j = stepActor(a, i ? 1 / 60 : 0, moves).joints;
+      if (Object.values(j).some((q) => !Number.isFinite(q.x) || !Number.isFinite(q.y))) { p.push(`${plan}: a joint becomes NaN`); break; }
+      const low = lowestPoint(j, 1, a.dims);
+      if (low > GROUND + 1.5) { p.push(`${plan}: the body sinks ${(low - GROUND).toFixed(1)} px below the floor`); break; }
+      if (i === 1) start = low;
+      if (i === steps - 2) end = low;
+    }
+    const lifts = (def.root || []).some((k) => typeof k.dy === "number" && k.dy < 0);
+    if (!def.flags?.hold && !lifts && [start, end].some((v) => v !== null && Math.abs(v - GROUND) > 3)) p.push(`${plan}: feet are off the floor at the start or the end`);
+    if (p.length) break;
+  }
+  return p;
+}
+
 /** Offline reply (--mock): the most similar entry under a new name, so the whole flow can be tried. */
 export function mockDraft(kind, description, catalog) {
-  const table = kind === "object" ? catalog.objects : catalog.themes;
-  const base = similarEntries(table, description, 1)[0];
+  const base = similarEntries(tableOf(kind, catalog), description, 1)[0];
   const name = `${[...words(description)][0] || "draft"}_${kind}`.replace(/[^a-z0-9_]/g, "_").slice(0, 32);
-  return { name, entry: structuredClone(base.entry) };
+  const entry = structuredClone(base.entry);
+  if (kind === "move") delete entry.name;
+  return { name, entry };
 }

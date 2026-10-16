@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "meta": { "title": "Park Life", "format": "landscape", "seed": 55, "kind": "clip", "audience": "kids" },
+  "cast": [
+    { "id": "kai", "name": "Kai", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "prop": "racket" },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "accessories": { "antenna": "#ffcc00" } }, "prop": "bubble_wand" },
+    { "id": "gran", "name": "Gran", "body": "elder", "color": "#f2dfb8", "appearance": { "outfit": "robe", "outfitColor": "#5b6e9a", "eyes": "glasses" }, "prop": "book" },
+    { "id": "mo", "name": "Mo", "body": "kid", "color": "#ff9f43", "appearance": { "hair": "cap", "hairColor": "#3a6df0" }, "prop": "ice_cream" }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "stageWidth": 3200,
+      "set": [ { "id": "bench1", "object": "bench", "x": 1250 }, { "id": "chair1", "object": "chair", "x": 2050 }, { "id": "tree1", "object": "tree_big", "x": 700, "layer": "back" } ] }
+  ],
+  "scenes": [
+    { "id": "life", "location": "park", "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Park Life", "subtitle": "slice-of-life moves", "dur": 2 },
+      "transitionOut": { "type": "fade", "dur": 1 },
+      "cast": [ { "id": "gran", "x": 2150, "facing": -1 }, { "id": "mo", "x": 1050, "facing": 1 }, { "id": "kai", "x": 1600, "facing": 1 }, { "id": "pip", "x": 1850, "facing": -1 } ],
+      "camera": [ { "at": 0, "mode": "follow", "zoom": "auto", "padding": 300 } ],
+      "beats": [
+        { "id": "g1", "at": 0.3, "who": "gran", "do": "sit", "object": "chair1" },
+        { "id": "g2", "at": { "after": "g1", "delay": 0.2 }, "who": "gran", "do": "read", "params": { "cycles": 4 } },
+        { "id": "m1", "at": 0.3, "who": "mo", "do": "sit", "object": "bench1" },
+        { "id": "m2", "at": { "after": "m1", "delay": 0.2 }, "who": "mo", "do": "eat", "face": "happy" },
+        { "id": "k1", "at": 0.5, "who": "kai", "do": "stretch" },
+        { "id": "p1", "at": 0.5, "who": "pip", "do": "blow_wand", "face": "happy" },
+        { "id": "k2", "at": { "after": "k1", "delay": 0.2 }, "who": "kai", "do": "swing_forehand" },
+        { "id": "k3", "at": { "after": "k2", "delay": 0.2 }, "who": "kai", "do": "swing_backhand" },
+        { "id": "p2", "at": { "after": "p1", "delay": 0.4 }, "who": "pip", "do": "poke" },
+        { "id": "p3", "at": { "after": "p2", "delay": 0.2 }, "who": "pip", "do": "cheer", "params": { "cycles": 2 } },
+        { "id": "m3", "at": { "after": "m2", "delay": 0.3 }, "who": "mo", "do": "stand_up" },
+        { "id": "m4", "at": { "after": "m3" }, "who": "mo", "do": "tiptoe", "params": { "distance": 140 } },
+        { "id": "m5", "at": { "after": "m4" }, "who": "mo", "do": "peek" },
+        { "id": "k4", "at": { "after": "k3", "delay": 0.4 }, "who": "kai", "do": "clap" },
+        { "id": "k5", "at": { "after": "k4", "delay": 0.2 }, "who": "kai", "do": "lie_down" },
+        { "id": "k6", "at": { "after": "k5" }, "who": "kai", "do": "sleep" },
+        { "id": "g3", "at": { "after": "g2", "delay": 0.2 }, "who": "gran", "do": "sigh" },
+        { "id": "p4", "at": { "after": "p3", "delay": 0.3 }, "who": "pip", "do": "wave_goodbye" }
+      ] }
+  ]
+}

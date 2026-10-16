@@ -22,6 +22,7 @@ export const faces = {
   love: { eyes: "heart", brows: { tilt: 8, lift: 0.06 }, mouth: "smile", talk: "grin", extras: ["blush", "hearts"] },
   dizzy: { eyes: "spiral", brows: null, mouth: "wavy" },
   hurt: { eyes: "squeeze", brows: { tilt: 18, lift: 0 }, mouth: "open" },
+  asleep: { eyes: "closed", brows: null, mouth: "o" }, // S5 (sleep)
 };
 
 export const FACE_NAMES = Object.keys(faces);

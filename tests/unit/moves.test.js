@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { prepareCatalog, startMove, stepMove, rootOffsetAt, MIN_WINDUP } from "../../engine/moves.js";
+import { holdableProps } from "../../engine/objects.js";
 import { catalog } from "../../data/index.js";
 
 const DT = 1 / 60;
@@ -134,7 +135,7 @@ test("every effect and shake named in move data exists", () => {
 });
 
 test("zero-length blends (reactions) keep the prop angle finite", () => {
-  const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+  const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));
   const actor = { pose: { ...catalog.poses.guard, rot: 0, dx: 0, dy: 0 }, propAngle: 55 };
   startMove(actor, moves.get("hit_heavy"));
   assert.ok(Number.isFinite(stepMove(actor, DT).propAngle));

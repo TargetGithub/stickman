@@ -20,6 +20,11 @@ export function holdableNames(catalog) {
   return [...Object.keys(catalog.props || {}), ...extra];
 }
 
+/** Every holdable as a prop table (v1 props first): what the move loader resolves needsProp kinds against. */
+export function holdableProps(catalog) {
+  return Object.fromEntries(holdableNames(catalog).map((n) => [n, holdableData(catalog, n)]));
+}
+
 /** Per-frame stored behaviors (everything else is static and drawn from the event log). */
 export const MOVING = ["ball", "floater", "vehicle"];
 

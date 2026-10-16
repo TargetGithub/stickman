@@ -210,6 +210,33 @@ function approach(director, beat, actor, ctx) {
   return true;
 }
 
+/**
+ * sit with an object (S5): walk to the seat first (the beat waits), then sit at the seat's height.
+ * @returns {boolean} true when the character still has to walk there
+ */
+function walkToSeat(director, beat, actor, ctx) {
+  const seat = ctx.world.objects?.byId.get(beat.object);
+  if (!seat || seat.behavior !== "seat") return false;
+  // The free slot nearest to the character (a bench seats two).
+  const taken = new Set(ctx.world.actors.filter((a) => a !== actor && a.seatId === seat.id).map((a) => a.seatSlot));
+  const slots = (seat.def.slots || [0]).map((o, i) => ({ i, x: seat.x + o })).filter((s) => !taken.has(s.i));
+  const slot = (slots.length ? slots : [{ i: 0, x: seat.x }]).reduce((b, s) => (Math.abs(s.x - actor.x) < Math.abs(b.x - actor.x) ? s : b));
+  const d = slot.x - actor.x;
+  if (beat.state === "approached" || Math.abs(d) <= 24 * actor.scale) { // arrived (or close enough): sit down
+    actor.x = slot.x;
+    actor.seatY = seat.def.seatY ?? 60;
+    actor.seatId = seat.id;
+    actor.seatSlot = slot.i;
+    return false;
+  }
+  actor.facing = Math.sign(d);
+  command(ctx.world, beat.who, "walk", { params: { distance: Math.abs(d) } });
+  beat.notes.push(`walk ${Math.abs(d).toFixed(0)}px to ${beat.object}`);
+  beat.state = "approached";
+  director.waiting.set(actor.id, [beat, ...(director.waiting.get(actor.id) || []).filter((b) => b !== beat)]);
+  return true;
+}
+
 function execute(director, beat, ctx) {
   const { world, emit, storyT } = ctx;
   if (beat.who === "camera") {
@@ -246,6 +273,7 @@ function execute(director, beat, ctx) {
     return;
   }
   const def = director.moves.get(beat.do);
+  if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx)) return;
   if (beat.approach && beat.target && def.category === "attack" && beat.state !== "approached" && approach(director, beat, actor, ctx)) {
     beat.state = "approached";
     director.waiting.set(actor.id, [beat, ...(director.waiting.get(actor.id) || []).filter((b) => b !== beat)]);
@@ -263,6 +291,7 @@ function execute(director, beat, ctx) {
   beat.firedAt = storyT;
   if (beat.face && actor.face) actor.face = beat.face; // "from this beat on" (STORY_SPEC 4.3)
   if (beat.do === "ride") actor.riding = beat.object; // the sim keeps riders on their vehicle
+  if (actor.seatY != null && (def.category === "movement" || def.category === "attack")) actor.seatY = actor.seatId = null;
   if (beat.do === "dismount") actor.riding = null;
   command(world, beat.who, beat.do, {
     target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,

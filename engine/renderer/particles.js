@@ -16,7 +16,7 @@ function star(ctx, x, y, r, points = 8) {
   ctx.fill();
 }
 
-/** Small comic glyphs above heads: drop, anger, heart, exclaim, question. */
+/** Small comic glyphs above heads: drop, anger, heart, exclaim, question, zzz (S5). */
 export function drawGlyph(ctx, name, x, y, size) {
   const s = size;
   if (name === "drop") {
@@ -46,7 +46,7 @@ export function drawGlyph(ctx, name, x, y, size) {
     ctx.font = `${Math.round(s * 2.2)}px Bangers`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(name === "exclaim" ? "!" : "?", x, y);
+    ctx.fillText(name === "exclaim" ? "!" : name === "zzz" ? "z" : "?", x, y);
     ctx.textBaseline = "alphabetic";
   }
 }

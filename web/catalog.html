@@ -39,15 +39,17 @@
     import { createActor, playMove, stepActor } from "../engine/actor.js";
     import { computeJoints, lowestPoint } from "../engine/skeleton.js";
     import { bodyPlan } from "../engine/story/bodies.js";
+    import { holdableProps, holdableData } from "../engine/objects.js";
     import { drawCharacter } from "../engine/renderer/character.js";
     import { propByKind } from "../engine/props.js";
 
     const $ = (id) => document.getElementById(id);
-    const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+    const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));
     function arm(actor, def) {
       if (!def.needsProp) return;
-      const data = def.needsProp === "any" ? catalog.props.sword : propByKind(catalog.props, def.needsProp);
-      actor.prop = { name: Object.keys(catalog.props).find((k) => catalog.props[k] === data), kind: data.kind, data };
+      const held = holdableProps(catalog);
+      const data = def.needsProp === "any" ? catalog.props.sword : propByKind(held, def.needsProp);
+      actor.prop = { name: Object.keys(held).find((k) => held[k] === data), kind: data.kind, data };
     }
     const W = 680, H = 440, GROUND = 400, DT = 1 / 60;
     for (const c of CATEGORIES) $("category").add(new Option(c, c));

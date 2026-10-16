@@ -1,6 +1,6 @@
 // Objects (STORY_SPEC 8). Catalog data: a drawing, a size and one behavior.
 //   static     drawn in place; may have states (door: closed/open)
-//   seat       static, with a seat point (sitting comes with the S5 moves)
+//   seat       static; `seatY` is the seat height and `slots` the x offsets where characters sit
 //   holdable   held like a v1 prop: `hold` is a prop entry (data/props.js format); spawned ones lie
 //              on the floor and can be picked up; `use` describes what the use move does with it
 //   ball       flies in arcs and bounces (set_object: toX + height, or vx/vy)
@@ -14,8 +14,8 @@ const WOOD = "#a0703f";
 
 export const objects = {
   // ---- set pieces ----
-  bench: { behavior: "seat", draw: "bench", w: 260, h: 110, seatY: 62, colors: { wood: WOOD, metal: "#3b3b44" } },
-  chair: { behavior: "seat", draw: "chair", w: 90, h: 170, seatY: 80, colors: { wood: "#8a5a34" } },
+  bench: { behavior: "seat", draw: "bench", w: 260, h: 110, seatY: 62, slots: [-60, 60], colors: { wood: WOOD, metal: "#3b3b44" } },
+  chair: { behavior: "seat", draw: "chair", w: 90, h: 170, seatY: 80, slots: [0], colors: { wood: "#8a5a34" } },
   table: { behavior: "static", draw: "table", w: 220, h: 120, colors: { wood: "#9a6a3e" } },
   tree_big: { behavior: "static", draw: "tree", w: 420, h: 620, colors: { trunk: "#6b4a2f", leaves: "#3f9a4a", leaves2: "#53b35a" } },
   bush: { behavior: "static", draw: "bush", w: 240, h: 120, colors: { leaves: "#3c8f45", leaves2: "#4fa85a" } },

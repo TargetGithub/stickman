@@ -155,6 +155,8 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** each move batch in the catalog page (3 batches × 15 min).
 
+**Status (2026-10-16):** batch 1 built (S5.0 move drafting, S5.4 the 25 solo moves, seats with slots), waiting for the review. Demos: `out/demos/s5_batch1_life.png` (stickman), `s5_batch1_life_buddy_elder.png`, `s5_batch1_movement.png`, `s5_batch1_life/final.mp4` (from `scripts/samples/s5_life.json`). The catalog page's `life` category shows every move on any body plan. Batch 2 (paired moves, S5.1-S5.3) and batch 3 (defeat styles, activities, validator codes, the scene-1 demo) follow.
+
 ### S6 Story compiler and macros (5-6 days)
 
 | Task | Output |

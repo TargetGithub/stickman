@@ -10,18 +10,20 @@ import { BODY, lowestPoint, computeJoints } from "../../engine/skeleton.js";
 import { bodyPlan } from "../../engine/story/bodies.js";
 import { propByKind } from "../../engine/props.js";
 import { COMBAT, STAGE } from "../../engine/config.js";
+import { holdableProps } from "../../engine/objects.js";
 import { catalog } from "../../data/index.js";
 
 const DT = 1 / 60;
-const moves = prepareCatalog(catalog.moves, catalog.poses, catalog.props);
+const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));
 const ATTACKS = [...moves.values()].filter((d) => d.category === "attack").map((d) => d.name);
 const PLANS = Object.keys(catalog.bodies);
 const PAIRS = [["stickman", "buddy"], ["buddy", "bulky"], ["bulky", "buddy"], ["kid", "slim"], ["slim", "kid"], ["elder", "stickman"]];
 
 function arm(actor, def) {
   if (!def.needsProp) return;
-  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(catalog.props, def.needsProp);
-  actor.prop = { name: Object.keys(catalog.props).find((k) => catalog.props[k] === data), kind: data.kind, data };
+  const held = holdableProps(catalog);
+  const data = def.needsProp === "any" ? catalog.props.sword : propByKind(held, def.needsProp);
+  actor.prop = { name: Object.keys(held).find((k) => held[k] === data), kind: data.kind, data };
 }
 const actorOf = (o, plan) => Object.assign(createActor(o), bodyPlan(catalog, plan));
 const clearance = (p, a) => Math.min(...buildHurtboxes(a.joints, a.scale, a.dims).map((h) => Math.sqrt(segSegDist2(p, p, h.a, h.b)) - h.r));
