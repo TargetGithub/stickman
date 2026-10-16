@@ -21,13 +21,19 @@ Key code facts the new work must respect:
 
 ## Milestones
 
-### S0 Decisions and spec freeze (0.5-1 day)
+### S0 Spec freeze (0.5 day)
+
+The product decisions are already made (STORY_SPEC section 21, signed off 2026-10-16):
+- speech sounds only;
+- procedural music;
+- stories ≥ 5 min, fights ≥ 3 min;
+- kids-first audience;
+- minimal manual art work.
 
 | Task | Output |
 |---|---|
-| Resolve the open decisions in STORY_SPEC section 21 with the product owner | Answers recorded in the spec |
 | Freeze schema v2 field names, macro names and params, face list, body-plan list, object behaviors | `docs/schema/script-v2.schema.json` draft; spec bumped to v2.0-rc |
-| Write ADRs: ADR-014 two-level scripts and the compiler; ADR-015 body plans share the humanoid skeleton; ADR-016 scenes in one world with state carry-over; ADR-017 TTS manifest for deterministic voice timing | `docs/ARCHITECTURE.md` |
+| Write ADRs: ADR-014 two-level scripts and the compiler; ADR-015 body plans share the humanoid skeleton; ADR-016 scenes in one world with state carry-over; ADR-017 procedural music and speech sounds in /tools; ADR-018 audience rules (kids default) | `docs/ARCHITECTURE.md` |
 
 **Exit:** the product owner signs off the spec.
 
@@ -44,6 +50,8 @@ Key code facts the new work must respect:
 | S1.7 Five new themes needed by the reference story: `city_park`, `city_street`, `villain_lair`, `home_interior`, `alley_night` | `data/themes.js`, new layer kinds |
 | S1.8 Validator: E_VERSION, E_LOCATION_UNKNOWN, E_TRANSITION, E_SCENE_EMPTY, E_SIM_SCENE_LENGTH, E_CAST_ABSENT | Validator + fixtures in `tests/fixtures/bad/` |
 | S1.9 `record --scene N`; player shows scene markers on the scrubber | `tools/record.mjs`, `web/player.html` |
+| S1.10 Long-form limits for v1 and v2: max duration 900 s, beats 600 authored / 4,000 compiled, script 512 KB; W_STORY_SHORT and W_FIGHT_SHORT; the dry run of a 5-minute script takes under 5 s | `engine/config.js`, validator, benchmark |
+| S1.11 `meta.audience` (default `kids`) in the schema; the soft list with suggested alternatives (W_TEXT_SOFT) | `data/blocklist.js`, validator |
 
 **Tests:**
 - v1 golden frames and determinism hashes unchanged.
@@ -63,7 +71,7 @@ Key code facts the new work must respect:
 | S2.3 Face state: beat `face`, automatic faces on hits/attacks/KO, blinking, gaze toward target/partner/speaker | `engine/actor.js`, `engine/story/faces.js` |
 | S2.4 Frame store: face index + mouth-open bit (CHAR_STRIDE 34) | `engine/framestore.js` |
 | S2.5 Bubbles: `think`, `shout`, `whisper`; speaker names; reading-time `sayDur` default | `engine/renderer/overlays.js` |
-| S2.6 Mouth flap while talking; speech-sound babble in the mixer (`voice.pitch`) | `tools/lib/synth.mjs`, `audio_events.js` |
+| S2.6 Mouth flap while talking; speech sounds: seeded syllable babble per character (`voice.pitch`, `speed`, `timbre`), narration chime | `tools/lib/speech.mjs`, `audio_events.js` |
 | S2.7 New emotes: `cry`, `clench_fist`, `sigh`, `gasp`, `jump_joy`, `hold_head`, `nod`, `shake_head`, `look_around`, `talk` (gesture loop) | `data/moves/emotes.js` |
 | S2.8 Validator: E_FACE_UNKNOWN, W_DIALOGUE_FAST | Validator + fixtures |
 
@@ -103,6 +111,8 @@ Key code facts the new work must respect:
 | S4.6 Initial object set (about 30): bench, chair, table, tree_big, bush, lamppost, car, bike, door, sign, fountain, tennis_net, racket, tennis_ball, football, bubble_wand, bubble, balloon, phone, ice_cream, flower, book, crate, box, rope, cage, plus the 6 v1 props | `data/objects.js` |
 | S4.7 SFX: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass | `data/sfx.js`, `tools/lib/synth.mjs` |
 | S4.8 Validator: E_OBJECT_UNKNOWN, E_OBJECT_STATE, E_SIM_OBJECT_OFFSTAGE | Validator + fixtures |
+| S4.9 SVG import: SVG file → catalog path data (flattened to the palette and outline style); used for objects and theme layers | `tools/svg_import.mjs`, `engine/renderer/paths.js` |
+| S4.10 Draft tool: `tools/draft.mjs object|theme "<description>"` drafts catalog data with an LLM (any provider or copy-paste), checks it automatically, and renders a review sheet | `tools/draft.mjs` |
 
 **Demo:** a park scene with benches, a tree, a ball bouncing and bubbles floating.
 
@@ -115,10 +125,11 @@ Key code facts the new work must respect:
 | S5.1 Paired move format (lead + partner tracks), partner positioning and approach, partner busy/queue rules | `engine/moves.js`, `engine/story/pairs.js` |
 | S5.2 Hand targets with IK across body plans (hug a short buddy) | `engine/combat.js` aim code reused |
 | S5.3 Paired moves: hug, high_five, fist_bump, handshake, pat_head, carry/put_down, give/receive, piggyback, lift_up, drag, lean_on, comfort, walk_together | `data/moves/interactions.js` |
-| S5.4 Solo slice-of-life moves (about 25): sit, stand_up, lie_down, sleep, eat, drink, read, phone_talk, cheer, clap, kneel, wave_goodbye, sneak, tiptoe, peek, hide, push, pull, climb_up, jump_down, swing_forehand, swing_backhand, blow_wand, poke, stretch | `data/moves/life.js` (authored in the editor, reviewed in batches) |
-| S5.5 Defeat styles: faint, vanish (sparkle dissolve), ghost (halo float-up), captured (rope/cage FX), flee | `data/moves/reactions.js`, FX presets |
+| S5.0 Move drafting: `tools/draft.mjs move "<description>"` drafts move data (poses, keys, root motion, hits) from a description plus similar moves, runs the data checks, and renders a filmstrip. The person approves or nudges in the editor. Most new moves are made this way to minimize manual posing. | `tools/draft.mjs`, prompt in `prompts/draft_move.md` |
+| S5.4 Solo slice-of-life moves (about 25): sit, stand_up, lie_down, sleep, eat, drink, read, phone_talk, cheer, clap, kneel, wave_goodbye, sneak, tiptoe, peek, hide, push, pull, climb_up, jump_down, swing_forehand, swing_backhand, blow_wand, poke, stretch | `data/moves/life.js` (drafted with S5.0, reviewed in batches) |
+| S5.5 Defeat styles: faint, vanish (sparkle dissolve), ghost (halo float-up, `general` only), captured (rope/cage FX), flee; `return` (sparkles re-form a vanished character) for kids endings; cartoon impact text pops (POW, BONK) in kids mode | `data/moves/reactions.js`, FX presets |
 | S5.6 Activities as data: blow_bubbles, tennis_rally, play_catch, kick_ball, eat_together, dance_together, selfie, sleep, comfort | `data/activities.js`, `engine/story/activities.js` |
-| S5.7 Validator: E_PARTNER_MISSING, E_PARTNER_SELF, E_SIM_PARTNER_UNREACHABLE, E_ACTIVITY_OBJECT, E_DEFEAT_STYLE | Validator + fixtures |
+| S5.7 Validator: E_PARTNER_MISSING, E_PARTNER_SELF, E_SIM_PARTNER_UNREACHABLE, E_ACTIVITY_OBJECT, E_DEFEAT_STYLE, W_KIDS_NO_HOPE | Validator + fixtures |
 
 **Demo:** the reference story's scene 1 (bubbles, tennis, high five), hand-written as beats.
 
@@ -130,7 +141,7 @@ Key code facts the new work must respect:
 |---|---|
 | S6.1 Compiler framework: macro registry, generated ids, exposed anchors, `compile` RNG stream, expansion report in the timeline | `engine/story/compile.js` |
 | S6.2 Macros: @dialogue, @activity, @walk_together, @enter, @exit, @travel, @montage | `engine/story/macros/*.js` |
-| S6.3 Fight macros: @fight (exchange generator, intensity, comeback, finisher), @gauntlet (waiting ring, turn-taking), @brawl, boss phases | `engine/story/macros/fight.js` |
+| S6.3 Fight macros: @fight (exchange generator, intensity, comeback, finisher), @gauntlet (waiting ring, turn-taking), @brawl, boss phases, @fight_card (a 3+ minute fight video: intro, rounds, breathers, finale) | `engine/story/macros/fight.js`, `fight_card.js` |
 | S6.4 @defeat and @grief sequences (moves, faces, FX, weather, music cues) | `engine/story/macros/*.js` |
 | S6.5 Extras and crowds: walk_by, idle_chat, cheer, flee; layers back/mid/front | `engine/story/extras.js`, renderer layers |
 | S6.6 `tools/compile.mjs` prints the expanded script; `--eject <macroId>` writes the beats back | Tool |
@@ -147,17 +158,23 @@ Key code facts the new work must respect:
 
 **Review:** the fight macros (15 min).
 
-### S7 Audio for stories (3-5 days, depending on decision 4)
+### S7 Generated music and ambience (6-8 days)
 
 | Task | Output |
 |---|---|
-| S7.1 Music manifest with moods, tempo, loop points, license; mood selection by seed; crossfades at scene boundaries; ducking for narration and dialogue | `assets/music/music.json`, `tools/lib/mixer.mjs` |
-| S7.2 Ambience beds per location and weather | `tools/lib/synth.mjs` or files |
-| S7.3 Remaining SFX: footsteps, sad_sting, heartbeat, magic_sparkle, gasp, laugh_small, cry_small, card_whoosh | Synth |
-| S7.4 Optional: procedural mood music generator (if decision 4 says so) | `tools/lib/music_gen.mjs` |
-| S7.5 Optional: TTS pre-pass writing `voice/manifest.json` (macOS `say` adapter, plus a pluggable cloud adapter); engine reads durations from the manifest | `tools/voice.mjs`, `tools/lib/tts/*.mjs` |
+| S7.1 Mood data: scales, tempo ranges, chord and drum pattern pools, instrument patches, intensity levels; 11 moods | `data/music_moods.js` |
+| S7.2 Music generator: seeded per scene, 8/16-bar loops with intro and ending, follows scene length, intensity follows fight macros, stings for defeats and reunions | `tools/lib/music_gen.mjs` (split: `patterns.mjs`, `instruments.mjs`) |
+| S7.3 Mixer: crossfades at scene boundaries, ducking under dialogue/narration, ending lands on the final beat; file override per mood (`assets/music/<mood>.mp3`) | `tools/lib/mixer.mjs` |
+| S7.4 Ambience beds per location and weather (city traffic, park birds, rain, wind, crowd murmur, cave drip), procedural | `tools/lib/ambience.mjs` |
+| S7.5 Remaining SFX: footsteps, sad_sting, heartbeat, magic_sparkle, gasp, laugh_small, cry_small, card_whoosh, cartoon impacts (bonk, boing, pow) | `tools/lib/synth.mjs` |
+| S7.6 Loudness: kids-friendly levels, a limiter, long-video loudness check (EBU R128 integrated about -16 LUFS for YouTube) | `tools/lib/mixer.mjs`, `tools/loudness.mjs` |
 
-**Review:** a 60 s mix with three moods (10 min).
+**Tests:**
+- Same seed gives byte-identical audio.
+- Every mood renders 30 s without clipping.
+- Crossfade timing matches scene boundaries.
+
+**Review:** a 2-minute mix that moves through five moods (15 min). This is the subjective quality gate for the music; iterate on patterns and patches until approved.
 
 ### S8 LLM story pipeline (4-5 days)
 
@@ -166,21 +183,24 @@ Key code facts the new work must respect:
 | S8.1 Prompt pack for stories:<br>- outline prompt;<br>- scene prompt with a story rules section;<br>- macro reference, face/object/activity/body tables generated from the catalog;<br>- content policy;<br>- two example stories. | `prompts/story_*.md`, `prompts/examples/stories/` |
 | S8.2 Two-stage generation: outline → per-scene scripts → assemble → validate → per-scene repair. Uses the existing provider-neutral LLM layer. | `tools/lib/story_pipeline.mjs`, `tools/generate.mjs --story` |
 | S8.3 Copy-paste mode: `manual.mjs story-outline`, `story-scene N`, `check-scene`, `assemble` | `tools/manual.mjs` |
-| S8.4 Story scoring: arc, scene variety, emotional range, narration coverage, fight quality | `tools/lib/scoring.mjs` |
+| S8.4 Story scoring: arc, scene variety, emotional range, narration coverage, fight quality, length targets (stories ≥ 300 s, fights ≥ 180 s, with an "extend" round when short), kids rules | `tools/lib/scoring.mjs` |
+| S8.7 Update the M8 fight pipeline: default length 180 s via @fight_card; generate/manual defaults `--length 180` for fights and `300` for stories; prompts carry the kids rules | `tools/generate.mjs`, `tools/manual.mjs`, `prompts/` |
 | S8.5 Story critique: contact sheet per scene plus a story-level critique | Pipeline |
 | S8.6 Prompt/validator sync test extended to all new codes | `tests/unit/generate.test.js` |
 
-**Exit:** 5 generated stories (1-3 min each) reviewed. At least 3 are judged watchable without hand edits.
+**Exit:**
+- 5 generated stories (≥ 5 min each) and 3 fight videos (≥ 3 min each) reviewed.
+- At least 3 stories and 2 fight videos are judged watchable without hand edits.
 
-**Review:** 5 stories (45 min).
+**Review:** 5 stories and 3 fights (about 2 hours).
 
 ### S9 Hardening and acceptance (3-4 days)
 
 | Task | Output |
 |---|---|
-| S9.1 The reference story (STORY_SPEC Appendix A) renders end to end | `scripts/samples/story_bubbles_and_revenge.json`, `out/demos/s9_reference.mp4` |
+| S9.1 The reference story (STORY_SPEC Appendix A, full ≥ 5-minute version, kids audience) renders end to end; plus a ≥ 3-minute fight card sample | `scripts/samples/story_bubbles_and_the_brave_heart.json`, `scripts/samples/fight_card_rooftop.json`, `out/demos/s9_*.mp4` |
 | S9.2 Fuzz: 200 generated v2 scripts through the validator and simulator; no crash, no NaN, every failure has a code | `tests/integration/fuzz_v2.test.js` |
-| S9.3 Performance: a 3-minute story renders at ≥ 1x real time at 1080p60; profile extras, faces and objects | `docs/benchmarks.md` |
+| S9.3 Performance: a 5-minute story renders at ≥ 1x real time at 1080p60 (about 5 minutes); profile extras, faces, objects and the music generator | `docs/benchmarks.md` |
 | S9.4 Docs: USER_GUIDE story chapters (cast, scenes, macros, objects, faces, narration); spec v2.0 final; ARCHITECTURE updated | Docs |
 | S9.5 Portrait acceptance for stories (cards, narration, faces in 9:16) | Golden frames |
 
@@ -190,20 +210,20 @@ Key code facts the new work must respect:
 
 | Milestone | Days | Cumulative | Can run in parallel with |
 |---|---|---|---|
-| S0 | 0.5-1 | 1 | - |
-| S1 | 4-5 | 6 | - |
+| S0 | 0.5 | 0.5 | - |
+| S1 | 5-6 | 6 | - |
 | S2 | 3-4 | 10 | S3 (different files, after S1) |
 | S3 | 4-5 | 14 | S2 |
-| S4 | 4-5 | 19 | S7.1-S7.3 |
-| S5 | 6-8 | 27 | - |
-| S6 | 5-6 | 33 | - |
-| S7 | 3-5 | 36 | S4 |
-| S8 | 4-5 | 41 | - |
-| S9 | 3-4 | 45 | - |
+| S4 | 5-6 | 20 | S7 |
+| S5 | 6-8 | 28 | - |
+| S6 | 6-7 | 35 | - |
+| S7 | 6-8 | 43 (or earlier if run in parallel with S4-S6) | S4, S5, S6 (separate files under `tools/`) |
+| S8 | 5-6 | 41-49 | - |
+| S9 | 3-4 | 45-53 | - |
 
-That is about 8-10 weeks of calendar time including review turnaround.
+That is about 9-11 weeks of calendar time including review turnaround, or about 8 weeks with S7 in parallel.
 
-**Shortest path to the reference story:** S1 → S2 → S3 (buddy only) → S4 (needed objects only) → S5 (scene 1 moves, vanish, captured) → S6 (@gauntlet, @fight, @defeat). Write the rest by hand as beats. This takes about 5 weeks; finish the remaining items afterwards.
+**Shortest path to the reference story:** S1 → S2 → S3 (buddy only) → S4 (needed objects only) → S5 (scene 1 moves, vanish, return, captured) → S6 (@gauntlet, @fight, @defeat) → S7 (music), with the remaining scenes written by hand as beats. This takes about 6 weeks; finish the remaining items afterwards.
 
 ## Module impact
 
@@ -219,7 +239,7 @@ That is about 8-10 weeks of calendar time including review turnaround.
 | `engine/validator/*` | v2 schema, new semantic checks, compile-then-dry-run |
 | `engine/story/*` (new) | normalize, scenes, compile, macros, activities, pairs, extras, faces |
 | `data/*` | bodies, faces, objects, activities, new moves, new themes, music manifest |
-| `tools/*` | `compile.mjs`, `voice.mjs`, generate `--story`, manual story commands, `record --scene` |
+| `tools/*` | `compile.mjs`, `draft.mjs`, `svg_import.mjs`, `loudness.mjs`, music/speech/ambience generators in `tools/lib/`, generate `--story`, manual story commands, `record --scene` |
 | `prompts/*` | Story prompts and examples |
 
 The hard rules from CLAUDE.md still apply to all new engine code:
@@ -254,6 +274,10 @@ The hard rules from CLAUDE.md still apply to all new engine code:
 | Content policy (loss/revenge themes) | Medium | Stylized defeat styles, soft-list warnings, audience setting |
 | Trademarked character look-alikes | Medium | Original body plans; validator does not ship look-alike presets |
 | Render time for long stories | Low | Simplified extras, per-scene rendering, benchmarks in S9 |
+| Generated music sounds repetitive or amateur over 5+ minutes | High | Pattern pools and variation per scene, intensity curves, a dedicated review gate in S7, file override per mood |
+| 5-minute stories feel padded | Medium | 10-16 scenes with distinct purposes, activity and travel macros, story score penalizes static scenes (W_SCENE_STATIC) |
+| Kids rules too strict for fights | Medium | Cartoon impact language instead of removing fights; the `general` audience remains available |
+| LLM-drafted moves look wrong | Medium | Automatic data checks + filmstrip review; editor fallback |
 
 ## Kickoff prompt for the new chat
 
@@ -267,9 +291,11 @@ stickman-engine-spec.md (v1, fights), docs/USER_GUIDE.md.
 The fight engine (M0-M8) is finished: 360 tests pass, schema v1 is frozen and must keep
 working unchanged (golden frames and determinism hashes must not change).
 
-Your job is the story expansion in docs/STORY_PLAN.md. Start with S0: list the open
-decisions from STORY_SPEC section 21 and ask me about them, then freeze the v2 schema
-draft and ADRs. After my sign-off, do the milestones in order (S1, S2, ...). Follow the
+Your job is the story expansion in docs/STORY_PLAN.md. The product decisions are made
+(STORY_SPEC section 21): speech sounds only, procedural music, stories >= 5 min and
+fights >= 3 min, kids-first audience, minimal manual art work. Start with S0: freeze the
+v2 schema draft and ADRs and show them to me. After my sign-off, do the milestones in
+order (S1, S2, ...). Follow the
 milestone workflow in CLAUDE.md: green tests, a demo in out/demos/, and stop at each
 review checkpoint for my approval. Keep docs and code in sync in the same change.
 ```

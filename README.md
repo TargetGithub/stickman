@@ -9,7 +9,7 @@ A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; 
 | Document | What it covers |
 |---|---|
 | [docs/USER_GUIDE.md](docs/USER_GUIDE.md) | **Start here:** setup, writing scripts, tools, generating with Claude, troubleshooting |
-| [docs/STORY_SPEC.md](docs/STORY_SPEC.md) | Next: story engine v2 (scenes, cast, faces, objects, interactions, macros, narration) — draft |
+| [docs/STORY_SPEC.md](docs/STORY_SPEC.md) | Next: story engine v2 (scenes, cast, faces, objects, interactions, macros, narration, generated music; kids-first; stories ≥ 5 min, fights ≥ 3 min) — decisions signed off |
 | [docs/STORY_PLAN.md](docs/STORY_PLAN.md) | Execution plan S0-S9 for the story engine, with a kickoff prompt for a new session |
 | [stickman-engine-spec.md](stickman-engine-spec.md) | Behavior and script schema (source of truth), v1.1 |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Modules, interfaces, data shapes, decision records |

@@ -1,13 +1,13 @@
 # Story Engine Specification (v2)
 
-Status: **draft for review**. Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Status: **decisions signed off 2026-10-16** (section 21); schema names to be frozen in S0. Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
 2. Reference story and gap analysis
 3. Design principles
 4. Script format v2
-5. Scenes, locations and transitions
+5. Scenes, locations and transitions (5.5: art pipeline)
 6. Cast: body plans, appearance and faces
 7. Emotions, dialogue and narration
 8. Objects and set pieces
@@ -34,7 +34,8 @@ Contents:
 **Goal:** turn the engine from a fight-clip generator into a short-story generator. Scripts describe a cast, places, scenes, narration, dialogue, everyday activities, emotions and fights. One script still produces one deterministic MP4.
 
 Target output:
-- Stories of 1-5 minutes, landscape or portrait.
+- **Stories: at least 5 minutes** (typically 5-8). **Fight-only videos: at least 3 minutes** (typically 3-5). Landscape first; portrait supported.
+- **Audience: kids first, general audiences too.** Everything is kid-friendly by default (section 13).
 - 2-12 named characters, plus background extras.
 - Several locations.
 - Narration and dialogue.
@@ -49,15 +50,16 @@ Target output:
 - Activity macros.
 - Story-level fight macros.
 - Narration cards.
-- Mood music and ambience.
-- Optional voice-over.
+- Procedurally generated mood music and ambience.
+- Character speech sounds (no recorded or synthesized words).
 - A story compiler.
 - Validator v2.
 - An LLM story pipeline.
 
 **Out of scope (v2):**
 - Free-form character rigs with different skeleton topologies (animals, vehicles as characters). They are planned for a later version; section 6 keeps the door open.
-- Lip-sync to voice.
+- Voice-over and text-to-speech (decision 3: speech sounds only).
+- Lip-sync.
 - Physics-driven ragdolls.
 - 3D.
 
@@ -81,12 +83,12 @@ The reference story, used as the acceptance test (Appendix A has the full script
 | Blowing bubbles, playing tennis | Props are held weapons; FX are effects only | **Objects** with simple behaviors (ball arcs, floating bubbles); **activities** that sync moves with objects |
 | Hugs, high fives, walking together | Moves are single-character (except attack/defense) | **Paired interactions** with partner positioning |
 | City, park, streets, the villain's lair | One theme per script (`set_theme` swaps the background) | **Scenes and locations**, each with its own stage, set pieces and lighting |
-| "One sudden day..." | Captions | **Narration cards**, title and chapter cards, time-skip transitions, optional voice-over |
+| "One sudden day..." | Captions | **Narration cards**, title and chapter cards, time-skip transitions |
 | Pip is "killed" | KO poses; validator blocklist | A **stylized defeat** vocabulary (faint, fade to sparkles, ghost) and a content policy |
 | A journey to find the villain | Approach runs up to 3 s | **Travel** macro: long walks, montage cuts, scrolling scenery |
 | Four guards, then the boss | 1v1 choreography beat by beat | **Fight macros**: gauntlet, group fight, boss fight compiled into beats |
 | A 2-4 minute script from an LLM | ~60 beats, one prompt | A **story compiler** (macros → beats) and a **two-stage LLM pipeline** (outline → per-scene scripts) |
-| Mood | Synth SFX; one optional music file | **Mood music** per scene with crossfades, ambience beds, new SFX |
+| Mood | Synth SFX; one optional music file | **Generated mood music** per scene with crossfades, ambience beds, new SFX |
 
 ## 3. Design principles
 
@@ -136,7 +138,7 @@ The reference story, used as the acceptance test (Appendix A has the full script
 | `body` | Body plan from the catalog (section 6): `stickman` (default), `buddy`, `kid`, `bulky`, `slim`, `elder` |
 | `color`, `scale`, `hp`, `prop`, `style` | As v1 characters |
 | `appearance` | Face and decoration options (section 6.3) |
-| `voice` | Optional speech-sound / voice-over settings (section 15) |
+| `voice` | Speech-sound settings: pitch, speed, timbre (section 15) |
 
 ### 4.2 Scene entry
 
@@ -181,7 +183,7 @@ The `who` field takes:
 - `"world"` (effects, camera, objects and narration commands);
 - a **macro** name prefixed with `@`, for example `"who": "@fight"`. The compiler expands it into beats (section 11).
 
-## 5. Scenes, locations and transitions
+## 5. Scenes, locations and transitions (5.5: art pipeline)
 
 ### 5.1 Locations (catalog + script)
 
@@ -228,6 +230,20 @@ Transitions are set per scene (`transitionIn`, `transitionOut`) or as world comm
 - The story clock runs continuously across scenes. Scene k starts when scene k-1 ends (plus the transition overlap).
 - The engine simulates scenes one after another in one world. At a scene boundary it resets stage, positions, camera and set pieces, and keeps character state.
 - The frame store records a scene index per frame, so the renderer picks the location.
+
+## 5.5 Art pipeline (minimal manual work)
+
+Decision 6: code-drawn or imported SVG, whichever needs less manual work.
+
+- **Default: procedural.** Backgrounds, objects, bodies and faces are drawn in code from catalog data (shapes, colors, seeded variation). Adding a theme or object means adding data, not drawing.
+- **Optional SVG import** for things that are hard to draw in code (a detailed castle, a car):
+  - `tools/svg_import.mjs` converts an SVG file into catalog data (paths, fills, anchor points) at build time, so the engine stays I/O-free and deterministic.
+  - Imported art is flattened to the style palette and outline width, so it matches the stick look.
+  - License/source is recorded in `assets/art/SOURCES.md`.
+- **LLM-assisted authoring, reviewed by eye.** Instead of hand-posing every new move, object or theme:
+  - `tools/draft.mjs move|object|theme "<description>"` asks an LLM (any provider, or copy-paste) to draft catalog data from the description, the data format and similar existing entries.
+  - The draft is checked automatically: move data checks (anticipation, ground contact, hit windows), render sanity (no NaN, on stage), and a filmstrip/contact sheet.
+  - A person only approves or rejects the filmstrip, and touches the editor when needed.
 
 ## 6. Cast: body plans, appearance and faces
 
@@ -305,7 +321,7 @@ Faces scale with the camera so they read in close-ups.
 | `think` | Cloud-shaped thought bubble |
 | `shout` | Jagged bubble, larger font |
 | `whisper` | Small dotted bubble |
-| `sayDur` | As v1. Default becomes reading time: 0.9 s + 0.06 s per character. |
+| `sayDur` | As v1. Default becomes reading time: 1.2 s + 0.06 s per character, minimum 1.5 s (kids read slower). |
 
 - Dialogue exchanges use the `@dialogue` macro (section 11): a list of `[speaker, line]` pairs, timed automatically, with faces and `talk` gestures.
 - The text limit per bubble stays at 40 characters. The macro splits longer lines into consecutive bubbles.
@@ -316,7 +332,7 @@ New world commands:
 
 | do | params | Look |
 |---|---|---|
-| `narrate` | `text` (max 160), `pos` (top/bottom), `dur`, `style` (box, plain) | Narration box with an optional typewriter reveal; voice-over if enabled (section 15) |
+| `narrate` | `text` (max 160), `pos` (top/bottom), `dur`, `style` (box, plain) | Narration box with an optional typewriter reveal and a soft chime (section 15) |
 | `title_card` | `title`, `subtitle`, `dur`, `bg` | Full-screen title, for example at the start |
 | `chapter_card` | `text`, `dur` | "Chapter 2: The Path" |
 | `time_card` | `text`, `dur` | "One sudden day..." between scenes |
@@ -426,6 +442,13 @@ Compiler rules:
   - Defeated opponents stay down; they are faded out after the fight, or kept.
 - **Boss fights** use the same machinery, with phases (`phases: [{ exchanges, style }]`) and optional `charge_up` and energy moves between phases.
 - Positions and the camera are handled by the compiler. Scripts only state who fights whom, how long, and who wins.
+- **Fight-only videos (at least 3 minutes)** are a story with fight-focused scenes, which keeps them watchable at that length:
+  - an intro (rivalry, taunts, a title card);
+  - 3-5 **rounds** in varied locations or arena states, each a `@fight` or `@brawl` with rising intensity;
+  - breathers between rounds (recovery, banter, `charge_up`, crowd reactions);
+  - a final round with a boss phase and an emphasized finisher;
+  - a victory and an end card.
+  The `@fight_card` macro builds this structure from a list of matchups.
 
 ## 13. Defeat, sadness and content policy
 
@@ -442,7 +465,19 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 
 - **On-screen text:** narration and dialogue avoid explicit words such as "killed" and "dead body". Use "defeated", "taken from him", "gone", "lost". The blocklist keeps graphic terms and gains a **soft list**: words that produce warnings (`W_TEXT_SOFT`) with a suggested alternative, rather than errors.
 - The villain's final defeat should prefer `ko`, `captured`, `vanish` or `flee` over anything that reads as an execution.
-- An age-audience setting, `meta.audience: "kids" | "general"`, tightens or loosens the soft list and defeat styles. The default is `general`.
+- **Audience setting:** `meta.audience: "kids" | "general"`. **The default is `kids`** (decision 7).
+
+| Rule | `kids` (default) | `general` |
+|---|---|---|
+| Defeat styles allowed | ko, faint, vanish, captured, flee | all, including ghost |
+| A loved character's loss | Must be temporary or hopeful: the story should bring them back or show they're safe by the end (W_KIDS_NO_HOPE if not) | May be permanent |
+| Soft-list words (warnings with alternatives) | kill, killed, die, dead, death, murder, hate, stupid, idiot, shut up, weapon names in dialogue | kill, killed, murder |
+| Impacts | Cartoon only: stars, "POW!", "BONK!" text pops, squash; no lingering on a hurt face | As v1 |
+| Weapons | Swords, bats and staffs allowed in fights; blasters fire cartoon energy; no aiming at a defenseless character | As v1 |
+| Revenge arcs | Reframed as rescue or justice in narration ("Kai set out to save Pip"); the villain is captured, flees or reforms | Revenge allowed; the villain is defeated |
+| Narration tone | Short sentences, simple words, a clear lesson at the end (friendship, courage) | Free |
+
+- **YouTube "made for kids":** the review queue metadata suggests `madeForKids: true` for `kids` scripts. Publishing settings stay with the human reviewer.
 
 ## 14. Depth, extras and crowds
 
@@ -455,13 +490,25 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 
 ## 15. Audio: moods, ambience, voice
 
-**Music.** `assets/music/` gets a manifest (`music.json`). Each track has:
-- a mood (`happy`, `playful`, `sad`, `tense`, `heroic`, `battle`, `boss`, `mysterious`, `triumphant`);
-- a tempo;
-- loop points;
-- a license.
+**Music is generated procedurally** (decision 4), in `/tools` like the SFX synth, so there are no licenses to manage and no manual work.
 
-Scenes ask for a mood; the mixer picks a track deterministically by seed and crossfades at scene boundaries. With no tracks installed, scenes play without music and the run reports it.
+- **Moods:** `happy`, `playful`, `calm`, `sad`, `tense`, `mysterious`, `heroic`, `battle`, `boss`, `triumphant`, `lullaby`.
+- **A mood is data** (`data/music_moods.js`):
+  - key and scale (major, minor, dorian, pentatonic);
+  - tempo range;
+  - chord progression pool;
+  - drum pattern pool;
+  - instrument patches (built from the existing synth: square/triangle leads, plucked bass, soft pads, noise drums);
+  - intensity levels.
+- **Generator** (`tools/lib/music_gen.mjs`):
+  - seeded per scene, so the same script gives the same music;
+  - builds 8- or 16-bar loops with an intro and an ending;
+  - follows scene length;
+  - raises intensity on fight macros;
+  - drops to a sting at defeats.
+- **Mixing:** music crossfades at scene boundaries, ducks under dialogue and narration, and lands the ending on the last scene's final beat.
+- **Kids-friendly sound:** bright timbres, no harsh distortion, gentle levels (music bus about -18 LUFS short-term under dialogue).
+- **Override:** a file placed in `assets/music/` with the mood name (`happy.mp3`) replaces the generated track.
 
 **Ambience beds** per location or weather (`city_traffic`, `park_birds`, `rain`, `wind`, `crowd_murmur`, `cave_drip`). They are procedural, like the SFX, or come from files.
 
@@ -471,10 +518,10 @@ Scenes ask for a mood; the mixer picks a track deterministically by seed and cro
 - `sad_sting`, `heartbeat`, `magic_sparkle`, `gasp`, `laugh_small`, `cry_small`;
 - `card_whoosh`.
 
-**Voice:**
-- **Default:** "speech sounds", procedural babble per character tuned by `voice.pitch`, played while the mouth flaps. It is language-free and deterministic.
-- **Optional voice-over:** narration and dialogue rendered by a TTS provider in `/tools` (macOS `say` for drafts, or any pluggable cloud TTS). It is never used inside `/engine`.
-- **Determinism with TTS:** a pre-pass writes `voice/manifest.json` with each line's clip and duration. The script is then simulated with those durations as `sayDur` and narration `dur`, so audio and visuals stay in sync. With no manifest, reading-time durations are used.
+**Voice: speech sounds only** (decision 3).
+- Each speaking character makes procedural babble ("Animal Crossing"-style syllables) while its mouth flaps. It is language-free, so videos work for any audience, and deterministic.
+- `voice` per cast member: `pitch` (0.5-2), `speed` (0.7-1.4), `timbre` (`soft`, `squeaky`, `deep`, `robot`).
+- Narration has no voice: a soft "page" chime when a narration box appears, with the text on screen long enough to read (kids reading speed: 0.06 s per character + 1.2 s, minimum 2.5 s).
 
 ## 16. Camera for stories
 
@@ -522,7 +569,7 @@ The timeline report groups events by scene and shows macro expansions indented u
 
 **Two-stage generation** keeps prompts small and lets each stage be repaired on its own:
 
-1. **Story outline** (one call): logline, cast (with body plans and looks), locations, and a scene list (purpose, mood, approximate length, key events, narration lines).
+1. **Story outline** (one call): logline, cast (with body plans and looks), locations, and a scene list (purpose, mood, approximate length, key events, narration lines). A 5-minute story has 10-16 scenes of 15-40 s each. A 3-minute fight video has 6-10 scenes (intro, rounds, breathers, finale).
 2. **Scene scripts** (one call per scene): each gets the outline, the cast and location definitions, the previous scene's end state, the catalog subset relevant to it, and the scene-writing rules. Macros are preferred, so scenes stay short.
 3. **Assembly and validation:** scenes are assembled into one v2 script and validated. Repairs target the failing scene only, with the error codes and the scene's timeline.
 4. **Critique** (optional): a contact sheet per scene plus a story-level critique (does the arc land?).
@@ -530,6 +577,8 @@ The timeline report groups events by scene and shows macro expansions indented u
 Other changes:
 - **Copy-paste mode** (`tools/manual.mjs story ...`) follows the same flow: an outline prompt, then one prompt per scene, `check` per scene, and `assemble`.
 - **Prompt pack additions:** a story rules section, a macro reference, face/activity/object tables generated from the catalog, two example stories (one slice-of-life, one with the full arc), and the content policy (section 13).
+- **Length targets:** the outline must add up to the minimum length (300 s stories, 180 s fights) with a margin. After assembly, the dry-run length is checked; short stories get one "extend" round (add a scene or lengthen activities) before being dropped.
+- **Kids rules in every prompt** when `meta.audience` is `kids`: the table in section 13, plus the soft-list words.
 - **Scoring for stories:**
   - an arc (setup → incident → journey → climax → resolution);
   - variety of scene types (not all fights);
@@ -541,14 +590,16 @@ Other changes:
 
 | Limit | v1 | v2 |
 |---|---|---|
-| Duration | 180 s | 600 s (default target 60-240 s) |
+| Duration (max) | 180 s | 900 s for every script (v1 fight scripts too: raising the maximum keeps v1 scripts valid) |
+| Duration (minimum for generated videos) | none | stories 300 s, fight-only videos 180 s (decision 5). The validator warns (`W_STORY_SHORT`, `W_FIGHT_SHORT`); the generation pipeline treats it as a failed score |
 | Characters on stage | 6 | 8 named + 12 extras per scene; 16 in the cast |
-| Beats | 200 | 1,500 after compilation; 400 authored |
-| Script size | 64 KB | 256 KB |
-| Scenes | 1 | 30 |
+| Beats | 200 | 4,000 after compilation; 600 authored |
+| Script size | 64 KB | 512 KB |
+| Scenes | 1 | 40 |
 
-- **Performance target:** rendering at least real time at 1080p60 on an M-series Mac for typical scenes. Extras use simplified drawing.
-- **Frame store:** per-frame size grows with characters on stage, not with the cast size, because absent characters aren't stored. About 1 KB/frame at 8 characters, or 36 MB for 10 minutes: fine.
+- **Performance target:** rendering at least real time at 1080p60 on an M-series Mac, so a 5-minute story renders in about 5 minutes. Extras use simplified drawing.
+- **Frame store:** per-frame size grows with characters on stage, not with the cast size, because absent characters aren't stored. About 1 KB/frame at 8 characters, or 54 MB for 15 minutes: fine.
+- **Validation of long scripts** (dry run of a 5-minute story) should take under 5 s.
 - **Long videos:** `record.mjs --scene N` renders one scene for quick review.
 
 ## 20. Backward compatibility
@@ -559,19 +610,17 @@ Other changes:
   - `set_theme` still works.
 - v1 tools (`validate`, `record`, `generate`, `manual`) accept both versions.
 
-## 21. Open decisions (need the product owner)
+## 21. Decisions (signed off 2026-10-16)
 
-1. **Defeat depiction for "kills":**
-   - **Proposed:** sidekick → `vanish` or `ghost`;
-   - **Proposed:** villain → `ko` or `captured`;
-   - **Proposed:** "kill" and "dead" become soft-list words with suggested alternatives.
-   - Acceptable?
-2. **The sidekick design:** an original `buddy` body plan is required. A yellow capsule with goggles and overalls is a recognizable trademarked character (Minions, Universal/Illumination), which risks YouTube claims and demonetization. Proposed default: a teal round buddy with one antenna and big eyes. Any preferences?
-3. **Voice-over:** speech sounds only, or TTS narration in v2? If TTS, which provider: macOS `say` for drafts plus one cloud TTS?
-4. **Music:** will you supply or license mood tracks, or should v2 include a procedural music generator (simple chiptune/ambient loops per mood)? This is extra scope, estimated at about 4-6 days.
-5. **Target length and format:** mostly 1-3 minute landscape stories, or Shorts (≤ 60 s portrait) too? This affects camera and pacing defaults.
-6. **Art direction:** stay purely procedural (shapes drawn in code) or allow imported SVG backgrounds and objects? Procedural keeps everything deterministic and license-free; SVG import is about +3 days.
-7. **Audience setting:** default `general` or `kids`?
+| # | Question | Decision |
+|---|---|---|
+| 1 | How to show "killing" | Stylized and non-graphic. A loved character vanishes into sparkles (or ghost, `general` only); villains end knocked out, captured or fleeing. "Kill", "dead" and similar words are soft-listed with suggested alternatives (section 13). |
+| 2 | Sidekick design | An original `buddy` body plan (default: teal, round, one antenna, big eyes). No look-alikes of trademarked characters. |
+| 3 | Voice | Speech sounds only: procedural babble per character. No TTS and no voice-over (section 15). |
+| 4 | Music | Generated procedurally by mood, deterministic per seed; a file override is possible (section 15). |
+| 5 | Length | Stories at least 5 minutes; fight-only videos at least 3 minutes (sections 12, 18, 19). |
+| 6 | Art | Procedural by default; optional SVG import; LLM-drafted catalog data reviewed by eye, to minimize manual work (section 5.5). |
+| 7 | Audience | Kids first, general too: `meta.audience` defaults to `kids` with kid-friendly rules (section 13). |
 
 ---
 
@@ -579,10 +628,17 @@ Other changes:
 
 This is the acceptance script for the story milestones. Macro params are illustrative; S0 freezes the exact names.
 
+- It is abridged: the full acceptance version stretches each scene and adds a city intro, a morning routine, a travel montage and a homecoming, to reach the 5-minute minimum (about 12 scenes).
+- It uses the **kids** default:
+  - Pip vanishes into sparkles ("Vex took Pip away");
+  - Kai sets out to save him;
+  - Vex is captured;
+  - Pip's sparkles return at the end for a reunion hug.
+
 ```json
 {
   "version": 2,
-  "meta": { "title": "Bubbles and Revenge", "format": "landscape", "seed": 2024, "audience": "general" },
+  "meta": { "title": "Bubbles and the Brave Heart", "format": "landscape", "seed": 2024, "audience": "kids" },
   "cast": [
     { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" } },
     { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "eyes": "big", "accessory": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5 } },
@@ -605,7 +661,7 @@ This is the acceptance script for the story milestones. Macro params are illustr
         { "id": "ten", "at": { "after": "bub", "delay": 0.4 }, "who": "@activity", "params": { "name": "tennis_rally", "with": ["kai", "pip"], "rallies": 4, "ending": "miss" } },
         { "id": "hf", "at": { "after": "ten" }, "who": "kai", "do": "high_five", "partner": "pip", "approach": "walk", "face": "laugh" }
       ] },
-    { "id": "s2", "location": "park", "time": "dusk", "transitionIn": { "type": "card", "params": { "text": "One sudden day..." } },
+    { "id": "s2", "location": "park", "time": "dusk", "transitionIn": { "type": "card", "params": { "text": "One day, everything changed..." } },
       "music": { "mood": "tense" },
       "cast": [ { "id": "kai", "x": 1200, "facing": 1 }, { "id": "pip", "x": 1450, "facing": -1 }, { "id": "vex", "x": 2600, "facing": -1, "layer": "back" } ],
       "beats": [
@@ -615,10 +671,10 @@ This is the acceptance script for the story milestones. Macro params are illustr
         { "id": "gone", "at": { "after": "blast", "delay": 0.4 }, "who": "@defeat", "params": { "who": "pip", "by": "vex", "style": "vanish" } },
         { "at": { "with": "gone" }, "who": "@exit", "params": { "who": "vex", "side": "right", "mode": "walk" } },
         { "id": "grief", "at": { "after": "gone" }, "who": "@grief", "params": { "who": "kai", "over": "pip" } },
-        { "at": { "after": "grief" }, "who": "kai", "do": "clench_fist", "face": "furious", "say": "I will find you." }
+        { "at": { "after": "grief" }, "who": "kai", "do": "clench_fist", "face": "determined", "say": "I will bring you back!" }
       ] },
     { "id": "s3", "location": "street", "time": "night", "weather": "rain", "music": { "mood": "heroic" },
-      "transitionIn": { "type": "card", "params": { "text": "The path to Vex" } },
+      "transitionIn": { "type": "card", "params": { "text": "The path to save Pip" } },
       "cast": [ { "id": "kai", "x": 300, "facing": 1, "face": "determined" }, { "id": "g1", "x": 1600, "facing": -1 }, { "id": "g2", "x": 2600, "facing": -1 },
                 { "id": "g3", "x": 3600, "facing": -1 }, { "id": "g4", "x": 4800, "facing": -1 } ],
       "beats": [
@@ -627,11 +683,13 @@ This is the acceptance script for the story milestones. Macro params are illustr
     { "id": "s4", "location": "lair", "time": "night", "music": { "mood": "boss" },
       "cast": [ { "id": "kai", "x": 1100, "facing": 1, "face": "furious" }, { "id": "vex", "x": 2000, "facing": -1, "face": "smug" } ],
       "beats": [
-        { "id": "talk", "at": 0.4, "who": "@dialogue", "params": { "lines": [["vex", "You came all this way?"], ["kai", "For Pip."]] } },
+        { "id": "talk", "at": 0.4, "who": "@dialogue", "params": { "lines": [["vex", "You came all this way?"], ["kai", "Give Pip back!"]] } },
         { "id": "boss", "at": { "after": "talk" }, "who": "@fight", "params": { "sides": ["kai", "vex"], "winner": "kai", "exchanges": 10, "intensity": "high", "style": "comeback", "finisher": "flying_kick" } },
         { "id": "end", "at": { "after": "boss" }, "who": "@defeat", "params": { "who": "vex", "by": "kai", "style": "captured" } },
-        { "at": { "after": "end", "delay": 0.5 }, "who": "world", "do": "narrate", "params": { "text": "Pip would be proud." } },
-        { "at": { "after": "end", "delay": 3 }, "who": "world", "do": "end_card", "params": { "text": "The End" } }
+        { "id": "back", "at": { "after": "end", "delay": 0.5 }, "who": "pip", "do": "spawn", "fx": ["sparkle"], "face": "happy", "say": "Kai!" },
+        { "id": "hug", "at": { "after": "back" }, "who": "kai", "do": "hug", "partner": "pip", "approach": "walk", "face": "cry" },
+        { "at": { "after": "hug" }, "who": "world", "do": "narrate", "params": { "text": "Friends never give up on each other." } },
+        { "at": { "after": "hug", "delay": 3 }, "who": "world", "do": "end_card", "params": { "text": "The End" } }
       ] }
   ]
 }
@@ -667,3 +725,6 @@ This is the acceptance script for the story milestones. Macro params are illustr
 | `W_SCENE_STATIC` | dry run | A scene with over 4 s of no movement and no narration |
 | `W_NO_ARC` | dry run | The story has no climax or resolution scene (story pacing heuristic) |
 | `W_CAST_UNUSED` | semantic | A cast member never appears |
+| `W_STORY_SHORT` | dry run | A story (2+ scenes) is shorter than 300 s |
+| `W_FIGHT_SHORT` | dry run | A fight-only video is shorter than 180 s |
+| `W_KIDS_NO_HOPE` | dry run | `kids` audience: a cast member is defeated with `vanish`/`captured` and never returns or is shown safe |
