@@ -391,6 +391,13 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 | `tools/sfxgen.mjs`, `tools/lib/synth.mjs` | deterministic procedural SFX for every required key |
 | `tools/lib/mixer.mjs` | pure mixing: pan, events, music cues and ducking, lookahead limiter |
 | `tools/lib/sfx_library.mjs` | override/variant lookup in `assets/sfx`, generated fallback, music lookup |
+| `tools/lib/prompt_tables.mjs` | catalog → prompt tables (moves, world commands, fx, props, themes); used by `tools/catalog.mjs` |
+| `tools/lib/prompt_pack.mjs` | assembles `prompts/*.md` + tables + examples into byte-stable system prompts; builds user turns |
+| `tools/lib/llm_schema.mjs` | script schema → structured-output subset; ideation/critique/metadata schemas |
+| `tools/lib/llm.mjs` | Messages API wrapper: cached system block, `output_config` (effort, format), refusal fallbacks, plain-JSON downgrade, usage and cost |
+| `tools/lib/pipeline.mjs` | one premise: write → validate → repair ladder → score/improve → critique/revise → metadata |
+| `tools/lib/scoring.mjs`, `history.mjs` | quality score and feedback; history avoid list and review queue |
+| `tools/lib/mock_client.mjs` | offline client with the SDK's `messages.stream().finalMessage()` shape (tests, `--mock`) |
 | `tools/lib/wav.mjs` | WAV writing, ffmpeg-based decoding of any audio file |
 | `tools/lib/encode.mjs` | raw RGBA → ffmpeg → H.264 with backpressure |
 | `tools/lib/review_images.mjs` | thumbnail choice and contact sheets via the public API |

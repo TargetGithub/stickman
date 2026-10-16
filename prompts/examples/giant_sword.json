@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "meta": { "title": "Blade Against the Giant", "format": "landscape", "seed": 77, "theme": "dojo_dusk", "hpBars": true },
+  "characters": [
+    { "id": "ronin", "x": 900, "facing": 1, "color": "#3fd0ff", "prop": "sword", "style": { "scarf": "#d33a3a" } },
+    { "id": "ogre", "x": 1900, "facing": -1, "color": "#7a5cff", "scale": 2.4, "hp": 240, "prop": "club_big" }
+  ],
+  "camera": [
+    { "at": 0, "mode": "push", "zoom": 1.2, "dur": 2 },
+    { "at": 2, "mode": "follow", "targets": ["ronin", "ogre"], "zoom": "auto", "padding": 320 }
+  ],
+  "beats": [
+    { "id": "g1", "at": 0.4, "who": "ogre", "do": "taunt", "say": "Tiny blade. Tiny man.", "fx": ["anger_mark"] },
+    { "id": "b1", "at": { "after": "g1", "delay": 0.2 }, "who": "ronin", "do": "bow" },
+    { "id": "o1", "at": { "after": "b1", "delay": 0.2 }, "who": "ogre", "do": "ground_pound", "target": "ronin", "approach": "run", "outcome": "dodged" },
+    { "id": "s1", "at": { "after": "o1" }, "who": "ronin", "do": "sword_slash", "target": "ogre", "approach": "run", "outcome": "hit", "fx": ["slash_arc"] },
+    { "id": "s2", "at": { "after": "s1" }, "who": "ronin", "do": "sword_thrust", "target": "ogre", "approach": "walk", "outcome": "blocked" },
+    { "id": "o2", "at": { "after": "s2", "delay": 0.1 }, "who": "ogre", "do": "haymaker", "target": "ronin", "approach": "walk", "outcome": "hit" },
+    { "id": "u1", "at": { "after": "o2", "delay": 0.5 }, "who": "ronin", "do": "get_up" },
+    { "id": "r1", "at": { "after": "u1" }, "who": "ronin", "do": "charge_up", "fx": ["aura"], "say": "Enough." },
+    { "id": "s3", "at": { "after": "r1" }, "who": "ronin", "do": "sword_overhead", "target": "ogre", "approach": "run", "outcome": "hit", "params": { "damage": 60 }, "fx": ["slash_arc"] },
+    { "at": { "on": "s3.hit" }, "who": "world", "do": "freeze", "params": { "duration": 0.25 } },
+    { "at": { "on": "s3.hit" }, "who": "world", "do": "flash", "params": { "color": "#ffffff", "dur": 0.15 } },
+    { "id": "ko", "at": { "after": "s3", "delay": 0.5 }, "who": "ogre", "do": "ko_fall" },
+    { "at": { "with": "ko", "delay": 0.4 }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+    { "id": "v1", "at": { "after": "ko", "delay": 0.2 }, "who": "ronin", "do": "victory" },
+    { "at": { "after": "v1", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 1 } }
+  ]
+}

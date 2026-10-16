@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "meta": { "title": "The Last Cookie", "format": "landscape", "seed": 4021, "theme": "white_stage" },
+  "characters": [
+    { "id": "red", "x": 1300, "facing": 1, "color": "#e8433a" },
+    { "id": "blue", "x": 1750, "facing": -1, "color": "#2f7fe0", "style": { "headband": "#ffcc00" } }
+  ],
+  "camera": [
+    { "at": 0, "mode": "follow", "targets": ["red", "blue"], "zoom": "auto", "padding": 300 },
+    { "at": { "on": "k1.hit" }, "mode": "focus", "target": "blue", "zoom": 1.3, "dur": 0.3 },
+    { "at": { "after": "k1", "delay": 0.5 }, "mode": "follow", "targets": ["red", "blue"], "zoom": "auto", "padding": 300 }
+  ],
+  "beats": [
+    { "at": 0.3, "who": "world", "do": "caption", "params": { "text": "One cookie left.", "pos": "top", "dur": 1.8 } },
+    { "id": "p1", "at": 0.5, "who": "red", "do": "point", "fx": ["exclaim"], "say": "Mine!" },
+    { "id": "s1", "at": { "with": "p1", "delay": 0.4 }, "who": "blue", "do": "shrug", "say": "Says who?" },
+    { "id": "j1", "at": { "after": "s1", "delay": 0.2 }, "who": "red", "do": "jab", "target": "blue", "approach": "run", "outcome": "blocked" },
+    { "id": "c1", "at": { "after": "j1" }, "who": "red", "do": "cross", "target": "blue", "outcome": "parried" },
+    { "id": "h1", "at": { "after": "c1", "delay": 0.1 }, "who": "blue", "do": "hook", "target": "red", "approach": "walk", "outcome": "dodged" },
+    { "id": "k1", "at": { "after": "h1", "delay": 0.2 }, "who": "red", "do": "roundhouse", "target": "blue", "approach": "run", "outcome": "hit", "params": { "damage": 14 }, "fx": ["afterimage"] },
+    { "at": { "on": "k1.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.3, "duration": 0.4 } },
+    { "id": "d1", "at": { "after": "k1", "delay": 0.2 }, "who": "blue", "do": "dizzy", "fx": ["stars_dizzy"] },
+    { "id": "v1", "at": { "after": "d1" }, "who": "red", "do": "victory", "say": "Cookie secured." },
+    { "at": { "with": "v1", "delay": 0.3 }, "who": "world", "do": "text_pop", "params": { "text": "NOM" } },
+    { "at": { "after": "v1", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "meta": { "title": "Blink Duel", "format": "portrait", "seed": 9182, "theme": "void_grid" },
+  "characters": [
+    { "id": "ace", "x": 1300, "facing": 1, "color": "#3df2ff", "style": { "glow": "#3df2ff" } },
+    { "id": "rex", "x": 1900, "facing": -1, "color": "#ff5ad1", "prop": "blaster" }
+  ],
+  "camera": [
+    { "at": 0, "mode": "follow", "targets": ["ace", "rex"], "zoom": "auto", "padding": 220 }
+  ],
+  "beats": [
+    { "id": "f1", "at": 0.4, "who": "rex", "do": "shoot", "target": "ace", "outcome": "dodged" },
+    { "id": "f2", "at": { "after": "f1", "delay": 0.1 }, "who": "rex", "do": "shoot", "target": "ace", "outcome": "blocked" },
+    { "id": "t1", "at": { "after": "f2", "delay": 0.2 }, "who": "ace", "do": "teleport", "params": { "dx": 420 } },
+    { "id": "q1", "at": { "with": "t1", "delay": 0.3 }, "who": "rex", "do": "cower", "fx": ["question"], "say": "Where'd he go?" },
+    { "id": "u1", "at": { "after": "t1", "delay": 0.1 }, "who": "ace", "do": "uppercut", "target": "rex", "approach": "walk", "outcome": "hit", "params": { "damage": 30 } },
+    { "at": { "on": "u1.hit" }, "who": "world", "do": "slowmo", "params": { "scale": 0.25, "duration": 0.5 } },
+    { "at": { "on": "u1.hit" }, "who": "world", "do": "text_pop", "params": { "text": "BLINK!", "y": 0.3 } },
+    { "id": "ko", "at": { "after": "u1", "delay": 0.3 }, "who": "rex", "do": "ko_spin" },
+    { "id": "v1", "at": { "after": "ko", "delay": 0.2 }, "who": "ace", "do": "flex" },
+    { "at": { "after": "v1", "delay": 0.3 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+  ]
+}

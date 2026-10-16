@@ -2,6 +2,7 @@
 // Script → final.mp4 with mixed audio, thumbnail, contact sheet and metadata (spec 17).
 // Usage: node tools/record.mjs <script.json> [options]
 //   --out-dir out          parent folder; output goes to <out-dir>/<slug>/
+//   --slug name            output folder name (default: from meta.title)
 //   --from N --to N        render only frames N..M (inclusive; audio is cut to match)
 //   --frames-only          write frames/00000.png ... instead of a video (debugging)
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
@@ -24,7 +25,7 @@ import { catalog } from "../data/index.js";
 const args = process.argv.slice(2);
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|from|to|crf|preset)$/));
+const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset)$/));
 if (!file) {
   console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N] [--frames-only] [--hash] [--no-audio]");
   process.exit(2);
@@ -40,7 +41,7 @@ if (!loaded.ok) {
   process.exit(1);
 }
 const meta = engine.getMeta();
-const slug = slugify(meta.title || basename(file, ".json"));
+const slug = opt("--slug", null) || slugify(meta.title || basename(file, ".json"));
 const dir = join(opt("--out-dir", "out"), slug);
 mkdirSync(dir, { recursive: true });
 const from = Math.max(0, Number(opt("--from", 0)));

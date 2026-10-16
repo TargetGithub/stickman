@@ -1,6 +1,6 @@
 # Stickman Action Engine: Technical Specification
 
-Version 1.1.2 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH. 1.1.8 adds batch D: props, prop angles, throw/catch/pick/drop/break/spawn, W_NO_PROP. 1.1.9 completes M7: visibility (teleport/spawn/despawn, W_HIDDEN), full theme art, accessories, squash, glow, portrait camera rules.
+Version 1.1.10 (supersedes 1.0, archived at `docs/archive/stickman-engine-spec-v1.0.md`). 1.1.1 adds the M1 clarifications: ease applies to the leaving segment (7.2), ground-contact rule (5.4), loop moves and `snapHard` (8.2). 1.1.2 adds the M2 results: root motion scales with the character, auto-aim rule, near-surface aim points, move flags `hold`/`guard`/`invulnerable`, dodge choice, whiff gap. 1.1.3 adds the M3 results and **freezes script schema v1** (`docs/schema/script-v1.schema.json`): busy/free rules, approach mechanics, world-beat anchors, utility-move flags, the error-code list. 1.1.4 adds the M4 results (no schema change): FX preset data format, presentation layer, camera framing numbers, caption wrapping, slow-motion vignette, W_CONTRAST and W_PARTICLE_BUDGET. 1.1.5 adds the M5 results: final public API, frame store layout, golden-frame method. 1.1.6 adds the M6 results: recorder options, mixing levels, heavy-hit sounds, thumbnail rule. 1.1.7 adds M7 batches A-C (no schema change): turn and projectile move events, ranged moves, aim fallback, one-bone aiming, reach assist, dodge rules, W_REACH. 1.1.8 adds batch D: props, prop angles, throw/catch/pick/drop/break/spawn, W_NO_PROP. 1.1.9 completes M7: visibility (teleport/spawn/despawn, W_HIDDEN), full theme art, accessories, squash, glow, portrait camera rules. 1.1.10 adds the M8 results: structured-output parameter and schema adaptation, attempt ladder, score formula, output files (18.3-18.6); a KO beat that fires mid-air lands into `ko_fall`.
 
 Companion documents:
 - `docs/ARCHITECTURE.md`: module interfaces, data shapes, decision records
@@ -860,7 +860,9 @@ System prompt, in order (static, cached):
 User prompt: premise, length, tone (epic, comedic, parody), format.
 
 ### 18.3 Structured output and repair loop
-- Use the API's structured-output / strict tool-input feature with the JSON Schema exported by `schema.js`, so structural errors are rare. Check current Anthropic API docs for the exact parameter at implementation time.
+- Structured output: `output_config: { format: { type: "json_schema", schema } }` with `scriptSchema(catalog)` adapted by `tools/lib/llm_schema.mjs` to the API's subset: `oneOf` becomes `anyOf`, type arrays become `anyOf`, numeric/string ranges, patterns and item counts are dropped (the validator still enforces them), every object gets `additionalProperties: false`, and the open `params` map becomes a closed object listing every known param name. If the API rejects the schema (400), the client continues in plain-JSON mode for the rest of the run and records the downgrade in the run summary.
+- The static system prompt (`prompts/system.md` + catalog tables + `prompts/examples/*.json`, about 5.4K tokens) is sent as a cached block (`cache_control: ephemeral`); it is byte-stable for a given catalog. Sonnet and Opus calls opt into server-side refusal fallbacks (`fallbacks: "default"`); refusals and `max_tokens` truncation count as failed attempts.
+- Attempt ladder (`maxAttempts` 3): write (Sonnet, or Opus with `--flagship`) → repair (Haiku) → repair (Sonnet). Each repair turn carries the previous JSON as the assistant turn, then every error and warning with its fix, plus the dry-run timeline.
 - Repair loop:
   ```
   for attempt in 1..3:
@@ -873,14 +875,16 @@ User prompt: premise, length, tone (epic, comedic, parody), format.
 
 ### 18.4 Variety and quality controls
 - `out/history.json` tracks used premises, moves, themes and palettes; the prompt includes "avoid repeating: …".
-- Automatic score before rendering: distinct moves (aim 8+), FX events per 10 s, at least one slowmo/focus, camera changes, ending beat. Scripts under the threshold are regenerated once, then discarded.
-- Optional critique: one revision round driven by the vision critique.
+- Automatic score before rendering (0-100, `tools/lib/scoring.mjs`): distinct moves 30 (8+ for full marks), hits + beat fx + dramatic world beats per 10 s 20 (4+), slowmo/freeze or a focus key 15, camera keys 10 (3+), ending 15 (no `W_NO_ENDING`), warnings 10 (minus 2 each). Scripts under `minScore` (60) get one improvement round with the score feedback, then are discarded.
+- Optional critique (`--critique`): Opus gets the 4x4 contact sheet PNG, the timeline and the script and returns `{score, revise, notes}`; one revision round, kept only if it validates and scores no more than 5 points lower.
+- Metadata: Haiku writes `{title, description, tags}` into `out/<slug>/youtube.json` and the review queue entry.
 
 ### 18.5 Token budget
 System prompt about 4-6K tokens (cached). Output about 1-2K tokens per script.
 
 ### 18.6 Human review and platform policy
-- Nothing is uploaded automatically. `tools/generate.mjs` writes to `out/` and appends to `out/review_queue.json`.
+- Nothing is uploaded automatically. `tools/generate.mjs` writes `out/scripts/<slug>.json`, renders `out/<slug>/` through `tools/record.mjs`, appends `out/review_queue.json` (status `pending_review`) and `out/history.json`, and writes a run summary with batch metrics (first-pass validity, validity within 3 attempts, failure codes, token usage, estimated cost) to `out/runs/<timestamp>.json`.
+- `--mock` runs the whole pipeline offline with canned responses (no network, no cost); tests use the same mock client.
 - YouTube restricts monetization of mass-produced, repetitive ("inauthentic") content. Variety controls (18.4) and human curation are part of the product, not optional polish.
 
 ---
@@ -1021,6 +1025,7 @@ After M3, the public API and script schema are backward-compatible only: older s
 
 | Area | Change |
 |---|---|
+| LLM loop (1.1.10) | Structured-output schema adapter, cached prompt pack, attempt ladder, score formula, run metrics, `--mock` |
 | Kinematics | Fixed `head` sign in `headCenter`. Added `rot` channel and body-center pivot for flips, rolls and lying poses |
 | Ground contact | Snap to the lowest point of any joint, rate-limited; disabled for airborne moves and negative root `dy` |
 | Aiming | Added 2-bone IK during hit windows and `aim` on hits, so different-size characters connect believably |

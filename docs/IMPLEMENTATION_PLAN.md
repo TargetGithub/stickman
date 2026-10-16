@@ -113,11 +113,11 @@ Each batch: author in the editor → catalog page review → fix → connectivit
 ### M8 LLM loop (3-4 days)
 | Task | Output |
 |---|---|
-| M8.1 `catalog.mjs` prompt tables | |
-| M8.2 Prompt pack + 3 few-shot scripts | |
-| M8.3 `generate.mjs`: ideation, structured-output script writing, repair loop, scoring, history, review queue | |
-| M8.4 Optional vision critique with contact sheet | |
-| M8.5 Batch metrics: first-pass and 3-attempt validity over 100 scripts | |
+| M8.1 `catalog.mjs` prompt tables | done: `tools/lib/prompt_tables.mjs`, `--format md|json` |
+| M8.2 Prompt pack + 3 few-shot scripts | done: `prompts/*.md`, `prompts/examples/*.json` (validate with no warnings, tested) |
+| M8.3 `generate.mjs`: ideation, structured-output script writing, repair loop, scoring, history, review queue | done offline (mock client, 17 tests); live run pending |
+| M8.4 Optional vision critique with contact sheet | done (`--critique`); live run pending |
+| M8.5 Batch metrics: first-pass and 3-attempt validity over 100 scripts | metrics in `out/runs/*.json`; 100-script live batch pending |
 **Exit**: 10 videos generated unattended into `out/review_queue.json`.
 
 ### M9 Hardening (2-3 days)

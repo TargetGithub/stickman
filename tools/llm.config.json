@@ -1,0 +1,27 @@
+{
+  "models": {
+    "ideation": "claude-sonnet-5-5",
+    "write": "claude-sonnet-5-5",
+    "flagship": "claude-opus-5-5",
+    "repair": "claude-haiku-5-5",
+    "repairEscalate": "claude-sonnet-5-5",
+    "critique": "claude-opus-5-5",
+    "metadata": "claude-haiku-5-5"
+  },
+  "effort": {
+    "ideation": "medium",
+    "write": "medium",
+    "repair": "medium",
+    "critique": "medium",
+    "metadata": "low"
+  },
+  "structured": "auto",
+  "refusalFallback": true,
+  "maxAttempts": 3,
+  "minScore": 60,
+  "prices": {
+    "claude-opus-5-5": { "input": 4, "output": 20, "cacheRead": 0.2 },
+    "claude-sonnet-5-5": { "input": 2, "output": 10, "cacheRead": 0.2 },
+    "claude-haiku-5-5": { "input": 0.1, "output": 0.5 }
+  }
+}

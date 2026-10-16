@@ -257,13 +257,15 @@ function resolveHits(world, windowsByActor) {
   return events;
 }
 
-/** On landing from a launch: lie down (knockdown), keeping the spin's visual angle continuous. */
+/** On landing from a launch: lie down (knockdown, or ko_fall if KO'd), keeping the spin's visual angle continuous. */
 function onLand(world, actor, e) {
   if (!e.launched) return;
   const pose = displayPose(actor);
   actor.pose = { ...pose, rot: pose.rot - 360 * Math.round((pose.rot + 90) / 360) };
   actor.spinRot = 0;
-  if (actor.alive) playMove(actor, "knockdown", world.moves, { blend: 0.12 });
+  // A KO beat that fired mid-air stays a KO: land into ko_fall instead of an ordinary knockdown.
+  const scriptedKo = ["ko_fall", "ko_spin"].includes(actor.move?.def.name);
+  if (actor.alive && !scriptedKo) playMove(actor, "knockdown", world.moves, { blend: 0.12 });
   else playMove(actor, world.moves.has("ko_fall") ? "ko_fall" : "knockdown", world.moves, { blend: 0.12 });
 }
 
