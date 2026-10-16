@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Status: **decisions signed off 2026-10-16** (section 21); schema names to be frozen in S0. Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -107,34 +107,34 @@ The reference story, used as the acceptance test (Appendix A has the full script
 ```json
 {
   "version": 2,
-  "meta": { "title": "Bubbles and Revenge", "format": "landscape", "seed": 2024, "style": "default" },
+  "meta": { "title": "Bubbles and the Brave Heart", "format": "landscape", "seed": 2024, "kind": "story", "audience": "kids" },
   "cast": [ ... ],
   "locations": [ ... ],
   "scenes": [ ... ],
-  "audio": { "musicLibrary": "default" }
+  "audio": { "musicVolume": 0.35 }
 }
 ```
 
 | Field | Meaning |
 |---|---|
-| `meta` | As v1 (title, format, seed, hpBars, autoCamera), plus `style` (a visual style preset, section 6.4). No theme here: themes move to locations. |
+| `meta` | As v1 (title, format, seed, mode, hpBars, tail), plus `kind` (`story` default, `fight`, `clip`: picks the length minimum), `audience` (`kids` default, `general`), `style` (section 6.4), `speakerNames`, and `autoCamera` (`true`, `false` or `"story"`). No theme or stageWidth here: they move to locations. |
 | `cast` | Every character in the story, defined once: id, name, body plan, appearance, voice. Positions are set per scene. |
 | `locations` | Reusable places: background theme, set pieces, stage width, default lighting and ambience. |
 | `scenes` | Ordered list. Each scene has a location, the cast present and their starting positions, a camera track, beats, and transitions in and out. |
-| `audio` | Global audio options; per-scene music is set in scenes. |
+| `audio` | Global levels: `musicVolume`, `ambienceVolume`, `voices` (speech sounds on/off). Music moods are set per scene. |
 
 ### 4.1 Cast entry
 
 ```json
 { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0",
-  "appearance": { "eyes": "big", "accessory": { "antenna": "#ffcc00" } },
-  "voice": { "pitch": 1.4 }, "hp": 60 }
+  "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } },
+  "voice": { "pitch": 1.4, "timbre": "squeaky" }, "hp": 60 }
 ```
 
 | Field | Meaning |
 |---|---|
-| `id` | Lowercase id used everywhere |
-| `name` | Display name for HP bars, narration and the speaker label (optional) |
+| `id` | Lowercase id used everywhere (v2 ids: up to 32 characters) |
+| `name` | Display name for HP bars, narration and the speaker label (optional, max 16) |
 | `body` | Body plan from the catalog (section 6): `stickman` (default), `buddy`, `kid`, `bulky`, `slim`, `elder` |
 | `color`, `scale`, `hp`, `prop`, `style` | As v1 characters |
 | `appearance` | Face and decoration options (section 6.3) |
@@ -150,14 +150,16 @@ The reference story, used as the acceptance test (Appendix A has the full script
   "weather": "clear",
   "transitionIn": { "type": "fade", "dur": 0.8 },
   "music": { "mood": "happy", "volume": 0.35 },
-  "cast": [ { "id": "kai", "x": 900, "facing": 1 }, { "id": "pip", "x": 1100, "facing": -1, "face": "happy" } ],
+  "cast": [ { "id": "kai", "x": 900, "facing": 1 }, { "id": "pip", "x": 1100, "facing": -1, "face": "happy" }, { "id": "vex", "x": 2300, "hidden": true } ],
   "camera": [ { "at": 0, "mode": "follow", "targets": ["kai", "pip"], "zoom": "auto" } ],
   "beats": [ ... ]
 }
 ```
 
-- Scene timing is local: `at` numbers are seconds from the scene start. Beat ids are global (unique across the story), so later scenes can refer to earlier anchors only through narration ordering, not timing.
-- `cast[]` entries place characters for this scene, and may override `face`, `prop`, `hp` and `layer`. Characters not listed are absent.
+- Scene timing is local: `at` numbers are seconds from the scene start (max 300). `after`/`with`/`on` may only refer to beats in the same scene. Beat ids are unique across the story.
+- `location` is a location id from `locations`, or a theme name (a location with default settings).
+- `cast[]` entries place characters for this scene (`id`, `x`, `facing`) and may override `face`, `prop`, `hp` and `layer`. `hidden: true` places a character invisibly until it enters (the `enter` macro, `spawn`, or `return`). Characters not listed are absent. At most 8 per scene.
+- Optional: `time`, `weather`, `ambience` (override the location), `duration`, `tail`, `set` (extra set pieces), `extras`, `camera` (v1 camera keys plus the story shot modes), `music` (`{ "mood", "intensity", "volume" }` or `null` for silence).
 - Character state carries over between scenes unless overridden:
   - **Carries over:** hp, defeated status, held prop and appearance changes.
   - **Does not carry over:** position (set per scene).
@@ -173,15 +175,46 @@ New fields:
 |---|---|
 | `face` | Emotion to show from this beat on (section 7): `"face": "angry"` |
 | `partner` | The other character in a paired interaction (section 9) |
-| `object` | The object a beat acts on (section 8) |
-| `to` | A destination: `{ "x": 2400 }`, `{ "near": "<character or object id>" }`, or `{ "exit": "right" }` |
-| `think` | A thought bubble (like `say`) |
+| `object` | The object a beat acts on: a set piece id or a spawned object id (section 8) |
+| `to` | A destination: `{ "x": 2400 }`, `{ "near": "<character or object id>", "gap": 80 }`, or `{ "exit": "right" }` |
+| `bubble` | How `say` is drawn: `speech` (default), `think`, `shout`, `whisper` (section 7.2) |
 | `layer` | Depth layer change (section 14) |
 
-The `who` field takes:
-- a character id;
-- `"world"` (effects, camera, objects and narration commands);
-- a **macro** name prefixed with `@`, for example `"who": "@fight"`. The compiler expands it into beats (section 11).
+`who` is a character id or `"world"` (effects, camera, objects, narration and cards), as in v1.
+
+A **macro beat** has its own shape: `{ "id", "at", "macro": "<name>", "params": { ... } }`, with no `who` or `do`. The compiler expands it into beats (section 11). In prose, macros are written with an `@` (`@fight`), but scripts use the `macro` field.
+
+### 4.4 Frozen names (S0)
+
+The full list of names lives in `engine/validator/v2_names.js` and the schema's `$defs`. Changes after S0 need a spec change.
+
+| Group | Frozen names |
+|---|---|
+| `meta.kind` | `story`, `fight`, `clip` |
+| `meta.audience` | `kids` (default), `general` |
+| `meta.style` | `default`, `soft`, `ink` |
+| Body plans | `stickman`, `buddy`, `kid`, `bulky`, `slim`, `elder` (all `rig: "humanoid"`) |
+| Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt` |
+| Appearance | `eyes`, `brows`, `mouthStyle`, `cheeks`, `hair`, `hairColor`, `outfit`, `outfitColor`, `accessories` (name → color) |
+| Voice | `pitch` 0.5-2, `speed` 0.7-1.4, `timbre`: `soft`, `squeaky`, `deep`, `robot` |
+| Time / weather | `dawn`, `day`, `dusk`, `night` / `clear`, `cloudy`, `rain`, `snow`, `wind`, `fog` |
+| Layers | `back`, `mid`, `front` |
+| Transitions | `cut`, `fade`, `dissolve`, `wipe`, `iris`, `card`; fields `dur`, `color`, `dir`, `target`, `kind` (`title`, `chapter`, `time`, `end`), `title`, `subtitle`, `text` |
+| Bubbles | `speech`, `think`, `shout`, `whisper` |
+| Camera modes | v1 (`follow`, `focus`, `fixed`, `pan`, `push`) plus `two_shot`, `close_up`, `wide`, `over_shoulder` (with `from`), `track` |
+| Moods | `happy`, `playful`, `calm`, `sad`, `tense`, `mysterious`, `heroic`, `battle`, `boss`, `triumphant`, `lullaby` |
+| Ambience | `none`, `city_traffic`, `park_birds`, `rain`, `wind`, `crowd_murmur`, `cave_drip` |
+| Extras behaviors | `walk_by`, `idle_chat`, `cheer`, `flee` |
+| Beat macros | `dialogue`, `activity`, `walk_together`, `travel`, `enter`, `exit`, `fight`, `gauntlet`, `brawl`, `chase`, `defeat`, `grief` |
+| Scene macros | `fight_card`, `montage` (each expands into several scenes) |
+| Defeat styles | `ko`, `faint`, `vanish`, `ghost` (`general` only), `captured`, `flee` |
+| Activities | `blow_bubbles`, `tennis_rally`, `play_catch`, `kick_ball`, `eat_together`, `dance_together`, `selfie`, `sleep`, `comfort` |
+| Object behaviors | `static`, `seat`, `holdable`, `ball`, `floater`, `vehicle`, `breakable` |
+| New world commands | `narrate`, `title_card`, `chapter_card`, `time_card`, `end_card`, `set_time`, `set_weather`, `set_music`, `shot`, `spawn_object`, `remove_object`, `set_object`, `set_appearance` (all v1 world commands stay) |
+| New character commands | `use`, `ride`, `dismount`, `return` (sparkles re-form a vanished character) |
+| New FX presets | `sparkle`, `sparkle_rise`, `tears`, `zzz`, `camera_flash`, `rope_bind`, `cage_drop`, `bubble_pop`, `confetti`, `halo` |
+
+Renamed at the freeze (the old draft names now fail the schema): `"who": "@macro"` → `"macro"`; `think` field → `"bubble": "think"`; `appearance.accessory` → `accessories`; activity `rallies` → `reps`; transition `params` → flat fields; `audio.musicLibrary` removed (override files go in `assets/music/`).
 
 ## 5. Scenes, locations and transitions (5.5: art pipeline)
 
@@ -214,7 +247,7 @@ Themes grow from 7 to 15-20, using the existing layer-kind registry and new laye
 
 ### 5.3 Transitions
 
-Transitions are set per scene (`transitionIn`, `transitionOut`) or as world commands:
+Transitions are set per scene (`transitionIn`, `transitionOut`). At a boundary the next scene's `transitionIn` wins, then the previous scene's `transitionOut`, else `cut`. Transitions hold the story clock (ADR-016). Mid-scene, the v1 `fade` and `cut` world commands still work.
 
 | type | Look |
 |---|---|
@@ -223,11 +256,12 @@ Transitions are set per scene (`transitionIn`, `transitionOut`) or as world comm
 | `dissolve` | Cross-fade between the last frame of one scene and the first of the next (both are rendered; random access keeps this simple) |
 | `wipe` | Directional wipe (`dir`) |
 | `iris` | Circle closing on a character (`target`) and opening on the next scene |
-| `card` | A full-screen title, chapter or time-skip card (section 7.3) between scenes |
+| `card` | A full-screen card between scenes: `kind` `title` (`title`, `subtitle`), `chapter`, `time` or `end` (`text`) (section 7.3) |
 
 ### 5.4 Timeline model
 
-- The story clock runs continuously across scenes. Scene k starts when scene k-1 ends (plus the transition overlap).
+- The story clock runs continuously across scenes. Scene k starts when scene k-1 ends. Transitions and cards between them hold the story clock: they add video time but no simulation time (ADR-016).
+- RNG streams are scoped per scene, so editing one scene does not change the randomness of another.
 - The engine simulates scenes one after another in one world. At a scene boundary it resets stage, positions, camera and set pieces, and keeps character state.
 - The frame store records a scene index per frame, so the renderer picks the location.
 
@@ -283,11 +317,11 @@ Animals, birds and vehicles need different skeletons. The design keeps the door 
 | `brows` | `none`, `thin`, `thick` |
 | `mouthStyle` | `line` (default), `cartoon` |
 | `cheeks` | color (blush) |
-| `hair` | `none`, `spiky`, `bob`, `ponytail`, `cap` (with color) |
-| `accessory` | Existing (headband, scarf, cape, hat) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch` |
-| `outfit` | Optional filled torso garment: `shirt`, `coat`, `armor`, `robe` (with color) |
+| `hair`, `hairColor` | `none`, `spiky`, `bob`, `ponytail`, `cap`; a color |
+| `accessories` | Name → color. Existing (headband, scarf, cape, hat; also accepted in the v1 `style`) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch` |
+| `outfit`, `outfitColor` | Optional filled torso garment: `none`, `shirt`, `coat`, `armor`, `robe`; a color |
 
-Appearance may change in a beat (`"do": "change_outfit"` world command or `params`), for example the hero tying on a headband before the journey.
+Appearance may change in a beat with the `set_appearance` world command (`target` is the character; flat params such as `"accessory": "headband", "color": "#ff3b5c"` or `"remove": true`), for example the hero tying on a headband before the journey.
 
 ### 6.4 Visual style presets
 
@@ -318,12 +352,12 @@ Faces scale with the camera so they read in close-ups.
 | Field / command | Effect |
 |---|---|
 | `say` | Speech bubble (as v1) with the speaker's name when `meta.speakerNames` is true |
-| `think` | Cloud-shaped thought bubble |
-| `shout` | Jagged bubble, larger font |
-| `whisper` | Small dotted bubble |
+| `"bubble": "think"` | Cloud-shaped thought bubble |
+| `"bubble": "shout"` | Jagged bubble, larger font |
+| `"bubble": "whisper"` | Small dotted bubble |
 | `sayDur` | As v1. Default becomes reading time: 1.2 s + 0.06 s per character, minimum 1.5 s (kids read slower). |
 
-- Dialogue exchanges use the `@dialogue` macro (section 11): a list of `[speaker, line]` pairs, timed automatically, with faces and `talk` gestures.
+- Dialogue exchanges use the `@dialogue` macro (section 11): a list of `[speaker, text, face?, bubble?]` lines, timed automatically, with faces and `talk` gestures.
 - The text limit per bubble stays at 40 characters. The macro splits longer lines into consecutive bubbles.
 
 ### 7.3 Narration and cards
@@ -387,7 +421,7 @@ An activity is a short loop of moves synchronized with objects. It is catalog da
 | Activity | Parts | Compiles to |
 |---|---|---|
 | `blow_bubbles` | wand (holdable), bubbles (floater) | `use` loops; each puff spawns 3-6 bubbles with seeded wobble; a partner can `pop_bubble` (poke move + pop FX + `pop` SFX) |
-| `tennis_rally` | two rackets, a ball, an optional net set piece | Both players `swing_forehand` / `swing_backhand` with the ball arcing between racket tips; `rallies: N`; a `miss` ending (ball bounces past one player, who laughs or flops) |
+| `tennis_rally` | two rackets, a ball, an optional net set piece | Both players `swing_forehand` / `swing_backhand` with the ball arcing between racket tips; `reps: N` rallies; a `miss` ending (ball bounces past one player, who laughs or flops) |
 | `play_catch` | ball | throw/catch moves with arcs |
 | `kick_ball` | football | dribble/kick/goal |
 | `eat_together` | food items, table | sit, eat loops, laugh |
@@ -397,7 +431,7 @@ An activity is a short loop of moves synchronized with objects. It is catalog da
 | `cry_together`, `comfort` | none | sad faces, `comfort` paired move, tears FX |
 
 Each activity is parameterized:
-- duration or repetitions;
+- `dur` or `reps`;
 - intensity;
 - an ending: `win`, `miss`, `laugh` or `interrupted`.
 
@@ -405,25 +439,38 @@ Each activity is parameterized:
 
 ## 11. Story macros and the compiler
 
-Macros are written as beats with `"who": "@<macro>"`. The **story compiler** (deterministic; `engine/story/compile.js`) expands them into ordinary beats with generated ids (`<macroId>.<n>`). It also exposes the macro's anchors (`start`, `end`, plus macro-specific ones) so other beats can chain on them.
+Macros are written as macro beats, `{ "id": "boss", "at": ..., "macro": "fight", "params": { ... } }` (section 4.3). The **story compiler** (deterministic; `engine/story/compile.js`, ADR-014) expands them into ordinary beats with generated ids (`<macroId>_<n>`). It also exposes the macro's anchors so other beats can chain on them: `{ "on": "boss.finisher" }`.
 
-| Macro | Params (main) | Expands to |
+### 11.1 Beat macros (frozen params; required params in bold)
+
+| Macro | Params | Anchors | Expands to |
+|---|---|---|---|
+| `@dialogue` | **`lines`** `[[who, text, face?, bubble?], ...]` (text ≤ 120, split into 40-character bubbles), `gap`, `gestures`, `camera` (`auto`/`none`) | `line<N>` | Alternating `say` beats with talk gestures, automatic timing, faces |
+| `@activity` | **`name`**, **`with`** `[ids]`, `reps` or `dur`, `intensity`, `ending` (`win`/`miss`/`laugh`/`interrupted`), `winner`, `object` (a set piece to use) | `ending` | The activity's synchronized moves and object events (section 10) |
+| `@walk_together` | **`who`** `[ids]`, **`to`**, `pace` (walk/run), `holdHands` | | Synchronized walk/run |
+| `@travel` | **`who`** `[ids]`, **`to`**, `mode` (walk/run/sneak), `camera` (track/wide/none) | | A long move with camera follow |
+| `@enter` / `@exit` | **`who`**, **`side`**, `mode`; enter also `to` (default: the cast `x`) | | Walk or run in or out of frame |
+| `@fight` | **`sides`** `[a, b]`, **`winner`**, `exchanges` (1-30), `intensity` (low/medium/high), `style` (even/dominant/comeback/close), `finisher`, `ko` (default true), `phases` `[{exchanges, style, intensity, chargeUp}]` | `finisher`, `ko` | A full choreographed 1v1 using v1 attacks (section 12) |
+| `@gauntlet` | **`hero`**, **`opponents`** `[ids]` (1-6), `per`, `travel` (walk/run/none), `intensity`, `finisher`, `afterDefeat` (stay/fade) | `opponent<N>`, `finisher` | Sequential fights: each opponent engages in turn, the others wait in a ring |
+| `@brawl` | **`teams`** `{a: [ids], b: [ids]}`, **`winner`** (`a`/`b`), `dur`, `intensity` | | Group fight with turn-taking attackers |
+| `@chase` | **`runner`**, **`chasers`** `[ids]`, `dur`, `obstacles` (0-6), `caught` | `caught` | Runs, jumps over obstacles, near misses |
+| `@defeat` | **`who`**, **`style`**, `by` | `gone` | The stylized defeat sequence (section 13) |
+| `@grief` | **`who`**, `over`, `dur`, `rain` | | Kneel, cry, rain, desaturate, slow music |
+
+Every beat macro also has the anchors `start` and `end`. `<N>` is 1-based (`line2`, `opponent3`).
+
+### 11.2 Scene macros
+
+A scene macro is an entry in `scenes` with `{ "id", "macro", "params" }` (plus optional `transitionIn`, `transitionOut`, `music`). It expands into several scenes.
+
+| Macro | Params | Expands to |
 |---|---|---|
-| `@dialogue` | `lines: [[who, text, face?], ...]`, `gap` | Alternating `say` beats with talk gestures, automatic timing, faces |
-| `@activity` | `name`, `with: [ids]`, `reps` or `dur`, `ending` | The activity's synchronized moves and object events (section 10) |
-| `@walk_together` | `who: [ids]`, `to`, `pace` | Synchronized walk/run, optional hand-holding |
-| `@travel` | `who`, `to` (x or exit), `mode` (walk/run/sneak), `montage: [locations]` | A long move with camera follow; with `montage`, a series of short cut scenes |
-| `@enter` / `@exit` | `who`, `side`, `mode` | Walk or run in or out of frame |
-| `@fight` | `sides`, `winner`, `exchanges`, `intensity`, `finisher`, `style` | A full choreographed 1v1 using v1 attacks (section 12) |
-| `@gauntlet` | `hero`, `opponents: [ids]`, `per`, `finisher` | Sequential fights: each opponent engages in turn, the others wait in a ring |
-| `@brawl` | `sides: {a: [ids], b: [ids]}`, `winner`, `dur` | Group fight with turn-taking attackers |
-| `@chase` | `runner`, `chasers`, `dur`, `obstacles` | Runs, jumps over obstacles, near misses |
-| `@defeat` | `who`, `by`, `style` | The stylized defeat sequence (section 13) |
-| `@grief` | `who`, `over` | Kneel, cry, rain, desaturate, slow music |
-| `@montage` | `clips: [...]`, `clipDur` | Short sub-scenes with quick cuts and one music bed |
+| `@fight_card` | **`matchups`** `[{sides, winner, location?, exchanges?, style?}]` (1-6), `title`, `intro`, `breathers`, `finale` (boss/plain), `minDur` (default 180) | A fight-only video: title card, intro, rounds, breathers, finale, end card (section 12) |
+| `@montage` | **`clips`** `[{location, who, do?, time?, weather?, text?}]` (2-8), `clipDur`, `cut` (cut/dissolve/wipe) | Short sub-scenes with quick cuts and one music bed |
 
-Compiler rules:
-- **Deterministic:** the same input and seed give the same beats, using a derived RNG stream `compile`.
+### 11.3 Compiler rules
+
+- **Deterministic:** the same input and seed give the same beats. Each macro uses its own stream `compile:<macroId>`, so editing one macro never changes another's expansion.
 - **Inspectable:** `node tools/compile.mjs story.json` prints the expanded beats, and the validator's timeline shows them.
 - **Expansions respect the catalog:** move pools come from catalog categories and tags, and filter by held prop and body plan.
 - An author can "eject" a macro, replacing it with its expanded beats to hand-tune them.
@@ -473,7 +520,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 | A loved character's loss | Must be temporary or hopeful: the story should bring them back or show they're safe by the end (W_KIDS_NO_HOPE if not) | May be permanent |
 | Soft-list words (warnings with alternatives) | kill, killed, die, dead, death, murder, hate, stupid, idiot, shut up, weapon names in dialogue | kill, killed, murder |
 | Impacts | Cartoon only: stars, "POW!", "BONK!" text pops, squash; no lingering on a hurt face | As v1 |
-| Weapons | Swords, bats and staffs allowed in fights; blasters fire cartoon energy; no aiming at a defenseless character | As v1 |
+| Weapons | Swords, bats and staffs allowed in fights; blasters fire cartoon energy; no held weapon aimed at a defenseless character. A villain's energy attack on a defenseless character is allowed as a story incident (S0 sign-off), for example Vex's blast at Pip | As v1 |
 | Revenge arcs | Reframed as rescue or justice in narration ("Kai set out to save Pip"); the villain is captured, flees or reforms | Revenge allowed; the villain is defeated |
 | Narration tone | Short sentences, simple words, a clear lesson at the end (friendship, courage) | Free |
 
@@ -509,6 +556,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 - **Mixing:** music crossfades at scene boundaries, ducks under dialogue and narration, and lands the ending on the last scene's final beat.
 - **Kids-friendly sound:** bright timbres, no harsh distortion, gentle levels (music bus about -18 LUFS short-term under dialogue).
 - **Override:** a file placed in `assets/music/` with the mood name (`happy.mp3`) replaces the generated track.
+- **Mid-scene changes:** the `set_music` world command (`mood`, `intensity`, `volume`, `fade`) changes the music inside a scene; fight macros raise `intensity` on their own.
 
 **Ambience beds** per location or weather (`city_traffic`, `park_birds`, `rain`, `wind`, `crowd_murmur`, `cave_drip`). They are procedural, like the SFX, or come from files.
 
@@ -595,7 +643,9 @@ Other changes:
 | Characters on stage | 6 | 8 named + 12 extras per scene; 16 in the cast |
 | Beats | 200 | 4,000 after compilation; 600 authored |
 | Script size | 64 KB | 512 KB |
-| Scenes | 1 | 40 |
+| Scenes | 1 | 40; each at most 300 s |
+| Stage width | 1,600-8,000 | 1,600-12,000 per location |
+| Locations | - | 20 |
 
 - **Performance target:** rendering at least real time at 1080p60 on an M-series Mac, so a 5-minute story renders in about 5 minutes. Extras use simplified drawing.
 - **Frame store:** per-frame size grows with characters on stage, not with the cast size, because absent characters aren't stored. About 1 KB/frame at 8 characters, or 54 MB for 15 minutes: fine.
@@ -604,10 +654,8 @@ Other changes:
 
 ## 20. Backward compatibility
 
-- `version: 1` scripts are converted on load into a v2 story: one cast built from `characters`, one location from `meta.theme`, one scene. Golden frames and determinism hashes for v1 samples must not change.
-- **v1 field names stay valid inside v2 scenes:**
-  - `characters` inside a scene is an alias for `cast` with inline definitions;
-  - `set_theme` still works.
+- `version: 1` scripts are converted on load into a v2 story (ADR-016): one cast built from `characters`, one location from `meta.theme` and `meta.stageWidth`, one scene `main`, `meta.kind: "clip"`, `meta.audience: "general"`, and the unscoped RNG stream names. Golden frames and determinism hashes for v1 samples must not change.
+- v1 beat fields, world commands (including `set_theme`), camera keys and character `style` stay valid inside v2 scenes. v2 has no `characters` alias: v2 scripts use `cast`.
 - v1 tools (`validate`, `record`, `generate`, `manual`) accept both versions.
 
 ## 21. Decisions (signed off 2026-10-16)
@@ -626,67 +674,73 @@ Other changes:
 
 ## 22. Appendix A: the reference story as a v2 script (abridged)
 
-This is the acceptance script for the story milestones. Macro params are illustrative; S0 freezes the exact names.
+This is the acceptance script for the story milestones, in the frozen v2 names. It is kept as a test fixture (`tests/fixtures/v2/reference_abridged.json`) that must pass the schema.
 
 - It is abridged: the full acceptance version stretches each scene and adds a city intro, a morning routine, a travel montage and a homecoming, to reach the 5-minute minimum (about 12 scenes).
 - It uses the **kids** default:
   - Pip vanishes into sparkles ("Vex took Pip away");
   - Kai sets out to save him;
   - Vex is captured;
-  - Pip's sparkles return at the end for a reunion hug.
+  - Pip's sparkles return at the end (`return`) for a reunion hug.
 
 ```json
 {
   "version": 2,
-  "meta": { "title": "Bubbles and the Brave Heart", "format": "landscape", "seed": 2024, "audience": "kids" },
+  "meta": { "title": "Bubbles and the Brave Heart", "format": "landscape", "seed": 2024, "kind": "story", "audience": "kids", "autoCamera": "story", "speakerNames": true },
   "cast": [
-    { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" } },
-    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "eyes": "big", "accessory": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5 } },
-    { "id": "vex", "name": "Vex", "body": "slim", "color": "#8a2be2", "style": { "cape": "#1a1a1a" }, "hp": 200 },
-    { "id": "g1", "body": "bulky", "color": "#ff7a3d" }, { "id": "g2", "body": "bulky", "color": "#ffb13d" },
-    { "id": "g3", "body": "bulky", "color": "#e04f8a", "prop": "staff" }, { "id": "g4", "body": "bulky", "color": "#c8c84a", "scale": 1.6 }
+    { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "voice": { "pitch": 1.0, "timbre": "soft" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5, "timbre": "squeaky" } },
+    { "id": "vex", "name": "Vex", "body": "slim", "color": "#8a2be2", "style": { "cape": "#1a1a1a" }, "appearance": { "eyes": "oval", "brows": "thick" }, "voice": { "pitch": 0.7, "timbre": "deep" }, "hp": 200 },
+    { "id": "g1", "body": "bulky", "color": "#ff7a3d" },
+    { "id": "g2", "body": "bulky", "color": "#ffb13d" },
+    { "id": "g3", "body": "bulky", "color": "#e04f8a", "prop": "staff" },
+    { "id": "g4", "body": "bulky", "color": "#c8c84a", "scale": 1.6 }
   ],
   "locations": [
-    { "id": "park", "theme": "city_park", "set": [ { "id": "net", "object": "tennis_net", "x": 1700 } ], "ambience": "park_birds" },
+    { "id": "park", "theme": "city_park", "stageWidth": 3600, "ambience": "park_birds",
+      "set": [ { "id": "bench1", "object": "bench", "x": 900 }, { "id": "tree1", "object": "tree_big", "x": 600, "layer": "back" }, { "id": "net", "object": "tennis_net", "x": 1700 } ],
+      "extras": [ { "count": 3, "behavior": "walk_by", "layer": "back" } ] },
     { "id": "street", "theme": "city_street", "stageWidth": 6000, "ambience": "city_traffic" },
     { "id": "lair", "theme": "villain_lair", "ambience": "cave_drip" }
   ],
   "scenes": [
     { "id": "s1", "location": "park", "time": "day", "music": { "mood": "happy" },
-      "transitionIn": { "type": "card", "params": { "title": "Bubbles and Revenge" } },
+      "transitionIn": { "type": "card", "kind": "title", "title": "Bubbles and the Brave Heart" },
       "cast": [ { "id": "kai", "x": 1300, "facing": 1, "face": "happy" }, { "id": "pip", "x": 1550, "facing": -1, "face": "happy" } ],
       "beats": [
         { "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "Kai and Pip were the best of friends." } },
-        { "id": "bub", "at": 1, "who": "@activity", "params": { "name": "blow_bubbles", "with": ["pip", "kai"], "dur": 6, "ending": "laugh" } },
-        { "id": "ten", "at": { "after": "bub", "delay": 0.4 }, "who": "@activity", "params": { "name": "tennis_rally", "with": ["kai", "pip"], "rallies": 4, "ending": "miss" } },
+        { "id": "bub", "at": 1, "macro": "activity", "params": { "name": "blow_bubbles", "with": ["pip", "kai"], "dur": 6, "ending": "laugh" } },
+        { "id": "ten", "at": { "after": "bub", "delay": 0.4 }, "macro": "activity", "params": { "name": "tennis_rally", "with": ["kai", "pip"], "reps": 4, "ending": "miss", "object": "net" } },
         { "id": "hf", "at": { "after": "ten" }, "who": "kai", "do": "high_five", "partner": "pip", "approach": "walk", "face": "laugh" }
       ] },
-    { "id": "s2", "location": "park", "time": "dusk", "transitionIn": { "type": "card", "params": { "text": "One day, everything changed..." } },
-      "music": { "mood": "tense" },
-      "cast": [ { "id": "kai", "x": 1200, "facing": 1 }, { "id": "pip", "x": 1450, "facing": -1 }, { "id": "vex", "x": 2600, "facing": -1, "layer": "back" } ],
+    { "id": "s2", "location": "park", "time": "dusk", "music": { "mood": "tense" },
+      "transitionIn": { "type": "card", "kind": "time", "text": "One day, everything changed..." },
+      "cast": [ { "id": "kai", "x": 1200, "facing": 1 }, { "id": "pip", "x": 1450, "facing": -1 }, { "id": "vex", "x": 2300, "facing": -1, "hidden": true } ],
       "beats": [
-        { "id": "arrive", "at": 0.5, "who": "@enter", "params": { "who": "vex", "side": "right", "mode": "walk" } },
-        { "at": { "with": "arrive" }, "who": "pip", "do": "point", "face": "scared", "say": "Who is that?" },
-        { "id": "blast", "at": { "after": "arrive" }, "who": "vex", "do": "energy_blast", "target": "pip", "approach": "run", "outcome": "hit", "face": "smug" },
-        { "id": "gone", "at": { "after": "blast", "delay": 0.4 }, "who": "@defeat", "params": { "who": "pip", "by": "vex", "style": "vanish" } },
-        { "at": { "with": "gone" }, "who": "@exit", "params": { "who": "vex", "side": "right", "mode": "walk" } },
-        { "id": "grief", "at": { "after": "gone" }, "who": "@grief", "params": { "who": "kai", "over": "pip" } },
+        { "id": "arrive", "at": 0.5, "macro": "enter", "params": { "who": "vex", "side": "right", "mode": "walk" } },
+        { "at": { "with": "arrive" }, "who": "pip", "do": "point", "target": "vex", "face": "scared", "say": "Who is that?" },
+        { "id": "blast", "at": { "after": "arrive" }, "who": "vex", "do": "energy_blast", "target": "pip", "outcome": "hit", "face": "smug" },
+        { "id": "gone", "at": { "after": "blast", "delay": 0.4 }, "macro": "defeat", "params": { "who": "pip", "by": "vex", "style": "vanish" } },
+        { "at": { "with": "gone" }, "macro": "exit", "params": { "who": "vex", "side": "right", "mode": "walk" } },
+        { "id": "grief", "at": { "after": "gone" }, "macro": "grief", "params": { "who": "kai", "over": "pip", "rain": true } },
         { "at": { "after": "grief" }, "who": "kai", "do": "clench_fist", "face": "determined", "say": "I will bring you back!" }
       ] },
     { "id": "s3", "location": "street", "time": "night", "weather": "rain", "music": { "mood": "heroic" },
-      "transitionIn": { "type": "card", "params": { "text": "The path to save Pip" } },
+      "transitionIn": { "type": "card", "kind": "chapter", "text": "The path to save Pip" },
       "cast": [ { "id": "kai", "x": 300, "facing": 1, "face": "determined" }, { "id": "g1", "x": 1600, "facing": -1 }, { "id": "g2", "x": 2600, "facing": -1 },
                 { "id": "g3", "x": 3600, "facing": -1 }, { "id": "g4", "x": 4800, "facing": -1 } ],
       "beats": [
-        { "id": "path", "at": 0.3, "who": "@gauntlet", "params": { "hero": "kai", "opponents": ["g1", "g2", "g3", "g4"], "per": 3, "travel": "run", "finisher": "spinning_kick" } }
+        { "id": "path", "at": 0.3, "macro": "gauntlet", "params": { "hero": "kai", "opponents": ["g1", "g2", "g3", "g4"], "per": 3, "travel": "run", "finisher": "spinning_kick" } }
       ] },
     { "id": "s4", "location": "lair", "time": "night", "music": { "mood": "boss" },
-      "cast": [ { "id": "kai", "x": 1100, "facing": 1, "face": "furious" }, { "id": "vex", "x": 2000, "facing": -1, "face": "smug" } ],
+      "transitionIn": { "type": "iris", "target": "kai", "dur": 1.2 },
+      "transitionOut": { "type": "fade", "dur": 1.5 },
+      "cast": [ { "id": "kai", "x": 1100, "facing": 1, "face": "furious" }, { "id": "vex", "x": 2000, "facing": -1, "face": "smug" }, { "id": "pip", "x": 1400, "facing": 1, "hidden": true } ],
       "beats": [
-        { "id": "talk", "at": 0.4, "who": "@dialogue", "params": { "lines": [["vex", "You came all this way?"], ["kai", "Give Pip back!"]] } },
-        { "id": "boss", "at": { "after": "talk" }, "who": "@fight", "params": { "sides": ["kai", "vex"], "winner": "kai", "exchanges": 10, "intensity": "high", "style": "comeback", "finisher": "flying_kick" } },
-        { "id": "end", "at": { "after": "boss" }, "who": "@defeat", "params": { "who": "vex", "by": "kai", "style": "captured" } },
-        { "id": "back", "at": { "after": "end", "delay": 0.5 }, "who": "pip", "do": "spawn", "fx": ["sparkle"], "face": "happy", "say": "Kai!" },
+        { "id": "talk", "at": 0.4, "macro": "dialogue", "params": { "lines": [["vex", "You came all this way?", "smug"], ["kai", "Give Pip back!", "furious", "shout"]] } },
+        { "id": "boss", "at": { "after": "talk" }, "macro": "fight", "params": { "sides": ["kai", "vex"], "winner": "kai", "exchanges": 10, "intensity": "high", "style": "comeback", "finisher": "flying_kick", "ko": false } },
+        { "id": "end", "at": { "after": "boss" }, "macro": "defeat", "params": { "who": "vex", "by": "kai", "style": "captured" } },
+        { "id": "back", "at": { "after": "end", "delay": 0.5 }, "who": "pip", "do": "return", "face": "happy", "say": "Kai!" },
         { "id": "hug", "at": { "after": "back" }, "who": "kai", "do": "hug", "partner": "pip", "approach": "walk", "face": "cry" },
         { "at": { "after": "hug" }, "who": "world", "do": "narrate", "params": { "text": "Friends never give up on each other." } },
         { "at": { "after": "hug", "delay": 3 }, "who": "world", "do": "end_card", "params": { "text": "The End" } }

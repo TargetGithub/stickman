@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "meta": { "title": "Bubbles and the Brave Heart", "format": "landscape", "seed": 2024, "kind": "story", "audience": "kids", "autoCamera": "story", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "voice": { "pitch": 1.0, "timbre": "soft" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5, "timbre": "squeaky" } },
+    { "id": "vex", "name": "Vex", "body": "slim", "color": "#8a2be2", "style": { "cape": "#1a1a1a" }, "appearance": { "eyes": "oval", "brows": "thick" }, "voice": { "pitch": 0.7, "timbre": "deep" }, "hp": 200 },
+    { "id": "g1", "body": "bulky", "color": "#ff7a3d" },
+    { "id": "g2", "body": "bulky", "color": "#ffb13d" },
+    { "id": "g3", "body": "bulky", "color": "#e04f8a", "prop": "staff" },
+    { "id": "g4", "body": "bulky", "color": "#c8c84a", "scale": 1.6 }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "stageWidth": 3600, "ambience": "park_birds",
+      "set": [ { "id": "bench1", "object": "bench", "x": 900 }, { "id": "tree1", "object": "tree_big", "x": 600, "layer": "back" }, { "id": "net", "object": "tennis_net", "x": 1700 } ],
+      "extras": [ { "count": 3, "behavior": "walk_by", "layer": "back" } ] },
+    { "id": "street", "theme": "city_street", "stageWidth": 6000, "ambience": "city_traffic" },
+    { "id": "lair", "theme": "villain_lair", "ambience": "cave_drip" }
+  ],
+  "scenes": [
+    { "id": "s1", "location": "park", "time": "day", "music": { "mood": "happy" },
+      "transitionIn": { "type": "card", "kind": "title", "title": "Bubbles and the Brave Heart" },
+      "cast": [ { "id": "kai", "x": 1300, "facing": 1, "face": "happy" }, { "id": "pip", "x": 1550, "facing": -1, "face": "happy" } ],
+      "beats": [
+        { "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "Kai and Pip were the best of friends." } },
+        { "id": "bub", "at": 1, "macro": "activity", "params": { "name": "blow_bubbles", "with": ["pip", "kai"], "dur": 6, "ending": "laugh" } },
+        { "id": "ten", "at": { "after": "bub", "delay": 0.4 }, "macro": "activity", "params": { "name": "tennis_rally", "with": ["kai", "pip"], "reps": 4, "ending": "miss", "object": "net" } },
+        { "id": "hf", "at": { "after": "ten" }, "who": "kai", "do": "high_five", "partner": "pip", "approach": "walk", "face": "laugh" }
+      ] },
+    { "id": "s2", "location": "park", "time": "dusk", "music": { "mood": "tense" },
+      "transitionIn": { "type": "card", "kind": "time", "text": "One day, everything changed..." },
+      "cast": [ { "id": "kai", "x": 1200, "facing": 1 }, { "id": "pip", "x": 1450, "facing": -1 }, { "id": "vex", "x": 2300, "facing": -1, "hidden": true } ],
+      "beats": [
+        { "id": "arrive", "at": 0.5, "macro": "enter", "params": { "who": "vex", "side": "right", "mode": "walk" } },
+        { "at": { "with": "arrive" }, "who": "pip", "do": "point", "target": "vex", "face": "scared", "say": "Who is that?" },
+        { "id": "blast", "at": { "after": "arrive" }, "who": "vex", "do": "energy_blast", "target": "pip", "outcome": "hit", "face": "smug" },
+        { "id": "gone", "at": { "after": "blast", "delay": 0.4 }, "macro": "defeat", "params": { "who": "pip", "by": "vex", "style": "vanish" } },
+        { "at": { "with": "gone" }, "macro": "exit", "params": { "who": "vex", "side": "right", "mode": "walk" } },
+        { "id": "grief", "at": { "after": "gone" }, "macro": "grief", "params": { "who": "kai", "over": "pip", "rain": true } },
+        { "at": { "after": "grief" }, "who": "kai", "do": "clench_fist", "face": "determined", "say": "I will bring you back!" }
+      ] },
+    { "id": "s3", "location": "street", "time": "night", "weather": "rain", "music": { "mood": "heroic" },
+      "transitionIn": { "type": "card", "kind": "chapter", "text": "The path to save Pip" },
+      "cast": [ { "id": "kai", "x": 300, "facing": 1, "face": "determined" }, { "id": "g1", "x": 1600, "facing": -1 }, { "id": "g2", "x": 2600, "facing": -1 },
+                { "id": "g3", "x": 3600, "facing": -1 }, { "id": "g4", "x": 4800, "facing": -1 } ],
+      "beats": [
+        { "id": "path", "at": 0.3, "macro": "gauntlet", "params": { "hero": "kai", "opponents": ["g1", "g2", "g3", "g4"], "per": 3, "travel": "run", "finisher": "spinning_kick" } }
+      ] },
+    { "id": "s4", "location": "lair", "time": "night", "music": { "mood": "boss" },
+      "transitionIn": { "type": "iris", "target": "kai", "dur": 1.2 },
+      "transitionOut": { "type": "fade", "dur": 1.5 },
+      "cast": [ { "id": "kai", "x": 1100, "facing": 1, "face": "furious" }, { "id": "vex", "x": 2000, "facing": -1, "face": "smug" }, { "id": "pip", "x": 1400, "facing": 1, "hidden": true } ],
+      "beats": [
+        { "id": "talk", "at": 0.4, "macro": "dialogue", "params": { "lines": [["vex", "You came all this way?", "smug"], ["kai", "Give Pip back!", "furious", "shout"]] } },
+        { "id": "boss", "at": { "after": "talk" }, "macro": "fight", "params": { "sides": ["kai", "vex"], "winner": "kai", "exchanges": 10, "intensity": "high", "style": "comeback", "finisher": "flying_kick", "ko": false } },
+        { "id": "end", "at": { "after": "boss" }, "macro": "defeat", "params": { "who": "vex", "by": "kai", "style": "captured" } },
+        { "id": "back", "at": { "after": "end", "delay": 0.5 }, "who": "pip", "do": "return", "face": "happy", "say": "Kai!" },
+        { "id": "hug", "at": { "after": "back" }, "who": "kai", "do": "hug", "partner": "pip", "approach": "walk", "face": "cry" },
+        { "at": { "after": "hug" }, "who": "world", "do": "narrate", "params": { "text": "Friends never give up on each other." } },
+        { "at": { "after": "hug", "delay": 3 }, "who": "world", "do": "end_card", "params": { "text": "The End" } }
+      ] }
+  ]
+}

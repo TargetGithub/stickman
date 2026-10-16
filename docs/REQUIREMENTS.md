@@ -59,3 +59,13 @@ No test framework (uses `node:test`), no bundler, no linter dependency for now.
 | M6 | First full MP4 with sound | 10 min |
 | M7 | Each move batch in the catalog page (7 batches) | 15 min each |
 | M8 | 10 generated videos | 30 min |
+| S0 | Story spec freeze: schema v2 draft, frozen names, ADR-014..018 | sign-off |
+| S1 | Themes and transitions (3-scene demo) | 15 min |
+| S2 | Faces at three zoom levels | 15 min |
+| S3 | Body plans and the buddy design | 15 min |
+| S4 | Object look | 10 min |
+| S5 | Each move batch in the catalog page (3 batches) | 15 min each |
+| S6 | Fight macros (gauntlet demo) | 15 min |
+| S7 | 2-minute mix through five moods (music quality gate) | 15 min |
+| S8 | 5 generated stories and 3 fight videos | 2 hours |
+| S9 | The reference story, full length | 20 min |

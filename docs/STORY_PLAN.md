@@ -32,16 +32,16 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 | Task | Output |
 |---|---|
-| Freeze schema v2 field names, macro names and params, face list, body-plan list, object behaviors | `docs/schema/script-v2.schema.json` draft; spec bumped to v2.0-rc |
-| Write ADRs: ADR-014 two-level scripts and the compiler; ADR-015 body plans share the humanoid skeleton; ADR-016 scenes in one world with state carry-over; ADR-017 procedural music and speech sounds in /tools; ADR-018 audience rules (kids default) | `docs/ARCHITECTURE.md` |
+| Freeze schema v2 field names, macro names and params, face list, body-plan list, object behaviors | Done: `docs/schema/script-v2.schema.json` generated from `engine/validator/schema_v2.js` (+ `macro_params.js`, `v2_names.js`); STORY_SPEC v2.0-rc section 4.4; reference story fixture `tests/fixtures/v2/reference_abridged.json` and `tests/unit/schema_v2.test.js` |
+| Write ADRs: ADR-014 two-level scripts and the compiler; ADR-015 body plans share the humanoid skeleton; ADR-016 scenes in one world with state carry-over; ADR-017 procedural music and speech sounds in /tools; ADR-018 audience rules (kids default) | Done: `docs/ARCHITECTURE.md` section 9 |
 
-**Exit:** the product owner signs off the spec.
+**Exit:** the product owner signs off the spec. **Signed off 2026-10-16**, with one clarification: a villain's energy attack on a defenseless character is fine as a story incident in kids mode.
 
 ### S1 Scenes, locations, transitions, cards (4-5 days)
 
 | Task | Output |
 |---|---|
-| S1.1 v2 schema and loader; v1 → v2 conversion on load | `engine/validator/schema_v2.js`, `engine/story/normalize.js` |
+| S1.1 Wire the v2 schema (written in S0) into `validate()`; v1 → v2 conversion on load | `engine/validator/schema_v2.js`, `engine/story/normalize.js` |
 | S1.2 Scenes in the director: scene-local `at`, scene boundaries reset stage/positions/camera/set, character state carries over | `engine/director.js` (split: `engine/story/scenes.js`) |
 | S1.3 Locations: theme, stage width, set pieces (static drawing only for now); frame store scene index | `engine/framestore.js`, renderer background per scene |
 | S1.4 Transitions: cut, fade, dissolve, wipe, iris; scene `transitionIn`/`transitionOut` | `engine/renderer/transitions.js` |
@@ -70,7 +70,7 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 | S2.2 Face renderer for the stickman head (dot eyes stay the default; faces show at close range or when set) | `engine/renderer/face.js` |
 | S2.3 Face state: beat `face`, automatic faces on hits/attacks/KO, blinking, gaze toward target/partner/speaker | `engine/actor.js`, `engine/story/faces.js` |
 | S2.4 Frame store: face index + mouth-open bit (CHAR_STRIDE 34) | `engine/framestore.js` |
-| S2.5 Bubbles: `think`, `shout`, `whisper`; speaker names; reading-time `sayDur` default | `engine/renderer/overlays.js` |
+| S2.5 Bubbles: `bubble` = `think`, `shout`, `whisper`; speaker names; reading-time `sayDur` default | `engine/renderer/overlays.js` |
 | S2.6 Mouth flap while talking; speech sounds: seeded syllable babble per character (`voice.pitch`, `speed`, `timbre`), narration chime | `tools/lib/speech.mjs`, `audio_events.js` |
 | S2.7 New emotes: `cry`, `clench_fist`, `sigh`, `gasp`, `jump_joy`, `hold_head`, `nod`, `shake_head`, `look_around`, `talk` (gesture loop) | `data/moves/emotes.js` |
 | S2.8 Validator: E_FACE_UNKNOWN, W_DIALOGUE_FAST | Validator + fixtures |

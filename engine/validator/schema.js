@@ -134,9 +134,14 @@ export const jsonSchema = {
   },
 };
 
+/** A deep copy of a schema without checker-only keywords (x-*). */
+export function exportSchema(schema) {
+  return JSON.parse(JSON.stringify(schema, (k, v) => (k.startsWith("x-") ? undefined : v)));
+}
+
 /** The schema with catalog enums filled in (moves, themes, props) and checker-only keywords removed. */
 export function buildJsonSchema(catalog, moveNames, worldCommands) {
-  const s = JSON.parse(JSON.stringify(jsonSchema, (k, v) => (k.startsWith("x-") ? undefined : v)));
+  const s = exportSchema(jsonSchema);
   s.properties.beats.items.properties.do.enum = [...moveNames, ...worldCommands];
   s.properties.meta.properties.theme.enum = catalog.themeNames;
   s.properties.characters.items.properties.prop = { enum: [...Object.keys(catalog.props), null] };
@@ -151,6 +156,13 @@ const show = (v) => JSON.stringify(v);
 
 function check(value, schema, path, out) {
   if (schema.oneOf) {
+    // x-select (checker-only): the presence of this key picks the branch, for precise messages.
+    const key = schema["x-select"];
+    const picked = key && typeOf(value) === "object" && schema.oneOf.find((b) => (b.required || []).includes(key) === key in value);
+    if (picked) {
+      check(value, picked, path, out);
+      return;
+    }
     const results = schema.oneOf.map((branch) => {
       const issues = [];
       check(value, branch, path, issues);
@@ -220,6 +232,13 @@ function check(value, schema, path, out) {
       } else if (typeof schema.additionalProperties === "object") check(v, schema.additionalProperties, sub, out);
     }
   }
+}
+
+/** Structural issues for any value against a schema in the subset above (used for v2 and macro params). */
+export function checkValue(value, schema, path = "") {
+  const out = [];
+  check(value, schema, path, out);
+  return out;
 }
 
 /** Structural issues for a script (spec 16.1). */

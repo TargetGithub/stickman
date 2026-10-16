@@ -409,3 +409,70 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 - **Context**: scale contrast (spec 19.8) means giants strike small fighters; fixed poses plus arm IK stopped ~30 px short, and the matrix tolerance hid it.
 - **Decision**: at runtime the attacker leans into the strike (up to 40°) until the aim point is in reach; the dry run checks reach (with that lean and with jump height) and warns `W_REACH` when contact is physically impossible, instead of faking it.
 - **Consequences**: big-vs-small fights look right; impossible choices (a giant's headbutt on a small fighter) reach the LLM as a warning with a fix.
+
+## 9. Story engine (v2) decisions
+
+Frozen in S0 (2026-10-16). Behavior is in [STORY_SPEC.md](STORY_SPEC.md); the schema draft is `docs/schema/script-v2.schema.json`, generated from `engine/validator/schema_v2.js` (`node tools/validate.mjs --schema-v2`).
+
+### Schema v2 modules (S0; wired into `validate()` in S1.1)
+```js
+// validator/schema_v2.js
+export const jsonSchemaV2;          // same JSON Schema subset as v1; $defs carries enums, macro params, anchors
+// validator/macro_params.js
+export const MACRO_PARAMS;          // macro name → params schema (beat and scene macros)
+export const MACRO_ANCHORS;         // beat macro → anchor names ("line<N>" = line1, line2, ...)
+// validator/v2_names.js
+export const ID, COLOR, V2_ENUMS, DEST, OBJECT_BEHAVIORS, OBJECT_KINDS,
+  V2_WORLD_COMMANDS, V2_CHARACTER_COMMANDS, DEFEAT_STYLES_BY_AUDIENCE, V2_FX;
+// validator/schema.js (additions)
+export function checkValue(value, schema, path?): Issue[];   // checker for any schema in the subset
+export function exportSchema(schema): object;                // deep copy without x-* keywords
+```
+The checker gains one checker-only keyword, `x-select: "<key>"` on a `oneOf`: the presence of that key picks the branch, so a macro beat or an action beat gets precise messages instead of a generic form error. v1 does not use it, so v1 messages are unchanged.
+
+### ADR-014 Two-level scripts and the story compiler
+- **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
+- **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:
+  1. normalize (v1 → v2, ADR-016);
+  2. schema v2;
+  3. semantic checks, including macro params against `MACRO_PARAMS`;
+  4. **compile**: `engine/story/compile.js`, pure, expands macros into a flat v2 script with no macros;
+  5. semantic checks on the compiled beats;
+  6. dry run, then simulation.
+  
+  Each macro draws from its own stream `deriveRng(seed, "compile:" + macroId)`, so editing one macro never changes another macro's expansion. Generated beat ids are `<macroId>_<n>`; anchors per macro are listed in `MACRO_ANCHORS` and addressed as `{"on": "boss.finisher"}`. Issues inside an expansion are reported at the authored macro beat's path with an `expandedFrom` note.
+- **Consequences**: the simulation never sees macros. `tools/compile.mjs` prints the expansion and `--eject <macroId>` writes it back as beats. Limits are split into authored (600) and compiled (4,000) beats. The compiler reads move pools from the injected catalog (categories, tags, body plan, held prop).
+
+### ADR-015 Body plans share the humanoid skeleton
+- **Context**: stories need characters that are not stickmen (a round sidekick, bulky guards), while 72 tuned moves and the aiming/reach system must keep working.
+- **Decision**: a body plan is data: bone-length ratios, head size, hurtbox scale, a draw function key and `rig: "humanoid"`. Every plan keeps the same 13 joints and pose channels. `BODY` becomes `bodyFor(plan)`. The `stickman` plan's values are exactly today's `BODY`, so v1 output is bit-identical. Moves are authored once (for the stickman); root motion and reach scale by the plan's leg and arm ratios, as they already scale by `scale`. The plan index is stored once per character in the frame store header.
+- **Consequences**: every move works on every plan. The combat matrix (attack × outcome × size pairing) runs once per plan in S3. Non-humanoid rigs later need a new `rig` value and `E_MOVE_RIG`; nothing in v2 assumes they never come.
+
+### ADR-016 Scenes in one world with state carry-over
+- **Context**: stories move between places, but characters must keep hp, defeats, held objects and looks across scenes, and the engine must stay simulate-once, render-anywhere.
+- **Decision**:
+  - One simulation and one world; scenes run one after another. At a boundary the engine resets stage width, positions, set pieces, spawned objects, FX sustains and the camera (a cut). It keeps hp, defeated/vanished status, held prop, appearance and face.
+  - Beat `at` times and `after`/`with`/`on` references are **scene-local**; beat ids are unique across the story.
+  - The story clock is continuous. Transitions and cards **hold the story clock** (frames are produced, simulation does not advance), so they never change what happens in a scene. A dissolve blends the stored last frame of one scene with the first frame of the next (random access makes this free).
+  - The transition used at a boundary is the next scene's `transitionIn`, else the previous scene's `transitionOut`, else `cut`.
+  - RNG streams are scoped per scene (`deriveRng(seed, name + "@" + sceneId)`), so editing one scene does not reshuffle another. A converted v1 script is flagged `legacy` and keeps the unscoped stream names.
+  - The frame store records a scene index per frame; the renderer picks the location from it.
+  - A v1 script converts on load to one scene `main` (cast from `characters`, location from `meta.theme`/`stageWidth`, `meta.kind: "clip"`, `meta.audience: "general"`). v1 golden frames and determinism hashes must not change; `set_theme` keeps working inside v2 scenes.
+- **Consequences**: `record --scene N` renders one scene. Cross-scene timing references are an error (`E_REF_BEAT` with a fix line pointing at scene order). The director gains a per-scene lifecycle (`engine/story/scenes.js`).
+
+### ADR-017 Procedural music and speech sounds live in /tools
+- **Context**: decisions 3 and 4 (STORY_SPEC 21): speech sounds only, generated music, no licenses, no manual work. `/engine` must stay free of I/O and audio synthesis.
+- **Decision**: the engine only emits audio **data**: per-scene music specs (mood, intensity changes from fight macros, stings at defeats and reunions), speech segments (character, start, end, syllable count, voice settings), narration chimes and ambience per scene. `tools/lib/music_gen.mjs`, `speech.mjs` and `ambience.mjs` turn that data into PCM, seeded from the script seed, scene id and character id. The mixer crossfades, ducks and limits. A file in `assets/music/<mood>.*` overrides a generated mood.
+- **Consequences**: the audio event list stays part of the determinism test; the same script gives byte-identical audio. The browser player previews SFX only until a Web Audio port of the generators exists (not planned for v2).
+
+### ADR-018 Audience rules, kids by default
+- **Context**: decision 7: kids first. Stories may contain loss and fights, so rules must shape them without removing them.
+- **Decision**: `meta.audience` is `kids` (default) or `general`. The rules are data plus checks:
+  - `data/blocklist.js` keeps the hard list (errors) and gains a soft list with suggested alternatives (`W_TEXT_SOFT`);
+  - `DEFEAT_STYLES_BY_AUDIENCE` drives `E_DEFEAT_STYLE`;
+  - `W_KIDS_NO_HOPE` checks that a vanished or captured friend returns or is shown safe;
+  - the renderer draws cartoon impacts (stars, "POW!") in kids mode;
+  - generation prompts include the kids rules.
+  
+  Converted v1 scripts are `general`, so their frames and validation results do not change.
+- **Consequences**: kids rules are checks and presentation defaults, not a separate engine. The review queue suggests `madeForKids` from the audience; publishing stays with the reviewer.

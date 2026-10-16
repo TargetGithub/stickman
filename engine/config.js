@@ -57,3 +57,20 @@ export const LIMITS = {
 };
 
 export const RNG_STREAMS = ["physics", "fx", "camera", "bg", "director", "audio"];
+
+// Story scripts (schema v2, STORY_SPEC 19). v1 keeps LIMITS until S1.10 raises its duration.
+export const LIMITS_V2 = {
+  scriptBytes: 512 * 1024,
+  maxDuration: 900,
+  sceneMax: 300,
+  scenes: 40,
+  cast: 16,
+  onStage: 8,
+  extras: 12,
+  locations: 20,
+  beatsAuthored: 600,
+  beatsCompiled: 4000,
+  beatsPerScene: 200,
+  storyMin: 300,
+  fightMin: 180,
+};
