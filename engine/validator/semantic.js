@@ -36,6 +36,10 @@ export const WORLD_COMMANDS_V2 = {
   end_card: { text: { text: 80, required: true }, dur: { min: 0.5, max: 10 }, bg: HEX },
   set_time: { time: { enum: ["dawn", "day", "dusk", "night"], required: true }, dur: { min: 0, max: 10 } },
   set_weather: { weather: { enum: ["clear", "cloudy", "rain", "snow", "wind", "fog"], required: true }, dur: { min: 0, max: 10 } },
+  // Objects (S4): spawn_object params; remove_object and set_object name the object in the beat's `object` field.
+  spawn_object: { kind: { required: true }, id: {}, x: { min: -2000, max: 14000, required: true }, y: { min: 0, max: 2000 }, layer: { enum: ["back", "mid", "front"] }, state: {}, facing: { enum: [1, -1] } },
+  remove_object: {},
+  set_object: { state: {}, toX: { min: -2000, max: 14000 }, height: { min: 0, max: 1500 }, vx: { min: -3000, max: 3000 }, vy: { min: -3000, max: 3000 }, speed: { min: 10, max: 3000 }, exit: { enum: ["left", "right"] } },
   // Appearance changes (S3): who* plus any of the appearance fields; accessory with color, or remove.
   set_appearance: {
     who: { character: true, required: true },
@@ -160,7 +164,8 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
     if (c.x < STAGE.margin || c.x > stageWidth - STAGE.margin) {
       out.push({ code: "E_SCHEMA_RANGE", path: `${p}.x`, message: `x=${c.x} is off the stage.`, fix: `Use x from ${STAGE.margin} to ${stageWidth - STAGE.margin}.` });
     }
-    if (c.prop && !(c.prop in catalog.props)) out.push({ code: "E_PROP_UNKNOWN", path: `${p}.prop`, message: `Unknown prop '${c.prop}'.`, fix: `Use one of: ${Object.keys(catalog.props).join(", ")}.` });
+    const holdables = opts.holdables || Object.keys(catalog.props);
+    if (c.prop && !holdables.includes(c.prop)) out.push({ code: "E_PROP_UNKNOWN", path: `${p}.prop`, message: `Unknown prop '${c.prop}'.`, fix: `Use one of: ${holdables.join(", ")}.` });
   });
   const theme = catalog.themes[meta.theme ?? "white_stage"];
   if (theme) {

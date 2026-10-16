@@ -45,6 +45,7 @@ export function collectAudioEvents(sim) {
       if (e.speed > PHYSICS.shakeImpactSpeed) add(e.videoT, "land_heavy", 0.9, actorX(e.videoT, e.actor));
       else if (e.speed > PHYSICS.dustImpactSpeed) add(e.videoT, "land", 0.7, actorX(e.videoT, e.actor));
     } else if (e.type === "world" && e.do === "explosion") add(e.videoT, "explosion", 1, e.params.x);
+    else if (e.type === "object" && e.sfx) add(e.videoT, e.sfx, e.volume ?? 0.7, e.x);
   }
   if (sim.story && !sim.story.legacy) out.push(...storySounds(sim, actorX, panAt));
   return out.sort((a, b) => a.t - b.t);

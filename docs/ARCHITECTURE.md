@@ -512,6 +512,27 @@ export function bodyPlan(catalog, name): { dims, stride, posture, plan };   // a
 - `drawCharacter` style gains `dims`, `draw`, `torsoWidth` and `look`; draw order: backpack, far limbs, torso (filled or stroked), outfit, bowtie, head (ponytail, head, mask, face, hair, eyepatch, antenna/crown), near leg, near arm.
 - Tools: `tools/body_sheet.mjs` (plans × moves review sheet); the catalog page and the pose viewer have a body-plan selector.
 
+### Objects (S4)
+```js
+// objects.js
+export const GRAVITY, MOVING;                               // MOVING = ["ball", "floater", "vehicle"] (frame items)
+export function holdableData(catalog, name), holdableNames(catalog);   // v1 props first, then story holdables
+export function createObjects(setPieces, { catalog, seed, sceneId, groundY, stageWidth }): Objects;
+export function spawnObject(objs, { object, id, x, y, layer, facing, state, vx, vy }, t): Event[];
+export function removeObject(objs, id), setObject(objs, id, params): Event[];
+export function stepObjects(objs, dt, t): Event[];          // balls (dt), floaters (closed form in t), vehicles
+export function useHeld(objs, actor, tipPoint, t): Event[]; // the use move
+export function objectsBusy(objs): boolean;                 // keeps a scene from ending
+export function movingItems(objs, groundY): Item[];
+// Event: { type: "object", what: spawn|remove|state|break|launch|bounce|pop|drive|stop|offstage|use, id, kind, x, y, fx?, sfx?, volume? }
+// renderer/objects.js: OBJECT_SHAPES(), staticObjectsAt(catalog, set, objectEvents, t), drawSetPieces, drawMovingObjects
+// renderer/object_shapes.js: SHAPES (procedural object drawings)
+// renderer/paths.js: drawPaths(ctx, paths, colors); renderer/props.js: PROP_SHAPES
+```
+- `world.objects` (story scenes) and `world.onMoveEvent(actor, event, events)` (a hook in `stepWorld`, used for the `use` event); the sim steps objects after the world, keeps riders on their vehicle (`actor.riding`) and adds moving items to the frame. The director dispatches `spawn_object`, `remove_object`, `set_object` and sets `actor.riding` on `ride`/`dismount`.
+- Presentation turns object events into effects; `collectAudioEvents` adds their sounds. `E_SIM_OBJECT_OFFSTAGE` comes from "offstage" events.
+- Tools: `tools/lib/svg.mjs` + `tools/svg_import.mjs` (SVG → path data), `tools/lib/draft.mjs` + `tools/draft.mjs` (LLM drafts with checks and a review sheet).
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:

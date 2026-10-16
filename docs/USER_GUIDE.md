@@ -287,6 +287,8 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `node tools/pose_sheet.mjs` | Render all poses into one image |
 | `node tools/face_sheet.mjs` | Render every story face at three sizes into one image |
 | `node tools/body_sheet.mjs` | Render every body plan doing 8 moves into one image |
+| `node tools/svg_import.mjs <file.svg> --name <kind>` | Turn an SVG drawing into an object entry (review image in out/drafts/) |
+| `node tools/draft.mjs object\|theme "<description>"` | Draft a new object or theme with an LLM (`--mock`, `--manual` for copy-paste), checked and rendered for review |
 
 `record` options:
 
@@ -565,7 +567,7 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 
 ## 11. Known limits
 
-- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards, narration, faces and emotions, thought/shout/whisper bubbles with speaker names, speech sounds, six body plans (stickman, buddy, kid, bulky, slim, elder) and appearance options; see `scripts/samples/s1_scenes.json`, `s2_dialogue.json` and `s3_bodies.json`. objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards, narration, faces and emotions, thought/shout/whisper bubbles with speaker names, speech sounds, six body plans (stickman, buddy, kid, bulky, slim, elder) and appearance options, and objects (set pieces, balls, bubbles, vehicles, holdables); see `scripts/samples/s1_scenes.json`, `s2_dialogue.json`, `s3_bodies.json` and `s4_park.json`. objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
 - Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.

@@ -125,6 +125,19 @@ export const fxPresets = {
       { shape: "dot", count: 1, angle: [150, 210], speed: [60, 160], life: [0.2, 0.35], size: [6, 1], color: ["#9fe0ff", "#ffffff"], alpha: [1, 0] },
     ],
   },
+  // ---- story effects (S4) ----
+  bubble_pop: {
+    anchor: "point",
+    layers: [
+      { shape: "ring", count: 1, speed: [0, 0], life: [0.16, 0.16], size: [10, 34], width: 2, color: "rgba(190, 235, 255, 0.95)", alpha: [0.9, 0] },
+      { shape: "dot", count: 6, angle: [0, 360], speed: [80, 160], life: [0.15, 0.3], size: [4, 1], color: ["#d8f2ff", "#ffffff"], alpha: [0.9, 0] },
+    ],
+  },
+  camera_flash: {
+    anchor: "point",
+    flash: { color: "#ffffff", dur: 0.15 },
+    layers: [{ shape: "star", count: 1, speed: [0, 0], life: [0.14, 0.14], size: [30, 46], color: "#ffffff", alpha: [1, 0] }],
+  },
 };
 
 export const FX_NAMES = Object.keys(fxPresets);

@@ -1,6 +1,33 @@
 // utility moves (spec 8.4). Schema: spec 8.1.
 // keepPose: the character holds whatever pose it had. durationParam: params.seconds sets the length.
 export const moves = [
+  // ---- objects (S4) ----
+  {
+    // Use the held object: a bubble wand blows bubbles, a phone flashes (data/objects.js `use`).
+    name: "use", category: "utility", duration: 1.0,
+    keys: [
+      { t: 0, pose: "stand", ease: "outQuad" },
+      { t: 0.3, pose: { lean: -4, head: -6, lUA: 14, lFA: 10, rUA: 95, rFA: 35, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad", propAngle: 20 },
+      { t: 0.7, pose: { lean: -2, head: -4, lUA: 14, lFA: 10, rUA: 100, rFA: 30, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad", propAngle: 20 },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.45, use: true }],
+  },
+  {
+    // Get on a vehicle (the beat's `object`); the character then moves with it until dismount.
+    name: "ride", category: "utility", duration: 0.6, flags: { hold: true },
+    keys: [
+      { t: 0, pose: "stand", ease: "inOutQuad" },
+      { t: 1, pose: { lean: 4, head: -4, lUA: 60, lFA: 40, rUA: 55, rFA: 45, lTH: 70, lSH: 75, rTH: 75, rSH: 80 } },
+    ],
+  },
+  {
+    name: "dismount", category: "utility", duration: 0.5,
+    keys: [
+      { t: 0, pose: { lean: 4, head: -4, lUA: 60, lFA: 40, rUA: 55, rFA: 45, lTH: 70, lSH: 75, rTH: 75, rSH: 80 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+  },
   {
     name: "wait",
     category: "utility",

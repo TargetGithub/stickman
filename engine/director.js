@@ -8,10 +8,26 @@ import { requiredStartX, motionScale } from "./combat.js";
 import { COMBAT, LIMITS } from "./config.js";
 import { CARD_COMMANDS, cardDuration, narrateDuration } from "./story/timing.js";
 import { readingTime } from "./story/speech.js";
+import { spawnObject, removeObject, setObject } from "./objects.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
 export const REVIVE_MOVES = ["get_up", "spawn"];
+
+/** Object world commands (S4): spawn_object (params.kind, id, x, ...), remove_object / set_object (beat.object). */
+const OBJECT_COMMANDS = {
+  spawn_object: (world, beat, p, t) => {
+    const def = world.objects.ctx.catalog.objects?.[p.kind];
+    if (def?.behavior === "holdable") {
+      // A spawned holdable lies on the floor, ready for pick_prop.
+      world.groundProps.push({ name: p.kind, kind: def.hold.kind, data: def.hold, x: p.x, y: world.actors[0]?.groundY - 4 - (p.y ?? 0), angle: 0 });
+      return [];
+    }
+    return spawnObject(world.objects, { object: p.kind, id: p.id, x: p.x, y: p.y, layer: p.layer, facing: p.facing, state: p.state }, t);
+  },
+  remove_object: (world, beat) => removeObject(world.objects, beat.object),
+  set_object: (world, beat, p) => setObject(world.objects, beat.object, p),
+};
 
 /** World beat durations in story seconds, for their end anchor. */
 const WORLD_DURATION = {
@@ -139,6 +155,9 @@ const isFree = (actor) => !actor.move || actor.move.def.name === "idle" || actor
 function dispatchWorld(director, beat, ctx) {
   const p = beat.params || {};
   const { clock, emit, storyT } = ctx;
+  if (OBJECT_COMMANDS[beat.do] && ctx.world.objects) {
+    for (const e of OBJECT_COMMANDS[beat.do](ctx.world, beat, p, storyT)) emit({ ...e, beatId: beat.id });
+  }
   if (beat.do === "spawn_prop") {
     const data = ctx.catalog?.props?.[p.prop];
     if (data) ctx.world.groundProps.push({ name: p.prop, kind: data.kind, data, x: p.x, y: p.y ?? ctx.world.actors[0].groundY - 4, angle: 0 });
@@ -243,6 +262,8 @@ function execute(director, beat, ctx) {
   }
   beat.firedAt = storyT;
   if (beat.face && actor.face) actor.face = beat.face; // "from this beat on" (STORY_SPEC 4.3)
+  if (beat.do === "ride") actor.riding = beat.object; // the sim keeps riders on their vehicle
+  if (beat.do === "dismount") actor.riding = null;
   command(world, beat.who, beat.do, {
     target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,
   });

@@ -13,6 +13,7 @@ import { createPresentation, presentEvent, stepPresentation } from "./presentati
 import { normalize, flatScene, transitionInto, transitionDuration } from "./story/normalize.js";
 import { faceEvents, updateFaces } from "./story/faces.js";
 import { bodyPlan } from "./story/bodies.js";
+import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy } from "./objects.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
 const prepared = new WeakMap();
@@ -45,10 +46,25 @@ function sceneActors(flat, catalog, carry, faces) {
     }
     if (faces) a.face = placed.face ?? kept?.face ?? "neutral";
     const name = kept && placed.prop === undefined ? kept.prop : c.prop;
-    const data = name ? catalog.props[name] : null;
+    const data = name ? holdableData(catalog, name) : null;
     a.prop = data ? { name, kind: data.kind, data } : null;
     return a;
   });
+}
+
+/** Characters riding a vehicle move with it (seat point) and face its way (S4). */
+function ridersFollow(world) {
+  for (const a of world.actors) {
+    if (!a.riding) continue;
+    const v = world.objects.byId.get(a.riding);
+    if (!v || !v.alive) {
+      a.riding = null;
+      continue;
+    }
+    a.facing = v.facing;
+    a.x = v.x + (v.def.seat?.x ?? 0) * v.facing;
+    a.vx = 0;
+  }
 }
 
 /**
@@ -66,7 +82,7 @@ export function simulate(script, catalog, opts = {}) {
   const limit = story.legacy ? LIMITS.maxDuration : LIMITS_V2.maxDuration;
   const maxFrames = Math.round((opts.maxSeconds ?? limit + 5) * FPS);
   const clock = createClock();
-  const store = opts.dryRun ? null : createStore(null, 0, Object.keys(catalog.props || {}), Object.keys(catalog.faces || {}));
+  const store = opts.dryRun ? null : createStore(null, 0, holdableNames(catalog), Object.keys(catalog.faces || {}));
   const log = [];
   const anchors = [];
   const beats = [];
@@ -99,6 +115,17 @@ export function simulate(script, catalog, opts = {}) {
 
     const actors = sceneActors(flat, catalog, carry, !story.legacy);
     const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth: flat.meta.stageWidth });
+    // Objects (S4): set pieces and spawned objects; holdable set pieces lie on the floor as props.
+    const pieces = [...(flat.location?.set || []), ...(flat.scene.set || [])];
+    for (const p of pieces.filter((q) => catalog.objects?.[q.object]?.behavior === "holdable")) {
+      const hold = catalog.objects[p.object].hold;
+      world.groundProps.push({ name: p.object, kind: hold.kind, data: hold, x: p.x, y: STAGE.groundY - 4 - (p.y ?? 0), angle: 0 });
+    }
+    world.objects = story.legacy ? null : createObjects(pieces.filter((q) => catalog.objects?.[q.object]?.behavior !== "holdable"),
+      { catalog, seed: meta.seed ?? 1, sceneId: sid, groundY: STAGE.groundY, stageWidth: flat.meta.stageWidth });
+    world.onMoveEvent = (actor, e, events) => {
+      if (e.use && world.objects && actor.prop) events.push(...useHeld(world.objects, actor, actor.joints.propTip || actor.joints.rHand, clock.storyT));
+    };
     const t0 = clock.storyT;
     const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `scenes[${si}].`, tag: story.legacy ? "" : `${sid}.`, dead, story: !story.legacy });
     present = createPresentation(flat, catalog, { suffix, fx });
@@ -112,6 +139,7 @@ export function simulate(script, catalog, opts = {}) {
     const items = () => [
       ...world.groundProps.map((g) => ({ name: g.name, x: g.x, y: g.y, angle: g.angle, flying: false })),
       ...world.projectiles.filter((p) => p.item).map((p) => ({ name: p.item.name, x: p.x, y: p.y, angle: p.angle, flying: true })),
+      ...(world.objects ? movingItems(world.objects, STAGE.groundY) : []),
     ];
     frame();
     const startFrame = clock.frame;
@@ -130,6 +158,10 @@ export function simulate(script, catalog, opts = {}) {
       const d = tick(clock);
       stepDirector(director, { world, clock, catalog, storyT: clock.storyT, emit });
       const events = stepWorld(world, d.storyDt);
+      if (world.objects) {
+        events.push(...stepObjects(world.objects, d.storyDt, clock.storyT));
+        ridersFollow(world);
+      }
       for (const e of events) {
         if (e.type === "hitstop") requestHitstop(clock, e.seconds);
         emit(e);
@@ -147,7 +179,7 @@ export function simulate(script, catalog, opts = {}) {
       if (fixed !== undefined) {
         if (clock.storyT - t0 >= fixed - 1e-9) break;
       } else {
-        const quiet = directorIdle(director) && world.actors.every(settled) && !timeEffectsActive(clock);
+        const quiet = directorIdle(director) && world.actors.every(settled) && !timeEffectsActive(clock) && !(world.objects && objectsBusy(world.objects));
         quietFrames = quiet ? quietFrames + 1 : 0;
         if (quietFrames >= tailFrames) break;
       }
@@ -155,6 +187,11 @@ export function simulate(script, catalog, opts = {}) {
         overran = clock.frame >= maxFrames;
         break;
       }
+    }
+    for (const e of log.filter((x) => x.scene === si && x.type === "object" && x.what === "offstage")) {
+      issues.push({ code: "E_SIM_OBJECT_OFFSTAGE", path: `scenes[${si}]`, severity: "error",
+        message: `'${e.id}' (${e.kind}) left the stage at x=${e.x.toFixed(0)} (stage 0-${flat.meta.stageWidth}).`,
+        fix: e.kind && catalog.objects?.[e.kind]?.behavior === "vehicle" ? 'Use "exit": "left" or "right" to drive off, or a toX inside the stage.' : "Aim toX inside the stage, or lower the speed or height." });
     }
     const frames = clock.frame - startFrame + 1;
     if (!story.legacy && frames > LIMITS_V2.sceneMax * FPS) {

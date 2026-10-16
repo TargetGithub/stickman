@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance, S4 objects and set pieces implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -281,6 +281,9 @@ Decision 6: code-drawn or imported SVG, whichever needs less manual work.
   - `tools/draft.mjs move|object|theme "<description>"` asks an LLM (any provider, or copy-paste) to draft catalog data from the description, the data format and similar existing entries.
   - The draft is checked automatically: move data checks (anticipation, ground contact, hit windows), render sanity (no NaN, on stage), and a filmstrip/contact sheet.
   - A person only approves or rejects the filmstrip, and touches the editor when needed.
+- **Built in S4:**
+  - `node tools/svg_import.mjs art.svg --name castle --height 300 --source "author, license, URL"`: paths, rects, circles, ellipses, lines, polylines and polygons (with group transforms) become absolute path commands, scaled to the height, centered, standing on the floor, colors snapped to a 20-color palette, a uniform dark outline. Writes `out/drafts/<name>.object.json` and a review PNG; the license line goes to `assets/art/SOURCES.md`. Objects with `"draw": "paths"` are drawn by `engine/renderer/paths.js`.
+  - `node tools/draft.mjs object|theme "<description>"` with `--provider/--model`, `--mock`, `--manual` (writes a prompt to paste in any chat) or `--reply file`: builds a prompt from the data format and the three most similar entries, checks the reply (known behaviors, shapes and layer kinds, colors, paths above the floor, backdrop not near-white or near-black), asks for fixes up to three times, and renders a review sheet through the public API (the draft in a small story at three camera distances). Nothing is written into `data/`. Move drafting follows in S5.0.
 
 ## 6. Cast: body plans, appearance and faces
 
@@ -410,9 +413,22 @@ Objects are non-character things in the world: catalog data with a shape, a size
 |---|---|
 | `spawn_object` / `remove_object` | Place or remove an object (x, y, layer) |
 | `set_object` | Change state (door open, light on, color) |
-| `give` | Character hands a holdable to `partner` (paired move) |
+| `give` | Character hands a holdable to `partner` (paired move, S5) |
 | `use` | Character uses a holdable: the object's `use` animation, for example the bubble wand emitting bubbles |
 | `ride` / `dismount` | Get on or off a vehicle |
+
+### 8.1 How objects work (S4)
+
+- **Catalog:** `data/objects.js` (32 with the six v1 props): set pieces (bench, chair, table, tree_big, bush, lamppost, tennis_net, sign, fountain, door, cage, crate, box), vehicles (car, bike), balls (tennis_ball, football), floaters (bubble, balloon) and holdables (racket, bubble_wand, phone, ice_cream, flower, book, rope, cane, balloon). `data/props.js` is unchanged, so v1 schemas, prompts and prop indices stay the same; story holdables carry a `hold` entry in the same format, and a cast `prop` (or a spawn) may name any holdable.
+- **Commands (exact params):**
+  - `spawn_object`: `params.kind`* (an object kind), `params.id` (to refer to it later), `params.x`*, `y` (height above the floor), `layer`, `state`, `facing`. A spawned holdable lies on the floor and `pick_prop` picks it up.
+  - `remove_object`, `set_object`: the beat's `object` field names the object (a set piece id or a spawned id). `set_object` params: `state` (any object with states; `"broken"` breaks a breakable into pieces with the `prop_break` effect), ball `toX` + `height` (an arc that lands at toX) or `vx`/`vy`, vehicle `toX` + `speed` or `exit` (`left`/`right`: drives off and is removed).
+  - Character moves `use` (the held object's `use`: a bubble wand blows 3-6 bubbles from its tip, a phone flashes), `ride` with `object` (a vehicle: the character moves with it and faces its way), `dismount`.
+- **Behaviors:** balls fly under gravity (1,800 px/s²), bounce with the kind's `bounce` and roll to a stop; floaters rise, drift and wobble in closed form (seeded per scene) and pop (bubbles) or float away (balloons); vehicles roll with turning wheels; doors, cages and lampposts change state; seats wait for the sit moves (S5); breakables break by `set_object` (being hit by attacks comes with S5).
+- **Timing:** a scene does not end while a ball is moving, a vehicle is driving or bubbles are floating; object events count as activity for `W_PACING_GAP`.
+- **Storage and drawing:** moving objects (balls, floaters, vehicles) are frame items; static ones are drawn from the scene's set pieces plus the "object" events up to the frame's time (spawn, state, break, remove), so they cost nothing per frame. Balls, bubbles and vehicles draw in front of the characters; back-layer pieces behind; front-layer pieces last.
+- **Effects and sounds:** `bubble_pop` and `camera_flash` effects; sounds `bubble_blow`, `bubble_pop`, `racket_hit` (ball launches), `ball_bounce`, `door_open`, `car_pass`.
+- **Validator:** `E_OBJECT_UNKNOWN` (an unknown kind, or an object id that is not in the scene), `E_OBJECT_STATE` (a state the object does not have, a change that does not suit it such as launching a bench, riding something that is not a vehicle), `E_SIM_OBJECT_OFFSTAGE` (a ball or vehicle leaves the stage; vehicles leave with `exit`).
 
 ## 9. Interactions (paired moves)
 

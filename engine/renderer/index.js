@@ -11,7 +11,8 @@ import { drawParticles } from "./particles.js";
 import { drawPostWorld, drawOverlays } from "./overlays.js";
 import { drawHold } from "./transitions.js";
 import { drawGrade, gradeState } from "./grade.js";
-import { drawSetPieces } from "./objects.js";
+import { drawSetPieces, staticObjectsAt, drawMovingObjects } from "./objects.js";
+import { holdableData } from "../objects.js";
 import { faceStyle } from "./face_state.js";
 import { lookFor, lookAt } from "./looks.js";
 import { bodyPlan } from "../story/bodies.js";
@@ -32,6 +33,7 @@ function sceneViews(sim) {
       themeChanges: world.filter((e) => e.do === "set_theme"),
       looks: world.filter((e) => e.do === "set_time" || e.do === "set_weather"),
       says: ev.filter((e) => e.type === "say"),
+      objectEvents: ev.filter((e) => e.type === "object"),
       squashEvents: ev.filter((e) => e.type === "land" || e.type === "hit"),
       fxLog: sc.fxStart === 0 && sc.fxEnd === sim.fx.log.length ? sim.fx.log : sim.fx.log.slice(sc.fxStart, sc.fxEnd),
       trails: sim.fx.trails.filter((t) => inRange(t.t0)),
@@ -80,7 +82,7 @@ function charsAt(r, n) {
   if (!r.charCache.has(n)) {
     r.charCache.set(n, frameView(r.sim.store, n, FPS).chars.map((c) => {
       const j = unpackJoints(c.joints);
-      const data = c.prop ? r.catalog.props[c.prop.name] : null;
+      const data = c.prop ? holdableData(r.catalog, c.prop.name) : null;
       if (data) j.propTip = propTransform(j, data, c.prop.angle, c.facing, c.scale).tip; // slash trails follow the tip
       const plan = c.plan ? r.catalog.bodies?.[c.plan] : null; // story body plans (S3)
       const body = plan ? { dims: bodyPlan(r.catalog, c.plan).dims, draw: plan.draw, torsoWidth: plan.torsoWidth } : {};
@@ -96,7 +98,8 @@ const order = (chars) => [...chars].sort((a, b) => b.scale - a.scale);
 /** Loose props: lying ones before the characters, thrown (flying) ones after. */
 function drawItems(ctx, r, items, flying) {
   for (const it of items.filter((i) => i.flying === flying)) {
-    const data = r.catalog.props[it.name];
+    if (it.obj) continue; // moving objects are drawn by drawMovingObjects
+    const data = holdableData(r.catalog, it.name);
     if (!data) continue;
     const scale = 1;
     const half = (data.len * scale) / 2;
@@ -107,8 +110,9 @@ function drawItems(ctx, r, items, flying) {
 }
 
 function drawWorld(ctx, r, n, f, chars, sv) {
-  drawSetPieces(ctx, r.catalog, sv.set, "back");
-  drawSetPieces(ctx, r.catalog, sv.set, "mid");
+  const pieces = sv.objectEvents.length ? staticObjectsAt(r.catalog, sv.set, sv.objectEvents, f.videoT) : sv.set;
+  drawSetPieces(ctx, r.catalog, pieces, "back");
+  drawSetPieces(ctx, r.catalog, pieces, "mid");
   drawItems(ctx, r, f.items, false);
   for (const c of chars) {
     if (c.alpha <= 0.01) continue;
@@ -172,7 +176,8 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     if (!c) return null;
     return joint === "feet" ? { x: c.j.hip.x, y: STAGE.groundY } : c.j[joint] || c.j.hip;
   });
-  drawSetPieces(ctx, r.catalog, sv.set, "front");
+  drawMovingObjects(ctx, r.catalog, f.items); // balls, bubbles and vehicles pass in front of the characters
+  drawSetPieces(ctx, r.catalog, pieces, "front");
 }
 
 /** Number of frames available. */

@@ -6,6 +6,7 @@ import { checkSemantics, checkText, WORLD_COMMANDS_V2 } from "./semantic.js";
 import { closestMatch } from "./report.js";
 import { flatScene, resolveLocation } from "../story/normalize.js";
 import { readingTime } from "../story/speech.js";
+import { holdableNames } from "../objects.js";
 
 const issue = (code, path, message, fix, severity) => ({ code, path, message, fix, ...(severity ? { severity } : {}) });
 
@@ -54,6 +55,64 @@ function checkTransition(t, path, story, si, out) {
   }
 }
 
+const MOVE_PARAMS = { ball: ["toX", "height", "vx", "vy"], vehicle: ["toX", "speed", "exit"] };
+
+/**
+ * E_OBJECT_UNKNOWN / E_OBJECT_STATE for one scene: set piece states, spawn kinds and states, the objects
+ * that remove_object / set_object / ride name, and set_object params that suit the object's behavior.
+ */
+function objectIssues(scene, si, story, catalog) {
+  const out = [];
+  const pre = `scenes[${si}]`;
+  const objects = catalog.objects || {};
+  const location = (story.locations || []).find((l) => l.id === scene.location);
+  const known = new Map(); // id → kind
+  const states = (kind, state, path) => {
+    const def = objects[kind];
+    if (state !== undefined && def && !(def.states || []).includes(state)) {
+      out.push(issue("E_OBJECT_STATE", path, `'${kind}' has no state '${state}'.`, def.states ? `Use one of: ${def.states.join(", ")}.` : `'${kind}' has no states; remove "state".`));
+    }
+  };
+  [...(location?.set || []).map((p, k) => [p, `locations[${story.locations.indexOf(location)}].set[${k}]`]), ...(scene.set || []).map((p, k) => [p, `${pre}.set[${k}]`])].forEach(([p, path]) => {
+    known.set(p.id, p.object);
+    states(p.object, p.state, `${path}.state`);
+  });
+  (scene.beats || []).forEach((b, bi) => {
+    if (b.who === "world" && b.do === "spawn_object") {
+      const kind = b.params?.kind;
+      if (kind !== undefined && !objects[kind] && !(kind in (catalog.props || {}))) {
+        const near = closestMatch(String(kind), Object.keys(objects));
+        out.push(issue("E_OBJECT_UNKNOWN", `${pre}.beats[${bi}].params.kind`, `Unknown object '${kind}'.`, `Use one of: ${Object.keys(objects).join(", ")}${near ? ` (closest: ${near})` : ""}.`));
+      } else states(kind, b.params?.state, `${pre}.beats[${bi}].params.state`);
+      if (b.params?.id) known.set(b.params.id, kind);
+    }
+  });
+  (scene.beats || []).forEach((b, bi) => {
+    const path = `${pre}.beats[${bi}]`;
+    const names = b.who === "world" ? ["remove_object", "set_object"].includes(b.do) : b.do === "ride";
+    if (!names) return;
+    if (!b.object || !known.has(b.object)) {
+      out.push(issue("E_OBJECT_UNKNOWN", `${path}.object`, b.object ? `No object '${b.object}' in scene '${scene.id}'.` : `'${b.do}' needs "object".`,
+        `Use a set piece or spawned object id: ${[...known.keys()].join(", ") || "none in this scene"}.`));
+      return;
+    }
+    const kind = known.get(b.object);
+    const behavior = objects[kind]?.behavior;
+    if (b.do === "ride" && behavior !== "vehicle") out.push(issue("E_OBJECT_STATE", `${path}.object`, `'${b.object}' (${kind}) is not a vehicle.`, "Ride a car or a bike."));
+    if (b.do === "set_object") {
+      states(kind, b.params?.state, `${path}.params.state`);
+      for (const k of Object.keys(b.params || {})) {
+        if (k === "state") continue;
+        if (!(MOVE_PARAMS[behavior] || []).includes(k)) {
+          out.push(issue("E_OBJECT_STATE", `${path}.params.${k}`, `'${b.object}' (${kind}, ${behavior}) cannot take '${k}'.`,
+            MOVE_PARAMS[behavior] ? `Use: state, ${MOVE_PARAMS[behavior].join(", ")}.` : 'Only "state" can change for this object.'));
+        }
+      }
+    }
+  });
+  return out;
+}
+
 /** E_BODY_UNKNOWN and E_APPEARANCE for one cast entry (catalog option lists, and things worn in the same place). */
 export function castLookIssues(c, path, catalog) {
   const out = [];
@@ -98,7 +157,7 @@ export function checkStory(story, catalog, moves) {
   story.cast.forEach((c, i) => {
     if (castIds.has(c.id)) out.push(issue("E_REF_DUPLICATE", `cast[${i}].id`, `Cast id '${c.id}' is used twice.`, "Give every cast member a unique id."));
     castIds.add(c.id);
-    if (c.prop && !(c.prop in catalog.props)) out.push(issue("E_PROP_UNKNOWN", `cast[${i}].prop`, `Unknown prop '${c.prop}'.`, `Use one of: ${Object.keys(catalog.props).join(", ")}.`));
+    if (c.prop && !holdableNames(catalog).includes(c.prop)) out.push(issue("E_PROP_UNKNOWN", `cast[${i}].prop`, `Unknown prop '${c.prop}'.`, `Use one of: ${holdableNames(catalog).join(", ")}.`));
   });
   const locIds = new Set();
   (story.locations || []).forEach((l, i) => {
@@ -164,7 +223,8 @@ export function checkStory(story, catalog, moves) {
 
     // The v1 checks on the scene's flat view.
     const flat = flatScene(story, si, catalog);
-    for (const i of checkSemantics(flat, catalog, moves, { worldCommands: WORLD_COMMANDS_V2 })) {
+    out.push(...objectIssues(scene, si, story, catalog));
+    for (const i of checkSemantics(flat, catalog, moves, { worldCommands: WORLD_COMMANDS_V2, holdables: holdableNames(catalog) })) {
       const mapped = { ...i, path: mapPath(i.path, si, scene) };
       const ref = i.message.match(/^No (?:character|beat with id) '([^']+)'/);
       if (i.code === "E_REF_CHARACTER" && ref && castIds.has(ref[1])) {

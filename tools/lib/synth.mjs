@@ -93,12 +93,19 @@ const RECIPES = {
   slip: (o, r) => noise(o, r, { gain: 1, attack: 0.02, decay: 0.28, lp0: 7000, lp1: 1200, hp: 900 }),
   crowd_cheer: (o, r) => { noise(o, r, { gain: 1, attack: 0.5, decay: 1.6, lp0: 2200, hp: 300, am: 0.45, amRate: 7 }); noise(o, r, { gain: 0.5, attack: 0.6, decay: 1.4, lp0: 900, hp: 150, am: 0.3, amRate: 3.3 }); },
   crowd_gasp: (o, r) => noise(o, r, { gain: 1, attack: 0.08, decay: 0.45, lp0: 1800, lp1: 700, hp: 250 }),
+  // Objects (S4).
+  bubble_blow: (o, r) => noise(o, r, { gain: 0.8, attack: 0.08, decay: 0.35, lp0: 1400, lp1: 900, hp: 300, am: 0.3, amRate: 11 }),
+  bubble_pop: (o) => { sweepSine(o, { f0: 900, f1: 1800, sweep: 0.025, decay: 0.04, gain: 0.8 }); sweepSine(o, { f0: 2400, f1: 2400, sweep: 1, decay: 0.03, gain: 0.3 }); },
+  racket_hit: (o, r) => { sweepSine(o, { f0: 520, f1: 380, sweep: 0.05, decay: 0.08 }); noise(o, r, { gain: 0.5, decay: 0.03, lp0: 5000, hp: 1200 }); },
+  ball_bounce: (o) => sweepSine(o, { f0: 220, f1: 140, sweep: 0.06, decay: 0.09 }),
+  door_open: (o, r) => { sweepSine(o, { f0: 320, f1: 520, sweep: 0.5, decay: 0.55, gain: 0.5, vibrato: 0.05, vibratoRate: 23 }); noise(o, r, { gain: 0.3, decay: 0.2, lp0: 1200, start: 0.42 }); },
+  car_pass: (o, r) => { sweepSine(o, { f0: 90, f1: 70, sweep: 1.2, attack: 0.4, decay: 0.9, gain: 0.7 }); noise(o, r, { gain: 0.6, attack: 0.5, decay: 0.8, lp0: 700, lp1: 400 }); },
   // Story narration (S2): a soft two-note "page" chime.
   narrate_chime: (o) => { partials(o, [1318.5, 2637, 3955], { gain: 0.7, decay: 0.9, attack: 0.01 }); partials(o, [1975.5, 3951], { gain: 0.6, decay: 0.8, attack: 0.01, start: 0.11 }); },
   step: (o, r) => { sweepSine(o, { f0: 120, f1: 80, sweep: 0.03, decay: 0.05, gain: 0.7 }); noise(o, r, { gain: 0.35, decay: 0.025, lp0: 2500 }); },
 };
 
-const LENGTH = { narrate_chime: 1.2, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8 };
+const LENGTH = { narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

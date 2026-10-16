@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "meta": { "title": "A Day in the Park", "format": "landscape", "seed": 404, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "prop": "bubble_wand" },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "accessories": { "antenna": "#ffcc00" } }, "prop": "racket", "voice": { "pitch": 1.5, "timbre": "squeaky" } },
+    { "id": "gran", "name": "Gran", "body": "elder", "color": "#f2dfb8", "appearance": { "outfit": "robe", "outfitColor": "#5b6e9a", "eyes": "glasses" }, "prop": "cane" }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "stageWidth": 3600,
+      "set": [
+        { "id": "tree1", "object": "tree_big", "x": 700, "layer": "back" },
+        { "id": "bench1", "object": "bench", "x": 1050 },
+        { "id": "fountain1", "object": "fountain", "x": 2500, "layer": "back" },
+        { "id": "lamp1", "object": "lamppost", "x": 1700, "layer": "back" },
+        { "id": "crate1", "object": "crate", "x": 2150 },
+        { "id": "ball1", "object": "football", "x": 1900 },
+        { "id": "bush1", "object": "bush", "x": 3000, "layer": "front" }
+      ] }
+  ],
+  "scenes": [
+    { "id": "park", "location": "park", "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "A Day in the Park", "subtitle": "objects", "dur": 2 },
+      "transitionOut": { "type": "fade", "dur": 1 },
+      "cast": [ { "id": "gran", "x": 1050, "facing": 1, "face": "happy" }, { "id": "kai", "x": 1350, "facing": 1, "face": "happy" }, { "id": "pip", "x": 1650, "facing": -1, "face": "happy" } ],
+      "camera": [
+        { "at": 0, "mode": "follow", "zoom": "auto", "padding": 380 },
+        { "at": { "with": "k1" }, "mode": "pan", "x": 1950, "zoom": 0.68, "dur": 0.8 },
+        { "at": { "after": "b2", "delay": 0.4 }, "mode": "follow", "zoom": "auto", "padding": 380, "dur": 0.8 }
+      ],
+      "beats": [
+        { "id": "n1", "at": 0.2, "who": "world", "do": "narrate", "params": { "text": "A sunny day in the park." } },
+        { "id": "u1", "at": 0.8, "who": "kai", "do": "use", "say": "Bubbles!" },
+        { "id": "u2", "at": { "after": "u1", "delay": 0.3 }, "who": "kai", "do": "use" },
+        { "id": "j1", "at": { "after": "u1" }, "who": "pip", "do": "jump_joy", "face": "laugh", "say": "Wheee!" },
+        { "id": "k1", "at": { "after": "u2", "delay": 0.4 }, "who": "world", "do": "set_object", "object": "ball1", "params": { "toX": 2700, "height": 260 } },
+        { "id": "g1", "at": { "with": "k1" }, "who": "gran", "do": "gasp", "face": "surprised", "say": "Careful!" },
+        { "id": "s1", "at": { "after": "k1", "delay": 1.6 }, "who": "world", "do": "spawn_object", "params": { "kind": "car", "id": "car1", "x": 200 } },
+        { "id": "d1", "at": { "with": "s1" }, "who": "world", "do": "set_object", "object": "car1", "params": { "exit": "right", "speed": 520 } },
+        { "id": "w1", "at": { "after": "s1", "delay": 0.4 }, "who": "pip", "do": "wave", "say": "Hi, car!" },
+        { "id": "b1", "at": { "after": "w1", "delay": 1.2 }, "who": "world", "do": "set_object", "object": "crate1", "params": { "state": "broken" } },
+        { "id": "b2", "at": { "with": "b1" }, "who": "kai", "do": "hold_head", "face": "scared", "say": "Oops!" },
+        { "id": "l1", "at": { "after": "b2", "delay": 0.4 }, "who": "gran", "do": "laugh", "face": "laugh" },
+        { "id": "u3", "at": { "with": "l1" }, "who": "kai", "do": "use", "face": "happy" }
+      ] }
+  ]
+}

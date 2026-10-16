@@ -22,7 +22,9 @@ function pacing(script, sim, moves, opts = {}) {
   const where = opts.path ?? "beats";
   const ran = sim.beats.filter((b) => b.firedAt != null).sort((a, b) => a.firedAt - b.firedAt || a.index - b.index);
   const end = sim.clock.storyT;
-  const spans = ran.map((b) => [b.firedAt, Math.max(b.endedAt ?? b.firedAt, b.firedAt + 0.2)]).sort((a, b) => a[0] - b[0]);
+  // Objects in motion (a bubble popping, a ball bouncing, a car passing) count as something happening (S4).
+  const objectSpans = sim.events.filter((e) => e.type === "object").map((e) => [e.storyT, e.storyT + 0.3]);
+  const spans = [...ran.map((b) => [b.firedAt, Math.max(b.endedAt ?? b.firedAt, b.firedAt + 0.2)]), ...objectSpans].sort((a, b) => a[0] - b[0]);
   let covered = 0;
   for (const [s, e] of spans) {
     if (s - covered > 2.5) out.push({ code: "W_PACING_GAP", path: where, message: `Nothing happens from ${covered.toFixed(1)}s to ${s.toFixed(1)}s.`, fix: "Add a beat (taunt, wait with say, camera move) or tighten the timing." });

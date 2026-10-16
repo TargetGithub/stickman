@@ -38,9 +38,9 @@ for (const [path, names] of Object.entries(expected)) {
 test("default catalog loads", async () => {
   const { catalog } = await import("../../data/index.js");
   assert.ok(catalog.poses.stand, "stand pose exists");
-  assert.equal(catalog.sfxKeys.length, 24); // + narrate_chime (S2)
+  assert.equal(catalog.sfxKeys.length, 30); // + narrate_chime (S2), 6 object sounds (S4)
   assert.equal(catalog.themeNames.length, 12); // 7 fight themes + 5 story themes (S1)
-  assert.ok(Object.keys(catalog.objects).length >= 11, "S1 set pieces");
+  assert.ok(Object.keys(catalog.objects).length + Object.keys(catalog.props).length >= 32, "S4 objects (with the six v1 props)");
 });
 
 test("engine code avoids forbidden time and randomness sources", async () => {

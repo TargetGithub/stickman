@@ -87,6 +87,10 @@ export function presentEvent(p, e, world, clock) {
       } else if (e.do === "cut") p.pendingCut = true;
       break;
     }
+    case "object":
+      // Object events (S4): effects at the object's position (heights are measured up from the floor).
+      for (const name of e.fx || []) emitFx(p.fx, name, { x: e.x, y: STAGE.groundY - (e.y || 0) }, { dir: 1, scale: 1 }, fxT);
+      break;
     case "camera":
       setCameraKey(p.cam, e.key, clock.videoT);
       p.lastKeyVideo = clock.videoT;

@@ -355,6 +355,7 @@ export function stepWorld(world, dt) {
         if (e.type === "moveEvent" && e.pick) pickProp(world, actor, events, e.beatId ?? actor.move?.beatId);
         if (e.type === "moveEvent" && e.drop) dropProp(world, actor, events);
         if (e.type === "moveEvent" && (e.hide || e.show || e.teleport)) visibility(world, actor, e, events);
+        if (e.type === "moveEvent" && world.onMoveEvent) world.onMoveEvent(actor, e, events); // story hooks (objects, S4)
       }
       windowsByActor.set(actor, r.openWindows);
       snapHard.set(actor, r.snapHard);

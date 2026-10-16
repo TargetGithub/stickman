@@ -133,6 +133,11 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** object look (10 min).
 
+**Status (2026-10-16):** built; waiting for the review. Demo: `out/demos/s4_park/final.mp4` (from `scripts/samples/s4_park.json`: bench, tree, fountain, lamppost, bubbles from a wand, a kicked football, a car passing, a crate breaking; a racket and a cane held). Notes:
+- `data/props.js` is unchanged (v1 schema, prompt and prop indices stay); story holdables live in `data/objects.js` with a `hold` entry.
+- Seats wait for the sit moves and breakables for attacks on objects (both S5).
+- Static objects are drawn from the event log, so only balls, floaters and vehicles are stored per frame.
+
 ### S5 Interactions, activities and the slice-of-life move pack (6-8 days)
 
 | Task | Output |
