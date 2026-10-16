@@ -6,6 +6,7 @@ import { themes, THEME_NAMES } from "./themes.js";
 import { SFX_KEYS } from "./sfx.js";
 import { blocklist, softWords } from "./blocklist.js";
 import { objects } from "./objects.js";
+import { faces, FACE_NAMES } from "./faces.js";
 import { moves as movement } from "./moves/movement.js";
 import { moves as unarmed } from "./moves/unarmed.js";
 import { moves as armed } from "./moves/armed.js";
@@ -26,4 +27,6 @@ export const catalog = {
   blocklist,
   softWords,
   objects,
+  faces,
+  faceNames: FACE_NAMES,
 };

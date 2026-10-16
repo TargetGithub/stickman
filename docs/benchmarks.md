@@ -37,3 +37,7 @@ ffmpeg prints one "Truncating packet of size 8294400 to 8192" line on the raw pi
 - `node tools/record.mjs scripts/samples/s1_scenes.json` (5 scenes, 5 story themes, card/dissolve/wipe/iris/fade transitions, rain and fog): 3,089 frames (51.5 s) rendered and encoded at ~55 fps on the M3 Pro, 57.9 s total. Slightly under real time; the weather and grade layers cost a few ms per frame. Profiling is part of S9.3.
 - Validating a generated ~346 s story (10 scenes, 130 beats) including the dry run: ~130 ms (target: under 5 s; `tests/unit/long_story.test.js`).
 
+## S2 faces and dialogue (2026-10-16)
+
+`node tools/record.mjs scripts/samples/s2_dialogue.json`: 1,485 frames (24.8 s) at ~66 fps including speech babble synthesis and mixing; 23.3 s total. Faces add no measurable cost.
+

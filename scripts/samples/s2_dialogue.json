@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "meta": { "title": "The Lost Kite", "format": "landscape", "seed": 31, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "voice": { "pitch": 1.0, "timbre": "soft" } },
+    { "id": "pip", "name": "Pip", "color": "#2fd3c0", "scale": 0.8, "voice": { "pitch": 1.5, "speed": 1.15, "timbre": "squeaky" } }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "stageWidth": 3200,
+      "set": [ { "id": "tree1", "object": "tree_big", "x": 2050 }, { "id": "bench1", "object": "bench", "x": 1050 } ] }
+  ],
+  "scenes": [
+    { "id": "kite", "location": "park", "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "The Lost Kite", "dur": 2 },
+      "transitionOut": { "type": "fade", "dur": 1 },
+      "cast": [ { "id": "kai", "x": 1350, "facing": 1 }, { "id": "pip", "x": 1620, "facing": -1, "face": "sad" } ],
+      "camera": [
+        { "at": 0, "mode": "follow", "targets": ["kai", "pip"], "zoom": "auto", "padding": 360 },
+        { "at": { "with": "c1" }, "mode": "focus", "target": "pip", "zoom": 2.4, "dur": 0.6 },
+        { "at": { "with": "g1" }, "mode": "follow", "targets": ["kai", "pip"], "zoom": 1.5, "dur": 0.5 },
+        { "at": { "with": "f1" }, "mode": "focus", "target": "kai", "zoom": 2.2, "dur": 0.5 },
+        { "at": { "with": "j2" }, "mode": "follow", "targets": ["kai", "pip"], "zoom": "auto", "padding": 300 },
+        { "at": { "with": "l1" }, "mode": "focus", "target": "pip", "zoom": 2.6, "dur": 0.6 },
+        { "at": { "with": "s1" }, "mode": "follow", "targets": ["kai", "pip"], "zoom": 1.4, "dur": 0.6 }
+      ],
+      "beats": [
+        { "id": "n1", "at": 0.2, "who": "world", "do": "narrate", "params": { "text": "One windy morning, Pip's kite flew away." } },
+        { "id": "c1", "at": 1.6, "who": "pip", "do": "cry", "face": "cry", "say": "My kite... it's gone!" },
+        { "id": "g1", "at": { "after": "c1", "delay": 0.2 }, "who": "kai", "do": "gasp", "face": "surprised", "say": "Oh no!" },
+        { "id": "t1", "at": { "after": "g1", "delay": 1.0 }, "who": "kai", "do": "look_around", "face": "neutral", "say": "Where could it be?", "bubble": "think" },
+        { "id": "w1", "at": { "after": "t1", "delay": 0.3 }, "who": "pip", "do": "point", "face": "scared", "say": "Up in that tree...", "bubble": "whisper" },
+        { "id": "f1", "at": { "after": "w1", "delay": 0.6 }, "who": "kai", "do": "clench_fist", "face": "determined", "say": "I'll get it back!", "bubble": "shout" },
+        { "id": "j1", "at": { "after": "f1", "delay": 1.4 }, "who": "kai", "do": "jump_joy", "face": "laugh", "say": "Got it!" },
+        { "id": "j2", "at": { "after": "j1", "delay": 0.2 }, "who": "pip", "do": "jump_joy", "face": "happy", "say": "Yay! Thank you!" },
+        { "id": "l1", "at": { "after": "j2", "delay": 1.2 }, "who": "pip", "do": "nod", "face": "love", "say": "You're the best!" },
+        { "id": "s1", "at": { "after": "l1", "delay": 0.8 }, "who": "kai", "do": "sigh", "face": "tired", "say": "Phew... trees are tall." },
+        { "id": "e1", "at": { "after": "s1", "delay": 0.6 }, "who": "pip", "do": "laugh", "face": "laugh" },
+        { "id": "e2", "at": { "with": "e1" }, "who": "kai", "do": "laugh", "face": "happy" }
+      ] }
+  ]
+}

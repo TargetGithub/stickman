@@ -102,6 +102,7 @@ function prepareMove(raw, poses, problems) {
     events,
     flags: { ...(raw.flags || {}) },
     mouth: raw.mouth || "neutral",
+    face: raw.face ?? null, // story scripts: the face shown while this move runs (S2)
     chain: raw.chain ?? null,
   };
 }

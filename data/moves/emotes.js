@@ -152,4 +152,112 @@ export const moves = [
     ],
     events: [{ t: 0.2, fx: ["exclaim"], sfx: "pop" }],
   },
+
+  // ---- story emotes (S2). `face` is the face shown while the move runs (story scripts only). ----
+  {
+    name: "cry", category: "emote", duration: 2.0, face: "cry",
+    keys: [
+      { t: 0, pose: "stand", ease: "outQuad" },
+      { t: 0.15, pose: { lean: 18, head: 26, lUA: 62, lFA: 128, rUA: 56, rFA: 136, lTH: 13, lSH: 4, rTH: 23, rSH: 4, dy: 4 }, ease: "inOutQuad" },
+      { t: 0.32, pose: { lean: 22, head: 30, lUA: 64, lFA: 130, rUA: 58, rFA: 138, lTH: 17, lSH: 6, rTH: 27, rSH: 6, dy: 7 }, ease: "inOutQuad" },
+      { t: 0.5, pose: { lean: 18, head: 26, lUA: 62, lFA: 128, rUA: 56, rFA: 136, lTH: 13, lSH: 4, rTH: 23, rSH: 4, dy: 4 }, ease: "inOutQuad" },
+      { t: 0.68, pose: { lean: 22, head: 30, lUA: 64, lFA: 130, rUA: 58, rFA: 138, lTH: 17, lSH: 6, rTH: 27, rSH: 6, dy: 7 }, ease: "inOutQuad" },
+      { t: 0.85, pose: { lean: 18, head: 26, lUA: 62, lFA: 128, rUA: 56, rFA: 136, lTH: 13, lSH: 4, rTH: 23, rSH: 4, dy: 4 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+  },
+  {
+    name: "clench_fist", category: "emote", duration: 1.2, face: "determined",
+    keys: [
+      { t: 0, pose: "stand", ease: "outBack" },
+      { t: 0.25, pose: { lean: -4, head: -8, lUA: 30, lFA: 95, rUA: 75, rFA: 120, lTH: -12, lSH: 4, rTH: 12, rSH: 4, dy: 2 }, ease: "linear" },
+      { t: 0.45, pose: { lean: -6, head: -10, lUA: 30, lFA: 95, rUA: 80, rFA: 125, lTH: -12, lSH: 4, rTH: 12, rSH: 4, dy: 3 }, ease: "linear" },
+      { t: 0.8, pose: { lean: -4, head: -8, lUA: 30, lFA: 95, rUA: 75, rFA: 120, lTH: -12, lSH: 4, rTH: 12, rSH: 4, dy: 2 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.25, shake: "small" }],
+  },
+  {
+    name: "sigh", category: "emote", duration: 1.6, face: "tired",
+    keys: [
+      { t: 0, pose: "stand", ease: "inOutQuad" },
+      { t: 0.2, pose: { lean: -6, head: -10, lUA: 18, lFA: 10, rUA: -6, rFA: 10, lTH: 6, lSH: 0, rTH: -6, rSH: 0, dy: -2 }, ease: "inOutQuad" },
+      { t: 0.55, pose: { lean: 14, head: 22, lUA: -4, lFA: 4, rUA: -10, rFA: 4, lTH: 18, lSH: 4, rTH: 8, rSH: 4, dy: 5 }, ease: "linear" },
+      { t: 0.8, pose: { lean: 14, head: 22, lUA: -4, lFA: 4, rUA: -10, rFA: 4, lTH: 18, lSH: 4, rTH: 8, rSH: 4, dy: 5 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.5, fx: ["sweat_drop"] }],
+  },
+  {
+    name: "gasp", category: "emote", duration: 0.9, face: "surprised",
+    keys: [
+      { t: 0, pose: "stand", ease: "outBack" },
+      { t: 0.2, pose: { lean: -14, head: -12, lUA: 70, lFA: 60, rUA: 80, rFA: 50, lTH: -8, lSH: 4, rTH: 10, rSH: 4, dy: -6 }, ease: "linear" },
+      { t: 0.7, pose: { lean: -12, head: -10, lUA: 68, lFA: 62, rUA: 78, rFA: 52, lTH: -8, lSH: 4, rTH: 10, rSH: 4, dy: -4 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.18, fx: ["exclaim"], sfx: "pop" }],
+  },
+  {
+    name: "jump_joy", category: "emote", duration: 1.0, face: "laugh",
+    keys: [
+      { t: 0, pose: "stand", ease: "outQuad" },
+      { t: 0.2, pose: { lean: 15, head: -5, lUA: -20, lFA: 20, rUA: -20, rFA: 20, lTH: 50, lSH: 70, rTH: 45, rSH: 65, dy: 10 }, ease: "outQuad" },
+      { t: 0.45, pose: { lean: -8, head: -15, lUA: 160, lFA: 10, rUA: 165, rFA: 5, lTH: 30, lSH: 60, rTH: -10, rSH: 40 }, ease: "inQuad" },
+      { t: 0.8, pose: { lean: 8, head: -5, lUA: 120, lFA: 20, rUA: 125, rFA: 15, lTH: 20, lSH: 30, rTH: 15, rSH: 25, dy: 6 }, ease: "inOutQuad", snapHard: true },
+      { t: 1, pose: "stand" },
+    ],
+    root: [{ t: 0, dx: 0, dy: 0 }, { t: 0.2, dx: 0, dy: 0, ease: "outQuad" }, { t: 0.45, dx: 0, dy: -110, ease: "inQuad" }, { t: 0.75, dx: 0, dy: 0 }, { t: 1, dx: 0, dy: 0 }],
+    events: [{ t: 0.22, sfx: "boing" }, { t: 0.76, sfx: "step" }],
+  },
+  {
+    name: "hold_head", category: "emote", duration: 1.4, face: "scared",
+    keys: [
+      { t: 0, pose: "stand", ease: "outQuad" },
+      { t: 0.2, pose: { lean: 6, head: 12, lUA: 150, lFA: 100, rUA: 155, rFA: 95, lTH: 2, lSH: 4, rTH: 12, rSH: 4, dy: 2 }, ease: "inOutQuad" },
+      { t: 0.45, pose: { lean: 10, head: 16, lUA: 152, lFA: 104, rUA: 158, rFA: 98, lTH: 6, lSH: 6, rTH: 16, rSH: 6, dy: 4 }, ease: "inOutQuad" },
+      { t: 0.7, pose: { lean: 6, head: 12, lUA: 150, lFA: 100, rUA: 155, rFA: 95, lTH: 2, lSH: 4, rTH: 12, rSH: 4, dy: 2 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.2, fx: ["sweat_drop"] }],
+  },
+  {
+    name: "nod", category: "emote", duration: 0.7, params: { cycles: 2 },
+    flags: { loop: true },
+    keys: [
+      { t: 0, pose: "stand", ease: "inOutQuad" },
+      { t: 0.45, pose: { lean: 4, head: 22, lUA: 12, lFA: 8, rUA: -12, rFA: 8, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+  },
+  {
+    name: "shake_head", category: "emote", duration: 1.0,
+    keys: [
+      { t: 0, pose: "stand", ease: "inOutQuad" },
+      { t: 0.15, pose: { lean: 2, head: 8, lUA: 14, lFA: 8, rUA: -10, rFA: 8, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad" },
+      { t: 0.85, pose: { lean: 2, head: 8, lUA: 14, lFA: 8, rUA: -10, rFA: 8, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    // In profile, turning the head reads as flipping the facing: four flips end facing the same way.
+    events: [{ t: 0.2, turn: true }, { t: 0.4, turn: true }, { t: 0.6, turn: true }, { t: 0.8, turn: true }],
+  },
+  {
+    name: "look_around", category: "emote", duration: 1.8,
+    keys: [
+      { t: 0, pose: "stand", ease: "inOutQuad" },
+      { t: 0.15, pose: { lean: -4, head: -8, lUA: 12, lFA: 8, rUA: 118, rFA: 112, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "linear" },
+      { t: 0.85, pose: { lean: -4, head: -8, lUA: 12, lFA: 8, rUA: 118, rFA: 112, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.4, turn: true, sfx: "step" }, { t: 0.75, turn: true, sfx: "step" }],
+  },
+  {
+    name: "talk", category: "emote", duration: 0.8, params: { cycles: 3 },
+    flags: { loop: true },
+    keys: [
+      { t: 0, pose: { lean: 2, head: -2, lUA: 14, lFA: 10, rUA: 45, rFA: 70, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad" },
+      { t: 0.5, pose: { lean: 4, head: 4, lUA: 18, lFA: 14, rUA: 62, rFA: 38, lTH: 6, lSH: 0, rTH: -6, rSH: 0 }, ease: "inOutQuad" },
+      { t: 1, pose: { lean: 2, head: -2, lUA: 14, lFA: 10, rUA: 45, rFA: 70, lTH: 6, lSH: 0, rTH: -6, rSH: 0 } },
+    ],
+  },
 ];

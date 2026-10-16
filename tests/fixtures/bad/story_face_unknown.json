@@ -1,0 +1,104 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "pip",
+      "color": "#2fd3c0",
+      "scale": 0.8
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "set": [
+        {
+          "id": "bench1",
+          "object": "bench",
+          "x": 1300
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1500,
+          "facing": 1
+        },
+        {
+          "id": "pip",
+          "x": 1750,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "w1",
+          "at": 0.3,
+          "who": "kai",
+          "do": "wave",
+          "say": "Hi Pip!",
+          "face": "grumpy"
+        },
+        {
+          "id": "l1",
+          "at": {
+            "after": "w1"
+          },
+          "who": "pip",
+          "do": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "two",
+      "location": "city_street",
+      "transitionIn": {
+        "type": "card",
+        "kind": "chapter",
+        "text": "Later"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1200,
+          "facing": 1
+        }
+      ],
+      "beats": [
+        {
+          "id": "p2",
+          "at": 0.3,
+          "who": "kai",
+          "do": "point"
+        },
+        {
+          "at": {
+            "after": "p2"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "The End"
+          }
+        }
+      ]
+    }
+  ]
+}

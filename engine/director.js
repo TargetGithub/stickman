@@ -7,6 +7,7 @@ import { requestSlowmo, requestFreeze } from "./clock.js";
 import { requiredStartX } from "./combat.js";
 import { COMBAT, LIMITS } from "./config.js";
 import { CARD_COMMANDS, cardDuration, narrateDuration } from "./story/timing.js";
+import { readingTime } from "./story/speech.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
@@ -84,6 +85,7 @@ export function createDirector(script, moves, opts = {}) {
     anchors: [],
     issues: [],
     dead: new Set(opts.dead || []),
+    story: !!opts.story, // story scripts: reading-time bubble defaults, faces, bubble kinds
   };
 }
 
@@ -240,6 +242,7 @@ function execute(director, beat, ctx) {
       `Give '${beat.who}' "prop": "${def.needsProp}" or add a "pick_prop" beat first.`);
   }
   beat.firedAt = storyT;
+  if (beat.face && actor.face) actor.face = beat.face; // "from this beat on" (STORY_SPEC 4.3)
   command(world, beat.who, beat.do, {
     target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,
   });
@@ -250,7 +253,10 @@ function execute(director, beat, ctx) {
   }
   if (REVIVE_MOVES.includes(beat.do)) director.dead.delete(beat.who);
   if (beat.fx?.length) emit({ type: "fx", names: beat.fx, actor: beat.who, beatId: beat.id });
-  if (beat.say) emit({ type: "say", actor: beat.who, text: beat.say, dur: beat.sayDur ?? 1.2, beatId: beat.id });
+  if (beat.say) {
+    const dur = beat.sayDur ?? (director.story ? readingTime(beat.say) : 1.2);
+    emit({ type: "say", actor: beat.who, text: beat.say, dur, beatId: beat.id, ...(beat.bubble ? { bubble: beat.bubble } : {}) });
+  }
 }
 
 /** Fire every beat that is due, then start queued beats for characters that became free. */

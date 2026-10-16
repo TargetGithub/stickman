@@ -16,6 +16,7 @@ export const GOLDEN_SCRIPTS = {
   m5_portrait: "scripts/samples/m5_portrait.json",
   m5_fx: "scripts/samples/m5_fx.json",
   s1_transitions: "tests/fixtures/good/transitions.json",
+  s2_dialogue: "scripts/samples/s2_dialogue.json",
 };
 const ONLY = process.env.GOLDEN_ONLY;
 

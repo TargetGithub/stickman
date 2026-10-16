@@ -8,6 +8,7 @@ import { decodeAudio } from "./wav.mjs";
 import { ensureGeneratedSfx, GENERATED_DIR } from "../sfxgen.mjs";
 import { deriveRng } from "../../engine/math.js";
 import { SR } from "./mixer.mjs";
+import { isVoiceKey, synthVoice } from "./speech.mjs";
 
 const ASSETS = new URL("../../assets/", import.meta.url).pathname;
 const AUDIO_EXT = /\.(wav|mp3|ogg|flac|m4a)$/i;
@@ -41,6 +42,11 @@ export function createSfxLibrary(seed) {
     sources,
     missing,
     sampleFor(sfx) {
+      // Speech syllables (story scripts) are synthesized on demand and cached; there are no files.
+      if (isVoiceKey(sfx)) {
+        if (!decoded.has(sfx)) decoded.set(sfx, synthVoice(sfx));
+        return decoded.get(sfx);
+      }
       const list = variantsOf(sfx);
       if (!list.length) {
         missing.add(sfx);

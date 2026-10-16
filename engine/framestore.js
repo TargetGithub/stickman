@@ -9,7 +9,9 @@
 import { packJoints } from "./skeleton.js";
 
 export const MOUTHS = ["neutral", "shout", "grin"];
-const CHAR_STRIDE = 33; // 26 joint floats + facing, mouth index, hp, airborne, prop index (-1 none), prop angle, alpha
+// 26 joint floats + facing, mouth index, hp, airborne, prop index (-1 none), prop angle, alpha,
+// face index (-1: no face, the v1 look; S2)
+export const CHAR_STRIDE = 34;
 const CAM_STRIDE = 5; // x, y, zoom, shakeX, shakeY
 
 function sceneSegment(store, chars, info, estFrames) {
@@ -32,9 +34,10 @@ function sceneSegment(store, chars, info, estFrames) {
  *   (null: start empty and call startScene for each scene)
  * @param {number} estFrames  initial capacity of the first scene (grows by doubling)
  * @param {string[]} propNames  prop keys, for the per-character held-prop index
+ * @param {string[]} faceNames  face names, for the per-character face index (story scripts)
  */
-export function createStore(chars, estFrames = 600, propNames = []) {
-  const store = { propNames, segments: [], length: 0, last: 0 };
+export function createStore(chars, estFrames = 600, propNames = [], faceNames = []) {
+  const store = { propNames, faceNames, segments: [], length: 0, last: 0 };
   if (chars) store.segments.push(sceneSegment(store, chars, { scene: 0 }, estFrames));
   return store;
 }
@@ -94,6 +97,7 @@ export function writeFrame(store, actors, clock, cam, items = null) {
     seg.body[o + 30] = a.prop ? store.propNames.indexOf(a.prop.name) : -1;
     seg.body[o + 31] = a.propAngle || 0;
     seg.body[o + 32] = a.alpha ?? 1;
+    seg.body[o + 33] = a.shownFace ? store.faceNames.indexOf(a.shownFace) : -1;
   });
   if (items && items.length) seg.items[n] = items;
   store.length++;
@@ -186,6 +190,7 @@ export function frameView(store, n, fps = 60) {
         hp: seg.body[o + 28],
         airborne: seg.body[o + 29] === 1,
         alpha: seg.body[o + 32],
+        face: seg.body[o + 33] >= 0 ? store.faceNames[seg.body[o + 33]] : null,
         prop: seg.body[o + 30] >= 0 ? { name: store.propNames[seg.body[o + 30]], angle: seg.body[o + 31] } : null,
       };
     }),

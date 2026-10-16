@@ -76,5 +76,5 @@ test("segments: scene, hold, scene; hold frames point at their neighbours", asyn
   assert.equal(storyTimeAt(store, 16), f.storyT);
   assert.throws(() => jointsAt(store, 12, 0), RangeError);
   // Hold frames cost nothing; scene frames are counted per segment.
-  assert.equal(storeBytes(store), 10 * (16 + 20 + 2 * 33 * 4) + 5 * (16 + 20 + 33 * 4));
+  assert.equal(storeBytes(store), 10 * (16 + 20 + 2 * 34 * 4) + 5 * (16 + 20 + 34 * 4));
 });

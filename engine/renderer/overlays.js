@@ -6,6 +6,7 @@ import { toScreen } from "../camera.js";
 import { easings } from "../math.js";
 import { STAGE } from "../config.js";
 import { drawCard, drawNarration } from "./cards.js";
+import { BUBBLE_KINDS, nameTag } from "./bubbles.js";
 import { CARD_COMMANDS, cardDuration, cardKind, narrateDuration } from "../story/timing.js";
 
 const SAFE = { landscape: { top: 0.06, bottom: 0.06 }, portrait: { top: 0.12, bottom: 0.2 } };
@@ -83,6 +84,7 @@ function bubble(ctx, text, head, W, H, scale, safe) {
   ctx.textBaseline = "middle";
   ctx.fillText(text, x + w / 2, y + h / 2 + 2);
   ctx.textBaseline = "alphabetic";
+  return { x, y, w, h };
 }
 
 function hpBars(ctx, chars, W, H, safe) {
@@ -123,7 +125,10 @@ export function drawOverlays(ctx, view) {
     const c = chars.find((x) => x.id === s.actor);
     if (!c) continue;
     const head = toScreen(cam, W, H, { x: c.j.head.x, y: c.j.head.y - 22 * c.scale });
-    bubble(ctx, s.text, head, W, H, Math.max(0.8, k), safe);
+    const scale = Math.max(0.8, k);
+    const draw = BUBBLE_KINDS[s.bubble];
+    const rect = draw ? draw(ctx, s.text, head, W, H, scale, safe) : bubble(ctx, s.text, head, W, H, scale, safe);
+    if (view.names?.has(s.actor)) nameTag(ctx, view.names.get(s.actor), rect, scale, c.color);
   }
   if (view.hpBars) hpBars(ctx, chars, W, H, safe);
 

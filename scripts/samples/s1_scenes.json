@@ -35,7 +35,7 @@
         { "id": "n2", "at": 0.2, "who": "world", "do": "narrate", "params": { "text": "That night, Pip was gone.", "pos": "bottom" } },
         { "id": "s2a", "at": 0.6, "who": "pip", "do": "despawn" },
         { "id": "s2b", "at": { "after": "s2a", "delay": 0.4 }, "who": "kai", "do": "shrug", "say": "Pip?" },
-        { "id": "s2c", "at": { "after": "s2b" }, "who": "kai", "do": "charge_up", "say": "I will find you!", "fx": ["aura"] }
+        { "id": "s2c", "at": { "after": "s2b", "delay": 0.6 }, "who": "kai", "do": "charge_up", "say": "I will find you!", "fx": ["aura"] }
       ] },
     { "id": "s3", "location": "street", "time": "night", "weather": "rain",
       "transitionIn": { "type": "card", "kind": "chapter", "text": "The path to save Pip" },

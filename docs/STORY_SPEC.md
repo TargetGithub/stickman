@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards and S2 faces, dialogue and speech sounds implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -194,7 +194,7 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | `meta.audience` | `kids` (default), `general` |
 | `meta.style` | `default`, `soft`, `ink` |
 | Body plans | `stickman`, `buddy`, `kid`, `bulky`, `slim`, `elder` (all `rig: "humanoid"`) |
-| Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt` |
+| Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt` (catalog names: the schema takes a string and the semantic stage checks it, `E_FACE_UNKNOWN`, like moves and themes) |
 | Appearance | `eyes`, `brows`, `mouthStyle`, `cheeks`, `hair`, `hairColor`, `outfit`, `outfitColor`, `accessories` (name → color) |
 | Voice | `pitch` 0.5-2, `speed` 0.7-1.4, `timbre`: `soft`, `squeaky`, `deep`, `robot` |
 | Time / weather | `dawn`, `day`, `dusk`, `night` / `clear`, `cloudy`, `rain`, `snow`, `wind`, `fog` |
@@ -340,15 +340,14 @@ Faces scale with the camera so they read in close-ups.
 ### 7.1 Emotions (faces)
 
 - `face` values: `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt`.
-- Each face is catalog data: eye shape, brow angle, mouth shape, and extras such as tears, a vein mark, a sweat drop or hearts.
-- A face is set by a beat's `face` field, by a scene cast entry, or automatically:
-  - hits → `hurt` for 0.4 s;
-  - attacks → `determined`;
-  - KO → `dizzy`.
-  An explicit `face` wins.
-- Blinking is automatic: deterministic per character from the seed. Eyes look toward `target`, `partner` or the speaker.
-- Mouth flaps while a character has an active `say`: a simple open/close cycle, no lip-sync.
-- Frame store: the mouth index is replaced by a face index plus a mouth-open bit. CHAR_STRIDE grows by 1.
+- Each face is catalog data (`data/faces.js`): `eyes` (`dot`, `wide`, `happy`, `closed`, `squeeze`, `half`, `spiral`, `heart`), `brows` (`tilt` in degrees, positive = worried, negative = angry; `lift`), `mouth` (`line`, `smile`, `grin`, `open`, `frown`, `o`, `wavy`, `smirk`, `teeth`), `talk` (the mouth used while speaking) and `extras` (`tears`, `vein`, `sweat`, `hearts`, `blush`).
+- The base face is set by a scene cast entry's `face` or a beat's `face` ("from this beat on"), and carries over to later scenes unless the scene cast sets one. Story characters start `neutral`; v1 characters have no face (the v1 dots and mouth).
+- What is drawn each frame (highest first): knocked out → `dizzy`; hit → `hurt` for 0.4 s; a move with its own face (`cry`, `sigh`, `gasp`, ... via the move's `face` field) → that face; an attack with a neutral base face → `determined`; otherwise the base face. A neutral face takes the move's v1 mouth (`shout` → open, `grin` → grin).
+- Level of detail: a neutral face on a head smaller than 30 px on screen draws only the two dots (the classic look); every other face, and any close-up, draws brows, mouth and extras.
+- Blinking is automatic: every 2.6-5 s per character, 0.12 s, deterministic from the seed and the id. Eyes look toward whoever else is talking.
+- Mouth flaps while a character speaks: the mouth is open exactly while a speech syllable sounds (section 15), so sound and mouth match. No lip-sync.
+- Frame store: one face index per character is added (CHAR_STRIDE 34). The mouth flap is derived from the say events at render time (ADR-012), so no mouth-open bit is stored.
+- A headband sits higher on story characters so it never covers brows and eyes.
 
 ### 7.2 Dialogue
 
@@ -358,7 +357,12 @@ Faces scale with the camera so they read in close-ups.
 | `"bubble": "think"` | Cloud-shaped thought bubble |
 | `"bubble": "shout"` | Jagged bubble, larger font |
 | `"bubble": "whisper"` | Small dotted bubble |
-| `sayDur` | As v1. Default becomes reading time: 1.2 s + 0.06 s per character, minimum 1.5 s (kids read slower). |
+| `sayDur` | As v1. In story scripts the default is the reading time: 1.2 s + 0.06 s per character, minimum 1.5 s (kids read slower). v1 keeps 1.2 s. |
+
+- Bubble looks: speech is the v1 bubble; `think` is a cloud with two trailing puffs (silent: no speech sounds); `shout` is a jagged yellow burst with larger red letters; `whisper` is a small dashed bubble in italic, played quieter.
+- With `meta.speakerNames`, a tag with the cast `name` (in the character's color) sits on the bubble's top-left corner.
+- `W_DIALOGUE_FAST` warns when an explicit `sayDur` is shorter than the reading time, or when a character starts a new line while its previous bubble is still showing.
+- New emotes (S2): `cry`, `clench_fist`, `sigh`, `gasp`, `jump_joy`, `hold_head`, `nod` (loop, `cycles`), `shake_head` and `look_around` (in profile, turning the head is a facing flip), `talk` (gesture loop, `cycles`). Each may carry a `face` shown while it runs.
 
 - Dialogue exchanges use the `@dialogue` macro (section 11): a list of `[speaker, text, face?, bubble?]` lines, timed automatically, with faces and `talk` gestures.
 - The text limit per bubble stays at 40 characters. The macro splits longer lines into consecutive bubbles.
@@ -572,7 +576,8 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 **Voice: speech sounds only** (decision 3).
 - Each speaking character makes procedural babble ("Animal Crossing"-style syllables) while its mouth flaps. It is language-free, so videos work for any audience, and deterministic.
 - `voice` per cast member: `pitch` (0.5-2), `speed` (0.7-1.4), `timbre` (`soft`, `squeaky`, `deep`, `robot`).
-- Narration has no voice: a soft "page" chime when a narration box appears, with the text on screen long enough to read (kids reading speed: 0.06 s per character + 1.2 s, minimum 2.5 s).
+- Narration has no voice: a soft "page" chime (`narrate_chime`) when a narration box appears, with the text on screen long enough to read (kids reading speed: 0.06 s per character + 1.2 s, minimum 2.5 s).
+- **How it works (S2):** `engine/story/speech.js` turns a line into syllables, one per vowel group of the text (at most 30, fitted inside the bubble time): 0.13 s apart at speed 1, 0.09 s long, with a small seeded pitch wobble; questions rise at the end, exclamations and shouts start higher, whispers are quieter, thoughts are silent. Each syllable is an audio event `voice:<timbre>:<vowel>:<semitones>`; `tools/lib/speech.mjs` synthesizes it (harmonics of the pitch shaped by two vowel formants; `squeaky` +5 semitones and brighter, `deep` -7, `robot` odd harmonics with ring modulation). The base pitch is 220 Hz × `pitch`. `audio.voices: false` turns speech sounds off.
 
 ## 16. Camera for stories
 

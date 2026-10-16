@@ -468,6 +468,28 @@ export function softWordIssues(text, path, catalog, audience): Issue[];
 - Hold frames call back into the scene renderer for the neighbouring frames; dissolves need a scratch canvas from the host (`createCanvas`), and fall back to a fade without one.
 - Cards as world commands request a freeze for their duration; their `end` anchor fires when the hold ends.
 
+### Faces, dialogue and speech (S2)
+```js
+// story/faces.js
+export const HURT_SECONDS;                                  // 0.4
+export function faceEvents(world, events, storyT): void;    // hits → hurtUntil
+export function shownFace(actor, dead, storyT): string|null; // dizzy > hurt > move face > determined > base
+export function updateFaces(world, dead, storyT): void;     // sets actor.shownFace each frame
+// story/speech.js
+export function readingTime(text): number;                  // max(1.5, 1.2 + 0.06 × chars)
+export function voiceOf(voice): { pitch, speed, timbre };
+export function syllables({ text, dur, bubble, actor, at }, voice, seed): [{ t, dur, vowel, semi, gain }];
+export function mouthOpenAt(syllables, age): boolean;
+// renderer/face.js: drawFace(ctx, center, r, { u, f }, faceData, { blink, talking, gaze, detail, neutral, t }); blinkAt(seed, id, t)
+// renderer/face_state.js: faceStyle(renderer, char, chars, sceneView, frame) → { face, faceOpts }
+// renderer/bubbles.js: BUBBLE_KINDS.{ think, shout, whisper }(ctx, text, head, W, H, scale, safe) → rect; nameTag(...)
+// tools/lib/speech.mjs: isVoiceKey(key), synthVoice("voice:<timbre>:<vowel>:<semi>") → Float32Array (48 kHz mono)
+```
+- Actors get `face` (base), `shownFace` and `hurtUntil` (story scripts only). `writeFrame` stores the face index in slot 33 (`CHAR_STRIDE` 34; -1 = no face, the v1 look).
+- The director sets `actor.face` from a beat's `face` when the beat starts, and emits `say` events with `bubble` and a reading-time `dur` (story scripts).
+- `collectAudioEvents` adds one `voice:*` event per syllable and a `narrate_chime` per narration for story scripts; `createSfxLibrary().sampleFor` synthesizes `voice:*` keys on demand.
+- `tools/face_sheet.mjs` renders every face at three on-screen sizes (review sheet).
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:

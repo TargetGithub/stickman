@@ -12,6 +12,7 @@ import { drawPostWorld, drawOverlays } from "./overlays.js";
 import { drawHold } from "./transitions.js";
 import { drawGrade, gradeState } from "./grade.js";
 import { drawSetPieces } from "./objects.js";
+import { faceStyle } from "./face_state.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 
@@ -57,6 +58,9 @@ export function createRenderer(catalog, sim, opts = {}) {
     defaultTheme: meta.theme || "white_stage",
     hpBars: !!meta.hpBars,
     styles: new Map((sim.characters || []).map((c) => [c.id, c.style])),
+    voices: new Map((sim.story?.cast || []).map((c) => [c.id, c.voice])),
+    names: sim.story?.meta?.speakerNames ? new Map(sim.story.cast.map((c) => [c.id, c.name || c.id])) : null,
+    syllables: new Map(), // say event → syllables (mouth flap)
     backgrounds: new Map(),
     charCache: new Map(), // frame index → unpacked characters (small LRU for afterimages)
   };
@@ -134,7 +138,8 @@ function drawWorld(ctx, r, n, f, chars, sv) {
       ctx.shadowBlur = 22 * c.scale;
     }
     drawBehind(ctx, c, past, style);
-    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false });
+    const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
+    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false, ...face });
     ctx.shadowBlur = 0;
     drawFront(ctx, c, past, style);
     ctx.restore();

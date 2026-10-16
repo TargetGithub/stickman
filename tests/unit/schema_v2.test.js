@@ -47,7 +47,7 @@ const BAD = [
   ["version 3", (s) => { s.version = 3; }, "E_SCHEMA_ENUM"],
   ["v1 'characters' at top level", (s) => { s.characters = []; }, "E_SCHEMA_UNKNOWN_FIELD"],
   ["unknown body plan", (s) => { s.cast[1].body = "minion"; }, "E_SCHEMA_ENUM"],
-  ["unknown face", (s) => { s.scenes[0].cast[0].face = "grumpy"; }, "E_SCHEMA_ENUM"],
+  ["face of the wrong type", (s) => { s.scenes[0].cast[0].face = 3; }, "E_SCHEMA_TYPE"],
   ["accessory singular (pre-freeze name)", (s) => { s.cast[1].appearance.accessory = { antenna: "#ffcc00" }; }, "E_SCHEMA_UNKNOWN_FIELD"],
   ["macro written as who:@fight (no 'do')", (s) => { s.scenes[3].beats[1] = { at: 1, who: "@fight", params: {} }; }, "E_SCHEMA_REQUIRED"],
   ["macro beat with action fields", (s) => { s.scenes[3].beats[1].who = "kai"; }, "E_SCHEMA_UNKNOWN_FIELD"],

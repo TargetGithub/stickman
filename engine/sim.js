@@ -11,6 +11,7 @@ import { createDirector, stepDirector, onEvents, directorIdle, finishDirector } 
 import { createStore, startScene, addHold, writeFrame, frameView } from "./framestore.js";
 import { createPresentation, presentEvent, stepPresentation } from "./presentation.js";
 import { normalize, flatScene, transitionInto, transitionDuration } from "./story/normalize.js";
+import { faceEvents, updateFaces } from "./story/faces.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
 const prepared = new WeakMap();
@@ -28,8 +29,8 @@ export function frameAt(sim, n) {
 
 const settled = (a) => (!a.move || a.move.def.name === "idle" || a.holding) && !a.airborne;
 
-/** Actors for one scene, with hp and held prop carried over from earlier scenes. */
-function sceneActors(flat, catalog, carry) {
+/** Actors for one scene, with hp, held prop and (story scripts) face carried over from earlier scenes. */
+function sceneActors(flat, catalog, carry, faces) {
   return flat.characters.map((c) => {
     const kept = carry.get(c.id);
     const placed = (flat.scene.cast || []).find((p) => p.id === c.id) || {};
@@ -40,6 +41,7 @@ function sceneActors(flat, catalog, carry) {
       a.hidden = true;
       a.alpha = 0;
     }
+    if (faces) a.face = placed.face ?? kept?.face ?? "neutral";
     const name = kept && placed.prop === undefined ? kept.prop : c.prop;
     const data = name ? catalog.props[name] : null;
     a.prop = data ? { name, kind: data.kind, data } : null;
@@ -62,7 +64,7 @@ export function simulate(script, catalog, opts = {}) {
   const limit = story.legacy ? LIMITS.maxDuration : LIMITS_V2.maxDuration;
   const maxFrames = Math.round((opts.maxSeconds ?? limit + 5) * FPS);
   const clock = createClock();
-  const store = opts.dryRun ? null : createStore(null, 0, Object.keys(catalog.props || {}));
+  const store = opts.dryRun ? null : createStore(null, 0, Object.keys(catalog.props || {}), Object.keys(catalog.faces || {}));
   const log = [];
   const anchors = [];
   const beats = [];
@@ -93,10 +95,10 @@ export function simulate(script, catalog, opts = {}) {
     const t = transitionInto(story, si);
     if (t && t.type !== "cut") hold(t, si);
 
-    const actors = sceneActors(flat, catalog, carry);
+    const actors = sceneActors(flat, catalog, carry, !story.legacy);
     const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth: flat.meta.stageWidth });
     const t0 = clock.storyT;
-    const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `scenes[${si}].`, tag: story.legacy ? "" : `${sid}.`, dead });
+    const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `scenes[${si}].`, tag: story.legacy ? "" : `${sid}.`, dead, story: !story.legacy });
     present = createPresentation(flat, catalog, { suffix, fx });
     fx = present.fx;
     format = present.format;
@@ -112,6 +114,7 @@ export function simulate(script, catalog, opts = {}) {
     frame();
     const startFrame = clock.frame;
     let cam = stepPresentation(present, world, clock, 0, 0);
+    updateFaces(world, director.dead, clock.storyT);
     if (store) {
       startScene(store, actors, { scene: si }, si === 0 ? Math.round(20 * FPS) : 600);
       writeFrame(store, world.actors, clock, cam, items());
@@ -130,6 +133,8 @@ export function simulate(script, catalog, opts = {}) {
         emit(e);
       }
       onEvents(director, events, clock.storyT);
+      faceEvents(world, events, clock.storyT);
+      updateFaces(world, director.dead, clock.storyT);
       cam = stepPresentation(present, world, clock, d.fxDt, d.videoDt);
       if (!Number.isFinite(cam.x) || !Number.isFinite(cam.zoom)) {
         // Fail with a clear message instead of handing NaN to a native canvas later.
@@ -158,7 +163,7 @@ export function simulate(script, catalog, opts = {}) {
     anchors.push(...director.anchors);
     beats.push(...director.beats.map((b) => ({ ...b, scene: si })));
     dead = director.dead;
-    for (const a of actors) carry.set(a.id, { hp: a.hp, prop: a.prop ? a.prop.name : null });
+    for (const a of actors) carry.set(a.id, { hp: a.hp, prop: a.prop ? a.prop.name : null, face: a.face });
     scenes.push({
       index: si, id: sid, theme: flat.meta.theme, stageWidth: flat.meta.stageWidth, look: flat.look,
       location: flat.location, set: [...(flat.location?.set || []), ...(flat.scene.set || [])],

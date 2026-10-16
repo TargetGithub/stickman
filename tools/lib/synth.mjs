@@ -93,10 +93,12 @@ const RECIPES = {
   slip: (o, r) => noise(o, r, { gain: 1, attack: 0.02, decay: 0.28, lp0: 7000, lp1: 1200, hp: 900 }),
   crowd_cheer: (o, r) => { noise(o, r, { gain: 1, attack: 0.5, decay: 1.6, lp0: 2200, hp: 300, am: 0.45, amRate: 7 }); noise(o, r, { gain: 0.5, attack: 0.6, decay: 1.4, lp0: 900, hp: 150, am: 0.3, amRate: 3.3 }); },
   crowd_gasp: (o, r) => noise(o, r, { gain: 1, attack: 0.08, decay: 0.45, lp0: 1800, lp1: 700, hp: 250 }),
+  // Story narration (S2): a soft two-note "page" chime.
+  narrate_chime: (o) => { partials(o, [1318.5, 2637, 3955], { gain: 0.7, decay: 0.9, attack: 0.01 }); partials(o, [1975.5, 3951], { gain: 0.6, decay: 0.8, attack: 0.01, start: 0.11 }); },
   step: (o, r) => { sweepSine(o, { f0: 120, f1: 80, sweep: 0.03, decay: 0.05, gain: 0.7 }); noise(o, r, { gain: 0.35, decay: 0.025, lp0: 2500 }); },
 };
 
-const LENGTH = { explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8 };
+const LENGTH = { narrate_chime: 1.2, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

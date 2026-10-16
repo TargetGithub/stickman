@@ -4,6 +4,7 @@
 import { BODY } from "../skeleton.js";
 import { propTransform } from "../props.js";
 import { drawProp } from "./props.js";
+import { drawFace } from "./face.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
 
@@ -51,6 +52,7 @@ function drawHead(ctx, j, r, lw, style, facing) {
   const u = { x: ux / ul, y: uy / ul };
   const f = facing === 1 ? { x: -u.y, y: u.x } : { x: u.y, y: -u.x };
   const at = (fa, ua) => ({ x: j.head.x + f.x * fa * r + u.x * ua * r, y: j.head.y + f.y * fa * r + u.y * ua * r });
+  if (style.face) return drawFace(ctx, j.head, r, { u, f }, style.face, style.faceOpts || {});
 
   ctx.fillStyle = style.outlineColor;
   for (const e of [at(0.5, 0.12), at(0.12, 0.12)]) {
@@ -82,7 +84,8 @@ function drawHead(ctx, j, r, lw, style, facing) {
  * @param {import("../types.js").Joints} j
  * @param {{ color?:string, outline?:boolean, outlineColor?:string, farBrightness?:number,
  *           mouth?:string, scale:number, facing:1|-1, alpha?:number,
- *           prop?:{ data:object, angle:number } }} style  a held prop is drawn in its grip hand
+ *           prop?:{ data:object, angle:number }, face?:object, faceOpts?:object }} style
+ *   a held prop is drawn in its grip hand; face (catalog face data, story scripts) replaces the v1 dots and mouth
  */
 export function drawCharacter(ctx, j, style) {
   const s = { ...DEFAULTS, ...style };

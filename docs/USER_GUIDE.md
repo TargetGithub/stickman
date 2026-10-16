@@ -285,6 +285,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `node tools/move_clip.mjs [--strip <move>]` | Render every move as a grid video, or one move as a filmstrip PNG |
 | `node tools/sfxgen.mjs [--force]` | Regenerate the built-in sound effects |
 | `node tools/pose_sheet.mjs` | Render all poses into one image |
+| `node tools/face_sheet.mjs` | Render every story face at three sizes into one image |
 
 `record` options:
 
@@ -563,7 +564,7 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 
 ## 11. Known limits
 
-- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards and narration; see `scripts/samples/s1_scenes.json`. Faces, body plans, objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards, narration, faces and emotions, thought/shout/whisper bubbles with speaker names, and speech sounds; see `scripts/samples/s1_scenes.json` and `scripts/samples/s2_dialogue.json`. Body plans, objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
 - Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.

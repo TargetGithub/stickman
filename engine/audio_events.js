@@ -4,6 +4,7 @@
 import { frameView } from "./framestore.js";
 import { unpackJoints } from "./skeleton.js";
 import { FPS, PHYSICS, COMBAT } from "./config.js";
+import { syllables, voiceOf } from "./story/speech.js";
 
 const VOLUME = { step: 0.35, whoosh: 0.55, crowd_cheer: 0.6, crowd_gasp: 0.6 };
 const PAN_WIDTH = 0.8; // keep stereo placement subtle
@@ -45,7 +46,29 @@ export function collectAudioEvents(sim) {
       else if (e.speed > PHYSICS.dustImpactSpeed) add(e.videoT, "land", 0.7, actorX(e.videoT, e.actor));
     } else if (e.type === "world" && e.do === "explosion") add(e.videoT, "explosion", 1, e.params.x);
   }
+  if (sim.story && !sim.story.legacy) out.push(...storySounds(sim, actorX, panAt));
   return out.sort((a, b) => a.t - b.t);
+}
+
+/** Speech babble (one event per syllable) and narration chimes for story scripts (S2, ADR-017). */
+function storySounds(sim, actorX, panAt) {
+  const out = [];
+  const story = sim.story;
+  const voices = new Map(story.cast.map((c) => [c.id, voiceOf(c.voice)]));
+  const seed = story.meta.seed ?? 1;
+  for (const e of sim.events) {
+    if (e.type === "world" && e.do === "narrate") out.push({ t: e.videoT, sfx: "narrate_chime", volume: 0.45, pan: 0 });
+    if (e.type !== "say" || story.audio?.voices === false) continue;
+    const v = voices.get(e.actor) || voiceOf(null);
+    for (const sy of syllables({ ...e, at: e.videoT }, v, seed)) {
+      const t = e.videoT + sy.t;
+      const x = actorX(t, e.actor);
+      // Key: voice:<timbre>:<vowel>:<semitones from A3 at pitch 1>; the synthesizer caches each key.
+      const semi = Math.round(12 * Math.log2(v.pitch)) + sy.semi;
+      out.push({ t, sfx: `voice:${v.timbre}:${sy.vowel}:${semi}`, volume: 0.42 * sy.gain, pan: x == null ? 0 : panAt(t, x) });
+    }
+  }
+  return out;
 }
 
 /** Music cues from world beats: [{ t, cue, volume }]. */

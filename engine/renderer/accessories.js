@@ -94,8 +94,11 @@ export function drawFront(ctx, c, past, style) {
   ctx.globalAlpha = c.alpha;
   if (style.headband) {
     // Band across the forehead, two ribbon tails from the back of the head.
-    const mid = { x: c.j.head.x + a.up.x * r * 0.25, y: c.j.head.y + a.up.y * r * 0.25 };
-    const half = { x: a.fwd.x * r * 0.98, y: a.fwd.y * r * 0.98 };
+    // Story characters have brows and expressive eyes: the band sits higher so it never covers them.
+    const lift = c.face ? 0.68 : 0.25;
+    const across = c.face ? 0.73 : 0.98;
+    const mid = { x: c.j.head.x + a.up.x * r * lift, y: c.j.head.y + a.up.y * r * lift };
+    const half = { x: a.fwd.x * r * across, y: a.fwd.y * r * across };
     strokeCurve(ctx, [{ x: mid.x - half.x, y: mid.y - half.y }, { x: mid.x + half.x, y: mid.y + half.y }], 6 * s, style.headband, "#111111");
     const t1 = tail(c, past, "head", 4, 20, 2.2);
     const t2 = t1.map((p, i) => ({ x: p.x, y: p.y + i * 5 * s }));

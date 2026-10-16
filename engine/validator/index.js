@@ -41,7 +41,7 @@ function pacing(script, sim, moves, opts = {}) {
     } else if (moves.get(b.do)?.category !== "attack") run = 0;
     else if (++run === 9) out.push({ code: "W_PACING_MONOTONE", path: b.path, message: "More than 8 attacks in a row without a reaction beat, taunt or dramatic effect.", fix: "Break the run with a taunt, a slowmo, or a pause." });
   }
-  if (!ran.slice(-3).some((b) => ENDINGS.includes(b.do))) out.push({ code: "W_NO_ENDING", path: where, message: "The script has no clear ending.", fix: "End with victory, ko_fall, or a world fade." });
+  if (!opts.endsWithTransition && !ran.slice(-3).some((b) => ENDINGS.includes(b.do))) out.push({ code: "W_NO_ENDING", path: where, message: "The script has no clear ending.", fix: "End with victory, ko_fall, or a world fade." });
 
   if (script.meta.autoCamera === false) {
     for (const h of hits.filter((e) => e.damage > 15)) {
@@ -85,8 +85,8 @@ export function validate(script, catalog) {
   if (sim.durationSec < LIMITS.minDuration) {
     issues.push({ code: "E_SIM_DURATION", path: v2 ? "scenes" : "beats", message: `The video is only ${sim.durationSec.toFixed(1)}s long.`, fix: `Make it at least ${LIMITS.minDuration}s.` });
   }
-  if (v2) issues.push(...lengthIssues(story, sim));
-  issues.push(...pacing(v2 ? { meta: story.meta } : script, sim, moves, v2 ? { path: "scenes", impact: story.meta.kind === "fight" } : {}));
+  if (v2) issues.push(...lengthIssues(story, sim), ...overlappingLines(sim));
+  issues.push(...pacing(v2 ? { meta: story.meta } : script, sim, moves, v2 ? { path: "scenes", impact: story.meta.kind === "fight", endsWithTransition: !!story.scenes[story.scenes.length - 1].transitionOut } : {}));
   return result("dry-run", issues, sim);
 }
 
@@ -110,6 +110,22 @@ function checkSchemaV2(script) {
   const beats = (script.scenes || []).reduce((n, s) => n + (Array.isArray(s?.beats) ? s.beats.length : 0), 0);
   if (beats > LIMITS_V2.beatsAuthored) {
     out.push({ code: "E_SCHEMA_SIZE", path: "scenes", message: `The story has ${beats} beats.`, fix: `Keep it under ${LIMITS_V2.beatsAuthored} authored beats; use fewer, longer scenes.` });
+  }
+  return out;
+}
+
+/** W_DIALOGUE_FAST: a character's next line starts while its previous bubble is still up. */
+function overlappingLines(sim) {
+  const out = [];
+  const last = new Map();
+  for (const e of sim.events.filter((x) => x.type === "say")) {
+    const prev = last.get(e.actor);
+    if (prev && e.videoT < prev.videoT + prev.dur - 0.05) {
+      const beat = sim.beats.find((b) => b.id === e.beatId);
+      out.push({ code: "W_DIALOGUE_FAST", path: beat?.path ?? "scenes", message: `'${e.actor}' says "${e.text}" while "${prev.text}" is still showing.`,
+        fix: `Start the line later: "at": {"after": "<previous beat>", "delay": ${(prev.dur).toFixed(1)}} or more.` });
+    }
+    last.set(e.actor, e);
   }
   return out;
 }

@@ -84,6 +84,11 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** faces at three zoom levels (15 min).
 
+**Status (2026-10-16):** built; waiting for the review. Demos: `out/demos/s2_dialogue/final.mp4` (from `scripts/samples/s2_dialogue.json`: 9 emotions, every bubble kind, speaker names, close-ups, babble) and `out/demos/s2_faces.png` (`node tools/face_sheet.mjs`: 15 faces × 3 sizes). Notes:
+- The mouth-open state is derived at render time from the say events instead of a stored bit (same result, smaller store).
+- Gaze follows whoever is talking; looking at a `target` or `partner` comes with paired moves (S5).
+- The face field in the schema is a catalog string (checked by `E_FACE_UNKNOWN`), like moves and themes.
+
 ### S3 Body plans and appearance (4-5 days)
 
 | Task | Output |

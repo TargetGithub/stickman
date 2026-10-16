@@ -119,5 +119,5 @@ test("hidden cast members start invisible", () => {
   const sim = simulate(s, catalog);
   const seg = sim.store.segments.find((x) => x.kind === "scene" && x.scene === 1);
   const ai = seg.chars.findIndex((c) => c.id === "a");
-  assert.equal(seg.body[ai * 33 + 32], 0, "alpha 0 at the scene start");
+  assert.equal(seg.body[ai * 34 + 32], 0, "alpha 0 at the scene start");
 });

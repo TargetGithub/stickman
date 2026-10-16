@@ -716,23 +716,8 @@
                       ]
                     },
                     "face": {
-                      "enum": [
-                        "neutral",
-                        "happy",
-                        "laugh",
-                        "sad",
-                        "cry",
-                        "angry",
-                        "furious",
-                        "scared",
-                        "surprised",
-                        "determined",
-                        "smug",
-                        "tired",
-                        "love",
-                        "dizzy",
-                        "hurt"
-                      ]
+                      "type": "string",
+                      "description": "Face from the catalog (checked semantically: E_FACE_UNKNOWN)."
                     },
                     "layer": {
                       "enum": [
@@ -1148,24 +1133,8 @@
                           "description": "How 'say' is drawn (default speech)."
                         },
                         "face": {
-                          "enum": [
-                            "neutral",
-                            "happy",
-                            "laugh",
-                            "sad",
-                            "cry",
-                            "angry",
-                            "furious",
-                            "scared",
-                            "surprised",
-                            "determined",
-                            "smug",
-                            "tired",
-                            "love",
-                            "dizzy",
-                            "hurt"
-                          ],
-                          "description": "Emotion from this beat on."
+                          "type": "string",
+                          "description": "Emotion from this beat on: a face from the catalog (E_FACE_UNKNOWN)."
                         },
                         "partner": {
                           "type": "string",
