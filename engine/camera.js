@@ -4,6 +4,7 @@
 import { dimsOf } from "./skeleton.js";
 import { valueNoise1D, easings } from "./math.js";
 import { CAMERA, SHAKE } from "./config.js";
+import { storyFraming } from "./camera_story.js";
 
 const ZOOM_MIN = 0.4;
 const ZOOM_MAX = 1.8;
@@ -57,7 +58,7 @@ export function addZoomPunch(cam, amount, dur, videoT) {
   cam.punches.push({ amount, dur, t0: videoT });
 }
 
-function bounds(all) {
+export function bounds(all) {
   // Hidden characters (not spawned yet, despawned, mid-teleport) do not pull the camera.
   const visible = all.filter((a) => !a.hidden);
   const actors = visible.length ? visible : all;
@@ -76,7 +77,7 @@ function bounds(all) {
 }
 
 /** Zoom that fits a horizontal span plus padding, and keeps the top of the group inside the frame. */
-function fitZoom(cam, span, top, padding) {
+export function fitZoom(cam, span, top, padding) {
   const byWidth = cam.W / (span + 2 * padding);
   const above = cam.groundY - top;
   const byHeight = above > 0 ? (cam.H * (cam.gsr - TOP_MARGIN)) / above : ZOOM_MAX;
@@ -89,6 +90,8 @@ function fitZoom(cam, span, top, padding) {
 function desired(cam, actors, videoT) {
   const k = cam.key;
   const byId = (id) => actors.find((a) => a.id === id);
+  const story = storyFraming(cam, actors, k, { bounds, fitZoom }); // story shot modes (S6)
+  if (story) return story;
   const u = k.dur ? Math.min(1, (videoT - cam.keyT0) / k.dur) : 1;
   const ease = easings[k.ease] || easings.inOutCubic;
   if (k.mode === "focus") {
@@ -134,6 +137,7 @@ export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = tru
   const fast = autoCamera && actors.some((a) => a.launched || Math.abs(a.vx) > 300);
   cam.widen += ((fast ? 1.3 : 1) - cam.widen) * Math.min(1, videoDt * 3);
   const d = desired(cam, actors, videoT);
+  const snapped = cam.cut || d.direct;
   if (cam.cut || d.direct) {
     cam.x = d.x;
     cam.zoom = d.zoom;
@@ -146,7 +150,7 @@ export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = tru
     // Zoom out quickly (keep jumps and launches in frame), zoom back in gently.
     [cam.zoom, cam.vz] = spring(cam.zoom, cam.vz, d.zoom, videoDt, d.zoom < cam.zoom ? CAMERA.omega * 2 : CAMERA.omega);
   }
-  cam.zoom = Math.max(ZOOM_MIN, Math.min(ZOOM_MAX * 1.2, cam.zoom));
+  cam.zoom = Math.max(ZOOM_MIN, Math.min(d.maxZoom ?? ZOOM_MAX * 1.2, cam.zoom));
 
   let punch = 1;
   cam.punches = cam.punches.filter((p) => videoT - p.t0 < p.dur);
@@ -155,7 +159,16 @@ export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = tru
 
   const half = cam.W / (2 * zoom);
   const x = cam.stageWidth <= 2 * half ? cam.stageWidth / 2 : Math.max(half, Math.min(cam.stageWidth - half, cam.x));
-  const y = d.y ?? cam.groundY - (cam.H * cam.gsr - cam.H / 2) / zoom;
+  const ground = cam.groundY - (cam.H * cam.gsr - cam.H / 2) / zoom;
+  let y = d.y ?? ground;
+  // Story shots (close-ups) lift the frame off the ground line smoothly; v1 keys never set yOff.
+  if (d.smoothY || cam.yOff) {
+    const want = d.smoothY ? d.y - ground : 0;
+    if (snapped) [cam.yOff, cam.vyOff] = [want, 0];
+    else [cam.yOff, cam.vyOff] = spring(cam.yOff ?? 0, cam.vyOff ?? 0, want, videoDt);
+    if (!d.smoothY && Math.abs(cam.yOff) < 0.5) cam.yOff = 0;
+    y = (d.smoothY ? ground : y) + cam.yOff;
+  }
 
   let sx = 0;
   let sy = 0;

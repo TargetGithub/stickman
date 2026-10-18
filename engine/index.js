@@ -8,7 +8,9 @@
 // The engine never reads the clock, the network or files. Hosts (tools/, web/) own canvases and fonts.
 
 import { validate, buildJsonSchema, WORLD_COMMANDS, formatIssues } from "./validator/index.js";
-import { simulate, frameAt, v1MoveNames } from "./sim.js";
+import { simulate, frameAt, v1MoveNames, movesFor } from "./sim.js";
+import { normalize } from "./story/normalize.js";
+import { compileStory, ejectMacro as eject, plainScript } from "./story/compile.js";
 import { storyToVideo } from "./clock.js";
 import { createRenderer, renderFrame as drawFrame } from "./renderer/index.js";
 import { collectAudioEvents, collectMusicCues } from "./audio_events.js";
@@ -19,6 +21,23 @@ export { validate, formatIssues, ENGINE_VERSION };
 /** JSON Schema for scripts with this catalog's enums (for LLM structured output). */
 export function scriptSchema(catalog) {
   return buildJsonSchema(catalog, v1MoveNames(catalog), Object.keys(WORLD_COMMANDS));
+}
+
+/**
+ * Expand a story's macros (STORY_SPEC 11, S6). The script should validate first (validate()).
+ * @returns {{ script: object, expansions: Array<{ scene, macro, id, path, beats?, scenes?, anchors? }> }}
+ *   script: the compiled v2 script (plain beats only); a v1 script comes back unchanged
+ */
+export function compileScript(script, catalog) {
+  if (script?.version !== 2) return { script, expansions: [] };
+  const { story, expansions } = compileStory(normalize(script), catalog, movesFor(catalog));
+  return { script: plainScript(story), expansions };
+}
+
+/** The script with one macro (beat or scene macro id) replaced by its expansion; null if there is no such macro. */
+export function ejectMacro(script, macroId, catalog) {
+  if (script?.version !== 2) return null;
+  return eject(normalize(script), macroId, catalog, movesFor(catalog));
 }
 
 /**

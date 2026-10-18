@@ -11,12 +11,15 @@ import { createDirector, stepDirector, onEvents, directorIdle, finishDirector } 
 import { createStore, startScene, addHold, writeFrame, frameView } from "./framestore.js";
 import { createPresentation, presentEvent, stepPresentation } from "./presentation.js";
 import { normalize, flatScene, transitionInto, transitionDuration } from "./story/normalize.js";
+import { compileStory } from "./story/compile.js";
 import { faceEvents, updateFaces } from "./story/faces.js";
 import { bodyPlan } from "./story/bodies.js";
 import { updatePairs, pairMoveEvent } from "./story/pairs.js";
 import { defeatMoveEvent, updateDefeats } from "./story/defeat.js";
 import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy, holdableProps, popNear } from "./objects.js";
 import { updateActivities, activityMoveEvent } from "./story/activities.js";
+import { updateExits } from "./story/destinations.js";
+import { planExtras, EXTRA_MOVES } from "./story/extras.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
 const prepared = new WeakMap();
@@ -57,7 +60,10 @@ function sceneActors(flat, catalog, carry, faces) {
       a.hidden = true;
       a.alpha = 0;
     }
-    if (faces) a.face = placed.face ?? kept?.face ?? "neutral";
+    if (faces) {
+      a.face = placed.face ?? kept?.face ?? "neutral";
+      a.layer = placed.layer ?? "mid";
+    }
     const name = kept && placed.prop === undefined ? kept.prop : c.prop;
     const data = name ? holdableData(catalog, name) : null;
     a.prop = data ? { name, kind: data.kind, data } : null;
@@ -89,8 +95,8 @@ function ridersFollow(world) {
  *   scenes: [{ index, id, theme, stageWidth, look, location, startFrame, frames, storyStart }]
  */
 export function simulate(script, catalog, opts = {}) {
-  const story = normalize(script);
   const moves = movesFor(catalog);
+  const story = compileStory(normalize(script), catalog, moves).story; // macros → beats (S6)
   const meta = story.meta || {};
   const limit = story.legacy ? LIMITS.maxDuration : LIMITS_V2.maxDuration;
   const maxFrames = Math.round((opts.maxSeconds ?? limit + 5) * FPS);
@@ -122,6 +128,7 @@ export function simulate(script, catalog, opts = {}) {
   for (let si = 0; si < story.scenes.length && !overran; si++) {
     const flat = flatScene(story, si, catalog);
     const sid = flat.scene.id;
+    const scenePath = flat.scene.srcPath ?? `scenes[${si}]`; // the authored scene (a scene macro's scenes share it)
     const suffix = story.legacy ? "" : `@${sid}`;
     const t = transitionInto(story, si);
     if (t && t.type !== "cut") hold(t, si);
@@ -145,8 +152,11 @@ export function simulate(script, catalog, opts = {}) {
       if (e.contact && actor.activity) activityMoveEvent(world, actor, e, events, clock.storyT);
     };
     const t0 = clock.storyT;
-    const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `scenes[${si}].`, tag: story.legacy ? "" : `${sid}.`, dead, story: !story.legacy });
-    present = createPresentation(flat, catalog, { suffix, fx, kids: !story.legacy && (meta.audience ?? "kids") === "kids" });
+    // A placement that sets hp starts the character fresh: it is no longer knocked out (fight card rounds).
+    const fresh = new Set((flat.scene.cast || []).filter((p) => p.hp !== undefined).map((p) => p.id));
+    const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `${scenePath}.`, tag: story.legacy ? "" : `${sid}.`, dead: [...dead].filter((id) => !fresh.has(id)), story: !story.legacy });
+    present = createPresentation(flat, catalog, { suffix, fx, kids: !story.legacy && (meta.audience ?? "kids") === "kids",
+      storyCamera: !story.legacy && meta.autoCamera === "story" && !(flat.scene.camera || []).length, t0 });
     fx = present.fx;
     format = present.format;
     const fxLogStart = fx.log.length;
@@ -181,7 +191,10 @@ export function simulate(script, catalog, opts = {}) {
         ridersFollow(world);
       }
       if (world.pairs?.length) events.push(...updatePairs(world));
-      if (!story.legacy) updateDefeats(world, events, clock.storyT);
+      if (!story.legacy) {
+        updateExits(world, events, clock.storyT);
+        updateDefeats(world, events, clock.storyT);
+      }
       if (world.activities?.length) events.push(...updateActivities(world, clock.storyT));
       for (const e of events) {
         if (e.type === "hitstop") requestHitstop(clock, e.seconds);
@@ -210,13 +223,13 @@ export function simulate(script, catalog, opts = {}) {
       }
     }
     for (const e of log.filter((x) => x.scene === si && x.type === "object" && x.what === "offstage")) {
-      issues.push({ code: "E_SIM_OBJECT_OFFSTAGE", path: `scenes[${si}]`, severity: "error",
+      issues.push({ code: "E_SIM_OBJECT_OFFSTAGE", path: scenePath, severity: "error",
         message: `'${e.id}' (${e.kind}) left the stage at x=${e.x.toFixed(0)} (stage 0-${flat.meta.stageWidth}).`,
         fix: e.kind && catalog.objects?.[e.kind]?.behavior === "vehicle" ? 'Use "exit": "left" or "right" to drive off, or a toX inside the stage.' : "Aim toX inside the stage, or lower the speed or height." });
     }
     const frames = clock.frame - startFrame + 1;
     if (!story.legacy && frames > LIMITS_V2.sceneMax * FPS) {
-      issues.push({ code: "E_SIM_SCENE_LENGTH", path: `scenes[${si}]`, severity: "error",
+      issues.push({ code: "E_SIM_SCENE_LENGTH", path: scenePath, severity: "error",
         message: `Scene '${sid}' runs ${(frames / FPS).toFixed(0)}s (max ${LIMITS_V2.sceneMax}s).`, fix: "Split it into two scenes, or shorten its beats and waits." });
     }
     issues.push(...finishDirector(director));
@@ -228,7 +241,8 @@ export function simulate(script, catalog, opts = {}) {
       index: si, id: sid, theme: flat.meta.theme, stageWidth: flat.meta.stageWidth, look: flat.look,
       location: flat.location, set: [...(flat.location?.set || []), ...(flat.scene.set || [])],
       startFrame, frames, storyStart: t0, fxStart: fxLogStart, fxEnd: fx.log.length, fxT0: clock.fxAt[startFrame],
-      characters: flat.characters.map((c) => ({ id: c.id, style: c.style || {} })),
+      characters: flat.characters.map((c) => ({ id: c.id, style: c.style || {}, layer: (flat.scene.cast || []).find((p) => p.id === c.id)?.layer ?? "mid" })),
+      extras: story.legacy ? [] : planExtras(flat.scene, flat.location, catalog, meta.seed ?? 1, flat.meta.stageWidth),
     });
   }
   const last = story.scenes[story.scenes.length - 1];
@@ -257,6 +271,7 @@ export function simulate(script, catalog, opts = {}) {
     meta: outMeta,
     story,
     scenes,
+    extraMoves: scenes.some((sc) => sc.extras.length) ? Object.fromEntries(EXTRA_MOVES.map((n) => [n, moves.get(n)])) : null,
     characters: story.cast.map((c) => ({ id: c.id, style: c.style || {} })),
   };
 }

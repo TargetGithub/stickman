@@ -180,6 +180,11 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** the fight macros (15 min).
 
+**Status (2026-10-18):** approved. All 12 beat macros and both scene macros compile (`engine/story/compile.js`, `engine/story/macros/`), checked first by `engine/validator/macros.js` (E_MACRO_PARAM, E_REF_ANCHOR on macro anchors), then validated and dry-run as ordinary beats; W_SCENE_STATIC and W_CAST_UNUSED are in. `tools/compile.mjs` prints the expansion (`--summary`) and `--eject <id>` writes one macro back as beats. Story camera: `shot` beats, the five story shot modes and `autoCamera: "story"` (`engine/camera_story.js`). Extras and depth layers: `engine/story/extras.js`, `engine/renderer/extras.js`. Demos: `out/demos/s6_gauntlet/final.mp4` (the reference scene 3: one @gauntlet beat against four guards, from `scripts/samples/s6_gauntlet.json`) and `out/demos/s6_fights/final.mp4` (a boss @fight with a charge-up phase into @defeat captured, a 3-on-3 @brawl with cheering extras, a @chase over crates, from `s6_fights.json`); `scripts/samples/s6_fight_card.json` is a 3.6-minute @fight_card (validated, not rendered). Notes:
+- Supporting runtime work: the beat `to` field (walk, run, sneak, tiptoe, walk_together to a place; hidden walkers fade in, exits fade out), `layer` beats, `despawn` fading a knocked-out character, a placement `hp` clearing a knock-out, and the `set_music` world command (emitted by macros; S7 plays it).
+- For stories only (v1 output is unchanged): an attack with `approach` re-runs up to three times if its target was pushed and gets twice the nudge, and generated beats never report W_QUEUE_DRIFT.
+- Generated fights leave out head strikes and long run-up finishers unless the author names one; brawls fight in duel zones side by side, with a knockout given the stage to itself.
+
 ### S7 Generated music and ambience (6-8 days)
 
 | Task | Output |

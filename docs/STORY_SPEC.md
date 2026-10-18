@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance, S4 objects and set pieces implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance, S4 objects and set pieces, S5 interactions, activities and defeat styles, S6 story compiler, macros, story camera, extras and layers implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -176,9 +176,9 @@ New fields:
 | `face` | Emotion to show from this beat on (section 7): `"face": "angry"` |
 | `partner` | The other character in a paired interaction (section 9) |
 | `object` | The object a beat acts on: a set piece id or a spawned object id (section 8) |
-| `to` | A destination: `{ "x": 2400 }`, `{ "near": "<character or object id>", "gap": 80 }`, or `{ "exit": "right" }` |
+| `to` | A destination for `walk`, `run`, `sneak`, `tiptoe` and `walk_together`: `{ "x": 2400 }`, `{ "near": "<character or object id>", "gap": 80 }` (on the walker's side, hip to hip; default 110), or `{ "exit": "right" }` (toward that edge, at most 700 px walking or 1,300 px running, then the character fades out). The distance is worked out when the beat starts. A hidden character that starts a beat with `to` walks in and fades in (S6) |
 | `bubble` | How `say` is drawn: `speech` (default), `think`, `shout`, `whisper` (section 7.2) |
-| `layer` | Depth layer change (section 14) |
+| `layer` | Depth layer change from this beat on (section 14) |
 
 `who` is a character id or `"world"` (effects, camera, objects, narration and cards), as in v1.
 
@@ -520,9 +520,33 @@ A scene macro is an entry in `scenes` with `{ "id", "macro", "params" }` (plus o
 ### 11.3 Compiler rules
 
 - **Deterministic:** the same input and seed give the same beats. Each macro uses its own stream `compile:<macroId>`, so editing one macro never changes another's expansion.
-- **Inspectable:** `node tools/compile.mjs story.json` prints the expanded beats, and the validator's timeline shows them.
-- **Expansions respect the catalog:** move pools come from catalog categories and tags, and filter by held prop and body plan.
-- An author can "eject" a macro, replacing it with its expanded beats to hand-tune them.
+- **Inspectable:** `node tools/compile.mjs story.json` prints the compiled script (`--summary`: one line per macro), and the validator's timeline shows each expansion indented under an `@macro id` line.
+- **Expansions respect the catalog:** move pools come from the catalog's attack category, filtered by held prop (a weapon's moves plus kicks), body plan (`avoid` lists in `data/bodies.js`) and reach (the world's own reach check between the two body plans). Head strikes and attacks that need a special set-up (counter, throws, energy and blaster shots) are left to authors.
+- An author can **eject** a macro (`tools/compile.mjs story.json --eject boss --out story2.json`), replacing it with its expanded beats (or a scene macro with its scenes) to hand-tune them. The ejected script plays the same.
+- **Ids and anchors:** a macro's beats take its place in the scene; generated ids are `<macroId>_<n>`, and a macro without an id is called `<macro><beat index>` (`exit4`). `{"after": "boss"}`, `{"with": "boss"}` and `{"on": "boss.finisher"}` are rewritten to the beats carrying those anchors.
+- **Issues** inside an expansion are reported at the macro beat, with "(in the expansion of macro 'boss')". Generated beats wait for busy characters on purpose, so they never report `W_QUEUE_DRIFT`.
+- **Positions:** the compiler estimates where everyone stands (scene placements, then each macro's moves) only to pick sides and spacing; distances are worked out at run time from `to` destinations and attack approaches.
+
+### 11.4 Macro details (S6)
+
+| Macro | Defaults and behavior |
+|---|---|
+| `@dialogue` | `gap` 0.3 s; each bubble is a `talk` gesture loop (or `wait` with `gestures: false`) lasting its reading time, aimed at the other speaker; lines over 40 characters split at word breaks. With two speakers on stage (and `camera` not `none`), a two-shot holds for the conversation |
+| `@activity` | The `activity` world command with the same params; `ending` is the activity's end |
+| `@enter` | The character is placed hidden off to `side` (up to 700 px walking, 1,300 px running, inside the stage), facing in, and walks to `to` (default: its scene `x`) |
+| `@exit` | Walks or runs toward `side` (`to: {exit}`), then fades out |
+| `@walk_together` | Two walkers with `holdHands` (default) and pace `walk`: the paired `walk_together` move, led by whoever is nearer the destination. Otherwise everyone walks side by side, 90 px apart |
+| `@travel` | Side by side, `mode` walk; `camera` track (default: a `track` shot on the first walker for the trip), `wide` or `none` |
+| `@fight` | `intensity` medium; `exchanges` 6/8/10 by intensity; `style` even. Opening (the loser taunts, the winner answers), exchanges of 1-3 attacks (by intensity), breathers every 4-6 attacks, the comeback reversal at 55%, phases (a `chargeUp` phase starts with the loser's `charge_up` and an energy blast), the finisher (`finisher`, else a heavy launcher the winner can land) with slowmo, a big shake and a focus shot, then `ko_fall`/`ko_spin` and a victory pose; `ko: false` leaves the loser dizzy for `@defeat`. Music intensity follows (`set_music`). A follow shot frames just the two fighters |
+| `@gauntlet` | `per` 3, `travel` run, `intensity` medium (rising toward the last opponent), `afterDefeat` stay. The hero runs to each opponent (camera on the two), the opponent squares up, they fight (`even`, the last one `close`), the opponent goes down; the next ones taunt while they wait. `travel: none`: opponents first run to a ring 340-600 px from the hero on their own side. `fade` fades each knocked-out opponent away |
+| `@brawl` | `dur` 20, `intensity` medium. Both teams run into two lines facing each other; each round has one or two clashes between different fighters (the second 0.45 s after the first); the losing team goes down one by one (a grounded finisher, a shake, a KO); the winners celebrate |
+| `@chase` | `dur` 8, `obstacles` 0, `caught` false. The runner flees away from the chasers; obstacles (crates or boxes, added to the scene's set) are jumped by everyone; the lead chaser lunges once; caught: the lead sweeps the runner, else the runner runs off the edge and the chasers give up |
+| `@defeat` | A stagger with a close-up, the style move (`ko` is `ko_fall`), sad music for `vanish` and `ghost`, and the winner's reaction for the others (`captured`: a point or a clenched fist). The victim must be standing (use `ko: false` on the fight before) |
+| `@grief` | `dur` 6. Walks to where `over` is (if in the scene), kneels; desaturate, sad music, a close-up, rain with `rain: true`; cries for the duration, then sighs |
+| `@fight_card` | `intro` true, `breathers` true, `finale` boss, `minDur` 180. Intro scene (title card, a rival exchange), one round per matchup (chapter cards "Round N", "Final Round"; fighters start fresh: `hp` in the placement clears a knock-out), breathers (the winner catches its breath, the next opponent walks in), a victory scene with an end card. Exchanges stretch to reach `minDur`; past 26 exchanges a round, matchups get rematch rounds (up to 6 rounds) |
+| `@montage` | `clipDur` 3, `cut` cut. One scene per clip: the `who` in the middle of the location doing `do` (default `walk`; a paired move with two), `text` as narration, one music bed |
+
+Lines the compiler writes itself (fight card intros and breathers) come from the catalog (`data/macro_lines.js`).
 
 ## 12. Fights at story scale
 
@@ -586,6 +610,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
   `{ "count": 6, "layer": "back", "behavior": "walk_by" | "idle_chat" | "cheer" | "flee" }`.
   They use seeded colors and body plans and do not need cast entries. They are rendered with reduced detail so they never compete with the leads.
 - **Crowds** (the v1 `crowd` layer kind) gain reactions tied to events: cheering on hits, gasping on a defeat.
+- **As built (S6):** a scene uses its own `extras`, else its location's, up to 12. `from`/`to` set their area (default: the whole stage). Extras are seeded per scene (colour from a soft palette, body plan, place, pace) and posed by the renderer from the scene time: `walk_by` walks across and around again, `idle_chat` stands in pairs taking turns to talk, `cheer` watches and cheers for 1.2 s after each hit and gasps after a defeat, `flee` stands about until the first hit or defeat and then runs off. They have no face or outline, are never simulated, and cost nothing in the frame store. Back-layer characters and extras are drawn at 0.75 scale (75% opacity) before the mid set pieces; front-layer ones at 1.15 after the front set pieces. The `crowd` background layer bobs harder after hits and stops briefly after a defeat (story scripts only).
 
 ## 15. Audio: moods, ambience, voice
 
@@ -639,6 +664,8 @@ The engine stays **family friendly and gore free**. Stories may include loss and
   - v1 fight rules during fights.
   Explicit camera keys always win.
 - `shot` beats for quick cut sequences: `{ "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "kai" } }`.
+- **As built (S6):** `shot` params are `mode` (any camera mode), `target`, `targets` (up to 4), `from`, `zoom` and `dur`. With `dur` the framing before the shot comes back afterwards; without it the shot lasts until the next shot or camera key (and the story auto camera stays off for the scene). `two_shot` needs `targets`; `close_up` and `track` a `target`; `over_shoulder` a `target` and `from` (E_CAMERA_FIELD on keys, E_WORLD_PARAM on shots). A close-up frames head to hip (zoom up to 3). The auto camera runs only in scenes without camera keys: a wide for the first 2.5 s, two-shots while someone talks to a neighbour within 800 px, 2 s close-ups when a face turns cry, furious or determined, and the plain follow while hits land.
+- **`set_music`** (`mood`, `intensity` 0-1, `volume`, `fade` s) is accepted from S6; the macros emit it (fight intensity, sad music at a loss) and S7 plays it.
 
 ## 17. Validator v2
 
@@ -817,12 +844,12 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `E_OBJECT_STATE` | semantic | Invalid state for that object |
 | `E_PARTNER_MISSING` | semantic | Paired move without `partner`, or partner absent |
 | `E_PARTNER_SELF` | semantic | Partner is the acting character |
-| `E_MACRO_UNKNOWN` | semantic | Unknown `@macro`; until the story compiler lands (S6), every macro reports this code with "not available yet" |
-| `E_MACRO_PARAM` | semantic | Bad or missing macro param |
+| `E_MACRO_UNKNOWN` | semantic | A macro this engine has no builder for (the schema already limits macro names to the frozen list) |
+| `E_MACRO_PARAM` | semantic | Bad or missing macro param: the macro's schema, a winner who is not fighting, a finisher that is not an attack, duplicate or self-opposing fighters, a montage clip move that cannot play alone |
 | `E_ACTIVITY_OBJECT` | semantic | An activity's `object` is not in the scene, or is a kind the activity can't use |
 | `E_TRANSITION` | semantic | Unknown transition type or bad params |
 | `E_SCENE_EMPTY` | semantic | Scene with no beats and no duration |
-| `E_THEME_UNKNOWN`, `E_REF_BEAT`, `E_REF_DUPLICATE` (v1 codes) | semantic | Also used for locations (unknown theme), references to a beat in another scene, and ids repeated across scenes |
+| `E_THEME_UNKNOWN`, `E_REF_BEAT`, `E_REF_DUPLICATE` (v1 codes) | semantic | Also used for locations (unknown theme), references to a beat in another scene, and ids repeated across scenes; `E_REF_ANCHOR` for `{"on": "<macro>.<anchor>"}` with an anchor the macro does not have; `E_MOVE_PARAM` for `to` on a move that does not walk |
 | `E_DEFEAT_STYLE` | semantic | Defeat style not allowed for `meta.audience` |
 | `E_MOVE_RIG` | semantic | Move not available for the character's rig |
 | `E_SIM_PARTNER_UNREACHABLE` | dry run | Partner can't be reached for an interaction (add approach) |
@@ -830,9 +857,9 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `E_SIM_SCENE_LENGTH` | dry run | Scene longer than the limit |
 | `W_DIALOGUE_FAST` | dry run | A line shows for less than its reading time |
 | `W_TEXT_SOFT` | semantic | Soft-listed word (for example "killed"); suggests an alternative |
-| `W_SCENE_STATIC` | dry run | A scene with over 4 s of no movement and no narration |
+| `W_SCENE_STATIC` | dry run | A scene with over 4 s in which nobody moves (`idle`, `wait` and held poses count as still) and no narration, card or bubble shows |
 | `W_NO_ARC` | dry run | The story has no climax or resolution scene (story pacing heuristic) |
-| `W_CAST_UNUSED` | semantic | A cast member never appears |
+| `W_CAST_UNUSED` | semantic | A cast member no scene places |
 | `W_STORY_SHORT` | dry run | A story (2+ scenes) is shorter than 300 s |
 | `W_FIGHT_SHORT` | dry run | A fight-only video is shorter than 180 s |
 | `W_KIDS_NO_HOPE` | semantic | `kids` audience: a cast member vanishes (`vanish`, or `@defeat` with style `vanish`) and no later beat has it `return`. (A captured villain counts as shown safe.) |

@@ -8,6 +8,8 @@ import { checkStory } from "./story.js";
 import { formatIssues, formatTimeline } from "./report.js";
 import { simulate, movesFor } from "../sim.js";
 import { normalize } from "../story/normalize.js";
+import { compileStory } from "../story/compile.js";
+import { macroIssues } from "./macros.js";
 import { LIMITS, LIMITS_V2 } from "../config.js";
 
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues };
@@ -24,7 +26,7 @@ function pacing(script, sim, moves, opts = {}) {
   const end = sim.clock.storyT;
   // Objects in motion (a bubble popping, a ball bouncing, a car passing) count as something happening (S4).
   const objectSpans = sim.events.filter((e) => e.type === "object").map((e) => [e.storyT, e.storyT + 0.3]);
-  const spans = [...ran.map((b) => [b.firedAt, Math.max(b.endedAt ?? b.firedAt, b.firedAt + 0.2)]), ...objectSpans].sort((a, b) => a[0] - b[0]);
+  const spans = [...ran.map((b) => [b.approachAt ?? b.firedAt, Math.max(b.endedAt ?? b.firedAt, b.firedAt + 0.2)]), ...objectSpans].sort((a, b) => a[0] - b[0]);
   let covered = 0;
   for (const [s, e] of spans) {
     if (s - covered > 2.5) out.push({ code: "W_PACING_GAP", path: where, message: `Nothing happens from ${covered.toFixed(1)}s to ${s.toFixed(1)}s.`, fix: "Add a beat (taunt, wait with say, camera move) or tighten the timing." });
@@ -78,18 +80,90 @@ export function validate(script, catalog) {
   if (schemaIssues.length) return result("schema", schemaIssues);
 
   const moves = movesFor(catalog);
-  const story = v2 ? normalize(script) : null;
-  const semantic = v2 ? checkStory(story, catalog, moves) : checkSemantics(script, catalog, moves);
+  let story = null;
+  let semantic;
+  if (v2) {
+    // Macro params first, then compile (ADR-014), then every check on the compiled beats.
+    const authored = normalize(script);
+    const pre = macroIssues(authored, catalog, moves);
+    if (pre.length) return result("semantic", pre);
+    try {
+      story = compileStory(authored, catalog, moves).story;
+    } catch (err) {
+      return result("semantic", [{ code: "E_MACRO_PARAM", path: "scenes", message: `A macro could not be expanded (${err.message}).`, fix: "Check the macro params against the cast and the scenes." }]);
+    }
+    semantic = mapCompiled(checkStory(story, catalog, moves), story);
+  } else semantic = checkSemantics(script, catalog, moves);
   if (semantic.some((i) => !isWarning(i))) return result("semantic", semantic);
 
-  const sim = simulate(script, catalog, { dryRun: true });
+  const sim = simulate(v2 ? story : script, catalog, { dryRun: true });
   const issues = [...semantic, ...sim.issues];
   if (sim.durationSec < LIMITS.minDuration) {
     issues.push({ code: "E_SIM_DURATION", path: v2 ? "scenes" : "beats", message: `The video is only ${sim.durationSec.toFixed(1)}s long.`, fix: `Make it at least ${LIMITS.minDuration}s.` });
   }
-  if (v2) issues.push(...lengthIssues(story, sim), ...overlappingLines(sim));
+  if (v2) issues.push(...lengthIssues(story, sim), ...overlappingLines(sim), ...staticScenes(sim));
   issues.push(...pacing(v2 ? { meta: story.meta } : script, sim, moves, v2 ? { path: "scenes", impact: story.meta.kind === "fight", endsWithTransition: !!story.scenes[story.scenes.length - 1].transitionOut } : {}));
   return result("dry-run", issues, sim);
+}
+
+/**
+ * Issue paths of the compiled story → the authored story: scene indices through `srcPath`, beats through
+ * their `path`; issues inside a macro expansion point at the macro beat (one issue per macro and message).
+ */
+function mapCompiled(issues, story) {
+  const seen = new Set();
+  const out = [];
+  for (const i of issues) {
+    const m = i.path.match(/^scenes\[(\d+)\](.*)$/);
+    const sc = m ? story.scenes[+m[1]] : null;
+    let mapped = i;
+    if (sc) {
+      const bm = m[2].match(/^\.beats\[(\d+)\](.*)$/);
+      const b = bm ? sc.beats[+bm[1]] : null;
+      if (b?.expandedFrom) mapped = { ...i, path: b.path, message: `${i.message} (in the expansion of macro '${b.expandedFrom}')` };
+      else if (b) mapped = { ...i, path: b.path + bm[2] };
+      else if (sc.expandedFrom) mapped = { ...i, path: sc.srcPath, message: `${i.message} (in scene '${sc.id}' of macro '${sc.expandedFrom}')` };
+      else mapped = { ...i, path: (sc.srcPath ?? `scenes[${m[1]}]`) + m[2] };
+    }
+    const key = `${mapped.code}|${mapped.path}|${mapped.message}`;
+    if (!seen.has(key)) out.push(mapped);
+    seen.add(key);
+  }
+  return out;
+}
+
+const STILL = ["idle", "wait", "face"];
+const STILL_LIMIT = 4; // s
+
+/** W_SCENE_STATIC: over 4 s in a scene where nobody moves and no narration, card or bubble shows. */
+function staticScenes(sim) {
+  const out = [];
+  sim.scenes.forEach((sc, i) => {
+    const t0 = sc.storyStart;
+    const t1 = sim.scenes[i + 1]?.storyStart ?? sim.clock.storyT;
+    const spans = [];
+    for (const b of sim.beats) {
+      if (b.scene !== i || b.firedAt == null) continue;
+      if (b.who === "world") spans.push([b.firedAt, Math.max(b.endedAt ?? b.firedAt, b.firedAt + 0.3)]);
+      else if (!STILL.includes(b.do)) spans.push([b.approachAt ?? b.firedAt, b.endedAt ?? t1]);
+    }
+    for (const e of sim.events) {
+      if (e.scene !== i) continue;
+      if (e.type === "say") spans.push([e.storyT, e.storyT + e.dur]);
+      if (e.type === "object") spans.push([e.storyT, e.storyT + 0.3]);
+    }
+    spans.sort((a, b) => a[0] - b[0]);
+    let covered = t0;
+    for (const [s, e] of [...spans, [t1, t1]]) {
+      if (s - covered > STILL_LIMIT) {
+        out.push({ code: "W_SCENE_STATIC", path: sim.story.scenes[i]?.srcPath ?? `scenes[${i}]`, message: `Scene '${sc.id}' stands still from ${(covered - t0).toFixed(1)}s to ${(s - t0).toFixed(1)}s (no movement, narration or dialogue).`,
+          fix: "Add movement (a walk, an emote, an activity) or narration, or shorten the wait." });
+        break;
+      }
+      covered = Math.max(covered, e);
+    }
+  });
+  return out;
 }
 
 /** E_VERSION: an unknown version, or a v1-shaped script labeled version 2. */

@@ -1,0 +1,61 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "rex",
+      "color": "#ff7a3d",
+      "body": "bulky"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1
+        },
+        {
+          "id": "rex",
+          "x": 1700,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "f",
+          "at": 0.3,
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "kai",
+              "rex"
+            ],
+            "winner": "kai",
+            "exchanges": 3,
+            "finisher": "wave"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -191,10 +191,7 @@ export function checkStory(story, catalog, moves) {
 
   story.scenes.forEach((scene, si) => {
     const pre = `scenes[${si}]`;
-    if (scene.macro) {
-      out.push(issue("E_MACRO_UNKNOWN", `${pre}.macro`, `The '${scene.macro}' scene macro is not available in this engine version yet.`, "Write the scenes out by hand for now."));
-      return;
-    }
+    if (scene.macro) return; // scene macros are checked by macros.js, then compiled into scenes
     const location = resolveLocation(story, scene, catalog);
     if (!location) {
       const near = closestMatch(scene.location, [...locIds, ...catalog.themeNames]);
@@ -218,10 +215,7 @@ export function checkStory(story, catalog, moves) {
     }
     checkTransition(scene.transitionIn, `${pre}.transitionIn`, story, si, out);
     checkTransition(scene.transitionOut, `${pre}.transitionOut`, story, si, out);
-    (scene.beats || []).forEach((b, bi) => {
-      if (b.macro) out.push(issue("E_MACRO_UNKNOWN", `${pre}.beats[${bi}].macro`, `The '${b.macro}' macro is not available in this engine version yet.`, "Write the beats out by hand for now (the story compiler comes later)."));
-    });
-    if ((scene.beats || []).some((b) => b.macro)) return;
+    if ((scene.beats || []).some((b) => b.macro)) return; // checked again after compiling
 
     // The v1 checks on the scene's flat view.
     const flat = flatScene(story, si, catalog);
@@ -271,5 +265,12 @@ export function checkStory(story, catalog, moves) {
     }
   });
   out.push(...defeatIssues(story));
+  // W_CAST_UNUSED: a cast member no scene places (after compiling, so scene macros count).
+  if (!story.scenes.some((s) => s.macro)) {
+    const placed = new Set(story.scenes.flatMap((s) => (s.cast || []).map((c) => c.id)));
+    story.cast.forEach((c, i) => {
+      if (!placed.has(c.id)) out.push(issue("W_CAST_UNUSED", `cast[${i}]`, `'${c.id}' is in the cast but never appears in a scene.`, `Place '${c.id}' in a scene's cast, or remove it from 'cast'.`, "warning"));
+    });
+  }
   return out;
 }

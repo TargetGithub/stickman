@@ -69,7 +69,7 @@ function setupAttack(world, actor, events) {
   const d = deriveReach(m.def, dimsOf(actor))[0];
   const required = requiredStartX(actor, target, m.def, m.params, m.outcome);
   const error = required - actor.x;
-  const max = COMBAT.maxNudge * actor.scale;
+  const max = COMBAT.maxNudge * actor.scale * (m.approached ? 2 : 1);
   // Judge reachability against the plain hit spot; dodged spacing is a refinement the nudge aims for.
   const judged = m.outcome === "dodged" ? requiredStartX(actor, target, m.def, m.params, "hit") - actor.x : error;
   if (Math.abs(judged) > max) events.push({ type: "positionError", actor: actor.id, move: m.def.name, beatId: m.beatId, error: judged });

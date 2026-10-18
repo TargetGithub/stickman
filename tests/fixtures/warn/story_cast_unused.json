@@ -1,0 +1,69 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "rex",
+      "color": "#ff7a3d",
+      "body": "bulky"
+    },
+    {
+      "id": "zed",
+      "color": "#c58bff"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1
+        },
+        {
+          "id": "rex",
+          "x": 1700,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "at": 0.3,
+          "who": "kai",
+          "do": "wave"
+        },
+        {
+          "at": 1,
+          "who": "rex",
+          "do": "bow"
+        },
+        {
+          "at": 2.6,
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "The End"
+          }
+        }
+      ]
+    }
+  ]
+}

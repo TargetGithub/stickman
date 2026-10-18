@@ -268,6 +268,27 @@ Story scripts (version 2) also have two story-only groups, listed under `life` a
 
 Activities: blow_bubbles, tennis_rally, play_catch, kick_ball, eat_together, dance_together, selfie, sleep, comfort. Params: `with` (the players), `reps` or `dur`, `intensity` (low, medium, high), `ending` (win, miss, laugh), `winner`, `object` (a net, bench or chair from the set). Players walk to their places, get the racket, wand or phone they need, play, and finish with the ending. Add `"interrupt": true` to a beat for one of the players to stop the activity early. The full table is in STORY_SPEC section 10.
 
+**Story macros** write many beats for you. A macro beat is `{ "id", "at", "macro", "params" }`; the compiler turns it into ordinary beats when the script loads, and other beats can wait for it like any beat (`{"after": "boss"}`) or for one of its moments (`{"on": "boss.finisher"}`):
+
+```json
+{ "id": "path", "at": 0.3, "macro": "gauntlet", "params": { "hero": "kai", "opponents": ["g1", "g2", "g3", "g4"], "per": 3, "travel": "run", "finisher": "spinning_kick" } }
+```
+
+| Macro | Required params | What you get |
+|---|---|---|
+| `dialogue` | `lines`: `[["kai", "Hello!", "happy"], ["pip", "Hi!", "laugh", "shout"]]` | Talk gestures, reading-time pacing, faces, a two-shot. Moments: `line1`, `line2`, ... |
+| `activity` | `name`, `with` | The activity (same params as the world command). Moment: `ending` |
+| `enter` / `exit` | `who`, `side` | Walk (or `"mode": "run"`) in from a side to the scene `x` (place the character with `"hidden": true`), or off a side |
+| `walk_together`, `travel` | `who` (list), `to` | Hand in hand, or side by side with the camera tracking |
+| `fight` | `sides`, `winner` | A whole 1v1: taunts, exchanges, a finisher in slow motion, the KO (`"ko": false` leaves the loser standing). Options: `exchanges`, `intensity`, `style` (even, dominant, comeback, close), `finisher`, `phases`. Moments: `finisher`, `ko` |
+| `gauntlet` | `hero`, `opponents` | One opponent after another (`travel`: run, walk or none for a waiting ring). Moments: `opponent1`, ..., `finisher` |
+| `brawl` | `teams` `{a, b}`, `winner` | Two teams; at most two clashes at once |
+| `chase` | `runner`, `chasers` | `obstacles` to jump, `caught` true or false. Moment: `caught` |
+| `defeat` | `who`, `style` | A stagger and close-up, then the defeat style; `by` reacts. Moment: `gone` |
+| `grief` | `who` | Kneel by `over`, cry, `rain`, sad music |
+
+Two macros make whole scenes (an entry in `scenes` with `id`, `macro`, `params`): `fight_card` (a fight-only video of at least 3 minutes from a list of `matchups`; see `scripts/samples/s6_fight_card.json`) and `montage` (short `clips` with quick cuts). Walking beats can also take a destination: `{"who": "kai", "do": "run", "to": {"near": "pip"}}`, `{"x": 2400}` or `{"exit": "left"}`. Camera `shot` beats frame a moment: `{"who": "world", "do": "shot", "params": {"mode": "close_up", "target": "kai", "dur": 2}}` (modes two_shot, close_up, wide, over_shoulder, track); `"autoCamera": "story"` in meta picks shots for you. To see or hand-edit what a macro writes, use `tools/compile.mjs` (below). The full rules are in STORY_SPEC section 11.
+
 Beat `fx` you can add to a character: `aura`, `afterimage`, `slash_arc`, `speed_lines`, `dust_land`, `dust_run`, `shockwave`, `anger_mark`, `sweat_drop`, `exclaim`, `question`, `heart`, `stars_dizzy`. Impact sparks and hit sounds are added automatically.
 
 ## 5. Fixing validator errors
@@ -296,6 +317,8 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 |---|---|
 | `node tools/validate.mjs <script> [--json]` | Check a script; print errors, warnings and the timeline |
 | `node tools/validate.mjs --schema` | Print the JSON Schema (with every move name) |
+| `node tools/compile.mjs <story> [--summary]` | Print a story with every macro expanded into beats (or one line per macro) |
+| `node tools/compile.mjs <story> --eject <id> --out <file>` | Write the story with one macro replaced by its beats, to hand-tune them |
 | `npm run record -- <script> [options]` | Render the final video (see below) |
 | `npm run serve` | Start the local web server for the browser pages (port 5173) |
 | `node tools/catalog.mjs [--format json]` | Print the move, effect and world-command tables |
@@ -587,7 +610,7 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 
 ## 11. Known limits
 
-- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with static set pieces, time of day and weather, transitions, title/chapter/time/end cards, narration, faces and emotions, thought/shout/whisper bubbles with speaker names, speech sounds, six body plans (stickman, buddy, kid, bulky, slim, elder) and appearance options, and objects (set pieces, balls, bubbles, vehicles, holdables); see `scripts/samples/s1_scenes.json`, `s2_dialogue.json`, `s3_bodies.json` and `s4_park.json`. objects with behaviors, paired moves, macros and generated music come in later milestones; macro beats report `E_MACRO_UNKNOWN` until then.
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with set pieces, time of day and weather, transitions and cards, narration, faces and emotions, bubbles with speaker names, speech sounds, six body plans and appearance options, objects, paired moves, activities, defeat styles, story macros (dialogue, fights, gauntlets, brawls, chases, defeat and grief, fight cards, montages), story camera shots, extras and depth layers; see `scripts/samples/s1_scenes.json` to `s6_fight_card.json`. Generated music (S7) and LLM story generation (S8) come next; `set_music` beats are accepted but silent until then.
 - Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.

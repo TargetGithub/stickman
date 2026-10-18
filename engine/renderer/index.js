@@ -16,6 +16,7 @@ import { holdableData } from "../objects.js";
 import { faceStyle } from "./face_state.js";
 import { lookFor, lookAt } from "./looks.js";
 import { bodyPlan } from "../story/bodies.js";
+import { drawExtras, withLayer } from "./extras.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 
@@ -35,11 +36,39 @@ function sceneViews(sim) {
       says: ev.filter((e) => e.type === "say"),
       objectEvents: ev.filter((e) => e.type === "object"),
       squashEvents: ev.filter((e) => e.type === "land" || e.type === "hit"),
+      // Depth layers and extras (S6): layer changes, and what crowds react to (scene story seconds).
+      layerEvents: ev.filter((e) => e.type === "layer"),
+      extras: sc.extras || [],
+      reactions: reactionsOf(ev, sc),
       fxLog: sc.fxStart === 0 && sc.fxEnd === sim.fx.log.length ? sim.fx.log : sim.fx.log.slice(sc.fxStart, sc.fxEnd),
       trails: sim.fx.trails.filter((t) => inRange(t.t0)),
       flashes: sim.fx.flashes.filter((f) => inRange(f.t0)),
     };
   });
+}
+
+/** Hit and defeat times (scene story seconds) for cheering and fleeing extras. */
+function reactionsOf(ev, sc) {
+  const t0 = sc.storyStart ?? 0;
+  const hits = ev.filter((e) => e.type === "hit" && e.kind === "hit").map((e) => e.storyT - t0);
+  const defeats = ev.filter((e) => e.type === "defeat").map((e) => e.storyT - t0);
+  const first = [...hits, ...defeats].sort((a, b) => a - b)[0] ?? null;
+  return { hits, defeats, first, center: (sc.stageWidth ?? STAGE.width) / 2 };
+}
+
+/** Crowd excitement (S6): it jumps after a hit and fades over a second; a defeat hushes it briefly. */
+function crowdReact(sv, f) {
+  const t = f.storyT - (sv.storyStart ?? 0);
+  if (sv.reactions.defeats.some((d) => d <= t && t - d < 1.2)) return 0.25;
+  const hit = sv.reactions.hits.findLast((h) => h <= t);
+  return hit !== undefined && t - hit < 1 ? 1 + 1.5 * (1 - (t - hit)) : 1;
+}
+
+/** A character's depth layer at video time t (the scene placement, then layer beats). */
+function layerAt(sv, id, t) {
+  let layer = sv.characters?.find((c) => c.id === id)?.layer ?? "mid";
+  for (const e of sv.layerEvents) if (e.actor === id && e.videoT <= t) layer = e.layer;
+  return layer;
 }
 
 /**
@@ -111,10 +140,16 @@ function drawItems(ctx, r, items, flying) {
 
 function drawWorld(ctx, r, n, f, chars, sv) {
   const pieces = sv.objectEvents.length ? staticObjectsAt(r.catalog, sv.set, sv.objectEvents, f.videoT) : sv.set;
+  const layered = sv.layerEvents.length || sv.characters?.some((c) => c.layer && c.layer !== "mid");
+  const inLayer = (layer) => (layered ? chars.filter((c) => layerAt(sv, c.id, f.videoT) === layer) : layer === "mid" ? chars : []);
+  const mid = inLayer("mid");
   drawSetPieces(ctx, r.catalog, pieces, "back");
+  if (sv.extras.length) drawExtras(ctx, r, sv, f, "back");
+  drawLayerChars(ctx, r, n, f, chars, sv, inLayer("back"), "back");
   drawSetPieces(ctx, r.catalog, pieces, "mid");
   drawItems(ctx, r, f.items, false);
-  for (const c of chars) {
+  if (sv.extras.length) drawExtras(ctx, r, sv, f, "mid");
+  for (const c of mid) {
     if (c.alpha <= 0.01) continue;
     const h = STAGE.groundY - lowestPoint(c.j, c.scale, c.dims);
     const k = Math.max(0, 1 - h / 400);
@@ -131,7 +166,28 @@ function drawWorld(ctx, r, n, f, chars, sv) {
       if (ghost) drawCharacter(ctx, ghost.j, { color: ghost.color, scale: ghost.scale, facing: ghost.facing, alpha: 0.12 + 0.1 * i, outline: false });
     });
   }
-  for (const c of order(chars)) {
+  drawChars(ctx, r, n, f, chars, sv, mid);
+  drawItems(ctx, r, f.items, true);
+  drawTrails(ctx, n, sv, trails, r);
+  drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
+    const c = chars.find((x) => x.id === actorId);
+    if (!c) return null;
+    return joint === "feet" ? { x: c.j.hip.x, y: STAGE.groundY } : c.j[joint] || c.j.hip;
+  });
+  drawMovingObjects(ctx, r.catalog, f.items); // balls, bubbles and vehicles pass in front of the characters
+  drawSetPieces(ctx, r.catalog, pieces, "front");
+  if (sv.extras.length) drawExtras(ctx, r, sv, f, "front");
+  drawLayerChars(ctx, r, n, f, chars, sv, inLayer("front"), "front");
+}
+
+/** Characters on a back or front layer, scaled about their feet (STORY_SPEC 14). */
+function drawLayerChars(ctx, r, n, f, chars, sv, list, layer) {
+  for (const c of list) withLayer(ctx, layer, c.j.hip.x, () => drawChars(ctx, r, n, f, chars, sv, [c]));
+}
+
+/** Draw characters (largest first), with their looks, accessories and squash. */
+function drawChars(ctx, r, n, f, chars, sv, list) {
+  for (const c of order(list)) {
     if (c.alpha <= 0.01) continue;
     const look = lookAt(r.looks.get(c.id), r.lookChanges.filter((e) => e.params.who === c.id), f.videoT);
     const style = look?.style || r.styles.get(c.id) || {};
@@ -156,7 +212,10 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     drawFront(ctx, c, past, style);
     ctx.restore();
   }
-  drawItems(ctx, r, f.items, true);
+}
+
+/** Slash trails behind weapon tips. */
+function drawTrails(ctx, n, sv, trails, r) {
   for (const t of trails.filter((x) => x.kind === "slash" && x.part)) {
     const pts = [];
     for (let back = 8; back >= 0; back--) {
@@ -171,13 +230,6 @@ function drawWorld(ctx, r, n, f, chars, sv) {
       ctx.beginPath(); ctx.moveTo(pts[i - 1].x, pts[i - 1].y); ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke();
     }
   }
-  drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
-    const c = chars.find((x) => x.id === actorId);
-    if (!c) return null;
-    return joint === "feet" ? { x: c.j.hip.x, y: STAGE.groundY } : c.j[joint] || c.j.hip;
-  });
-  drawMovingObjects(ctx, r.catalog, f.items); // balls, bubbles and vehicles pass in front of the characters
-  drawSetPieces(ctx, r.catalog, pieces, "front");
 }
 
 /** Number of frames available. */
@@ -193,7 +245,7 @@ export function renderScene(r, ctx, n) {
   const { W, H } = r;
   const theme = sv.themeChanges.filter((e) => e.videoT <= f.videoT).pop()?.params.theme || sv.theme || r.defaultTheme;
   ctx.save();
-  drawBackground(ctx, background(r, theme), cam, W, H, f.fxT);
+  drawBackground(ctx, background(r, theme), cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1);
   ctx.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
   drawWorld(ctx, r, n, f, chars, sv);

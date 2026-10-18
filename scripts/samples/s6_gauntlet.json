@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "meta": { "title": "The path to save Pip", "format": "landscape", "seed": 2024, "kind": "clip", "audience": "kids", "autoCamera": "story", "hpBars": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "voice": { "pitch": 1.0, "timbre": "soft" } },
+    { "id": "g1", "name": "Guard", "body": "bulky", "color": "#ffe14d" },
+    { "id": "g2", "name": "Guard", "body": "bulky", "color": "#ff9b3d" },
+    { "id": "g3", "name": "Guard", "body": "bulky", "color": "#ffc2ee", "prop": "staff" },
+    { "id": "g4", "name": "Big Guard", "body": "bulky", "color": "#c8f04a", "scale": 1.6 }
+  ],
+  "locations": [
+    { "id": "street", "theme": "city_street", "stageWidth": 6000, "ambience": "city_traffic",
+      "extras": [ { "count": 4, "behavior": "walk_by", "layer": "back" }, { "count": 3, "behavior": "flee", "layer": "back", "from": 900, "to": 2200 } ] }
+  ],
+  "scenes": [
+    { "id": "s3", "location": "street", "time": "night", "weather": "rain", "music": { "mood": "heroic" },
+      "transitionIn": { "type": "card", "kind": "chapter", "text": "The path to save Pip" },
+      "transitionOut": { "type": "fade", "dur": 1.2 },
+      "cast": [ { "id": "kai", "x": 300, "facing": 1, "face": "determined" }, { "id": "g1", "x": 1600, "facing": -1 }, { "id": "g2", "x": 2600, "facing": -1 },
+                { "id": "g3", "x": 3600, "facing": -1 }, { "id": "g4", "x": 4800, "facing": -1 } ],
+      "beats": [
+        { "id": "path", "at": 0.3, "macro": "gauntlet", "params": { "hero": "kai", "opponents": ["g1", "g2", "g3", "g4"], "per": 3, "travel": "run", "finisher": "spinning_kick" } }
+      ] }
+  ]
+}

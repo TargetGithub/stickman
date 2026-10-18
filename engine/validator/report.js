@@ -55,13 +55,24 @@ export function formatIssues(issues) {
 
 const num = (v) => (v == null ? "  -  " : v.toFixed(2));
 
-/** Readable timeline of executed beats (spec 16.3), from a simulation result. */
+/**
+ * Readable timeline of executed beats (spec 16.3), from a simulation result. Beats a macro expanded into
+ * (S6) are indented under a "@macro id" line where the macro starts.
+ */
 export function formatTimeline(sim) {
+  const macros = new Map((sim.story?.expansions || []).filter((x) => x.beats).map((x) => [x.id, x]));
+  const opened = new Set();
   const rows = [...sim.beats]
     .filter((b) => b.firedAt != null)
     .sort((a, b) => a.firedAt - b.firedAt || a.index - b.index)
-    .map((b) => {
-      const who = b.who.padEnd(6);
+    .flatMap((b) => {
+      const head = [];
+      const m = b.expandedFrom ? macros.get(b.expandedFrom) : null;
+      if (m && !opened.has(m.id)) {
+        opened.add(m.id);
+        head.push(`t=${b.firedAt.toFixed(2).padStart(6)}  @${m.macro} ${m.id} (${m.beats.length} beat${m.beats.length === 1 ? "" : "s"})`);
+      }
+      const who = `${b.expandedFrom ? "  " : ""}${b.who}`.padEnd(6);
       const what = b.do.padEnd(12);
       let detail;
       if (b.who === "world") {
@@ -73,7 +84,7 @@ export function formatTimeline(sim) {
         if (b.notes.length) detail += `  (${b.notes.join("; ")})`;
         if (b.state === "skipped") detail += "  SKIPPED";
       }
-      return `t=${b.firedAt.toFixed(2).padStart(6)}  ${who} ${what} ${detail}`.trimEnd();
+      return [...head, `t=${b.firedAt.toFixed(2).padStart(6)}  ${who} ${what} ${detail}`.trimEnd()];
     });
   const pending = sim.beats.filter((b) => b.firedAt == null).map((b) => `never ran: ${b.id} (${b.who} ${b.do})`);
   return [...rows, ...pending, `video length ${sim.durationSec.toFixed(2)}s`].join("\n");

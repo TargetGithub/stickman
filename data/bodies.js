@@ -4,6 +4,7 @@
 //   torsoWidth: half-width of a filled torso (also widens the torso hurtbox)
 //   posture: pose offsets added to every pose (the elder's stoop); thighs follow the lean so legs stay upright
 //   appearance: default appearance options for the plan (a cast entry's appearance wins)
+//   avoid: attacks the story compiler leaves out of this plan's generated fights (S6)
 // The stickman plan equals the v1 body exactly (engine/skeleton.js BODY), so v1 output is unchanged.
 
 export const bodies = {
@@ -15,6 +16,7 @@ export const bodies = {
     rig: "humanoid", draw: "capsule", torsoWidth: 27,
     dims: { headR: 26, neck: 2, torso: 42, upperArm: 22, forearm: 20, thigh: 24, shin: 22, lineWidth: 8 },
     appearance: { eyes: "big", brows: "thin" },
+    avoid: ["axe_kick"],
   },
   kid: {
     rig: "humanoid", draw: "stick",
@@ -35,6 +37,7 @@ export const bodies = {
     rig: "humanoid", draw: "stick", posture: { lean: 12, head: 8 },
     dims: { headR: 21, neck: 7, torso: 72, upperArm: 36, forearm: 34, thigh: 44, shin: 42, lineWidth: 8 },
     appearance: { brows: "thick", eyes: "sleepy", hair: "bob", hairColor: "#e8e8e8" },
+    avoid: ["flying_kick", "spinning_kick", "axe_kick", "flurry"],
   },
 };
 

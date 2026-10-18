@@ -141,7 +141,7 @@ const KINDS = {
       ctx.fillStyle = layer.color;
       for (const p of people) {
         if (p.x < left - 40 || p.x > right + 40) continue;
-        const bob = Math.max(0, Math.sin(view.fxT * 7 + p.ph)) * 8 * (layer.excite ?? 1);
+        const bob = Math.max(0, Math.sin(view.fxT * 7 + p.ph)) * 8 * (layer.excite ?? 1) * (view.react ?? 1);
         const y = layer.y - p.row * 42 - bob;
         ctx.beginPath();
         ctx.arc(p.x, y - 30 * p.s, 13 * p.s, 0, Math.PI * 2);
@@ -238,9 +238,9 @@ export function createBackground(theme, name, seed = 1) {
  * Draw sky, parallax layers, floor and floor layers for a camera state at fx time fxT.
  * Leaves the transform reset; the caller sets the world transform afterwards.
  */
-export function drawBackground(ctx, bg, cam, W, H, fxT = 0) {
+export function drawBackground(ctx, bg, cam, W, H, fxT = 0, react = 1) {
   const t = bg.theme;
-  const view = { cam, W, H, fxT };
+  const view = { cam, W, H, fxT, react }; // react: crowd excitement (story scripts: up after hits, down after a defeat)
   screen(ctx);
   const sky = ctx.createLinearGradient(0, 0, 0, H);
   sky.addColorStop(0, t.sky.top);

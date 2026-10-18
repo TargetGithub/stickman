@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "rex",
+      "color": "#ff7a3d",
+      "body": "bulky"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "card",
+      "macro": "fight_card",
+      "params": {
+        "matchups": [
+          {
+            "sides": [
+              "kai",
+              "rex"
+            ],
+            "winner": "kai",
+            "location": "moon_base"
+          }
+        ]
+      }
+    }
+  ]
+}

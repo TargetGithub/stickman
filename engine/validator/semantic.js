@@ -48,6 +48,13 @@ export const WORLD_COMMANDS_V2 = {
     eyes: { enum: V2_ENUMS.eyes }, brows: { enum: V2_ENUMS.brows }, mouthStyle: { enum: V2_ENUMS.mouthStyle },
     hair: { enum: V2_ENUMS.hair }, hairColor: HEX, outfit: { enum: V2_ENUMS.outfit }, outfitColor: HEX, cheeks: HEX,
   },
+  // Story camera shots (S6): a camera key from a beat; with dur, the previous framing comes back after it.
+  shot: {
+    mode: { enum: V2_ENUMS.cameraMode, required: true }, target: { character: true }, targets: { characters: 4 }, from: { character: true },
+    zoom: { min: 0.3, max: 4 }, dur: { min: 0.2, max: 30 },
+  },
+  // Music changes inside a scene (S6 emits them, S7 plays them): mood, intensity, volume, fade seconds.
+  set_music: { mood: { enum: V2_ENUMS.mood }, intensity: { min: 0, max: 1 }, volume: { min: 0, max: 1 }, fade: { min: 0, max: 10 } },
   // Activities (S5): the runtime form of the @activity macro; `object` is checked by the story stage.
   activity: {
     name: { enum: V2_ENUMS.activity, required: true }, with: { characters: 4, required: true },
@@ -55,6 +62,9 @@ export const WORLD_COMMANDS_V2 = {
     winner: { character: true }, object: {},
   },
 };
+
+/** Fields each story camera mode needs (S6), for camera keys and shot beats. */
+const SHOT_FIELDS = { focus: ["target"], two_shot: ["targets"], close_up: ["target"], over_shoulder: ["target", "from"], track: ["target"] };
 
 const MIN_CONTRAST = 1.6;
 
@@ -212,7 +222,14 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
       if (!worldCommands[b.do]) {
         const asMove = moves.has(b.do) ? ` '${b.do}' is a move: set "who" to a character.` : "";
         out.push({ code: "E_WORLD_UNKNOWN", path: `${p}.do`, message: `Unknown world command '${b.do}'.${asMove}`, fix: `Use one of: ${worldNames.join(", ")}.` });
-      } else checkWorldParams(b, p, ctx, out);
+      } else {
+        checkWorldParams(b, p, ctx, out);
+        if (b.do === "shot") {
+          for (const f of SHOT_FIELDS[b.params?.mode] || []) {
+            if (b.params[f] === undefined) out.push({ code: "E_WORLD_PARAM", path: `${p}.params`, message: `A '${b.params.mode}' shot needs params.${f}.`, fix: `Add "${f}" to params.` });
+          }
+        }
+      }
       for (const k of ["target", "outcome", "approach", "say"]) {
         if (k in b) out.push({ code: "E_WORLD_FIELD", path: `${p}.${k}`, message: `World beats do not use '${k}'.`, fix: `Remove '${k}'.` });
       }
@@ -265,6 +282,10 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
     }
     if (k.mode === "focus" && !k.target) out.push({ code: "E_CAMERA_FIELD", path: p, message: "'focus' needs a 'target'.", fix: "Add \"target\": \"<character id>\"." });
     if ((k.mode === "fixed" || k.mode === "pan") && k.x === undefined) out.push({ code: "E_CAMERA_FIELD", path: p, message: `'${k.mode}' needs 'x'.`, fix: "Add \"x\"." });
+    for (const f of SHOT_FIELDS[k.mode] || []) {
+      if (k[f] === undefined) out.push({ code: "E_CAMERA_FIELD", path: p, message: `'${k.mode}' needs '${f}'.`, fix: f === "targets" ? 'Add "targets": ["<id>", "<id>"].' : `Add "${f}": "<character id>".` });
+    }
+    if (k.from !== undefined && !charIds.has(k.from)) out.push({ code: "E_REF_CHARACTER", path: `${p}.from`, message: `No character '${k.from}'.`, fix: `Use one of: ${[...charIds].join(", ")}.` });
   });
   if (script.camera.length && script.camera[0].at !== 0) {
     out.push({ code: "E_CAMERA_START", path: "camera[0].at", message: "The first camera key must be at 0.", fix: "Set camera[0].at to 0." });

@@ -579,6 +579,45 @@ activityIssues(scene, si, story, catalog), defeatIssues(story)
 - `presentation.js`: with `opts.kids` (v2 stories with audience `kids`) a hit emits the next `pop_*` preset (word glyph particles; `fx.js` copies a layer's `text`, `renderer/particles.js` draws it).
 - `faces.js`: a defeated character with `actor.defeatFace` shows it instead of the knocked-out face.
 
+### Story compiler, macros, story camera, extras and layers (S6)
+```js
+// story/compile.js (pure; no I/O; uses the injected catalog and prepared moves)
+compileStory(story, catalog, moves) -> { story, expansions }  // macros → beats; idempotent (story.compiled)
+ejectMacro(story, macroId, catalog, moves) -> script | null   // one macro written back as beats (or scenes)
+plainScript(compiled) -> script                               // without path / expandedFrom / srcPath
+// builder context (one per macro beat): id, rng (compile:<macroId>), catalog, moves, story, scene, castById,
+//   pos (id → estimated x), placement(id) (mutable scene placement), present(id), addSet(piece),
+//   add(beat), after(ref, beat, delay), with(ref, beat, delay)
+// story/macros/index.js   BEAT_MACROS: (ctx, params) -> { anchors: { start, end, ...: "beatId.anchor" } }
+//   basic.js       dialogue, activity, enter, exit, walk_together, travel; splitText(text), destX(ctx, who, to)
+//   group.js       gauntlet, brawl, chase
+//   sequences.js   fight, defeat, grief
+//   fight_core.js  addFight(ctx, o) -> { first, last, finisher, ko }; canHit(ctx, a, b, move) (canReach on probe actors)
+//   pools.js       attackPool(ctx, id) -> { light, heavy, launchers }; finisherFor; heldKind; emotes
+//   scenes.js      SCENE_MACROS: fight_card, montage: (ctx, params) -> scenes
+// story/destinations.js
+TO_MOVES; destinationX(world, actor, to, move); startTo(world, actor, beat, opts, t, paired) -> opts; updateExits(world, events, t)
+// story/extras.js
+planExtras(scene, location, catalog, seed, stageWidth) -> extras[]; EXTRA_MOVES
+// camera_story.js
+storyFraming(cam, actors, key, { bounds, fitZoom }) -> { x, zoom, y?, smoothY?, maxZoom? } | null
+shotKey(params); createStoryAuto(t0); storyAutoEvent(auto, e, t); storyAutoKey(auto, actors, t) -> key | null
+// renderer/extras.js
+drawExtras(ctx, r, sceneView, frame, layer); withLayer(ctx, layer, x, draw); LAYER_LOOK
+// validator/macros.js
+macroIssues(story, catalog, moves) -> issues   // before compiling: E_MACRO_UNKNOWN, E_MACRO_PARAM, E_REF_ANCHOR, `to`
+// index.js (public)
+compileScript(script, catalog) -> { script, expansions }; ejectMacro(script, macroId, catalog)
+```
+- **Load order** (ADR-014): normalize → schema → `macroIssues` → compile → `checkStory` on the compiled story → dry run. `validate` maps compiled issue paths back to what the author wrote (`srcPath` on scenes, `path` on beats; issues inside an expansion name the macro). `simulate` compiles too, so every caller (record, player, golden tests) sees the same beats.
+- **Ordering and ids:** a macro's beats replace it in place in the scene's beat list; the first beat takes the macro's `at`, the rest chain on each other (`after`/`with`/`on`). Generated ids are `<macroId>_<n>`; a macro without an id is `<macro><beat index>`. References to a macro are rewritten through its anchor map (`after` → `end`, `with` → `start`, `on` → the named anchor).
+- **Fights:** every attack has `"approach": "run"`. Outcomes are weighted toward the winner, damage is budgeted (`budget()`: the loser runs down toward the finisher, the winner keeps a share by style), breathers keep runs of attacks at 6 or fewer, and pauses follow hits, dodges and parries so the next attacker is free. Pools leave out head strikes (they cannot aim), special-set-up attacks, the body plan's `avoid` list, and moves `canHit` says cannot reach; automatic finishers avoid long run-ups. A KO waits 0.8 s for a launched loser to land.
+- **Director changes for stories only** (v1 unchanged): an attack with `approach` may run up to three times (the target may have been pushed) and gets twice the nudge; `to` on walk/run/sneak/tiptoe/walk_together sets the distance at start; a hidden walker with `to` fades in; `{exit}` fades out at the end; `despawn` on a knocked-out character fades it where it lies; a placement with `hp` clears the KO (fight card rounds); `layer` beats emit `layer` events; KO and defeat moves emit `defeat` events (crowds); generated beats never report W_QUEUE_DRIFT (they wait for busy characters on purpose).
+- **Camera:** `shot` beats set a key; with `dur` the previous key returns afterwards, without it the framing lasts (and turns the story auto camera off for the scene). Camera keys end any shot. Close-ups may zoom to 3 and lift the frame with a smoothed y offset; v1 keys never set it.
+- **Extras** are plans (`sim.scenes[i].extras`) posed by the renderer from scene time with `sim.extraMoves`; they never enter the frame store or the simulation. The v1 `crowd` layer bobs with `react` (story scripts only): up after hits, hushed after a defeat.
+- **Layers:** characters on `back`/`front` (scene placement or `layer` beats) are drawn scaled about their feet (0.75 / 1.15) with the extras of that layer: back before mid set pieces, front after front set pieces. All-mid scenes draw exactly as before.
+- **Data:** `data/macro_lines.js` (`catalog.macroLines`: fight card intro, breather, challenge and victory lines), `avoid` lists in `data/bodies.js`.
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:
@@ -590,7 +629,8 @@ activityIssues(scene, si, story, catalog), defeatIssues(story)
   6. dry run, then simulation.
   
   Each macro draws from its own stream `deriveRng(seed, "compile:" + macroId)`, so editing one macro never changes another macro's expansion. Generated beat ids are `<macroId>_<n>`; anchors per macro are listed in `MACRO_ANCHORS` and addressed as `{"on": "boss.finisher"}`. Issues inside an expansion are reported at the authored macro beat's path with an `expandedFrom` note.
-- **Consequences**: the simulation never sees macros. `tools/compile.mjs` prints the expansion and `--eject <macroId>` writes it back as beats. Limits are split into authored (600) and compiled (4,000) beats. The compiler reads move pools from the injected catalog (categories, tags, body plan, held prop).
+- **Consequences**: the simulation never sees macros. `tools/compile.mjs` prints the expansion and `--eject <macroId>` writes it back as beats. Limits are split into authored (600) and compiled (4,000) beats. The compiler reads move pools from the injected catalog (category, held prop, body plan `avoid` lists) and checks reach with the same `canReach` the world uses.
+- **Status (S6):** built as described; see "Story compiler, macros, story camera, extras and layers (S6)" above.
 
 ### ADR-015 Body plans share the humanoid skeleton
 - **Context**: stories need characters that are not stickmen (a round sidekick, bulky guards), while 72 tuned moves and the aiming/reach system must keep working.

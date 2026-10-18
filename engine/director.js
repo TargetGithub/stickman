@@ -6,36 +6,18 @@ import { command } from "./world.js";
 import { requestSlowmo, requestFreeze } from "./clock.js";
 import { requiredStartX, motionScale } from "./combat.js";
 import { COMBAT, LIMITS } from "./config.js";
-import { CARD_COMMANDS, cardDuration, narrateDuration } from "./story/timing.js";
+import { CARD_COMMANDS, WORLD_DURATION } from "./story/timing.js";
 import { readingTime } from "./story/speech.js";
 import { pairGate } from "./story/pair_beats.js";
 import { startPair } from "./story/pairs.js";
 import { defeatStart } from "./story/defeat.js";
 import { startActivity, stopActivity } from "./story/activities.js";
 import { OBJECT_COMMANDS, walkToSeat } from "./story/scene_beats.js";
+import { TO_MOVES, startTo } from "./story/destinations.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
 export const REVIVE_MOVES = ["get_up", "spawn", "return"];
-
-/** World beat durations in story seconds, for their end anchor. */
-const WORLD_DURATION = {
-  slowmo: (p) => p.duration ?? 0,
-  fade: (p) => p.dur ?? 1,
-  flash: (p) => p.dur ?? 0.1,
-  caption: (p) => p.dur ?? 2,
-  desaturate: (p) => p.dur ?? 0.5,
-  zoom_punch: (p) => p.dur ?? 0.2,
-  text_pop: (p) => p.dur ?? 0.8,
-  shake: () => 0.3,
-  narrate: (p) => narrateDuration(p),
-  title_card: (p) => cardDuration("title_card", p),
-  chapter_card: (p) => cardDuration("chapter_card", p),
-  time_card: (p) => cardDuration("time_card", p),
-  end_card: (p) => cardDuration("end_card", p),
-  set_time: (p) => p.dur ?? 0,
-  set_weather: (p) => p.dur ?? 0,
-};
 
 /** Parse a beat's `at` into a dependency. */
 export function parseAt(at) {
@@ -225,6 +207,15 @@ function execute(director, beat, ctx) {
     return dispatchWorld(director, beat, ctx);
   }
   const actor = world.byId.get(beat.who);
+  if (director.dead.has(beat.who) && beat.do === "despawn" && director.story) {
+    // A knocked-out character fades away where it lies (the gauntlet's afterDefeat "fade").
+    beat.firedAt = storyT;
+    beat.state = "done";
+    actor.fade = { a0: actor.alpha, a1: 0, t0: storyT, dur: 0.6 };
+    anchor(director, beat, "start", storyT);
+    anchor(director, beat, "end", storyT);
+    return;
+  }
   if (director.dead.has(beat.who) && !REVIVE_MOVES.includes(beat.do)) {
     beat.firedAt = storyT;
     issue(director, "E_SIM_DEAD_ACTOR", beat, `'${beat.who}' was knocked out and cannot '${beat.do}'.`, `Add a "get_up" beat for '${beat.who}' first, or remove this beat.`);
@@ -233,7 +224,8 @@ function execute(director, beat, ctx) {
     anchor(director, beat, "end", storyT);
     return;
   }
-  if (actor.hidden && beat.do !== "spawn" && beat.do !== "return" && !beat.warnedHidden) {
+  const walksTo = beat.to && TO_MOVES.includes(beat.do); // a hidden character with a destination walks in
+  if (actor.hidden && beat.do !== "spawn" && beat.do !== "return" && !walksTo && !beat.warnedHidden) {
     beat.warnedHidden = true;
     issue(director, "W_HIDDEN", beat, `'${beat.who}' is hidden (not spawned yet, or despawned) when '${beat.do}' runs.`, `Add a "spawn" beat for '${beat.who}' before this one.`, "warning");
   }
@@ -250,15 +242,21 @@ function execute(director, beat, ctx) {
     return;
   }
   const def = director.moves.get(beat.do);
-  if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx, command)) return;
-  if (def.pair && beat.partner && pairGate({ director, beat, actor, def, ctx, issue, command, isFree })) return;
-  if (beat.approach && beat.target && def.category === "attack" && beat.state !== "approached" && approach(director, beat, actor, ctx)) {
+  // Walking somewhere first (a seat, a partner, attack range): approachAt marks when the walk began.
+  if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx, command)) return void (beat.approachAt ??= storyT);
+  if (def.pair && beat.partner && pairGate({ director, beat, actor, def, ctx, issue, command, isFree })) return void (beat.approachAt ??= storyT);
+  // Story scripts re-check after the run (the target may have been knocked or pushed meanwhile): up to 3 runs.
+  const again = director.story ? (beat.approaches ?? 0) < 3 : beat.state !== "approached";
+  if (beat.approach && beat.target && def.category === "attack" && again && approach(director, beat, actor, ctx)) {
+    beat.approaches = (beat.approaches ?? 0) + 1;
+    beat.approachAt ??= storyT;
     beat.state = "approached";
     director.waiting.set(actor.id, [beat, ...(director.waiting.get(actor.id) || []).filter((b) => b !== beat)]);
     return;
   }
   const lateBy = storyT - beat.due;
-  if (lateBy > LIMITS.queueDriftWarn && beat.state !== "approached") {
+  // Macro beats (S6) wait for busy characters on purpose: only authored timing can drift.
+  if (lateBy > LIMITS.queueDriftWarn && beat.state !== "approached" && !beat.expandedFrom) {
     issue(director, "W_QUEUE_DRIFT", beat, `Beat '${beat.id}' (${beat.who} ${beat.do}) starts ${lateBy.toFixed(2)}s after its time because '${beat.who}' was busy.`,
       `Use "at": {"after": "<previous beat id>"} to chain it, or set "interrupt": true.`, "warning");
   }
@@ -271,14 +269,21 @@ function execute(director, beat, ctx) {
   if (beat.do === "ride") actor.riding = beat.object; // the sim keeps riders on their vehicle
   if (actor.seatY != null && (def.category === "movement" || def.category === "attack")) actor.seatY = actor.seatId = null;
   if (beat.do === "dismount") actor.riding = null;
-  let opts = { target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined };
+  let opts = { target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,
+    ...(director.story && beat.approach && def.category === "attack" ? { approached: true } : {}) };
   if (def.category === "defeat") opts = defeatStart(world, actor, def, opts); // defeat styles (S5): face, flee side
+  if (walksTo) opts = startTo(world, actor, beat, opts, storyT, !!def.pair) ?? opts; // S6: distance from where everyone is
+  if (beat.layer && director.story) {
+    actor.layer = beat.layer;
+    emit({ type: "layer", actor: beat.who, layer: beat.layer, beatId: beat.id });
+  }
   if (def.pair && world.byId.get(beat.partner)) startPair(world, actor, world.byId.get(beat.partner), def, opts, command);
   else command(world, beat.who, beat.do, opts);
   beat.state = "running";
   if (KO_MOVES.includes(beat.do) || def.flags.defeat) {
     director.dead.add(beat.who);
     actor.hp = 0;
+    if (director.story) emit({ type: "defeat", actor: beat.who, move: beat.do, beatId: beat.id }); // crowds gasp (S6)
   }
   if (REVIVE_MOVES.includes(beat.do)) director.dead.delete(beat.who);
   if (beat.fx?.length) emit({ type: "fx", names: beat.fx, actor: beat.who, beatId: beat.id });

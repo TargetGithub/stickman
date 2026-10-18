@@ -193,6 +193,7 @@ export function startMove(actor, def, opts = {}) {
     beatId: opts.beatId ?? null,
     target: opts.target ?? null,
     outcome: opts.outcome ?? null,
+    approached: !!opts.approached, // story scripts: an attack with "approach" gets a wider nudge (crowds shove; S6)
     // Root motion is authored at scale 1 for the stickman. It scales with the character; forward travel
     // also scales with leg length (body plans, S3), heights do not (contact heights stay comparable).
     scale: actor.scale ?? 1,

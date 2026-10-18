@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "meta": { "title": "Rooftop Cup", "format": "landscape", "seed": 1807, "kind": "fight", "audience": "kids", "autoCamera": "story", "hpBars": true, "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "voice": { "pitch": 1.0 } },
+    { "id": "zed", "name": "Zed", "body": "slim", "color": "#ffa62b", "prop": "staff", "style": { "cape": "#5a1f8a" }, "voice": { "pitch": 0.9, "timbre": "deep" } },
+    { "id": "bo", "name": "Bo", "body": "bulky", "color": "#c86bff", "voice": { "pitch": 0.75, "timbre": "deep" }, "hp": 140 },
+    { "id": "rex", "name": "Rex", "body": "stickman", "color": "#ffe14d", "prop": "sword", "voice": { "pitch": 1.1 }, "hp": 160 }
+  ],
+  "locations": [
+    { "id": "roof", "theme": "rooftop_city", "extras": [ { "count": 5, "behavior": "cheer", "layer": "back" } ] },
+    { "id": "dojo", "theme": "dojo_dusk" },
+    { "id": "ring", "theme": "arena" }
+  ],
+  "scenes": [
+    { "id": "cup", "macro": "fight_card", "music": { "mood": "battle" }, "transitionOut": { "type": "fade", "dur": 1.5 },
+      "params": { "title": "Rooftop Cup", "finale": "boss", "matchups": [
+        { "sides": ["kai", "zed"], "winner": "kai", "location": "roof" },
+        { "sides": ["kai", "bo"], "winner": "kai", "location": "dojo", "style": "close" },
+        { "sides": ["kai", "rex"], "winner": "kai", "location": "ring" }
+      ] } }
+  ]
+}
