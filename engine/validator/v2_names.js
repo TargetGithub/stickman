@@ -57,6 +57,7 @@ export const V2_WORLD_COMMANDS = [
   "narrate", "title_card", "chapter_card", "time_card", "end_card",
   "set_time", "set_weather", "set_music", "shot",
   "spawn_object", "remove_object", "set_object", "set_appearance",
+  "activity", // S5: the runtime form of the @activity macro
 ];
 
 /** Character moves/commands added in v2 that the director treats specially. */

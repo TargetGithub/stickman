@@ -1,0 +1,306 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Not Today",
+    "format": "landscape",
+    "seed": 77,
+    "kind": "clip",
+    "audience": "kids",
+    "speakerNames": true
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "name": "Kai",
+      "color": "#3fd8ff",
+      "style": {
+        "headband": "#ff3b5c"
+      }
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "body": "buddy",
+      "color": "#2fd3c0",
+      "appearance": {
+        "accessories": {
+          "antenna": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "timbre": "squeaky"
+      }
+    },
+    {
+      "id": "vex",
+      "name": "Vex",
+      "body": "slim",
+      "color": "#7a22d0",
+      "style": {
+        "cape": "#1a1a1a"
+      },
+      "appearance": {
+        "brows": "thick"
+      },
+      "voice": {
+        "pitch": 0.7,
+        "timbre": "deep"
+      }
+    },
+    {
+      "id": "g1",
+      "name": "Grunt",
+      "body": "bulky",
+      "color": "#ffc04d"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "bonk",
+      "location": "city_street",
+      "time": "day",
+      "transitionIn": {
+        "type": "card",
+        "kind": "title",
+        "title": "Not Today",
+        "subtitle": "defeat styles",
+        "dur": 2
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "g1",
+          "x": 1700,
+          "facing": -1,
+          "face": "angry"
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "follow",
+          "zoom": 1.3,
+          "padding": 260
+        }
+      ],
+      "beats": [
+        {
+          "id": "a1",
+          "at": 0.4,
+          "who": "kai",
+          "do": "jab",
+          "target": "g1",
+          "outcome": "hit",
+          "approach": "run"
+        },
+        {
+          "id": "a2",
+          "at": {
+            "after": "a1",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "roundhouse",
+          "target": "g1",
+          "outcome": "hit",
+          "approach": "walk"
+        },
+        {
+          "id": "a3",
+          "at": {
+            "after": "a2",
+            "delay": 0.4
+          },
+          "who": "g1",
+          "do": "faint"
+        },
+        {
+          "id": "a4",
+          "at": {
+            "after": "a3",
+            "delay": 0.4
+          },
+          "who": "kai",
+          "do": "shrug",
+          "say": "Nap time!"
+        }
+      ]
+    },
+    {
+      "id": "flee",
+      "location": "city_street",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dir": "left",
+        "dur": 0.8
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "vex",
+          "x": 1700,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "follow",
+          "zoom": 1.1,
+          "padding": 300
+        }
+      ],
+      "beats": [
+        {
+          "id": "b1",
+          "at": 0.4,
+          "who": "vex",
+          "do": "taunt",
+          "say": "You can't catch me!"
+        },
+        {
+          "id": "b2",
+          "at": {
+            "after": "b1",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "cross",
+          "target": "vex",
+          "outcome": "hit",
+          "approach": "run"
+        },
+        {
+          "id": "b3",
+          "at": {
+            "after": "b2",
+            "delay": 0.3
+          },
+          "who": "vex",
+          "do": "flee",
+          "say": "Eek!"
+        }
+      ]
+    },
+    {
+      "id": "gone",
+      "location": "city_park",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.8
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "pip",
+          "x": 1520,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "vex",
+          "x": 2100,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "follow",
+          "zoom": 1.2,
+          "padding": 300
+        }
+      ],
+      "beats": [
+        {
+          "id": "c1",
+          "at": 0.5,
+          "who": "vex",
+          "do": "energy_blast",
+          "target": "pip",
+          "outcome": "hit"
+        },
+        {
+          "id": "c2",
+          "at": {
+            "after": "c1",
+            "delay": 0.2
+          },
+          "who": "pip",
+          "do": "vanish"
+        },
+        {
+          "id": "c3",
+          "at": {
+            "with": "c2",
+            "delay": 0.6
+          },
+          "who": "kai",
+          "do": "cry",
+          "face": "sad",
+          "say": "Pip!"
+        },
+        {
+          "id": "c4",
+          "at": {
+            "after": "c2",
+            "delay": 1.0
+          },
+          "who": "pip",
+          "do": "return"
+        },
+        {
+          "id": "c5",
+          "at": {
+            "after": "c4",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "hug",
+          "partner": "pip",
+          "face": "laugh",
+          "say": "You're back!"
+        },
+        {
+          "id": "c6",
+          "at": {
+            "after": "c4",
+            "delay": 0.4
+          },
+          "who": "vex",
+          "do": "captured",
+          "say": "Hey!"
+        },
+        {
+          "id": "c7",
+          "at": {
+            "after": "c5",
+            "delay": 0.3
+          },
+          "who": "kai",
+          "do": "victory"
+        }
+      ]
+    }
+  ]
+}

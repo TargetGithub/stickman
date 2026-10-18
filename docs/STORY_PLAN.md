@@ -155,7 +155,7 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** each move batch in the catalog page (3 batches × 15 min).
 
-**Status (2026-10-16):** batch 1 approved (S5.0 move drafting, S5.4 the 25 solo moves, seats with slots). Batch 2 built (S5.1-S5.3: the `pair` format, positioning and partner queueing in `engine/story/pair_beats.js`, contacts with IK and attachments in `engine/story/pairs.js`, 14 paired moves in `data/moves/interactions.js`, and E_PARTNER_MISSING, E_PARTNER_SELF and E_SIM_PARTNER_UNREACHABLE from S5.7), waiting for the review. Demo: `out/demos/s5_batch2_pairs/final.mp4` (from `scripts/samples/s5_pairs.json`: stickman with buddy, bulky with kid). Batch 3 (defeat styles, activities, the remaining validator codes, the scene-1 demo) follows.
+**Status (2026-10-17):** all three batches approved. Batch 3: S5.5 defeat styles (`data/moves/defeat.js`, `engine/story/defeat.js`; kids impact words), S5.6 activities (`data/activities.js`, `engine/story/activities.js` and `rally.js`, run with the `activity` world command, plus the ball moves toss, catch_ball and kick_pass), S5.7 E_ACTIVITY_OBJECT, E_DEFEAT_STYLE and W_KIDS_NO_HOPE (`engine/validator/story_s5.js`). Demos: `out/demos/s5_batch3_scene1/final.mp4` (the reference scene 1: bubbles, tennis, high five, from `scripts/samples/s5_scene1.json`), `s5_batch3_activities/final.mp4` (the other seven activities), `s5_batch3_defeat/final.mp4` (faint, flee, vanish and return, captured, impact words), `s5_batch3_ball_moves.png`.
 
 ### S6 Story compiler and macros (5-6 days)
 

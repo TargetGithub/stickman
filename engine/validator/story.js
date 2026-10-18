@@ -7,6 +7,7 @@ import { closestMatch } from "./report.js";
 import { flatScene, resolveLocation } from "../story/normalize.js";
 import { readingTime } from "../story/speech.js";
 import { holdableNames } from "../objects.js";
+import { activityIssues, defeatIssues } from "./story_s5.js";
 
 const issue = (code, path, message, fix, severity) => ({ code, path, message, fix, ...(severity ? { severity } : {}) });
 
@@ -225,6 +226,7 @@ export function checkStory(story, catalog, moves) {
     // The v1 checks on the scene's flat view.
     const flat = flatScene(story, si, catalog);
     out.push(...objectIssues(scene, si, story, catalog));
+    out.push(...activityIssues(scene, si, story, catalog));
     for (const i of checkSemantics(flat, catalog, moves, { worldCommands: WORLD_COMMANDS_V2, holdables: holdableNames(catalog) })) {
       const mapped = { ...i, path: mapPath(i.path, si, scene) };
       const ref = i.message.match(/^No (?:character|beat with id) '([^']+)'/);
@@ -268,5 +270,6 @@ export function checkStory(story, catalog, moves) {
       for (const f of ["title", "subtitle", "text"]) if (t?.[f]) out.push(...softWordIssues(t[f], `${pre}.${k}.${f}`, catalog, audience));
     }
   });
+  out.push(...defeatIssues(story));
   return out;
 }

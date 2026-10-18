@@ -4,7 +4,7 @@
 // hold frames for transitions between them. A v1 script is one scene and runs exactly as before.
 
 import { createActor } from "./actor.js";
-import { prepareCatalog } from "./moves.js";
+import { prepareCatalog, STORY_ONLY } from "./moves.js";
 import { createWorld, stepWorld } from "./world.js";
 import { createClock, tick, holdTick, requestHitstop, timeEffectsActive } from "./clock.js";
 import { createDirector, stepDirector, onEvents, directorIdle, finishDirector } from "./director.js";
@@ -14,7 +14,9 @@ import { normalize, flatScene, transitionInto, transitionDuration } from "./stor
 import { faceEvents, updateFaces } from "./story/faces.js";
 import { bodyPlan } from "./story/bodies.js";
 import { updatePairs, pairMoveEvent } from "./story/pairs.js";
-import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy, holdableProps } from "./objects.js";
+import { defeatMoveEvent, updateDefeats } from "./story/defeat.js";
+import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy, holdableProps, popNear } from "./objects.js";
+import { updateActivities, activityMoveEvent } from "./story/activities.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
 const prepared = new WeakMap();
@@ -26,12 +28,12 @@ export function movesFor(catalog) {
 }
 
 /**
- * Moves a v1 script may use: not paired moves (v1 has no partner) and not moves that need a story
+ * Moves a v1 script may use: not paired moves (v1 has no partner) or defeat styles, and not moves that need a story
  * holdable (a racket, a wand). The v1 schema, prompt tables and semantic checks use this list.
  */
 export function v1MoveNames(catalog) {
   return [...movesFor(catalog).values()]
-    .filter((d) => d.category !== "interaction" && (!d.needsProp || d.needsProp === "any" || Object.values(catalog.props).some((p) => p.kind === d.needsProp)))
+    .filter((d) => !STORY_ONLY.includes(d.category) && (!d.needsProp || d.needsProp === "any" || Object.values(catalog.props).some((p) => p.kind === d.needsProp)))
     .map((d) => d.name);
 }
 
@@ -138,10 +140,13 @@ export function simulate(script, catalog, opts = {}) {
       if (e.use && world.objects && actor.prop) events.push(...useHeld(world.objects, actor, actor.joints.propTip || actor.joints.rHand, clock.storyT));
       if (e.unseat) actor.seatY = actor.seatId = null;
       if (e.detach || e.give) pairMoveEvent(world, actor, e, events);
+      if (e.fade || e.reform || e.cage) defeatMoveEvent(world, actor, e, events, clock.storyT);
+      if (e.poke && world.objects) events.push(...popNear(world.objects, actor.joints.rHand, 160 * actor.scale, STAGE.groundY));
+      if (e.contact && actor.activity) activityMoveEvent(world, actor, e, events, clock.storyT);
     };
     const t0 = clock.storyT;
     const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `scenes[${si}].`, tag: story.legacy ? "" : `${sid}.`, dead, story: !story.legacy });
-    present = createPresentation(flat, catalog, { suffix, fx });
+    present = createPresentation(flat, catalog, { suffix, fx, kids: !story.legacy && (meta.audience ?? "kids") === "kids" });
     fx = present.fx;
     format = present.format;
     const fxLogStart = fx.log.length;
@@ -176,6 +181,8 @@ export function simulate(script, catalog, opts = {}) {
         ridersFollow(world);
       }
       if (world.pairs?.length) events.push(...updatePairs(world));
+      if (!story.legacy) updateDefeats(world, events, clock.storyT);
+      if (world.activities?.length) events.push(...updateActivities(world, clock.storyT));
       for (const e of events) {
         if (e.type === "hitstop") requestHitstop(clock, e.seconds);
         emit(e);

@@ -258,6 +258,16 @@ Story scripts (version 2) also have two story-only groups, listed under `life` a
 { "id": "hf", "at": 2, "who": "kai", "do": "high_five", "partner": "pip", "say": "Up high!" }
 ```
 
+- **defeat** (story losers, kids-friendly): faint, vanish (sparkles), ghost (`"audience": "general"` only), captured (rope and a cage), flee (runs off the stage), and `return` to bring a vanished character back. In kids stories every hit also gets a cartoon word (POW!, BONK!).
+
+**Activities** are little games that keep moves and objects in sync. Start one with the `activity` world command; the next beat can wait for it with `"after"`:
+
+```json
+{ "id": "ten", "at": 2, "who": "world", "do": "activity", "params": { "name": "tennis_rally", "with": ["kai", "pip"], "reps": 4, "ending": "miss", "object": "net" } }
+```
+
+Activities: blow_bubbles, tennis_rally, play_catch, kick_ball, eat_together, dance_together, selfie, sleep, comfort. Params: `with` (the players), `reps` or `dur`, `intensity` (low, medium, high), `ending` (win, miss, laugh), `winner`, `object` (a net, bench or chair from the set). Players walk to their places, get the racket, wand or phone they need, play, and finish with the ending. Add `"interrupt": true` to a beat for one of the players to stop the activity early. The full table is in STORY_SPEC section 10.
+
 Beat `fx` you can add to a character: `aura`, `afterimage`, `slash_arc`, `speed_lines`, `dust_land`, `dust_run`, `shockwave`, `anger_mark`, `sweat_drop`, `exclaim`, `question`, `heart`, `stars_dizzy`. Impact sparks and hit sounds are added automatically.
 
 ## 5. Fixing validator errors

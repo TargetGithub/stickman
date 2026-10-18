@@ -10,6 +10,12 @@
 // tintable (takes the trigger's color, e.g. a colored aura).
 
 const WARM = ["#fff6c0", "#ffd23f", "#ffffff"];
+const GOLD = ["#fff3a0", "#ffd23f", "#ffffff"];
+// A comic word that pops up over a hit, then rises and fades (drawn as a "word" glyph).
+const wordPop = (text, color) => ({
+  anchor: "point", internal: true,
+  layers: [{ shape: "glyph", glyph: "word", text, count: 1, offsetXY: [0, -70], angle: [-90, -90], speed: [40, 40], drag: 2, vrot: [-20, 20], life: [0.75, 0.75], size: [30, 34], color, alpha: [1, 0] }],
+});
 
 export const fxPresets = {
   impact_small: {
@@ -142,6 +148,59 @@ export const fxPresets = {
     flash: { color: "#ffffff", dur: 0.15 },
     layers: [{ shape: "star", count: 1, speed: [0, 0], life: [0.14, 0.14], size: [30, 46], color: "#ffffff", alpha: [1, 0] }],
   },
+  // ---- story effects (S5): defeat styles, feelings, celebrations ----
+  sparkle: {
+    anchor: "hip",
+    layers: [
+      { shape: "star", count: 10, offset: 70, spreadY: 120, speed: [0, 20], life: [0.5, 1.0], size: [14, 2], color: GOLD, alpha: [1, 0] },
+      { shape: "glow", count: 1, speed: [0, 0], life: [0.6, 0.6], size: [90, 120], color: "rgba(255, 240, 170, 0.6)", alpha: [0.7, 0] },
+    ],
+  },
+  sparkle_rise: {
+    anchor: "hip",
+    layers: [
+      { shape: "star", count: 14, offset: 40, spreadY: 140, angle: [-100, -80], speed: [60, 150], drag: 0.6, life: [1.2, 2.0], size: [12, 3], color: GOLD, alpha: [1, 0] },
+      { shape: "dot", count: 10, offset: 40, spreadY: 140, angle: [-110, -70], speed: [40, 120], life: [1.0, 1.6], size: [6, 1], color: ["#ffffff", "#bfe8ff"], alpha: [0.9, 0] },
+    ],
+  },
+  tears: {
+    anchor: "head",
+    layers: [{ shape: "glyph", glyph: "drop", count: 2, attach: "head", offsetXY: [8, 4], spreadY: 4, angle: [70, 110], speed: [30, 60], gravity: 260, life: [0.8, 1.1], size: [7, 6], color: "#5fb6ff", alpha: [1, 0] }],
+  },
+  // Rope loops tighten around the body (captured). The cage itself is an object (data/objects.js).
+  rope_bind: {
+    anchor: "hip",
+    layers: [
+      { shape: "ellipse", count: 1, attach: "hip", offsetXY: [0, -62], life: [2.2, 2.2], size: [70, 30], width: 6, color: "#c9a26b", alpha: [1, 0.9] },
+      { shape: "ellipse", count: 1, attach: "hip", offsetXY: [0, -34], life: [2.2, 2.2], size: [70, 30], width: 6, color: "#b08850", alpha: [1, 0.9] },
+      { shape: "ellipse", count: 1, attach: "hip", offsetXY: [0, -6], life: [2.2, 2.2], size: [64, 28], width: 6, color: "#c9a26b", alpha: [1, 0.9] },
+    ],
+  },
+  cage_drop: {
+    anchor: "feet",
+    layers: [
+      { shape: "puff", count: 8, angle: [-170, -10], speed: [80, 220], drag: 2, life: [0.5, 0.9], size: [16, 34], color: "#cfc6b4", alpha: [0.6, 0] },
+      { shape: "star", count: 5, offset: 60, angle: [-150, -30], speed: [120, 260], gravity: 900, life: [0.4, 0.7], size: [12, 4], color: GOLD, alpha: [1, 0] },
+    ],
+  },
+  confetti: {
+    anchor: "head",
+    layers: [{ shape: "line", count: 26, offset: 30, angle: [-130, -50], speed: [300, 620], gravity: 900, drag: 1.2, vrot: [-720, 720], life: [1.4, 2.2], size: [12, 12], width: 5,
+      color: ["#ff4f8b", "#ffd23f", "#3fd8ff", "#7ee36b", "#b48bff"], alpha: [1, 0.8] }],
+  },
+  halo: {
+    anchor: "head",
+    layers: [
+      { shape: "ellipse", count: 1, attach: "head", offsetXY: [0, -44], life: [3, 3], size: [24, 24], width: 5, color: "#ffe680", alpha: [1, 0.7] },
+      { shape: "glow", count: 1, attach: "head", offsetXY: [0, -44], life: [3, 3], size: [40, 40], color: "rgba(255, 240, 160, 0.7)", alpha: [0.7, 0.4] },
+    ],
+  },
+  // Cartoon impact words for the kids audience (spec 13): added to hits by the presentation, not used in beats.
+  pop_pow: wordPop("POW!", "#ffd400"),
+  pop_bonk: wordPop("BONK!", "#7fd8ff"),
+  pop_bam: wordPop("BAM!", "#ff7a3d"),
+  pop_boing: wordPop("BOING!", "#9dff6b"),
 };
 
-export const FX_NAMES = Object.keys(fxPresets);
+/** Effects a beat can name in `fx` (the internal ones are added by the engine itself). */
+export const FX_NAMES = Object.keys(fxPresets).filter((n) => !fxPresets[n].internal);

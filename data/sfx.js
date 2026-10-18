@@ -5,4 +5,5 @@ export const SFX_KEYS = [
   "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step",
   "narrate_chime", // story narration (S2)
   "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", // objects (S4)
+  "sparkle", "clang", "ball_kick", // defeat styles and activities (S5)
 ];

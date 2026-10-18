@@ -16,8 +16,8 @@ function star(ctx, x, y, r, points = 8) {
   ctx.fill();
 }
 
-/** Small comic glyphs above heads: drop, anger, heart, exclaim, question, zzz (S5). */
-export function drawGlyph(ctx, name, x, y, size) {
+/** Small comic glyphs above heads: drop, anger, heart, exclaim, question, zzz (S5), and impact words. */
+export function drawGlyph(ctx, name, x, y, size, text = "") {
   const s = size;
   if (name === "drop") {
     ctx.beginPath();
@@ -42,6 +42,19 @@ export function drawGlyph(ctx, name, x, y, size) {
     ctx.bezierCurveTo(x - s * 1.3, y - s * 0.2, x - s * 0.6, y - s * 1.1, x, y - s * 0.35);
     ctx.bezierCurveTo(x + s * 0.6, y - s * 1.1, x + s * 1.3, y - s * 0.2, x, y + s * 0.8);
     ctx.fill();
+  } else if (name === "word") {
+    // A comic impact word (kids hits): thick dark outline, bright fill.
+    ctx.font = `${Math.round(s * 2)}px Bangers`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.lineJoin = "round";
+    ctx.lineWidth = s * 0.4;
+    const fill = ctx.fillStyle;
+    ctx.strokeStyle = "#111111";
+    ctx.strokeText(text, x, y);
+    ctx.fillStyle = fill;
+    ctx.fillText(text, x, y);
+    ctx.textBaseline = "alphabetic";
   } else {
     ctx.font = `${Math.round(s * 2.2)}px Bangers`;
     ctx.textAlign = "center";
@@ -105,7 +118,7 @@ export function drawParticles(ctx, log, fxT, attachAt) {
         break;
       }
       case "glyph":
-        drawGlyph(ctx, p.glyph, x, y, s.size);
+        drawGlyph(ctx, p.glyph, x, y, s.size, p.text);
         break;
       default:
     }

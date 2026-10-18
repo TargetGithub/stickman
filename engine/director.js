@@ -8,28 +8,15 @@ import { requiredStartX, motionScale } from "./combat.js";
 import { COMBAT, LIMITS } from "./config.js";
 import { CARD_COMMANDS, cardDuration, narrateDuration } from "./story/timing.js";
 import { readingTime } from "./story/speech.js";
-import { spawnObject, removeObject, setObject } from "./objects.js";
 import { pairGate } from "./story/pair_beats.js";
 import { startPair } from "./story/pairs.js";
+import { defeatStart } from "./story/defeat.js";
+import { startActivity, stopActivity } from "./story/activities.js";
+import { OBJECT_COMMANDS, walkToSeat } from "./story/scene_beats.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
-export const REVIVE_MOVES = ["get_up", "spawn"];
-
-/** Object world commands (S4): spawn_object (params.kind, id, x, ...), remove_object / set_object (beat.object). */
-const OBJECT_COMMANDS = {
-  spawn_object: (world, beat, p, t) => {
-    const def = world.objects.ctx.catalog.objects?.[p.kind];
-    if (def?.behavior === "holdable") {
-      // A spawned holdable lies on the floor, ready for pick_prop.
-      world.groundProps.push({ name: p.kind, kind: def.hold.kind, data: def.hold, x: p.x, y: world.actors[0]?.groundY - 4 - (p.y ?? 0), angle: 0 });
-      return [];
-    }
-    return spawnObject(world.objects, { object: p.kind, id: p.id, x: p.x, y: p.y, layer: p.layer, facing: p.facing, state: p.state }, t);
-  },
-  remove_object: (world, beat) => removeObject(world.objects, beat.object),
-  set_object: (world, beat, p) => setObject(world.objects, beat.object, p),
-};
+export const REVIVE_MOVES = ["get_up", "spawn", "return"];
 
 /** World beat durations in story seconds, for their end anchor. */
 const WORLD_DURATION = {
@@ -144,6 +131,7 @@ export function onEvents(director, events, storyT) {
       anchor(director, beat, "windowOpen", storyT);
       if (beat.outcome === "whiff" || beat.outcome === "dodged") anchor(director, beat, "hit", storyT);
     }
+    if (e.type === "activityEnd") anchor(director, beat, "end", storyT);
     if (e.type === "moveEnd") {
       anchor(director, beat, "end", storyT);
       beat.state = "done";
@@ -153,7 +141,8 @@ export function onEvents(director, events, storyT) {
   }
 }
 
-const isFree = (actor) => !actor.move || actor.move.def.name === "idle" || actor.holding;
+// A player in an activity (S5) is busy until it ends; an interrupting beat stops the activity.
+const isFree = (actor) => (!actor.move || actor.move.def.name === "idle" || actor.holding) && !actor.activity;
 
 function dispatchWorld(director, beat, ctx) {
   const p = beat.params || {};
@@ -175,6 +164,13 @@ function dispatchWorld(director, beat, ctx) {
   else if (beat.do === "freeze") requestFreeze(clock, p.duration ?? 0.5);
   else if (CARD_COMMANDS.includes(beat.do)) requestFreeze(clock, WORLD_DURATION[beat.do](p));
   emit({ type: "world", do: beat.do, params: p, beatId: beat.id });
+  if (beat.do === "activity") {
+    // Ends with its activityEnd event (onEvents), not a timer.
+    const started = startActivity(ctx.world, beat, p, storyT, ctx.catalog);
+    for (const e of started || []) emit(e);
+    onEvents(director, started || [], storyT);
+    if (started) return;
+  }
   // Cards hold the story clock, so in story time they end where they start.
   const dur = CARD_COMMANDS.includes(beat.do) ? 0 : (WORLD_DURATION[beat.do] || (() => 0))(p);
   director.timers.push({ t: storyT + dur, beat });
@@ -213,33 +209,6 @@ function approach(director, beat, actor, ctx) {
   return true;
 }
 
-/**
- * sit with an object (S5): walk to the seat first (the beat waits), then sit at the seat's height.
- * @returns {boolean} true when the character still has to walk there
- */
-function walkToSeat(director, beat, actor, ctx) {
-  const seat = ctx.world.objects?.byId.get(beat.object);
-  if (!seat || seat.behavior !== "seat") return false;
-  // The free slot nearest to the character (a bench seats two).
-  const taken = new Set(ctx.world.actors.filter((a) => a !== actor && a.seatId === seat.id).map((a) => a.seatSlot));
-  const slots = (seat.def.slots || [0]).map((o, i) => ({ i, x: seat.x + o })).filter((s) => !taken.has(s.i));
-  const slot = (slots.length ? slots : [{ i: 0, x: seat.x }]).reduce((b, s) => (Math.abs(s.x - actor.x) < Math.abs(b.x - actor.x) ? s : b));
-  const d = slot.x - actor.x;
-  if (beat.state === "approached" || Math.abs(d) <= 24 * actor.scale) { // arrived (or close enough): sit down
-    actor.x = slot.x;
-    actor.seatY = seat.def.seatY ?? 60;
-    actor.seatId = seat.id;
-    actor.seatSlot = slot.i;
-    return false;
-  }
-  actor.facing = Math.sign(d);
-  command(ctx.world, beat.who, "walk", { params: { distance: Math.abs(d) } });
-  beat.notes.push(`walk ${Math.abs(d).toFixed(0)}px to ${beat.object}`);
-  beat.state = "approached";
-  director.waiting.set(actor.id, [beat, ...(director.waiting.get(actor.id) || []).filter((b) => b !== beat)]);
-  return true;
-}
-
 function execute(director, beat, ctx) {
   const { world, emit, storyT } = ctx;
   if (beat.who === "camera") {
@@ -264,9 +233,14 @@ function execute(director, beat, ctx) {
     anchor(director, beat, "end", storyT);
     return;
   }
-  if (actor.hidden && beat.do !== "spawn" && !beat.warnedHidden) {
+  if (actor.hidden && beat.do !== "spawn" && beat.do !== "return" && !beat.warnedHidden) {
     beat.warnedHidden = true;
     issue(director, "W_HIDDEN", beat, `'${beat.who}' is hidden (not spawned yet, or despawned) when '${beat.do}' runs.`, `Add a "spawn" beat for '${beat.who}' before this one.`, "warning");
+  }
+  if (actor.activity && beat.interrupt) {
+    const ended = stopActivity(world, actor.activity, storyT);
+    for (const e of ended) emit(e);
+    onEvents(director, ended, storyT);
   }
   if (!isFree(actor) && !beat.interrupt) {
     beat.state = "waiting";
@@ -276,7 +250,7 @@ function execute(director, beat, ctx) {
     return;
   }
   const def = director.moves.get(beat.do);
-  if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx)) return;
+  if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx, command)) return;
   if (def.pair && beat.partner && pairGate({ director, beat, actor, def, ctx, issue, command, isFree })) return;
   if (beat.approach && beat.target && def.category === "attack" && beat.state !== "approached" && approach(director, beat, actor, ctx)) {
     beat.state = "approached";
@@ -297,11 +271,12 @@ function execute(director, beat, ctx) {
   if (beat.do === "ride") actor.riding = beat.object; // the sim keeps riders on their vehicle
   if (actor.seatY != null && (def.category === "movement" || def.category === "attack")) actor.seatY = actor.seatId = null;
   if (beat.do === "dismount") actor.riding = null;
-  const opts = { target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined };
+  let opts = { target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined };
+  if (def.category === "defeat") opts = defeatStart(world, actor, def, opts); // defeat styles (S5): face, flee side
   if (def.pair && world.byId.get(beat.partner)) startPair(world, actor, world.byId.get(beat.partner), def, opts, command);
   else command(world, beat.who, beat.do, opts);
   beat.state = "running";
-  if (KO_MOVES.includes(beat.do)) {
+  if (KO_MOVES.includes(beat.do) || def.flags.defeat) {
     director.dead.add(beat.who);
     actor.hp = 0;
   }

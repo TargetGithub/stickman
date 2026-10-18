@@ -1050,11 +1050,24 @@
                         },
                         "params": {
                           "type": "object",
+                          "description": "Move or world-command params: numbers, strings, booleans, or a short list of ids (activity `with`).",
                           "additionalProperties": {
-                            "type": [
-                              "number",
-                              "string",
-                              "boolean"
+                            "oneOf": [
+                              {
+                                "type": [
+                                  "number",
+                                  "string",
+                                  "boolean"
+                                ]
+                              },
+                              {
+                                "type": "array",
+                                "maxItems": 4,
+                                "items": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                                }
+                              }
                             ]
                           }
                         },

@@ -1,7 +1,7 @@
 // Face state (STORY_SPEC 7.1). Milestone: S2. Story scripts only: v1 characters have no face.
 // actor.face is the base emotion (scene cast `face`, beat `face`, carried across scenes);
 // actor.shownFace is what is drawn this frame, after automatic faces:
-//   knocked out → dizzy;  hit → hurt for 0.4 s;  a move with its own face (cry, sigh...) → that face;
+//   defeated with a style that has a face (captured: scared) → that face;  knocked out → dizzy;  hit → hurt for 0.4 s;  a move with its own face (cry, sigh...) → that face;
 //   attacking with a neutral base → determined;  otherwise the base face.
 
 export const HURT_SECONDS = 0.4;
@@ -20,6 +20,7 @@ export function faceEvents(world, events, storyT) {
 export function shownFace(actor, dead, storyT) {
   if (!actor.face) return null;
   const def = actor.move?.def;
+  if (dead.has(actor.id) && actor.defeatFace) return actor.defeatFace; // a defeat style's own face (S5)
   if (dead.has(actor.id) || (def && KO_MOVES.includes(def.name))) return "dizzy";
   if (actor.hurtUntil > storyT) return "hurt";
   if (def?.face) return def.face;

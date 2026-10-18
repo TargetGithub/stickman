@@ -551,7 +551,33 @@ pairGate({ director, beat, actor, def, ctx, issue, command, isFree }) -> boolean
 ```
 - Move defs keep `pair` (`prepareMove`). The director calls `pairGate` before a paired move (queue on a busy partner, walk to `pairStartX`, `E_SIM_PARTNER_UNREACHABLE`), then `startPair`. `actor.pairedWith` makes `world.js` skip separation for the pair.
 - Attachments set `partner.carryTarget` (hip position; `poseActor` places the partner there) or pin `partner.x` (`mode: "x"`). Contacts reuse `applyAimIK` from `combat.js`.
-- `sim.js` `v1MoveNames(catalog)`: the moves a v1 script may use (no `interaction` moves, none needing a story holdable). The v1 schema export, the prompt tables and the v1 semantic checks use it, so v1 stays frozen.
+- `sim.js` `v1MoveNames(catalog)`: the moves a v1 script may use (no `interaction` or `defeat` moves (`moves.js` `STORY_ONLY`), none needing a story holdable). The v1 schema export, the prompt tables and the v1 semantic checks use it, so v1 stays frozen.
+
+### Defeat styles, activities and impact words (S5 batch 3)
+```js
+// story/defeat.js
+defeatMoveEvent(world, actor, e, events, t)   // move events: fade { to, dur }, reform, cage
+defeatStart(world, actor, def, opts) -> opts  // before a defeat move: actor.defeatFace; flee side + distance
+updateDefeats(world, events, t)               // after each step: opacity fades (to 0 hides), flee fade-out
+// story/activities.js
+startActivity(world, beat, params, t, catalog) -> events | null   // the `activity` world command
+updateActivities(world, t) -> events          // setup → run (loop runner) → ending → activityEnd
+stopActivity(world, act, t) -> events         // an interrupting beat
+activityMoveEvent(world, actor, e, events, t) // `contact` events of rally players
+// story/rally.js (used by activities.js only)
+rallyStart / rallyStep / rallyContact / rallyRelease
+// story/scene_beats.js (split from director.js)
+OBJECT_COMMANDS, walkToSeat(director, beat, actor, ctx, command)
+// objects.js
+popNear(objs, point, reach, groundY) -> events  // the poke move pops the nearest bubble
+// validator/story_s5.js
+activityIssues(scene, si, story, catalog), defeatIssues(story)
+```
+- Data: `data/moves/defeat.js` (category `defeat`: faint, vanish, ghost, captured, flee, return), `data/activities.js` (`catalog.activities`), three ball moves in `data/moves/life.js`, FX presets `sparkle`, `sparkle_rise`, `tears`, `rope_bind`, `cage_drop`, `confetti`, `halo` and the internal `pop_*` words (`internal: true` keeps them out of `catalog.fxNames`), sounds `sparkle`, `clang`, `ball_kick`.
+- The director counts `flags.defeat` moves as KOs (`dead`), `return` revives, and `isFree` is false while `actor.activity` is set. The `activity` world command has no timer: its `end` anchor comes from the `activityEnd` event.
+- Activity players are commanded without a beat id (no anchors); balls held by a player (`o.held`) skip object physics and follow the holder's racket tip, hands or foot.
+- `presentation.js`: with `opts.kids` (v2 stories with audience `kids`) a hit emits the next `pop_*` preset (word glyph particles; `fx.js` copies a layer's `text`, `renderer/particles.js` draws it).
+- `faces.js`: a defeated character with `actor.defeatFace` shows it instead of the knocked-out face.
 
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.

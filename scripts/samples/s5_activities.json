@@ -1,0 +1,299 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Play Day",
+    "format": "landscape",
+    "seed": 88,
+    "kind": "clip",
+    "audience": "kids",
+    "speakerNames": true
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "name": "Kai",
+      "color": "#3fd8ff",
+      "style": {
+        "headband": "#ff3b5c"
+      }
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "body": "buddy",
+      "color": "#2fd3c0",
+      "appearance": {
+        "accessories": {
+          "antenna": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "timbre": "squeaky"
+      }
+    },
+    {
+      "id": "mo",
+      "name": "Mo",
+      "body": "kid",
+      "color": "#ff9f43",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#3a6df0"
+      },
+      "voice": {
+        "pitch": 1.3
+      }
+    },
+    {
+      "id": "gran",
+      "name": "Gran",
+      "body": "elder",
+      "color": "#f2dfb8",
+      "appearance": {
+        "outfit": "robe",
+        "outfitColor": "#5b6e9a",
+        "eyes": "glasses"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "stageWidth": 3600,
+      "set": [
+        {
+          "id": "bench1",
+          "object": "bench",
+          "x": 2600
+        },
+        {
+          "id": "tree1",
+          "object": "tree_big",
+          "x": 700,
+          "layer": "back"
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "games",
+      "location": "park",
+      "time": "day",
+      "transitionIn": {
+        "type": "card",
+        "kind": "title",
+        "title": "Play Day",
+        "subtitle": "activities",
+        "dur": 2
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mo",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "follow",
+          "zoom": "auto",
+          "padding": 280
+        }
+      ],
+      "beats": [
+        {
+          "id": "c",
+          "at": 0.4,
+          "who": "world",
+          "do": "activity",
+          "params": {
+            "name": "play_catch",
+            "with": [
+              "kai",
+              "mo"
+            ],
+            "reps": 4
+          }
+        },
+        {
+          "id": "k",
+          "at": {
+            "after": "c",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "activity",
+          "params": {
+            "name": "kick_ball",
+            "with": [
+              "mo",
+              "kai"
+            ],
+            "reps": 4,
+            "winner": "mo"
+          }
+        },
+        {
+          "id": "d",
+          "at": {
+            "after": "k",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "activity",
+          "params": {
+            "name": "dance_together",
+            "with": [
+              "kai",
+              "mo"
+            ],
+            "reps": 2,
+            "intensity": "high"
+          }
+        }
+      ]
+    },
+    {
+      "id": "friends",
+      "location": "park",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dir": "left",
+        "dur": 0.8
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "pip",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mo",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "gran",
+          "x": 2300,
+          "facing": -1
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "mode": "follow",
+          "zoom": "auto",
+          "padding": 280
+        }
+      ],
+      "beats": [
+        {
+          "id": "sf",
+          "at": 0.4,
+          "who": "world",
+          "do": "activity",
+          "params": {
+            "name": "selfie",
+            "with": [
+              "pip",
+              "kai",
+              "mo"
+            ],
+            "reps": 2
+          }
+        },
+        {
+          "id": "eat",
+          "at": 0.4,
+          "who": "world",
+          "do": "activity",
+          "params": {
+            "name": "eat_together",
+            "with": [
+              "gran"
+            ],
+            "object": "bench1",
+            "dur": 5
+          }
+        },
+        {
+          "id": "sad",
+          "at": {
+            "after": "sf",
+            "delay": 0.1
+          },
+          "who": "mo",
+          "do": "sigh",
+          "face": "sad",
+          "say": "I lost my ball..."
+        },
+        {
+          "id": "cm",
+          "at": {
+            "after": "sad"
+          },
+          "who": "world",
+          "do": "activity",
+          "params": {
+            "name": "comfort",
+            "with": [
+              "kai",
+              "mo"
+            ],
+            "reps": 2
+          }
+        },
+        {
+          "id": "zz",
+          "at": {
+            "after": "eat",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "activity",
+          "params": {
+            "name": "sleep",
+            "with": [
+              "gran"
+            ],
+            "object": "bench1",
+            "dur": 6
+          }
+        },
+        {
+          "id": "end",
+          "at": {
+            "after": "cm",
+            "delay": 0.4
+          },
+          "who": "world",
+          "do": "fade",
+          "params": {
+            "to": "black",
+            "dur": 1
+          }
+        }
+      ]
+    }
+  ]
+}

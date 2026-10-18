@@ -9,6 +9,7 @@ import { objects } from "./objects.js";
 import { faces, FACE_NAMES } from "./faces.js";
 import { bodies, BODY_NAMES } from "./bodies.js";
 import { appearance } from "./appearance.js";
+import { activities, ACTIVITY_NAMES } from "./activities.js";
 import { moves as movement } from "./moves/movement.js";
 import { moves as unarmed } from "./moves/unarmed.js";
 import { moves as armed } from "./moves/armed.js";
@@ -18,10 +19,11 @@ import { moves as emotes } from "./moves/emotes.js";
 import { moves as utility } from "./moves/utility.js";
 import { moves as life } from "./moves/life.js";
 import { moves as interactions } from "./moves/interactions.js";
+import { moves as defeat } from "./moves/defeat.js";
 
 export const catalog = {
   poses,
-  moves: [...movement, ...unarmed, ...armed, ...defensive, ...reactions, ...emotes, ...utility, ...life, ...interactions],
+  moves: [...movement, ...unarmed, ...armed, ...defensive, ...reactions, ...emotes, ...utility, ...life, ...interactions, ...defeat],
   props,
   fxPresets,
   fxNames: FX_NAMES,
@@ -36,4 +38,6 @@ export const catalog = {
   bodies,
   bodyNames: BODY_NAMES,
   appearance,
+  activities,
+  activityNames: ACTIVITY_NAMES,
 };

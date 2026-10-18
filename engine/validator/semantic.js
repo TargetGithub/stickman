@@ -5,6 +5,7 @@ import { parseAt, ANCHORS } from "../director.js";
 import { closestMatch, nearest } from "./report.js";
 import { STAGE } from "../config.js";
 import { V2_ENUMS } from "./v2_names.js";
+import { STORY_ONLY } from "../moves.js";
 
 const HEX = { type: "color" };
 /** World commands and their params (spec 11.3). */
@@ -46,6 +47,12 @@ export const WORLD_COMMANDS_V2 = {
     accessory: { enum: V2_ENUMS.accessory }, color: HEX, remove: { enum: [true, false] },
     eyes: { enum: V2_ENUMS.eyes }, brows: { enum: V2_ENUMS.brows }, mouthStyle: { enum: V2_ENUMS.mouthStyle },
     hair: { enum: V2_ENUMS.hair }, hairColor: HEX, outfit: { enum: V2_ENUMS.outfit }, outfitColor: HEX, cheeks: HEX,
+  },
+  // Activities (S5): the runtime form of the @activity macro; `object` is checked by the story stage.
+  activity: {
+    name: { enum: V2_ENUMS.activity, required: true }, with: { characters: 4, required: true },
+    reps: { min: 1, max: 40 }, dur: { min: 1, max: 120 }, intensity: { enum: V2_ENUMS.intensity }, ending: { enum: V2_ENUMS.ending },
+    winner: { character: true }, object: {},
   },
 };
 
@@ -102,6 +109,9 @@ function checkWorldParams(beat, path, ctx, out) {
       else checkText(v, p, ctx.catalog.blocklist, out);
     } else if (rule.prop && !(v in ctx.catalog.props)) bad(`Use one of: ${Object.keys(ctx.catalog.props).join(", ")}.`);
     else if (rule.character && !ctx.charIds.has(v)) bad(`Use a character id: ${[...ctx.charIds].join(", ")}.`);
+    else if (rule.characters && !(Array.isArray(v) && v.length && v.length <= rule.characters && v.every((id) => ctx.charIds.has(id)) && new Set(v).size === v.length)) {
+      bad(`Use a list of 1 to ${rule.characters} different character ids in this scene: ${[...ctx.charIds].join(", ")}.`);
+    }
     else if (rule.theme && !ctx.catalog.themeNames.includes(v)) bad(`Use one of: ${ctx.catalog.themeNames.join(", ")}.`);
   }
 }
@@ -214,11 +224,11 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
       return;
     }
     let def = moves.get(b.do);
-    // Version 1 scripts cannot use paired moves or story-holdable moves (S5).
-    if (def && !opts.worldCommands && (def.category === "interaction" || (def.needsProp && def.needsProp !== "any" && !Object.values(catalog.props).some((q) => q.kind === def.needsProp)))) def = null;
+    // Version 1 scripts cannot use paired moves, defeat styles or story-holdable moves (S5).
+    if (def && !opts.worldCommands && (STORY_ONLY.includes(def.category) || (def.needsProp && def.needsProp !== "any" && !Object.values(catalog.props).some((q) => q.kind === def.needsProp)))) def = null;
     if (!def) {
       // A beat with a target or outcome wants an attack: suggest attacks first.
-      const pool = (b.target || b.outcome ? moveNames.filter((n) => moves.get(n).category === "attack") : moveNames).filter((n) => opts.worldCommands || moves.get(n).category !== "interaction");
+      const pool = (b.target || b.outcome ? moveNames.filter((n) => moves.get(n).category === "attack") : moveNames).filter((n) => opts.worldCommands || !STORY_ONLY.includes(moves.get(n).category));
       const near = closestMatch(b.do, pool) || closestMatch(b.do, moveNames);
       const isWorld = worldCommands[b.do] ? ` '${b.do}' is a world command: set "who": "world".` : "";
       out.push({ code: "E_MOVE_UNKNOWN", path: `${p}.do`, message: `Unknown move '${b.do}'.${isWorld}`, fix: `Use one of: ${nearest(b.do, pool).join(", ")}${near ? ` (closest match: ${near})` : ""}.` });
@@ -240,7 +250,9 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
     }
     const attack = def.category === "attack";
     if (b.outcome && !attack) out.push({ code: "E_MOVE_OUTCOME", path: `${p}.outcome`, message: `'${b.do}' is not an attack, so it has no outcome.`, fix: "Remove 'outcome'." });
-    if (b.approach && (!attack || !b.target)) out.push({ code: "E_MOVE_APPROACH", path: `${p}.approach`, message: "'approach' needs an attack with a target.", fix: "Remove 'approach' or add a 'target'." });
+    if (b.approach && !def.pair && (!attack || !b.target)) { // paired moves (S5) approach their partner
+      out.push({ code: "E_MOVE_APPROACH", path: `${p}.approach`, message: "'approach' needs an attack with a target (or a paired move).", fix: "Remove 'approach' or add a 'target'." });
+    }
     if (attack && !b.target) out.push({ code: "W_ATTACK_NO_TARGET", path: p, message: `'${b.do}' has no target, so it cannot hit anyone.`, fix: "Add a 'target'." });
   });
   findCycles(script.beats, out);

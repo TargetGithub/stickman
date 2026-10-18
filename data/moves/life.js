@@ -2,7 +2,7 @@
 // Drafted for review in batches (tools/draft.mjs move ...); checked with the move data checks on every
 // body plan. Conventions: thighs follow the torso lean (lean L → thighs near L keeps legs upright).
 // Seats: "sit" with a beat `object` (a bench, a chair) sits on it; "stand_up" leaves it (event unseat).
-// Event flags read by the story layer: use (the held object's use), contact (a racket meets the ball),
+// Event flags read by the story layer: use (the held object's use), contact (a racket, the hands or a foot meets the ball),
 // poke (a finger jab that pops bubbles), unseat.
 
 const STAND = { lean: 0, head: 0, lUA: 12, lFA: 8, rUA: -12, rFA: 8, lTH: 6, lSH: 0, rTH: -6, rSH: 0 };
@@ -249,6 +249,43 @@ export const moves = [
       { t: 1, pose: "stand" },
     ],
     events: [{ t: 0.45, poke: true, sfx: "pop" }],
+  },
+  // ---- ball games (S5.6 activities): the `contact` event is when the ball leaves or arrives ----
+  {
+    // Underarm throw with both hands: the ball leaves the hands at t 0.55.
+    name: "toss", category: "life", duration: 0.8,
+    keys: [
+      { t: 0, pose: "stand", ease: "inOutQuad" },
+      { t: 0.3, pose: { ...legs(14, 6), head: 4, lUA: -30, lFA: 10, rUA: -40, rFA: 10, lTH: 30, lSH: 20, rTH: 8, rSH: 20 }, ease: "inQuad" },
+      { t: 0.55, pose: { ...legs(-6), head: -6, lUA: 80, lFA: 10, rUA: 72, rFA: 10 }, ease: "outQuad" },
+      { t: 0.75, pose: { ...legs(-4), head: -6, lUA: 120, lFA: 10, rUA: 112, rFA: 10 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.5, sfx: "whoosh" }, { t: 0.55, contact: true }],
+  },
+  {
+    // Hands forward at chest height; the ball lands in them at t 0.4, then pulled in to the chest.
+    name: "catch_ball", category: "life", duration: 0.9,
+    keys: [
+      { t: 0, pose: "stand", ease: "outQuad" },
+      { t: 0.3, pose: { ...legs(4), head: -2, lUA: 80, lFA: 10, rUA: 72, rFA: 12 }, ease: "linear" },
+      { t: 0.4, pose: { ...legs(4), head: -2, lUA: 80, lFA: 10, rUA: 72, rFA: 12 }, ease: "outQuad" },
+      { t: 0.6, pose: { ...legs(-4, 4), head: 4, lUA: 50, lFA: 80, rUA: 44, rFA: 86 }, ease: "inOutQuad" },
+      { t: 1, pose: { ...STAND, lUA: 40, lFA: 90, rUA: 34, rFA: 96 } },
+    ],
+    events: [{ t: 0.4, contact: true }],
+  },
+  {
+    // A side-foot pass along the ground: the foot meets the ball at t 0.45.
+    name: "kick_pass", category: "life", duration: 0.8,
+    keys: [
+      { t: 0, pose: "stand", ease: "outQuad" },
+      { t: 0.3, pose: { ...STAND, lean: -4, lUA: 30, lFA: 20, rUA: -40, rFA: 20, lTH: 4, lSH: 2, rTH: -40, rSH: 60 }, ease: "inQuad" },
+      { t: 0.45, pose: { ...STAND, lean: -6, lUA: 40, lFA: 20, rUA: -30, rFA: 20, lTH: 0, lSH: 2, rTH: 22, rSH: 8 }, ease: "outQuad" },
+      { t: 0.65, pose: { ...STAND, lean: -8, lUA: 40, lFA: 20, rUA: -30, rFA: 20, lTH: -2, lSH: 2, rTH: 40, rSH: 10 }, ease: "inOutQuad" },
+      { t: 1, pose: "stand" },
+    ],
+    events: [{ t: 0.45, contact: true, sfx: "ball_kick" }],
   },
   {
     name: "stretch", category: "life", duration: 1.8, face: "tired",

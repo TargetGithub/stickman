@@ -20,6 +20,8 @@ export const GOLDEN_SCRIPTS = {
   s3_bodies: "scripts/samples/s3_bodies.json",
   s4_park: "scripts/samples/s4_park.json",
   s5_pairs: "scripts/samples/s5_pairs.json",
+  s5_scene1: "scripts/samples/s5_scene1.json",
+  s5_defeat: "scripts/samples/s5_defeat.json",
 };
 const ONLY = process.env.GOLDEN_ONLY;
 

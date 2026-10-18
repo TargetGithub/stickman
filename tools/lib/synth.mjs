@@ -102,10 +102,14 @@ const RECIPES = {
   car_pass: (o, r) => { sweepSine(o, { f0: 90, f1: 70, sweep: 1.2, attack: 0.4, decay: 0.9, gain: 0.7 }); noise(o, r, { gain: 0.6, attack: 0.5, decay: 0.8, lp0: 700, lp1: 400 }); },
   // Story narration (S2): a soft two-note "page" chime.
   narrate_chime: (o) => { partials(o, [1318.5, 2637, 3955], { gain: 0.7, decay: 0.9, attack: 0.01 }); partials(o, [1975.5, 3951], { gain: 0.6, decay: 0.8, attack: 0.01, start: 0.11 }); },
+  // Defeat styles and activities (S5): a rising twinkle, a metal cage landing, a soft ball kick.
+  sparkle: (o) => { for (let k = 0; k < 5; k++) partials(o, [1400 + k * 260, 2800 + k * 520], { gain: 0.35, decay: 0.25, attack: 0.005, start: k * 0.09 }); },
+  clang: (o, r) => { partials(o, [310, 467, 733, 1120], { gain: 0.8, decay: 0.9, attack: 0.002 }); noise(o, r, { gain: 0.5, decay: 0.05, lp0: 4000 }); },
+  ball_kick: (o, r) => { sweepSine(o, { f0: 160, f1: 70, sweep: 0.06, decay: 0.1 }); noise(o, r, { gain: 0.4, decay: 0.04, lp0: 2000 }); },
   step: (o, r) => { sweepSine(o, { f0: 120, f1: 80, sweep: 0.03, decay: 0.05, gain: 0.7 }); noise(o, r, { gain: 0.35, decay: 0.025, lp0: 2500 }); },
 };
 
-const LENGTH = { narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8 };
+const LENGTH = { narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

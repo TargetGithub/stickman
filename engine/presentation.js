@@ -6,6 +6,8 @@ import { createCamera, setCameraKey, cutCamera, addShake, addZoomPunch, stepCame
 import { deriveRng } from "./math.js";
 import { FORMATS, PHYSICS, STAGE } from "./config.js";
 
+const POP_GAP = 0.6; // fx seconds between two impact words
+
 /** World point for an FX anchor on an actor. */
 export function anchorPoint(actor, anchor) {
   const j = actor.joints;
@@ -40,6 +42,10 @@ export function createPresentation(script, catalog, opts = {}) {
     }),
     pendingCut: false,
     lastKeyVideo: -Infinity,
+    // Kids audience (STORY_SPEC 13): cartoon impact words on hits, cycling through the internal pop_* presets.
+    pops: opts.kids ? Object.keys(catalog.fxPresets).filter((n) => n.startsWith("pop_") && catalog.fxPresets[n].internal) : [],
+    popCount: 0,
+    lastPop: -Infinity,
   };
 }
 
@@ -60,6 +66,10 @@ export function presentEvent(p, e, world, clock) {
         emitFx(p.fx, name, e.point, { dir: attacker.facing, scale: attacker.scale, actorId: e.attacker, part: e.part }, fxT);
       }
       if (e.shake) addShake(p.cam, e.shake, fxT);
+      if (p.pops.length && e.kind === "hit" && fxT - p.lastPop > POP_GAP) {
+        emitFx(p.fx, p.pops[p.popCount++ % p.pops.length], e.point, { dir: 1, scale: 1 }, fxT);
+        p.lastPop = fxT;
+      }
       if (p.autoCamera && e.kind === "hit" && e.damage > 15 && clock.videoT - p.lastKeyVideo > 0.3) addZoomPunch(p.cam, 0.12, 0.22, clock.videoT);
       break;
     }

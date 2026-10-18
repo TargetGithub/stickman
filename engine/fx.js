@@ -66,6 +66,7 @@ function emitLayer(fx, layer, at, opts, fxT) {
       alpha1: layer.alpha?.[1] ?? 0,
       shape: layer.shape,
       glyph: layer.glyph,
+      ...(layer.text ? { text: layer.text } : {}),
       attach: attached ? { actorId: opts.actorId, joint: layer.attach } : null,
       orbit: layer.orbit ? { r: layer.orbit.r * s, w: layer.orbit.w, phase: (i / (layer.count ?? 1)) * Math.PI * 2 } : null,
     });

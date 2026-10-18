@@ -117,6 +117,7 @@ export function stepObjects(objs, dt, t) {
   const W = objs.ctx.stageWidth;
   for (const o of objs.list) {
     if (!o.alive) continue;
+    if (o.behavior === "ball" && o.held) continue; // in someone's hands or on a racket (activities, S5)
     if (o.behavior === "ball" && dt > 0 && (o.y > 0 || o.vy !== 0 || o.vx !== 0)) {
       o.vy -= GRAVITY * dt;
       o.x += o.vx * dt;
@@ -194,9 +195,23 @@ export function useHeld(objs, actor, tip, t) {
   return ev;
 }
 
+/** The poke move: pop the nearest bubble (a popping floater) within reach of the fingertip. */
+export function popNear(objs, point, reach, groundY) {
+  let best = null;
+  let bestD = reach;
+  for (const o of objs.list) {
+    if (!o.alive || o.behavior !== "floater" || !o.def.pop) continue;
+    const d = Math.hypot(o.x - point.x, groundY - o.y - point.y);
+    if (d < bestD) [best, bestD] = [o, d];
+  }
+  if (!best) return [];
+  best.alive = false;
+  return [{ type: "object", what: "pop", id: best.id, kind: best.kind, x: best.x, y: best.y, fx: ["bubble_pop"], sfx: "bubble_pop", volume: 0.45 }];
+}
+
 /** True while a ball moves, a vehicle drives or a bubble floats: the scene is not quiet yet. */
 export function objectsBusy(objs) {
-  return objs.list.some((o) => o.alive && ((o.behavior === "ball" && (o.vx !== 0 || o.vy !== 0 || o.y > 0))
+  return objs.list.some((o) => o.alive && ((o.behavior === "ball" && !o.held && (o.vx !== 0 || o.vy !== 0 || o.y > 0))
     || (o.behavior === "vehicle" && o.target !== null) || (o.behavior === "floater" && o.def.pop)));
 }
 

@@ -210,7 +210,11 @@ const actionBeat = {
     do: { type: "string", description: "A move name (characters) or a world command." },
     target: { type: "string" },
     outcome: { enum: ["hit", "whiff", "blocked", "parried", "dodged"] },
-    params: { type: "object", additionalProperties: { type: ["number", "string", "boolean"] } },
+    params: {
+      type: "object",
+      description: "Move or world-command params: numbers, strings, booleans, or a short list of ids (activity `with`).",
+      additionalProperties: { oneOf: [{ type: ["number", "string", "boolean"] }, { type: "array", maxItems: 4, items: idRef }] },
+    },
     speed: { type: "number", minimum: 0.25, maximum: 3 },
     approach: { enum: ["run", "walk", false] },
     interrupt: { type: "boolean" },

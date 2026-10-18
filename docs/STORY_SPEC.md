@@ -167,7 +167,7 @@ The reference story, used as the acceptance test (Appendix A has the full script
 
 ### 4.3 Beats in v2
 
-Beats keep the v1 shape. The full v1 field list stays: `id`, `at`, `who`, `do`, `target`, `outcome`, `params`, `speed`, `approach`, `interrupt`, `fx`, `say`, `sayDur`.
+Beats keep the v1 shape. The full v1 field list stays: `id`, `at`, `who`, `do`, `target`, `outcome`, `params`, `speed`, `approach`, `interrupt`, `fx`, `say`, `sayDur`. In v2, a `params` value may also be a list of up to 4 ids (the `activity` command's `with`), and `approach` also applies to paired moves.
 
 New fields:
 
@@ -210,7 +210,7 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | Defeat styles | `ko`, `faint`, `vanish`, `ghost` (`general` only), `captured`, `flee` |
 | Activities | `blow_bubbles`, `tennis_rally`, `play_catch`, `kick_ball`, `eat_together`, `dance_together`, `selfie`, `sleep`, `comfort` |
 | Object behaviors | `static`, `seat`, `holdable`, `ball`, `floater`, `vehicle`, `breakable` |
-| New world commands | `narrate`, `title_card`, `chapter_card`, `time_card`, `end_card`, `set_time`, `set_weather`, `set_music`, `shot`, `spawn_object`, `remove_object`, `set_object`, `set_appearance` (all v1 world commands stay) |
+| New world commands | `narrate`, `title_card`, `chapter_card`, `time_card`, `end_card`, `set_time`, `set_weather`, `set_music`, `shot`, `spawn_object`, `remove_object`, `set_object`, `set_appearance`, `activity` (added in S5: the runtime form of `@activity`) (all v1 world commands stay) |
 | New character commands | `use`, `ride`, `dismount`, `return` (sparkles re-form a vanished character) |
 | New FX presets | `sparkle`, `sparkle_rise`, `tears`, `zzz`, `camera_flash`, `rope_bind`, `cage_drop`, `bubble_pop`, `confetti`, `halo` |
 
@@ -432,7 +432,7 @@ Objects are non-character things in the world: catalog data with a shape, a size
 
 ### 8.2 Seats and slice-of-life moves (S5, batch 1)
 
-- **Solo moves** (`data/moves/life.js`, category `life` unless they travel): `sit`, `stand_up`, `lie_down`, `sleep` (face `asleep`, floating Zs), `eat`, `drink`, `read`, `phone_talk`, `cheer`, `clap`, `kneel`, `wave_goodbye`, `sneak` and `tiptoe` (movement loops with `stride`), `peek`, `hide`, `push`, `pull`, `climb_up` (climbing in place), `jump_down` (a hop down with a soft landing), `swing_forehand` and `swing_backhand` (need a racket; a `contact` event at t 0.5 for the tennis activity), `blow_wand` (needs a bubble wand; blows bubbles), `poke` (a `poke` event that pops bubbles), `stretch`.
+- **Solo moves** (`data/moves/life.js`, category `life` unless they travel): `sit`, `stand_up`, `lie_down`, `sleep` (face `asleep`, floating Zs), `eat`, `drink`, `read`, `phone_talk`, `cheer`, `clap`, `kneel`, `wave_goodbye`, `sneak` and `tiptoe` (movement loops with `stride`), `peek`, `hide`, `push`, `pull`, `climb_up` (climbing in place), `jump_down` (a hop down with a soft landing), `swing_forehand` and `swing_backhand` (need a racket; a `contact` event at t 0.5 for the tennis activity), `blow_wand` (needs a bubble wand; blows bubbles), `poke` (a `poke` event that pops the nearest bubble within reach), `stretch`; batch 3 adds `toss`, `catch_ball` and `kick_pass` for the ball activities (28 in all).
 - **Seats:** `sit` with a beat `object` naming a seat walks there first, then sits with the hip at the seat's `seatY` and the legs hanging; seats have `slots` (a bench seats two, a chair one) and each character takes the free slot nearest to it. Upper-body moves (eat, read, talk, clap) keep the seated legs. `stand_up` (its `unseat` event), any walk or run, or an attack leaves the seat. `sit` without an object sits on the floor. `E_OBJECT_STATE` if the object is not a seat.
 - **Moves can hold story holdables:** `needsProp` kinds resolve against the v1 props and the holdable objects (racket, wand, phone, ...).
 - **Drafting moves:** `node tools/draft.mjs move "<description>"` (any provider, `--mock`, `--manual`, `--reply`) uses `prompts/draft_move.md` (format, channel conventions, rules) plus the most similar moves; the checks run the catalog loader's rules and then play the move on every body plan (finite joints, never below the floor, feet on the floor at the start and the end unless it holds a pose or jumps); the review image is a filmstrip on the stickman and the buddy. `node tools/move_sheet.mjs --category life --plans stickman,buddy` renders review sheets for a batch.
@@ -459,26 +459,32 @@ Paired moves (S5, batch 2) are two ordinary moves, one per character: the **lead
 
 ## 10. Activities
 
-An activity is a short loop of moves synchronized with objects. It is catalog data and is used through the `@activity` macro or the activity's own command.
+An activity is a short loop of moves kept in sync with objects. It is catalog data (`data/activities.js`) run by `engine/story/activities.js`. Scripts start one with the **`activity` world command** (S5); the `@activity` macro (S6) compiles to it:
 
-| Activity | Parts | Compiles to |
-|---|---|---|
-| `blow_bubbles` | wand (holdable), bubbles (floater) | `use` loops; each puff spawns 3-6 bubbles with seeded wobble; a partner can `pop_bubble` (poke move + pop FX + `pop` SFX) |
-| `tennis_rally` | two rackets, a ball, an optional net set piece | Both players `swing_forehand` / `swing_backhand` with the ball arcing between racket tips; `reps: N` rallies; a `miss` ending (ball bounces past one player, who laughs or flops) |
-| `play_catch` | ball | throw/catch moves with arcs |
-| `kick_ball` | football | dribble/kick/goal |
-| `eat_together` | food items, table | sit, eat loops, laugh |
-| `dance_together` | none | Mirrored dance moves (existing `dance_a`/`dance_b`, plus new ones) |
-| `selfie` | phone | Pose plus a flash FX |
-| `sleep` | bench or bed | lie down, `zzz` FX |
-| `cry_together`, `comfort` | none | sad faces, `comfort` paired move, tears FX |
+```json
+{ "id": "ten", "at": 2, "who": "world", "do": "activity",
+  "params": { "name": "tennis_rally", "with": ["kai", "pip"], "reps": 4, "ending": "miss", "object": "net" } }
+```
 
-Each activity is parameterized:
-- `dur` or `reps`;
-- intensity;
-- an ending: `win`, `miss`, `laugh` or `interrupted`.
+- **Params** (the same as the macro's): `name`, `with` (1-4 character ids; tennis, catch, kick and comfort take 2), `reps` or `dur`, `intensity` (`low` slows passes and waits, `high` speeds them up), `ending` (`win`, `miss`, `laugh`, `interrupted`), `winner` (one of `with`), `object` (a set piece it uses: the tennis net marks the middle of the court, a bench or chair is sat on).
+- **Phases:** the players walk (or run, when far) to their places around the object, or around where they stand; they face the middle (a selfie faces the camera). Each gets the holdable its role needs (a racket, the bubble wand, a phone) if it isn't holding one. The activity runs, then the ending plays, and the beat's `end` anchor fires, so `{"after": "ten"}` waits for it.
+- **Busy players:** beats for a player wait until the activity ends; a beat with `"interrupt": true` stops it (the villain's arrival interrupts the tennis).
+- **Endings:** `laugh` (everyone laughs), `win` (the winner cheers, the others clap; in a rally the loser shrugs), `miss` (the loser facepalms, the others laugh). Defaults per activity below.
 
-**Interruptions:** an activity can be cut off by any later beat with `interrupt`. The villain's arrival interrupts the tennis.
+| Activity | Players | Runs | Default |
+|---|---|---|---|
+| `blow_bubbles` | 1-4 | The first blows bubbles with the wand (bubbles: floaters with a seeded wobble); the others `poke`, and a poke pops the nearest bubble within reach (`bubble_pop` FX and sound). `dur` 6 | laugh |
+| `tennis_rally` | 2 | `swing_forehand` / `swing_backhand` (seeded); the ball flies from one racket tip to where the other player meets it, timed to that player's swing; after `reps` passes (6) the receiver swings late and the ball bounces past | miss |
+| `play_catch` | 2 | `toss` and `catch_ball` with a football: caught, held, thrown back | laugh |
+| `kick_ball` | 2 | `kick_pass` along the ground (rolling); the last kick rolls past | win |
+| `eat_together` | 1-4 | Sit (on the object's slots, or the floor), `eat` loops; `dur` 6 | laugh |
+| `dance_together` | 1-4 | `dance_a`, `dance_b`, facing each other; `reps` 2 | laugh |
+| `selfie` | 1-4 | The first holds up the phone (`use`: camera flash), the others `cheer`; `reps` 3 | laugh |
+| `sleep` | 1-4 | `lie_down` (on a bench if given), then `sleep` with Zs; `dur` 8 | none |
+| `comfort` | 2 | The first comforts the second (the `comfort` paired move) while tears fall; `reps` 2 | a hug |
+
+- **Rallies** pass the ball `reps` times; pass k is hit by player k mod 2, so the last receiver misses. A `winner` who would miss gets one more pass. Each player's contact point is learned from its own swings, so short and tall players meet the ball where their racket, hands or foot really are.
+- **Validator:** `E_ACTIVITY_OBJECT` (the `object` is not in the scene, or the activity can't use that kind), `E_WORLD_PARAM` (unknown name, the wrong number of players, a winner who isn't playing).
 
 ## 11. Story macros and the compiler
 
@@ -547,11 +553,14 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 | Defeat style | Look | Use |
 |---|---|---|
 | `ko` | v1 KO: falls and stays down | Ordinary fight losers |
-| `faint` | Slumps, eyes become X or spirals | Comedic or mild |
-| `vanish` | Falls, then dissolves into rising sparkles | A sidekick's loss, non-graphic |
-| `ghost` | A translucent copy floats up with a halo; the body fades | Emotional loss, still non-graphic |
-| `captured` | Bound by a stylized rope/cage effect, dragged off | Villain defeat that isn't lethal |
-| `flee` | Defeated character runs off-screen | Comedic villain ending |
+| `faint` | Wobbles with spinning stars and spiral eyes, flops onto its back | Comedic or mild |
+| `vanish` | Sinks to its knees, then dissolves into rising sparkles | A sidekick's loss, non-graphic |
+| `ghost` | Falls, then floats up translucent with a halo and fades out | Emotional loss, still non-graphic |
+| `captured` | Rope loops bind the arms, then a cage drops over it (scared face) | Villain defeat that isn't lethal |
+| `flee` | Turns away from the nearest character, runs to the stage edge, fades out | Comedic villain ending |
+
+- **As beats (S5):** each style is a story move (`data/moves/defeat.js`, category `defeat`): `{"who": "vex", "do": "captured"}`. All but `flee` count as defeated, like a KO: the character can't act until `return` (sparkles re-form a vanished character, confetti) or `get_up`, and that carries into later scenes. A fled character can come back in a later scene. `captured` takes `"params": {"cage": 0}` for rope only. The `@defeat` macro (S6) adds the lead-in (hit, fall) and camera.
+- **Impact words:** in a `kids` story every hit gets a cartoon word (POW!, BONK!, BAM!, BOING!, cycling, at most one per 0.6 s) that pops up over the hit and fades. `general` stories and v1 scripts don't.
 
 - **On-screen text:** narration and dialogue avoid explicit words such as "killed" and "dead body". Use "defeated", "taken from him", "gone", "lost". The blocklist keeps graphic terms and gains a **soft list**: words that produce warnings (`W_TEXT_SOFT`) with a suggested alternative, rather than errors.
 - The villain's final defeat should prefer `ko`, `captured`, `vanish` or `flee` over anything that reads as an execution.
@@ -810,7 +819,7 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `E_PARTNER_SELF` | semantic | Partner is the acting character |
 | `E_MACRO_UNKNOWN` | semantic | Unknown `@macro`; until the story compiler lands (S6), every macro reports this code with "not available yet" |
 | `E_MACRO_PARAM` | semantic | Bad or missing macro param |
-| `E_ACTIVITY_OBJECT` | semantic | Activity needs an object that isn't available |
+| `E_ACTIVITY_OBJECT` | semantic | An activity's `object` is not in the scene, or is a kind the activity can't use |
 | `E_TRANSITION` | semantic | Unknown transition type or bad params |
 | `E_SCENE_EMPTY` | semantic | Scene with no beats and no duration |
 | `E_THEME_UNKNOWN`, `E_REF_BEAT`, `E_REF_DUPLICATE` (v1 codes) | semantic | Also used for locations (unknown theme), references to a beat in another scene, and ids repeated across scenes |
@@ -826,4 +835,4 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `W_CAST_UNUSED` | semantic | A cast member never appears |
 | `W_STORY_SHORT` | dry run | A story (2+ scenes) is shorter than 300 s |
 | `W_FIGHT_SHORT` | dry run | A fight-only video is shorter than 180 s |
-| `W_KIDS_NO_HOPE` | dry run | `kids` audience: a cast member is defeated with `vanish`/`captured` and never returns or is shown safe |
+| `W_KIDS_NO_HOPE` | semantic | `kids` audience: a cast member vanishes (`vanish`, or `@defeat` with style `vanish`) and no later beat has it `return`. (A captured villain counts as shown safe.) |

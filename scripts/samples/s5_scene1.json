@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "meta": { "title": "Bubbles and the Brave Heart", "format": "landscape", "seed": 2024, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "stickman", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "voice": { "pitch": 1.0, "timbre": "soft" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5, "timbre": "squeaky" } }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "stageWidth": 3600,
+      "set": [ { "id": "bench1", "object": "bench", "x": 900 }, { "id": "tree1", "object": "tree_big", "x": 600, "layer": "back" }, { "id": "net", "object": "tennis_net", "x": 2000 } ] }
+  ],
+  "scenes": [
+    { "id": "s1", "location": "park", "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Bubbles and the Brave Heart" },
+      "transitionOut": { "type": "fade", "dur": 1 },
+      "cast": [ { "id": "kai", "x": 1300, "facing": 1, "face": "happy" }, { "id": "pip", "x": 1550, "facing": -1, "face": "happy" } ],
+      "camera": [ { "at": 0, "mode": "follow", "zoom": 1.3, "padding": 260 } ],
+      "beats": [
+        { "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "Kai and Pip were the best of friends." } },
+        { "id": "bub", "at": 1, "who": "world", "do": "activity", "params": { "name": "blow_bubbles", "with": ["pip", "kai"], "dur": 6, "ending": "laugh" } },
+        { "id": "ask", "at": { "after": "bub", "delay": 0.2 }, "who": "kai", "do": "point", "say": "Tennis?" },
+        { "id": "yes", "at": { "after": "ask" }, "who": "pip", "do": "cheer", "params": { "cycles": 1 }, "say": "Yes!" },
+        { "id": "ten", "at": { "after": "yes", "delay": 0.3 }, "who": "world", "do": "activity", "params": { "name": "tennis_rally", "with": ["kai", "pip"], "reps": 4, "ending": "miss", "object": "net" } },
+        { "id": "hf", "at": { "after": "ten" }, "who": "kai", "do": "high_five", "partner": "pip", "approach": "run", "face": "laugh", "say": "Good game!" }
+      ] }
+  ]
+}
