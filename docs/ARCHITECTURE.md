@@ -640,6 +640,29 @@ collectAmbiencePlan(sim) -> [{ t0, t1, beds: { name: level } }] | null      // n
 - **Story sounds:** footsteps by weight (`footstep_hard` for bulky or scale ≥ 1.3), `laugh_small`/`cry_small`/`gasp` with those emotes, `magic_sparkle` on `return`, `heartbeat` and `sad_sting` at a vanish or ghost, `card_whoosh` on cards, and in kids stories `pow`/`bonk`/`boing` with the impact words. v1 scripts get none of these.
 - **Data:** `data/music_moods.js` (`catalog.musicMoods`, `catalog.scales`).
 
+### LLM story pipeline (S8)
+```js
+// tools/lib/story_prompts.mjs
+storyIdeationSystem(catalog, audience); storyOutlineSystem(catalog, { kind, minLength, audience }); storySceneSystem(catalog, { audience })
+outlineRequest / outlineRepairRequest / sceneRequest(outline, i, { endState, stageWidths }) / sceneRepairRequest / extendRequest / reviseSceneRequest
+assembleStory(outline, scenes, { seed, format, kind, audience }) -> v2 script; normalizeScene(scene, entry); checkOutline(outline, catalog, opts) -> [strings]
+exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 180 }
+// tools/lib/story_tables.mjs   outline/scene catalog markdown, macroMarkdown(), CODE_HELP (every validator code), audienceMarkdown()
+// tools/lib/story_pipeline.mjs generateStory(ctx, premise, opts) -> { status, script, outline, score, ... }; checkSceneInContext; sceneSeconds
+// tools/lib/story_score.mjs    scoreStory(script, outline, catalog, { minLength }) -> { score, parts, stats }; storyFeedback()
+// tools/lib/manual_story.mjs   manualOutlinePrompt / checkOutlineReply / manualScenePrompt / checkSceneReply / manualExtendPrompt / assembleManual
+// tools/lib/review_images.mjs  storySheet(engine, backend) (a row of frames per scene)
+// engine: validate() returns scenes [{ id, seconds }] and endState { id: { hp, prop, face, hidden, scene, defeated } } for v2 scripts
+```
+- Each scene has its own conversation, so repairs, the extend round and critique revisions keep that scene's context. System prompts are byte-stable for a catalog and options, so prompt caching hits across scenes.
+- Scenes ask for plain JSON (no structured-output schema). The validator is the contract, and the scene shape (action and macro beats) is too open for the providers' schema subsets.
+- The mock adapter answers story stages from the `brave_heart` example (with a broken first draft of scene 2), so tests run the whole pipeline offline.
+- The sync test (`tests/unit/story_gen.test.js`) checks that the scene prompt explains every code the engine reports, and that `CODE_HELP` lists exactly those codes.
+- Small engine changes found by the pipeline:
+  - `return` restores full HP.
+  - W_DIALOGUE_FAST compares bubbles within a scene only.
+  - Group travel ends with the slowest walker (leg length and scale).
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:

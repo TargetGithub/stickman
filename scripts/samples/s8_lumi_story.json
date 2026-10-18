@@ -1,0 +1,1377 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Lumi and the Festival of Lights",
+    "format": "landscape",
+    "seed": 1861758914,
+    "kind": "story",
+    "audience": "kids",
+    "autoCamera": "story",
+    "speakerNames": true
+  },
+  "cast": [
+    {
+      "id": "lumi",
+      "name": "Lumi",
+      "body": "buddy",
+      "color": "#ffe14d",
+      "appearance": {
+        "eyes": "big",
+        "cheeks": "#ff9a9a",
+        "accessories": {
+          "antenna": "#ff6b3d"
+        }
+      },
+      "voice": {
+        "pitch": 1.6,
+        "timbre": "squeaky"
+      },
+      "prop": "flower"
+    },
+    {
+      "id": "tam",
+      "name": "Tam",
+      "body": "kid",
+      "color": "#7fe7ff",
+      "appearance": {
+        "hair": "spiky",
+        "hairColor": "#2a2a2a"
+      },
+      "voice": {
+        "pitch": 1.25,
+        "timbre": "soft"
+      }
+    },
+    {
+      "id": "oak",
+      "name": "Grandpa Oak",
+      "body": "elder",
+      "color": "#fff4d6",
+      "style": {
+        "hat": "#6b4a2b"
+      },
+      "voice": {
+        "pitch": 0.8,
+        "timbre": "soft",
+        "speed": 0.85
+      }
+    },
+    {
+      "id": "rook",
+      "name": "Rook",
+      "body": "kid",
+      "color": "#ffb36b",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "mask": "#1a1a1a"
+        }
+      },
+      "voice": {
+        "pitch": 1.05,
+        "timbre": "soft"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "home",
+      "theme": "home_interior"
+    },
+    {
+      "id": "street",
+      "theme": "city_street",
+      "stageWidth": 4200,
+      "ambience": "city_traffic",
+      "extras": [
+        {
+          "count": 4,
+          "behavior": "walk_by",
+          "layer": "back"
+        }
+      ]
+    },
+    {
+      "id": "park",
+      "theme": "city_park",
+      "stageWidth": 3600,
+      "ambience": "crowd_murmur",
+      "set": [
+        {
+          "id": "bench1",
+          "object": "bench",
+          "x": 1500
+        },
+        {
+          "id": "tree1",
+          "object": "tree_big",
+          "x": 700,
+          "layer": "back"
+        },
+        {
+          "id": "fount",
+          "object": "fountain",
+          "x": 2700,
+          "layer": "back"
+        }
+      ],
+      "extras": [
+        {
+          "count": 6,
+          "behavior": "cheer",
+          "layer": "back"
+        }
+      ]
+    },
+    {
+      "id": "alley",
+      "theme": "alley_night",
+      "stageWidth": 3600,
+      "ambience": "wind"
+    },
+    {
+      "id": "roof",
+      "theme": "rooftop_city",
+      "ambience": "city_traffic"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "home",
+      "time": "dusk",
+      "music": {
+        "mood": "happy"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "title",
+        "title": "Lumi and the Festival of Lights"
+      },
+      "cast": [
+        {
+          "id": "lumi",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "oak",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tam",
+          "x": 2000,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "s1_n",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Tonight was the Festival of Lights."
+          }
+        },
+        {
+          "id": "s1_show",
+          "at": 0.8,
+          "who": "lumi",
+          "do": "jump_joy",
+          "face": "laugh",
+          "say": "Look! My flower glows!"
+        },
+        {
+          "id": "s1_oak",
+          "at": {
+            "after": "s1_show",
+            "delay": 0.3
+          },
+          "who": "oak",
+          "do": "nod",
+          "face": "love",
+          "say": "It is beautiful, Lumi."
+        },
+        {
+          "id": "s1_in",
+          "at": {
+            "after": "s1_oak",
+            "delay": 0.5
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tam",
+            "side": "right",
+            "mode": "run",
+            "to": {
+              "x": 1700
+            }
+          }
+        },
+        {
+          "id": "s1_talk",
+          "at": {
+            "after": "s1_in"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tam",
+                "Is it time? Is it time?",
+                "laugh",
+                "shout"
+              ],
+              [
+                "lumi",
+                "Almost! Let us practice our festival dance!",
+                "happy"
+              ],
+              [
+                "tam",
+                "Yes!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "s1_dance",
+          "at": {
+            "after": "s1_talk"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "dance_together",
+            "with": [
+              "lumi",
+              "tam"
+            ],
+            "reps": 3
+          }
+        },
+        {
+          "id": "s1_clap",
+          "at": {
+            "with": "s1_dance",
+            "delay": 1
+          },
+          "who": "oak",
+          "do": "clap",
+          "face": "laugh"
+        },
+        {
+          "at": {
+            "after": "s1_dance",
+            "delay": 0.2
+          },
+          "who": "oak",
+          "do": "laugh",
+          "say": "Off we go, dancers!"
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "location": "street",
+      "time": "night",
+      "music": {
+        "mood": "playful"
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.8
+      },
+      "cast": [
+        {
+          "id": "lumi",
+          "x": 700,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tam",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "oak",
+          "x": 450,
+          "facing": 1
+        }
+      ],
+      "beats": [
+        {
+          "id": "s2_n",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Everyone in the city brought a light."
+          }
+        },
+        {
+          "id": "s2_wave",
+          "at": 0.6,
+          "who": "lumi",
+          "do": "wave",
+          "face": "laugh",
+          "say": "Hello, everybody!"
+        },
+        {
+          "id": "s2_go",
+          "at": {
+            "after": "s2_wave",
+            "delay": 0.3
+          },
+          "macro": "walk_together",
+          "params": {
+            "who": [
+              "lumi",
+              "tam"
+            ],
+            "to": {
+              "x": 2600
+            }
+          }
+        },
+        {
+          "id": "s2_oak",
+          "at": {
+            "with": "s2_go",
+            "delay": 0.6
+          },
+          "who": "oak",
+          "do": "walk",
+          "to": {
+            "x": 2200
+          }
+        },
+        {
+          "id": "s2_pt",
+          "at": {
+            "after": "s2_oak",
+            "delay": 0.2
+          },
+          "who": "oak",
+          "do": "point",
+          "say": "The park is this way!"
+        },
+        {
+          "id": "s2_cheer",
+          "at": {
+            "after": "s2_go",
+            "delay": 0.3
+          },
+          "who": "tam",
+          "do": "cheer",
+          "face": "laugh",
+          "say": "I can hear the music!"
+        },
+        {
+          "at": {
+            "after": "s2_cheer",
+            "delay": 0.2
+          },
+          "macro": "travel",
+          "params": {
+            "who": [
+              "lumi",
+              "tam",
+              "oak"
+            ],
+            "to": {
+              "exit": "right"
+            },
+            "mode": "run",
+            "camera": "none"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "location": "park",
+      "time": "night",
+      "music": {
+        "mood": "happy"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.8
+      },
+      "cast": [
+        {
+          "id": "lumi",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tam",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "oak",
+          "x": 2000,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "s3_wow",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "lumi",
+                "Wow! So many lights!",
+                "surprised",
+                "shout"
+              ],
+              [
+                "tam",
+                "Let us blow bubbles!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "s3_bub",
+          "at": {
+            "after": "s3_wow"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "blow_bubbles",
+            "with": [
+              "tam",
+              "lumi"
+            ],
+            "dur": 9,
+            "ending": "laugh"
+          }
+        },
+        {
+          "id": "s3_call",
+          "at": {
+            "after": "s3_bub",
+            "delay": 0.3
+          },
+          "who": "oak",
+          "do": "wave",
+          "say": "Picture time, you two!"
+        },
+        {
+          "id": "s3_pic",
+          "at": {
+            "after": "s3_call"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "selfie",
+            "with": [
+              "oak",
+              "lumi",
+              "tam"
+            ],
+            "reps": 3
+          }
+        },
+        {
+          "at": {
+            "after": "s3_pic",
+            "delay": 0.3
+          },
+          "who": "lumi",
+          "do": "jump_joy",
+          "face": "love",
+          "say": "Best night ever!"
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "location": "park",
+      "time": "night",
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5
+      },
+      "transitionIn": {
+        "type": "cut"
+      },
+      "cast": [
+        {
+          "id": "lumi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tam",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "oak",
+          "x": 2300,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "rook",
+          "x": 400,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "s4_drop",
+          "at": 0.5,
+          "who": "lumi",
+          "do": "drop_prop",
+          "say": "I need both hands to dance!"
+        },
+        {
+          "id": "s4_go",
+          "at": {
+            "after": "s4_drop",
+            "delay": 0.2
+          },
+          "who": "lumi",
+          "do": "walk",
+          "to": {
+            "near": "tam",
+            "gap": 160
+          }
+        },
+        {
+          "id": "s4_d1",
+          "at": {
+            "after": "s4_go"
+          },
+          "who": "lumi",
+          "do": "dance_a",
+          "params": {
+            "cycles": 8
+          },
+          "face": "laugh"
+        },
+        {
+          "id": "s4_d2",
+          "at": {
+            "with": "s4_d1"
+          },
+          "who": "tam",
+          "do": "dance_b",
+          "params": {
+            "cycles": 6
+          },
+          "face": "laugh"
+        },
+        {
+          "id": "s4_in",
+          "at": {
+            "with": "s4_d1",
+            "delay": 0.5
+          },
+          "macro": "enter",
+          "params": {
+            "who": "rook",
+            "side": "left",
+            "mode": "sneak",
+            "to": {
+              "x": 1280
+            }
+          }
+        },
+        {
+          "id": "s4_grab",
+          "at": {
+            "after": "s4_in"
+          },
+          "who": "rook",
+          "do": "pick_prop",
+          "face": "smug"
+        },
+        {
+          "id": "s4_heh",
+          "at": {
+            "after": "s4_grab"
+          },
+          "who": "rook",
+          "do": "laugh",
+          "say": "Mine now!",
+          "bubble": "whisper"
+        },
+        {
+          "id": "s4_run",
+          "at": {
+            "after": "s4_heh"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "rook",
+            "side": "left",
+            "mode": "run"
+          }
+        },
+        {
+          "id": "s4_oh",
+          "at": {
+            "with": "s4_run",
+            "delay": 0.4
+          },
+          "who": "lumi",
+          "do": "gasp",
+          "face": "surprised",
+          "interrupt": true,
+          "say": "My flower!",
+          "bubble": "shout"
+        },
+        {
+          "at": {
+            "after": "s4_oh",
+            "delay": 0.3
+          },
+          "who": "tam",
+          "do": "point",
+          "face": "angry",
+          "say": "Hey! Come back!"
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "location": "park",
+      "time": "night",
+      "music": {
+        "mood": "sad"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "dur": 1
+      },
+      "cast": [
+        {
+          "id": "lumi",
+          "x": 1300,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "tam",
+          "x": 1650,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "oak",
+          "x": 2000,
+          "facing": -1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "s5_n",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Lumi's light was gone."
+          }
+        },
+        {
+          "id": "s5_cry",
+          "at": 0.8,
+          "who": "lumi",
+          "do": "cry",
+          "fx": [
+            "tears"
+          ],
+          "face": "cry",
+          "say": "It was my special light..."
+        },
+        {
+          "id": "s5_cry2",
+          "at": {
+            "after": "s5_cry"
+          },
+          "who": "lumi",
+          "do": "cry",
+          "face": "cry"
+        },
+        {
+          "id": "s5_com",
+          "at": {
+            "after": "s5_cry",
+            "delay": 0.2
+          },
+          "who": "oak",
+          "do": "comfort",
+          "partner": "lumi",
+          "approach": "walk",
+          "face": "sad",
+          "say": "There, there, little one."
+        },
+        {
+          "id": "s5_vow",
+          "at": {
+            "after": "s5_com",
+            "delay": 0.3
+          },
+          "who": "tam",
+          "do": "clench_fist",
+          "face": "determined",
+          "say": "We will find it, Lumi!",
+          "bubble": "shout"
+        },
+        {
+          "id": "s5_nod",
+          "at": {
+            "after": "s5_vow",
+            "delay": 0.2
+          },
+          "who": "lumi",
+          "do": "nod",
+          "face": "determined",
+          "say": "Together?"
+        },
+        {
+          "at": {
+            "after": "s5_nod",
+            "delay": 0.2
+          },
+          "who": "oak",
+          "do": "nod",
+          "face": "happy",
+          "say": "Together."
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "location": "street",
+      "time": "night",
+      "weather": "wind",
+      "music": {
+        "mood": "mysterious"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "time",
+        "text": "They searched every corner of the city."
+      },
+      "cast": [
+        {
+          "id": "tam",
+          "x": 800,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "lumi",
+          "x": 600,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "oak",
+          "x": 400,
+          "facing": 1
+        }
+      ],
+      "beats": [
+        {
+          "id": "s6_walk",
+          "at": 0.4,
+          "macro": "travel",
+          "params": {
+            "who": [
+              "tam",
+              "lumi",
+              "oak"
+            ],
+            "to": {
+              "x": 1900
+            },
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "s6_look",
+          "at": {
+            "after": "s6_walk"
+          },
+          "who": "tam",
+          "do": "look_around",
+          "say": "Where could it be?"
+        },
+        {
+          "id": "s6_peek",
+          "at": {
+            "after": "s6_look",
+            "delay": 0.2
+          },
+          "who": "lumi",
+          "do": "peek",
+          "face": "scared",
+          "say": "Hello? Little flower?",
+          "bubble": "whisper"
+        },
+        {
+          "id": "s6_on",
+          "at": {
+            "after": "s6_peek",
+            "delay": 0.2
+          },
+          "who": "oak",
+          "do": "walk",
+          "to": {
+            "x": 2700
+          }
+        },
+        {
+          "id": "s6_see",
+          "at": {
+            "after": "s6_on"
+          },
+          "who": "oak",
+          "do": "point",
+          "face": "surprised",
+          "say": "Look! A glow, over there!"
+        },
+        {
+          "id": "s6_gasp",
+          "at": {
+            "with": "s6_see",
+            "delay": 0.5
+          },
+          "who": "lumi",
+          "do": "gasp",
+          "face": "surprised"
+        },
+        {
+          "at": {
+            "after": "s6_see",
+            "delay": 0.3
+          },
+          "macro": "travel",
+          "params": {
+            "who": [
+              "tam",
+              "lumi",
+              "oak"
+            ],
+            "to": {
+              "exit": "right"
+            },
+            "mode": "run",
+            "camera": "none"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "location": "alley",
+      "time": "night",
+      "music": {
+        "mood": "tense"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.8
+      },
+      "cast": [
+        {
+          "id": "rook",
+          "x": 1300,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "lumi",
+          "x": 2400,
+          "facing": -1,
+          "hidden": true
+        },
+        {
+          "id": "tam",
+          "x": 2650,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "s7_alone",
+          "at": 0.5,
+          "who": "rook",
+          "do": "sigh",
+          "say": "So pretty... all mine.",
+          "bubble": "think"
+        },
+        {
+          "id": "s7_in1",
+          "at": {
+            "after": "s7_alone",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "lumi",
+            "side": "right",
+            "to": {
+              "x": 1900
+            }
+          }
+        },
+        {
+          "id": "s7_in2",
+          "at": {
+            "with": "s7_in1",
+            "delay": 0.4
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tam",
+            "side": "right",
+            "to": {
+              "x": 2150
+            }
+          }
+        },
+        {
+          "id": "s7_turn",
+          "at": {
+            "after": "s7_in1"
+          },
+          "who": "rook",
+          "do": "face",
+          "target": "lumi",
+          "face": "surprised"
+        },
+        {
+          "id": "s7_talk",
+          "at": {
+            "after": "s7_turn",
+            "delay": 0.3
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "lumi",
+                "That is my flower!",
+                "sad",
+                "shout"
+              ],
+              [
+                "rook",
+                "Finders keepers!",
+                "smug"
+              ],
+              [
+                "tam",
+                "Please give it back.",
+                "determined"
+              ],
+              [
+                "rook",
+                "Catch me first!",
+                "laugh",
+                "shout"
+              ]
+            ]
+          }
+        },
+        {
+          "at": {
+            "after": "s7_talk"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "rook",
+            "side": "left",
+            "mode": "run"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "location": "street",
+      "time": "night",
+      "music": {
+        "mood": "battle",
+        "intensity": 0.7
+      },
+      "transitionIn": {
+        "type": "cut"
+      },
+      "cast": [
+        {
+          "id": "rook",
+          "x": 1100,
+          "facing": 1,
+          "face": "laugh"
+        },
+        {
+          "id": "tam",
+          "x": 600,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "lumi",
+          "x": 380,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "s8_go",
+          "at": 0.4,
+          "who": "tam",
+          "do": "point",
+          "say": "There he goes!",
+          "bubble": "shout"
+        },
+        {
+          "id": "s8_chase",
+          "at": {
+            "after": "s8_go"
+          },
+          "macro": "chase",
+          "params": {
+            "runner": "rook",
+            "chasers": [
+              "tam",
+              "lumi"
+            ],
+            "obstacles": 2,
+            "caught": true
+          }
+        },
+        {
+          "id": "s8_got",
+          "at": {
+            "after": "s8_chase",
+            "delay": 0.3
+          },
+          "who": "tam",
+          "do": "clench_fist",
+          "say": "Gotcha!",
+          "face": "determined"
+        },
+        {
+          "at": {
+            "after": "s8_got",
+            "delay": 0.2
+          },
+          "who": "rook",
+          "do": "sigh",
+          "face": "sad",
+          "say": "Okay... okay."
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "location": "roof",
+      "time": "night",
+      "music": {
+        "mood": "calm"
+      },
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 1
+      },
+      "cast": [
+        {
+          "id": "rook",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "lumi",
+          "x": 1800,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "tam",
+          "x": 2050,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "s9_n",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Sometimes a grumpy face hides a lonely heart."
+          }
+        },
+        {
+          "id": "s9_talk",
+          "at": 1,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "rook",
+                "Nobody ever invites me to the festival.",
+                "sad"
+              ],
+              [
+                "rook",
+                "I just wanted a light of my own.",
+                "cry"
+              ],
+              [
+                "lumi",
+                "Then come with us! Lights are better shared.",
+                "love"
+              ],
+              [
+                "rook",
+                "Really? You mean it?",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "s9_give",
+          "at": {
+            "after": "s9_talk",
+            "delay": 0.3
+          },
+          "who": "rook",
+          "do": "give",
+          "partner": "lumi",
+          "approach": "walk",
+          "face": "happy",
+          "say": "Here. It is yours."
+        },
+        {
+          "id": "s9_hug",
+          "at": {
+            "after": "s9_give",
+            "delay": 0.3
+          },
+          "who": "lumi",
+          "do": "hug",
+          "partner": "rook",
+          "face": "love"
+        },
+        {
+          "at": {
+            "after": "s9_hug",
+            "delay": 0.2
+          },
+          "who": "tam",
+          "do": "jump_joy",
+          "face": "laugh",
+          "say": "A new friend!"
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "location": "park",
+      "time": "night",
+      "music": {
+        "mood": "triumphant"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "time",
+        "text": "Back at the festival..."
+      },
+      "transitionOut": {
+        "type": "fade",
+        "dur": 1.5
+      },
+      "cast": [
+        {
+          "id": "oak",
+          "x": 2000,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "lumi",
+          "x": 1300,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "tam",
+          "x": 1100,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "rook",
+          "x": 1500,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "s10_in1",
+          "at": 0.4,
+          "macro": "enter",
+          "params": {
+            "who": "lumi",
+            "side": "left",
+            "to": {
+              "x": 1500
+            }
+          }
+        },
+        {
+          "id": "s10_in2",
+          "at": {
+            "with": "s10_in1",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "rook",
+            "side": "left",
+            "to": {
+              "x": 1250
+            }
+          }
+        },
+        {
+          "id": "s10_in3",
+          "at": {
+            "with": "s10_in1",
+            "delay": 0.6
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tam",
+            "side": "left",
+            "to": {
+              "x": 1050
+            }
+          }
+        },
+        {
+          "id": "s10_hi",
+          "at": {
+            "after": "s10_in1",
+            "delay": 0.3
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "oak",
+                "There you are! And who is this?",
+                "happy"
+              ],
+              [
+                "lumi",
+                "This is Rook. Our new friend!",
+                "laugh"
+              ],
+              [
+                "rook",
+                "Hi... thank you for having me.",
+                "love",
+                "whisper"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "s10_dance",
+          "at": {
+            "after": "s10_hi",
+            "delay": 0.2
+          },
+          "macro": "activity",
+          "params": {
+            "name": "dance_together",
+            "with": [
+              "lumi",
+              "rook",
+              "tam",
+              "oak"
+            ],
+            "reps": 4
+          }
+        },
+        {
+          "id": "s10_pic",
+          "at": {
+            "after": "s10_dance",
+            "delay": 0.2
+          },
+          "macro": "activity",
+          "params": {
+            "name": "selfie",
+            "with": [
+              "oak",
+              "lumi",
+              "rook",
+              "tam"
+            ],
+            "reps": 2
+          }
+        },
+        {
+          "id": "s10_n",
+          "at": {
+            "after": "s10_pic",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Kindness makes every light shine brighter."
+          }
+        },
+        {
+          "at": {
+            "after": "s10_pic",
+            "delay": 4.5
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "The End"
+          }
+        }
+      ]
+    }
+  ]
+}

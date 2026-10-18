@@ -1,0 +1,676 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Rooftop Rivals: The Night Cup",
+    "format": "landscape",
+    "seed": 1275812071,
+    "kind": "fight",
+    "audience": "kids",
+    "autoCamera": "story",
+    "speakerNames": true,
+    "hpBars": true
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "name": "Kai",
+      "body": "stickman",
+      "color": "#3fd8ff",
+      "style": {
+        "headband": "#ff3b5c"
+      },
+      "voice": {
+        "pitch": 1
+      }
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "body": "slim",
+      "color": "#ffffff",
+      "style": {
+        "scarf": "#e0242f"
+      },
+      "appearance": {
+        "brows": "thick"
+      },
+      "voice": {
+        "pitch": 0.85,
+        "timbre": "deep"
+      },
+      "hp": 140
+    },
+    {
+      "id": "ren",
+      "name": "Ren",
+      "body": "slim",
+      "color": "#ffa62b",
+      "prop": "staff",
+      "voice": {
+        "pitch": 1.1
+      }
+    },
+    {
+      "id": "bo",
+      "name": "Bo",
+      "body": "bulky",
+      "color": "#ff7ad9",
+      "voice": {
+        "pitch": 0.7,
+        "timbre": "deep"
+      },
+      "hp": 130
+    }
+  ],
+  "locations": [
+    {
+      "id": "roof",
+      "theme": "rooftop_city",
+      "ambience": "city_traffic",
+      "extras": [
+        {
+          "count": 4,
+          "behavior": "cheer",
+          "layer": "back"
+        }
+      ]
+    },
+    {
+      "id": "dojo",
+      "theme": "dojo_dusk"
+    },
+    {
+      "id": "ring",
+      "theme": "arena",
+      "ambience": "crowd_murmur"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "location": "roof",
+      "time": "night",
+      "music": {
+        "mood": "tense"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "title",
+        "title": "Rooftop Rivals",
+        "subtitle": "The Night Cup"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "zed",
+          "x": 1850,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "beats": [
+        {
+          "id": "intro_n",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The Night Cup: one rooftop, one champion."
+          }
+        },
+        {
+          "id": "intro_t",
+          "at": 1,
+          "who": "zed",
+          "do": "taunt",
+          "face": "smug"
+        },
+        {
+          "id": "intro_d",
+          "at": {
+            "after": "intro_t",
+            "delay": 0.2
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zed",
+                "Nobody has ever beaten me, Kai.",
+                "smug"
+              ],
+              [
+                "kai",
+                "Then tonight will be a first.",
+                "determined"
+              ],
+              [
+                "zed",
+                "See you in the final. If you get there.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "intro_f",
+          "at": {
+            "after": "intro_d",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "clench_fist",
+          "face": "determined",
+          "say": "I will be there.",
+          "bubble": "shout"
+        },
+        {
+          "at": {
+            "with": "intro_f",
+            "delay": 0.4
+          },
+          "macro": "exit",
+          "params": {
+            "who": "zed",
+            "side": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "r1",
+      "location": "dojo",
+      "time": "dusk",
+      "music": {
+        "mood": "battle"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "chapter",
+        "text": "Round 1: Kai vs Ren"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "ren",
+          "x": 1800,
+          "facing": -1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "r1_bow",
+          "at": 0.4,
+          "who": "ren",
+          "do": "bow"
+        },
+        {
+          "id": "r1_bow2",
+          "at": {
+            "with": "r1_bow",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "bow"
+        },
+        {
+          "id": "r1_fight",
+          "at": {
+            "after": "r1_bow2",
+            "delay": 0.3
+          },
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "kai",
+              "ren"
+            ],
+            "winner": "kai",
+            "exchanges": 7,
+            "intensity": "medium",
+            "style": "comeback"
+          }
+        }
+      ]
+    },
+    {
+      "id": "b1",
+      "location": "dojo",
+      "time": "dusk",
+      "music": {
+        "mood": "calm"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "bo",
+          "x": 2300,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "b1_sigh",
+          "at": 0.4,
+          "who": "kai",
+          "do": "sigh",
+          "say": "One down. Phew."
+        },
+        {
+          "id": "b1_in",
+          "at": {
+            "after": "b1_sigh",
+            "delay": 0.2
+          },
+          "macro": "enter",
+          "params": {
+            "who": "bo",
+            "side": "right",
+            "to": {
+              "x": 1800
+            }
+          }
+        },
+        {
+          "id": "b1_flex",
+          "at": {
+            "after": "b1_in"
+          },
+          "who": "bo",
+          "do": "flex",
+          "face": "smug",
+          "say": "You are next, little guy!",
+          "bubble": "shout"
+        },
+        {
+          "at": {
+            "after": "b1_flex",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "stretch",
+          "face": "determined",
+          "say": "Bring it on."
+        }
+      ]
+    },
+    {
+      "id": "r2",
+      "location": "ring",
+      "time": "night",
+      "music": {
+        "mood": "battle",
+        "intensity": 0.8
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "chapter",
+        "text": "Round 2: Kai vs Bo"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined",
+          "hp": 100
+        },
+        {
+          "id": "bo",
+          "x": 1850,
+          "facing": -1,
+          "face": "angry"
+        }
+      ],
+      "beats": [
+        {
+          "id": "r2_taunt",
+          "at": 0.4,
+          "who": "bo",
+          "do": "ground_pound",
+          "target": "kai",
+          "outcome": "dodged",
+          "approach": "run"
+        },
+        {
+          "id": "r2_fight",
+          "at": {
+            "after": "r2_taunt",
+            "delay": 0.5
+          },
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "kai",
+              "bo"
+            ],
+            "winner": "kai",
+            "exchanges": 9,
+            "intensity": "high",
+            "style": "close"
+          }
+        }
+      ]
+    },
+    {
+      "id": "b2",
+      "location": "ring",
+      "time": "night",
+      "music": {
+        "mood": "heroic"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "zed",
+          "x": 2300,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "b2_sigh",
+          "at": 0.4,
+          "who": "kai",
+          "do": "sigh",
+          "face": "tired",
+          "say": "Bo hits like a truck..."
+        },
+        {
+          "id": "b2_up",
+          "at": {
+            "after": "b2_sigh",
+            "delay": 1.4
+          },
+          "who": "kai",
+          "do": "charge_up",
+          "fx": [
+            "aura"
+          ],
+          "face": "determined",
+          "say": "Two down. One to go."
+        },
+        {
+          "id": "b2_in",
+          "at": {
+            "after": "b2_up",
+            "delay": 0.2
+          },
+          "macro": "enter",
+          "params": {
+            "who": "zed",
+            "side": "right",
+            "to": {
+              "x": 1850
+            }
+          }
+        },
+        {
+          "id": "b2_talk",
+          "at": {
+            "after": "b2_in"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zed",
+                "Not bad, for a beginner.",
+                "smug"
+              ],
+              [
+                "kai",
+                "I am not a beginner anymore.",
+                "determined"
+              ],
+              [
+                "zed",
+                "Prove it. On the roof.",
+                "smug",
+                "shout"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "b2_pt",
+          "at": {
+            "after": "b2_talk",
+            "delay": 0.2
+          },
+          "who": "zed",
+          "do": "point",
+          "target": "kai",
+          "face": "smug"
+        },
+        {
+          "at": {
+            "after": "b2_pt",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "nod",
+          "face": "determined"
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "location": "roof",
+      "time": "night",
+      "weather": "wind",
+      "music": {
+        "mood": "boss"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "chapter",
+        "text": "Final Round"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined",
+          "hp": 100
+        },
+        {
+          "id": "zed",
+          "x": 1850,
+          "facing": -1,
+          "face": "smug",
+          "hp": 140
+        }
+      ],
+      "beats": [
+        {
+          "id": "final_fight",
+          "at": 0.4,
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "kai",
+              "zed"
+            ],
+            "winner": "kai",
+            "finisher": "spinning_kick",
+            "phases": [
+              {
+                "exchanges": 6,
+                "style": "comeback",
+                "intensity": "medium"
+              },
+              {
+                "exchanges": 7,
+                "style": "comeback",
+                "intensity": "high",
+                "chargeUp": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "win",
+      "location": "roof",
+      "time": "night",
+      "music": {
+        "mood": "triumphant"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.8
+      },
+      "transitionOut": {
+        "type": "fade",
+        "dur": 1.5
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zed",
+          "x": 1700,
+          "facing": -1,
+          "face": "tired",
+          "hp": 140
+        }
+      ],
+      "beats": [
+        {
+          "id": "win_v",
+          "at": 0.4,
+          "who": "kai",
+          "do": "victory",
+          "fx": [
+            "aura"
+          ],
+          "face": "laugh",
+          "say": "I did it!",
+          "bubble": "shout"
+        },
+        {
+          "id": "win_cheer",
+          "at": {
+            "after": "win_v",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "jump_joy",
+          "face": "laugh"
+        },
+        {
+          "id": "win_bow",
+          "at": {
+            "after": "win_cheer",
+            "delay": 0.3
+          },
+          "who": "zed",
+          "do": "bow",
+          "face": "happy",
+          "say": "You earned it, Kai."
+        },
+        {
+          "id": "win_talk",
+          "at": {
+            "after": "win_bow",
+            "delay": 0.2
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kai",
+                "You were the hardest fight of my life.",
+                "happy"
+              ],
+              [
+                "zed",
+                "Next year, I want a rematch.",
+                "smug"
+              ],
+              [
+                "kai",
+                "Deal!",
+                "laugh",
+                "shout"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "win_shake",
+          "at": {
+            "after": "win_talk",
+            "delay": 0.2
+          },
+          "who": "kai",
+          "do": "handshake",
+          "partner": "zed",
+          "approach": "walk",
+          "face": "happy"
+        },
+        {
+          "id": "win_n",
+          "at": {
+            "after": "win_shake",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "A true champion makes a friend of a rival."
+          }
+        },
+        {
+          "at": {
+            "after": "win_shake",
+            "delay": 4
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "Kai wins the Night Cup!"
+          }
+        }
+      ]
+    }
+  ]
+}

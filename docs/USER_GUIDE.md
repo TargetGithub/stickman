@@ -362,7 +362,7 @@ Any capable LLM can write scripts. The engine doesn't depend on any AI company: 
 | Option | Needs | Best for |
 |---|---|---|
 | **A. Copy-paste** with ChatGPT, Claude.ai, Gemini, Copilot or any chat app | Just a browser, no API key | Trying ideas, one-off videos, no setup |
-| **B. Automatic** through an API: Anthropic, OpenAI, Google Gemini, OpenRouter, Groq, Mistral, a local model (Ollama, LM Studio), ... | An API key, or a local model server | Batches of videos, unattended runs |
+| **B. Automatic** through an API: Anthropic, OpenAI, Google Gemini, OpenRouter, Groq, Mistral, ... | An API key | Batches of videos, unattended runs |
 | **C. Offline mock** | Nothing | Checking the pipeline works, no cost |
 
 All three use the same prompt pack (`prompts/`), the same validator and the same output folders.
@@ -543,7 +543,38 @@ node tools/generate.mjs --mock --count 2
 
 Runs the full pipeline with canned replies: ideation, a deliberate mistake and its repair, scoring, critique, metadata and rendering. No network, no cost. Useful after changing the pipeline or the config.
 
-### 7.4 Changing what the model writes
+### 7.4 Stories and fight videos (two stages)
+
+`generate.mjs` makes three kinds of video. `--fight` (the default) makes a fight video of at least 3 minutes; `--story` makes a story of at least 5 minutes; `--clip` makes the short version 1 fight clip described above (30 s by default). Use `--length S` to ask for more, and `--audience general` to lift the kids rules.
+
+```bash
+node tools/generate.mjs --story --premise "Lumi loses her glowing flower on festival night and her friends help her find it."
+```
+
+Stories and fight videos are written in two stages, so each prompt stays small and each part is fixed on its own:
+
+1. **Outline:** the cast (body plans, colors, looks, voices), the places, and 10-16 scenes (6-10 for a fight video), each with a purpose, a mood, a target length and what happens. It is checked before any scene is written: the lengths must add up to the minimum, every name must exist, and every color must stand out against its backgrounds.
+2. **Scenes, one at a time:** each scene is checked inside the story so far, and only a failing scene is sent back for a fix. Each request says where everyone stands after the previous scenes (who is knocked out, who holds what).
+3. **Extend:** a story that comes out short gets one round in which its shortest scenes are lengthened.
+4. **Score:** arc, variety of scenes, feelings shown, narration, fights that land, length, and warnings (the kids rules count double).
+5. **Critique** (`--critique`): a sheet with a row of frames per scene, a story-level review, and one revision of the scenes it names.
+
+Results land in `out/scripts/<slug>.json` with the outline next to it (`<slug>.outline.json`). Stories that came out a little short or under the score are still queued for review; their `generation` field in `out/review_queue.json` says why.
+
+**Copy-paste, no API key:** the same two stages by hand. State is kept in `out/manual/story/`.
+
+```bash
+node tools/manual.mjs story-outline --premise "your idea"
+```
+
+Then, step by step:
+- Paste `out/manual/story/outline_prompt.md` into a new chat and save the reply. Run `node tools/manual.mjs check-outline reply.txt`. A failed check writes `out/manual/fix_prompt.md`: paste it into the same chat and check again.
+- For each scene N: `node tools/manual.mjs story-scene N`, paste the prompt into a chat, then `node tools/manual.mjs check-scene N reply.txt`.
+- Finally `node tools/manual.mjs assemble [--render]`. If the story is short, it names the scenes to lengthen: `node tools/manual.mjs extend N` writes a prompt for that scene's chat.
+
+Add `--fight` to `story-outline` for a fight video. `scripts/samples/s8_lumi_story.json` (a 5.6-minute story) and `s8_fight_video.json` (a 3.3-minute fight video) were made this way.
+
+### 7.5 Changing what the model writes
 
 The prompts are plain text in `prompts/`:
 
@@ -625,7 +656,7 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 
 ## 11. Known limits
 
-- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with set pieces, time of day and weather, transitions and cards, narration, faces and emotions, bubbles with speaker names, speech sounds, six body plans and appearance options, objects, paired moves, activities, defeat styles, story macros (dialogue, fights, gauntlets, brawls, chases, defeat and grief, fight cards, montages), story camera shots, extras and depth layers; see `scripts/samples/s1_scenes.json` to `s6_fight_card.json`. generated music, ambience beds and story sounds (S7). LLM story generation (S8) comes next.
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with set pieces, time of day and weather, transitions and cards, narration, faces and emotions, bubbles with speaker names, speech sounds, six body plans and appearance options, objects, paired moves, activities, defeat styles, story macros (dialogue, fights, gauntlets, brawls, chases, defeat and grief, fight cards, montages), story camera shots, extras and depth layers; see `scripts/samples/s1_scenes.json` to `s6_fight_card.json`. generated music, ambience beds and story sounds (S7). LLM story generation (S8): stories and fight videos in two stages, automatic or copy-paste (section 7.4).
 - Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.

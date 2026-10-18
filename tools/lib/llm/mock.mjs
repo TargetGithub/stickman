@@ -1,9 +1,12 @@
 // Offline adapter (no network, no cost), used by tests and by `generate.mjs --mock` / `--provider mock`.
 // The default responder answers each stage plausibly: premises, scripts built from the example
 // scripts (every other first draft carries a misspelled move so the repair path runs), critique
-// and metadata. Tests pass their own responder.
+// and metadata. Story stages (S8) answer from the "brave_heart" example story: its outline (scene lengths
+// stretched to the requested minimum) and its scenes; the first draft of scene 2 has a misspelled move.
+// Tests pass their own responder.
 
 import { exampleScripts } from "../prompt_pack.mjs";
+import { exampleStories } from "../story_prompts.mjs";
 
 const textOf = (m) => (typeof m.content === "string" ? m.content : m.content.filter((p) => p.type === "text").map((p) => p.text).join("\n"));
 
@@ -13,6 +16,8 @@ export function defaultResponder() {
   let drafts = 0;
   return (req) => {
     const user = textOf(req.messages[req.messages.length - 1]);
+    const story = storyStage(req, user);
+    if (story) return story;
     if (req.system.startsWith("You pitch premises")) {
       const count = Number(/Pitch (\d+)/.exec(user)?.[1] || 1);
       const premises = Array.from({ length: count }, (_, i) => ({
@@ -45,6 +50,37 @@ export function defaultResponder() {
     }
     return { text: JSON.stringify(base) };
   };
+}
+
+/** Story stages (S8): ideation, outline, scenes, critique; null for other requests. */
+function storyStage(req, user) {
+  const ex = exampleStories().find((e) => e.name.startsWith("brave"));
+  if (req.system.startsWith("You pitch premises for animated stickman stories")) {
+    const count = Number(/Pitch (\d+)/.exec(user)?.[1] || 1);
+    return { text: JSON.stringify({ premises: Array.from({ length: count }, (_, i) => ({ title: `Mock Story ${i + 1}`, logline: "Two friends are parted and find each other again.", tone: "heartfelt", theme: "city_park", characters: [{ id: "kai", role: "hero", look: "blue" }], beats: ["play", "loss", "journey", "rescue", "reunion"], standout: "the reunion hug" })) }) };
+  }
+  if (req.system.startsWith("You plan stories")) {
+    const min = Number(/at least (\d+) s/.exec(user)?.[1] || 300);
+    const outline = structuredClone(ex.outline);
+    const total = outline.scenes.reduce((n, sc) => n + sc.seconds, 0);
+    for (const sc of outline.scenes) sc.seconds = Math.ceil((sc.seconds * min * 1.1) / total);
+    const title = /"title":\s*"([^"]+)"/.exec(user)?.[1];
+    if (title) outline.title = title;
+    return { text: JSON.stringify(outline) };
+  }
+  if (req.system.startsWith("You write ONE scene")) {
+    // Extend and revise requests get the previous scene back unchanged.
+    if (req.messages.length > 1 && /too short|reviewer/.test(user)) return { text: textOf(req.messages[req.messages.length - 2]) };
+    const i = Number(/Write scene (\d+) of/.exec(textOf(req.messages[0]))?.[1] || 1) - 1;
+    const scene = structuredClone(ex.story.scenes[i % ex.story.scenes.length]);
+    if (i === 1 && req.messages.length === 1) {
+      const b = scene.beats.find((x) => x.who && x.who !== "world");
+      b.do = `${b.do}_x`; // E_MOVE_UNKNOWN, fixed on repair
+    }
+    return { text: JSON.stringify(scene) };
+  }
+  if (req.system.startsWith("You review an animated stickman story")) return { text: JSON.stringify({ score: 7, revise: true, notes: ["s1: Hold the high five a moment longer."] }) };
+  return null;
 }
 
 /**

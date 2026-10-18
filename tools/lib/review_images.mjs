@@ -43,3 +43,30 @@ export function contactSheet(engine, backend, { cols = 4, rows = 4 } = {}) {
   }
   return sheet;
 }
+
+/**
+ * Story sheet (S8.5): one row per scene (up to 16), `cols` frames across each scene, sixth-size tiles,
+ * with the scene id on the first tile.
+ */
+export function storySheet(engine, backend, { cols = 4, maxRows = 16 } = {}) {
+  const { width, height } = engine.getMeta();
+  const scenes = engine.getScenes().slice(0, maxRows);
+  const tw = Math.round(width / 6);
+  const th = Math.round(height / 6);
+  const full = backend.createCanvas(width, height);
+  const sheet = backend.createCanvas(tw * cols, th * scenes.length);
+  const sctx = sheet.getContext("2d");
+  scenes.forEach((sc, row) => {
+    for (let c = 0; c < cols; c++) {
+      const n = sc.startFrame + Math.floor(((c + 0.5) * (sc.frames - 1)) / cols);
+      engine.renderFrame(full.getContext("2d"), n);
+      sctx.drawImage(full, c * tw, row * th, tw, th);
+    }
+    sctx.fillStyle = "rgba(0,0,0,0.6)";
+    sctx.fillRect(0, row * th, 160, 22);
+    sctx.fillStyle = "#ffffff";
+    sctx.font = "15px Inter";
+    sctx.fillText(`${sc.id} ${((sc.frames) / 60).toFixed(0)}s`, 6, row * th + 16);
+  });
+  return sheet;
+}

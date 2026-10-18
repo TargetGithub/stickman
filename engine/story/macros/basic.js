@@ -8,6 +8,7 @@
 import { readingTime } from "../speech.js";
 import { round } from "../compile.js";
 import { EXIT_REACH } from "../destinations.js";
+import { strideOf } from "../../skeleton.js";
 
 const BUBBLE_CHARS = 40;
 const TALK_CYCLE = 0.8; // s, one cycle of the talk gesture loop
@@ -115,6 +116,13 @@ function exit(ctx, p) {
   return { anchors: { start: `${id}.start`, end: `${id}.end` } };
 }
 
+/** Relative walking speed of a cast member: its body plan's leg length and its scale (the stickman is 1). */
+function speedOf(ctx, id) {
+  const c = ctx.castById.get(id) || {};
+  const d = ctx.catalog.bodies?.[c.body]?.dims;
+  return (c.scale ?? 1) * (d ? strideOf(d) : 1);
+}
+
 /** Everyone walks (or runs, sneaks) at once; the end anchor is whoever has the furthest to go. */
 function group(ctx, who, to, mode) {
   let first = null;
@@ -125,7 +133,8 @@ function group(ctx, who, to, mode) {
     const beat = { who: w, do: mode, to: dest };
     const id = first ? ctx.with(first, beat, 0.1 * k) : ctx.add({ ...beat, at: 0 });
     first ??= id;
-    const d = Math.abs(destX(ctx, w, dest) - (ctx.pos.get(w) ?? 0));
+    // Whoever arrives last ends the group: distance over its walking speed (shorter legs are slower).
+    const d = Math.abs(destX(ctx, w, dest) - (ctx.pos.get(w) ?? 0)) / speedOf(ctx, w);
     if (d > far) [far, longest] = [d, id];
   });
   who.forEach((w, k) => ctx.pos.set(w, destX(ctx, w, spaced(ctx, w, to, k))));
@@ -150,7 +159,7 @@ function walkTogether(ctx, p) {
 function travel(ctx, p) {
   const mode = p.mode ?? "walk";
   const g = group(ctx, p.who, p.to, mode);
-  const dur = round(Math.max(1, Math.min(30, g.far / PACE_SPEED[mode] + 0.5)));
+  const dur = round(Math.max(1, Math.min(30, g.far / PACE_SPEED[mode] + 0.5))); // far: px at stickman speed
   const camera = p.camera ?? "track";
   if (camera === "track") ctx.with(g.first, { who: "world", do: "shot", params: { mode: "track", target: p.who[0], dur } });
   if (camera === "wide") ctx.with(g.first, { who: "world", do: "shot", params: { mode: "wide", dur } });

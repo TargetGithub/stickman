@@ -1,0 +1,576 @@
+{
+ "outline": {
+  "title": "The Rainy Picnic",
+  "logline": "When rain ruins their picnic, Mia, Bop and Gran find a way to have fun inside.",
+  "cast": [
+   {
+    "id": "mia",
+    "name": "Mia",
+    "body": "kid",
+    "color": "#a3124c",
+    "appearance": {
+     "hair": "ponytail",
+     "hairColor": "#5a3a1a"
+    },
+    "voice": {
+     "pitch": 1.3,
+     "timbre": "soft"
+    },
+    "role": "hero"
+   },
+   {
+    "id": "bop",
+    "name": "Bop",
+    "body": "buddy",
+    "color": "#2fd3c0",
+    "appearance": {
+     "accessories": {
+      "antenna": "#ffcc00"
+     }
+    },
+    "voice": {
+     "pitch": 1.6,
+     "timbre": "squeaky"
+    },
+    "role": "friend"
+   },
+   {
+    "id": "gran",
+    "name": "Gran",
+    "body": "elder",
+    "color": "#3d1f8c",
+    "voice": {
+     "pitch": 0.9,
+     "timbre": "soft"
+    },
+    "role": "family"
+   }
+  ],
+  "locations": [
+   {
+    "id": "park",
+    "theme": "city_park",
+    "stageWidth": 3600,
+    "ambience": "park_birds",
+    "set": [
+     {
+      "id": "bench1",
+      "object": "bench",
+      "x": 1500
+     },
+     {
+      "id": "tree1",
+      "object": "tree_big",
+      "x": 700,
+      "layer": "back"
+     }
+    ],
+    "extras": [
+     {
+      "count": 3,
+      "behavior": "walk_by",
+      "layer": "back"
+     }
+    ]
+   },
+   {
+    "id": "home",
+    "theme": "home_interior",
+    "ambience": "rain"
+   }
+  ],
+  "scenes": [
+   {
+    "id": "s1",
+    "purpose": "setup",
+    "location": "park",
+    "time": "day",
+    "weather": "clear",
+    "mood": "happy",
+    "seconds": 40,
+    "cast": [
+     "mia",
+     "bop",
+     "gran"
+    ],
+    "summary": "Mia and Bop blow bubbles in the park. Gran arrives with lunch and they eat on the bench.",
+    "events": [
+     "bubbles game, laughing",
+     "Gran walks in",
+     "Gran calls them for lunch",
+     "they eat together on the bench"
+    ],
+    "narration": [
+     "Mia and Bop loved Sunday picnics."
+    ]
+   },
+   {
+    "id": "s2",
+    "purpose": "incident",
+    "location": "park",
+    "time": "day",
+    "weather": "cloudy",
+    "mood": "tense",
+    "seconds": 20,
+    "cast": [
+     "mia",
+     "bop",
+     "gran"
+    ],
+    "summary": "Clouds roll in and it starts to rain. Gran leads everyone home at a run.",
+    "events": [
+     "Mia looks up, surprised",
+     "rain starts",
+     "Bop is scared",
+     "they run home together"
+    ],
+    "narration": []
+   },
+   {
+    "id": "s3",
+    "purpose": "resolution",
+    "location": "home",
+    "time": "day",
+    "weather": "rain",
+    "mood": "calm",
+    "seconds": 40,
+    "cast": [
+     "mia",
+     "bop",
+     "gran"
+    ],
+    "summary": "At home Mia is sad, until Gran suggests an inside picnic. They dance and take a selfie.",
+    "events": [
+     "Mia sighs",
+     "Gran's idea",
+     "dance together",
+     "selfie"
+    ],
+    "narration": [
+     "A rainy day is fun when you share it."
+    ]
+   }
+  ]
+ },
+ "story": {
+  "version": 2,
+  "meta": {
+   "title": "The Rainy Picnic",
+   "format": "landscape",
+   "seed": 512,
+   "kind": "story",
+   "audience": "kids",
+   "autoCamera": "story",
+   "speakerNames": true
+  },
+  "cast": [
+   {
+    "id": "mia",
+    "name": "Mia",
+    "body": "kid",
+    "color": "#a3124c",
+    "appearance": {
+     "hair": "ponytail",
+     "hairColor": "#5a3a1a"
+    },
+    "voice": {
+     "pitch": 1.3,
+     "timbre": "soft"
+    }
+   },
+   {
+    "id": "bop",
+    "name": "Bop",
+    "body": "buddy",
+    "color": "#2fd3c0",
+    "appearance": {
+     "accessories": {
+      "antenna": "#ffcc00"
+     }
+    },
+    "voice": {
+     "pitch": 1.6,
+     "timbre": "squeaky"
+    }
+   },
+   {
+    "id": "gran",
+    "name": "Gran",
+    "body": "elder",
+    "color": "#3d1f8c",
+    "voice": {
+     "pitch": 0.9,
+     "timbre": "soft"
+    }
+   }
+  ],
+  "locations": [
+   {
+    "id": "park",
+    "theme": "city_park",
+    "stageWidth": 3600,
+    "ambience": "park_birds",
+    "set": [
+     {
+      "id": "bench1",
+      "object": "bench",
+      "x": 1500
+     },
+     {
+      "id": "tree1",
+      "object": "tree_big",
+      "x": 700,
+      "layer": "back"
+     }
+    ],
+    "extras": [
+     {
+      "count": 3,
+      "behavior": "walk_by",
+      "layer": "back"
+     }
+    ]
+   },
+   {
+    "id": "home",
+    "theme": "home_interior",
+    "ambience": "rain"
+   }
+  ],
+  "scenes": [
+   {
+    "id": "s1",
+    "location": "park",
+    "time": "day",
+    "music": {
+     "mood": "happy"
+    },
+    "transitionIn": {
+     "type": "card",
+     "kind": "title",
+     "title": "The Rainy Picnic"
+    },
+    "cast": [
+     {
+      "id": "mia",
+      "x": 1200,
+      "facing": 1,
+      "face": "happy"
+     },
+     {
+      "id": "bop",
+      "x": 1450,
+      "facing": -1,
+      "face": "happy"
+     },
+     {
+      "id": "gran",
+      "x": 2300,
+      "facing": -1,
+      "hidden": true
+     }
+    ],
+    "beats": [
+     {
+      "id": "s1_n",
+      "at": 0.3,
+      "who": "world",
+      "do": "narrate",
+      "params": {
+       "text": "Mia and Bop loved Sunday picnics."
+      }
+     },
+     {
+      "id": "s1_bub",
+      "at": 1,
+      "macro": "activity",
+      "params": {
+       "name": "blow_bubbles",
+       "with": [
+        "bop",
+        "mia"
+       ],
+       "dur": 7,
+       "ending": "laugh"
+      }
+     },
+     {
+      "id": "s1_gran",
+      "at": {
+       "after": "s1_bub"
+      },
+      "macro": "enter",
+      "params": {
+       "who": "gran",
+       "side": "right",
+       "to": {
+        "x": 1900
+       }
+      }
+     },
+     {
+      "id": "s1_talk",
+      "at": {
+       "after": "s1_gran"
+      },
+      "macro": "dialogue",
+      "params": {
+       "lines": [
+        [
+         "gran",
+         "Lunch is ready, you two!",
+         "happy"
+        ],
+        [
+         "mia",
+         "Yay! Sandwiches!",
+         "laugh",
+         "shout"
+        ],
+        [
+         "bop",
+         "Bop loves sandwiches.",
+         "love"
+        ]
+       ]
+      }
+     },
+     {
+      "id": "s1_eat",
+      "at": {
+       "after": "s1_talk"
+      },
+      "macro": "activity",
+      "params": {
+       "name": "eat_together",
+       "with": [
+        "mia",
+        "bop",
+        "gran"
+       ],
+       "dur": 7,
+       "object": "bench1"
+      }
+     }
+    ]
+   },
+   {
+    "id": "s2",
+    "location": "park",
+    "time": "day",
+    "weather": "cloudy",
+    "music": {
+     "mood": "tense",
+     "intensity": 0.4
+    },
+    "transitionIn": {
+     "type": "dissolve",
+     "dur": 0.8
+    },
+    "cast": [
+     {
+      "id": "mia",
+      "x": 1300,
+      "facing": 1
+     },
+     {
+      "id": "bop",
+      "x": 1550,
+      "facing": -1
+     },
+     {
+      "id": "gran",
+      "x": 1900,
+      "facing": -1
+     }
+    ],
+    "beats": [
+     {
+      "id": "s2_look",
+      "at": 0.5,
+      "who": "mia",
+      "do": "look_around",
+      "face": "surprised"
+     },
+     {
+      "id": "s2_rain",
+      "at": {
+       "with": "s2_look",
+       "delay": 0.4
+      },
+      "who": "world",
+      "do": "set_weather",
+      "params": {
+       "weather": "rain",
+       "dur": 2
+      }
+     },
+     {
+      "id": "s2_talk",
+      "at": {
+       "after": "s2_look"
+      },
+      "macro": "dialogue",
+      "params": {
+       "lines": [
+        [
+         "bop",
+         "Water from the sky!",
+         "scared",
+         "shout"
+        ],
+        [
+         "gran",
+         "Quick, everyone home!",
+         "determined"
+        ]
+       ]
+      }
+     },
+     {
+      "id": "s2_run",
+      "at": {
+       "after": "s2_talk"
+      },
+      "macro": "walk_together",
+      "params": {
+       "who": [
+        "mia",
+        "bop",
+        "gran"
+       ],
+       "to": {
+        "exit": "left"
+       },
+       "pace": "run"
+      }
+     }
+    ]
+   },
+   {
+    "id": "s3",
+    "location": "home",
+    "time": "day",
+    "weather": "rain",
+    "music": {
+     "mood": "calm"
+    },
+    "transitionIn": {
+     "type": "card",
+     "kind": "time",
+     "text": "A little later..."
+    },
+    "cast": [
+     {
+      "id": "mia",
+      "x": 1300,
+      "facing": 1,
+      "face": "sad"
+     },
+     {
+      "id": "bop",
+      "x": 1550,
+      "facing": -1,
+      "face": "sad"
+     },
+     {
+      "id": "gran",
+      "x": 1900,
+      "facing": -1
+     }
+    ],
+    "beats": [
+     {
+      "id": "s3_sigh",
+      "at": 0.5,
+      "who": "mia",
+      "do": "sigh",
+      "say": "Our picnic is ruined."
+     },
+     {
+      "id": "s3_idea",
+      "at": {
+       "after": "s3_sigh",
+       "delay": 0.3
+      },
+      "macro": "dialogue",
+      "params": {
+       "lines": [
+        [
+         "gran",
+         "Who says a picnic needs grass?",
+         "happy"
+        ],
+        [
+         "bop",
+         "An inside picnic?",
+         "surprised"
+        ],
+        [
+         "mia",
+         "That is the best idea ever!",
+         "laugh",
+         "shout"
+        ]
+       ]
+      }
+     },
+     {
+      "id": "s3_dance",
+      "at": {
+       "after": "s3_idea"
+      },
+      "macro": "activity",
+      "params": {
+       "name": "dance_together",
+       "with": [
+        "mia",
+        "bop",
+        "gran"
+       ],
+       "reps": 3
+      }
+     },
+     {
+      "id": "s3_pic",
+      "at": {
+       "after": "s3_dance"
+      },
+      "macro": "activity",
+      "params": {
+       "name": "selfie",
+       "with": [
+        "mia",
+        "bop",
+        "gran"
+       ],
+       "reps": 2
+      }
+     },
+     {
+      "at": {
+       "after": "s3_pic",
+       "delay": 0.3
+      },
+      "who": "world",
+      "do": "narrate",
+      "params": {
+       "text": "A rainy day is fun when you share it."
+      }
+     },
+     {
+      "at": {
+       "after": "s3_pic",
+       "delay": 4
+      },
+      "who": "world",
+      "do": "end_card",
+      "params": {
+       "text": "The End"
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

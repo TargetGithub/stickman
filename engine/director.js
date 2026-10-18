@@ -286,6 +286,7 @@ function execute(director, beat, ctx) {
     if (director.story) emit({ type: "defeat", actor: beat.who, move: beat.do, beatId: beat.id }); // crowds gasp (S6)
   }
   if (REVIVE_MOVES.includes(beat.do)) director.dead.delete(beat.who);
+  if (beat.do === "return") actor.hp = actor.maxHp; // sparkles re-form a vanished character whole (S8: the end state shows it)
   if (beat.fx?.length) emit({ type: "fx", names: beat.fx, actor: beat.who, beatId: beat.id });
   if (beat.say) {
     const dur = beat.sayDur ?? (director.story ? readingTime(beat.say) : 1.2);

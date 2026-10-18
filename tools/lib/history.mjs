@@ -27,13 +27,17 @@ export const saveHistory = writeJson;
 
 /** History entry for a finished script. */
 export function historyEntry(premise, script, extra = {}) {
+  // Stories (v2): beats across scenes (macros by name), the first location's theme, the cast's colors.
+  const beats = script.version === 2 ? script.scenes.flatMap((s) => s.beats || []) : script.beats;
+  const theme = script.version === 2 ? script.locations?.[0]?.theme ?? script.scenes.find((s) => s.location)?.location : script.meta.theme;
   return {
     title: script.meta.title,
     logline: premise.logline,
-    theme: script.meta.theme ?? "white_stage",
+    theme: theme ?? "white_stage",
     format: script.meta.format,
-    moves: [...new Set(script.beats.filter((b) => b.who !== "world").map((b) => b.do))],
-    palette: script.characters.map((c) => c.color),
+    ...(script.version === 2 ? { kind: script.meta.kind } : {}),
+    moves: [...new Set(beats.filter((b) => b.who !== "world").map((b) => b.do ?? `@${b.macro}`))],
+    palette: (script.characters || script.cast).map((c) => c.color),
     ...extra,
   };
 }

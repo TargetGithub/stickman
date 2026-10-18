@@ -1,12 +1,18 @@
 #!/usr/bin/env node
-// LLM ideation, script writing, repair, scoring and review queue (spec 18). Milestone: M8.
+// LLM ideation, script writing, repair, scoring and review queue (spec 18). Milestones: M8, S8.
+// Three kinds of video:
+//   --fight   (default) a fight video of at least 3 minutes: a two-stage story (outline, then scene by scene)
+//             about rivals, rounds and a finale (STORY_SPEC 12, 18)
+//   --story   a story of at least 5 minutes, two-stage (STORY_SPEC 18)
+//   --clip    a short version 1 fight clip written in one go (the M8 pipeline, default 30 s)
 // Usage:
-//   node tools/generate.mjs [options]
+//   node tools/generate.mjs [--story | --fight | --clip] [options]
 //     --count N            premises to generate (default 1)
 //     --premise "text"     skip ideation and write this one premise
 //     --tone T             epic | comedic | parody | ... (default: mixed)
 //     --format F           landscape | portrait (default landscape)
-//     --length S           target length in seconds (default 30)
+//     --length S           minimum length in seconds (default: story 300, fight 180, clip 30)
+//     --audience A         kids (default) | general (stories and fights)
 //     --flagship           write with the flagship model (llm.config.json models.flagship)
 //     --critique           vision critique of a contact sheet, plus one revision round
 //     --no-render          stop after the script (no video); for batch metrics
@@ -35,6 +41,8 @@ import { createLlm, loadProvider, LlmError } from "./lib/llm/index.mjs";
 import { IDEATION_SCHEMA } from "./lib/llm_schema.mjs";
 import { ideationSystem, ideationRequest, writerSystem } from "./lib/prompt_pack.mjs";
 import { generateOne } from "./lib/pipeline.mjs";
+import { generateStory } from "./lib/story_pipeline.mjs";
+import { storyIdeationSystem, storyOutlineSystem, storySceneSystem } from "./lib/story_prompts.mjs";
 import { loadHistory, saveHistory, avoidList, historyEntry, appendReviewQueue } from "./lib/history.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -42,8 +50,9 @@ const args = process.argv.slice(2);
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
 
+const mode = flag("--story") ? "story" : flag("--clip") ? "clip" : "fight";
 if (flag("--print-prompt")) {
-  const text = writerSystem(catalog);
+  const text = mode === "clip" ? writerSystem(catalog) : `${storyOutlineSystem(catalog, { kind: mode })}\n\n=====\n\n${storySceneSystem(catalog)}`;
   console.log(text);
   console.error(`\n(${text.length} characters, about ${Math.round(text.length / 3.6)} tokens)`);
   process.exit(0);
@@ -55,7 +64,8 @@ const count = Math.max(1, Number(opt("--count", 1)));
 const opts = {
   tone: opt("--tone", null),
   format: opt("--format", "landscape"),
-  length: Number(opt("--length", 30)),
+  length: Number(opt("--length", { story: 300, fight: 180, clip: 30 }[mode])),
+  audience: opt("--audience", "kids"),
   flagship: flag("--flagship"),
   critique: flag("--critique"),
 };
@@ -89,6 +99,18 @@ function uniqueSlug(title) {
   return slug;
 }
 
+/** Story sheet PNG (a row of frames per scene) for the story critique. */
+async function renderStorySheet(script) {
+  const { loadBackend } = await import("./lib/canvas.mjs");
+  const { storySheet } = await import("./lib/review_images.mjs");
+  const backend = await loadBackend();
+  const engine = createEngine({ catalog });
+  engine.load(script);
+  const png = await backend.encodePng(storySheet(engine, backend));
+  engine.dispose();
+  return Buffer.from(png);
+}
+
 /** Contact sheet PNG for the vision critique (no video render needed). */
 async function renderSheet(script) {
   const { loadBackend } = await import("./lib/canvas.mjs");
@@ -116,7 +138,7 @@ if (opt("--premise", null)) {
   try {
     const r = await llm.json({
       model: cfg.models.ideation,
-      system: ideationSystem(catalog),
+      system: mode === "clip" ? ideationSystem(catalog) : storyIdeationSystem(catalog, opts.audience),
       schema: IDEATION_SCHEMA,
       effort: cfg.effort?.ideation,
       maxTokens: 16000,
@@ -136,7 +158,9 @@ for (const [i, premise] of premises.entries()) {
   log(`\n[${i + 1}/${premises.length}] ${premise.title}: ${premise.logline}`);
   let rec;
   try {
-    rec = await generateOne({ llm, catalog, cfg, log, renderSheet }, premise, { ...opts, seed: randomInt(1, 2 ** 31 - 1) });
+    rec = mode === "clip"
+      ? await generateOne({ llm, catalog, cfg, log, renderSheet }, premise, { ...opts, seed: randomInt(1, 2 ** 31 - 1) })
+      : await generateStory({ llm, catalog, cfg, log, renderStorySheet }, premise, { ...opts, kind: mode, minLength: opts.length, seed: randomInt(1, 2 ** 31 - 1) });
   } catch (e) {
     if (e instanceof LlmError && [401, 403].includes(e.status)) {
       console.error(`authentication failed: ${e.message}\nCheck the API key environment variable for this provider, or use tools/manual.mjs (copy-paste, no key).`);
@@ -146,7 +170,9 @@ for (const [i, premise] of premises.entries()) {
     rec = { premise, status: "error", error: e.message, attempts: [], firstPassValid: false, validAtAttempt: null };
   }
   results.push(rec);
-  if (rec.status !== "accepted") {
+  // Stories that came out a little short or under the score still go to review (their status says why).
+  const keep = rec.status === "accepted" || (mode !== "clip" && ["short", "low_score"].includes(rec.status) && rec.script);
+  if (!keep) {
     log(`    ${rec.status}${rec.score !== undefined ? ` (score ${rec.score})` : ""}: discarded`);
     continue;
   }
@@ -155,7 +181,8 @@ for (const [i, premise] of premises.entries()) {
   const scriptPath = join(OUT, "scripts", `${slug}.json`);
   mkdirSync(dirname(scriptPath), { recursive: true });
   writeFileSync(scriptPath, JSON.stringify(rec.script, null, 2) + "\n");
-  log(`    accepted: score ${rec.score} ${JSON.stringify(rec.scoreParts)} → ${scriptPath}`);
+  log(`    ${rec.status}: score ${rec.score} ${JSON.stringify(rec.scoreParts)} → ${scriptPath}`);
+  if (rec.outline) writeFileSync(join(OUT, "scripts", `${slug}.outline.json`), JSON.stringify(rec.outline, null, 2) + "\n");
 
   let rendered = false;
   if (!flag("--no-render")) {
@@ -168,6 +195,8 @@ for (const [i, premise] of premises.entries()) {
   const n = appendReviewQueue(queueFile, {
     slug,
     status: "pending_review",
+    kind: mode,
+    generation: rec.status,
     createdAt: new Date().toISOString(),
     title: rec.metadata.title,
     scriptTitle: rec.script.meta.title,
@@ -195,9 +224,11 @@ const summary = {
   provider: provider.name,
   options: { count, ...opts },
   premises: results.length,
+  mode,
   accepted: results.filter((r) => r.status === "accepted").length,
+  short: results.filter((r) => r.status === "short").length,
   lowScore: results.filter((r) => r.status === "low_score").length,
-  invalid: results.filter((r) => r.status === "invalid").length,
+  invalid: results.filter((r) => r.status.startsWith("invalid")).length,
   errors: results.filter((r) => r.status === "error").length,
   firstPassValidity: rate((r) => r.firstPassValid),
   validWithinAttempts: rate((r) => r.validAtAttempt !== null),

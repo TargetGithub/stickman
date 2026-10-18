@@ -236,7 +236,7 @@ export function simulate(script, catalog, opts = {}) {
     anchors.push(...director.anchors);
     beats.push(...director.beats.map((b) => ({ ...b, scene: si })));
     dead = director.dead;
-    for (const a of actors) carry.set(a.id, { hp: a.hp, prop: a.prop ? a.prop.name : null, face: a.face });
+    for (const a of actors) carry.set(a.id, { hp: a.hp, prop: a.prop ? a.prop.name : null, face: a.face, hidden: !!a.hidden, scene: sid });
     scenes.push({
       index: si, id: sid, theme: flat.meta.theme, stageWidth: flat.meta.stageWidth, look: flat.look,
       location: flat.location, set: [...(flat.location?.set || []), ...(flat.scene.set || [])],
@@ -271,6 +271,8 @@ export function simulate(script, catalog, opts = {}) {
     meta: outMeta,
     story,
     scenes,
+    // Where everyone was when they last appeared (S8: the next scene's writer starts from here).
+    endState: Object.fromEntries([...carry].map(([id, c]) => [id, { ...c, hp: Math.round(c.hp), defeated: dead.has(id) }])),
     extraMoves: scenes.some((sc) => sc.extras.length) ? Object.fromEntries(EXTRA_MOVES.map((n) => [n, moves.get(n)])) : null,
     characters: story.cast.map((c) => ({ id: c.id, style: c.style || {} })),
   };

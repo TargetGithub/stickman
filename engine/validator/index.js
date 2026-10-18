@@ -62,6 +62,7 @@ function pacing(script, sim, moves, opts = {}) {
  */
 export function validate(script, catalog) {
   const result = (stage, issues, sim = null) => ({
+    ...(sim?.story && !sim.story.legacy ? { scenes: sim.scenes.map((sc) => ({ id: sc.id, seconds: Number((sc.frames / 60).toFixed(2)) })), endState: sim.endState } : {}),
     ok: !issues.some((i) => !isWarning(i)),
     errors: issues.filter((i) => !isWarning(i)).map(({ severity, ...i }) => i),
     warnings: issues.filter(isWarning).map(({ severity, ...i }) => i),
@@ -190,18 +191,19 @@ function checkSchemaV2(script) {
   return out;
 }
 
-/** W_DIALOGUE_FAST: a character's next line starts while its previous bubble is still up. */
+/** W_DIALOGUE_FAST: a character's next line starts while its previous bubble is still up (in the same scene). */
 function overlappingLines(sim) {
   const out = [];
   const last = new Map();
   for (const e of sim.events.filter((x) => x.type === "say")) {
-    const prev = last.get(e.actor);
+    const key = `${e.scene}:${e.actor}`; // bubbles end with their scene
+    const prev = last.get(key);
     if (prev && e.videoT < prev.videoT + prev.dur - 0.05) {
       const beat = sim.beats.find((b) => b.id === e.beatId);
       out.push({ code: "W_DIALOGUE_FAST", path: beat?.path ?? "scenes", message: `'${e.actor}' says "${e.text}" while "${prev.text}" is still showing.`,
         fix: `Start the line later: "at": {"after": "<previous beat>", "delay": ${(prev.dur).toFixed(1)}} or more.` });
     }
-    last.set(e.actor, e);
+    last.set(key, e);
   }
   return out;
 }

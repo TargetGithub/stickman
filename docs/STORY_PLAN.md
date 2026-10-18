@@ -220,6 +220,16 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 | S8.5 Story critique: contact sheet per scene plus a story-level critique | Pipeline |
 | S8.6 Prompt/validator sync test extended to all new codes | `tests/unit/generate.test.js` |
 
+**Status (2026-10-18):** built and committed; the exit generations (5 stories, 3 fight videos from a hosted model) are left to Sridhar.
+- **Prompt pack:** `prompts/story_*.md`, with catalog tables (`tools/lib/story_tables.mjs`) and two example stories (`prompts/examples/stories/`).
+- **Pipeline:** `tools/lib/story_pipeline.mjs`. Outline → each scene validated in the story so far and repaired on its own → assemble → one extend round when short → score (`story_score.mjs`) → optional critique of a story sheet with scene revisions → metadata.
+- **Tools:** `generate.mjs --fight` (now the default, 180 s), `--story` (300 s) and `--clip` (the M8 v1 clips). `manual.mjs` gained `story-outline`, `check-outline`, `story-scene N`, `check-scene N`, `extend N` and `assemble`.
+- **Tests:** the prompt/validator sync covers every code (`tests/unit/story_gen.test.js`). The whole pipeline runs offline with the mock.
+- **Samples:** with no API key available, the copy-paste flow was tested with Claude acting as the chat model:
+  - `scripts/samples/s8_lumi_story.json`: a 337 s kids story, no warnings, score 100, rendered to `out/demos/s8_lumi_story/`;
+  - `scripts/samples/s8_fight_video.json`: a 199 s fight video, first 176 s, then lengthened with `extend`; rendered to `out/demos/s8_fight_video/`.
+- **Not done yet:** the exit criteria need generations from a hosted model (an API key, or a chat app through the copy-paste flow). Local models are not used.
+
 **Exit:**
 - 5 generated stories (≥ 5 min each) and 3 fight videos (≥ 3 min each) reviewed.
 - At least 3 stories and 2 fight videos are judged watchable without hand edits.

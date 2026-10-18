@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance, S4 objects and set pieces, S5 interactions, activities and defeat styles, S6 story compiler, macros, story camera, extras and layers, S7 generated music and ambience implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance, S4 objects and set pieces, S5 interactions, activities and defeat styles, S6 story compiler, macros, story camera, extras and layers, S7 generated music and ambience, S8 the LLM story pipeline implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -716,6 +716,18 @@ Other changes:
   - emotional beats (faces other than neutral);
   - narration coverage;
   - the v1 fight score inside fight scenes.
+
+**As built (S8):**
+- **Code:** `tools/lib/story_prompts.mjs` (prompt builders, assembly, outline checks), `story_tables.mjs` (tables generated from the catalog), `story_pipeline.mjs`, `story_score.mjs` and `manual_story.mjs`. The prompts are `prompts/story_*.md`; the examples are `prompts/examples/stories/` (a slice-of-life story and the reference arc, each with its outline).
+- **Outline:** plain JSON with `cast` (plus `role`), `locations` and `scenes` (`id`, `purpose`, `location`, `time`, `weather`, `mood`, `seconds`, `cast`, `summary`, `events`, `narration`).
+  - It is checked before any scene is written: ids, places, moods and scene casts must exist; the lengths must add up to at least 105% of the minimum, with about one scene per 40 s (45 s for fights).
+  - Looks, themes, objects and contrast are checked by running the validator on a skeleton story.
+- **Scenes:** each reply is fitted to its outline entry (its id and location), assembled with the scenes before it, and validated.
+  - Errors in that scene, or not tied to any scene, go back to the same conversation.
+  - The next request carries the dry run's end state: hp, defeated, hidden, held prop and face per character (`validate()` returns `endState` and per-scene `scenes` lengths for v2 scripts).
+- **Fight videos** are the same pipeline with `kind: "fight"`: intro, rounds, breathers, finale and a victory; a scene may also be a `@fight_card` scene macro. `generate.mjs` makes fight videos by default (`--fight`, 180 s), stories with `--story` (300 s), and v1 clips with `--clip`.
+- **Score parts:** arc 20, variety 15, emotion 15, narration 10, action 15 (only for scenes planned as fights), length 15, clean 10 (a kids-rule warning costs 5).
+  - Outcomes: `accepted`, `short` (still under the minimum after the extend round), `low_score`, `invalid_outline`, `invalid_scene` or `invalid_story`. Short and low-score stories are still queued for review.
 
 ## 19. Limits and performance
 
