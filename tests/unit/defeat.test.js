@@ -5,7 +5,7 @@ import { simulate, movesFor, v1MoveNames } from "../../engine/sim.js";
 import { frameView } from "../../engine/framestore.js";
 import { unpackJoints } from "../../engine/skeleton.js";
 import { validate } from "../../engine/validator/index.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const moves = movesFor(catalog);
 

@@ -1,6 +1,6 @@
 // Activities at runtime (STORY_SPEC 10, S5.6). Milestone: S5.
 // The world command {"do": "activity", "params": { name, with, reps?, dur?, intensity?, ending?, winner?, object? }}
-// starts one; data comes from catalog.activities (data/activities.js). Phases:
+// starts one; data comes from catalog.activities (catalog/story/activities.json). Phases:
 //   setup   the players walk to their places (around `object` if given, else around where they stand)
 //   run     the runner: "loop" here (each player repeats its role's moves), "rally" in rally.js
 //   ending  the ending moves (laugh, win, miss, hug), then an activityEnd event (the beat's end anchor)

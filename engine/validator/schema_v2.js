@@ -34,7 +34,7 @@ const appearance = {
   type: "object",
   additionalProperties: false,
   properties: {
-    // Option names are catalog data (data/appearance.js), checked semantically (E_APPEARANCE).
+    // Option names are catalog data (catalog/characters/appearance.json), checked semantically (E_APPEARANCE).
     eyes: { type: "string" },
     brows: { type: "string" },
     mouthStyle: { type: "string" },

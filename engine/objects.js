@@ -1,5 +1,5 @@
 // Objects in the world (STORY_SPEC 8). Milestone: S4. Behaviors: static, seat, holdable, ball,
-// floater, vehicle, breakable (data/objects.js). Heights (y) are measured up from the floor.
+// floater, vehicle, breakable (catalog/world/objects.json). Heights (y) are measured up from the floor.
 // Balls and vehicles step with story dt; floaters are closed-form in time (like particles).
 // Changes are reported as "object" events ({ what, id, kind, x, y, fx?, sfx?, volume? }) so the
 // presentation can add effects and sounds, and the renderer can show static objects from the log.

@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 import { validate } from "../../engine/index.js";
 import { createLlm } from "../../tools/lib/llm/index.mjs";
 import { createMockAdapter, defaultResponder } from "../../tools/lib/llm/mock.mjs";

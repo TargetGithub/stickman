@@ -1,0 +1,51 @@
+{
+  "modes": {
+    "follow": {
+      "description": "Keeps the `targets` (default: everyone) in frame; the fight camera.",
+      "needs": [],
+      "example": { "at": 0, "mode": "follow", "targets": ["kai", "vex"], "zoom": "auto", "padding": 300 }
+    },
+    "focus": {
+      "description": "Centers on one `target`, e.g. on the biggest hit.",
+      "needs": ["target"],
+      "example": { "at": 4, "mode": "focus", "target": "kai", "zoom": 1.6 }
+    },
+    "fixed": {
+      "description": "Holds still on stage position `x`.",
+      "needs": ["x"],
+      "example": { "at": 0, "mode": "fixed", "x": 1600, "zoom": 1 }
+    },
+    "pan": {
+      "description": "Pans to stage position `x` over `dur` seconds.",
+      "needs": ["x"],
+      "example": { "at": 2, "mode": "pan", "x": 2400, "dur": 2 }
+    },
+    "push": {
+      "description": "Slowly pushes in (zooms) over `dur` seconds.",
+      "needs": [],
+      "example": { "at": 3, "mode": "push", "zoom": 1.5, "dur": 2 }
+    },
+    "two_shot": {
+      "description": "Frames two characters tightly (talking).",
+      "needs": ["targets"],
+      "example": { "at": 0, "mode": "two_shot", "targets": ["kai", "pip"] }
+    },
+    "close_up": {
+      "description": "Head and shoulders of `target` (strong feelings).",
+      "needs": ["target"],
+      "example": { "at": 0, "mode": "close_up", "target": "kai" }
+    },
+    "wide": { "description": "The whole stage (openings, crowds).", "needs": [], "example": { "at": 0, "mode": "wide" } },
+    "over_shoulder": {
+      "description": "Past `from`, looking at `target`.",
+      "needs": ["target", "from"],
+      "example": { "at": 0, "mode": "over_shoulder", "target": "vex", "from": "kai" }
+    },
+    "track": {
+      "description": "Follows `target` with lead room ahead (travel, chases).",
+      "needs": ["target"],
+      "example": { "at": 0, "mode": "track", "target": "kai" }
+    }
+  },
+  "auto": "Story scenes without camera keys get the story camera: a wide at the start, two-shots while someone talks, close-ups on cry, furious or determined faces, and the fight camera in fights. A shot beat or a camera key always wins."
+}

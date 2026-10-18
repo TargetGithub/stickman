@@ -4,7 +4,7 @@ import { createStore, writeFrame, frameView, jointsAt, storeBytes, MOUTHS } from
 import { createActor, poseActor } from "../../engine/actor.js";
 import { fillPose } from "../../engine/pose.js";
 import { unpackJoints } from "../../engine/skeleton.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 function actors() {
   return [createActor({ id: "a", x: 900, color: "#22aaff" }), createActor({ id: "b", x: 1300, facing: -1, scale: 2.2, color: "#ff3b3b", hp: 200 })].map((a) => {

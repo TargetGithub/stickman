@@ -7,7 +7,7 @@ import { validate, buildJsonSchema, WORLD_COMMANDS } from "../../engine/validato
 import { checkSchema, jsonSchema } from "../../engine/validator/schema.js";
 import { closestMatch } from "../../engine/validator/report.js";
 import { movesFor } from "../../engine/sim.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const dir = (group) => new URL(`../fixtures/${group}/`, import.meta.url);
 const load = (url) => JSON.parse(readFileSync(url, "utf8"));

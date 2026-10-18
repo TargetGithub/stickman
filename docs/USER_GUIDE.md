@@ -88,7 +88,7 @@ A script is one JSON object with five parts:
 }
 ```
 
-The best starting point is a sample: copy `scripts/samples/rooftop_rumble.json` or one of `prompts/examples/*.json` and change it.
+The best starting point is a sample: copy `scripts/samples/rooftop_rumble.json` or one of `catalog/examples/clips/*.json` and change it.
 
 ### 3.1 meta
 
@@ -233,6 +233,8 @@ The `camera` list holds keys that use the same `at` forms as beats.
 
 ## 4. Moves, effects and other catalog items
 
+Everything in this section is catalog data in `catalog/` (JSON, one description per entry; see `catalog/README.md` for the files and how to add things). `catalog/generated/context/` lists all of it compactly: `03_moves.md` has every move with what it does, `02_characters.md` the bodies, looks, faces, voices and ready-made characters, `05_places_and_objects.md` the themes and objects.
+
 There are 72 moves in seven groups. See them all animated at http://localhost:5173/web/catalog.html (after `npm run serve`), or print the full table with durations, default params and notes:
 
 ```bash
@@ -332,6 +334,10 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `node tools/svg_import.mjs <file.svg> --name <kind>` | Turn an SVG drawing into an object entry (review image in out/drafts/) |
 | `node tools/draft.mjs object\|theme\|move "<description>"` | Draft a new object, theme or move with an LLM (`--mock`, `--manual` for copy-paste), checked and rendered for review |
 | `node tools/move_sheet.mjs out.png --category life --plans stickman,buddy` | Filmstrips of a batch of moves on chosen body plans |
+| `npm run catalog:build` | Check `catalog/` (schemas, descriptions, every move on every body plan, every example) and rewrite `catalog/generated/` and `catalog/manifest.json`; run it after every catalog change |
+| `npm run catalog:check` | The same checks, without writing; fails when a generated file is stale |
+| `npm run catalog:pack` | Build, then zip the AI context pack into `out/context_pack.zip` (section 7.6) |
+| `node tools/draft.mjs ... --reply <file> --write` | Add a reviewed draft to `catalog/` (tag `draft`; moves: `--file <moves file>`) |
 
 `record` options:
 
@@ -357,15 +363,16 @@ Browser pages (after `npm run serve`):
 
 ## 7. Generating scripts with an LLM
 
-Any capable LLM can write scripts. The engine doesn't depend on any AI company: the validator checks every script no matter who wrote it. There are three ways to work:
+Any capable LLM can write scripts. The engine doesn't depend on any AI company: the validator checks every script no matter who wrote it. There are four ways to work:
 
 | Option | Needs | Best for |
 |---|---|---|
 | **A. Copy-paste** with ChatGPT, Claude.ai, Gemini, Copilot or any chat app | Just a browser, no API key | Trying ideas, one-off videos, no setup |
 | **B. Automatic** through an API: Anthropic, OpenAI, Google Gemini, OpenRouter, Groq, Mistral, ... | An API key | Batches of videos, unattended runs |
 | **C. Offline mock** | Nothing | Checking the pipeline works, no cost |
+| **D. A project with the catalog pack** (Claude Desktop Projects, any chat with project files) | A chat app with project knowledge | Many videos without pasting the catalog every time (section 7.6) |
 
-All three use the same prompt pack (`prompts/`), the same validator and the same output folders.
+All of them use the same catalog tables (rendered from `catalog/`), the same validator and the same output folders.
 
 ### 7.1 Option A: copy-paste with any chat (no API key)
 
@@ -586,7 +593,18 @@ The prompts are plain text in `prompts/`:
 | `critique.md` | Video review |
 | `metadata.md` | YouTube title and description |
 
-The example scripts in `prompts/examples/` teach the format by example; keep them valid (the tests check this). Catalog tables are generated from `data/`, so new moves appear in every prompt automatically, in all three options. To see exactly what a model receives, run `node tools/generate.mjs --print-prompt`.
+The example scripts in `catalog/examples/` teach the format by example; keep them valid (the catalog build and the tests check this). Catalog tables are generated from `catalog/`, so new moves appear in every prompt automatically, in all three options. To see exactly what a model receives, run `node tools/generate.mjs --print-prompt`.
+
+### 7.6 Option D: a project with the catalog pack (Claude Desktop and other chat apps with project files)
+
+Instead of pasting the catalog tables into every prompt, upload them once. The pack is about 70 KB (about 17,000 tokens) of Markdown tables, built from the catalog.
+
+1. Run `npm run catalog:pack`. It writes `out/context_pack.zip` (the files are also in `catalog/generated/context/`).
+2. In Claude Desktop, create a Project. Add the nine `0*_*.md` files as project knowledge. `00`-`02` and `05`-`07` are the core; `03_moves.md`, `04_effects_and_sound.md` and `08_examples.md` are the reference tier. Add both tiers when you can.
+3. Paste `project_instructions.md` into the project's instructions.
+4. Ask for one thing per message: a clip, a story outline, or one scene (with the outline entry and the end state the copy-paste tool prints). Check every reply with `node tools/manual.mjs check --paste` (clips) or the story commands in 7.4.
+
+`00_start_here.md` and the instructions carry the catalog version (`npm run catalog:build` prints it). When it changes, upload the pack again. Short prompts for projects (`--lean`) come with milestone C4.
 
 ## 8. Sound and music
 
@@ -621,7 +639,7 @@ The engine is plain JavaScript with no dependencies and runs in Node and in the 
 
 ```js
 import { createEngine } from "./engine/index.js";
-import { catalog } from "./data/index.js";
+import { catalog } from "./catalog/index.js";   // the browser: the same import (it fetches the JSON files)
 
 const engine = createEngine({ catalog });
 const result = engine.load(script);          // validates and simulates

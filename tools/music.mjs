@@ -11,7 +11,7 @@ import { renderMusic } from "./lib/music_gen.mjs";
 import { measureLoudness } from "./lib/loudness.mjs";
 import { writeWav } from "./lib/wav.mjs";
 import { SR } from "./lib/mixer.mjs";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const opt = (name, d) => (args.includes(name) ? args[args.indexOf(name) + 1] : d);

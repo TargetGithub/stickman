@@ -1,6 +1,6 @@
 # Catalog Specification: one folder for the engine, the showcase page and AI tools
 
-Version 0.2 (decisions in section 13 made by Sridhar, 2026-10-18). Owner: Sridhar. Related: [STORY_SPEC.md](STORY_SPEC.md), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-006 catalog injection), [USER_GUIDE.md](USER_GUIDE.md) section 7.
+Version 0.3 (decisions in section 13 made by Sridhar, 2026-10-18). **Status:** C1-C3 built, waiting for review (implementation notes in section 13.1); C4 and C5 next. Owner: Sridhar. Related: [STORY_SPEC.md](STORY_SPEC.md), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-006 catalog injection), [USER_GUIDE.md](USER_GUIDE.md) section 7.
 
 ## 1. Goal
 
@@ -47,7 +47,8 @@ catalog/
     bodies.json                body plans: dims, draw style, torsoWidth, posture, default appearance, avoid list
     appearance.json            eyes, brows, mouthStyle, hair, outfit, accessories, conflicts
     faces.json                 16 faces: eye/brow/mouth shapes
-    voices.json                timbres, pitch/speed ranges, plus descriptions
+    voices.json                timbres, plus descriptions (the ranges are in generated/engine_vocab.json)
+    roles.json                 the closed list of preset roles
     presets/                   NEW: ready-made characters, one JSON file per preset (section 4.1); not
                                required by the engine
 
@@ -79,6 +80,10 @@ catalog/
     transitions.json           transitions and cards
     codes.json                 every validator code: meaning and typical fix (replaces CODE_HELP)
     format.md                  the script format (v1 clip and v2 story) in short, with the four `at` forms
+    start.md, rules.md         the pack's prose: what the engine does, the key rules and the checklist
+    project_instructions.md    the project instructions for chat apps (the build adds the version)
+
+  schemas/                     JSON Schemas for the authored files (hand-written)
 
   examples/
     clips/*.json               v1 example scripts (today prompts/examples/*.json)
@@ -274,6 +279,19 @@ The CLAUDE.md rules change accordingly:
 2. **Character presets:** one file per preset under `catalog/characters/presets/`, grouped by a closed list of roles and validated by the engine's cast checks. 12 starter presets in C2, more added as files (section 4.1).
 3. **Showcase hosting:** local only (`npm run serve`) for now; static export deferred.
 4. **Context pack format:** chosen for knowledge per token: Markdown tables only, defaults omitted, no duplication, a core and a reference tier (section 7.1).
+
+### 13.1 Implementation notes (C1-C3)
+
+Choices made while building, for review:
+- **Loader:** `catalog/index.js` uses top-level await: fs in Node, fetch (relative to the module) in the browser, so the existing pages keep a plain `import { catalog }`. `loadCatalog(read)` accepts a sync or an async reader.
+- **Legacy copy:** `data/*.js` stays frozen until C5; `data/legacy.js` assembles the old catalog for `tools/migrate_catalog.mjs` and the migration test, and `data/index.js` re-exports `catalog/index.js`. Every importer now uses `catalog/index.js`. The migration test compares every legacy entry (descriptions and tags aside); entries added later are left out of the comparison.
+- **Descriptions:** drafted in this session (no local models), for review. Poses and keyframes have none. Option lists (appearance, SFX keys, voices, ambience, roles) have a description but no tags. SFX keys gained a `category`.
+- **Unchanged outputs:** the system prompts (writer, ideation, outline, scene, story ideation), the v1 catalog tables and the JSON Schema are byte-identical to before; `CODE_HELP` and the macro help now read `catalog/docs/` with the same wording. `generate.mjs --mock` with a fixed seed gives identical scripts and run summaries for clip, story and fight.
+- **Move checks:** the build runs `checkMove` from the draft tool on every move and body plan, without the draft-only style rules (0.2-6 s duration, feet on the floor at the start and end), which three approved moves (`face`, `duck`, `throw_prop`) do not follow. `needsProp: "any"` is now handled.
+- **Examples:** every world command, macro, camera mode, transition and card has an example that the build validates in a small story (`tools/lib/catalog_harness.mjs`, seed 3). Finding: with other seeds, `@brawl` and `@gauntlet` examples can hit `E_SIM_UNREACHABLE` (a macro positioning issue, not fixed here: no engine changes in this work).
+- **Pack:** 69 KB in all (about 17,000 tokens), core 41 KB, every file within its budget. Presets show their cast fields as compact JSON and the themes they are hard to see on. Macro examples sit in `08_examples.md`. Each world command is listed once (screen effects in 04, places and objects in 05, story commands in 06).
+- **Version:** `1-<hash>`: the catalog format version and a hash of the generated files; it is in `manifest.json`, `00_start_here.md` and `project_instructions.md`.
+- **Drafts:** `tools/draft.mjs ... --write` and `tools/svg_import.mjs ... --write` add a reviewed draft to `catalog/` with its description and the tag `draft`.
 
 ## 14. Kickoff prompt for the new chat
 

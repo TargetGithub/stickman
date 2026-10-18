@@ -1,5 +1,5 @@
 // Defeat styles at runtime (STORY_SPEC 13, S5.5). Milestone: S5.
-// The moves live in data/moves/defeat.js; their event flags are handled here:
+// The moves live in catalog/moves/defeat.json; their event flags are handled here:
 //   fade { to, dur }  opacity over story time (to 0: the character is hidden at the end)
 //   reform            a vanished character reappears (return)
 //   cage              a cage object drops over the character (captured)

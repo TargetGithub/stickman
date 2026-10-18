@@ -1,0 +1,323 @@
+[
+  {
+    "name": "idle",
+    "description": "Stands in a relaxed fighting stance, breathing; loops until the next beat.",
+    "tags": ["stance", "loop"],
+    "category": "movement",
+    "duration": 2.4,
+    "flags": { "loop": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      { "t": 0.5, "pose": { "lUA": 15, "rUA": -15, "lFA": 12, "rFA": 12, "head": 2, "dy": 2 }, "ease": "inOutQuad" },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "walk",
+    "description": "Walks forward at an easy pace; loops until it has gone `distance` px or `cycles` steps.",
+    "tags": ["travel", "loop"],
+    "category": "movement",
+    "duration": 1,
+    "params": { "stride": 120 },
+    "flags": { "loop": true },
+    "keys": [
+      { "t": 0, "pose": "walkA" },
+      { "t": 0.25, "pose": "walkPassA" },
+      { "t": 0.5, "pose": "walkB" },
+      { "t": 0.75, "pose": "walkPassB" },
+      { "t": 1, "pose": "walkA" }
+    ],
+    "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }],
+    "events": [{ "t": 0, "sfx": "step" }, { "t": 0.5, "sfx": "step" }]
+  },
+  {
+    "name": "run",
+    "description": "Runs forward with long strides; loops until `distance` px or `cycles`.",
+    "tags": ["travel", "loop", "fast"],
+    "category": "movement",
+    "duration": 0.6,
+    "params": { "stride": 330 },
+    "flags": { "loop": true },
+    "keys": [
+      { "t": 0, "pose": "runA", "ease": "inOutQuad" },
+      { "t": 0.5, "pose": "runB", "ease": "inOutQuad" },
+      { "t": 1, "pose": "runA" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.25, "dx": "stride*0.25", "dy": -10, "ease": "inQuad" },
+      { "t": 0.5, "dx": "stride*0.5", "dy": 0, "ease": "outQuad" },
+      { "t": 0.75, "dx": "stride*0.75", "dy": -10, "ease": "inQuad" },
+      { "t": 1, "dx": "stride", "dy": 0 }
+    ],
+    "events": [{ "t": 0, "sfx": "step", "fx": ["dust_run"] }, { "t": 0.5, "sfx": "step", "fx": ["dust_run"] }]
+  },
+  {
+    "name": "dodge_back",
+    "description": "Hops back out of reach; hits pass through during the hop.",
+    "tags": ["evade", "fight"],
+    "category": "movement",
+    "duration": 0.5,
+    "params": { "distance_back": 120 },
+    "flags": { "invulnerable": [0.1, 0.6] },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.35, "pose": "dodgeBack", "ease": "linear" },
+      { "t": 0.55, "pose": "dodgeBack", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "outCubic" },
+      { "t": 0.4, "dx": "-distance_back", "dy": 0, "ease": "outQuad" },
+      { "t": 1, "dx": "-distance_back*1.08", "dy": 0 }
+    ],
+    "events": [{ "t": 0.05, "sfx": "whoosh" }]
+  },
+  {
+    "name": "jump",
+    "description": "Jumps straight up (or forward with `travel`) and lands.",
+    "tags": ["air", "travel"],
+    "category": "movement",
+    "duration": 1,
+    "params": { "height": 150, "travel": 0 },
+    "flags": { "airborne": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      { "t": 0.18, "pose": "crouch", "ease": "outCubic" },
+      { "t": 0.3, "pose": "jumpUp", "ease": "outQuad" },
+      { "t": 0.52, "pose": "jumpPeak", "ease": "inOutQuad" },
+      { "t": 0.72, "pose": "jumpFall", "ease": "outQuad" },
+      { "t": 0.82, "pose": "crouch", "snapHard": true, "ease": "inOutQuad" },
+      { "t": 1, "pose": "stand" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.24, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.52, "dx": "travel*0.5", "dy": "-height", "ease": "inQuad" },
+      { "t": 0.8, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "events": [{ "t": 0.24, "sfx": "whoosh" }, { "t": 0.8, "sfx": "land", "fx": ["dust_land"] }]
+  },
+  {
+    "name": "dash",
+    "description": "A quick low burst forward in guard stance.",
+    "tags": ["travel", "fast", "fight"],
+    "category": "movement",
+    "duration": 0.4,
+    "params": { "travel": 280 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.25, "pose": "dash", "ease": "linear" },
+      { "t": 0.7, "pose": "dash", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "outCubic" },
+      { "t": 0.75, "dx": "travel", "dy": 0, "ease": "outQuad" },
+      { "t": 1, "dx": "travel*1.05", "dy": 0 }
+    ],
+    "events": [{ "t": 0.05, "sfx": "whoosh", "fx": ["speed_lines", "dust_run"] }]
+  },
+  {
+    "name": "slide",
+    "description": "Slides along the floor feet first, under attacks.",
+    "tags": ["evade", "travel"],
+    "category": "movement",
+    "duration": 0.7,
+    "params": { "travel": 320 },
+    "flags": { "invulnerable": [0.15, 0.75] },
+    "keys": [
+      { "t": 0, "pose": "runA", "ease": "outQuad" },
+      { "t": 0.18, "pose": "slide", "ease": "linear" },
+      { "t": 0.75, "pose": "slide", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.8, "dx": "travel", "dy": 0, "ease": "outQuad" },
+      { "t": 1, "dx": "travel*1.04", "dy": 0 }
+    ],
+    "events": [{ "t": 0.15, "sfx": "slip", "fx": ["dust_run"] }, { "t": 0.45, "fx": ["dust_run"] }]
+  },
+  {
+    "name": "backflip",
+    "description": "A full backward flip that travels back and lands on the feet.",
+    "tags": ["air", "acrobatic", "evade"],
+    "category": "movement",
+    "duration": 1,
+    "params": { "height": 170, "travel": 130 },
+    "flags": { "airborne": true },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.15, "pose": "crouch", "ease": "outCubic" },
+      {
+        "t": 0.3,
+        "pose": { "rot": -40, "lean": -10, "head": -20, "lUA": 150, "lFA": 10, "rUA": 140, "rFA": 20, "lTH": -10, "lSH": 10, "rTH": 0, "rSH": 20 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.45,
+        "pose": { "rot": -150, "lean": 20, "head": 20, "lUA": 70, "lFA": 110, "rUA": 60, "rFA": 120, "lTH": 130, "lSH": 150, "rTH": 125, "rSH": 145 },
+        "ease": "linear"
+      },
+      { "t": 0.62, "pose": { "rot": -290 }, "ease": "outQuad" },
+      {
+        "t": 0.78,
+        "pose": { "rot": -360, "lean": 28, "head": -18, "lUA": 50, "lFA": 100, "rUA": 35, "rFA": 110, "lTH": 60, "lSH": 110, "rTH": 80, "rSH": 130 },
+        "snapHard": true,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "rot": -360, "lean": 10, "head": -4, "lUA": 60, "lFA": 100, "rUA": 40, "rFA": 110, "lTH": -14, "lSH": 20, "rTH": 16, "rSH": 24 }
+      }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.22, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.48, "dx": "-travel*0.5", "dy": "-height", "ease": "inQuad" },
+      { "t": 0.76, "dx": "-travel", "dy": 0 },
+      { "t": 1, "dx": "-travel", "dy": 0 }
+    ],
+    "events": [{ "t": 0.22, "sfx": "whoosh" }, { "t": 0.76, "sfx": "land", "fx": ["dust_land"] }]
+  },
+  {
+    "name": "frontflip",
+    "description": "A full forward flip that travels ahead and lands on the feet.",
+    "tags": ["air", "acrobatic"],
+    "category": "movement",
+    "duration": 1,
+    "params": { "height": 170, "travel": 180 },
+    "flags": { "airborne": true },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.15, "pose": "crouch", "ease": "outCubic" },
+      {
+        "t": 0.3,
+        "pose": { "rot": 40, "lean": 10, "head": 10, "lUA": 150, "lFA": 10, "rUA": 140, "rFA": 20, "lTH": -10, "lSH": 10, "rTH": 0, "rSH": 20 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.45,
+        "pose": { "rot": 150, "lean": 20, "head": 20, "lUA": 70, "lFA": 110, "rUA": 60, "rFA": 120, "lTH": 130, "lSH": 150, "rTH": 125, "rSH": 145 },
+        "ease": "linear"
+      },
+      { "t": 0.62, "pose": { "rot": 290 }, "ease": "outQuad" },
+      {
+        "t": 0.78,
+        "pose": { "rot": 360, "lean": 28, "head": -18, "lUA": 50, "lFA": 100, "rUA": 35, "rFA": 110, "lTH": 60, "lSH": 110, "rTH": 80, "rSH": 130 },
+        "snapHard": true,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "rot": 360, "lean": 10, "head": -4, "lUA": 60, "lFA": 100, "rUA": 40, "rFA": 110, "lTH": -14, "lSH": 20, "rTH": 16, "rSH": 24 }
+      }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.22, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.48, "dx": "travel*0.5", "dy": "-height", "ease": "inQuad" },
+      { "t": 0.76, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "events": [{ "t": 0.22, "sfx": "whoosh" }, { "t": 0.76, "sfx": "land", "fx": ["dust_land"] }]
+  },
+  {
+    "name": "dodge_roll",
+    "description": "Rolls forward along the floor; hits pass through mid-roll.",
+    "tags": ["evade", "acrobatic"],
+    "category": "movement",
+    "duration": 0.75,
+    "params": { "travel": 200 },
+    "flags": { "invulnerable": [0.1, 0.8] },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      {
+        "t": 0.15,
+        "pose": { "rot": -30, "lean": 30, "lUA": 70, "lFA": 110, "rUA": 60, "rFA": 120, "lTH": 100, "lSH": 130, "rTH": 110, "rSH": 140 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.45,
+        "pose": { "rot": -180, "lean": 20, "head": 20, "lTH": 130, "lSH": 150, "rTH": 125, "rSH": 145 },
+        "ease": "linear"
+      },
+      { "t": 0.7, "pose": { "rot": -330 }, "ease": "outQuad" },
+      {
+        "t": 0.85,
+        "pose": { "rot": -360, "lean": 28, "head": -18, "lUA": 50, "lFA": 100, "rUA": 35, "rFA": 110, "lTH": 60, "lSH": 110, "rTH": 80, "rSH": 130 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "rot": -360, "lean": 10, "head": -4, "lUA": 60, "lFA": 100, "rUA": 40, "rFA": 110, "lTH": -14, "lSH": 20, "rTH": 16, "rSH": 24 }
+      }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "inOutQuad" },
+      { "t": 0.85, "dx": "-travel", "dy": 0 },
+      { "t": 1, "dx": "-travel", "dy": 0 }
+    ],
+    "events": [{ "t": 0.12, "sfx": "whoosh" }, { "t": 0.82, "fx": ["dust_run"] }]
+  },
+  {
+    "name": "land_roll",
+    "description": "Lands from a fall or jump and rolls out of it forward.",
+    "tags": ["acrobatic", "recover"],
+    "category": "movement",
+    "duration": 0.75,
+    "params": { "travel": 220 },
+    "keys": [
+      { "t": 0, "pose": "crouch", "ease": "outQuad" },
+      {
+        "t": 0.15,
+        "pose": { "rot": 30, "lean": 30, "lUA": 70, "lFA": 110, "rUA": 60, "rFA": 120, "lTH": 100, "lSH": 130, "rTH": 110, "rSH": 140 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.45,
+        "pose": { "rot": 180, "lean": 20, "head": 20, "lTH": 130, "lSH": 150, "rTH": 125, "rSH": 145 },
+        "ease": "linear"
+      },
+      { "t": 0.7, "pose": { "rot": 330 }, "ease": "outQuad" },
+      {
+        "t": 0.85,
+        "pose": { "rot": 360, "lean": 28, "head": -18, "lUA": 50, "lFA": 100, "rUA": 35, "rFA": 110, "lTH": 60, "lSH": 110, "rTH": 80, "rSH": 130 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "rot": 360, "lean": 10, "head": -4, "lUA": 60, "lFA": 100, "rUA": 40, "rFA": 110, "lTH": -14, "lSH": 20, "rTH": 16, "rSH": 24 }
+      }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "inOutQuad" },
+      { "t": 0.85, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "events": [{ "t": 0.1, "sfx": "land", "fx": ["dust_land"] }]
+  },
+  {
+    "name": "side_step",
+    "description": "A short sidestep out of the line of an attack.",
+    "tags": ["evade", "fight"],
+    "category": "movement",
+    "duration": 0.4,
+    "params": { "travel": 70 },
+    "flags": { "invulnerable": [0.1, 0.6] },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.35, "pose": "sideStep", "ease": "linear" },
+      { "t": 0.6, "pose": "sideStep", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "outCubic" },
+      { "t": 0.4, "dx": "-travel", "dy": 0 },
+      { "t": 1, "dx": "-travel", "dy": 0 }
+    ],
+    "events": [{ "t": 0.05, "sfx": "step" }]
+  }
+]

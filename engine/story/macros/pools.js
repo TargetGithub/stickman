@@ -8,7 +8,7 @@ const KICKS = ["front_kick", "roundhouse", "sweep", "knee", "spinning_kick"];
 
 const damageOf = (def) => (typeof def.params?.damage === "number" ? def.params.damage : 8);
 
-/** Moves the body plan avoids in generated fights (data/bodies.js `avoid`). */
+/** Moves the body plan avoids in generated fights (catalog/characters/bodies.json `avoid`). */
 function avoided(ctx, id) {
   const body = ctx.castById.get(id)?.body;
   return new Set(ctx.catalog.bodies?.[body]?.avoid || []);

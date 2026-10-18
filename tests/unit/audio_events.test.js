@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { simulate } from "../../engine/sim.js";
 import { collectAudioEvents } from "../../engine/audio_events.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const script = JSON.parse(readFileSync(new URL("../../scripts/samples/m4_dojo.json", import.meta.url), "utf8"));
 const sim = simulate(script, catalog);

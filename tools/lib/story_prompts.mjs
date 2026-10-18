@@ -5,7 +5,7 @@
 
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { PROMPTS_DIR } from "./prompt_pack.mjs";
+import { PROMPTS_DIR, EXAMPLES_DIR } from "./prompt_pack.mjs";
 import { outlineCatalogMarkdown, sceneCatalogMarkdown, codesMarkdown, audienceMarkdown } from "./story_tables.mjs";
 import { validate } from "../../engine/index.js";
 
@@ -22,7 +22,7 @@ const KIND_RULES = {
 
 /** Example stories shipped with the prompt pack: [{ name, outline, story }], sorted by file name. */
 export function exampleStories() {
-  const dir = join(PROMPTS_DIR, "examples", "stories");
+  const dir = join(EXAMPLES_DIR, "stories");
   return readdirSync(dir).filter((f) => f.endsWith(".json")).sort().map((f) => ({ name: f, ...JSON.parse(readFileSync(join(dir, f), "utf8")) }));
 }
 

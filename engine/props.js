@@ -8,7 +8,7 @@ const ELBOW = { rHand: "rElbow", lHand: "lElbow" };
 /**
  * Grip, butt and tip of a held prop.
  * @param {object} joints  character joints
- * @param {object} prop  data/props.js entry
+ * @param {object} prop  catalog/world/props.json entry
  * @param {number} propAngle  degrees from the forearm line; positive raises the tip
  * @returns {{ grip, butt, tip, angle }} angle in radians (screen space)
  */

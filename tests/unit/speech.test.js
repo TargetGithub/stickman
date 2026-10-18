@@ -6,7 +6,7 @@ import { syllables, mouthOpenAt, readingTime, voiceOf } from "../../engine/story
 import { synthVoice, isVoiceKey } from "../../tools/lib/speech.mjs";
 import { synthesize } from "../../tools/lib/synth.mjs";
 import { createEngine } from "../../engine/index.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const say = (text, o = {}) => ({ text, dur: readingTime(text), actor: "kai", at: 1.5, ...o });
 

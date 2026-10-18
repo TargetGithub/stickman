@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 import { parsePathD, parseSvg, toCatalogPaths } from "../../tools/lib/svg.mjs";
 import { checkDraft, mockDraft, draftPrompt, similarEntries } from "../../tools/lib/draft.mjs";
 import { drawPaths } from "../../engine/renderer/paths.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const PATHS = [
   ["absolute lines", "M0 0 L10 0 L10 10 Z", [["M", 0, 0], ["L", 10, 0], ["L", 10, 10], ["Z"]]],

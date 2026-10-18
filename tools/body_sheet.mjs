@@ -10,7 +10,7 @@ import { lookFor } from "../engine/renderer/looks.js";
 import { drawCharacter } from "../engine/renderer/character.js";
 import { drawBehind, drawFront } from "../engine/renderer/accessories.js";
 import { holdableProps } from "../engine/objects.js";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const flag = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);

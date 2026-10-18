@@ -4,6 +4,7 @@ Working rules for developing this project.
 
 ## Sources of truth
 - Behavior and script schema: `stickman-engine-spec.md` (v1.1).
+- Catalog layout, the build and the AI context pack: `docs/CATALOG_SPEC.md`; how to add things: `catalog/README.md`.
 - Module interfaces and data shapes: `docs/ARCHITECTURE.md` section 4.
 - Current milestone and tasks: `docs/IMPLEMENTATION_PLAN.md`.
 - If code and these documents disagree, fix one of them in the same change.
@@ -11,13 +12,16 @@ Working rules for developing this project.
 ## Hard rules for `/engine`
 - No dependencies, no I/O, no network, no globals beyond the engine instance.
 - Never use `Math.random`, `Date.now` or `performance.now` (a test enforces this). Use streams from `deriveRng(seed, name)`.
-- Never import `/data`; the catalog is injected via `createEngine({ catalog })`.
+- Never import `catalog/` (or the legacy `data/`); the catalog is injected via `createEngine({ catalog })`.
 - The simulation never reads canvas state or font metrics. Text layout is renderer-only.
 - Iterate arrays in stable order where order matters.
 - Logic modules stay under about 350 lines. Split instead of growing.
 - Plain ES modules with JSDoc types. No build step.
 
-## Data
+## Catalog
+- The catalog lives in `catalog/` (JSON). `data/*.js` is a frozen legacy copy for the migration test until C5; never edit it.
+- Never edit `catalog/generated/` or `catalog/manifest.json`; run `npm run catalog:build` after every catalog change.
+- Every entry needs a description (and tags, see `catalog/README.md`); the build fails without one.
 - Poses are authored facing right. Angles in degrees.
 - Moves follow spec 8.1. Attacks need `hits`; windups take at least 15% of the duration.
 - No blood or gore anywhere.

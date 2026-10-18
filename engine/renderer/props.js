@@ -17,7 +17,7 @@ const lerpPt = (a, b, u) => ({ x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * 
 
 /**
  * Draw a prop between butt and tip.
- * @param {object} prop  data/props.js entry
+ * @param {object} prop  catalog/world/props.json entry
  * @param {{ butt, tip, grip? }} t  from propTransform (or built for flying/lying props)
  */
 export function drawProp(ctx, prop, t, scale, outline = "#111111") {

@@ -11,7 +11,7 @@ import { prepareCatalog } from "../engine/moves.js";
 import { computeJoints, lowestPoint } from "../engine/skeleton.js";
 import { drawCharacter } from "../engine/renderer/character.js";
 import { holdableProps } from "../engine/objects.js";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 import { propByKind } from "../engine/props.js";
 
 const args = process.argv.slice(2);

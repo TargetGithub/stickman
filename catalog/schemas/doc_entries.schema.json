@@ -1,0 +1,14 @@
+{
+  "title": "catalog/docs/world_commands.json and macros.json: one entry per engine name.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "example"],
+    "properties": {
+      "description": { "type": "string", "minLength": 8, "maxLength": 300 },
+      "example": { "type": "object" },
+      "defaults": { "type": "object" },
+      "expands": { "type": "string" }
+    }
+  }
+}

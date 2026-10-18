@@ -5,7 +5,7 @@ import { shownFace, faceEvents, HURT_SECONDS } from "../../engine/story/faces.js
 import { drawFace, blinkAt } from "../../engine/renderer/face.js";
 import { simulate } from "../../engine/sim.js";
 import { frameView } from "../../engine/framestore.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const actor = (o = {}) => ({ id: "a", face: "neutral", hurtUntil: 0, move: null, ...o });
 const move = (name, category = "emote", face = null) => ({ def: { name, category, face } });

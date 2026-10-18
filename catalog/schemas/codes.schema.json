@@ -1,0 +1,10 @@
+{
+  "title": "catalog/docs/codes.json: every validator code, its meaning and a typical fix.",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["meaning", "fix"],
+    "additionalProperties": false,
+    "properties": { "meaning": { "type": "string", "minLength": 5 }, "fix": { "type": "string", "minLength": 5 } }
+  }
+}

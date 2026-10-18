@@ -1,0 +1,38 @@
+{
+  "types": {
+    "cut": { "description": "Instant change to the next scene.", "example": { "type": "cut" } },
+    "fade": { "description": "Fades through black between scenes.", "example": { "type": "fade", "dur": 0.8 } },
+    "dissolve": { "description": "Cross-fades from one scene into the next.", "example": { "type": "dissolve", "dur": 1 } },
+    "wipe": {
+      "description": "A directional wipe (`dir` left, right, up or down).",
+      "example": { "type": "wipe", "dir": "left", "dur": 0.6 }
+    },
+    "iris": {
+      "description": "A circle closes on `target` and opens on them in the next scene.",
+      "example": { "type": "iris", "target": "kai", "dur": 1 }
+    },
+    "card": {
+      "description": "A full-screen card between scenes (`kind` title, chapter, time or end).",
+      "example": { "type": "card", "kind": "chapter", "text": "Chapter 2" }
+    }
+  },
+  "cards": {
+    "title": {
+      "description": "The story title (`title`, optional `subtitle`); usually the first scene's transitionIn.",
+      "example": { "type": "card", "kind": "title", "title": "The Brave Heart", "subtitle": "A Kai and Pip story" }
+    },
+    "chapter": {
+      "description": "A chapter heading (`text`).",
+      "example": { "type": "card", "kind": "chapter", "text": "Chapter 2: The Lair" }
+    },
+    "time": {
+      "description": "A time skip (`text`).",
+      "example": { "type": "card", "kind": "time", "text": "Later that night..." }
+    },
+    "end": {
+      "description": "The end card (`text`); usually the last scene's transitionOut.",
+      "example": { "type": "card", "kind": "end", "text": "The End" }
+    }
+  },
+  "rule": "At a scene boundary the next scene's transitionIn wins, then the previous scene's transitionOut, else cut. Transitions add video time but no story time."
+}

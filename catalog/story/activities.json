@@ -1,0 +1,118 @@
+{
+  "blow_bubbles": {
+    "description": "One blows bubbles with a wand while friends poke and pop them; ends laughing.",
+    "tags": ["play", "kids", "outdoor"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 150,
+    "facing": "center",
+    "dur": 6,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["blow_wand"], "wait": 0.3, "face": "happy", "holds": "bubble_wand" },
+      { "moves": ["poke"], "wait": 0.7, "face": "laugh" }
+    ]
+  },
+  "tennis_rally": {
+    "description": "Two players hit a tennis ball over the net until one misses.",
+    "tags": ["sport", "two", "park"],
+    "runner": "rally",
+    "players": [2, 2],
+    "spacing": 620,
+    "facing": "center",
+    "reps": 6,
+    "ending": "miss",
+    "objects": ["tennis_net"],
+    "roles": [{ "holds": "racket", "face": "happy" }],
+    "rally": {
+      "ball": "tennis_ball",
+      "hit": ["swing_forehand", "swing_backhand"],
+      "at": "propTip",
+      "flight": 0.9,
+      "height": 130
+    }
+  },
+  "play_catch": {
+    "description": "Two friends toss and catch a ball; ends laughing.",
+    "tags": ["sport", "two", "play"],
+    "runner": "rally",
+    "players": [2, 2],
+    "spacing": 440,
+    "facing": "center",
+    "reps": 6,
+    "ending": "laugh",
+    "roles": [{ "face": "happy" }],
+    "rally": { "ball": "football", "hit": ["toss"], "catch": "catch_ball", "at": "hands", "flight": 0.8, "height": 140 }
+  },
+  "kick_ball": {
+    "description": "Two friends kick a football back and forth.",
+    "tags": ["sport", "two", "play"],
+    "runner": "rally",
+    "players": [2, 2],
+    "spacing": 480,
+    "facing": "center",
+    "reps": 6,
+    "ending": "win",
+    "roles": [{ "face": "happy" }],
+    "rally": { "ball": "football", "hit": ["kick_pass"], "at": "foot", "flight": 1, "height": 0 }
+  },
+  "eat_together": {
+    "description": "Friends sit (on a bench or chairs) and eat together.",
+    "tags": ["food", "calm", "friends"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 120,
+    "facing": "center",
+    "dur": 6,
+    "ending": "laugh",
+    "objects": ["bench", "chair"],
+    "roles": [{ "start": "sit", "moves": ["eat"], "wait": 0.4, "face": "happy" }]
+  },
+  "dance_together": {
+    "description": "Everyone dances together.",
+    "tags": ["dance", "happy", "party"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 170,
+    "facing": "center",
+    "reps": 2,
+    "ending": "laugh",
+    "roles": [{ "moves": ["dance_a", "dance_b"], "face": "laugh" }]
+  },
+  "selfie": {
+    "description": "One takes a selfie with the phone while the others cheer.",
+    "tags": ["photo", "happy", "friends"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 115,
+    "facing": "right",
+    "reps": 3,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["use"], "wait": 0.6, "face": "laugh", "holds": "phone" },
+      { "moves": ["cheer"], "wait": 0.2, "face": "happy" }
+    ]
+  },
+  "sleep": {
+    "description": "Characters lie down (on a bench if given) and sleep.",
+    "tags": ["rest", "night", "calm"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 190,
+    "facing": "center",
+    "dur": 8,
+    "ending": "none",
+    "objects": ["bench"],
+    "roles": [{ "start": "lie_down", "moves": ["sleep"] }]
+  },
+  "comfort": {
+    "description": "One comforts a crying friend, ending in a hug.",
+    "tags": ["kind", "sad", "two"],
+    "runner": "loop",
+    "players": [2, 2],
+    "facing": "center",
+    "reps": 2,
+    "ending": "hug",
+    "roles": [{ "moves": ["comfort"], "partner": 1, "wait": 0.3, "face": "sad" }, { "moves": [], "face": "cry", "fx": "tears" }]
+  }
+}

@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { simulate, frameAt } from "../../engine/sim.js";
 import { parseAt } from "../../engine/director.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const sample = JSON.parse(readFileSync(new URL("../../scripts/samples/m3_duel.json", import.meta.url), "utf8"));
 

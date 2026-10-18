@@ -2,7 +2,7 @@
 // scene, crossfaded on scene boundaries, levelled for kids-friendly listening.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 import { createEngine } from "../../engine/index.js";
 import { renderMusic, MUSIC_LUFS } from "../../tools/lib/music_gen.mjs";
 import { compose } from "../../tools/lib/patterns.mjs";

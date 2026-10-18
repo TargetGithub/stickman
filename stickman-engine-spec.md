@@ -254,7 +254,7 @@ Rules:
 
 ## 7. Poses and interpolation
 
-### 7.1 Named poses (`data/poses.js`)
+### 7.1 Named poses (`catalog/moves/poses.json`)
 Each pose is a full channel set (missing channels default to `stand`). Minimum v1 set:
 
 `stand`, `guard`, `crouch`, `walkA`, `walkB`, `runA`, `runB`, `jumpUp`, `jumpPeak`, `jumpFall`, `punchWindup`, `punchExtend`, `kickWindup`, `kickExtend`, `hitLight`, `hitHeavy`, `down` (on back), `downFace` (face down), `getUp1`, `getUp2`, `block`, `taunt1`, `taunt2`, `victory`, `swordGuard`, `swordSlashA`, `swordSlashB`, `tuck` (flips and rolls).
@@ -568,7 +568,7 @@ required  = aimX - facing * (reach + travel(tmid) + gap)  // outcome whiff (star
 
 ---
 
-## 12. Props (`data/props.js`, `engine/props.js`)
+## 12. Props (`catalog/world/props.json`, `engine/props.js`)
 
 ```js
 sword:    { kind:"sword",   shape:"sword",   len:78,  width:7,  gripAt:0.18, grip:"rHand", color, trim, hitRadius:18 },
@@ -587,7 +587,7 @@ blaster:  { kind:"blaster", shape:"blaster", len:40,  width:12, gripAt:0.3,  gri
 
 ---
 
-## 13. Effects (`data/fx.js`, `engine/fx.js`)
+## 13. Effects (`catalog/effects/fx.json`, `engine/fx.js`)
 
 ### 13.1 FX presets
 
@@ -627,7 +627,7 @@ Position at age `a = fxT(n) - fxT0` is closed form:
 - Budget: at most 2,000 live particles. Emissions over budget are dropped deterministically (in emission order) and reported as a validator warning.
 - Particles that need per-tick physics beyond this (collisions) are out of scope for v1.
 
-### 13.2.1 Preset data (`data/fx.js`)
+### 13.2.1 Preset data (`catalog/effects/fx.json`)
 A preset is `{ anchor: point|head|hip|feet, layers: [...], sustain?, glow?, trail?, flash? }`. A layer describes one particle group: `shape` (line, dot, ring, ellipse, star, puff, glow, glyph), `count`, `angle` (degrees; 0 = the effect's facing, -90 = up), `speed`, `life` (≤ 3 s), `size` [start, end], `width`, `gravity`, `drag`, `color` (one or a list), `alpha` [start, end], `offset`, `spreadY`, `vrot`, `attach` (follow a joint), `orbit`, `glyph`, `tintable`. Sizes and speeds scale with the triggering character. Effects are triggered by hit `fx`, move `events[].fx`, beat `fx`, landings (dust above 900 px/s), and world `explosion`.
 
 ### 13.3 Stateful effects
@@ -658,7 +658,7 @@ A preset is `{ anchor: point|head|hip|feet, layers: [...], sustain?, glow?, trai
 - `glow`: a coloured halo (canvas shadow blur). `squash`: a brief vertical squash (up to 8%) after landings and hits. `outline: false` removes the dark outline. `overlap` (secondary motion) is deferred to v1.x.
 - Far limbs at 85% brightness.
 
-### 14.3 Themes (`data/themes.js`)
+### 14.3 Themes (`catalog/world/themes.json`)
 
 | Theme | Background | Palette |
 |---|---|---|
@@ -862,7 +862,7 @@ User prompt: premise, length, tone (epic, comedic, parody), format.
 
 ### 18.3 Structured output and repair loop
 - Structured output: `output_config: { format: { type: "json_schema", schema } }` with `scriptSchema(catalog)` adapted by `tools/lib/llm_schema.mjs` to the API's subset: `oneOf` becomes `anyOf`, type arrays become `anyOf`, numeric/string ranges, patterns and item counts are dropped (the validator still enforces them), every object gets `additionalProperties: false`, and the open `params` map becomes a closed object listing every known param name. If the API rejects the schema (400), the client continues in plain-JSON mode for the rest of the run and records the downgrade in the run summary.
-- The static system prompt (`prompts/system.md` + catalog tables + `prompts/examples/*.json`, about 5.4K tokens) is sent as a cached block (`cache_control: ephemeral`); it is byte-stable for a given catalog. Sonnet and Opus calls opt into server-side refusal fallbacks (`fallbacks: "default"`); refusals and `max_tokens` truncation count as failed attempts.
+- The static system prompt (`prompts/system.md` + catalog tables + `catalog/examples/clips/*.json`, about 5.4K tokens) is sent as a cached block (`cache_control: ephemeral`); it is byte-stable for a given catalog. Sonnet and Opus calls opt into server-side refusal fallbacks (`fallbacks: "default"`); refusals and `max_tokens` truncation count as failed attempts.
 - Attempt ladder (`maxAttempts` 3): write (Sonnet, or Opus with `--flagship`) → repair (Haiku) → repair (Sonnet). Each repair turn carries the previous JSON as the assistant turn, then every error and warning with its fix, plus the dry-run timeline.
 - Repair loop:
   ```
@@ -939,7 +939,7 @@ System prompt about 4-6K tokens (cached). Output about 1-2K tokens per script.
 - No `eval`, `Function` or dynamic import of script content. `expr.js` whitelists tokens.
 - Limits: script 512 KB, 600 beats, 6 characters, string lengths per field.
 - No network calls in `/engine`. Only `tools/generate.mjs` talks to the Anthropic API, using `ANTHROPIC_API_KEY` from the environment (never stored in the repo).
-- Content policy: no blood or gore, no real people or brands, no hateful imagery. Text fields are checked against `data/blocklist.js`.
+- Content policy: no blood or gore, no real people or brands, no hateful imagery. Text fields are checked against `catalog/story/blocklist.json`.
 
 ---
 

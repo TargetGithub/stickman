@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { simulate } from "../../engine/sim.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const PLANS = { kai: "stickman", pip: "buddy", mo: "kid" };
 

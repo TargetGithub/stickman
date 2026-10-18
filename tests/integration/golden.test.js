@@ -7,7 +7,7 @@ import assert from "node:assert/strict";
 import { readFileSync, existsSync, mkdirSync } from "node:fs";
 import { loadBackend } from "../../tools/lib/canvas.mjs";
 import { createEngine } from "../../engine/index.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 export const GOLDEN_SCRIPTS = {
   minimal: "tests/fixtures/good/minimal.json",

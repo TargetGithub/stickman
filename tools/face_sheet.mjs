@@ -6,8 +6,9 @@
 import { loadBackend } from "./lib/canvas.mjs";
 import { computeJoints, lowestPoint, BODY } from "../engine/skeleton.js";
 import { drawCharacter } from "../engine/renderer/character.js";
-import { poses } from "../data/poses.js";
-import { faces, FACE_NAMES } from "../data/faces.js";
+import { catalog } from "../catalog/index.js";
+
+const { poses, faces, faceNames: FACE_NAMES } = catalog;
 
 const args = process.argv.slice(2);
 const flag = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);

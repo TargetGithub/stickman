@@ -6,7 +6,7 @@ import { readFileSync } from "node:fs";
 import { simulate, frameAt } from "../../engine/sim.js";
 import { toScreen } from "../../engine/camera.js";
 import { unpackJoints, BODY } from "../../engine/skeleton.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const SAMPLES = ["m3_duel", "m4_dojo", "m5_portrait", "m7_unarmed_reel", "m7_emotes_reel", "m7_style_reel"];
 

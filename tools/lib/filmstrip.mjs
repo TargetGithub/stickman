@@ -2,7 +2,7 @@
 // Used by tools/draft.mjs (a drafted move) and tools/move_sheet.mjs (a batch of catalog moves).
 
 import { loadBackend } from "./canvas.mjs";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 import { prepareCatalog } from "../../engine/moves.js";
 import { createActor, playMove, stepActor } from "../../engine/actor.js";
 import { bodyPlan } from "../../engine/story/bodies.js";

@@ -5,7 +5,7 @@ This document describes how the engine is built: module boundaries, interfaces, 
 ## 1. Principles
 
 1. **Pure core, thin edges.** `/engine` has no I/O, no globals beyond an engine instance, no dependencies. `/tools` and `/web` own files, processes, network and the canvas backend.
-2. **Data over code.** Poses, moves, props, FX presets, themes and SFX keys live in `/data`. Adding one should not need a code change.
+2. **Data over code.** Poses, moves, props, FX presets, themes, objects, faces, bodies, activities, moods and SFX keys live in `catalog/` (JSON, with a description for every entry). Adding one should not need a code change.
 3. **Simulate once, render many.** All state changes happen in `sim.js`. The renderer only reads the frame store.
 4. **One clock owner.** Only `clock.js` decides how far story, fx and video time advance.
 5. **Explicit randomness.** Every module that needs randomness receives its own `rng` stream. No module creates one.
@@ -34,10 +34,10 @@ index.js ──► sim.js ──► world.js ──► actor.js ──► moves.
    ├──► validator/index.js ──► schema.js, semantic.js, report.js, sim.js (dry run)
    └──► renderer/index.js ──► character.js, background.js, particles.js, overlays.js
                                    (renderer reads framestore.js accessors only)
-config.js is imported by any module. /data is passed in as a catalog object, never imported by /engine.
+config.js is imported by any module. catalog/ is passed in as a catalog object, never imported by /engine.
 ```
 
-`/data` is injected through `createEngine({ catalog })`. This keeps the engine testable with tiny fixture catalogs and lets the editor hot-swap moves.
+The catalog (`catalog/`, loaded by `catalog/index.js`) is injected through `createEngine({ catalog })`. This keeps the engine testable with tiny fixture catalogs and lets the editor hot-swap moves.
 
 ## 3. Core data shapes (JSDoc typedefs live in `engine/types.js`)
 
@@ -308,6 +308,17 @@ Modules: `background.js` (registry of procedural layer kinds with parallax; geom
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
+### catalog/index.js (outside /engine; CATALOG_SPEC 5)
+```js
+export const MOVE_FILES: string[];                         // moves/<file>.json, in catalog order
+export const ENGINE_FILES: string[];                       // the authored files the engine catalog is built from
+export function assembleCatalog(files): Catalog;           // path → parsed JSON; today's catalog object shape
+export function loadCatalog(read): Catalog | Promise<Catalog>; // read(path) → JSON or a promise; no I/O of its own
+export function loadCatalogSync(root?): Catalog;           // Node only
+export const catalog: Catalog;                             // the default catalog (fs in Node, fetch in the browser)
+```
+Description and tag fields pass through; prepared moves (`prepareCatalog`) drop them.
+
 ## 5. Error code families
 
 | Prefix | Stage | Examples |
@@ -356,8 +367,8 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 - **Consequences**: the editor previews IK against dummies of several scales.
 
 ### ADR-006 Catalog injection
-- **Decision**: `/engine` never imports `/data`; the catalog is passed to `createEngine`.
-- **Consequences**: tests use tiny fixture catalogs; the editor can swap moves live.
+- **Decision**: `/engine` never imports `catalog/` (formerly `/data`); the catalog is passed to `createEngine`.
+- **Consequences**: tests use tiny fixture catalogs; the editor can swap moves live. A test scans `/engine` for imports of `catalog/` or `data/`.
 
 ### ADR-007 Procedural SFX first
 - **Decision**: `sfxgen.mjs` makes every required sound so the pipeline needs no downloads or licenses. Real assets override them later.
@@ -392,6 +403,13 @@ See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dr
 | `tools/lib/mixer.mjs` | pure mixing: pan, events, music cues and ducking, lookahead limiter |
 | `tools/lib/sfx_library.mjs` | override/variant lookup in `assets/sfx`, generated fallback, music lookup |
 | `tools/lib/prompt_tables.mjs` | catalog → prompt tables (moves, world commands, fx, props, themes); used by `tools/catalog.mjs` |
+| `tools/lib/catalog_files.mjs` | reads the whole `catalog/` folder (engine catalog, docs, presets, examples, schemas); the engine's validator codes |
+| `tools/lib/catalog_check.mjs`, `catalog_harness.mjs` | catalog checks: schemas, descriptions, references, move checks on every body plan, engine vocabulary coverage, every example validated in a tiny story |
+| `tools/lib/catalog_build.mjs` + `tools/catalog_build.mjs` | `npm run catalog:build`: checks, then `catalog/generated/` (engine vocabulary, full catalog, context pack) and `catalog/manifest.json`; deterministic |
+| `tools/lib/context_pack.mjs` | the AI context pack (Markdown tables, budgets, core and reference tiers), rendered with the prompt table helpers |
+| `tools/lib/catalog_write.mjs` | adds a reviewed draft to `catalog/` (`draft.mjs --write`, `svg_import.mjs --write`) |
+| `tools/lib/json_format.mjs`, `zip.mjs` | stable JSON formatting for catalog files; a small zip writer for `catalog:pack` |
+| `tools/migrate_catalog.mjs` | one-time converter `data/*.js` → `catalog/*.json` (kept with `data/` until C5) |
 | `tools/lib/prompt_pack.mjs` | assembles `prompts/*.md` + tables + examples into byte-stable system prompts; builds user turns |
 | `tools/lib/llm_schema.mjs` | script schema → structured-output subset; ideation/critique/metadata schemas |
 | `tools/lib/llm/index.mjs` | provider-neutral core: one request shape, schema downgrade, typed failures (refusal, max_tokens, parse), usage and cost; `loadProvider` from `tools/llm.config.json` |
@@ -711,3 +729,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
   
   Converted v1 scripts are `general`, so their frames and validation results do not change.
 - **Consequences**: kids rules are checks and presentation defaults, not a separate engine. The review queue suggests `madeForKids` from the audience; publishing stays with the reviewer.
+
+### ADR-019 One catalog folder for the engine, pages and AI tools
+- **Context**: the catalog was JS modules in `/data` (helpers, spreads, no descriptions); prompts embedded about 30,000 characters of tables in every scene prompt, and pages and AI tools could not read the catalog without the code.
+- **Decision** (docs/CATALOG_SPEC.md): authored JSON in `catalog/` with a description for every entry; `catalog/index.js` assembles today's catalog object (`loadCatalog(read)`, sync or async readers; fs in Node, fetch in the browser). Engine-owned names stay in engine code; their descriptions live in `catalog/docs/` and a check keeps the two one to one. `npm run catalog:build` writes `catalog/generated/` (never edited by hand): the engine vocabulary, the full catalog as one file, and a Markdown context pack within byte budgets. The prompt tables and the pack share the same renderers.
+- **Consequences**: the migration was checked by deep equality with the frozen `data/` catalog (kept until C5); golden frames, determinism hashes and the existing prompts are unchanged byte for byte. Prepared moves drop the description fields, so they never reach the simulation. A stale generated file fails a test.
+

@@ -3,7 +3,7 @@
 // Usage: node tools/move_sheet.mjs [out.png] [--category life] [--moves a,b,c] [--plans stickman,buddy] [--frames 8]
 
 import { moveSheet } from "./lib/filmstrip.mjs";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);

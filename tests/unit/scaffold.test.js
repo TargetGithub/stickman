@@ -36,7 +36,7 @@ for (const [path, names] of Object.entries(expected)) {
 }
 
 test("default catalog loads", async () => {
-  const { catalog } = await import("../../data/index.js");
+  const { catalog } = await import("../../catalog/index.js");
   assert.ok(catalog.poses.stand, "stand pose exists");
   assert.equal(catalog.sfxKeys.length, 44); // + narrate_chime (S2), 6 object sounds (S4), sparkle, clang, ball_kick (S5), 11 story sounds (S7)
   assert.equal(Object.keys(catalog.musicMoods).length, 11); // S7 moods

@@ -1,0 +1,137 @@
+{
+  "dialogue": {
+    "description": "Characters talk in turn with talk gestures, reading-time pacing, faces and a two-shot. lines: [[who, text<=120, face?, bubble?], ...]",
+    "defaults": { "gap": 0.3, "gestures": true, "camera": "auto" },
+    "expands": "say beats with talk gestures, faces and a two-shot camera",
+    "example": {
+      "id": "ex_dialogue",
+      "at": 0,
+      "macro": "dialogue",
+      "params": { "lines": [["kai", "Want to play catch?", "happy"], ["pip", "Yes! I love catch!", "laugh"]] }
+    }
+  },
+  "activity": {
+    "description": "A little game kept in sync (see Activities): the players walk to their places, play, and finish with the ending.",
+    "defaults": { "intensity": "medium" },
+    "expands": "walks to places, the activity loop or rally, and its ending",
+    "example": {
+      "id": "ex_activity",
+      "at": 0,
+      "macro": "activity",
+      "params": { "name": "play_catch", "with": ["kai", "pip"], "reps": 4 }
+    }
+  },
+  "walk_together": {
+    "description": "Hand in hand (two walkers) or side by side to `to`.",
+    "defaults": { "pace": "walk", "holdHands": true },
+    "expands": "walk_together (two walkers) or matched walks",
+    "example": {
+      "id": "ex_walk_together",
+      "at": 0,
+      "macro": "walk_together",
+      "params": { "who": ["kai", "pip"], "to": { "x": 2400 } }
+    }
+  },
+  "travel": {
+    "description": "A long walk/run/sneak to `to` with the camera tracking the first walker.",
+    "defaults": { "mode": "walk", "camera": "track" },
+    "expands": "walk/run/sneak beats and a track shot",
+    "example": {
+      "id": "ex_travel",
+      "at": 0,
+      "macro": "travel",
+      "params": { "who": ["kai"], "to": { "exit": "right" }, "mode": "run" }
+    }
+  },
+  "enter": {
+    "description": "Walks (or runs) in from `side` to `to` (default: its scene x). Place the character in the scene cast with \"hidden\": true.",
+    "defaults": { "mode": "walk" },
+    "expands": "a hidden character appears at the edge and walks in",
+    "example": { "id": "ex_enter", "at": 0, "macro": "enter", "params": { "who": "pip", "side": "left" } }
+  },
+  "exit": {
+    "description": "Walks (or runs) off toward `side` and fades out.",
+    "defaults": { "mode": "walk" },
+    "expands": "a walk off the stage edge and a fade",
+    "example": { "id": "ex_exit", "at": 0, "macro": "exit", "params": { "who": "pip", "side": "right" } }
+  },
+  "fight": {
+    "description": "A whole 1v1: opening taunts, exchanges weighted to the winner, a slowmo finisher, the KO (ko: false leaves the loser standing and dizzy, e.g. before @defeat captured).",
+    "defaults": { "exchanges": "6 / 8 / 10 by intensity", "intensity": "medium", "style": "even", "ko": true },
+    "expands": "taunts, attack exchanges with outcomes, a slowmo finisher and a KO",
+    "example": {
+      "id": "ex_fight",
+      "at": 0,
+      "macro": "fight",
+      "params": { "sides": ["kai", "vex"], "winner": "kai", "intensity": "medium" }
+    }
+  },
+  "gauntlet": {
+    "description": "The hero takes on each opponent in turn (travel run/walk between them, or none: they wait in a ring). Place opponents along the stage in order.",
+    "defaults": { "per": 3, "travel": "run", "intensity": "medium", "afterDefeat": "stay" },
+    "expands": "a short fight per opponent with travel between them",
+    "example": {
+      "id": "ex_gauntlet",
+      "at": 0,
+      "macro": "gauntlet",
+      "params": { "hero": "kai", "opponents": ["guard1", "guard2"] }
+    }
+  },
+  "brawl": {
+    "description": "Two teams; at most two clashes at once; the losing team goes down one by one.",
+    "defaults": { "dur": 20, "intensity": "medium" },
+    "expands": "parallel clashes, losers going down one by one",
+    "example": {
+      "id": "ex_brawl",
+      "at": 0,
+      "macro": "brawl",
+      "params": { "teams": { "a": ["kai", "pip"], "b": ["guard1", "guard2"] }, "winner": "a" }
+    }
+  },
+  "chase": {
+    "description": "The runner flees, everyone jumps the obstacles, the lead chaser lunges; caught or gets away.",
+    "defaults": { "dur": 8, "obstacles": 0, "caught": false },
+    "expands": "runs, jumps over obstacles and a lunge at the end",
+    "example": { "id": "ex_chase", "at": 0, "macro": "chase", "params": { "runner": "vex", "chasers": ["kai"], "dur": 6 } }
+  },
+  "defeat": {
+    "description": "A stagger and close-up, then the defeat style; `by` reacts. The victim must be standing (not KO'd).",
+    "defaults": {},
+    "expands": "a stagger, a close-up, the defeat move and a reaction from `by`",
+    "example": { "id": "ex_defeat", "at": 0, "macro": "defeat", "params": { "who": "vex", "by": "kai", "style": "captured" } }
+  },
+  "grief": {
+    "description": "Kneels by `over`, cries for `dur` seconds, sad music, optional rain.",
+    "defaults": { "dur": 6, "rain": false },
+    "expands": "kneel, cry, sad music and optional rain",
+    "example": { "id": "ex_grief", "at": 0, "macro": "grief", "params": { "who": "kai", "over": "pip", "dur": 5 } }
+  },
+  "fight_card": {
+    "description": "SCENE macro: a fight-only video (title, intro, rounds, breathers, finale, end card) from matchups. Written as a scene entry {id, macro, params}.",
+    "defaults": { "intro": true, "breathers": true, "finale": "boss", "minDur": 180 },
+    "expands": "title and intro scenes, one scene per round, breathers, a finale and an end card",
+    "example": {
+      "id": "card",
+      "macro": "fight_card",
+      "params": {
+        "title": "Rooftop Rumble",
+        "matchups": [{ "sides": ["kai", "vex"], "winner": "kai", "location": "rooftop_city" }]
+      }
+    }
+  },
+  "montage": {
+    "description": "SCENE macro: 2-8 short clips with quick cuts and one music bed. Written as a scene entry {id, macro, params}.",
+    "defaults": { "clipDur": 3, "cut": "cut" },
+    "expands": "one short scene per clip with quick cuts",
+    "example": {
+      "id": "train",
+      "macro": "montage",
+      "params": {
+        "clips": [
+          { "location": "dojo_dusk", "who": ["kai"], "do": "flex" },
+          { "location": "snow_mountain", "who": ["kai"], "do": "run" }
+        ]
+      }
+    }
+  }
+}

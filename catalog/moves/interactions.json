@@ -1,0 +1,798 @@
+[
+  {
+    "name": "hug",
+    "description": "Two characters hug; a short buddy hugs a tall friend round the waist.",
+    "tags": ["paired", "kind", "friendly"],
+    "category": "interaction",
+    "duration": 1.8,
+    "face": "happy",
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [
+        { "t0": 0.3, "t1": 0.82, "from": "lead", "part": "rHand", "to": "back" },
+        { "t0": 0.3, "t1": 0.82, "from": "lead", "part": "lHand", "to": "back" },
+        { "t0": 0.32, "t1": 0.82, "from": "partner", "part": "rHand", "to": "back" },
+        { "t0": 0.32, "t1": 0.82, "from": "partner", "part": "lHand", "to": "back" }
+      ],
+      "partnerMove": "hug_partner",
+      "gap": 30
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.2,
+        "pose": { "lean": 2, "head": -4, "lUA": 95, "lFA": 20, "rUA": 100, "rFA": 20, "lTH": 8, "lSH": 0, "rTH": -4, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.35,
+        "pose": { "lean": 6, "head": 12, "lUA": 88, "lFA": 75, "rUA": 82, "rFA": 80, "lTH": 12, "lSH": 0, "rTH": 0, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": 6, "head": 12, "lUA": 88, "lFA": 75, "rUA": 82, "rFA": 80, "lTH": 12, "lSH": 0, "rTH": 0, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "hug_partner",
+    "description": "The partner side of hug (played on the beat's partner).",
+    "tags": ["paired", "partner"],
+    "category": "interaction",
+    "duration": 1.8,
+    "face": "happy",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": 0, "head": -4, "lUA": 95, "lFA": 20, "rUA": 100, "rFA": 20, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.38,
+        "pose": { "lean": 6, "head": 12, "lUA": 88, "lFA": 75, "rUA": 82, "rFA": 80, "lTH": 12, "lSH": 0, "rTH": 0, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": 6, "head": 12, "lUA": 88, "lFA": 75, "rUA": 82, "rFA": 80, "lTH": 12, "lSH": 0, "rTH": 0, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "high_five",
+    "description": "Two characters slap a high five.",
+    "tags": ["paired", "happy", "friendly"],
+    "category": "interaction",
+    "duration": 1,
+    "face": "laugh",
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [{ "t0": 0.42, "t1": 0.58, "from": "lead", "part": "rHand", "to": "lHand", "meet": true }],
+      "partnerMove": "high_five_partner",
+      "gap": 62
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": -6, "head": -4, "lUA": 12, "lFA": 8, "rUA": 135, "rFA": 70, "lTH": 0, "lSH": 0, "rTH": -12, "rSH": 0, "dy": 0 },
+        "ease": "inQuad"
+      },
+      {
+        "t": 0.45,
+        "pose": { "lean": -2, "head": -6, "lUA": 12, "lFA": 8, "rUA": 155, "rFA": 5, "lTH": 4, "lSH": 0, "rTH": -8, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.6,
+        "pose": { "lean": -2, "head": -6, "lUA": 12, "lFA": 8, "rUA": 155, "rFA": 5, "lTH": 4, "lSH": 0, "rTH": -8, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "events": [{ "t": 0.48, "sfx": "pop" }]
+  },
+  {
+    "name": "high_five_partner",
+    "description": "The partner side of high_five.",
+    "tags": ["paired", "partner"],
+    "category": "interaction",
+    "duration": 1,
+    "face": "laugh",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": -6, "head": -4, "lUA": 135, "lFA": 70, "rUA": -12, "rFA": 8, "lTH": 0, "lSH": 0, "rTH": -12, "rSH": 0, "dy": 0 },
+        "ease": "inQuad"
+      },
+      {
+        "t": 0.45,
+        "pose": { "lean": -2, "head": -6, "lUA": 155, "lFA": 5, "rUA": -12, "rFA": 8, "lTH": 4, "lSH": 0, "rTH": -8, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.6,
+        "pose": { "lean": -2, "head": -6, "lUA": 155, "lFA": 5, "rUA": -12, "rFA": 8, "lTH": 4, "lSH": 0, "rTH": -8, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "fist_bump",
+    "description": "Two characters bump fists.",
+    "tags": ["paired", "friendly"],
+    "category": "interaction",
+    "duration": 0.9,
+    "face": "happy",
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [{ "t0": 0.4, "t1": 0.6, "from": "lead", "part": "rHand", "to": "rHand", "meet": true }],
+      "partnerMove": "fist_bump_partner",
+      "gap": 60
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": 0, "head": -2, "lUA": 12, "lFA": 8, "rUA": 50, "rFA": 90, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inQuad"
+      },
+      {
+        "t": 0.45,
+        "pose": { "lean": 4, "head": -2, "lUA": 12, "lFA": 8, "rUA": 88, "rFA": 0, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.6,
+        "pose": { "lean": 4, "head": -2, "lUA": 12, "lFA": 8, "rUA": 88, "rFA": 0, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "events": [{ "t": 0.45, "sfx": "pop" }]
+  },
+  {
+    "name": "fist_bump_partner",
+    "description": "The partner side of fist_bump.",
+    "tags": ["paired", "partner"],
+    "category": "interaction",
+    "duration": 0.9,
+    "face": "happy",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": 0, "head": -2, "lUA": 12, "lFA": 8, "rUA": 50, "rFA": 90, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inQuad"
+      },
+      {
+        "t": 0.45,
+        "pose": { "lean": 4, "head": -2, "lUA": 12, "lFA": 8, "rUA": 88, "rFA": 0, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.6,
+        "pose": { "lean": 4, "head": -2, "lUA": 12, "lFA": 8, "rUA": 88, "rFA": 0, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "handshake",
+    "description": "Two characters shake hands.",
+    "tags": ["paired", "polite", "greet"],
+    "category": "interaction",
+    "duration": 1.5,
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [{ "t0": 0.25, "t1": 0.82, "from": "lead", "part": "rHand", "to": "rHand", "meet": true }],
+      "partnerMove": "handshake_partner",
+      "gap": 58
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": 0, "head": 4, "lUA": 12, "lFA": 8, "rUA": 48, "rFA": 30, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.4,
+        "pose": { "lean": 0, "head": 4, "lUA": 12, "lFA": 8, "rUA": 40, "rFA": 46, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.55,
+        "pose": { "lean": 0, "head": 4, "lUA": 12, "lFA": 8, "rUA": 48, "rFA": 30, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.7,
+        "pose": { "lean": 0, "head": 4, "lUA": 12, "lFA": 8, "rUA": 40, "rFA": 46, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.82,
+        "pose": { "lean": 0, "head": 4, "lUA": 12, "lFA": 8, "rUA": 48, "rFA": 30, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "handshake_partner",
+    "description": "The partner side of handshake.",
+    "tags": ["paired", "partner"],
+    "category": "interaction",
+    "duration": 1.5,
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": 0, "head": 4, "lUA": 12, "lFA": 8, "rUA": 48, "rFA": 30, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.82,
+        "pose": { "lean": 0, "head": 4, "lUA": 12, "lFA": 8, "rUA": 48, "rFA": 30, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "pat_head",
+    "description": "Pats the partner on the head (big to small).",
+    "tags": ["paired", "kind"],
+    "category": "interaction",
+    "duration": 1.5,
+    "face": "happy",
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [
+        { "t0": 0.28, "t1": 0.4, "from": "lead", "part": "rHand", "to": "top" },
+        { "t0": 0.56, "t1": 0.68, "from": "lead", "part": "rHand", "to": "top" }
+      ],
+      "partnerMove": "pat_head_partner",
+      "gap": 56
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.2,
+        "pose": { "lean": 6, "head": 14, "lUA": 12, "lFA": 8, "rUA": 120, "rFA": 60, "lTH": 12, "lSH": 0, "rTH": 0, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": 6, "head": 14, "lUA": 12, "lFA": 8, "rUA": 120, "rFA": 60, "lTH": 12, "lSH": 0, "rTH": 0, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "pat_head_partner",
+    "description": "The partner side of pat_head.",
+    "tags": ["paired", "partner"],
+    "category": "interaction",
+    "duration": 1.5,
+    "face": "laugh",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 0, "head": 12, "lUA": 20, "lFA": 8, "rUA": -4, "rFA": 8, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": 0, "head": 12, "lUA": 20, "lFA": 8, "rUA": -4, "rFA": 8, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "give",
+    "description": "Hands the held object to the partner.",
+    "tags": ["paired", "object", "kind"],
+    "category": "interaction",
+    "duration": 1.3,
+    "face": "happy",
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [{ "t0": 0.35, "t1": 0.6, "from": "lead", "part": "rHand", "to": "rHand", "meet": true }],
+      "partnerMove": "receive",
+      "gap": 58
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.35,
+        "pose": { "lean": 4, "head": 6, "lUA": 12, "lFA": 8, "rUA": 78, "rFA": 12, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.6,
+        "pose": { "lean": 4, "head": 6, "lUA": 12, "lFA": 8, "rUA": 78, "rFA": 12, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "events": [{ "t": 0.5, "give": true }]
+  },
+  {
+    "name": "receive",
+    "description": "The partner side of give: takes the object.",
+    "tags": ["paired", "partner", "object"],
+    "category": "interaction",
+    "duration": 1.3,
+    "face": "happy",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.35,
+        "pose": { "lean": 4, "head": 6, "lUA": 12, "lFA": 8, "rUA": 78, "rFA": 12, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.6,
+        "pose": { "lean": 4, "head": 6, "lUA": 12, "lFA": 8, "rUA": 78, "rFA": 12, "lTH": 10, "lSH": 0, "rTH": -2, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "lean": 0, "head": 10, "lUA": 12, "lFA": 8, "rUA": 30, "rFA": 100, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
+      }
+    ]
+  },
+  {
+    "name": "carry",
+    "description": "Picks the partner up in both arms and carries them until put_down.",
+    "tags": ["paired", "carry", "rescue"],
+    "category": "interaction",
+    "duration": 1.4,
+    "flags": { "hold": true },
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "same",
+      "contacts": [],
+      "partnerMove": "carried",
+      "gap": 40,
+      "attach": { "t0": 0.45, "anchor": "rHand", "offset": [0, -14], "until": "detach" }
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.35,
+        "pose": { "lean": 30, "head": 8, "lUA": 60, "lFA": 40, "rUA": 55, "rFA": 45, "lTH": 80, "lSH": 90, "rTH": 60, "rSH": 80, "dy": 20 },
+        "ease": "outQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "lean": -6, "head": 8, "lUA": 72, "lFA": 58, "rUA": 68, "rFA": 62, "lTH": 0, "lSH": 0, "rTH": -12, "rSH": 0, "dy": 0 }
+      }
+    ]
+  },
+  {
+    "name": "carried",
+    "description": "The partner side of carry: is held in the arms.",
+    "tags": ["paired", "partner", "carry"],
+    "category": "interaction",
+    "duration": 1.4,
+    "face": "happy",
+    "flags": { "partner": true, "hold": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.45,
+        "pose": { "rot": 75, "lean": 0, "head": -12, "lUA": 125, "lFA": 50, "rUA": 60, "rFA": 70, "lTH": 95, "lSH": 85, "rTH": 100, "rSH": 80 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "rot": 75, "lean": 0, "head": -12, "lUA": 125, "lFA": 50, "rUA": 60, "rFA": 70, "lTH": 95, "lSH": 85, "rTH": 100, "rSH": 80 }
+      }
+    ]
+  },
+  {
+    "name": "put_down",
+    "description": "Sets down a carried or piggybacked partner.",
+    "tags": ["paired", "carry"],
+    "category": "interaction",
+    "duration": 1.1,
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [],
+      "partnerMove": "set_down",
+      "gap": 0,
+      "inheritAttach": true
+    },
+    "keys": [
+      {
+        "t": 0,
+        "pose": { "lean": -6, "head": 8, "lUA": 72, "lFA": 58, "rUA": 68, "rFA": 62, "lTH": 0, "lSH": 0, "rTH": -12, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.55,
+        "pose": { "lean": 30, "head": 8, "lUA": 55, "lFA": 40, "rUA": 50, "rFA": 45, "lTH": 78, "lSH": 90, "rTH": 58, "rSH": 80, "dy": 20 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "events": [{ "t": 0.6, "detach": true }]
+  },
+  {
+    "name": "set_down",
+    "description": "The partner side of put_down: is set back on the feet.",
+    "tags": ["paired", "partner", "carry"],
+    "category": "interaction",
+    "duration": 1.1,
+    "flags": { "partner": true },
+    "keys": [
+      {
+        "t": 0,
+        "pose": { "rot": 75, "lean": 0, "head": -12, "lUA": 125, "lFA": 50, "rUA": 60, "rFA": 70, "lTH": 95, "lSH": 85, "rTH": 100, "rSH": 80 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.55,
+        "pose": { "lean": 10, "head": 0, "lUA": 12, "lFA": 8, "rUA": -12, "rFA": 8, "lTH": 40, "lSH": 60, "rTH": 30, "rSH": 50, "dy": 10 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "piggyback",
+    "description": "Takes the partner up on the back until put_down.",
+    "tags": ["paired", "carry", "play"],
+    "category": "interaction",
+    "duration": 1.4,
+    "flags": { "hold": true },
+    "face": "happy",
+    "pair": {
+      "leadFaces": "away",
+      "partnerFaces": "same",
+      "contacts": [],
+      "partnerMove": "piggyback_partner",
+      "gap": 34,
+      "attach": { "t0": 0.42, "anchor": "shoulder", "offset": [-24, 34], "until": "detach" }
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.35,
+        "pose": { "lean": 24, "head": -6, "lUA": -30, "lFA": 50, "rUA": -25, "rFA": 55, "lTH": 60, "lSH": 60, "rTH": 50, "rSH": 55, "dy": 18 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "lean": 14, "head": -8, "lUA": -40, "lFA": 60, "rUA": -35, "rFA": 65, "lTH": 20, "lSH": 0, "rTH": 8, "rSH": 0, "dy": 6 }
+      }
+    ]
+  },
+  {
+    "name": "piggyback_partner",
+    "description": "The partner side of piggyback: rides on the back.",
+    "tags": ["paired", "partner", "carry"],
+    "category": "interaction",
+    "duration": 1.4,
+    "face": "laugh",
+    "flags": { "partner": true, "hold": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 10, "head": -10, "lUA": 90, "lFA": 30, "rUA": 95, "rFA": 30, "lTH": 50, "lSH": 70, "rTH": 40, "rSH": 60, "dy": 12 },
+        "ease": "outQuad"
+      },
+      {
+        "t": 0.5,
+        "pose": { "lean": 22, "head": -8, "lUA": 105, "lFA": 75, "rUA": 98, "rFA": 82, "lTH": 100, "lSH": 95, "rTH": 95, "rSH": 100 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "lean": 22, "head": -8, "lUA": 105, "lFA": 75, "rUA": 98, "rFA": 82, "lTH": 100, "lSH": 95, "rTH": 95, "rSH": 100 }
+      }
+    ]
+  },
+  {
+    "name": "lift_up",
+    "description": "Lifts the partner high overhead and back down.",
+    "tags": ["paired", "play", "happy"],
+    "category": "interaction",
+    "duration": 2,
+    "face": "laugh",
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [],
+      "partnerMove": "lifted",
+      "gap": 36,
+      "attach": { "t0": 0.3, "t1": 0.8, "anchor": "rHand", "offset": [6, -30] }
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.2,
+        "pose": { "lean": 26, "head": 6, "lUA": 60, "lFA": 30, "rUA": 58, "rFA": 32, "lTH": 70, "lSH": 80, "rTH": 55, "rSH": 70, "dy": 16 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.45,
+        "pose": { "lean": -4, "head": -12, "lUA": 148, "lFA": 18, "rUA": 152, "rFA": 16, "lTH": 2, "lSH": 0, "rTH": -10, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.65,
+        "pose": { "lean": -4, "head": -12, "lUA": 148, "lFA": 18, "rUA": 152, "rFA": 16, "lTH": 2, "lSH": 0, "rTH": -10, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.82,
+        "pose": { "lean": 20, "head": 6, "lUA": 60, "lFA": 30, "rUA": 58, "rFA": 32, "lTH": 60, "lSH": 70, "rTH": 45, "rSH": 60, "dy": 14 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "lifted",
+    "description": "The partner side of lift_up.",
+    "tags": ["paired", "partner"],
+    "category": "interaction",
+    "duration": 2,
+    "face": "laugh",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 0, "head": -6, "lUA": 205, "lFA": 10, "rUA": 115, "rFA": 30, "lTH": 14, "lSH": 25, "rTH": -4, "rSH": 30 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": 0, "head": -6, "lUA": 205, "lFA": 10, "rUA": 115, "rFA": 30, "lTH": 14, "lSH": 25, "rTH": -4, "rSH": 30 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "drag",
+    "description": "Pulls the partner along the floor by the hand, walking backward.",
+    "tags": ["paired", "carry", "comic"],
+    "category": "interaction",
+    "duration": 2.2,
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [{ "t0": 0.15, "t1": 0.9, "from": "lead", "part": "rHand", "to": "rHand", "meet": true }],
+      "partnerMove": "dragged",
+      "gap": 150,
+      "attach": { "t0": 0.2, "t1": 0.9, "anchor": "rHand", "offset": [150, 0], "mode": "x" }
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.2,
+        "pose": { "lean": -20, "head": 6, "lUA": 70, "lFA": 25, "rUA": 66, "rFA": 28, "lTH": -14, "lSH": 0, "rTH": -50, "rSH": 10, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.9,
+        "pose": { "lean": -20, "head": 6, "lUA": 70, "lFA": 25, "rUA": 66, "rFA": 28, "lTH": -14, "lSH": 0, "rTH": -50, "rSH": 10, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.2, "dx": 0, "dy": 0 },
+      { "t": 0.9, "dx": -160, "dy": 0 },
+      { "t": 1, "dx": -160, "dy": 0 }
+    ],
+    "events": [{ "t": 0.3, "sfx": "slip" }]
+  },
+  {
+    "name": "dragged",
+    "description": "The partner side of drag: is pulled along lying down.",
+    "tags": ["paired", "partner", "carry"],
+    "category": "interaction",
+    "duration": 2.2,
+    "face": "tired",
+    "flags": { "partner": true, "hold": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.2,
+        "pose": { "rot": 88, "lean": 0, "head": 0, "lUA": 175, "lFA": 5, "rUA": 170, "rFA": 5, "lTH": 4, "lSH": 6, "rTH": -4, "rSH": 12 },
+        "ease": "linear"
+      },
+      {
+        "t": 1,
+        "pose": { "rot": 88, "lean": 0, "head": 0, "lUA": 175, "lFA": 5, "rUA": 170, "rFA": 5, "lTH": 4, "lSH": 6, "rTH": -4, "rSH": 12 }
+      }
+    ]
+  },
+  {
+    "name": "lean_on",
+    "description": "Leans on the partner's shoulder for support.",
+    "tags": ["paired", "tired", "kind"],
+    "category": "interaction",
+    "duration": 2.2,
+    "face": "tired",
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [{ "t0": 0.2, "t1": 0.85, "from": "lead", "part": "rHand", "to": "shoulder" }],
+      "partnerMove": "lean_on_partner",
+      "gap": 48
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": 16, "head": 18, "lUA": 12, "lFA": 8, "rUA": 110, "rFA": 20, "lTH": 22, "lSH": 0, "rTH": 10, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": 18, "head": 20, "lUA": 12, "lFA": 8, "rUA": 112, "rFA": 20, "lTH": 24, "lSH": 0, "rTH": 12, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "lean_on_partner",
+    "description": "The partner side of lean_on: holds the leaner up.",
+    "tags": ["paired", "partner"],
+    "category": "interaction",
+    "duration": 2.2,
+    "face": "happy",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": -4, "head": 4, "lUA": 12, "lFA": 8, "rUA": -12, "rFA": 8, "lTH": 2, "lSH": 0, "rTH": -10, "rSH": 0, "dy": 0 },
+        "ease": "linear"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": -4, "head": 4, "lUA": 12, "lFA": 8, "rUA": -12, "rFA": 8, "lTH": 2, "lSH": 0, "rTH": -10, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "comfort",
+    "description": "Puts an arm round a sad partner to comfort them.",
+    "tags": ["paired", "kind", "sad"],
+    "category": "interaction",
+    "duration": 2.4,
+    "pair": {
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [{ "t0": 0.2, "t1": 0.85, "from": "lead", "part": "rHand", "to": "shoulder" }],
+      "partnerMove": "comfort_partner",
+      "gap": 48
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.25,
+        "pose": { "lean": 10, "head": 14, "lUA": 12, "lFA": 8, "rUA": 108, "rFA": 22, "lTH": 16, "lSH": 0, "rTH": 4, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.55,
+        "pose": { "lean": 12, "head": 18, "lUA": 12, "lFA": 8, "rUA": 108, "rFA": 22, "lTH": 18, "lSH": 0, "rTH": 6, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.85,
+        "pose": { "lean": 10, "head": 14, "lUA": 12, "lFA": 8, "rUA": 108, "rFA": 22, "lTH": 16, "lSH": 0, "rTH": 4, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "comfort_partner",
+    "description": "The partner side of comfort.",
+    "tags": ["paired", "partner", "sad"],
+    "category": "interaction",
+    "duration": 2.4,
+    "face": "sad",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 8, "head": 26, "lUA": 4, "lFA": 8, "rUA": -6, "rFA": 8, "lTH": 14, "lSH": 0, "rTH": 2, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.85,
+        "pose": { "lean": 6, "head": 18, "lUA": 4, "lFA": 8, "rUA": -6, "rFA": 8, "lTH": 12, "lSH": 0, "rTH": 0, "rSH": 0, "dy": 0 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "walk_together",
+    "description": "Walks hand in hand with the partner; loops like walk.",
+    "tags": ["paired", "travel", "loop", "friendly"],
+    "category": "interaction",
+    "duration": 1,
+    "params": { "stride": 120 },
+    "flags": { "loop": true },
+    "face": "happy",
+    "pair": {
+      "leadFaces": "away",
+      "partnerFaces": "same",
+      "contacts": [{ "t0": 0, "t1": 1, "from": "lead", "part": "lHand", "to": "rHand", "meet": true }],
+      "partnerMove": "walk_together_partner",
+      "gap": 52,
+      "sync": true
+    },
+    "keys": [
+      { "t": 0, "pose": "walkA" },
+      { "t": 0.25, "pose": "walkPassA" },
+      { "t": 0.5, "pose": "walkB" },
+      { "t": 0.75, "pose": "walkPassB" },
+      { "t": 1, "pose": "walkA" }
+    ],
+    "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }],
+    "events": [{ "t": 0, "sfx": "step" }, { "t": 0.5, "sfx": "step" }]
+  },
+  {
+    "name": "walk_together_partner",
+    "description": "The partner side of walk_together.",
+    "tags": ["paired", "partner", "travel"],
+    "category": "interaction",
+    "duration": 1,
+    "params": { "stride": 120 },
+    "flags": { "loop": true, "partner": true },
+    "face": "happy",
+    "keys": [
+      { "t": 0, "pose": "walkB" },
+      { "t": 0.25, "pose": "walkPassB" },
+      { "t": 0.5, "pose": "walkA" },
+      { "t": 0.75, "pose": "walkPassA" },
+      { "t": 1, "pose": "walkB" }
+    ],
+    "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }]
+  }
+]

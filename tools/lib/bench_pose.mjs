@@ -1,6 +1,8 @@
 // Pose blending used by tools before engine/pose.js lands in M1. Replace with blendPose then.
-import { poses } from "../../data/poses.js";
+import { catalog } from "../../catalog/index.js";
 import { POSE_CHANNELS } from "../../engine/types.js";
+
+const { poses } = catalog;
 
 export function blendForBench(a, b, u) {
   const out = {};

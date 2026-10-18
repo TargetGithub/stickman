@@ -2,7 +2,7 @@
 // pipeline, and the copy-paste workflow. Everything runs offline (fake clients, fake fetch).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 import { validate, createEngine } from "../../engine/index.js";
 import { movesFor, v1MoveNames } from "../../engine/sim.js";
 import { WORLD_COMMANDS } from "../../engine/validator/index.js";

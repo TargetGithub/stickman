@@ -1,5 +1,5 @@
 // Prompt pack (spec 18.2): assembles the static system prompts from prompts/*.md, the catalog tables
-// and the example scripts, and builds the per-request user messages. System prompts are byte-stable
+// and the example scripts (catalog/examples/clips), and builds the per-request user messages. System prompts are byte-stable
 // for a given catalog so prompt caching hits across requests.
 
 import { readFileSync, readdirSync } from "node:fs";
@@ -8,12 +8,14 @@ import { fileURLToPath } from "node:url";
 import { catalogMarkdown, catalogData } from "./prompt_tables.mjs";
 
 export const PROMPTS_DIR = join(dirname(fileURLToPath(import.meta.url)), "../../prompts");
+/** Example scripts and stories live in the catalog (catalog/examples, indexed by index.json). */
+export const EXAMPLES_DIR = join(dirname(fileURLToPath(import.meta.url)), "../../catalog/examples");
 const read = (name) => readFileSync(join(PROMPTS_DIR, name), "utf8");
 const fill = (text, vars) => text.replace(/\{\{(\w+)\}\}/g, (m, k) => (k in vars ? vars[k] : m));
 
 /** Example scripts shipped with the prompt pack, sorted by file name. */
 export function exampleScripts() {
-  const dir = join(PROMPTS_DIR, "examples");
+  const dir = join(EXAMPLES_DIR, "clips");
   return readdirSync(dir).filter((f) => f.endsWith(".json")).sort().map((f) => ({ name: f, text: readFileSync(join(dir, f), "utf8").trim() }));
 }
 

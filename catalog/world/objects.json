@@ -1,0 +1,256 @@
+{
+  "bench": {
+    "description": "A park bench two characters can sit on.",
+    "tags": ["seat", "park"],
+    "behavior": "seat",
+    "draw": "bench",
+    "w": 260,
+    "h": 110,
+    "seatY": 62,
+    "slots": [-60, 60],
+    "colors": { "wood": "#a0703f", "metal": "#3b3b44" }
+  },
+  "chair": {
+    "description": "A wooden chair for one.",
+    "tags": ["seat", "home"],
+    "behavior": "seat",
+    "draw": "chair",
+    "w": 90,
+    "h": 170,
+    "seatY": 80,
+    "slots": [0],
+    "colors": { "wood": "#8a5a34" }
+  },
+  "table": {
+    "description": "A wooden table.",
+    "tags": ["furniture", "home"],
+    "behavior": "static",
+    "draw": "table",
+    "w": 220,
+    "h": 120,
+    "colors": { "wood": "#9a6a3e" }
+  },
+  "tree_big": {
+    "description": "A big leafy tree.",
+    "tags": ["scenery", "park"],
+    "behavior": "static",
+    "draw": "tree",
+    "w": 420,
+    "h": 620,
+    "colors": { "trunk": "#6b4a2f", "leaves": "#3f9a4a", "leaves2": "#53b35a" }
+  },
+  "bush": {
+    "description": "A round green bush (good to hide behind).",
+    "tags": ["scenery", "park"],
+    "behavior": "static",
+    "draw": "bush",
+    "w": 240,
+    "h": 120,
+    "colors": { "leaves": "#3c8f45", "leaves2": "#4fa85a" }
+  },
+  "flower": {
+    "description": "A flower to hold or give.",
+    "tags": ["holdable", "gift", "kind"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": { "kind": "flower", "shape": "flower", "len": 40, "width": 3, "gripAt": 0.1, "grip": "rHand", "color": "#ff6fa8", "trim": "#3c8f45", "hitRadius": 8 }
+  },
+  "lamppost": {
+    "description": "A street lamp that can be on or off.",
+    "tags": ["scenery", "street"],
+    "behavior": "static",
+    "draw": "lamppost",
+    "w": 60,
+    "h": 520,
+    "states": ["on", "off"],
+    "colors": { "metal": "#2e3440", "light": "#ffe7a3" }
+  },
+  "tennis_net": {
+    "description": "A tennis net for a rally.",
+    "tags": ["sport", "park"],
+    "behavior": "static",
+    "draw": "net",
+    "w": 30,
+    "h": 150,
+    "colors": { "post": "#e8e8e8", "net": "rgba(240,240,240,0.75)" }
+  },
+  "sign": {
+    "description": "A wooden signpost.",
+    "tags": ["scenery", "park"],
+    "behavior": "static",
+    "draw": "sign",
+    "w": 140,
+    "h": 240,
+    "colors": { "post": "#6b4a2f", "board": "#e9d9a8" }
+  },
+  "fountain": {
+    "description": "A stone fountain with water.",
+    "tags": ["scenery", "park"],
+    "behavior": "static",
+    "draw": "fountain",
+    "w": 360,
+    "h": 260,
+    "colors": { "stone": "#b9b6ad", "water": "#7fc8ef" }
+  },
+  "door": {
+    "description": "A door that opens and closes.",
+    "tags": ["scenery", "home"],
+    "behavior": "static",
+    "draw": "door",
+    "w": 130,
+    "h": 260,
+    "states": ["closed", "open"],
+    "sfx": { "open": "door_open", "closed": "door_open" },
+    "colors": { "frame": "#4a3528", "door": "#8a5a34" }
+  },
+  "cage": {
+    "description": "A cage that can close over someone (captured) and open again.",
+    "tags": ["villain", "rescue"],
+    "behavior": "static",
+    "draw": "cage",
+    "w": 170,
+    "h": 230,
+    "states": ["closed", "open"],
+    "colors": { "bar": "#5a5f6a", "base": "#3b3f47" }
+  },
+  "crate": {
+    "description": "A wooden crate that breaks into pieces.",
+    "tags": ["breakable", "action"],
+    "behavior": "breakable",
+    "draw": "crate",
+    "w": 110,
+    "h": 110,
+    "states": ["whole", "broken"],
+    "colors": { "wood": "#b07c45", "dark": "#7a5230" }
+  },
+  "box": {
+    "description": "A cardboard box that breaks open.",
+    "tags": ["breakable"],
+    "behavior": "breakable",
+    "draw": "box",
+    "w": 90,
+    "h": 70,
+    "states": ["whole", "broken"],
+    "colors": { "card": "#d2a96b", "tape": "#b8874a" }
+  },
+  "car": {
+    "description": "A car that drives along the floor and can be ridden.",
+    "tags": ["vehicle", "street"],
+    "behavior": "vehicle",
+    "draw": "car",
+    "w": 320,
+    "h": 130,
+    "wheelR": 26,
+    "seat": { "x": -10, "y": 40 },
+    "speed": 420,
+    "colors": { "body": "#e04f4f", "window": "#bfe6ff", "wheel": "#222222" }
+  },
+  "bike": {
+    "description": "A bike to ride.",
+    "tags": ["vehicle", "park"],
+    "behavior": "vehicle",
+    "draw": "bike",
+    "w": 170,
+    "h": 100,
+    "wheelR": 34,
+    "seat": { "x": -8, "y": 70 },
+    "speed": 260,
+    "colors": { "frame": "#2f7fd9", "wheel": "#222222" }
+  },
+  "tennis_ball": {
+    "description": "A tennis ball that flies and bounces.",
+    "tags": ["ball", "sport"],
+    "behavior": "ball",
+    "draw": "ball",
+    "r": 9,
+    "bounce": 0.62,
+    "colors": { "fill": "#d7f04a", "seam": "#ffffff" }
+  },
+  "football": {
+    "description": "A football to kick or throw.",
+    "tags": ["ball", "sport"],
+    "behavior": "ball",
+    "draw": "football",
+    "r": 17,
+    "bounce": 0.55,
+    "colors": { "fill": "#ffffff", "patch": "#222222" }
+  },
+  "bubble": {
+    "description": "A soap bubble that floats up and pops.",
+    "tags": ["floater", "play"],
+    "behavior": "floater",
+    "draw": "bubble",
+    "r": 14,
+    "life": [2.2, 4.2],
+    "rise": 45,
+    "drift": 20,
+    "wobble": 16,
+    "pop": true,
+    "colors": { "rim": "rgba(160, 220, 255, 0.95)", "shine": "rgba(255,255,255,0.9)" }
+  },
+  "balloon": {
+    "description": "A balloon that floats up and away.",
+    "tags": ["floater", "party"],
+    "behavior": "floater",
+    "draw": "balloon",
+    "r": 30,
+    "life": [8, 8],
+    "rise": 90,
+    "drift": 15,
+    "wobble": 10,
+    "pop": false,
+    "colors": { "fill": "#ff5a6e" },
+    "hold": { "kind": "balloon", "shape": "balloon", "len": 120, "width": 2, "gripAt": 0, "grip": "rHand", "color": "#ff5a6e", "trim": "#444444", "hitRadius": 10 }
+  },
+  "racket": {
+    "description": "A tennis racket.",
+    "tags": ["holdable", "sport"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": { "kind": "racket", "shape": "racket", "len": 70, "width": 4, "gripAt": 0.08, "grip": "rHand", "color": "#f2f2f2", "trim": "#d94b4b", "hitRadius": 22 }
+  },
+  "bubble_wand": {
+    "description": "A bubble wand; `use` blows bubbles.",
+    "tags": ["holdable", "play", "bubbles"],
+    "behavior": "holdable",
+    "draw": "held",
+    "use": { "spawn": "bubble", "count": [3, 6], "sfx": "bubble_blow" },
+    "hold": { "kind": "wand", "shape": "wand", "len": 46, "width": 3, "gripAt": 0.1, "grip": "rHand", "color": "#ffcc33", "trim": "#7fd8ff", "hitRadius": 8 }
+  },
+  "phone": {
+    "description": "A phone; `use` takes a photo with a flash.",
+    "tags": ["holdable", "photo"],
+    "behavior": "holdable",
+    "draw": "held",
+    "use": { "fx": ["camera_flash"], "sfx": "pop" },
+    "hold": { "kind": "phone", "shape": "phone", "len": 18, "width": 10, "gripAt": 0.2, "grip": "rHand", "color": "#2b2f3a", "trim": "#7fd8ff", "hitRadius": 8 }
+  },
+  "ice_cream": {
+    "description": "An ice cream cone.",
+    "tags": ["holdable", "food"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": { "kind": "ice_cream", "shape": "ice_cream", "len": 34, "width": 10, "gripAt": 0.15, "grip": "rHand", "color": "#ffd6e7", "trim": "#d9a35b", "hitRadius": 8 }
+  },
+  "book": {
+    "description": "A book to hold or read.",
+    "tags": ["holdable", "calm"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": { "kind": "book", "shape": "book", "len": 26, "width": 18, "gripAt": 0.5, "grip": "rHand", "color": "#3d7bd9", "trim": "#f4f0e0", "hitRadius": 10 }
+  },
+  "rope": {
+    "description": "A coil of rope.",
+    "tags": ["holdable", "rescue"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": { "kind": "rope", "shape": "rope", "len": 30, "width": 18, "gripAt": 0.5, "grip": "rHand", "color": "#c9a26b", "trim": "#8a6a3e", "hitRadius": 10 }
+  },
+  "cane": {
+    "description": "A walking cane (good for an elder).",
+    "tags": ["holdable", "elder"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": { "kind": "cane", "shape": "cane", "len": 92, "width": 5, "gripAt": 0.05, "grip": "rHand", "color": "#6b4a2f", "trim": "#3a2a1c", "hitRadius": 14 }
+  }
+}

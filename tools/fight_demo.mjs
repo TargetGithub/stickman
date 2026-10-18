@@ -12,7 +12,7 @@ import { requiredStartX } from "../engine/combat.js";
 import { drawCharacter } from "../engine/renderer/character.js";
 import { mulberry32 } from "../engine/math.js";
 import { COMBAT, SHAKE } from "../engine/config.js";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const out = args.includes("--out") ? args[args.indexOf("--out") + 1] : "out/demos/m2_fight.mp4";

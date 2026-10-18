@@ -1,0 +1,746 @@
+[
+  {
+    "name": "jab",
+    "description": "A fast, light lead-hand punch; good for opening an exchange.",
+    "tags": ["punch", "light", "fight"],
+    "category": "attack",
+    "duration": 0.36,
+    "params": { "damage": 5, "travel": 10 },
+    "mouth": "neutral",
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.25, "pose": "jabWindup", "ease": "outCubic" },
+      { "t": 0.42, "pose": "jabExtend", "ease": "linear" },
+      { "t": 0.58, "pose": "jabExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.25, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.45, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.38,
+        "t1": 0.58,
+        "part": "rHand",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [120, 0],
+        "hitstop": 0.05,
+        "fx": ["impact_small"],
+        "sfx": "punch_light"
+      }
+    ],
+    "events": [{ "t": 0.26, "sfx": "whoosh" }]
+  },
+  {
+    "name": "cross",
+    "description": "A straight rear-hand punch with the hips turned in.",
+    "tags": ["punch", "medium", "fight"],
+    "category": "attack",
+    "duration": 0.5,
+    "params": { "damage": 9, "travel": 22 },
+    "mouth": "shout",
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.3, "pose": "crossWindup", "ease": "outCubic" },
+      { "t": 0.48, "pose": "crossExtend", "ease": "linear" },
+      { "t": 0.64, "pose": "crossExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.3, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.5, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.44,
+        "t1": 0.64,
+        "part": "lHand",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [220, -20],
+        "hitstop": 0.07,
+        "fx": ["impact_med"],
+        "sfx": "punch_heavy"
+      }
+    ],
+    "events": [{ "t": 0.31, "sfx": "whoosh" }]
+  },
+  {
+    "name": "front_kick",
+    "description": "A straight push kick to the middle.",
+    "tags": ["kick", "medium", "fight"],
+    "category": "attack",
+    "duration": 0.7,
+    "params": { "damage": 10, "travel": 30 },
+    "mouth": "shout",
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.28, "pose": "kickWindup", "ease": "outCubic" },
+      { "t": 0.44, "pose": "kickExtend", "ease": "linear" },
+      { "t": 0.56, "pose": "kickExtend", "ease": "inOutQuad" },
+      { "t": 0.74, "pose": "kickWindup", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.28, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.46, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.4,
+        "t1": 0.58,
+        "part": "rFoot",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [380, -40],
+        "hitstop": 0.08,
+        "fx": ["impact_med"],
+        "shake": "small",
+        "sfx": "kick_light"
+      }
+    ],
+    "events": [{ "t": 0.3, "sfx": "whoosh" }]
+  },
+  {
+    "name": "hook",
+    "description": "A short curved punch to the side of the head.",
+    "tags": ["punch", "medium", "fight"],
+    "category": "attack",
+    "duration": 0.45,
+    "params": { "damage": 7, "travel": 14 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.28, "pose": "hookWindup", "ease": "outCubic" },
+      { "t": 0.46, "pose": "hookExtend", "ease": "linear" },
+      { "t": 0.6, "pose": "hookExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.28, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.48, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.42,
+        "t1": 0.6,
+        "part": "rHand",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [160, -10],
+        "hitstop": 0.06,
+        "fx": ["impact_small"],
+        "sfx": "punch_light"
+      }
+    ],
+    "events": [{ "t": 0.3, "sfx": "whoosh" }]
+  },
+  {
+    "name": "uppercut",
+    "description": "A rising punch from low to the chin; strong.",
+    "tags": ["punch", "heavy", "fight"],
+    "category": "attack",
+    "duration": 0.6,
+    "params": { "damage": 14, "travel": 20 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.32, "pose": "upperWindup", "ease": "outCubic" },
+      { "t": 0.5, "pose": "upperExtend", "ease": "linear" },
+      { "t": 0.62, "pose": "upperExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.32, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.5, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.45,
+        "t1": 0.62,
+        "part": "lHand",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [180, -950],
+        "hitstop": 0.1,
+        "reaction": "hit_launch",
+        "fx": ["impact_big"],
+        "shake": "med",
+        "sfx": "punch_heavy",
+        "dodge": "back"
+      }
+    ],
+    "events": [{ "t": 0.34, "sfx": "whoosh" }]
+  },
+  {
+    "name": "haymaker",
+    "description": "A huge wind-up swing punch; slow, very strong, a good finisher.",
+    "tags": ["punch", "heavy", "finisher", "fight"],
+    "category": "attack",
+    "duration": 0.85,
+    "params": { "damage": 18, "travel": 40 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.4, "pose": "hayWindup", "ease": "holdThenSnap" },
+      { "t": 0.56, "pose": "hayExtend", "ease": "linear" },
+      { "t": 0.7, "pose": "hayExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.4, "dx": -10, "dy": 0, "ease": "outQuad" },
+      { "t": 0.58, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.5,
+        "t1": 0.7,
+        "part": "lHand",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [420, -700],
+        "hitstop": 0.12,
+        "fx": ["impact_big"],
+        "shake": "big",
+        "sfx": "punch_heavy"
+      }
+    ],
+    "events": [{ "t": 0.48, "sfx": "whoosh" }]
+  },
+  {
+    "name": "roundhouse",
+    "description": "A spinning-hip kick that swings round to the head.",
+    "tags": ["kick", "heavy", "fight"],
+    "category": "attack",
+    "duration": 0.75,
+    "params": { "damage": 12, "travel": 30 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.3, "pose": "rhChamber", "ease": "outCubic" },
+      { "t": 0.46, "pose": "rhExtend", "ease": "linear" },
+      { "t": 0.58, "pose": "rhExtend", "ease": "inOutQuad" },
+      { "t": 0.76, "pose": "rhChamber", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.3, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.48, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.42,
+        "t1": 0.6,
+        "part": "rFoot",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [420, -60],
+        "hitstop": 0.09,
+        "fx": ["impact_med"],
+        "shake": "small",
+        "sfx": "kick_heavy"
+      }
+    ],
+    "events": [{ "t": 0.32, "sfx": "whoosh" }]
+  },
+  {
+    "name": "axe_kick",
+    "description": "Lifts the leg high and drops the heel down like an axe.",
+    "tags": ["kick", "heavy", "fight"],
+    "category": "attack",
+    "duration": 0.8,
+    "params": { "damage": 13, "travel": 25 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.22, "pose": "kickWindup", "ease": "outCubic" },
+      { "t": 0.4, "pose": "axeUp", "ease": "inCubic" },
+      { "t": 0.55, "pose": "axeDown", "ease": "linear" },
+      { "t": 0.68, "pose": "axeDown", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.4, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.55, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.44,
+        "t1": 0.58,
+        "part": "rFoot",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [120, 0],
+        "hitstop": 0.1,
+        "fx": ["impact_med"],
+        "shake": "med",
+        "sfx": "kick_heavy"
+      }
+    ],
+    "events": [{ "t": 0.3, "sfx": "whoosh" }]
+  },
+  {
+    "name": "sweep",
+    "description": "A low kick that sweeps the opponent's legs.",
+    "tags": ["kick", "low", "fight"],
+    "category": "attack",
+    "duration": 0.7,
+    "params": { "damage": 8, "travel": 30 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.28, "pose": "crouch", "ease": "outCubic" },
+      { "t": 0.45, "pose": "sweepLow", "ease": "linear" },
+      { "t": 0.6, "pose": "sweepLow", "ease": "inOutQuad" },
+      { "t": 0.8, "pose": "crouch", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.28, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.47, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.4,
+        "t1": 0.6,
+        "part": "rFoot",
+        "aim": "legs",
+        "damage": "damage",
+        "knock": [60, -550],
+        "hitstop": 0.07,
+        "reaction": "hit_launch",
+        "fx": ["impact_small", "dust_land"],
+        "sfx": "kick_light"
+      }
+    ],
+    "events": [{ "t": 0.3, "sfx": "whoosh", "fx": ["dust_run"] }]
+  },
+  {
+    "name": "elbow",
+    "description": "A short close-range elbow strike.",
+    "tags": ["strike", "close", "fight"],
+    "category": "attack",
+    "duration": 0.4,
+    "params": { "damage": 8, "travel": 18 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.25, "pose": "hookWindup", "ease": "outCubic" },
+      { "t": 0.42, "pose": "elbowStrike", "ease": "linear" },
+      { "t": 0.58, "pose": "elbowStrike", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.25, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.45, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.38,
+        "t1": 0.58,
+        "part": "rElbow",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [200, -20],
+        "hitstop": 0.07,
+        "fx": ["impact_small"],
+        "sfx": "punch_heavy"
+      }
+    ],
+    "events": [{ "t": 0.26, "sfx": "whoosh" }]
+  },
+  {
+    "name": "knee",
+    "description": "A rising knee strike at close range.",
+    "tags": ["strike", "close", "fight"],
+    "category": "attack",
+    "duration": 0.5,
+    "params": { "damage": 10, "travel": 22 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.28, "pose": "kickWindup", "ease": "outCubic" },
+      { "t": 0.45, "pose": "kneeStrike", "ease": "linear" },
+      { "t": 0.6, "pose": "kneeStrike", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.28, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.47, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.4,
+        "t1": 0.6,
+        "part": "rKnee",
+        "aim": "torso",
+        "damage": "damage",
+        "knock": [220, -40],
+        "hitstop": 0.08,
+        "fx": ["impact_med"],
+        "sfx": "kick_light"
+      }
+    ],
+    "events": [{ "t": 0.3, "sfx": "whoosh" }]
+  },
+  {
+    "name": "headbutt",
+    "description": "Lunges in head first; close range.",
+    "tags": ["strike", "close", "fight"],
+    "category": "attack",
+    "duration": 0.5,
+    "params": { "damage": 9, "travel": 24 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.3, "pose": "headbuttWindup", "ease": "outCubic" },
+      { "t": 0.45, "pose": "headbuttExtend", "ease": "linear" },
+      { "t": 0.6, "pose": "headbuttExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.3, "dx": -6, "dy": 0, "ease": "outQuad" },
+      { "t": 0.47, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.4,
+        "t1": 0.6,
+        "part": "head",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [200, -20],
+        "hitstop": 0.08,
+        "fx": ["impact_med", "stars_dizzy"],
+        "sfx": "punch_heavy"
+      }
+    ],
+    "events": [{ "t": 0.32, "sfx": "whoosh" }]
+  },
+  {
+    "name": "flying_kick",
+    "description": "Leaps far forward and kicks in the air; covers a lot of ground.",
+    "tags": ["kick", "air", "heavy", "finisher", "fight"],
+    "category": "attack",
+    "duration": 0.95,
+    "params": { "damage": 16, "travel": 260, "height": 140 },
+    "flags": { "airborne": true },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.15, "pose": "crouch", "ease": "outCubic" },
+      { "t": 0.3, "pose": "jumpUp", "ease": "holdThenSnap" },
+      { "t": 0.46, "pose": "flyKick", "ease": "linear" },
+      { "t": 0.64, "pose": "flyKick", "ease": "inOutQuad" },
+      { "t": 0.84, "pose": "crouch", "snapHard": true, "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.2, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.5, "dx": "travel*0.7", "dy": "-height", "ease": "inQuad" },
+      { "t": 0.84, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.44,
+        "t1": 0.64,
+        "part": "rFoot",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [520, -300],
+        "hitstop": 0.1,
+        "fx": ["impact_big"],
+        "shake": "med",
+        "sfx": "kick_heavy"
+      }
+    ],
+    "events": [{ "t": 0.2, "sfx": "whoosh", "fx": ["dust_land"] }, { "t": 0.84, "sfx": "land", "fx": ["dust_land"] }]
+  },
+  {
+    "name": "spinning_kick",
+    "description": "A full spin that ends in a kick.",
+    "tags": ["kick", "heavy", "acrobatic", "fight"],
+    "category": "attack",
+    "duration": 0.85,
+    "params": { "damage": 14, "travel": 40 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.18, "pose": "stand", "ease": "linear" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 5, "lUA": 30, "lFA": 60, "rUA": 30, "rFA": 60, "lTH": 10, "lSH": 10, "rTH": 20, "rSH": 40 },
+        "ease": "linear"
+      },
+      { "t": 0.42, "pose": "rhChamber", "ease": "outCubic" },
+      { "t": 0.54, "pose": "rhExtend", "ease": "linear" },
+      { "t": 0.68, "pose": "rhExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.4, "dx": 10, "dy": 0, "ease": "outQuad" },
+      { "t": 0.56, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.5,
+        "t1": 0.68,
+        "part": "rFoot",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [480, -120],
+        "hitstop": 0.1,
+        "fx": ["impact_big"],
+        "shake": "med",
+        "sfx": "kick_heavy"
+      }
+    ],
+    "events": [{ "t": 0.2, "turn": true, "sfx": "whoosh" }, { "t": 0.36, "turn": true }, { "t": 0.46, "sfx": "whoosh" }]
+  },
+  {
+    "name": "flurry",
+    "description": "A rush of quick punches (six hits) that ends in a stronger finisher.",
+    "tags": ["punch", "combo", "fight"],
+    "category": "attack",
+    "duration": 1.3,
+    "params": { "damage": 3, "finisher": 10, "travel": 120 },
+    "mouth": "shout",
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.12, "pose": "jabWindup", "ease": "outCubic" },
+      { "t": 0.2, "pose": "jabExtend", "ease": "outQuad" },
+      { "t": 0.26, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.32, "pose": "crossExtend", "ease": "outQuad" },
+      { "t": 0.38, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.44, "pose": "jabExtend", "ease": "outQuad" },
+      { "t": 0.5, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.56, "pose": "crossExtend", "ease": "outQuad" },
+      { "t": 0.62, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.68, "pose": "jabExtend", "ease": "outQuad" },
+      { "t": 0.74, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.8, "pose": "crossExtend", "ease": "outQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.15, "dx": 0, "dy": 0 },
+      { "t": 0.85, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.17,
+        "t1": 0.23,
+        "part": "rHand",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [30, 0],
+        "hitstop": 0.03,
+        "reaction": "hit_light",
+        "fx": ["impact_small"],
+        "sfx": "punch_light",
+        "dodge": "back"
+      },
+      {
+        "t0": 0.29,
+        "t1": 0.35,
+        "part": "lHand",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [30, 0],
+        "hitstop": 0.03,
+        "reaction": "hit_light",
+        "fx": ["impact_small"],
+        "sfx": "punch_light",
+        "dodge": "back"
+      },
+      {
+        "t0": 0.41,
+        "t1": 0.47,
+        "part": "rHand",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [30, 0],
+        "hitstop": 0.03,
+        "reaction": "hit_light",
+        "fx": ["impact_small"],
+        "sfx": "punch_light",
+        "dodge": "back"
+      },
+      {
+        "t0": 0.53,
+        "t1": 0.59,
+        "part": "lHand",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [30, 0],
+        "hitstop": 0.03,
+        "reaction": "hit_light",
+        "fx": ["impact_small"],
+        "sfx": "punch_light",
+        "dodge": "back"
+      },
+      {
+        "t0": 0.65,
+        "t1": 0.71,
+        "part": "rHand",
+        "aim": "auto",
+        "damage": "damage",
+        "knock": [30, 0],
+        "hitstop": 0.03,
+        "reaction": "hit_light",
+        "fx": ["impact_small"],
+        "sfx": "punch_light",
+        "dodge": "back"
+      },
+      {
+        "t0": 0.77,
+        "t1": 0.83,
+        "part": "lHand",
+        "aim": "auto",
+        "damage": "finisher",
+        "knock": [300, -40],
+        "hitstop": 0.09,
+        "fx": ["impact_med"],
+        "shake": "small",
+        "sfx": "punch_heavy",
+        "dodge": "back"
+      }
+    ],
+    "events": [{ "t": 0.14, "sfx": "whoosh" }, { "t": 0.5, "sfx": "whoosh" }, { "t": 0.78, "sfx": "whoosh" }]
+  },
+  {
+    "name": "ground_pound",
+    "description": "Jumps and slams both fists into the ground, sending a shockwave.",
+    "tags": ["strike", "heavy", "air", "fight"],
+    "category": "attack",
+    "duration": 0.95,
+    "params": { "damage": 12, "travel": 30 },
+    "mouth": "shout",
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.32, "pose": "poundUp", "ease": "holdThenSnap" },
+      { "t": 0.48, "pose": "poundDown", "ease": "linear", "snapHard": true },
+      { "t": 0.72, "pose": "poundDown", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.32, "dx": 10, "dy": -60, "ease": "inQuad" },
+      { "t": 0.48, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.46,
+        "t1": 0.62,
+        "part": "rHand",
+        "aim": "legs",
+        "damage": "damage",
+        "knock": [260, -650],
+        "hitstop": 0.12,
+        "reaction": "hit_launch",
+        "fx": ["impact_med"],
+        "shake": "big",
+        "sfx": "shockwave",
+        "dodge": "back"
+      }
+    ],
+    "events": [{ "t": 0.2, "sfx": "whoosh" }, { "t": 0.48, "fx": ["shockwave"], "shake": "big" }]
+  },
+  {
+    "name": "energy_blast",
+    "description": "Gathers energy in the hands and fires a glowing ball at a distance.",
+    "tags": ["ranged", "energy", "heavy", "fight"],
+    "category": "attack",
+    "duration": 0.9,
+    "params": { "damage": 15 },
+    "mouth": "shout",
+    "flags": { "ranged": [220, 1500] },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.35, "pose": "chargeBall", "ease": "holdThenSnap" },
+      { "t": 0.5, "pose": "blastPush", "ease": "linear" },
+      { "t": 0.75, "pose": "blastPush", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "events": [
+      { "t": 0.05, "sfx": "energy_charge" },
+      {
+        "t": 0.5,
+        "sfx": "energy_fire",
+        "projectile": {
+          "kind": "energy_ball",
+          "from": "rHand",
+          "speed": 1150,
+          "radius": 26,
+          "damage": "damage",
+          "life": 2.5,
+          "knock": [450, -200],
+          "hitstop": 0.1,
+          "fx": ["impact_big", "spark"],
+          "shake": "med",
+          "sfx": "explosion"
+        }
+      }
+    ]
+  },
+  {
+    "name": "counter",
+    "description": "Guards against an attack, then strikes back straight away.",
+    "tags": ["guard", "strike", "fight"],
+    "category": "attack",
+    "duration": 0.85,
+    "params": { "damage": 12, "travel": 24 },
+    "flags": { "guard": [0.05, 0.32, "parry"] },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outCubic" },
+      { "t": 0.12, "pose": "parry", "ease": "linear" },
+      { "t": 0.32, "pose": "parry", "ease": "outCubic" },
+      { "t": 0.44, "pose": "crossWindup", "ease": "outCubic" },
+      { "t": 0.56, "pose": "crossExtend", "ease": "linear" },
+      { "t": 0.7, "pose": "crossExtend", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0 },
+      { "t": 0.44, "dx": 0, "dy": 0, "ease": "outQuad" },
+      { "t": 0.58, "dx": "travel", "dy": 0 },
+      { "t": 1, "dx": "travel", "dy": 0 }
+    ],
+    "hits": [
+      {
+        "t0": 0.52,
+        "t1": 0.7,
+        "part": "lHand",
+        "aim": "head",
+        "damage": "damage",
+        "knock": [320, -60],
+        "hitstop": 0.09,
+        "fx": ["impact_med"],
+        "shake": "small",
+        "sfx": "punch_heavy"
+      }
+    ],
+    "events": [{ "t": 0.08, "sfx": "whoosh" }, { "t": 0.45, "sfx": "whoosh" }]
+  }
+]

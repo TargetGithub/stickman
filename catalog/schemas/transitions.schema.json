@@ -1,0 +1,27 @@
+{
+  "title": "catalog/docs/transitions.json: transitions and cards.",
+  "type": "object",
+  "required": ["types", "cards", "rule"],
+  "additionalProperties": false,
+  "properties": {
+    "types": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "example"],
+        "additionalProperties": false,
+        "properties": { "description": { "type": "string", "minLength": 8, "maxLength": 200 }, "example": { "type": "object" } }
+      }
+    },
+    "cards": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "example"],
+        "additionalProperties": false,
+        "properties": { "description": { "type": "string", "minLength": 8, "maxLength": 200 }, "example": { "type": "object" } }
+      }
+    },
+    "rule": { "type": "string" }
+  }
+}

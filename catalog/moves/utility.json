@@ -1,0 +1,148 @@
+[
+  {
+    "name": "use",
+    "description": "Uses the held object: a wand blows bubbles, a phone takes a photo.",
+    "tags": ["object", "story"],
+    "category": "utility",
+    "duration": 1,
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": -4, "head": -6, "lUA": 14, "lFA": 10, "rUA": 95, "rFA": 35, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad",
+        "propAngle": 20
+      },
+      {
+        "t": 0.7,
+        "pose": { "lean": -2, "head": -4, "lUA": 14, "lFA": 10, "rUA": 100, "rFA": 30, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad",
+        "propAngle": 20
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "events": [{ "t": 0.45, "use": true }]
+  },
+  {
+    "name": "ride",
+    "description": "Gets on a vehicle (the beat's object) and rides it until dismount.",
+    "tags": ["object", "vehicle", "story"],
+    "category": "utility",
+    "duration": 0.6,
+    "flags": { "hold": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 1,
+        "pose": { "lean": 4, "head": -4, "lUA": 60, "lFA": 40, "rUA": 55, "rFA": 45, "lTH": 70, "lSH": 75, "rTH": 75, "rSH": 80 }
+      }
+    ]
+  },
+  {
+    "name": "dismount",
+    "description": "Gets off the vehicle being ridden.",
+    "tags": ["object", "vehicle", "story"],
+    "category": "utility",
+    "duration": 0.5,
+    "keys": [
+      {
+        "t": 0,
+        "pose": { "lean": 4, "head": -4, "lUA": 60, "lFA": 40, "rUA": 55, "rFA": 45, "lTH": 70, "lSH": 75, "rTH": 75, "rSH": 80 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "wait",
+    "description": "Holds the current pose for `seconds`; the way to pause.",
+    "tags": ["pause", "timing"],
+    "category": "utility",
+    "duration": 1,
+    "params": { "seconds": 1 },
+    "flags": { "keepPose": true, "durationParam": "seconds" },
+    "keys": [{ "t": 0, "pose": "stand" }]
+  },
+  {
+    "name": "face",
+    "description": "Turns to face the target or the other way, keeping the pose.",
+    "tags": ["turn", "timing"],
+    "category": "utility",
+    "duration": 0.15,
+    "flags": { "keepPose": true },
+    "keys": [{ "t": 0, "pose": "stand" }]
+  },
+  {
+    "name": "pick_prop",
+    "description": "Bends down and picks up the nearest prop.",
+    "tags": ["prop", "object"],
+    "category": "utility",
+    "duration": 0.8,
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.4, "pose": "pickDown", "ease": "linear" },
+      { "t": 0.6, "pose": "pickDown", "ease": "inOutQuad" },
+      { "t": 1, "pose": "swordGuard", "propAngle": 55 }
+    ],
+    "events": [{ "t": 0.5, "pick": true, "sfx": "pop" }]
+  },
+  {
+    "name": "drop_prop",
+    "description": "Drops the held prop on the floor.",
+    "tags": ["prop", "object"],
+    "category": "utility",
+    "duration": 0.6,
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.35, "pose": "dropPose", "ease": "linear" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "events": [{ "t": 0.35, "drop": true, "sfx": "land" }]
+  },
+  {
+    "name": "teleport",
+    "description": "Vanishes and reappears `dx` px ahead.",
+    "tags": ["magic", "travel"],
+    "category": "utility",
+    "duration": 0.8,
+    "params": { "dx": 300 },
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "outQuad" },
+      { "t": 0.3, "pose": "crouch", "ease": "linear" },
+      { "t": 0.65, "pose": "crouch", "ease": "outBack" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "events": [
+      { "t": 0.32, "hide": true, "sfx": "pop" },
+      { "t": 0.5, "teleport": true },
+      { "t": 0.62, "show": true, "sfx": "pop" }
+    ]
+  },
+  {
+    "name": "spawn",
+    "description": "Appears out of nowhere (the character starts hidden).",
+    "tags": ["magic", "enter"],
+    "category": "utility",
+    "duration": 0.7,
+    "keys": [
+      { "t": 0, "pose": "crouch", "ease": "outBack" },
+      { "t": 0.6, "pose": "guard", "ease": "inOutQuad" },
+      { "t": 1, "pose": "guard" }
+    ],
+    "events": [{ "t": 0, "show": true, "sfx": "pop" }]
+  },
+  {
+    "name": "despawn",
+    "description": "Disappears from the stage and stays gone.",
+    "tags": ["magic", "exit"],
+    "category": "utility",
+    "duration": 0.7,
+    "keys": [
+      { "t": 0, "pose": "guard", "ease": "inOutQuad" },
+      { "t": 0.45, "pose": "crouch", "ease": "linear" },
+      { "t": 1, "pose": "crouch" }
+    ],
+    "flags": { "hold": true },
+    "events": [{ "t": 0.45, "hide": true, "sfx": "pop" }]
+  }
+]

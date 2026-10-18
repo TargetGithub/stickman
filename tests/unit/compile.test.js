@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 import { compileStory, hasMacros } from "../../engine/story/compile.js";
 import { normalize } from "../../engine/story/normalize.js";
 import { movesFor } from "../../engine/sim.js";

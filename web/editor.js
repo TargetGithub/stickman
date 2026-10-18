@@ -1,7 +1,7 @@
 // Move editor (M1.4). Edits raw move data (spec 8.1), previews it with the real runtime (engine/actor.js),
-// and exports a literal for /data/moves. See web/editor.html for the layout.
+// and exports JSON for catalog/moves. See web/editor.html for the layout.
 
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 import { POSE_CHANNELS } from "../engine/types.js";
 import { DEG, easings } from "../engine/math.js";
 import { BODY, computeJoints, lowestPoint, solveIK2, bendSignOf } from "../engine/skeleton.js";

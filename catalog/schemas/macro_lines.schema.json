@@ -1,0 +1,9 @@
+{
+  "title": "catalog/story/macro_lines.json: lines the compiler writes itself (under 40 characters).",
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "minItems": 1,
+    "items": { "type": ["string", "array"], "maxLength": 40, "items": { "type": "string", "maxLength": 40 } }
+  }
+}

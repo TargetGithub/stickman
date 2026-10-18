@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { synthesize, RECIPE_KEYS, SAMPLE_RATE } from "../../tools/lib/synth.mjs";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 test("every required SFX key has a recipe", () => {
   for (const key of catalog.sfxKeys) assert.ok(RECIPE_KEYS.includes(key), key);

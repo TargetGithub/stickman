@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { createActor, playMove, stepActor } from "../../engine/actor.js";
 import { prepareCatalog } from "../../engine/moves.js";
 import { lowestPoint } from "../../engine/skeleton.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const DT = 1 / 60;
 const moves = prepareCatalog(catalog.moves, catalog.poses);

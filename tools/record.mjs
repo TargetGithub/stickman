@@ -23,7 +23,7 @@ import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);

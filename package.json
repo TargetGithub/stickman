@@ -16,6 +16,9 @@
     "record": "node tools/record.mjs",
     "sfx": "node tools/sfxgen.mjs",
     "catalog": "node tools/catalog.mjs",
+    "catalog:build": "node tools/catalog_build.mjs",
+    "catalog:check": "node tools/catalog_build.mjs --check",
+    "catalog:pack": "node tools/catalog_build.mjs --zip",
     "generate": "node tools/generate.mjs",
     "manual": "node tools/manual.mjs",
     "golden:update": "GOLDEN_UPDATE=1 node --test tests/integration/golden.test.js"

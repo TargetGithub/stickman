@@ -1,0 +1,50 @@
+{
+  "examples": [
+    {
+      "path": "clips/cookie_duel.json",
+      "kind": "clip",
+      "title": "The Last Cookie",
+      "description": "Two rivals fight over the last cookie: a caption, every outcome (blocked, parried, dodged, hit), slowmo, dizzy and a victory.",
+      "tags": ["fight", "comic", "v1"]
+    },
+    {
+      "path": "clips/giant_sword.json",
+      "kind": "clip",
+      "title": "Blade Against the Giant",
+      "description": "A sword fighter takes on a club-wielding giant (scale 2.4): weapon moves, a knockdown and get_up, charge_up, freeze and flash on the finisher.",
+      "tags": ["fight", "weapon", "giant", "v1"]
+    },
+    {
+      "path": "clips/portrait_blink.json",
+      "kind": "clip",
+      "title": "Blink Duel",
+      "description": "A short portrait clip: blaster shots, a teleport, an uppercut in slowmo and a spinning KO.",
+      "tags": ["fight", "portrait", "magic", "v1"]
+    },
+    {
+      "path": "stories/brave_heart.json",
+      "kind": "story",
+      "title": "Bubbles and the Brave Heart",
+      "description": "When Vex takes Pip away, Kai crosses the city to save his friend (abridged; with its outline).",
+      "tags": ["story", "rescue", "fight", "kids"]
+    },
+    {
+      "path": "stories/rainy_picnic.json",
+      "kind": "story",
+      "title": "The Rainy Picnic",
+      "description": "Rain ruins a picnic, so Mia, Bop and Gran find a way to have fun inside (abridged; with its outline).",
+      "tags": ["story", "slice-of-life", "kids"]
+    }
+  ],
+  "pack": {
+    "clip": "clips/cookie_duel.json",
+    "outline": "stories/rainy_picnic.json",
+    "scenes": [
+      { "story": "stories/brave_heart.json", "scene": "s1", "kind": "play", "shows": "narration, two @activity beats and a paired high_five" },
+      { "story": "stories/rainy_picnic.json", "scene": "s2", "kind": "talk", "shows": "a weather change, @dialogue with faces and @walk_together" },
+      { "story": "stories/brave_heart.json", "scene": "s4", "kind": "fight", "shows": "@dialogue, @fight with ko false, @defeat captured, return, a hug and an end card" },
+      { "story": "stories/brave_heart.json", "scene": "s2", "kind": "defeat", "shows": "@enter, a villain energy blast, @defeat vanish, @exit and @grief" },
+      { "story": "stories/brave_heart.json", "scene": "s3", "kind": "journey", "shows": "a @gauntlet across the street, opponents placed in order" }
+    ]
+  }
+}

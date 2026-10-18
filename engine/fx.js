@@ -9,7 +9,7 @@ const DEG = Math.PI / 180;
 
 /**
  * @param {() => number} rng  the "fx" stream
- * @param {object} presets  data/fx.js
+ * @param {object} presets  catalog.fxPresets (catalog/effects/fx.json)
  */
 export function createFx(rng, presets, budget = LIMITS.particles) {
   return { rng, presets, budget, log: [], trails: [], sustains: [], flashes: [], dropped: 0, liveStart: 0 };

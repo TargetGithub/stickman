@@ -1,11 +1,13 @@
 // Slice-of-life moves (S5.4): data checks for every move, seats with slots, stand_up, racket and wand moves.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { moves as life } from "../../data/moves/life.js";
+import { fileReader } from "../../catalog/index.js";
+
+const life = fileReader()("moves/life.json");
 import { checkMove } from "../../tools/lib/draft.mjs";
 import { createEngine } from "../../engine/index.js";
 import { unpackJoints } from "../../engine/skeleton.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 test("there are 28 slice-of-life moves (25 in batch 1, 3 ball moves for activities)", () => assert.equal(life.length, 28));
 

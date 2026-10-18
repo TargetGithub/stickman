@@ -11,7 +11,7 @@ import { bodyPlan } from "../../engine/story/bodies.js";
 import { propByKind } from "../../engine/props.js";
 import { COMBAT, STAGE } from "../../engine/config.js";
 import { holdableProps } from "../../engine/objects.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const DT = 1 / 60;
 const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));

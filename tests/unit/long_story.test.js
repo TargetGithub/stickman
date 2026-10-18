@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { validate } from "../../engine/validator/index.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const THEMES = ["city_park", "city_street", "home_interior", "alley_night", "villain_lair", "dojo_dusk"];
 const ACTS = ["wave", "laugh", "point", "shrug", "bow", "taunt", "dance_a", "facepalm"];

@@ -1,0 +1,915 @@
+{
+  "impact_small": {
+    "description": "Small burst of lines and a ring where a light hit lands.",
+    "tags": ["hit", "light"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 6,
+        "angle": [0, 360],
+        "speed": [500, 800],
+        "life": [0.12, 0.2],
+        "size": [18, 4],
+        "width": 4,
+        "color": ["#fff6c0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0.2]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.18, 0.18],
+        "size": [10, 60],
+        "width": 4,
+        "color": "#ffffff",
+        "alpha": [0.9, 0]
+      },
+      {
+        "shape": "star",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.08, 0.08],
+        "size": [34, 40],
+        "color": "#fff6c0",
+        "alpha": [1, 0.6]
+      }
+    ]
+  },
+  "impact_med": {
+    "description": "Medium burst with a star flash for normal hits.",
+    "tags": ["hit", "medium"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 10,
+        "angle": [0, 360],
+        "speed": [600, 950],
+        "life": [0.14, 0.24],
+        "size": [26, 5],
+        "width": 5,
+        "color": ["#fff6c0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0.2]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.22, 0.22],
+        "size": [14, 90],
+        "width": 5,
+        "color": "#ffffff",
+        "alpha": [0.9, 0]
+      },
+      {
+        "shape": "star",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.1, 0.1],
+        "size": [46, 54],
+        "color": "#fff6c0",
+        "alpha": [1, 0.6]
+      }
+    ]
+  },
+  "impact_big": {
+    "description": "Big burst, ring and flash for heavy hits.",
+    "tags": ["hit", "heavy"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 16,
+        "angle": [0, 360],
+        "speed": [700, 1200],
+        "life": [0.16, 0.3],
+        "size": [36, 6],
+        "width": 6,
+        "color": ["#fff6c0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0.2]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.28, 0.28],
+        "size": [20, 140],
+        "width": 7,
+        "color": "#ffffff",
+        "alpha": [0.95, 0]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.4, 0.4],
+        "size": [10, 200],
+        "width": 3,
+        "color": "#ffd23f",
+        "alpha": [0.7, 0]
+      },
+      {
+        "shape": "star",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.12, 0.12],
+        "size": [64, 76],
+        "color": "#fff6c0",
+        "alpha": [1, 0.6]
+      },
+      {
+        "shape": "dot",
+        "count": 8,
+        "angle": [-160, -20],
+        "speed": [300, 700],
+        "life": [0.3, 0.6],
+        "size": [6, 2],
+        "gravity": 1800,
+        "color": ["#fff6c0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "block_spark": {
+    "description": "Bright sparks where a hit is blocked.",
+    "tags": ["hit", "guard"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 8,
+        "angle": [140, 220],
+        "speed": [500, 900],
+        "life": [0.1, 0.18],
+        "size": [20, 4],
+        "width": 4,
+        "color": ["#bfe6ff", "#ffffff", "#6ec1ff"],
+        "alpha": [1, 0.2]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.14, 0.14],
+        "size": [8, 46],
+        "width": 4,
+        "color": "#9fd8ff",
+        "alpha": [0.9, 0]
+      }
+    ]
+  },
+  "spark": {
+    "description": "A few quick sparks (weapon clashes, parries).",
+    "tags": ["hit", "weapon"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "dot",
+        "count": 10,
+        "angle": [-170, -10],
+        "speed": [300, 700],
+        "life": [0.3, 0.6],
+        "size": [5, 2],
+        "gravity": 1600,
+        "color": ["#fff6c0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "dust_land": {
+    "description": "A puff of dust at the feet on landing.",
+    "tags": ["dust", "feet"],
+    "anchor": "feet",
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 8,
+        "angle": [-175, -5],
+        "speed": [60, 200],
+        "life": [0.4, 0.7],
+        "size": [10, 30],
+        "gravity": -40,
+        "drag": 3,
+        "offset": 18,
+        "color": ["#c9c2b4", "#b5ad9d"],
+        "alpha": [0.6, 0]
+      }
+    ]
+  },
+  "dust_run": {
+    "description": "Little dust kicks at the feet while running.",
+    "tags": ["dust", "feet", "travel"],
+    "anchor": "feet",
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 2,
+        "angle": [160, 200],
+        "speed": [40, 90],
+        "life": [0.3, 0.5],
+        "size": [6, 16],
+        "drag": 3,
+        "color": "#c9c2b4",
+        "alpha": [0.5, 0]
+      }
+    ]
+  },
+  "shockwave": {
+    "description": "A ground ring and dust blasting out from the feet.",
+    "tags": ["power", "heavy"],
+    "anchor": "feet",
+    "layers": [
+      {
+        "shape": "ellipse",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.5, 0.5],
+        "size": [20, 280],
+        "width": 6,
+        "color": "#ffffff",
+        "alpha": [0.9, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 12,
+        "angle": [-180, 0],
+        "speed": [200, 400],
+        "life": [0.4, 0.6],
+        "size": [12, 30],
+        "drag": 4,
+        "color": "#c9c2b4",
+        "alpha": [0.6, 0]
+      }
+    ]
+  },
+  "speed_lines": {
+    "description": "Speed lines streaming behind the body.",
+    "tags": ["motion", "fast"],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 8,
+        "angle": [175, 185],
+        "speed": [900, 1100],
+        "life": [0.16, 0.24],
+        "size": [70, 20],
+        "width": 3,
+        "spreadY": 90,
+        "color": "#9a9a9a",
+        "alpha": [0.7, 0]
+      }
+    ]
+  },
+  "aura": {
+    "description": "A glowing aura round the body that lingers (takes the character's color).",
+    "tags": ["power", "energy", "lingers"],
+    "anchor": "hip",
+    "sustain": { "duration": 1.6, "rate": 28 },
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 1,
+        "angle": [-100, -80],
+        "speed": [60, 140],
+        "life": [0.6, 0.9],
+        "size": [12, 2],
+        "offset": 46,
+        "color": ["#ffd23f", "#fff2a8"],
+        "tintable": true,
+        "alpha": [0.8, 0]
+      }
+    ],
+    "glow": { "attach": "hip", "life": 1.6, "size": [90, 130], "color": "#ffd23f", "alpha": [0.35, 0] }
+  },
+  "explosion": {
+    "description": "A fiery explosion with smoke.",
+    "tags": ["blast", "heavy"],
+    "anchor": "point",
+    "flash": { "color": "#ffffff", "dur": 0.12 },
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 14,
+        "angle": [0, 360],
+        "speed": [100, 420],
+        "life": [0.5, 0.9],
+        "size": [30, 80],
+        "drag": 2.5,
+        "color": ["#ff9a2e", "#ff5a1f", "#ffd23f"],
+        "alpha": [0.9, 0]
+      },
+      {
+        "shape": "line",
+        "count": 12,
+        "angle": [-170, -10],
+        "speed": [400, 900],
+        "life": [0.4, 0.8],
+        "size": [14, 8],
+        "width": 5,
+        "gravity": 1800,
+        "color": "#4a3a2a",
+        "alpha": [1, 0.6]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.35, 0.35],
+        "size": [30, 260],
+        "width": 8,
+        "color": "#fff6c0",
+        "alpha": [0.9, 0]
+      }
+    ]
+  },
+  "smoke": {
+    "description": "A soft cloud of smoke.",
+    "tags": ["smoke"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 6,
+        "angle": [-120, -60],
+        "speed": [20, 60],
+        "life": [1.2, 2],
+        "size": [40, 90],
+        "drag": 1,
+        "color": "#8f8f8f",
+        "alpha": [0.3, 0]
+      }
+    ]
+  },
+  "stars_dizzy": {
+    "description": "Little stars circling the head.",
+    "tags": ["head", "comic", "dizzy"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "star",
+        "count": 3,
+        "attach": "head",
+        "orbit": { "r": 34, "w": 6 },
+        "life": [1.6, 1.6],
+        "size": [12, 12],
+        "color": "#ffd23f",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "sweat_drop": {
+    "description": "A sweat drop by the head (nervous, tired).",
+    "tags": ["head", "comic", "nervous"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "drop",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [18, -30],
+        "life": [1, 1],
+        "size": [14, 14],
+        "color": "#5fb6ff",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "anger_mark": {
+    "description": "A comic anger mark by the head.",
+    "tags": ["head", "comic", "angry"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "anger",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [-20, -34],
+        "life": [1, 1],
+        "size": [16, 16],
+        "color": "#ff3355",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "heart": {
+    "description": "Hearts floating up from the head.",
+    "tags": ["head", "love", "kind"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "heart",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [0, -48],
+        "life": [1.2, 1.2],
+        "size": [18, 22],
+        "color": "#ff4f8b",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "exclaim": {
+    "description": "A \"!\" pops above the head.",
+    "tags": ["head", "surprise"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "exclaim",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [0, -52],
+        "life": [0.9, 0.9],
+        "size": [22, 22],
+        "color": "#222222",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "question": {
+    "description": "A \"?\" pops above the head.",
+    "tags": ["head", "confused"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "question",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [0, -52],
+        "life": [1.1, 1.1],
+        "size": [22, 22],
+        "color": "#222222",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "bolt": {
+    "description": "A small electric bolt flash.",
+    "tags": ["energy", "hit"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 1,
+        "angle": [0, 0],
+        "speed": [1, 1],
+        "life": [0.06, 0.06],
+        "size": [46, 40],
+        "width": 8,
+        "color": "#ff5a5a",
+        "alpha": [0.9, 0.6]
+      },
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.15, 0.15],
+        "size": [26, 10],
+        "color": "rgba(255, 90, 90, 0.8)",
+        "alpha": [0.8, 0]
+      }
+    ]
+  },
+  "prop_break": {
+    "description": "Splinters flying from a breaking prop.",
+    "tags": ["hit", "prop"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 2,
+        "angle": [-150, -30],
+        "speed": [280, 480],
+        "life": [0.8, 1],
+        "size": [40, 40],
+        "width": 9,
+        "gravity": 1800,
+        "vrot": [-900, 900],
+        "color": "#cccccc",
+        "tintable": true,
+        "alpha": [1, 0.8]
+      },
+      {
+        "shape": "dot",
+        "count": 8,
+        "angle": [-170, -10],
+        "speed": [200, 500],
+        "life": [0.3, 0.5],
+        "size": [6, 2],
+        "gravity": 1600,
+        "color": ["#ffffff", "#ffd23f"],
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "afterimage": {
+    "description": "Fading copies of the body trail the move.",
+    "tags": ["trail", "motion", "fast"],
+    "anchor": "hip",
+    "trail": { "kind": "afterimage", "duration": 0.6 }
+  },
+  "slash_arc": {
+    "description": "A bright arc follows the weapon tip.",
+    "tags": ["trail", "weapon"],
+    "anchor": "point",
+    "trail": { "kind": "slash", "duration": 0.25 }
+  },
+  "energy_ball": {
+    "description": "The glowing ball an energy blast fires.",
+    "tags": ["energy", "ranged"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.25, 0.25],
+        "size": [46, 20],
+        "color": "rgba(80, 190, 255, 0.85)",
+        "alpha": [0.9, 0]
+      },
+      {
+        "shape": "dot",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.05, 0.05],
+        "size": [30, 26],
+        "color": "#eaf8ff",
+        "alpha": [1, 1]
+      },
+      {
+        "shape": "dot",
+        "count": 1,
+        "angle": [150, 210],
+        "speed": [60, 160],
+        "life": [0.2, 0.35],
+        "size": [6, 1],
+        "color": ["#9fe0ff", "#ffffff"],
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "bubble_pop": {
+    "description": "A bubble popping into droplets.",
+    "tags": ["bubbles", "play"],
+    "anchor": "point",
+    "layers": [
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.16, 0.16],
+        "size": [10, 34],
+        "width": 2,
+        "color": "rgba(190, 235, 255, 0.95)",
+        "alpha": [0.9, 0]
+      },
+      {
+        "shape": "dot",
+        "count": 6,
+        "angle": [0, 360],
+        "speed": [80, 160],
+        "life": [0.15, 0.3],
+        "size": [4, 1],
+        "color": ["#d8f2ff", "#ffffff"],
+        "alpha": [0.9, 0]
+      }
+    ]
+  },
+  "zzz": {
+    "description": "Floating Zs above a sleeper.",
+    "tags": ["head", "sleep"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "zzz",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [20, -34],
+        "angle": [-75, -60],
+        "speed": [26, 34],
+        "life": [1.4, 1.4],
+        "size": [9, 18],
+        "color": "#5a6aa8",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "camera_flash": {
+    "description": "A white camera flash (a phone selfie).",
+    "tags": ["flash", "photo"],
+    "anchor": "point",
+    "flash": { "color": "#ffffff", "dur": 0.15 },
+    "layers": [
+      {
+        "shape": "star",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.14, 0.14],
+        "size": [30, 46],
+        "color": "#ffffff",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "sparkle": {
+    "description": "Twinkling sparkles round the body.",
+    "tags": ["magic", "kind"],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "star",
+        "count": 10,
+        "offset": 70,
+        "spreadY": 120,
+        "speed": [0, 20],
+        "life": [0.5, 1],
+        "size": [14, 2],
+        "color": ["#fff3a0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0]
+      },
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [0, 0],
+        "life": [0.6, 0.6],
+        "size": [90, 120],
+        "color": "rgba(255, 240, 170, 0.6)",
+        "alpha": [0.7, 0]
+      }
+    ]
+  },
+  "sparkle_rise": {
+    "description": "Sparkles rising up from the body (vanish, return).",
+    "tags": ["magic", "defeat"],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "star",
+        "count": 14,
+        "offset": 40,
+        "spreadY": 140,
+        "angle": [-100, -80],
+        "speed": [60, 150],
+        "drag": 0.6,
+        "life": [1.2, 2],
+        "size": [12, 3],
+        "color": ["#fff3a0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0]
+      },
+      {
+        "shape": "dot",
+        "count": 10,
+        "offset": 40,
+        "spreadY": 140,
+        "angle": [-110, -70],
+        "speed": [40, 120],
+        "life": [1, 1.6],
+        "size": [6, 1],
+        "color": ["#ffffff", "#bfe8ff"],
+        "alpha": [0.9, 0]
+      }
+    ]
+  },
+  "tears": {
+    "description": "Tears streaming from the eyes.",
+    "tags": ["head", "sad"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "drop",
+        "count": 2,
+        "attach": "head",
+        "offsetXY": [8, 4],
+        "spreadY": 4,
+        "angle": [70, 110],
+        "speed": [30, 60],
+        "gravity": 260,
+        "life": [0.8, 1.1],
+        "size": [7, 6],
+        "color": "#5fb6ff",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "rope_bind": {
+    "description": "Rope loops binding the arms (captured).",
+    "tags": ["defeat", "capture"],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "ellipse",
+        "count": 1,
+        "attach": "hip",
+        "offsetXY": [0, -62],
+        "life": [2.2, 2.2],
+        "size": [70, 30],
+        "width": 6,
+        "color": "#c9a26b",
+        "alpha": [1, 0.9]
+      },
+      {
+        "shape": "ellipse",
+        "count": 1,
+        "attach": "hip",
+        "offsetXY": [0, -34],
+        "life": [2.2, 2.2],
+        "size": [70, 30],
+        "width": 6,
+        "color": "#b08850",
+        "alpha": [1, 0.9]
+      },
+      {
+        "shape": "ellipse",
+        "count": 1,
+        "attach": "hip",
+        "offsetXY": [0, -6],
+        "life": [2.2, 2.2],
+        "size": [64, 28],
+        "width": 6,
+        "color": "#c9a26b",
+        "alpha": [1, 0.9]
+      }
+    ]
+  },
+  "cage_drop": {
+    "description": "Dust and clatter as a cage lands (captured).",
+    "tags": ["defeat", "capture"],
+    "anchor": "feet",
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 8,
+        "angle": [-170, -10],
+        "speed": [80, 220],
+        "drag": 2,
+        "life": [0.5, 0.9],
+        "size": [16, 34],
+        "color": "#cfc6b4",
+        "alpha": [0.6, 0]
+      },
+      {
+        "shape": "star",
+        "count": 5,
+        "offset": 60,
+        "angle": [-150, -30],
+        "speed": [120, 260],
+        "gravity": 900,
+        "life": [0.4, 0.7],
+        "size": [12, 4],
+        "color": ["#fff3a0", "#ffd23f", "#ffffff"],
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "confetti": {
+    "description": "Colorful confetti bursting above the head.",
+    "tags": ["celebrate", "happy"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 26,
+        "offset": 30,
+        "angle": [-130, -50],
+        "speed": [300, 620],
+        "gravity": 900,
+        "drag": 1.2,
+        "vrot": [-720, 720],
+        "life": [1.4, 2.2],
+        "size": [12, 12],
+        "width": 5,
+        "color": ["#ff4f8b", "#ffd23f", "#3fd8ff", "#7ee36b", "#b48bff"],
+        "alpha": [1, 0.8]
+      }
+    ]
+  },
+  "halo": {
+    "description": "A glowing halo over the head (ghost).",
+    "tags": ["head", "defeat", "magic"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "ellipse",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [0, -44],
+        "life": [3, 3],
+        "size": [24, 24],
+        "width": 5,
+        "color": "#ffe680",
+        "alpha": [1, 0.7]
+      },
+      {
+        "shape": "glow",
+        "count": 1,
+        "attach": "head",
+        "offsetXY": [0, -44],
+        "life": [3, 3],
+        "size": [40, 40],
+        "color": "rgba(255, 240, 160, 0.7)",
+        "alpha": [0.7, 0.4]
+      }
+    ]
+  },
+  "pop_pow": {
+    "description": "The comic word POW over a hit (kids audience; drawn automatically on hits).",
+    "tags": ["word", "hit", "internal"],
+    "anchor": "point",
+    "internal": true,
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "word",
+        "text": "POW!",
+        "count": 1,
+        "offsetXY": [0, -70],
+        "angle": [-90, -90],
+        "speed": [40, 40],
+        "drag": 2,
+        "vrot": [-20, 20],
+        "life": [0.75, 0.75],
+        "size": [30, 34],
+        "color": "#ffd400",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "pop_bonk": {
+    "description": "The comic word BONK over a hit (kids audience; drawn automatically on hits).",
+    "tags": ["word", "hit", "internal"],
+    "anchor": "point",
+    "internal": true,
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "word",
+        "text": "BONK!",
+        "count": 1,
+        "offsetXY": [0, -70],
+        "angle": [-90, -90],
+        "speed": [40, 40],
+        "drag": 2,
+        "vrot": [-20, 20],
+        "life": [0.75, 0.75],
+        "size": [30, 34],
+        "color": "#7fd8ff",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "pop_bam": {
+    "description": "The comic word BAM over a hit (kids audience; drawn automatically on hits).",
+    "tags": ["word", "hit", "internal"],
+    "anchor": "point",
+    "internal": true,
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "word",
+        "text": "BAM!",
+        "count": 1,
+        "offsetXY": [0, -70],
+        "angle": [-90, -90],
+        "speed": [40, 40],
+        "drag": 2,
+        "vrot": [-20, 20],
+        "life": [0.75, 0.75],
+        "size": [30, 34],
+        "color": "#ff7a3d",
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "pop_boing": {
+    "description": "The comic word BOING over a hit (kids audience; drawn automatically on hits).",
+    "tags": ["word", "hit", "internal"],
+    "anchor": "point",
+    "internal": true,
+    "layers": [
+      {
+        "shape": "glyph",
+        "glyph": "word",
+        "text": "BOING!",
+        "count": 1,
+        "offsetXY": [0, -70],
+        "angle": [-90, -90],
+        "speed": [40, 40],
+        "drag": 2,
+        "vrot": [-20, 20],
+        "life": [0.75, 0.75],
+        "size": [30, 34],
+        "color": "#9dff6b",
+        "alpha": [1, 0]
+      }
+    ]
+  }
+}

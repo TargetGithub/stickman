@@ -1,6 +1,6 @@
 // Drafting catalog data with an LLM (STORY_SPEC 5.5, S4.10, S5.0): prompts, automatic checks and an
 // offline mock reply. Kinds: object, theme, move. Pure functions; tools/draft.mjs is the CLI.
-// The person reviews the rendered sheet and copies an accepted draft into data/*.js.
+// The person reviews the rendered sheet; tools/draft.mjs --write adds an accepted draft to catalog/.
 
 import { OBJECT_SHAPES } from "../../engine/renderer/objects.js";
 import { PROP_SHAPES } from "../../engine/renderer/props.js";
@@ -134,12 +134,13 @@ export function checkDraft(kind, draft, catalog) {
 /**
  * Move data checks: the catalog loader's rules (keys, poses, expressions, hits, wind-up), then a run on
  * every body plan: finite joints, the body never below the floor, feet on the floor at the start and
- * the end (unless the move holds a pose or jumps).
+ * the end (unless the move holds a pose or jumps). draft: false (the catalog build, for moves already
+ * reviewed) skips the style rules for new drafts: the 0.2-6 s duration and the feet at the start and end.
  */
-export function checkMove(def, catalog) {
+export function checkMove(def, catalog, { draft = true } = {}) {
   const p = [];
   if (!CATEGORIES.includes(def.category)) p.push(`category must be one of ${CATEGORIES.join(", ")}`);
-  if (!(def.duration >= 0.2 && def.duration <= 6)) p.push("duration must be 0.2-6 s");
+  if (draft && !(def.duration >= 0.2 && def.duration <= 6)) p.push("duration must be 0.2-6 s");
   if (def.face && !catalog.faces?.[def.face]) p.push(`face "${def.face}" is unknown`);
   let moves;
   try {
@@ -152,7 +153,8 @@ export function checkMove(def, catalog) {
   for (const plan of Object.keys(catalog.bodies || { stickman: {} })) {
     const a = Object.assign(createActor({ id: "a", x: 1000, facing: 1, groundY: GROUND }), bodyPlan(catalog, plan));
     if (prepared.needsProp) {
-      const name = Object.keys(catalog.objects || {}).find((k) => catalog.objects[k].hold?.kind === prepared.needsProp) || Object.keys(catalog.props).find((k) => catalog.props[k].kind === prepared.needsProp);
+      const kind = prepared.needsProp === "any" ? catalog.props.sword?.kind : prepared.needsProp; // "any": whatever is held
+      const name = Object.keys(catalog.objects || {}).find((k) => catalog.objects[k].hold?.kind === kind) || Object.keys(catalog.props).find((k) => catalog.props[k].kind === kind);
       const data = name ? holdableData(catalog, name) : null;
       if (!data) { p.push(`needsProp "${prepared.needsProp}" matches no holdable`); break; }
       a.prop = { name, kind: data.kind, data };
@@ -170,7 +172,7 @@ export function checkMove(def, catalog) {
       if (i === steps - 2) end = low;
     }
     const lifts = (def.root || []).some((k) => typeof k.dy === "number" && k.dy < 0);
-    if (!def.flags?.hold && !lifts && [start, end].some((v) => v !== null && Math.abs(v - GROUND) > 3)) p.push(`${plan}: feet are off the floor at the start or the end`);
+    if (draft && !def.flags?.hold && !lifts && [start, end].some((v) => v !== null && Math.abs(v - GROUND) > 3)) p.push(`${plan}: feet are off the floor at the start or the end`);
     if (p.length) break;
   }
   return p;

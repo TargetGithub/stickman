@@ -1,0 +1,22 @@
+{
+  "title": "catalog/docs/camera.json: camera modes.",
+  "type": "object",
+  "required": ["modes", "auto"],
+  "additionalProperties": false,
+  "properties": {
+    "modes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "needs", "example"],
+        "additionalProperties": false,
+        "properties": {
+          "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+          "needs": { "type": "array", "items": { "type": "string" } },
+          "example": { "type": "object" }
+        }
+      }
+    },
+    "auto": { "type": "string" }
+  }
+}

@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// Print move/FX/SFX/theme/world-command catalog tables for prompts (spec 18.2).
+// Print move/FX/SFX/theme/world-command catalog tables for prompts (spec 18.2), read from catalog/.
+// The AI context pack is catalog/generated/context/ (npm run catalog:build).
 // Usage: node tools/catalog.mjs [--format md|json]
 
 import { catalogData, catalogMarkdown } from "./lib/prompt_tables.mjs";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const format = args.includes("--format") ? args[args.indexOf("--format") + 1] : "md";

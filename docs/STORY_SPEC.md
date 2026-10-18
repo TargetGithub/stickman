@@ -231,7 +231,7 @@ Themes grow from 7 to 15-20, using the existing layer-kind registry and new laye
 - **New layer kinds:** `buildings` (street level, doors/windows), `trees`, `bushes`, `benches`, `lampposts`, `fence`, `clouds`, `rain`, `interior_wall`, `windows`, `furniture`, `cave`, `lair`.
 - **New themes:** `city_street`, `city_park`, `home_interior`, `alley_night`, `rooftop_city` (exists), `forest_path`, `bridge`, `warehouse`, `villain_lair`, `tennis_court`, `cemetery_hill` (for a respectful memorial scene), `sunset_hill`.
 - **Built in S1:** themes `city_park`, `city_street`, `home_interior`, `alley_night`, `villain_lair`; layer kinds `clouds`, `hills`, `trees`, `bushes`, `fence`, `buildings`, `lampposts`, `bricks`, `puddles`, `interior_wall`, `windows`, `furniture`, `cave`, `crystals`. The backdrop behind characters is kept mid-tone so both light and dark character colors pass `W_CONTRAST`.
-- **Set pieces in S1** are drawn statically from `data/objects.js`: `bench`, `chair`, `table`, `tree_big`, `bush`, `lamppost`, `tennis_net`, `sign`, `crate`, `fountain`, `door` (with `state` open/closed). Back-layer pieces draw at 0.75 scale and 80% opacity, front-layer pieces at 1.15 after the characters. S4 adds behaviors.
+- **Set pieces in S1** are drawn statically from `catalog/world/objects.json`: `bench`, `chair`, `table`, `tree_big`, `bush`, `lamppost`, `tennis_net`, `sign`, `crate`, `fountain`, `door` (with `state` open/closed). Back-layer pieces draw at 0.75 scale and 80% opacity, front-layer pieces at 1.15 after the characters. S4 adds behaviors.
 
 ```json
 "locations": [
@@ -283,7 +283,7 @@ Decision 6: code-drawn or imported SVG, whichever needs less manual work.
   - A person only approves or rejects the filmstrip, and touches the editor when needed.
 - **Built in S4:**
   - `node tools/svg_import.mjs art.svg --name castle --height 300 --source "author, license, URL"`: paths, rects, circles, ellipses, lines, polylines and polygons (with group transforms) become absolute path commands, scaled to the height, centered, standing on the floor, colors snapped to a 20-color palette, a uniform dark outline. Writes `out/drafts/<name>.object.json` and a review PNG; the license line goes to `assets/art/SOURCES.md`. Objects with `"draw": "paths"` are drawn by `engine/renderer/paths.js`.
-  - `node tools/draft.mjs object|theme "<description>"` with `--provider/--model`, `--mock`, `--manual` (writes a prompt to paste in any chat) or `--reply file`: builds a prompt from the data format and the three most similar entries, checks the reply (known behaviors, shapes and layer kinds, colors, paths above the floor, backdrop not near-white or near-black), asks for fixes up to three times, and renders a review sheet through the public API (the draft in a small story at three camera distances). Nothing is written into `data/`. Move drafting follows in S5.0.
+  - `node tools/draft.mjs object|theme "<description>"` with `--provider/--model`, `--mock`, `--manual` (writes a prompt to paste in any chat) or `--reply file`: builds a prompt from the data format and the three most similar entries, checks the reply (known behaviors, shapes and layer kinds, colors, paths above the floor, backdrop not near-white or near-black), asks for fixes up to three times, and renders a review sheet through the public API (the draft in a small story at three camera distances). Nothing is written into the catalog until the reviewed draft is added with `--write` (CATALOG_SPEC 6), which puts it in `catalog/` with its description and the tag `draft`. Move drafting follows in S5.0.
 
 ## 6. Cast: body plans, appearance and faces
 
@@ -305,7 +305,7 @@ Every body plan keeps the **same joint topology and pose channels** as the stick
 | `elder` | Slight stoop baked into the default pose offsets (a cane comes with the S4 objects) | Mentors, shopkeepers |
 
 Implementation (S3, ADR-015):
-- Plans are data (`data/bodies.js`): bone lengths and line width (`dims`), a draw style (`stick`, `capsule` for the buddy, `trapezoid` for bulky), `torsoWidth` for filled torsos, an optional `posture` (the elder's stoop) and default `appearance`.
+- Plans are data (`catalog/characters/bodies.json`): bone lengths and line width (`dims`), a draw style (`stick`, `capsule` for the buddy, `trapezoid` for bulky), `torsoWidth` for filled torsos, an optional `posture` (the elder's stoop) and default `appearance`.
 - `computeJoints(pose, root, facing, scale, dims)` and `lowestPoint(joints, scale, dims)` take the plan's dims (default: the stickman). Ground contact, reach and aim (`limbReach`, `canReach`, `resolveAimPoint`, `applyAimIK`), hurtboxes (filled torsos have wider torso hurtboxes), whiff gaps, projectile heights, the camera and the accessories all read them.
 - Moves stay authored for the stickman. Reach is derived per plan (cached per dims). Forward root motion (steps, travel, approach speed, dodge distance) scales with the plan's leg ratio; heights (jumps) scale with `scale` only, so contact heights stay comparable across plans.
 - The elder's stoop eases out over about 0.17 s while attacking, so strikes use the plan's plain geometry (the geometry reach derivation assumes).
@@ -330,7 +330,7 @@ Animals, birds and vehicles need different skeletons. The design keeps the door 
 | `accessories` | Name → color. Existing (headband, scarf, cape, hat; also accepted in the v1 `style`) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch` |
 | `outfit`, `outfitColor` | Optional filled torso garment: `none`, `shirt`, `coat`, `armor`, `robe`; a color |
 
-- Option names are catalog data (`data/appearance.js`); the schema takes strings and the validator checks them (`E_APPEARANCE`), together with things worn in the same place (`hat` + `crown`, a `cap` hairstyle with a hat or crown, `mask` or `eyepatch` with `visor` eyes) and colors without their item (`hairColor` without `hair`, `outfitColor` without `outfit`). An unknown body plan is `E_BODY_UNKNOWN`.
+- Option names are catalog data (`catalog/characters/appearance.json`); the schema takes strings and the validator checks them (`E_APPEARANCE`), together with things worn in the same place (`hat` + `crown`, a `cap` hairstyle with a hat or crown, `mask` or `eyepatch` with `visor` eyes) and colors without their item (`hairColor` without `hair`, `outfitColor` without `outfit`). An unknown body plan is `E_BODY_UNKNOWN`.
 - A body plan's `appearance` gives defaults (buddy: big eyes; elder: sleepy eyes, thick brows, white bob); the cast entry's appearance wins.
 - Eye styles replace the plain dot of neutral-type faces (`big`, `oval`, `sleepy`); `visor` replaces the eyes with a glowing band; `glasses` adds rings. Expressive eyes (happy arcs, tears, spirals) still win. `brows: "none"` hides brows; `thick` draws them heavier. `mouthStyle: "cartoon"` makes mouths about a third bigger. `cheeks` adds a soft blush in that color.
 
@@ -350,7 +350,7 @@ Faces scale with the camera so they read in close-ups.
 ### 7.1 Emotions (faces)
 
 - `face` values: `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt`.
-- Each face is catalog data (`data/faces.js`): `eyes` (`dot`, `wide`, `happy`, `closed`, `squeeze`, `half`, `spiral`, `heart`), `brows` (`tilt` in degrees, positive = worried, negative = angry; `lift`), `mouth` (`line`, `smile`, `grin`, `open`, `frown`, `o`, `wavy`, `smirk`, `teeth`), `talk` (the mouth used while speaking) and `extras` (`tears`, `vein`, `sweat`, `hearts`, `blush`).
+- Each face is catalog data (`catalog/characters/faces.json`): `eyes` (`dot`, `wide`, `happy`, `closed`, `squeeze`, `half`, `spiral`, `heart`), `brows` (`tilt` in degrees, positive = worried, negative = angry; `lift`), `mouth` (`line`, `smile`, `grin`, `open`, `frown`, `o`, `wavy`, `smirk`, `teeth`), `talk` (the mouth used while speaking) and `extras` (`tears`, `vein`, `sweat`, `hearts`, `blush`).
 - The base face is set by a scene cast entry's `face` or a beat's `face` ("from this beat on"), and carries over to later scenes unless the scene cast sets one. Story characters start `neutral`; v1 characters have no face (the v1 dots and mouth).
 - What is drawn each frame (highest first): knocked out → `dizzy`; hit → `hurt` for 0.4 s; a move with its own face (`cry`, `sigh`, `gasp`, ... via the move's `face` field) → that face; an attack with a neutral base face → `determined`; otherwise the base face. A neutral face takes the move's v1 mouth (`shout` → open, `grin` → grin).
 - Level of detail: a neutral face on a head smaller than 30 px on screen draws only the two dots (the classic look); every other face, and any close-up, draws brows, mouth and extras.
@@ -419,7 +419,7 @@ Objects are non-character things in the world: catalog data with a shape, a size
 
 ### 8.1 How objects work (S4)
 
-- **Catalog:** `data/objects.js` (32 with the six v1 props): set pieces (bench, chair, table, tree_big, bush, lamppost, tennis_net, sign, fountain, door, cage, crate, box), vehicles (car, bike), balls (tennis_ball, football), floaters (bubble, balloon) and holdables (racket, bubble_wand, phone, ice_cream, flower, book, rope, cane, balloon). `data/props.js` is unchanged, so v1 schemas, prompts and prop indices stay the same; story holdables carry a `hold` entry in the same format, and a cast `prop` (or a spawn) may name any holdable.
+- **Catalog:** `catalog/world/objects.json` (32 with the six v1 props): set pieces (bench, chair, table, tree_big, bush, lamppost, tennis_net, sign, fountain, door, cage, crate, box), vehicles (car, bike), balls (tennis_ball, football), floaters (bubble, balloon) and holdables (racket, bubble_wand, phone, ice_cream, flower, book, rope, cane, balloon). `catalog/world/props.json` (the v1 props) is unchanged, so v1 schemas, prompts and prop indices stay the same; story holdables carry a `hold` entry in the same format, and a cast `prop` (or a spawn) may name any holdable.
 - **Commands (exact params):**
   - `spawn_object`: `params.kind`* (an object kind), `params.id` (to refer to it later), `params.x`*, `y` (height above the floor), `layer`, `state`, `facing`. A spawned holdable lies on the floor and `pick_prop` picks it up.
   - `remove_object`, `set_object`: the beat's `object` field names the object (a set piece id or a spawned id). `set_object` params: `state` (any object with states; `"broken"` breaks a breakable into pieces with the `prop_break` effect), ball `toX` + `height` (an arc that lands at toX) or `vx`/`vy`, vehicle `toX` + `speed` or `exit` (`left`/`right`: drives off and is removed).
@@ -432,7 +432,7 @@ Objects are non-character things in the world: catalog data with a shape, a size
 
 ### 8.2 Seats and slice-of-life moves (S5, batch 1)
 
-- **Solo moves** (`data/moves/life.js`, category `life` unless they travel): `sit`, `stand_up`, `lie_down`, `sleep` (face `asleep`, floating Zs), `eat`, `drink`, `read`, `phone_talk`, `cheer`, `clap`, `kneel`, `wave_goodbye`, `sneak` and `tiptoe` (movement loops with `stride`), `peek`, `hide`, `push`, `pull`, `climb_up` (climbing in place), `jump_down` (a hop down with a soft landing), `swing_forehand` and `swing_backhand` (need a racket; a `contact` event at t 0.5 for the tennis activity), `blow_wand` (needs a bubble wand; blows bubbles), `poke` (a `poke` event that pops the nearest bubble within reach), `stretch`; batch 3 adds `toss`, `catch_ball` and `kick_pass` for the ball activities (28 in all).
+- **Solo moves** (`catalog/moves/life.json`, category `life` unless they travel): `sit`, `stand_up`, `lie_down`, `sleep` (face `asleep`, floating Zs), `eat`, `drink`, `read`, `phone_talk`, `cheer`, `clap`, `kneel`, `wave_goodbye`, `sneak` and `tiptoe` (movement loops with `stride`), `peek`, `hide`, `push`, `pull`, `climb_up` (climbing in place), `jump_down` (a hop down with a soft landing), `swing_forehand` and `swing_backhand` (need a racket; a `contact` event at t 0.5 for the tennis activity), `blow_wand` (needs a bubble wand; blows bubbles), `poke` (a `poke` event that pops the nearest bubble within reach), `stretch`; batch 3 adds `toss`, `catch_ball` and `kick_pass` for the ball activities (28 in all).
 - **Seats:** `sit` with a beat `object` naming a seat walks there first, then sits with the hip at the seat's `seatY` and the legs hanging; seats have `slots` (a bench seats two, a chair one) and each character takes the free slot nearest to it. Upper-body moves (eat, read, talk, clap) keep the seated legs. `stand_up` (its `unseat` event), any walk or run, or an attack leaves the seat. `sit` without an object sits on the floor. `E_OBJECT_STATE` if the object is not a seat.
 - **Moves can hold story holdables:** `needsProp` kinds resolve against the v1 props and the holdable objects (racket, wand, phone, ...).
 - **Drafting moves:** `node tools/draft.mjs move "<description>"` (any provider, `--mock`, `--manual`, `--reply`) uses `prompts/draft_move.md` (format, channel conventions, rules) plus the most similar moves; the checks run the catalog loader's rules and then play the move on every body plan (finite joints, never below the floor, feet on the floor at the start and the end unless it holds a pose or jumps); the review image is a filmstrip on the stickman and the buddy. `node tools/move_sheet.mjs --category life --plans stickman,buddy` renders review sheets for a batch.
@@ -459,7 +459,7 @@ Paired moves (S5, batch 2) are two ordinary moves, one per character: the **lead
 
 ## 10. Activities
 
-An activity is a short loop of moves kept in sync with objects. It is catalog data (`data/activities.js`) run by `engine/story/activities.js`. Scripts start one with the **`activity` world command** (S5); the `@activity` macro (S6) compiles to it:
+An activity is a short loop of moves kept in sync with objects. It is catalog data (`catalog/story/activities.json`) run by `engine/story/activities.js`. Scripts start one with the **`activity` world command** (S5); the `@activity` macro (S6) compiles to it:
 
 ```json
 { "id": "ten", "at": 2, "who": "world", "do": "activity",
@@ -521,7 +521,7 @@ A scene macro is an entry in `scenes` with `{ "id", "macro", "params" }` (plus o
 
 - **Deterministic:** the same input and seed give the same beats. Each macro uses its own stream `compile:<macroId>`, so editing one macro never changes another's expansion.
 - **Inspectable:** `node tools/compile.mjs story.json` prints the compiled script (`--summary`: one line per macro), and the validator's timeline shows each expansion indented under an `@macro id` line.
-- **Expansions respect the catalog:** move pools come from the catalog's attack category, filtered by held prop (a weapon's moves plus kicks), body plan (`avoid` lists in `data/bodies.js`) and reach (the world's own reach check between the two body plans). Head strikes and attacks that need a special set-up (counter, throws, energy and blaster shots) are left to authors.
+- **Expansions respect the catalog:** move pools come from the catalog's attack category, filtered by held prop (a weapon's moves plus kicks), body plan (`avoid` lists in `catalog/characters/bodies.json`) and reach (the world's own reach check between the two body plans). Head strikes and attacks that need a special set-up (counter, throws, energy and blaster shots) are left to authors.
 - An author can **eject** a macro (`tools/compile.mjs story.json --eject boss --out story2.json`), replacing it with its expanded beats (or a scene macro with its scenes) to hand-tune them. The ejected script plays the same.
 - **Ids and anchors:** a macro's beats take its place in the scene; generated ids are `<macroId>_<n>`, and a macro without an id is called `<macro><beat index>` (`exit4`). `{"after": "boss"}`, `{"with": "boss"}` and `{"on": "boss.finisher"}` are rewritten to the beats carrying those anchors.
 - **Issues** inside an expansion are reported at the macro beat, with "(in the expansion of macro 'boss')". Generated beats wait for busy characters on purpose, so they never report `W_QUEUE_DRIFT`.
@@ -546,7 +546,7 @@ A scene macro is an entry in `scenes` with `{ "id", "macro", "params" }` (plus o
 | `@fight_card` | `intro` true, `breathers` true, `finale` boss, `minDur` 180. Intro scene (title card, a rival exchange), one round per matchup (chapter cards "Round N", "Final Round"; fighters start fresh: `hp` in the placement clears a knock-out), breathers (the winner catches its breath, the next opponent walks in), a victory scene with an end card. Exchanges stretch to reach `minDur`; past 26 exchanges a round, matchups get rematch rounds (up to 6 rounds) |
 | `@montage` | `clipDur` 3, `cut` cut. One scene per clip: the `who` in the middle of the location doing `do` (default `walk`; a paired move with two), `text` as narration, one music bed |
 
-Lines the compiler writes itself (fight card intros and breathers) come from the catalog (`data/macro_lines.js`).
+Lines the compiler writes itself (fight card intros and breathers) come from the catalog (`catalog/story/macro_lines.json`).
 
 ## 12. Fights at story scale
 
@@ -583,7 +583,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 | `captured` | Rope loops bind the arms, then a cage drops over it (scared face) | Villain defeat that isn't lethal |
 | `flee` | Turns away from the nearest character, runs to the stage edge, fades out | Comedic villain ending |
 
-- **As beats (S5):** each style is a story move (`data/moves/defeat.js`, category `defeat`): `{"who": "vex", "do": "captured"}`. All but `flee` count as defeated, like a KO: the character can't act until `return` (sparkles re-form a vanished character, confetti) or `get_up`, and that carries into later scenes. A fled character can come back in a later scene. `captured` takes `"params": {"cage": 0}` for rope only. The `@defeat` macro (S6) adds the lead-in (hit, fall) and camera.
+- **As beats (S5):** each style is a story move (`catalog/moves/defeat.json`, category `defeat`): `{"who": "vex", "do": "captured"}`. All but `flee` count as defeated, like a KO: the character can't act until `return` (sparkles re-form a vanished character, confetti) or `get_up`, and that carries into later scenes. A fled character can come back in a later scene. `captured` takes `"params": {"cage": 0}` for rope only. The `@defeat` macro (S6) adds the lead-in (hit, fall) and camera.
 - **Impact words:** in a `kids` story every hit gets a cartoon word (POW!, BONK!, BAM!, BOING!, cycling, at most one per 0.6 s) that pops up over the hit and fades. `general` stories and v1 scripts don't.
 
 - **On-screen text:** narration and dialogue avoid explicit words such as "killed" and "dead body". Use "defeated", "taken from him", "gone", "lost". The blocklist keeps graphic terms and gains a **soft list**: words that produce warnings (`W_TEXT_SOFT`) with a suggested alternative, rather than errors.
@@ -617,7 +617,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 **Music is generated procedurally** (decision 4), in `/tools` like the SFX synth, so there are no licenses to manage and no manual work.
 
 - **Moods:** `happy`, `playful`, `calm`, `sad`, `tense`, `mysterious`, `heroic`, `battle`, `boss`, `triumphant`, `lullaby`.
-- **A mood is data** (`data/music_moods.js`):
+- **A mood is data** (`catalog/story/music_moods.json`):
   - key and scale (major, minor, dorian, pentatonic);
   - tempo range;
   - chord progression pool;
@@ -718,7 +718,7 @@ Other changes:
   - the v1 fight score inside fight scenes.
 
 **As built (S8):**
-- **Code:** `tools/lib/story_prompts.mjs` (prompt builders, assembly, outline checks), `story_tables.mjs` (tables generated from the catalog), `story_pipeline.mjs`, `story_score.mjs` and `manual_story.mjs`. The prompts are `prompts/story_*.md`; the examples are `prompts/examples/stories/` (a slice-of-life story and the reference arc, each with its outline).
+- **Code:** `tools/lib/story_prompts.mjs` (prompt builders, assembly, outline checks), `story_tables.mjs` (tables generated from the catalog), `story_pipeline.mjs`, `story_score.mjs` and `manual_story.mjs`. The prompts are `prompts/story_*.md`; the examples are `catalog/examples/stories/` (a slice-of-life story and the reference arc, each with its outline).
 - **Outline:** plain JSON with `cast` (plus `role`), `locations` and `scenes` (`id`, `purpose`, `location`, `time`, `weather`, `mood`, `seconds`, `cast`, `summary`, `events`, `narration`).
   - It is checked before any scene is written: ids, places, moods and scene casts must exist; the lengths must add up to at least 105% of the minimum, with about one scene per 40 s (45 s for fights).
   - Looks, themes, objects and contrast are checked by running the validator on a skeleton story.

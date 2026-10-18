@@ -5,7 +5,9 @@
 import { loadBackend, DEFAULT_BACKEND } from "./lib/canvas.mjs";
 import { computeJoints, lowestPoint } from "../engine/skeleton.js";
 import { drawCharacter } from "../engine/renderer/character.js";
-import { poses } from "../data/poses.js";
+import { catalog } from "../catalog/index.js";
+
+const { poses } = catalog;
 
 const args = process.argv.slice(2);
 const flag = (name, dflt) => {

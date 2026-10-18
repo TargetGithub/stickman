@@ -1,0 +1,599 @@
+{
+  "_generated": "Built by `npm run catalog:build` from catalog/ and engine/. Do not edit: change catalog/ and rebuild.",
+  "enums": {
+    "kind": ["story", "fight", "clip"],
+    "audience": ["kids", "general"],
+    "style": ["default", "soft", "ink"],
+    "body": ["stickman", "buddy", "kid", "bulky", "slim", "elder"],
+    "face": ["neutral", "happy", "laugh", "sad", "cry", "angry", "furious", "scared", "surprised", "determined", "smug", "tired", "love", "dizzy", "hurt", "asleep"],
+    "eyes": ["dot", "big", "oval", "sleepy", "visor", "glasses"],
+    "brows": ["none", "thin", "thick"],
+    "mouthStyle": ["line", "cartoon"],
+    "hair": ["none", "spiky", "bob", "ponytail", "cap"],
+    "outfit": ["none", "shirt", "coat", "armor", "robe"],
+    "accessory": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"],
+    "timbre": ["soft", "squeaky", "deep", "robot"],
+    "time": ["dawn", "day", "dusk", "night"],
+    "weather": ["clear", "cloudy", "rain", "snow", "wind", "fog"],
+    "layer": ["back", "mid", "front"],
+    "transition": ["cut", "fade", "dissolve", "wipe", "iris", "card"],
+    "cardKind": ["title", "chapter", "time", "end"],
+    "dir": ["left", "right", "up", "down"],
+    "mood": ["happy", "playful", "calm", "sad", "tense", "mysterious", "heroic", "battle", "boss", "triumphant", "lullaby"],
+    "ambience": ["none", "city_traffic", "park_birds", "rain", "wind", "crowd_murmur", "cave_drip"],
+    "bubble": ["speech", "think", "shout", "whisper"],
+    "extrasBehavior": ["walk_by", "idle_chat", "cheer", "flee"],
+    "cameraMode": ["follow", "focus", "fixed", "pan", "push", "two_shot", "close_up", "wide", "over_shoulder", "track"],
+    "beatMacro": ["dialogue", "activity", "walk_together", "travel", "enter", "exit", "fight", "gauntlet", "brawl", "chase", "defeat", "grief"],
+    "sceneMacro": ["fight_card", "montage"],
+    "defeatStyle": ["ko", "faint", "vanish", "ghost", "captured", "flee"],
+    "activity": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"],
+    "ending": ["win", "miss", "laugh", "interrupted"],
+    "intensity": ["low", "medium", "high"],
+    "fightStyle": ["even", "dominant", "comeback", "close"],
+    "pace": ["walk", "run", "sneak"],
+    "side": ["left", "right"]
+  },
+  "moveCategories": ["attack", "movement", "reaction", "defensive", "emote", "utility", "life", "interaction", "defeat"],
+  "objectBehaviors": ["static", "seat", "holdable", "ball", "floater", "vehicle", "breakable"],
+  "defeatStylesByAudience": {
+    "kids": ["ko", "faint", "vanish", "captured", "flee"],
+    "general": ["ko", "faint", "vanish", "ghost", "captured", "flee"]
+  },
+  "voice": { "pitch": [0.5, 2], "speed": [0.7, 1.4], "timbre": ["soft", "squeaky", "deep", "robot"] },
+  "worldCommands": {
+    "shake": { "v1": true, "params": { "preset": { "enum": ["small", "med", "big"], "required": true } } },
+    "slowmo": {
+      "v1": true,
+      "params": {
+        "scale": { "min": 0.1, "max": 1, "required": true },
+        "duration": { "min": 0.05, "max": 5, "required": true },
+        "easeIn": { "min": 0, "max": 1 },
+        "easeOut": { "min": 0, "max": 2 }
+      }
+    },
+    "freeze": { "v1": true, "params": { "duration": { "min": 0.05, "max": 3, "required": true } } },
+    "zoom_punch": { "v1": true, "params": { "amount": { "min": 0, "max": 0.5 }, "dur": { "min": 0.05, "max": 1 } } },
+    "flash": { "v1": true, "params": { "color": { "type": "color" }, "dur": { "min": 0.02, "max": 1 } } },
+    "fade": {
+      "v1": true,
+      "params": {
+        "to": { "enum": ["black", "white"], "required": true },
+        "dur": { "min": 0.1, "max": 5 },
+        "dir": { "enum": ["out", "in"] }
+      }
+    },
+    "desaturate": { "v1": true, "params": { "amount": { "min": 0, "max": 1 }, "dur": { "min": 0, "max": 5 } } },
+    "text_pop": {
+      "v1": true,
+      "params": {
+        "text": { "text": 16, "required": true },
+        "x": { "min": 0, "max": 1 },
+        "y": { "min": 0, "max": 1 },
+        "color": { "type": "color" }
+      }
+    },
+    "caption": {
+      "v1": true,
+      "params": {
+        "text": { "text": 80, "required": true },
+        "pos": { "enum": ["top", "bottom", "center"] },
+        "dur": { "min": 0.3, "max": 10 }
+      }
+    },
+    "explosion": { "v1": true, "params": { "x": { "min": 0, "max": 8000, "required": true }, "y": { "min": 0, "max": 2000 } } },
+    "spawn_prop": {
+      "v1": true,
+      "params": {
+        "prop": { "prop": true, "required": true },
+        "x": { "min": 0, "max": 8000, "required": true },
+        "y": { "min": 0, "max": 2000 }
+      }
+    },
+    "prop_break": { "v1": true, "params": { "owner": { "character": true, "required": true } } },
+    "set_theme": { "v1": true, "params": { "theme": { "theme": true, "required": true } } },
+    "music_cue": {
+      "v1": true,
+      "params": { "cue": { "enum": ["start", "stop", "duck"], "required": true }, "volume": { "min": 0, "max": 1 } }
+    },
+    "cut": { "v1": true, "params": {} },
+    "narrate": {
+      "v1": false,
+      "params": {
+        "text": { "text": 160, "required": true },
+        "pos": { "enum": ["top", "bottom"] },
+        "dur": { "min": 0.5, "max": 15 },
+        "style": { "enum": ["box", "plain"] }
+      }
+    },
+    "title_card": {
+      "v1": false,
+      "params": {
+        "title": { "text": 60, "required": true },
+        "subtitle": { "text": 80 },
+        "dur": { "min": 0.5, "max": 10 },
+        "bg": { "type": "color" }
+      }
+    },
+    "chapter_card": {
+      "v1": false,
+      "params": { "text": { "text": 80, "required": true }, "dur": { "min": 0.5, "max": 10 }, "bg": { "type": "color" } }
+    },
+    "time_card": {
+      "v1": false,
+      "params": { "text": { "text": 80, "required": true }, "dur": { "min": 0.5, "max": 10 }, "bg": { "type": "color" } }
+    },
+    "end_card": {
+      "v1": false,
+      "params": { "text": { "text": 80, "required": true }, "dur": { "min": 0.5, "max": 10 }, "bg": { "type": "color" } }
+    },
+    "set_time": {
+      "v1": false,
+      "params": { "time": { "enum": ["dawn", "day", "dusk", "night"], "required": true }, "dur": { "min": 0, "max": 10 } }
+    },
+    "set_weather": {
+      "v1": false,
+      "params": {
+        "weather": { "enum": ["clear", "cloudy", "rain", "snow", "wind", "fog"], "required": true },
+        "dur": { "min": 0, "max": 10 }
+      }
+    },
+    "spawn_object": {
+      "v1": false,
+      "params": {
+        "kind": { "required": true },
+        "id": {},
+        "x": { "min": -2000, "max": 14000, "required": true },
+        "y": { "min": 0, "max": 2000 },
+        "layer": { "enum": ["back", "mid", "front"] },
+        "state": {},
+        "facing": { "enum": [1, -1] }
+      }
+    },
+    "remove_object": { "v1": false, "params": {} },
+    "set_object": {
+      "v1": false,
+      "params": {
+        "state": {},
+        "toX": { "min": -2000, "max": 14000 },
+        "height": { "min": 0, "max": 1500 },
+        "vx": { "min": -3000, "max": 3000 },
+        "vy": { "min": -3000, "max": 3000 },
+        "speed": { "min": 10, "max": 3000 },
+        "exit": { "enum": ["left", "right"] }
+      }
+    },
+    "set_appearance": {
+      "v1": false,
+      "params": {
+        "who": { "character": true, "required": true },
+        "accessory": { "enum": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"] },
+        "color": { "type": "color" },
+        "remove": { "enum": [true, false] },
+        "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
+        "brows": { "enum": ["none", "thin", "thick"] },
+        "mouthStyle": { "enum": ["line", "cartoon"] },
+        "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap"] },
+        "hairColor": { "type": "color" },
+        "outfit": { "enum": ["none", "shirt", "coat", "armor", "robe"] },
+        "outfitColor": { "type": "color" },
+        "cheeks": { "type": "color" }
+      }
+    },
+    "shot": {
+      "v1": false,
+      "params": {
+        "mode": {
+          "enum": ["follow", "focus", "fixed", "pan", "push", "two_shot", "close_up", "wide", "over_shoulder", "track"],
+          "required": true
+        },
+        "target": { "character": true },
+        "targets": { "characters": 4 },
+        "from": { "character": true },
+        "zoom": { "min": 0.3, "max": 4 },
+        "dur": { "min": 0.2, "max": 30 }
+      }
+    },
+    "set_music": {
+      "v1": false,
+      "params": {
+        "mood": {
+          "enum": ["happy", "playful", "calm", "sad", "tense", "mysterious", "heroic", "battle", "boss", "triumphant", "lullaby"]
+        },
+        "intensity": { "min": 0, "max": 1 },
+        "volume": { "min": 0, "max": 1 },
+        "fade": { "min": 0, "max": 10 }
+      }
+    },
+    "activity": {
+      "v1": false,
+      "params": {
+        "name": {
+          "enum": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"],
+          "required": true
+        },
+        "with": { "characters": 4, "required": true },
+        "reps": { "min": 1, "max": 40 },
+        "dur": { "min": 1, "max": 120 },
+        "intensity": { "enum": ["low", "medium", "high"] },
+        "ending": { "enum": ["win", "miss", "laugh", "interrupted"] },
+        "winner": { "character": true },
+        "object": {}
+      }
+    }
+  },
+  "macroParams": {
+    "dialogue": {
+      "type": "object",
+      "required": ["lines"],
+      "additionalProperties": false,
+      "properties": {
+        "lines": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 30,
+          "description": "[speaker, text], [speaker, text, face] or [speaker, text, face, bubble]; text up to 120 characters, split into 40-character bubbles.",
+          "items": { "type": "array", "minItems": 2, "maxItems": 4, "items": { "type": "string" } }
+        },
+        "gap": { "type": "number", "minimum": 0, "maximum": 3, "description": "Pause between lines (default 0.3 s)." },
+        "gestures": { "type": "boolean", "description": "Talk gestures while speaking (default true)." },
+        "camera": { "enum": ["auto", "none"] }
+      }
+    },
+    "activity": {
+      "type": "object",
+      "required": ["name", "with"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "enum": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"]
+        },
+        "with": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+        },
+        "reps": { "type": "integer", "minimum": 1, "maximum": 40 },
+        "dur": { "type": "number", "minimum": 1, "maximum": 120 },
+        "intensity": { "enum": ["low", "medium", "high"] },
+        "ending": { "enum": ["win", "miss", "laugh", "interrupted"] },
+        "winner": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "object": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$", "description": "Use this set piece (a bench, a net) instead of spawning one." }
+      }
+    },
+    "walk_together": {
+      "type": "object",
+      "required": ["who", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "who": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+        },
+        "to": {
+          "x-formMessage": "Use {\"x\": <px>}, {\"near\": \"<character or object id>\"} or {\"exit\": \"left\"|\"right\"}.",
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["x"],
+              "additionalProperties": false,
+              "properties": { "x": { "type": "number" } }
+            },
+            {
+              "type": "object",
+              "required": ["near"],
+              "additionalProperties": false,
+              "properties": {
+                "near": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+                "gap": { "type": "number", "minimum": 0, "maximum": 600 }
+              }
+            },
+            {
+              "type": "object",
+              "required": ["exit"],
+              "additionalProperties": false,
+              "properties": { "exit": { "enum": ["left", "right"] } }
+            }
+          ]
+        },
+        "pace": { "enum": ["walk", "run"] },
+        "holdHands": { "type": "boolean" }
+      }
+    },
+    "travel": {
+      "type": "object",
+      "required": ["who", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "who": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+        },
+        "to": {
+          "x-formMessage": "Use {\"x\": <px>}, {\"near\": \"<character or object id>\"} or {\"exit\": \"left\"|\"right\"}.",
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["x"],
+              "additionalProperties": false,
+              "properties": { "x": { "type": "number" } }
+            },
+            {
+              "type": "object",
+              "required": ["near"],
+              "additionalProperties": false,
+              "properties": {
+                "near": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+                "gap": { "type": "number", "minimum": 0, "maximum": 600 }
+              }
+            },
+            {
+              "type": "object",
+              "required": ["exit"],
+              "additionalProperties": false,
+              "properties": { "exit": { "enum": ["left", "right"] } }
+            }
+          ]
+        },
+        "mode": { "enum": ["walk", "run", "sneak"] },
+        "camera": { "enum": ["track", "wide", "none"] }
+      }
+    },
+    "enter": {
+      "type": "object",
+      "required": ["who", "side"],
+      "additionalProperties": false,
+      "properties": {
+        "who": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "side": { "enum": ["left", "right"] },
+        "mode": { "enum": ["walk", "run", "sneak"] },
+        "to": {
+          "x-formMessage": "Use {\"x\": <px>}, {\"near\": \"<character or object id>\"} or {\"exit\": \"left\"|\"right\"}.",
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["x"],
+              "additionalProperties": false,
+              "properties": { "x": { "type": "number" } }
+            },
+            {
+              "type": "object",
+              "required": ["near"],
+              "additionalProperties": false,
+              "properties": {
+                "near": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+                "gap": { "type": "number", "minimum": 0, "maximum": 600 }
+              }
+            },
+            {
+              "type": "object",
+              "required": ["exit"],
+              "additionalProperties": false,
+              "properties": { "exit": { "enum": ["left", "right"] } }
+            }
+          ]
+        }
+      }
+    },
+    "exit": {
+      "type": "object",
+      "required": ["who", "side"],
+      "additionalProperties": false,
+      "properties": {
+        "who": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "side": { "enum": ["left", "right"] },
+        "mode": { "enum": ["walk", "run", "sneak"] }
+      }
+    },
+    "fight": {
+      "type": "object",
+      "required": ["sides", "winner"],
+      "additionalProperties": false,
+      "properties": {
+        "sides": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+        },
+        "winner": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "exchanges": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "intensity": { "enum": ["low", "medium", "high"] },
+        "style": { "enum": ["even", "dominant", "comeback", "close"] },
+        "finisher": { "type": "string", "description": "Attack move for the last exchange." },
+        "ko": { "type": "boolean", "description": "Loser ends knocked out (default true); false leaves them standing for a defeat macro." },
+        "phases": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "required": ["exchanges"],
+            "additionalProperties": false,
+            "properties": {
+              "exchanges": { "type": "integer", "minimum": 1, "maximum": 15 },
+              "style": { "enum": ["even", "dominant", "comeback", "close"] },
+              "intensity": { "enum": ["low", "medium", "high"] },
+              "chargeUp": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "gauntlet": {
+      "type": "object",
+      "required": ["hero", "opponents"],
+      "additionalProperties": false,
+      "properties": {
+        "hero": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "opponents": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+        },
+        "per": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "travel": { "enum": ["walk", "run", "none"] },
+        "intensity": { "enum": ["low", "medium", "high"] },
+        "finisher": { "type": "string" },
+        "afterDefeat": { "enum": ["stay", "fade"] }
+      }
+    },
+    "brawl": {
+      "type": "object",
+      "required": ["teams", "winner"],
+      "additionalProperties": false,
+      "properties": {
+        "teams": {
+          "type": "object",
+          "required": ["a", "b"],
+          "additionalProperties": false,
+          "properties": {
+            "a": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 6,
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+            },
+            "b": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 6,
+              "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+            }
+          }
+        },
+        "winner": { "enum": ["a", "b"] },
+        "dur": { "type": "number", "minimum": 5, "maximum": 120 },
+        "intensity": { "enum": ["low", "medium", "high"] }
+      }
+    },
+    "chase": {
+      "type": "object",
+      "required": ["runner", "chasers"],
+      "additionalProperties": false,
+      "properties": {
+        "runner": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "chasers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+        },
+        "dur": { "type": "number", "minimum": 3, "maximum": 60 },
+        "obstacles": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "caught": { "type": "boolean" }
+      }
+    },
+    "defeat": {
+      "type": "object",
+      "required": ["who", "style"],
+      "additionalProperties": false,
+      "properties": {
+        "who": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "by": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "style": { "enum": ["ko", "faint", "vanish", "ghost", "captured", "flee"] }
+      }
+    },
+    "grief": {
+      "type": "object",
+      "required": ["who"],
+      "additionalProperties": false,
+      "properties": {
+        "who": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "over": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "dur": { "type": "number", "minimum": 2, "maximum": 20 },
+        "rain": { "type": "boolean" }
+      }
+    },
+    "fight_card": {
+      "type": "object",
+      "required": ["matchups"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "matchups": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": ["sides", "winner"],
+            "additionalProperties": false,
+            "properties": {
+              "sides": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+              },
+              "winner": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+              "location": { "type": "string" },
+              "exchanges": { "type": "integer", "minimum": 3, "maximum": 30 },
+              "style": { "enum": ["even", "dominant", "comeback", "close"] }
+            }
+          }
+        },
+        "intro": { "type": "boolean" },
+        "breathers": { "type": "boolean" },
+        "finale": { "enum": ["boss", "plain"] },
+        "minDur": { "type": "number", "minimum": 60, "maximum": 900, "description": "Target length in seconds (default 180)." }
+      }
+    },
+    "montage": {
+      "type": "object",
+      "required": ["clips"],
+      "additionalProperties": false,
+      "properties": {
+        "clips": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "required": ["location", "who"],
+            "additionalProperties": false,
+            "properties": {
+              "location": { "type": "string" },
+              "who": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 4,
+                "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+              },
+              "do": { "type": "string" },
+              "time": { "enum": ["dawn", "day", "dusk", "night"] },
+              "weather": { "enum": ["clear", "cloudy", "rain", "snow", "wind", "fog"] },
+              "text": { "type": "string", "minLength": 1, "maxLength": 80 }
+            }
+          }
+        },
+        "clipDur": { "type": "number", "minimum": 1, "maximum": 10 },
+        "cut": { "enum": ["cut", "dissolve", "wipe"] }
+      }
+    }
+  },
+  "macroAnchors": {
+    "dialogue": ["start", "end", "line<N>"],
+    "activity": ["start", "end", "ending"],
+    "walk_together": ["start", "end"],
+    "travel": ["start", "end"],
+    "enter": ["start", "end"],
+    "exit": ["start", "end"],
+    "fight": ["start", "end", "finisher", "ko"],
+    "gauntlet": ["start", "end", "opponent<N>", "finisher"],
+    "brawl": ["start", "end"],
+    "chase": ["start", "end", "caught"],
+    "defeat": ["start", "end", "gone"],
+    "grief": ["start", "end"]
+  },
+  "limits": {
+    "v1": { "scriptBytes": 524288, "beats": 600, "characters": 6, "particles": 2000, "say": 40, "textPop": 16, "caption": 80, "minDuration": 3, "maxDuration": 900, "maxApproach": 3, "queueDriftWarn": 0.5 },
+    "v2": { "scriptBytes": 524288, "maxDuration": 900, "sceneMax": 300, "scenes": 40, "cast": 16, "onStage": 8, "extras": 12, "locations": 20, "beatsAuthored": 600, "beatsCompiled": 4000, "beatsPerScene": 200, "storyMin": 300, "fightMin": 180 }
+  },
+  "codes": ["E_ACTIVITY_OBJECT", "E_APPEARANCE", "E_BODY_UNKNOWN", "E_CAMERA_FIELD", "E_CAMERA_START", "E_CAST_ABSENT", "E_CAST_UNKNOWN", "E_DEFEAT_STYLE", "E_FACE_UNKNOWN", "E_FX_UNKNOWN", "E_LOCATION_UNKNOWN", "E_MACRO_PARAM", "E_MACRO_UNKNOWN", "E_MOVE_APPROACH", "E_MOVE_NEEDS_PROP", "E_MOVE_OUTCOME", "E_MOVE_PARAM", "E_MOVE_TARGET", "E_MOVE_UNKNOWN", "E_OBJECT_STATE", "E_OBJECT_UNKNOWN", "E_PARTNER_MISSING", "E_PARTNER_SELF", "E_PROP_UNKNOWN", "E_REF_ANCHOR", "E_REF_BEAT", "E_REF_CHARACTER", "E_REF_CYCLE", "E_REF_DUPLICATE", "E_SCENE_EMPTY", "E_SCHEMA_ENUM", "E_SCHEMA_FORM", "E_SCHEMA_PATTERN", "E_SCHEMA_RANGE", "E_SCHEMA_REQUIRED", "E_SCHEMA_SIZE", "E_SCHEMA_TYPE", "E_SCHEMA_UNKNOWN_FIELD", "E_SIM_APPROACH", "E_SIM_DEAD_ACTOR", "E_SIM_DURATION", "E_SIM_OBJECT_OFFSTAGE", "E_SIM_PARTNER_UNREACHABLE", "E_SIM_SCENE_LENGTH", "E_SIM_UNREACHABLE", "E_SIM_UNRESOLVED", "E_TEXT_BLOCKED", "E_TEXT_GLYPH", "E_TEXT_LENGTH", "E_THEME_UNKNOWN", "E_TRANSITION", "E_VERSION", "E_WORLD_FIELD", "E_WORLD_PARAM", "E_WORLD_UNKNOWN", "W_ATTACK_NO_TARGET", "W_CAST_UNUSED", "W_CONTRAST", "W_DIALOGUE_FAST", "W_FIGHT_SHORT", "W_HEAVY_NO_EMPHASIS", "W_HIDDEN", "W_KIDS_NO_HOPE", "W_NO_ENDING", "W_NO_IMPACT", "W_NO_PROP", "W_PACING_GAP", "W_PACING_MONOTONE", "W_PARTICLE_BUDGET", "W_QUEUE_DRIFT", "W_REACH", "W_SCENE_STATIC", "W_STORY_SHORT", "W_TEXT_SOFT"]
+}

@@ -5,7 +5,7 @@ import { createObjects, spawnObject, setObject, stepObjects, useHeld, holdableDa
 import { staticObjectsAt } from "../../engine/renderer/objects.js";
 import { simulate } from "../../engine/sim.js";
 import { createEngine } from "../../engine/index.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const ctx = { catalog, seed: 3, sceneId: "s", groundY: 880, stageWidth: 3200 };
 const run = (objs, seconds, t0 = 0) => {

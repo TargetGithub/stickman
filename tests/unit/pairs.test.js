@@ -8,7 +8,7 @@ import { unpackJoints, dimsOf } from "../../engine/skeleton.js";
 import { pairDistance } from "../../engine/story/pairs.js";
 import { bodyPlan } from "../../engine/story/bodies.js";
 import { createActor } from "../../engine/actor.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const moves = movesFor(catalog);
 const LEADS = [...moves.values()].filter((d) => d.pair).map((d) => d.name);

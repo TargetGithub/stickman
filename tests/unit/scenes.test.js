@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { normalize, flatScene, transitionInto, transitionDuration } from "../../engine/story/normalize.js";
 import { simulate } from "../../engine/sim.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 import { FPS } from "../../engine/config.js";
 
 const read = (p) => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));

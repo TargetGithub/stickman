@@ -1,33 +1,20 @@
-// Catalog tables for the story prompts (STORY_SPEC 18, S8.1), generated from the catalog and the validator
-// tables so the prompts never drift from the data. Deterministic output (stable order) so prompts cache.
+// Catalog tables for the story prompts (STORY_SPEC 18, S8.1), generated from the catalog (catalog/, with the
+// descriptions in catalog/docs) and the validator tables so the prompts never drift from the data.
+// Deterministic output (stable order) so prompts cache. The context pack (context_pack.mjs) reuses them.
 
 import { movesFor } from "../../engine/sim.js";
 import { WORLD_COMMANDS_V2 } from "../../engine/validator/semantic.js";
 import { MACRO_PARAMS, MACRO_ANCHORS } from "../../engine/validator/macro_params.js";
 import { DEFEAT_STYLES_BY_AUDIENCE, V2_ENUMS } from "../../engine/validator/v2_names.js";
+import { catalogDocs } from "./catalog_files.mjs";
 
 const table = (head, rows) => [`| ${head.join(" | ")} |`, `|${head.map(() => "---").join("|")}|`, ...rows.map((r) => `| ${r.join(" | ")} |`)].join("\n");
 
-/** What each macro does, in one line (STORY_SPEC 11.4). */
-const MACRO_HELP = {
-  dialogue: "Characters talk in turn with talk gestures, reading-time pacing, faces and a two-shot. lines: [[who, text<=120, face?, bubble?], ...]",
-  activity: "A little game kept in sync (see Activities): the players walk to their places, play, and finish with the ending.",
-  walk_together: "Hand in hand (two walkers) or side by side to `to`.",
-  travel: "A long walk/run/sneak to `to` with the camera tracking the first walker.",
-  enter: "Walks (or runs) in from `side` to `to` (default: its scene x). Place the character in the scene cast with \"hidden\": true.",
-  exit: "Walks (or runs) off toward `side` and fades out.",
-  fight: "A whole 1v1: opening taunts, exchanges weighted to the winner, a slowmo finisher, the KO (ko: false leaves the loser standing and dizzy, e.g. before @defeat captured).",
-  gauntlet: "The hero takes on each opponent in turn (travel run/walk between them, or none: they wait in a ring). Place opponents along the stage in order.",
-  brawl: "Two teams; at most two clashes at once; the losing team goes down one by one.",
-  chase: "The runner flees, everyone jumps the obstacles, the lead chaser lunges; caught or gets away.",
-  defeat: "A stagger and close-up, then the defeat style; `by` reacts. The victim must be standing (not KO'd).",
-  grief: "Kneels by `over`, cries for `dur` seconds, sad music, optional rain.",
-  fight_card: "SCENE macro: a fight-only video (title, intro, rounds, breathers, finale, end card) from matchups. Written as a scene entry {id, macro, params}.",
-  montage: "SCENE macro: 2-8 short clips with quick cuts and one music bed. Written as a scene entry {id, macro, params}.",
-};
+/** What each macro does, in one line (STORY_SPEC 11.4): catalog/docs/macros.json. */
+const MACRO_HELP = Object.fromEntries(Object.entries(catalogDocs().macros).map(([k, v]) => [k, v.description]));
 
 /** A param schema as a short type string. */
-function typeOf(s) {
+export function typeOf(s) {
   if (!s) return "?";
   if (s.enum) return s.enum.join("/");
   if (s.type === "integer" || s.type === "number") return `${s.type === "integer" ? "int" : "num"} ${s.minimum ?? ""}-${s.maximum ?? ""}`;
@@ -64,8 +51,9 @@ export function storyMoveMarkdown(catalog) {
   return table(["move", "category", "s", "notes"], rows);
 }
 
-function worldMarkdown() {
-  return table(["do", "params (* required)"], Object.entries(WORLD_COMMANDS_V2).map(([name, spec]) => [name, Object.entries(spec).map(([k, s]) => {
+/** A world command's params as one short string (* required). */
+export function worldParamText(spec) {
+  return Object.entries(spec).map(([k, s]) => {
     let t = "";
     if (s.enum) t = s.enum.join("/");
     else if (s.min !== undefined) t = `${s.min}-${s.max}`;
@@ -75,15 +63,22 @@ function worldMarkdown() {
     else if (s.theme) t = "theme";
     else if (s.type === "color") t = "#rrggbb";
     return `${k}${s.required ? "*" : ""}${t ? `:${t}` : ""}`;
-  }).join(" ") || "-"]));
+  }).join(" ") || "-";
+}
+
+function worldMarkdown() {
+  return table(["do", "params (* required)"], Object.entries(WORLD_COMMANDS_V2).map(([name, spec]) => [name, worldParamText(spec)]));
 }
 
 /** Relative luminance below ~0.2 counts as a dark background. */
-function isDark(hex) {
+export function isDark(hex) {
   const n = parseInt(hex.slice(1), 16);
   const lin = (c) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
   return 0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255) < 0.2;
 }
+
+/** Character colors that read on a background color. */
+export const colorAdvice = (bg) => (isDark(bg) ? "bright: light blue, yellow, orange, pink, white" : "strong or dark: red, blue, purple, dark green, black");
 
 /** Tables the outline stage needs: bodies, looks, themes, moods, ambience. */
 export function outlineCatalogMarkdown(catalog) {
@@ -96,7 +91,7 @@ export function outlineCatalogMarkdown(catalog) {
     `### Appearance (cast[].appearance): eyes ${a.eyes.join("|")}; brows ${a.brows.join("|")}; mouthStyle ${a.mouthStyle.join("|")}; hair ${a.hair.join("|")} (+ hairColor); outfit ${a.outfit.join("|")} (+ outfitColor); cheeks #rrggbb; accessories {name: "#rrggbb"} from ${a.accessories.join(", ")}. Not together: ${a.conflicts.map((c) => c.join(" + ")).join(", ")}.`,
     `### Voices (cast[].voice): pitch 0.5-2, speed 0.7-1.4, timbre ${V2_ENUMS.timbre.join("|")}`,
     "### Themes (locations[].theme). Character colors must stand out against the background behind the characters:",
-    table(["theme", "background", "good character colors"], catalog.themeNames.map((t) => [t, catalog.themes[t].characterBg, isDark(catalog.themes[t].characterBg) ? "bright: light blue, yellow, orange, pink, white" : "strong or dark: red, blue, purple, dark green, black"])),
+    table(["theme", "background", "good character colors"], catalog.themeNames.map((t) => [t, catalog.themes[t].characterBg, colorAdvice(catalog.themes[t].characterBg)])),
     `### Music moods (scene music.mood): ${Object.keys(catalog.musicMoods).join(", ")}`,
     `### Ambience (location or scene ambience): ${V2_ENUMS.ambience.join(", ")}`,
     `### Time / weather: ${V2_ENUMS.time.join(", ")} / ${V2_ENUMS.weather.join(", ")}`,
@@ -128,35 +123,8 @@ export function sceneCatalogMarkdown(catalog) {
   ].join("\n");
 }
 
-/** Every validator code with what it means (the scene prompt explains all of them; tests keep this complete). */
-export const CODE_HELP = {
-  E_VERSION: "version is not 1 or 2", E_SCHEMA_TYPE: "wrong JSON type", E_SCHEMA_REQUIRED: "a required field is missing", E_SCHEMA_UNKNOWN_FIELD: "a field that does not exist",
-  E_SCHEMA_ENUM: "a value not in the allowed list", E_SCHEMA_RANGE: "a number out of range or a character placed off the stage", E_SCHEMA_PATTERN: "an id or color in the wrong form",
-  E_SCHEMA_FORM: "an \"at\" or \"to\" in the wrong form", E_SCHEMA_SIZE: "too many items or the script is too big", E_TEXT_LENGTH: "text too long",
-  E_CAST_UNKNOWN: "an id that is not in cast", E_CAST_ABSENT: "a character used in a scene it is not placed in", E_BODY_UNKNOWN: "unknown body plan", E_APPEARANCE: "unknown appearance option, or two things in the same place",
-  E_FACE_UNKNOWN: "unknown face", E_LOCATION_UNKNOWN: "a scene location that is neither a location id nor a theme", E_THEME_UNKNOWN: "unknown theme",
-  E_OBJECT_UNKNOWN: "unknown object kind or object id", E_OBJECT_STATE: "a state or change the object does not have", E_PROP_UNKNOWN: "unknown prop",
-  E_PARTNER_MISSING: "a paired move without a partner in the scene", E_PARTNER_SELF: "a character paired with itself",
-  E_MACRO_UNKNOWN: "a macro this engine has no builder for", E_MACRO_PARAM: "macro params missing or wrong (a winner who is not fighting, a finisher that is not an attack)",
-  E_ACTIVITY_OBJECT: "an activity object that is not in the scene or that the activity cannot use", E_TRANSITION: "a card without text or an iris without a target",
-  E_SCENE_EMPTY: "a scene with no beats and no duration", E_DEFEAT_STYLE: "a defeat style the audience does not allow (ghost is general only)",
-  E_REF_CHARACTER: "no such character", E_REF_BEAT: "no such beat (or one in another scene)", E_REF_DUPLICATE: "an id used twice (beat ids are unique across the whole story)",
-  E_REF_CYCLE: "beats waiting for each other", E_REF_ANCHOR: "an anchor the beat or macro does not have",
-  E_MOVE_UNKNOWN: "unknown move", E_MOVE_TARGET: "a character targeting itself", E_MOVE_OUTCOME: "outcome on a non-attack", E_MOVE_APPROACH: "approach on a non-attack",
-  E_MOVE_PARAM: "a param the move does not take (or \"to\" on a move that does not walk)", E_MOVE_NEEDS_PROP: "a move needing a prop the character does not hold",
-  E_WORLD_UNKNOWN: "unknown world command", E_WORLD_PARAM: "a world command param missing or wrong", E_WORLD_FIELD: "target/outcome/approach/say on a world beat",
-  E_FX_UNKNOWN: "unknown fx", E_CAMERA_START: "the first camera key is not at 0", E_CAMERA_FIELD: "a camera mode missing its target(s), from or x",
-  E_TEXT_GLYPH: "characters the fonts cannot draw", E_TEXT_BLOCKED: "a blocked word",
-  E_SIM_UNREACHABLE: "an attack too far from its target (use approach run)", E_SIM_APPROACH: "an approach over 3 s (start closer)", E_SIM_DEAD_ACTOR: "a knocked-out character acting",
-  E_SIM_UNRESOLVED: "a beat whose anchor never happened", E_SIM_DURATION: "the video too short or too long", E_SIM_PARTNER_UNREACHABLE: "a partner too far to walk to",
-  E_SIM_OBJECT_OFFSTAGE: "a ball or vehicle leaving the stage", E_SIM_SCENE_LENGTH: "a scene over 300 s",
-  W_ATTACK_NO_TARGET: "an attack without a target", W_CONTRAST: "a color hard to see on the background", W_QUEUE_DRIFT: "a beat started late because its character was busy",
-  W_PACING_GAP: "over 2.5 s with nothing happening", W_NO_IMPACT: "no hit lands", W_PACING_MONOTONE: "more than 8 attacks in a row", W_NO_ENDING: "no clear ending",
-  W_HEAVY_NO_EMPHASIS: "a heavy hit without emphasis", W_REACH: "sizes too different for the hit", W_NO_PROP: "nothing to pick up or give", W_HIDDEN: "a hidden character acting",
-  W_PARTICLE_BUDGET: "too many effects at once", W_DIALOGUE_FAST: "a line too short to read, or talking over itself", W_TEXT_SOFT: "a strong word for the audience",
-  W_KIDS_NO_HOPE: "kids: someone vanishes and never returns", W_STORY_SHORT: "a story under 300 s", W_FIGHT_SHORT: "a fight video under 180 s",
-  W_SCENE_STATIC: "over 4 s of a scene where nothing moves", W_CAST_UNUSED: "a cast member no scene places",
-};
+/** Every validator code with what it means: catalog/docs/codes.json (the scene prompt explains all of them; tests keep this complete). */
+export const CODE_HELP = Object.fromEntries(Object.entries(catalogDocs().codes).map(([k, v]) => [k, v.meaning]));
 
 export const codesMarkdown = () => Object.entries(CODE_HELP).map(([c, m]) => `${c} (${m})`).join("; ");
 

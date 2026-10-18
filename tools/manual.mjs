@@ -28,7 +28,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { randomInt } from "node:crypto";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 import { createEngine } from "../engine/index.js";
 import { manualWritePrompt, manualIdeasPrompt, manualCritiquePrompt, manualMetadataPrompt, checkReply } from "./lib/manual.mjs";
 import { loadHistory, avoidList } from "./lib/history.mjs";

@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createFx, emitFx, stepFx, particleAt, liveParticles, MAX_LIFE } from "../../engine/fx.js";
 import { mulberry32 } from "../../engine/math.js";
-import { fxPresets, FX_NAMES } from "../../data/fx.js";
+import { catalog } from "../../catalog/index.js";
+
+const { fxPresets, fxNames: FX_NAMES } = catalog;
 
 const at = { x: 1000, y: 700 };
 

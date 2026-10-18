@@ -4,7 +4,7 @@ import { createCamera, setCameraKey, stepCamera, addShake, addZoomPunch, cutCame
 import { createActor, poseActor } from "../../engine/actor.js";
 import { mulberry32 } from "../../engine/math.js";
 import { fillPose } from "../../engine/pose.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const DT = 1 / 60;
 const cam = (format = "landscape") =>

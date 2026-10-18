@@ -7,7 +7,7 @@ import { prepareCatalog } from "../../engine/moves.js";
 import { requiredStartX, buildHurtboxes, segSegDist2 } from "../../engine/combat.js";
 import { COMBAT } from "../../engine/config.js";
 import { holdableProps } from "../../engine/objects.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const DT = 1 / 60;
 import { propByKind } from "../../engine/props.js";

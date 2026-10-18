@@ -35,7 +35,7 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { randomInt } from "node:crypto";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 import { createEngine } from "../engine/index.js";
 import { createLlm, loadProvider, LlmError } from "./lib/llm/index.mjs";
 import { IDEATION_SCHEMA } from "./lib/llm_schema.mjs";

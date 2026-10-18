@@ -7,7 +7,7 @@ import { computeJoints } from "../../engine/skeleton.js";
 import { prepareCatalog, rootOffsetAt } from "../../engine/moves.js";
 import { samplePoseKeys } from "../../engine/pose.js";
 import { createActor, poseActor } from "../../engine/actor.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const moves = prepareCatalog(catalog.moves, catalog.poses);
 const P = (x, y) => ({ x, y });

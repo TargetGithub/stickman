@@ -9,7 +9,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { validate, formatIssues, compileScript, ejectMacro } from "../engine/index.js";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const opt = (name) => (args.includes(name) ? args[args.indexOf(name) + 1] : undefined);

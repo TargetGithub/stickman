@@ -7,7 +7,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { synthesize, SAMPLE_RATE } from "./lib/synth.mjs";
 import { writeWav } from "./lib/wav.mjs";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 
 export const GENERATED_DIR = new URL("../assets/sfx/generated/", import.meta.url).pathname;
 

@@ -43,7 +43,7 @@ export function ejectMacro(script, macroId, catalog) {
 
 /**
  * @param {{ catalog: object, createCanvas?: (w:number, h:number) => object }} opts
- *   catalog: data catalog (see /data/index.js); the engine never imports /data.
+ *   catalog: the catalog (catalog/index.js loads catalog/); the engine never imports it.
  *   createCanvas: optional host canvas factory, used for scratch canvases (dissolve transitions).
  */
 export function createEngine(opts) {

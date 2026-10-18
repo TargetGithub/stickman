@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // SVG file → object catalog entry (STORY_SPEC 5.5, S4.9). The engine never reads files: this runs at
-// build time and writes a draft entry for data/objects.js, plus a review image.
+// build time and writes a draft entry for catalog/world/objects.json, plus a review image.
 // Usage:
 //   node tools/svg_import.mjs <file.svg> --name castle [--behavior static] [--height 300]
 //        [--palette theme|none] [--source "author, license, URL"] [--out out/drafts]
+//        [--write "a stone castle with towers"]   → after review: add it to catalog/ with that description
 // Colors snap to a small palette (the stick-figure look) unless --palette none; every shape gets the
 // standard dark outline. With --source, the license line is appended to assets/art/SOURCES.md.
 
@@ -12,6 +13,7 @@ import { join, basename } from "node:path";
 import { parseSvg, toCatalogPaths } from "./lib/svg.mjs";
 import { loadBackend } from "./lib/canvas.mjs";
 import { drawPaths } from "../engine/renderer/paths.js";
+import { addToCatalog } from "./lib/catalog_write.mjs";
 
 export const PALETTE = ["#111111", "#ffffff", "#e8e8e8", "#9aa7b4", "#5a5f6a", "#3b3b44", "#6b4a2f", "#a0703f", "#d2a96b", "#e9d9a8",
   "#3f9a4a", "#86c56a", "#2f7fd9", "#7fc8ef", "#8a2be2", "#e04f4f", "#ff7a3d", "#ffcc33", "#ff6fa8", "#2fd3c0"];
@@ -56,5 +58,10 @@ if (source) {
   if (!existsSync(sources)) writeFileSync(sources, "# Imported art sources\n\n| Object | File | Source and license |\n|---|---|---|\n");
   appendFileSync(sources, `| ${name} | ${basename(file)} | ${source} |\n`);
 }
-console.log(`wrote ${json} (${paths.length} paths, ${w}×${h} px) and ${name}.object.png
-Review the image, then add the entry to data/objects.js as "${name}" (keep "draw": "paths").${source ? "" : "\nRecord where the art came from with --source."}`);
+console.log(`wrote ${json} (${paths.length} paths, ${w}×${h} px) and ${name}.object.png`);
+if (opt("--write", null)) {
+  const rel = addToCatalog("object", name, entry, { description: opt("--write") });
+  console.log(`added "${name}" to catalog/${rel} (tag "draft"); run npm run catalog:build to check it`);
+} else {
+  console.log(`Review the image, then run again with --write "<one-line description>" to add "${name}" to catalog/world/objects.json.${source ? "" : "\nRecord where the art came from with --source."}`);
+}

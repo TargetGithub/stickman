@@ -2,7 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { prepareCatalog, startMove, stepMove, rootOffsetAt, MIN_WINDUP } from "../../engine/moves.js";
 import { holdableProps } from "../../engine/objects.js";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 
 const DT = 1 / 60;
 const poses = { stand: catalog.poses.stand, guard: catalog.poses.guard };

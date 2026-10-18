@@ -61,12 +61,12 @@
   <main><canvas id="view" width="1200" height="800"></canvas></main>
 
   <script type="module">
-    import { poses } from "../data/poses.js";
+    import { catalog } from "../catalog/index.js";
     import { POSE_CHANNELS } from "../engine/types.js";
     import { computeJoints, lowestPoint } from "../engine/skeleton.js";
-    import { bodies } from "../data/bodies.js";
     import { drawCharacter } from "../engine/renderer/character.js";
 
+    const { poses, bodies } = catalog;
     const $ = (id) => document.getElementById(id);
     const canvas = $("view");
     const ctx = canvas.getContext("2d");

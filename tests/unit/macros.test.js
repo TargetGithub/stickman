@@ -2,7 +2,7 @@
 // `winner`, brawls with at most two attacks at once, chases, fight cards of at least 3 minutes, montages.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { catalog } from "../../data/index.js";
+import { catalog } from "../../catalog/index.js";
 import { validate } from "../../engine/validator/index.js";
 import { simulate, movesFor, frameAt } from "../../engine/sim.js";
 import { splitText } from "../../engine/story/macros/basic.js";

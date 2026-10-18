@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // Draft catalog data with an LLM, check it, and render a review sheet (STORY_SPEC 5.5, S4.10).
-// Nothing is written into data/: you review the sheet and copy an accepted draft yourself.
+// Nothing is written into catalog/ until you review the sheet and run again with --write (it reuses the reply).
 // Usage:
 //   node tools/draft.mjs object "a red mailbox on a post" [--provider NAME --model ID | --mock]
 //   node tools/draft.mjs theme "a snowy village at night" --manual        → writes the prompt to paste in any chat
 //   node tools/draft.mjs move "a little hop of joy with both arms up" --mock   → a move, with filmstrips on two body plans
 //   node tools/draft.mjs object "..." --reply reply.txt                   → checks a pasted reply
+//   node tools/draft.mjs object "..." --reply reply.txt --write [--file life] → adds it to catalog/ (moves: --file picks the moves file)
 // Output: out/drafts/<name>.<kind>.json and .png (--out to change).
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
@@ -14,16 +15,17 @@ import { draftPrompt, checkDraft, mockDraft } from "./lib/draft.mjs";
 import { createLlm, loadProvider, parseJsonText } from "./lib/llm/index.mjs";
 import { loadBackend } from "./lib/canvas.mjs";
 import { createEngine } from "../engine/index.js";
-import { catalog } from "../data/index.js";
+import { catalog } from "../catalog/index.js";
 import { moveSheet } from "./lib/filmstrip.mjs";
+import { addToCatalog } from "./lib/catalog_write.mjs";
 
 
 const args = process.argv.slice(2);
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
 const flag = (n) => args.includes(n);
-const [kind, description] = args.filter((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(provider|model|reply|out)$/));
+const [kind, description] = args.filter((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(provider|model|reply|out|file)$/));
 if (!["object", "theme", "move"].includes(kind) || !description) {
-  console.error('usage: node tools/draft.mjs object|theme|move "<description>" [--mock | --provider NAME --model ID | --manual | --reply file] [--out out/drafts]');
+  console.error('usage: node tools/draft.mjs object|theme|move "<description>" [--mock | --provider NAME --model ID | --manual | --reply file [--write [--file <moves file>]]] [--out out/drafts]');
   process.exit(2);
 }
 const outDir = opt("--out", "out/drafts");
@@ -63,10 +65,16 @@ if (problems.length) {
   process.exit(1);
 }
 
+if (flag("--write")) {
+  const rel = addToCatalog(kind, name, draft.entry, { description, file: opt("--file", undefined) });
+  console.log(`added "${name}" to catalog/${rel} (tag "draft"); run npm run catalog:build to check it`);
+  process.exit(0);
+}
+
 if (kind === "move") {
   const png = join(outDir, `${name}.move.png`);
   await moveSheet([{ ...draft.entry, name }], png, { plans: ["stickman", "buddy"], frames: 12 });
-  console.log(`wrote ${png}: review the filmstrips, then add "${name}" to a file in data/moves/ (life moves: data/moves/life.js)`);
+  console.log(`wrote ${png}: review the filmstrips, then run again with --reply ${join(outDir, `${name}.move.json`)} --write to add "${name}" to catalog/moves/`);
   process.exit(0);
 }
 
@@ -102,4 +110,4 @@ const sctx = sheet.getContext("2d");
 });
 const png = join(outDir, `${name}.${kind}.png`);
 await backend.savePng(sheet, png);
-console.log(`wrote ${png}: review it, then copy "${name}" from ${join(outDir, `${name}.${kind}.json`)} into data/${kind === "object" ? "objects" : "themes"}.js`);
+console.log(`wrote ${png}: review it, then run again with --reply ${join(outDir, `${name}.${kind}.json`)} --write to add "${name}" to catalog/world/`);

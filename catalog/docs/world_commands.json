@@ -1,0 +1,135 @@
+{
+  "shake": {
+    "description": "Shakes the camera: small, med or big.",
+    "example": { "at": 0, "who": "world", "do": "shake", "params": { "preset": "med" } }
+  },
+  "slowmo": {
+    "description": "Slow motion for `duration` story seconds at `scale` speed; great on a big hit.",
+    "example": { "at": 0, "who": "world", "do": "slowmo", "params": { "scale": 0.3, "duration": 0.5 } }
+  },
+  "freeze": {
+    "description": "Freezes the action for a moment (hitstop) without stopping the video.",
+    "example": { "at": 0, "who": "world", "do": "freeze", "params": { "duration": 0.15 } }
+  },
+  "zoom_punch": {
+    "description": "A quick camera punch-in that springs back.",
+    "example": { "at": 0, "who": "world", "do": "zoom_punch", "params": { "amount": 0.2, "dur": 0.3 } }
+  },
+  "flash": {
+    "description": "A full-screen color flash.",
+    "example": { "at": 0, "who": "world", "do": "flash", "params": { "color": "#ffffff", "dur": 0.1 } }
+  },
+  "fade": {
+    "description": "Fades the picture out to black or white (or back in with dir in).",
+    "example": { "at": 0, "who": "world", "do": "fade", "params": { "to": "black", "dur": 1 } }
+  },
+  "desaturate": {
+    "description": "Drains the color from the picture (sad or dramatic moments).",
+    "example": { "at": 0, "who": "world", "do": "desaturate", "params": { "amount": 0.8, "dur": 1 } }
+  },
+  "text_pop": {
+    "description": "A big comic word pops up on screen (16 characters at most).",
+    "example": { "at": 0, "who": "world", "do": "text_pop", "params": { "text": "WOW!" } }
+  },
+  "caption": {
+    "description": "A line of caption text at the top, bottom or center.",
+    "example": {
+      "at": 0,
+      "who": "world",
+      "do": "caption",
+      "params": { "text": "Meanwhile, on the rooftop...", "pos": "bottom", "dur": 2.5 }
+    }
+  },
+  "explosion": {
+    "description": "An explosion at a stage position.",
+    "example": { "at": 0, "who": "world", "do": "explosion", "params": { "x": 1600 } }
+  },
+  "spawn_prop": {
+    "description": "Puts a prop on the floor for someone to pick up.",
+    "example": { "at": 0, "who": "world", "do": "spawn_prop", "params": { "prop": "sword", "x": 1500 } }
+  },
+  "prop_break": {
+    "description": "Breaks the prop a character is holding.",
+    "example": { "at": 0, "who": "world", "do": "prop_break", "params": { "owner": "kai" } }
+  },
+  "set_theme": {
+    "description": "Switches the background theme (v1 clips; stories use scenes).",
+    "example": { "at": 0, "who": "world", "do": "set_theme", "params": { "theme": "arena" } }
+  },
+  "music_cue": {
+    "description": "Starts, stops or ducks the music.",
+    "example": { "at": 0, "who": "world", "do": "music_cue", "params": { "cue": "duck", "volume": 0.4 } }
+  },
+  "cut": { "description": "A hard cut in the camera (no params).", "example": { "at": 0, "who": "world", "do": "cut" } },
+  "narrate": {
+    "description": "Narration text in a box at the top or bottom (stories).",
+    "example": {
+      "at": 0,
+      "who": "world",
+      "do": "narrate",
+      "params": { "text": "One sunny morning, Kai met Pip in the park.", "dur": 4 }
+    }
+  },
+  "title_card": {
+    "description": "A full-screen title card with an optional subtitle.",
+    "example": {
+      "at": 0,
+      "who": "world",
+      "do": "title_card",
+      "params": { "title": "The Brave Heart", "subtitle": "A Kai and Pip story" }
+    }
+  },
+  "chapter_card": {
+    "description": "A full-screen chapter card.",
+    "example": { "at": 0, "who": "world", "do": "chapter_card", "params": { "text": "Chapter 2: The Lair" } }
+  },
+  "time_card": {
+    "description": "A full-screen time-skip card.",
+    "example": { "at": 0, "who": "world", "do": "time_card", "params": { "text": "The next morning..." } }
+  },
+  "end_card": {
+    "description": "A full-screen end card.",
+    "example": { "at": 0, "who": "world", "do": "end_card", "params": { "text": "The End" } }
+  },
+  "set_time": {
+    "description": "Changes the time of day, fading over `dur` seconds.",
+    "example": { "at": 0, "who": "world", "do": "set_time", "params": { "time": "dusk", "dur": 3 } }
+  },
+  "set_weather": {
+    "description": "Changes the weather, fading over `dur` seconds.",
+    "example": { "at": 0, "who": "world", "do": "set_weather", "params": { "weather": "rain", "dur": 2 } }
+  },
+  "spawn_object": {
+    "description": "Adds an object from the catalog to the scene.",
+    "example": { "at": 0, "who": "world", "do": "spawn_object", "params": { "kind": "balloon", "id": "red_balloon", "x": 1500 } }
+  },
+  "remove_object": {
+    "description": "Removes the object named in the beat's `object` field.",
+    "example": { "at": 0, "who": "world", "do": "remove_object", "object": "red_balloon" }
+  },
+  "set_object": {
+    "description": "Changes an object (named in `object`): a state, or sends a ball, floater or vehicle moving.",
+    "example": { "at": 0, "who": "world", "do": "set_object", "object": "door1", "params": { "state": "open" } }
+  },
+  "set_appearance": {
+    "description": "Changes how a character looks mid-story: add or remove an accessory, change hair, outfit or eyes.",
+    "example": {
+      "at": 0,
+      "who": "world",
+      "do": "set_appearance",
+      "params": { "who": "kai", "accessory": "cape", "color": "#d23c3c" }
+    }
+  },
+  "shot": {
+    "description": "A camera shot from a beat (wide, close_up, two_shot, ...); with dur the previous framing comes back.",
+    "example": { "at": 0, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "kai", "dur": 2 } }
+  },
+  "set_music": {
+    "description": "Changes the music mood, intensity or volume inside a scene.",
+    "example": { "at": 0, "who": "world", "do": "set_music", "params": { "mood": "tense", "intensity": 0.6, "fade": 2 } }
+  },
+  "activity": {
+    "description": "Runs an activity directly (the runtime form of @activity; prefer the macro).",
+    "example": { "at": 0, "who": "world", "do": "activity", "params": { "name": "play_catch", "with": ["kai", "pip"], "reps": 4 } }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "title": "catalog/examples/index.json: every example and the ones the context pack shows.",
+  "type": "object",
+  "required": ["examples", "pack"],
+  "additionalProperties": false,
+  "properties": {
+    "examples": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "kind", "title", "description", "tags"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string" },
+          "kind": { "enum": ["clip", "story"] },
+          "title": { "type": "string" },
+          "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+          "tags": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,23}$" }
+          }
+        }
+      }
+    },
+    "pack": {
+      "type": "object",
+      "required": ["clip", "outline", "scenes"],
+      "additionalProperties": false,
+      "properties": {
+        "clip": { "type": "string" },
+        "outline": { "type": "string" },
+        "scenes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["story", "scene", "kind", "shows"],
+            "additionalProperties": false,
+            "properties": {
+              "story": { "type": "string" },
+              "scene": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+              "kind": { "type": "string" },
+              "shows": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

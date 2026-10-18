@@ -4,7 +4,9 @@ import {
   BODY, computeJoints, solveIK2, bendSignOf, lowestPoint, packJoints, unpackJoints,
 } from "../../engine/skeleton.js";
 import { JOINT_ORDER } from "../../engine/types.js";
-import { poses } from "../../data/poses.js";
+import { catalog } from "../../catalog/index.js";
+
+const { poses } = catalog;
 
 const EPS = 1e-6;
 const near = (p, q, msg) =>
