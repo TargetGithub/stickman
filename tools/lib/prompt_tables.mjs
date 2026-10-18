@@ -1,7 +1,7 @@
 // Catalog tables for LLM prompts (spec 18.2 items 3-4), generated from the catalog so the prompt
 // can never drift from the data. Output is deterministic (stable order) so the system prompt caches.
 
-import { movesFor } from "../../engine/sim.js";
+import { movesFor, v1MoveNames } from "../../engine/sim.js";
 import { WORLD_COMMANDS } from "../../engine/validator/index.js";
 
 const TRAILS = ["afterimage", "slash_arc"];
@@ -48,7 +48,8 @@ const fmtParams = (p) => Object.entries(p).map(([k, v]) => `${k}=${v}`).join(" "
 
 /** One row object per move, in catalog order. */
 export function moveRows(catalog) {
-  return [...movesFor(catalog).values()].map((d) => ({
+  const v1 = new Set(v1MoveNames(catalog)); // the writer prompt is for v1 scripts (S5: no paired or story-holdable moves)
+  return [...movesFor(catalog).values()].filter((d) => v1.has(d.name)).map((d) => ({
     name: d.name,
     category: d.category,
     duration: d.duration,

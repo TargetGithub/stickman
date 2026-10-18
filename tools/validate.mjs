@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { validate, formatIssues, buildJsonSchema, WORLD_COMMANDS } from "../engine/validator/index.js";
 import { jsonSchemaV2 } from "../engine/validator/schema_v2.js";
 import { exportSchema } from "../engine/validator/schema.js";
-import { movesFor } from "../engine/sim.js";
+import { v1MoveNames } from "../engine/sim.js";
 import { catalog } from "../data/index.js";
 
 const args = process.argv.slice(2);
@@ -19,7 +19,7 @@ if (args.includes("--schema-v2")) {
   process.exit(0);
 }
 if (args.includes("--schema")) {
-  console.log(JSON.stringify(buildJsonSchema(catalog, [...movesFor(catalog).keys()], Object.keys(WORLD_COMMANDS)), null, 2));
+  console.log(JSON.stringify(buildJsonSchema(catalog, v1MoveNames(catalog), Object.keys(WORLD_COMMANDS)), null, 2));
   process.exit(0);
 }
 const file = args.find((a) => !a.startsWith("--"));

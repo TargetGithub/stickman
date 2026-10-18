@@ -249,6 +249,15 @@ node tools/catalog.mjs
 | emotes | taunt, victory, charge_up, wave, bow, flex, laugh, shrug, facepalm, cower, dance_a, dance_b, point |
 | utility | wait, face, pick_prop, drop_prop, teleport, spawn, despawn |
 
+Story scripts (version 2) also have two story-only groups, listed under `life` and `interaction` on the catalog page:
+
+- **life** (25 solo moves): sit (on a seat with `"object"`, or on the floor), stand_up, lie_down, sleep, eat, drink, read, phone_talk, cheer, clap, kneel, wave_goodbye, sneak, tiptoe, peek, hide, push, pull, climb_up, jump_down, swing_forehand, swing_backhand, blow_wand, poke, stretch.
+- **interaction** (paired moves, need `"partner"`): hug, high_five, fist_bump, handshake, pat_head, give, carry, put_down, piggyback, lift_up, drag, lean_on, comfort, walk_together (give it `"params": { "distance": 300 }`). The lead walks to the partner first (`"approach": "run"` to run, `false` to place it there); the partner plays its half on its own. `carry` and `piggyback` keep holding the partner through walks until `put_down`.
+
+```json
+{ "id": "hf", "at": 2, "who": "kai", "do": "high_five", "partner": "pip", "say": "Up high!" }
+```
+
 Beat `fx` you can add to a character: `aura`, `afterimage`, `slash_arc`, `speed_lines`, `dust_land`, `dust_run`, `shockwave`, `anger_mark`, `sweat_drop`, `exclaim`, `question`, `heart`, `stars_dizzy`. Impact sparks and hit sounds are added automatically.
 
 ## 5. Fixing validator errors

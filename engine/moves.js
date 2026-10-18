@@ -103,6 +103,7 @@ function prepareMove(raw, poses, problems) {
     flags: { ...(raw.flags || {}) },
     mouth: raw.mouth || "neutral",
     face: raw.face ?? null, // story scripts: the face shown while this move runs (S2)
+    pair: raw.pair ?? null, // paired moves (S5): engine/story/pairs.js
     chain: raw.chain ?? null,
   };
 }

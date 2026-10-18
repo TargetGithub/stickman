@@ -8,7 +8,7 @@
 // The engine never reads the clock, the network or files. Hosts (tools/, web/) own canvases and fonts.
 
 import { validate, buildJsonSchema, WORLD_COMMANDS, formatIssues } from "./validator/index.js";
-import { simulate, frameAt, movesFor } from "./sim.js";
+import { simulate, frameAt, v1MoveNames } from "./sim.js";
 import { storyToVideo } from "./clock.js";
 import { createRenderer, renderFrame as drawFrame } from "./renderer/index.js";
 import { collectAudioEvents, collectMusicCues } from "./audio_events.js";
@@ -18,7 +18,7 @@ export { validate, formatIssues, ENGINE_VERSION };
 
 /** JSON Schema for scripts with this catalog's enums (for LLM structured output). */
 export function scriptSchema(catalog) {
-  return buildJsonSchema(catalog, [...movesFor(catalog).keys()], Object.keys(WORLD_COMMANDS));
+  return buildJsonSchema(catalog, v1MoveNames(catalog), Object.keys(WORLD_COMMANDS));
 }
 
 /**

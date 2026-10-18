@@ -151,8 +151,13 @@ export function poseActor(actor, dt, snapHard = false) {
     actor.postureW = w + Math.sign(want - w) * Math.min(Math.abs(want - w), dt * 6);
   }
   const pose = displayPose(actor);
-  // On a seat the hip rests at the seat's height instead of the feet on the floor.
-  const rootY = actor.seatY != null ? actor.groundY - actor.seatY * actor.scale - (pose.dy || 0) : groundContact(actor, pose, dt, snapHard);
+  // On a seat the hip rests at the seat's height; a carried partner's hip follows its carrier (S5).
+  let rootY;
+  if (actor.carryTarget) {
+    actor.x = actor.carryTarget.x - actor.facing * (pose.dx || 0);
+    rootY = actor.carryTarget.y - (pose.dy || 0);
+    actor.snapReady = false; // ground contact restarts cleanly when set down
+  } else rootY = actor.seatY != null ? actor.groundY - actor.seatY * actor.scale - (pose.dy || 0) : groundContact(actor, pose, dt, snapHard);
   actor.joints = withPropTip(actor, computeJoints(pose, { x: actor.x, y: rootY }, actor.facing, actor.scale, dimsOf(actor)));
   return actor.joints;
 }

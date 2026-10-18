@@ -234,6 +234,16 @@ export function checkStory(story, catalog, moves) {
         out.push(issue("E_REF_BEAT", mapped.path, `Beat '${ref[1]}' is in another scene; timing references stay inside a scene.`, "Use a number of seconds from this scene's start instead."));
       } else out.push(mapped);
     }
+    // Paired moves need a partner who is in the scene and is someone else (S5).
+    const present = new Set((scene.cast || []).map((c) => c.id));
+    (scene.beats || []).forEach((b, bi) => {
+      const def = moves.get(b.do);
+      if (!def?.pair) return;
+      const p = `${pre}.beats[${bi}]`;
+      if (!b.partner) out.push(issue("E_PARTNER_MISSING", p, `'${b.do}' is a paired move and needs a "partner".`, `Add "partner": "<character id>" (someone in scene '${scene.id}').`));
+      else if (b.partner === b.who) out.push(issue("E_PARTNER_SELF", `${p}.partner`, `'${b.who}' cannot ${b.do} itself.`, "Pick another character as the partner."));
+      else if (!present.has(b.partner)) out.push(issue("E_PARTNER_MISSING", `${p}.partner`, `'${b.partner}' is not in scene '${scene.id}'.`, `Use one of: ${[...present].filter((id) => id !== b.who).join(", ")}.`));
+    });
     // Faces come from the catalog; explicit bubble times should leave time to read.
     const faceIssue = (name, path) => {
       if (catalog.faces?.[name]) return;

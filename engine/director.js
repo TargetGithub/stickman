@@ -9,6 +9,8 @@ import { COMBAT, LIMITS } from "./config.js";
 import { CARD_COMMANDS, cardDuration, narrateDuration } from "./story/timing.js";
 import { readingTime } from "./story/speech.js";
 import { spawnObject, removeObject, setObject } from "./objects.js";
+import { pairGate } from "./story/pair_beats.js";
+import { startPair } from "./story/pairs.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
@@ -129,7 +131,8 @@ export function onEvents(director, events, storyT) {
         `Add "approach": "run" to ${beat ? `beat '${beat.id}'` : "the beat"}, or move the characters closer first.`);
     }
     if (e.type === "propMissing") {
-      issue(director, "W_NO_PROP", beat, `'${e.actor}' tried to pick up a prop, but none was lying within reach.`, "Spawn one nearby (world spawn_prop) or drop/throw one there first.", "warning");
+      if (e.give) issue(director, "W_NO_PROP", beat, `'${e.actor}' has nothing in hand to give.`, `Give '${e.actor}' a "prop" or pick one up before this beat.`, "warning");
+      else issue(director, "W_NO_PROP", beat, `'${e.actor}' tried to pick up a prop, but none was lying within reach.`, "Spawn one nearby (world spawn_prop) or drop/throw one there first.", "warning");
     }
     if (e.type === "reachWarning") {
       issue(director, "W_REACH", beat, `'${e.actor}' ${e.move} cannot physically reach '${e.target}' at these sizes; the hit will look like it lands in the air.`,
@@ -274,6 +277,7 @@ function execute(director, beat, ctx) {
   }
   const def = director.moves.get(beat.do);
   if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx)) return;
+  if (def.pair && beat.partner && pairGate({ director, beat, actor, def, ctx, issue, command, isFree })) return;
   if (beat.approach && beat.target && def.category === "attack" && beat.state !== "approached" && approach(director, beat, actor, ctx)) {
     beat.state = "approached";
     director.waiting.set(actor.id, [beat, ...(director.waiting.get(actor.id) || []).filter((b) => b !== beat)]);
@@ -293,9 +297,9 @@ function execute(director, beat, ctx) {
   if (beat.do === "ride") actor.riding = beat.object; // the sim keeps riders on their vehicle
   if (actor.seatY != null && (def.category === "movement" || def.category === "attack")) actor.seatY = actor.seatId = null;
   if (beat.do === "dismount") actor.riding = null;
-  command(world, beat.who, beat.do, {
-    target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,
-  });
+  const opts = { target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined };
+  if (def.pair && world.byId.get(beat.partner)) startPair(world, actor, world.byId.get(beat.partner), def, opts, command);
+  else command(world, beat.who, beat.do, opts);
   beat.state = "running";
   if (KO_MOVES.includes(beat.do)) {
     director.dead.add(beat.who);

@@ -17,10 +17,11 @@ import { moves as reactions } from "./moves/reactions.js";
 import { moves as emotes } from "./moves/emotes.js";
 import { moves as utility } from "./moves/utility.js";
 import { moves as life } from "./moves/life.js";
+import { moves as interactions } from "./moves/interactions.js";
 
 export const catalog = {
   poses,
-  moves: [...movement, ...unarmed, ...armed, ...defensive, ...reactions, ...emotes, ...utility, ...life],
+  moves: [...movement, ...unarmed, ...armed, ...defensive, ...reactions, ...emotes, ...utility, ...life, ...interactions],
   props,
   fxPresets,
   fxNames: FX_NAMES,

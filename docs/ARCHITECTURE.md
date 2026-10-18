@@ -538,6 +538,21 @@ export function movingItems(objs, groundY): Item[];
 - Seats: the director's `walkToSeat` walks a sitting character to the nearest free slot of a seat, then sets `actor.seatY`, `seatId`, `seatSlot`; `poseActor` places the hip at the seat height and `displayPose` applies the seated leg mask. The `unseat` move event (and movement or attack moves) clears it.
 - Tools: `tools/lib/filmstrip.mjs` `moveSheet(defs, out, { plans, frames })` (used by `tools/draft.mjs move` and `tools/move_sheet.mjs`); `tools/lib/draft.mjs` `checkMove(def, catalog)`.
 
+### Paired moves (S5 batch 2)
+```js
+// story/pairs.js
+pairDistance(lead, partner, pair) -> number       // gap × average arm reach + room for filled torsos
+pairStartX(lead, partner, pair) -> number
+startPair(world, lead, partner, def, opts, command) // facings, both moves, world.pairs record
+updatePairs(world) -> events                      // after stepWorld: attachments, then IK contacts
+pairMoveEvent(world, actor, e, events)            // `detach` and `give` move events
+// story/pair_beats.js
+pairGate({ director, beat, actor, def, ctx, issue, command, isFree }) -> boolean // true = wait
+```
+- Move defs keep `pair` (`prepareMove`). The director calls `pairGate` before a paired move (queue on a busy partner, walk to `pairStartX`, `E_SIM_PARTNER_UNREACHABLE`), then `startPair`. `actor.pairedWith` makes `world.js` skip separation for the pair.
+- Attachments set `partner.carryTarget` (hip position; `poseActor` places the partner there) or pin `partner.x` (`mode: "x"`). Contacts reuse `applyAimIK` from `combat.js`.
+- `sim.js` `v1MoveNames(catalog)`: the moves a v1 script may use (no `interaction` moves, none needing a story holdable). The v1 schema export, the prompt tables and the v1 semantic checks use it, so v1 stays frozen.
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:

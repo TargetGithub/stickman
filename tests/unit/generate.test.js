@@ -4,7 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { catalog } from "../../data/index.js";
 import { validate, createEngine } from "../../engine/index.js";
-import { movesFor } from "../../engine/sim.js";
+import { movesFor, v1MoveNames } from "../../engine/sim.js";
 import { WORLD_COMMANDS } from "../../engine/validator/index.js";
 import { catalogData, catalogMarkdown } from "../../tools/lib/prompt_tables.mjs";
 import { exampleScripts, writerSystem, ideationSystem, repairRequest } from "../../tools/lib/prompt_pack.mjs";
@@ -33,10 +33,11 @@ const PREMISE = { title: "x", logline: "y" };
 
 test("catalog tables list every move, world command, fx and theme", () => {
   const d = catalogData(catalog);
-  assert.deepEqual(d.moves.map((m) => m.name), [...movesFor(catalog).keys()]);
+  assert.deepEqual(d.moves.map((m) => m.name), v1MoveNames(catalog)); // v1 prompt: no paired or story-holdable moves (S5)
   assert.deepEqual(d.world.map((w) => w.name), Object.keys(WORLD_COMMANDS));
   const md = catalogMarkdown(catalog);
-  for (const name of [...movesFor(catalog).keys(), ...catalog.themeNames]) assert.ok(md.includes(name), name);
+  for (const name of [...v1MoveNames(catalog), ...catalog.themeNames]) assert.ok(md.includes(name), name);
+  assert.ok(!md.includes("| hug |"), "paired moves stay out of the v1 prompt");
   assert.ok(md.includes("| flying_kick | attack |"));
 });
 
@@ -62,7 +63,7 @@ test("system prompts are fully filled and byte-stable (cacheable)", () => {
 test("the writer prompt documents every validator code, and only real ones", async () => {
   const { readFileSync, readdirSync } = await import("node:fs");
   const src = (dir) => readdirSync(dir).filter((f) => f.endsWith(".js")).map((f) => readFileSync(`${dir}/${f}`, "utf8")).join("\n");
-  const engine = src("engine") + src("engine/validator");
+  const engine = src("engine") + src("engine/validator") + src("engine/story");
   const codes = (text) => new Set(text.match(/\b[EW]_[A-Z]+(?:_[A-Z]+)*\b/g));
   const real = codes(engine);
   const prompt = writerSystem(catalog);
@@ -88,7 +89,8 @@ test("structured-output schema uses only the portable subset", () => {
     Object.values(n).forEach(walk);
   })(s);
   const doEnum = s.properties.beats.items.properties.do.enum;
-  for (const m of movesFor(catalog).keys()) assert.ok(doEnum.includes(m));
+  for (const m of v1MoveNames(catalog)) assert.ok(doEnum.includes(m));
+  assert.ok(!doEnum.includes("hug"));
   for (const w of Object.keys(WORLD_COMMANDS)) assert.ok(doEnum.includes(w));
   assert.ok(s.properties.beats.items.properties.params.properties.damage);
   assert.deepEqual(toStructured({ type: ["string", "null"] }), { anyOf: [{ type: "string" }, { type: "null" }] });

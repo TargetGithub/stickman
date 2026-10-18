@@ -327,6 +327,7 @@ function fadeVisibility(actor, dt) {
 
 function separationSkip(a, b) {
   if (a.hidden || b.hidden) return true;
+  if (a.pairedWith === b.id || b.pairedWith === a.id) return true; // paired moves touch (S5)
   const engaged = (x, y) => x.move && x.move.target === y.id && x.move.def.category === "attack";
   const ghost = (x) => x.move?.def.flags.passThrough || x.holding || x.launched;
   return engaged(a, b) || engaged(b, a) || ghost(a) || ghost(b);

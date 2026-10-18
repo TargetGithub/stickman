@@ -155,7 +155,7 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** each move batch in the catalog page (3 batches × 15 min).
 
-**Status (2026-10-16):** batch 1 built (S5.0 move drafting, S5.4 the 25 solo moves, seats with slots), waiting for the review. Demos: `out/demos/s5_batch1_life.png` (stickman), `s5_batch1_life_buddy_elder.png`, `s5_batch1_movement.png`, `s5_batch1_life/final.mp4` (from `scripts/samples/s5_life.json`). The catalog page's `life` category shows every move on any body plan. Batch 2 (paired moves, S5.1-S5.3) and batch 3 (defeat styles, activities, validator codes, the scene-1 demo) follow.
+**Status (2026-10-16):** batch 1 approved (S5.0 move drafting, S5.4 the 25 solo moves, seats with slots). Batch 2 built (S5.1-S5.3: the `pair` format, positioning and partner queueing in `engine/story/pair_beats.js`, contacts with IK and attachments in `engine/story/pairs.js`, 14 paired moves in `data/moves/interactions.js`, and E_PARTNER_MISSING, E_PARTNER_SELF and E_SIM_PARTNER_UNREACHABLE from S5.7), waiting for the review. Demo: `out/demos/s5_batch2_pairs/final.mp4` (from `scripts/samples/s5_pairs.json`: stickman with buddy, bulky with kid). Batch 3 (defeat styles, activities, the remaining validator codes, the scene-1 demo) follows.
 
 ### S6 Story compiler and macros (5-6 days)
 

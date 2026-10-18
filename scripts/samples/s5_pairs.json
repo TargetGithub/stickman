@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "meta": { "title": "Together", "format": "landscape", "seed": 66, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "color": "#3fd8ff", "style": { "headband": "#ff3b5c" }, "prop": "flower" },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#2fd3c0", "appearance": { "accessories": { "antenna": "#ffcc00" } }, "voice": { "pitch": 1.5, "timbre": "squeaky" } },
+    { "id": "brick", "name": "Brick", "body": "bulky", "color": "#ffc04d", "voice": { "pitch": 0.7, "timbre": "deep" } },
+    { "id": "mo", "name": "Mo", "body": "kid", "color": "#ff9f43", "appearance": { "hair": "cap", "hairColor": "#3a6df0" }, "voice": { "pitch": 1.3 } }
+  ],
+  "scenes": [
+    { "id": "friends", "location": "city_park", "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Together", "subtitle": "paired moves", "dur": 2 },
+      "cast": [ { "id": "kai", "x": 1300, "facing": 1 }, { "id": "pip", "x": 1550, "facing": -1 } ],
+      "camera": [ { "at": 0, "mode": "follow", "zoom": 1.5, "padding": 200 } ],
+      "beats": [
+        { "id": "a1", "at": 0.3, "who": "kai", "do": "high_five", "partner": "pip", "say": "Up high!" },
+        { "id": "a2", "at": { "after": "a1", "delay": 0.3 }, "who": "pip", "do": "fist_bump", "partner": "kai" },
+        { "id": "a3", "at": { "after": "a2", "delay": 0.3 }, "who": "kai", "do": "handshake", "partner": "pip" },
+        { "id": "a4", "at": { "after": "a3", "delay": 0.3 }, "who": "kai", "do": "give", "partner": "pip", "say": "For you!" },
+        { "id": "a5", "at": { "after": "a4", "delay": 0.3 }, "who": "kai", "do": "pat_head", "partner": "pip" },
+        { "id": "a6", "at": { "after": "a5", "delay": 0.3 }, "who": "pip", "do": "hug", "partner": "kai" },
+        { "id": "a7", "at": { "after": "a6", "delay": 0.3 }, "who": "kai", "do": "comfort", "partner": "pip" },
+        { "id": "a8", "at": { "after": "a7", "delay": 0.3 }, "who": "kai", "do": "lean_on", "partner": "pip" },
+        { "id": "a9", "at": { "after": "a8", "delay": 0.3 }, "who": "kai", "do": "carry", "partner": "pip", "say": "Up you go!" },
+        { "id": "b1", "at": { "after": "a9" }, "who": "kai", "do": "walk", "params": { "distance": 240 } },
+        { "id": "b2", "at": { "after": "b1" }, "who": "kai", "do": "put_down", "partner": "pip" },
+        { "id": "b3", "at": { "after": "b2", "delay": 0.3 }, "who": "kai", "do": "lift_up", "partner": "pip" },
+        { "id": "b4", "at": { "after": "b3", "delay": 0.3 }, "who": "kai", "do": "walk_together", "partner": "pip", "params": { "distance": 360 } }
+      ] },
+    { "id": "buddies", "location": "city_street", "time": "day",
+      "transitionIn": { "type": "wipe", "dir": "left", "dur": 0.8 },
+      "transitionOut": { "type": "fade", "dur": 1 },
+      "cast": [ { "id": "brick", "x": 1300, "facing": 1 }, { "id": "mo", "x": 1600, "facing": -1 } ],
+      "camera": [ { "at": 0, "mode": "follow", "zoom": 1.25, "padding": 220 } ],
+      "beats": [
+        { "id": "c1", "at": 0.3, "who": "brick", "do": "hug", "partner": "mo" },
+        { "id": "c2", "at": { "after": "c1", "delay": 0.3 }, "who": "brick", "do": "piggyback", "partner": "mo", "say": "Hop on!" },
+        { "id": "c3", "at": { "after": "c2" }, "who": "brick", "do": "walk", "params": { "distance": 260 } },
+        { "id": "c4", "at": { "after": "c3" }, "who": "brick", "do": "put_down", "partner": "mo" },
+        { "id": "c5", "at": { "after": "c4", "delay": 0.3 }, "who": "brick", "do": "lift_up", "partner": "mo" },
+        { "id": "c6", "at": { "after": "c5", "delay": 0.4 }, "who": "mo", "do": "lie_down" },
+        { "id": "c7", "at": { "after": "c6", "delay": 0.2 }, "who": "brick", "do": "drag", "partner": "mo" },
+        { "id": "c8", "at": { "after": "c7", "delay": 0.4 }, "who": "mo", "do": "stand_up" },
+        { "id": "c9", "at": { "after": "c8", "delay": 0.2 }, "who": "mo", "do": "high_five", "partner": "brick" }
+      ] }
+  ]
+}

@@ -439,17 +439,23 @@ Objects are non-character things in the world: catalog data with a shape, a size
 
 ## 9. Interactions (paired moves)
 
-Paired moves are move data with two tracks: the **lead** (the beat's `who`) and the **partner**.
+Paired moves (S5, batch 2) are two ordinary moves, one per character: the **lead** (the beat's `who`) plays the move with a `pair` block, and the **partner** plays its `partnerMove` (flagged `partner: true`, so a beat cannot start it on its own). Both live in `data/moves/interactions.js`, category `interaction`.
 
 ```js
-{ name: "hug", category: "interaction", duration: 1.6, pair: { gap: 18, partnerMove: "hug_partner" },
-  keys: [...], partnerKeys: [...] }
+{ name: "high_five", category: "interaction", duration: 1.0, face: "laugh", keys: [...],
+  pair: { partnerMove: "high_five_partner", gap: 62, leadFaces: "toward", partnerFaces: "toward",
+          contacts: [{ t0: 0.42, t1: 0.58, from: "lead", part: "rHand", to: "lHand", meet: true }] } }
 ```
 
-- **Positioning:** like attacks today, the lead needs to stand at `gap` from the partner, facing them. `approach` works for interactions too: walk is fine here, and the default is `"walk"`.
-- **Timing:** the partner is busy for the duration. A partner that is busy waits, like the v1 queue.
-- **Body-plan aware:** the gap and hand targets use 2-bone IK so a hug between a stickman and a short buddy lines up. This is the same aiming system attacks use.
-- **Starter set (S5):** `hug`, `high_five`, `fist_bump`, `handshake`, `pat_head`, `carry` / `put_down`, `give` / `receive`, `piggyback`, `lift_up`, `drag`, `lean_on`, `comfort` (hand on shoulder), `walk_together` (synchronized walking, hand in hand optional).
+- **`pair` fields:** `partnerMove`; `gap` (hip-to-hip px for two stickmen; 0 = no positioning); `leadFaces` (`toward`/`away`) and `partnerFaces` (`toward`/`same`); `contacts` (`t0`-`t1` in move time, `from` lead or partner, `part` a hand, `to` a hand, `head`, `top`, `chest`, `back` or `shoulder`, `meet` for both hands meeting); `attach` (`t0`, `t1` or `until: "detach"`, an `anchor` joint of the lead, `offset` [forward, down], `mode` `hold` or `x`); `inheritAttach` (put_down keeps the running carry until its own `detach` event); `sync` (walk_together: the partner's speed matches the lead's ground speed).
+- **Positioning:** the lead walks (or runs, with `"approach": "run"`) to the pair distance and both turn as the pair says; within 14 px it just settles there. The distance is `gap` scaled by both characters' arm reach, plus room for filled torsos (buddy, bulky). `"approach": false` puts the lead there and reports `E_SIM_PARTNER_UNREACHABLE`; so does more than 8 s of walking.
+- **Timing:** both moves start together. A busy partner makes the beat wait in its queue, like the v1 queue.
+- **Body-plan aware:** contacts use the same 2-bone IK attacks use. Meeting hands (high five, handshake, fist bump) meet halfway between the heads at the lower hand's height, clamped to where both arms reach. Torso targets (hug, comfort) use the point nearest the reacher's shoulder height, so a short buddy hugs a tall friend round the waist.
+- **Attachments:** a carried, piggybacked or lifted partner is posed at the lead's anchor (`hold`); a dragged partner follows only in x (`x`). `carry` and `piggyback` hold until `put_down`'s `detach` event; a walk in between carries the partner along.
+- **give:** the `give` event hands the lead's prop or holdable to the partner; without one the beat gets `W_NO_PROP`.
+- **Moves:** `hug`, `high_five`, `fist_bump`, `handshake`, `pat_head`, `give`, `carry`, `put_down`, `piggyback`, `lift_up`, `drag`, `lean_on`, `comfort` (hand on shoulder), `walk_together` (hand in hand, a loop: give `params.distance`). Partner moves: `<name>_partner`, plus `receive`, `carried`, `set_down`, `lifted`, `dragged`.
+- **v1 stays frozen:** interaction moves (and moves needing a story holdable) are not v1 moves: v1 scripts get `E_MOVE_UNKNOWN`, and the v1 schema and prompt tables don't list them (`v1MoveNames`).
+- **Validator:** `E_PARTNER_MISSING` (no `partner`, or it isn't in the scene), `E_PARTNER_SELF`, `E_SIM_PARTNER_UNREACHABLE` (dry run).
 
 ## 10. Activities
 

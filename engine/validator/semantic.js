@@ -213,10 +213,12 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
       out.push({ code: "E_REF_CHARACTER", path: `${p}.who`, message: `No character '${b.who}'.`, fix: near ? `Did you mean '${near}'?` : `Use one of: ${[...charIds, "world"].join(", ")}.` });
       return;
     }
-    const def = moves.get(b.do);
+    let def = moves.get(b.do);
+    // Version 1 scripts cannot use paired moves or story-holdable moves (S5).
+    if (def && !opts.worldCommands && (def.category === "interaction" || (def.needsProp && def.needsProp !== "any" && !Object.values(catalog.props).some((q) => q.kind === def.needsProp)))) def = null;
     if (!def) {
       // A beat with a target or outcome wants an attack: suggest attacks first.
-      const pool = b.target || b.outcome ? moveNames.filter((n) => moves.get(n).category === "attack") : moveNames;
+      const pool = (b.target || b.outcome ? moveNames.filter((n) => moves.get(n).category === "attack") : moveNames).filter((n) => opts.worldCommands || moves.get(n).category !== "interaction");
       const near = closestMatch(b.do, pool) || closestMatch(b.do, moveNames);
       const isWorld = worldCommands[b.do] ? ` '${b.do}' is a world command: set "who": "world".` : "";
       out.push({ code: "E_MOVE_UNKNOWN", path: `${p}.do`, message: `Unknown move '${b.do}'.${isWorld}`, fix: `Use one of: ${nearest(b.do, pool).join(", ")}${near ? ` (closest match: ${near})` : ""}.` });

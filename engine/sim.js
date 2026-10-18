@@ -13,6 +13,7 @@ import { createPresentation, presentEvent, stepPresentation } from "./presentati
 import { normalize, flatScene, transitionInto, transitionDuration } from "./story/normalize.js";
 import { faceEvents, updateFaces } from "./story/faces.js";
 import { bodyPlan } from "./story/bodies.js";
+import { updatePairs, pairMoveEvent } from "./story/pairs.js";
 import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy, holdableProps } from "./objects.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
@@ -22,6 +23,16 @@ const prepared = new WeakMap();
 export function movesFor(catalog) {
   if (!prepared.has(catalog)) prepared.set(catalog, prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog)));
   return prepared.get(catalog);
+}
+
+/**
+ * Moves a v1 script may use: not paired moves (v1 has no partner) and not moves that need a story
+ * holdable (a racket, a wand). The v1 schema, prompt tables and semantic checks use this list.
+ */
+export function v1MoveNames(catalog) {
+  return [...movesFor(catalog).values()]
+    .filter((d) => d.category !== "interaction" && (!d.needsProp || d.needsProp === "any" || Object.values(catalog.props).some((p) => p.kind === d.needsProp)))
+    .map((d) => d.name);
 }
 
 /** Frame n of a simulation result as a plain view (see framestore.frameView). */
@@ -126,6 +137,7 @@ export function simulate(script, catalog, opts = {}) {
     world.onMoveEvent = (actor, e, events) => {
       if (e.use && world.objects && actor.prop) events.push(...useHeld(world.objects, actor, actor.joints.propTip || actor.joints.rHand, clock.storyT));
       if (e.unseat) actor.seatY = actor.seatId = null;
+      if (e.detach || e.give) pairMoveEvent(world, actor, e, events);
     };
     const t0 = clock.storyT;
     const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `scenes[${si}].`, tag: story.legacy ? "" : `${sid}.`, dead, story: !story.legacy });
@@ -163,6 +175,7 @@ export function simulate(script, catalog, opts = {}) {
         events.push(...stepObjects(world.objects, d.storyDt, clock.storyT));
         ridersFollow(world);
       }
+      if (world.pairs?.length) events.push(...updatePairs(world));
       for (const e of events) {
         if (e.type === "hitstop") requestHitstop(clock, e.seconds);
         emit(e);
