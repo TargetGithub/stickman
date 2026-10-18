@@ -2,169 +2,155 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Stickman Pose Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stickman Engine</title>
   <style>
+    @font-face { font-family: "Bangers"; src: url("../assets/fonts/Bangers-Regular.ttf"); }
     @font-face { font-family: "Inter"; src: url("../assets/fonts/Inter.ttf"); }
+    :root { --bg: #f4f4f1; --panel: #ffffff; --line: #dcdcd6; --text: #1d1f24; --muted: #62656e; --accent: #2f6fd6; --chip: #ececea; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #15161a; --panel: #1d1f24; --line: #2b2e35; --text: #e8e8ea; --muted: #9a9ca3; --accent: #7fb4ff; --chip: #2b2e35; }
+    }
+    :root[data-theme="dark"] { --bg: #15161a; --panel: #1d1f24; --line: #2b2e35; --text: #e8e8ea; --muted: #9a9ca3; --accent: #7fb4ff; --chip: #2b2e35; }
     * { box-sizing: border-box; }
-    body { margin: 0; font: 13px Inter, system-ui, sans-serif; background: #15161a; color: #e8e8ea; display: flex; height: 100vh; }
-    aside { width: 340px; padding: 14px; overflow-y: auto; background: #1d1f24; border-right: 1px solid #2b2e35; }
-    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px; }
-    canvas { background: #fff; max-width: 100%; max-height: 100%; border-radius: 6px; }
-    h1 { font-size: 15px; margin: 0 0 4px; }
-    p.note { color: #9a9ca3; margin: 0 0 12px; }
-    fieldset { border: 1px solid #2b2e35; border-radius: 6px; margin: 0 0 12px; padding: 8px 10px; }
-    legend { color: #9a9ca3; padding: 0 4px; }
-    .row { display: grid; grid-template-columns: 52px 1fr 44px; gap: 8px; align-items: center; margin: 3px 0; }
-    .row input[type=range] { width: 100%; }
-    .row output { text-align: right; font-variant-numeric: tabular-nums; }
-    select, button { font: inherit; background: #2b2e35; color: inherit; border: 1px solid #3a3e47; border-radius: 4px; padding: 4px 6px; }
-    button { cursor: pointer; }
-    label.inline { display: inline-flex; gap: 6px; align-items: center; margin-right: 12px; }
-    textarea { width: 100%; height: 70px; font: 11px ui-monospace, monospace; background: #111216; color: #cfd2d8; border: 1px solid #2b2e35; border-radius: 4px; }
+    body { margin: 0; font: 14px/1.5 Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 60px; }
+    header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; margin-bottom: 6px; }
+    h1 { font: 44px/1 Bangers, Inter, sans-serif; letter-spacing: .02em; margin: 0; }
+    .lead { color: var(--muted); margin: 6px 0 22px; max-width: 760px; }
+    button { font: inherit; color: inherit; background: var(--chip); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 28px 0 10px; }
+    .pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+    .page { display: flex; flex-direction: column; gap: 6px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px; color: inherit; text-decoration: none; }
+    a.page:hover { border-color: var(--accent); }
+    .page strong { font-size: 16px; }
+    .page .what { color: var(--muted); }
+    .page .go { margin-top: auto; color: var(--accent); font-weight: 600; }
+    .links { display: flex; flex-wrap: wrap; gap: 6px; }
+    .links a { background: var(--chip); border-radius: 14px; padding: 3px 10px; color: var(--text); text-decoration: none; font-size: 13px; }
+    .links a:hover { color: var(--accent); }
+    .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+    .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; color: inherit; text-decoration: none; }
+    a.stat:hover { border-color: var(--accent); }
+    .stat b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+    .stat span { color: var(--muted); font-size: 12px; }
+    .muted { color: var(--muted); }
+    table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    td { padding: 8px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+    tr:first-child td { border-top: 0; }
+    td:first-child { white-space: nowrap; }
+    code { font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--chip); border-radius: 4px; padding: 1px 5px; }
+    @media (max-width: 600px) {
+      h1 { font-size: 36px; }
+      td:first-child { white-space: normal; }
+      table, tbody, tr, td { display: block; }
+      td { border-top: 0; padding: 4px 12px; }
+      tr { border-top: 1px solid var(--line); padding: 6px 0; }
+      tr:first-child { border-top: 0; }
+    }
   </style>
 </head>
 <body>
-  <aside>
-    <h1>Pose viewer</h1>
-    <p class="note">M0 tool: inspect named poses, drag channel sliders, blend between two poses. Serve with <code>npm run serve</code>.</p>
+  <div class="wrap">
+    <header>
+      <h1>Stickman Engine</h1>
+      <button id="themeToggle" type="button" aria-label="Light or dark">◐ theme</button>
+    </header>
+    <p class="lead">A deterministic 2D stick-figure animation engine: a JSON script in, a video out. These pages run the engine in the browser. Start the server with <code>npm run serve</code>.</p>
 
-    <fieldset>
-      <legend>Pose</legend>
-      <div class="row"><span>From</span><select id="from"></select><span></span></div>
-      <div class="row"><span>To</span><select id="to"></select><span></span></div>
-      <div class="row"><span>Blend</span><input id="blend" type="range" min="0" max="1" step="0.01" value="0"><output id="blendOut">0</output></div>
-      <label class="inline"><input id="play" type="checkbox"> loop blend</label>
-    </fieldset>
+    <h2>Pages</h2>
+    <div class="pages">
+      <a class="page" href="showcase.html">
+        <strong>Showcase</strong>
+        <span class="what">The whole catalog with live previews: characters, looks, faces, moves, effects, sounds, places, objects, activities, story macros, camera, music, examples and rules. Copy any entry as JSON.</span>
+        <span class="go">Open the showcase →</span>
+      </a>
+      <a class="page" href="player.html">
+        <strong>Player</strong>
+        <span class="what">Play any script or story with a timeline scrubber, scene markers, the validator's issues and the timeline. Load your own JSON file.</span>
+        <span class="go">Open the player →</span>
+      </a>
+      <a class="page" href="editor.html">
+        <strong>Move editor</strong>
+        <span class="what">Pose and keyframe editor for adding or changing moves; exports JSON for <code>catalog/moves/</code>.</span>
+        <span class="go">Open the editor →</span>
+      </a>
+      <a class="page" href="poses.html">
+        <strong>Pose viewer</strong>
+        <span class="what">Inspect the named poses on every body plan, drag channel sliders, blend between two poses.</span>
+        <span class="go">Open the pose viewer →</span>
+      </a>
+    </div>
 
-    <fieldset>
-      <legend>Body</legend>
-      <div class="row"><span>Plan</span><select id="body"></select><span></span></div>
-      <div class="row"><span>Scale</span><input id="scale" type="range" min="0.4" max="4" step="0.05" value="1.5"><output id="scaleOut">1.5</output></div>
-      <label class="inline"><input id="facing" type="checkbox"> face left</label>
-      <label class="inline"><input id="joints" type="checkbox" checked> joints</label>
-      <label class="inline"><input id="ground" type="checkbox" checked> ground contact</label>
-      <div class="row" style="margin-top:6px"><span>Color</span><input id="color" type="color" value="#22aaff"><span></span></div>
-    </fieldset>
+    <h2>Jump into the showcase</h2>
+    <div class="links" id="sectionLinks"></div>
 
-    <fieldset>
-      <legend>Channels (edit = override)</legend>
-      <div id="channels"></div>
-      <button id="reset">Clear overrides</button>
-    </fieldset>
+    <h2>Play a sample</h2>
+    <div class="links" id="samples"></div>
 
-    <fieldset>
-      <legend>Current pose JSON</legend>
-      <textarea id="json" readonly></textarea>
-      <button id="copy">Copy</button>
-    </fieldset>
-  </aside>
-  <main><canvas id="view" width="1200" height="800"></canvas></main>
+    <h2>What is in the catalog <span class="muted" id="version"></span></h2>
+    <div class="stats" id="stats"><span class="muted">Loading…</span></div>
+
+    <h2>Common commands</h2>
+    <table>
+      <tr><td><code>npm run serve</code></td><td>These pages at http://localhost:5173/</td></tr>
+      <tr><td><code>npm run record -- &lt;script.json&gt;</code></td><td>Render a finished video with sound into <code>out/</code></td></tr>
+      <tr><td><code>node tools/validate.mjs &lt;script.json&gt;</code></td><td>Check a script: errors, warnings, the timeline</td></tr>
+      <tr><td><code>node tools/manual.mjs prompt --premise "..." --copy</code></td><td>A prompt to paste into any chat app; add <code>--lean</code> in a chat project that has the catalog pack</td></tr>
+      <tr><td><code>npm run catalog:build</code></td><td>Check <code>catalog/</code> and rebuild the generated files and the AI context pack</td></tr>
+      <tr><td><code>npm run catalog:pack</code></td><td>Zip the context pack for Claude Desktop into <code>out/context_pack.zip</code></td></tr>
+      <tr><td><code>npm run sfx</code>, <code>npm run catalog:media</code></td><td>Make the sounds and music clips the showcase plays</td></tr>
+    </table>
+    <p class="muted">Docs: <code>docs/USER_GUIDE.md</code> (start here), <code>catalog/README.md</code> (adding things to the catalog), <code>docs/STORY_SPEC.md</code>, <code>docs/CATALOG_SPEC.md</code>.</p>
+  </div>
 
   <script type="module">
-    import { catalog } from "../catalog/index.js";
-    import { POSE_CHANNELS } from "../engine/types.js";
-    import { computeJoints, lowestPoint } from "../engine/skeleton.js";
-    import { drawCharacter } from "../engine/renderer/character.js";
-
-    const { poses, bodies } = catalog;
     const $ = (id) => document.getElementById(id);
-    const canvas = $("view");
-    const ctx = canvas.getContext("2d");
-    const GROUND = 680;
-    const RANGES = { rot: [-360, 360], dx: [-120, 120], dy: [-120, 120] };
-    const overrides = {};
-    for (const b of Object.keys(bodies)) $("body").add(new Option(b, b)); // body plans (S3)
-    const plan = () => bodies[$("body").value];
+    const store = {
+      get: (k, d) => { try { return localStorage.getItem(`showcase.${k}`) ?? d; } catch { return d; } },
+      set: (k, v) => { try { localStorage.setItem(`showcase.${k}`, v); } catch {} },
+    };
+    const theme = store.get("theme", "");
+    if (theme) document.documentElement.dataset.theme = theme;
+    $("themeToggle").addEventListener("click", () => {
+      const now = document.documentElement.dataset.theme;
+      const dark = now ? now === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = dark ? "light" : "dark";
+      store.set("theme", document.documentElement.dataset.theme); // shared with the showcase
+    });
 
-    for (const sel of [$("from"), $("to")]) {
-      for (const name of Object.keys(poses)) sel.add(new Option(name, name));
+    const link = (href, text) => Object.assign(document.createElement("a"), { href, textContent: text });
+    for (const [id, name] of [["characters", "Characters"], ["looks", "Looks"], ["faces", "Faces"], ["moves", "Moves"], ["effects", "Effects"], ["sounds", "Sounds"],
+      ["places", "Places"], ["objects", "Objects"], ["activities", "Activities"], ["macros", "Story macros"], ["camera", "Camera and transitions"], ["music", "Music moods"], ["examples", "Examples"], ["rules", "Rules"]]) {
+      $("sectionLinks").append(link(`showcase.html#${id}`, name));
     }
-    $("from").value = "stand";
-    $("to").value = "guard";
-
-    for (const ch of POSE_CHANNELS) {
-      const [min, max] = RANGES[ch] || [-180, 180];
-      const row = document.createElement("div");
-      row.className = "row";
-      row.innerHTML = `<span>${ch}</span><input type="range" min="${min}" max="${max}" step="1" data-ch="${ch}"><output></output>`;
-      $("channels").append(row);
-      row.querySelector("input").addEventListener("input", (e) => {
-        overrides[ch] = Number(e.target.value);
-        draw();
-      });
+    for (const [file, name] of [["catalog/examples/stories/brave_heart.json", "Bubbles and the Brave Heart (story)"], ["catalog/examples/stories/rainy_picnic.json", "The Rainy Picnic (story)"],
+      ["scripts/samples/s8_lumi_story.json", "Lumi (5.6-minute story)"], ["scripts/samples/s8_fight_video.json", "Fight video (3.3 minutes)"], ["scripts/samples/s6_fight_card.json", "Fight card"],
+      ["scripts/samples/rooftop_rumble.json", "Rooftop Rumble (clip)"], ["scripts/samples/m5_portrait.json", "Portrait clip (9:16)"], ["scripts/samples/s5_pairs.json", "Paired moves"]]) {
+      $("samples").append(link(`player.html?src=../${file}`, name));
     }
 
-    function basePose() {
-      const u = Number($("blend").value);
-      const a = { ...poses.stand, ...poses[$("from").value] };
-      const b = { ...poses.stand, ...poses[$("to").value] };
-      const out = {};
-      for (const ch of POSE_CHANNELS) out[ch] = (a[ch] ?? 0) + ((b[ch] ?? 0) - (a[ch] ?? 0)) * u;
-      return out;
-    }
-
-    function draw() {
-      const pose = { ...basePose(), ...overrides };
-      const scale = Number($("scale").value);
-      const facing = $("facing").checked ? -1 : 1;
-
-      let root = { x: canvas.width / 2, y: GROUND - 94 * scale };
-      if ($("ground").checked) {
-        const raw = computeJoints(pose, { x: root.x, y: 0 }, facing, scale, plan().dims);
-        root = { x: root.x, y: GROUND - lowestPoint(raw, scale, plan().dims) };
+    try {
+      const [full, manifest] = await Promise.all(["../catalog/generated/catalog.json", "../catalog/manifest.json"].map((u) => fetch(u).then((r) => r.json())));
+      const c = full.catalog;
+      const n = manifest.counts;
+      $("version").textContent = `(catalog version ${manifest.version})`;
+      $("stats").innerHTML = "";
+      const stats = [
+        [n.moves, "moves", "moves"], [n.bodies, "body plans", "characters"], [n.presets, "ready-made characters", "characters"], [n.faces, "faces", "faces"],
+        [n.themes, "themes", "places"], [n.objects + n.props, "objects and props", "objects"], [n.fx, "effects", "effects"], [n.sfx, "sounds", "sounds"],
+        [n.activities, "activities", "activities"], [n.macros, "story macros", "macros"], [n.moods, "music moods", "music"], [n.codes, "validator codes", "rules"],
+      ];
+      for (const [value, label, section] of stats) {
+        const a = link(`showcase.html#${section}`, "");
+        a.className = "stat";
+        a.append(Object.assign(document.createElement("b"), { textContent: value }), Object.assign(document.createElement("span"), { textContent: label }));
+        $("stats").append(a);
       }
-      const j = computeJoints(pose, root, facing, scale, plan().dims);
-
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = "#e3e3e3";
-      ctx.lineWidth = 1;
-      for (let x = 0; x < canvas.width; x += 50) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
-      for (let y = GROUND % 50; y < canvas.height; y += 50) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
-      ctx.strokeStyle = "#999999";
-      ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.moveTo(0, GROUND); ctx.lineTo(canvas.width, GROUND); ctx.stroke();
-
-      drawCharacter(ctx, j, { color: $("color").value, scale, facing, dims: plan().dims, draw: plan().draw, torsoWidth: plan().torsoWidth });
-
-      if ($("joints").checked) {
-        ctx.font = "12px Inter";
-        for (const [name, p] of Object.entries(j)) {
-          ctx.fillStyle = name === "center" ? "#ff8800" : "#e0245e";
-          ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill();
-          ctx.fillStyle = "#555555";
-          ctx.fillText(name, p.x + 7, p.y - 6);
-        }
-      }
-
-      for (const input of document.querySelectorAll("#channels input")) {
-        const ch = input.dataset.ch;
-        input.value = pose[ch];
-        input.nextElementSibling.textContent = Math.round(pose[ch]);
-        input.parentElement.style.color = ch in overrides ? "#ffcc55" : "";
-      }
-      $("blendOut").textContent = Number($("blend").value).toFixed(2);
-      $("scaleOut").textContent = Number($("scale").value).toFixed(2);
-      const rounded = Object.fromEntries(POSE_CHANNELS.map((ch) => [ch, Math.round(pose[ch])]));
-      $("json").value = JSON.stringify(rounded).replace(/"(\w+)":/g, "$1: ").replace(/,/g, ", ");
+      if (!c) throw new Error("no catalog");
+    } catch {
+      $("stats").innerHTML = '<span class="muted">Could not read catalog/generated/catalog.json: run <code>npm run catalog:build</code>.</span>';
     }
-
-    for (const id of ["from", "to", "blend", "body", "scale", "facing", "joints", "ground", "color"]) $(id).addEventListener("input", draw);
-    $("reset").addEventListener("click", () => { for (const k of Object.keys(overrides)) delete overrides[k]; draw(); });
-    $("copy").addEventListener("click", () => navigator.clipboard.writeText($("json").value));
-
-    let t0 = null;
-    function loop(ts) {
-      if ($("play").checked) {
-        t0 ??= ts;
-        $("blend").value = (0.5 - 0.5 * Math.cos(((ts - t0) / 1000) * Math.PI)).toFixed(3);
-        draw();
-      } else t0 = null;
-      requestAnimationFrame(loop);
-    }
-    await document.fonts.ready;
-    draw();
-    requestAnimationFrame(loop);
   </script>
 </body>
 </html>

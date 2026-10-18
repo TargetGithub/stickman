@@ -46,7 +46,7 @@ npm test
 npm run serve
 ```
 
-Then open http://localhost:5173/web/player.html (script player with scrubber), /web/editor.html (move editor), /web/showcase.html (every character, move, effect, place, object, activity, macro and mood with a live preview) or /web/index.html (pose viewer). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema). Make a finished video with sound:
+Then open http://localhost:5173/web/player.html (script player with scrubber), /web/editor.html (move editor), /web/showcase.html (every character, move, effect, place, object, activity, macro and mood with a live preview) or /web/poses.html (pose viewer); http://localhost:5173/ is a home page linking them all. Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema). Make a finished video with sound:
 
 ```bash
 npm run record -- scripts/samples/m4_dojo.json

@@ -131,9 +131,11 @@ This document is the source of truth for behavior and the script schema. When th
   contact_sheet.mjs     frame grid PNG for review and vision critique
   generate.mjs          LLM ideation → script → repair → score loop
 /web                    browser pages (preview and authoring)
-  index.html            script player with scrubber
+  index.html            home page with links to every page
+  player.html           script player with scrubber
+  showcase.html         the whole catalog with live previews (catalog.html redirects to its moves)
   editor.html           pose and move editor
-  catalog.html          every move looping against a dummy
+  poses.html            pose viewer
 /assets
   fonts/  sfx/  music/  (see docs/REQUIREMENTS.md for sources and licenses)
 /scripts/samples        sample scripts
@@ -701,7 +703,7 @@ engine.dispose();
 // also exported: validate(script, catalog), scriptSchema(catalog), formatIssues(issues), ENGINE_VERSION
 ```
 
-Tools and the browser use the same API. `web/index.html` adds a preview loop on top (requestAnimationFrame calling `renderFrame`); that loop is not part of the engine.
+Tools and the browser use the same API. `web/player.html` adds a preview loop on top (requestAnimationFrame calling `renderFrame`); that loop is not part of the engine.
 
 ### 15.2 Determinism rules
 1. One simulation step per video frame, `dt = storyDelta` (section 6).

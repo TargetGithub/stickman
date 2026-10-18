@@ -381,7 +381,8 @@ Browser pages (after `npm run serve`):
 | `/web/catalog.html` | Redirects to the Moves section of the showcase |
 | `/web/player.html?src=<url>` | Opens a script or example directly (the showcase's "open in player") |
 | `/web/editor.html` | Pose and move editor, for adding or changing moves |
-| `/web/index.html` | Pose viewer |
+| `/` (`/web/index.html`) | Home page: links to every page, showcase sections and samples, the catalog's counts, common commands |
+| `/web/poses.html` | Pose viewer |
 
 ## 7. Generating scripts with an LLM
 
