@@ -618,6 +618,28 @@ compileScript(script, catalog) -> { script, expansions }; ejectMacro(script, mac
 - **Layers:** characters on `back`/`front` (scene placement or `layer` beats) are drawn scaled about their feet (0.75 / 1.15) with the extras of that layer: back before mid set pieces, front after front set pieces. All-mid scenes draw exactly as before.
 - **Data:** `data/macro_lines.js` (`catalog.macroLines`: fight card intro, breather, challenge and victory lines), `avoid` lists in `data/bodies.js`.
 
+### Generated music, ambience and the story mix (S7)
+```js
+// engine/audio_plan.js (data only, ADR-017)
+collectMusicPlan(sim) -> { segments: [{ t0, t1, mood, seed, fadeIn, fadeOut, intensity: [{t,v}], volume: [{t,v,fade}] }], duck, dips } | null
+collectAmbiencePlan(sim) -> [{ t0, t1, beds: { name: level } }] | null      // null for v1 scripts
+// engine/index.js: engine.getMusicPlan(), engine.getAmbiencePlan()
+// tools/lib/patterns.mjs   compose(mood, scales, { seed, seconds, intensityAt }) -> { notes, tempo, bars, barSec }
+// tools/lib/instruments.mjs renderNote(stereo, note); addRoom(stereo); dcBlock(stereo); PATCHES, DRUMS
+// tools/lib/music_gen.mjs  renderMusic({ mood, catalog, seed, seconds, intensity }) -> { samples, tempo, bars, barSec }
+// tools/lib/ambience.mjs   renderAmbience(bed, seconds, seed) -> stereo; BEDS, AMBIENCE_LUFS (-30)
+// tools/lib/score.mjs      renderScore({ musicPlan, ambiencePlan, seconds, seed, catalog, musicVolume, ambienceVolume, loadOverride })
+//                          -> { music, ambience, segments }; segmentGain(seg, t, total); storyDuck(t, duck, dips)
+// tools/lib/loudness.mjs   measureLoudness(stereo) -> { integrated, shortTermMax, peak }; normalizeLoudness(stereo, lufs)
+// tools/lib/mixer.mjs      mixdownStory({ events, durationSec, sampleFor, music, ambience, duck, dips, storyDuck, normalize, loudness })
+```
+- **Plan:** a scene's span starts at the hold before it, so cards carry their scene's music. Segments merge across scenes with the same mood; a mood change crossfades (equal power, centred on the boundary). Intensity points come from `set_music` beats (fight macros emit them); the score turns them into steps, and the composer reads intensity per bar.
+- **Composer:** the tempo is nudged so a whole number of bars fills the segment exactly. Form: intro, 8-bar sections (A, A', B), a dominant bar and a final tonic bar. The melody is a 2-bar motif, snapped to chord tones on strong beats, varied in A'. Layers by intensity: pad always, bass from 0.15, lead from 0.25, drums from 0.3 (low/medium/high patterns), arpeggio from 0.6; fills end sections.
+- **Instruments:** polyBLEP saw/pulse (pulses centred, no DC), Karplus-Strong plucks with a smoothed excitation, FM bells, detuned pads, synthetic drums; a small Schroeder room; a 25 Hz DC blocker. Each render is levelled to -16 LUFS and soft-clipped under -1 dBFS.
+- **Mix (stories):** SFX and speech at unity, music × `musicVolume` (0.35) ducked -8 dB under speech and narration, -9 dB for 4 s after a vanish or ghost defeat and under heavy hits; ambience × `ambienceVolume` (0.8), 3 dB lower under speech. The whole mix is levelled to -16 LUFS (at most +18 dB) and limited at -1 dBFS. v1 scripts keep the M6 mix unchanged.
+- **Story sounds:** footsteps by weight (`footstep_hard` for bulky or scale ≥ 1.3), `laugh_small`/`cry_small`/`gasp` with those emotes, `magic_sparkle` on `return`, `heartbeat` and `sad_sting` at a vanish or ghost, `card_whoosh` on cards, and in kids stories `pow`/`bonk`/`boing` with the impact words. v1 scripts get none of these.
+- **Data:** `data/music_moods.js` (`catalog.musicMoods`, `catalog.scales`).
+
 ### ADR-014 Two-level scripts and the story compiler
 - **Context**: a 5-minute story compiles to roughly 1,000-4,000 shot-level beats. LLMs cannot write that many consistent beats, and authors should not have to.
 - **Decision**: authored v2 scripts may contain **macro beats** (`{"id", "at", "macro": "fight", "params"}`) and **scene macros** (`fight_card`, `montage`, which expand into several scenes). A macro is a distinct beat shape with its own `macro` key, not `"who": "@fight"`, so the schema tells the two apart and structured output stays strict. Load order:
@@ -653,6 +675,7 @@ compileScript(script, catalog) -> { script, expansions }; ejectMacro(script, mac
 - **Context**: decisions 3 and 4 (STORY_SPEC 21): speech sounds only, generated music, no licenses, no manual work. `/engine` must stay free of I/O and audio synthesis.
 - **Decision**: the engine only emits audio **data**: per-scene music specs (mood, intensity changes from fight macros, stings at defeats and reunions), speech segments (character, start, end, syllable count, voice settings), narration chimes and ambience per scene. `tools/lib/music_gen.mjs`, `speech.mjs` and `ambience.mjs` turn that data into PCM, seeded from the script seed, scene id and character id. The mixer crossfades, ducks and limits. A file in `assets/music/<mood>.*` overrides a generated mood.
 - **Consequences**: the audio event list stays part of the determinism test; the same script gives byte-identical audio. The browser player previews SFX only until a Web Audio port of the generators exists (not planned for v2).
+- **Status (S7):** built as described: the plan is `engine/audio_plan.js`; stings are the `sad_sting` SFX plus a music dip rather than a separate music render. See "Generated music, ambience and the story mix (S7)" above.
 
 ### ADR-018 Audience rules, kids by default
 - **Context**: decision 7: kids first. Stories may contain loss and fights, so rules must shape them without removing them.

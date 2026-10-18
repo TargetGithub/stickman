@@ -1,6 +1,6 @@
 # Story Engine Specification (v2)
 
-Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance, S4 objects and set pieces, S5 interactions, activities and defeat styles, S6 story compiler, macros, story camera, extras and layers implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
+Version **2.0-rc** (S0 freeze, signed off by the product owner 2026-10-16; S1 scenes, locations, transitions and cards S2 faces, dialogue and speech sounds, and S3 body plans and appearance, S4 objects and set pieces, S5 interactions, activities and defeat styles, S6 story compiler, macros, story camera, extras and layers, S7 generated music and ambience implemented): decisions signed off (section 21); field, macro and param names frozen (section 4.4). Schema draft: [`docs/schema/script-v2.schema.json`](schema/script-v2.schema.json), generated from `engine/validator/schema_v2.js`; decision records ADR-014..018 in [ARCHITECTURE.md](ARCHITECTURE.md). Extends [stickman-engine-spec.md](../stickman-engine-spec.md) (v1.1, fights) into a general storytelling engine in which fights are one major kind of scene. Execution plan: [STORY_PLAN.md](STORY_PLAN.md).
 
 Contents:
 1. Goal and scope
@@ -635,13 +635,16 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 - **Override:** a file placed in `assets/music/` with the mood name (`happy.mp3`) replaces the generated track.
 - **Mid-scene changes:** the `set_music` world command (`mood`, `intensity`, `volume`, `fade`) changes the music inside a scene; fight macros raise `intensity` on their own.
 
-**Ambience beds** per location or weather (`city_traffic`, `park_birds`, `rain`, `wind`, `crowd_murmur`, `cave_drip`). They are procedural, like the SFX, or come from files.
+**As built (S7):** a scene's `music` sets the mood (and optionally `intensity` 0-1 and `volume`); a scene without `music` keeps the previous scene's, and `null` is silence. Scenes in a row with the same mood play one continuous piece, through cards and cuts; a mood change crossfades over 1.5 s (or `set_music`'s `fade`), centred on the boundary. The music for a stretch is fitted to it exactly, so its last chord lands on the stretch's last beat. Layers enter with intensity (pad, bass from 0.15, melody from 0.25, drums from 0.3, arpeggio from 0.6), bar by bar. Under speech bubbles and narration the music drops 8 dB; for 4 s after a vanish or ghost defeat it drops 9 dB under a heartbeat and the `sad_sting`. Generated music is levelled to -16 LUFS before `audio.musicVolume` (0.35); story mixes are levelled to -16 LUFS integrated and limited at -1 dBFS (`node tools/loudness.mjs` checks a render). `node tools/music.mjs` renders moods for listening.
+
+**Ambience beds** per location or weather (`city_traffic`, `park_birds`, `rain`, `wind`, `crowd_murmur`, `cave_drip`). They are procedural, like the SFX, or come from files. As built (S7): procedural only, levelled to -30 LUFS, crossfaded over 0.8 s; `rain` weather adds the rain bed, `wind` the wind bed and `snow` a light wind, following `set_weather`. `audio.ambienceVolume` defaults to 0.8.
 
 **New SFX keys:**
 - `bubble_blow`, `bubble_pop`, `racket_hit`, `ball_bounce`;
 - `footstep_soft` / `footstep_hard`, `door_open`, `car_pass`;
 - `sad_sting`, `heartbeat`, `magic_sparkle`, `gasp`, `laugh_small`, `cry_small`;
-- `card_whoosh`.
+- `card_whoosh`;
+- cartoon impacts for kids stories: `pow`, `bonk` (and the existing `boing`), one with each impact word (S7).
 
 **Voice: speech sounds only** (decision 3).
 - Each speaking character makes procedural babble ("Animal Crossing"-style syllables) while its mouth flaps. It is language-free, so videos work for any audience, and deterministic.

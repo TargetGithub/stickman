@@ -1,0 +1,484 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Five moods",
+    "format": "landscape",
+    "seed": 707,
+    "kind": "clip",
+    "audience": "kids",
+    "autoCamera": "story",
+    "speakerNames": true
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "name": "Kai",
+      "body": "stickman",
+      "color": "#3fd8ff",
+      "style": {
+        "headband": "#ff3b5c"
+      },
+      "voice": {
+        "pitch": 1.0,
+        "timbre": "soft"
+      }
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "body": "buddy",
+      "color": "#2fd3c0",
+      "appearance": {
+        "eyes": "big",
+        "accessories": {
+          "antenna": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "timbre": "squeaky"
+      }
+    },
+    {
+      "id": "vex",
+      "name": "Vex",
+      "body": "slim",
+      "color": "#f0d0ff",
+      "style": {
+        "cape": "#1a1a1a"
+      },
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick"
+      },
+      "voice": {
+        "pitch": 0.7,
+        "timbre": "deep"
+      },
+      "hp": 120
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "ambience": "park_birds",
+      "extras": [
+        {
+          "count": 3,
+          "behavior": "walk_by",
+          "layer": "back"
+        }
+      ]
+    },
+    {
+      "id": "alley",
+      "theme": "alley_night",
+      "ambience": "wind"
+    },
+    {
+      "id": "roof",
+      "theme": "rooftop_city",
+      "ambience": "city_traffic"
+    },
+    {
+      "id": "street",
+      "theme": "city_street",
+      "ambience": "city_traffic"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "happy",
+      "location": "park",
+      "time": "day",
+      "music": {
+        "mood": "happy"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "title",
+        "title": "Five moods",
+        "subtitle": "a music test"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "pip",
+          "x": 1600,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "A sunny morning in the park."
+          }
+        },
+        {
+          "id": "hi",
+          "at": 0.8,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "pip",
+                "Want to dance?",
+                "laugh"
+              ],
+              [
+                "kai",
+                "Always!",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dance",
+          "at": {
+            "after": "hi"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "dance_together",
+            "with": [
+              "kai",
+              "pip"
+            ],
+            "reps": 4
+          }
+        },
+        {
+          "at": {
+            "after": "dance"
+          },
+          "who": "kai",
+          "do": "high_five",
+          "partner": "pip",
+          "face": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "tense",
+      "location": "alley",
+      "time": "night",
+      "music": {
+        "mood": "tense"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "time",
+        "text": "That night..."
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 900,
+          "facing": 1
+        },
+        {
+          "id": "pip",
+          "x": 700,
+          "facing": 1
+        },
+        {
+          "id": "vex",
+          "x": 2300,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "s1",
+          "at": 0.5,
+          "who": "kai",
+          "do": "sneak",
+          "params": {
+            "distance": 300
+          },
+          "face": "scared"
+        },
+        {
+          "at": {
+            "with": "s1",
+            "delay": 0.4
+          },
+          "who": "pip",
+          "do": "tiptoe",
+          "params": {
+            "distance": 260
+          },
+          "face": "scared",
+          "id": "t1"
+        },
+        {
+          "id": "wh",
+          "at": {
+            "after": "t1",
+            "delay": 0.3
+          },
+          "who": "pip",
+          "do": "look_around",
+          "say": "Did you hear that?",
+          "bubble": "whisper"
+        },
+        {
+          "id": "in",
+          "at": {
+            "after": "wh"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "vex",
+            "side": "right",
+            "to": {
+              "x": 1700
+            }
+          }
+        },
+        {
+          "at": {
+            "after": "in"
+          },
+          "who": "vex",
+          "do": "laugh",
+          "face": "smug",
+          "say": "Boo!",
+          "bubble": "shout"
+        },
+        {
+          "at": {
+            "after": "in",
+            "delay": 0.3
+          },
+          "who": "kai",
+          "do": "gasp",
+          "face": "surprised"
+        }
+      ]
+    },
+    {
+      "id": "battle",
+      "location": "roof",
+      "time": "night",
+      "music": {
+        "mood": "battle",
+        "intensity": 0.6
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "chapter",
+        "text": "The fight"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "vex",
+          "x": 1900,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "beats": [
+        {
+          "id": "f",
+          "at": 0.4,
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "kai",
+              "vex"
+            ],
+            "winner": "vex",
+            "exchanges": 8,
+            "intensity": "high",
+            "style": "close",
+            "ko": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "sad",
+      "location": "street",
+      "time": "dusk",
+      "weather": "rain",
+      "music": {
+        "mood": "sad"
+      },
+      "transitionIn": {
+        "type": "fade",
+        "dur": 1
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1
+        },
+        {
+          "id": "pip",
+          "x": 1550,
+          "facing": -1
+        },
+        {
+          "id": "vex",
+          "x": 2000,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "zap",
+          "at": 0.5,
+          "who": "vex",
+          "do": "energy_blast",
+          "target": "pip",
+          "outcome": "hit",
+          "face": "smug"
+        },
+        {
+          "id": "gone",
+          "at": {
+            "after": "zap",
+            "delay": 0.3
+          },
+          "macro": "defeat",
+          "params": {
+            "who": "pip",
+            "style": "vanish"
+          }
+        },
+        {
+          "at": {
+            "with": "gone"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "vex",
+            "side": "right"
+          }
+        },
+        {
+          "id": "g",
+          "at": {
+            "after": "gone"
+          },
+          "macro": "grief",
+          "params": {
+            "who": "kai",
+            "over": "pip",
+            "dur": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "triumph",
+      "location": "park",
+      "time": "dusk",
+      "music": {
+        "mood": "triumphant"
+      },
+      "transitionIn": {
+        "type": "card",
+        "kind": "time",
+        "text": "But friends find a way"
+      },
+      "transitionOut": {
+        "type": "fade",
+        "dur": 1.5
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1300,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "pip",
+          "x": 1600,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "back",
+          "at": 0.6,
+          "who": "pip",
+          "do": "return",
+          "face": "happy",
+          "say": "Kai! I'm back!"
+        },
+        {
+          "id": "hug",
+          "at": {
+            "after": "back"
+          },
+          "who": "kai",
+          "do": "hug",
+          "partner": "pip",
+          "face": "cry"
+        },
+        {
+          "id": "joy",
+          "at": {
+            "after": "hug"
+          },
+          "who": "kai",
+          "do": "jump_joy",
+          "face": "laugh"
+        },
+        {
+          "at": {
+            "with": "joy"
+          },
+          "who": "pip",
+          "do": "cheer",
+          "face": "laugh"
+        },
+        {
+          "at": {
+            "after": "joy",
+            "delay": 0.4
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Friends never give up on each other."
+          }
+        },
+        {
+          "at": {
+            "after": "joy",
+            "delay": 4
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "The End"
+          }
+        }
+      ]
+    }
+  ]
+}

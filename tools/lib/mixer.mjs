@@ -134,3 +134,42 @@ export function mixdown({ events, durationSec, sampleFor, music = null, musicVol
   const reductionDb = limit(out);
   return { samples: out, reductionDb };
 }
+
+/** Story mixes (S7.6): integrated loudness target for YouTube, kids-friendly (no louder than this). */
+export const STORY_LUFS = -16;
+
+/**
+ * Story mixdown (S7.3, S7.6): SFX and speech, the music bed (ducked under speech and narration, dipped after a
+ * sad defeat, and under heavy hits), the ambience bed (a little lower under speech), then the whole mix is
+ * levelled to STORY_LUFS and limited at -1 dBFS.
+ * @param {{ events, durationSec, sampleFor, music?:Float32Array, ambience?:Float32Array, duck?:Array<[a,b]>, dips?:Array<[a,b]>,
+ *           duckAt?:(t:number, duck, dips)=>number, loudness:(buf)=>object, normalize:(buf, target, opts)=>number }} o
+ *   loudness/normalize come from tools/lib/loudness.mjs (passed in to keep this module dependency-free)
+ */
+export function mixdownStory({ events, durationSec, sampleFor, music = null, ambience = null, duck = [], dips = [], storyDuck, normalize, loudness, targetLufs = STORY_LUFS }) {
+  const out = mixEvents(events, durationSec, sampleFor, { gain: 1 });
+  const frames = out.length / 2;
+  const heavy = events.filter((e) => HEAVY.has(e.sfx)).map((e) => e.t);
+  let gm = 1;
+  let ga = 1;
+  for (let i = 0; i < frames; i++) {
+    if (i % 240 === 0) {
+      // Gains every 5 ms: smooth enough for ramps of 150 ms and more.
+      const t = i / SR;
+      const speech = storyDuck ? storyDuck(t, duck, []) : 1;
+      gm = speech * (storyDuck ? storyDuck(t, [], dips) : 1) * duckAt(t, heavy);
+      ga = 0.7 + 0.3 * speech;
+    }
+    if (music && i * 2 < music.length) {
+      out[i * 2] += music[i * 2] * gm;
+      out[i * 2 + 1] += music[i * 2 + 1] * gm;
+    }
+    if (ambience && i * 2 < ambience.length) {
+      out[i * 2] += ambience[i * 2] * ga;
+      out[i * 2 + 1] += ambience[i * 2 + 1] * ga;
+    }
+  }
+  const gainDb = normalize ? normalize(out, targetLufs, { maxGainDb: 18 }) : 0;
+  const reductionDb = limit(out);
+  return { samples: out, reductionDb, gainDb, loudness: loudness ? loudness(out) : null };
+}

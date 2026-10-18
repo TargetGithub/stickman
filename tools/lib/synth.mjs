@@ -107,9 +107,21 @@ const RECIPES = {
   clang: (o, r) => { partials(o, [310, 467, 733, 1120], { gain: 0.8, decay: 0.9, attack: 0.002 }); noise(o, r, { gain: 0.5, decay: 0.05, lp0: 4000 }); },
   ball_kick: (o, r) => { sweepSine(o, { f0: 160, f1: 70, sweep: 0.06, decay: 0.1 }); noise(o, r, { gain: 0.4, decay: 0.04, lp0: 2000 }); },
   step: (o, r) => { sweepSine(o, { f0: 120, f1: 80, sweep: 0.03, decay: 0.05, gain: 0.7 }); noise(o, r, { gain: 0.35, decay: 0.025, lp0: 2500 }); },
+  // Story sounds (S7): footsteps by weight, feelings, magic, cards and cartoon impacts (kids).
+  footstep_soft: (o, r) => { sweepSine(o, { f0: 105, f1: 72, sweep: 0.04, decay: 0.05, gain: 0.55 }); noise(o, r, { gain: 0.3, decay: 0.03, lp0: 1500 }); },
+  footstep_hard: (o, r) => { sweepSine(o, { f0: 140, f1: 65, sweep: 0.06, decay: 0.08 }); noise(o, r, { gain: 0.45, decay: 0.045, lp0: 3200 }); partials(o, [880], { gain: 0.12, decay: 0.03 }); },
+  sad_sting: (o) => { [440, 349.2, 293.7].forEach((f, k) => partials(o, [f, f * 2, f * 3], { gain: 0.7, decay: 1.3, attack: 0.02, start: k * 0.32 })); },
+  heartbeat: (o) => { sweepSine(o, { f0: 70, f1: 42, sweep: 0.08, decay: 0.16 }); sweepSine(o, { f0: 62, f1: 40, sweep: 0.08, decay: 0.14, gain: 0.75, start: 0.24 }); },
+  magic_sparkle: (o, r) => { for (let k = 0; k < 8; k++) partials(o, [1200 + k * 280, 2400 + k * 560], { gain: 0.3, decay: 0.3, attack: 0.004, start: k * 0.07 }); noise(o, r, { gain: 0.12, attack: 0.2, decay: 0.6, lp0: 9000, hp: 5000 }); },
+  gasp: (o, r) => noise(o, r, { gain: 1, attack: 0.12, decay: 0.22, lp0: 1200, lp1: 3000, hp: 600 }),
+  laugh_small: (o, r) => { for (let k = 0; k < 3; k++) { sweepSine(o, { f0: 330 - k * 15, f1: 300 - k * 15, sweep: 0.08, attack: 0.01, decay: 0.07, gain: 0.6, start: k * 0.14 }); noise(o, r, { gain: 0.25, attack: 0.01, decay: 0.06, lp0: 2200, hp: 500, start: k * 0.14, len: 0.1 }); } },
+  cry_small: (o) => { sweepSine(o, { f0: 440, f1: 330, sweep: 0.45, attack: 0.05, decay: 0.45, gain: 0.6, vibrato: 0.04, vibratoRate: 7 }); sweepSine(o, { f0: 420, f1: 320, sweep: 0.4, attack: 0.05, decay: 0.4, gain: 0.45, vibrato: 0.04, vibratoRate: 7, start: 0.5 }); },
+  card_whoosh: (o, r) => { noise(o, r, { gain: 1, attack: 0.2, decay: 0.3, lp0: 400, lp1: 2600, hp: 150 }); partials(o, [1568, 2349], { gain: 0.15, decay: 0.5, attack: 0.02, start: 0.18 }); },
+  bonk: (o) => { partials(o, [520, 1180], { decay: 0.12 }); sweepSine(o, { f0: 300, f1: 180, sweep: 0.06, decay: 0.08, gain: 0.6 }); },
+  pow: (o, r) => { sweepSine(o, { f0: 300, f1: 90, sweep: 0.1, decay: 0.15 }); noise(o, r, { gain: 0.6, decay: 0.05, lp0: 3000 }); drive(o, 2); },
 };
 
-const LENGTH = { narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

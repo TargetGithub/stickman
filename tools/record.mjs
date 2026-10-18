@@ -17,7 +17,9 @@ import { spawnSync } from "node:child_process";
 import { loadBackend } from "./lib/canvas.mjs";
 import { startEncoder } from "./lib/encode.mjs";
 import { writeWav } from "./lib/wav.mjs";
-import { mixdown, SR } from "./lib/mixer.mjs";
+import { mixdown, mixdownStory, SR } from "./lib/mixer.mjs";
+import { renderScore, storyDuck } from "./lib/score.mjs";
+import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
@@ -85,8 +87,24 @@ if (enc && !flag("--no-audio")) {
   const durationSec = (to - from + 1) / meta.fps;
   const events = engine.getAudioEvents().map((e) => ({ ...e, t: e.t - startT })).filter((e) => e.t > -2 && e.t < durationSec);
   const cues = engine.getMusicCues().map((c) => ({ ...c, t: c.t - startT }));
-  const { music, note } = loadMusic(script.audio?.music);
-  const mix = mixdown({ events, durationSec, sampleFor: (k) => lib.sampleFor(k), music, musicVolume: script.audio?.musicVolume ?? 0.35, cues });
+  const plan = engine.getMusicPlan();
+  let music = null;
+  let note;
+  let mix;
+  if (plan) {
+    // Story scripts (S7): the generated score and ambience for the whole video, cut to the rendered range.
+    const full = meta.totalFrames / meta.fps;
+    const score = renderScore({ musicPlan: plan, ambiencePlan: engine.getAmbiencePlan(), seconds: full, seed: meta.seed, catalog,
+      musicVolume: script.audio?.musicVolume ?? 0.35, ambienceVolume: script.audio?.ambienceVolume ?? 0.8, loadOverride: (mood) => loadMusic(mood).music });
+    const cut = (buf) => buf.subarray(Math.round(startT * SR) * 2, Math.round((startT + durationSec) * SR) * 2);
+    const shift = (spans) => spans.map(([a, b]) => [a - startT, b - startT]);
+    mix = mixdownStory({ events, durationSec, sampleFor: (k) => lib.sampleFor(k), music: cut(score.music), ambience: cut(score.ambience),
+      duck: shift(plan.duck), dips: shift(plan.dips), storyDuck, normalize: normalizeLoudness, loudness: measureLoudness });
+    note = score.segments.map((x) => `${x.mood} (${x.source})`).join(", ") || "no music";
+  } else {
+    ({ music, note } = loadMusic(script.audio?.music));
+    mix = mixdown({ events, durationSec, sampleFor: (k) => lib.sampleFor(k), music, musicVolume: script.audio?.musicVolume ?? 0.35, cues });
+  }
   const wavPath = join(dir, "audio.wav");
   writeWav(wavPath, mix.samples, SR, 2);
   const mux = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", videoPath, "-i", wavPath, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", finalPath]);
@@ -95,7 +113,8 @@ if (enc && !flag("--no-audio")) {
     process.exit(1);
   }
   rmSync(videoPath);
-  audio = { events: events.length, music: note, limiterDb: Number(mix.reductionDb.toFixed(2)), missingSfx: [...lib.missing] };
+  audio = { events: events.length, music: note, limiterDb: Number(mix.reductionDb.toFixed(2)), missingSfx: [...lib.missing],
+    ...(mix.loudness ? { lufs: Number(mix.loudness.integrated.toFixed(1)), shortTermMaxLufs: Number(mix.loudness.shortTermMax.toFixed(1)), gainDb: Number(mix.gainDb.toFixed(1)) } : {}) };
   if (lib.missing.size) console.log(`warning: no audio for ${[...lib.missing].join(", ")}`);
   if (!music && script.audio?.music) console.log(`warning: ${note}`);
 } else if (enc) {

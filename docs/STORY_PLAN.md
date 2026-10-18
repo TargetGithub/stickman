@@ -203,6 +203,11 @@ The product decisions are already made (STORY_SPEC section 21, signed off 2026-1
 
 **Review:** a 2-minute mix that moves through five moods (15 min). This is the subjective quality gate for the music; iterate on patterns and patches until approved.
 
+**Status (2026-10-18):** approved. Moods: `data/music_moods.js` (11). Generator: `tools/lib/patterns.mjs` (form, chords, motif melody, layers by intensity, exact fit to the length), `instruments.mjs` (polyBLEP synths, plucks, FM bells, pads, drums, a small room), `music_gen.mjs` (levelled to -16 LUFS). The engine says what plays when (`engine/audio_plan.js`: `getMusicPlan`, `getAmbiencePlan`); `tools/lib/score.mjs` renders it with crossfades centred on scene boundaries and `assets/music/<mood>.*` overrides; `mixdownStory` ducks the music under speech and narration, dips it after a vanish or ghost, and levels the story mix to -16 LUFS (`tools/lib/loudness.mjs`, BS.1770). Ambience: six procedural beds (`tools/lib/ambience.mjs`) plus weather. SFX: the 11 S7 keys, triggered for story scripts only. Tools: `tools/music.mjs` (audition moods), `tools/loudness.mjs`. Demo: `out/demos/s7_moods/final.mp4` (from `scripts/samples/s7_moods.json`: happy → tense → battle → sad → triumphant in 116 s, at -16.6 LUFS). Notes:
+- Stings are the `sad_sting` and `heartbeat` SFX with a 4 s music dip, not a separate music render; reunions use `magic_sparkle`.
+- v1 scripts keep the M6 mix exactly (file music, no levelling, no new sounds).
+- I can only check the music by measurement (levels, DC, clicks, spectral balance); how it sounds is the review.
+
 ### S8 LLM story pipeline (4-5 days)
 
 | Task | Output |

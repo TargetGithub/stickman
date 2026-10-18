@@ -14,6 +14,7 @@ import { compileStory, ejectMacro as eject, plainScript } from "./story/compile.
 import { storyToVideo } from "./clock.js";
 import { createRenderer, renderFrame as drawFrame } from "./renderer/index.js";
 import { collectAudioEvents, collectMusicCues } from "./audio_events.js";
+import { collectMusicPlan, collectAmbiencePlan } from "./audio_plan.js";
 import { FPS, FORMATS, ENGINE_VERSION } from "./config.js";
 
 export { validate, formatIssues, ENGINE_VERSION };
@@ -88,6 +89,16 @@ export function createEngine(opts) {
     /** Music cues from world beats [{ t, cue, volume }]. */
     getMusicCues() {
       return collectMusicCues(loaded().sim);
+    },
+
+    /** Story scripts (S7): music segments by mood, duck spans and dips; null for v1 scripts. */
+    getMusicPlan() {
+      return collectMusicPlan(loaded().sim);
+    },
+
+    /** Story scripts (S7): ambience beds over time; null for v1 scripts. */
+    getAmbiencePlan() {
+      return collectAmbiencePlan(loaded().sim);
     },
 
     /** Resolved anchors [{ beatId, anchor, t (story s), videoT }]. */

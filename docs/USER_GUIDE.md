@@ -567,7 +567,22 @@ For music, put a file in `assets/music/` (e.g. `epic_01.mp3`) and reference it b
 "audio": { "music": "epic_01", "musicVolume": 0.35 }
 ```
 
-Music ducks under heavy hits automatically. Record where each file came from and its license in the `SOURCES.md` next to it.
+Music ducks under heavy hits automatically. Record where each file came from and its license in the `SOURCES.md` next to it. (That is for version 1 fight scripts; stories get generated music, below.)
+
+**Stories (version 2) get generated music and ambience.** Give each scene a mood; a scene without `music` keeps the previous scene's, and `"music": null` is silence:
+
+```json
+{ "id": "park", "location": "city_park", "music": { "mood": "happy", "intensity": 0.6 }, ... }
+```
+
+Moods: happy, playful, calm, sad, tense, mysterious, heroic, battle, boss, triumphant, lullaby. The music is made fresh from the story's seed (the same script always sounds the same), fitted so it ends on the scene's last beat, crossfaded when the mood changes, and quieter while someone talks or the narrator speaks. Fight macros raise its intensity; you can too, with a world beat: `{"who": "world", "do": "set_music", "params": {"mood": "tense", "intensity": 0.8, "fade": 2}}`. To use your own track for a mood, put `assets/music/happy.mp3` (any of wav, mp3, ogg, flac, m4a) there: it loops instead of the generated one.
+
+Each location (or scene) can have an `ambience` bed: `park_birds`, `city_traffic`, `rain`, `wind`, `crowd_murmur`, `cave_drip`; rainy and windy weather add their own. `audio.musicVolume` (default 0.35) and `audio.ambienceVolume` (default 0.8) set the levels. Story mixes are levelled to about -16 LUFS, a comfortable level for YouTube and young ears.
+
+| Command | What it does |
+|---|---|
+| `node tools/music.mjs --mood battle --seconds 30` | Render one mood to `out/music/battle.wav` (`--all` for every mood, `--ramp` to sweep the intensity from 0 to 1) |
+| `node tools/loudness.mjs out/demos/<slug>/` | Measure a video's (or WAV's) loudness against the -16 LUFS target |
 
 ## 9. Using the engine from code
 
@@ -610,7 +625,7 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 
 ## 11. Known limits
 
-- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with set pieces, time of day and weather, transitions and cards, narration, faces and emotions, bubbles with speaker names, speech sounds, six body plans and appearance options, objects, paired moves, activities, defeat styles, story macros (dialogue, fights, gauntlets, brawls, chases, defeat and grief, fight cards, montages), story camera shots, extras and depth layers; see `scripts/samples/s1_scenes.json` to `s6_fight_card.json`. Generated music (S7) and LLM story generation (S8) come next; `set_music` beats are accepted but silent until then.
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with set pieces, time of day and weather, transitions and cards, narration, faces and emotions, bubbles with speaker names, speech sounds, six body plans and appearance options, objects, paired moves, activities, defeat styles, story macros (dialogue, fights, gauntlets, brawls, chases, defeat and grief, fight cards, montages), story camera shots, extras and depth layers; see `scripts/samples/s1_scenes.json` to `s6_fight_card.json`. generated music, ambience beds and story sounds (S7). LLM story generation (S8) comes next.
 - Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.

@@ -11,6 +11,7 @@ import { bodies, BODY_NAMES } from "./bodies.js";
 import { appearance } from "./appearance.js";
 import { activities, ACTIVITY_NAMES } from "./activities.js";
 import { macroLines } from "./macro_lines.js";
+import { musicMoods, SCALES } from "./music_moods.js";
 import { moves as movement } from "./moves/movement.js";
 import { moves as unarmed } from "./moves/unarmed.js";
 import { moves as armed } from "./moves/armed.js";
@@ -42,4 +43,6 @@ export const catalog = {
   activities,
   activityNames: ACTIVITY_NAMES,
   macroLines,
+  musicMoods, // S7: read by tools/lib/music_gen.mjs (the engine only checks mood names)
+  scales: SCALES,
 };
