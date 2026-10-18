@@ -567,7 +567,7 @@ pairMoveEvent(world, actor, e, events)            // `detach` and `give` move ev
 // story/pair_beats.js
 pairGate({ director, beat, actor, def, ctx, issue, command, isFree }) -> boolean // true = wait
 ```
-- Move defs keep `pair` (`prepareMove`). The director calls `pairGate` before a paired move (queue on a busy partner, walk to `pairStartX`, `E_SIM_PARTNER_UNREACHABLE`), then `startPair`. `actor.pairedWith` makes `world.js` skip separation for the pair.
+- Move defs keep `pair` (`prepareMove`). The director calls `pairGate` before a paired move (queue on a busy partner, walk to `pairStartX`, `E_SIM_PARTNER_UNREACHABLE`), then `startPair`. `actor.pairedWith` makes `world.js` skip separation for the pair. Separation is also skipped between a character on an approach (a movement move with a `target`, which only the director sets) and anyone but its target, so bystanders never block it (spec 9.1 rule 6).
 - Attachments set `partner.carryTarget` (hip position; `poseActor` places the partner there) or pin `partner.x` (`mode: "x"`). Contacts reuse `applyAimIK` from `combat.js`.
 - `sim.js` `v1MoveNames(catalog)`: the moves a v1 script may use (no `interaction` or `defeat` moves (`moves.js` `STORY_ONLY`), none needing a story holdable). The v1 schema export, the prompt tables and the v1 semantic checks use it, so v1 stays frozen.
 

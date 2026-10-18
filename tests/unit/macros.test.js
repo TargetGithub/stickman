@@ -207,3 +207,31 @@ test("brawl, chase, defeat and grief with every body plan", () => {
     clean(story([p, "buddy"], [{ id: "v", at: 0.3, who: "b", do: "vanish" }, { id: "g", at: { after: "v" }, macro: "grief", params: { who: "a", over: "b" } }, { at: { after: "g" }, who: "b", do: "return" }]), `grief ${p}`);
   }
 });
+
+// Regression (found by the catalog build): fighters whose lanes cross, or a bystander standing between an
+// attacker and its target, used to block the approach runs (E_SIM_UNREACHABLE), and a clash across brawl
+// zones could need an approach over 3 s (E_SIM_APPROACH). Approach runs now pass bystanders, and a brawl
+// clash across zones runs over first.
+test("@brawl and @gauntlet: crossing lanes and a bystander in the way never leave an attack unreachable, on any seed", () => {
+  const cast = [
+    { id: "kai", color: "#1f4fbf", prop: "sword" }, { id: "pip", body: "buddy", color: "#c2185b" },
+    { id: "vex", body: "slim", color: "#5b2a86" }, { id: "g1", body: "bulky", color: "#8b2500" }, { id: "g2", body: "bulky", color: "#2b2b2b" },
+  ];
+  const x = { kai: 1100, pip: 1350, vex: 1900, g1: 2300, g2: 2700 };
+  const macros = [
+    { id: "m", at: 0, macro: "brawl", params: { teams: { a: ["kai", "pip"], b: ["g1", "g2"] }, winner: "a" } },
+    { id: "m", at: 0, macro: "gauntlet", params: { hero: "kai", opponents: ["g1", "g2"] } },
+  ];
+  for (const beat of macros) {
+    for (const withVex of [false, true]) {
+      for (let seed = 1; seed <= 12; seed++) {
+        const here = cast.filter((c) => withVex || c.id !== "vex");
+        const s = { version: 2, meta: { title: "lanes", format: "landscape", seed, kind: "clip" }, cast: here,
+          locations: [{ id: "l", theme: "white_stage" }],
+          scenes: [{ id: "s1", location: "l", cast: here.map((c) => ({ id: c.id, x: x[c.id], facing: x[c.id] < 1600 ? 1 : -1 })), beats: [beat] }] };
+        const r = validate(s, catalog);
+        assert.deepEqual(r.errors.map((e) => `${e.code} ${e.message}`), [], `${beat.macro} seed ${seed}${withVex ? " with a bystander" : ""}`);
+      }
+    }
+  }
+});

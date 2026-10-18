@@ -387,7 +387,7 @@ Intentionally minimal. Body: `{ x, y, vx, vy, grounded, facing, mass, scale }`.
 3. Knockback and launch set `vx`, `vy`. Ground friction while grounded: `vx *= 0.86^(dt*60)`.
 4. Landing: if `y >= groundY` while descending → `y = groundY`, `vy = 0`, `grounded = true`, emit `land` with impact speed. Impact over 900 px/s adds `dust_land`; over 1600 px/s also adds `shake small`.
 5. Stage bounds: clamp `x` to `[margin, stageWidth - margin]` (margin 60). Launched characters with `wallBounce` reflect `vx` with 0.4 restitution and emit `impact_small` plus `sfx: land_heavy`.
-6. Separation: two grounded characters closer than `minGap = 40 * max(scaleA, scaleB)` are pushed apart symmetrically. Disabled while either side's move has `flags.passThrough` or during a choreographed hit window between them.
+6. Separation: two grounded characters closer than `minGap = 40 * max(scaleA, scaleB)` are pushed apart symmetrically. Disabled while either side's move has `flags.passThrough`, during a choreographed hit window between them, and between a character on an approach (the run or step back the director inserts before an attack) and anyone other than its target, so bystanders never block an approach.
 
 ### 9.2 Launch
 `hit_launch` sets velocity from the hit's `knock` (mirrored by attacker facing). While launched, `rot` spins at `spin` deg/s (default 540) until landing, then `knockdown` plays.

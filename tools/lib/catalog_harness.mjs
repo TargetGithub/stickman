@@ -1,7 +1,7 @@
 // Tiny stories that put one catalog example on stage (CATALOG_SPEC 6, 11): a doc's example beat, a macro,
 // a camera key, a transition or a preset. The checks validate them so every example the context pack and
-// the showcase show is known to work. Pure functions. Seed 3: with seeds 1, 2, 4, 6-8 the @brawl and @gauntlet
-// examples hit E_SIM_UNREACHABLE (a macro positioning issue, reported separately; not a catalog problem).
+// the showcase show is known to work. Pure functions. (Any seed works; tests/unit/macros.test.js checks
+// @brawl and @gauntlet with these placements on many seeds.)
 
 const CAST = [
   { id: "kai", name: "Kai", color: "#1f4fbf", prop: "sword" },

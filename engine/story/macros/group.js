@@ -169,10 +169,16 @@ function brawl(ctx, p) {
       const winnerAttacks = finish || ctx.rng() < 0.62;
       const [who, target] = winnerAttacks ? [w, l] : [l, w];
       const count = finish ? 1 : 1 + Math.floor(ctx.rng() * (intensity === "low" ? 1 : 2));
-      const ex = exchange(ctx, {
-        who, target, count, side: winnerAttacks ? "winner" : "loser", finish,
-        ...(lane === 0 ? (prev ? { prev, delay: GAP[intensity] + 0.15 + (SETTLE[lastOutcome] ?? 0) } : {}) : { withRef: laneFirst, delay: 0.45 }),
-      });
+      let start = lane === 0 ? (prev ? { prev, delay: GAP[intensity] + 0.15 + (SETTLE[lastOutcome] ?? 0) } : {}) : { withRef: laneFirst, delay: 0.45 };
+      if (zd(who, target) > 0) {
+        // A clash across zones (a team-mate went down): run over first, as the gauntlet does, so the
+        // attack's own approach stays short (an approach over 3 s is an error).
+        const beat = { who, do: "run", to: { near: target, gap: 230 } };
+        const run = start.prev ? ctx.after(start.prev, beat, start.delay) : start.withRef ? ctx.with(start.withRef, beat, start.delay) : ctx.add({ ...beat, at: 0 });
+        zoneOf.set(who, zoneOf.get(target));
+        start = { prev: run, delay: 0.1, first: run };
+      }
+      const ex = exchange(ctx, { who, target, count, side: winnerAttacks ? "winner" : "loser", finish, ...start });
       first ??= ex.first;
       if (lane === 0) {
         laneFirst = ex.first;

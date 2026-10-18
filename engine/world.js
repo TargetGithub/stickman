@@ -330,7 +330,10 @@ function separationSkip(a, b) {
   if (a.pairedWith === b.id || b.pairedWith === a.id) return true; // paired moves touch (S5)
   const engaged = (x, y) => x.move && x.move.target === y.id && x.move.def.category === "attack";
   const ghost = (x) => x.move?.def.flags.passThrough || x.holding || x.launched;
-  return engaged(a, b) || engaged(b, a) || ghost(a) || ghost(b);
+  // An approach (a run or step back toward an attack's target) passes bystanders; it still keeps its distance
+  // from the target. Only the director gives movement moves a target, so authored walks are unaffected.
+  const passing = (x, y) => x.move && x.move.target && x.move.target !== y.id && x.move.def.category === "movement";
+  return engaged(a, b) || engaged(b, a) || ghost(a) || ghost(b) || passing(a, b) || passing(b, a);
 }
 
 /**
