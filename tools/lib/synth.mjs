@@ -116,12 +116,18 @@ const RECIPES = {
   gasp: (o, r) => noise(o, r, { gain: 1, attack: 0.12, decay: 0.22, lp0: 1200, lp1: 3000, hp: 600 }),
   laugh_small: (o, r) => { for (let k = 0; k < 3; k++) { sweepSine(o, { f0: 330 - k * 15, f1: 300 - k * 15, sweep: 0.08, attack: 0.01, decay: 0.07, gain: 0.6, start: k * 0.14 }); noise(o, r, { gain: 0.25, attack: 0.01, decay: 0.06, lp0: 2200, hp: 500, start: k * 0.14, len: 0.1 }); } },
   cry_small: (o) => { sweepSine(o, { f0: 440, f1: 330, sweep: 0.45, attack: 0.05, decay: 0.45, gain: 0.6, vibrato: 0.04, vibratoRate: 7 }); sweepSine(o, { f0: 420, f1: 320, sweep: 0.4, attack: 0.05, decay: 0.4, gain: 0.45, vibrato: 0.04, vibratoRate: 7, start: 0.5 }); },
+  // Dog sounds (A1, Becky): a woof is a falling tone with a breathy noise burst; a yap is the same, higher.
+  bark: (o, r) => { sweepSine(o, { f0: 520, f1: 290, sweep: 0.13, attack: 0.006, decay: 0.13, gain: 0.7 }); sweepSine(o, { f0: 1040, f1: 580, sweep: 0.13, attack: 0.006, decay: 0.1, gain: 0.25 }); noise(o, r, { gain: 0.5, attack: 0.004, decay: 0.09, lp0: 1600, lp1: 900, hp: 250 }); },
+  bark_small: (o, r) => { sweepSine(o, { f0: 980, f1: 640, sweep: 0.08, attack: 0.004, decay: 0.08, gain: 0.6 }); noise(o, r, { gain: 0.35, attack: 0.003, decay: 0.05, lp0: 2600, hp: 500 }); },
+  whimper: (o) => { sweepSine(o, { f0: 880, f1: 700, sweep: 0.35, attack: 0.04, decay: 0.35, gain: 0.45, vibrato: 0.03, vibratoRate: 9 }); sweepSine(o, { f0: 820, f1: 640, sweep: 0.3, attack: 0.04, decay: 0.3, gain: 0.35, vibrato: 0.03, vibratoRate: 9, start: 0.4 }); },
+  growl_soft: (o, r) => { sweepSine(o, { f0: 115, f1: 105, sweep: 0.7, attack: 0.08, decay: 0.7, gain: 0.45 }); noise(o, r, { gain: 0.4, attack: 0.08, decay: 0.7, lp0: 650, hp: 80, am: 0.8, amRate: 28 }); },
+  pant: (o, r) => { for (let k = 0; k < 4; k++) noise(o, r, { gain: 0.35, attack: 0.02, decay: 0.08, lp0: 4200, hp: 1400, start: k * 0.16, len: 0.12 }); },
   card_whoosh: (o, r) => { noise(o, r, { gain: 1, attack: 0.2, decay: 0.3, lp0: 400, lp1: 2600, hp: 150 }); partials(o, [1568, 2349], { gain: 0.15, decay: 0.5, attack: 0.02, start: 0.18 }); },
   bonk: (o) => { partials(o, [520, 1180], { decay: 0.12 }); sweepSine(o, { f0: 300, f1: 180, sweep: 0.06, decay: 0.08, gain: 0.6 }); },
   pow: (o, r) => { sweepSine(o, { f0: 300, f1: 90, sweep: 0.1, decay: 0.15 }); noise(o, r, { gain: 0.6, decay: 0.05, lp0: 3000 }); drive(o, 2); },
 };
 
-const LENGTH = { sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

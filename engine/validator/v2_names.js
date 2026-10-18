@@ -17,7 +17,7 @@ export const V2_ENUMS = {
   hair: ["none", "spiky", "bob", "ponytail", "cap"],
   outfit: ["none", "shirt", "coat", "armor", "robe"],
   accessory: ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"],
-  timbre: ["soft", "squeaky", "deep", "robot"],
+  timbre: ["soft", "squeaky", "deep", "robot", "bark"],
   time: ["dawn", "day", "dusk", "night"],
   weather: ["clear", "cloudy", "rain", "snow", "wind", "fog"],
   layer: ["back", "mid", "front"],
@@ -32,7 +32,7 @@ export const V2_ENUMS = {
   beatMacro: ["dialogue", "activity", "walk_together", "travel", "enter", "exit", "fight", "gauntlet", "brawl", "chase", "defeat", "grief"],
   sceneMacro: ["fight_card", "montage"],
   defeatStyle: ["ko", "faint", "vanish", "ghost", "captured", "flee"],
-  activity: ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"], // catalog
+  activity: ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"], // catalog (fetch: A1)
   ending: ["win", "miss", "laugh", "interrupted"],
   intensity: ["low", "medium", "high"],
   fightStyle: ["even", "dominant", "comeback", "close"],

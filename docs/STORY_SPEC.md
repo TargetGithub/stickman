@@ -194,6 +194,8 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | `meta.audience` | `kids` (default), `general` |
 | `meta.style` | `default`, `soft`, `ink` |
 | Body plans | `stickman`, `buddy`, `kid`, `bulky`, `slim`, `elder` (all `rig: "humanoid"`; catalog names, checked by `E_BODY_UNKNOWN` since S3) |
+| Rigs and quadruped plans (added 2026-10-18, series/doopi/BATCH_A_PLAN.md) | `rig`: `humanoid`, `quadruped`; body plan `dog_small` (section 6.2) |
+| Added 2026-10-18 for the series assets (signed off; built in packages A1 and A3) | defeat style `petrify` (kids allowed); world commands `set_glow`, `set_grade`; scene field `grade`; activity `fetch`; voice timbre `bark`; codes `E_TARGET_RIG`, `E_MACRO_RIG` |
 | Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt`, plus `asleep` (added in S5 for `sleep`) (catalog names: the schema takes a string and the semantic stage checks it, `E_FACE_UNKNOWN`, like moves and themes) |
 | Appearance | `eyes`, `brows`, `mouthStyle`, `cheeks`, `hair`, `hairColor`, `outfit`, `outfitColor`, `accessories` (name → color); option values are catalog strings checked by `E_APPEARANCE` since S3 |
 | Voice | `pitch` 0.5-2, `speed` 0.7-1.4, `timbre`: `soft`, `squeaky`, `deep`, `robot` |
@@ -314,9 +316,34 @@ Implementation (S3, ADR-015):
 - Renderer: `renderer/bodies.js` draws filled torsos and outfits (below the hips, garments hang straight down); `renderer/appearance.js` draws hair, masks, eyepatches, antennas, crowns, bowties and backpacks; `renderer/looks.js` merges plan defaults, the cast appearance and `set_appearance` changes.
 - The stickman plan is the v1 body object itself, so v1 scripts compute and render exactly as before (golden frames and every sample's warnings unchanged).
 
-### 6.2 Future: other topologies
+### 6.2 Other topologies: the quadruped rig
 
-Animals, birds and vehicles need different skeletons. The design keeps the door open: a body plan has a `rig` field (`"humanoid"` for all v2 plans). A later version can add `quadruped` with its own pose channels and move set. The validator rejects humanoid moves on non-humanoid rigs (`E_MOVE_RIG`).
+Animals, birds and vehicles need different skeletons. A body plan has a `rig` field: `"humanoid"` (the six plans above) or, since the Doopi & Friends assets (series/doopi/BATCH_A_PLAN.md, package A1, signed off 2026-10-18), **`"quadruped"`** for four-legged animals. Body plan `dog_small` is the first (Becky, a small puppy whose back is at about a stickman's knee). Birds and vehicles as characters stay out of scope. ADR-020 records the design.
+
+**Same storage, different skeleton.** A quadruped uses the same 13 stored joints and 13 pose channels with other meanings, so the frame store, the simulation loop, ground contact, root motion, the pose sampler and the move format are unchanged; only forward kinematics differs (`computeJoints` branches on the plan's rig).
+
+| Joint | Quadruped meaning | Channel | Quadruped meaning |
+|---|---|---|---|
+| `hip` | rear hip (the root) | `lean` | spine pitch: positive raises the front (sit, beg), negative lowers it (play bow) |
+| `shoulder` | front shoulders (the spine runs forward) | `head` | neck and head: positive lowers the head (sniff), negative raises it (bark) |
+| `neckTop`, `head` | neck reaching forward-up, head centre | `lUA`/`lFA`, `rUA`/`rFA` | front legs (far, near): upper angle from straight down (positive forward), lower bend (positive: paw back) |
+| `lElbow`, `lHand` / `rElbow`, `rHand` | front legs, far and near side: knee, paw | `lTH`/`lSH`, `rTH`/`rSH` | rear legs (far, near): thigh angle (positive forward), hock bend (positive: paw back) |
+| `lKnee`, `lFoot` / `rKnee`, `rFoot` | rear legs, far and near side: hock, paw | `rot`, `dx`, `dy` | as humanoid |
+| `center` | mid spine | | |
+
+- The legs are fixed to the body: when the spine pitches (`lean`), the legs turn with it, so a sitting pose bends the rear legs and straightens the front ones by its channels.
+- Ground contact, `lowestPoint` and the hip base height use the rear legs (`thigh` + `shin`). Quadruped moves are authored in the plan's own pixels, so root motion is not scaled by leg length (`stride` 1).
+- **Tail and ears are not stored.** The renderer draws them from the frame data: the tail wags with the face (fast for happy, laugh and love; drooping for sad and cry; tucked for scared) and the hip's speed, the ears bounce with the head's movement. Both are seeded by the character id, like blinking.
+- **Plan data** (`catalog/characters/bodies.json`): `rig`, `draw: "quad"`, `dims` (`headR`, `neck`, `torso` = spine length, `upperArm`/`forearm` = front leg, `thigh`/`shin` = rear leg, `lineWidth`), `bodyWidth` (half the body's height), and `quad` (look defaults: `ears` `floppy`/`pointy`, `earColor`, `tail` `wag`/`curly`/`stub`, `patch` (an eye patch colour), `belly` colour, `collar` colour, `bell`). The cast `color` is the body colour; `appearance.eyes` and `cheeks` apply; hair, outfits and humanoid accessories do not.
+- **Faces:** every face in the catalog works on the side of the dog's head (eyes, brows and mouth), with the snout and nose drawn in front.
+- **Moves** carry `rig` (default `humanoid`; keyless utility moves are `any`). A body plan's `moves` map renames generic moves for its rig (`walk` → `walk_dog`, `idle` → `idle_dog`, `hit_light` → `yelp`, `pat_head_partner` → `pat_head_dog` ...), so destinations, `@chase`, `@travel`, `@enter`, `@exit` and activities work without knowing about dogs. A move the rig can't play and the map doesn't cover is `E_MOVE_RIG`.
+- **Never in fights:** an attack beat targeting a quadruped is `E_TARGET_RIG`; `@fight`, `@gauntlet` and `@brawl` with a quadruped fighter are `E_MACRO_RIG`.
+- **Holding things:** a plan's `grip` (`joint`, `offset`, `angle`) holds objects in the mouth (rope, key, ball). Weapons and throws are not allowed.
+- **Speech:** the voice timbre `bark` turns babble syllables into little woofs, so `@dialogue` lines for a dog play barks ("Woof!"); a `think` bubble stays silent as for anyone.
+- **Paired moves with people:** `pet_dog` and `hug_dog` (a person squats; the dog plays `pet_dog_partner` / `hug_dog_partner`), `lick` (the dog leads; the person plays `lick_partner`), `carry` and `put_down` (the dog plays `carried_dog` / `set_down_dog` through its map) and `bite_hold` (the dog grabs a runaway's trouser leg; the partner plays `hop_partner`, no hit). A paired move whose partner side a dog can't play (`pat_head`, `hug`) is `E_MOVE_RIG` with the moves that fit.
+- **Macros:** `@walk_together` with a dog walks side by side (no hand holding); `@chase` with a dog as the lead chaser and `caught: true` ends with `bite_hold` instead of an attack (the `caught` anchor is its start); the story camera's `close_up` frames the whole animal.
+
+Build order (package A1): forward kinematics, the plan and the renderer with a static look sheet (review 1); then the move map, validator codes and the dog move set (review 2); then grip, paired moves, the `fetch` activity, the `bark` timbre, macros and a demo story (review 3).
 
 ### 6.3 Appearance
 
@@ -482,6 +509,7 @@ An activity is a short loop of moves kept in sync with objects. It is catalog da
 | `selfie` | 1-4 | The first holds up the phone (`use`: camera flash), the others `cheer`; `reps` 3 | laugh |
 | `sleep` | 1-4 | `lie_down` (on a bench if given), then `sleep` with Zs; `dur` 8 | none |
 | `comfort` | 2 | The first comforts the second (the `comfort` paired move) while tears fall; `reps` 2 | a hug |
+| `fetch` | 2 | The first (a person) throws a ball; the second (a dog) runs after it, catches it in its mouth (`catch_mouth`), brings it back and gives it (`drop_ball`); `reps` 3. The ball lands toward the side of the stage with more room. Runner `fetch` (`engine/story/fetch.js`) | laugh |
 
 - **Rallies** pass the ball `reps` times; pass k is hit by player k mod 2, so the last receiver misses. A `winner` who would miss gets one more pass. Each player's contact point is learned from its own swings, so short and tall players meet the ball where their racket, hands or foot really are.
 - **Validator:** `E_ACTIVITY_OBJECT` (the `object` is not in the scene, or the activity can't use that kind), `E_WORLD_PARAM` (unknown name, the wrong number of players, a winner who isn't playing).
@@ -867,6 +895,8 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `E_THEME_UNKNOWN`, `E_REF_BEAT`, `E_REF_DUPLICATE` (v1 codes) | semantic | Also used for locations (unknown theme), references to a beat in another scene, and ids repeated across scenes; `E_REF_ANCHOR` for `{"on": "<macro>.<anchor>"}` with an anchor the macro does not have; `E_MOVE_PARAM` for `to` on a move that does not walk |
 | `E_DEFEAT_STYLE` | semantic | Defeat style not allowed for `meta.audience` |
 | `E_MOVE_RIG` | semantic | Move not available for the character's rig |
+| `E_TARGET_RIG` | semantic | An attack targets a quadruped (pets never take hits) |
+| `E_MACRO_RIG` | semantic | A fight macro (`@fight`, `@gauntlet`, `@brawl`) names a quadruped as a fighter |
 | `E_SIM_PARTNER_UNREACHABLE` | dry run | Partner can't be reached for an interaction (add approach) |
 | `E_SIM_OBJECT_OFFSTAGE` | dry run | A ball, vehicle or floater path leaves the stage |
 | `E_SIM_SCENE_LENGTH` | dry run | Scene longer than the limit |

@@ -143,7 +143,9 @@ function group(ctx, who, to, mode) {
 
 function walkTogether(ctx, p) {
   const pace = p.pace ?? "walk";
-  if (p.who.length === 2 && p.holdHands !== false && pace === "walk" && ctx.moves.has("walk_together")) {
+  // Hand in hand only for two people: a dog walks alongside (ADR-020).
+  const animal = p.who.some((id) => ctx.catalog.bodies?.[ctx.castById.get(id)?.body]?.rig === "quadruped");
+  if (p.who.length === 2 && p.holdHands !== false && !animal && pace === "walk" && ctx.moves.has("walk_together")) {
     // Hand in hand: the lead walks away from its partner, so the lead is whoever is nearer the destination.
     const x = destX(ctx, p.who[0], p.to);
     const [a, b] = p.who;

@@ -16,7 +16,8 @@ import { catalog } from "../../catalog/index.js";
 const DT = 1 / 60;
 const moves = prepareCatalog(catalog.moves, catalog.poses, holdableProps(catalog));
 const ATTACKS = [...moves.values()].filter((d) => d.category === "attack").map((d) => d.name);
-const PLANS = Object.keys(catalog.bodies);
+// Humanoid moves run on the humanoid plans; quadruped plans have their own tests (quadruped.test.js).
+const PLANS = Object.keys(catalog.bodies).filter((n) => catalog.bodies[n].rig === "humanoid");
 const PAIRS = [["stickman", "buddy"], ["buddy", "bulky"], ["bulky", "buddy"], ["kid", "slim"], ["slim", "kid"], ["elder", "stickman"]];
 
 function arm(actor, def) {
@@ -105,9 +106,9 @@ test("standing feet touch the floor on every plan", () => {
 const PLAN_DATA = [
   ["stickman equals the v1 body", () => assert.deepEqual(catalog.bodies.stickman.dims, BODY)],
   ["the stickman plan keeps the BODY object (v1 numbers unchanged)", () => assert.equal(bodyPlan(catalog, "stickman").dims, BODY)],
-  ["all plans are humanoid with every bone", () => {
+  ["every plan has a known rig and every bone", () => {
     for (const [n, p] of Object.entries(catalog.bodies)) {
-      assert.equal(p.rig, "humanoid", n);
+      assert.ok(["humanoid", "quadruped"].includes(p.rig), n);
       for (const k of Object.keys(BODY)) assert.ok(p.dims[k] > 0, `${n}.${k}`);
     }
   }],

@@ -60,6 +60,9 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - E_TRANSITION: a card without text or an iris without a target → Give the card text, the iris a target.
 - E_SCENE_EMPTY: a scene with no beats and no duration → Add beats or a duration.
 - E_DEFEAT_STYLE: a defeat style the audience does not allow (ghost is general only) → Kids: ko, faint, vanish, captured or flee.
+- E_MOVE_RIG: a move the character's rig cannot play (a jab for a dog, a dog move for a stickman) → Use a move for that rig; generic walk, run, idle, sit and jump work for every rig.
+- E_TARGET_RIG: an attack aimed at an animal (a quadruped) → Animals never take hits: target another character.
+- E_MACRO_RIG: a fight macro names an animal (a quadruped) as a fighter → Leave the animal out of @fight, @gauntlet and @brawl; give it its own beats.
 - E_REF_CHARACTER: no such character → Use an id from the cast, or world.
 - E_REF_BEAT: no such beat (or one in another scene) → Point at a beat id in the same scene.
 - E_REF_DUPLICATE: an id used twice (beat ids are unique across the whole story) → Make ids unique (prefix the scene id).

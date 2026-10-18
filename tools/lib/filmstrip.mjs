@@ -59,9 +59,11 @@ export async function moveSheet(defs, out, opts = {}) {
         ctx.clip();
         ctx.translate(x0 + cw / 2 - (j.hip.x + j.head.x) / 2, 0); // travelling and lying moves stay in their cell
         const p = catalog.bodies[plan];
+        const faceName = a.move?.def.face || prepared.face || "neutral";
         drawCharacter(ctx, j, { color: opts.color || "#22aaff", scale: 1, facing: a.facing, dims: a.dims, draw: p.draw, torsoWidth: p.torsoWidth,
           prop: a.prop ? { data: a.prop.data, angle: a.propAngle } : undefined,
-          face: catalog.faces[prepared.face || "neutral"], faceOpts: { detail: "full" } });
+          face: catalog.faces[faceName], faceOpts: { detail: "full" },
+          ...(p.quad ? { quad: p.quad, faceName, id: "a", time: (k / (frames - 1)) * total } : {}) });
         ctx.restore();
         ctx.fillStyle = "#aaaaaa";
         ctx.font = "13px Inter";

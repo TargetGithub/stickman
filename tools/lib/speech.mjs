@@ -13,6 +13,8 @@ const TIMBRE = {
   squeaky: { shift: 5, maxHz: 5200, formant: 1.2, odd: false, ring: 0 },
   deep: { shift: -7, maxHz: 3200, formant: 1.1, odd: false, ring: 0 },
   robot: { shift: 0, maxHz: 4200, formant: 0.35, odd: true, ring: 38 },
+  // A dog (A1): every syllable is a woof, a sharp falling pitch with a breathy edge.
+  bark: { shift: 2, maxHz: 3000, formant: 1.3, odd: false, ring: 0, fall: 0.45, breath: 0.3 },
 };
 const BASE_HZ = 220; // A3 at pitch 1
 
@@ -32,6 +34,7 @@ export function synthVoice(key) {
   const n = Math.ceil(dur * SAMPLE_RATE);
   const out = new Float32Array(n);
   const harmonics = [];
+  let seed = 12345;
   for (let k = 1; k * f0 < tb.maxHz; k++) {
     if (tb.odd && k % 2 === 0) continue;
     const f = k * f0;
@@ -41,13 +44,17 @@ export function synthVoice(key) {
   for (let i = 0; i < n; i++) {
     const t = i / SAMPLE_RATE;
     const env = Math.min(1, t / 0.008) * Math.min(1, (dur - t) / 0.035);
-    const glide = 1 + 0.04 * Math.sin(Math.PI * (t / dur)) - 0.03 * (t / dur); // a little rise and fall
+    const glide = tb.fall ? 1.12 - tb.fall * (t / dur) : 1 + 0.04 * Math.sin(Math.PI * (t / dur)) - 0.03 * (t / dur); // a little rise and fall
     let v = 0;
     for (const h of harmonics) {
       h.phase += (TAU * h.k * f0 * glide) / SAMPLE_RATE;
       v += h.amp * Math.sin(h.phase);
     }
     if (tb.ring) v *= 0.6 + 0.4 * Math.sin(TAU * tb.ring * t);
+    if (tb.breath) {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; // a fixed noise sequence: same key, same samples
+      v += tb.breath * ((seed / 4294967296) * 2 - 1) * (1 - t / dur) * 3;
+    }
     out[i] = v * env;
   }
   let peak = 0;

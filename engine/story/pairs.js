@@ -12,6 +12,7 @@
 import { BODY, dimsOf } from "../skeleton.js";
 import { applyAimIK, motionScale } from "../combat.js";
 import { poseActor } from "../actor.js";
+import { resolveMove } from "../moves.js";
 
 const RAMP = 0.12; // normalized move time over which a contact blends in and out
 const ARM = BODY.upperArm + BODY.forearm;
@@ -143,7 +144,7 @@ export function updatePairs(world) {
       }
     }
     // The pair ends when neither move runs and nothing is attached.
-    const partnerRunning = partner.move?.def.name === def.pair.partnerMove;
+    const partnerRunning = partner.move?.def === resolveMove(world.moves, partner, def.pair.partnerMove); // a dog's own version (ADR-020)
     if (!running && !partnerRunning && !p.attached) {
       world.pairs.splice(world.pairs.indexOf(p), 1);
       if (lead.pairedWith === partner.id) lead.pairedWith = null;

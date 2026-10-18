@@ -2,7 +2,7 @@
 // The world command {"do": "activity", "params": { name, with, reps?, dur?, intensity?, ending?, winner?, object? }}
 // starts one; data comes from catalog.activities (catalog/story/activities.json). Phases:
 //   setup   the players walk to their places (around `object` if given, else around where they stand)
-//   run     the runner: "loop" here (each player repeats its role's moves), "rally" in rally.js
+//   run     the runner: "loop" here (each player repeats its role's moves), "rally" in rally.js, "fetch" in fetch.js
 //   ending  the ending moves (laugh, win, miss, hug), then an activityEnd event (the beat's end anchor)
 // Players are busy for the director while an activity runs; a beat with "interrupt": true for one
 // of them stops it (ending "interrupted").
@@ -12,6 +12,8 @@ import { startPair, pairStartX } from "./pairs.js";
 import { holdableData } from "../objects.js";
 import { mulberry32, hash32 } from "../math.js";
 import { rallyStart, rallyStep, rallyContact, rallyRelease } from "./rally.js";
+import { fetchStart, fetchStep, fetchContact, fetchRelease } from "./fetch.js";
+import { isIdleMove } from "../moves.js";
 
 const ARRIVE = 12; // px: close enough to a place to settle there
 const MAX_SETUP = 10; // s of walking into place before the activity starts anyway
@@ -19,7 +21,7 @@ const RUN_OVER = 260; // px: farther places are reached at a run
 const FX_EVERY = 1.4; // s between a role's fx (tears)
 export const INTENSITY = { low: 1.25, medium: 1, high: 0.8 }; // time factor (rally flight, waits)
 
-const free = (a) => !a.move || a.move.def.name === "idle" || a.holding;
+const free = (a) => !a.move || isIdleMove(a.move.def) || a.holding;
 
 /**
  * Start an activity for a world beat. Returns its events, or null when it cannot run (the validator
@@ -106,6 +108,7 @@ function beginRun(world, act, t, events) {
   act.phase = "run";
   act.runT0 = t;
   if (act.def.runner === "rally") rallyStart(world, act, t, events);
+  if (act.def.runner === "fetch") fetchStart(world, act, t, events);
 }
 
 /** One loop-runner step: each free player starts its next move (after its wait), until time or reps run out. */
@@ -172,6 +175,7 @@ export function beginEnding(world, act, t, loser = null) {
 }
 
 function finish(world, act, t, interrupted = false) {
+  if (act.def.runner === "fetch") fetchRelease(act); // the ball drops from the thrower's hands when it's over
   for (const a of act.players) if (a.activity === act) a.activity = null;
   world.activities = world.activities.filter((x) => x !== act);
   act.phase = "done";
@@ -181,6 +185,7 @@ function finish(world, act, t, interrupted = false) {
 /** Stop an activity now (an interrupting beat, or a new activity for one of its players). */
 export function stopActivity(world, act, t) {
   if (act.def.runner === "rally") rallyRelease(act);
+  if (act.def.runner === "fetch") fetchRelease(act);
   return finish(world, act, t, true);
 }
 
@@ -192,12 +197,14 @@ export function updateActivities(world, t) {
       const ready = act.states.every((q) => free(q.actor));
       if (ready || t - act.t0 > MAX_SETUP) beginRun(world, act, t, events);
     } else if (act.phase === "run") {
-      if (act.def.runner === "rally") {
-        rallyStep(world, act, t, events);
+      if (act.def.runner === "rally" || act.def.runner === "fetch") {
+        if (act.def.runner === "rally") rallyStep(world, act, t, events);
+        else fetchStep(world, act, t);
         if (act.endRequest) beginEnding(world, act, t, act.endRequest.loser);
       } else loopStep(world, act, t, events);
     } else if (act.phase === "ending") {
       if (act.def.runner === "rally") rallyStep(world, act, t, events);
+      if (act.def.runner === "fetch") fetchStep(world, act, t);
       if (act.players.every((a) => free(a) && !a.pairedWith) || t - act.endT0 > 8) events.push(...finish(world, act, t));
     }
   }
@@ -208,4 +215,5 @@ export function updateActivities(world, t) {
 export function activityMoveEvent(world, actor, e, events, t) {
   const act = actor.activity;
   if (e.contact && act?.def.runner === "rally" && act.phase === "run") rallyContact(world, act, actor, t, events);
+  if (e.contact && act?.def.runner === "fetch" && act.phase === "run") fetchContact(world, act, actor, t, events);
 }

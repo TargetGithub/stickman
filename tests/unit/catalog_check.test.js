@@ -70,8 +70,8 @@ test("engine names: the doc files cover the same groups the checks compare", () 
   assert.ok(engineNames(codes)["docs/codes.json"].length >= 70);
 });
 
-test("presets: 12 starters covering all six body plans and most roles, each easy to see on some themes", () => {
-  assert.equal(SRC.presets.length, 12);
+test("presets: at least 12 starters covering every body plan and most roles, each easy to see on some themes", () => {
+  assert.ok(SRC.presets.length >= 12);
   assert.deepEqual(new Set(SRC.presets.map((p) => p.cast.body || "stickman")), new Set(SRC.catalog.bodyNames));
   assert.ok(new Set(SRC.presets.map((p) => p.role)).size >= 9);
   for (const p of SRC.presets) assert.ok(goodThemes(p, SRC.catalog).length >= 6, p.id);

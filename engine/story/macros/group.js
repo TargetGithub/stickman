@@ -263,12 +263,16 @@ function chase(ctx, p) {
   let caught = null;
   let end = lastRun;
   if (p.caught) {
-    caught = ctx.with(lastRun, { who: lead, do: ctx.moves.has("sweep") ? "sweep" : "jab", target: runner, outcome: "hit", approach: "run" }, 0.6);
+    // A dog never attacks: it grabs the runner's trouser leg instead (a comic hop, no hit; ADR-020).
+    const dog = ctx.catalog.bodies?.[ctx.castById.get(lead)?.body]?.rig === "quadruped" && ctx.moves.has("bite_hold");
+    caught = ctx.with(lastRun, dog ? { who: lead, do: "bite_hold", partner: runner, approach: "run" }
+      : { who: lead, do: ctx.moves.has("sweep") ? "sweep" : "jab", target: runner, outcome: "hit", approach: "run" }, 0.6);
     end = ctx.after(caught, { who: runner, do: "hold_head", face: "scared" }, 0.8);
   } else {
     end = ctx.after(lastRun, { who: lead, do: pick(ctx, emotes(ctx, ["hold_head", "shake_head", "facepalm"])), face: "angry" }, 0.3);
   }
-  return { anchors: { start: `${segments[0]?.run ?? lastRun}.start`, end: `${end}.end`, caught: caught ? `${caught}.hit` : `${end}.end` } };
+  const caughtAt = caught && ctx.catalog.bodies?.[ctx.castById.get(lead)?.body]?.rig === "quadruped" ? `${caught}.start` : `${caught}.hit`;
+  return { anchors: { start: `${segments[0]?.run ?? lastRun}.start`, end: `${end}.end`, caught: caught ? caughtAt : `${end}.end` } };
 }
 
 export const GROUP_MACROS = { gauntlet, brawl, chase };

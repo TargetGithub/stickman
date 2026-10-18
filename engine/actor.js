@@ -5,7 +5,7 @@
 
 import { computeJoints, lowestPoint, dimsOf, withPosture } from "./skeleton.js";
 import { fillPose } from "./pose.js";
-import { startMove, stepMove } from "./moves.js";
+import { startMove, stepMove, resolveMove, isIdleMove } from "./moves.js";
 import { MOTION, STAGE } from "./config.js";
 import { propTransform } from "./props.js";
 
@@ -52,7 +52,7 @@ export function createActor(opts) {
  * @param {{ queue?:boolean, speed?:number, params?:object, blend?:number, beatId?:string, target?:string, outcome?:string }} opts
  */
 export function playMove(actor, name, moves, opts = {}) {
-  const def = moves.get(name);
+  const def = resolveMove(moves, actor, name); // a body plan's move map (walk → walk_dog, ADR-020)
   if (!def) throw new Error(`unknown move '${name}'`);
   if (opts.queue && (actor.move || actor.holding)) {
     actor.queue.push({ def, opts });
@@ -65,7 +65,7 @@ export function playMove(actor, name, moves, opts = {}) {
 function startNext(actor, moves) {
   const ended = actor.move;
   actor.move = null;
-  if (ended && ended.def.chain) return startMove(actor, moves.get(ended.def.chain));
+  if (ended && ended.def.chain) return startMove(actor, resolveMove(moves, actor, ended.def.chain));
   const next = actor.queue.shift();
   if (next) {
     actor.holding = false;
@@ -75,7 +75,8 @@ function startNext(actor, moves) {
     actor.holding = true;
     return;
   }
-  if (!actor.holding && moves.has("idle")) startMove(actor, moves.get("idle"));
+  const idle = resolveMove(moves, actor, "idle");
+  if (!actor.holding && idle && isIdleMove(idle)) startMove(actor, idle);
 }
 
 /**
@@ -164,7 +165,7 @@ export function poseActor(actor, dt, snapHard = false) {
 
 /** Add the held prop's tip to a joint set (a hit part and a slash-trail source). */
 export function withPropTip(actor, joints) {
-  if (actor.prop) joints.propTip = propTransform(joints, actor.prop.data, actor.propAngle, actor.facing, actor.scale).tip;
+  if (actor.prop) joints.propTip = propTransform(joints, actor.prop.data, actor.propAngle, actor.facing, actor.scale, actor.grip).tip;
   return joints;
 }
 

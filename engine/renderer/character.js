@@ -5,6 +5,7 @@ import { BODY } from "../skeleton.js";
 import { propTransform } from "../props.js";
 import { drawProp } from "./props.js";
 import { drawFace } from "./face.js";
+import { drawQuadruped } from "./quadruped.js";
 import { drawTorso, drawOutfit } from "./bodies.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
 
@@ -112,9 +113,11 @@ function headAxes(j, facing) {
  *   a held prop is drawn in its grip hand; face (catalog face data, story scripts) replaces the v1 dots and mouth
  *   Body plans (S3): dims (bone lengths, line width), draw (stick | capsule | trapezoid), torsoWidth, and
  *   look (appearance: eyes, brows, mouthStyle, cheeks, hair, hairColor, outfit, outfitColor, accessories)
+ *   Quadrupeds (draw "quad"): quad, faceName, id, time, prevHip, prevHead (renderer/quadruped.js)
  */
 export function drawCharacter(ctx, j, style) {
   const s = { ...DEFAULTS, ...style };
+  if (s.draw === "quad") return drawQuadruped(ctx, j, s, shade); // four-legged plans (ADR-020)
   const dims = s.dims || BODY;
   const lw = dims.lineWidth * s.scale;
   const acc = s.look?.accessories || {};

@@ -14,6 +14,10 @@ export const STORY_ONLY = ["interaction", "defeat"];
 export const HIT_PARTS = ["rHand", "lHand", "rFoot", "lFoot", "rKnee", "lKnee", "rElbow", "lElbow", "head", "propTip"];
 export const SHAKES = ["small", "med", "big"];
 export const MIN_WINDUP = 0.15;
+/** Rigs a move can be authored for (STORY_SPEC 6.2); "any" plays on every rig (keyless utility moves). */
+export const RIGS = ["humanoid", "quadruped", "any"];
+/** The pose a rig's moves start from (missing key channels fill from it). */
+const RIG_BASE = { humanoid: "stand", any: "stand", quadruped: "dog_stand" };
 
 // ---------- catalog preparation ----------
 
@@ -38,6 +42,9 @@ function checkExpr(value, names, path, problems) {
 function prepareMove(raw, poses, problems) {
   const p = (msg) => problems.push(`move '${raw.name}': ${msg}`);
   if (!CATEGORIES.includes(raw.category)) p(`category must be one of ${CATEGORIES.join(", ")}`);
+  const rig = raw.rig ?? "humanoid";
+  if (!RIGS.includes(rig)) p(`rig must be one of ${RIGS.join(", ")}`);
+  if (!poses[RIG_BASE[rig] ?? "stand"]) p(`rig '${rig}' needs the named pose '${RIG_BASE[rig]}'`);
   if (!(raw.duration > 0)) p("duration must be > 0");
   const params = { ...(raw.params || {}) };
   const names = Object.keys(params);
@@ -45,13 +52,14 @@ function prepareMove(raw, poses, problems) {
   const rawKeys = raw.keys || [];
   if (rawKeys.length === 0) p("needs at least one key");
   checkTimes(rawKeys, `move '${raw.name}' keys`, problems, { first0: true, last1: true });
-  let prev = poses.stand;
+  const base = poses[RIG_BASE[rig]] || poses.stand;
+  let prev = base;
   let prevAngle = 0;
   const keys = rawKeys.map((k, i) => {
     let partial = k.pose;
     if (typeof partial === "string") {
       if (!poses[partial]) p(`keys[${i}].pose '${partial}' is not a named pose`);
-      partial = fillPose(poses[partial] || {}, poses.stand);
+      partial = fillPose(poses[partial] || {}, base);
     } else if (partial && typeof partial === "object") {
       for (const ch of Object.keys(partial)) if (!POSE_CHANNELS.includes(ch)) p(`keys[${i}].pose has unknown channel '${ch}'`);
     } else p(`keys[${i}].pose must be a pose name or object`);
@@ -95,6 +103,7 @@ function prepareMove(raw, poses, problems) {
   return {
     name: raw.name,
     category: raw.category,
+    rig,
     duration: raw.duration,
     params,
     needsProp: raw.needsProp ?? null,
@@ -137,6 +146,25 @@ export function prepareCatalog(rawMoves, poses, props = null) {
   if (problems.length) throw new Error(`move catalog has ${problems.length} problem(s):\n- ${problems.join("\n- ")}`);
   return out;
 }
+
+// ---------- rigs (STORY_SPEC 6.2, ADR-020) ----------
+
+/**
+ * The move an actor plays for a generic name: its body plan's move map renames moves for its rig
+ * (walk → walk_dog). Names the map doesn't cover, or that it maps to a missing move, stay as they are.
+ * @param {Map<string, object>} moves  prepared catalog
+ * @param {{ moveMap?: Record<string, string> } | null | undefined} actor
+ */
+export function resolveMove(moves, actor, name) {
+  const mapped = actor?.moveMap?.[name];
+  return moves.get(mapped && moves.has(mapped) ? mapped : name);
+}
+
+/** True when a move can play on a rig (default humanoid). */
+export const rigAccepts = (def, rig = "humanoid") => def.rig === "any" || def.rig === rig;
+
+/** The resting loop every rig falls back to (idle, idle_dog): characters in it count as free. */
+export const isIdleMove = (def) => def.name === "idle" || def.flags.idle === true;
 
 // ---------- runtime ----------
 

@@ -4,7 +4,7 @@
 // hold frames for transitions between them. A v1 script is one scene and runs exactly as before.
 
 import { createActor } from "./actor.js";
-import { prepareCatalog, STORY_ONLY } from "./moves.js";
+import { prepareCatalog, STORY_ONLY, isIdleMove } from "./moves.js";
 import { createWorld, stepWorld } from "./world.js";
 import { createClock, tick, holdTick, requestHitstop, timeEffectsActive } from "./clock.js";
 import { createDirector, stepDirector, onEvents, directorIdle, finishDirector } from "./director.js";
@@ -45,7 +45,7 @@ export function frameAt(sim, n) {
   return frameView(sim.store, n, FPS);
 }
 
-const settled = (a) => (!a.move || a.move.def.name === "idle" || a.holding) && !a.airborne;
+const settled = (a) => (!a.move || isIdleMove(a.move.def) || a.holding) && !a.airborne;
 
 /** Actors for one scene, with hp, held prop and (story scripts) face carried over from earlier scenes. */
 function sceneActors(flat, catalog, carry, faces) {

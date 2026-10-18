@@ -61,4 +61,4 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh
 - object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick
 - magic: sparkle, magic_sparkle
-- voice: gasp, laugh_small, cry_small
+- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant

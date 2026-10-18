@@ -150,7 +150,9 @@ export function checkMove(def, catalog, { draft = true } = {}) {
   }
   const prepared = moves.get(def.name);
   const GROUND = 880;
-  for (const plan of Object.keys(catalog.bodies || { stickman: {} })) {
+  // Each move runs on the body plans of its rig (STORY_SPEC 6.2): humanoid moves on the six humanoid plans, dog moves on dog plans.
+  const rig = prepared.rig === "any" ? null : prepared.rig;
+  for (const plan of Object.keys(catalog.bodies || { stickman: {} }).filter((n) => !rig || (catalog.bodies?.[n]?.rig || "humanoid") === rig)) {
     const a = Object.assign(createActor({ id: "a", x: 1000, facing: 1, groundY: GROUND }), bodyPlan(catalog, plan));
     if (prepared.needsProp) {
       const kind = prepared.needsProp === "any" ? catalog.props.sword?.kind : prepared.needsProp; // "any": whatever is held

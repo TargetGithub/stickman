@@ -132,9 +132,45 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | lean_on | interaction | 2.2 | - | - | paired: partner plays lean_on_partner, story only | Leans on the partner's shoulder for support. |
 | comfort | interaction | 2.4 | - | - | paired: partner plays comfort_partner, story only | Puts an arm round a sad partner to comfort them. |
 | walk_together | interaction | 1 | stride=120 | - | paired: partner plays walk_together_partner, loop: distance/cycles/to, story only | Walks hand in hand with the partner; loops like walk. |
+| pet_dog | interaction | 2 | - | - | paired: partner plays pet_dog_partner, story only | Squats by a dog and pats its head twice (partner: a dog). |
+| hug_dog | interaction | 2.2 | - | - | paired: partner plays hug_dog_partner, story only | Squats and hugs a dog round its neck (partner: a dog). |
 | faint | defeat | 1.8 | - | - | story only, counts as defeated, holds pose | Faints and drops to the floor; counts as defeated. |
 | vanish | defeat | 2.6 | - | - | story only, counts as defeated, holds pose | Dissolves away in sparkles; counts as defeated until return. |
 | ghost | defeat | 3.2 | - | - | story only, counts as defeated, holds pose | Rises up as a ghost with a halo; counts as defeated (general audience only). |
 | captured | defeat | 1.8 | cage=1 | - | story only, counts as defeated, holds pose | Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated. |
 | flee | defeat | 0.6 | stride=330 | - | loop: distance/cycles/to, story only | Runs off the nearer stage edge away from everyone and fades out. |
 | return | defeat | 1.6 | - | - | story only | A vanished character re-forms from sparkles. |
+| idle_dog | movement | 2 | - | - | loop: distance/cycles/to | A dog stands and breathes, tail going; loops until the next beat. |
+| walk_dog | movement | 0.5 | stride=60 | - | loop: distance/cycles/to | A dog walks forward on four legs; loops until `distance` px or `cycles`. |
+| trot | movement | 0.36 | stride=90 | - | loop: distance/cycles/to | A dog trots briskly, diagonal legs together; loops until `distance` px or `cycles`. |
+| run_dog | movement | 0.4 | stride=220 | - | loop: distance/cycles/to | A dog gallops at full speed, legs gathering and stretching; loops until `distance` px or `cycles`. |
+| jump_dog | movement | 0.9 | height=90 travel=0 | - | airborne | A dog crouches and springs up (or forward with `travel`), landing on all fours. |
+| sit_dog | life | 0.6 | - | - | holds pose | A dog sits down on its haunches and stays sitting. |
+| lie_dog | life | 0.9 | - | - | holds pose | A dog sits, then lies down with its front paws stretched out, and stays down. |
+| sleep_dog | life | 3 | - | - | holds pose | A dog curled up asleep, breathing slowly, with floating Zs; stays asleep. |
+| get_up_dog | movement | 0.6 | - | - | - | A dog gets up from sitting or lying onto all fours. |
+| roll_over | emote | 1.6 | - | - | - | A dog lies down, rolls onto its back wiggling its paws in the air, and gets back up. |
+| bark | emote | 0.5 | cycles=1 | - | loop: cycles | A dog barks with its head up: once per cycle (`cycles`). |
+| whimper | emote | 1.2 | - | - | - | A dog lowers its head and whimpers sadly. |
+| growl | emote | 1 | - | - | - | A dog lowers its front and growls softly (comic, never a real threat). |
+| wag | emote | 0.8 | cycles=2 | - | loop: cycles | A happy dog wiggles its whole body and wags its tail; repeats `cycles` times. |
+| sniff | movement | 0.9 | stride=36 | - | loop: distance/cycles/to | A dog walks slowly with its nose to the ground, following a trail; loops until `distance` px or `cycles`. |
+| dig | life | 0.6 | cycles=3 | - | loop: cycles | A dog digs with its front paws, dirt flying; repeats `cycles` times. |
+| play_bow | emote | 1.2 | - | - | - | A dog drops its front down with its tail up: let's play! |
+| beg | emote | 1.6 | - | - | - | A dog sits up on its hind legs with its front paws up, begging sweetly, then sits. |
+| shake_off | emote | 0.9 | - | - | - | A dog shakes its whole body (drying off, or shaking off a surprise). |
+| tilt_head | emote | 0.8 | - | - | - | A dog raises and cocks its head, curious. |
+| pounce | movement | 0.9 | travel=120 | - | airborne | A dog crouches, wiggles and leaps forward `travel` px onto a spot (playful, never an attack). |
+| tug | life | 0.7 | cycles=2 | - | loop: cycles | A dog pulls backward with its weight, tugging something in its mouth; repeats `cycles` times. |
+| dodge_dog | movement | 0.5 | distance_back=80 | - | evasive | A dog hops back out of the way. |
+| yelp | reaction | 0.5 | - | - | - | A dog jumps with a startled yelp (bumped or surprised). |
+| dizzy_dog | reaction | 1.6 | - | - | - | A dog wobbles, dizzy, with stars spinning round its head. |
+| faint_dog | defeat | 1.6 | - | - | story only, counts as defeated, holds pose | A dog wobbles and flops over with spinning stars (comic and harmless); stays down until it gets up. |
+| spawn_dog | utility | 0.7 | - | - | - | A dog appears out of nowhere (it starts hidden). |
+| despawn_dog | utility | 0.7 | - | - | holds pose | A dog disappears from the stage and stays gone. |
+| lick | interaction | 1.6 | - | - | paired: partner plays lick_partner, story only | A dog jumps up with its front paws on a friend and licks their face (partner plays lick_partner). |
+| pick_dog | utility | 0.8 | - | - | - | A dog lowers its head and picks up a prop from the floor in its mouth. |
+| drop_dog | utility | 0.7 | - | - | - | A dog lowers its head and lets go of what it holds in its mouth. |
+| catch_mouth | life | 0.6 | - | - | - | A dog dips its head to snap up a ball in its mouth. |
+| drop_ball | life | 0.9 | - | - | - | A dog sits up proudly and gives back the ball in its mouth. |
+| bite_hold | interaction | 1.6 | - | - | paired: partner plays hop_partner, story only | A dog grabs a runaway's trouser leg and tugs, stopping them (comic, no harm; partner plays hop_partner). |

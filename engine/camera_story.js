@@ -1,7 +1,7 @@
 // Story camera (STORY_SPEC 16). Milestone: S6.
 // Shot modes (camera keys and `shot` beats):
 //   two_shot       frame two characters tightly
-//   close_up       head and shoulders of `target`
+//   close_up       head and shoulders of `target` (a quadruped: the whole animal)
 //   wide           the whole stage
 //   over_shoulder  past `from`, looking at `target`
 //   track          follow `target` with lead room ahead of it
@@ -37,6 +37,12 @@ export function storyFraming(cam, actors, k, helpers) {
     if (!t) return null;
     const j = t.joints;
     const top = j.head.y - dimsOf(t).headR * t.scale;
+    if (dimsOf(t).rig === "quadruped") {
+      // A four-legged close-up: the whole animal, head to paws, centred on its body (ADR-020).
+      const floor = Math.max(j.lFoot.y, j.rFoot.y, j.lHand.y, j.rHand.y);
+      const zoom = typeof k.zoom === "number" ? k.zoom : Math.min(CLOSE_UP_MAX, (cam.H * 0.45) / Math.max(40, floor - top));
+      return { x: (j.hip.x + j.head.x) / 2, zoom, y: (top + floor) / 2, smoothY: true, maxZoom: CLOSE_UP_MAX };
+    }
     const span = Math.max(40, j.hip.y - top);
     const zoom = typeof k.zoom === "number" ? k.zoom : Math.min(CLOSE_UP_MAX, (cam.H * 0.5) / span);
     // Head in the upper part of the frame, shoulders below it.

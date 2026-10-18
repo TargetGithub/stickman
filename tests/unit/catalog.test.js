@@ -93,7 +93,7 @@ test("engine vocabulary: world commands, macros, enums, limits and codes come fr
   assert.deepEqual(Object.keys(v.worldCommands), Object.keys(WORLD_COMMANDS_V2));
   assert.deepEqual(Object.keys(v.macroParams), Object.keys(MACRO_PARAMS));
   assert.deepEqual(v.codes, [...codes].sort());
-  assert.deepEqual(v.voice, { pitch: [0.5, 2], speed: [0.7, 1.4], timbre: ["soft", "squeaky", "deep", "robot"] });
+  assert.deepEqual(v.voice, { pitch: [0.5, 2], speed: [0.7, 1.4], timbre: ["soft", "squeaky", "deep", "robot", "bark"] });
   assert.equal(v.worldCommands.narrate.v1, false);
   assert.equal(v.worldCommands.shake.v1, true);
   assert.deepEqual(JSON.parse(JSON.stringify(engineVocab(codes))), v);

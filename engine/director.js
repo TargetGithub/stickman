@@ -9,6 +9,7 @@ import { COMBAT, LIMITS } from "./config.js";
 import { CARD_COMMANDS, WORLD_DURATION } from "./story/timing.js";
 import { readingTime } from "./story/speech.js";
 import { pairGate } from "./story/pair_beats.js";
+import { resolveMove, isIdleMove } from "./moves.js";
 import { startPair } from "./story/pairs.js";
 import { defeatStart } from "./story/defeat.js";
 import { startActivity, stopActivity } from "./story/activities.js";
@@ -124,7 +125,7 @@ export function onEvents(director, events, storyT) {
 }
 
 // A player in an activity (S5) is busy until it ends; an interrupting beat stops the activity.
-const isFree = (actor) => (!actor.move || actor.move.def.name === "idle" || actor.holding) && !actor.activity;
+const isFree = (actor) => (!actor.move || isIdleMove(actor.move.def) || actor.holding) && !actor.activity;
 
 function dispatchWorld(director, beat, ctx) {
   const p = beat.params || {};
@@ -162,7 +163,7 @@ function dispatchWorld(director, beat, ctx) {
 /** Start movement toward the spot an attack needs (spec 11.4); the attack then waits for it to finish. */
 function approach(director, beat, actor, ctx) {
   const target = ctx.world.byId.get(beat.target);
-  const def = director.moves.get(beat.do);
+  const def = resolveMove(director.moves, actor, beat.do);
   const params = { ...def.params, ...(beat.params || {}) };
   const dir = Math.sign(target.x - actor.x) || actor.facing;
   let need;
@@ -241,7 +242,7 @@ function execute(director, beat, ctx) {
     director.waiting.set(actor.id, q);
     return;
   }
-  const def = director.moves.get(beat.do);
+  const def = resolveMove(director.moves, actor, beat.do);
   // Walking somewhere first (a seat, a partner, attack range): approachAt marks when the walk began.
   if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx, command)) return void (beat.approachAt ??= storyT);
   if (def.pair && beat.partner && pairGate({ director, beat, actor, def, ctx, issue, command, isFree })) return void (beat.approachAt ??= storyT);

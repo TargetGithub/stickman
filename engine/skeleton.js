@@ -3,6 +3,7 @@
 
 import { DEG } from "./math.js";
 import { JOINT_ORDER } from "./types.js";
+import { computeJointsQuad } from "./skeleton_quad.js";
 
 /** Body dimensions at scale 1.0 (spec 5.1): the stickman. Body plans (S3) pass their own dims. */
 export const BODY = { headR: 22, neck: 8, torso: 78, upperArm: 38, forearm: 36, thigh: 48, shin: 46, lineWidth: 9 };
@@ -29,10 +30,11 @@ export const strideOf = (dims) => (dims.thigh + dims.shin) / (BODY.thigh + BODY.
  * @param {{x:number, y:number}} root  anchor (hip position before dx/dy)
  * @param {1|-1} facing
  * @param {number} scale
- * @param {object} dims  body dimensions (a body plan's; default the stickman)
+ * @param {object} dims  body dimensions (a body plan's; default the stickman); `rig: "quadruped"` uses skeleton_quad.js
  * @returns {import("./types.js").Joints}
  */
 export function computeJoints(pose, root, facing, scale, dims = BODY) {
+  if (dims.rig === "quadruped") return computeJointsQuad(pose, root, facing, scale, dims); // ADR-020
   const p = (k) => pose[k] || 0;
   const lean = p("lean");
   const L = {

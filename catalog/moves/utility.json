@@ -57,6 +57,7 @@
     "name": "wait",
     "description": "Holds the current pose for `seconds`; the way to pause.",
     "tags": ["pause", "timing"],
+    "rig": "any",
     "category": "utility",
     "duration": 1,
     "params": { "seconds": 1 },
@@ -67,6 +68,7 @@
     "name": "face",
     "description": "Turns to face the target or the other way, keeping the pose.",
     "tags": ["turn", "timing"],
+    "rig": "any",
     "category": "utility",
     "duration": 0.15,
     "flags": { "keepPose": true },
@@ -146,3 +148,4 @@
     "events": [{ "t": 0.45, "hide": true, "sfx": "pop" }]
   }
 ]
+

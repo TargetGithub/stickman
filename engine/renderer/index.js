@@ -112,9 +112,9 @@ function charsAt(r, n) {
     r.charCache.set(n, frameView(r.sim.store, n, FPS).chars.map((c) => {
       const j = unpackJoints(c.joints);
       const data = c.prop ? holdableData(r.catalog, c.prop.name) : null;
-      if (data) j.propTip = propTransform(j, data, c.prop.angle, c.facing, c.scale).tip; // slash trails follow the tip
       const plan = c.plan ? r.catalog.bodies?.[c.plan] : null; // story body plans (S3)
-      const body = plan ? { dims: bodyPlan(r.catalog, c.plan).dims, draw: plan.draw, torsoWidth: plan.torsoWidth } : {};
+      if (data) j.propTip = propTransform(j, data, c.prop.angle, c.facing, c.scale, plan?.grip).tip; // slash trails follow the tip
+      const body = plan ? { dims: bodyPlan(r.catalog, c.plan).dims, draw: plan.draw, torsoWidth: plan.torsoWidth, ...(plan.quad ? { quad: plan.quad, grip: plan.grip } : {}) } : {};
       return { ...c, ...body, j, propStyle: data ? { data, angle: c.prop.angle } : undefined };
     }));
     if (r.charCache.size > 64) r.charCache.delete(r.charCache.keys().next().value);
@@ -207,7 +207,8 @@ function drawChars(ctx, r, n, f, chars, sv, list) {
     drawBehind(ctx, c, past, style);
     const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
     drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false, ...face,
-      ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}) });
+      ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
+      ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) });
     ctx.shadowBlur = 0;
     drawFront(ctx, c, past, style);
     ctx.restore();

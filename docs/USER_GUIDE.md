@@ -235,7 +235,7 @@ The `camera` list holds keys that use the same `at` forms as beats.
 
 Everything in this section is catalog data in `catalog/` (JSON, one description per entry; see `catalog/README.md` for the files and how to add things). `catalog/generated/context/` lists all of it compactly: `03_moves.md` has every move with what it does, `02_characters.md` the bodies, looks, faces, voices and ready-made characters, `05_places_and_objects.md` the themes and objects.
 
-There are 133 moves (147 counting the partner side of each paired move); 110 of them work in version 1 clips too. See them all animated at http://localhost:5173/web/showcase.html#moves (after `npm run serve`; every other catalog item is on the same page), or print the full table with durations, default params and notes:
+There are 169 moves (189 counting the partner side of each paired move); 110 of them work in version 1 clips too. 38 of them are for four-legged characters (section 4.1). See them all animated at http://localhost:5173/web/showcase.html#moves (after `npm run serve`; every other catalog item is on the same page), or print the full table with durations, default params and notes:
 
 ```bash
 node tools/catalog.mjs
@@ -255,6 +255,8 @@ Two more groups are slice-of-life moves (in both versions, except the racket and
 
 - **life** (26 solo moves): sit (on a seat with `"object"`, or on the floor), stand_up, lie_down, sleep, eat, drink, read, phone_talk, cheer, clap, kneel, wave_goodbye, sneak, tiptoe, peek, hide, push, pull, climb_up, jump_down, swing_forehand, swing_backhand, blow_wand, poke, stretch.
 - **interaction** (paired moves, need `"partner"`): hug, high_five, fist_bump, handshake, pat_head, give, carry, put_down, piggyback, lift_up, drag, lean_on, comfort, walk_together (give it `"params": { "distance": 300 }`). The lead walks to the partner first (`"approach": "run"` to run, `false` to place it there); the partner plays its half on its own. `carry` and `piggyback` keep holding the partner through walks until `put_down`.
+
+- **four-legged** (dog moves, `catalog/moves/quadruped.json`; section 4.1).
 
 ```json
 { "id": "hf", "at": 2, "who": "kai", "do": "high_five", "partner": "pip", "say": "Up high!" }
@@ -292,6 +294,23 @@ Activities: blow_bubbles, tennis_rally, play_catch, kick_ball, eat_together, dan
 Two macros make whole scenes (an entry in `scenes` with `id`, `macro`, `params`): `fight_card` (a fight-only video of at least 3 minutes from a list of `matchups`; see `scripts/samples/s6_fight_card.json`) and `montage` (short `clips` with quick cuts). Walking beats can also take a destination: `{"who": "kai", "do": "run", "to": {"near": "pip"}}`, `{"x": 2400}` or `{"exit": "left"}`. Camera `shot` beats frame a moment: `{"who": "world", "do": "shot", "params": {"mode": "close_up", "target": "kai", "dur": 2}}` (modes two_shot, close_up, wide, over_shoulder, track); `"autoCamera": "story"` in meta picks shots for you. To see or hand-edit what a macro writes, use `tools/compile.mjs` (below). The full rules are in STORY_SPEC section 11.
 
 Beat `fx` you can add to a character: `aura`, `afterimage`, `slash_arc`, `speed_lines`, `dust_land`, `dust_run`, `shockwave`, `anger_mark`, `sweat_drop`, `exclaim`, `question`, `heart`, `stars_dizzy`. Impact sparks and hit sounds are added automatically.
+
+### 4.1 A dog in your story
+
+Body plan `dog_small` is a small four-legged puppy (its back at a stickman's knee). It uses its own skeleton and moves (STORY_SPEC 6.2), so a few things work differently:
+
+- **Write generic moves.** `walk`, `run`, `sit`, `lie_down`, `sleep`, `jump`, `get_up`, `wave`, `talk`, `cry` and more are renamed for the dog by its body plan (`walk` plays `walk_dog`, `wave` plays `wag`, `talk` plays `bark`). Destinations (`"to"`), `@chase`, `@travel`, `@enter`, `@exit` and `@walk_together` work as for anyone.
+- **Dog moves:** idle_dog, walk_dog, trot, run_dog, jump_dog, sit_dog, lie_dog, sleep_dog, get_up_dog, roll_over, bark (`cycles`), whimper, growl, wag, sniff (a slow nose-down walk), dig, play_bow, beg, shake_off, tilt_head, pounce, tug, dodge_dog, yelp, dizzy_dog, faint_dog, pick_dog / drop_dog (things go in the mouth), catch_mouth, drop_ball.
+- **With people:** `pet_dog` and `hug_dog` (the person squats), `lick` (the dog jumps up), `carry` / `put_down`, `bite_hold` (grabs a runaway's trouser leg; no hit). `pat_head` and `hug` are for two people.
+- **Fetch:** `{"macro": "activity", "params": {"name": "fetch", "with": ["doopi", "becky"], "reps": 3}}`: the person throws, the dog brings the ball back.
+- **Voice:** `"voice": { "timbre": "bark" }` turns its lines into little woofs.
+- **Never in fights:** attacks on a dog (`E_TARGET_RIG`), a dog in `@fight`, `@gauntlet` or `@brawl` (`E_MACRO_RIG`) and moves a dog can't do (`E_MOVE_RIG`) are errors; the fix line names the move to use instead.
+
+```json
+{ "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "voice": { "pitch": 1.4, "timbre": "bark" } }
+```
+
+Sample: `scripts/samples/r1_becky.json`. Review sheets: `node tools/becky_sheet.mjs` (the look) and `node tools/move_sheet.mjs --rig quadruped --plans dog_small` (the moves).
 
 ## 5. Fixing validator errors
 
@@ -695,7 +714,7 @@ Other exports: `validate(script, catalog)`, `formatIssues(issues)`, `scriptSchem
 
 ## 11. Known limits
 
-- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with set pieces, time of day and weather, transitions and cards, narration, faces and emotions, bubbles with speaker names, speech sounds, six body plans and appearance options, objects, paired moves, activities, defeat styles, story macros (dialogue, fights, gauntlets, brawls, chases, defeat and grief, fight cards, montages), story camera shots, extras and depth layers; see `scripts/samples/s1_scenes.json` to `s6_fight_card.json`. generated music, ambience beds and story sounds (S7). LLM story generation (S8): stories and fight videos in two stages, automatic or copy-paste (section 7.4).
+- Story scripts (version 2) are being built in stages (docs/STORY_PLAN.md). Today they support scenes, locations with set pieces, time of day and weather, transitions and cards, narration, faces and emotions, bubbles with speaker names, speech sounds, six humanoid body plans and a four-legged dog (`dog_small`), appearance options, objects, paired moves, activities, defeat styles, story macros (dialogue, fights, gauntlets, brawls, chases, defeat and grief, fight cards, montages), story camera shots, extras and depth layers; see `scripts/samples/s1_scenes.json` to `s6_fight_card.json`. generated music, ambience beds and story sounds (S7). LLM story generation (S8): stories and fight videos in two stages, automatic or copy-paste (section 7.4).
 - Old themes (the seven fight themes) draw background geometry up to x = 8000; story stages can be up to 12,000 px wide, so use the story themes for very wide stages.
 
 - Blocks are high guards only.

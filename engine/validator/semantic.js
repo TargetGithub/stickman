@@ -6,6 +6,7 @@ import { closestMatch, nearest } from "./report.js";
 import { STAGE } from "../config.js";
 import { V2_ENUMS } from "./v2_names.js";
 import { STORY_ONLY } from "../moves.js";
+import { beatRigIssues } from "./rigs.js";
 
 const HEX = { type: "color" };
 /** World commands and their params (spec 11.3). */
@@ -209,6 +210,7 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
   });
   const ctx = { catalog, moves, charIds, beatsById, worldCommands };
   const moveNames = [...moves.keys()];
+  const bodyOf = new Map(script.characters.map((c) => [c.id, c.body]));
   const worldNames = Object.keys(worldCommands);
 
   script.beats.forEach((b, i) => {
@@ -251,6 +253,7 @@ export function checkSemantics(script, catalog, moves, opts = {}) {
       out.push({ code: "E_MOVE_UNKNOWN", path: `${p}.do`, message: `Unknown move '${b.do}'.${isWorld}`, fix: `Use one of: ${nearest(b.do, pool).join(", ")}${near ? ` (closest match: ${near})` : ""}.` });
       return;
     }
+    out.push(...beatRigIssues(b, p, catalog, moves, bodyOf)); // E_MOVE_RIG, E_TARGET_RIG (ADR-020)
     if (b.target !== undefined) {
       if (!charIds.has(b.target)) out.push({ code: "E_REF_CHARACTER", path: `${p}.target`, message: `No character '${b.target}'.`, fix: `Use one of: ${[...charIds].join(", ")}.` });
       else if (b.target === b.who) out.push({ code: "E_MOVE_TARGET", path: `${p}.target`, message: `'${b.who}' cannot target itself.`, fix: "Target another character." });

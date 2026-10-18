@@ -7,6 +7,7 @@
 
 import { command } from "../world.js";
 import { spawnObject, GRAVITY } from "../objects.js";
+import { isIdleMove } from "../moves.js";
 
 const REACH = { propTip: 62, hands: 40, foot: 26 }; // px forward of the hip where the ball is met (scale 1)
 const FRICTION = 3; // the ground ball's rolling friction in objects.js (1/s)
@@ -16,7 +17,7 @@ const SETTLE = 3; // s after the miss before the ending starts anyway
 const WHIFF = 110; // px: farther from the ball at contact is a miss
 const MISS_LATE = 0.5; // s a scheduled swing may wait for its player before it counts as a miss
 
-const free = (a) => !a.move || a.move.def.name === "idle" || a.holding;
+const free = (a) => !a.move || isIdleMove(a.move.def) || a.holding;
 
 /** When a move's contact event happens, in seconds from its start. */
 function contactLead(world, name, speed = 1) {

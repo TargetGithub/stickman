@@ -114,5 +114,18 @@
     "reps": 2,
     "ending": "hug",
     "roles": [{ "moves": ["comfort"], "partner": 1, "wait": 0.3, "face": "sad" }, { "moves": [], "face": "cry", "fx": "tears" }]
+  },
+  "fetch": {
+    "description": "A friend throws a ball and a dog fetches it back in its mouth; ends laughing.",
+    "tags": ["dog", "play", "two"],
+    "runner": "fetch",
+    "players": [2, 2],
+    "spacing": 110,
+    "facing": "center",
+    "reps": 3,
+    "ending": "laugh",
+    "roles": [{ "face": "happy" }, { "face": "happy" }],
+    "fetch": { "ball": "tennis_ball", "distance": 420, "flight": 0.9 }
   }
 }
+

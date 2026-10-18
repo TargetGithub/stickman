@@ -8,7 +8,7 @@ A beat macro is `{ "id", "at", "macro", "params" }`; a scene macro (fight_card, 
 | macro | params (bold = required) | anchors | defaults | what you get |
 |---|---|---|---|---|
 | @dialogue | **lines**: [lines <=30]; gap: num 0-3; gestures: bool; camera: auto/none | start, end, line<N> | gap=0.3 gestures=true camera=auto | Characters talk in turn with talk gestures, reading-time pacing, faces and a two-shot. lines: [[who, text<=120, face?, bubble?], ...] |
-| @activity | **name**: blow_bubbles/tennis_rally/play_catch/kick_ball/eat_together/dance_together/selfie/sleep/comfort; **with**: [ids <=4]; reps: int 1-40; dur: num 1-120; intensity: low/medium/high; ending: win/miss/laugh/interrupted; winner: id; object: id | start, end, ending | intensity=medium | A little game kept in sync (see Activities): the players walk to their places, play, and finish with the ending. |
+| @activity | **name**: blow_bubbles/tennis_rally/play_catch/kick_ball/eat_together/dance_together/selfie/sleep/comfort/fetch; **with**: [ids <=4]; reps: int 1-40; dur: num 1-120; intensity: low/medium/high; ending: win/miss/laugh/interrupted; winner: id; object: id | start, end, ending | intensity=medium | A little game kept in sync (see Activities): the players walk to their places, play, and finish with the ending. |
 | @walk_together | **who**: [ids <=4]; **to**: {"x"} or {"near","gap"} or {"exit"}; pace: walk/run; holdHands: bool | start, end | pace=walk holdHands=true | Hand in hand (two walkers) or side by side to `to`. |
 | @travel | **who**: [ids <=4]; **to**: {"x"} or {"near","gap"} or {"exit"}; mode: walk/run/sneak; camera: track/wide/none | start, end | mode=walk camera=track | A long walk/run/sneak to `to` with the camera tracking the first walker. |
 | @enter | **who**: id; **side**: left/right; mode: walk/run/sneak; to: {"x"} or {"near","gap"} or {"exit"} | start, end | mode=walk | Walks (or runs) in from `side` to `to` (default: its scene x). Place the character in the scene cast with "hidden": true. |
@@ -37,6 +37,7 @@ One example of each macro is in 08_examples.md.
 | selfie | 1-4 | - | laugh | One takes a selfie with the phone while the others cheer. |
 | sleep | 1-4 | bench | none | Characters lie down (on a bench if given) and sleep. |
 | comfort | 2 | - | hug | One comforts a crying friend, ending in a hug. |
+| fetch | 2 | - | laugh | A friend throws a ball and a dog fetches it back in its mouth; ends laughing. |
 
 ## Defeat styles (`@defeat` style, or as moves)
 kids: ko, faint, vanish, captured, flee; general: ko, faint, vanish, ghost, captured, flee. See the defeat moves in 03_moves.md.
@@ -107,7 +108,7 @@ At a scene boundary the next scene's transitionIn wins, then the previous scene'
 | set_appearance | who*:id accessory:headband/scarf/cape/hat/antenna/bowtie/mask/crown/backpack/eyepatch color:#rrggbb remove:true/false eyes:dot/big/oval/sleepy/visor/glasses brows:none/thin/thick mouthStyle:line/cartoon hair:none/spiky/bob/ponytail/cap hairColor:#rrggbb outfit:none/shirt/coat/armor/robe outfitColor:#rrggbb cheeks:#rrggbb | Changes how a character looks mid-story: add or remove an accessory, change hair, outfit or eyes. |
 | shot | mode*:follow/focus/fixed/pan/push/two_shot/close_up/wide/over_shoulder/track target:id targets:[ids <=4] from:id zoom:0.3-4 dur:0.2-30 | A camera shot from a beat (wide, close_up, two_shot, ...); with dur the previous framing comes back. |
 | set_music | mood:happy/playful/calm/sad/tense/mysterious/heroic/battle/boss/triumphant/lullaby intensity:0-1 volume:0-1 fade:0-10 | Changes the music mood, intensity or volume inside a scene. |
-| activity | name*:blow_bubbles/tennis_rally/play_catch/kick_ball/eat_together/dance_together/selfie/sleep/comfort with*:[ids <=4] reps:1-40 dur:1-120 intensity:low/medium/high ending:win/miss/laugh/interrupted winner:id object | Runs an activity directly (the runtime form of @activity; prefer the macro). |
+| activity | name*:blow_bubbles/tennis_rally/play_catch/kick_ball/eat_together/dance_together/selfie/sleep/comfort/fetch with*:[ids <=4] reps:1-40 dur:1-120 intensity:low/medium/high ending:win/miss/laugh/interrupted winner:id object | Runs an activity directly (the runtime form of @activity; prefer the macro). |
 
 ## Audience rules
 

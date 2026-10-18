@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "becky",
+      "body": "dog_small",
+      "color": "#f3e3c3"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1500,
+          "facing": 1
+        },
+        {
+          "id": "becky",
+          "x": 1750,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "b",
+          "at": 0.3,
+          "who": "kai",
+          "do": "bark"
+        }
+      ]
+    }
+  ]
+}

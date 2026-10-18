@@ -56,10 +56,10 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 
 | To add | Edit | Then |
 |---|---|---|
-| A body plan | `characters/bodies.json` | build; the move checks run on the new plan |
+| A body plan | `characters/bodies.json` | build; the move checks run on the new plan. A four-legged plan (`rig: "quadruped"`, STORY_SPEC 6.2) also needs `quad` (look), `grip` (mouth) and `moves` (generic move name → its own move) |
 | A character preset | a new `characters/presets/<id>.json` (role from `roles.json`) | build (validates the cast entry, records its good themes) |
 | A face or an appearance option | `faces.json` / `appearance.json` | build; new drawing needs renderer code in `engine/renderer/` first |
-| A move | `moves/<file>.json`, or `node tools/draft.mjs move "..." --reply r.txt --write` | build (checks it on every body plan); review the filmstrip |
+| A move | `moves/<file>.json`, or `node tools/draft.mjs move "..." --reply r.txt --write`; a move for another rig carries `"rig": "quadruped"` (dog moves live in `moves/quadruped.json`) | build (checks it on every body plan of its rig); review the filmstrip (`tools/move_sheet.mjs --rig quadruped --plans dog_small`) |
 | A theme or object | `world/themes.json` / `objects.json`, or `draft.mjs theme|object ... --write`, `svg_import.mjs ... --write` | build; review |
 | An FX preset or SFX key | `effects/*.json` (+ an SFX recipe in `tools/lib/synth.mjs`) | build; `npm run sfx` |
 | An activity or mood | `story/*.json` | build |

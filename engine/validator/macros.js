@@ -4,6 +4,7 @@
 //                    moves or places (a winner who isn't fighting, a finisher that isn't an attack)
 //   E_CAST_ABSENT / E_CAST_UNKNOWN  macro params naming characters not placed in the scene / not in the cast
 //   E_REF_ANCHOR     {"on": "<macro>.<anchor>"} with an anchor the macro does not have
+//   E_MACRO_RIG      a fight macro naming a quadruped as a fighter (validator/rigs.js)
 //   `to` on action beats (S6): only for walk, run, sneak, tiptoe and walk_together, toward something in the scene
 // The compiler may assume a story that passes these checks.
 
@@ -15,6 +16,7 @@ import { resolveLocation } from "../story/normalize.js";
 import { BEAT_MACROS } from "../story/macros/index.js";
 import { SCENE_MACROS } from "../story/macros/scenes.js";
 import { TO_MOVES } from "../story/destinations.js";
+import { macroRigIssues } from "./rigs.js";
 
 const issue = (code, path, message, fix) => ({ code, path, message, fix });
 
@@ -129,6 +131,7 @@ export function macroIssues(story, catalog, moves) {
     return new Set([...(loc?.set || []), ...(scene.set || [])].map((p) => p.id));
   };
   const ctx = { castIds, catalog, moves, objectIds };
+  const bodyOf = new Map(story.cast.map((c) => [c.id, c.body]));
   const schemaIssues = (params, schema, path) => checkValue(params ?? {}, schema, path).map((i) => ({ ...i, code: "E_MACRO_PARAM" }));
   story.scenes.forEach((scene, si) => {
     const pre = `scenes[${si}]`;
@@ -137,6 +140,7 @@ export function macroIssues(story, catalog, moves) {
       const found = schemaIssues(scene.params, MACRO_PARAMS[scene.macro], `${pre}.params`);
       if (found.length) return out.push(...found);
       sceneMacroMeaning(scene, pre, story, ctx, out);
+      if (scene.macro === "fight_card") scene.params.matchups.forEach((m, i) => out.push(...macroRigIssues({ macro: "fight", params: m }, `${pre}.params.matchups[${i}]`, catalog, bodyOf)));
       return;
     }
     anchorIssues(scene, si, out);
@@ -153,6 +157,7 @@ export function macroIssues(story, catalog, moves) {
       const found = schemaIssues(b.params, MACRO_PARAMS[b.macro], `${path}.params`);
       if (found.length) return out.push(...found);
       beatMacroMeaning(b, path, scene, ctx, out);
+      out.push(...macroRigIssues(b, path, catalog, bodyOf));
     });
   });
   return out;

@@ -41,6 +41,10 @@ const lengthOf = (m) => m.duration * (m.params?.cycles ?? (m.flags?.loop ? 2 : 1
 
 /** A move preview: the move on the viewer's body plan, with a target, partner, prop or set-up when it needs one. */
 export function moveScript(catalog, m, look) {
+  // A move plays on a body plan of its rig (a dog move on a dog, a humanoid move on a person; STORY_SPEC 6.2).
+  const rig = m.rig || "humanoid";
+  const rigOf = (n) => catalog.bodies[n || "stickman"]?.rig || "humanoid";
+  if (rig !== "any" && rigOf(look.body) !== rig) look = { ...look, body: rig === "humanoid" ? "stickman" : Object.keys(catalog.bodies).find((n) => rigOf(n) === rig) };
   const prop = holdFor(catalog, m.needsProp);
   const hero = prop ? { prop } : {};
   const dur = Math.max(3.5, lengthOf(m) + 1.6);
@@ -54,6 +58,9 @@ export function moveScript(catalog, m, look) {
   if (m.pair) {
     const give = m.name === "give" ? { prop: "flower" } : {};
     const beats = [{ ...beat, partner: "b" }];
+    // A partner move made for a dog gets a dog partner (pet_dog, hug_dog).
+    const partnerRig = catalog.moves.find((x) => x.name === m.pair.partnerMove)?.rig || "humanoid";
+    if (partnerRig !== "humanoid") return stage({ look, partner: { body: Object.keys(catalog.bodies).find((n) => rigOf(n) === partnerRig), color: "#f3e3c3" }, partnerX: X + 160, beats, duration: dur + 1.2 });
     if (m.name === "put_down") return stage({ look, partner: {}, partnerX: X + 200, beats: [{ id: "p", at: 0.3, who: "a", do: "carry", partner: "b" }, { ...beat, partner: "b", at: { after: "p", delay: 0.3 } }], duration: 6 });
     return stage({ look, hero: give, partner: {}, partnerX: X + 220, beats, duration: dur + 1.2 });
   }
@@ -68,6 +75,8 @@ export function moveScript(catalog, m, look) {
     drop_prop: () => stage({ look, hero: { prop: "sword" }, beats: [beat], duration: 3.5 }),
     pick_prop: () => stage({ look, beats: [{ id: "p", at: 0, who: "world", do: "spawn_prop", params: { prop: "sword", x: X + 50 } }, { ...beat, at: 0.5 }], duration: 3.5 }),
     spawn: () => stage({ look, heroHidden: true, beats: [beat], duration: 3.5 }),
+    spawn_dog: () => stage({ look, heroHidden: true, beats: [beat], duration: 3.5 }),
+    get_up_dog: () => stage({ look, beats: pre({ do: "lie_dog" }), duration: 4 }),
     throw_prop: () => stage({ look, hero: { prop: "sword" }, partner: {}, partnerX: X + 600, beats: [{ ...beat, target: "b", outcome: "hit", approach: "run" }], duration: 4 }),
   };
   if (special[m.name]) return special[m.name]();

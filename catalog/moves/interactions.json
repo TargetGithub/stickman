@@ -794,5 +794,122 @@
       { "t": 1, "pose": "walkB" }
     ],
     "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }]
+  },
+  {
+    "name": "pet_dog",
+    "description": "Squats by a dog and pats its head twice (partner: a dog).",
+    "tags": ["paired", "dog", "kind"],
+    "category": "interaction",
+    "duration": 2,
+    "face": "happy",
+    "pair": {
+      "partnerMove": "pet_dog_partner",
+      "gap": 150,
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [
+        { "t0": 0.42, "t1": 0.52, "from": "lead", "part": "rHand", "to": "top" },
+        { "t0": 0.62, "t1": 0.72, "from": "lead", "part": "rHand", "to": "top" }
+      ]
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 32, "head": 20, "lUA": 20, "lFA": 30, "rUA": 60, "rFA": 25, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+        "ease": "outQuad"
+      },
+      {
+        "t": 0.8,
+        "pose": { "lean": 32, "head": 20, "lUA": 20, "lFA": 30, "rUA": 60, "rFA": 25, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "hug_dog",
+    "description": "Squats and hugs a dog round its neck (partner: a dog).",
+    "tags": ["paired", "dog", "kind", "friendly"],
+    "category": "interaction",
+    "duration": 2.2,
+    "face": "love",
+    "pair": {
+      "partnerMove": "hug_dog_partner",
+      "gap": 120,
+      "leadFaces": "toward",
+      "partnerFaces": "toward",
+      "contacts": [
+        { "t0": 0.35, "t1": 0.8, "from": "lead", "part": "rHand", "to": "head" },
+        { "t0": 0.35, "t1": 0.8, "from": "lead", "part": "lHand", "to": "head" }
+      ]
+    },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 36, "head": 20, "lUA": 75, "lFA": 40, "rUA": 70, "rFA": 45, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+        "ease": "outQuad"
+      },
+      {
+        "t": 0.82,
+        "pose": { "lean": 36, "head": 20, "lUA": 75, "lFA": 40, "rUA": 70, "rFA": 45, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "lick_partner",
+    "description": "Bends down laughing while a dog jumps up to lick (partner of lick).",
+    "tags": ["paired", "partner", "dog"],
+    "category": "interaction",
+    "duration": 1.6,
+    "face": "laugh",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.3,
+        "pose": { "lean": 16, "head": 10, "lUA": 40, "lFA": 60, "rUA": 30, "rFA": 70, "lTH": 10, "lSH": 10, "rTH": -4, "rSH": 6 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.75,
+        "pose": { "lean": -6, "head": -14, "lUA": 60, "lFA": 90, "rUA": 50, "rFA": 90 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ]
+  },
+  {
+    "name": "hop_partner",
+    "description": "Hops and wobbles in surprise while a dog holds on to a trouser leg (partner of bite_hold).",
+    "tags": ["paired", "partner", "dog", "comic"],
+    "category": "interaction",
+    "duration": 1.6,
+    "face": "scared",
+    "flags": { "partner": true },
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.2,
+        "pose": { "lean": -10, "head": -10, "lUA": 120, "lFA": 30, "rUA": 140, "rFA": 20, "lTH": 40, "lSH": 60, "rTH": -6, "rSH": 4, "dy": -10 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.45,
+        "pose": { "lean": 8, "head": 4, "lUA": 100, "lFA": 40, "rUA": 120, "rFA": 30, "lTH": 50, "lSH": 70, "rTH": -10, "rSH": 4 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.7,
+        "pose": { "lean": -10, "head": -10, "lUA": 120, "lFA": 30, "rUA": 140, "rFA": 20, "lTH": 40, "lSH": 60, "rTH": -6, "rSH": 4, "dy": -10 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": { "lean": 0, "head": 6, "lUA": 60, "lFA": 90, "rUA": 70, "rFA": 80 } }
+    ],
+    "events": [{ "t": 0.2, "sfx": "gasp" }]
   }
 ]
+

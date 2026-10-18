@@ -7,7 +7,7 @@
 //   catalog             the default catalog, loaded once (fs in Node, fetch in the browser)
 
 /** Move files in catalog order (the order moves are listed and prepared in). */
-export const MOVE_FILES = ["movement", "unarmed", "armed", "defensive", "reactions", "emotes", "utility", "life", "interactions", "defeat"];
+export const MOVE_FILES = ["movement", "unarmed", "armed", "defensive", "reactions", "emotes", "utility", "life", "interactions", "defeat", "quadruped"];
 
 /** Every authored file the engine catalog is assembled from. */
 export const ENGINE_FILES = [

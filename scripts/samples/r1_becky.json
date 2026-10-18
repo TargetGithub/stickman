@@ -1,0 +1,75 @@
+{
+  "version": 2,
+  "meta": { "title": "Becky's Big Morning", "format": "landscape", "seed": 1001, "kind": "clip", "audience": "kids", "speakerNames": true, "autoCamera": "story", "style": "soft" },
+  "cast": [
+    { "id": "doopi", "name": "Doopi", "color": "#5ec8ff", "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#2a1a14", "mouthStyle": "cartoon", "accessories": { "headband": "#ff3b5c" } }, "voice": { "pitch": 1.0, "speed": 1.05, "timbre": "soft" } },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    { "id": "tony", "name": "Tony", "body": "kid", "scale": 0.8, "color": "#5b3fa8", "appearance": { "hair": "cap", "hairColor": "#e63946" }, "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" } },
+    { "id": "kony", "name": "Kony", "body": "kid", "scale": 0.8, "color": "#3f2a88", "appearance": { "hair": "cap", "hairColor": "#3a86ff" }, "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" } }
+  ],
+  "locations": [
+    { "id": "hut", "theme": "home_interior", "stageWidth": 2400 },
+    { "id": "park", "theme": "city_park", "stageWidth": 3600, "set": [{ "id": "tree1", "object": "tree_big", "x": 700, "layer": "back" }, { "id": "bench1", "object": "bench", "x": 2900, "layer": "back" }], "ambience": "park_birds" },
+    { "id": "street", "theme": "city_street", "stageWidth": 4200, "ambience": "city_traffic" }
+  ],
+  "scenes": [
+    {
+      "id": "wake", "location": "hut", "time": "dawn",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Becky's Big Morning", "subtitle": "A Doopi & Friends test" },
+      "music": { "mood": "playful", "volume": 0.3 },
+      "cast": [{ "id": "doopi", "x": 1000, "facing": 1 }, { "id": "becky", "x": 1500, "facing": -1, "hidden": true }],
+      "beats": [
+        { "id": "z", "at": 0, "who": "doopi", "do": "sleep", "face": "asleep" },
+        { "id": "n1", "at": 0.6, "who": "world", "do": "narrate", "params": { "text": "Doopi was fast asleep. Becky had other plans." } },
+        { "id": "in", "at": 2.2, "macro": "enter", "params": { "who": "becky", "side": "right", "to": { "x": 1250 }, "mode": "run" } },
+        { "id": "b1", "at": { "after": "in" }, "who": "becky", "do": "bark", "params": { "cycles": 2 }, "face": "happy" },
+        { "id": "b2", "at": { "after": "b1", "delay": 0.4 }, "who": "becky", "do": "jump", "params": { "height": 70 } },
+        { "id": "b3", "at": { "after": "b2" }, "who": "becky", "do": "bark", "params": { "cycles": 3 }, "say": "WOOF WOOF!", "bubble": "shout" },
+        { "id": "up", "at": { "after": "b3" }, "who": "doopi", "do": "get_up", "face": "tired" },
+        { "id": "d1", "at": { "after": "up" }, "macro": "dialogue", "params": { "lines": [["doopi", "Okay, okay! I'm up!", "laugh"], ["becky", "Woof!", "happy"]] } },
+        { "id": "l1", "at": { "after": "d1" }, "who": "becky", "do": "lick", "partner": "doopi" },
+        { "id": "out", "at": { "after": "l1", "delay": 0.3 }, "macro": "exit", "params": { "who": "becky", "side": "right", "mode": "run" } },
+        { "id": "out2", "at": { "with": "out", "delay": 0.5 }, "macro": "exit", "params": { "who": "doopi", "side": "right", "mode": "run" } }
+      ]
+    },
+    {
+      "id": "fetch", "location": "park", "time": "day", "transitionIn": { "type": "fade", "dur": 0.6 },
+      "music": { "mood": "happy", "volume": 0.3 },
+      "cast": [{ "id": "doopi", "x": 1100, "facing": 1, "face": "happy" }, { "id": "becky", "x": 1300, "facing": -1, "face": "happy" }],
+      "beats": [
+        { "id": "n2", "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "In the park, Becky's favourite game: fetch!" } },
+        { "id": "f", "at": 1.2, "macro": "activity", "params": { "name": "fetch", "with": ["doopi", "becky"], "reps": 2 } },
+        { "id": "p1", "at": { "after": "f" }, "who": "doopi", "do": "pet_dog", "partner": "becky", "say": "Good girl, Becky!" },
+        { "id": "h1", "at": { "after": "p1", "delay": 0.2 }, "who": "doopi", "do": "hug_dog", "partner": "becky" },
+        { "id": "r1", "at": { "after": "h1", "delay": 0.3 }, "who": "becky", "do": "roll_over" },
+        { "id": "c1", "at": { "after": "r1", "delay": 0.3 }, "who": "doopi", "do": "carry", "partner": "becky" },
+        { "id": "c2", "at": { "after": "c1" }, "who": "doopi", "do": "walk", "to": { "x": 1700 } },
+        { "id": "c3", "at": { "after": "c2" }, "who": "doopi", "do": "put_down", "partner": "becky" }
+      ]
+    },
+    {
+      "id": "trail", "location": "street", "time": "day", "transitionIn": { "type": "wipe", "dur": 0.6, "dir": "left" },
+      "music": { "mood": "mysterious", "volume": 0.3 },
+      "cast": [{ "id": "doopi", "x": 700, "facing": 1 }, { "id": "becky", "x": 900, "facing": 1 }, { "id": "tony", "x": 2500, "facing": -1, "hidden": true }, { "id": "kony", "x": 2650, "facing": -1, "hidden": true }],
+      "beats": [
+        { "id": "s0", "at": 0.3, "who": "becky", "do": "tilt_head", "face": "surprised" },
+        { "id": "s1", "at": { "after": "s0" }, "who": "becky", "do": "sneak", "to": { "x": 1700 }, "face": "determined" },
+        { "id": "s2", "at": { "with": "s1", "delay": 0.6 }, "who": "doopi", "do": "walk", "to": { "x": 1400 }, "say": "What did you find?", "bubble": "whisper" },
+        { "id": "e1", "at": { "after": "s1" }, "macro": "enter", "params": { "who": "tony", "side": "right", "mode": "run" } },
+        { "id": "e2", "at": { "with": "e1", "delay": 0.3 }, "macro": "enter", "params": { "who": "kony", "side": "right", "mode": "run" } },
+        { "id": "d2", "at": { "after": "e2" }, "macro": "dialogue", "params": { "lines": [["tony", "Hee hee! The shiny thing is ours!", "smug"], ["kony", "Uh oh. A doggy...", "scared"]] } },
+        { "id": "g1", "at": { "after": "d2" }, "who": "becky", "do": "growl", "say": "Grrr!", "bubble": "shout" },
+        { "id": "ch", "at": { "after": "g1" }, "macro": "chase", "params": { "runner": "tony", "chasers": ["becky"], "dur": 5, "obstacles": 1, "caught": true } },
+        { "id": "k1", "at": { "with": "ch", "delay": 0.4 }, "macro": "exit", "params": { "who": "kony", "side": "right", "mode": "run" } },
+        { "id": "t1", "at": { "after": "ch" }, "who": "tony", "do": "gasp", "say": "Let go! Let go!", "bubble": "shout" },
+        { "id": "t2", "at": { "after": "t1" }, "macro": "exit", "params": { "who": "tony", "side": "right", "mode": "run" } },
+        { "id": "w1", "at": { "after": "t2" }, "who": "becky", "do": "bark", "params": { "cycles": 2 }, "face": "happy" },
+        { "id": "w2", "at": { "with": "w1" }, "who": "doopi", "do": "run", "to": { "near": "becky", "gap": 140 }, "say": "Becky! Wait for me!" },
+        { "id": "w3", "at": { "after": "w2" }, "who": "doopi", "do": "pet_dog", "partner": "becky", "say": "My brave Becky!" },
+        { "id": "w4", "at": { "after": "w3" }, "who": "becky", "do": "beg", "face": "love" },
+        { "id": "end", "at": { "after": "w4", "delay": 0.4 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

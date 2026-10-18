@@ -165,5 +165,14 @@ const BUILDERS = { characters, looks, faces, moves, effects, sounds, places, obj
  * @returns {Array<{ id, title, intro, options?, cards }>}
  */
 export function buildSections(full, vocab) {
-  return SECTION_IDS.map((id) => ({ id, ...BUILDERS[id](full, vocab) }));
+  return SECTION_IDS.map((id) => {
+    const section = { id, ...BUILDERS[id](full, vocab) };
+    if (RIG_AWARE.includes(id)) return section;
+    // Fights, effects and macros need a person: a non-humanoid body plan (a dog) previews them on a stickman.
+    const person = (look) => ((full.catalog.bodies[look?.body]?.rig || "humanoid") === "humanoid" ? look : { ...look, body: "stickman" });
+    return { ...section, cards: section.cards.map((c) => (c.script ? { ...c, script: (look, ...rest) => c.script(person(look), ...rest) } : c)) };
+  });
 }
+
+/** Sections whose previews play on any rig (characters, looks and faces as they are; moves pick their rig's plan). */
+const RIG_AWARE = ["characters", "looks", "faces", "moves"];

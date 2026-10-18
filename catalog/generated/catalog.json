@@ -103,7 +103,22 @@
       "spinOut": { "lean": 0, "head": 10, "lUA": 100, "lFA": 0, "rUA": 100, "rFA": 0, "lTH": -6, "lSH": 10, "rTH": 6, "rSH": 10 },
       "hitLight": { "lean": -15, "head": -20, "lUA": 30, "lFA": 60, "rUA": 50, "rFA": 40, "lTH": -10, "lSH": 15, "rTH": 15, "rSH": 25 },
       "down": { "rot": -90, "lean": 0, "head": 0, "lUA": 20, "lFA": 10, "rUA": -15, "rFA": 10, "lTH": 8, "lSH": 4, "rTH": -4, "rSH": 10 },
-      "victory": { "lean": -5, "head": -10, "lUA": 20, "lFA": 120, "rUA": 135, "rFA": 20, "lTH": -15, "lSH": 5, "rTH": 15, "rSH": 5 }
+      "victory": { "lean": -5, "head": -10, "lUA": 20, "lFA": 120, "rUA": 135, "rFA": 20, "lTH": -15, "lSH": 5, "rTH": 15, "rSH": 5 },
+      "dog_stand": { "rot": 0, "lean": 0, "head": 0, "lUA": 4, "lFA": 0, "rUA": -4, "rFA": 0, "lTH": 16, "lSH": 28, "rTH": 10, "rSH": 24, "dx": 0, "dy": 0 },
+      "dog_sit": { "lean": 35, "head": -10, "lUA": -33, "lFA": 0, "rUA": -38, "rFA": 0, "lTH": 38, "lSH": 150, "rTH": 32, "rSH": 146 },
+      "dog_lie": { "lean": 0, "head": 22, "lUA": 82, "lFA": -6, "rUA": 76, "rFA": -4, "lTH": 84, "lSH": 165, "rTH": 78, "rSH": 160 },
+      "dog_crouch": { "lean": -6, "head": 8, "lUA": 24, "lFA": 30, "rUA": 18, "rFA": 34, "lTH": 46, "lSH": 78, "rTH": 40, "rSH": 74 },
+      "dog_walkA": { "lean": 0, "head": 0, "lUA": -16, "lFA": 0, "rUA": 20, "rFA": 0, "lTH": 30, "lSH": 30, "rTH": -6, "rSH": 18 },
+      "dog_walkPassA": { "lean": 0, "head": 3, "lUA": 4, "lFA": 40, "rUA": 2, "rFA": 0, "lTH": 14, "lSH": 26, "rTH": 14, "rSH": 50, "dy": -1 },
+      "dog_walkB": { "lean": 0, "head": 0, "lUA": 20, "lFA": 0, "rUA": -16, "rFA": 0, "lTH": -6, "lSH": 18, "rTH": 30, "rSH": 30 },
+      "dog_walkPassB": { "lean": 0, "head": 3, "lUA": 2, "lFA": 0, "rUA": 4, "rFA": 40, "lTH": 14, "lSH": 50, "rTH": 14, "rSH": 26, "dy": -1 },
+      "dog_trotA": { "lean": 1, "head": -2, "lUA": 26, "lFA": 10, "rUA": -18, "rFA": 36, "lTH": -8, "lSH": 30, "rTH": 34, "rSH": 24 },
+      "dog_trotB": { "lean": 1, "head": -2, "lUA": -18, "lFA": 36, "rUA": 26, "rFA": 10, "lTH": 34, "lSH": 24, "rTH": -8, "rSH": 30 },
+      "dog_gather": { "lean": 4, "head": 2, "lUA": -30, "lFA": 24, "rUA": -20, "rFA": 34, "lTH": 52, "lSH": 44, "rTH": 42, "rSH": 54 },
+      "dog_extend": { "lean": -3, "head": -8, "lUA": 56, "lFA": -8, "rUA": 46, "rFA": 4, "lTH": -32, "lSH": 8, "rTH": -20, "rSH": 20 },
+      "dog_bow": { "lean": -18, "head": -8, "lUA": 88, "lFA": 30, "rUA": 82, "rFA": 26, "lTH": 20, "lSH": 22, "rTH": 14, "rSH": 18 },
+      "dog_beg": { "lean": 68, "head": 62, "lUA": 12, "lFA": 82, "rUA": 6, "rFA": 76, "lTH": 2, "lSH": 118, "rTH": -4, "rSH": 114 },
+      "dog_belly_up": { "rot": 0, "lean": 0, "head": 40, "lUA": 165, "lFA": -40, "rUA": 155, "rFA": -30, "lTH": 170, "lSH": 40, "rTH": 160, "rSH": 50 }
     },
     "moves": [
       {
@@ -2280,6 +2295,7 @@
         "name": "wait",
         "description": "Holds the current pose for `seconds`; the way to pause.",
         "tags": ["pause", "timing"],
+        "rig": "any",
         "category": "utility",
         "duration": 1,
         "params": { "seconds": 1 },
@@ -2290,6 +2306,7 @@
         "name": "face",
         "description": "Turns to face the target or the other way, keeping the pose.",
         "tags": ["turn", "timing"],
+        "rig": "any",
         "category": "utility",
         "duration": 0.15,
         "flags": { "keepPose": true },
@@ -3893,6 +3910,122 @@
         "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }]
       },
       {
+        "name": "pet_dog",
+        "description": "Squats by a dog and pats its head twice (partner: a dog).",
+        "tags": ["paired", "dog", "kind"],
+        "category": "interaction",
+        "duration": 2,
+        "face": "happy",
+        "pair": {
+          "partnerMove": "pet_dog_partner",
+          "gap": 150,
+          "leadFaces": "toward",
+          "partnerFaces": "toward",
+          "contacts": [
+            { "t0": 0.42, "t1": 0.52, "from": "lead", "part": "rHand", "to": "top" },
+            { "t0": 0.62, "t1": 0.72, "from": "lead", "part": "rHand", "to": "top" }
+          ]
+        },
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+          {
+            "t": 0.3,
+            "pose": { "lean": 32, "head": 20, "lUA": 20, "lFA": 30, "rUA": 60, "rFA": 25, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+            "ease": "outQuad"
+          },
+          {
+            "t": 0.8,
+            "pose": { "lean": 32, "head": 20, "lUA": 20, "lFA": 30, "rUA": 60, "rFA": 25, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ]
+      },
+      {
+        "name": "hug_dog",
+        "description": "Squats and hugs a dog round its neck (partner: a dog).",
+        "tags": ["paired", "dog", "kind", "friendly"],
+        "category": "interaction",
+        "duration": 2.2,
+        "face": "love",
+        "pair": {
+          "partnerMove": "hug_dog_partner",
+          "gap": 120,
+          "leadFaces": "toward",
+          "partnerFaces": "toward",
+          "contacts": [
+            { "t0": 0.35, "t1": 0.8, "from": "lead", "part": "rHand", "to": "head" },
+            { "t0": 0.35, "t1": 0.8, "from": "lead", "part": "lHand", "to": "head" }
+          ]
+        },
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+          {
+            "t": 0.3,
+            "pose": { "lean": 36, "head": 20, "lUA": 75, "lFA": 40, "rUA": 70, "rFA": 45, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+            "ease": "outQuad"
+          },
+          {
+            "t": 0.82,
+            "pose": { "lean": 36, "head": 20, "lUA": 75, "lFA": 40, "rUA": 70, "rFA": 45, "lTH": 95, "lSH": 110, "rTH": 72, "rSH": 115, "dy": 30 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ]
+      },
+      {
+        "name": "lick_partner",
+        "description": "Bends down laughing while a dog jumps up to lick (partner of lick).",
+        "tags": ["paired", "partner", "dog"],
+        "category": "interaction",
+        "duration": 1.6,
+        "face": "laugh",
+        "flags": { "partner": true },
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+          {
+            "t": 0.3,
+            "pose": { "lean": 16, "head": 10, "lUA": 40, "lFA": 60, "rUA": 30, "rFA": 70, "lTH": 10, "lSH": 10, "rTH": -4, "rSH": 6 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.75,
+            "pose": { "lean": -6, "head": -14, "lUA": 60, "lFA": 90, "rUA": 50, "rFA": 90 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ]
+      },
+      {
+        "name": "hop_partner",
+        "description": "Hops and wobbles in surprise while a dog holds on to a trouser leg (partner of bite_hold).",
+        "tags": ["paired", "partner", "dog", "comic"],
+        "category": "interaction",
+        "duration": 1.6,
+        "face": "scared",
+        "flags": { "partner": true },
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "outQuad" },
+          {
+            "t": 0.2,
+            "pose": { "lean": -10, "head": -10, "lUA": 120, "lFA": 30, "rUA": 140, "rFA": 20, "lTH": 40, "lSH": 60, "rTH": -6, "rSH": 4, "dy": -10 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.45,
+            "pose": { "lean": 8, "head": 4, "lUA": 100, "lFA": 40, "rUA": 120, "rFA": 30, "lTH": 50, "lSH": 70, "rTH": -10, "rSH": 4 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.7,
+            "pose": { "lean": -10, "head": -10, "lUA": 120, "lFA": 30, "rUA": 140, "rFA": 20, "lTH": 40, "lSH": 60, "rTH": -6, "rSH": 4, "dy": -10 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": { "lean": 0, "head": 6, "lUA": 60, "lFA": 90, "rUA": 70, "rFA": 80 } }
+        ],
+        "events": [{ "t": 0.2, "sfx": "gasp" }]
+      },
+      {
         "name": "faint",
         "description": "Faints and drops to the floor; counts as defeated.",
         "tags": ["defeat", "kids"],
@@ -4048,6 +4181,729 @@
           { "t": 0.3, "fx": ["sparkle"] },
           { "t": 0.8, "fx": ["confetti"] }
         ]
+      },
+      {
+        "name": "idle_dog",
+        "description": "A dog stands and breathes, tail going; loops until the next beat.",
+        "tags": ["dog", "stance", "loop"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 2,
+        "flags": { "loop": true, "idle": true },
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.5, "pose": { "head": 4, "lean": -1, "dy": 1 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "walk_dog",
+        "description": "A dog walks forward on four legs; loops until `distance` px or `cycles`.",
+        "tags": ["dog", "travel", "loop"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.5,
+        "params": { "stride": 60 },
+        "flags": { "loop": true },
+        "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }],
+        "events": [{ "t": 0, "sfx": "footstep_soft" }, { "t": 0.5, "sfx": "footstep_soft" }],
+        "keys": [
+          { "t": 0, "pose": "dog_walkA" },
+          { "t": 0.25, "pose": "dog_walkPassA" },
+          { "t": 0.5, "pose": "dog_walkB" },
+          { "t": 0.75, "pose": "dog_walkPassB" },
+          { "t": 1, "pose": "dog_walkA" }
+        ]
+      },
+      {
+        "name": "trot",
+        "description": "A dog trots briskly, diagonal legs together; loops until `distance` px or `cycles`.",
+        "tags": ["dog", "travel", "loop"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.36,
+        "params": { "stride": 90 },
+        "flags": { "loop": true },
+        "root": [
+          { "t": 0, "dx": 0, "dy": 0, "ease": "outQuad" },
+          { "t": 0.25, "dx": "stride*0.25", "dy": -4, "ease": "inQuad" },
+          { "t": 0.5, "dx": "stride*0.5", "dy": 0, "ease": "outQuad" },
+          { "t": 0.75, "dx": "stride*0.75", "dy": -4, "ease": "inQuad" },
+          { "t": 1, "dx": "stride", "dy": 0 }
+        ],
+        "events": [{ "t": 0, "sfx": "footstep_soft" }, { "t": 0.5, "sfx": "footstep_soft" }],
+        "keys": [
+          { "t": 0, "pose": "dog_trotA", "ease": "inOutQuad" },
+          { "t": 0.5, "pose": "dog_trotB", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_trotA" }
+        ]
+      },
+      {
+        "name": "run_dog",
+        "description": "A dog gallops at full speed, legs gathering and stretching; loops until `distance` px or `cycles`.",
+        "tags": ["dog", "travel", "loop", "fast"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.4,
+        "params": { "stride": 220 },
+        "flags": { "loop": true },
+        "root": [
+          { "t": 0, "dx": 0, "dy": 0, "ease": "outQuad" },
+          { "t": 0.5, "dx": "stride*0.5", "dy": -14, "ease": "inQuad" },
+          { "t": 1, "dx": "stride", "dy": 0 }
+        ],
+        "events": [{ "t": 0, "sfx": "footstep_soft", "fx": ["dust_run"] }],
+        "keys": [
+          { "t": 0, "pose": "dog_gather", "ease": "inOutQuad" },
+          { "t": 0.5, "pose": "dog_extend", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_gather" }
+        ]
+      },
+      {
+        "name": "jump_dog",
+        "description": "A dog crouches and springs up (or forward with `travel`), landing on all fours.",
+        "tags": ["dog", "air", "travel"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.9,
+        "params": { "height": 90, "travel": 0 },
+        "flags": { "airborne": true },
+        "root": [
+          { "t": 0, "dx": 0, "dy": 0 },
+          { "t": 0.22, "dx": 0, "dy": 0, "ease": "outQuad" },
+          { "t": 0.48, "dx": "travel*0.5", "dy": "-height", "ease": "inQuad" },
+          { "t": 0.78, "dx": "travel", "dy": 0 },
+          { "t": 1, "dx": "travel", "dy": 0 }
+        ],
+        "events": [{ "t": 0.22, "sfx": "whoosh" }, { "t": 0.78, "sfx": "land", "fx": ["dust_land"] }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "outQuad" },
+          { "t": 0.2, "pose": "dog_crouch", "ease": "outCubic" },
+          { "t": 0.42, "pose": "dog_extend", "ease": "inOutQuad" },
+          { "t": 0.6, "pose": { "lean": -6, "lUA": 30, "rUA": 24, "lTH": 20, "rTH": 14 }, "ease": "outQuad" },
+          { "t": 0.8, "pose": "dog_crouch", "ease": "inOutQuad", "snapHard": true },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "sit_dog",
+        "description": "A dog sits down on its haunches and stays sitting.",
+        "tags": ["dog", "rest", "calm"],
+        "rig": "quadruped",
+        "category": "life",
+        "duration": 0.6,
+        "flags": { "hold": true },
+        "keys": [{ "t": 0, "pose": "dog_stand", "ease": "inOutQuad" }, { "t": 1, "pose": "dog_sit" }]
+      },
+      {
+        "name": "lie_dog",
+        "description": "A dog sits, then lies down with its front paws stretched out, and stays down.",
+        "tags": ["dog", "rest"],
+        "rig": "quadruped",
+        "category": "life",
+        "duration": 0.9,
+        "flags": { "hold": true },
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.4, "pose": "dog_sit", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_lie" }
+        ]
+      },
+      {
+        "name": "sleep_dog",
+        "description": "A dog curled up asleep, breathing slowly, with floating Zs; stays asleep.",
+        "tags": ["dog", "rest", "night"],
+        "rig": "quadruped",
+        "category": "life",
+        "duration": 3,
+        "face": "asleep",
+        "flags": { "hold": true },
+        "events": [{ "t": 0.1, "fx": ["zzz"] }, { "t": 0.45, "fx": ["zzz"] }, { "t": 0.8, "fx": ["zzz"] }],
+        "keys": [
+          { "t": 0, "pose": "dog_lie", "ease": "inOutQuad" },
+          { "t": 0.5, "pose": { "head": 28, "dy": 1 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_lie" }
+        ]
+      },
+      {
+        "name": "get_up_dog",
+        "description": "A dog gets up from sitting or lying onto all fours.",
+        "tags": ["dog", "recover"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.6,
+        "keys": [{ "t": 0, "pose": "dog_sit", "ease": "inOutQuad" }, { "t": 1, "pose": "dog_stand" }]
+      },
+      {
+        "name": "roll_over",
+        "description": "A dog lies down, rolls onto its back wiggling its paws in the air, and gets back up.",
+        "tags": ["dog", "trick", "happy"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 1.6,
+        "face": "laugh",
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.2, "pose": "dog_lie", "ease": "inOutQuad" },
+          { "t": 0.4, "pose": "dog_belly_up", "ease": "inOutQuad" },
+          { "t": 0.55, "pose": { "lUA": 145, "rUA": 170, "lTH": 155, "rTH": 175 }, "ease": "inOutQuad" },
+          { "t": 0.7, "pose": "dog_belly_up", "ease": "inOutQuad" },
+          { "t": 0.85, "pose": "dog_lie", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "bark",
+        "description": "A dog barks with its head up: once per cycle (`cycles`).",
+        "tags": ["dog", "sound", "loop"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 0.5,
+        "params": { "cycles": 1 },
+        "flags": { "loop": true },
+        "mouth": "shout",
+        "events": [{ "t": 0.3, "sfx": "bark" }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "outQuad" },
+          { "t": 0.3, "pose": { "head": -28, "lean": 6, "lUA": 10, "rUA": -10, "dy": -2 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "whimper",
+        "description": "A dog lowers its head and whimpers sadly.",
+        "tags": ["dog", "sad", "sound"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 1.2,
+        "face": "sad",
+        "events": [{ "t": 0.2, "sfx": "whimper" }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.3, "pose": { "head": 28, "lean": -6, "dy": 4, "lTH": 30, "rTH": 24 }, "ease": "inOutQuad" },
+          { "t": 0.8, "pose": { "head": 32, "lean": -6, "dy": 5, "lTH": 30, "rTH": 24 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "growl",
+        "description": "A dog lowers its front and growls softly (comic, never a real threat).",
+        "tags": ["dog", "angry", "sound"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 1,
+        "face": "angry",
+        "events": [{ "t": 0.15, "sfx": "growl_soft" }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          {
+            "t": 0.25,
+            "pose": { "lean": -8, "head": 10, "lUA": 30, "lFA": -10, "rUA": 22, "rFA": -8, "dy": 3 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.8,
+            "pose": { "lean": -9, "head": 12, "lUA": 30, "lFA": -10, "rUA": 22, "rFA": -8, "dy": 3 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "wag",
+        "description": "A happy dog wiggles its whole body and wags its tail; repeats `cycles` times.",
+        "tags": ["dog", "happy", "loop"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 0.8,
+        "params": { "cycles": 2 },
+        "flags": { "loop": true },
+        "face": "happy",
+        "events": [{ "t": 0, "sfx": "pant" }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.5, "pose": { "lean": 2, "head": -6, "dx": -3, "lTH": 20, "rTH": 6 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "sniff",
+        "description": "A dog walks slowly with its nose to the ground, following a trail; loops until `distance` px or `cycles`.",
+        "tags": ["dog", "travel", "loop", "search"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.9,
+        "params": { "stride": 36 },
+        "flags": { "loop": true },
+        "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": -6, "head": 46, "lUA": -14, "rUA": 18, "lTH": 28, "lSH": 30, "rTH": -4, "rSH": 18 }
+          },
+          {
+            "t": 0.25,
+            "pose": { "lean": -6, "head": 50, "lUA": 4, "lFA": 36, "rUA": 2, "lTH": 14, "rTH": 14, "rSH": 46 }
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": -6, "head": 46, "lUA": 18, "lFA": 0, "rUA": -14, "lTH": -4, "lSH": 18, "rTH": 28, "rSH": 30 }
+          },
+          {
+            "t": 0.75,
+            "pose": { "lean": -6, "head": 50, "lUA": 2, "rUA": 4, "rFA": 36, "lTH": 14, "lSH": 46, "rTH": 14 }
+          },
+          {
+            "t": 1,
+            "pose": { "lean": -6, "head": 46, "lUA": -14, "lFA": 0, "rUA": 18, "rFA": 0, "lTH": 28, "lSH": 30, "rTH": -4, "rSH": 18 }
+          }
+        ]
+      },
+      {
+        "name": "dig",
+        "description": "A dog digs with its front paws, dirt flying; repeats `cycles` times.",
+        "tags": ["dog", "play", "loop"],
+        "rig": "quadruped",
+        "category": "life",
+        "duration": 0.6,
+        "params": { "cycles": 3 },
+        "flags": { "loop": true },
+        "events": [{ "t": 0.25, "fx": ["dust_run"] }, { "t": 0.75, "fx": ["dust_run"] }],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": -14, "head": 30, "lUA": 40, "lFA": 60, "rUA": -10, "rFA": 10, "dy": 2 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": -14, "head": 30, "lUA": -10, "lFA": 10, "rUA": 40, "rFA": 60, "dy": 2 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": { "lean": -14, "head": 30, "lUA": 40, "lFA": 60, "rUA": -10, "rFA": 10, "dy": 2 } }
+        ]
+      },
+      {
+        "name": "play_bow",
+        "description": "A dog drops its front down with its tail up: let's play!",
+        "tags": ["dog", "play", "happy"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 1.2,
+        "face": "laugh",
+        "events": [{ "t": 0.35, "sfx": "bark_small" }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "outQuad" },
+          { "t": 0.3, "pose": "dog_bow", "ease": "inOutQuad" },
+          { "t": 0.8, "pose": { "lean": -16, "head": -12 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "beg",
+        "description": "A dog sits up on its hind legs with its front paws up, begging sweetly, then sits.",
+        "tags": ["dog", "trick", "cute"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 1.6,
+        "face": "love",
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.25, "pose": "dog_sit", "ease": "outQuad" },
+          { "t": 0.5, "pose": "dog_beg", "ease": "inOutQuad" },
+          { "t": 0.65, "pose": { "lUA": 20, "rUA": 14, "dy": -2 }, "ease": "inOutQuad" },
+          { "t": 0.8, "pose": "dog_beg", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_sit" }
+        ]
+      },
+      {
+        "name": "shake_off",
+        "description": "A dog shakes its whole body (drying off, or shaking off a surprise).",
+        "tags": ["dog", "comic"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 0.9,
+        "events": [{ "t": 0.1, "fx": ["sweat_drop"] }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "linear" },
+          { "t": 0.15, "pose": { "dx": -4, "lean": 4, "head": -6 }, "ease": "linear" },
+          { "t": 0.3, "pose": { "dx": 4, "lean": -4, "head": 6 }, "ease": "linear" },
+          { "t": 0.45, "pose": { "dx": -4, "lean": 4, "head": -6 }, "ease": "linear" },
+          { "t": 0.6, "pose": { "dx": 4, "lean": -4, "head": 6 }, "ease": "linear" },
+          { "t": 0.75, "pose": { "dx": -2, "lean": 2, "head": -2 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "tilt_head",
+        "description": "A dog raises and cocks its head, curious.",
+        "tags": ["dog", "curious"],
+        "rig": "quadruped",
+        "category": "emote",
+        "duration": 0.8,
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.3, "pose": { "head": -20, "lean": 3 }, "ease": "inOutQuad" },
+          { "t": 0.7, "pose": { "head": -22, "lean": 3 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "pounce",
+        "description": "A dog crouches, wiggles and leaps forward `travel` px onto a spot (playful, never an attack).",
+        "tags": ["dog", "play", "air"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.9,
+        "params": { "travel": 120 },
+        "flags": { "airborne": true },
+        "root": [
+          { "t": 0, "dx": 0, "dy": 0 },
+          { "t": 0.35, "dx": 0, "dy": 0, "ease": "outQuad" },
+          { "t": 0.55, "dx": "travel*0.6", "dy": -40, "ease": "inQuad" },
+          { "t": 0.75, "dx": "travel", "dy": 0 },
+          { "t": 1, "dx": "travel", "dy": 0 }
+        ],
+        "events": [{ "t": 0.35, "sfx": "whoosh" }, { "t": 0.75, "sfx": "land", "fx": ["dust_land"] }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          {
+            "t": 0.25,
+            "pose": { "lean": -10, "head": 8, "lUA": 30, "lFA": 40, "rUA": 24, "rFA": 44, "lTH": 46, "lSH": 78, "rTH": 40, "rSH": 74, "dy": 4 },
+            "ease": "inOutQuad"
+          },
+          { "t": 0.45, "pose": "dog_extend", "ease": "inOutQuad" },
+          { "t": 0.75, "pose": "dog_crouch", "ease": "inOutQuad", "snapHard": true },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "tug",
+        "description": "A dog pulls backward with its weight, tugging something in its mouth; repeats `cycles` times.",
+        "tags": ["dog", "play", "loop"],
+        "rig": "quadruped",
+        "category": "life",
+        "duration": 0.7,
+        "params": { "cycles": 2 },
+        "flags": { "loop": true },
+        "events": [{ "t": 0.2, "sfx": "growl_soft" }],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 4, "head": -6, "lUA": 34, "lFA": -6, "rUA": 28, "rFA": -4, "lTH": 36, "lSH": 60, "rTH": 30, "rSH": 56, "dx": -4, "dy": 3 },
+            "ease": "inOutQuad"
+          },
+          { "t": 0.5, "pose": { "lean": 2, "head": -2, "lUA": 28, "rUA": 22, "dx": -9, "dy": 4 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": { "lean": 4, "head": -6, "lUA": 34, "rUA": 28, "dx": -4, "dy": 3 } }
+        ]
+      },
+      {
+        "name": "dodge_dog",
+        "description": "A dog hops back out of the way.",
+        "tags": ["dog", "evade"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.5,
+        "params": { "distance_back": 80 },
+        "flags": { "invulnerable": [0.1, 0.6] },
+        "root": [
+          { "t": 0, "dx": 0, "dy": 0, "ease": "outCubic" },
+          { "t": 0.4, "dx": "-distance_back", "dy": 0, "ease": "outQuad" },
+          { "t": 1, "dx": "-distance_back", "dy": 0 }
+        ],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "outCubic" },
+          {
+            "t": 0.35,
+            "pose": { "lean": 10, "head": -10, "lUA": 30, "rUA": 24, "lTH": -10, "rTH": -16, "dy": -6 },
+            "ease": "linear"
+          },
+          { "t": 0.6, "pose": "dog_crouch", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "yelp",
+        "description": "A dog jumps with a startled yelp (bumped or surprised).",
+        "tags": ["dog", "hurt", "surprised"],
+        "rig": "quadruped",
+        "category": "reaction",
+        "duration": 0.5,
+        "mouth": "shout",
+        "root": [
+          { "t": 0, "dx": 0, "dy": 0, "ease": "outQuad" },
+          { "t": 0.3, "dx": -12, "dy": 0, "ease": "outQuad" },
+          { "t": 1, "dx": -14, "dy": 0 }
+        ],
+        "events": [{ "t": 0, "sfx": "bark_small" }],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 14, "head": -22, "lUA": 20, "rUA": 10, "lTH": -6, "rTH": -12, "dy": -12 },
+            "ease": "linear"
+          },
+          { "t": 0.35, "pose": { "lean": 10, "head": -16, "dy": -6 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "dizzy_dog",
+        "description": "A dog wobbles, dizzy, with stars spinning round its head.",
+        "tags": ["dog", "comic", "hurt"],
+        "rig": "quadruped",
+        "category": "reaction",
+        "duration": 1.6,
+        "mouth": "shout",
+        "events": [{ "t": 0, "fx": ["stars_dizzy"], "sfx": "boing" }, { "t": 0.5, "fx": ["stars_dizzy"] }],
+        "keys": [
+          { "t": 0, "pose": { "lean": 6, "dx": -5, "head": -6 }, "ease": "inOutQuad" },
+          { "t": 0.2, "pose": { "lean": -6, "dx": 5, "head": 8 }, "ease": "inOutQuad" },
+          { "t": 0.4, "pose": { "lean": 6, "dx": -5, "head": -6 }, "ease": "inOutQuad" },
+          { "t": 0.6, "pose": { "lean": -6, "dx": 5, "head": 8 }, "ease": "inOutQuad" },
+          { "t": 0.8, "pose": { "lean": 4, "dx": -3, "head": -4 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "faint_dog",
+        "description": "A dog wobbles and flops over with spinning stars (comic and harmless); stays down until it gets up.",
+        "tags": ["dog", "defeat", "kids"],
+        "rig": "quadruped",
+        "category": "defeat",
+        "duration": 1.6,
+        "face": "dizzy",
+        "flags": { "hold": true, "defeat": true },
+        "events": [{ "t": 0.05, "fx": ["stars_dizzy"], "sfx": "boing" }, { "t": 0.75, "sfx": "land", "fx": ["dust_land"] }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.2, "pose": { "lean": 6, "dx": -5, "head": -6 }, "ease": "inOutQuad" },
+          { "t": 0.4, "pose": { "lean": -6, "dx": 5, "head": 8 }, "ease": "inOutQuad" },
+          { "t": 0.75, "pose": "dog_lie", "ease": "inQuad" },
+          {
+            "t": 1,
+            "pose": { "head": 30, "lUA": 70, "rUA": 60, "lTH": 70, "rTH": 60, "lSH": 120, "rSH": 120 },
+            "ease": "outQuad"
+          }
+        ]
+      },
+      {
+        "name": "spawn_dog",
+        "description": "A dog appears out of nowhere (it starts hidden).",
+        "tags": ["dog", "magic", "enter"],
+        "rig": "quadruped",
+        "category": "utility",
+        "duration": 0.7,
+        "events": [{ "t": 0, "show": true, "sfx": "pop" }],
+        "keys": [
+          { "t": 0, "pose": "dog_crouch", "ease": "outBack" },
+          { "t": 0.6, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "despawn_dog",
+        "description": "A dog disappears from the stage and stays gone.",
+        "tags": ["dog", "magic", "exit"],
+        "rig": "quadruped",
+        "category": "utility",
+        "duration": 0.7,
+        "flags": { "hold": true },
+        "events": [{ "t": 0.45, "hide": true, "sfx": "pop" }],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.45, "pose": "dog_crouch", "ease": "linear" },
+          { "t": 1, "pose": "dog_crouch" }
+        ]
+      },
+      {
+        "name": "pet_dog_partner",
+        "description": "A dog sits and lifts its head to be patted, tail wagging (partner of pet_dog).",
+        "tags": ["paired", "partner", "dog"],
+        "rig": "quadruped",
+        "category": "interaction",
+        "duration": 2,
+        "face": "laugh",
+        "flags": { "partner": true },
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.3, "pose": "dog_sit", "ease": "inOutQuad" },
+          { "t": 0.5, "pose": { "head": -20 }, "ease": "inOutQuad" },
+          { "t": 0.8, "pose": { "head": -16 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "hug_dog_partner",
+        "description": "A dog sits and leans into a hug (partner of hug_dog).",
+        "tags": ["paired", "partner", "dog"],
+        "rig": "quadruped",
+        "category": "interaction",
+        "duration": 2.2,
+        "face": "love",
+        "flags": { "partner": true },
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.3, "pose": "dog_sit", "ease": "inOutQuad" },
+          { "t": 0.5, "pose": { "head": -26, "lean": 42 }, "ease": "inOutQuad" },
+          { "t": 0.82, "pose": { "head": -24, "lean": 40 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "lick",
+        "description": "A dog jumps up with its front paws on a friend and licks their face (partner plays lick_partner).",
+        "tags": ["paired", "dog", "happy"],
+        "rig": "quadruped",
+        "category": "interaction",
+        "duration": 1.6,
+        "face": "laugh",
+        "pair": { "partnerMove": "lick_partner", "gap": 100, "leadFaces": "toward", "partnerFaces": "toward", "contacts": [] },
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          {
+            "t": 0.25,
+            "pose": { "lean": 55, "head": -30, "lUA": 40, "lFA": 60, "rUA": 30, "rFA": 70, "lTH": 10, "lSH": 40, "rTH": 4, "rSH": 36 },
+            "ease": "outQuad"
+          },
+          { "t": 0.45, "pose": { "lean": 58, "head": -40 }, "ease": "inOutQuad" },
+          { "t": 0.6, "pose": { "lean": 55, "head": -28 }, "ease": "inOutQuad" },
+          { "t": 0.75, "pose": { "lean": 58, "head": -40 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ],
+        "events": [{ "t": 0.3, "sfx": "pant" }]
+      },
+      {
+        "name": "carried_dog",
+        "description": "A dog carried in someone's arms, legs dangling, happy (partner of carry).",
+        "tags": ["paired", "partner", "dog", "carry"],
+        "rig": "quadruped",
+        "category": "interaction",
+        "duration": 1.4,
+        "face": "happy",
+        "flags": { "partner": true, "hold": true },
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          {
+            "t": 0.45,
+            "pose": { "lean": 8, "head": -10, "lUA": 20, "lFA": 30, "rUA": 14, "rFA": 36, "lTH": 10, "lSH": 20, "rTH": 4, "rSH": 26, "dx": -19 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 8, "head": -10, "lUA": 20, "lFA": 30, "rUA": 14, "rFA": 36, "lTH": 10, "lSH": 20, "rTH": 4, "rSH": 26, "dx": -19 }
+          }
+        ]
+      },
+      {
+        "name": "set_down_dog",
+        "description": "A dog is set down on its four paws (partner of put_down).",
+        "tags": ["paired", "partner", "dog", "carry"],
+        "rig": "quadruped",
+        "category": "interaction",
+        "duration": 1.1,
+        "flags": { "partner": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 8, "head": -10, "lUA": 20, "lFA": 30, "rUA": 14, "rFA": 36, "lTH": 10, "lSH": 20, "rTH": 4, "rSH": 26, "dx": -19 },
+            "ease": "inOutQuad"
+          },
+          { "t": 0.6, "pose": "dog_crouch", "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
+        "name": "pick_dog",
+        "description": "A dog lowers its head and picks up a prop from the floor in its mouth.",
+        "tags": ["dog", "prop"],
+        "rig": "quadruped",
+        "category": "utility",
+        "duration": 0.8,
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "outQuad" },
+          {
+            "t": 0.45,
+            "pose": { "lean": -12, "head": 50, "lUA": 14, "rUA": 10, "lTH": 24, "rTH": 18 },
+            "ease": "linear"
+          },
+          {
+            "t": 0.6,
+            "pose": { "lean": -12, "head": 50, "lUA": 14, "rUA": 10, "lTH": 24, "rTH": 18 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "dog_stand" }
+        ],
+        "events": [{ "t": 0.5, "pick": true, "sfx": "pop" }]
+      },
+      {
+        "name": "drop_dog",
+        "description": "A dog lowers its head and lets go of what it holds in its mouth.",
+        "tags": ["dog", "prop"],
+        "rig": "quadruped",
+        "category": "utility",
+        "duration": 0.7,
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "outQuad" },
+          { "t": 0.4, "pose": { "lean": -10, "head": 42 }, "ease": "linear" },
+          { "t": 1, "pose": "dog_stand" }
+        ],
+        "events": [{ "t": 0.4, "drop": true, "sfx": "land" }]
+      },
+      {
+        "name": "catch_mouth",
+        "description": "A dog dips its head to snap up a ball in its mouth.",
+        "tags": ["dog", "ball", "play"],
+        "rig": "quadruped",
+        "category": "life",
+        "duration": 0.6,
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "outQuad" },
+          {
+            "t": 0.45,
+            "pose": { "lean": -12, "head": 52, "lUA": 16, "rUA": 12, "lTH": 26, "rTH": 20 },
+            "ease": "linear"
+          },
+          { "t": 1, "pose": { "head": -6 } }
+        ],
+        "events": [{ "t": 0.45, "contact": true }]
+      },
+      {
+        "name": "drop_ball",
+        "description": "A dog sits up proudly and gives back the ball in its mouth.",
+        "tags": ["dog", "ball", "play"],
+        "rig": "quadruped",
+        "category": "life",
+        "duration": 0.9,
+        "face": "happy",
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.4, "pose": "dog_sit", "ease": "inOutQuad" },
+          { "t": 0.6, "pose": { "head": -24 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ],
+        "events": [{ "t": 0.6, "contact": true }]
+      },
+      {
+        "name": "bite_hold",
+        "description": "A dog grabs a runaway's trouser leg and tugs, stopping them (comic, no harm; partner plays hop_partner).",
+        "tags": ["paired", "dog", "comic", "catch"],
+        "rig": "quadruped",
+        "category": "interaction",
+        "duration": 1.6,
+        "face": "determined",
+        "pair": { "partnerMove": "hop_partner", "gap": 70, "leadFaces": "toward", "partnerFaces": "away", "contacts": [] },
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          {
+            "t": 0.2,
+            "pose": { "lean": 4, "head": 20, "lUA": 34, "lFA": -6, "rUA": 28, "rFA": -4, "lTH": 36, "lSH": 60, "rTH": 30, "rSH": 56, "dy": 3 },
+            "ease": "inOutQuad"
+          },
+          { "t": 0.45, "pose": { "lean": 2, "head": 14, "dx": -8 }, "ease": "inOutQuad" },
+          { "t": 0.7, "pose": { "lean": 4, "head": 20, "dx": -3 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": { "lean": 2, "head": 14, "dx": -8 } }
+        ],
+        "events": [{ "t": 0.2, "sfx": "growl_soft" }]
       }
     ],
     "props": {
@@ -5221,7 +6077,7 @@
       }
     },
     "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"],
-    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "card_whoosh", "bonk", "pow"],
+    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow"],
     "blocklist": ["blood", "bloody", "gore", "gory", "suicide", "kill yourself", "kys"],
     "softWords": [
       { "word": "kill", "alt": "defeat", "audiences": ["kids", "general"] },
@@ -5672,9 +6528,21 @@
         "dims": { "headR": 21, "neck": 7, "torso": 72, "upperArm": 36, "forearm": 34, "thigh": 44, "shin": 42, "lineWidth": 8 },
         "appearance": { "brows": "thick", "eyes": "sleepy", "hair": "bob", "hairColor": "#e8e8e8" },
         "avoid": ["flying_kick", "spinning_kick", "axe_kick", "flurry"]
+      },
+      "dog_small": {
+        "description": "A small four-legged puppy (back at a stickman's knee) with floppy ears and a wagging tail; never fights.",
+        "tags": ["animal", "dog", "pet", "quadruped"],
+        "rig": "quadruped",
+        "draw": "quad",
+        "bodyWidth": 14,
+        "dims": { "headR": 17, "neck": 8, "torso": 38, "upperArm": 16, "forearm": 15, "thigh": 17, "shin": 16, "lineWidth": 7 },
+        "quad": { "ears": "floppy", "earColor": "#8a5a3c", "tail": "wag", "patch": "#c4935f", "belly": "#fff6e6", "collar": "#e63946", "bell": "#f2c94c" },
+        "appearance": { "eyes": "big" },
+        "moves": { "idle": "idle_dog", "walk": "walk_dog", "run": "run_dog", "jump": "jump_dog", "sneak": "sniff", "tiptoe": "sniff", "sit": "sit_dog", "lie_down": "lie_dog", "sleep": "sleep_dog", "get_up": "get_up_dog", "stand_up": "get_up_dog", "kneel": "sit_dog", "spawn": "spawn_dog", "despawn": "despawn_dog", "wave": "wag", "cheer": "wag", "clap": "wag", "laugh": "wag", "victory": "wag", "jump_joy": "jump_dog", "nod": "tilt_head", "shrug": "tilt_head", "look_around": "tilt_head", "peek": "tilt_head", "shake_head": "shake_off", "facepalm": "shake_off", "talk": "bark", "point": "bark", "taunt": "growl", "cry": "whimper", "sigh": "whimper", "cower": "whimper", "gasp": "yelp", "hit_light": "yelp", "hit_heavy": "yelp", "hit_launch": "yelp", "stagger": "yelp", "knockdown": "faint_dog", "ko_fall": "faint_dog", "ko_spin": "faint_dog", "dizzy": "dizzy_dog", "faint": "faint_dog", "dodge_back": "dodge_dog", "duck": "dodge_dog", "hide": "lie_dog", "carried": "carried_dog", "set_down": "set_down_dog", "pick_prop": "pick_dog", "drop_prop": "drop_dog", "catch_ball": "catch_mouth", "dash": "pounce" },
+        "grip": { "offset": [20, 4], "angle": 0 }
       }
     },
-    "bodyNames": ["stickman", "buddy", "kid", "bulky", "slim", "elder"],
+    "bodyNames": ["stickman", "buddy", "kid", "bulky", "slim", "elder", "dog_small"],
     "appearance": {
       "eyes": ["dot", "big", "oval", "sleepy", "visor", "glasses"],
       "brows": ["none", "thin", "thick"],
@@ -5803,9 +6671,21 @@
           { "moves": ["comfort"], "partner": 1, "wait": 0.3, "face": "sad" },
           { "moves": [], "face": "cry", "fx": "tears" }
         ]
+      },
+      "fetch": {
+        "description": "A friend throws a ball and a dog fetches it back in its mouth; ends laughing.",
+        "tags": ["dog", "play", "two"],
+        "runner": "fetch",
+        "players": [2, 2],
+        "spacing": 110,
+        "facing": "center",
+        "reps": 3,
+        "ending": "laugh",
+        "roles": [{ "face": "happy" }, { "face": "happy" }],
+        "fetch": { "ball": "tennis_ball", "distance": 420, "flight": 0.9 }
       }
     },
-    "activityNames": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"],
+    "activityNames": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"],
     "macroLines": {
       "rivals": [
         ["You can't beat me!", "We'll see about that!"],
@@ -6049,6 +6929,21 @@
   },
   "presets": [
     {
+      "id": "becky",
+      "name": "Becky",
+      "description": "A brave little cream puppy with a brown eye patch and a red collar; sniffs out trouble and barks first.",
+      "role": "animal-like",
+      "tags": ["dog", "pet", "brave", "cute"],
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "dog_small",
+        "color": "#f3e3c3",
+        "appearance": { "eyes": "big" },
+        "voice": { "pitch": 1.4, "timbre": "bark" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+    },
+    {
       "id": "bo",
       "name": "Grandpa Bo",
       "description": "A kind grandpa who runs the corner shop; a friendly face in town scenes.",
@@ -6276,6 +7171,11 @@
     { "name": "gasp", "category": "voice", "description": "A sharp gasp of surprise." },
     { "name": "laugh_small", "category": "voice", "description": "A little laugh." },
     { "name": "cry_small", "category": "voice", "description": "A little sob." },
+    { "name": "bark", "category": "voice", "description": "A dog's woof: a short falling bark." },
+    { "name": "bark_small", "category": "voice", "description": "A small puppy's yap." },
+    { "name": "whimper", "category": "voice", "description": "A dog's sad little whimper." },
+    { "name": "growl_soft", "category": "voice", "description": "A soft, comic dog growl." },
+    { "name": "pant", "category": "voice", "description": "A dog's happy panting." },
     { "name": "card_whoosh", "category": "story", "description": "A whoosh for title and chapter cards." },
     { "name": "bonk", "category": "comic", "description": "A cartoon bonk (kids impact word)." },
     { "name": "pow", "category": "comic", "description": "A cartoon pow (kids impact word)." }
@@ -6291,6 +7191,7 @@
   "voices": [
     { "name": "soft", "description": "A gentle, warm voice (the default)." },
     { "name": "squeaky", "description": "A high, squeaky voice: buddies, small or comic characters." },
+    { "name": "bark", "description": "A dog's voice: every syllable is a little woof." },
     { "name": "deep", "description": "A low, deep voice: big characters, villains, elders." },
     { "name": "robot", "description": "A buzzy robot voice." }
   ],
@@ -6704,6 +7605,9 @@
       "E_TRANSITION": { "meaning": "a card without text or an iris without a target", "fix": "Give the card text, the iris a target." },
       "E_SCENE_EMPTY": { "meaning": "a scene with no beats and no duration", "fix": "Add beats or a duration." },
       "E_DEFEAT_STYLE": { "meaning": "a defeat style the audience does not allow (ghost is general only)", "fix": "Kids: ko, faint, vanish, captured or flee." },
+      "E_MOVE_RIG": { "meaning": "a move the character's rig cannot play (a jab for a dog, a dog move for a stickman)", "fix": "Use a move for that rig; generic walk, run, idle, sit and jump work for every rig." },
+      "E_TARGET_RIG": { "meaning": "an attack aimed at an animal (a quadruped)", "fix": "Animals never take hits: target another character." },
+      "E_MACRO_RIG": { "meaning": "a fight macro names an animal (a quadruped) as a fighter", "fix": "Leave the animal out of @fight, @gauntlet and @brawl; give it its own beats." },
       "E_REF_CHARACTER": { "meaning": "no such character", "fix": "Use an id from the cast, or world." },
       "E_REF_BEAT": { "meaning": "no such beat (or one in another scene)", "fix": "Point at a beat id in the same scene." },
       "E_REF_DUPLICATE": { "meaning": "an id used twice (beat ids are unique across the whole story)", "fix": "Make ids unique (prefix the scene id)." },

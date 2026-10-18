@@ -8,7 +8,7 @@ import { mulberry32, hash32 } from "../math.js";
 const VOWELS = /[aeiouy]+/gi;
 const VOWEL_OF = { a: "a", e: "e", i: "i", o: "o", u: "u", y: "i" };
 export const SPEECH_VOWELS = ["a", "e", "i", "o", "u"];
-export const TIMBRES = ["soft", "squeaky", "deep", "robot"];
+export const TIMBRES = ["soft", "squeaky", "deep", "robot", "bark"];
 
 /** Reading time for a bubble in story scripts: 1.2 s + 0.06 s per character, at least 1.5 s. */
 export function readingTime(text) {

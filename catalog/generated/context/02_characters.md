@@ -13,6 +13,7 @@ A cast entry: `{ "id", "name", "body", "color", "scale", "hp", "prop", "style", 
 | bulky | 218 | brows=thick | A big, broad, strong figure with a filled chest and thick brows. |
 | slim | 248 | eyes=oval | A tall, thin figure with oval eyes; sneaky or elegant. |
 | elder | 207 | brows=thick eyes=sleepy hair=bob hairColor=#e8e8e8 | An older figure with a stoop, sleepy eyes and white hair. |
+| dog_small | 113 | eyes=big | A small four-legged puppy (back at a stickman's knee) with floppy ears and a wagging tail; never fights. |
 
 ## Appearance (`appearance`)
 
@@ -50,7 +51,7 @@ Not together: hat + crown, hat + hair:cap, crown + hair:cap, mask + eyes:visor, 
 
 ## Voices (`voice`)
 
-pitch 0.5-2, speed 0.7-1.4, timbre: soft = a gentle, warm voice (the default); squeaky = a high, squeaky voice: buddies, small or comic characters; deep = a low, deep voice: big characters, villains, elders; robot = a buzzy robot voice.
+pitch 0.5-2, speed 0.7-1.4, timbre: soft = a gentle, warm voice (the default); squeaky = a high, squeaky voice: buddies, small or comic characters; bark = a dog's voice: every syllable is a little woof; deep = a low, deep voice: big characters, villains, elders; robot = a buzzy robot voice.
 
 ## Ready-made characters (presets)
 
@@ -58,6 +59,7 @@ Use them as they are (a cast entry with that id, name, body, color and the other
 
 | id | name | role | body | color | other cast fields | hard to see on |
 |---|---|---|---|---|---|---|
+| becky | Becky | animal-like | dog_small | #f3e3c3 | `{"appearance":{"eyes":"big"},"voice":{"pitch":1.4,"timbre":"bark"}}` | white_stage, desert_noon, snow_mountain |
 | bo | Grandpa Bo | family | elder | #c2185b | `{"appearance":{"outfit":"coat","outfitColor":"#f2c14e","eyes":"glasses"},"voice":{"pitch":0.9,"timbre":"soft"}}` | city_street |
 | brute | Brute | henchman | bulky | #8d5a3b | `{"scale":1.3,"hp":160,"voice":{"pitch":0.6,"speed":0.9,"timbre":"deep"}}` | city_street |
 | crowd_adult | Passer-by | crowd | stickman | #8d99ae | - | city_park, city_street, home_interior |

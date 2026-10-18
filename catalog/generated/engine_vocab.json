@@ -12,7 +12,7 @@
     "hair": ["none", "spiky", "bob", "ponytail", "cap"],
     "outfit": ["none", "shirt", "coat", "armor", "robe"],
     "accessory": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"],
-    "timbre": ["soft", "squeaky", "deep", "robot"],
+    "timbre": ["soft", "squeaky", "deep", "robot", "bark"],
     "time": ["dawn", "day", "dusk", "night"],
     "weather": ["clear", "cloudy", "rain", "snow", "wind", "fog"],
     "layer": ["back", "mid", "front"],
@@ -27,7 +27,7 @@
     "beatMacro": ["dialogue", "activity", "walk_together", "travel", "enter", "exit", "fight", "gauntlet", "brawl", "chase", "defeat", "grief"],
     "sceneMacro": ["fight_card", "montage"],
     "defeatStyle": ["ko", "faint", "vanish", "ghost", "captured", "flee"],
-    "activity": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"],
+    "activity": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"],
     "ending": ["win", "miss", "laugh", "interrupted"],
     "intensity": ["low", "medium", "high"],
     "fightStyle": ["even", "dominant", "comeback", "close"],
@@ -40,7 +40,7 @@
     "kids": ["ko", "faint", "vanish", "captured", "flee"],
     "general": ["ko", "faint", "vanish", "ghost", "captured", "flee"]
   },
-  "voice": { "pitch": [0.5, 2], "speed": [0.7, 1.4], "timbre": ["soft", "squeaky", "deep", "robot"] },
+  "voice": { "pitch": [0.5, 2], "speed": [0.7, 1.4], "timbre": ["soft", "squeaky", "deep", "robot", "bark"] },
   "worldCommands": {
     "shake": { "v1": true, "params": { "preset": { "enum": ["small", "med", "big"], "required": true } } },
     "slowmo": {
@@ -209,7 +209,7 @@
       "v1": false,
       "params": {
         "name": {
-          "enum": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"],
+          "enum": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"],
           "required": true
         },
         "with": { "characters": 4, "required": true },
@@ -246,7 +246,7 @@
       "additionalProperties": false,
       "properties": {
         "name": {
-          "enum": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort"]
+          "enum": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"]
         },
         "with": {
           "type": "array",
@@ -595,5 +595,5 @@
     "v1": { "scriptBytes": 524288, "beats": 600, "characters": 6, "particles": 2000, "say": 40, "textPop": 16, "caption": 80, "minDuration": 3, "maxDuration": 900, "maxApproach": 3, "queueDriftWarn": 0.5 },
     "v2": { "scriptBytes": 524288, "maxDuration": 900, "sceneMax": 300, "scenes": 40, "cast": 16, "onStage": 8, "extras": 12, "locations": 20, "beatsAuthored": 600, "beatsCompiled": 4000, "beatsPerScene": 200, "storyMin": 300, "fightMin": 180 }
   },
-  "codes": ["E_ACTIVITY_OBJECT", "E_APPEARANCE", "E_BODY_UNKNOWN", "E_CAMERA_FIELD", "E_CAMERA_START", "E_CAST_ABSENT", "E_CAST_UNKNOWN", "E_DEFEAT_STYLE", "E_FACE_UNKNOWN", "E_FX_UNKNOWN", "E_LOCATION_UNKNOWN", "E_MACRO_PARAM", "E_MACRO_UNKNOWN", "E_MOVE_APPROACH", "E_MOVE_NEEDS_PROP", "E_MOVE_OUTCOME", "E_MOVE_PARAM", "E_MOVE_TARGET", "E_MOVE_UNKNOWN", "E_OBJECT_STATE", "E_OBJECT_UNKNOWN", "E_PARTNER_MISSING", "E_PARTNER_SELF", "E_PROP_UNKNOWN", "E_REF_ANCHOR", "E_REF_BEAT", "E_REF_CHARACTER", "E_REF_CYCLE", "E_REF_DUPLICATE", "E_SCENE_EMPTY", "E_SCHEMA_ENUM", "E_SCHEMA_FORM", "E_SCHEMA_PATTERN", "E_SCHEMA_RANGE", "E_SCHEMA_REQUIRED", "E_SCHEMA_SIZE", "E_SCHEMA_TYPE", "E_SCHEMA_UNKNOWN_FIELD", "E_SIM_APPROACH", "E_SIM_DEAD_ACTOR", "E_SIM_DURATION", "E_SIM_OBJECT_OFFSTAGE", "E_SIM_PARTNER_UNREACHABLE", "E_SIM_SCENE_LENGTH", "E_SIM_UNREACHABLE", "E_SIM_UNRESOLVED", "E_TEXT_BLOCKED", "E_TEXT_GLYPH", "E_TEXT_LENGTH", "E_THEME_UNKNOWN", "E_TRANSITION", "E_VERSION", "E_WORLD_FIELD", "E_WORLD_PARAM", "E_WORLD_UNKNOWN", "W_ATTACK_NO_TARGET", "W_CAST_UNUSED", "W_CONTRAST", "W_DIALOGUE_FAST", "W_FIGHT_SHORT", "W_HEAVY_NO_EMPHASIS", "W_HIDDEN", "W_KIDS_NO_HOPE", "W_NO_ENDING", "W_NO_IMPACT", "W_NO_PROP", "W_PACING_GAP", "W_PACING_MONOTONE", "W_PARTICLE_BUDGET", "W_QUEUE_DRIFT", "W_REACH", "W_SCENE_STATIC", "W_STORY_SHORT", "W_TEXT_SOFT"]
+  "codes": ["E_ACTIVITY_OBJECT", "E_APPEARANCE", "E_BODY_UNKNOWN", "E_CAMERA_FIELD", "E_CAMERA_START", "E_CAST_ABSENT", "E_CAST_UNKNOWN", "E_DEFEAT_STYLE", "E_FACE_UNKNOWN", "E_FX_UNKNOWN", "E_LOCATION_UNKNOWN", "E_MACRO_PARAM", "E_MACRO_RIG", "E_MACRO_UNKNOWN", "E_MOVE_APPROACH", "E_MOVE_NEEDS_PROP", "E_MOVE_OUTCOME", "E_MOVE_PARAM", "E_MOVE_RIG", "E_MOVE_TARGET", "E_MOVE_UNKNOWN", "E_OBJECT_STATE", "E_OBJECT_UNKNOWN", "E_PARTNER_MISSING", "E_PARTNER_SELF", "E_PROP_UNKNOWN", "E_REF_ANCHOR", "E_REF_BEAT", "E_REF_CHARACTER", "E_REF_CYCLE", "E_REF_DUPLICATE", "E_SCENE_EMPTY", "E_SCHEMA_ENUM", "E_SCHEMA_FORM", "E_SCHEMA_PATTERN", "E_SCHEMA_RANGE", "E_SCHEMA_REQUIRED", "E_SCHEMA_SIZE", "E_SCHEMA_TYPE", "E_SCHEMA_UNKNOWN_FIELD", "E_SIM_APPROACH", "E_SIM_DEAD_ACTOR", "E_SIM_DURATION", "E_SIM_OBJECT_OFFSTAGE", "E_SIM_PARTNER_UNREACHABLE", "E_SIM_SCENE_LENGTH", "E_SIM_UNREACHABLE", "E_SIM_UNRESOLVED", "E_TARGET_RIG", "E_TEXT_BLOCKED", "E_TEXT_GLYPH", "E_TEXT_LENGTH", "E_THEME_UNKNOWN", "E_TRANSITION", "E_VERSION", "E_WORLD_FIELD", "E_WORLD_PARAM", "E_WORLD_UNKNOWN", "W_ATTACK_NO_TARGET", "W_CAST_UNUSED", "W_CONTRAST", "W_DIALOGUE_FAST", "W_FIGHT_SHORT", "W_HEAVY_NO_EMPHASIS", "W_HIDDEN", "W_KIDS_NO_HOPE", "W_NO_ENDING", "W_NO_IMPACT", "W_NO_PROP", "W_PACING_GAP", "W_PACING_MONOTONE", "W_PARTICLE_BUDGET", "W_QUEUE_DRIFT", "W_REACH", "W_SCENE_STATIC", "W_STORY_SHORT", "W_TEXT_SOFT"]
 }
