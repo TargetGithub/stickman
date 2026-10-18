@@ -3,7 +3,7 @@
 Everything the engine can show, in one folder: characters, moves, effects, places, objects, activities, music moods, examples and the descriptions of the engine's own vocabularies. Three consumers read it (docs/CATALOG_SPEC.md):
 
 - **the engine**, through the injected catalog object: `import { catalog } from "../catalog/index.js"` then `createEngine({ catalog })` (the engine never imports this folder);
-- **web pages and tools**, through `catalog/index.js` or one file, `generated/catalog.json`;
+- **web pages and tools**, through `catalog/index.js` or one file, `generated/catalog.json` (the showcase page, `/web/showcase.html`, shows every entry with a live preview);
 - **AI tools** (Claude Desktop Projects, any chat with project files), through the context pack in `generated/context/`.
 
 ## The one rule: authored or generated

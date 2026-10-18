@@ -410,7 +410,8 @@ Description and tag fields pass through; prepared moves (`prepareCatalog`) drop 
 | `tools/lib/lean_prompts.mjs` | lean copy-paste prompts for chat projects with the pack: the pack line and version, files to read, reminders, the full prompts' task text (`manual.mjs --lean`) |
 | `tools/lib/catalog_write.mjs` | adds a reviewed draft to `catalog/` (`draft.mjs --write`, `svg_import.mjs --write`) |
 | `tools/lib/json_format.mjs`, `zip.mjs` | stable JSON formatting for catalog files; a small zip writer for `catalog:pack` |
-| `tools/migrate_catalog.mjs` | one-time converter `data/*.js` → `catalog/*.json` (kept with `data/` until C5) |
+| `tools/catalog_media.mjs` | `npm run catalog:media`: music mood clips for the showcase (`out/catalog_media/`) |
+| `web/showcase.html`, `web/showcase.js`, `web/lib/showcase_data.js`, `showcase_scripts.js`, `scaled_ctx.js` | the showcase page: cards from `catalog/generated/catalog.json`, preview stories run through the public engine, drawn at thumbnail size (a context that scales `setTransform`), lazy and paused off-screen |
 | `tools/lib/prompt_pack.mjs` | assembles `prompts/*.md` + tables + examples into byte-stable system prompts; builds user turns |
 | `tools/lib/llm_schema.mjs` | script schema → structured-output subset; ideation/critique/metadata schemas |
 | `tools/lib/llm/index.mjs` | provider-neutral core: one request shape, schema downgrade, typed failures (refusal, max_tokens, parse), usage and cost; `loadProvider` from `tools/llm.config.json` |
@@ -592,7 +593,7 @@ popNear(objs, point, reach, groundY) -> events  // the poke move pops the neares
 // validator/story_s5.js
 activityIssues(scene, si, story, catalog), defeatIssues(story)
 ```
-- Data: `data/moves/defeat.js` (category `defeat`: faint, vanish, ghost, captured, flee, return), `data/activities.js` (`catalog.activities`), three ball moves in `data/moves/life.js`, FX presets `sparkle`, `sparkle_rise`, `tears`, `rope_bind`, `cage_drop`, `confetti`, `halo` and the internal `pop_*` words (`internal: true` keeps them out of `catalog.fxNames`), sounds `sparkle`, `clang`, `ball_kick`.
+- Data: `catalog/moves/defeat.json` (category `defeat`: faint, vanish, ghost, captured, flee, return), `catalog/story/activities.json` (`catalog.activities`), three ball moves in `catalog/moves/life.json`, FX presets `sparkle`, `sparkle_rise`, `tears`, `rope_bind`, `cage_drop`, `confetti`, `halo` and the internal `pop_*` words (`internal: true` keeps them out of `catalog.fxNames`), sounds `sparkle`, `clang`, `ball_kick`.
 - The director counts `flags.defeat` moves as KOs (`dead`), `return` revives, and `isFree` is false while `actor.activity` is set. The `activity` world command has no timer: its `end` anchor comes from the `activityEnd` event.
 - Activity players are commanded without a beat id (no anchors); balls held by a player (`o.held`) skip object physics and follow the holder's racket tip, hands or foot.
 - `presentation.js`: with `opts.kids` (v2 stories with audience `kids`) a hit emits the next `pop_*` preset (word glyph particles; `fx.js` copies a layer's `text`, `renderer/particles.js` draws it).
@@ -635,7 +636,7 @@ compileScript(script, catalog) -> { script, expansions }; ejectMacro(script, mac
 - **Camera:** `shot` beats set a key; with `dur` the previous key returns afterwards, without it the framing lasts (and turns the story auto camera off for the scene). Camera keys end any shot. Close-ups may zoom to 3 and lift the frame with a smoothed y offset; v1 keys never set it.
 - **Extras** are plans (`sim.scenes[i].extras`) posed by the renderer from scene time with `sim.extraMoves`; they never enter the frame store or the simulation. The v1 `crowd` layer bobs with `react` (story scripts only): up after hits, hushed after a defeat.
 - **Layers:** characters on `back`/`front` (scene placement or `layer` beats) are drawn scaled about their feet (0.75 / 1.15) with the extras of that layer: back before mid set pieces, front after front set pieces. All-mid scenes draw exactly as before.
-- **Data:** `data/macro_lines.js` (`catalog.macroLines`: fight card intro, breather, challenge and victory lines), `avoid` lists in `data/bodies.js`.
+- **Data:** `catalog/story/macro_lines.json` (`catalog.macroLines`: fight card intro, breather, challenge and victory lines), `avoid` lists in `catalog/characters/bodies.json`.
 
 ### Generated music, ambience and the story mix (S7)
 ```js
@@ -657,7 +658,7 @@ collectAmbiencePlan(sim) -> [{ t0, t1, beds: { name: level } }] | null      // n
 - **Instruments:** polyBLEP saw/pulse (pulses centred, no DC), Karplus-Strong plucks with a smoothed excitation, FM bells, detuned pads, synthetic drums; a small Schroeder room; a 25 Hz DC blocker. Each render is levelled to -16 LUFS and soft-clipped under -1 dBFS.
 - **Mix (stories):** SFX and speech at unity, music × `musicVolume` (0.35) ducked -8 dB under speech and narration, -9 dB for 4 s after a vanish or ghost defeat and under heavy hits; ambience × `ambienceVolume` (0.8), 3 dB lower under speech. The whole mix is levelled to -16 LUFS (at most +18 dB) and limited at -1 dBFS. v1 scripts keep the M6 mix unchanged.
 - **Story sounds:** footsteps by weight (`footstep_hard` for bulky or scale ≥ 1.3), `laugh_small`/`cry_small`/`gasp` with those emotes, `magic_sparkle` on `return`, `heartbeat` and `sad_sting` at a vanish or ghost, `card_whoosh` on cards, and in kids stories `pow`/`bonk`/`boing` with the impact words. v1 scripts get none of these.
-- **Data:** `data/music_moods.js` (`catalog.musicMoods`, `catalog.scales`).
+- **Data:** `catalog/story/music_moods.json` (`catalog.musicMoods`, `catalog.scales`).
 
 ### LLM story pipeline (S8)
 ```js
@@ -722,7 +723,7 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 ### ADR-018 Audience rules, kids by default
 - **Context**: decision 7: kids first. Stories may contain loss and fights, so rules must shape them without removing them.
 - **Decision**: `meta.audience` is `kids` (default) or `general`. The rules are data plus checks:
-  - `data/blocklist.js` keeps the hard list (errors) and gains a soft list with suggested alternatives (`W_TEXT_SOFT`);
+  - `catalog/story/blocklist.json` keeps the hard list (errors) and gains a soft list with suggested alternatives (`W_TEXT_SOFT`);
   - `DEFEAT_STYLES_BY_AUDIENCE` drives `E_DEFEAT_STYLE`;
   - `W_KIDS_NO_HOPE` checks that a vanished or captured friend returns or is shown safe;
   - the renderer draws cartoon impacts (stars, "POW!") in kids mode;
@@ -734,5 +735,5 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 ### ADR-019 One catalog folder for the engine, pages and AI tools
 - **Context**: the catalog was JS modules in `/data` (helpers, spreads, no descriptions); prompts embedded about 30,000 characters of tables in every scene prompt, and pages and AI tools could not read the catalog without the code.
 - **Decision** (docs/CATALOG_SPEC.md): authored JSON in `catalog/` with a description for every entry; `catalog/index.js` assembles today's catalog object (`loadCatalog(read)`, sync or async readers; fs in Node, fetch in the browser). Engine-owned names stay in engine code; their descriptions live in `catalog/docs/` and a check keeps the two one to one. `npm run catalog:build` writes `catalog/generated/` (never edited by hand): the engine vocabulary, the full catalog as one file, and a Markdown context pack within byte budgets. The prompt tables and the pack share the same renderers.
-- **Consequences**: the migration was checked by deep equality with the frozen `data/` catalog (kept until C5); golden frames, determinism hashes and the existing prompts are unchanged byte for byte. Prepared moves drop the description fields, so they never reach the simulation. A stale generated file fails a test.
+- **Consequences**: the migration was checked by deep equality with the frozen `data/` catalog (C1; retired with `data/` in C5); golden frames, determinism hashes and the existing prompts are unchanged byte for byte. Prepared moves drop the description fields, so they never reach the simulation. A stale generated file fails a test.
 

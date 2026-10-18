@@ -19,7 +19,7 @@ Working rules for developing this project.
 - Plain ES modules with JSDoc types. No build step.
 
 ## Catalog
-- The catalog lives in `catalog/` (JSON). `data/*.js` is a frozen legacy copy for the migration test until C5; never edit it.
+- The catalog lives in `catalog/` (JSON). `data/index.js` only re-exports it for one more release; import `catalog/index.js`.
 - Never edit `catalog/generated/` or `catalog/manifest.json`; run `npm run catalog:build` after every catalog change.
 - Every entry needs a description (and tags, see `catalog/README.md`); the build fails without one.
 - Poses are authored facing right. Angles in degrees.

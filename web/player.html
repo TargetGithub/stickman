@@ -169,7 +169,12 @@
     }
 
     await Promise.all([document.fonts.load("40px Bangers"), document.fonts.load("20px Inter")]);
-    await loadUrl($("sample").value);
+    // ?src=<relative url> opens that script (the showcase's "open in player"); an example story file holds { outline, story }.
+    const src = new URLSearchParams(location.search).get("src");
+    if (src && !/^([a-z]+:)?\/\//i.test(src)) {
+      const data = await (await fetch(src)).json();
+      load(data.story && data.outline ? data.story : data, src.split("/").pop());
+    } else await loadUrl($("sample").value);
     requestAnimationFrame(tick);
   </script>
 </body>

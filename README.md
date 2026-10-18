@@ -2,7 +2,7 @@
 
 A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; the engine simulates them, renders every frame, and produces a YouTube-ready MP4.
 
-**Status:** fight engine finished (M0-M8). Story engine: S0 (spec freeze) signed off; S1 (scenes, locations, transitions, cards, narration, time and weather) done; S2 (faces, emotions, dialogue bubbles, speech sounds) done; S3 (six body plans, appearance) done; S4 (objects, set pieces, SVG import, LLM drafting) done; S5 (slice-of-life moves, seats, paired moves, defeat styles, activities, kids impact words) done; S6 (story compiler and macros, story camera, extras and depth layers) done; S7 (generated music, ambience, story sounds, -16 LUFS mixes) done; S8 (two-stage LLM story and fight-video generation, automatic or copy-paste) built; its exit review (generated stories and fight videos) is pending: `node tools/generate.mjs --story`, or `node tools/manual.mjs story-outline --premise "..."` without an API key. Next: S9 (hardening and acceptance); see docs/STORY_PLAN.md. Catalog work (docs/CATALOG_SPEC.md): C1-C4 built (the `catalog/` folder, descriptions and presets, the build, the AI context pack, lean prompts); C5 (showcase page) follows. New here? Read the [User Guide](docs/USER_GUIDE.md).
+**Status:** fight engine finished (M0-M8). Story engine: S0 (spec freeze) signed off; S1 (scenes, locations, transitions, cards, narration, time and weather) done; S2 (faces, emotions, dialogue bubbles, speech sounds) done; S3 (six body plans, appearance) done; S4 (objects, set pieces, SVG import, LLM drafting) done; S5 (slice-of-life moves, seats, paired moves, defeat styles, activities, kids impact words) done; S6 (story compiler and macros, story camera, extras and depth layers) done; S7 (generated music, ambience, story sounds, -16 LUFS mixes) done; S8 (two-stage LLM story and fight-video generation, automatic or copy-paste) built; its exit review (generated stories and fight videos) is pending: `node tools/generate.mjs --story`, or `node tools/manual.mjs story-outline --premise "..."` without an API key. Next: S9 (hardening and acceptance); see docs/STORY_PLAN.md. Catalog work (docs/CATALOG_SPEC.md): C1-C5 built (the `catalog/` folder, descriptions and presets, the build, the AI context pack, lean prompts, the showcase page at /web/showcase.html); waiting for review. New here? Read the [User Guide](docs/USER_GUIDE.md).
 
 ## Documents
 
@@ -25,7 +25,7 @@ A deterministic 2D stickman animation engine. An LLM writes short JSON scripts; 
 engine/    runtime logic, zero dependencies (runs in Node and the browser)
 catalog/   the catalog (JSON): poses, moves, props, FX, themes, objects, faces, bodies, presets,
            examples, docs; generated/ holds the AI context pack (see catalog/README.md)
-data/      legacy JS copy of the catalog, frozen for the migration test (removed in C5)
+data/      index.js only: re-exports catalog/index.js for old imports (one more release)
 tools/     Node CLIs: validate, record, mix, sfxgen, catalog, generate, manual, serve
 prompts/   LLM prompt pack (the example scripts are in catalog/examples/)
 web/       browser pages: player, pose/move editor, move catalog
@@ -46,7 +46,7 @@ npm test
 npm run serve
 ```
 
-Then open http://localhost:5173/web/player.html (script player with scrubber), /web/editor.html (move editor), /web/catalog.html (every move looping) or /web/index.html (pose viewer). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema). Make a finished video with sound:
+Then open http://localhost:5173/web/player.html (script player with scrubber), /web/editor.html (move editor), /web/showcase.html (every character, move, effect, place, object, activity, macro and mood with a live preview) or /web/index.html (pose viewer). Render move review clips with `node tools/move_clip.mjs` (or `--strip <move>`) and the choreographed fight demo with `node tools/fight_demo.mjs`. Render the pose sheet with `node tools/pose_sheet.mjs`, benchmark backends with `node tools/bench_canvas.mjs`. Validate a script with `node tools/validate.mjs <script.json>` (add `--schema` to print the JSON Schema). Make a finished video with sound:
 
 ```bash
 npm run record -- scripts/samples/m4_dojo.json

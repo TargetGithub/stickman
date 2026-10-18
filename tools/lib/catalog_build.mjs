@@ -83,6 +83,9 @@ export function buildCatalog(src, { codes }) {
     catalog: src.catalog,
     presets: src.presets.map(({ file, ...p }) => ({ ...p, goodThemes: facts.goodThemes[p.id] })),
     roles,
+    // Descriptions the engine catalog leaves out (it keeps the names only).
+    sfx: src.files["effects/sfx.json"],
+    appearance: Object.fromEntries(Object.entries(src.files["characters/appearance.json"]).filter(([k]) => k !== "conflicts").map(([k, list]) => [k, Object.fromEntries(list.map((o) => [o.name, o.description]))])),
     voices: src.files["characters/voices.json"].timbres,
     ambience: src.files["world/ambience.json"].beds,
     docs: Object.fromEntries(["world_commands", "macros", "camera", "transitions", "codes"].map((d) => [d, src.files[`docs/${d}.json`]])),

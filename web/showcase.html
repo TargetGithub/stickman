@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stickman Showcase</title>
+  <style>
+    @font-face { font-family: "Bangers"; src: url("../assets/fonts/Bangers-Regular.ttf"); }
+    @font-face { font-family: "Inter"; src: url("../assets/fonts/Inter.ttf"); }
+    :root {
+      --bg: #f4f4f1; --panel: #ffffff; --line: #dcdcd6; --text: #1d1f24; --muted: #62656e; --accent: #2f6fd6; --chip: #ececea; --hit: #fff3c4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #15161a; --panel: #1d1f24; --line: #2b2e35; --text: #e8e8ea; --muted: #9a9ca3; --accent: #7fb4ff; --chip: #2b2e35; --hit: #3a3420; }
+    }
+    :root[data-theme="dark"] { --bg: #15161a; --panel: #1d1f24; --line: #2b2e35; --text: #e8e8ea; --muted: #9a9ca3; --accent: #7fb4ff; --chip: #2b2e35; --hit: #3a3420; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 13px Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    header { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+    h1 { font-size: 15px; margin: 0 8px 0 0; }
+    input, select, button { font: inherit; color: inherit; background: var(--chip); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+    input[type="search"] { min-width: 180px; flex: 1 1 180px; max-width: 320px; }
+    input[type="color"] { padding: 0 2px; width: 36px; height: 26px; }
+    button { cursor: pointer; }
+    .layout { display: grid; grid-template-columns: 190px 1fr; }
+    nav { position: sticky; top: 53px; align-self: start; height: calc(100vh - 53px); overflow: auto; padding: 12px 8px; border-right: 1px solid var(--line); }
+    nav a { display: flex; justify-content: space-between; padding: 6px 10px; border-radius: 6px; color: var(--text); text-decoration: none; }
+    nav a:hover, nav a.on { background: var(--chip); }
+    nav a span { color: var(--muted); }
+    main { padding: 12px 16px 60px; min-width: 0; }
+    section { margin-bottom: 28px; scroll-margin-top: 64px; }
+    section > h2 { font-size: 18px; margin: 12px 0 4px; }
+    .intro { color: var(--muted); margin: 0 0 10px; max-width: 900px; }
+    .opts { display: flex; gap: 10px; margin-bottom: 10px; }
+    h3 { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 14px 0 6px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; scroll-margin-top: 70px; }
+    .card.target { outline: 2px solid var(--accent); }
+    .card canvas { display: block; width: 100%; aspect-ratio: 16 / 9; background: #0e0f12; }
+    .body { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .name { font-weight: 600; word-break: break-word; }
+    .name a { color: inherit; text-decoration: none; }
+    .desc { line-height: 1.4; }
+    .meta { color: var(--muted); font-size: 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag { background: var(--chip); border-radius: 10px; padding: 1px 8px; font-size: 11px; color: var(--muted); cursor: pointer; }
+    .actions { display: flex; gap: 6px; margin-top: auto; padding-top: 6px; flex-wrap: wrap; }
+    .actions button, .actions a { font-size: 12px; padding: 3px 8px; }
+    .actions a { color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 6px; }
+    .note { color: var(--muted); font-size: 12px; }
+    .err { color: #d23c3c; font-size: 12px; white-space: pre-wrap; }
+    .hidden { display: none !important; }
+    .count { color: var(--muted); }
+    @media (max-width: 760px) {
+      header { padding: 8px 16px; }
+      .layout { grid-template-columns: 1fr; }
+      nav { position: sticky; top: 0; height: auto; display: flex; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 6px 8px; background: var(--bg); z-index: 1; }
+      nav a { white-space: nowrap; }
+      nav a span { display: none; }
+      main { padding: 12px 16px 60px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Stickman showcase</h1>
+    <input id="search" type="search" placeholder="Search names, descriptions, tags" aria-label="Search">
+    <select id="tag" aria-label="Tag"><option value="">all tags</option></select>
+    <label>body <select id="body" aria-label="Body plan"></select></label>
+    <label>color <input id="color" type="color" value="#2f7fd9" aria-label="Character color"></label>
+    <button id="themeToggle" type="button" aria-label="Light or dark">◐</button>
+    <span class="count" id="count"></span>
+  </header>
+  <div class="layout">
+    <nav id="nav" aria-label="Sections"></nav>
+    <main id="main"><p class="note" id="loading">Loading the catalog…</p></main>
+  </div>
+  <script type="module" src="showcase.js"></script>
+</body>
+</html>

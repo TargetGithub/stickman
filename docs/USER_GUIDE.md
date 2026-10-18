@@ -235,7 +235,7 @@ The `camera` list holds keys that use the same `at` forms as beats.
 
 Everything in this section is catalog data in `catalog/` (JSON, one description per entry; see `catalog/README.md` for the files and how to add things). `catalog/generated/context/` lists all of it compactly: `03_moves.md` has every move with what it does, `02_characters.md` the bodies, looks, faces, voices and ready-made characters, `05_places_and_objects.md` the themes and objects.
 
-There are 72 moves in seven groups. See them all animated at http://localhost:5173/web/catalog.html (after `npm run serve`), or print the full table with durations, default params and notes:
+There are 133 moves (147 counting the partner side of each paired move); 110 of them work in version 1 clips too. See them all animated at http://localhost:5173/web/showcase.html#moves (after `npm run serve`; every other catalog item is on the same page), or print the full table with durations, default params and notes:
 
 ```bash
 node tools/catalog.mjs
@@ -243,17 +243,17 @@ node tools/catalog.mjs
 
 | Group | Moves |
 |---|---|
-| movement | idle, walk, run, dodge_back, jump, dash, slide, backflip, frontflip, dodge_roll, land_roll, side_step, get_up |
+| movement | idle, walk, run, dodge_back, jump, dash, slide, backflip, frontflip, dodge_roll, land_roll, side_step, get_up, sneak, tiptoe |
 | unarmed attacks | jab, cross, hook, uppercut, haymaker, front_kick, roundhouse, axe_kick, sweep, elbow, knee, headbutt, flying_kick, spinning_kick, flurry, ground_pound, counter, energy_blast (ranged) |
 | weapon attacks | sword_slash, sword_thrust, sword_spin, sword_overhead (sword); staff_swing, staff_spin (staff); bat_swing (bat); shoot (blaster, ranged); throw_prop (any prop, ranged) |
 | defense | block, parry, duck, catch_weapon |
 | reactions | hit_light, hit_heavy, hit_launch, knockdown, stagger, ko_fall, dizzy, ko_spin |
-| emotes | taunt, victory, charge_up, wave, bow, flex, laugh, shrug, facepalm, cower, dance_a, dance_b, point |
-| utility | wait, face, pick_prop, drop_prop, teleport, spawn, despawn |
+| emotes | taunt, victory, charge_up, wave, bow, flex, laugh, shrug, facepalm, cower, dance_a, dance_b, point, cry, clench_fist, sigh, gasp, jump_joy, hold_head, nod, shake_head, look_around, talk |
+| utility | wait, face, pick_prop, drop_prop, teleport, spawn, despawn, use, ride, dismount |
 
-Story scripts (version 2) also have two story-only groups, listed under `life` and `interaction` on the catalog page:
+Two more groups are slice-of-life moves (in both versions, except the racket and wand moves, which need story holdables) and the story-only paired moves; the defeat styles are story-only too:
 
-- **life** (25 solo moves): sit (on a seat with `"object"`, or on the floor), stand_up, lie_down, sleep, eat, drink, read, phone_talk, cheer, clap, kneel, wave_goodbye, sneak, tiptoe, peek, hide, push, pull, climb_up, jump_down, swing_forehand, swing_backhand, blow_wand, poke, stretch.
+- **life** (26 solo moves): sit (on a seat with `"object"`, or on the floor), stand_up, lie_down, sleep, eat, drink, read, phone_talk, cheer, clap, kneel, wave_goodbye, sneak, tiptoe, peek, hide, push, pull, climb_up, jump_down, swing_forehand, swing_backhand, blow_wand, poke, stretch.
 - **interaction** (paired moves, need `"partner"`): hug, high_five, fist_bump, handshake, pat_head, give, carry, put_down, piggyback, lift_up, drag, lean_on, comfort, walk_together (give it `"params": { "distance": 300 }`). The lead walks to the partner first (`"approach": "run"` to run, `false` to place it there); the partner plays its half on its own. `carry` and `piggyback` keep holding the partner through walks until `put_down`.
 
 ```json
@@ -337,6 +337,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `npm run catalog:build` | Check `catalog/` (schemas, descriptions, every move on every body plan, every example) and rewrite `catalog/generated/` and `catalog/manifest.json`; run it after every catalog change |
 | `npm run catalog:check` | The same checks, without writing; fails when a generated file is stale |
 | `npm run catalog:pack` | Build, then zip the AI context pack into `out/context_pack.zip` (section 7.6) |
+| `npm run catalog:media` | Render a short clip of every music mood into `out/catalog_media/` for the showcase page |
 | `node tools/draft.mjs ... --reply <file> --write` | Add a reviewed draft to `catalog/` (tag `draft`; moves: `--file <moves file>`) |
 
 `record` options:
@@ -357,7 +358,9 @@ Browser pages (after `npm run serve`):
 | Page | Use |
 |---|---|
 | `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file. Stories show scene markers above the scrubber (click one to jump) |
-| `/web/catalog.html` | Every move looping, with hit windows shown; pick a body plan to see the moves on it |
+| `/web/showcase.html` | The whole catalog with live previews: characters and presets, looks, faces, moves, effects, sounds, places, objects, activities, macros, camera and transitions, music moods, examples and rules. Search, tag filter, body plan and color pickers, light/dark, "copy JSON" on every card, deep links such as `showcase.html#moves/hug`. Run `npm run catalog:media` once to hear the moods, `npm run sfx` for the sounds |
+| `/web/catalog.html` | Redirects to the Moves section of the showcase |
+| `/web/player.html?src=<url>` | Opens a script or example directly (the showcase's "open in player") |
 | `/web/editor.html` | Pose and move editor, for adding or changing moves |
 | `/web/index.html` | Pose viewer |
 
