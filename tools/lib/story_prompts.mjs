@@ -14,8 +14,8 @@ const fill = (text, vars) => text.replace(/\{\{(\w+)\}\}/g, (m, k) => (k in vars
 
 /** Minimum length (s) for a kind, as the validator warns (W_STORY_SHORT, W_FIGHT_SHORT). */
 export const MIN_LENGTH = { story: 300, fight: 180 };
-const SCENE_COUNT = { story: "10-16", fight: "6-10" };
-const KIND_RULES = {
+export const SCENE_COUNT = { story: "10-16", fight: "6-10" };
+export const KIND_RULES = {
   story: "A story has an arc: setup (we meet the friends and come to care about them), an incident (something goes wrong), a journey (obstacles, travel, help along the way), a climax (the big confrontation or challenge) and a resolution (together again, a simple lesson). Mix kinds of scenes: talking, playing, travel, action, feelings; at most half the scenes are fights. The first scene opens with a title card; the last closes with an end card.",
   fight: "A fight video: an intro (the rivalry: taunts and a title card), 3-5 rounds in varied places or against different opponents, each fight a little bigger than the last, breathers between rounds (catching breath, banter, a charge-up, a cheering crowd), a final round against the strongest opponent with a comeback, and a victory with an end card. Fight scenes are about 25-40 s each.",
 };
@@ -95,7 +95,7 @@ export function sceneRequest(outline, i, { endState = null, stageWidths = {} } =
     `Story: ${JSON.stringify(header)}`,
     `All scenes:\n${all}`,
     endStateText(endState, outline),
-    `Write scene ${i + 1} of ${outline.scenes.length}: "${s.id}".\n${JSON.stringify(s, null, 2)}`,
+    `Write scene ${i + 1} of ${outline.scenes.length}: "${s.id}".\n${JSON.stringify(s)}`,
     `Stage width at ${s.location}: ${stageWidths[s.location] ?? 3200} px. Target length: about ${s.seconds} s.${i === 0 ? " This is the first scene: open with a title card (transitionIn card, kind title)." : ""}${i === outline.scenes.length - 1 ? " This is the last scene: end with an end_card world beat or a fade transitionOut." : ""} Start every beat id with "${s.id}_".`,
     "Return the scene as one JSON object.",
   ].join("\n\n");

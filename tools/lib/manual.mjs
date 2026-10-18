@@ -6,13 +6,15 @@ import { parseJsonText } from "./llm/index.mjs";
 import { validate } from "../../engine/index.js";
 import { writerSystem, ideationSystem, critiqueSystem, metadataSystem, writeRequest, ideationRequest, repairRequest, metadataRequest } from "./prompt_pack.mjs";
 import { evaluate } from "./pipeline.mjs";
+import { leanWritePrompt, leanFixPrompt, packVersionWarning } from "./lean_prompts.mjs";
 
 const REPLY_RULE = "Reply with only the JSON object in a single ```json code block. No explanation before or after it.";
 
 const join = (system, request) => `${system.trim()}\n\n---\n\n# Your task\n\n${request.trim()}\n\n${REPLY_RULE}\n`;
 
-/** One prompt that writes a script, ready to paste into a new chat. */
+/** One prompt that writes a script, ready to paste into a new chat. opts.lean: the pack version (lean prompt). */
 export function manualWritePrompt(catalog, premise, opts) {
+  if (opts.lean) return leanWritePrompt(opts.lean, premise, opts);
   return join(writerSystem(catalog), writeRequest(premise, opts));
 }
 
@@ -31,10 +33,17 @@ export function manualMetadataPrompt(script, premiseText, timeline) {
 }
 
 /**
- * Check a pasted reply.
- * @returns {{ ok: boolean, parsed: boolean, script?, result?, score?, fixPrompt?: string, message: string }}
+ * Check a pasted reply. opts.lean: the pack version (lean fix prompts, and a warning when the reply names another).
+ * @returns {{ ok: boolean, parsed: boolean, script?, result?, score?, fixPrompt?: string, message: string, versionWarning?: string }}
  */
-export function checkReply(text, catalog) {
+export function checkReply(text, catalog, opts = {}) {
+  const r = checkReplyFull(text, catalog);
+  if (!opts.lean) return r;
+  const versionWarning = packVersionWarning(text, opts.lean);
+  return { ...r, ...(r.fixPrompt ? { fixPrompt: leanFixPrompt(opts.lean, r.fixPrompt) } : {}), ...(versionWarning ? { versionWarning } : {}) };
+}
+
+function checkReplyFull(text, catalog) {
   let script;
   try {
     script = parseJsonText(text);

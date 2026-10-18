@@ -86,5 +86,20 @@ Minimal story:
 
 ## Two-stage story workflow
 
-1. **Outline:** title, logline, cast (with a `role`), locations, and scenes with `purpose`, `location`, `mood`, `seconds`, `cast`, `summary`, `events` and `narration`. No beats.
+1. **Outline:** who is in it, where, and the list of scenes. No beats.
 2. **Scenes:** one reply per scene, written from the outline entry and the end state of the scenes before it. Each scene is checked inside the story so far.
+
+The outline:
+
+```
+{ "title": str<=80, "logline": one sentence,
+  "cast": [ { "id", "name": str<=16, "role": <role, 02_characters.md>, "body", "color", "appearance", "voice", "style", "prop", "hp" } ],   // 2-16
+  "locations": [ { "id", "theme", "stageWidth": 1600-12000, "ambience", "time", "weather", "set": [ { "id", "object", "x" } ], "extras": [...] } ],
+  "scenes": [ { "id", "purpose": "setup"|"incident"|"journey"|"fight"|"climax"|"resolution"|"breather"|"intro"|"round"|"finale"|"montage",
+                "location": <location id>, "time", "weather", "mood": <music mood>, "seconds": 5-300, "cast": [ids, at most 8],
+                "summary": "two or three sentences", "events": ["one line per key moment"], "narration": ["card or narration text"] } ] }
+```
+
+- The scenes' seconds add up to at least the minimum (story 300 s, fight video 180 s), with about 10% to spare; scenes of 15-40 s (a story has 10-16, a fight video 6-10).
+- A story has an arc: setup, incident, journey, climax, resolution; at most half the scenes are fights; a title card first, an end card last. A fight video: an intro, 3-5 rounds getting bigger, breathers, a final round with a comeback, a victory.
+- Every cast member appears in a scene; colors stand out on the themes they appear on; 3-6 named characters is easy to follow.

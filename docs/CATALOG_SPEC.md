@@ -1,6 +1,6 @@
 # Catalog Specification: one folder for the engine, the showcase page and AI tools
 
-Version 0.3 (decisions in section 13 made by Sridhar, 2026-10-18). **Status:** C1-C3 built, waiting for review (implementation notes in section 13.1); C4 and C5 next. Owner: Sridhar. Related: [STORY_SPEC.md](STORY_SPEC.md), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-006 catalog injection), [USER_GUIDE.md](USER_GUIDE.md) section 7.
+Version 0.3 (decisions in section 13 made by Sridhar, 2026-10-18). **Status:** C1-C3 committed; C4 built (notes in section 13.1); C5 next. Owner: Sridhar. Related: [STORY_SPEC.md](STORY_SPEC.md), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-006 catalog injection), [USER_GUIDE.md](USER_GUIDE.md) section 7.
 
 ## 1. Goal
 
@@ -291,6 +291,7 @@ Choices made while building, for review:
 - **Examples:** every world command, macro, camera mode, transition and card has an example that the build validates in a small story (`tools/lib/catalog_harness.mjs`, seed 3). The build found that with other seeds `@brawl` and `@gauntlet` could hit `E_SIM_UNREACHABLE`: a bystander or a crossing team-mate blocked the approach runs. Fixed separately (an engine change, spec 9.1 rule 6 and STORY_SPEC 11): approach runs pass bystanders, and a brawl clash across zones runs over first.
 - **Pack:** 69 KB in all (about 17,000 tokens), core 41 KB, every file within its budget. Presets show their cast fields as compact JSON and the themes they are hard to see on. Macro examples sit in `08_examples.md`. Each world command is listed once (screen effects in 04, places and objects in 05, story commands in 06).
 - **Version:** `1-<hash>`: the catalog format version and a hash of the generated files; it is in `manifest.json`, `00_start_here.md` and `project_instructions.md`.
+- **Lean prompts (C4):** `tools/lib/lean_prompts.mjs`; the story mode is kept in the story state. Sizes: clip about 1,000 characters, outline about 1,400, scenes 2,400-5,000 (a 16-scene, 8-character outline is the largest, just under 5,000). To fit, the scene request now prints the outline entry as compact JSON (full prompts too). Lean fix prompts are the full fix text with the pack line in front. The outline format was added to `docs/format.md`, so the pack covers the outline stage. Not done yet: the manual check of a story made in Claude Desktop with the pack.
 - **Drafts:** `tools/draft.mjs ... --write` and `tools/svg_import.mjs ... --write` add a reviewed draft to `catalog/` with its description and the tag `draft`.
 
 ## 14. Kickoff prompt for the new chat

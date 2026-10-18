@@ -22,6 +22,10 @@
 //
 // --copy puts the prompt on the clipboard; --paste reads the reply from the clipboard (macOS pbcopy/
 // pbpaste, Windows clip, Linux xclip/wl-copy). Output folder: --out (default out).
+//
+// --lean (prompt, check, story-outline; CATALOG_SPEC 7.3): short prompts for a chat project that has the
+// catalog pack as project knowledge (npm run catalog:pack; docs/USER_GUIDE.md 7.6). They name the pack
+// version from catalog/manifest.json; a story keeps the mode for all its commands (--full switches back).
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -34,6 +38,7 @@ import { manualWritePrompt, manualIdeasPrompt, manualCritiquePrompt, manualMetad
 import { loadHistory, avoidList } from "./lib/history.mjs";
 import { manualOutlinePrompt, checkOutlineReply, manualScenePrompt, checkSceneReply, manualExtendPrompt, assembleManual } from "./lib/manual_story.mjs";
 import { MIN_LENGTH } from "./lib/story_prompts.mjs";
+import { packVersion } from "./lib/lean_prompts.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const [cmd, ...args] = process.argv.slice(2);
@@ -68,6 +73,8 @@ function emit(file, text, what) {
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "video";
 const format = opt("--format", "landscape");
+const lean = () => (flag("--lean") ? packVersion() : null);
+const warnVersion = (r) => r.versionWarning && console.log(`warning: ${r.versionWarning}`);
 const length = Number(opt("--length", 30));
 
 if (cmd === "prompt") {
@@ -77,8 +84,8 @@ if (cmd === "prompt") {
     process.exit(2);
   }
   const premise = { title: text.split(/[.!?]/)[0].slice(0, 60), logline: text, tone: opt("--tone", "any") };
-  emit("prompt.md", manualWritePrompt(catalog, premise, { format, length, seed: randomInt(1, 2 ** 31 - 1) }), "prompt");
-  console.log("Next: paste it into a new chat. Save the reply (or copy it) and run:\n  node tools/manual.mjs check --paste      (or: check reply.txt)");
+  emit("prompt.md", manualWritePrompt(catalog, premise, { format, length, seed: randomInt(1, 2 ** 31 - 1), lean: lean() }), flag("--lean") ? "lean prompt" : "prompt");
+  console.log(`Next: paste it into a new chat${flag("--lean") ? " in the project with the catalog pack" : ""}. Save the reply (or copy it) and run:\n  node tools/manual.mjs check --paste${flag("--lean") ? " --lean" : ""}      (or: check reply.txt)`);
 } else if (cmd === "ideas") {
   const count = Number(opt("--count", 5));
   emit("ideas_prompt.md", manualIdeasPrompt(catalog, { count, tone: opt("--tone", null), format, length }, avoidList(loadHistory(join(OUT, "history.json")))), "ideas prompt");
@@ -90,8 +97,9 @@ if (cmd === "prompt") {
     process.exit(2);
   }
   const text = flag("--paste") ? paste() : src === "-" ? readFileSync(0, "utf8") : readFileSync(src, "utf8");
-  const r = checkReply(text, catalog);
+  const r = checkReply(text, catalog, { lean: lean() });
   console.log(r.ok ? `VALID. ${r.message}` : `NOT VALID YET. ${r.message}`);
+  warnVersion(r);
   if (r.result) for (const i of [...r.result.errors, ...r.result.warnings]) console.log(`  ${i.code} at ${i.path || "(root)"}: ${i.message}`);
   if (!r.ok) {
     emit("fix_prompt.md", r.fixPrompt, "fix prompt");
@@ -153,6 +161,8 @@ async function storyCommand() {
   };
   const reply = (skip) => (flag("--paste") ? paste() : positional(skip) === "-" ? readFileSync(0, "utf8") : readFileSync(positional(skip), "utf8"));
   const state = readJson("state.json");
+  // The lean mode is chosen at story-outline and kept for the story; --lean or --full on a later command wins.
+  const opts = state && { ...state, lean: (flag("--lean") || state.lean) && !flag("--full") ? packVersion() : null };
   const outline = readJson("outline.json");
   const sceneFile = (i) => `scenes/${String(i + 1).padStart(2, "0")}.json`;
   const scenes = outline ? outline.scenes.map((_, i) => readJson(sceneFile(i))) : [];
@@ -175,17 +185,18 @@ async function storyCommand() {
       process.exit(2);
     }
     const kind = flag("--fight") ? "fight" : "story";
-    const st = { premise: { title: text.split(/[.!?]/)[0].slice(0, 60), logline: text }, kind, minLength: Number(opt("--length", MIN_LENGTH[kind])), format, audience: opt("--audience", "kids"), seed: randomInt(1, 2 ** 31 - 1) };
+    const st = { premise: { title: text.split(/[.!?]/)[0].slice(0, 60), logline: text }, kind, minLength: Number(opt("--length", MIN_LENGTH[kind])), format, audience: opt("--audience", "kids"), seed: randomInt(1, 2 ** 31 - 1), lean: flag("--lean") };
     save("state.json", st);
     // A new story: forget the previous outline and its scenes.
     rmSync(file("scenes"), { recursive: true, force: true });
     rmSync(file("outline.json"), { force: true });
-    emit("story/outline_prompt.md", manualOutlinePrompt(catalog, st.premise, st), "outline prompt");
+    emit("story/outline_prompt.md", manualOutlinePrompt(catalog, st.premise, { ...st, lean: lean() }), st.lean ? "lean outline prompt" : "outline prompt");
     console.log("Next: paste it into a new chat, save the reply, then: node tools/manual.mjs check-outline reply.txt   (or --paste)");
   } else if (cmd === "check-outline") {
     need("Run story-outline", state);
-    const r = checkOutlineReply(reply(0), catalog, state);
+    const r = checkOutlineReply(reply(0), catalog, opts);
     console.log(r.ok ? r.message : `NOT VALID YET. ${r.message}`);
+    warnVersion(r);
     for (const i of r.issues || []) console.log(`  - ${i}`);
     if (!r.ok) {
       emit("fix_prompt.md", r.fixPrompt, "fix prompt");
@@ -200,7 +211,7 @@ async function storyCommand() {
     const i = sceneNumber();
     let text;
     try {
-      text = manualScenePrompt(catalog, outline, scenes, i, state);
+      text = manualScenePrompt(catalog, outline, scenes, i, opts);
     } catch (e) {
       console.error(`cannot write scene ${i + 1} yet: ${e.message}`);
       process.exit(1);
@@ -210,8 +221,9 @@ async function storyCommand() {
   } else if (cmd === "check-scene") {
     need("Check an outline (check-outline)", state && outline);
     const i = sceneNumber();
-    const r = checkSceneReply(reply(1), outline, scenes, i, catalog, state);
+    const r = checkSceneReply(reply(1), outline, scenes, i, catalog, opts);
     console.log(r.ok ? r.message : `NOT VALID YET. ${r.message}`);
+    warnVersion(r);
     if (r.result && !r.ok) for (const e of r.result.errors) console.log(`  ${e.code} at ${e.path || "(root)"}: ${e.message}`);
     if (!r.ok) {
       emit("fix_prompt.md", r.fixPrompt, "fix prompt");
@@ -229,7 +241,7 @@ async function storyCommand() {
     const a = assembleManual(outline, scenes, catalog, state);
     const secs = a.sceneSeconds?.[i]?.seconds ?? outline.scenes[i].seconds / 2;
     const extra = Math.max(10, ((state.minLength ?? MIN_LENGTH[state.kind]) * 1.08 - (a.result?.durationSec ?? 0)) / 2);
-    emit(`story/extend_${i + 1}_prompt.md`, manualExtendPrompt(secs, secs + extra), `extend scene ${i + 1} prompt`);
+    emit(`story/extend_${i + 1}_prompt.md`, manualExtendPrompt(secs, secs + extra, opts.lean), `extend scene ${i + 1} prompt`);
     console.log(`Next: paste it into scene ${i + 1}'s chat, then: node tools/manual.mjs check-scene ${i + 1} reply.txt`);
   } else if (cmd === "assemble") {
     need("Check an outline (check-outline)", state && outline);

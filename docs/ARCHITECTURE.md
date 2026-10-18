@@ -407,6 +407,7 @@ Description and tag fields pass through; prepared moves (`prepareCatalog`) drop 
 | `tools/lib/catalog_check.mjs`, `catalog_harness.mjs` | catalog checks: schemas, descriptions, references, move checks on every body plan, engine vocabulary coverage, every example validated in a tiny story |
 | `tools/lib/catalog_build.mjs` + `tools/catalog_build.mjs` | `npm run catalog:build`: checks, then `catalog/generated/` (engine vocabulary, full catalog, context pack) and `catalog/manifest.json`; deterministic |
 | `tools/lib/context_pack.mjs` | the AI context pack (Markdown tables, budgets, core and reference tiers), rendered with the prompt table helpers |
+| `tools/lib/lean_prompts.mjs` | lean copy-paste prompts for chat projects with the pack: the pack line and version, files to read, reminders, the full prompts' task text (`manual.mjs --lean`) |
 | `tools/lib/catalog_write.mjs` | adds a reviewed draft to `catalog/` (`draft.mjs --write`, `svg_import.mjs --write`) |
 | `tools/lib/json_format.mjs`, `zip.mjs` | stable JSON formatting for catalog files; a small zip writer for `catalog:pack` |
 | `tools/migrate_catalog.mjs` | one-time converter `data/*.js` → `catalog/*.json` (kept with `data/` until C5) |

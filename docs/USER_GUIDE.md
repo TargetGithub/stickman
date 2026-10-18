@@ -602,9 +602,27 @@ Instead of pasting the catalog tables into every prompt, upload them once. The p
 1. Run `npm run catalog:pack`. It writes `out/context_pack.zip` (the files are also in `catalog/generated/context/`).
 2. In Claude Desktop, create a Project. Add the nine `0*_*.md` files as project knowledge. `00`-`02` and `05`-`07` are the core; `03_moves.md`, `04_effects_and_sound.md` and `08_examples.md` are the reference tier. Add both tiers when you can.
 3. Paste `project_instructions.md` into the project's instructions.
-4. Ask for one thing per message: a clip, a story outline, or one scene (with the outline entry and the end state the copy-paste tool prints). Check every reply with `node tools/manual.mjs check --paste` (clips) or the story commands in 7.4.
+4. Make the prompts with `--lean`: they leave the catalog out (the project has it) and are about a tenth of the size.
 
-`00_start_here.md` and the instructions carry the catalog version (`npm run catalog:build` prints it). When it changes, upload the pack again. Short prompts for projects (`--lean`) come with milestone C4.
+```bash
+node tools/manual.mjs prompt --premise "A tiny ninja vs a giant robot" --lean --copy
+```
+
+Paste it into a new chat in the project, then check the reply with `node tools/manual.mjs check --paste --lean`. A fix prompt, if any, goes into the same chat. For a story:
+
+```bash
+node tools/manual.mjs story-outline --premise "Kai crosses the city to save Pip" --lean --copy
+```
+
+Then `check-outline --paste`, `story-scene 1 --copy`, `check-scene 1 --paste` and so on, as in 7.4. The story remembers `--lean` for all its commands (`--full` switches a command back). Use a new chat in the project for each scene; the scene prompt carries the outline and the end state of the scenes before.
+
+| Prompt | Full (no project) | Lean (project with the pack) |
+|---|---|---|
+| clip | about 32,000 characters | about 1,000 |
+| story outline | about 9,000 | about 1,400 |
+| one story scene | about 27,000 | 2,500-5,000 |
+
+`00_start_here.md`, the instructions and every lean prompt carry the catalog version (`npm run catalog:build` prints it). When the catalog changes the version changes: upload the pack again. If a reply mentions an older version, the check commands warn you.
 
 ## 8. Sound and music
 

@@ -11,6 +11,7 @@ import {
 } from "./story_prompts.mjs";
 import { checkSceneInContext, sceneSeconds } from "./story_pipeline.mjs";
 import { scoreStory } from "./story_score.mjs";
+import { leanOutlinePrompt, leanScenePrompt, leanFixPrompt, leanExtendPrompt, packVersionWarning } from "./lean_prompts.mjs";
 
 const REPLY_RULE = "Reply with only the JSON object in a single ```json code block. No explanation before or after it.";
 const join = (system, request) => `${system.trim()}\n\n---\n\n# Your task\n\n${request.trim()}\n\n${REPLY_RULE}\n`;
@@ -23,13 +24,25 @@ const parse = (text) => {
 };
 const widths = (outline) => Object.fromEntries((outline.locations || []).map((l) => [l.id, l.stageWidth ?? 3200]));
 
-/** opts: { kind, minLength, format, audience, seed } */
+// opts.lean (the pack version) switches every prompt to its lean form for chat projects with the catalog pack.
+const leanFix = (r, opts, text) => {
+  if (!opts.lean) return r;
+  const versionWarning = packVersionWarning(text, opts.lean);
+  return { ...r, ...(r.fixPrompt ? { fixPrompt: leanFixPrompt(opts.lean, r.fixPrompt) } : {}), ...(versionWarning ? { versionWarning } : {}) };
+};
+
+/** opts: { kind, minLength, format, audience, seed, lean } */
 export function manualOutlinePrompt(catalog, premise, opts) {
+  if (opts.lean) return leanOutlinePrompt(opts.lean, premise, opts);
   return join(storyOutlineSystem(catalog, opts), outlineRequest(premise, opts));
 }
 
 /** @returns {{ ok, outline?, issues?, fixPrompt?, message }} */
 export function checkOutlineReply(text, catalog, opts) {
+  return leanFix(checkOutlineFull(text, catalog, opts), opts, text);
+}
+
+function checkOutlineFull(text, catalog, opts) {
   const p = parse(text);
   if (p.error) return { ok: false, message: p.error, fixPrompt: p.fixPrompt };
   const issues = checkOutline(p.json, catalog, opts);
@@ -47,11 +60,16 @@ export function manualScenePrompt(catalog, outline, scenes, i, opts) {
     if (!r.ok) throw new Error(`the saved scenes 1-${i} no longer validate: ${r.errors[0]?.code}`);
     endState = r.endState;
   }
+  if (opts.lean) return leanScenePrompt(opts.lean, outline, i, { endState, stageWidths: widths(outline), audience: opts.audience });
   return join(storySceneSystem(catalog, opts), sceneRequest(outline, i, { endState, stageWidths: widths(outline) }));
 }
 
 /** @returns {{ ok, scene?, result?, fixPrompt?, message }} */
 export function checkSceneReply(text, outline, scenes, i, catalog, opts) {
+  return leanFix(checkSceneFull(text, outline, scenes, i, catalog, opts), opts, text);
+}
+
+function checkSceneFull(text, outline, scenes, i, catalog, opts) {
   const p = parse(text);
   if (p.error) return { ok: false, message: p.error, fixPrompt: p.fixPrompt };
   const scene = normalizeScene(p.json, outline.scenes[i]);
@@ -64,8 +82,9 @@ export function checkSceneReply(text, outline, scenes, i, catalog, opts) {
   return { ok: true, scene, result: c.result, message: `Scene ${outline.scenes[i].id} OK: ${secs.toFixed(0)} s (target ${outline.scenes[i].seconds} s), ${c.result.warnings.length} warning(s).` };
 }
 
-/** The prompt asking scene i's chat to lengthen it. */
-export function manualExtendPrompt(seconds, target) {
+/** The prompt asking scene i's chat to lengthen it (lean: the pack version, for a chat project). */
+export function manualExtendPrompt(seconds, target, lean = null) {
+  if (lean) return leanExtendPrompt(lean, seconds, target);
   return `${extendRequest(seconds, target)}\n\n${REPLY_RULE}\n`;
 }
 
