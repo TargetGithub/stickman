@@ -113,7 +113,10 @@ export function synthesizeLines(lines, backend, { cacheDir = CACHE_DIR, log = ()
   });
 }
 
-/** Mixer events for spoken lines: { line → { t, sfx: "tts:<key>", volume } }, t from the sim's say / narrate events. */
+/**
+ * Mixer events for spoken lines: { line → { t, sfx: "tts:<key>", volume } }, t from the sim's say / narrate events.
+ * Later bubbles of a multi-bubble line map to sfx null (silence their babble, add nothing).
+ */
 export function speechClips(spoken, simEvents, { lead = 0.3 } = {}) {
   const at = new Map();
   for (const e of simEvents) {
@@ -121,7 +124,12 @@ export function speechClips(spoken, simEvents, { lead = 0.3 } = {}) {
     if (e.type === "world" && e.do === "narrate") at.set(e.beatId, e.videoT + lead);
   }
   const clips = new Map();
-  for (const l of spoken) if (at.has(l.id)) clips.set(l.id, { t: at.get(l.id), sfx: `tts:${l.key}`, volume: 1 });
+  for (const l of spoken) {
+    if (!at.has(l.id)) continue;
+    clips.set(l.id, { t: at.get(l.id), sfx: `tts:${l.key}`, volume: 1 });
+    // The later bubbles of a line spoken as one clip only lose their babble.
+    for (const p of (l.parts ?? []).slice(1)) clips.set(p.id, { t: at.get(p.id) ?? at.get(l.id), sfx: null, volume: 0 });
+  }
   return clips;
 }
 

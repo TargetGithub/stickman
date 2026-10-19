@@ -196,3 +196,22 @@ test("postFilters: pitch keeps length, whisper filters, robot rings", () => {
   assert.match(postFilters(22050, { pitch: 0 }, "whisper"), /highpass/);
   assert.match(postFilters(22050, { pitch: -3, filter: "robot" }, "speech"), /aeval/);
 });
+
+test("a line the dialogue macro splits into bubbles is spoken once, spread over its bubbles", () => {
+  const story = speechStory();
+  story.scenes[0].beats[1].params.lines[0][1] = "Hello there, my good friend, the festival starts as soon as the sun is up";
+  const compiled = compileScript(story, catalog).script;
+  const lines = collectLines(compiled, table);
+  const kai = lines.find((l) => l.who === "kai");
+  assert.ok(kai.parts?.length >= 2, "split into bubbles by the macro");
+  assert.equal(kai.spoken, "Hello there, my good friend, the festival starts as soon as the sun is up.");
+  assert.equal(lines.filter((l) => l.who === "kai" && l.kind === "say").length, 2, "one spoken line plus 'See you later!'");
+  injectDurations(compiled, lines.map((l) => ({ ...l, dur: l.id === kai.id ? 8 : 1 })));
+  const durs = kai.parts.map((p) => compiled.scenes[0].beats[p.beat].sayDur);
+  assert.ok(durs.reduce((a, b) => a + b, 0) >= 8 + SAY_TAIL - 0.02, `bubbles cover the audio: ${durs}`);
+  const clips = speechClips([{ ...kai, key: "k" }], kai.parts.map((p, i) => ({ type: "say", beatId: p.id, videoT: i * 4 })));
+  assert.equal(clips.get(kai.parts[0].id).sfx, "tts:k");
+  assert.equal(clips.get(kai.parts[1].id).sfx, null);
+  const out = swapSpeech([{ t: 0, sfx: "voice:soft:a:0", volume: 1, pan: 0, line: kai.parts[0].id }, { t: 4, sfx: "voice:soft:a:0", volume: 1, pan: 0, line: kai.parts[1].id }], clips);
+  assert.deepEqual(out.map((e) => e.sfx), ["tts:k"], "the second bubble's babble is gone and adds no clip");
+});

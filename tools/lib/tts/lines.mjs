@@ -75,15 +75,28 @@ export function collectLines(compiled, table, overrides = {}) {
   const narrator = narratorVoice(compiled.meta, table, overrides.narrator);
   const out = [];
   compiled.scenes.forEach((sc, si) => {
-    (sc.beats || []).forEach((b, bi) => {
+    const beats = sc.beats || [];
+    const merged = new Set();
+    beats.forEach((b, bi) => {
+      if (merged.has(bi)) return;
       const narrate = b.who === "world" && b.do === "narrate";
       const text = narrate ? b.params?.text : b.say;
       if (!text || (!narrate && b.bubble === "think")) return;
       const voice = narrate ? narrator : voices.get(b.who);
-      const spoken = cleanText(text);
-      if (!voice || !spoken) return;
       b.id ??= `tts_${si}_${bi}`;
-      out.push({ id: b.id, kind: narrate ? "narrate" : "say", scene: si, beat: bi, who: narrate ? "narrator" : b.who, text, spoken, bubble: narrate ? null : b.bubble ?? "speech", voice });
+      // A long line split into bubbles (the dialogue macro) is spoken as one sentence over all its bubbles.
+      const parts = [{ beat: bi, id: b.id, text }];
+      for (let k = bi; !narrate && !/[.!?…]["')]*\s*$/.test(beats[k].say); ) {
+        const n = beats.findIndex((x, j) => j > k && x.who === b.who && x.say && x.bubble === b.bubble && x.at?.after === beats[k].id);
+        if (n < 0) break;
+        merged.add(n);
+        parts.push({ beat: n, id: beats[n].id, text: beats[n].say });
+        k = n;
+      }
+      const spoken = cleanText(parts.map((p) => p.text).join(" "));
+      if (!voice || !spoken) return;
+      out.push({ id: b.id, kind: narrate ? "narrate" : "say", scene: si, beat: bi, who: narrate ? "narrator" : b.who, text: parts.map((p) => p.text).join(" "), spoken,
+        bubble: narrate ? null : b.bubble ?? "speech", voice, ...(parts.length > 1 ? { parts } : {}) });
     });
   });
   return out;
@@ -91,7 +104,8 @@ export function collectLines(compiled, table, overrides = {}) {
 
 /**
  * Make each spoken beat last as long as its audio (SPEECH_SPEC 4.4), in place:
- *   say:     sayDur = clamp(audio + 0.25, readingTime, 10); a talk gesture loops that long, a wait waits that long
+ *   say:     sayDur = clamp(audio + 0.25, readingTime, 10); a talk gesture loops that long, a wait waits that long;
+ *            a line over several bubbles shares the audio out by characters (each bubble at least its reading time)
  *   narrate: dur = clamp(audio + lead + tail, narrateDuration, 15)
  * @param {Array<{ id, kind, scene, beat, dur:number }>} lines  dur: audio seconds
  * @returns {Array<{ id, beatDur, long }>}  long: the audio does not fit the longest allowed beat
@@ -105,11 +119,20 @@ export function injectDurations(compiled, lines) {
       b.params = { ...b.params, dur };
       return { id: l.id, beatDur: dur, long: want > MAX_NARRATE };
     }
-    const want = l.dur + SAY_TAIL;
-    const sayDur = round2(Math.min(MAX_SAY, Math.max(readingTime(b.say), want)));
-    b.sayDur = sayDur;
-    if (b.do === "talk") b.params = { ...b.params, cycles: Math.max(b.params?.cycles ?? 1, Math.ceil(sayDur / TALK_CYCLE)) };
-    if (b.do === "wait") b.params = { ...b.params, seconds: Math.max(b.params?.seconds ?? 0, sayDur) };
-    return { id: l.id, beatDur: sayDur, long: want > MAX_SAY };
+    const parts = l.parts ?? [{ beat: l.beat, text: b.say }];
+    const chars = parts.reduce((n, p) => n + p.text.length, 0);
+    let long = false;
+    let total = 0;
+    for (const [k, p] of parts.entries()) {
+      const pb = compiled.scenes[l.scene].beats[p.beat];
+      const want = (l.dur * p.text.length) / chars + (k === parts.length - 1 ? SAY_TAIL : 0);
+      const sayDur = round2(Math.min(MAX_SAY, Math.max(readingTime(pb.say), want)));
+      long ||= want > MAX_SAY;
+      total += sayDur;
+      pb.sayDur = sayDur;
+      if (pb.do === "talk") pb.params = { ...pb.params, cycles: Math.max(pb.params?.cycles ?? 1, Math.ceil(sayDur / TALK_CYCLE)) };
+      if (pb.do === "wait") pb.params = { ...pb.params, seconds: Math.max(pb.params?.seconds ?? 0, sayDur) };
+    }
+    return { id: l.id, beatDur: round2(total), long };
   });
 }
