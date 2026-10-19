@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 for (const file of process.argv.slice(2)) {
   const story = JSON.parse(readFileSync(file, "utf8"));
-  for (const scene of story.scenes) {
+  for (const scene of story.scenes.filter((s) => s.beats)) { // scene macros (montage) have no beats
     const p = `${scene.id}_`;
     const ids = new Set(scene.beats.map((b) => b.id).filter((id) => id && !id.startsWith(p)));
     const ref = (r) => {
