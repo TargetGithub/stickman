@@ -12,6 +12,8 @@ import { drawExtras } from "./extras.js";
 import { drawCharacter } from "./character.js";
 import { drawLitContactShadow, drawCastShadow } from "./shading.js";
 import { contactShadow, castShadow, fogAt, fogVeils, rgbText } from "../lighting.js";
+import { blurFor } from "../camera3.js";
+import { blurLayer } from "./lens_draw.js";
 import { STAGE } from "../config.js";
 
 /** Draw inside the depth transform of a node whose feet stand at world x. */
@@ -59,7 +61,7 @@ export function projectedChars(chars, depths, cam, depth) {
  * Draw the world of a v3 scene. `stage` draws the z = 0 group (items, trails, particles, moving objects) and
  * `character(c)` draws one character with its looks and effects; both come from renderer/index.js.
  */
-export function drawDepthWorld(ctx, r, f, chars, sv, pieces, { stage, character }) {
+export function drawDepthWorld(ctx0, r, f, chars, sv, pieces, { stage, character }) {
   const cam = f.cam;
   const nodes = frameNodes(sv, f, chars, pieces);
   const depths = characterDepths(nodes);
@@ -67,8 +69,27 @@ export function drawDepthWorld(ctx, r, f, chars, sv, pieces, { stage, character 
   // Fog by depth (V3.3): veils between the nodes so everything behind a node is fogged by its depth.
   const veils = rig ? fogVeils(nodes.map((n) => fogAt(rig, n.z, sv.depth)), fogAt(rig, sv.depth.far, sv.depth)) : null;
   const cast = rig ? castShadow(rig) : null;
+  // Depth of field (V3.4): nodes that share a blur level draw into one scratch layer, composited blurred.
+  const dof = r.frameDof;
+  let layer = null;
+  const flush = () => {
+    if (layer) layer.end();
+    layer = null;
+  };
+  const target = (px) => {
+    if (!px) return flush(), ctx0;
+    if (layer?.px !== px) {
+      flush();
+      layer = { px, ...blurLayer(ctx0, r, px) };
+    }
+    return layer.ctx;
+  };
   nodes.forEach((node, i) => {
-    if (veils && veils[i] > 0.002) veil(ctx, r, rig.fog.color, veils[i]);
+    if (veils && veils[i] > 0.002) {
+      flush();
+      veil(ctx0, r, rig.fog.color, veils[i]);
+    }
+    const ctx = target(dof ? blurFor(node.z, dof.zf, dof.amount) : 0);
     if (node.kind === "piece") withDepth(ctx, node.z, node.ref.x, cam, sv.depth, () => drawSetPiece(ctx, r.catalog, node.ref, f.fxT));
     else if (node.kind === "extras") withDepth(ctx, node.z, cam.x, cam, sv.depth, () => drawExtras(ctx, r, sv, f, node.ref, true));
     else if (node.kind === "character") {
@@ -79,10 +100,11 @@ export function drawDepthWorld(ctx, r, f, chars, sv, pieces, { stage, character 
           drawLitContactShadow(ctx, c, contactShadow(rig, c.scale, bodyHeight(c)), STAGE.groundY);
           if (cast) drawCastShadow(ctx, c, cast, STAGE.groundY, (g, grey) => drawCharacter(g, c.j, { color: grey, outline: false, outlineColor: grey, farBrightness: 1, scale: c.scale, facing: c.facing, mouth: "neutral", dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth, ...(c.quad ? { quad: Object.fromEntries(Object.entries(c.quad).map(([k, v]) => [k, typeof v === "string" && v.startsWith("#") ? grey : v])), grip: c.grip } : {}) }));
         }
-        character(c);
+        character(c, ctx);
       });
-    } else stage();
+    } else stage(ctx);
   });
+  flush();
   return depths;
 }
 

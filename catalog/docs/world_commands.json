@@ -152,5 +152,14 @@
   "set_light": {
     "description": "The light rig of a version 3 scene: a preset (noon, dawn, golden, moonlit, indoor, stage, gloom, flat) or overrides (angle, strength, fog), blended over dur.",
     "example": { "at": 0, "who": "world", "do": "set_light", "params": { "preset": "golden", "dur": 2 } }
+  },
+  "set_camera": {
+    "description": "The lens of a version 3 scene: a named move (push_in, pull_out, crane_up, orbit_sweep, dutch_tilt, level, handheld ...) and/or channels (dolly, truck, crane, tilt, roll, push, handheld, dof, focus, vignette, letterbox) over dur.",
+    "example": {
+      "at": 0,
+      "who": "world",
+      "do": "set_camera",
+      "params": { "move": "push_in", "dof": 0.5, "focus": "kai", "dur": 3 }
+    }
   }
 }

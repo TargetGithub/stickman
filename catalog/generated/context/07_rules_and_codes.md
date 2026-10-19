@@ -120,3 +120,4 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - E_DEPTH_RANGE: a z (placement, set piece or to.z) is outside the scene's depth range → Keep z between the scene's far and near (default -2000..600) or widen depth.
 - E_DEPTH_LAYER: a node gives both z and layer → Keep one: layer is a z preset (back -800, front 313).
 - E_LIGHT_UNKNOWN: an unknown light rig preset (scene or location light, set_light) → Use a preset from catalog/world/lights.json (noon, dawn, golden, moonlit, indoor, stage, gloom, flat).
+- E_CAMERA_MOVE: an unknown named camera move (a v3 camera key move or set_camera) → Use a move from catalog/world/camera_moves.json (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld).

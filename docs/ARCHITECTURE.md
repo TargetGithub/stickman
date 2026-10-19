@@ -351,6 +351,21 @@ export function fogAt(rig, z, depth): number;  export function fogVeils(fogs, ba
 ```
 `drawCharacter` takes `style.light` (the tones); the renderer sets `r.frameLight = lightAt(...)` per frame of a v3 scene and `drawOne`/`drawExtras` pass the tones. `sim.scenes[i].light` carries the scene's `light` choice.
 
+### camera3.js (V3.4, ENGINE_V3_SPEC 5.3)
+```js
+export const LENS_DEFAULTS, LENS_CHANNELS;
+export function lensChanges(events): [{ t0, dur, ease, set, move, focus, focusZ }];   // camera keys with lens fields + set_camera, in video order
+export function lensAt(changes, videoT, cameraMoves, base): Lens;                       // channels blended over dur; moves added (absolute: blended to targets)
+export function sampleMove(move, u): { channel: value };
+export function autoFocusSpans(events), autoFocusAt(spans, t): { dof, ids } | null;    // close_up / over_shoulder / two_shot pull focus
+export function createHandheld(rng), handheldAt(h, amount, t): { x, y, roll };
+export function lensCamera(cam, lens, depth, handheld, groundY): { cam, bgZoom, depth, tiltPx, roll };   // dolly folds into the depth focal length
+export function blurFor(z, focusZ, dof): px;  coverScale(W, H, roll);  letterboxBar(W, H, amount);
+// renderer/lens_draw.js: lensMatrix, framedContext (setTransform composed with a base matrix), dofScratch, blurFrame, blurLayer, drawVignette, drawLetterbox
+// renderer/scene_views.js: sceneViews(sim, catalog) (split from renderer/index.js) and frameLens(r, sv, f)
+// camera.js: a key's `lag` (0-1) slows the follow springs
+```
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -819,4 +834,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: the 2.5D look needs lit and shadow sides, rim light, cast shadows and haze, with the same frames for the same script, on the canvas 2D API, and without changing v1/v2 output or the frame store.
 - **Decision**: a light rig is a catalog preset (`catalog/world/lights.json`) chosen per scene from the time of day or named by the scene or location; `set_light` world events change it and the renderer blends rigs over `dur` from the event log (ADR-012). Shading is cartoon-stepped: three flat tones (`shadeTones`) drawn as bands inside each limb, a clipped crescent on the head and a clipped band on filled torsos, so the silhouette and outlines are exactly the v2 ones and no gradients are needed. Shadows are the stretched contact ellipse plus a flattened silhouette of the same joints drawn through a shear about the feet as a multiply pass. Fog by depth is a chain of screen-space veils between the depth-sorted nodes (`fogVeils`), so it costs one fill per depth step and no offscreen canvas. Everything runs only in the v3 depth path.
 - **Consequences**: v1 and v2 frames are unchanged; lighting reads the catalog, so bundles can ship rigs once the bundle format gains a `lights` kind. Set pieces, props and particles are not shaded yet; overlapping limb strokes darken a cast shadow slightly more where they cross.
+
+### ADR-025 The v3 camera is a lens over the stored camera, evaluated from events (V3.4)
+- **Context**: v3 needs dolly, crane, tilt, roll, handheld, depth of field, vignette and letterbox with keyframes and named moves, while frames stay random access and deterministic, the frame store (CAM_STRIDE 5) stays shared by every script, and v1/v2 frames do not change.
+- **Decision**: framing stays in `camera.js` (the stored, spring-smoothed x, y and zoom; `lag` slows its springs). Everything else is a lens computed per frame from the scene's event log (`camera` events whose keys carry lens fields and `set_camera` world events) by the pure `camera3.js`, exactly like overlays (ADR-012) and depth (ADR-023). Named moves are catalog curves. Handheld sway is value noise from a scene-scoped `deriveRng` stream, so it is a closed-form function of time. Dolly is folded into the depth projection (stage-line zoom f/(f-d), depth focal f-d), so it reads differently from a zoom. Tilt and roll are a base matrix composed into every `setTransform` (a proxy context), so no drawing code changes. Depth of field uses one scratch canvas from the host and the canvas `blur` filter, grouped by quantized blur level.
+- **Consequences**: no frame-store or simulation change except the follow lag; v1/v2 frames are byte-identical. Depth of field costs one full-frame blur per blur level per frame (no caching yet) and needs `createCanvas` from the host (record.mjs passes it; pages without it render sharp). Overlays (bubbles, captions) are drawn without the roll, so they stay level.
 

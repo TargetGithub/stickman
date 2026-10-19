@@ -1,0 +1,60 @@
+{
+  "version": 3,
+  "meta": { "title": "V3.4 Camera: The Lost Ball", "format": "landscape", "seed": 34, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "kid", "color": "#3fd8ff", "appearance": { "hair": "spiky", "hairColor": "#2b2b2b", "outfit": "shirt", "outfitColor": "#ffd23f" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#ffb0d0", "appearance": { "eyes": "big", "cheeks": "#ff8fb0" } },
+    { "id": "sage", "name": "Sage", "body": "elder", "color": "#e8e8f0", "appearance": { "hair": "bun", "hairColor": "#d0d0d8", "outfit": "robe", "outfitColor": "#6a4fb0" } }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "stageWidth": 3600,
+      "set": [
+        { "id": "tree_far", "object": "tree_big", "x": 700, "z": -1500 },
+        { "id": "tree_far2", "object": "tree_big", "x": 2900, "z": -1200 },
+        { "id": "bench", "object": "bench", "x": 1100, "z": -400 },
+        { "id": "lamp", "object": "lamppost", "x": 2500, "z": -300 },
+        { "id": "bush_near", "object": "bush", "x": 900, "z": 380 },
+        { "id": "sign_near", "object": "sign", "x": 2900, "z": 420 }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "park",
+      "time": "day",
+      "music": { "mood": "playful" },
+      "lens": { "letterbox": 1, "vignette": 0.3 },
+      "camera": [
+        { "at": 0, "mode": "fixed", "x": 1800, "zoom": 0.8, "move": "crane_down", "dur": 4 },
+        { "at": 4.5, "mode": "follow", "lag": 0.5, "move": "push_in", "dur": 3 }
+      ],
+      "cast": [
+        { "id": "kai", "x": 1500, "facing": 1 },
+        { "id": "pip", "x": 1900, "facing": -1 },
+        { "id": "sage", "x": 2400, "facing": -1, "z": -1000 }
+      ],
+      "beats": [
+        { "id": "hi", "at": 1, "macro": "dialogue", "params": { "lines": [["kai", "Where did my ball go?", "sad"], ["pip", "Let's look around!", "happy"]] } },
+        { "id": "look", "at": { "after": "hi" }, "who": "kai", "do": "look_around" },
+        { "id": "sweep", "at": { "with": "look" }, "who": "world", "do": "set_camera", "params": { "move": "orbit_sweep", "dur": 4 } },
+        { "id": "rack", "at": { "with": "look", "delay": 1.5 }, "who": "world", "do": "set_camera", "params": { "dof": 0.8, "focus": "sage", "dur": 1.2 } },
+        { "id": "sage_wave", "at": { "with": "rack", "delay": 1 }, "who": "sage", "do": "wave" },
+        { "id": "back", "at": { "after": "sage_wave" }, "who": "world", "do": "set_camera", "params": { "focus": "kai", "dof": 0.4, "dur": 1 } },
+        { "id": "found", "at": { "after": "back" }, "macro": "dialogue", "params": { "lines": [["sage", "Is this your ball?", "happy"]] } },
+        { "id": "joy", "at": { "after": "found" }, "who": "kai", "do": "jump_joy" },
+        { "id": "dutch", "at": { "with": "joy" }, "who": "world", "do": "set_camera", "params": { "move": "dutch_tilt" } },
+        { "id": "shaky", "at": { "with": "joy", "delay": 0.2 }, "who": "world", "do": "set_camera", "params": { "move": "handheld" } },
+        { "id": "run", "at": { "after": "joy" }, "who": "kai", "do": "run", "to": { "x": 2300, "z": -900 } },
+        { "id": "level", "at": { "with": "run", "delay": 0.5 }, "who": "world", "do": "set_camera", "params": { "move": "level", "handheld": 0, "dof": 0, "dur": 1.5 } },
+        { "id": "close", "at": { "after": "run" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "pip", "dur": 2.5 } },
+        { "id": "pip_clap", "at": { "with": "close" }, "who": "pip", "do": "clap" },
+        { "id": "out", "at": { "after": "pip_clap", "delay": 0.3 }, "who": "world", "do": "set_camera", "params": { "move": "pull_out", "dur": 3 } },
+        { "id": "end", "at": { "after": "out", "delay": 1.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

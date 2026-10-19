@@ -1,0 +1,39 @@
+{
+  "title": "catalog/world/camera_moves.json: named lens moves (ENGINE_V3_SPEC 5.3): keyframe curves over the dolly, truck, crane, tilt, roll, push and handheld channels.",
+  "type": "object",
+  "minProperties": 1,
+  "maxProperties": 64,
+  "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "tags", "dur", "keys"],
+    "additionalProperties": false,
+    "properties": {
+      "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+      "tags": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,23}$" } },
+      "dur": { "type": "number", "minimum": 0.1, "maximum": 30, "description": "Seconds (a camera key or set_camera dur overrides it)." },
+      "absolute": { "const": true, "description": "The last key's values are targets blended from the current lens (otherwise the curve is added to it)." },
+      "keys": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 12,
+        "items": {
+          "type": "object",
+          "required": ["t"],
+          "additionalProperties": false,
+          "properties": {
+            "t": { "type": "number", "minimum": 0, "maximum": 1 },
+            "ease": { "type": "string", "pattern": "^[a-zA-Z]{2,24}$" },
+            "dolly": { "type": "number", "minimum": -1500, "maximum": 1500 },
+            "truck": { "type": "number", "minimum": -3000, "maximum": 3000 },
+            "crane": { "type": "number", "minimum": -1000, "maximum": 1000 },
+            "tilt": { "type": "number", "minimum": -30, "maximum": 30 },
+            "roll": { "type": "number", "minimum": -45, "maximum": 45 },
+            "push": { "type": "number", "minimum": 0.3, "maximum": 4 },
+            "handheld": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    }
+  }
+}

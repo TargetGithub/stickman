@@ -74,6 +74,7 @@ export const V2_WORLD_COMMANDS = [
   "set_glow", "set_grade", // A3: Heart Glow and how grey the world is
   "sfx", // batch B: a sound on its own
   "set_light", // V3.3: the scene's light rig (v3 scenes)
+  "set_camera", // V3.4: the v3 lens (dolly, truck, crane, tilt, roll, push, handheld, focus, dof, vignette, letterbox, moves)
   "activity", // S5: the runtime form of the @activity macro
 ];
 

@@ -145,10 +145,12 @@ export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = tru
     cam.vz = 0;
     cam.cut = false;
   } else {
+    // Follow with lag (V3.4: a v3 camera key's `lag`, 0-1): a slower spring trails the action.
+    const lag = typeof cam.key.lag === "number" ? 1 - 0.8 * Math.max(0, Math.min(1, cam.key.lag)) : 1;
     // Narrow frames leave less room: follow sideways faster.
-    [cam.x, cam.vx] = spring(cam.x, cam.vx, d.x, videoDt, cam.W < cam.H ? CAMERA.omega * 1.6 : CAMERA.omega);
+    [cam.x, cam.vx] = spring(cam.x, cam.vx, d.x, videoDt, (cam.W < cam.H ? CAMERA.omega * 1.6 : CAMERA.omega) * lag);
     // Zoom out quickly (keep jumps and launches in frame), zoom back in gently.
-    [cam.zoom, cam.vz] = spring(cam.zoom, cam.vz, d.zoom, videoDt, d.zoom < cam.zoom ? CAMERA.omega * 2 : CAMERA.omega);
+    [cam.zoom, cam.vz] = spring(cam.zoom, cam.vz, d.zoom, videoDt, (d.zoom < cam.zoom ? CAMERA.omega * 2 : CAMERA.omega) * lag);
   }
   cam.zoom = Math.max(ZOOM_MIN, Math.min(d.maxZoom ?? ZOOM_MAX * 1.2, cam.zoom));
 

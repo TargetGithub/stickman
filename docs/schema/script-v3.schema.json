@@ -1156,6 +1156,88 @@
                       "type": "number",
                       "minimum": 0,
                       "maximum": 10
+                    },
+                    "dolly": {
+                      "type": "number",
+                      "minimum": -1500,
+                      "maximum": 1500,
+                      "description": "Move the camera toward (+) or away from (-) the stage, px: near things grow faster than far ones."
+                    },
+                    "truck": {
+                      "type": "number",
+                      "minimum": -3000,
+                      "maximum": 3000,
+                      "description": "Slide the camera sideways, px; depth layers slide past each other."
+                    },
+                    "crane": {
+                      "type": "number",
+                      "minimum": -1000,
+                      "maximum": 1000,
+                      "description": "Raise (-) or lower (+) the camera, px."
+                    },
+                    "tilt": {
+                      "type": "number",
+                      "minimum": -30,
+                      "maximum": 30,
+                      "description": "Tilt the view up (+) or down (-), degrees."
+                    },
+                    "roll": {
+                      "type": "number",
+                      "minimum": -45,
+                      "maximum": 45,
+                      "description": "Lean the frame, degrees (a dutch angle)."
+                    },
+                    "push": {
+                      "type": "number",
+                      "minimum": 0.3,
+                      "maximum": 4,
+                      "description": "A zoom multiplier on top of the framing (1 = none)."
+                    },
+                    "handheld": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Handheld sway, 0 still to 1 shaky."
+                    },
+                    "dof": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Depth of field: how much things away from the focus blur."
+                    },
+                    "focus": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                      "description": "Keep this character in focus."
+                    },
+                    "focusZ": {
+                      "type": "number",
+                      "minimum": -4000,
+                      "maximum": 2000,
+                      "description": "Keep this depth in focus."
+                    },
+                    "vignette": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Darkened corners."
+                    },
+                    "letterbox": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Cinema bars: 1 crops to 2.39:1."
+                    },
+                    "lag": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Follow with lag: 0 tight, 1 trailing well behind."
+                    },
+                    "move": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                      "description": "A named camera move from the catalog (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld; E_CAMERA_MOVE)."
                     }
                   }
                 }
@@ -1678,6 +1760,88 @@
                     }
                   }
                 ]
+              },
+              "lens": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "The lens the scene starts with (V3.4); camera keys and set_camera change it. Defaults: vignette 0.18, no depth of field, autoFocus on.",
+                "properties": {
+                  "dolly": {
+                    "type": "number",
+                    "minimum": -1500,
+                    "maximum": 1500,
+                    "description": "Move the camera toward (+) or away from (-) the stage, px: near things grow faster than far ones."
+                  },
+                  "truck": {
+                    "type": "number",
+                    "minimum": -3000,
+                    "maximum": 3000,
+                    "description": "Slide the camera sideways, px; depth layers slide past each other."
+                  },
+                  "crane": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000,
+                    "description": "Raise (-) or lower (+) the camera, px."
+                  },
+                  "tilt": {
+                    "type": "number",
+                    "minimum": -30,
+                    "maximum": 30,
+                    "description": "Tilt the view up (+) or down (-), degrees."
+                  },
+                  "roll": {
+                    "type": "number",
+                    "minimum": -45,
+                    "maximum": 45,
+                    "description": "Lean the frame, degrees (a dutch angle)."
+                  },
+                  "push": {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 4,
+                    "description": "A zoom multiplier on top of the framing (1 = none)."
+                  },
+                  "handheld": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Handheld sway, 0 still to 1 shaky."
+                  },
+                  "dof": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Depth of field: how much things away from the focus blur."
+                  },
+                  "focus": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                    "description": "Keep this character in focus."
+                  },
+                  "focusZ": {
+                    "type": "number",
+                    "minimum": -4000,
+                    "maximum": 2000,
+                    "description": "Keep this depth in focus."
+                  },
+                  "vignette": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Darkened corners."
+                  },
+                  "letterbox": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Cinema bars: 1 crops to 2.39:1."
+                  },
+                  "autoFocus": {
+                    "type": "boolean",
+                    "description": "Close-ups, over-the-shoulder shots and two-shots pull focus by themselves (default true)."
+                  }
+                }
               }
             }
           },

@@ -259,6 +259,7 @@ export function simulate(script, catalog, opts = {}) {
       }),
       depth: flat.depth, // V3.2: null for v1/v2 scenes
       light: flat.depth ? (flat.scene.light ?? flat.location?.light ?? null) : null, // V3.3: the scene's light rig choice
+      lens: flat.depth ? flat.scene.lens ?? null : null, // V3.4: the lens the scene starts with
       extras: story.legacy ? [] : planExtras(flat.scene, flat.location, catalog, meta.seed ?? 1, flat.meta.stageWidth),
     });
   }

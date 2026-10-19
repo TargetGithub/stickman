@@ -8445,6 +8445,71 @@
       }
     },
     "lightNames": ["flat", "noon", "dawn", "golden", "moonlit", "indoor", "stage", "gloom"],
+    "cameraMoves": {
+      "push_in": {
+        "description": "A slow dolly toward the stage: near things grow faster than far ones, so the scene deepens.",
+        "tags": ["dolly", "push", "slow"],
+        "dur": 3,
+        "keys": [{ "t": 0, "dolly": 0 }, { "t": 1, "dolly": 420, "ease": "inOutCubic" }]
+      },
+      "pull_out": {
+        "description": "A dolly back from the stage that reveals more of the place around the characters.",
+        "tags": ["dolly", "reveal", "wide"],
+        "dur": 3,
+        "keys": [{ "t": 0, "dolly": 0 }, { "t": 1, "dolly": -420, "ease": "inOutCubic" }]
+      },
+      "slow_push": {
+        "description": "A gentle zoom in over a few seconds, for a quiet or emotional moment.",
+        "tags": ["zoom", "slow", "emotion"],
+        "dur": 5,
+        "keys": [{ "t": 0, "push": 1 }, { "t": 1, "push": 1.14, "ease": "inOutQuad" }]
+      },
+      "crane_up": {
+        "description": "The camera rises and tilts down a little, as if on a crane, for an opening or an ending.",
+        "tags": ["crane", "rise", "opening"],
+        "dur": 4,
+        "keys": [{ "t": 0, "crane": 0, "tilt": 0 }, { "t": 1, "crane": -180, "tilt": -3, "ease": "inOutCubic" }]
+      },
+      "crane_down": {
+        "description": "The camera comes down from high above to the characters' height.",
+        "tags": ["crane", "descend", "opening"],
+        "dur": 4,
+        "keys": [{ "t": 0, "crane": -180, "tilt": -3 }, { "t": 1, "crane": 0, "tilt": 0, "ease": "inOutCubic" }]
+      },
+      "orbit_sweep": {
+        "description": "A sideways glide with a small push in and out, so the layers slide past each other.",
+        "tags": ["truck", "parallax", "sweep"],
+        "dur": 4,
+        "keys": [
+          { "t": 0, "truck": 0, "dolly": 0, "roll": 0 },
+          { "t": 0.5, "truck": 300, "dolly": 220, "roll": 1.2, "ease": "inOutQuad" },
+          { "t": 1, "truck": 600, "dolly": 0, "roll": 0, "ease": "inOutQuad" }
+        ]
+      },
+      "dutch_tilt": {
+        "description": "The frame leans a few degrees to one side for a funny or uneasy moment.",
+        "tags": ["roll", "comedy", "tension"],
+        "dur": 0.6,
+        "keys": [{ "t": 0, "roll": 0 }, { "t": 1, "roll": 7, "ease": "outBack" }]
+      },
+      "level": {
+        "description": "Back to a straight, still camera: no lean, crane, truck or dolly.",
+        "tags": ["reset", "level", "still"],
+        "dur": 1,
+        "absolute": true,
+        "keys": [
+          { "t": 0 },
+          { "t": 1, "dolly": 0, "truck": 0, "crane": 0, "tilt": 0, "roll": 0, "push": 1, "ease": "inOutCubic" }
+        ]
+      },
+      "handheld": {
+        "description": "A light handheld sway that keeps going after the move, for lively or nervous scenes.",
+        "tags": ["handheld", "sway", "lively"],
+        "dur": 1,
+        "keys": [{ "t": 0, "handheld": 0 }, { "t": 1, "handheld": 0.6, "ease": "linear" }]
+      }
+    },
+    "cameraMoveNames": ["push_in", "pull_out", "slow_push", "crane_up", "crane_down", "orbit_sweep", "dutch_tilt", "level", "handheld"],
     "bundles": [{ "id": "base", "version": "1.0.0", "audience": ["kids", "general"] }]
   },
   "presets": [
@@ -9204,6 +9269,15 @@
       "set_light": {
         "description": "The light rig of a version 3 scene: a preset (noon, dawn, golden, moonlit, indoor, stage, gloom, flat) or overrides (angle, strength, fog), blended over dur.",
         "example": { "at": 0, "who": "world", "do": "set_light", "params": { "preset": "golden", "dur": 2 } }
+      },
+      "set_camera": {
+        "description": "The lens of a version 3 scene: a named move (push_in, pull_out, crane_up, orbit_sweep, dutch_tilt, level, handheld ...) and/or channels (dolly, truck, crane, tilt, roll, push, handheld, dof, focus, vignette, letterbox) over dur.",
+        "example": {
+          "at": 0,
+          "who": "world",
+          "do": "set_camera",
+          "params": { "move": "push_in", "dof": 0.5, "focus": "kai", "dur": 3 }
+        }
       }
     },
     "macros": {
@@ -9520,7 +9594,8 @@
       "W_BUNDLE_UNUSED": { "meaning": "a declared bundle is used by nothing in the script", "fix": "Remove it or use one of its entries." },
       "E_DEPTH_RANGE": { "meaning": "a z (placement, set piece or to.z) is outside the scene's depth range", "fix": "Keep z between the scene's far and near (default -2000..600) or widen depth." },
       "E_DEPTH_LAYER": { "meaning": "a node gives both z and layer", "fix": "Keep one: layer is a z preset (back -800, front 313)." },
-      "E_LIGHT_UNKNOWN": { "meaning": "an unknown light rig preset (scene or location light, set_light)", "fix": "Use a preset from catalog/world/lights.json (noon, dawn, golden, moonlit, indoor, stage, gloom, flat)." }
+      "E_LIGHT_UNKNOWN": { "meaning": "an unknown light rig preset (scene or location light, set_light)", "fix": "Use a preset from catalog/world/lights.json (noon, dawn, golden, moonlit, indoor, stage, gloom, flat)." },
+      "E_CAMERA_MOVE": { "meaning": "an unknown named camera move (a v3 camera key move or set_camera)", "fix": "Use a move from catalog/world/camera_moves.json (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld)." }
     }
   },
   "examples": [

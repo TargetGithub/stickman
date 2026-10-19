@@ -27,6 +27,7 @@ const expected = {
   "../../engine/bundles.js": ["mergeBundles", "bundleOf", "scriptNames", "bundleIssues"],
   "../../engine/depth.js": ["DEPTH", "LAYER_Z", "depthOf", "zOf", "projectScale", "depthTransform", "projectJoints", "depthAt", "planDepthWalk", "sameDepth", "depthOrder"],
   "../../engine/scene.js": ["sceneNodes", "characterDepths"],
+  "../../engine/camera3.js": ["LENS_DEFAULTS", "lensChanges", "lensAt", "sampleMove", "autoFocusSpans", "autoFocusAt", "createHandheld", "handheldAt", "lensCamera", "blurFor", "coverScale", "letterboxBar"],
   "../../engine/lighting.js": ["lightRigOf", "resolveRig", "blendRigs", "lightAt", "shadeTones", "contactShadow", "castShadow", "fogAt", "fogVeils", "ambientTint"],
   "../../engine/validator/index.js": ["validate", "jsonSchema"],
   "../../engine/renderer/index.js": ["createRenderer", "renderFrame"],

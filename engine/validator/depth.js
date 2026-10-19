@@ -7,7 +7,7 @@ const issue = (code, path, message, fix) => ({ code, path, message, fix });
 
 /**
  * @param {object} story  a normalized v3 story (compiled or not)
- * @returns {object[]} issues: E_DEPTH_RANGE, E_DEPTH_LAYER, E_LIGHT_UNKNOWN
+ * @returns {object[]} issues: E_DEPTH_RANGE, E_DEPTH_LAYER, E_LIGHT_UNKNOWN, E_CAMERA_MOVE, E_REF_CHARACTER (lens focus)
  */
 export function depthIssues(story, catalog = null) {
   const out = [];
@@ -28,6 +28,16 @@ export function depthIssues(story, catalog = null) {
     if (scene.macro) return;
     const sp = scene.srcPath ?? `scenes[${si}]`;
     lightCheck(scene.light, `${sp}.light`);
+    // The v3 camera (V3.4): named moves exist; focus names a character placed in the scene.
+    const placed = new Set((scene.cast || []).map((c) => c.id));
+    const focusCheck = (id, path) => {
+      if (id !== undefined && !placed.has(id)) out.push(issue("E_REF_CHARACTER", path, `Focus on '${id}', who is not in scene '${scene.id}'.`, `Use one of: ${[...placed].join(", ")}.`));
+    };
+    focusCheck(scene.lens?.focus, `${sp}.lens.focus`);
+    (scene.camera || []).forEach((k, i) => {
+      if (k.move !== undefined && catalog?.cameraMoves && !catalog.cameraMoves[k.move]) out.push(issue("E_CAMERA_MOVE", `${sp}.camera[${i}].move`, `Unknown camera move '${k.move}'.`, `Use one of: ${catalog.cameraMoveNames.join(", ")}.`));
+      focusCheck(k.focus, `${sp}.camera[${i}].focus`);
+    });
     const depth = depthOf(scene);
     if (depth.far >= depth.near) out.push(issue("E_DEPTH_RANGE", `${sp}.depth`, `far (${depth.far}) must be below near (${depth.near}).`, "Use a negative far and a positive near."));
     (scene.cast || []).forEach((p, i) => check(p, `${sp}.cast[${i}]`, depth, `'${p.id}'`));

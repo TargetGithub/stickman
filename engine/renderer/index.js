@@ -20,63 +20,12 @@ import { lookFor, lookAt } from "./looks.js";
 import { bodyPlan } from "../story/bodies.js";
 import { drawExtras, withLayer } from "./extras.js";
 import { drawDepthWorld, projectedChars } from "./depth_draw.js";
-import { lightRigOf, lightAt, shadeTones, ambientTint, rgbText } from "../lighting.js";
+import { lightAt, shadeTones, ambientTint, rgbText } from "../lighting.js";
+import { letterboxBar } from "../camera3.js";
+import { framedContext, blurFrame, drawVignette, drawLetterbox } from "./lens_draw.js";
+import { sceneViews, frameLens } from "./scene_views.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
-
-/** Per-scene views of the event log and fx records (overlays and particles never leak across scenes). */
-function sceneViews(sim, catalog) {
-  const scenes = sim.scenes || [{ index: 0, theme: sim.meta?.theme, fxStart: 0, fxEnd: sim.fx.log.length, fxT0: 0, set: [] }];
-  return scenes.map((sc, i) => {
-    const ev = sim.events.filter((e) => (e.scene ?? 0) === sc.index);
-    const world = ev.filter((e) => e.type === "world");
-    const fxT1 = i + 1 < scenes.length ? scenes[i + 1].fxT0 : Infinity;
-    const inRange = (t) => t >= sc.fxT0 && t < fxT1;
-    return {
-      ...sc,
-      worldEvents: world,
-      themeChanges: world.filter((e) => e.do === "set_theme"),
-      looks: world.filter((e) => e.do === "set_time" || e.do === "set_weather"),
-      gradeEvents: world.filter((e) => e.do === "set_grade"),
-      says: ev.filter((e) => e.type === "say"),
-      objectEvents: ev.filter((e) => e.type === "object"),
-      squashEvents: ev.filter((e) => e.type === "land" || e.type === "hit"),
-      // Depth layers and extras (S6): layer changes, and what crowds react to (scene story seconds).
-      layerEvents: ev.filter((e) => e.type === "layer"),
-      // The depth lane (V3.2): a v3 scene's depth settings, each character's placement z and depth events (scene story seconds).
-      depth: sc.depth || null,
-      // Light rigs (V3.3): the scene's starting rig (null: flat) and its set_light changes.
-      rig0: sc.depth ? lightRigOf(catalog, { light: sc.light ?? undefined }, null, sc.look) : null,
-      lightEvents: world.filter((e) => e.do === "set_light"),
-      placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
-      depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
-      extras: sc.extras || [],
-      reactions: reactionsOf(ev, sc),
-      fxLog: sc.fxStart === 0 && sc.fxEnd === sim.fx.log.length ? sim.fx.log : sim.fx.log.slice(sc.fxStart, sc.fxEnd),
-      trails: sim.fx.trails.filter((t) => inRange(t.t0)),
-      flashes: sim.fx.flashes.filter((f) => inRange(f.t0)),
-    };
-  });
-}
-
-/** Depth events by character, with their start in scene story seconds (the sim lerps the same way). */
-function groupDepth(events, t0) {
-  const by = new Map();
-  for (const e of events) {
-    if (!by.has(e.actor)) by.set(e.actor, []);
-    by.get(e.actor).push({ storyT: e.storyT - t0, z0: e.z0, z1: e.z1, dur: e.dur });
-  }
-  return by;
-}
-
-/** Hit and defeat times (scene story seconds) for cheering and fleeing extras. */
-function reactionsOf(ev, sc) {
-  const t0 = sc.storyStart ?? 0;
-  const hits = ev.filter((e) => e.type === "hit" && e.kind === "hit").map((e) => e.storyT - t0);
-  const defeats = ev.filter((e) => e.type === "defeat").map((e) => e.storyT - t0);
-  const first = [...hits, ...defeats].sort((a, b) => a - b)[0] ?? null;
-  return { hits, defeats, first, center: (sc.stageWidth ?? STAGE.width) / 2 };
-}
 
 /** Crowd excitement (S6): it jumps after a hit and fades over a second; a defeat hushes it briefly. */
 function crowdReact(sv, f) {
@@ -221,10 +170,11 @@ function drawWorld(ctx, r, n, f, chars, sv) {
  * A v3 scene (V3.2): nodes far to near in their depth transforms; the stage-line group keeps the v2 order.
  * Returns each character's z this frame (overlays and particle anchors use the projected joints).
  */
-function drawDepthScene(ctx, r, n, f, chars, sv, pieces) {
+function drawDepthScene(ctx0, r, n, f, chars, sv, pieces) {
   const trails = sv.trails.filter((t) => f.fxT >= t.t0 && f.fxT < t.until);
   let depths = null;
-  const stage = () => {
+  // `ctx` is the context the stage group draws into: the frame, or a depth-of-field layer (V3.4).
+  const stage = (ctx = ctx0) => {
     drawItems(ctx, r, f.items, false, sv, f.videoT);
     for (const t of trails.filter((x) => x.kind === "afterimage")) {
       [12, 8, 4].forEach((back, i) => {
@@ -243,7 +193,7 @@ function drawDepthScene(ctx, r, n, f, chars, sv, pieces) {
     });
     drawMovingObjects(ctx, r.catalog, f.items);
   };
-  depths = drawDepthWorld(ctx, r, f, chars, sv, pieces, { stage, character: (c) => drawChars(ctx, r, n, f, chars, sv, [c]) });
+  depths = drawDepthWorld(ctx0, r, f, chars, sv, pieces, { stage, character: (c, g = ctx0) => drawChars(g, r, n, f, chars, sv, [c]) });
   return depths;
 }
 
@@ -336,8 +286,14 @@ export function frameCount(r) {
 
 /** Draw scene frame n (not a hold frame). */
 export function renderScene(r, ctx, n) {
-  const f = frameView(r.sim.store, n, FPS);
-  const sv = r.scenes[f.scene] || r.scenes[0];
+  const f0 = frameView(r.sim.store, n, FPS);
+  const sv0 = r.scenes[f0.scene] || r.scenes[0];
+  // A v3 scene draws through its lens (V3.4): a moved camera, tilt and roll on the frame, depth of field.
+  const lens = sv0.depth ? frameLens(r, sv0, f0) : null;
+  const f = lens ? { ...f0, cam: lens.lc.cam } : f0;
+  const sv = lens ? { ...sv0, depth: lens.lc.depth } : sv0;
+  const g = lens?.matrix ? framedContext(ctx, lens.matrix) : ctx;
+  r.frameDof = lens?.dof ?? null;
   const cam = f.cam;
   const { W, H } = r;
   const theme = sv.themeChanges.filter((e) => e.videoT <= f.videoT).pop()?.params.theme || sv.theme || r.defaultTheme;
@@ -346,26 +302,31 @@ export function renderScene(r, ctx, n) {
   const filter = worldFilter(colourGrade);
   r.castFilter = filter ? "none" : null;
   r.frameLight = sv.depth ? lightAt(sv.rig0, sv.lightEvents, f.videoT, r.catalog.lights) : null; // V3.3
-  ctx.save();
-  if (filter) ctx.filter = filter;
-  drawBackground(ctx, background(r, theme), cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1);
+  g.save();
+  if (filter) g.filter = filter;
+  drawBackground(g, background(r, theme), lens ? { ...cam, zoom: lens.lc.bgZoom } : cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1);
   const ambient = ambientTint(r.frameLight);
   if (ambient) {
     // The key light's colour over the whole background (V3.3): a multiply tint, as the time-of-day grade does.
-    ctx.save();
-    ctx.globalCompositeOperation = "multiply";
-    ctx.fillStyle = `rgba(${rgbText(ambient.color)},${ambient.alpha.toFixed(3)})`;
-    ctx.fillRect(0, 0, W, H);
-    ctx.restore();
+    g.save();
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.globalCompositeOperation = "multiply";
+    g.fillStyle = `rgba(${rgbText(ambient.color)},${ambient.alpha.toFixed(3)})`;
+    g.fillRect(0, 0, W, H);
+    g.restore();
   }
-  ctx.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
+  if (lens?.bgBlur) blurFrame(g, r, lens.bgBlur); // the far background out of focus (V3.4)
+  g.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
-  const depths = drawWorld(ctx, r, n, f, chars, sv);
-  if (filter) ctx.filter = "none";
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  drawWorldGrade(ctx, colourGrade, { W, H, origin: waveOrigin(colourGrade, chars, cam, W, H, STAGE.groundY) });
+  const depths = drawWorld(g, r, n, f, chars, sv);
+  if (filter) g.filter = "none";
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  drawWorldGrade(g, colourGrade, { W, H, origin: waveOrigin(colourGrade, chars, cam, W, H, STAGE.groundY) });
   const grade = gradeState(sv.look, sv.looks, f.videoT);
-  if (grade) drawGrade(ctx, grade, { W, H, fxT: f.fxT, cam });
+  if (grade) drawGrade(g, grade, { W, H, fxT: f.fxT, cam });
+  g.restore();
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
   const prevSame = n > 0 && segmentIndexAt(r.sim.store, n - 1) === f.segment;
   const storyRate = prevSame ? (f.storyT - storyTimeAt(r.sim.store, n - 1)) * FPS : 1;
   const view = {
@@ -375,6 +336,10 @@ export function renderScene(r, ctx, n) {
     names: r.names,
   };
   drawPostWorld(ctx, view);
+  if (lens) {
+    drawVignette(ctx, W, H, lens.L.vignette);
+    drawLetterbox(ctx, W, H, letterboxBar(W, H, lens.L.letterbox));
+  }
   drawOverlays(ctx, view);
   ctx.restore();
 }

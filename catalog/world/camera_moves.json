@@ -1,0 +1,61 @@
+{
+  "push_in": {
+    "description": "A slow dolly toward the stage: near things grow faster than far ones, so the scene deepens.",
+    "tags": ["dolly", "push", "slow"],
+    "dur": 3,
+    "keys": [{ "t": 0, "dolly": 0 }, { "t": 1, "dolly": 420, "ease": "inOutCubic" }]
+  },
+  "pull_out": {
+    "description": "A dolly back from the stage that reveals more of the place around the characters.",
+    "tags": ["dolly", "reveal", "wide"],
+    "dur": 3,
+    "keys": [{ "t": 0, "dolly": 0 }, { "t": 1, "dolly": -420, "ease": "inOutCubic" }]
+  },
+  "slow_push": {
+    "description": "A gentle zoom in over a few seconds, for a quiet or emotional moment.",
+    "tags": ["zoom", "slow", "emotion"],
+    "dur": 5,
+    "keys": [{ "t": 0, "push": 1 }, { "t": 1, "push": 1.14, "ease": "inOutQuad" }]
+  },
+  "crane_up": {
+    "description": "The camera rises and tilts down a little, as if on a crane, for an opening or an ending.",
+    "tags": ["crane", "rise", "opening"],
+    "dur": 4,
+    "keys": [{ "t": 0, "crane": 0, "tilt": 0 }, { "t": 1, "crane": -180, "tilt": -3, "ease": "inOutCubic" }]
+  },
+  "crane_down": {
+    "description": "The camera comes down from high above to the characters' height.",
+    "tags": ["crane", "descend", "opening"],
+    "dur": 4,
+    "keys": [{ "t": 0, "crane": -180, "tilt": -3 }, { "t": 1, "crane": 0, "tilt": 0, "ease": "inOutCubic" }]
+  },
+  "orbit_sweep": {
+    "description": "A sideways glide with a small push in and out, so the layers slide past each other.",
+    "tags": ["truck", "parallax", "sweep"],
+    "dur": 4,
+    "keys": [
+      { "t": 0, "truck": 0, "dolly": 0, "roll": 0 },
+      { "t": 0.5, "truck": 300, "dolly": 220, "roll": 1.2, "ease": "inOutQuad" },
+      { "t": 1, "truck": 600, "dolly": 0, "roll": 0, "ease": "inOutQuad" }
+    ]
+  },
+  "dutch_tilt": {
+    "description": "The frame leans a few degrees to one side for a funny or uneasy moment.",
+    "tags": ["roll", "comedy", "tension"],
+    "dur": 0.6,
+    "keys": [{ "t": 0, "roll": 0 }, { "t": 1, "roll": 7, "ease": "outBack" }]
+  },
+  "level": {
+    "description": "Back to a straight, still camera: no lean, crane, truck or dolly.",
+    "tags": ["reset", "level", "still"],
+    "dur": 1,
+    "absolute": true,
+    "keys": [{ "t": 0 }, { "t": 1, "dolly": 0, "truck": 0, "crane": 0, "tilt": 0, "roll": 0, "push": 1, "ease": "inOutCubic" }]
+  },
+  "handheld": {
+    "description": "A light handheld sway that keeps going after the move, for lively or nervous scenes.",
+    "tags": ["handheld", "sway", "lively"],
+    "dur": 1,
+    "keys": [{ "t": 0, "handheld": 0 }, { "t": 1, "handheld": 0.6, "ease": "linear" }]
+  }
+}

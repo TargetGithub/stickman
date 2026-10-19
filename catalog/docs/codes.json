@@ -86,5 +86,6 @@
   "W_BUNDLE_UNUSED": { "meaning": "a declared bundle is used by nothing in the script", "fix": "Remove it or use one of its entries." },
   "E_DEPTH_RANGE": { "meaning": "a z (placement, set piece or to.z) is outside the scene's depth range", "fix": "Keep z between the scene's far and near (default -2000..600) or widen depth." },
   "E_DEPTH_LAYER": { "meaning": "a node gives both z and layer", "fix": "Keep one: layer is a z preset (back -800, front 313)." },
-  "E_LIGHT_UNKNOWN": { "meaning": "an unknown light rig preset (scene or location light, set_light)", "fix": "Use a preset from catalog/world/lights.json (noon, dawn, golden, moonlit, indoor, stage, gloom, flat)." }
+  "E_LIGHT_UNKNOWN": { "meaning": "an unknown light rig preset (scene or location light, set_light)", "fix": "Use a preset from catalog/world/lights.json (noon, dawn, golden, moonlit, indoor, stage, gloom, flat)." },
+  "E_CAMERA_MOVE": { "meaning": "an unknown named camera move (a v3 camera key move or set_camera)", "fix": "Use a move from catalog/world/camera_moves.json (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld)." }
 }

@@ -6,6 +6,7 @@
 //   set[].z                   a set piece's depth (locations and scenes)
 //   beats[].to                gains { x?, z }: walk to a depth (and an x)
 //   scenes[].light, locations[].light   the light rig (V3.3): a preset name or a preset with overrides
+//   scenes[].lens, camera[] lens fields, lag and move   the v3 camera (V3.4)
 // `layer` names stay accepted and map to z presets (engine/depth.js LAYER_Z); a node gives one or the other.
 
 import { jsonSchemaV2, schemaV2For } from "./schema_v2.js";
@@ -48,6 +49,34 @@ export const LIGHT_SCHEMA = {
   ],
 };
 
+const n = (min, max, description) => ({ type: "number", minimum: min, maximum: max, ...(description ? { description } : {}) });
+/** Lens channels (V3.4, ENGINE_V3_SPEC 5.3) a camera key or set_camera may set; each blends over the key's dur. */
+export const LENS_FIELDS = {
+  dolly: n(-1500, 1500, "Move the camera toward (+) or away from (-) the stage, px: near things grow faster than far ones."),
+  truck: n(-3000, 3000, "Slide the camera sideways, px; depth layers slide past each other."),
+  crane: n(-1000, 1000, "Raise (-) or lower (+) the camera, px."),
+  tilt: n(-30, 30, "Tilt the view up (+) or down (-), degrees."),
+  roll: n(-45, 45, "Lean the frame, degrees (a dutch angle)."),
+  push: n(0.3, 4, "A zoom multiplier on top of the framing (1 = none)."),
+  handheld: n(0, 1, "Handheld sway, 0 still to 1 shaky."),
+  dof: n(0, 1, "Depth of field: how much things away from the focus blur."),
+  focus: { type: "string", pattern: "^[a-z][a-z0-9_]{0,31}$", description: "Keep this character in focus." },
+  focusZ: n(-4000, 2000, "Keep this depth in focus."),
+  vignette: n(0, 1, "Darkened corners."),
+  letterbox: n(0, 1, "Cinema bars: 1 crops to 2.39:1."),
+};
+
+/** The scene lens block: the lens a v3 scene starts with. */
+export const LENS_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  description: "The lens the scene starts with (V3.4); camera keys and set_camera change it. Defaults: vignette 0.18, no depth of field, autoFocus on.",
+  properties: {
+    ...Object.fromEntries(["dolly", "truck", "crane", "tilt", "roll", "push", "handheld", "dof", "focus", "focusZ", "vignette", "letterbox"].map((k) => [k, LENS_FIELDS[k]])),
+    autoFocus: { type: "boolean", description: "Close-ups, over-the-shoulder shots and two-shots pull focus by themselves (default true)." },
+  },
+};
+
 /** The v3 `to` destination: the v2 forms plus a depth. */
 function destV3(dest) {
   return {
@@ -71,6 +100,13 @@ export function withDepth(v2) {
   const scene = s.properties.scenes.items.oneOf[0];
   scene.properties.depth = DEPTH_SCHEMA;
   scene.properties.light = LIGHT_SCHEMA;
+  scene.properties.lens = LENS_SCHEMA;
+  // Camera keys (V3.4): follow lag, lens channels and a named move from the catalog.
+  const key = scene.properties.camera.items;
+  Object.assign(key.properties, LENS_FIELDS, {
+    lag: n(0, 1, "Follow with lag: 0 tight, 1 trailing well behind."),
+    move: { type: "string", pattern: "^[a-z][a-z0-9_]{0,31}$", description: "A named camera move from the catalog (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld; E_CAMERA_MOVE)." },
+  });
   setZ(scene.properties.set.items);
   scene.properties.cast.items.properties.z = Z;
   const beat = scene.properties.beats.items.oneOf[0];
