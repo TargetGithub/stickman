@@ -61,7 +61,7 @@ Engine notes use today's names (body plans, appearance options, voices) where th
 ### Heroes
 
 #### Doopi (hero)
-- **Look:** a classic stickman in sky blue (`#3fb8ff`), spiky hair, a red headband with long tails, big eyes, a cartoon mouth. From episode 3 he wears the Rainbow Bracelet (**NEW**) on his left wrist; its slots light up as crystals come home. `body: stickman`, `appearance: { eyes: big, hair: spiky, mouthStyle: cartoon, accessories: { headband: "#ff3b5c" } }`.
+- **Look:** a classic stickman in sky blue (`#5ec8ff`; first drafted as `#3fb8ff`, which is too dark on the park), spiky hair, a red headband with long tails, big eyes, a cartoon mouth. From episode 3 he wears the Rainbow Bracelet (**NEW**) on his left wrist; its slots light up as crystals come home. `body: stickman`, `appearance: { eyes: big, hair: spiky, mouthStyle: cartoon, accessories: { headband: "#ff3b5c" } }`.
 - **Personality:** big-hearted, brave, hungry (jalebis are his favourite), very clumsy. Trips over his own feet, talks before thinking, never gives up on a friend. Funny because he tries too hard; heroic because he never stops trying.
 - **Powers:** grows across the series. Ep 1-2 none (just heart). Ep 3 the Heart Glow wakes (a golden aura when his friends cheer). Learns from Nani: the **Jalebi Spin** (spinning kick, ep 3), the **Banyan Root Stance** (unbreakable block, ep 8), the **Rainbow Punch** (ep 15), and in the finale the **Friendship Blast**, a full rainbow energy blast that only works with everyone cheering (ep 23-24).
 - **Weakness:** trying to do it alone. Each time he does, he loses (ep 4 round 1, ep 13, ep 20).

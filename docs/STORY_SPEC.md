@@ -314,7 +314,7 @@ Implementation (S3, ADR-015):
 - The elder's stoop eases out over about 0.17 s while attacking, so strikes use the plan's plain geometry (the geometry reach derivation assumes).
 - The reach check gives the lean assist only to shoulder-rooted strikes (arms, weapons); kicks and knees get none, so impossible kicks (a tall slim fighter's flying kick on a kid) are reported (`W_REACH`) instead of faked.
 - Frame store: the plan name is stored once per character per scene segment (constant), not per frame.
-- Renderer: `renderer/bodies.js` draws filled torsos and outfits (below the hips, garments hang straight down); `renderer/appearance.js` draws hair, masks, eyepatches, antennas, crowns, bowties and backpacks; `renderer/looks.js` merges plan defaults, the cast appearance and `set_appearance` changes.
+- Renderer: `renderer/bodies.js` draws filled torsos and outfits (below the hips, garments hang straight down); `renderer/appearance.js` draws hair, masks, eyepatches, antennas, crowns, bowties and backpacks; `renderer/accessories_more.js` draws the A2 options (horns, turban, sprout, flower, moustache, stub horns, bun, mittens, bracelet); `renderer/looks.js` merges plan defaults, the cast appearance and `set_appearance` changes.
 - The stickman plan is the v1 body object itself, so v1 scripts compute and render exactly as before (golden frames and every sample's warnings unchanged).
 
 ### 6.2 Other topologies: the quadruped rig
@@ -354,15 +354,17 @@ Build order (package A1): forward kinematics, the plan and the renderer with a s
 | `brows` | `none`, `thin`, `thick` |
 | `mouthStyle` | `line` (default), `cartoon` |
 | `cheeks` | color (blush) |
-| `hair`, `hairColor` | `none`, `spiky`, `bob`, `ponytail`, `cap`; a color |
-| `accessories` | Name → color. Existing (headband, scarf, cape, hat; also accepted in the v1 `style`) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch` |
+| `hair`, `hairColor` | `none`, `spiky`, `bob`, `ponytail`, `cap`, `bun`; a color |
+| `accessories` | Name → color. Existing (headband, scarf, cape, hat; also accepted in the v1 `style`) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch`, and (Doopi & Friends, A2) `hair_flower`, `sprout`, `mittens`, `horns`, `turban` (headwear), `moustache`, `stub_horns`, `bracelet` (left wrist, seven gems) |
+| `belly` | A belly patch color for capsule bodies (`buddy`); hidden when an outfit is worn |
+| `slots` | 0-7: how many of the bracelet's gems are lit, in rainbow order |
 | `outfit`, `outfitColor` | Optional filled torso garment: `none`, `shirt`, `coat`, `armor`, `robe`; a color |
 
-- Option names are catalog data (`catalog/characters/appearance.json`); the schema takes strings and the validator checks them (`E_APPEARANCE`), together with things worn in the same place (`hat` + `crown`, a `cap` hairstyle with a hat or crown, `mask` or `eyepatch` with `visor` eyes) and colors without their item (`hairColor` without `hair`, `outfitColor` without `outfit`). An unknown body plan is `E_BODY_UNKNOWN`.
+- Option names are catalog data (`catalog/characters/appearance.json`); the schema takes strings and the validator checks them (`E_APPEARANCE`), together with things worn in the same place (`hat` + `crown`, a `cap` hairstyle with a hat or crown, `mask` or `eyepatch` with `visor` eyes, a `turban` with a hat, crown, cap or horns, `horns` with `stub_horns`, a hat or a cap) and colors without their item (`hairColor` without `hair`, `outfitColor` without `outfit`, `slots` without a `bracelet`, `belly` on a body that is not a capsule). An unknown body plan is `E_BODY_UNKNOWN`.
 - A body plan's `appearance` gives defaults (buddy: big eyes; elder: sleepy eyes, thick brows, white bob); the cast entry's appearance wins.
 - Eye styles replace the plain dot of neutral-type faces (`big`, `oval`, `sleepy`); `visor` replaces the eyes with a glowing band; `glasses` adds rings. Expressive eyes (happy arcs, tears, spirals) still win. `brows: "none"` hides brows; `thick` draws them heavier. `mouthStyle: "cartoon"` makes mouths about a third bigger. `cheeks` adds a soft blush in that color.
 
-Appearance may change in a beat with the `set_appearance` world command: `params.who`* is the character, plus flat fields such as `"accessory": "headband", "color": "#ff3b5c"`, `"remove": true`, or any of `eyes`, `brows`, `mouthStyle`, `hair`, `hairColor`, `outfit`, `outfitColor`, `cheeks`. Changes carry across scenes. For example, the hero ties on a headband before the journey.
+Appearance may change in a beat with the `set_appearance` world command: `params.who`* is the character, plus flat fields such as `"accessory": "headband", "color": "#ff3b5c"`, `"remove": true`, or any of `eyes`, `brows`, `mouthStyle`, `hair`, `hairColor`, `outfit`, `outfitColor`, `cheeks`, `belly`, `slots` (bracelet gems lit). Changes carry across scenes. For example, the hero ties on a headband before the journey.
 
 ### 6.4 Visual style presets
 

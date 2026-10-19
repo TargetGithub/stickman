@@ -69,7 +69,8 @@ function band(j, from, to, wBottom, wTop) {
 }
 
 /**
- * Outfits over the torso: shirt, coat, armor, robe.
+ * Outfits over the torso: shirt, coat, armor, robe, and the belly patch (looks.js turns a look's
+ * `belly` into the "belly" outfit when nothing else is worn).
  * @param {{ outfit, color, outlineColor, lw, scale, torsoWidth }} o
  */
 export function drawOutfit(ctx, j, o) {
@@ -81,6 +82,7 @@ export function drawOutfit(ctx, j, o) {
     robe: [band(j, -0.95, 0.98, w * 2.1, w * 1.05)],
     armor: [band(j, 0.42, 0.97, w * 0.82, w * 1.04)], // follows a trapezoid chest; a breastplate on stick bodies
   }[o.outfit];
+  if (o.outfit === "belly") return drawBelly(ctx, j, o, w);
   if (!shapes) return;
   ctx.save();
   ctx.fillStyle = o.color;
@@ -107,5 +109,21 @@ export function drawOutfit(ctx, j, o) {
     ctx.lineTo(b.x - (b.x - a.x) * 0.4, b.y - (b.y - a.y) * 0.4);
     ctx.stroke();
   }
+  ctx.restore();
+}
+
+/** A soft oval patch on the lower front of a filled torso. */
+function drawBelly(ctx, j, o, w) {
+  const { up, len } = spine(j);
+  const c = { x: j.hip.x + up.x * len * 0.3, y: j.hip.y + up.y * len * 0.3 };
+  ctx.save();
+  ctx.fillStyle = o.color;
+  ctx.strokeStyle = o.outlineColor;
+  ctx.globalAlpha *= 0.95;
+  ctx.lineWidth = o.lw * 0.22;
+  ctx.beginPath();
+  ctx.ellipse(c.x, c.y, Math.max(w * 0.62, len * 0.36), w * 0.62, Math.atan2(up.y, up.x), 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
   ctx.restore();
 }

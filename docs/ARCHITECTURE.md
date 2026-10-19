@@ -536,7 +536,7 @@ export function bodyPlan(catalog, name): { dims, stride, posture, plan };   // a
 // validator/story.js: castLookIssues(cast, path, catalog) → E_BODY_UNKNOWN, E_APPEARANCE
 ```
 - Move state keeps `scale` (heights) and `strideScale` (forward root motion). Actors with a posture keep `postureW`, eased toward 0 during attack moves.
-- `drawCharacter` style gains `dims`, `draw`, `torsoWidth` and `look`; draw order: backpack, far limbs, torso (filled or stroked), outfit, bowtie, head (ponytail, head, mask, face, hair, eyepatch, antenna/crown), near leg, near arm.
+- `drawCharacter` style gains `dims`, `draw`, `torsoWidth` and `look`; draw order: backpack, far limbs, torso (filled or stroked), outfit (or the belly patch), bowtie, head (far horn, ponytail, head, mask, face, hair, eyepatch, moustache/turban/horns/sprout/flower, antenna/crown), near leg, near arm. The renderer draws the far mitten before the character and the near mitten and the bracelet after it (`accessories_more.js` `drawLookBehind`/`drawLookFront`).
 - Tools: `tools/body_sheet.mjs` (plans × moves review sheet); the catalog page and the pose viewer have a body-plan selector.
 
 ### Objects (S4)

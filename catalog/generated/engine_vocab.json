@@ -9,9 +9,9 @@
     "eyes": ["dot", "big", "oval", "sleepy", "visor", "glasses"],
     "brows": ["none", "thin", "thick"],
     "mouthStyle": ["line", "cartoon"],
-    "hair": ["none", "spiky", "bob", "ponytail", "cap"],
+    "hair": ["none", "spiky", "bob", "ponytail", "cap", "bun"],
     "outfit": ["none", "shirt", "coat", "armor", "robe"],
-    "accessory": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"],
+    "accessory": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet"],
     "timbre": ["soft", "squeaky", "deep", "robot", "bark"],
     "time": ["dawn", "day", "dusk", "night"],
     "weather": ["clear", "cloudy", "rain", "snow", "wind", "fog"],
@@ -167,17 +167,21 @@
       "v1": false,
       "params": {
         "who": { "character": true, "required": true },
-        "accessory": { "enum": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"] },
+        "accessory": {
+          "enum": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet"]
+        },
         "color": { "type": "color" },
         "remove": { "enum": [true, false] },
         "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
         "brows": { "enum": ["none", "thin", "thick"] },
         "mouthStyle": { "enum": ["line", "cartoon"] },
-        "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap"] },
+        "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap", "bun"] },
         "hairColor": { "type": "color" },
         "outfit": { "enum": ["none", "shirt", "coat", "armor", "robe"] },
         "outfitColor": { "type": "color" },
-        "cheeks": { "type": "color" }
+        "cheeks": { "type": "color" },
+        "belly": { "type": "color" },
+        "slots": { "min": 0, "max": 7 }
       }
     },
     "shot": {

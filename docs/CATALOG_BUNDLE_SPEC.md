@@ -513,7 +513,7 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
             "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
             "brows": { "enum": ["none", "thin", "thick"] },
             "mouthStyle": { "enum": ["line", "cartoon"] },
-            "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap"] },
+            "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap", "bun"] },
             "hairColor": { "$ref": "common.schema.json#/$defs/hex" },
             "outfit": { "enum": ["none", "shirt", "coat", "armor", "robe"] },
             "outfitColor": { "$ref": "common.schema.json#/$defs/hex" },
@@ -633,6 +633,7 @@ Semantic rules (step 8 and 11): `capsule`/`trapezoid` need `torsoWidth`; a quadr
     "description": { "$ref": "common.schema.json#/$defs/description" },
     "role": { "enum": ["hero", "sidekick", "friend", "family", "mentor", "villain", "henchman", "rival", "guard", "crowd", "animal-like"] },
     "tags": { "$ref": "common.schema.json#/$defs/tags" },
+    "series": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$", "description": "The series this character belongs to; the context pack lists series presets by id only." },
     "audience": { "$ref": "common.schema.json#/$defs/audience" },
     "cast": {
       "type": "object", "required": ["color"], "additionalProperties": false,
@@ -649,10 +650,12 @@ Semantic rules (step 8 and 11): `capsule`/`trapezoid` need `torsoWidth`; a quadr
             "brows": { "enum": ["none", "thin", "thick"] },
             "mouthStyle": { "enum": ["line", "cartoon"] },
             "cheeks": { "$ref": "common.schema.json#/$defs/hex" },
-            "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap"] },
+            "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap", "bun"] },
             "hairColor": { "$ref": "common.schema.json#/$defs/hex" },
             "outfit": { "enum": ["none", "shirt", "coat", "armor", "robe"] },
             "outfitColor": { "$ref": "common.schema.json#/$defs/hex" },
+            "belly": { "$ref": "common.schema.json#/$defs/hex" },
+            "slots": { "type": "integer", "minimum": 0, "maximum": 7 },
             "accessories": {
               "type": "object", "additionalProperties": false, "maxProperties": 4,
               "properties": {
@@ -660,7 +663,11 @@ Semantic rules (step 8 and 11): `capsule`/`trapezoid` need `torsoWidth`; a quadr
                 "cape": { "$ref": "common.schema.json#/$defs/hex" }, "hat": { "$ref": "common.schema.json#/$defs/hex" },
                 "antenna": { "$ref": "common.schema.json#/$defs/hex" }, "bowtie": { "$ref": "common.schema.json#/$defs/hex" },
                 "mask": { "$ref": "common.schema.json#/$defs/hex" }, "crown": { "$ref": "common.schema.json#/$defs/hex" },
-                "backpack": { "$ref": "common.schema.json#/$defs/hex" }, "eyepatch": { "$ref": "common.schema.json#/$defs/hex" }
+                "backpack": { "$ref": "common.schema.json#/$defs/hex" }, "eyepatch": { "$ref": "common.schema.json#/$defs/hex" },
+                "hair_flower": { "$ref": "common.schema.json#/$defs/hex" }, "sprout": { "$ref": "common.schema.json#/$defs/hex" },
+                "mittens": { "$ref": "common.schema.json#/$defs/hex" }, "horns": { "$ref": "common.schema.json#/$defs/hex" },
+                "turban": { "$ref": "common.schema.json#/$defs/hex" }, "moustache": { "$ref": "common.schema.json#/$defs/hex" },
+                "stub_horns": { "$ref": "common.schema.json#/$defs/hex" }, "bracelet": { "$ref": "common.schema.json#/$defs/hex" }
               }
             }
           }

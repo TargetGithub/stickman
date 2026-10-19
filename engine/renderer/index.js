@@ -5,6 +5,7 @@ import { unpackJoints, lowestPoint } from "../skeleton.js";
 import { drawCharacter } from "./character.js";
 import { drawProp } from "./props.js";
 import { drawBehind, drawFront, squashAt } from "./accessories.js";
+import { drawLookBehind, drawLookFront } from "./accessories_more.js";
 import { propTransform } from "../props.js";
 import { createBackground, drawBackground } from "./background.js";
 import { drawParticles } from "./particles.js";
@@ -215,12 +216,14 @@ function drawChars(ctx, r, n, f, chars, sv, list) {
       ctx.shadowBlur = 22 * c.scale;
     }
     drawBehind(ctx, c, past, style);
+    drawLookBehind(ctx, c, look);
     const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
     drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
       ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
       ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) });
     ctx.shadowBlur = 0;
     drawFront(ctx, c, past, style);
+    drawLookFront(ctx, c, look);
     ctx.restore();
   }
 }

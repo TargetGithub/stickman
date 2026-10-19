@@ -6939,10 +6939,24 @@
       "eyes": ["dot", "big", "oval", "sleepy", "visor", "glasses"],
       "brows": ["none", "thin", "thick"],
       "mouthStyle": ["line", "cartoon"],
-      "hair": ["none", "spiky", "bob", "ponytail", "cap"],
+      "hair": ["none", "spiky", "bob", "ponytail", "cap", "bun"],
       "outfit": ["none", "shirt", "coat", "armor", "robe"],
-      "accessories": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"],
-      "conflicts": [["hat", "crown"], ["hat", "hair:cap"], ["crown", "hair:cap"], ["mask", "eyes:visor"], ["eyepatch", "eyes:visor"]]
+      "accessories": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet"],
+      "conflicts": [
+        ["hat", "crown"],
+        ["hat", "hair:cap"],
+        ["crown", "hair:cap"],
+        ["mask", "eyes:visor"],
+        ["eyepatch", "eyes:visor"],
+        ["turban", "hat"],
+        ["turban", "crown"],
+        ["turban", "hair:cap"],
+        ["turban", "horns"],
+        ["turban", "stub_horns"],
+        ["horns", "stub_horns"],
+        ["horns", "hat"],
+        ["horns", "hair:cap"]
+      ]
     },
     "activities": {
       "blow_bubbles": {
@@ -7387,6 +7401,70 @@
       "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
     },
     {
+      "id": "dony",
+      "name": "Dony",
+      "description": "Doopi's loyal best friend in leaf green with a yellow cap and scarf; a worrier who always shares his food.",
+      "role": "friend",
+      "tags": ["loyal", "kind", "worrier"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 1.1,
+        "color": "#4cd964",
+        "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+        "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "description": "Clever pink planner with a ponytail and a flower clip; kind to everyone, great at puzzles, ribbons and flips.",
+      "role": "friend",
+      "tags": ["clever", "kind", "planner"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "stickman",
+        "color": "#ff7eb6",
+        "appearance": {
+          "eyes": "big",
+          "mouthStyle": "cartoon",
+          "hair": "ponytail",
+          "hairColor": "#5a3a2c",
+          "cheeks": "#ff9db8",
+          "outfit": "shirt",
+          "outfitColor": "#ffd1e3",
+          "accessories": { "hair_flower": "#ffffff" }
+        },
+        "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
+    },
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "description": "The sky-blue hero of Chirpur: spiky hair, a red headband, big eyes; big-hearted, brave and very clumsy.",
+      "role": "hero",
+      "tags": ["brave", "clumsy", "kind", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "stickman",
+        "color": "#5ec8ff",
+        "appearance": {
+          "eyes": "big",
+          "hair": "spiky",
+          "hairColor": "#2a1a14",
+          "mouthStyle": "cartoon",
+          "accessories": { "headband": "#ff3b5c" }
+        },
+        "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
+    },
+    {
       "id": "guard",
       "name": "Guard",
       "description": "A broad yellow guard who blocks the way; good in groups (guard1, guard2...).",
@@ -7410,6 +7488,97 @@
         "voice": { "pitch": 1, "timbre": "soft" }
       },
       "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "description": "Tony's softer almost-twin in grey with a blue cap and glued-on stub horns; a bit kind, Mooka's secret friend.",
+      "role": "henchman",
+      "tags": ["henchman", "soft", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 0.8,
+        "color": "#9a9aa8",
+        "appearance": { "hair": "cap", "hairColor": "#3a6fd8", "accessories": { "stub_horns": "#7a6a99" } },
+        "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "chirpur_village", "gloom_throne_room"]
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "description": "A round mint-green jelly-bean buddy with a leaf sprout, a lavender belly and orange mittens; giggly and innocent.",
+      "role": "sidekick",
+      "tags": ["cute", "funny", "innocent", "small"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "buddy",
+        "scale": 0.85,
+        "color": "#7fe8c4",
+        "appearance": {
+          "eyes": "big",
+          "mouthStyle": "cartoon",
+          "cheeks": "#ffb3c7",
+          "belly": "#c9b6ff",
+          "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+        },
+        "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
+    },
+    {
+      "id": "motumal",
+      "name": "Motumal",
+      "description": "Chirpur's round, pompous mayor with a big moustache, a saffron turban and an orange coat; kind and scared of everything.",
+      "role": "friend",
+      "tags": ["pompous", "kind", "scared", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "bulky",
+        "color": "#e07b39",
+        "appearance": { "outfit": "coat", "outfitColor": "#ff9f1c", "accessories": { "moustache": "#2a1a14", "turban": "#f6c445" } },
+        "voice": { "pitch": 0.75, "speed": 0.9, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room"]
+    },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "description": "A tiny stooped granny with a white bun, round glasses and a purple shawl; strict, funny, spins her cane like a staff.",
+      "role": "mentor",
+      "tags": ["wise", "strict", "funny", "elder"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "elder",
+        "scale": 0.9,
+        "color": "#e8a87c",
+        "prop": "cane",
+        "appearance": { "eyes": "glasses", "hair": "bun", "hairColor": "#f2f2f2", "outfit": "robe", "outfitColor": "#8e5bd6" },
+        "voice": { "pitch": 1.1, "speed": 0.85, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "description": "Tall dark-violet villain with curly golden ram horns, thick brows and a long dark cape; dramatic, vain and lonely.",
+      "role": "villain",
+      "tags": ["villain", "dramatic", "vain"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "slim",
+        "scale": 1.15,
+        "color": "#7b4bd8",
+        "appearance": { "eyes": "oval", "brows": "thick", "accessories": { "horns": "#e6b84a", "cape": "#2a1b3d" } },
+        "voice": { "pitch": 0.7, "speed": 0.95, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room"]
     },
     {
       "id": "pip",
@@ -7489,6 +7658,40 @@
         "voice": { "pitch": 1.4, "timbre": "soft" }
       },
       "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
+    },
+    {
+      "id": "thunda",
+      "name": "Thunda",
+      "description": "A huge brown-red wrestler-bandit with a big moustache and armor; very strong, very slow, gets dizzy when he spins.",
+      "role": "villain",
+      "tags": ["villain", "strong", "wrestler", "boss"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "bulky",
+        "scale": 1.5,
+        "color": "#a0442c",
+        "appearance": { "outfit": "armor", "outfitColor": "#7a7a86", "accessories": { "moustache": "#2a1a14" } },
+        "voice": { "pitch": 0.6, "speed": 0.85, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "banyan_hill", "gloom_throne_room"]
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "description": "Peepa's bossy mini boy in grey with a red cap and glued-on stub horns; boastful, cowardly, always messes up.",
+      "role": "henchman",
+      "tags": ["henchman", "boastful", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 0.8,
+        "color": "#9a9aa8",
+        "appearance": { "hair": "cap", "hairColor": "#e63946", "accessories": { "stub_horns": "#7a6a99" } },
+        "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "chirpur_village", "gloom_throne_room"]
     },
     {
       "id": "vex",
@@ -7579,9 +7782,9 @@
     "eyes": { "dot": "Small dot eyes (the default).", "big": "Big round cute eyes.", "oval": "Tall oval eyes.", "sleepy": "Half-closed sleepy eyes.", "visor": "A sci-fi visor across the eyes.", "glasses": "Round glasses." },
     "brows": { "none": "No eyebrows.", "thin": "Thin eyebrows.", "thick": "Thick eyebrows." },
     "mouthStyle": { "line": "A simple line mouth (the default).", "cartoon": "A filled cartoon mouth." },
-    "hair": { "none": "No hair.", "spiky": "Spiky hero hair.", "bob": "A rounded bob.", "ponytail": "A ponytail.", "cap": "A cap (counts as headwear)." },
+    "hair": { "none": "No hair.", "spiky": "Spiky hero hair.", "bob": "A rounded bob.", "ponytail": "A ponytail.", "cap": "A cap (counts as headwear).", "bun": "A round bun on top with a hairpin." },
     "outfit": { "none": "No outfit lines.", "shirt": "A shirt.", "coat": "A long coat.", "armor": "Armor plates.", "robe": "A long robe." },
-    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch." }
+    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch.", "hair_flower": "A five-petal flower clip above the ear.", "sprout": "A two-leaf sprout on top of the head.", "mittens": "Round mitten hands.", "horns": "Two curly ram horns curving back.", "turban": "A wrapped turban with a jewel (headwear; covers the hair).", "moustache": "A big curly handlebar moustache.", "stub_horns": "Two tiny glued-on toy horns (remove for a gag).", "bracelet": "A left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order." }
   },
   "voices": [
     { "name": "soft", "description": "A gentle, warm voice (the default)." },
