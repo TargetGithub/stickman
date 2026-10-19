@@ -26,6 +26,8 @@
 | cage_drop | feet | Dust and clatter as a cage lands (captured). |
 | confetti | head | Colorful confetti bursting above the head. |
 | halo | head | A glowing halo over the head (ghost). |
+| colour_powder | head | A festival colour-powder burst: pink, yellow, green and blue puffs that bloom above the head and drift down (Holi style). |
+| gloom_mist | feet, lingers | Rolling grey-purple mist from the Gloom Horn: slow wide puffs spreading along the floor for about 3 s, low alpha. |
 
 Hit effects come by themselves from hits, explosions and props; do not list them: impact_small, impact_med, impact_big, block_spark, spark, explosion, smoke, bolt, prop_break, energy_ball, bubble_pop, camera_flash.
 
@@ -58,7 +60,7 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - fight: ko, bell
 - comic: pop, boing, slip, bonk, pow
 - crowd: crowd_cheer, crowd_gasp
-- story: narrate_chime, sad_sting, heartbeat, card_whoosh
+- story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn
 - object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick
-- magic: sparkle, magic_sparkle
-- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant
+- magic: sparkle, magic_sparkle, crystal_chime
+- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze

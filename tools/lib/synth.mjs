@@ -125,9 +125,29 @@ const RECIPES = {
   card_whoosh: (o, r) => { noise(o, r, { gain: 1, attack: 0.2, decay: 0.3, lp0: 400, lp1: 2600, hp: 150 }); partials(o, [1568, 2349], { gain: 0.15, decay: 0.5, attack: 0.02, start: 0.18 }); },
   bonk: (o) => { partials(o, [520, 1180], { decay: 0.12 }); sweepSine(o, { f0: 300, f1: 180, sweep: 0.06, decay: 0.08, gain: 0.6 }); },
   pow: (o, r) => { sweepSine(o, { f0: 300, f1: 90, sweep: 0.1, decay: 0.15 }); noise(o, r, { gain: 0.6, decay: 0.05, lp0: 3000 }); drive(o, 2); },
+  // Doopi & Friends, batch A5: the Gloom Horn, a comic sneeze, the crystal chime.
+  gloom_horn: (o, r) => {
+    // A low brassy blast on D3 that wobbles, then falls a minor third to B2; a mist hiss underneath.
+    for (const [k, g] of [[1, 0.8], [2, 0.45], [3, 0.3], [4, 0.15]]) {
+      sweepSine(o, { f0: 146.8 * k, f1: 146.8 * k, sweep: 1, attack: 0.12, decay: 1.4, gain: g, vibrato: 0.018, vibratoRate: 5.5 });
+      sweepSine(o, { f0: 146.8 * k, f1: 123.5 * k, sweep: 0.5, attack: 0.05, decay: 1.2, gain: g * 0.9, vibrato: 0.03, vibratoRate: 4.5, start: 0.75 });
+    }
+    drive(o, 2.2);
+    noise(o, r, { gain: 0.25, attack: 0.5, decay: 1.6, lp0: 2400, lp1: 900, hp: 400, start: 0.3 });
+  },
+  sneeze: (o, r) => {
+    // "ah" (rising), "ah" (higher), then a sharp noisy "CHOO" at 0.75 s.
+    sweepSine(o, { f0: 300, f1: 360, sweep: 0.2, attack: 0.04, decay: 0.2, gain: 0.45 });
+    noise(o, r, { gain: 0.2, attack: 0.05, decay: 0.18, lp0: 1500, hp: 300, len: 0.22 });
+    sweepSine(o, { f0: 360, f1: 470, sweep: 0.25, attack: 0.04, decay: 0.25, gain: 0.55, start: 0.32 });
+    noise(o, r, { gain: 0.25, attack: 0.05, decay: 0.22, lp0: 1800, hp: 300, start: 0.32, len: 0.28 });
+    noise(o, r, { gain: 1, attack: 0.006, decay: 0.16, lp0: 7000, lp1: 2500, hp: 900, start: 0.75 });
+    sweepSine(o, { f0: 420, f1: 230, sweep: 0.18, attack: 0.01, decay: 0.2, gain: 0.5, start: 0.77 });
+  },
+  crystal_chime: (o) => { [1046.5, 1318.5, 1568, 2093].forEach((f, k) => partials(o, [f, f * 2.76, f * 5.4], { gain: 0.6, decay: 1.1, attack: 0.003, start: k * 0.09 })); },
 };
 
-const LENGTH = { whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { gloom_horn: 2.4, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

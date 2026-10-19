@@ -10,7 +10,10 @@ export const OBJECT_COMMANDS = {
     if (def?.behavior === "holdable") {
       // A spawned holdable lies on the floor, ready for pick_prop.
       world.groundProps.push({ name: p.kind, kind: def.hold.kind, data: def.hold, x: p.x, y: world.actors[0]?.groundY - 4 - (p.y ?? 0), angle: 0 });
-      return [];
+      // One with states (the crystal) is also an object, so set_object can change it; the renderer shows its state.
+      if (!def.states || !p.id) return [];
+      spawnObject(world.objects, { object: p.kind, id: p.id, x: p.x, y: p.y, state: p.state }, t);
+      return p.state === undefined ? [] : [{ type: "object", what: "state", id: p.id, kind: p.kind, x: p.x, y: p.y ?? 0, state: p.state }];
     }
     return spawnObject(world.objects, { object: p.kind, id: p.id, x: p.x, y: p.y, layer: p.layer, facing: p.facing, state: p.state }, t);
   },

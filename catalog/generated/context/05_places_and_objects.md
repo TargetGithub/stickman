@@ -61,6 +61,16 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | book | holdable | - | A book to hold or read. |
 | rope | holdable | - | A coil of rope. |
 | cane | holdable | - | A walking cane (good for an elder). |
+| rainbow_crystal | holdable | red/orange/yellow/green/blue/indigo/violet/dim | A glowing rainbow crystal; `set_object` state sets its colour (chimes). |
+| gloom_horn | holdable | - | The Gloom Horn; `use` blows grey mist. |
+| jalebi | holdable | - | A jalebi sweet to `eat`. |
+| jalebi_plate | holdable | - | A plate of jalebis (left hand; `eat`). |
+| kite | floater | - | A kite: held, it flies on its string. |
+| apple | ball | - | A red apple: hold and `eat`, or toss it. |
+| haystack | static | - | A round haystack (hide behind it). |
+| cart | vehicle | - | A hand cart of vegetables (set_object toX). |
+| market_stall | static | - | A market stall with an awning and baskets. |
+| basket | breakable | whole/broken | A lidded basket: carry it or break it. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

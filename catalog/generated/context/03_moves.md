@@ -80,6 +80,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | shake_head | emote | 1 | - | - | - | Shakes the head no. |
 | look_around | emote | 1.8 | - | - | - | Looks left and right, searching or unsure. |
 | talk | emote | 0.8 | cycles=3 | - | loop: cycles | Small hand gestures while speaking; loops for `cycles`. |
+| sneeze | emote | 1.6 | - | - | - | A big comic sneeze: head back for ah... ah..., then a sharp nod forward on CHOO, with funny tears. |
 | use | utility | 1 | - | - | - | Uses the held object: a wand blows bubbles, a phone takes a photo. |
 | ride | utility | 0.6 | - | - | holds pose | Gets on a vehicle (the beat's object) and rides it until dismount. |
 | dismount | utility | 0.5 | - | - | - | Gets off the vehicle being ridden. |

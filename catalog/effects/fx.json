@@ -911,5 +911,111 @@
         "alpha": [1, 0]
       }
     ]
+  },
+  "colour_powder": {
+    "description": "A festival colour-powder burst: pink, yellow, green and blue puffs that bloom above the head and drift down (Holi style).",
+    "tags": ["celebrate", "happy", "festival", "colour"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-170, -110],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#ff5fa8", "#ff86c0"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-125, -75],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#ffd23f", "#ffe270"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-105, -55],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#4fd36a", "#7ee36b"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-70, -10],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#3fa8ff", "#6cc4ff"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "dot",
+        "count": 24,
+        "offset": 50,
+        "angle": [-170, -10],
+        "speed": [120, 380],
+        "drag": 1.4,
+        "gravity": 160,
+        "life": [1.6, 2.4],
+        "size": [5, 4],
+        "color": ["#ff5fa8", "#ffd23f", "#4fd36a", "#3fa8ff"],
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "gloom_mist": {
+    "description": "Rolling grey-purple mist from the Gloom Horn: slow wide puffs spreading along the floor for about 3 s, low alpha.",
+    "tags": ["villain", "gloom", "mist", "lingers"],
+    "anchor": "feet",
+    "sustain": {"duration": 3, "rate": 9},
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 40,
+        "spreadY": 24,
+        "angle": [-12, 0],
+        "speed": [90, 240],
+        "drag": 0.55,
+        "life": [2.2, 3],
+        "size": [36, 120],
+        "color": ["#7d7192", "#675c7e", "#958aa8"],
+        "alpha": [0.3, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 40,
+        "spreadY": 24,
+        "angle": [180, 192],
+        "speed": [90, 240],
+        "drag": 0.55,
+        "life": [2.2, 3],
+        "size": [36, 120],
+        "color": ["#7d7192", "#675c7e", "#958aa8"],
+        "alpha": [0.3, 0]
+      }
+    ]
   }
 }

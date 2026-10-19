@@ -252,5 +252,101 @@
     "behavior": "holdable",
     "draw": "held",
     "hold": { "kind": "cane", "shape": "cane", "len": 92, "width": 5, "gripAt": 0.05, "grip": "rHand", "color": "#6b4a2f", "trim": "#3a2a1c", "hitRadius": 14 }
+  },
+  "rainbow_crystal": {
+    "description": "A glowing rainbow crystal; `set_object` state sets its colour (chimes).",
+    "tags": ["holdable", "magic", "crystal", "glow"],
+    "behavior": "holdable",
+    "draw": "held",
+    "states": ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "dim"],
+    "sfx": {"red": "crystal_chime", "orange": "crystal_chime", "yellow": "crystal_chime", "green": "crystal_chime", "blue": "crystal_chime", "indigo": "crystal_chime", "violet": "crystal_chime"},
+    "hold": {"kind": "crystal", "shape": "crystal", "len": 28, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff5a6a", "trim": "#ffffff", "hitRadius": 10}
+  },
+  "gloom_horn": {
+    "description": "The Gloom Horn; `use` blows grey mist.",
+    "tags": ["holdable", "villain", "gloom", "horn"],
+    "behavior": "holdable",
+    "draw": "held",
+    "use": {"fx": ["gloom_mist"], "sfx": "gloom_horn"},
+    "hold": {"kind": "horn", "shape": "horn", "len": 62, "width": 10, "gripAt": 0.22, "grip": "rHand", "color": "#4a2a6e", "trim": "#e2b443", "hitRadius": 12}
+  },
+  "jalebi": {
+    "description": "A jalebi sweet to `eat`.",
+    "tags": ["holdable", "food", "sweet"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": {"kind": "jalebi", "shape": "jalebi", "len": 18, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff9a1f", "trim": "#c45e0e", "hitRadius": 8}
+  },
+  "jalebi_plate": {
+    "description": "A plate of jalebis (left hand; `eat`).",
+    "tags": ["holdable", "food", "sweet", "gift"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": {"kind": "plate", "shape": "plate", "len": 40, "width": 8, "gripAt": 0.5, "grip": "lHand", "color": "#f6f1e4", "trim": "#d9c9a0", "hitRadius": 10}
+  },
+  "kite": {
+    "description": "A kite: held, it flies on its string.",
+    "tags": ["floater", "play", "kite", "holdable"],
+    "behavior": "floater",
+    "draw": "kite",
+    "r": 26,
+    "life": [8, 8],
+    "rise": 70,
+    "drift": 40,
+    "wobble": 30,
+    "pop": false,
+    "colors": {"fill": "#ff5fa8", "trim": "#ffd23f"},
+    "hold": {"kind": "kite", "shape": "kite", "len": 160, "width": 2, "gripAt": 0, "grip": "rHand", "color": "#ff5fa8", "trim": "#ffd23f", "hitRadius": 10}
+  },
+  "apple": {
+    "description": "A red apple: hold and `eat`, or toss it.",
+    "tags": ["ball", "food", "fruit", "holdable"],
+    "behavior": "ball",
+    "draw": "apple",
+    "r": 9,
+    "bounce": 0.3,
+    "colors": {"fill": "#e63946", "leaf": "#4fa85a"},
+    "hold": {"kind": "apple", "shape": "apple", "len": 16, "width": 16, "gripAt": 0.3, "grip": "rHand", "color": "#e63946", "trim": "#4fa85a", "hitRadius": 8}
+  },
+  "haystack": {
+    "description": "A round haystack (hide behind it).",
+    "tags": ["scenery", "village", "farm"],
+    "behavior": "static",
+    "draw": "haystack",
+    "w": 224,
+    "h": 172,
+    "colors": {"straw": "#e8bf52", "dark": "#b98d2c", "light": "#f6dd86"}
+  },
+  "cart": {
+    "description": "A hand cart of vegetables (set_object toX).",
+    "tags": ["vehicle", "village", "farm"],
+    "behavior": "vehicle",
+    "draw": "cart",
+    "w": 280,
+    "h": 160,
+    "wheelR": 40,
+    "seat": {"x": -10, "y": 100},
+    "speed": 140,
+    "colors": {"wood": "#b07c45", "dark": "#7a5230", "cabbage": "#7ccf5a", "tomato": "#e8483d", "carrot": "#ff8a26"}
+  },
+  "market_stall": {
+    "description": "A market stall with an awning and baskets.",
+    "tags": ["scenery", "village", "market", "shop"],
+    "behavior": "static",
+    "draw": "market_stall",
+    "w": 400,
+    "h": 340,
+    "colors": {"post": "#8a5a34", "wood": "#a0703f", "cloth": "#f0d9a6", "stripe1": "#e8483d", "stripe2": "#fff3dc", "basket": "#c9944f", "weave": "#8e6230", "sweet": "#ff9a1f", "sweet2": "#ffd23f", "fruit": "#e63946", "fruit2": "#7ccf5a", "sign": "#fff3dc"}
+  },
+  "basket": {
+    "description": "A lidded basket: carry it or break it.",
+    "tags": ["breakable", "holdable", "village", "market"],
+    "behavior": "breakable",
+    "draw": "basket",
+    "w": 70,
+    "h": 48,
+    "states": ["whole", "broken"],
+    "colors": {"basket": "#c9944f", "weave": "#8e6230"},
+    "hold": {"kind": "basket", "shape": "basket", "len": 30, "width": 24, "gripAt": 0.5, "grip": "rHand", "color": "#c9944f", "trim": "#8e6230", "hitRadius": 12}
   }
 }

@@ -141,7 +141,9 @@ export function simulate(script, catalog, opts = {}) {
       const hold = catalog.objects[p.object].hold;
       world.groundProps.push({ name: p.object, kind: hold.kind, data: hold, x: p.x, y: STAGE.groundY - 4 - (p.y ?? 0), angle: 0 });
     }
-    world.objects = story.legacy ? null : createObjects(pieces.filter((q) => catalog.objects?.[q.object]?.behavior !== "holdable"),
+    // Holdables with states (the rainbow crystal) are also objects, so set_object can change them.
+    const asObject = (q) => catalog.objects?.[q.object]?.behavior !== "holdable" || !!catalog.objects[q.object].states;
+    world.objects = story.legacy ? null : createObjects(pieces.filter(asObject),
       { catalog, seed: meta.seed ?? 1, sceneId: sid, groundY: STAGE.groundY, stageWidth: flat.meta.stageWidth });
     world.onMoveEvent = (actor, e, events) => {
       if (e.use && world.objects && actor.prop) events.push(...useHeld(world.objects, actor, actor.joints.propTip || actor.joints.rHand, clock.storyT));
