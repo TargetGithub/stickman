@@ -1,4 +1,4 @@
-// Piper backend (SPEECH_SPEC 2, 4.3): the `piper` CLI (MIT, rhasspy/piper release binary) renders a line with
+// Piper backend (SPEECH_SPEC 2, 4.3): the `piper` CLI (piper-tts from PyPI in a private venv) renders a line with
 // fixed noise settings, then ffmpeg shifts its pitch (keeping its length), applies the bubble style and the
 // robot filter, and writes 48 kHz mono. Node only; nothing here runs in /engine.
 
@@ -11,10 +11,17 @@ import { NOISE } from "./synth.mjs";
 export const PIPER_DIR = fileURLToPath(new URL("../../bin/piper/", import.meta.url));
 export const MODELS_DIR = fileURLToPath(new URL("../../../assets/speech/models/", import.meta.url));
 
-/** The piper executable: $PIPER_BIN, tools/bin/piper/piper (release tarball layout), or null. */
+/** The piper executable: $PIPER_BIN, or tools/bin/piper/venv/bin/piper (python3 -m venv + pip install piper-tts), or null. */
 export function findPiper() {
-  const candidates = [process.env.PIPER_BIN, join(PIPER_DIR, "piper", "piper"), join(PIPER_DIR, "piper")].filter(Boolean);
-  return candidates.find((p) => existsSync(p) && !p.endsWith("/")) ?? null;
+  const candidates = [process.env.PIPER_BIN, join(PIPER_DIR, "venv", "bin", "piper")].filter(Boolean);
+  return candidates.find((p) => existsSync(p)) ?? null;
+}
+
+/** The installed piper-tts version (part of every cache key), read from the venv's package metadata. */
+export function piperVersion(bin) {
+  const py = join(bin, "..", "python");
+  const r = existsSync(py) ? spawnSync(py, ["-I", "-c", "import importlib.metadata as m; print(m.version('piper-tts'))"], { encoding: "utf8" }) : null;
+  return r?.status === 0 ? r.stdout.trim() : "unknown";
 }
 
 /** Installed voice models: name → { onnx, config }. */
@@ -42,35 +49,45 @@ export function postFilters(inputRate, voice, bubble) {
   return f.join(",");
 }
 
+const BATCH = fileURLToPath(new URL("./piper_batch.py", import.meta.url));
+
 /**
  * @param {{ bin?: string, modelsDir?: string }} opts
  * @returns {import("./synth.mjs").TtsBackend}
  */
 export function createPiperBackend({ bin = findPiper(), modelsDir = MODELS_DIR } = {}) {
   if (!bin) throw new Error("Piper is not installed: run `node tools/tts_setup.mjs --check` for what is missing (babble still works without it).");
+  const python = join(bin, "..", "python");
   const models = listModels(modelsDir);
-  const v = spawnSync(bin, ["--version"], { encoding: "utf8" });
-  const version = (v.stdout || v.stderr || "").trim().split("\n").pop() || "unknown";
   return {
     id: "piper",
-    version,
+    version: piperVersion(bin),
     models,
-    render(line, outPath) {
-      const voice = line.voice;
-      const m = models[voice.model];
-      if (!m) throw new Error(`voice model "${voice.model}" is not in ${modelsDir}: run \`node tools/tts_setup.mjs --check\``);
-      const rate = voice.rate * (line.bubble === "shout" ? 1.08 : 1);
-      const raw = `${outPath}.piper.wav`;
-      try {
-        const r = spawnSync(bin, ["--model", m.onnx, "--config", m.config, "--output_file", raw, "--speaker", String(voice.speaker ?? 0),
-          "--length_scale", (1 / rate).toFixed(4), "--noise_scale", String(NOISE.scale), "--noise_w", String(NOISE.w), "--quiet"],
-          { input: line.spoken, encoding: "utf8", cwd: PIPER_DIR });
-        if (r.status !== 0 || !existsSync(raw)) throw new Error(`piper failed for "${line.spoken}": ${(r.stderr || r.error?.message || "").trim()}`);
+    /** Render jobs [{ line, out, seed }]: one Piper process per voice model, then ffmpeg per clip. */
+    render(jobs) {
+      const byModel = new Map();
+      for (const j of jobs) {
+        const name = j.line.voice.model;
+        if (!models[name]) throw new Error(`voice model "${name}" is not in ${modelsDir}: run \`node tools/tts_setup.mjs --check\``);
+        if (!byModel.has(name)) byModel.set(name, []);
+        byModel.get(name).push(j);
+      }
+      for (const [name, list] of byModel) {
+        const m = models[name];
+        const req = { model: m.onnx, config: m.config, jobs: list.map((j) => ({ text: j.line.spoken, out: `${j.out}.piper.wav`, speaker: j.line.voice.speaker ?? 0,
+          length_scale: Number((1 / (j.line.voice.rate * (j.line.bubble === "shout" ? 1.08 : 1))).toFixed(4)), noise_scale: NOISE.scale, noise_w: NOISE.w, seed: j.seed })) };
+        const r = spawnSync(python, ["-I", BATCH], { input: JSON.stringify(req), encoding: "utf8", cwd: PIPER_DIR, maxBuffer: 1 << 26 });
+        if (r.status !== 0) throw new Error(`piper failed with ${name}: ${(r.stderr || r.error?.message || "").trim().split("\n").slice(-3).join(" ")}`);
         const inputRate = sampleRateOf(m.config);
-        const ff = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", raw, "-af", postFilters(inputRate, voice, line.bubble), "-ac", "1", "-c:a", "pcm_s16le", outPath]);
-        if (ff.status !== 0) throw new Error(`ffmpeg failed on a speech clip: ${String(ff.stderr).trim()}`);
-      } finally {
-        rmSync(raw, { force: true });
+        for (const j of list) {
+          const raw = `${j.out}.piper.wav`;
+          try {
+            const ff = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", raw, "-af", postFilters(inputRate, j.line.voice, j.line.bubble), "-ac", "1", "-c:a", "pcm_s16le", j.out]);
+            if (ff.status !== 0) throw new Error(`ffmpeg failed on a speech clip: ${String(ff.stderr).trim()}`);
+          } finally {
+            rmSync(raw, { force: true });
+          }
+        }
       }
     },
   };

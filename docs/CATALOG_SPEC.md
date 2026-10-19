@@ -72,6 +72,7 @@ catalog/
     music_moods.json           moods and scales
     macro_lines.json           the compiler's built-in lines
     blocklist.json             blocked and soft-listed words (with alternatives)
+    tts_voices.json            spoken voices per timbre and the narrator (tools only, SPEECH_SPEC 5)
 
   docs/                        descriptions of engine-owned vocabularies (authored)
     world_commands.json        each world command: description, example beat

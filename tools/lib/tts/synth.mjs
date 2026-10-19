@@ -17,8 +17,9 @@ export const NOISE = { scale: 0.333, w: 0.333 }; // fixed Piper noise: the same 
 const POST = 1; // bump when the trim or levelling below changes, so old cache files are not reused
 
 /**
- * @typedef {{ id:string, version:string, render:(line:object, outPath:string) => void }} TtsBackend
- *   render writes a 16-bit PCM WAV at 48 kHz (mono or stereo) for line.spoken in line.voice.
+ * @typedef {{ id:string, version:string, render:(jobs:Array<{ line:object, out:string, seed:number }>) => void }} TtsBackend
+ *   render writes, for each job, a 16-bit PCM WAV at 48 kHz (mono or stereo) of line.spoken in line.voice to `out`;
+ *   seed (from the cache key) makes any randomness in the backend repeatable.
  */
 
 /** sha256 of the settings (keys sorted, so the key does not depend on property order). */
@@ -82,25 +83,31 @@ export function levelClip(x, target) {
  */
 export function synthesizeLines(lines, backend, { cacheDir = CACHE_DIR, log = () => {} } = {}) {
   mkdirSync(cacheDir, { recursive: true });
-  return lines.map((line, i) => {
+  const keyed = lines.map((line) => {
     const key = cacheKey(backend, line);
     const file = join(cacheDir, `${key}.wav`);
-    const cached = existsSync(file);
-    if (!cached) {
-      const raw = join(cacheDir, `${key}.raw.wav`);
-      try {
-        backend.render(line, raw);
-        const wav = readWav(raw);
+    return { line, key, file, cached: existsSync(file) };
+  });
+  // One render call for every new clip (the backend batches by voice); duplicates render once.
+  const todo = [...new Map(keyed.filter((k) => !k.cached).map((k) => [k.key, k])).values()];
+  if (todo.length) {
+    log(`  rendering ${todo.length} speech clip(s) with ${backend.id} ${backend.version}`);
+    const jobs = todo.map((k) => ({ line: k.line, out: join(cacheDir, `${k.key}.raw.wav`), seed: parseInt(k.key.slice(0, 7), 16) }));
+    try {
+      backend.render(jobs);
+      for (const [i, j] of jobs.entries()) {
+        const wav = readWav(j.out);
         if (wav.sampleRate !== SR) throw new Error(`backend ${backend.id} wrote ${wav.sampleRate} Hz; expected ${SR}`);
         const clip = trimSilence(mono(wav.samples, wav.channels));
-        levelClip(clip, SPEECH_LUFS + (STYLE_DB[line.bubble] ?? 0));
-        writeWav(`${file}.tmp`, clip, SR, 1);
-        renameSync(`${file}.tmp`, file);
-      } finally {
-        rmSync(raw, { force: true });
+        levelClip(clip, SPEECH_LUFS + (STYLE_DB[j.line.bubble] ?? 0));
+        writeWav(`${todo[i].file}.tmp`, clip, SR, 1);
+        renameSync(`${todo[i].file}.tmp`, todo[i].file);
       }
-      log(`  speech ${i + 1}/${lines.length}: ${line.who}: ${line.spoken}`);
+    } finally {
+      for (const j of jobs) rmSync(j.out, { force: true });
     }
+  }
+  return keyed.map(({ line, key, file, cached }) => {
     const { samples } = readWav(file);
     return { ...line, key, file, dur: samples.length / SR, cached };
   });

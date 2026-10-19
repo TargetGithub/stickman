@@ -5,7 +5,7 @@
 
 import { existsSync, readFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { findPiper, listModels, PIPER_DIR, MODELS_DIR } from "./lib/tts/piper.mjs";
+import { findPiper, piperVersion, listModels, PIPER_DIR, MODELS_DIR } from "./lib/tts/piper.mjs";
 import { loadVoiceTable } from "./lib/tts/index.mjs";
 
 const args = process.argv.slice(2);
@@ -14,7 +14,6 @@ if (!args.includes("--check")) {
   process.exit(2);
 }
 const HF = "https://huggingface.co/rhasspy/piper-voices/resolve/main/en";
-const PIPER_URL = "https://github.com/rhasspy/piper/releases/download/2023.11.14-2/piper_macos_aarch64.tar.gz";
 /** Hugging Face folder for a Piper voice name: en_US-kristin-medium → en_US/kristin/medium. */
 const hfPath = (name) => {
   const [lang, voice, quality] = name.split("-");
@@ -30,12 +29,12 @@ const wanted = new Set([...Object.values(table.timbres), table.narrator, ...Obje
 let missing = 0;
 const bin = findPiper();
 if (bin) {
-  const v = spawnSync(bin, ["--version"], { encoding: "utf8" });
-  console.log(`ok       piper ${(v.stdout || v.stderr || "").trim() || "(no version)"} at ${bin}${v.status === 0 ? "" : " (but it does not run: " + String(v.stderr || v.error?.message).trim() + ")"}`);
+  const v = spawnSync(bin, ["--help"], { encoding: "utf8" });
+  console.log(`ok       piper-tts ${piperVersion(bin)} at ${bin}${v.status === 0 ? "" : " (but it does not run: " + String(v.stderr || v.error?.message).trim() + ")"}`);
   if (v.status !== 0) missing++;
 } else {
   missing++;
-  console.log(`missing  piper binary in ${PIPER_DIR} (or set PIPER_BIN). macOS arm64: ${PIPER_URL}`);
+  console.log(`missing  piper in ${PIPER_DIR}venv (or set PIPER_BIN): python3 -m venv tools/bin/piper/venv && tools/bin/piper/venv/bin/pip install piper-tts==1.8.0`);
 }
 const ff = spawnSync("ffmpeg", ["-version"], { encoding: "utf8" });
 if (ff.status === 0) console.log(`ok       ${ff.stdout.split("\n")[0]}`);

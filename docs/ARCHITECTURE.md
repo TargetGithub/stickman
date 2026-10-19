@@ -285,7 +285,7 @@ export function storeBytes(store): number;
 
 ### audio_events.js
 ```js
-export function collectAudioEvents(sim): Array<{ t, sfx, volume, pan }>;   // video seconds; pan from screen x
+export function collectAudioEvents(sim): Array<{ t, sfx, volume, pan, line? }>;   // video seconds; pan from screen x; line: the beat id of a babble syllable or narration chime
 export function collectMusicCues(sim): Array<{ t, cue, volume }>;
 ```
 

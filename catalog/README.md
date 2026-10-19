@@ -38,6 +38,7 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `story/music_moods.json` | `scales` and `moods` (read by `tools/lib/music_gen.mjs`) |
 | `story/macro_lines.json` | lines the story compiler writes itself (under 40 characters) |
 | `story/blocklist.json` | `blocklist` (errors) and `softWords` (warnings with a kinder word) |
+| `story/tts_voices.json` | default Piper voices per timbre and the narrator for `--speech tts` (SPEECH_SPEC 5; tools only) |
 | `docs/*.json` | descriptions of engine-owned names: world commands, macros, camera modes, transitions and cards, validator codes |
 | `docs/*.md` | the pack's prose: script format (`format.md`), rules and checklist, start page, project instructions |
 | `examples/` | example clips and stories, indexed by `examples/index.json` (which also picks the pack's examples) |

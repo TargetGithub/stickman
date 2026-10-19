@@ -8,7 +8,10 @@ export function fakeBackend({ version = "1" } = {}) {
     id: "fake",
     version,
     calls,
-    render(line, outPath) {
+    render(jobs) {
+      for (const { line, out } of jobs) this.one(line, out);
+    },
+    one(line, outPath) {
       calls.push(line.id);
       const n = Math.round(0.06 * line.spoken.length * 48000);
       const f = 220 * 2 ** ((line.voice.pitch ?? 0) / 12);
