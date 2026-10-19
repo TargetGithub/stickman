@@ -28,3 +28,15 @@ Notes:
 | D1 | ep 19-24 | O29 layer kind `moon` + theme `banyan_moon`; T17 `grey_moon` (`moon_surface`); O28 `hanging_cage`; F15 `rainbow_bridge` and F13 `rainbow_shield` as animated objects; FX F10 `crystal_pull`, F11 `grow_giant`, F12 `giant_blast`, F14 `beam_clash` | done 2026-10-18 |
 
 Authoring choices instead of engine work: Giant Peepa is a second cast entry (`body: slim`, `scale: 3`) that spawns with `grow_giant` while Peepa despawns (no `set_appearance scale` tween); the beam clash is two `energy_blast` beats facing each other plus `beam_clash`.
+
+## Episode scripts
+
+All 24 scripts are in `scripts/series/doopi/ep01.json` ... `ep24.json` (2026-10-18). Each validates with no errors and runs 5-6.5 minutes (about 2 h 5 min in all). The only warnings left are `W_KIDS_NO_HOPE` on the cliffhanger episodes, where a friend stays stone until a later episode (Mooka eps 2-4, Nani eps 5-21, Mooka and Becky eps 19-20); series mode (E5) would turn these into info.
+
+Story adaptations made while writing (EPISODES.md has the outlines):
+- Mooka stays a statue from ep 2 to ep 5 (petrify freezes), and the Yellow crystal thaws him through Kony's kindness.
+- Nani's dream visits (ep 11, ep 14) are glowing visions, and a stone friend is placed with `petrify` `params.dur: 0` when an episode starts.
+- Fights with the scale-3 Giant Peepa are split into short `@fight` runs (5 exchanges): longer runs drift out of reach (the G1 giant checks were not built).
+- Ghoomu does not join `@brawl` (a scale-2.4 fighter stalls it); he stomps on his own beside it.
+
+Render: `node tools/record.mjs scripts/series/doopi/epNN.json --out-dir out/series/doopi --slug epNN` (about 10-20 minutes per episode; each final.mp4 is about 170 MB, so watch the free disk space).
