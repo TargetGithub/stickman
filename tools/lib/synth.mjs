@@ -144,6 +144,21 @@ const RECIPES = {
     drive(o, 1.8);
     noise(o, r, { gain: 0.12, attack: 0.05, decay: 1.2, lp0: 3000, lp1: 1200, hp: 600 });
   },
+  robot_stomp: (o, r) => {
+    // A deep thud with a ringing metal overtone.
+    sweepSine(o, { f0: 70, f1: 40, sweep: 0.3, attack: 0.004, decay: 0.5, gain: 1 });
+    noise(o, r, { gain: 0.6, attack: 0.003, decay: 0.2, lp0: 900, hp: 40 });
+    for (const [f, g] of [[523, 0.25], [784, 0.15]]) sweepSine(o, { f0: f, f1: f * 0.98, sweep: 1, attack: 0.01, decay: 0.7, gain: g, start: 0.02 });
+  },
+  robot_beep: (o, r) => {
+    // Two clean tones, high then low.
+    sweepSine(o, { f0: 1320, f1: 1320, sweep: 1, attack: 0.005, decay: 0.12, gain: 0.5 });
+    sweepSine(o, { f0: 880, f1: 880, sweep: 1, attack: 0.005, decay: 0.16, gain: 0.5, start: 0.16 });
+  },
+  windup_click: (o, r) => {
+    // A ratchet: five quick clicks.
+    for (let k = 0; k < 5; k++) noise(o, r, { gain: 0.8, attack: 0.001, decay: 0.03, lp0: 6000, hp: 1500, start: k * 0.11, len: 0.04 });
+  },
   splash: (o, r) => {
     // A low thump into the water, then a bright noisy spray that falls back.
     sweepSine(o, { f0: 140, f1: 60, sweep: 0.2, attack: 0.005, decay: 0.25, gain: 0.8 });
@@ -162,7 +177,7 @@ const RECIPES = {
   crystal_chime: (o) => { [1046.5, 1318.5, 1568, 2093].forEach((f, k) => partials(o, [f, f * 2.76, f * 5.4], { gain: 0.6, decay: 1.1, attack: 0.003, start: k * 0.09 })); },
 };
 
-const LENGTH = { gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

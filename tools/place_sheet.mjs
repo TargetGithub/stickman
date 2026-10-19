@@ -25,6 +25,9 @@ const SETS = {
   spice_kitchen: [{ id: "pot", object: "giant_pot", x: 1150 }, { id: "lever", object: "lever", x: 2100 }, { id: "trap", object: "trapdoor", x: 1900 }, { id: "ladle", object: "ladle", x: 1450 }],
   spice_cellar: [{ id: "lever", object: "lever", x: 1300, state: "down" }],
   lotus_lake: [{ id: "bridge", object: "rope_bridge", x: 2300 }],
+  iron_canyon: [{ id: "rib", object: "ribbon", x: 1350 }],
+  iron_workshop: [{ id: "cage", object: "cage", x: 2200 }],
+  tokyo_village: [{ id: "lan", object: "lantern_string", x: 1650, layer: "back" }],
 };
 const TIMES = ["day", "dusk", "night"];
 const ZOOMS = [0.6, 1, 1.7];

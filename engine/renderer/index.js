@@ -248,7 +248,7 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ctx.shadowBlur = 22 * c.scale;
   }
   drawBehind(ctx, c, past, style);
-  drawLookBehind(ctx, c, look);
+  drawLookBehind(ctx, c, look, f.videoT);
   const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
   drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
     ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),

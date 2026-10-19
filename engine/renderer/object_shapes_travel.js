@@ -25,6 +25,62 @@ function busWheel(ctx, x, y, r, turn) {
 }
 
 export const TRAVEL_SHAPES = {
+  lantern_string(ctx, c, piece) {
+    // Paper lanterns on a sagging string between two poles; they glow softly and sway with time.
+    const t = piece.t ?? 0;
+    const w = 620;
+    const y0 = -330;
+    ctx.fillStyle = c.pole;
+    for (const x of [-w / 2, w / 2]) ctx.fillRect(x - 6, y0 - 10, 12, -y0 + 10);
+    ctx.strokeStyle = c.line;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let u = 0; u <= 1.001; u += 0.05) ctx.lineTo(-w / 2 + u * w, y0 + 60 * 4 * u * (1 - u));
+    ctx.stroke();
+    const cols = c.lanterns || ["#e63946", "#ffd23f", "#2bb39a", "#2f7de1", "#ff7eb6"];
+    for (let k = 1; k < 8; k++) {
+      const u = k / 8;
+      const x = -w / 2 + u * w + Math.sin(t * 1.4 + k) * 4;
+      const y = y0 + 60 * 4 * u * (1 - u) + 26;
+      ctx.save();
+      ctx.globalCompositeOperation = "lighter";
+      ctx.fillStyle = "rgba(255,200,120,0.18)";
+      ctx.beginPath();
+      ctx.arc(x, y, 44, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      ctx.fillStyle = cols[k % cols.length];
+      ctx.strokeStyle = OUTLINE;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.ellipse(x, y, 20, 24, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+    }
+  },
+  ribbon(ctx, c) {
+    // A pink ribbon bow lying on the ground.
+    ctx.fillStyle = c.ribbon;
+    ctx.strokeStyle = OUTLINE;
+    ctx.lineWidth = 2;
+    for (const side of [-1, 1]) {
+      ctx.beginPath();
+      ctx.moveTo(0, -12);
+      ctx.lineTo(side * 26, -24);
+      ctx.lineTo(side * 26, 0);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(side * 4, -10);
+      ctx.lineTo(side * 18, 4);
+      ctx.stroke();
+    }
+    ctx.beginPath();
+    ctx.arc(0, -12, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  },
   bus(ctx, c, piece) {
     const wr = 42;
     const top = -wr - 250;

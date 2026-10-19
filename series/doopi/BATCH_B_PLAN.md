@@ -13,3 +13,10 @@ Notes:
 - The AI context pack cap went from 80 KB to 100 KB for the series assets (CATALOG_SPEC); per-file budgets were raised to match.
 - Batch B also added the `sfx` world command (a sound on its own) and `petrify` `params.dur`.
 - The context pack's core tier cap went from 50 KB to 60 KB.
+
+## Batch C (episodes 12-18)
+
+| Slice | For | Assets | Status |
+|---|---|---|---|
+| C1 | ep 12-15 | C15 `robot` body plan (`draw: "box"`: box torso, square head, joint bolts) + `windup_key` accessory, Iron Ghoom preset; T11 `iron_canyon` (`gears_bg`), T12 `iron_workshop` (`machines`); O21 `lantern_string` (animated), O22 `dhol`, O23 `ribbon`, O24 `windup_key`, O25 `pot_and_pan`; F7 `visor_beam`; S5 `robot_stomp`, `robot_beep`, `windup_click` | done 2026-10-18 |
+| C2 | ep 16-18 | C17 shadow look, T14 `shadow_valley`, T15 `mirror_maze`, T16 `gloom_castle_gate`, O26 `snowball`/`rock_round`, O27 `mirror`, F8 `avalanche`, F9 `mirror_ripple` | next |

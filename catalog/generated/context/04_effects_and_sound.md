@@ -32,6 +32,7 @@
 | chilli_smoke | feet, lingers | Red-orange chilli smoke rolling in low and wide for about 3 s, with red specks (beats add the sneezes). |
 | whirlpool | feet, lingers | A big spinning whirlpool on the water: rings swirling in and foam spinning round for about 3 s. |
 | splash | feet | A water splash: droplets fly up and fall, with a white ring on the surface. |
+| visor_beam | head | A thick straight cyan beam shooting forward from the head (Iron Ghoom's visor), with a bright core. |
 
 Hit effects come by themselves from hits, explosions and props; do not list them: impact_small, impact_med, impact_big, block_spark, spark, explosion, smoke, bolt, prop_break, energy_ball, bubble_pop, camera_flash.
 
@@ -57,7 +58,7 @@ Kids audience: comic impact words (POW, BONK, BAM, BOING) pop over hits by thems
 
 Sounds play by themselves from moves, hits, objects and cards; scripts never name them.
 
-- movement: whoosh, land, land_heavy, step, footstep_soft, footstep_hard
+- movement: whoosh, land, land_heavy, step, footstep_soft, footstep_hard, robot_stomp
 - hit: punch_light, punch_heavy, kick_light, kick_heavy, block, parry
 - weapon: slash, sword_clash
 - power: explosion, energy_charge, energy_fire, shockwave
@@ -65,6 +66,6 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - comic: pop, boing, slip, bonk, pow
 - crowd: crowd_cheer, crowd_gasp
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn, pirate_horn
-- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash
+- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click
 - magic: sparkle, magic_sparkle, crystal_chime
-- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze
+- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep

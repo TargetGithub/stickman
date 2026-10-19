@@ -15,7 +15,7 @@
         "description": { "$ref": "common.schema.json#/$defs/description" },
         "tags": { "$ref": "common.schema.json#/$defs/tags" },
         "rig": { "const": "humanoid" },
-        "draw": { "enum": ["stick", "capsule", "trapezoid"] },
+        "draw": { "enum": ["stick", "capsule", "trapezoid", "box"] },
         "torsoWidth": { "type": "number", "minimum": 12, "maximum": 40 },
         "dims": {
           "type": "object",

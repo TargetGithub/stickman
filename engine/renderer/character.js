@@ -7,6 +7,7 @@ import { drawProp } from "./props.js";
 import { drawFace } from "./face.js";
 import { drawQuadruped } from "./quadruped.js";
 import { drawTorso, drawOutfit } from "./bodies.js";
+import { boxHeadPath, drawBolts } from "./robot.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
@@ -41,8 +42,14 @@ function drawHead(ctx, j, r, lw, style, facing) {
   const look = style.look;
   const ax = headAxes(j, facing);
   if (look) drawHairBack(ctx, j.head, r, ax, look);
-  ctx.beginPath();
-  ctx.arc(j.head.x, j.head.y, r, 0, Math.PI * 2);
+  if (style.draw === "box") {
+    const hu = { x: j.head.x - j.neckTop.x, y: j.head.y - j.neckTop.y };
+    const hl = Math.hypot(hu.x, hu.y) || 1;
+    boxHeadPath(ctx, j.head, r, { x: hu.x / hl, y: hu.y / hl });
+  } else {
+    ctx.beginPath();
+    ctx.arc(j.head.x, j.head.y, r, 0, Math.PI * 2);
+  }
   ctx.fillStyle = style.color;
   ctx.fill();
   if (style.outline) {
@@ -141,6 +148,7 @@ export function drawCharacter(ctx, j, style) {
   strokeGroup(ctx, [[j.hip, j.rKnee, j.rFoot]], s.color, lw, s);
   if (prop && s.prop.data.grip === "rHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
   strokeGroup(ctx, [[j.shoulder, j.rElbow, j.rHand]], s.color, lw, s);
+  if (s.draw === "box") drawBolts(ctx, j, lw, shade(s.color, 0.75));
 
   ctx.restore();
 }

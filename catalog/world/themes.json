@@ -804,5 +804,102 @@
       }
     ],
     "characterBg": "#1f6f8f"
+  },
+  "iron_canyon": {
+    "description": "A rocky canyon at dusk with giant rusty gears half buried in the cliffs, fog on the floor and huge metal footprints.",
+    "tags": [
+      "story",
+      "outdoor",
+      "canyon",
+      "iron",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#c96a4a",
+      "bottom": "#f0b88a"
+    },
+    "ground": {
+      "color": "#9a7a5a",
+      "line": "#7a5a3e"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.7,
+        "y": 0.25,
+        "r": 70,
+        "color": "#ffd9a0",
+        "glow": "rgba(255, 210, 150, 0.4)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.1,
+        "color": "#a8684a",
+        "height": 420,
+        "step": 200,
+        "rough": 0.5
+      },
+      {
+        "kind": "gears_bg",
+        "factor": 0.35,
+        "spacing": 700,
+        "size": 170,
+        "y": -120,
+        "color": "#a0522d",
+        "hub": "#5a3a2a",
+        "rock": "#8a5a3e",
+        "speed": 0.04
+      },
+      {
+        "kind": "mist",
+        "factor": 0.8,
+        "spacing": 300,
+        "size": 140,
+        "depth": 60,
+        "speed": 20,
+        "color": "rgba(240, 220, 200, 0.35)"
+      }
+    ],
+    "characterBg": "#8a5a3e"
+  },
+  "iron_workshop": {
+    "description": "Peepa's iron workshop: grey metal walls, pumping pistons, pipes with steam puffs, chains and purple warning lights.",
+    "tags": [
+      "story",
+      "indoor",
+      "workshop",
+      "iron",
+      "villain",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#3a3a44",
+      "bottom": "#5a5a66"
+    },
+    "ground": {
+      "color": "#4a4a52",
+      "line": "#2e2e34"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.4,
+        "color": "#55555f",
+        "mortar": "#3e3e46",
+        "top": -1400
+      },
+      {
+        "kind": "machines",
+        "factor": 0.55,
+        "spacing": 900,
+        "top": -900,
+        "color": "#6e6e7a",
+        "pipe": "#8a6a4a",
+        "rod": "#c8ccd8",
+        "light": "#b05cff"
+      }
+    ],
+    "characterBg": "#4a4a52"
   }
 }

@@ -6,6 +6,7 @@
 
 import { dimsOf } from "../skeleton.js";
 import { drawHats } from "./accessories_hats.js";
+import { drawWindupKey } from "./robot.js";
 
 const INK = "#111111";
 const DEG = Math.PI / 180;
@@ -289,8 +290,9 @@ function bracelet(ctx, j, lw, color, slots) {
 const lineOf = (c) => dimsOf(c).lineWidth * c.scale;
 
 /** Hand pieces behind the character: the far mitten. `c` is a frame character, `look` its look. */
-export function drawLookBehind(ctx, c, look) {
+export function drawLookBehind(ctx, c, look, t = 0) {
   const acc = look?.accessories;
+  if (acc?.windup_key && !c.quad) drawWindupKey(ctx, c, acc.windup_key, t); // batch C: Iron Ghoom's key
   if (!acc?.mittens || c.quad) return;
   ctx.save();
   ctx.globalAlpha = c.alpha ?? 1;

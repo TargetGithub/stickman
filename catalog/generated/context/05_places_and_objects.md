@@ -28,6 +28,8 @@
 | pirate_deck | #7a5230 | bright: light blue, yellow, orange, pink, white | The deck of a cartoon pirate ship on the lake: planks, a rail, a tall mast with a patched sail and a fish flag, barrels and a steering wheel. |
 | crystal_cave | #1d3a5a | bright: light blue, yellow, orange, pink, white | A big cave inside a lake island, glowing blue crystals in the walls, soft blue light and piles of treasure. |
 | underwater | #1f6f8f | bright: light blue, yellow, orange, pink, white | Underwater in a clear lake: blue-green water, swaying seaweed, round stones on a sandy floor and rising bubbles. Calm, not dark. |
+| iron_canyon | #8a5a3e | bright: light blue, yellow, orange, pink, white | A rocky canyon at dusk with giant rusty gears half buried in the cliffs, fog on the floor and huge metal footprints. |
+| iron_workshop | #4a4a52 | bright: light blue, yellow, orange, pink, white | Peepa's iron workshop: grey metal walls, pumping pistons, pipes with steam puffs, chains and purple warning lights. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -97,6 +99,11 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | raft | breakable | whole/broken | A wobbly raft of tied logs on the water; set_object state broken: it comes apart and sinks. |
 | fishing_net | static | closed/open | A fishing net with floats: closed drops over someone (captured with wrap net), open lies in a heap. |
 | treasure_chest | static | closed/open | A wooden treasure chest with gold trim; open shows shiny coins. |
+| lantern_string | static | - | A string of round paper lanterns in many colours between two poles, glowing softly. |
+| ribbon | static | - | A pink ribbon bow lying on the ground (Doomi's trail). |
+| dhol | holdable | - | A red and gold barrel drum (dhol) on a strap; `use` beats it. |
+| windup_key | holdable | - | Iron Ghoom's big brass wind-up key, pulled off his back. |
+| pot_and_pan | holdable | - | A frying pan, held like a bat: the village's funny shield (bat moves work). |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

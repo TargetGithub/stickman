@@ -1381,5 +1381,68 @@
         ]
       }
     ]
+  },
+  "visor_beam": {
+    "description": "A thick straight cyan beam shooting forward from the head (Iron Ghoom's visor), with a bright core.",
+    "tags": [
+      "robot",
+      "energy",
+      "attack"
+    ],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 8,
+        "offset": 20,
+        "angle": [
+          -2,
+          2
+        ],
+        "speed": [
+          1100,
+          1200
+        ],
+        "drag": 0,
+        "life": [
+          0.35,
+          0.45
+        ],
+        "size": [
+          40,
+          18
+        ],
+        "color": [
+          "#7ff0ff",
+          "#bff8ff",
+          "#ffffff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.4,
+          0.4
+        ],
+        "size": [
+          70,
+          20
+        ],
+        "color": "rgba(127, 240, 255, 0.9)",
+        "alpha": [
+          0.9,
+          0
+        ]
+      }
+    ]
   }
 }

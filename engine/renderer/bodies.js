@@ -3,6 +3,8 @@
 // trapezoid: a filled broad chest narrowing to the hips (bulky). Shapes follow the spine from hip to
 // neck top, so every pose, lean and flip works unchanged.
 
+import { drawBoxTorso } from "./robot.js";
+
 /** Unit vectors along the spine (up) and across it. */
 function spine(j) {
   const dx = j.neckTop.x - j.hip.x;
@@ -17,6 +19,7 @@ function spine(j) {
  * @param {{ draw, torsoWidth, color, outline, outlineColor, lw, scale }} o
  */
 export function drawTorso(ctx, j, o) {
+  if (o.draw === "box") return drawBoxTorso(ctx, j, o); // the robot (batch C)
   if (o.draw !== "capsule" && o.draw !== "trapezoid") return false;
   const { up, across, len } = spine(j);
   const w = (o.torsoWidth ?? 20) * o.scale;
