@@ -4,6 +4,7 @@
 // Batch A5 village shapes live in object_shapes_market.js and join this table.
 
 import { MARKET_SHAPES } from "./object_shapes_market.js";
+import { TRAVEL_SHAPES } from "./object_shapes_travel.js";
 
 export const SHAPES = {
   bench(ctx, c) {
@@ -262,6 +263,7 @@ export const SHAPES = {
     }
   },
   ...MARKET_SHAPES,
+  ...TRAVEL_SHAPES,
 };
 
 function wheel(ctx, x, y, r, turn, color, spokes = false) {

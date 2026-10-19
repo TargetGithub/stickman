@@ -6128,9 +6128,56 @@
             "alpha": [0.9, 0]
           }
         ]
+      },
+      "chilli_smoke": {
+        "description": "Red-orange chilli smoke rolling in low and wide for about 3 s, with red specks (beats add the sneezes).",
+        "tags": ["spice", "smoke", "comedy", "lingers"],
+        "anchor": "feet",
+        "sustain": { "duration": 3, "rate": 8 },
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 40,
+            "angle": [-20, 0],
+            "speed": [80, 220],
+            "drag": 0.55,
+            "life": [2, 2.8],
+            "size": [40, 130],
+            "color": ["#ff6b35", "#e8483d", "#ff9a5a"],
+            "alpha": [0.35, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 40,
+            "angle": [180, 200],
+            "speed": [80, 220],
+            "drag": 0.55,
+            "life": [2, 2.8],
+            "size": [40, 130],
+            "color": ["#ff6b35", "#e8483d", "#ff9a5a"],
+            "alpha": [0.35, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 2,
+            "offset": 30,
+            "spreadY": 80,
+            "angle": [-150, -30],
+            "speed": [40, 110],
+            "drag": 0.6,
+            "life": [1.2, 1.8],
+            "size": [7, 2],
+            "color": ["#e63946", "#ff3b3b"],
+            "alpha": [1, 0]
+          }
+        ]
       }
     },
-    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo", "colour_powder", "gloom_mist", "colour_return"],
+    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo", "colour_powder", "gloom_mist", "colour_return", "chilli_smoke"],
     "themes": {
       "white_stage": {
         "description": "A plain off-white stage with no scenery; clean and simple.",
@@ -6424,9 +6471,25 @@
           { "kind": "mist", "factor": 1, "color": "rgba(196, 192, 208, 0.22)", "spacing": 150, "size": 150, "depth": 70, "speed": 10 }
         ],
         "characterBg": "#43384f"
+      },
+      "whispering_forest": {
+        "description": "A deep friendly forest path: tall round-leaved trees, hanging vines, ferns and red mushrooms.",
+        "tags": ["story", "outdoor", "forest", "nature", "doopi"],
+        "sky": { "top": "#7fc8a9", "bottom": "#d8f0d0" },
+        "ground": { "color": "#8a6a44", "line": "#6b5034" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.75, "y": 0.12, "r": 56, "color": "#fff6c8", "glow": "rgba(255, 246, 200, 0.45)" },
+          { "kind": "trees", "factor": 0.12, "spacing": 260, "height": 520, "crown": 170, "trunk": "#4a3a2a", "color": "#3f7a4a", "color2": "#356b40" },
+          { "kind": "trees", "factor": 0.3, "spacing": 380, "height": 430, "crown": 150, "trunk": "#5a4530", "color": "#3f7f48", "color2": "#38744a" },
+          { "kind": "trees", "factor": 0.62, "spacing": 620, "height": 380, "crown": 130, "trunk": "#4a3624", "color": "#2f6a3a", "color2": "#2a5e34" },
+          { "kind": "vines", "factor": 0.72, "spacing": 420, "length": 900, "top": -1250, "color": "#3d6b2e", "leaf": "#5aa046", "sway": 16, "width": 8 },
+          { "kind": "ferns", "factor": 0.85, "spacing": 340, "size": 110, "color": "#3f8a3a", "cap": "#e63946", "mushrooms": 0.35 },
+          { "kind": "floorStripes", "color": "#7a5c3a", "at": [40], "width": 30 }
+        ],
+        "characterBg": "#2e5a34"
       }
     },
-    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"],
+    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"],
     "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow", "gloom_horn", "sneeze", "crystal_chime"],
     "blocklist": ["blood", "bloody", "gore", "gory", "suicide", "kill yourself", "kys"],
     "softWords": [
@@ -6824,6 +6887,29 @@
         "states": ["whole", "broken"],
         "colors": { "basket": "#c9944f", "weave": "#8e6230" },
         "hold": { "kind": "basket", "shape": "basket", "len": 30, "width": 24, "gripAt": 0.5, "grip": "rHand", "color": "#c9944f", "trim": "#8e6230", "hitRadius": 12 }
+      },
+      "bus": {
+        "description": "The friendly village bus: cream and teal with luggage on the roof (set_object toX or exit).",
+        "tags": ["vehicle", "village", "travel", "doopi"],
+        "behavior": "vehicle",
+        "draw": "bus",
+        "w": 520,
+        "h": 300,
+        "wheelR": 42,
+        "seat": { "x": 120, "y": 130 },
+        "speed": 260,
+        "colors": { "body": "#f4ead2", "lower": "#2bb39a", "stripe": "#e63946", "window": "#bfe6f5", "door": "#2a8f7c", "bag1": "#c97a3a", "bag2": "#6b8fd6" }
+      },
+      "campfire": {
+        "description": "A small campfire: crossed logs, flickering flames, a ring of stones (state out: smoke).",
+        "tags": ["scenery", "camp", "night", "fire", "doopi"],
+        "behavior": "static",
+        "draw": "campfire",
+        "animated": true,
+        "w": 170,
+        "h": 150,
+        "states": ["lit", "out"],
+        "colors": { "stone": "#8a8a8a", "stone2": "#a3a3a3", "log": "#6b4a2f", "flame": "#ff7a1a", "flame2": "#ffb52e", "core": "#fff2a0" }
       }
     },
     "faces": {
@@ -7431,7 +7517,7 @@
         "appearance": { "eyes": "big" },
         "voice": { "pitch": 1.4, "timbre": "bark" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "bo",
@@ -7472,7 +7558,7 @@
       "tags": ["extra", "town"],
       "audience": ["kids", "general"],
       "cast": { "body": "stickman", "color": "#8d99ae" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "crowd_kid",
@@ -7482,7 +7568,7 @@
       "tags": ["extra", "kid"],
       "audience": ["kids", "general"],
       "cast": { "body": "kid", "color": "#f4a261" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "dony",
@@ -7499,7 +7585,7 @@
         "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
         "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "doomi",
@@ -7524,7 +7610,7 @@
         },
         "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "doopi",
@@ -7546,7 +7632,7 @@
         },
         "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "guard",
@@ -7556,7 +7642,7 @@
       "tags": ["big", "strong"],
       "audience": ["kids", "general"],
       "cast": { "body": "bulky", "color": "#ffe14d", "voice": { "pitch": 0.75, "timbre": "deep" } },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "kai",
@@ -7571,7 +7657,7 @@
         "style": { "headband": "#ff3b5c" },
         "voice": { "pitch": 1, "timbre": "soft" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "kony",
@@ -7588,7 +7674,7 @@
         "appearance": { "hair": "cap", "hairColor": "#3a6fd8", "accessories": { "stub_horns": "#7a6a99" } },
         "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "mooka",
@@ -7611,7 +7697,7 @@
         },
         "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "motumal",
@@ -7627,7 +7713,7 @@
         "appearance": { "outfit": "coat", "outfitColor": "#ff9f1c", "accessories": { "moustache": "#2a1a14", "turban": "#f6c445" } },
         "voice": { "pitch": 0.75, "speed": 0.9, "timbre": "deep" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "nani",
@@ -7645,7 +7731,7 @@
         "appearance": { "eyes": "glasses", "hair": "bun", "hairColor": "#f2f2f2", "outfit": "robe", "outfitColor": "#8e5bd6" },
         "voice": { "pitch": 1.1, "speed": 0.85, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "peepa",
@@ -7662,7 +7748,7 @@
         "appearance": { "eyes": "oval", "brows": "thick", "accessories": { "horns": "#e6b84a", "cape": "#2a1b3d" } },
         "voice": { "pitch": 0.7, "speed": 0.95, "timbre": "deep" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "pip",
@@ -7677,7 +7763,7 @@
         "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } },
         "voice": { "pitch": 1.5, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "rook",
@@ -7694,7 +7780,7 @@
         "appearance": { "hair": "spiky", "hairColor": "#1e1e1e" },
         "voice": { "pitch": 0.95, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "sage",
@@ -7741,7 +7827,23 @@
         "appearance": { "hair": "spiky", "hairColor": "#3a2a1a" },
         "voice": { "pitch": 1.4, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
+    },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "description": "A brave, bossy forest girl in orange with a ponytail and a green scarf; knows every path in the Whispering Forest.",
+      "role": "friend",
+      "tags": ["brave", "bossy", "forest", "climber"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "color": "#ffa45c",
+        "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+        "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "thunda",
@@ -7758,7 +7860,7 @@
         "appearance": { "outfit": "armor", "outfitColor": "#7a7a86", "accessories": { "moustache": "#2a1a14" } },
         "voice": { "pitch": 0.6, "speed": 0.85, "timbre": "deep" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "tony",
@@ -7775,7 +7877,7 @@
         "appearance": { "hair": "cap", "hairColor": "#e63946", "accessories": { "stub_horns": "#7a6a99" } },
         "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest"]
     },
     {
       "id": "vex",

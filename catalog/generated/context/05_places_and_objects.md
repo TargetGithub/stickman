@@ -20,6 +20,7 @@
 | tokyo_village | #a06a40 | bright: light blue, yellow, orange, pink, white | An Indian hill village square: round mud huts with painted doors, bunting, green hills. |
 | banyan_hill | #5a8f48 | strong or dark: red, blue, purple, dark green, black | A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below. |
 | gloom_throne_room | #43384f | bright: light blue, yellow, orange, pink, white | Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist. |
+| whispering_forest | #2e5a34 | bright: light blue, yellow, orange, pink, white | A deep friendly forest path: tall round-leaved trees, hanging vines, ferns and red mushrooms. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -77,6 +78,8 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | cart | vehicle | - | A hand cart of vegetables (set_object toX). |
 | market_stall | static | - | A market stall with an awning and baskets. |
 | basket | breakable | whole/broken | A lidded basket: carry it or break it. |
+| bus | vehicle | - | The friendly village bus: cream and teal with luggage on the roof (set_object toX or exit). |
+| campfire | static | lit/out | A small campfire: crossed logs, flickering flames, a ring of stones (state out: smoke). |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

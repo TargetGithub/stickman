@@ -29,6 +29,7 @@
 | colour_powder | head | A festival colour-powder burst: pink, yellow, green and blue puffs that bloom above the head and drift down (Holi style). |
 | gloom_mist | feet, lingers | Rolling grey-purple mist from the Gloom Horn: slow wide puffs spreading along the floor for about 3 s, low alpha. |
 | colour_return | body | Colour comes back: a glow, a ring and rainbow sparkles bursting out (with set_grade from). |
+| chilli_smoke | feet, lingers | Red-orange chilli smoke rolling in low and wide for about 3 s, with red specks (beats add the sneezes). |
 
 Hit effects come by themselves from hits, explosions and props; do not list them: impact_small, impact_med, impact_big, block_spark, spark, explosion, smoke, bolt, prop_break, energy_ball, bubble_pop, camera_flash.
 

@@ -21,6 +21,7 @@ const BECKY = { id: "becky", ...JSON.parse(readFileSync(new URL("../catalog/char
 const SETS = {
   banyan_hill: ["empty", "red", "orange", "yellow", "green", "blue", "indigo", "violet"].map((state, i) => ({ id: `s${i}`, object: "crystal_socket", x: 1290 + i * 150 + (i > 3 ? 120 : 0), state })),
   gloom_throne_room: [{ id: "throne", object: "throne", x: 1950 }, { id: "ball", object: "crystal_ball", x: 1250 }],
+  whispering_forest: [{ id: "fire", object: "campfire", x: 1250 }, { id: "bus", object: "bus", x: 2250 }],
 };
 const TIMES = ["day", "dusk", "night"];
 const ZOOMS = [0.6, 1, 1.7];

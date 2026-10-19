@@ -159,10 +159,10 @@ function drawWorld(ctx, r, n, f, chars, sv) {
   const layered = sv.layerEvents.length || sv.characters?.some((c) => c.layer && c.layer !== "mid");
   const inLayer = (layer) => (layered ? chars.filter((c) => layerAt(sv, c.id, f.videoT) === layer) : layer === "mid" ? chars : []);
   const mid = inLayer("mid");
-  drawSetPieces(ctx, r.catalog, pieces, "back");
+  drawSetPieces(ctx, r.catalog, pieces, "back", f.fxT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "back");
   drawLayerChars(ctx, r, n, f, chars, sv, inLayer("back"), "back");
-  drawSetPieces(ctx, r.catalog, pieces, "mid");
+  drawSetPieces(ctx, r.catalog, pieces, "mid", f.fxT);
   drawItems(ctx, r, f.items, false, sv, f.videoT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "mid");
   for (const c of mid) {
@@ -191,7 +191,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     return joint === "feet" ? { x: c.j.hip.x, y: STAGE.groundY } : c.j[joint] || c.j.hip;
   });
   drawMovingObjects(ctx, r.catalog, f.items); // balls, bubbles and vehicles pass in front of the characters
-  drawSetPieces(ctx, r.catalog, pieces, "front");
+  drawSetPieces(ctx, r.catalog, pieces, "front", f.fxT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "front");
   drawLayerChars(ctx, r, n, f, chars, sv, inLayer("front"), "front");
 }

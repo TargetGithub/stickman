@@ -14,12 +14,12 @@ import { typeOf, worldParamText, colorAdvice, audienceMarkdown } from "./story_t
 export const PACK_FILES = {
   "00_start_here.md": { tier: "core", budget: 3000 },
   "01_script_format.md": { tier: "core", budget: 8000 },
-  "02_characters.md": { tier: "core", budget: 6000 },
-  "03_moves.md": { tier: "reference", budget: 18000 },
-  "04_effects_and_sound.md": { tier: "reference", budget: 4000 },
-  "05_places_and_objects.md": { tier: "core", budget: 6000 },
+  "02_characters.md": { tier: "core", budget: 8000 },
+  "03_moves.md": { tier: "reference", budget: 20000 },
+  "04_effects_and_sound.md": { tier: "reference", budget: 5000 },
+  "05_places_and_objects.md": { tier: "core", budget: 8000 },
   "06_story_tools.md": { tier: "core", budget: 12000 },
-  "07_rules_and_codes.md": { tier: "core", budget: 9000 },
+  "07_rules_and_codes.md": { tier: "core", budget: 10000 },
   "08_examples.md": { tier: "reference", budget: 12000 },
 };
 
