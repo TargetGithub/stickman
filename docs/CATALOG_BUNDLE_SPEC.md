@@ -1,6 +1,6 @@
 # Catalog Bundle Specification: user-made asset packs for the catalog
 
-Version 0.2 (decisions in section 12 made by Sridhar, 2026-10-18). **Status:** specified, not built; B1-B6 (section 10) not scheduled yet. Owner: Sridhar. Related: [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog, the build, the context pack), [../catalog/README.md](../catalog/README.md) (field notes), [STORY_SPEC.md](STORY_SPEC.md) 6.2 (quadruped rig) and 13 (content policy), [../stickman-engine-spec.md](../stickman-engine-spec.md) 8.1 (moves), 15.2 (determinism), 21 (safety), [ARCHITECTURE.md](ARCHITECTURE.md) section 4 and ADR-006 (catalog injection).
+Version 0.2 (decisions in section 12 made by Sridhar, 2026-10-18). **Status:** B1 done (2026-10-18: checker keywords, catalog-driven mood and activity names, the schema files); B2-B6 (section 10) not scheduled yet. Owner: Sridhar. Related: [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog, the build, the context pack), [../catalog/README.md](../catalog/README.md) (field notes), [STORY_SPEC.md](STORY_SPEC.md) 6.2 (quadruped rig) and 13 (content policy), [../stickman-engine-spec.md](../stickman-engine-spec.md) 8.1 (moves), 15.2 (determinism), 21 (safety), [ARCHITECTURE.md](ARCHITECTURE.md) section 4 and ADR-006 (catalog injection).
 
 ## 1. Purpose and non-goals
 
@@ -137,7 +137,7 @@ A preset wraps a v2 cast entry (`engine/validator/schema_v2.js` `castEntry`) wit
 ### 2.9 Activities (`engine/story/activities.js`)
 
 - `runner`: `loop` or `rally` (the `fetch` runner is dog-specific and stays built-in). `players [min, max]` (1-4), `spacing`, `facing` (`center`, `left`, `right`), `dur` or `reps`, `ending` (`win`, `miss`, `laugh`, `hug`, `none`), `roles` (`start`, `moves`, `wait`, `face`, `fx`, `holds`, `partner`), `objects`, `rally` (`ball`, `hit`, `at` `hands`/`foot`/`propTip`, `flight`, `height`, `catch`).
-- **Engine prerequisite:** activity names are a frozen enum today (`V2_ENUMS.activity`, used by `macro_params.js` and `WORLD_COMMANDS_V2.activity`). Bundle activities need the validator to read the names from `catalog.activityNames` (B1.2).
+- **Engine prerequisite (done in B1.2):** the validator reads activity names from `catalog.activityNames` (`macroParamsFor`, `worldCommandsV2For`), falling back to the frozen `V2_ENUMS.activity` when the catalog has none.
 
 ### 2.10 Music moods (`catalog/story/music_moods.json`, `tools/lib/music_gen.mjs`, `patterns.mjs`, `instruments.mjs`)
 
@@ -145,7 +145,7 @@ A preset wraps a v2 cast entry (`engine/validator/schema_v2.js` `castEntry`) wit
 - Pattern strings: bass `.`, `r` (root), `5` (fifth), `o` (octave); drums `.`, `k`, `s`, `h`, `o` (`DRUM_OF`); melody rhythms `x` (note), `-` (hold), `.` (rest).
 - `scale` names a base scale or one of the bundle's own `scales` (5-12 semitone steps 0-11).
 - Music renders in tools only (Node), never in the browser or the engine.
-- **Engine prerequisite:** mood names are a frozen enum today (`V2_ENUMS.mood` in `schema_v2.js` and `set_music`). Bundle moods need the validator to read `Object.keys(catalog.musicMoods)` (B1.2).
+- **Engine prerequisite (done in B1.2):** the validator reads mood names from `Object.keys(catalog.musicMoods)` (`schemaV2For` for scene `music`, `worldCommandsV2For` for `set_music`), falling back to the frozen `V2_ENUMS.mood`.
 
 ## 3. Bundle layout
 
@@ -185,7 +185,7 @@ The schemas below are JSON Schema draft 2020-12, written to become `catalog/sche
 - Every object has `additionalProperties: false` (keyed maps use `propertyNames` plus an `additionalProperties` schema).
 - Every value has an explicit type, and every number a range.
 - `$ref` only points into `common.schema.json` or the same file's `$defs`.
-- **Checker support.** The engine's schema checker (`engine/validator/schema.js` `checkValue`) implements a subset: `type`, `enum`, `const`, `oneOf`, `minimum`/`maximum`, `minLength`/`maxLength`, `pattern`, `minItems`/`maxItems`, `items`, `required`, `properties`, `additionalProperties`. These schemas also use `$ref`/`$defs`, `propertyNames`, `maxProperties`, `uniqueItems` and the checker-only `x-discriminator` (which `oneOf` branch to report, chosen by a field's value, like the existing `x-select`). B1.1 adds them (section 10). `x-*` keywords are dropped on export, as today.
+- **Checker support.** The engine's schema checker (`engine/validator/check_value.js` `checkValue`, re-exported by `schema.js`) implements a subset: `type`, `enum`, `const`, `oneOf`, `minimum`/`maximum`, `minLength`/`maxLength`, `pattern`, `minItems`/`maxItems`, `items`, `required`, `properties`, `additionalProperties`, and since B1.1 also `$ref`/`$defs`, `propertyNames`, `minProperties`/`maxProperties`, `uniqueItems` and the checker-only `x-discriminator` (which `oneOf` branch to report, chosen by a field's value, like the existing `x-select`). `"common.schema.json#/$defs/x"` refs resolve through a map the caller passes (`checkValue(value, schema, path, { schemas })`, built by `tools/lib/catalog_files.mjs` `readBundleSchemas`), so the engine does no I/O. Codes: `propertyNames` issues keep the inner code at the key's path; `min/maxProperties` give `E_SCHEMA_SIZE`; a repeated item gives `E_REF_DUPLICATE`; an `x-discriminator` value no branch has gives `E_SCHEMA_ENUM` at that field. `x-*` keywords are dropped on export, as today.
 - **Canonical form.** Hashes are taken over the canonical JSON of each file: RFC 8785 (JCS: keys sorted, no whitespace, ECMAScript number formatting, UTF-8). Duplicate keys are a parse error, so the canonical form is unambiguous. README and LICENSE are hashed as UTF-8 bytes with line endings normalised to `\n`.
 
 **Checked while drafting** (2026-10-18, with a standard draft 2020-12 validator): every schema below is a valid schema; the worked example of 11.1 passes; and the base catalog's own themes, objects, faces, bodies, props, activities, moods and paired moves pass too, once their names are prefixed and the bundle count caps are ignored. The base entries that fail are the ones bundles leave out on purpose: `internal` FX, the `fetch` activity, and move fields such as `projectile`, `contact`, `hide` and `give`.
@@ -702,7 +702,6 @@ Tightening over the base preset schema: `cast` is fully typed (the base schema o
   "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
   "additionalProperties": { "$ref": "#/$defs/preset" },
   "$defs": {
-    "range": { "type": ["number", "array"], "minItems": 2, "maxItems": 2, "items": { "type": "number" } },
     "preset": {
       "type": "object",
       "required": ["description", "tags", "anchor"],
@@ -1143,7 +1142,7 @@ Descriptions (8-200 characters) and tags (1-6) are required on every entry excep
 - **Entry name:** `<bundleId>:<name>` with `<name>` matching `^[a-z][a-z0-9_]{0,31}$`, at most 64 characters in all. Inside the bundle's own files, own entries are always written in full (`robo_pals:boxbot`), both as keys and as references.
 - **A name without a colon always means the base catalog** (lowercase with `_`, except base pose names, which are camelCase: `walkA`, `swordGuard`; a bundle's own names are always lowercase). The base catalog never uses colons, so base growth can never collide with a bundle entry, and a reader can tell at a glance where a name comes from.
 - Scripts use the same full names: `{"id": "bolt", "body": "robo_pals:boxbot", ...}`, `{"who": "bolt", "do": "robo_pals:robot_dance"}`.
-- Engine fields that hold catalog names (move names in `do`, `body`, `theme`, `object`, `kind`, `fx`, `face`, `prop`, `needsProp`, `chain`) have no pattern today, so `:` passes the schemas. B1.2 adds a test over the v1 and v2 schemas, the macro params and the world-command params that every catalog-name field accepts a namespaced name; ids (characters, beats, locations, set pieces) keep their patterns.
+- Engine fields that hold catalog names (move names in `do`, `body`, `theme`, `object`, `kind`, `fx`, `face`, `prop`, `needsProp`, `chain`) have no pattern, so `:` passes the schemas. `tests/unit/namespaced_names.test.js` (B1.2) checks every catalog-name field of the v1 and v2 schemas and the macro params with `"acme:robo"`, and validates a v1 script and a v2 story that use a namespaced theme, body, face, FX, move, prop, object, activity and mood in fields, macro params and world-command params (`set_theme`, `set_music`, `activity`, `spawn_prop`, `spawn_object`); ids (characters, beats, scenes, locations, set pieces) keep their patterns.
 
 ### 5.2 Add-only (v1)
 
@@ -1377,12 +1376,18 @@ Same style as `docs/IMPLEMENTATION_PLAN.md`; this plan is not part of that file 
 
 | Milestone | Work | Done when |
 |---|---|---|
-| **B1 Schemas and engine prerequisites** | B1.1 checker: add `$ref`/`$defs` (local and `common.schema.json`), `propertyNames`, `maxProperties`, `minProperties`, `uniqueItems`, `x-discriminator` to `checkValue` (pure; existing schemas unchanged). B1.2 engine: validator reads mood and activity names from the catalog (`musicMoods`, `activityNames`) instead of the frozen enums; a test that every catalog-name field accepts `bundle:name`. `catalog/schemas/bundle/*.schema.json` from section 4 (description tests as for the base schemas). | All tests, golden frames and determinism hashes unchanged; each schema accepts the worked example and rejects the bad fixtures |
+| **B1 Schemas and engine prerequisites** (done 2026-10-18) | B1.1 checker: add `$ref`/`$defs` (local and `common.schema.json`), `propertyNames`, `maxProperties`, `minProperties`, `uniqueItems`, `x-discriminator` to `checkValue` (pure; existing schemas unchanged). B1.2 engine: validator reads mood and activity names from the catalog (`musicMoods`, `activityNames`) instead of the frozen enums; a test that every catalog-name field accepts `bundle:name`. `catalog/schemas/bundle/*.schema.json` from section 4 (description tests as for the base schemas). | All tests, golden frames and determinism hashes unchanged; each schema accepts the worked example and rejects the bad fixtures. **Done:** see the B1 notes below |
 | **B2 Check pipeline** | `tools/lib/bundle/` (pure, browser-safe): read (folder or zip via `DecompressionStream`/`zlib` adapters), canonical JSON and hashes, steps 1-11 and 14 with their codes, `mergeBundles`. `tools/bundle.mjs check <dir|zip>` and `pack <dir>` (writes `files`, `contentHash`). Table-driven unit tests with one fixture per code in `tests/fixtures/bundles/bad/`. | Every code has a fixture; the worked example (section 11) packs and checks clean; checking a 2 MB bundle takes under 2 s in Node |
 | **B3 Scripts and the engine** | `bundles` in schema v1 and v2; `E_BUNDLE_MISSING`, `E_BUNDLE_HASH`, `E_BUNDLE_UNDECLARED`, `E_BUNDLE_DEPENDENCY`, `E_BUNDLE_AUDIENCE`, `W_BUNDLE_UNUSED`, `E_BUNDLE_COMBO` in the validator and `catalog/docs/codes.json`; tools (`validate`, `record`, `generate`, `manual`) and the player accept `--bundle <dir|zip>` / a bundle store. Step 12 (sim hash) and the combination check. | A script using the example bundle validates, records and plays; the bad scripts give their codes; same frames twice |
 | **B4 Import and store** | `tools/bundle.mjs import <dir|zip>` (Node store) and an import page (`web/bundles.html`: drop a zip, see the report and the contact sheet, keep it in IndexedDB); `bundle.mjs sheet`; steps 12 (pixels) and 13; the base-name stability check in `catalog:build`; `catalog/bundle_blocklist.json` and `catalog/bundle_allowlist.json`; `bundles/` in `.gitignore`. | Import works in Node and in the browser with the same report; the blocklist refuses a listed hash |
 | **B5 Showcase, player and context pack** | Showcase: a "Bundles" switch that adds loaded bundles' entries to every section, marked with the bundle name; deep links `showcase.html#moves/robo_pals:robot_dance`. Player: loads a script's declared bundles from the store, shows credits (with the NC badge) and a missing-bundle message. Bundle music moods have no browser preview (music is rendered in Node only, decision 8): their cards say so and play a clip only when `npm run catalog:media` has rendered one. Context pack per bundle (10.3). | A loaded bundle's entries appear in every section with no page change; a Claude Desktop project with the base pack plus a bundle pack writes a valid script that uses the bundle (manual check) |
 | **B6 Authoring help** | `tools/draft.mjs ... --bundle <dir>` and `svg_import.mjs --bundle <dir>` write drafts into a bundle folder with namespaced names; `bundle.mjs new <id>` scaffolds a folder; a lean "make a bundle" prompt for chat apps (the bundle schemas plus the field notes, no keyframe examples beyond one). | A bundle drafted through the copy-paste flow checks clean after review |
+
+**B1 notes (2026-10-18).**
+- B1.1: the checker moved to `engine/validator/check_value.js` (schema.js re-exports `checkValue`); the new keywords are listed in 4.1 and tested in `tests/unit/check_value.test.js`. No new codes. Existing schemas take the same paths through the checker (a `$ref`-free `oneOf` sees the same branches), so every earlier message is unchanged.
+- B1.2: `catalogNames(catalog)` (`v2_names.js`) gives the mood and activity names; `schemaV2For`, `macroParamsFor` and `worldCommandsV2For` return the prebuilt `jsonSchemaV2`, `MACRO_PARAMS` and `WORLD_COMMANDS_V2` when the names equal the frozen lists (the base catalog today), so `docs/schema/script-v2.schema.json`, `generated/engine_vocab.json` and the catalog version (`1-2f7e7addb9`) are unchanged. The context pack and prompt tables still list the frozen tables; listing bundle names there is B5.
+- B1.3: `catalog/schemas/bundle/*.schema.json` are the section 4 blocks verbatim (`tests/unit/bundle_schemas.test.js` compares them with this file, checks the 4.1 conventions, and keeps the enums equal to the engine's lists: pose channels, categories, easings, hit parts, shakes, appearance options, accessories, timbres, roles, layer kinds, object shapes and behaviours, prop shapes, patches). `readCatalogDir` keeps only top-level `schemas/*.schema.json` as catalog schemas; `readBundleSchemas` reads the bundle ones. The worked example (`tests/fixtures/bundles/robo_pals/`, full hashes computed over sorted-key compact JSON) passes; `zz_bad` gives the 11.2 checker codes (`tests/fixtures/bundles/zz_bad.expect.json`); the base catalog's themes, faces, props, objects, bodies (dog included), activities (not `fetch`), FX (not `internal`) and moods pass once prefixed, as 4.1 claims. The unused `range` def of `fx.schema.json` (an unranged number, against 4.1) was removed.
+- **Open for B2:** an example script that pins its own bundle (`bundles: [{ "id": "robo_pals", "hash": ... }]`, 11.1) cannot hold the right `contentHash`, since that hash covers the example file. The fixture uses 64 zeros there. B2 must pick a rule, for example: the own bundle's pin in `examples/` is written without `hash` (or hashed with the pin blanked), and the pipeline checks it against the manifest instead.
 
 Suggested commands:
 
@@ -1408,7 +1413,7 @@ Budget: 6 KB per bundle (a test fails above 7.5 KB). It is attached next to the 
 
 ### 11.1 A valid bundle: `robo_pals`
 
-A friendly boxy robot: a body plan, a pose, a move, a preset, an object and an example. Hash values are shortened here (`…`); `bundle.mjs pack` writes the full 64-digit values.
+A friendly boxy robot: a body plan, a pose, a move, a preset, an object and an example. Hash values are shortened here (`…`); `bundle.mjs pack` writes the full 64-digit values. The full bundle is `tests/fixtures/bundles/robo_pals/` (see the B1 notes in section 10 about the example's own pin).
 
 `bundle.json`:
 

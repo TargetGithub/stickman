@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "preset.schema.json",
+  "title": "characters/presets/<name>.json: a ready-made character (CATALOG_SPEC 4.1).",
+  "type": "object",
+  "required": ["id", "name", "description", "role", "tags", "audience", "cast"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/ownName" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 16, "pattern": "^[A-Za-z][A-Za-z0-9 '.-]{0,15}$" },
+    "description": { "$ref": "common.schema.json#/$defs/description" },
+    "role": { "enum": ["hero", "sidekick", "friend", "family", "mentor", "villain", "henchman", "rival", "guard", "crowd", "animal-like"] },
+    "tags": { "$ref": "common.schema.json#/$defs/tags" },
+    "audience": { "$ref": "common.schema.json#/$defs/audience" },
+    "cast": {
+      "type": "object", "required": ["color"], "additionalProperties": false,
+      "properties": {
+        "body": { "$ref": "common.schema.json#/$defs/ref" },
+        "color": { "$ref": "common.schema.json#/$defs/hex" },
+        "scale": { "type": "number", "minimum": 0.4, "maximum": 4 },
+        "hp": { "type": "number", "minimum": 1, "maximum": 1000 },
+        "prop": { "type": ["string", "null"], "pattern": "^([a-z][a-z0-9_]{2,31}:[a-z][a-z0-9_]{0,31}|[a-z][a-z0-9_]{0,31})$" },
+        "appearance": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
+            "brows": { "enum": ["none", "thin", "thick"] },
+            "mouthStyle": { "enum": ["line", "cartoon"] },
+            "cheeks": { "$ref": "common.schema.json#/$defs/hex" },
+            "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap"] },
+            "hairColor": { "$ref": "common.schema.json#/$defs/hex" },
+            "outfit": { "enum": ["none", "shirt", "coat", "armor", "robe"] },
+            "outfitColor": { "$ref": "common.schema.json#/$defs/hex" },
+            "accessories": {
+              "type": "object", "additionalProperties": false, "maxProperties": 4,
+              "properties": {
+                "headband": { "$ref": "common.schema.json#/$defs/hex" }, "scarf": { "$ref": "common.schema.json#/$defs/hex" },
+                "cape": { "$ref": "common.schema.json#/$defs/hex" }, "hat": { "$ref": "common.schema.json#/$defs/hex" },
+                "antenna": { "$ref": "common.schema.json#/$defs/hex" }, "bowtie": { "$ref": "common.schema.json#/$defs/hex" },
+                "mask": { "$ref": "common.schema.json#/$defs/hex" }, "crown": { "$ref": "common.schema.json#/$defs/hex" },
+                "backpack": { "$ref": "common.schema.json#/$defs/hex" }, "eyepatch": { "$ref": "common.schema.json#/$defs/hex" }
+              }
+            }
+          }
+        },
+        "voice": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "pitch": { "type": "number", "minimum": 0.5, "maximum": 2 },
+            "speed": { "type": "number", "minimum": 0.7, "maximum": 1.4 },
+            "timbre": { "enum": ["soft", "squeaky", "deep", "robot", "bark"] }
+          }
+        },
+        "style": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "overlap": { "type": "boolean" }, "outline": { "type": "boolean" }, "squash": { "type": "boolean" },
+            "glow": { "$ref": "common.schema.json#/$defs/hex" }, "headband": { "$ref": "common.schema.json#/$defs/hex" },
+            "cape": { "$ref": "common.schema.json#/$defs/hex" }, "hat": { "$ref": "common.schema.json#/$defs/hex" },
+            "scarf": { "$ref": "common.schema.json#/$defs/hex" }
+          }
+        }
+      }
+    }
+  }
+}

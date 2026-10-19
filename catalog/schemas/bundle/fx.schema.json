@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fx.schema.json",
+  "title": "effects/fx.json: FX presets from the existing particle shapes and glyphs.",
+  "type": "object",
+  "maxProperties": 24,
+  "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+  "additionalProperties": { "$ref": "#/$defs/preset" },
+  "$defs": {
+    "preset": {
+      "type": "object",
+      "required": ["description", "tags", "anchor"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "$ref": "common.schema.json#/$defs/description" },
+        "tags": { "$ref": "common.schema.json#/$defs/tags" },
+        "anchor": { "enum": ["hip", "head", "feet", "point"] },
+        "layers": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "$ref": "#/$defs/layer" } },
+        "trail": {
+          "type": "object", "required": ["kind", "duration"], "additionalProperties": false,
+          "properties": { "kind": { "enum": ["afterimage", "slash"] }, "duration": { "type": "number", "minimum": 0.05, "maximum": 1 } }
+        },
+        "flash": {
+          "type": "object", "required": ["color", "dur"], "additionalProperties": false,
+          "properties": { "color": { "$ref": "common.schema.json#/$defs/hex" }, "dur": { "type": "number", "minimum": 0.05, "maximum": 0.2 } }
+        },
+        "glow": {
+          "type": "object", "required": ["attach", "life", "size", "color", "alpha"], "additionalProperties": false,
+          "properties": {
+            "attach": { "$ref": "common.schema.json#/$defs/joint" },
+            "life": { "type": "number", "minimum": 0.1, "maximum": 3 },
+            "size": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0, "maximum": 300 } },
+            "color": { "$ref": "common.schema.json#/$defs/color" },
+            "alpha": { "$ref": "common.schema.json#/$defs/pair01" }
+          }
+        },
+        "sustain": {
+          "type": "object", "required": ["duration", "rate"], "additionalProperties": false,
+          "properties": { "duration": { "type": "number", "minimum": 0.1, "maximum": 3 }, "rate": { "type": "number", "minimum": 1, "maximum": 40 } }
+        }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "required": ["shape", "count", "life", "size", "color", "alpha"],
+      "additionalProperties": false,
+      "properties": {
+        "shape": { "enum": ["line", "dot", "puff", "ring", "ellipse", "star", "glow", "glyph"] },
+        "count": { "type": "integer", "minimum": 1, "maximum": 40 },
+        "angle": { "type": ["number", "array"], "minimum": -360, "maximum": 360, "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": -360, "maximum": 360 } },
+        "speed": { "type": ["number", "array"], "minimum": 0, "maximum": 1500, "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0, "maximum": 1500 } },
+        "life": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0.05, "maximum": 3 } },
+        "size": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 0, "maximum": 300 } },
+        "width": { "type": "number", "minimum": 0.5, "maximum": 12 },
+        "gravity": { "type": "number", "minimum": -2000, "maximum": 2000 },
+        "drag": { "type": "number", "minimum": 0, "maximum": 6 },
+        "color": { "type": ["string", "array"], "pattern": "^(#[0-9a-fA-F]{6}|rgba\\([0-9]{1,3}, ?[0-9]{1,3}, ?[0-9]{1,3}, ?(0|1|0?\\.[0-9]{1,3})\\))$", "minItems": 1, "maxItems": 6, "items": { "$ref": "common.schema.json#/$defs/color" } },
+        "alpha": { "$ref": "common.schema.json#/$defs/pair01" },
+        "offset": { "type": "number", "minimum": 0, "maximum": 150 },
+        "offsetXY": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": -150, "maximum": 150 } },
+        "spreadY": { "type": "number", "minimum": 0, "maximum": 200 },
+        "vrot": { "type": ["number", "array"], "minimum": -1000, "maximum": 1000, "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": -1000, "maximum": 1000 } },
+        "attach": { "$ref": "common.schema.json#/$defs/joint" },
+        "orbit": {
+          "type": "object", "required": ["r", "w"], "additionalProperties": false,
+          "properties": { "r": { "type": "number", "minimum": 0, "maximum": 120 }, "w": { "type": "number", "minimum": -12, "maximum": 12 } }
+        },
+        "glyph": { "enum": ["drop", "anger", "heart", "exclaim", "question", "zzz", "word"] },
+        "text": { "type": "string", "minLength": 1, "maxLength": 8, "pattern": "^[A-Z][A-Z!?]{0,7}$" },
+        "tintable": { "type": "boolean" }
+      }
+    }
+  }
+}

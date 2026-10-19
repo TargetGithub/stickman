@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "examples.schema.json",
+  "title": "examples/index.json: the bundle's example scripts.",
+  "type": "object",
+  "required": ["examples"],
+  "additionalProperties": false,
+  "properties": {
+    "examples": {
+      "type": "array", "minItems": 1, "maxItems": 4,
+      "items": {
+        "type": "object", "required": ["path", "kind", "title", "description", "tags"], "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "pattern": "^(clips|stories)/[a-z][a-z0-9_]{0,31}\\.json$" },
+          "kind": { "enum": ["clip", "story"] },
+          "title": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "description": { "$ref": "common.schema.json#/$defs/description" },
+          "tags": { "$ref": "common.schema.json#/$defs/tags" }
+        }
+      }
+    }
+  }
+}

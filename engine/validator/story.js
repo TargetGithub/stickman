@@ -2,7 +2,7 @@
 // Story-level checks (cast, locations, scenes, transitions, macros, audience text) plus the v1 checks
 // run on each scene's flat view, with paths and codes mapped back to the story.
 
-import { checkSemantics, checkText, WORLD_COMMANDS_V2 } from "./semantic.js";
+import { checkSemantics, checkText, worldCommandsV2For } from "./semantic.js";
 import { closestMatch } from "./report.js";
 import { flatScene, resolveLocation } from "../story/normalize.js";
 import { readingTime } from "../story/speech.js";
@@ -155,6 +155,7 @@ export function checkStory(story, catalog, moves) {
   story = { ...story, catalogBlocklist: catalog.blocklist };
   const audience = story.meta.audience ?? "kids";
   const castIds = new Set();
+  const worldCommands = worldCommandsV2For(catalog);
   story.cast.forEach((c, i) => out.push(...castLookIssues(c, `cast[${i}]`, catalog)));
   story.cast.forEach((c, i) => {
     if (castIds.has(c.id)) out.push(issue("E_REF_DUPLICATE", `cast[${i}].id`, `Cast id '${c.id}' is used twice.`, "Give every cast member a unique id."));
@@ -221,7 +222,7 @@ export function checkStory(story, catalog, moves) {
     const flat = flatScene(story, si, catalog);
     out.push(...objectIssues(scene, si, story, catalog));
     out.push(...activityIssues(scene, si, story, catalog));
-    for (const i of checkSemantics(flat, catalog, moves, { worldCommands: WORLD_COMMANDS_V2, holdables: holdableNames(catalog) })) {
+    for (const i of checkSemantics(flat, catalog, moves, { worldCommands, holdables: holdableNames(catalog) })) {
       const mapped = { ...i, path: mapPath(i.path, si, scene) };
       const ref = i.message.match(/^No (?:character|beat with id) '([^']+)'/);
       if (i.code === "E_REF_CHARACTER" && ref && castIds.has(ref[1])) {

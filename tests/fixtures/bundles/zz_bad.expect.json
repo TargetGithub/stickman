@@ -1,0 +1,13 @@
+{
+  "_note": "CATALOG_BUNDLE_SPEC 11.2: checker codes per file from the per-file schemas (step 6; step 3 for bundle.json). assets/logo.svg (E_BUNDLE_PATH), the missing examples/ (E_BUNDLE_FILES) and the later steps (7-11) are B2.",
+  "schema": {
+    "bundle.json": ["E_SCHEMA_PATTERN version", "E_SCHEMA_ENUM license"],
+    "effects/fx.json": [],
+    "moves/unarmed.json": ["E_TEXT_LENGTH [0].description"],
+    "world/themes.json": [
+      "E_SCHEMA_PATTERN zz_bad:forest.sky.top",
+      "E_SCHEMA_RANGE zz_bad:forest.layers[0].spacing",
+      "E_SCHEMA_ENUM zz_bad:forest.layers[1].kind"
+    ]
+  }
+}
