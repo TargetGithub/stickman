@@ -73,6 +73,10 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
   for (const [k, v] of Object.entries(files["characters/appearance.json"])) if (k !== "conflicts") uniq("characters/appearance.json", v, k);
   for (const [rel, key] of [["characters/voices.json", "timbres"], ["characters/roles.json", "roles"], ["world/ambience.json", "beds"]]) uniq(rel, files[rel][key], key);
 
+  // Spoken voices (SPEECH_SPEC 5): one entry per engine timbre.
+  const ttsTimbres = Object.keys(files["story/tts_voices.json"].timbres).sort();
+  if (ttsTimbres.join() !== [...V2_ENUMS.timbre].sort().join()) bad("story/tts_voices.json", "timbres", `needs exactly the timbres ${V2_ENUMS.timbre.join(", ")}`);
+
   // 3. References.
   const moveNames = new Set(catalog.moves.map((m) => m.name));
   const holdKinds = new Set([...Object.values(catalog.props).map((p) => p.kind), ...Object.values(catalog.objects).filter((o) => o.hold).map((o) => o.hold.kind), "any"]);

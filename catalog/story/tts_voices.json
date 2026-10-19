@@ -1,0 +1,54 @@
+{
+  "description": "Default spoken voices per timbre for --speech tts renders (SPEECH_SPEC 5). Read by tools/lib/tts, never by the engine. Models are Piper voices in assets/speech/models/ (see assets/speech/VOICES.md for licenses).",
+  "backend": "piper",
+  "timbres": {
+    "soft": {
+      "description": "A warm, gentle voice for heroes and friends; pitch follows the cast's voice.pitch, gently.",
+      "tags": ["warm", "default"],
+      "model": "en_US-kristin-medium",
+      "pitchScale": 0.6,
+      "pitchMin": -4,
+      "pitchMax": 5
+    },
+    "squeaky": {
+      "description": "A bright, high voice for little buddies and kids: a female voice shifted up.",
+      "tags": ["high", "kids"],
+      "model": "en_GB-cori-medium",
+      "pitchScale": 0.6,
+      "pitchOffset": 2,
+      "pitchMin": 3,
+      "pitchMax": 7,
+      "rateScale": 1.1
+    },
+    "deep": {
+      "description": "A low male voice for big characters, elders and villains.",
+      "tags": ["low", "male"],
+      "model": "en_US-norman-medium",
+      "pitchScale": 0.6,
+      "pitchMin": -5,
+      "pitchMax": 0
+    },
+    "robot": {
+      "description": "A male voice made buzzy and metallic with a ring-modulation filter.",
+      "tags": ["robot", "filter"],
+      "model": "en_US-john-medium",
+      "pitchOffset": -3,
+      "pitchMin": -3,
+      "pitchMax": -3,
+      "rateScale": 0.9,
+      "filter": "robot"
+    },
+    "bark": {
+      "description": "A dog: always keeps its babble woofs, even in tts renders.",
+      "tags": ["dog", "babble"],
+      "off": true
+    }
+  },
+  "narrator": {
+    "description": "The storyteller who reads narration boxes: a calm, clear British voice.",
+    "tags": ["narration"],
+    "model": "en_GB-cori-medium",
+    "rate": 0.95,
+    "pitch": 0
+  }
+}

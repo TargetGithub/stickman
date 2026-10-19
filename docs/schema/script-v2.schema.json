@@ -84,6 +84,45 @@
           "type": "number",
           "minimum": 0,
           "maximum": 3
+        },
+        "speech": {
+          "enum": [
+            "babble",
+            "tts"
+          ],
+          "description": "Default speech for renders (SPEECH_SPEC 2): babble syllables or offline spoken voices."
+        },
+        "narrator": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.-]{1,64}$",
+              "description": "Piper voice name, e.g. en_US-kristin-medium."
+            },
+            "speaker": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2000
+            },
+            "rate": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 2
+            },
+            "pitch": {
+              "type": "number",
+              "minimum": -12,
+              "maximum": 12,
+              "description": "Semitones, applied after synthesis."
+            },
+            "off": {
+              "type": "boolean",
+              "description": "Keep babble for this voice even in tts renders."
+            }
+          },
+          "description": "Spoken voice for narration in tts renders (SPEECH_SPEC 3)."
         }
       }
     },
@@ -330,6 +369,38 @@
                   "robot",
                   "bark"
                 ]
+              },
+              "tts": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.-]{1,64}$",
+                    "description": "Piper voice name, e.g. en_US-kristin-medium."
+                  },
+                  "speaker": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2000
+                  },
+                  "rate": {
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 2
+                  },
+                  "pitch": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Semitones, applied after synthesis."
+                  },
+                  "off": {
+                    "type": "boolean",
+                    "description": "Keep babble for this voice even in tts renders."
+                  }
+                },
+                "description": "Spoken voice for --speech tts renders (SPEECH_SPEC 3); the engine ignores it."
               }
             }
           }

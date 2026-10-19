@@ -1,0 +1,115 @@
+// Spoken lines (SPEECH_SPEC 4.2, 4.4): which beats of a compiled story are spoken, in which voice, and how
+// long their beats must last once the audio length is known. Pure: no I/O. The record tool reads the files.
+
+import { readingTime, voiceOf } from "../../../engine/story/speech.js";
+import { narrateDuration } from "../../../engine/story/timing.js";
+
+export const MAX_SAY = 10; // s, the schema's sayDur maximum
+export const MAX_NARRATE = 15; // s, the validator's narrate dur maximum
+export const SAY_TAIL = 0.25; // s of bubble after the voice stops
+export const NARRATE_LEAD = 0.3; // s from the chime to the voice
+export const NARRATE_TAIL = 0.4;
+const TALK_CYCLE = 0.8; // s, one cycle of the talk gesture (catalog/moves/emotes.json)
+
+const round2 = (x) => Math.round(x * 100) / 100;
+
+/**
+ * Text as it should be spoken: stage directions (*yawn*, (sighs)) dropped, "..." runs become a pause,
+ * shouted capitals become plain words. null when nothing speakable is left ("!!!", "...").
+ */
+export function cleanText(text) {
+  let s = String(text)
+    .replace(/\*[^*]*\*/g, " ")
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/\s*(?:\.\s*){2,}|\s*…/g, ", ")
+    .replace(/\b[A-Z]{3,}\b/g, (w) => w[0] + w.slice(1).toLowerCase())
+    .replace(/\s+/g, " ")
+    .replace(/(,\s*)+([!?.])/g, "$2")
+    .replace(/^[\s,]+/, "")
+    .replace(/[\s,]+$/, "")
+    .trim();
+  if (!/[a-z0-9]/i.test(s)) return null;
+  if (!/[.!?]$/.test(s)) s += ".";
+  return s;
+}
+
+/**
+ * The TTS voice for a character, or null when it keeps babble. Precedence: the --voices override file,
+ * then the cast's voice.tts, then the timbre table (catalog/story/tts_voices.json).
+ * @returns {{ model, speaker, rate, pitch, filter } | null}
+ */
+export function resolveVoice(voice, table, override = {}) {
+  const v = voiceOf(voice);
+  const tts = voice?.tts || {};
+  const t = table.timbres[v.timbre] || table.timbres.soft;
+  if (override.off ?? tts.off ?? t.off) return null;
+  const derived = Math.round(12 * Math.log2(v.pitch) * (t.pitchScale ?? 1)) + (t.pitchOffset ?? 0);
+  const pitch = override.pitch ?? tts.pitch ?? Math.max(t.pitchMin ?? -12, Math.min(t.pitchMax ?? 12, derived));
+  return {
+    model: override.model ?? tts.model ?? t.model,
+    speaker: override.speaker ?? tts.speaker ?? t.speaker ?? 0,
+    rate: round2(override.rate ?? tts.rate ?? v.speed * (t.rateScale ?? 1)),
+    pitch,
+    filter: override.filter ?? t.filter ?? null,
+  };
+}
+
+/** The narrator's voice: override file, then meta.narrator, then the table's narrator. */
+export function narratorVoice(meta, table, override = {}) {
+  const n = { ...table.narrator, ...(meta?.narrator || {}), ...override };
+  if (n.off) return null;
+  return { model: n.model, speaker: n.speaker ?? 0, rate: n.rate ?? 1, pitch: n.pitch ?? 0, filter: n.filter ?? null };
+}
+
+/**
+ * Every spoken line of a compiled v2 script, in script order. Beats without an id get one
+ * ("tts_<scene>_<beat>") so the sim's events can be matched back to the line; the script is changed in place.
+ * Skipped: thoughts (silent, as babble), characters that keep babble (bark, tts.off), text with no words.
+ * @param {object} compiled  compileScript(...).script
+ * @param {{ timbres, narrator }} table  catalog/story/tts_voices.json
+ * @param {{ cast?: Record<string, object>, narrator?: object }} overrides  the --voices file
+ * @returns {Array<{ id, kind:"say"|"narrate", scene, beat, who, text, spoken, bubble, voice }>}
+ */
+export function collectLines(compiled, table, overrides = {}) {
+  const voices = new Map(compiled.cast.map((c) => [c.id, resolveVoice(c.voice, table, overrides.cast?.[c.id])]));
+  const narrator = narratorVoice(compiled.meta, table, overrides.narrator);
+  const out = [];
+  compiled.scenes.forEach((sc, si) => {
+    (sc.beats || []).forEach((b, bi) => {
+      const narrate = b.who === "world" && b.do === "narrate";
+      const text = narrate ? b.params?.text : b.say;
+      if (!text || (!narrate && b.bubble === "think")) return;
+      const voice = narrate ? narrator : voices.get(b.who);
+      const spoken = cleanText(text);
+      if (!voice || !spoken) return;
+      b.id ??= `tts_${si}_${bi}`;
+      out.push({ id: b.id, kind: narrate ? "narrate" : "say", scene: si, beat: bi, who: narrate ? "narrator" : b.who, text, spoken, bubble: narrate ? null : b.bubble ?? "speech", voice });
+    });
+  });
+  return out;
+}
+
+/**
+ * Make each spoken beat last as long as its audio (SPEECH_SPEC 4.4), in place:
+ *   say:     sayDur = clamp(audio + 0.25, readingTime, 10); a talk gesture loops that long, a wait waits that long
+ *   narrate: dur = clamp(audio + lead + tail, narrateDuration, 15)
+ * @param {Array<{ id, kind, scene, beat, dur:number }>} lines  dur: audio seconds
+ * @returns {Array<{ id, beatDur, long }>}  long: the audio does not fit the longest allowed beat
+ */
+export function injectDurations(compiled, lines) {
+  return lines.map((l) => {
+    const b = compiled.scenes[l.scene].beats[l.beat];
+    if (l.kind === "narrate") {
+      const want = l.dur + NARRATE_LEAD + NARRATE_TAIL;
+      const dur = round2(Math.min(MAX_NARRATE, Math.max(narrateDuration(b.params), want)));
+      b.params = { ...b.params, dur };
+      return { id: l.id, beatDur: dur, long: want > MAX_NARRATE };
+    }
+    const want = l.dur + SAY_TAIL;
+    const sayDur = round2(Math.min(MAX_SAY, Math.max(readingTime(b.say), want)));
+    b.sayDur = sayDur;
+    if (b.do === "talk") b.params = { ...b.params, cycles: Math.max(b.params?.cycles ?? 1, Math.ceil(sayDur / TALK_CYCLE)) };
+    if (b.do === "wait") b.params = { ...b.params, seconds: Math.max(b.params?.seconds ?? 0, sayDur) };
+    return { id: l.id, beatDur: sayDur, long: want > MAX_SAY };
+  });
+}

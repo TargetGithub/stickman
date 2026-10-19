@@ -1,6 +1,6 @@
-// WAV writing (PCM 16-bit) and audio decoding through ffmpeg (any input format → Float32).
+// WAV reading and writing (PCM 16-bit) and audio decoding through ffmpeg (any input format → Float32).
 
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, readFileSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { spawnSync } from "node:child_process";
 
@@ -41,4 +41,29 @@ export function decodeAudio(path, sampleRate = 48000) {
   if (r.status !== 0) throw new Error(`cannot decode ${path}: ${String(r.stderr).trim()}`);
   const b = r.stdout;
   return new Float32Array(b.buffer, b.byteOffset, b.byteLength / 4).slice();
+}
+
+/**
+ * Read a 16-bit PCM WAV (as written by writeWav, ffmpeg or Piper) without ffmpeg.
+ * @returns {{ sampleRate:number, channels:number, samples:Float32Array }}  samples interleaved
+ */
+export function readWav(path) {
+  const b = readFileSync(path);
+  if (b.toString("ascii", 0, 4) !== "RIFF" || b.toString("ascii", 8, 12) !== "WAVE") throw new Error(`${path} is not a WAV file`);
+  let pos = 12;
+  let fmt = null;
+  while (pos + 8 <= b.length) {
+    const id = b.toString("ascii", pos, pos + 4);
+    const size = b.readUInt32LE(pos + 4);
+    if (id === "fmt ") fmt = { format: b.readUInt16LE(pos + 8), channels: b.readUInt16LE(pos + 10), sampleRate: b.readUInt32LE(pos + 12), bits: b.readUInt16LE(pos + 22) };
+    if (id === "data") {
+      if (!fmt || fmt.format !== 1 || fmt.bits !== 16) throw new Error(`${path}: only 16-bit PCM WAV is supported`);
+      const n = Math.floor(Math.min(size, b.length - pos - 8) / 2);
+      const samples = new Float32Array(n);
+      for (let i = 0; i < n; i++) samples[i] = b.readInt16LE(pos + 8 + i * 2) / 32768;
+      return { sampleRate: fmt.sampleRate, channels: fmt.channels, samples };
+    }
+    pos += 8 + size + (size & 1);
+  }
+  throw new Error(`${path} has no audio data`);
 }

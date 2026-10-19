@@ -55,6 +55,19 @@ const appearance = {
   },
 };
 
+// Spoken voice (SPEECH_SPEC 3): read by tools/lib/tts, not by the engine.
+const ttsVoice = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    model: { type: "string", pattern: "^[A-Za-z0-9_.-]{1,64}$", description: "Piper voice name, e.g. en_US-kristin-medium." },
+    speaker: { type: "integer", minimum: 0, maximum: 2000 },
+    rate: { type: "number", minimum: 0.5, maximum: 2 },
+    pitch: { type: "number", minimum: -12, maximum: 12, description: "Semitones, applied after synthesis." },
+    off: { type: "boolean", description: "Keep babble for this voice even in tts renders." },
+  },
+};
+
 const castEntry = {
   type: "object",
   required: ["id", "color"],
@@ -76,6 +89,7 @@ const castEntry = {
         pitch: { type: "number", minimum: 0.5, maximum: 2 },
         speed: { type: "number", minimum: 0.7, maximum: 1.4 },
         timbre: { enum: E.timbre },
+        tts: { ...ttsVoice, description: "Spoken voice for --speech tts renders (SPEECH_SPEC 3); the engine ignores it." },
       },
     },
   },
@@ -324,6 +338,8 @@ const makeSchemaV2 = (moods, enums, macroParams) => ({
         autoCamera: { enum: [true, false, "story"] },
         speakerNames: { type: "boolean" },
         tail: { type: "number", minimum: 0, maximum: 3 },
+        speech: { enum: ["babble", "tts"], description: "Default speech for renders (SPEECH_SPEC 2): babble syllables or offline spoken voices." },
+        narrator: { ...ttsVoice, description: "Spoken voice for narration in tts renders (SPEECH_SPEC 3)." },
       },
     },
     cast: { type: "array", minItems: 1, maxItems: L.cast, items: castEntry },

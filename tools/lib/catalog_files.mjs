@@ -14,6 +14,7 @@ export const EXTRA_FILES = {
   "characters/voices.json": "named_list",
   "characters/roles.json": "named_list",
   "world/ambience.json": "named_list",
+  "story/tts_voices.json": "tts_voices",
   "docs/world_commands.json": "doc_entries",
   "docs/macros.json": "doc_entries",
   "docs/camera.json": "camera",

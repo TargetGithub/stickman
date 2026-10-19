@@ -1,0 +1,129 @@
+// Speech clips (SPEECH_SPEC 4.3): one WAV per spoken line, cached by a hash of everything that changes the
+// sound. A backend (piper.mjs, or a fake in tests) renders the raw line; this module trims it, levels it
+// to the speech loudness (shout louder, whisper softer) and stores it as 48 kHz mono 16-bit.
+
+import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, renameSync, rmSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { readWav, writeWav } from "../wav.mjs";
+import { measureLoudness } from "../loudness.mjs";
+import { SR } from "../mixer.mjs";
+
+export const CACHE_DIR = fileURLToPath(new URL("../../../assets/speech/cache/", import.meta.url));
+export const SPEECH_LUFS = -16;
+export const STYLE_DB = { speech: 0, shout: 2, whisper: -6 };
+export const NOISE = { scale: 0.333, w: 0.333 }; // fixed Piper noise: the same text always sounds the same
+const POST = 1; // bump when the trim or levelling below changes, so old cache files are not reused
+
+/**
+ * @typedef {{ id:string, version:string, render:(line:object, outPath:string) => void }} TtsBackend
+ *   render writes a 16-bit PCM WAV at 48 kHz (mono or stereo) for line.spoken in line.voice.
+ */
+
+/** sha256 of the settings (keys sorted, so the key does not depend on property order). */
+export function cacheKey(backend, line) {
+  const v = line.voice;
+  const parts = { backend: backend.id, version: backend.version, model: v.model, speaker: v.speaker, rate: v.rate, pitch: v.pitch, filter: v.filter ?? null,
+    noise: NOISE, style: line.bubble ?? "speech", text: line.spoken, post: POST };
+  const canon = JSON.stringify(Object.keys(parts).sort().map((k) => [k, parts[k]]));
+  return createHash("sha256").update(canon).digest("hex");
+}
+
+/** Mono copy of interleaved samples. */
+function mono(samples, channels) {
+  if (channels === 1) return samples;
+  const out = new Float32Array(samples.length / channels);
+  for (let i = 0; i < out.length; i++) {
+    let s = 0;
+    for (let c = 0; c < channels; c++) s += samples[i * channels + c];
+    out[i] = s / channels;
+  }
+  return out;
+}
+
+/** Drop silence (below -50 dBFS) at both ends, keeping 30 ms around the voice. */
+export function trimSilence(x) {
+  const floor = 10 ** (-50 / 20);
+  let a = 0;
+  let b = x.length - 1;
+  while (a < x.length && Math.abs(x[a]) < floor) a++;
+  while (b > a && Math.abs(x[b]) < floor) b--;
+  if (a >= x.length) return new Float32Array(0);
+  const pad = Math.round(0.03 * SR);
+  return x.slice(Math.max(0, a - pad), Math.min(x.length, b + 1 + pad));
+}
+
+/** Integrated loudness of a mono clip (tiled to 2 s so short words still fill the 400 ms gating blocks). */
+export function clipLoudness(x) {
+  const frames = Math.max(x.length, 2 * SR);
+  const st = new Float32Array(frames * 2);
+  for (let i = 0; i < frames; i++) st[i * 2] = st[i * 2 + 1] = x.length ? x[i % x.length] : 0;
+  return measureLoudness(st).integrated;
+}
+
+/** Level a mono clip in place to `target` LUFS, peaks held under -1 dBFS. Returns the gain in dB. */
+export function levelClip(x, target) {
+  const lufs = clipLoudness(x);
+  if (!Number.isFinite(lufs)) return 0;
+  let peak = 0;
+  for (const v of x) peak = Math.max(peak, Math.abs(v));
+  const db = Math.min(target - lufs, -1 - 20 * Math.log10(peak || 1e-9));
+  const g = 10 ** (db / 20);
+  for (let i = 0; i < x.length; i++) x[i] *= g;
+  return db;
+}
+
+/**
+ * Render (or reuse) every line's clip.
+ * @param {Array<object>} lines  collectLines(...)
+ * @param {TtsBackend} backend
+ * @returns {Array<object>}  each line plus { key, file, dur, cached }
+ */
+export function synthesizeLines(lines, backend, { cacheDir = CACHE_DIR, log = () => {} } = {}) {
+  mkdirSync(cacheDir, { recursive: true });
+  return lines.map((line, i) => {
+    const key = cacheKey(backend, line);
+    const file = join(cacheDir, `${key}.wav`);
+    const cached = existsSync(file);
+    if (!cached) {
+      const raw = join(cacheDir, `${key}.raw.wav`);
+      try {
+        backend.render(line, raw);
+        const wav = readWav(raw);
+        if (wav.sampleRate !== SR) throw new Error(`backend ${backend.id} wrote ${wav.sampleRate} Hz; expected ${SR}`);
+        const clip = trimSilence(mono(wav.samples, wav.channels));
+        levelClip(clip, SPEECH_LUFS + (STYLE_DB[line.bubble] ?? 0));
+        writeWav(`${file}.tmp`, clip, SR, 1);
+        renameSync(`${file}.tmp`, file);
+      } finally {
+        rmSync(raw, { force: true });
+      }
+      log(`  speech ${i + 1}/${lines.length}: ${line.who}: ${line.spoken}`);
+    }
+    const { samples } = readWav(file);
+    return { ...line, key, file, dur: samples.length / SR, cached };
+  });
+}
+
+/** Mixer events for spoken lines: { line → { t, sfx: "tts:<key>", volume } }, t from the sim's say / narrate events. */
+export function speechClips(spoken, simEvents, { lead = 0.3 } = {}) {
+  const at = new Map();
+  for (const e of simEvents) {
+    if (e.type === "say") at.set(e.beatId, e.videoT);
+    if (e.type === "world" && e.do === "narrate") at.set(e.beatId, e.videoT + lead);
+  }
+  const clips = new Map();
+  for (const l of spoken) if (at.has(l.id)) clips.set(l.id, { t: at.get(l.id), sfx: `tts:${l.key}`, volume: 1 });
+  return clips;
+}
+
+/** sampleFor for "tts:<key>" sounds, reading the cache (decoded once). */
+export function clipSampler(cacheDir = CACHE_DIR) {
+  const seen = new Map();
+  return (sfx) => {
+    const key = sfx.slice(4);
+    if (!seen.has(key)) seen.set(key, readWav(join(cacheDir, `${key}.wav`)).samples);
+    return seen.get(key);
+  };
+}
