@@ -8,7 +8,7 @@ Decisions taken with Sridhar:
 
 ## 1. The show in one line
 
-> When horned Peepa steals the seven Rainbow Crystals and Chirpur starts turning grey, clumsy, kind-hearted Doopi and his friends set out to bring the colours home, and learn that the strongest power is the one friends share.
+> When horned Peepa steals the seven Rainbow Crystals and Tokyo starts turning grey, clumsy, kind-hearted Doopi and his friends set out to bring the colours home, and learn that the strongest power is the one friends share.
 
 | | |
 |---|---|
@@ -30,15 +30,15 @@ Lessons the episodes carry, one per episode (stated by a narration line at the e
 
 ## 3. The world
 
-### Chirpur
+### Tokyo
 A cheerful hill village in the **Valley of Colours**: round huts with bright doors, a market of sweets and kites, a dusty training ground, and in the middle the **Rainbow Banyan**, a giant old tree whose roots hold seven glowing **Rainbow Crystals**. The crystals keep the valley's colours bright and its people laughing.
 
 ### The Rainbow Crystals (the MacGuffin)
-Seven crystals, one per colour. Peepa steals them in episode 2 and gives one to each of his lieutenants. Each one the heroes win back brings that colour back to Chirpur and slots into Doopi's **Rainbow Bracelet** (a gift from Nani Nimbu in episode 3), so the audience can count progress.
+Seven crystals, one per colour. Peepa steals them in episode 2 and gives one to each of his lieutenants. Each one the heroes win back brings that colour back to Tokyo and slots into Doopi's **Rainbow Bracelet** (a gift from Nani Nimbu in episode 3), so the audience can count progress.
 
 | Crystal | Held by | Won back in | What comes back |
 |---|---|---|---|
-| Red | Thunda | Ep 4 | Red flowers, the red doors of Chirpur |
+| Red | Thunda | Ep 4 | Red flowers, the red doors of Tokyo |
 | Yellow | Tony & Kony | Ep 5 | Sunshine, and Mooka's giggle |
 | Orange | Madam Mirchi | Ep 8 | Sunsets, oranges, marigolds |
 | Blue | Captain Kanta | Ep 11 | The sky and the lake |
@@ -50,7 +50,7 @@ Seven crystals, one per colour. Peepa steals them in episode 2 and gives one to 
 Nani Nimbu's legend: if the crystals are not home by the night of the **Grey Moon**, the valley stays grey forever. Narration counts down the nights (40 nights at the start, about 12 by episode 8, 5 by episode 15, the Grey Moon rises in episode 20).
 
 ### Look of the world (how it uses the engine)
-- **Colour drains as stakes rise.** Each episode sets how grey Chirpur is (the `desaturate` world command today; ASSETS.md item E3 asks for a per-scene grade). Episode 1 is full colour; after episode 2 the valley is mostly grey and gets colour back crystal by crystal; episodes 20-23 are almost black and white; episode 24 bursts back into full colour.
+- **Colour drains as stakes rise.** Each episode sets how grey Tokyo is (the `desaturate` world command today; ASSETS.md item E3 asks for a per-scene grade). Episode 1 is full colour; after episode 2 the valley is mostly grey and gets colour back crystal by crystal; episodes 20-23 are almost black and white; episode 24 bursts back into full colour.
 - Times of day and weather do mood work: the cliffhangers are mostly dusk or night, the comedy mostly day.
 - No blood, no gore, no weapons aimed at anyone who cannot fight back. Hits are cartoon (POW!, BONK!), losers are KO'd with stars, captured with rope or a cage, or flee. Friends who are "lost" are frozen grey or carried off, never gone for good, and always come back.
 
@@ -113,7 +113,7 @@ Engine notes use today's names (body plans, appearance options, voices) where th
 | **Mallu Uncle** | Ep 9 | `elder`, brown, cap, white beard (**NEW** `beard`) | The lake boatman with a rowboat (**NEW** object); tells awful jokes | Ep 10-12, 22-24 |
 | **Ghoomu** (Iron Ghoom reformed) | Ep 15 | Iron Ghoom without the control key: friendly robot | Carries the team up Grey Peak; gentle, says "BEEP" sadly when he can't help | Ep 16-24 |
 | **Tony & Kony** (turned good) | Ep 21 | as below | Switch sides in the finale thanks to Mooka's kindness | Ep 21-24 |
-| Villagers of Chirpur | Ep 1 | extras and a few named kids (`kid`) | Cheer, gasp, flee, and finally fight for their village | Throughout |
+| Villagers of Tokyo | Ep 1 | extras and a few named kids (`kid`) | Cheer, gasp, flee, and finally fight for their village | Throughout |
 
 ### Villains
 
@@ -152,9 +152,9 @@ Four acts of six episodes. Each act ends on a bigger cliffhanger than the last.
 
 | Act | Episodes | Title | What happens | Peak |
 |---|---|---|---|---|
-| 1 | 1-6 | **The Grey Begins** | Meet Chirpur and the gang; Peepa steals the crystals; Doopi trains with Nani; the first boss (Thunda) and the comic Tony & Kony episode; Nani is frozen grey; the friends leave home | Nani frozen (ep 5), Dony kidnapped (ep 6) |
+| 1 | 1-6 | **The Grey Begins** | Meet Tokyo and the gang; Peepa steals the crystals; Doopi trains with Nani; the first boss (Thunda) and the comic Tony & Kony episode; Nani is frozen grey; the friends leave home | Nani frozen (ep 5), Dony kidnapped (ep 6) |
 | 2 | 7-12 | **The Road of Colours** | Madam Mirchi's spice fort; Lotus Lake and Captain Kanta's pirates; a half-colour festival back home | Iron Ghoom carries Doomi away (ep 12, midpoint) |
-| 3 | 13-18 | **Iron and Shadow** | Doopi tries to win alone and loses his glow; learns friendship is the power; the battle for Chirpur and Ghoomu's rescue; the climb up Grey Peak; Shadow Doopi and the Mirror Maze | Gloom Castle and the Grey Moon rising (ep 18) |
+| 3 | 13-18 | **Iron and Shadow** | Doopi tries to win alone and loses his glow; learns friendship is the power; the battle for Tokyo and Ghoomu's rescue; the climb up Grey Peak; Shadow Doopi and the Mirror Maze | Gloom Castle and the Grey Moon rising (ep 18) |
 | 4 | 19-24 | **The Last Colour** | Storming Gloom Castle; Peepa's story; Giant Peepa takes the crystals and the world goes grey; Tony & Kony switch sides; the three-part final battle; colours come home | The do-or-die fight inside the Grey Moon (ep 23-24) |
 
 ### Rising intensity (planned)
@@ -202,6 +202,6 @@ Script rules for this series (on top of CLAUDE.md and STORY_SPEC section 13):
 
 1. **Becky's rig** is a big engine feature (a new skeleton, pose channels and about 18 moves). Should I plan it as its own milestone in docs/STORY_PLAN.md, and hold episode scripts until it exists, or write episode 1 now with Becky's beats marked to be filled in later?
 2. **Doomi as "girlfriend":** I've kept it at a sweetheart level (blushes, hearts, holding hands, one dance), which suits YouTube Kids. OK?
-3. **Names:** Thunda, Madam Mirchi, Captain Kanta, Iron Ghoom/Ghoomu, Tara Treetop, Mallu Uncle, Nani Nimbu, Mayor Motumal and Chirpur are my suggestions. Change any you like.
+3. **Names:** Thunda, Madam Mirchi, Captain Kanta, Iron Ghoom/Ghoomu, Tara Treetop, Mallu Uncle, Nani Nimbu, Mayor Motumal and Tokyo are my suggestions. Change any you like.
 4. **Peepa's ending:** captured and offered friendship (he stays caged but hopeful). Alternatively he could flee and set up a season 2.
 5. **Episode length:** about 5:00-5:30 each. Longer (6-8 min) is possible and helps YouTube watch time; it makes each script bigger.

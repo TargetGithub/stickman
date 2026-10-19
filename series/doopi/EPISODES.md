@@ -9,9 +9,9 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
 ## Act 1: The Grey Begins
 
 ### Ep 1. The Boy Who Tripped
-- **Logline:** On the day of Chirpur's colour festival, clumsy Doopi wants to win the Banyan Games for Doomi, but a shadow with horns is watching the Rainbow Banyan.
+- **Logline:** On the day of Tokyo's colour festival, clumsy Doopi wants to win the Banyan Games for Doomi, but a shadow with horns is watching the Rainbow Banyan.
 - **Beats:**
-  1. (25 s) Dawn over Chirpur, full colour. Narration introduces the Valley of Colours and the Rainbow Banyan's seven crystals.
+  1. (25 s) Dawn over Tokyo, full colour. Narration introduces the Valley of Colours and the Rainbow Banyan's seven crystals.
   2. (30 s) Doopi oversleeps (`sleep` activity, Zs); Becky licks him awake; he falls out of bed, puts his headband on upside down.
   3. (30 s) Market: Doopi and Dony share jalebis (`eat_together`); Mooka eats a whole kite. Mayor Motumal announces the Banyan Games.
   4. (40 s) The games: a kick-ball match Doopi + Dony vs two village kids (`kick_ball`), Doopi kicks the ball into the Mayor. Comic.
@@ -20,13 +20,13 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   7. (30 s) Evening festival: dance together, colour powder bursts [F1].
   8. (25 s) Night. Nani tells the kids the legend of the crystals and the Heart Glow.
   9. (35 s) Becky growls at the dark: Tony & Kony are sneaking around the Banyan with a sack. `@chase`: Becky chases them through the market, they flee.
-  10. (20 s) **Cliffhanger:** thunder; the crystals flicker; a deep laugh; two glowing horns rise over the hill behind the tree. Narration: "Peepa had come to Chirpur."
+  10. (20 s) **Cliffhanger:** thunder; the crystals flicker; a deep laugh; two glowing horns rise over the hill behind the tree. Narration: "Peepa had come to Tokyo."
 - **Intensity:** 2. **Lesson:** helping someone matters more than winning.
-- **Locations:** Chirpur square [T1], Doopi's hut (`home_interior`), Banyan hill [T2].
+- **Locations:** Tokyo square [T1], Doopi's hut (`home_interior`), Banyan hill [T2].
 - **Assets:** R1 (Becky), C1-C10 looks, T1, T2, O1 crystals, O3 jalebi, O4 kite, F1, S1 bark.
 
 ### Ep 2. Peepa Steals the Rainbow
-- **Logline:** Peepa blows his Gloom Horn, steals all seven crystals and turns Chirpur grey, and Doopi's first brave try ends with Mooka's laugh taken.
+- **Logline:** Peepa blows his Gloom Horn, steals all seven crystals and turns Tokyo grey, and Doopi's first brave try ends with Mooka's laugh taken.
 - **Beats:**
   1. (30 s) Peepa's grand entrance on the hill with Tony & Kony (cape, mist, dramatic talk to himself). Villagers wake.
   2. (40 s) Peepa blows the Gloom Horn [O2, F2]: grey mist rolls over the village; the picture drains (`desaturate`). The crystals fly out of the Banyan into his sack.
@@ -38,7 +38,7 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   8. (30 s) Doopi: "I'll bring every colour back." Nani: "Then you will train. Tomorrow. At dawn. Don't be late."
   9. (25 s) **Cliffhanger:** in Peepa's Gloom Castle, Peepa looks into a crystal ball at Doopi's glow: "A Heart Glow... Then I'll take his friends first." Close-up on his smile.
 - **Intensity:** 4. **Lesson:** being brave means standing up even when you're scared.
-- **Locations:** Banyan hill [T2], Chirpur square [T1] (grey), Gloom throne room [T13].
+- **Locations:** Banyan hill [T2], Tokyo square [T1] (grey), Gloom throne room [T13].
 - **Assets:** R1, O1, O2 Gloom Horn, F2 gloom mist, E2 colour freeze, E3 grade, T13, C6 horns.
 
 ### Ep 3. Nani Nimbu's Kitchen Kung Fu
@@ -54,11 +54,11 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   8. (30 s) Evening: Becky and Dony play catch (`play_catch`); the team is happy for a moment.
   9. (30 s) **Cliffhanger:** the ground shakes; at the village gate a huge bandit with a red glow on his belt slams the gate open. "I am THUNDA! Where is the boy who glows?"
 - **Intensity:** 3. **Lesson:** practice is how you get good; everyone starts clumsy.
-- **Locations:** training ground (`dojo_dusk` or [T3]), Chirpur square [T1].
+- **Locations:** training ground (`dojo_dusk` or [T3]), Tokyo square [T1].
 - **Assets:** O5 bracelet, C7 bun, T3 (optional), apple object O6.
 
 ### Ep 4. Thunda's Challenge
-- **Logline:** Doopi takes on Thunda alone and loses, then wins round two with his friends' plan, bringing red back to Chirpur.
+- **Logline:** Doopi takes on Thunda alone and loses, then wins round two with his friends' plan, bringing red back to Tokyo.
 - **Beats:**
   1. (30 s) Thunda flexes, lifts the Mayor's cart, eats the Mayor's lunch. Villagers flee (extras `flee`).
   2. (50 s) Round 1: Doopi vs Thunda alone (`@fight`, Thunda `dominant`, 6 exchanges). Doopi is thrown into a haystack. Thunda: "Come back when you're grown!" and stomps off to camp.
@@ -70,13 +70,13 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   8. (20 s) Celebration, high fives; Doomi kisses Doopi's cheek, he falls over.
   9. (25 s) **Cliffhanger:** the Red crystal flashes a vision: Peepa's face in it, looking straight past Doopi at Doomi. "Enjoy your little red. I'm coming for what you love most."
 - **Intensity:** 5. **Lesson:** a team plan beats being strong alone.
-- **Locations:** Chirpur gate and square [T1], farm edge (`city_park` or [T1] variant).
+- **Locations:** Tokyo gate and square [T1], farm edge (`city_park` or [T1] variant).
 - **Assets:** C9 moustache, O7 haystack/cart, F3 colour return.
 
 ### Ep 5. Tony & Kony's Big Mistake
 - **Logline:** Peepa's mini boys hide the Yellow crystal in the village market in silly disguises; Mooka makes a friend, and Nani pays the price.
 - **Beats:**
-  1. (30 s) Gloom Castle: Peepa scolds Tony & Kony; they must hide the Yellow crystal in Chirpur "where no one looks".
+  1. (30 s) Gloom Castle: Peepa scolds Tony & Kony; they must hide the Yellow crystal in Tokyo "where no one looks".
   2. (40 s) Market: Tony & Kony in fake moustaches (gag) try to hide the crystal in a sweets stall.
   3. (35 s) Becky sniffs the glow; Mooka (grey) wanders off after the shiny thing.
   4. (40 s) Mooka finds Kony, who has fallen in a basket; Mooka helps him out. A small, silent friendship (shared jalebi, `give`).
@@ -86,10 +86,10 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   8. (30 s) Joy: dance in the square with Mooka.
   9. (30 s) **Cliffhanger:** the sky goes dark; Peepa appears over the square and blasts the Gloom Horn at the children. Nani steps in front of them and turns to grey stone [E2]. With her last words: "Find all the colours... and I will wake."
 - **Intensity:** 4 (comedy) rising to 6 at the end. **Lesson:** kindness can come from unexpected people.
-- **Locations:** Gloom throne room [T13], Chirpur market [T1 + O8 stalls].
+- **Locations:** Gloom throne room [T13], Tokyo market [T1 + O8 stalls].
 - **Assets:** O8 market stall, O9 basket, E2, C10 stub horns.
 
-### Ep 6. Leaving Chirpur
+### Ep 6. Leaving Tokyo
 - **Logline:** With Nani frozen, the friends leave home for the first time, meet the forest girl Tara, and lose Dony in the night.
 - **Beats:**
   1. (30 s) Morning beside frozen Nani; Doopi promises to bring her back.
@@ -102,7 +102,7 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   8. (30 s) Everyone sleeps (`sleep` activity); Becky's ears twitch.
   9. (25 s) **Cliffhanger:** red-orange smoke drifts into camp; everyone sneezes awake; when it clears, Dony is gone. Only a chilli-shaped footprint and a laugh: "Ha-CHOO-ha-ha!"
 - **Intensity:** 5. **Lesson:** home is the people you carry with you.
-- **Locations:** Chirpur square [T1], forest path [T4], forest camp [T4 night].
+- **Locations:** Tokyo square [T1], forest path [T4], forest camp [T4 night].
 - **Assets:** O10 bus, T4 forest, O11 campfire, F4 chilli smoke, C11 Tara.
 
 ## Act 2: The Road of Colours
@@ -185,9 +185,9 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
 - **Assets:** T9, T10 underwater, R1 swim move, O20 treasure chest, C15 robot (Iron Ghoom tease).
 
 ### Ep 12. The Half-Colour Festival
-- **Logline:** Back home, Chirpur throws a festival for its half-returned colours, and Doopi and Doomi share a dance, until Iron Ghoom crashes the party and carries Doomi away.
+- **Logline:** Back home, Tokyo throws a festival for its half-returned colours, and Doopi and Doomi share a dance, until Iron Ghoom crashes the party and carries Doomi away.
 - **Beats:**
-  1. (30 s) Mallu sails them home; Chirpur half coloured (red, yellow, orange, blue). Villagers cheer.
+  1. (30 s) Mallu sails them home; Tokyo half coloured (red, yellow, orange, blue). Villagers cheer.
   2. (40 s) Festival prep: lanterns, drums [O21, O22], Mooka in charge of tasting.
   3. (40 s) Games: tennis Doopi vs Dony (`tennis_rally`), selfie with the Mayor (`selfie`).
   4. (40 s) Sunset hill: Doopi and Doomi sit together (bench), Doopi finally says "I like you a lot." Hearts. Dance (`dance_together`).
@@ -196,7 +196,7 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   7. (40 s) Panic; Doopi and Dony fight Ghoom's foot (`@fight`, `dominant` Ghoom, no KO); punches bounce off.
   8. (30 s) **Cliffhanger:** Ghoom's iron hand grabs Doomi (`lift_up`); Ghoom stomps away toward Grey Peak. Doopi runs after; a visor blast knocks him down. "DOOMI!" Close-up, rain starts.
 - **Intensity:** 7. **Lesson:** say the kind things you feel, while you can.
-- **Locations:** Chirpur square [T1, night, festival], sunset hill [T2 at dusk].
+- **Locations:** Tokyo square [T1, night, festival], sunset hill [T2 at dusk].
 - **Assets:** O21 lanterns, O22 drum, C15 Iron Ghoom (robot body), F7 visor beam, G1 giant scale camera.
 
 ## Act 3: Iron and Shadow
@@ -213,7 +213,7 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   7. (25 s) His friends arrive; Dony picks him up. Doopi: "I wanted to save her myself."
   8. (30 s) **Cliffhanger:** Doopi tries to make the Heart Glow come: nothing. "My power... it's gone." Ghoom's footsteps fade into the fog with Doomi.
 - **Intensity:** 7. **Lesson:** asking for help is not weakness.
-- **Locations:** Chirpur square [T1, rain], iron canyon [T11].
+- **Locations:** Tokyo square [T1, rain], iron canyon [T11].
 - **Assets:** T11, O23 ribbon, E1 aura off.
 
 ### Ep 14. The Glow Within
@@ -226,15 +226,15 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   5. (30 s) Doopi wakes, makes everyone breakfast (badly); everyone laughs; the Heart Glow returns brighter than before.
   6. (40 s) Meanwhile in Ghoom's workshop [T12]: Doomi, in a cage, sees the big key on Ghoom's back: "He's wound up! He's not bad, he's controlled!"
   7. (30 s) She escapes the cage with her hairpin; tiptoes toward the key...
-  8. (30 s) **Cliffhanger:** Peepa teleports in, catches Doomi's wrist, sends her to Gloom Castle with Tony & Kony, and winds Ghoom's key all the way: "Go. Flatten Chirpur."
+  8. (30 s) **Cliffhanger:** Peepa teleports in, catches Doomi's wrist, sends her to Gloom Castle with Tony & Kony, and winds Ghoom's key all the way: "Go. Flatten Tokyo."
 - **Intensity:** 6. **Lesson:** your strength comes from the people who love you.
 - **Locations:** mountain cave [T9 variant], dream Banyan (`T2` with sparkles, fog), iron workshop [T12].
 - **Assets:** T12, O24 wind-up key, E4 dream glow look.
 
-### Ep 15. Save Chirpur!
+### Ep 15. Save Tokyo!
 - **Logline:** Iron Ghoom marches on the village; every friend and villager fights together, and Mooka pulls the key that sets the giant free.
 - **Beats:**
-  1. (30 s) Chirpur sees Ghoom coming. The Mayor faints; then gets up and gives his best speech ever.
+  1. (30 s) Tokyo sees Ghoom coming. The Mayor faints; then gets up and gives his best speech ever.
   2. (35 s) Doopi's team races home (Mallu's boat, Tara's shortcut) (`@montage`).
   3. (40 s) Battle plan in the square: villagers with pots and pans, Mallu, Tara, the Mayor.
   4. (60 s) The battle: `@brawl` villagers + team vs Grey Goons; Thunda (captured, sweeping) breaks free and... helps the village! (a comic small redemption).
@@ -244,7 +244,7 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   8. (25 s) Celebration, but quiet: Doomi is still gone.
   9. (25 s) **Cliffhanger:** the Green crystal shows Doomi in a cage on top of Grey Peak, the Grey Moon already showing in the sky: "Five nights left."
 - **Intensity:** 8. **Lesson:** together, a small village can stop a giant.
-- **Locations:** Chirpur square [T1], Chirpur gate.
+- **Locations:** Tokyo square [T1], Tokyo gate.
 - **Assets:** C16 Grey Goons, O25 pots and pans, G1, F3.
 
 ### Ep 16. The Road to Grey Peak
@@ -382,7 +382,7 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   8. (45 s) The Colour Festival: everyone dances (`dance_together`), Doopi and Doomi hold hands, Mooka and Kony share jalebis, Becky catches confetti. Peepa in his cage taps his foot, almost smiling.
   9. (15 s) Nani: "The strongest root holds the whole tree." End card "The End" (tease: a tiny new horned shadow? only if a season 2 is wanted).
 - **Intensity:** 10, then 2 for the celebration. **Lesson:** friendship is the strongest power; forgiveness brings colour back.
-- **Locations:** Grey Moon [T17], Banyan hill [T2], Chirpur square [T1, festival].
+- **Locations:** Grey Moon [T17], Banyan hill [T2], Tokyo square [T1, festival].
 - **Assets:** F15 rainbow bridge, F3, O1 violet crystal, C7 Nani (thaw).
 
 ---
@@ -403,4 +403,4 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
 | 16-18 | + T14, T15, T16, C17, O26, O27, F8, F9 |
 | 19-24 | + O28, O29, T17, F10-F15 |
 
-Episodes 1-5 need only the Chirpur set plus the core cast, so the first batch of assets unlocks the whole of Act 1.
+Episodes 1-5 need only the Tokyo set plus the core cast, so the first batch of assets unlocks the whole of Act 1.
