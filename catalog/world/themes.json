@@ -901,5 +901,45 @@
       }
     ],
     "characterBg": "#4a4a52"
+  },
+  "mountain_cave": {
+    "description": "A rocky mountain cave shelter: grey-brown stone, a low ceiling of rock teeth, a dark opening, warm firelight.",
+    "tags": [
+      "story",
+      "indoor",
+      "cave",
+      "mountain",
+      "shelter",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#2a2420",
+      "bottom": "#4a3e34"
+    },
+    "ground": {
+      "color": "#5e4e40",
+      "line": "#3e3228"
+    },
+    "layers": [
+      {
+        "kind": "cave",
+        "factor": 0.35,
+        "wall": "#3e342c",
+        "color": "#2a2420",
+        "ceiling": -760,
+        "step": 160,
+        "depth": 140,
+        "rocks": 240
+      },
+      {
+        "kind": "lanterns",
+        "factor": 0.7,
+        "color": "#ffb347",
+        "y": -460,
+        "spacing": 1200,
+        "glow": "rgba(255, 179, 71, 0.25)"
+      }
+    ],
+    "characterBg": "#4a3e34"
   }
 }
