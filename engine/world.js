@@ -15,6 +15,7 @@ import {
 } from "./combat.js";
 import { rootOffsetAt } from "./moves.js";
 import { COMBAT, STAGE } from "./config.js";
+import { sameDepth } from "./depth.js";
 
 export const OUTCOMES = ["hit", "whiff", "blocked", "parried", "dodged"];
 
@@ -233,7 +234,7 @@ function resolveHits(world, windowsByActor) {
       const part = attacker.joints[hit.part] || attacker.joints.rHand;
       const prev = m.prevPart[index] || part;
       m.prevPart[index] = part;
-      const targets = (world.mode === "choreographed" ? [world.byId.get(m.target)] : world.actors.filter((t) => t !== attacker && t.alive)).filter((t) => !t.hidden);
+      const targets = (world.mode === "choreographed" ? [world.byId.get(m.target)] : world.actors.filter((t) => t !== attacker && t.alive)).filter((t) => t && !t.hidden && sameDepth(attacker, t));
       for (const target of targets) {
         const key = `${index}:${target.id}`;
         if (m.hitIds.has(key)) continue;
@@ -327,6 +328,7 @@ function fadeVisibility(actor, dt) {
 
 function separationSkip(a, b) {
   if (a.hidden || b.hidden) return true;
+  if (!sameDepth(a, b)) return true; // different depths never touch (V3.2)
   if (a.pairedWith === b.id || b.pairedWith === a.id) return true; // paired moves touch (S5)
   const engaged = (x, y) => x.move && x.move.target === y.id && x.move.def.category === "attack";
   const ghost = (x) => x.move?.def.flags.passThrough || x.holding || x.launched;

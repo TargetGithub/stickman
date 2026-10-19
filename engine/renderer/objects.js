@@ -54,17 +54,21 @@ export function drawSetPieces(ctx, catalog, set, layer, t = 0) {
   if (!set || !set.length || !catalog.objects) return;
   for (const piece of set) {
     if ((piece.layer || "mid") !== layer) continue;
-    const def = catalog.objects[piece.object];
-    if (!def || (!SHAPES[def.draw] && !def.paths)) continue;
-    if (["holdable", "ball", "floater", "vehicle"].includes(def.behavior)) continue; // props and frame items
-    const look = LAYER_LOOK[layer] || LAYER_LOOK.mid;
-    ctx.save();
-    ctx.translate(piece.x, STAGE.groundY - (piece.y ?? 0));
-    ctx.scale(look.scale * (piece.facing === -1 ? -1 : 1), look.scale);
-    ctx.globalAlpha = look.alpha;
-    shape(ctx, def, def.animated ? { ...piece, t } : piece);
-    ctx.restore();
+    drawSetPiece(ctx, catalog, piece, t, LAYER_LOOK[layer] || LAYER_LOOK.mid);
   }
+}
+
+/** One set piece on the floor at its x (and y lift), with a layer look (scale, alpha; the depth lane passes none). */
+export function drawSetPiece(ctx, catalog, piece, t = 0, look = LAYER_LOOK.mid) {
+  const def = catalog.objects?.[piece.object];
+  if (!def || (!SHAPES[def.draw] && !def.paths)) return;
+  if (["holdable", "ball", "floater", "vehicle"].includes(def.behavior)) return; // props and frame items
+  ctx.save();
+  ctx.translate(piece.x, STAGE.groundY - (piece.y ?? 0));
+  ctx.scale(look.scale * (piece.facing === -1 ? -1 : 1), look.scale);
+  ctx.globalAlpha = look.alpha;
+  shape(ctx, def, def.animated ? { ...piece, t } : piece);
+  ctx.restore();
 }
 
 /** Draw moving objects (frame items with `obj`): balls and floaters around their center, vehicles on the floor. */

@@ -1,5 +1,5 @@
 {
-  "E_VERSION": { "meaning": "version is not 1 or 2", "fix": "1 for a clip, 2 for a story." },
+  "E_VERSION": { "meaning": "version is not 1, 2 or 3", "fix": "1 for a clip, 2 for a story, 3 for a story with depth." },
   "E_SCHEMA_TYPE": { "meaning": "wrong JSON type", "fix": "Numbers unquoted, lists in [], objects in {}." },
   "E_SCHEMA_REQUIRED": { "meaning": "a required field is missing", "fix": "Add the field the message names." },
   "E_SCHEMA_UNKNOWN_FIELD": { "meaning": "a field that does not exist", "fix": "Remove it or use the suggested name." },
@@ -83,5 +83,7 @@
   "E_BUNDLE_AUDIENCE": { "meaning": "a kids script declares a bundle not made for kids", "fix": "Use a kids bundle or set meta.audience to general." },
   "E_BUNDLE_UNDECLARED": { "meaning": "a name with a colon comes from a bundle the script does not declare", "fix": "Add that bundle to bundles (id, version, hash)." },
   "W_BUNDLE_UNPINNED": { "meaning": "a declared bundle has no hash", "fix": "Add the bundle's contentHash so the video is pinned." },
-  "W_BUNDLE_UNUSED": { "meaning": "a declared bundle is used by nothing in the script", "fix": "Remove it or use one of its entries." }
+  "W_BUNDLE_UNUSED": { "meaning": "a declared bundle is used by nothing in the script", "fix": "Remove it or use one of its entries." },
+  "E_DEPTH_RANGE": { "meaning": "a z (placement, set piece or to.z) is outside the scene's depth range", "fix": "Keep z between the scene's far and near (default -2000..600) or widen depth." },
+  "E_DEPTH_LAYER": { "meaning": "a node gives both z and layer", "fix": "Keep one: layer is a z preset (back -800, front 313)." }
 }

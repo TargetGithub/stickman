@@ -25,6 +25,8 @@ const expected = {
   "../../engine/audio_events.js": ["collectAudioEvents"],
   "../../engine/index.js": ["createEngine"],
   "../../engine/bundles.js": ["mergeBundles", "bundleOf", "scriptNames", "bundleIssues"],
+  "../../engine/depth.js": ["DEPTH", "LAYER_Z", "depthOf", "zOf", "projectScale", "depthTransform", "projectJoints", "depthAt", "planDepthWalk", "sameDepth", "depthOrder"],
+  "../../engine/scene.js": ["sceneNodes", "characterDepths"],
   "../../engine/validator/index.js": ["validate", "jsonSchema"],
   "../../engine/renderer/index.js": ["createRenderer", "renderFrame"],
 };

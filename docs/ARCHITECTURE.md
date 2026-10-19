@@ -316,6 +316,28 @@ export function bundleIssues(script, catalog): Issue[];                  // E_BU
 ```
 `validate()` runs `bundleIssues` right after the schema stage, so a name from an undeclared bundle is a bundle error, never an unknown move. The engine catalog always carries `catalog.bundles = [{ id: "base", version }]` (from `catalog/bundles.json`); `mergeBundles` appends the loaded bundles' pins.
 
+### depth.js and scene.js (V3.2, ENGINE_V3_SPEC 5.1)
+```js
+// depth.js (pure; shared by the sim and the renderer)
+export const DEPTH, DEPTH_TOUCH, LAYER_Z, DEPTH_WALK_DRIFT;
+export function depthOf(scene): { focal, near, far, horizon };        // scene.depth with defaults
+export function zOf(node, depth): number;                              // node.z, else its layer's preset, clamped
+export function projectScale(z, focal?): number;                       // focal / (focal - z)
+export function depthTransform(z, x, cam, groundY, depth): { s, tx, ty }; // ctx.transform(s,0,0,s,tx,ty) draws a node at z whose feet are at (x, groundY)
+export function projectPoint(p, z, x, cam, groundY, depth), projectJoints(j, z, x, cam, groundY, depth);
+export function depthAt(events, z0, t): number;                        // z from depth events (lerp over walks, jumps on layer beats)
+export function planDepthWalk(actor, to, depth, speed, stage): { x, z1, dur };
+export const sameDepth = (a, b) => boolean;                            // within DEPTH_TOUCH
+export function depthOrder(nodes): nodes;                              // far to near, stable; the stage line kept together
+// scene.js
+export function sceneNodes({ chars, pieces, extras, depthEvents, placementZ, storyT, depth }): [{ kind, z, ref }]; // far to near
+export function characterDepths(nodes): Map<id, z>;
+// renderer/depth_draw.js: withDepth, drawContactShadow, frameNodes, projectedChars, drawDepthWorld
+// story/destinations.js: updateDepth(world, t) (actor.depthMove → actor.z); validator/depth.js: depthIssues(story)
+// validator/schema_v3.js: jsonSchemaV3, schemaV3For(catalog), withDepth(v2Schema), DEPTH_SCHEMA
+```
+A depth event `{ type: "depth", actor, z0, z1, t0, dur, beatId }` is emitted by the director when a walk with `to.z` starts (dur from the walk's ground speed) and, with `dur` 0, on a layer beat in a v3 scene. `sim.scenes[i].depth` is the scene's depth settings (null for v1/v2) and each `characters[]` entry carries its placement `z`.
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -774,4 +796,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: v3 (ENGINE_V3_SPEC 2) makes every character, place and effect come from a catalog bundle, with the engine shipping no content of its own. The engine may not read folders (ADR-006), yet the validator must know which bundles a script relies on so that the same script and bundles give the same frames (CATALOG_BUNDLE_SPEC 7.3).
 - **Decision**: the base catalog is the bundle `base`, registered first in `catalog/bundles.json` with the other bundles a script may declare (a folder path, or the store by hash). The host turns a bundle folder into a partial catalog (`catalog/index.js` `assembleBundle`) and the pure `engine/bundles.js` `mergeBundles` adds it to the base, add-only and in ascending id order, recording each bundle's pin in `catalog.bundles`. A script declares what it uses in `bundles: [{ id, version, hash }]` (v1 and v2 schemas); `bundleIssues` compares the pins with the loaded bundles and with every namespaced name the script uses before any name lookup. A bundle's own examples pin the bundle without a hash (the hash covers the example file itself, the open question of B1), so `hash` is optional and its absence is `W_BUNDLE_UNPINNED`. The check pipeline lives in `tools/lib/bundle_check.mjs` (steps 1-11 of CATALOG_BUNDLE_SPEC 6 for folders: strict JSON with duplicate-key detection, manifest and per-file schemas, canonical hashes, namespacing, references, caps, text, every bundle move on every plan of its rig and every base move on each bundle plan, presets and examples) behind `npm run bundle:check <folder>` and `bundle:pack`.
 - **Consequences**: the engine never hashes or reads files; tools pass `catalogForScript(script)` to `createEngine`. v1 and v2 scripts without `bundles` are unchanged (golden frames and determinism hashes identical). Zip import, the hash store, allow and block lists and the browser importer stay B4-B5 work; the registry's `path` entries carry the project's bundles until then.
+
+### ADR-023 The depth lane is on for version 3 only, and z lives in events, not frames (V3.2)
+- **Context**: v3 draws every node at a depth z with perspective scaling, replacing the three fixed layers, while v1 and v2 golden frames must not change and the frame store (CHAR_STRIDE) is shared by every script.
+- **Decision**: `version: 3` is the v2 story format plus optional depth fields (`z` on placements and set pieces, `to: { z, x? }`, a scene `depth` block); `normalize` marks the story `v3` and the sim gives such scenes a depth lane (`world.depth`). v2 scenes keep the legacy layer path untouched. The z of a character over time is not stored per frame: the director emits `depth` events (a walk's z0, z1 and duration; a layer beat's jump) and both the sim (`updateDepth`) and the renderer (`depthAt`) lerp them from story time, so they always agree and the store layout is unchanged (ADR-012). The layer presets are -800 and 313 so that a v3 script saying `back` or `front` draws at the legacy scales 0.75 and 1.15. Far feet rise toward a horizon (`depth.horizon`, 260 px) so the ground reads as a plane. A depth walk always covers at least half of |dz| in x, so the walk cycle has ground to cover. Characters more than 60 px apart in z never collide or hit.
+- **Consequences**: frame hashes, golden frames and the determinism test are unchanged for v1 and v2; a v3 scene costs one extra sort per frame. Camera framing still uses unprojected x (a far character frames as if on the stage line); lighting, fog and depth of field build on the same nodes in V3.3 and V3.4. The G1 giant reach work is still open.
 

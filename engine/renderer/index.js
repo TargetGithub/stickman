@@ -19,6 +19,7 @@ import { faceStyle } from "./face_state.js";
 import { lookFor, lookAt } from "./looks.js";
 import { bodyPlan } from "../story/bodies.js";
 import { drawExtras, withLayer } from "./extras.js";
+import { drawDepthWorld, projectedChars } from "./depth_draw.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 
@@ -41,6 +42,10 @@ function sceneViews(sim) {
       squashEvents: ev.filter((e) => e.type === "land" || e.type === "hit"),
       // Depth layers and extras (S6): layer changes, and what crowds react to (scene story seconds).
       layerEvents: ev.filter((e) => e.type === "layer"),
+      // The depth lane (V3.2): a v3 scene's depth settings, each character's placement z and depth events (scene story seconds).
+      depth: sc.depth || null,
+      placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
+      depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
       extras: sc.extras || [],
       reactions: reactionsOf(ev, sc),
       fxLog: sc.fxStart === 0 && sc.fxEnd === sim.fx.log.length ? sim.fx.log : sim.fx.log.slice(sc.fxStart, sc.fxEnd),
@@ -48,6 +53,16 @@ function sceneViews(sim) {
       flashes: sim.fx.flashes.filter((f) => inRange(f.t0)),
     };
   });
+}
+
+/** Depth events by character, with their start in scene story seconds (the sim lerps the same way). */
+function groupDepth(events, t0) {
+  const by = new Map();
+  for (const e of events) {
+    if (!by.has(e.actor)) by.set(e.actor, []);
+    by.get(e.actor).push({ storyT: e.storyT - t0, z0: e.z0, z1: e.z1, dur: e.dur });
+  }
+  return by;
 }
 
 /** Hit and defeat times (scene story seconds) for cheering and fleeing extras. */
@@ -156,6 +171,7 @@ function drawItems(ctx, r, items, flying, sv, t) {
 
 function drawWorld(ctx, r, n, f, chars, sv) {
   const pieces = sv.objectEvents.length ? staticObjectsAt(r.catalog, sv.set, sv.objectEvents, f.videoT) : sv.set;
+  if (sv.depth) return drawDepthScene(ctx, r, n, f, chars, sv, pieces);
   const layered = sv.layerEvents.length || sv.characters?.some((c) => c.layer && c.layer !== "mid");
   const inLayer = (layer) => (layered ? chars.filter((c) => layerAt(sv, c.id, f.videoT) === layer) : layer === "mid" ? chars : []);
   const mid = inLayer("mid");
@@ -194,6 +210,36 @@ function drawWorld(ctx, r, n, f, chars, sv) {
   drawSetPieces(ctx, r.catalog, pieces, "front", f.fxT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "front");
   drawLayerChars(ctx, r, n, f, chars, sv, inLayer("front"), "front");
+}
+
+/**
+ * A v3 scene (V3.2): nodes far to near in their depth transforms; the stage-line group keeps the v2 order.
+ * Returns each character's z this frame (overlays and particle anchors use the projected joints).
+ */
+function drawDepthScene(ctx, r, n, f, chars, sv, pieces) {
+  const trails = sv.trails.filter((t) => f.fxT >= t.t0 && f.fxT < t.until);
+  let depths = null;
+  const stage = () => {
+    drawItems(ctx, r, f.items, false, sv, f.videoT);
+    for (const t of trails.filter((x) => x.kind === "afterimage")) {
+      [12, 8, 4].forEach((back, i) => {
+        if (n - back < 0) return;
+        const ghost = charsAt(r, n - back).find((c) => c.id === t.actorId);
+        if (ghost) drawCharacter(ctx, ghost.j, { color: ghost.color, scale: ghost.scale, facing: ghost.facing, alpha: 0.12 + 0.1 * i, outline: false });
+      });
+    }
+    drawItems(ctx, r, f.items, true, sv, f.videoT);
+    drawTrails(ctx, n, sv, trails, r);
+    const shown = depths ? projectedChars(chars, depths, f.cam, sv.depth) : chars;
+    drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
+      const c = shown.find((x) => x.id === actorId);
+      if (!c) return null;
+      return joint === "feet" ? { x: c.j.hip.x, y: c.z ? c.j.lFoot.y : STAGE.groundY } : c.j[joint] || c.j.hip;
+    });
+    drawMovingObjects(ctx, r.catalog, f.items);
+  };
+  depths = drawDepthWorld(ctx, r, f, chars, sv, pieces, { stage, character: (c) => drawChars(ctx, r, n, f, chars, sv, [c]) });
+  return depths;
 }
 
 /** Characters on a back or front layer, scaled about their feet (STORY_SPEC 14). */
@@ -298,7 +344,7 @@ export function renderScene(r, ctx, n) {
   drawBackground(ctx, background(r, theme), cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1);
   ctx.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
-  drawWorld(ctx, r, n, f, chars, sv);
+  const depths = drawWorld(ctx, r, n, f, chars, sv);
   if (filter) ctx.filter = "none";
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawWorldGrade(ctx, colourGrade, { W, H, origin: waveOrigin(colourGrade, chars, cam, W, H, STAGE.groundY) });
@@ -307,7 +353,7 @@ export function renderScene(r, ctx, n) {
   const prevSame = n > 0 && segmentIndexAt(r.sim.store, n - 1) === f.segment;
   const storyRate = prevSame ? (f.storyT - storyTimeAt(r.sim.store, n - 1)) * FPS : 1;
   const view = {
-    W, H, format: r.format, t: f.videoT, fxT: f.fxT, cam, chars,
+    W, H, format: r.format, t: f.videoT, fxT: f.fxT, cam, chars: depths ? projectedChars(chars, depths, cam, sv.depth) : chars,
     says: sv.says, worldEvents: sv.worldEvents, flashes: sv.flashes, hpBars: r.hpBars,
     slowness: storyRate > 0 && storyRate < 0.95 ? 1 - storyRate : 0,
     names: r.names,

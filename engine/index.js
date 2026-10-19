@@ -30,14 +30,14 @@ export function scriptSchema(catalog) {
  *   script: the compiled v2 script (plain beats only); a v1 script comes back unchanged
  */
 export function compileScript(script, catalog) {
-  if (script?.version !== 2) return { script, expansions: [] };
+  if (script?.version !== 2 && script?.version !== 3) return { script, expansions: [] };
   const { story, expansions } = compileStory(normalize(script), catalog, movesFor(catalog));
   return { script: plainScript(story), expansions };
 }
 
 /** The script with one macro (beat or scene macro id) replaced by its expansion; null if there is no such macro. */
 export function ejectMacro(script, macroId, catalog) {
-  if (script?.version !== 2) return null;
+  if (script?.version !== 2 && script?.version !== 3) return null;
   return eject(normalize(script), macroId, catalog, movesFor(catalog));
 }
 

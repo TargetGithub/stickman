@@ -18,7 +18,8 @@ import { updatePairs, pairMoveEvent } from "./story/pairs.js";
 import { defeatMoveEvent, updateDefeats } from "./story/defeat.js";
 import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy, holdableProps, popNear } from "./objects.js";
 import { updateActivities, activityMoveEvent } from "./story/activities.js";
-import { updateExits } from "./story/destinations.js";
+import { updateExits, updateDepth } from "./story/destinations.js";
+import { depthOf, zOf } from "./depth.js";
 import { planExtras, EXTRA_MOVES } from "./story/extras.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
@@ -68,6 +69,7 @@ function sceneActors(flat, catalog, carry, faces) {
       a.face = placed.face ?? kept?.face ?? "neutral";
       a.layer = placed.layer ?? "mid";
     }
+    a.z = flat.depth ? zOf(placed, flat.depth) : 0; // the depth lane (V3.2): v2 layers stay flat
     const name = kept && placed.prop === undefined ? kept.prop : c.prop;
     const data = name ? holdableData(catalog, name) : null;
     a.prop = data ? { name, kind: data.kind, data } : null;
@@ -137,8 +139,10 @@ export function simulate(script, catalog, opts = {}) {
     const t = transitionInto(story, si);
     if (t && t.type !== "cut") hold(t, si);
 
+    flat.depth = story.v3 ? depthOf(flat.scene) : null; // V3.2: a v3 scene has a depth lane
     const actors = sceneActors(flat, catalog, carry, !story.legacy);
     const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth: flat.meta.stageWidth });
+    world.depth = flat.depth;
     // Objects (S4): set pieces and spawned objects; holdable set pieces lie on the floor as props.
     const pieces = [...(flat.location?.set || []), ...(flat.scene.set || [])];
     for (const p of pieces.filter((q) => catalog.objects?.[q.object]?.behavior === "holdable")) {
@@ -200,6 +204,7 @@ export function simulate(script, catalog, opts = {}) {
       if (!story.legacy) {
         updateExits(world, events, clock.storyT);
         updateDefeats(world, events, clock.storyT);
+        if (world.depth) updateDepth(world, clock.storyT);
       }
       if (world.activities?.length) events.push(...updateActivities(world, clock.storyT));
       for (const e of events) {
@@ -248,7 +253,11 @@ export function simulate(script, catalog, opts = {}) {
       index: si, id: sid, theme: flat.meta.theme, stageWidth: flat.meta.stageWidth, look: flat.look,
       location: flat.location, set: [...(flat.location?.set || []), ...(flat.scene.set || [])],
       startFrame, frames, storyStart: t0, fxStart: fxLogStart, fxEnd: fx.log.length, fxT0: clock.fxAt[startFrame],
-      characters: flat.characters.map((c) => ({ id: c.id, style: c.style || {}, layer: (flat.scene.cast || []).find((p) => p.id === c.id)?.layer ?? "mid" })),
+      characters: flat.characters.map((c) => {
+        const placed = (flat.scene.cast || []).find((p) => p.id === c.id) || {};
+        return { id: c.id, style: c.style || {}, layer: placed.layer ?? "mid", ...(flat.depth ? { z: zOf(placed, flat.depth) } : {}) };
+      }),
+      depth: flat.depth, // V3.2: null for v1/v2 scenes
       extras: story.legacy ? [] : planExtras(flat.scene, flat.location, catalog, meta.seed ?? 1, flat.meta.stageWidth),
     });
   }

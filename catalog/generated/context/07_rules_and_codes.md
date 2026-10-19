@@ -32,7 +32,7 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 
 ## Validator codes
 
-- E_VERSION: version is not 1 or 2 → 1 for a clip, 2 for a story.
+- E_VERSION: version is not 1, 2 or 3 → 1 for a clip, 2 for a story, 3 for a story with depth.
 - E_SCHEMA_TYPE: wrong JSON type → Numbers unquoted, lists in [], objects in {}.
 - E_SCHEMA_REQUIRED: a required field is missing → Add the field the message names.
 - E_SCHEMA_UNKNOWN_FIELD: a field that does not exist → Remove it or use the suggested name.
@@ -117,3 +117,5 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - E_BUNDLE_UNDECLARED: a name with a colon comes from a bundle the script does not declare → Add that bundle to bundles (id, version, hash).
 - W_BUNDLE_UNPINNED: a declared bundle has no hash → Add the bundle's contentHash so the video is pinned.
 - W_BUNDLE_UNUSED: a declared bundle is used by nothing in the script → Remove it or use one of its entries.
+- E_DEPTH_RANGE: a z (placement, set piece or to.z) is outside the scene's depth range → Keep z between the scene's far and near (default -2000..600) or widen depth.
+- E_DEPTH_LAYER: a node gives both z and layer → Keep one: layer is a z preset (back -800, front 313).

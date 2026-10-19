@@ -123,6 +123,19 @@ Each batch: author in the editor → catalog page review → fix → connectivit
 ### M9 Hardening (2-3 days)
 Fuzz test (200 scripts), performance pass against spec 14.4, portrait acceptance, README and docs pass, full acceptance run (spec 20.2).
 
+## Engine v3 (docs/ENGINE_V3_SPEC.md section 10)
+
+Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visual review.
+
+| # | Milestone | Status |
+|---|---|---|
+| V3.1 | Bundle loader and registry (ADR-022) | DONE 2026-10-19, reviewed |
+| V3.2 | Depth lane (ADR-023) | DONE 2026-10-19, awaiting review |
+| V3.3 | Lighting and shading | next |
+| V3.4 | v3 camera | |
+| V3.5-V3.8 | Timeline and compositor, turnaround views, motion quality, audio tracks and templates | can run in parallel after V3.4 |
+| V3.9 | Polish pass against the reference | |
+
 ## Schedule summary
 
 | Milestone | Days | Cumulative |

@@ -12,6 +12,7 @@ const DEFAULT_WEATHER = "clear";
 /** @returns {object} a v2 story (a new object; the input is not changed) */
 export function normalize(script) {
   if (script.version === 2) return { ...script, legacy: false };
+  if (script.version === 3) return { ...script, version: 2, legacy: false, v3: true }; // a v2 story with the depth lane (V3.2)
   const meta = script.meta || {};
   return {
     version: 2,

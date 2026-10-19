@@ -15,6 +15,7 @@ import { defeatStart } from "./story/defeat.js";
 import { startActivity, stopActivity } from "./story/activities.js";
 import { OBJECT_COMMANDS, walkToSeat } from "./story/scene_beats.js";
 import { TO_MOVES, startTo } from "./story/destinations.js";
+import { zOf } from "./depth.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
@@ -276,9 +277,17 @@ function execute(director, beat, ctx) {
     ...(director.story && beat.approach && def.category === "attack" ? { approached: true } : {}) };
   if (def.category === "defeat") opts = defeatStart(world, actor, def, opts); // defeat styles (S5): face, flee side
   if (walksTo) opts = startTo(world, actor, beat, opts, storyT, !!def.pair) ?? opts; // S6: distance from where everyone is
+  if (actor.depthMove?.t0 === storyT) emit({ type: "depth", actor: beat.who, beatId: beat.id, ...actor.depthMove }); // V3.2: the renderer lerps the same z
   if (beat.layer && director.story) {
     actor.layer = beat.layer;
     emit({ type: "layer", actor: beat.who, layer: beat.layer, beatId: beat.id });
+    if (world.depth) {
+      // In a v3 scene a layer beat is a jump to the layer's z preset.
+      const z1 = zOf({ layer: beat.layer }, world.depth);
+      emit({ type: "depth", actor: beat.who, beatId: beat.id, z0: actor.z || 0, z1, t0: storyT, dur: 0 });
+      actor.z = z1;
+      actor.depthMove = null;
+    }
   }
   if (def.pair && world.byId.get(beat.partner)) startPair(world, actor, world.byId.get(beat.partner), def, opts, command);
   else command(world, beat.who, beat.do, opts);
