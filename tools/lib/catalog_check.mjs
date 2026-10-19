@@ -12,7 +12,7 @@ import { OBJECT_SHAPES } from "../../engine/renderer/objects.js";
 import { PROP_SHAPES } from "../../engine/renderer/props.js";
 import { LAYER_KINDS } from "../../engine/renderer/background.js";
 import { MOVE_FILES } from "../../catalog/index.js";
-import { checkMove } from "./draft.mjs";
+import { checkMove } from "./move_check.mjs";
 import { schemaFor } from "./catalog_files.mjs";
 import { worldCommandStory, macroStory, cameraStory, transitionStory, presetStory } from "./catalog_harness.mjs";
 

@@ -410,6 +410,8 @@ Description and tag fields pass through; prepared moves (`prepareCatalog`) drop 
 | `tools/lib/lean_prompts.mjs` | lean copy-paste prompts for chat projects with the pack: the pack line and version, files to read, reminders, the full prompts' task text (`manual.mjs --lean`) |
 | `tools/lib/catalog_write.mjs` | adds a reviewed draft to `catalog/` (`draft.mjs --write`, `svg_import.mjs --write`) |
 | `tools/lib/json_format.mjs`, `zip.mjs` | stable JSON formatting for catalog files; a small zip writer for `catalog:pack` |
+| `tools/lib/move_check.mjs` | `checkMove(def, catalog, { draft, plans })` and `runMove(def, moves, catalog, opts)`: the move checks shared by drafts, the catalog build and bundles (browser-safe) |
+| `tools/lib/bundle/` + `tools/bundle.mjs` | catalog bundles (CATALOG_BUNDLE_SPEC): `checkBundle(entries, ctx)` runs steps 1-11 and 14 (pure, browser-safe: strict JSON and JCS, SHA-256, zip reading through an inflate adapter); `bundle.mjs check` and `pack`; Node adapters in `tools/lib/bundle_node.mjs`; `catalog/merge.js` `mergeBundles(base, bundles)` |
 | `tools/catalog_media.mjs` | `npm run catalog:media`: music mood clips for the showcase (`out/catalog_media/`) |
 | `web/showcase.html`, `web/showcase.js`, `web/lib/showcase_data.js`, `showcase_scripts.js`, `scaled_ctx.js` | the showcase page: cards from `catalog/generated/catalog.json`, preview stories run through the public engine, drawn at thumbnail size (a context that scales `setTransform`), lazy and paused off-screen |
 | `tools/lib/prompt_pack.mjs` | assembles `prompts/*.md` + tables + examples into byte-stable system prompts; builds user turns |
@@ -563,7 +565,7 @@ export function movingItems(objs, groundY): Item[];
 ### Slice-of-life moves and seats (S5 batch 1)
 - `moves.js` `CATEGORIES` adds `life` and `interaction`. `objects.js` `holdableProps(catalog)` is the prop table the move loader resolves `needsProp` against (v1 props first); every `prepareCatalog` call in the engine, tools, page and tests passes it.
 - Seats: the director's `walkToSeat` walks a sitting character to the nearest free slot of a seat, then sets `actor.seatY`, `seatId`, `seatSlot`; `poseActor` places the hip at the seat height and `displayPose` applies the seated leg mask. The `unseat` move event (and movement or attack moves) clears it.
-- Tools: `tools/lib/filmstrip.mjs` `moveSheet(defs, out, { plans, frames })` (used by `tools/draft.mjs move` and `tools/move_sheet.mjs`); `tools/lib/draft.mjs` `checkMove(def, catalog)`.
+- Tools: `tools/lib/filmstrip.mjs` `moveSheet(defs, out, { plans, frames })` (used by `tools/draft.mjs move` and `tools/move_sheet.mjs`); `tools/lib/move_check.mjs` `checkMove(def, catalog)` (re-exported by `draft.mjs`).
 
 ### Paired moves (S5 batch 2)
 ```js

@@ -1,0 +1,21 @@
+{
+  "why": "A move named after another bundle.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "moves/emotes.json",
+      [
+        0,
+        "name"
+      ],
+      "other:robot_dance"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_NAMESPACE",
+      "file": "moves/emotes.json",
+      "path": "[0].name"
+    }
+  ]
+}

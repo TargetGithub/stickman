@@ -1,0 +1,17 @@
+{
+  "why": "A README of 300,000 characters: over the 256 KB per-file cap.",
+  "from": "robo_pals",
+  "raw": {
+    "README.md": {
+      "repeat": "robot ",
+      "times": 50000
+    }
+  },
+  "expect": [
+    {
+      "code": "E_BUNDLE_SIZE",
+      "file": "README.md",
+      "path": ""
+    }
+  ]
+}

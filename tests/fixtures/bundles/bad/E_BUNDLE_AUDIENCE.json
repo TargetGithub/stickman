@@ -1,0 +1,22 @@
+{
+  "why": "The preset claims kids, the bundle only general.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "bundle.json",
+      [
+        "audience"
+      ],
+      [
+        "general"
+      ]
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_AUDIENCE",
+      "file": "characters/presets/bolt.json",
+      "path": "audience"
+    }
+  ]
+}

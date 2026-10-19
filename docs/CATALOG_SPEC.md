@@ -42,6 +42,7 @@ catalog/
   README.md                    how to add things (section 9), file map, the authored/generated rule
   manifest.json                schema version, list of authored files, counts (written by the build)
   index.js                     loadCatalog(read) → the engine catalog object (Node and browser; section 5)
+  merge.js                     mergeBundles(base, bundles): the engine catalog plus catalog bundles (CATALOG_BUNDLE_SPEC 7.2)
 
   characters/
     bodies.json                body plans: dims, draw style, torsoWidth, posture, default appearance, avoid list

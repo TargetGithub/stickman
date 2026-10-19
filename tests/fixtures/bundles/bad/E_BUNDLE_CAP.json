@@ -1,0 +1,22 @@
+{
+  "why": "An rgba colour channel above 255 (the schema only counts digits).",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "world/objects.json",
+      [
+        "robo_pals:charging_pad",
+        "colors",
+        "glow"
+      ],
+      "rgba(300, 227, 255, 0.8)"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_CAP",
+      "file": "world/objects.json",
+      "path": "robo_pals:charging_pad.colors.glow"
+    }
+  ]
+}

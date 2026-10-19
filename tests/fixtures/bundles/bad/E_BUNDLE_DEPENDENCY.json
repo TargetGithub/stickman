@@ -1,0 +1,22 @@
+{
+  "why": "A body plan avoids a move from a bundle that is not a dependency.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "characters/bodies.json",
+      [
+        "robo_pals:boxbot",
+        "avoid",
+        0
+      ],
+      "acme:mega_kick"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_DEPENDENCY",
+      "file": "characters/bodies.json",
+      "path": "robo_pals:boxbot.avoid[0]"
+    }
+  ]
+}

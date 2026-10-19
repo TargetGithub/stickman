@@ -1,0 +1,20 @@
+{
+  "why": "version 1.0 is not major.minor.patch.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "bundle.json",
+      [
+        "version"
+      ],
+      "1.0"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_MANIFEST",
+      "file": "bundle.json",
+      "path": "version"
+    }
+  ]
+}

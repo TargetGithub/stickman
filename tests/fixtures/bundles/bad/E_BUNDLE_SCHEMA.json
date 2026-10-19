@@ -1,0 +1,35 @@
+{
+  "why": "A colour name instead of #rrggbb, and a body plan field that does not exist.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "world/objects.json",
+      [
+        "robo_pals:charging_pad",
+        "colors",
+        "base"
+      ],
+      "grey"
+    ],
+    [
+      "characters/bodies.json",
+      [
+        "robo_pals:boxbot",
+        "wings"
+      ],
+      2
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_SCHEMA",
+      "file": "characters/bodies.json",
+      "path": "robo_pals:boxbot.wings"
+    },
+    {
+      "code": "E_BUNDLE_SCHEMA",
+      "file": "world/objects.json",
+      "path": "robo_pals:charging_pad.colors.base"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Catalog Bundle Specification: user-made asset packs for the catalog
 
-Version 0.2 (decisions in section 12 made by Sridhar, 2026-10-18). **Status:** B1 done (2026-10-18: checker keywords, catalog-driven mood and activity names, the schema files); B2-B6 (section 10) not scheduled yet. Owner: Sridhar. Related: [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog, the build, the context pack), [../catalog/README.md](../catalog/README.md) (field notes), [STORY_SPEC.md](STORY_SPEC.md) 6.2 (quadruped rig) and 13 (content policy), [../stickman-engine-spec.md](../stickman-engine-spec.md) 8.1 (moves), 15.2 (determinism), 21 (safety), [ARCHITECTURE.md](ARCHITECTURE.md) section 4 and ADR-006 (catalog injection).
+Version 0.2 (decisions in section 12 made by Sridhar, 2026-10-18). **Status:** B1 done (2026-10-18: checker keywords, catalog-driven mood and activity names, the schema files); B2 done (2026-10-18: the check pipeline, `tools/bundle.mjs check` and `pack`); B3-B6 (section 10) not scheduled yet. Owner: Sridhar. Related: [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog, the build, the context pack), [../catalog/README.md](../catalog/README.md) (field notes), [STORY_SPEC.md](STORY_SPEC.md) 6.2 (quadruped rig) and 13 (content policy), [../stickman-engine-spec.md](../stickman-engine-spec.md) 8.1 (moves), 15.2 (determinism), 21 (safety), [ARCHITECTURE.md](ARCHITECTURE.md) section 4 and ADR-006 (catalog injection).
 
 ## 1. Purpose and non-goals
 
@@ -1118,7 +1118,7 @@ Semantic rules: bass patterns and melody rhythms have `meter × 2` steps, drum p
 }
 ```
 
-Example scripts themselves are not checked by a bundle schema: they are scripts, checked by the engine's validator (step 11) after the bundle is merged. Each must declare this bundle in `bundles` (section 7), stay under 60 s, and together the examples must use every entry the bundle adds, except presets, which are checked on their own stage (step 11).
+Example scripts themselves are not checked by a bundle schema: they are scripts, checked by the engine's validator (step 11) after the bundle is merged. Each must declare this bundle in `bundles` (section 7) as `{ "id": "<this id>", "version": "<this version>", "hash": "self" }` (an example cannot hold the real `contentHash`, since that hash covers the example file; the file hash covers the literal `"self"`, so there is no cycle), declare every dependency with its pinned hash, stay under 60 s, and together the examples must use every entry the bundle adds, except presets, which are checked on their own stage (step 11).
 
 ### 4.16 Tightening over the base catalog schemas
 
@@ -1296,6 +1296,7 @@ Both script versions gain an optional top-level field (a schema change in v1 and
 ```
 
 - At most 8 entries, unique ids, each `pin`-shaped (4.2). The list must include every dependency of every listed bundle.
+- **`"hash": "self"`** is valid only inside a bundle's own examples, and only on the entry for that bundle (4.15). The importer replaces it with the computed `contentHash` before validating the example. Scripts outside the bundle always carry the real hash.
 - A script may use a namespaced name only when its bundle is declared (`E_BUNDLE_UNDECLARED`, even if that bundle happens to be loaded).
 - Scripts without `bundles` behave exactly as today.
 
@@ -1377,7 +1378,7 @@ Same style as `docs/IMPLEMENTATION_PLAN.md`; this plan is not part of that file 
 | Milestone | Work | Done when |
 |---|---|---|
 | **B1 Schemas and engine prerequisites** (done 2026-10-18) | B1.1 checker: add `$ref`/`$defs` (local and `common.schema.json`), `propertyNames`, `maxProperties`, `minProperties`, `uniqueItems`, `x-discriminator` to `checkValue` (pure; existing schemas unchanged). B1.2 engine: validator reads mood and activity names from the catalog (`musicMoods`, `activityNames`) instead of the frozen enums; a test that every catalog-name field accepts `bundle:name`. `catalog/schemas/bundle/*.schema.json` from section 4 (description tests as for the base schemas). | All tests, golden frames and determinism hashes unchanged; each schema accepts the worked example and rejects the bad fixtures. **Done:** see the B1 notes below |
-| **B2 Check pipeline** | `tools/lib/bundle/` (pure, browser-safe): read (folder or zip via `DecompressionStream`/`zlib` adapters), canonical JSON and hashes, steps 1-11 and 14 with their codes, `mergeBundles`. `tools/bundle.mjs check <dir|zip>` and `pack <dir>` (writes `files`, `contentHash`). Table-driven unit tests with one fixture per code in `tests/fixtures/bundles/bad/`. | Every code has a fixture; the worked example (section 11) packs and checks clean; checking a 2 MB bundle takes under 2 s in Node |
+| **B2 Check pipeline** (done 2026-10-18) | `tools/lib/bundle/` (pure, browser-safe): read (folder or zip via `DecompressionStream`/`zlib` adapters), canonical JSON and hashes, steps 1-11 and 14 with their codes, `mergeBundles`. `tools/bundle.mjs check <dir|zip>` and `pack <dir>` (writes `files`, `contentHash`). Table-driven unit tests with one fixture per code in `tests/fixtures/bundles/bad/`. | Every code has a fixture; the worked example (section 11) packs and checks clean; checking a 2 MB bundle takes under 2 s in Node. **Done:** see the B2 notes below |
 | **B3 Scripts and the engine** | `bundles` in schema v1 and v2; `E_BUNDLE_MISSING`, `E_BUNDLE_HASH`, `E_BUNDLE_UNDECLARED`, `E_BUNDLE_DEPENDENCY`, `E_BUNDLE_AUDIENCE`, `W_BUNDLE_UNUSED`, `E_BUNDLE_COMBO` in the validator and `catalog/docs/codes.json`; tools (`validate`, `record`, `generate`, `manual`) and the player accept `--bundle <dir|zip>` / a bundle store. Step 12 (sim hash) and the combination check. | A script using the example bundle validates, records and plays; the bad scripts give their codes; same frames twice |
 | **B4 Import and store** | `tools/bundle.mjs import <dir|zip>` (Node store) and an import page (`web/bundles.html`: drop a zip, see the report and the contact sheet, keep it in IndexedDB); `bundle.mjs sheet`; steps 12 (pixels) and 13; the base-name stability check in `catalog:build`; `catalog/bundle_blocklist.json` and `catalog/bundle_allowlist.json`; `bundles/` in `.gitignore`. | Import works in Node and in the browser with the same report; the blocklist refuses a listed hash |
 | **B5 Showcase, player and context pack** | Showcase: a "Bundles" switch that adds loaded bundles' entries to every section, marked with the bundle name; deep links `showcase.html#moves/robo_pals:robot_dance`. Player: loads a script's declared bundles from the store, shows credits (with the NC badge) and a missing-bundle message. Bundle music moods have no browser preview (music is rendered in Node only, decision 8): their cards say so and play a clip only when `npm run catalog:media` has rendered one. Context pack per bundle (10.3). | A loaded bundle's entries appear in every section with no page change; a Claude Desktop project with the base pack plus a bundle pack writes a valid script that uses the bundle (manual check) |
@@ -1387,7 +1388,13 @@ Same style as `docs/IMPLEMENTATION_PLAN.md`; this plan is not part of that file 
 - B1.1: the checker moved to `engine/validator/check_value.js` (schema.js re-exports `checkValue`); the new keywords are listed in 4.1 and tested in `tests/unit/check_value.test.js`. No new codes. Existing schemas take the same paths through the checker (a `$ref`-free `oneOf` sees the same branches), so every earlier message is unchanged.
 - B1.2: `catalogNames(catalog)` (`v2_names.js`) gives the mood and activity names; `schemaV2For`, `macroParamsFor` and `worldCommandsV2For` return the prebuilt `jsonSchemaV2`, `MACRO_PARAMS` and `WORLD_COMMANDS_V2` when the names equal the frozen lists (the base catalog today), so `docs/schema/script-v2.schema.json`, `generated/engine_vocab.json` and the catalog version (`1-2f7e7addb9`) are unchanged. The context pack and prompt tables still list the frozen tables; listing bundle names there is B5.
 - B1.3: `catalog/schemas/bundle/*.schema.json` are the section 4 blocks verbatim (`tests/unit/bundle_schemas.test.js` compares them with this file, checks the 4.1 conventions, and keeps the enums equal to the engine's lists: pose channels, categories, easings, hit parts, shakes, appearance options, accessories, timbres, roles, layer kinds, object shapes and behaviours, prop shapes, patches). `readCatalogDir` keeps only top-level `schemas/*.schema.json` as catalog schemas; `readBundleSchemas` reads the bundle ones. The worked example (`tests/fixtures/bundles/robo_pals/`, full hashes computed over sorted-key compact JSON) passes; `zz_bad` gives the 11.2 checker codes (`tests/fixtures/bundles/zz_bad.expect.json`); the base catalog's themes, faces, props, objects, bodies (dog included), activities (not `fetch`), FX (not `internal`) and moods pass once prefixed, as 4.1 claims. The unused `range` def of `fx.schema.json` (an unranged number, against 4.1) was removed.
-- **Open for B2:** an example script that pins its own bundle (`bundles: [{ "id": "robo_pals", "hash": ... }]`, 11.1) cannot hold the right `contentHash`, since that hash covers the example file. The fixture uses 64 zeros there. B2 must pick a rule, for example: the own bundle's pin in `examples/` is written without `hash` (or hashed with the pin blanked), and the pipeline checks it against the manifest instead.
+- An example cannot pin its own bundle's `contentHash` (the hash covers the example). Settled in B2 (Sridhar, 2026-10-18): the own entry is written with `"hash": "self"` (4.15, 7.1).
+
+**B2 notes (2026-10-18).**
+- Modules (`tools/lib/bundle/`, pure and browser-safe; a test walks the imports for `node:` and the catalog loader): `json.mjs` (strict parser with duplicate keys, depth and string caps; RFC 8785 `canonical`), `sha256.mjs` (plain-JS SHA-256, synchronous in Node and the browser instead of SubtleCrypto), `archive.mjs` (zip reader through an `inflateRaw(data, maxBytes)` adapter; step 1), `manifest.mjs` (steps 2-5, `packManifest`), `names.mjs` (6-8), `caps.mjs` (9), `text.mjs` (10), `rules.mjs` and `runs.mjs` (11), `check.mjs` (`checkBundle(entries, ctx)`, the result of 6.3), `codes.mjs` (the tool's codes file, 7.4), `layout.mjs`. Node adapters: `tools/lib/bundle_node.mjs` (folder and zip on disk, `nodeContext()`, `packBundleDir`). `catalog/merge.js` `mergeBundles(base, bundles)` takes each bundle's catalog fragment (`layout.mjs` `catalogFragment`) and adds it in ascending id order; it throws on a name already present (add-only). `checkMove` moved to `tools/lib/move_check.mjs` (browser-safe; `draft.mjs` re-exports it) with `plans` and a `runMove` that reuses one prepared move table.
+- Flow: steps 1-7 stop at the first failing step; 8, 9 and 10 each report everything; 11 runs when 8 passed, and its stage runs (pairs, presets, examples) only when the merged moves load; 14 runs once 5 passed. Blocklist ids are reserved like the ids of 5.1 (`E_BUNDLE_RESERVED`); `ctx.blocklist`/`ctx.allowlist` stand in for the B4 files.
+- Fixtures: `tests/fixtures/bundles/bad/<CODE>.json`, one per code, each a small change to `robo_pals` (format in `tests/helpers/bundle_fixtures.js`); `tests/unit/bundle_check.test.js` also replays the 11.2 table step by step on `zz_bad`. Timing in Node: the worked example about 0.1 s; a valid bundle near every cap (64 moves, 128 poses, 4 plans, 32 objects with 4,000 path commands) about 0.3 s; 2 MB of files (refused by the schemas) about 0.3 s.
+- Choices the spec left open: examples are validated with `bundles` removed (the validator reads it from B3); kids/general variants apply to v2 examples (v1 clips have no audience); generated layer items are counted over the 14,800 px story span; zip folder entries are allowed for the layout's folders; `W_BUNDLE_REVIEW` flags an FX used by a bundle hit or tagged `impact`/`hit` whose layer colours are all red (r >= 140, g and b <= 0.45 r); `@` handles are allowed in README.md (author contact). Not checked yet: `cage`/`door` states (4.11, the rule needs a definition) and pair contact reach beyond what the validator reports.
 
 Suggested commands:
 
@@ -1413,7 +1420,7 @@ Budget: 6 KB per bundle (a test fails above 7.5 KB). It is attached next to the 
 
 ### 11.1 A valid bundle: `robo_pals`
 
-A friendly boxy robot: a body plan, a pose, a move, a preset, an object and an example. Hash values are shortened here (`…`); `bundle.mjs pack` writes the full 64-digit values. The full bundle is `tests/fixtures/bundles/robo_pals/` (see the B1 notes in section 10 about the example's own pin).
+A friendly boxy robot: a body plan, a pose, a move, a preset, an object and an example. Hash values are shortened here (`…`); `bundle.mjs pack` writes the full 64-digit values. The full bundle, packed with real hashes, is `tests/fixtures/bundles/robo_pals/`; `node tools/bundle.mjs check tests/fixtures/bundles/robo_pals` checks it.
 
 `bundle.json`:
 
@@ -1550,7 +1557,7 @@ A friendly boxy robot: a body plan, a pose, a move, a preset, an object and an e
 ```json
 { "story": {
   "version": 2,
-  "bundles": [{ "id": "robo_pals", "version": "1.0.0", "hash": "sha256-9c4e…" }],
+  "bundles": [{ "id": "robo_pals", "version": "1.0.0", "hash": "self" }],
   "meta": { "title": "Bolt Dances", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
   "cast": [
     { "id": "kai", "name": "Kai", "color": "#3fd8ff" },

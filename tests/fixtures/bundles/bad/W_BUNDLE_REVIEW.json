@@ -1,0 +1,62 @@
+{
+  "why": "An all-red impact FX played by the move.",
+  "from": "robo_pals",
+  "set": {
+    "effects/fx.json": {
+      "robo_pals:red_burst": {
+        "description": "A burst of red sparks for robot impacts.",
+        "tags": [
+          "impact"
+        ],
+        "anchor": "point",
+        "layers": [
+          {
+            "shape": "dot",
+            "count": 8,
+            "life": [
+              0.2,
+              0.4
+            ],
+            "size": [
+              3,
+              6
+            ],
+            "color": [
+              "#d01010",
+              "#ff2020"
+            ],
+            "alpha": [
+              1,
+              0
+            ],
+            "speed": [
+              100,
+              300
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "edit": [
+    [
+      "moves/emotes.json",
+      [
+        0,
+        "events",
+        0,
+        "fx"
+      ],
+      [
+        "robo_pals:red_burst"
+      ]
+    ]
+  ],
+  "expect": [
+    {
+      "code": "W_BUNDLE_REVIEW",
+      "file": "effects/fx.json",
+      "path": "robo_pals:red_burst"
+    }
+  ]
+}

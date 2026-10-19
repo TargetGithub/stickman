@@ -1,0 +1,17 @@
+{
+  "why": "The same move in two move files.",
+  "from": "robo_pals",
+  "copy": [
+    [
+      "moves/emotes.json",
+      "moves/movement.json"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_COLLISION",
+      "file": "moves/emotes.json",
+      "path": "[0].name"
+    }
+  ]
+}

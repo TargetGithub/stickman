@@ -1,0 +1,26 @@
+{
+  "why": "The preset's visor clashes with a mask (appearance conflicts).",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "characters/presets/bolt.json",
+      [
+        "cast",
+        "appearance"
+      ],
+      {
+        "eyes": "visor",
+        "accessories": {
+          "mask": "#222222"
+        }
+      }
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_PRESET",
+      "file": "characters/presets/bolt.json",
+      "path": "cast"
+    }
+  ]
+}

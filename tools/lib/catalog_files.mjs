@@ -72,7 +72,7 @@ export function readCatalogDir(root = CATALOG_DIR) {
     schemas,
     formatMd: readFileSync(join(root, "docs/format.md"), "utf8"),
     texts: Object.fromEntries(all.filter((f) => f.startsWith("docs/") && f.endsWith(".md")).map((f) => [f, readFileSync(join(root, f), "utf8")])),
-    authored: all.filter((f) => f !== "index.js" && f !== "manifest.json" && f !== "README.md"),
+    authored: all.filter((f) => !f.endsWith(".js") && f !== "manifest.json" && f !== "README.md"), // data only: index.js and merge.js are code
   };
 }
 

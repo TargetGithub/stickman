@@ -1,0 +1,27 @@
+{
+  "why": "A guard window that closes before it opens.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "moves/emotes.json",
+      [
+        0,
+        "flags"
+      ],
+      {
+        "guard": [
+          0.6,
+          0.1,
+          "block"
+        ]
+      }
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_MOVE",
+      "file": "moves/emotes.json",
+      "path": "[0].flags.guard"
+    }
+  ]
+}

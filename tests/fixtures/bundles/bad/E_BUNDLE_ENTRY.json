@@ -1,0 +1,29 @@
+{
+  "why": "A path command with the wrong number of coordinates.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "world/objects.json",
+      [
+        "robo_pals:charging_pad",
+        "paths",
+        1,
+        "d",
+        1
+      ],
+      [
+        "Q",
+        0,
+        -30,
+        50
+      ]
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_ENTRY",
+      "file": "world/objects.json",
+      "path": "robo_pals:charging_pad.paths[1].d[1]"
+    }
+  ]
+}

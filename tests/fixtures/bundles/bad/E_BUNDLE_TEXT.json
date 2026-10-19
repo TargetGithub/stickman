@@ -1,0 +1,21 @@
+{
+  "why": "A blocked word in a description.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "world/objects.json",
+      [
+        "robo_pals:charging_pad",
+        "description"
+      ],
+      "A round pad covered in gore and sparks."
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_TEXT",
+      "file": "world/objects.json",
+      "path": "robo_pals:charging_pad.description"
+    }
+  ]
+}
