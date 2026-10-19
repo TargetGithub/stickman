@@ -14,12 +14,12 @@
     "t": { "$ref": "common.schema.json#/$defs/tags" },
     "size": { "type": "number", "minimum": 10, "maximum": 800 },
     "colors": {
-      "type": "object", "maxProperties": 8,
+      "type": "object", "maxProperties": 12,
       "propertyNames": { "$ref": "common.schema.json#/$defs/localName" },
       "additionalProperties": { "$ref": "common.schema.json#/$defs/color" },
       "description": "For a shape: exactly the keys that shape reads (table in 4.11). For paths: the palette that \"colors.<key>\" names."
     },
-    "shape": { "enum": ["bench", "chair", "table", "tree", "bush", "lamppost", "net", "sign", "crate", "fountain", "cage", "box", "car", "bike", "ball", "football", "bubble", "balloon", "door", "paths"] },
+    "shape": { "enum": ["bench", "chair", "table", "tree", "bush", "lamppost", "net", "sign", "crate", "fountain", "cage", "box", "car", "bike", "ball", "football", "bubble", "balloon", "door", "crystal_socket", "throne", "crystal_ball", "paths"] },
     "paths": {
       "type": "array", "minItems": 1, "maxItems": 64,
       "items": {
@@ -46,7 +46,7 @@
         "hitRadius": { "type": "number", "minimum": 4, "maximum": 40 }
       }
     },
-    "static": { "type": "object", "required": ["description", "tags", "behavior", "draw", "w", "h"], "additionalProperties": false, "properties": { "description": { "$ref": "#/$defs/d" }, "tags": { "$ref": "#/$defs/t" }, "behavior": { "const": "static" }, "draw": { "$ref": "#/$defs/shape" }, "w": { "$ref": "#/$defs/size" }, "h": { "$ref": "#/$defs/size" }, "colors": { "$ref": "#/$defs/colors" }, "paths": { "$ref": "#/$defs/paths" }, "states": { "type": "array", "minItems": 2, "maxItems": 4, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/localName" } }, "sfx": { "type": "object", "maxProperties": 4, "propertyNames": { "$ref": "common.schema.json#/$defs/localName" }, "additionalProperties": { "$ref": "common.schema.json#/$defs/sfxKey" } } } },
+    "static": { "type": "object", "required": ["description", "tags", "behavior", "draw", "w", "h"], "additionalProperties": false, "properties": { "description": { "$ref": "#/$defs/d" }, "tags": { "$ref": "#/$defs/t" }, "behavior": { "const": "static" }, "draw": { "$ref": "#/$defs/shape" }, "w": { "$ref": "#/$defs/size" }, "h": { "$ref": "#/$defs/size" }, "colors": { "$ref": "#/$defs/colors" }, "paths": { "$ref": "#/$defs/paths" }, "states": { "type": "array", "minItems": 2, "maxItems": 8, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/localName" } }, "sfx": { "type": "object", "maxProperties": 4, "propertyNames": { "$ref": "common.schema.json#/$defs/localName" }, "additionalProperties": { "$ref": "common.schema.json#/$defs/sfxKey" } } } },
     "seat": { "type": "object", "required": ["description", "tags", "behavior", "draw", "w", "h", "seatY", "slots"], "additionalProperties": false, "properties": { "description": { "$ref": "#/$defs/d" }, "tags": { "$ref": "#/$defs/t" }, "behavior": { "const": "seat" }, "draw": { "$ref": "#/$defs/shape" }, "w": { "$ref": "#/$defs/size" }, "h": { "$ref": "#/$defs/size" }, "seatY": { "type": "number", "minimum": 20, "maximum": 200 }, "slots": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "number", "minimum": -200, "maximum": 200 } }, "colors": { "$ref": "#/$defs/colors" }, "paths": { "$ref": "#/$defs/paths" } } },
     "holdable": { "type": "object", "required": ["description", "tags", "behavior", "draw", "hold"], "additionalProperties": false, "properties": { "description": { "$ref": "#/$defs/d" }, "tags": { "$ref": "#/$defs/t" }, "behavior": { "const": "holdable" }, "draw": { "const": "held" }, "hold": { "$ref": "#/$defs/hold" }, "use": { "type": "object", "additionalProperties": false, "minProperties": 1, "properties": { "spawn": { "$ref": "common.schema.json#/$defs/ref" }, "count": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "integer", "minimum": 1, "maximum": 8 } }, "fx": { "type": "array", "minItems": 1, "maxItems": 2, "items": { "$ref": "common.schema.json#/$defs/ref" } }, "sfx": { "$ref": "common.schema.json#/$defs/sfxKey" } } } } },
     "ball": { "type": "object", "required": ["description", "tags", "behavior", "draw", "r"], "additionalProperties": false, "properties": { "description": { "$ref": "#/$defs/d" }, "tags": { "$ref": "#/$defs/t" }, "behavior": { "const": "ball" }, "draw": { "enum": ["ball", "football", "paths"] }, "r": { "type": "number", "minimum": 4, "maximum": 60 }, "bounce": { "type": "number", "minimum": 0, "maximum": 0.95 }, "colors": { "$ref": "#/$defs/colors" }, "paths": { "$ref": "#/$defs/paths" }, "hold": { "$ref": "#/$defs/hold" } } },

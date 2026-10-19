@@ -6074,9 +6074,131 @@
           { "kind": "puddles", "color": "rgba(120, 150, 210, 0.35)", "spacing": 600 }
         ],
         "characterBg": "#4e3530"
+      },
+      "chirpur_village": {
+        "description": "A cheerful Indian hill village square by day: round mud huts with painted doors, festival bunting, green hills and a big tree far off.",
+        "tags": ["story", "outdoor", "village", "day", "doopi"],
+        "sky": { "top": "#6cc3f2", "bottom": "#d8f1ff" },
+        "ground": { "color": "#d6b47e", "line": "#b48e58" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.18, "y": 0.15, "r": 64, "color": "#fff4c0", "glow": "rgba(255, 240, 190, 0.5)" },
+          { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.9)", "count": 6, "top": 0.05, "band": 0.2 },
+          { "kind": "mountains", "factor": 0.08, "color": "#9cc7c4", "height": 330, "step": 240, "rough": 0.35 },
+          { "kind": "hills", "factor": 0.16, "color": "#86bf66", "height": 230, "step": 300 },
+          {
+            "kind": "banyan",
+            "factor": 0.2,
+            "at": [330],
+            "scale": 0.5,
+            "height": 520,
+            "spread": 760,
+            "trunk": "#6e5a44",
+            "roots": "#7a6650",
+            "color": "#6fa85e",
+            "color2": "#5f9852"
+          },
+          { "kind": "hills", "factor": 0.32, "color": "#5e9a4a", "height": 130, "step": 360 },
+          {
+            "kind": "huts",
+            "factor": 0.62,
+            "size": 210,
+            "spacing": 430,
+            "walls": ["#a8673d", "#b0703f", "#9a6038"],
+            "doors": ["#e63946", "#2f7de1", "#f4c430", "#2bb39a"],
+            "thatch": "#c99a4a",
+            "thatch2": "#94692b",
+            "band": "#f6e7c8",
+            "frame": "#5e3d24"
+          },
+          {
+            "kind": "bunting",
+            "factor": 0.7,
+            "y": -330,
+            "spacing": 540,
+            "sag": 50,
+            "flag": 26,
+            "line": "#6b4a2f",
+            "pole": "#7a5634",
+            "colors": ["#e63946", "#f4a62a", "#ffd23f", "#2bb39a", "#2f7de1", "#8e5bd8", "#ff7eb6"]
+          },
+          { "kind": "bushes", "factor": 0.85, "color": "#4f8a3e", "spacing": 760, "size": 46 },
+          { "kind": "floorStripes", "color": "#c9a46c", "at": [44], "width": 34 }
+        ],
+        "characterBg": "#a06a40"
+      },
+      "banyan_hill": {
+        "description": "A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below.",
+        "tags": ["story", "outdoor", "hill", "magic", "doopi"],
+        "sky": { "top": "#78c8f0", "bottom": "#e6f7ff" },
+        "ground": { "color": "#8cc76a", "line": "#6aa54e" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.84, "y": 0.14, "r": 60, "color": "#fff6c8", "glow": "rgba(255, 246, 200, 0.45)" },
+          { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.92)", "count": 7, "top": 0.05, "band": 0.22 },
+          { "kind": "mountains", "factor": 0.06, "color": "#a6c9dc", "height": 380, "step": 260, "rough": 0.4 },
+          { "kind": "hills", "factor": 0.1, "color": "#8fbf78", "height": 300, "step": 280 },
+          {
+            "kind": "huts",
+            "factor": 0.11,
+            "y": -190,
+            "scale": 0.18,
+            "size": 210,
+            "spacing": 1300,
+            "walls": ["#c08a5a", "#b47c4c"],
+            "doors": ["#e63946", "#2f7de1", "#f4c430"],
+            "thatch": "#cfa45a",
+            "thatch2": "#a17a3a",
+            "band": "#f6e7c8",
+            "frame": "#6b4a2f"
+          },
+          { "kind": "hills", "factor": 0.15, "color": "#5a8f48", "height": 200, "step": 330 },
+          {
+            "kind": "huts",
+            "factor": 0.16,
+            "y": -120,
+            "scale": 0.26,
+            "size": 210,
+            "spacing": 1500,
+            "walls": ["#a8673d", "#b0703f"],
+            "doors": ["#e63946", "#2bb39a", "#f4c430"],
+            "thatch": "#c99a4a",
+            "thatch2": "#94692b",
+            "band": "#f6e7c8",
+            "frame": "#5e3d24"
+          },
+          { "kind": "hills", "factor": 0.4, "color": "#6aa04e", "height": 60, "step": 420 },
+          {
+            "kind": "banyan",
+            "factor": 1,
+            "at": [1800],
+            "height": 560,
+            "spread": 820,
+            "trunk": "#7a5536",
+            "trunk2": "#5e3f26",
+            "roots": "#8a6442",
+            "color": "#3f8f45",
+            "color2": "#2f7038",
+            "color3": "#5aa84f"
+          },
+          { "kind": "bushes", "factor": 0.9, "color": "#5a9a44", "spacing": 900, "size": 40 }
+        ],
+        "characterBg": "#5a8f48"
+      },
+      "gloom_throne_room": {
+        "description": "Peepa's throne room in purple and grey: tall stone pillars, purple glowing windows and grey mist on the floor.",
+        "tags": ["story", "villain", "dark", "indoor", "doopi"],
+        "sky": { "top": "#120a1c", "bottom": "#2e1a42" },
+        "ground": { "color": "#3a3046", "line": "#1c1526" },
+        "layers": [
+          { "kind": "cave", "factor": 0.3, "wall": "#241833", "color": "#1a1026", "ceiling": -860, "step": 140, "depth": 140, "rocks": 200 },
+          { "kind": "pillars", "factor": 0.6, "spacing": 560, "width": 96, "top": -720, "wall": "#3a2d4a", "color": "#4d4458", "color2": "#423a4e", "cap": "#5e5470", "beam": "#2a1f38", "window": "#b06cff", "glow": "rgba(176, 108, 255, 0.35)", "windowW": 130, "windowH": 300, "windowY": -560 },
+          { "kind": "lanterns", "factor": 0.7, "color": "#c48aff", "y": -470, "spacing": 1120, "glow": "rgba(196, 138, 255, 0.3)" },
+          { "kind": "floorGrid", "color": "rgba(160, 140, 180, 0.18)", "spacing": 200 },
+          { "kind": "mist", "factor": 1, "color": "rgba(196, 192, 208, 0.22)", "spacing": 150, "size": 150, "depth": 70, "speed": 10 }
+        ],
+        "characterBg": "#43384f"
       }
     },
-    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"],
+    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"],
     "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow"],
     "blocklist": ["blood", "bloody", "gore", "gory", "suicide", "kill yourself", "kys"],
     "softWords": [
@@ -6348,6 +6470,36 @@
         "behavior": "holdable",
         "draw": "held",
         "hold": { "kind": "cane", "shape": "cane", "len": 92, "width": 5, "gripAt": 0.05, "grip": "rHand", "color": "#6b4a2f", "trim": "#3a2a1c", "hitRadius": 14 }
+      },
+      "crystal_socket": {
+        "description": "A gem socket in a banyan root knot; it glows in the colour of the rainbow crystal set in it, or sits empty.",
+        "tags": ["scenery", "magic", "crystal", "doopi"],
+        "behavior": "static",
+        "draw": "crystal_socket",
+        "w": 130,
+        "h": 90,
+        "states": ["empty", "red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+        "colors": { "wood": "#6e4a2c", "rim": "#8a6442", "hollow": "#2a1c12", "red": "#ff3b3b", "orange": "#ff9a1f", "yellow": "#ffe02e", "green": "#3ddc6a", "blue": "#2f9bff", "indigo": "#5a5cff", "violet": "#b05cff" }
+      },
+      "throne": {
+        "description": "A tall dark purple throne with two curly golden horns on its back; a villain can sit on it.",
+        "tags": ["seat", "villain", "doopi"],
+        "behavior": "seat",
+        "draw": "throne",
+        "w": 300,
+        "h": 460,
+        "seatY": 112,
+        "slots": [0],
+        "colors": { "frame": "#2e2140", "cushion": "#6a3fa8", "horn": "#e6b84a", "gem": "#b05cff" }
+      },
+      "crystal_ball": {
+        "description": "A glowing purple crystal ball on a carved stone stand.",
+        "tags": ["scenery", "villain", "magic", "doopi"],
+        "behavior": "static",
+        "draw": "crystal_ball",
+        "w": 130,
+        "h": 260,
+        "colors": { "stand": "#6e6384", "trim": "#e6b84a", "ball": "#9a6cff", "swirl": "#d9c4ff", "glow": "rgba(176, 108, 255, 0.8)" }
       }
     },
     "faces": {
@@ -6941,7 +7093,7 @@
         "appearance": { "eyes": "big" },
         "voice": { "pitch": 1.4, "timbre": "bark" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
     },
     {
       "id": "bo",
@@ -6956,7 +7108,7 @@
         "appearance": { "outfit": "coat", "outfitColor": "#f2c14e", "eyes": "glasses" },
         "voice": { "pitch": 0.9, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room"]
     },
     {
       "id": "brute",
@@ -6972,7 +7124,7 @@
         "hp": 160,
         "voice": { "pitch": 0.6, "speed": 0.9, "timbre": "deep" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room"]
     },
     {
       "id": "crowd_adult",
@@ -6982,7 +7134,7 @@
       "tags": ["extra", "town"],
       "audience": ["kids", "general"],
       "cast": { "body": "stickman", "color": "#8d99ae" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room"]
     },
     {
       "id": "crowd_kid",
@@ -6992,7 +7144,7 @@
       "tags": ["extra", "kid"],
       "audience": ["kids", "general"],
       "cast": { "body": "kid", "color": "#f4a261" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
     },
     {
       "id": "guard",
@@ -7002,7 +7154,7 @@
       "tags": ["big", "strong"],
       "audience": ["kids", "general"],
       "cast": { "body": "bulky", "color": "#ffe14d", "voice": { "pitch": 0.75, "timbre": "deep" } },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
     },
     {
       "id": "kai",
@@ -7017,7 +7169,7 @@
         "style": { "headband": "#ff3b5c" },
         "voice": { "pitch": 1, "timbre": "soft" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
     },
     {
       "id": "pip",
@@ -7032,7 +7184,7 @@
         "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } },
         "voice": { "pitch": 1.5, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
     },
     {
       "id": "rook",
@@ -7049,7 +7201,7 @@
         "appearance": { "hair": "spiky", "hairColor": "#1e1e1e" },
         "voice": { "pitch": 0.95, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room"]
     },
     {
       "id": "sage",
@@ -7065,7 +7217,7 @@
         "prop": "cane",
         "voice": { "pitch": 0.85, "speed": 0.85, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room"]
     },
     {
       "id": "sly",
@@ -7081,7 +7233,7 @@
         "appearance": { "accessories": { "mask": "#222222" } },
         "voice": { "pitch": 1.1, "speed": 1.2, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room"]
     },
     {
       "id": "tam",
@@ -7096,7 +7248,7 @@
         "appearance": { "hair": "spiky", "hairColor": "#3a2a1a" },
         "voice": { "pitch": 1.4, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"]
     },
     {
       "id": "vex",
@@ -7113,7 +7265,7 @@
         "voice": { "pitch": 0.7, "timbre": "deep" },
         "hp": 200
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room"]
     }
   ],
   "roles": [
