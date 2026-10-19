@@ -31,6 +31,7 @@
 | iron_canyon | #8a5a3e | bright: light blue, yellow, orange, pink, white | A rocky canyon at dusk with giant rusty gears half buried in the cliffs, fog on the floor and huge metal footprints. |
 | iron_workshop | #4a4a52 | bright: light blue, yellow, orange, pink, white | Peepa's iron workshop: grey metal walls, pumping pistons, pipes with steam puffs, chains and purple warning lights. |
 | mountain_cave | #4a3e34 | bright: light blue, yellow, orange, pink, white | A rocky mountain cave shelter: grey-brown stone, a low ceiling of rock teeth, a dark opening, warm firelight. |
+| grey_peak | #4a4a5e | bright: light blue, yellow, orange, pink, white | Grey Peak: a jagged dark mountain top under a heavy grey sky, grey-blue rock with frosty caps and drifting snow. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 

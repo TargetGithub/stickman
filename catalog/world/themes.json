@@ -941,5 +941,57 @@
       }
     ],
     "characterBg": "#4a3e34"
+  },
+  "grey_peak": {
+    "description": "Grey Peak: a jagged dark mountain top under a heavy grey sky, grey-blue rock with frosty caps and drifting snow.",
+    "tags": [
+      "story",
+      "outdoor",
+      "mountain",
+      "snow",
+      "villain",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#3a3a52",
+      "bottom": "#7a7a94"
+    },
+    "ground": {
+      "color": "#6a6a7e",
+      "line": "#4a4a5a"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "factor": 0.02,
+        "count": 40,
+        "color": "rgba(255, 255, 255, 0.6)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.12,
+        "color": "#5a5a72",
+        "height": 520,
+        "step": 260,
+        "rough": 0.7,
+        "caps": "#c8ccd8"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.3,
+        "color": "#4a4a5e",
+        "height": 340,
+        "step": 200,
+        "rough": 0.75,
+        "caps": "#a8acb8"
+      },
+      {
+        "kind": "snowfall",
+        "count": 90,
+        "color": "rgba(230, 230, 240, 0.8)",
+        "speed": 70
+      }
+    ],
+    "characterBg": "#4a4a5e"
   }
 }
