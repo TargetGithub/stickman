@@ -1,0 +1,574 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 11: Under the Lake",
+    "format": "landscape",
+    "seed": 2411,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": { "headband": "#ff3b5c", "bracelet": "#e6b84a" },
+        "slots": 3
+      },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": { "hair_flower": "#ffffff" }
+      },
+      "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+      "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+    },
+    {
+      "id": "mallu",
+      "name": "Mallu Uncle",
+      "body": "elder",
+      "color": "#ffc2a0",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#f4f1de",
+        "outfit": "shirt",
+        "outfitColor": "#2a8f7c",
+        "accessories": { "beard": "#f4f1de" }
+      },
+      "voice": { "pitch": 0.9, "speed": 0.9, "timbre": "deep" }
+    },
+    {
+      "id": "kanta",
+      "name": "Captain Kanta",
+      "body": "stickman",
+      "color": "#9ad1d4",
+      "prop": "sword",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "outfit": "coat",
+        "outfitColor": "#1d3557",
+        "accessories": { "pirate_hat": "#1d3557", "eyepatch": "#111111", "moustache": "#2a1a14" }
+      },
+      "voice": { "pitch": 0.85, "speed": 1.05, "timbre": "deep" }
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": { "hair": "cap", "hairColor": "#e63946", "accessories": { "stub_horns": "#7a6a99" } },
+      "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" }
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "prop": "book",
+      "appearance": { "hair": "cap", "hairColor": "#3a6fd8", "accessories": { "stub_horns": "#7a6a99" } },
+      "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" }
+    },
+    {
+      "id": "ghoom",
+      "name": "???",
+      "body": "bulky",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": { "eyes": "visor", "outfit": "armor", "outfitColor": "#8a8e9a" },
+      "voice": { "pitch": 0.5, "speed": 0.8, "timbre": "robot" }
+    },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "body": "elder",
+      "scale": 0.9,
+      "color": "#e8a87c",
+      "prop": "cane",
+      "appearance": { "eyes": "glasses", "hair": "bun", "hairColor": "#f2f2f2", "outfit": "robe", "outfitColor": "#8e5bd6" },
+      "voice": { "pitch": 1.1, "speed": 0.85, "timbre": "soft" }
+    }
+  ],
+  "locations": [
+    { "id": "deep", "theme": "underwater", "stageWidth": 3000 },
+    { "id": "beach", "theme": "lotus_lake", "stageWidth": 3200, "set": [ { "id": "boat", "object": "rowboat", "x": 3000, "layer": "back" } ] },
+    {
+      "id": "cave",
+      "theme": "crystal_cave",
+      "stageWidth": 3200,
+      "set": [
+        { "id": "chest", "object": "treasure_chest", "x": 2300, "state": "open" },
+        { "id": "net1", "object": "fishing_net", "x": 2900, "state": "open", "layer": "back" }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "sink",
+      "location": "deep",
+      "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 11: Under the Lake" },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "sad", "intensity": 0.3, "volume": 0.28 },
+      "cast": [ { "id": "doopi", "x": 1500, "facing": 1, "face": "asleep" }, { "id": "becky", "x": 300, "facing": 1, "hidden": true } ],
+      "beats": [
+        { "id": "sink_s1", "at": 0.2, "who": "doopi", "do": "sink" },
+        { "id": "sink_n1", "at": 0.6, "who": "world", "do": "narrate", "params": { "text": "Down, down, down sank Doopi, into the quiet blue." } },
+        { "id": "sink_b0", "at": 3, "who": "becky", "do": "spawn" },
+        { "id": "sink_b1", "at": { "after": "sink_b0" }, "who": "becky", "do": "swim", "to": { "near": "doopi", "gap": 90 } },
+        {
+          "id": "sink_n2",
+          "at": { "with": "sink_b1", "delay": 1 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "But one small, brave dog dived in after him." }
+        },
+        { "id": "sink_b2", "at": { "after": "sink_b1" }, "who": "becky", "do": "bite_hold", "partner": "doopi" },
+        { "id": "sink_b3", "at": { "after": "sink_b2" }, "who": "becky", "do": "swim", "to": { "x": 2700 } },
+        {
+          "id": "sink_n3",
+          "at": { "with": "sink_b3" },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "She grabbed his headband and paddled with all her might." }
+        }
+      ]
+    },
+    {
+      "id": "dream",
+      "location": "deep",
+      "time": "day",
+      "transitionIn": { "type": "dissolve", "dur": 1 },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "lullaby", "volume": 0.26 },
+      "cast": [ { "id": "doopi", "x": 1400, "facing": 1, "face": "asleep" }, { "id": "nani", "x": 1800, "facing": -1, "hidden": true } ],
+      "beats": [
+        { "id": "dream_l", "at": 0, "who": "doopi", "do": "lie_down" },
+        { "id": "dream_n", "at": 0.5, "who": "world", "do": "narrate", "params": { "text": "In the deep, quiet blue, Doopi dreamed of a voice he knew." } },
+        { "id": "dream_s", "at": { "after": "dream_n" }, "who": "nani", "do": "spawn" },
+        {
+          "id": "dream_g",
+          "at": { "with": "dream_s" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "nani", "color": "#fff3a0", "level": 0.8, "dur": 1.5 }
+        },
+        {
+          "id": "dream_d",
+          "at": { "after": "dream_s" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "nani", "Late again, Doopi? Even at the bottom of a lake?", "smug" ],
+              [ "doopi", "Nani? Am I... dreaming?", "surprised" ],
+              [ "nani", "Wake up, little one. Your friends are coming. They never stop.", "love" ],
+              [ "nani", "And neither do you.", "happy" ]
+            ]
+          }
+        },
+        { "id": "dream_o", "at": { "after": "dream_d" }, "who": "nani", "do": "despawn" }
+      ]
+    },
+    {
+      "id": "wake",
+      "location": "beach",
+      "time": "dusk",
+      "transitionIn": { "type": "fade", "dur": 0.8 },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "calm", "intensity": 0.3, "volume": 0.28 },
+      "cast": [ { "id": "doopi", "x": 1300, "facing": 1, "face": "asleep" }, { "id": "becky", "x": 1550, "facing": -1, "face": "scared" } ],
+      "beats": [
+        { "id": "wake_l0", "at": 0, "who": "doopi", "do": "lie_down" },
+        { "id": "wake_b1", "at": 0.6, "who": "becky", "do": "lick", "partner": "doopi" },
+        { "id": "wake_b2", "at": { "after": "wake_b1" }, "who": "becky", "do": "whimper" },
+        { "id": "wake_u1", "at": { "after": "wake_b2" }, "who": "doopi", "do": "get_up", "face": "tired" },
+        { "id": "wake_c1", "at": { "after": "wake_u1" }, "who": "doopi", "do": "sneeze", "face": "hurt", "say": "Cough! Blub!" },
+        {
+          "id": "wake_gl",
+          "at": { "after": "wake_c1" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "doopi", "color": "#ffd23f", "level": 0.12, "dur": 1 }
+        },
+        {
+          "id": "wake_d1",
+          "at": { "after": "wake_c1", "delay": 1.9 },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Becky... you saved me.", "love" ],
+              [ "becky", "Woof.", "love" ],
+              [ "doopi", "My glow feels so weak. And everyone's gone.", "sad" ]
+            ]
+          }
+        },
+        { "id": "wake_hg", "at": { "after": "wake_d1" }, "who": "doopi", "do": "hug_dog", "partner": "becky", "face": "sad" }
+      ]
+    },
+    {
+      "id": "reunion",
+      "location": "beach",
+      "time": "dusk",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "happy", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "sad" },
+        { "id": "becky", "x": 1550, "facing": -1, "face": "happy" },
+        { "id": "doomi", "x": 300, "facing": 1, "hidden": true },
+        { "id": "dony", "x": 300, "facing": 1, "hidden": true },
+        { "id": "tara", "x": 300, "facing": 1, "hidden": true },
+        { "id": "mooka", "x": 300, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "reunion_e1", "at": 0.5, "macro": "enter", "params": { "who": "doomi", "side": "left", "to": { "x": 1050 }, "mode": "run" } },
+        { "id": "reunion_e2", "at": 0.8, "macro": "enter", "params": { "who": "dony", "side": "left", "to": { "x": 900 }, "mode": "run" } },
+        { "id": "reunion_e3", "at": 1.1, "macro": "enter", "params": { "who": "tara", "side": "left", "to": { "x": 750 }, "mode": "run" } },
+        { "id": "reunion_e4", "at": 1.4, "macro": "enter", "params": { "who": "mooka", "side": "left", "to": { "x": 600 }, "mode": "run" } },
+        { "id": "reunion_d1", "at": { "after": "reunion_e1" }, "who": "doomi", "do": "gasp", "face": "love", "say": "DOOPI! You're alive!", "bubble": "shout" },
+        { "id": "reunion_h1", "at": { "after": "reunion_d1" }, "who": "doomi", "do": "hug", "partner": "doopi", "face": "love" },
+        { "id": "reunion_h2", "at": { "after": "reunion_e2" }, "who": "dony", "do": "cheer", "face": "laugh" },
+        {
+          "id": "reunion_d2",
+          "at": { "after": "reunion_h1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "We washed up on this island! Mallu found us!", "laugh" ],
+              [ "doopi", "Becky found ME. She swam all the way down.", "love" ],
+              [ "mooka", "Group hug! Becky in the middle!", "laugh" ],
+              [ "tara", "Friends never leave anyone behind. Not even a clumsy one.", "smug" ],
+              [ "doomi", "You really scared us, you know.", "cry" ],
+              [ "doopi", "I know. I'm sorry. I'm here now.", "love" ]
+            ]
+          }
+        },
+        { "id": "reunion_h3", "at": { "after": "reunion_d2" }, "who": "mooka", "do": "hug_dog", "partner": "becky", "face": "love", "approach": "run" },
+        { "id": "reunion_h4", "at": { "with": "reunion_h3" }, "who": "dony", "do": "hug", "partner": "tara", "face": "laugh" },
+        {
+          "id": "reunion_gl",
+          "at": { "with": "reunion_h3" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "doopi", "color": "#ffd23f", "level": 0.5, "dur": 1.5 }
+        }
+      ]
+    },
+    {
+      "id": "cave",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": { "type": "wipe", "dur": 0.6, "dir": "left" },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "mysterious", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "kanta", "x": 2050, "facing": 1, "face": "happy" },
+        { "id": "tony", "x": 2550, "facing": -1, "face": "happy" },
+        { "id": "kony", "x": 2700, "facing": -1, "face": "sad" }
+      ],
+      "beats": [
+        { "id": "cave_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "kanta", "color": "#2f9bff", "level": 0.35 } },
+        {
+          "id": "cave_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Deep in the island's crystal cave, Kanta was counting his treasure." }
+        },
+        {
+          "id": "cave_d1",
+          "at": { "after": "cave_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "kanta", "Nine hundred and ninety-eight... nine hundred and ninety-nine...", "happy" ],
+              [ "tony", "And the glowing boy sank in the whirlpool! Ha!", "smug" ],
+              [ "kony", "...I hope he's okay.", "sad" ],
+              [ "kanta", "One THOUSAND shiny coins! Ho ho ho!", "laugh" ],
+              [ "tony", "Captain, what about Boss Peepa? He wants the crystal back.", "scared" ],
+              [ "kanta", "Peepa can wait! Kanta is COUNTING!", "angry" ]
+            ]
+          }
+        },
+        { "id": "cave_k1", "at": { "after": "cave_d1" }, "who": "kanta", "do": "victory", "face": "laugh" },
+        { "id": "cave_kw", "at": { "with": "cave_d1", "delay": 6 }, "who": "kony", "do": "read" }
+      ]
+    },
+    {
+      "id": "sneak",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "mysterious", "intensity": 0.6, "volume": 0.3 },
+      "cast": [
+        { "id": "tara", "x": 300, "facing": 1, "face": "determined" },
+        { "id": "doopi", "x": 200, "facing": 1, "face": "determined" },
+        { "id": "becky", "x": 380, "facing": 1, "face": "neutral" },
+        { "id": "dony", "x": 120, "facing": 1, "face": "scared" }
+      ],
+      "beats": [
+        { "id": "sneak_1", "at": 0.3, "who": "tara", "do": "sneak", "to": { "x": 1000 } },
+        { "id": "sneak_2", "at": 0.6, "who": "doopi", "do": "sneak", "to": { "x": 850 } },
+        { "id": "sneak_3", "at": 0.8, "who": "becky", "do": "sneak", "to": { "x": 1150 } },
+        { "id": "sneak_4", "at": 1, "who": "dony", "do": "sneak", "to": { "x": 700 } },
+        {
+          "id": "sneak_d",
+          "at": { "after": "sneak_1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "Shh. I hear coins. Lots of coins.", "neutral" ],
+              [ "dony", "And counting. Very slow counting.", "scared" ],
+              [ "doopi", "This time we go in together. On three.", "determined" ],
+              [ "becky", "Woof.", "determined" ]
+            ]
+          }
+        },
+        { "id": "sneak_g", "at": { "after": "sneak_d" }, "who": "doopi", "do": "clench_fist", "face": "determined", "say": "One... two... THREE!" }
+      ]
+    },
+    {
+      "id": "fight",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "boss", "intensity": 0.9, "volume": 0.34 },
+      "cast": [
+        { "id": "kanta", "x": 1900, "facing": -1, "face": "surprised" },
+        { "id": "doopi", "x": 1400, "facing": 1, "face": "determined" },
+        { "id": "becky", "x": 1150, "facing": 1, "face": "angry" },
+        { "id": "doomi", "x": 800, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 650, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 350, "facing": 1, "face": "determined" },
+        { "id": "tony", "x": 2550, "facing": -1, "face": "scared" },
+        { "id": "kony", "x": 2700, "facing": -1, "face": "surprised" }
+      ],
+      "beats": [
+        { "id": "fight_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "kanta", "color": "#2f9bff", "level": 0.35 } },
+        { "id": "fight_g1", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "#ffd23f", "level": 0.5 } },
+        {
+          "id": "fight_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "kanta", "YOU?! You sank! I watched you sink!", "scared" ],
+              [ "doopi", "My friends pulled me out. Now give back the Blue crystal.", "determined" ]
+            ]
+          }
+        },
+        {
+          "id": "fight_f",
+          "at": { "after": "fight_d1" },
+          "macro": "fight",
+          "params": {
+            "sides": [ "doopi", "kanta" ],
+            "winner": "doopi",
+            "intensity": "high",
+            "ko": false,
+            "phases": [ { "exchanges": 7, "style": "dominant" }, { "exchanges": 7, "style": "comeback", "chargeUp": true } ]
+          }
+        },
+        { "id": "fight_c1", "at": { "with": "fight_f", "delay": 4 }, "who": "doomi", "do": "cheer", "say": "You've got this, Doopi!" },
+        { "id": "fight_c2", "at": { "with": "fight_f", "delay": 10 }, "who": "mooka", "do": "jump_joy", "face": "laugh" },
+        {
+          "id": "fight_b1",
+          "at": { "after": "fight_f" },
+          "who": "becky",
+          "do": "bark",
+          "params": { "cycles": 3 },
+          "face": "angry",
+          "say": "WOOF WOOF WOOF!",
+          "bubble": "shout"
+        },
+        {
+          "id": "fight_k1",
+          "at": { "with": "fight_b1", "delay": 0.4 },
+          "who": "kanta",
+          "do": "drop_prop",
+          "face": "scared",
+          "say": "PUPPY! My sword!",
+          "interrupt": true
+        },
+        { "id": "fight_cp", "at": { "after": "fight_k1" }, "who": "kanta", "do": "captured", "params": { "net": 1 } },
+        { "id": "fight_tr", "at": { "with": "fight_cp", "delay": 0.3 }, "who": "dony", "do": "laugh", "face": "laugh", "say": "Caught in his own net!" }
+      ]
+    },
+    {
+      "id": "blue",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "triumphant", "intensity": 0.7, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1400, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 1700, "facing": 1, "face": "happy" },
+        { "id": "doomi", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "tony", "x": 2500, "facing": -1, "face": "scared" },
+        { "id": "kony", "x": 2650, "facing": -1, "face": "sad" },
+        { "id": "mallu", "x": 300, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        {
+          "id": "blue_sp",
+          "at": 0.3,
+          "who": "world",
+          "do": "spawn_object",
+          "params": { "kind": "rainbow_crystal", "id": "blue_gem", "x": 1520, "state": "blue" }
+        },
+        { "id": "blue_pk", "at": { "after": "blue_sp", "delay": 0.4 }, "who": "doopi", "do": "pick_prop", "face": "laugh" },
+        { "id": "blue_bl", "at": { "after": "blue_pk" }, "who": "world", "do": "set_appearance", "params": { "who": "doopi", "slots": 4 } },
+        { "id": "blue_gr", "at": { "with": "blue_bl" }, "who": "world", "do": "set_grade", "params": { "saturation": 0.85, "dur": 2.5, "from": "doopi" } },
+        {
+          "id": "blue_n1",
+          "at": { "with": "blue_bl", "delay": 0.6 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Blue came home: the lake, the sky, and calm, deep breaths." }
+        },
+        {
+          "id": "blue_ml",
+          "at": { "with": "blue_bl", "delay": 1.5 },
+          "macro": "enter",
+          "params": { "who": "mallu", "side": "left", "to": { "x": 800 }, "mode": "run" }
+        },
+        { "id": "blue_m2", "at": { "after": "blue_ml" }, "who": "mallu", "do": "cheer", "face": "laugh", "say": "Ho ho! The lake is BLUE again!" },
+        { "id": "blue_k1", "at": { "after": "blue_m2" }, "who": "kony", "do": "run", "to": { "near": "mooka", "gap": 100 } },
+        { "id": "blue_k2", "at": { "after": "blue_k1" }, "who": "kony", "do": "give", "partner": "mooka", "face": "scared", "say": "Read it later. Shh." },
+        { "id": "blue_t1", "at": { "after": "blue_k2" }, "who": "tony", "do": "flee", "say": "Kony! RUN!" },
+        { "id": "blue_t2", "at": { "with": "blue_t1", "delay": 0.4 }, "who": "kony", "do": "flee" },
+        {
+          "id": "blue_d",
+          "at": { "after": "blue_t2" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "mallu", "Why is the lake so happy? Because it's... BLUE-tiful! Ho ho!", "laugh" ],
+              [ "doomi", "Four colours, Doopi. Three to go.", "love" ],
+              [ "doopi", "And we'll get every one. Together.", "determined" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "note",
+      "location": "beach",
+      "time": "night",
+      "weather": "fog",
+      "transitionIn": { "type": "fade", "dur": 0.8 },
+      "grade": { "saturation": 0.85 },
+      "music": { "mood": "mysterious", "intensity": 0.7, "volume": 0.32 },
+      "cast": [
+        { "id": "doomi", "x": 1300, "facing": 1, "face": "neutral", "prop": "book" },
+        { "id": "doopi", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 1500, "facing": -1, "face": "happy" },
+        { "id": "ghoom", "x": 2700, "facing": -1, "hidden": true, "layer": "back" }
+      ],
+      "beats": [
+        { "id": "note_r1", "at": 0.3, "who": "doomi", "do": "read" },
+        {
+          "id": "note_d1",
+          "at": { "after": "note_r1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "mooka", "Kony gave me a note! What does it say, Doomi?", "happy" ],
+              [ "doomi", "\"Peepa built something BIG. Made of iron.\"", "scared" ],
+              [ "doomi", "\"...Run.\"", "scared" ]
+            ]
+          }
+        },
+        { "id": "note_sh", "at": { "after": "note_d1" }, "who": "world", "do": "shake", "params": { "preset": "med" } },
+        { "id": "note_x1", "at": { "with": "note_sh" }, "who": "world", "do": "sfx", "params": { "name": "land_heavy", "volume": 1, "x": 2900 } },
+        { "id": "note_sh2", "at": { "with": "note_sh", "delay": 1.2 }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        { "id": "note_x2", "at": { "with": "note_sh2" }, "who": "world", "do": "sfx", "params": { "name": "land_heavy", "volume": 1, "x": 2800 } },
+        { "id": "note_sp", "at": { "with": "note_sh2", "delay": 0.6 }, "who": "ghoom", "do": "spawn" },
+        {
+          "id": "note_gl",
+          "at": { "with": "note_sp" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "ghoom", "color": "#ff3b3b", "level": 0.6, "dur": 1 }
+        },
+        {
+          "id": "note_g1",
+          "at": { "with": "note_sp", "delay": 0.4 },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "scared",
+          "say": "What... is THAT?",
+          "bubble": "shout"
+        },
+        {
+          "id": "note_n1",
+          "at": { "after": "note_g1" },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "In the mist, two glowing visor eyes looked down at them." }
+        },
+        { "id": "note_end", "at": { "after": "note_n1", "delay": 0.4 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}
