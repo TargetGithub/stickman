@@ -2,7 +2,7 @@
 // Every result includes a timeline the LLM can read, when the script got far enough to simulate.
 
 import { checkSchema, checkValue, jsonSchema, buildJsonSchema } from "./schema.js";
-import { jsonSchemaV2 } from "./schema_v2.js";
+import { schemaV2For } from "./schema_v2.js";
 import { checkSemantics, WORLD_COMMANDS } from "./semantic.js";
 import { checkStory } from "./story.js";
 import { formatIssues, formatTimeline } from "./report.js";
@@ -77,7 +77,7 @@ export function validate(script, catalog) {
   const version = versionIssue(script);
   if (version) return result("schema", [version]);
   const v2 = script.version === 2;
-  const schemaIssues = v2 ? checkSchemaV2(script) : checkSchema(script);
+  const schemaIssues = v2 ? checkSchemaV2(script, catalog) : checkSchema(script);
   if (schemaIssues.length) return result("schema", schemaIssues);
 
   const moves = movesFor(catalog);
@@ -178,12 +178,12 @@ function versionIssue(script) {
   return { code: "E_VERSION", path: "version", message: `Unknown script version ${JSON.stringify(script.version)}.`, fix: 'Use "version": 1 (a single fight clip) or "version": 2 (a story with scenes).' };
 }
 
-function checkSchemaV2(script) {
+function checkSchemaV2(script, catalog) {
   const size = JSON.stringify(script).length;
   if (size > LIMITS_V2.scriptBytes) {
     return [{ code: "E_SCHEMA_SIZE", path: "", message: `Script is ${size} bytes.`, fix: `Keep scripts under ${LIMITS_V2.scriptBytes} bytes.` }];
   }
-  const out = checkValue(script, jsonSchemaV2);
+  const out = checkValue(script, schemaV2For(catalog));
   const beats = (script.scenes || []).reduce((n, s) => n + (Array.isArray(s?.beats) ? s.beats.length : 0), 0);
   if (beats > LIMITS_V2.beatsAuthored) {
     out.push({ code: "E_SCHEMA_SIZE", path: "scenes", message: `The story has ${beats} beats.`, fix: `Keep it under ${LIMITS_V2.beatsAuthored} authored beats; use fewer, longer scenes.` });

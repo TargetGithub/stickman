@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "props.schema.json",
+  "title": "world/props.json: v1 holdable props drawn by an existing prop shape.",
+  "type": "object",
+  "maxProperties": 8,
+  "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "tags", "kind", "shape", "len", "width", "gripAt", "grip", "color", "trim", "hitRadius"],
+    "additionalProperties": false,
+    "properties": {
+      "description": { "$ref": "common.schema.json#/$defs/description" },
+      "tags": { "$ref": "common.schema.json#/$defs/tags" },
+      "kind": { "$ref": "common.schema.json#/$defs/ref" },
+      "shape": { "enum": ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon"] },
+      "len": { "type": "number", "minimum": 8, "maximum": 200 },
+      "width": { "type": "number", "minimum": 1, "maximum": 40 },
+      "gripAt": { "$ref": "common.schema.json#/$defs/unit" },
+      "grip": { "enum": ["rHand", "lHand"] },
+      "color": { "$ref": "common.schema.json#/$defs/hex" },
+      "trim": { "$ref": "common.schema.json#/$defs/hex" },
+      "hitRadius": { "type": "number", "minimum": 4, "maximum": 40 },
+      "twoHand": { "type": "boolean", "description": "Spec 12; documented but not read by the engine today." }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "activities.schema.json",
+  "title": "story/activities.json: activities for the loop and rally runners.",
+  "type": "object",
+  "maxProperties": 8,
+  "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "tags", "runner", "players", "facing", "ending", "roles"],
+    "additionalProperties": false,
+    "properties": {
+      "description": { "$ref": "common.schema.json#/$defs/description" },
+      "tags": { "$ref": "common.schema.json#/$defs/tags" },
+      "runner": { "enum": ["loop", "rally"] },
+      "players": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "integer", "minimum": 1, "maximum": 4 } },
+      "spacing": { "type": "number", "minimum": 60, "maximum": 800 },
+      "facing": { "enum": ["center", "left", "right"] },
+      "dur": { "type": "number", "minimum": 1, "maximum": 30 },
+      "reps": { "type": "integer", "minimum": 1, "maximum": 20 },
+      "ending": { "enum": ["win", "miss", "laugh", "hug", "none"] },
+      "objects": { "type": "array", "maxItems": 3, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/ref" } },
+      "roles": {
+        "type": "array", "minItems": 1, "maxItems": 4,
+        "items": {
+          "type": "object", "additionalProperties": false, "minProperties": 1,
+          "properties": {
+            "start": { "$ref": "common.schema.json#/$defs/ref" },
+            "moves": { "type": "array", "minItems": 0, "maxItems": 4, "items": { "$ref": "common.schema.json#/$defs/ref" }, "description": "Empty: the role only reacts (face, fx)." },
+            "wait": { "type": "number", "minimum": 0, "maximum": 3 },
+            "face": { "$ref": "common.schema.json#/$defs/ref" },
+            "fx": { "$ref": "common.schema.json#/$defs/ref", "description": "One FX preset, played once (activities.js)." },
+            "holds": { "$ref": "common.schema.json#/$defs/ref" },
+            "partner": { "type": "integer", "minimum": 0, "maximum": 3 }
+          }
+        }
+      },
+      "rally": {
+        "type": "object", "required": ["ball", "hit", "at", "flight", "height"], "additionalProperties": false,
+        "properties": {
+          "ball": { "$ref": "common.schema.json#/$defs/ref" },
+          "hit": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "$ref": "common.schema.json#/$defs/ref" } },
+          "at": { "enum": ["hands", "foot", "propTip"] },
+          "flight": { "type": "number", "minimum": 0.3, "maximum": 2 },
+          "height": { "type": "number", "minimum": 0, "maximum": 400, "description": "Arc height in px; 0 rolls along the floor (kick_ball)." },
+          "catch": { "$ref": "common.schema.json#/$defs/ref" }
+        }
+      }
+    }
+  }
+}

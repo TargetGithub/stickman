@@ -2,7 +2,7 @@
 // via buildJsonSchema(catalog), as the structured-output schema for the LLM (spec 18.3).
 // The checker below implements the subset of JSON Schema this schema uses.
 
-import { closestMatch } from "./report.js";
+import { checkValue } from "./check_value.js";
 import { LIMITS } from "../config.js";
 
 const ID = "^[a-z][a-z0-9_]{0,23}$";
@@ -148,98 +148,9 @@ export function buildJsonSchema(catalog, moveNames, worldCommands) {
   return s;
 }
 
-// ---------- checker ----------
+// ---------- checker (check_value.js) ----------
 
-const typeOf = (v) => (v === null ? "null" : Array.isArray(v) ? "array" : Number.isInteger(v) ? "integer" : typeof v);
-const typeOk = (v, t) => (t === "number" ? typeof v === "number" && Number.isFinite(v) : t === "integer" ? Number.isInteger(v) : typeOf(v) === t);
-const show = (v) => JSON.stringify(v);
-
-function check(value, schema, path, out) {
-  if (schema.oneOf) {
-    // x-select (checker-only): the presence of this key picks the branch, for precise messages.
-    const key = schema["x-select"];
-    const picked = key && typeOf(value) === "object" && schema.oneOf.find((b) => (b.required || []).includes(key) === key in value);
-    if (picked) {
-      check(value, picked, path, out);
-      return;
-    }
-    const results = schema.oneOf.map((branch) => {
-      const issues = [];
-      check(value, branch, path, issues);
-      return issues;
-    });
-    if (results.some((r) => r.length === 0)) return;
-    // If exactly one branch has the right shape (type, plus its required key), report that branch's
-    // specific problems (e.g. a range error) instead of the generic form message.
-    const shaped = schema.oneOf
-      .map((b, i) => ({ b, i }))
-      .filter(({ b }) => b.type && typeOk(value, b.type) && (!b.required || b.required.every((k) => value && k in value)));
-    if (shaped.length === 1) {
-      out.push(...results[shaped[0].i]);
-      return;
-    }
-    if (schema["x-formMessage"]) {
-      out.push({ code: "E_SCHEMA_FORM", path, message: `${show(value)} is not a valid value here.`, fix: schema["x-formMessage"] });
-    } else out.push(...results.reduce((a, b) => (b.length < a.length ? b : a)));
-    return;
-  }
-  if ("const" in schema && value !== schema.const) {
-    out.push({ code: "E_SCHEMA_ENUM", path, message: `Must be ${show(schema.const)}, got ${show(value)}.`, fix: `Use ${show(schema.const)}.` });
-    return;
-  }
-  if (schema.enum && !schema.enum.includes(value)) {
-    const near = typeof value === "string" ? closestMatch(value, schema.enum.filter((e) => typeof e === "string")) : null;
-    out.push({ code: "E_SCHEMA_ENUM", path, message: `${show(value)} is not allowed.`, fix: `Use one of: ${schema.enum.map(show).join(", ")}${near ? ` (closest: ${show(near)})` : ""}.` });
-    return;
-  }
-  if (schema.type) {
-    const types = [].concat(schema.type);
-    if (!types.some((t) => typeOk(value, t))) {
-      out.push({ code: "E_SCHEMA_TYPE", path, message: `Expected ${types.join(" or ")}, got ${typeOf(value)}.`, fix: `Write ${path} as ${types.join(" or ")}.` });
-      return;
-    }
-  }
-  if (typeof value === "number") {
-    if (schema.minimum !== undefined && value < schema.minimum || schema.maximum !== undefined && value > schema.maximum) {
-      out.push({ code: "E_SCHEMA_RANGE", path, message: `${value} is out of range.`, fix: `Use a value from ${schema.minimum ?? "-∞"} to ${schema.maximum ?? "∞"}.` });
-    }
-  }
-  if (typeof value === "string") {
-    if (schema.minLength !== undefined && value.length < schema.minLength || schema.maxLength !== undefined && value.length > schema.maxLength) {
-      out.push({ code: "E_TEXT_LENGTH", path, message: `Text is ${value.length} characters.`, fix: `Use ${schema.minLength ?? 0} to ${schema.maxLength} characters.` });
-    }
-    if (schema.pattern && !new RegExp(schema.pattern).test(value)) {
-      out.push({ code: "E_SCHEMA_PATTERN", path, message: `${show(value)} has the wrong format.`, fix: path.endsWith("color") || /glow|headband|cape|hat|scarf/.test(path) ? 'Use a color like "#22aaff".' : "Use lowercase letters, digits and _ (start with a letter, max 24)." });
-    }
-  }
-  if (Array.isArray(value)) {
-    if (schema.minItems !== undefined && value.length < schema.minItems || schema.maxItems !== undefined && value.length > schema.maxItems) {
-      out.push({ code: "E_SCHEMA_SIZE", path, message: `Has ${value.length} items.`, fix: `Use ${schema.minItems ?? 0} to ${schema.maxItems} items.` });
-    }
-    if (schema.items) value.forEach((v, i) => check(v, schema.items, `${path}[${i}]`, out));
-  }
-  if (typeOf(value) === "object") {
-    for (const key of schema.required || []) {
-      if (!(key in value)) out.push({ code: "E_SCHEMA_REQUIRED", path: path ? `${path}.${key}` : key, message: `Missing required field '${key}'.`, fix: `Add '${key}'.` });
-    }
-    const props = schema.properties || {};
-    for (const [key, v] of Object.entries(value)) {
-      const sub = path ? `${path}.${key}` : key;
-      if (props[key]) check(v, props[key], sub, out);
-      else if (schema.additionalProperties === false) {
-        const near = closestMatch(key, Object.keys(props));
-        out.push({ code: "E_SCHEMA_UNKNOWN_FIELD", path: sub, message: `Unknown field '${key}'.`, fix: near ? `Did you mean '${near}'?` : `Remove it. Allowed: ${Object.keys(props).join(", ")}.` });
-      } else if (typeof schema.additionalProperties === "object") check(v, schema.additionalProperties, sub, out);
-    }
-  }
-}
-
-/** Structural issues for any value against a schema in the subset above (used for v2 and macro params). */
-export function checkValue(value, schema, path = "") {
-  const out = [];
-  check(value, schema, path, out);
-  return out;
-}
+export { checkValue };
 
 /** Structural issues for a script (spec 16.1). */
 export function checkSchema(script) {
@@ -249,6 +160,6 @@ export function checkSchema(script) {
     out.push({ code: "E_SCHEMA_SIZE", path: "", message: `Script is ${size} bytes.`, fix: `Keep scripts under ${LIMITS.scriptBytes} bytes.` });
     return out;
   }
-  check(script, jsonSchema, "", out);
+  out.push(...checkValue(script, jsonSchema));
   return out;
 }

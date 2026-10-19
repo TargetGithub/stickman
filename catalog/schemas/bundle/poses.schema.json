@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "poses.schema.json",
+  "title": "moves/poses.json: named poses, channel → degrees (dx, dy in px), authored facing right.",
+  "type": "object",
+  "maxProperties": 128,
+  "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+  "additionalProperties": { "$ref": "common.schema.json#/$defs/poseChannels" }
+}

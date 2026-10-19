@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bundle.schema.json",
+  "title": "bundle.json: the manifest of a catalog bundle.",
+  "type": "object",
+  "required": ["schemaVersion", "id", "version", "name", "description", "author", "license", "engineVersion", "catalogVersion", "audience", "files", "contentHash"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "$ref": "common.schema.json#/$defs/bundleId" },
+    "version": { "$ref": "common.schema.json#/$defs/semver" },
+    "name": { "type": "string", "minLength": 3, "maxLength": 48 },
+    "description": { "type": "string", "minLength": 8, "maxLength": 300 },
+    "author": {
+      "type": "object", "required": ["name"], "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 64 },
+        "url": { "type": "string", "pattern": "^https://[^\\s\"<>]{3,200}$" }
+      }
+    },
+    "license": { "enum": ["CC0-1.0", "CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-NC-4.0", "MIT", "Apache-2.0"] },
+    "engineVersion": { "$ref": "common.schema.json#/$defs/semverRange" },
+    "catalogVersion": { "type": "string", "pattern": "^([1-9][0-9]{0,2}|>=[1-9][0-9]{0,2}( <[1-9][0-9]{0,2})?)$", "description": "Catalog format (manifest.json schemaVersion): 1, >=1 or >=1 <3." },
+    "testedWith": { "type": "string", "pattern": "^[1-9][0-9]{0,2}-[0-9a-f]{10}$", "description": "Informative: the catalog version (manifest.json version) the author tested with." },
+    "audience": { "$ref": "common.schema.json#/$defs/audience" },
+    "tags": { "$ref": "common.schema.json#/$defs/tags" },
+    "dependencies": { "type": "array", "maxItems": 4, "items": { "$ref": "common.schema.json#/$defs/pin" } },
+    "files": {
+      "type": "array", "minItems": 2, "maxItems": 64,
+      "items": {
+        "type": "object", "required": ["path", "sha256"], "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "pattern": "^(README\\.md|LICENSE\\.txt|characters/(bodies|faces)\\.json|characters/presets/[a-z][a-z0-9_]{0,31}\\.json|moves/(poses|movement|unarmed|armed|defensive|reactions|emotes|utility|life|interactions|quadruped)\\.json|effects/fx\\.json|world/(themes|objects|props)\\.json|story/(activities|music_moods)\\.json|examples/index\\.json|examples/(clips|stories)/[a-z][a-z0-9_]{0,31}\\.json)$" },
+          "sha256": { "$ref": "common.schema.json#/$defs/sha256" }
+        }
+      }
+    },
+    "contentHash": { "$ref": "common.schema.json#/$defs/sha256" }
+  }
+}

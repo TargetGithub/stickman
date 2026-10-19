@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bodies.schema.json",
+  "title": "characters/bodies.json: body plans (humanoid or quadruped rig).",
+  "type": "object",
+  "maxProperties": 4,
+  "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+  "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/humanoid" }, { "$ref": "#/$defs/quadruped" }], "x-discriminator": "rig" },
+  "$defs": {
+    "humanoid": {
+      "type": "object",
+      "required": ["description", "tags", "rig", "draw", "dims"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "$ref": "common.schema.json#/$defs/description" },
+        "tags": { "$ref": "common.schema.json#/$defs/tags" },
+        "rig": { "const": "humanoid" },
+        "draw": { "enum": ["stick", "capsule", "trapezoid"] },
+        "torsoWidth": { "type": "number", "minimum": 12, "maximum": 40 },
+        "dims": {
+          "type": "object",
+          "required": ["headR", "neck", "torso", "upperArm", "forearm", "thigh", "shin", "lineWidth"],
+          "additionalProperties": false,
+          "properties": {
+            "headR": { "type": "number", "minimum": 14, "maximum": 32 },
+            "neck": { "type": "number", "minimum": 0, "maximum": 14 },
+            "torso": { "type": "number", "minimum": 34, "maximum": 110 },
+            "upperArm": { "type": "number", "minimum": 18, "maximum": 54 },
+            "forearm": { "type": "number", "minimum": 16, "maximum": 52 },
+            "thigh": { "type": "number", "minimum": 20, "maximum": 68 },
+            "shin": { "type": "number", "minimum": 18, "maximum": 66 },
+            "lineWidth": { "type": "number", "minimum": 5, "maximum": 15 }
+          }
+        },
+        "posture": {
+          "type": "object", "additionalProperties": false, "minProperties": 1,
+          "properties": {
+            "rot": { "type": "number", "minimum": -20, "maximum": 20 },
+            "lean": { "type": "number", "minimum": -20, "maximum": 20 },
+            "head": { "type": "number", "minimum": -20, "maximum": 20 }
+          }
+        },
+        "appearance": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
+            "brows": { "enum": ["none", "thin", "thick"] },
+            "mouthStyle": { "enum": ["line", "cartoon"] },
+            "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap"] },
+            "hairColor": { "$ref": "common.schema.json#/$defs/hex" },
+            "outfit": { "enum": ["none", "shirt", "coat", "armor", "robe"] },
+            "outfitColor": { "$ref": "common.schema.json#/$defs/hex" },
+            "cheeks": { "$ref": "common.schema.json#/$defs/hex" }
+          }
+        },
+        "avoid": { "type": "array", "maxItems": 24, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/ref" } }
+      }
+    },
+    "quadruped": {
+      "type": "object",
+      "required": ["description", "tags", "rig", "draw", "dims", "bodyWidth", "quad", "grip", "moves"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "$ref": "common.schema.json#/$defs/description" },
+        "tags": { "$ref": "common.schema.json#/$defs/tags" },
+        "rig": { "const": "quadruped" },
+        "draw": { "const": "quad" },
+        "bodyWidth": { "type": "number", "minimum": 8, "maximum": 30 },
+        "dims": {
+          "type": "object",
+          "required": ["headR", "neck", "torso", "upperArm", "forearm", "thigh", "shin", "lineWidth"],
+          "additionalProperties": false,
+          "properties": {
+            "headR": { "type": "number", "minimum": 10, "maximum": 30 },
+            "neck": { "type": "number", "minimum": 0, "maximum": 20 },
+            "torso": { "type": "number", "minimum": 24, "maximum": 90 },
+            "upperArm": { "type": "number", "minimum": 8, "maximum": 40 },
+            "forearm": { "type": "number", "minimum": 8, "maximum": 40 },
+            "thigh": { "type": "number", "minimum": 8, "maximum": 40 },
+            "shin": { "type": "number", "minimum": 8, "maximum": 40 },
+            "lineWidth": { "type": "number", "minimum": 4, "maximum": 12 }
+          }
+        },
+        "quad": {
+          "type": "object", "required": ["ears", "tail"], "additionalProperties": false,
+          "properties": {
+            "ears": { "enum": ["floppy", "pointy"] },
+            "earColor": { "$ref": "common.schema.json#/$defs/hex" },
+            "tail": { "enum": ["wag", "curly", "stub", "none"] },
+            "patch": { "$ref": "common.schema.json#/$defs/hex" },
+            "belly": { "$ref": "common.schema.json#/$defs/hex" },
+            "collar": { "$ref": "common.schema.json#/$defs/hex" },
+            "bell": { "$ref": "common.schema.json#/$defs/hex" }
+          }
+        },
+        "grip": {
+          "type": "object", "required": ["offset", "angle"], "additionalProperties": false,
+          "properties": {
+            "offset": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": -60, "maximum": 60 } },
+            "angle": { "type": "number", "minimum": -180, "maximum": 180 }
+          }
+        },
+        "appearance": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "eyes": { "enum": ["dot", "big", "oval", "sleepy"] },
+            "cheeks": { "$ref": "common.schema.json#/$defs/hex" }
+          }
+        },
+        "moves": {
+          "type": "object", "minProperties": 1, "maxProperties": 96,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/localName" },
+          "additionalProperties": { "$ref": "common.schema.json#/$defs/ref" }
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,11 @@
 // Story script schema v2 (STORY_SPEC 4, S0 freeze). Same JSON Schema subset as v1 (schema.js), so
-// the v1 checker validates it. docs/schema/script-v2.schema.json is generated from this object
-// (tests/unit/schema_v2.test.js keeps them equal). Not wired into validate() until S1.1.
+// the v1 checker validates it. docs/schema/script-v2.schema.json is generated from jsonSchemaV2, the
+// schema for the frozen mood and activity names (tests/unit/schema_v2.test.js keeps them equal);
+// validate() checks with schemaV2For(catalog), which takes those names from the catalog.
 
 import { LIMITS_V2 as L } from "../config.js";
-import { ID, COLOR, V2_ENUMS as E, DEST } from "./v2_names.js";
-import { MACRO_PARAMS, MACRO_ANCHORS } from "./macro_params.js";
+import { ID, COLOR, V2_ENUMS as E, DEST, catalogNames } from "./v2_names.js";
+import { MACRO_PARAMS, MACRO_ANCHORS, macroParamsFor } from "./macro_params.js";
 
 const idRef = { type: "string", pattern: ID };
 const color = { type: "string", pattern: COLOR };
@@ -143,7 +144,7 @@ const transition = {
   },
 };
 
-const music = {
+const musicFor = (moods) => ({
   "x-formMessage": 'Use {"mood": "<mood>"} (optional intensity, volume) or null for silence.',
   oneOf: [
     { type: "null" },
@@ -152,13 +153,13 @@ const music = {
       required: ["mood"],
       additionalProperties: false,
       properties: {
-        mood: { enum: E.mood },
+        mood: { enum: moods },
         intensity: { type: "number", minimum: 0, maximum: 1 },
         volume: { type: "number", minimum: 0, maximum: 1 },
       },
     },
   ],
-};
+});
 
 const sceneCast = {
   type: "array",
@@ -242,7 +243,7 @@ const macroBeat = {
   },
 };
 
-const scene = {
+const sceneFor = (music) => ({
   type: "object",
   required: ["id", "location", "cast", "beats"],
   additionalProperties: false,
@@ -267,9 +268,9 @@ const scene = {
       items: { "x-select": "macro", "x-formMessage": 'A beat is an action {"at", "who", "do", ...} or a macro {"at", "macro", "params"}.', oneOf: [actionBeat, macroBeat] },
     },
   },
-};
+});
 
-const sceneMacro = {
+const sceneMacroFor = (music) => ({
   type: "object",
   required: ["id", "macro", "params"],
   additionalProperties: false,
@@ -281,9 +282,10 @@ const sceneMacro = {
     transitionOut: transition,
     music,
   },
-};
+});
 
-export const jsonSchemaV2 = {
+/** The v2 schema for lists of mood names, enums (with those names) and macro params. */
+const makeSchemaV2 = (moods, enums, macroParams) => ({
   $schema: "https://json-schema.org/draft/2020-12/schema",
   $comment: "Script schema v2.0-rc (S0 freeze, 2026-10-16). Generated from engine/validator/schema_v2.js. Catalog enums (moves, themes, objects, world commands) are filled in on export, as in v1.",
   title: "StickmanStory",
@@ -316,7 +318,7 @@ export const jsonSchemaV2 = {
       type: "array",
       minItems: 1,
       maxItems: L.scenes,
-      items: { "x-select": "macro", "x-formMessage": 'A scene is {"id", "location", "cast", "beats", ...} or a scene macro {"id", "macro", "params"}.', oneOf: [scene, sceneMacro] },
+      items: { "x-select": "macro", "x-formMessage": 'A scene is {"id", "location", "cast", "beats", ...} or a scene macro {"id", "macro", "params"}.', oneOf: [sceneFor(musicFor(moods)), sceneMacroFor(musicFor(moods))] },
     },
     audio: {
       type: "object",
@@ -328,5 +330,17 @@ export const jsonSchemaV2 = {
       },
     },
   },
-  $defs: { enums: E, macroParams: MACRO_PARAMS, macroAnchors: MACRO_ANCHORS },
-};
+  $defs: { enums, macroParams, macroAnchors: MACRO_ANCHORS },
+});
+
+export const jsonSchemaV2 = makeSchemaV2(E.mood, E, MACRO_PARAMS);
+
+/**
+ * jsonSchemaV2 with the catalog's mood and activity names (catalogNames); the same object when the
+ * catalog has exactly the frozen names.
+ */
+export function schemaV2For(catalog) {
+  const names = catalogNames(catalog);
+  if (names.frozen) return jsonSchemaV2;
+  return makeSchemaV2(names.mood, { ...E, mood: names.mood, activity: names.activity }, macroParamsFor(catalog));
+}

@@ -61,7 +61,8 @@ export function readCatalogDir(root = CATALOG_DIR) {
   const examples = {};
   for (const rel of all.filter((f) => /^examples\/(clips|stories)\/[^/]+\.json$/.test(f))) examples[rel.slice("examples/".length)] = json(rel);
   const schemas = {};
-  for (const rel of all.filter((f) => f.startsWith("schemas/"))) schemas[rel.slice(8).replace(".schema.json", "")] = json(rel);
+  // Catalog file schemas only: schemas/bundle/ holds the bundle schemas (readBundleSchemas).
+  for (const rel of all.filter((f) => /^schemas\/[^/]+\.schema\.json$/.test(f))) schemas[rel.slice(8).replace(".schema.json", "")] = json(rel);
   return {
     root,
     catalog: loadCatalog((p) => files[p]),
@@ -73,6 +74,15 @@ export function readCatalogDir(root = CATALOG_DIR) {
     texts: Object.fromEntries(all.filter((f) => f.startsWith("docs/") && f.endsWith(".md")).map((f) => [f, readFileSync(join(root, f), "utf8")])),
     authored: all.filter((f) => f !== "index.js" && f !== "manifest.json" && f !== "README.md"),
   };
+}
+
+/**
+ * The catalog bundle schemas (CATALOG_BUNDLE_SPEC 4), keyed by file name ("common.schema.json"), which is
+ * also each schema's $id and the document name its $refs use: pass the map as checkValue's opts.schemas.
+ */
+export function readBundleSchemas(root = CATALOG_DIR) {
+  const dir = join(root, "schemas/bundle");
+  return Object.fromEntries(readdirSync(dir).filter((f) => f.endsWith(".schema.json")).sort().map((f) => [f, JSON.parse(readFileSync(join(dir, f), "utf8"))]));
 }
 
 /** Every validator code the engine can report (scanned from engine/, engine/validator/ and engine/story/). */

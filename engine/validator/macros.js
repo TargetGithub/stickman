@@ -9,7 +9,7 @@
 // The compiler may assume a story that passes these checks.
 
 import { checkValue } from "./schema.js";
-import { MACRO_PARAMS, MACRO_ANCHORS } from "./macro_params.js";
+import { MACRO_ANCHORS, macroParamsFor } from "./macro_params.js";
 import { closestMatch } from "./report.js";
 import { parseAt } from "../director.js";
 import { resolveLocation } from "../story/normalize.js";
@@ -132,6 +132,7 @@ export function macroIssues(story, catalog, moves) {
   };
   const ctx = { castIds, catalog, moves, objectIds };
   const bodyOf = new Map(story.cast.map((c) => [c.id, c.body]));
+  const MACRO_PARAMS = macroParamsFor(catalog);
   const schemaIssues = (params, schema, path) => checkValue(params ?? {}, schema, path).map((i) => ({ ...i, code: "E_MACRO_PARAM" }));
   story.scenes.forEach((scene, si) => {
     const pre = `scenes[${si}]`;
