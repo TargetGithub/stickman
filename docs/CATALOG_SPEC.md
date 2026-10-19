@@ -84,6 +84,7 @@ catalog/
     project_instructions.md    the project instructions for chat apps (the build adds the version)
 
   schemas/                     JSON Schemas for the authored files (hand-written)
+    bundle/                    the catalog bundle schemas (CATALOG_BUNDLE_SPEC 4); not catalog file schemas
 
   examples/
     clips/*.json               v1 example scripts (today prompts/examples/*.json)

@@ -271,7 +271,7 @@ The run ends after `meta.tail` seconds of quiet: director idle, everyone settled
 export function validate(script, catalog): { ok, errors, warnings, timeline, durationSec, stage };
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues, formatTimeline };
 ```
-Stages: `schema.js` (JSON Schema subset checker over the exported schema) → `semantic.js` → dry run (`simulate` with `dryRun`) + pacing. Each stage stops the next on errors.
+Stages: `schema.js` (the script schemas; the JSON Schema subset checker is `check_value.js`) → `semantic.js` → dry run (`simulate` with `dryRun`) + pacing. Each stage stops the next on errors.
 
 ### framestore.js
 ```js
@@ -438,17 +438,23 @@ Frozen in S0 (2026-10-16). Behavior is in [STORY_SPEC.md](STORY_SPEC.md); the sc
 ```js
 // validator/schema_v2.js
 export const jsonSchemaV2;          // same JSON Schema subset as v1; $defs carries enums, macro params, anchors
+export function schemaV2For(catalog): object;   // jsonSchemaV2 with the catalog's mood and activity names (B1.2)
 // validator/macro_params.js
 export const MACRO_PARAMS;          // macro name → params schema (beat and scene macros)
+export function macroParamsFor(catalog): object;  // MACRO_PARAMS with the catalog's activity names
 export const MACRO_ANCHORS;         // beat macro → anchor names ("line<N>" = line1, line2, ...)
 // validator/v2_names.js
 export const ID, COLOR, V2_ENUMS, DEST, OBJECT_BEHAVIORS, OBJECT_KINDS,
   V2_WORLD_COMMANDS, V2_CHARACTER_COMMANDS, DEFEAT_STYLES_BY_AUDIENCE, V2_FX;
-// validator/schema.js (additions)
-export function checkValue(value, schema, path?): Issue[];   // checker for any schema in the subset
+export function catalogNames(catalog): { mood, activity, frozen };   // musicMoods keys, activityNames; frozen lists as fallback
+// validator/check_value.js (re-exported by schema.js)
+export function checkValue(value, schema, path?, { schemas?, root? }?): Issue[];   // checker for any schema in the subset;
+//   "<file>#/$defs/x" refs resolve in opts.schemas (no I/O), "#/$defs/x" in root (default: schema)
 export function exportSchema(schema): object;                // deep copy without x-* keywords
 ```
 The checker gains one checker-only keyword, `x-select: "<key>"` on a `oneOf`: the presence of that key picks the branch, so a macro beat or an action beat gets precise messages instead of a generic form error. v1 does not use it, so v1 messages are unchanged.
+
+For catalog bundles (CATALOG_BUNDLE_SPEC 4.1, B1.1) the checker also implements `$ref`/`$defs`, `propertyNames` (key issues are reported at the key's path), `minProperties`/`maxProperties` (`E_SCHEMA_SIZE`), `uniqueItems` (`E_REF_DUPLICATE` on the repeat) and the checker-only `x-discriminator: "<field>"` on a `oneOf`: the branch whose `properties[field].const` equals the value's field is the one checked; an unknown value is `E_SCHEMA_ENUM` at that field. Mood and activity names come from the catalog (B1.2): `validate()` checks v2 scripts with `schemaV2For(catalog)`, macro params with `macroParamsFor(catalog)` and world commands with `worldCommandsV2For(catalog)`; all three return the prebuilt objects when the catalog has exactly the frozen names.
 
 ### Scenes and story modules (S1)
 ```js
@@ -478,7 +484,8 @@ export function createPresentation(script, catalog, { suffix, fx }?): Presentati
 // validator/story.js
 export function checkStory(story, catalog, moves): Issue[];   // story checks + v1 checks per flat scene
 export function softWordIssues(text, path, catalog, audience): Issue[];
-// validator/semantic.js: checkSemantics(script, catalog, moves, { worldCommands }?); WORLD_COMMANDS_V2
+// validator/semantic.js: checkSemantics(script, catalog, moves, { worldCommands }?); WORLD_COMMANDS_V2;
+//   worldCommandsV2For(catalog) (set_music moods and activity names from the catalog)
 // renderer: transitions.js drawHold; cards.js drawCard, drawNarration; grade.js gradeState, drawGrade;
 //   objects.js drawSetPieces; background_kinds.js STORY_KINDS; layer_util.js (shared layer helpers)
 // index.js: createEngine({ catalog, createCanvas? }); engine.getScenes()

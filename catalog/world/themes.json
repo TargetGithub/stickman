@@ -169,5 +169,127 @@
       { "kind": "puddles", "color": "rgba(120, 150, 210, 0.35)", "spacing": 600 }
     ],
     "characterBg": "#4e3530"
+  },
+  "chirpur_village": {
+    "description": "A cheerful Indian hill village square by day: round mud huts with painted doors, festival bunting, green hills and a big tree far off.",
+    "tags": ["story", "outdoor", "village", "day", "doopi"],
+    "sky": { "top": "#6cc3f2", "bottom": "#d8f1ff" },
+    "ground": { "color": "#d6b47e", "line": "#b48e58" },
+    "layers": [
+      { "kind": "sun", "factor": 0.03, "x": 0.18, "y": 0.15, "r": 64, "color": "#fff4c0", "glow": "rgba(255, 240, 190, 0.5)" },
+      { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.9)", "count": 6, "top": 0.05, "band": 0.2 },
+      { "kind": "mountains", "factor": 0.08, "color": "#9cc7c4", "height": 330, "step": 240, "rough": 0.35 },
+      { "kind": "hills", "factor": 0.16, "color": "#86bf66", "height": 230, "step": 300 },
+      {
+        "kind": "banyan",
+        "factor": 0.2,
+        "at": [330],
+        "scale": 0.5,
+        "height": 520,
+        "spread": 760,
+        "trunk": "#6e5a44",
+        "roots": "#7a6650",
+        "color": "#6fa85e",
+        "color2": "#5f9852"
+      },
+      { "kind": "hills", "factor": 0.32, "color": "#5e9a4a", "height": 130, "step": 360 },
+      {
+        "kind": "huts",
+        "factor": 0.62,
+        "size": 210,
+        "spacing": 430,
+        "walls": ["#a8673d", "#b0703f", "#9a6038"],
+        "doors": ["#e63946", "#2f7de1", "#f4c430", "#2bb39a"],
+        "thatch": "#c99a4a",
+        "thatch2": "#94692b",
+        "band": "#f6e7c8",
+        "frame": "#5e3d24"
+      },
+      {
+        "kind": "bunting",
+        "factor": 0.7,
+        "y": -330,
+        "spacing": 540,
+        "sag": 50,
+        "flag": 26,
+        "line": "#6b4a2f",
+        "pole": "#7a5634",
+        "colors": ["#e63946", "#f4a62a", "#ffd23f", "#2bb39a", "#2f7de1", "#8e5bd8", "#ff7eb6"]
+      },
+      { "kind": "bushes", "factor": 0.85, "color": "#4f8a3e", "spacing": 760, "size": 46 },
+      { "kind": "floorStripes", "color": "#c9a46c", "at": [44], "width": 34 }
+    ],
+    "characterBg": "#a06a40"
+  },
+  "banyan_hill": {
+    "description": "A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below.",
+    "tags": ["story", "outdoor", "hill", "magic", "doopi"],
+    "sky": { "top": "#78c8f0", "bottom": "#e6f7ff" },
+    "ground": { "color": "#8cc76a", "line": "#6aa54e" },
+    "layers": [
+      { "kind": "sun", "factor": 0.03, "x": 0.84, "y": 0.14, "r": 60, "color": "#fff6c8", "glow": "rgba(255, 246, 200, 0.45)" },
+      { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.92)", "count": 7, "top": 0.05, "band": 0.22 },
+      { "kind": "mountains", "factor": 0.06, "color": "#a6c9dc", "height": 380, "step": 260, "rough": 0.4 },
+      { "kind": "hills", "factor": 0.1, "color": "#8fbf78", "height": 300, "step": 280 },
+      {
+        "kind": "huts",
+        "factor": 0.11,
+        "y": -190,
+        "scale": 0.18,
+        "size": 210,
+        "spacing": 1300,
+        "walls": ["#c08a5a", "#b47c4c"],
+        "doors": ["#e63946", "#2f7de1", "#f4c430"],
+        "thatch": "#cfa45a",
+        "thatch2": "#a17a3a",
+        "band": "#f6e7c8",
+        "frame": "#6b4a2f"
+      },
+      { "kind": "hills", "factor": 0.15, "color": "#5a8f48", "height": 200, "step": 330 },
+      {
+        "kind": "huts",
+        "factor": 0.16,
+        "y": -120,
+        "scale": 0.26,
+        "size": 210,
+        "spacing": 1500,
+        "walls": ["#a8673d", "#b0703f"],
+        "doors": ["#e63946", "#2bb39a", "#f4c430"],
+        "thatch": "#c99a4a",
+        "thatch2": "#94692b",
+        "band": "#f6e7c8",
+        "frame": "#5e3d24"
+      },
+      { "kind": "hills", "factor": 0.4, "color": "#6aa04e", "height": 60, "step": 420 },
+      {
+        "kind": "banyan",
+        "factor": 1,
+        "at": [1800],
+        "height": 560,
+        "spread": 820,
+        "trunk": "#7a5536",
+        "trunk2": "#5e3f26",
+        "roots": "#8a6442",
+        "color": "#3f8f45",
+        "color2": "#2f7038",
+        "color3": "#5aa84f"
+      },
+      { "kind": "bushes", "factor": 0.9, "color": "#5a9a44", "spacing": 900, "size": 40 }
+    ],
+    "characterBg": "#5a8f48"
+  },
+  "gloom_throne_room": {
+    "description": "Peepa's throne room in purple and grey: tall stone pillars, purple glowing windows and grey mist on the floor.",
+    "tags": ["story", "villain", "dark", "indoor", "doopi"],
+    "sky": { "top": "#120a1c", "bottom": "#2e1a42" },
+    "ground": { "color": "#3a3046", "line": "#1c1526" },
+    "layers": [
+      { "kind": "cave", "factor": 0.3, "wall": "#241833", "color": "#1a1026", "ceiling": -860, "step": 140, "depth": 140, "rocks": 200 },
+      { "kind": "pillars", "factor": 0.6, "spacing": 560, "width": 96, "top": -720, "wall": "#3a2d4a", "color": "#4d4458", "color2": "#423a4e", "cap": "#5e5470", "beam": "#2a1f38", "window": "#b06cff", "glow": "rgba(176, 108, 255, 0.35)", "windowW": 130, "windowH": 300, "windowY": -560 },
+      { "kind": "lanterns", "factor": 0.7, "color": "#c48aff", "y": -470, "spacing": 1120, "glow": "rgba(196, 138, 255, 0.3)" },
+      { "kind": "floorGrid", "color": "rgba(160, 140, 180, 0.18)", "spacing": 200 },
+      { "kind": "mist", "factor": 1, "color": "rgba(196, 192, 208, 0.22)", "spacing": 150, "size": 150, "depth": 70, "speed": 10 }
+    ],
+    "characterBg": "#43384f"
   }
 }

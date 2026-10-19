@@ -1,0 +1,58 @@
+[
+  {
+    "name": "zz_bad:mega_punch",
+    "description": "Punch.",
+    "tags": [
+      "fight"
+    ],
+    "category": "attack",
+    "duration": 0.5,
+    "keys": [
+      {
+        "t": 0,
+        "pose": "guard"
+      },
+      {
+        "t": 1,
+        "pose": "zz_bad:wind_up"
+      }
+    ],
+    "hits": [
+      {
+        "t0": 0.05,
+        "t1": 0.3,
+        "part": "rHand",
+        "damage": 30,
+        "shake": "big",
+        "sfx": "punch_heavy"
+      }
+    ]
+  },
+  {
+    "name": "other:kick",
+    "description": "A kick that belongs to someone else.",
+    "tags": [
+      "fight"
+    ],
+    "category": "attack",
+    "duration": 0.6,
+    "keys": [
+      {
+        "t": 0,
+        "pose": "stand"
+      },
+      {
+        "t": 1,
+        "pose": "stand"
+      }
+    ],
+    "hits": [
+      {
+        "t0": 0.3,
+        "t1": 0.5,
+        "part": "rFoot",
+        "damage": 8
+      }
+    ]
+  }
+]

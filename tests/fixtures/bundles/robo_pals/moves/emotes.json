@@ -1,0 +1,82 @@
+[
+  {
+    "name": "robo_pals:robot_dance",
+    "description": "A stiff, happy robot dance: square arms, two jerky turns and a little bounce.",
+    "tags": [
+      "dance",
+      "robot",
+      "happy"
+    ],
+    "category": "emote",
+    "duration": 1.6,
+    "face": "happy",
+    "keys": [
+      {
+        "t": 0,
+        "pose": "stand"
+      },
+      {
+        "t": 0.2,
+        "pose": "robo_pals:arms_square",
+        "ease": "snap"
+      },
+      {
+        "t": 0.45,
+        "pose": {
+          "rot": 0,
+          "lean": 6,
+          "head": -10,
+          "lUA": 100,
+          "lFA": 70
+        },
+        "ease": "snap"
+      },
+      {
+        "t": 0.7,
+        "pose": {
+          "lean": -6,
+          "head": 10,
+          "rUA": -100,
+          "rFA": 70
+        },
+        "ease": "snap"
+      },
+      {
+        "t": 1,
+        "pose": "stand",
+        "ease": "outQuad"
+      }
+    ],
+    "root": [
+      {
+        "t": 0,
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "t": 0.5,
+        "dx": 0,
+        "dy": -10,
+        "ease": "outQuad"
+      },
+      {
+        "t": 1,
+        "dx": 0,
+        "dy": 0,
+        "ease": "inQuad"
+      }
+    ],
+    "events": [
+      {
+        "t": 0.45,
+        "turn": true,
+        "sfx": "pop"
+      },
+      {
+        "t": 0.7,
+        "turn": true,
+        "sfx": "pop"
+      }
+    ]
+  }
+]

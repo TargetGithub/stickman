@@ -1,0 +1,113 @@
+{
+  "story": {
+    "version": 2,
+    "bundles": [
+      {
+        "id": "robo_pals",
+        "version": "1.0.0",
+        "hash": "sha256-0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ],
+    "meta": {
+      "title": "Bolt Dances",
+      "format": "landscape",
+      "seed": 3,
+      "kind": "clip",
+      "audience": "kids"
+    },
+    "cast": [
+      {
+        "id": "kai",
+        "name": "Kai",
+        "color": "#3fd8ff"
+      },
+      {
+        "id": "bolt",
+        "name": "Bolt",
+        "body": "robo_pals:boxbot",
+        "color": "#3d7bd9",
+        "voice": {
+          "timbre": "robot"
+        }
+      }
+    ],
+    "locations": [
+      {
+        "id": "park",
+        "theme": "city_park",
+        "set": [
+          {
+            "id": "pad",
+            "object": "robo_pals:charging_pad",
+            "x": 1700
+          }
+        ]
+      }
+    ],
+    "scenes": [
+      {
+        "id": "s1",
+        "location": "park",
+        "music": {
+          "mood": "playful"
+        },
+        "cast": [
+          {
+            "id": "kai",
+            "x": 1300,
+            "facing": 1
+          },
+          {
+            "id": "bolt",
+            "x": 1900,
+            "facing": -1
+          }
+        ],
+        "beats": [
+          {
+            "id": "s1_hi",
+            "at": 0.5,
+            "macro": "dialogue",
+            "params": {
+              "lines": [
+                [
+                  "bolt",
+                  "Watch this!",
+                  "happy"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "s1_dance",
+            "at": {
+              "after": "s1_hi"
+            },
+            "who": "bolt",
+            "do": "robo_pals:robot_dance"
+          },
+          {
+            "id": "s1_glow",
+            "at": {
+              "with": "s1_dance"
+            },
+            "who": "world",
+            "do": "set_object",
+            "object": "pad",
+            "params": {
+              "state": "on"
+            }
+          },
+          {
+            "id": "s1_clap",
+            "at": {
+              "after": "s1_dance"
+            },
+            "who": "kai",
+            "do": "clap"
+          }
+        ]
+      }
+    ]
+  }
+}

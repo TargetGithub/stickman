@@ -4,7 +4,7 @@
 import { parseAt, ANCHORS } from "../director.js";
 import { closestMatch, nearest } from "./report.js";
 import { STAGE } from "../config.js";
-import { V2_ENUMS } from "./v2_names.js";
+import { V2_ENUMS, catalogNames } from "./v2_names.js";
 import { STORY_ONLY } from "../moves.js";
 import { beatRigIssues } from "./rigs.js";
 
@@ -64,6 +64,17 @@ export const WORLD_COMMANDS_V2 = {
     winner: { character: true }, object: {},
   },
 };
+
+/**
+ * WORLD_COMMANDS_V2 with the catalog's mood (set_music) and activity (activity) names; the same object
+ * when the catalog has exactly the frozen names (catalogNames).
+ */
+export function worldCommandsV2For(catalog) {
+  const names = catalogNames(catalog);
+  if (names.frozen) return WORLD_COMMANDS_V2;
+  const w = WORLD_COMMANDS_V2;
+  return { ...w, set_music: { ...w.set_music, mood: { enum: names.mood } }, activity: { ...w.activity, name: { ...w.activity.name, enum: names.activity } } };
+}
 
 /** Fields each story camera mode needs (S6), for camera keys and shot beats. */
 const SHOT_FIELDS = { focus: ["target"], two_shot: ["targets"], close_up: ["target"], over_shoulder: ["target", "from"], track: ["target"] };

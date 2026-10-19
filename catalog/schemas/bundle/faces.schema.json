@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "faces.schema.json",
+  "title": "characters/faces.json: faces made from the renderer's existing face parts.",
+  "type": "object",
+  "maxProperties": 16,
+  "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "tags", "eyes", "brows", "mouth"],
+    "additionalProperties": false,
+    "properties": {
+      "description": { "$ref": "common.schema.json#/$defs/description" },
+      "tags": { "$ref": "common.schema.json#/$defs/tags" },
+      "eyes": { "enum": ["dot", "wide", "happy", "closed", "squeeze", "half", "spiral", "heart"] },
+      "brows": {
+        "type": ["object", "null"], "required": ["tilt", "lift"], "additionalProperties": false,
+        "properties": { "tilt": { "type": "number", "minimum": -40, "maximum": 40 }, "lift": { "type": "number", "minimum": -0.1, "maximum": 0.2 } }
+      },
+      "mouth": { "enum": ["line", "smile", "frown", "smirk", "o", "open", "wavy", "grin", "teeth"] },
+      "talk": { "enum": ["line", "smile", "frown", "smirk", "o", "open", "wavy", "grin", "teeth"] },
+      "extras": { "type": "array", "maxItems": 3, "uniqueItems": true, "items": { "enum": ["blush", "cheeks", "tears", "sweat", "vein", "hearts"] } }
+    }
+  }
+}

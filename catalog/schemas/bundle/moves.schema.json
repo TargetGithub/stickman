@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "moves.schema.json",
+  "title": "moves/<group>.json: a list of moves (spec 8.1) with the bundle tightening.",
+  "type": "array",
+  "minItems": 1,
+  "maxItems": 64,
+  "items": { "$ref": "#/$defs/move" },
+  "$defs": {
+    "expr": {
+      "type": ["number", "string"], "minimum": -5000, "maximum": 5000, "minLength": 1, "maxLength": 40,
+      "pattern": "^[a-z0-9_+\\-*/(). ]+$",
+      "description": "A number, or an expression over the move's params (expr.js)."
+    },
+    "move": {
+      "type": "object",
+      "required": ["name", "description", "tags", "category", "duration", "keys"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "$ref": "common.schema.json#/$defs/ownName" },
+        "description": { "$ref": "common.schema.json#/$defs/description" },
+        "tags": { "$ref": "common.schema.json#/$defs/tags" },
+        "category": { "enum": ["attack", "movement", "reaction", "defensive", "emote", "utility", "life", "interaction"] },
+        "rig": { "enum": ["humanoid", "quadruped"] },
+        "duration": { "type": "number", "minimum": 0.2, "maximum": 6 },
+        "params": {
+          "type": "object", "maxProperties": 4,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/localName" },
+          "additionalProperties": { "type": "number", "minimum": -5000, "maximum": 5000 }
+        },
+        "needsProp": { "type": "string", "pattern": "^(any|[a-z][a-z0-9_]{2,31}:[a-z][a-z0-9_]{0,31}|[a-z][a-z0-9_]{0,31})$" },
+        "keys": {
+          "type": "array", "minItems": 2, "maxItems": 24,
+          "items": {
+            "type": "object", "required": ["t", "pose"], "additionalProperties": false,
+            "properties": {
+              "t": { "$ref": "common.schema.json#/$defs/unit" },
+              "pose": { "oneOf": [{ "$ref": "common.schema.json#/$defs/ref" }, { "$ref": "common.schema.json#/$defs/poseChannels" }] },
+              "ease": { "enum": ["linear", "inQuad", "outQuad", "inOutQuad", "inCubic", "outCubic", "inOutCubic", "outBack", "outElastic", "outBounce", "snap", "holdThenSnap"] },
+              "snapHard": { "type": "boolean" },
+              "propAngle": { "type": "number", "minimum": -720, "maximum": 720, "description": "Spins go past 360 (base moves use 720)." }
+            }
+          }
+        },
+        "root": {
+          "type": "array", "minItems": 2, "maxItems": 12,
+          "items": {
+            "type": "object", "required": ["t"], "additionalProperties": false,
+            "properties": {
+              "t": { "$ref": "common.schema.json#/$defs/unit" },
+              "dx": { "$ref": "#/$defs/expr" },
+              "dy": { "$ref": "#/$defs/expr" },
+              "ease": { "enum": ["linear", "inQuad", "outQuad", "inOutQuad", "inCubic", "outCubic", "inOutCubic", "outBack", "outElastic", "outBounce", "snap", "holdThenSnap"] }
+            }
+          }
+        },
+        "hits": {
+          "type": "array", "minItems": 1, "maxItems": 6,
+          "items": {
+            "type": "object", "required": ["t0", "t1", "part", "damage"], "additionalProperties": false,
+            "properties": {
+              "t0": { "$ref": "common.schema.json#/$defs/unit" },
+              "t1": { "$ref": "common.schema.json#/$defs/unit" },
+              "part": { "enum": ["rHand", "lHand", "rFoot", "lFoot", "rKnee", "lKnee", "rElbow", "lElbow", "head", "propTip"] },
+              "aim": { "enum": ["auto", "head", "torso", "legs"] },
+              "damage": { "type": ["number", "string"], "minimum": 0, "maximum": 40, "minLength": 1, "maxLength": 40, "pattern": "^[a-z0-9_+\\-*/(). ]+$" },
+              "knock": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": -1200, "maximum": 1200 } },
+              "hitstop": { "type": "number", "minimum": 0, "maximum": 0.2 },
+              "reaction": { "enum": ["hit_light", "hit_heavy", "hit_launch"] },
+              "fx": { "type": "array", "maxItems": 3, "items": { "$ref": "common.schema.json#/$defs/ref" } },
+              "shake": { "enum": ["small", "med", "big"] },
+              "sfx": { "$ref": "common.schema.json#/$defs/sfxKey" },
+              "dodge": { "enum": ["duck", "back"] }
+            }
+          }
+        },
+        "events": {
+          "type": "array", "minItems": 1, "maxItems": 12,
+          "items": {
+            "type": "object", "required": ["t"], "additionalProperties": false,
+            "properties": {
+              "t": { "$ref": "common.schema.json#/$defs/unit" },
+              "sfx": { "$ref": "common.schema.json#/$defs/sfxKey" },
+              "fx": { "type": "array", "minItems": 1, "maxItems": 3, "items": { "$ref": "common.schema.json#/$defs/ref" } },
+              "turn": { "const": true },
+              "shake": { "enum": ["small", "med", "big"] },
+              "detach": { "const": true }
+            }
+          }
+        },
+        "flags": {
+          "type": "object", "additionalProperties": false,
+          "properties": {
+            "loop": { "type": "boolean" },
+            "hold": { "type": "boolean" },
+            "airborne": { "type": "boolean" },
+            "lockFacing": { "type": "boolean" },
+            "keepPose": { "type": "boolean" },
+            "partner": { "const": true },
+            "guard": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "type": ["number", "string"], "minimum": 0, "maximum": 1, "pattern": "^(block|parry|catch)$" }, "description": "[t0, t1, block|parry|catch]; step 11 checks the positions." },
+            "invulnerable": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "$ref": "common.schema.json#/$defs/unit" } }
+          }
+        },
+        "mouth": { "enum": ["neutral", "shout", "grin"] },
+        "face": { "$ref": "common.schema.json#/$defs/ref" },
+        "chain": { "$ref": "common.schema.json#/$defs/ref" },
+        "pair": { "$ref": "#/$defs/pair" }
+      }
+    },
+    "pair": {
+      "type": "object",
+      "required": ["partnerMove", "gap", "leadFaces", "partnerFaces", "contacts"],
+      "additionalProperties": false,
+      "properties": {
+        "partnerMove": { "$ref": "common.schema.json#/$defs/ref" },
+        "gap": { "type": "number", "minimum": 0, "maximum": 200 },
+        "leadFaces": { "enum": ["toward", "away"] },
+        "partnerFaces": { "enum": ["toward", "same", "away"] },
+        "contacts": {
+          "type": "array", "maxItems": 6,
+          "items": {
+            "type": "object", "required": ["t0", "t1", "from", "part", "to"], "additionalProperties": false,
+            "properties": {
+              "t0": { "$ref": "common.schema.json#/$defs/unit" },
+              "t1": { "$ref": "common.schema.json#/$defs/unit" },
+              "from": { "enum": ["lead", "partner"] },
+              "part": { "enum": ["rHand", "lHand"] },
+              "to": { "enum": ["rHand", "lHand", "head", "top", "back", "chest", "shoulder"] },
+              "meet": { "const": true }
+            }
+          }
+        },
+        "attach": {
+          "type": "object", "required": ["t0", "anchor", "offset"], "additionalProperties": false,
+          "properties": {
+            "t0": { "$ref": "common.schema.json#/$defs/unit" },
+            "t1": { "$ref": "common.schema.json#/$defs/unit" },
+            "anchor": { "$ref": "common.schema.json#/$defs/joint" },
+            "offset": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": -200, "maximum": 200 } },
+            "mode": { "enum": ["hold", "x"] },
+            "until": { "const": "detach" }
+          }
+        },
+        "inheritAttach": { "const": true },
+        "sync": { "const": true }
+      }
+    }
+  }
+}

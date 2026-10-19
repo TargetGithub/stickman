@@ -1,0 +1,71 @@
+{
+  "robo_pals:charging_pad": {
+    "description": "A round charging pad that glows when a robot stands on it.",
+    "tags": [
+      "robot",
+      "tech"
+    ],
+    "behavior": "static",
+    "draw": "paths",
+    "w": 160,
+    "h": 24,
+    "colors": {
+      "base": "#4a4f5c",
+      "glow": "#7fe3ff"
+    },
+    "states": [
+      "off",
+      "on"
+    ],
+    "paths": [
+      {
+        "d": [
+          [
+            "M",
+            -80,
+            0
+          ],
+          [
+            "L",
+            80,
+            0
+          ],
+          [
+            "L",
+            70,
+            -18
+          ],
+          [
+            "L",
+            -70,
+            -18
+          ],
+          [
+            "Z"
+          ]
+        ],
+        "fill": "colors.base"
+      },
+      {
+        "d": [
+          [
+            "M",
+            -50,
+            -18
+          ],
+          [
+            "Q",
+            0,
+            -30,
+            50,
+            -18
+          ],
+          [
+            "Z"
+          ]
+        ],
+        "fill": "colors.glow"
+      }
+    ]
+  }
+}

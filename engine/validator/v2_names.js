@@ -41,6 +41,19 @@ export const V2_ENUMS = {
   side: ["left", "right"],
 };
 
+/**
+ * The catalog-owned names the validator checks (CATALOG_BUNDLE_SPEC 2.9, 2.10): music moods from
+ * Object.keys(catalog.musicMoods), activities from catalog.activityNames, falling back to the frozen
+ * lists above when the catalog lacks them. `frozen` is true when both equal the frozen lists, so callers
+ * can keep using their prebuilt schemas.
+ */
+export function catalogNames(catalog) {
+  const mood = catalog?.musicMoods ? Object.keys(catalog.musicMoods) : V2_ENUMS.mood;
+  const activity = catalog?.activityNames ?? V2_ENUMS.activity;
+  const same = (a, b) => a.length === b.length && a.every((n, i) => n === b[i]);
+  return { mood, activity, frozen: same(mood, V2_ENUMS.mood) && same(activity, V2_ENUMS.activity) };
+}
+
 /** Object behaviors (spec 8) and the initial object kinds (S4.6, catalog). */
 export const OBJECT_BEHAVIORS = ["static", "seat", "holdable", "ball", "floater", "vehicle", "breakable"];
 export const OBJECT_KINDS = {

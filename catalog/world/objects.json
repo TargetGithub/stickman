@@ -252,5 +252,35 @@
     "behavior": "holdable",
     "draw": "held",
     "hold": { "kind": "cane", "shape": "cane", "len": 92, "width": 5, "gripAt": 0.05, "grip": "rHand", "color": "#6b4a2f", "trim": "#3a2a1c", "hitRadius": 14 }
+  },
+  "crystal_socket": {
+    "description": "A gem socket in a banyan root knot; it glows in the colour of the rainbow crystal set in it, or sits empty.",
+    "tags": ["scenery", "magic", "crystal", "doopi"],
+    "behavior": "static",
+    "draw": "crystal_socket",
+    "w": 130,
+    "h": 90,
+    "states": ["empty", "red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+    "colors": { "wood": "#6e4a2c", "rim": "#8a6442", "hollow": "#2a1c12", "red": "#ff3b3b", "orange": "#ff9a1f", "yellow": "#ffe02e", "green": "#3ddc6a", "blue": "#2f9bff", "indigo": "#5a5cff", "violet": "#b05cff" }
+  },
+  "throne": {
+    "description": "A tall dark purple throne with two curly golden horns on its back; a villain can sit on it.",
+    "tags": ["seat", "villain", "doopi"],
+    "behavior": "seat",
+    "draw": "throne",
+    "w": 300,
+    "h": 460,
+    "seatY": 112,
+    "slots": [0],
+    "colors": { "frame": "#2e2140", "cushion": "#6a3fa8", "horn": "#e6b84a", "gem": "#b05cff" }
+  },
+  "crystal_ball": {
+    "description": "A glowing purple crystal ball on a carved stone stand.",
+    "tags": ["scenery", "villain", "magic", "doopi"],
+    "behavior": "static",
+    "draw": "crystal_ball",
+    "w": 130,
+    "h": 260,
+    "colors": { "stand": "#6e6384", "trim": "#e6b84a", "ball": "#9a6cff", "swirl": "#d9c4ff", "glow": "rgba(176, 108, 255, 0.8)" }
   }
 }

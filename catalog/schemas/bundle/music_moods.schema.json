@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "music_moods.schema.json",
+  "title": "story/music_moods.json: scales and moods for the procedural music generator.",
+  "type": "object",
+  "required": ["moods"],
+  "additionalProperties": false,
+  "properties": {
+    "scales": {
+      "type": "object", "maxProperties": 4,
+      "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+      "additionalProperties": { "type": "array", "minItems": 5, "maxItems": 12, "uniqueItems": true, "items": { "type": "integer", "minimum": 0, "maximum": 11 } }
+    },
+    "moods": {
+      "type": "object", "minProperties": 1, "maxProperties": 8,
+      "propertyNames": { "$ref": "common.schema.json#/$defs/ownName" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "tags", "scale", "roots", "tempo", "meter", "swing", "progressions", "bass", "drums", "melody", "arp", "patches", "intensity"],
+        "additionalProperties": false,
+        "properties": {
+          "description": { "$ref": "common.schema.json#/$defs/description" },
+          "tags": { "$ref": "common.schema.json#/$defs/tags" },
+          "scale": { "$ref": "common.schema.json#/$defs/ref" },
+          "melodyScale": { "type": "array", "minItems": 3, "maxItems": 12, "uniqueItems": true, "items": { "type": "integer", "minimum": 0, "maximum": 11 }, "description": "Optional: the notes the melody may use (playful uses a pentatonic)." },
+          "roots": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "integer", "minimum": 36, "maximum": 84 } },
+          "tempo": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": 50, "maximum": 180 } },
+          "meter": { "enum": [3, 4] },
+          "swing": { "type": "number", "minimum": 0, "maximum": 0.5 },
+          "progressions": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "type": "array", "minItems": 2, "maxItems": 8, "items": { "type": "integer", "minimum": 0, "maximum": 6 } } },
+          "bass": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "string", "pattern": "^[.r5o]{6,8}$" } },
+          "drums": {
+            "type": "object", "required": ["low", "medium", "high"], "additionalProperties": false,
+            "properties": {
+              "low": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string", "pattern": "^[.ksho]{12,16}$" } },
+              "medium": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string", "pattern": "^[.ksho]{12,16}$" } },
+              "high": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string", "pattern": "^[.ksho]{12,16}$" } }
+            }
+          },
+          "melody": {
+            "type": "object", "required": ["rhythms", "range", "leap"], "additionalProperties": false,
+            "properties": {
+              "rhythms": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "type": "string", "pattern": "^[x.-]{6,8}$" } },
+              "range": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "integer", "minimum": -7, "maximum": 14 } },
+              "leap": { "$ref": "common.schema.json#/$defs/unit" }
+            }
+          },
+          "arp": { "type": "array", "minItems": 1, "maxItems": 16, "items": { "type": "integer", "minimum": 0, "maximum": 7 } },
+          "patches": {
+            "type": "object", "required": ["lead", "bass", "pad", "arp"], "additionalProperties": false,
+            "properties": {
+              "lead": { "$ref": "#/$defs/patch" }, "bass": { "$ref": "#/$defs/patch" },
+              "pad": { "$ref": "#/$defs/patch" }, "arp": { "$ref": "#/$defs/patch" }
+            }
+          },
+          "intensity": { "$ref": "common.schema.json#/$defs/unit" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "patch": { "enum": ["square_soft", "square", "toy", "flute", "reed", "brass", "soft_bass", "bouncy_bass", "saw_bass", "pulse_bass", "warm_pad", "soft_pad", "dark_pad", "bell", "music_box", "glass", "pluck", "pluck_high", "pluck_dark"] }
+  }
+}
