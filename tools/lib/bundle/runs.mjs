@@ -8,7 +8,7 @@ import { holdableProps } from "../../../engine/objects.js";
 import { strideOf } from "../../../engine/skeleton.js";
 import { checkMove, runMove } from "../move_check.mjs";
 import { presetStory } from "../catalog_harness.mjs";
-import { MOVE_GROUPS, SELF_HASH, localPart, presetsOf, entryList } from "./layout.mjs";
+import { MOVE_GROUPS, SELF_HASH, localPart, bundleOf as bundleIdOf, presetsOf, entryList } from "./layout.mjs";
 import { referencesOf } from "./names.mjs";
 
 const issue = (code, file, path, message, fix) => ({ code, file, path, message, fix });
@@ -22,6 +22,9 @@ function errorsOf(script, catalog) {
     return { ok: false, errors: [{ code: "E_ENGINE", path: "", message: `the engine cannot run it: ${err.message.split("\n")[0]}` }], warnings: [], durationSec: null };
   }
 }
+/** The pins of every bundle in the merged catalog, for the harness stories (they use namespaced names). */
+const pinsOf = (merged) => (merged.bundles || []).map(({ id, version, hash }) => ({ id, version, hash }));
+
 const show = (errors) => errors.slice(0, 3).map((e) => `${e.code} ${e.path}: ${e.message}`).join("; ") + (errors.length > 3 ? ` (+${errors.length - 3} more)` : "");
 
 /** Moves and body plans: E_BUNDLE_MOVE, E_BUNDLE_BODY. */
@@ -68,6 +71,7 @@ export function checkPairs(files, merged) {
     for (const body of bodies) {
       const story = {
         version: 2,
+        bundles: pinsOf(merged),
         meta: { title: "Pair check", format: "landscape", seed: 3, kind: "clip", audience: "general" },
         cast: [{ id: "lead", color: "#1f4fbf" }, { id: "other", color: "#c2185b", ...(body === "stickman" ? {} : { body }) }],
         scenes: [{ id: "s1", location: "white_stage", cast: [{ id: "lead", x: 1400, facing: 1 }, { id: "other", x: 1700, facing: -1 }],
@@ -86,9 +90,12 @@ export function checkPresets(files, merged) {
   const goodThemes = {};
   for (const p of presetsOf(files)) {
     const local = { ...p, id: localPart(p.id) }; // the cast id is an id (pattern), not a catalog name
-    const r = errorsOf(presetStory(local), merged);
+    // On stage for the audiences both the preset and the bundle claim (a mismatch is step 10's E_BUNDLE_AUDIENCE).
+    const kids = (p.audience || []).includes("kids") && (merged.bundles.find((b) => b.id === bundleIdOf(p.id))?.audience || ["kids"]).includes("kids");
+    const story = (theme) => ({ ...presetStory({ ...local, audience: kids ? ["kids"] : ["general"] }, theme), bundles: pinsOf(merged) });
+    const r = errorsOf(story(), merged);
     if (r.errors.length) out.push(issue("E_BUNDLE_PRESET", p.file, "cast", `'${p.id}' does not validate on stage: ${show(r.errors)}.`, "Fix the cast entry (body, prop, appearance, voice)."));
-    else goodThemes[p.id] = merged.themeNames.filter((t) => !errorsOf(presetStory(local, t), merged).warnings.some((w) => w.code === "W_CONTRAST"));
+    else goodThemes[p.id] = merged.themeNames.filter((t) => !errorsOf(story(t), merged).warnings.some((w) => w.code === "W_CONTRAST"));
   }
   return { issues: out, goodThemes };
 }
@@ -121,7 +128,8 @@ export function checkExamples(files, manifest, merged) {
     if ((e.kind === "story") !== e.path.startsWith("stories/") || !script || typeof script !== "object") return bad(file, "", `A ${e.kind} example must be ${e.kind === "story" ? '{"story": ..., "outline"?: ...} under stories/' : "a version 1 script under clips/"}.`, "Match the kind and the folder.");
     const pins = Array.isArray(script.bundles) ? script.bundles : [];
     const self = pins.find((b) => b?.id === manifest.id);
-    if (!self || self.hash !== SELF_HASH || self.version !== manifest.version) bad(file, "bundles", `The example must declare {"id": "${manifest.id}", "version": "${manifest.version}", "hash": "self"}.`, 'Add it to "bundles"; "self" stands for this bundle\'s contentHash.');
+    const pinned = self && self.hash === SELF_HASH && self.version === manifest.version;
+    if (!pinned) bad(file, "bundles", `The example must declare {"id": "${manifest.id}", "version": "${manifest.version}", "hash": "self"}.`, 'Add it to "bundles"; "self" stands for this bundle\'s contentHash.');
     pins.forEach((b, k) => {
       if (b?.id === manifest.id) return;
       const dep = (manifest.dependencies || []).find((d) => d.id === b?.id);
@@ -130,8 +138,9 @@ export function checkExamples(files, manifest, merged) {
     });
     for (const d of manifest.dependencies || []) if (!pins.some((b) => b?.id === d.id)) bad(file, "bundles", `The example does not declare the dependency '${d.id}'.`, `Add ${JSON.stringify(d)} to "bundles".`);
     if (script.meta?.title !== e.title) bad("examples/index.json", `examples[${i}].title`, `The title "${e.title}" differs from the script's "${script.meta?.title}".`, "Use the same title.");
-    const { bundles: _pins, ...plain } = script; // the validator reads "bundles" from B3 on; it is checked here
-    const audiences = e.kind === "story" ? manifest.audience : [null];
+    // "self" stands for this bundle's contentHash (4.15): the validator sees the real pin.
+    const plain = { ...script, bundles: pins.map((b) => (b?.id === manifest.id && b.hash === SELF_HASH ? { ...b, hash: manifest.contentHash } : b)) };
+    const audiences = !pinned ? [] : e.kind === "story" ? manifest.audience : [null]; // a wrong own pin would only fail again as E_BUNDLE_HASH
     for (const a of audiences) {
       const s = a ? { ...plain, meta: { ...plain.meta, audience: a } } : plain;
       const r = errorsOf(s, merged);

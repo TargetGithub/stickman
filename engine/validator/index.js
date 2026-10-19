@@ -10,6 +10,8 @@ import { simulate, movesFor } from "../sim.js";
 import { normalize } from "../story/normalize.js";
 import { compileStory } from "../story/compile.js";
 import { macroIssues } from "./macros.js";
+import { bundleIssues } from "./bundles.js";
+import { BUNDLE_PINS } from "./v2_names.js";
 import { LIMITS, LIMITS_V2 } from "../config.js";
 
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues };
@@ -61,7 +63,10 @@ function pacing(script, sim, moves, opts = {}) {
  * @returns {{ ok:boolean, errors:object[], warnings:object[], timeline:string, durationSec:number|null, stage:string }}
  */
 export function validate(script, catalog) {
-  const result = (stage, issues, sim = null) => ({
+  let early = []; // bundle warnings (W_BUNDLE_UNUSED) ride along with every later result
+  const result = (stage, found, sim = null) => {
+    const issues = [...early, ...found];
+    return {
     ...(sim?.story && !sim.story.legacy ? { scenes: sim.scenes.map((sc) => ({ id: sc.id, seconds: Number((sc.frames / 60).toFixed(2)) })), endState: sim.endState } : {}),
     ok: !issues.some((i) => !isWarning(i)),
     errors: issues.filter((i) => !isWarning(i)).map(({ severity, ...i }) => i),
@@ -69,7 +74,8 @@ export function validate(script, catalog) {
     timeline: sim ? formatTimeline(sim) : "",
     durationSec: sim ? sim.durationSec : null,
     stage,
-  });
+    };
+  };
 
   if (!script || typeof script !== "object" || Array.isArray(script)) {
     return result("schema", [{ code: "E_SCHEMA_TYPE", path: "", message: "The script must be a JSON object.", fix: "Return one JSON object." }]);
@@ -77,6 +83,13 @@ export function validate(script, catalog) {
   const version = versionIssue(script);
   if (version) return result("schema", [version]);
   const v2 = script.version === 2;
+  // Declared bundles before anything else (CATALOG_BUNDLE_SPEC 7.4): a missing bundle explains every unknown
+  // name, including names the schema would reject (a bundle mood). A malformed "bundles" list is a schema issue.
+  if (!checkValue(script.bundles ?? [], BUNDLE_PINS).length) {
+    const bundles = bundleIssues(script, catalog);
+    if (bundles.some((i) => !isWarning(i))) return result("bundles", bundles);
+    early = bundles;
+  }
   const schemaIssues = v2 ? checkSchemaV2(script, catalog) : checkSchema(script);
   if (schemaIssues.length) return result("schema", schemaIssues);
 

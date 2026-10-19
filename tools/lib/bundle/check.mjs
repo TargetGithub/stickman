@@ -22,6 +22,9 @@ import { checkMoveRuns, checkPairs, checkPresets, checkExamples } from "./runs.m
 import { catalogFragment, entryList } from "./layout.mjs";
 
 const isWarning = (i) => i.code.startsWith("W_");
+
+/** A checked bundle as mergeBundles takes it. */
+export const toMerge = (manifest, hash, files) => ({ id: manifest.id, version: manifest.version, hash, audience: manifest.audience, dependencies: manifest.dependencies || [], entries: catalogFragment(files) });
 const now = () => globalThis.performance?.now() ?? 0;
 
 /**
@@ -90,7 +93,7 @@ export function checkBundle(entries, ctx) {
   if (refsOk) {
     run(11, () => {
       const deps = (ctx.loaded || []).filter((b) => (manifest.dependencies || []).some((d) => d.id === b.id && d.hash === b.hash));
-      const merged = mergeBundles(ctx.base, [...deps.map((b) => ({ ...b, entries: catalogFragment(b.files) })), { id: manifest.id, version: manifest.version, hash, entries: catalogFragment(files) }]);
+      const merged = mergeBundles(ctx.base, [...deps.map((b) => toMerge(b.manifest, b.hash, b.files)), toMerge(manifest, hash, files)]);
       const moveIssues = checkMoveRuns(files, merged);
       let prepared = true;
       try {

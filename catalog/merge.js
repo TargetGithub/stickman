@@ -6,7 +6,7 @@ const KEYED = ["poses", "bodies", "faces", "fxPresets", "themes", "objects", "pr
 
 /**
  * @param {object} base  the engine catalog (loadCatalog)
- * @param {Array<{ id: string, version: string, hash: string, entries: object }>} bundles  entries: the
+ * @param {Array<{ id: string, version: string, hash: string, audience?: string[], dependencies?: object[], entries: object }>} bundles  entries: the
  *   catalog fragment of each bundle (tools/lib/bundle/layout.mjs catalogFragment: poses, moves, bodies,
  *   faces, fxPresets, themes, objects, props, activities, musicMoods, scales), in file order
  * @returns {object} a new catalog; base is not changed
@@ -31,6 +31,8 @@ export function mergeBundles(base, bundles) {
   out.faceNames = [...base.faceNames, ...added("faces")];
   out.bodyNames = [...base.bodyNames, ...added("bodies")];
   out.activityNames = [...base.activityNames, ...added("activities")];
-  out.bundles = [...(base.bundles || []), ...sorted.map(({ id, version, hash }) => ({ id, version, hash }))].sort((a, b) => (a.id < b.id ? -1 : 1));
+  // What the validator compares scripts with (7.4): the pin, plus the audience and dependencies it checks.
+  out.bundles = [...(base.bundles || []), ...sorted.map(({ id, version, hash, audience, dependencies }) => ({ id, version, hash, ...(audience ? { audience } : {}), ...(dependencies ? { dependencies } : {}) }))]
+    .sort((a, b) => (a.id < b.id ? -1 : 1));
   return out;
 }

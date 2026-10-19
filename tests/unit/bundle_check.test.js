@@ -145,9 +145,10 @@ test("a bundle near every cap checks in under 2 s", () => {
   files["world/objects.json"] = Object.fromEntries(Array.from({ length: 32 }, (_, i) => [i ? `robo_pals:pad${i}` : "robo_pals:charging_pad", { ...pad, paths: [{ d, fill: "colors.base" }] }]));
   files["bundle.json"] = packManifest(files["bundle.json"], files);
   const entries = Object.entries(files).map(([path, v]) => ({ path, bytes: new TextEncoder().encode(JSON.stringify(v)) }));
-  const t = performance.now();
+  const t = process.cpuUsage(); // CPU time of this process: other test files run in parallel processes
   const r = checkBundle(entries, nodeContext());
-  const ms = performance.now() - t;
+  const used = process.cpuUsage(t);
+  const ms = (used.user + used.system) / 1000;
   assert.ok(r.report.steps.every((s) => !s.skipped), JSON.stringify(r.errors.slice(0, 3)));
   assert.ok(ms < 2000, `${ms.toFixed(0)} ms`);
 });
@@ -179,9 +180,10 @@ test("2 MB of bundle files are checked (and refused) in under 2 s", () => {
   const entries = Object.entries(files).map(([path, v]) => ({ path, bytes: new TextEncoder().encode(JSON.stringify(v)) }));
   const total = entries.reduce((s, e) => s + e.bytes.length, 0);
   assert.ok(total > 1.6e6 && total < 2 * 1024 * 1024, `${total} bytes`);
-  const t = performance.now();
+  const t = process.cpuUsage(); // CPU time of this process: other test files run in parallel processes
   const r = checkBundle(entries, nodeContext());
-  const ms = performance.now() - t;
+  const used = process.cpuUsage(t);
+  const ms = (used.user + used.system) / 1000;
   assert.ok(r.errors.some((e) => e.code === "E_BUNDLE_SCHEMA"), "refused by the schemas (64 moves per file)");
   assert.ok(ms < 2000, `${ms.toFixed(0)} ms`);
 });
