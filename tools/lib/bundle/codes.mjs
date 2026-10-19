@@ -29,6 +29,8 @@ export const BUNDLE_CODES = {
   E_BUNDLE_PRESET: { step: 11, meaning: "A preset's cast entry does not validate on stage." },
   E_BUNDLE_EXAMPLE: { step: 11, meaning: "An example script does not validate, is too long, misses its own bundle pin, or the examples leave an added entry unused." },
   E_BUNDLE_DETERMINISM: { step: 12, meaning: "The same script with this bundle gave different frames in two runs (an engine bug the data triggers)." },
+  E_BUNDLE_RENDER: { step: 13, meaning: "Rendering a script that uses the bundle throws (an engine bug the data triggers)." },
+  W_BUNDLE_SLOW: { step: 13, meaning: "A script with the bundle's entry renders over 1.5 times slower per frame than the same script with a base entry of its kind." },
   E_BUNDLE_BLOCKED: { step: 14, meaning: "The content hash is on the bundle blocklist." },
   W_BUNDLE_UNREVIEWED: { step: 14, meaning: "The content hash is not on the allow list: the bundle is imported with the unreviewed banner." },
 };

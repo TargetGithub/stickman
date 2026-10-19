@@ -12,9 +12,11 @@ import { jsonSchemaV2 } from "../engine/validator/schema_v2.js";
 import { exportSchema } from "../engine/validator/schema.js";
 import { v1MoveNames } from "../engine/sim.js";
 import { catalog as baseCatalog } from "../catalog/index.js";
-import { catalogFromArgs } from "./lib/bundle_args.mjs";
+import { catalogFromArgs, splitBundleArgs } from "./lib/bundle_args.mjs";
 
-const { args, catalog } = await catalogFromArgs(process.argv.slice(2), baseCatalog); // --bundle <dir|zip>, repeatable
+const argv = process.argv.slice(2);
+const { args } = splitBundleArgs(argv);
+let { catalog } = args.includes("--schema") ? await catalogFromArgs(argv, baseCatalog) : { catalog: baseCatalog };
 if (args.includes("--schema-v2")) {
   console.log(JSON.stringify(exportSchema(jsonSchemaV2), null, 2));
   process.exit(0);
@@ -35,6 +37,7 @@ try {
   console.error(`cannot read ${file}: ${e.message}`);
   process.exit(2);
 }
+({ catalog } = await catalogFromArgs(argv, baseCatalog, script)); // --bundle <dir|zip>, and the store for declared bundles
 const r = validate(script, catalog);
 if (args.includes("--json")) {
   console.log(JSON.stringify(r, null, 2));

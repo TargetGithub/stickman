@@ -320,6 +320,8 @@ A catalog bundle is a folder or `.zip` of catalog data someone else made (docs/C
 2. Declare it at the top of the script, exactly as the bundle gives it: `"bundles": [{ "id": "robo_pals", "version": "1.0.0", "hash": "sha256-…" }]`.
 3. Pass it to the tools: `node tools/validate.mjs story.json --bundle robo_pals-1.0.0.zip`, `npm run record -- story.json --bundle robo_pals-1.0.0.zip` (the credits go into `meta.json`). In the player, pick the zip under "Bundles".
 
+Imported bundles need no `--bundle`: `node tools/bundle.mjs import robo_pals-1.0.0.zip` checks it (with the render checks) and keeps it in the store, `bundles/<id>/<hash>/` (git-ignored; set `STICKMAN_BUNDLES` to keep it elsewhere). The tools find the bundles a script declares there, and `npm run serve` serves the store at `/bundles/`. `node tools/bundle.mjs list` shows the store; `node tools/bundle.mjs sheet <zip>` writes a contact sheet (every pose, move, body plan, preset, face, effect, place, object and activity) to look at before using a bundle. In the browser, `/web/bundles.html` does the same check, shows the sheet and keeps the bundle in the browser.
+
 A missing bundle, a different hash or an undeclared name stops the script (`E_BUNDLE_MISSING`, `E_BUNDLE_HASH`, `E_BUNDLE_UNDECLARED`); there is no fallback. The same script with the same bundle hash gives the same frames. To make a bundle: `node tools/bundle.mjs pack <folder> --i-made-this` writes the hashes and the zip; the worked example is `tests/fixtures/bundles/robo_pals/`.
 
 ## 5. Fixing validator errors
@@ -350,6 +352,8 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `... --bundle <dir\|zip>` | On validate, record, generate and manual: load a catalog bundle the script declares (repeatable; section 4.2) |
 | `node tools/bundle.mjs check <dir\|zip>` | Check a catalog bundle (`--fixture <file>` for a test fixture) |
 | `node tools/bundle.mjs pack <dir> --i-made-this` | Write a bundle's hashes and zip it |
+| `node tools/bundle.mjs import <dir\|zip>` | Check a bundle and keep it in the store (`bundles/`); `list` shows the store |
+| `node tools/bundle.mjs sheet <dir\|zip>` | A contact sheet of everything a bundle adds, for review |
 | `node tools/validate.mjs --schema` | Print the JSON Schema (with every move name) |
 | `node tools/compile.mjs <story> [--summary]` | Print a story with every macro expanded into beats (or one line per macro) |
 | `node tools/compile.mjs <story> --eject <id> --out <file>` | Write the story with one macro replaced by its beats, to hand-tune them |
@@ -394,6 +398,7 @@ Browser pages (after `npm run serve`):
 | `/web/catalog.html` | Redirects to the Moves section of the showcase |
 | `/web/player.html?src=<url>` | Opens a script or example directly (the showcase's "open in player") |
 | `/web/editor.html` | Pose and move editor, for adding or changing moves |
+| `/web/bundles.html` | Check a catalog bundle zip (every step, with the render checks), see its contact sheet and README, keep it in this browser |
 | `/` (`/web/index.html`) | Home page: links to every page, showcase sections and samples, the catalog's counts, common commands |
 | `/web/poses.html` | Pose viewer |
 

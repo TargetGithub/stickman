@@ -22,6 +22,7 @@ import { checkTexts } from "./text.mjs";
 import { checkRules } from "./rules.mjs";
 import { checkMoveRuns, checkPairs, checkPresets, checkExamples, exampleScripts } from "./runs.mjs";
 import { checkDeterminism, showcaseScripts } from "./determinism.mjs";
+import { renderChecks } from "./render.mjs";
 import { catalogFragment, entryList } from "./layout.mjs";
 
 const isWarning = (i) => i.code.startsWith("W_");
@@ -44,6 +45,7 @@ const now = () => globalThis.performance?.now() ?? 0;
  * @param {object[]} [ctx.preIssues]  issues the adapter found while reading (zip, symlinks)
  * @param {boolean} [ctx.determinism]  false skips step 12 (it loads every example and showcase script twice)
  * @param {Function} [ctx.createEngine]  the engine factory for step 12 (tests pass a broken one)
+ * @param {{ createCanvas, now }} [ctx.render]  a canvas and a clock: runs 12's pixel hashes and step 13 (render.mjs)
  */
 export function checkBundle(entries, ctx) {
   const issues = [...(ctx.preIssues || [])];
@@ -73,7 +75,8 @@ export function checkBundle(entries, ctx) {
   if (!run(1, () => (issues.length ? [] : checkEntries(entries, pathPattern))) || issues.length) return (skip(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14), result());
   if (!run(2, () => { const p = parseEntries(entries); files = p.files; return p.issues; })) return (skip(3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14), result());
   manifest = files["bundle.json"];
-  const blockedIds = (ctx.blocklist || []).map((b) => b.id).filter(Boolean);
+  // A blocked id is reserved for any other content (5.1); the blocked content itself gets E_BUNDLE_BLOCKED (14).
+  const blockedIds = (ctx.blocklist || []).filter((b) => b.id && b.hash !== manifest?.contentHash).map((b) => b.id);
   if (!run(3, () => checkManifest(manifest, ctx.schemas, { blockedIds }))) return (skip(4, 5, 6, 7, 8, 9, 10, 11, 12, 14), result());
   if (!run(4, () => {
     const c = checkCompat(manifest, { engineVersion: ctx.engineVersion ?? ENGINE_VERSION, catalogFormat: ctx.catalogFormat ?? 1, catalogVersion: ctx.catalogVersion });
@@ -96,6 +99,7 @@ export function checkBundle(entries, ctx) {
   run(9, () => checkCaps(files));
   run(10, () => checkTexts(files, ctx.base));
   let merged = null;
+  let renderScripts = null;
   if (refsOk) {
     const semanticOk = run(11, () => {
       const deps = (ctx.loaded || []).filter((b) => (manifest.dependencies || []).some((d) => d.id === b.id && d.hash === b.hash));
@@ -118,10 +122,20 @@ export function checkBundle(entries, ctx) {
         const scripts = [...exampleScripts(files, manifest), ...showcaseScripts(files, merged, pins)];
         const d = checkDeterminism(scripts, merged, ctx.createEngine);
         report.simHashes = d.hashes;
+        renderScripts = scripts;
         return d.issues;
       });
     } else skip(12);
   } else skip(11, 12);
+  // 13 (with 12's pixel hashes): only where the host has a canvas; without one the bundle is "not fully checked".
+  if (ctx.render && renderScripts) {
+    run(13, () => {
+      const r = renderChecks(renderScripts, merged, ctx.render);
+      report.frameMs = r.report.frameMs;
+      return r.issues;
+    });
+  } else skip(13);
+  report.fullyChecked = steps.some((s) => s.step === 13 && !s.skipped);
   run(14, blocked);
   return result();
 }

@@ -87,6 +87,11 @@ catalog/
   schemas/                     JSON Schemas for the authored files (hand-written)
     bundle/                    the catalog bundle schemas (CATALOG_BUNDLE_SPEC 4); not catalog file schemas
 
+  bundle_blocklist.json        catalog bundles that may not be imported or played (CATALOG_BUNDLE_SPEC 8)
+  bundle_allowlist.json        catalog bundles reviewed from their contact sheet (shown as reviewed)
+  base_names.json              the base names of the last release; the build fails when one disappears
+                               (bundles refer to them; written on purpose by catalog_build.mjs --release-names)
+
   examples/
     clips/*.json               v1 example scripts (today prompts/examples/*.json)
     stories/*.json             story examples with their outlines (today prompts/examples/stories/)

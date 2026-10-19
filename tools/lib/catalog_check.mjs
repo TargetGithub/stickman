@@ -30,6 +30,18 @@ export function engineNames(codes) {
   };
 }
 
+/**
+ * The base names bundles can refer to (CATALOG_BUNDLE_SPEC 9: a public interface once bundles ship).
+ * catalog/base_names.json keeps them as of the last release; the check below fails when one disappears.
+ */
+export function baseNames(catalog) {
+  return {
+    poses: Object.keys(catalog.poses), moves: catalog.moves.map((m) => m.name), bodies: catalog.bodyNames, faces: catalog.faceNames,
+    fx: Object.keys(catalog.fxPresets), sfx: catalog.sfxKeys, themes: catalog.themeNames, objects: Object.keys(catalog.objects),
+    props: Object.keys(catalog.props), activities: catalog.activityNames, moods: Object.keys(catalog.musicMoods), scales: Object.keys(catalog.scales),
+  };
+}
+
 /** Validator errors for a story, or the engine's own complaint when the catalog is too broken to load. */
 function storyErrors(story, catalog) {
   try {
@@ -159,6 +171,13 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
     for (const err of errorsOf(script, catalog)) bad(e.path, "", err);
     for (const c of ex.outline?.cast || []) if (c.role && !roles.has(c.role)) bad(e.path, `outline.cast.${c.id}`, `unknown role "${c.role}"`);
   }
+  // 9. Base names: every name of the last release is still there (bundles refer to them).
+  const now = baseNames(catalog);
+  for (const [kind, names] of Object.entries(files["base_names.json"]?.names || {})) {
+    const have = new Set(now[kind] || []);
+    for (const n of names) if (!have.has(n)) bad("base_names.json", `${kind}.${n}`, `the base name "${n}" is gone: bundles may refer to it. Keep it (or an entry by that name) until the next catalog format version; then run node tools/catalog_build.mjs --release-names`);
+  }
+
   const pick = index.pack;
   for (const p of [pick.clip, pick.outline]) if (!listed.has(p)) bad("examples/index.json", "pack", `"${p}" is not an indexed example`);
   for (const s of pick.scenes) if (!src.examples[s.story]?.story.scenes.some((x) => x.id === s.scene)) bad("examples/index.json", "pack.scenes", `${s.story} has no scene "${s.scene}"`);

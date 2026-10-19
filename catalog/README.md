@@ -41,6 +41,8 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `docs/*.json` | descriptions of engine-owned names: world commands, macros, camera modes, transitions and cards, validator codes |
 | `docs/*.md` | the pack's prose: script format (`format.md`), rules and checklist, start page, project instructions |
 | `examples/` | example clips and stories, indexed by `examples/index.json` (which also picks the pack's examples) |
+| `bundle_blocklist.json`, `bundle_allowlist.json` | catalog bundles that are blocked, and bundles Sridhar reviewed (by content hash; docs/CATALOG_BUNDLE_SPEC.md section 8) |
+| `base_names.json` | base names as of the last release: bundles refer to them, so the build fails when one disappears. Update it only at a release: `node tools/catalog_build.mjs --release-names` |
 | `schemas/` | JSON Schemas for the authored files, checked by the build with the engine's schema checker; `schemas/bundle/` holds the catalog bundle schemas (docs/CATALOG_BUNDLE_SPEC.md section 4), which the build does not apply to catalog files |
 | `generated/` | `engine_vocab.json`, `catalog.json`, `context/` (the AI pack) |
 | `manifest.json` | catalog version, authored file list, counts, pack sizes |

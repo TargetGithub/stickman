@@ -9,7 +9,8 @@
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
 //   --no-audio             skip the audio mix
 //   --crf 16 --preset medium   x264 quality settings
-//   --bundle <dir|zip>     a catalog bundle the script declares (repeatable); credits go into meta.json
+//   --bundle <dir|zip>     a catalog bundle the script declares (repeatable; imported bundles are found in
+//                          the store without it); credits go into meta.json
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { basename, join } from "node:path";
@@ -25,9 +26,9 @@ import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
 import { catalog as baseCatalog } from "../catalog/index.js";
-import { catalogFromArgs, bundleCredits } from "./lib/bundle_args.mjs";
+import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_args.mjs";
 
-const { args, catalog, bundles } = await catalogFromArgs(process.argv.slice(2), baseCatalog); // --bundle <dir|zip>, repeatable
+const { args } = splitBundleArgs(process.argv.slice(2));
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
 const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene)$/));
@@ -38,6 +39,8 @@ if (!file) {
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "video";
 const script = JSON.parse(readFileSync(file, "utf8"));
+// --bundle <dir|zip> (repeatable), and the store (bundles/) for the bundles the script declares.
+const { catalog, bundles } = await catalogFromArgs(process.argv.slice(2), baseCatalog, script);
 const backend = await loadBackend();
 const engine = createEngine({ catalog, createCanvas: backend.createCanvas });
 const loaded = engine.load(script);

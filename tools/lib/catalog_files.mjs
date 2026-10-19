@@ -20,6 +20,9 @@ export const EXTRA_FILES = {
   "docs/transitions.json": "transitions",
   "docs/codes.json": "codes",
   "examples/index.json": "examples",
+  "bundle_blocklist.json": "bundle_blocklist",
+  "bundle_allowlist.json": "bundle_allowlist",
+  "base_names.json": "base_names",
 };
 
 /** The schema (catalog/schemas/<name>.schema.json) for an authored file. */

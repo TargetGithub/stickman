@@ -5,15 +5,24 @@
 //   node tools/catalog_build.mjs            check, then write (npm run catalog:build)
 //   node tools/catalog_build.mjs --check    check and compare only; exit 1 when a generated file is stale
 //   node tools/catalog_build.mjs --zip      also write out/context_pack.zip (npm run catalog:pack)
+//   node tools/catalog_build.mjs --release-names   first record today's base names in catalog/base_names.json
+//       (on purpose only, at a release: from then on the build fails when one of them disappears)
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { readCatalogDir, engineCodes, CATALOG_DIR } from "./lib/catalog_files.mjs";
-import { buildCatalog } from "./lib/catalog_build.mjs";
+import { buildCatalog, SCHEMA_VERSION } from "./lib/catalog_build.mjs";
+import { baseNames } from "./lib/catalog_check.mjs";
+import { formatJson } from "./lib/json_format.mjs";
 import { PACK_FILES } from "./lib/context_pack.mjs";
 import { zip } from "./lib/zip.mjs";
 
 const args = process.argv.slice(2);
+if (args.includes("--release-names")) {
+  const src = readCatalogDir();
+  writeFileSync(join(CATALOG_DIR, "base_names.json"), formatJson({ schemaVersion: SCHEMA_VERSION, names: baseNames(src.catalog) }));
+  console.log("wrote catalog/base_names.json");
+}
 const res = buildCatalog(readCatalogDir(), { codes: engineCodes() });
 if (!res.ok) {
   console.error(`catalog has ${res.issues.length} problem(s):`);

@@ -12,6 +12,7 @@ import { parseEntries, packManifest } from "./bundle/manifest.mjs";
 import { formatJson } from "./json_format.mjs";
 import { checkBundle } from "./bundle/check.mjs";
 import { catalogWithBundles } from "./bundle/load.mjs";
+import { readStored } from "./bundle_store.mjs";
 import { zip } from "./zip.mjs";
 
 const posix = (p) => p.split(sep).join("/");
@@ -45,10 +46,14 @@ export async function readBundlePath(path) {
   return readZip(new Uint8Array(readFileSync(path)), { inflateRaw: nodeInflate });
 }
 
-/** The base context for checkBundle: the default catalog, the bundle schemas, the catalog's version. */
+/** The base context for checkBundle: the default catalog, the bundle schemas, the catalog's version, the block and allow lists. */
 export function nodeContext(extra = {}) {
-  const manifest = JSON.parse(readFileSync(join(CATALOG_DIR, "manifest.json"), "utf8"));
-  return { base: catalog, schemas: readBundleSchemas(), catalogFormat: manifest.schemaVersion, catalogVersion: manifest.version, loaded: [], ...extra };
+  const json = (f) => JSON.parse(readFileSync(join(CATALOG_DIR, f), "utf8"));
+  const manifest = json("manifest.json");
+  return {
+    base: catalog, schemas: readBundleSchemas(), catalogFormat: manifest.schemaVersion, catalogVersion: manifest.version, loaded: [],
+    blocklist: json("bundle_blocklist.json").blocked, allowlist: json("bundle_allowlist.json").reviewed, ...extra,
+  };
 }
 
 /**
@@ -72,9 +77,10 @@ export function packBundleDir(dir) {
  * @returns {Promise<{ catalog, bundles: object[], failures: Array<{ path, errors }> }>}
  */
 export async function loadBundlePaths(paths, extra = {}) {
-  const ctx = nodeContext(extra);
+  const ctx = nodeContext({ determinism: false, ...extra }); // step 12 runs on import; loading for a script needs 1-11 and 14
   const pending = [];
-  for (const path of paths) pending.push({ path, ...(await readBundlePath(path)) });
+  // A path is a folder or zip; { store: pin } is a bundle in the store (read without the store's import.json).
+  for (const path of paths) pending.push(typeof path === "string" ? { path, ...(await readBundlePath(path)) } : { path: `store ${path.store.id} ${path.store.hash}`, ...readStored(path.store) });
   const failures = [];
   for (let progress = true; pending.length && progress;) {
     progress = false;
@@ -84,8 +90,8 @@ export async function loadBundlePaths(paths, extra = {}) {
       if (waits) continue; // its dependency may be later in the list
       pending.splice(pending.indexOf(p), 1);
       progress = true;
-      if (r.ok) ctx.loaded.push(r.bundle);
-      else failures.push({ path: p.path, errors: r.errors });
+      if (r.ok && !ctx.loaded.some((b) => b.hash === r.bundle.hash)) ctx.loaded.push(r.bundle); // the same bundle twice (a path and the store) loads once
+      else if (!r.ok) failures.push({ path: p.path, errors: r.errors });
     }
   }
   for (const p of pending) failures.push({ path: p.path, errors: checkBundle(p.entries, { ...ctx, preIssues: p.issues }).errors });

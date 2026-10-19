@@ -1,7 +1,9 @@
 // `--bundle <dir|zip>` for the command-line tools (CATALOG_BUNDLE_SPEC B3): check the bundles, merge them into
 // the catalog, and hand the tool its other arguments. A bundle that does not check clean stops the tool.
+// Bundles a script declares are also found in the store (bundles/<id>/<hash>/, B4) without --bundle.
 
 import { loadBundlePaths } from "./bundle_node.mjs";
+import { inStore } from "./bundle_store.mjs";
 
 /** argv without the --bundle pairs, and the bundle paths. */
 export function splitBundleArgs(argv) {
@@ -17,14 +19,17 @@ export function splitBundleArgs(argv) {
 /**
  * @param {string[]} argv  the tool's arguments
  * @param {object} base  the default catalog
+ * @param {object} [script]  when given, the bundles it declares are also taken from the store (bundles/)
  * @returns {Promise<{ args: string[], catalog: object, bundles: object[] }>}
  */
-export async function catalogFromArgs(argv, base) {
-  const { args, paths } = splitBundleArgs(argv);
-  if (paths.some((p) => !p)) {
+export async function catalogFromArgs(argv, base, script = null) {
+  const { args, paths: given } = splitBundleArgs(argv);
+  if (given.some((p) => !p)) {
     console.error("--bundle needs a bundle folder or .zip");
     process.exit(2);
   }
+  const fromStore = (Array.isArray(script?.bundles) ? script.bundles : []).filter((p) => p && inStore(p)).map((p) => ({ store: p }));
+  const paths = [...given, ...fromStore];
   if (!paths.length) return { args, catalog: base, bundles: [] };
   const { catalog, bundles, failures } = await loadBundlePaths(paths, { base });
   if (failures.length) {

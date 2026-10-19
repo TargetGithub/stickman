@@ -10,6 +10,8 @@
 //   zip      "crc": zip the bundle, then damage one entry's data
 //   ctx      { blockSelf: true }               the bundle's hash on the blocklist
 //            { flakyEngine: true }             step 12 with an engine whose every other run drifts
+//   render   true | "broken": also run the render checks (steps 12 pixels and 13) on a stub canvas whose clock
+//            counts drawing calls (a deterministic cost model); "broken" makes its fill() throw
 //   expect   [{ code, file, path }]           issues that must be reported; the reported codes are exactly these
 
 import { readFileSync } from "node:fs";
@@ -58,6 +60,7 @@ export async function fixtureInput(fx, { root = FIXTURES } = {}) {
   }
   const ctx = nodeContext();
   if (fx.ctx?.flakyEngine) ctx.createEngine = flakyEngine();
+  if (fx.render) ctx.render = stubCanvasIo({ throwOn: fx.render === "broken" ? "fill" : null });
   if (fx.ctx?.blockSelf) ctx.blocklist = [{ hash: files["bundle.json"].contentHash, reason: "test fixture" }];
   return { entries, ctx: { ...ctx, preIssues } };
 }
@@ -70,6 +73,38 @@ function flakyEngine() {
     if (++made % 2) return e;
     return { ...e, load: (s) => e.load(s), getFrame: (n) => { const f = e.getFrame(n); return { ...f, cam: { ...f.cam, x: f.cam.x + 0.5 } }; } };
   };
+}
+
+/**
+ * A stub canvas for the render checks without a canvas backend (unit tests): every drawing call is counted
+ * and the clock is the call count, so a drawing with more commands is "slower", the same on every machine.
+ */
+export function stubCanvasIo({ throwOn = null } = {}) {
+  let calls = 0;
+  const noop = () => ({ addColorStop() {} });
+  const make = (w, h) => {
+    const canvas = { width: w, height: h };
+    const ctx = new Proxy({}, {
+      get(t, k) {
+        if (k in t) return t[k];
+        if (k === "canvas") return canvas;
+        if (k === "getImageData") return () => ({ data: new Uint8ClampedArray(16) });
+        if (k === "measureText") return (s) => ({ width: String(s).length * 10, actualBoundingBoxAscent: 10, actualBoundingBoxDescent: 3 });
+        if (k === "createLinearGradient" || k === "createRadialGradient" || k === "createPattern") return noop;
+        return () => {
+          calls++;
+          if (k === throwOn) throw new Error(`stub canvas: ${k} failed`);
+        };
+      },
+      set(t, k, v) {
+        t[k] = v;
+        return true;
+      },
+    });
+    canvas.getContext = () => ctx;
+    return canvas;
+  };
+  return { createCanvas: make, now: () => calls * 0.01 };
 }
 
 export const readFixture = (file) => JSON.parse(readFileSync(file, "utf8"));

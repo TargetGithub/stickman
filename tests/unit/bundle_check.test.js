@@ -15,7 +15,7 @@ import { readBundleDir, nodeContext, nodeInflate } from "../../tools/lib/bundle_
 import { mergeBundles } from "../../catalog/merge.js";
 import { MOVE_FILES, catalog as base } from "../../catalog/index.js";
 import { zip } from "../../tools/lib/zip.mjs";
-import { FIXTURES, goodFiles, fixtureInput, readFixture } from "../helpers/bundle_fixtures.js";
+import { FIXTURES, goodFiles, fixtureInput, readFixture, stubCanvasIo } from "../helpers/bundle_fixtures.js";
 
 const BAD = `${FIXTURES}bad/`;
 const fixtures = readdirSync(BAD).filter((f) => f.endsWith(".json")).sort();
@@ -58,7 +58,12 @@ test("the worked example robo_pals packs to its committed manifest and checks cl
   const r = checkBundle(readBundleDir(`${FIXTURES}robo_pals`).entries, nodeContext());
   assert.deepEqual(r.errors, []);
   assert.deepEqual(r.warnings.map((w) => w.code), ["W_BUNDLE_UNREVIEWED"]);
-  assert.deepEqual(r.report.steps.filter((s) => s.skipped), []);
+  assert.deepEqual(r.report.steps.filter((s) => s.skipped).map((s) => s.step), [13], "no canvas: no render checks");
+  assert.equal(r.report.fullyChecked, false);
+  const rendered = checkBundle(readBundleDir(`${FIXTURES}robo_pals`).entries, { ...nodeContext(), render: stubCanvasIo() });
+  assert.deepEqual(rendered.report.steps.filter((s) => s.skipped), []);
+  assert.ok(rendered.report.fullyChecked && Object.keys(rendered.report.frameMs).length === 4);
+  assert.deepEqual(rendered.errors, []);
   assert.deepEqual(r.report.counts, { pose: 1, move: 1, body: 1, preset: 1, object: 1 });
   assert.ok(r.report.goodThemes["robo_pals:bolt"].length > 0);
   assert.equal(r.bundle.hash, files["bundle.json"].contentHash);

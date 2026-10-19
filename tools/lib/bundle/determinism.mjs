@@ -26,9 +26,12 @@ export function showcaseScripts(files, merged, pins) {
   const f = catalogFragment(files);
   const look = { body: "stickman", color: "#3fd8ff" };
   const out = [];
+  const fileOf = { body: "characters/bodies.json", face: "characters/faces.json", fx: "effects/fx.json", theme: "world/themes.json", object: "world/objects.json", prop: "world/props.json", activity: "story/activities.json" };
+  const moveFile = (name) => Object.keys(files).find((k) => k.startsWith("moves/") && Array.isArray(files[k]) && files[k].some((m) => m.name === name)) || "";
   const add = (label, build) => {
+    const [kind, name] = label.split(" ");
     try {
-      out.push({ label, script: { ...build(), bundles: pins } });
+      out.push({ label, file: kind === "move" ? moveFile(name) : fileOf[kind], path: name, script: { ...build(), bundles: pins } });
     } catch {
       // an entry the showcase cannot stage is reported by the render smoke test (step 13, B4)
     }
@@ -51,12 +54,12 @@ export function showcaseScripts(files, merged, pins) {
 export function checkDeterminism(scripts, merged, createEngine = realEngine) {
   const issues = [];
   const hashes = {};
-  for (const { label, file, script } of scripts) {
+  for (const { label, file, path, script } of scripts) {
     const a = simHash(script, merged, createEngine);
     if (a === null) continue; // scripts that do not validate are step 11's (examples) or step 13's (showcase) to report
     const b = simHash(script, merged, createEngine);
     hashes[label] = a;
-    if (a !== b) issues.push({ code: "E_BUNDLE_DETERMINISM", file: file || "", path: "", message: `${label}: two runs of the same script give different frames (${a} vs ${b}).`, fix: "Bundles hold no code, so this is an engine bug triggered by the data: report it with this bundle." });
+    if (a !== b) issues.push({ code: "E_BUNDLE_DETERMINISM", file: file || "", path: path || "", message: `${label}: two runs of the same script give different frames (${a} vs ${b}).`, fix: "Bundles hold no code, so this is an engine bug triggered by the data: report it with this bundle." });
   }
   return { issues, hashes };
 }
