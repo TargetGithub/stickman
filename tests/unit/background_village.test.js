@@ -72,5 +72,5 @@ for (const name of THEMES) {
   });
 }
 test("Peepa reads in his throne room", () => {
-  assert.ok(contrastRatio("#7b4bd8", catalog.themes.gloom_throne_room.characterBg) >= 1.6);
+  assert.ok(contrastRatio("#c9a6ff", catalog.themes.gloom_throne_room.characterBg) >= 1.6);
 });

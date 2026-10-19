@@ -118,7 +118,7 @@ Engine notes use today's names (body plans, appearance options, voices) where th
 ### Villains
 
 #### Peepa (main villain)
-- **Look:** tall and thin, dark violet (`#7b4bd8`), two curly golden **horns** (**NEW** accessory `horns`), oval glowing eyes, thick angry brows, a long dark cape, a smirk. Carries the **Gloom Horn** (**NEW** holdable), a curled horn trumpet that blows grey mist and drains colour. `body: slim`, `scale 1.15`, `appearance: { eyes: oval, brows: thick, accessories: { horns: "#e6b84a", cape: "#2a1b3d" } }`.
+- **Look:** tall and thin, lavender violet (`#c9a6ff`; the darker #7b4bd8 failed the contrast check on Tokyo and the hill), two curly golden **horns** (**NEW** accessory `horns`), oval glowing eyes, thick angry brows, a long dark cape, a smirk. Carries the **Gloom Horn** (**NEW** holdable), a curled horn trumpet that blows grey mist and drains colour. `body: slim`, `scale 1.15`, `appearance: { eyes: oval, brows: thick, accessories: { horns: "#e6b84a", cape: "#2a1b3d" } }`.
 - **Personality:** dramatic, vain, sarcastic, secretly lonely. Talks to himself, gives himself titles ("Peepa the Grey, Lord of Gloom"), hates laughter, loves his own echo. Funny to kids, scary enough to make the stakes real.
 - **Powers:** the Gloom Horn (grey mist: freezes friends grey, which can be undone), Gloom Blasts (purple energy), shadow-teleport (`teleport`), and in the finale **Giant Peepa** (scale 3, aura, after absorbing six crystals, ep 20-24).
 - **Backstory (revealed ep 20):** a horned little boy laughed at by other kids, who decided the world would be better grey and silent. He is not forgiven for what he did, but he is offered a way back.
