@@ -3,14 +3,18 @@
 //
 //   node tools/bundle.mjs check <dir|zip> [--dep <dir|zip>]... [--json]
 //       steps 1-11 and 14; prints every issue with its fix; exit 1 on errors
+//   node tools/bundle.mjs check --fixture <tests/fixtures/bundles/bad/CODE.json>
+//       builds a bad test fixture (a patch over a good bundle) in memory, checks it, compares with its expect
 //   node tools/bundle.mjs pack <dir> --i-made-this [--out <file.zip>]
 //       writes files[] and contentHash into <dir>/bundle.json, zips the folder, then checks the zip
 
-import { writeFileSync } from "node:fs";
+import { writeFileSync, readFileSync, statSync } from "node:fs";
+import { dirname } from "node:path";
 import { checkBundle } from "./lib/bundle/check.mjs";
 import { readBundlePath, nodeContext, packBundleDir } from "./lib/bundle_node.mjs";
+import { fixtureInput, readFixture } from "./lib/bundle_fixture.mjs";
 
-const USAGE = "usage: node tools/bundle.mjs check <dir|zip> [--dep <dir|zip>]... [--json]\n       node tools/bundle.mjs pack <dir> --i-made-this [--out <file.zip>]";
+const USAGE = "usage: node tools/bundle.mjs check <dir|zip> [--dep <dir|zip>]... [--json]\n       node tools/bundle.mjs check --fixture <file.json>\n       node tools/bundle.mjs pack <dir> --i-made-this [--out <file.zip>]";
 const [cmd, target, ...rest] = process.argv.slice(2);
 const opt = (name) => (rest.includes(name) ? rest[rest.indexOf(name) + 1] : null);
 const deps = rest.flatMap((a, i) => (a === "--dep" ? [rest[i + 1]] : []));
@@ -24,7 +28,25 @@ function print(r, label) {
   console.log(`  steps: ${ran.map((s) => `${s.step} (${s.ms} ms)`).join(", ")}${r.report.steps.some((s) => s.skipped) ? `; skipped ${r.report.steps.filter((s) => s.skipped).map((s) => s.step).join(", ")}` : ""}`);
 }
 
+/** A bundle is a folder or a zip; anything else gets a plain message instead of a zip error. */
+function bundleOrExit(path) {
+  let st;
+  try {
+    st = statSync(path);
+  } catch {
+    console.error(`'${path}' does not exist.`);
+    process.exit(2);
+  }
+  if (st.isDirectory()) return;
+  const head = readFileSync(path).subarray(0, 2).toString("latin1");
+  if (head === "PK") return;
+  const hint = path.endsWith(".json") ? (path.includes("fixtures/bundles/bad/") ? " This is a test fixture (a patch over a good bundle): use --fixture." : " A bundle is the folder that holds bundle.json, not the file.") : "";
+  console.error(`'${path}' is not a bundle: pass a bundle folder or a .zip.${hint}`);
+  process.exit(2);
+}
+
 async function check(path, ctx) {
+  bundleOrExit(path);
   const { entries, issues } = await readBundlePath(path);
   return checkBundle(entries, { ...ctx, preIssues: issues });
 }
@@ -43,7 +65,19 @@ async function withDeps() {
   return ctx;
 }
 
-if (cmd === "check" && target) {
+if (cmd === "check" && target === "--fixture" && rest[0]) {
+  const file = rest[0];
+  const fx = readFixture(file);
+  const { entries, ctx } = await fixtureInput(fx, { root: dirname(dirname(file)) });
+  const r = checkBundle(entries, ctx);
+  console.log(`${file}: ${fx.why}`);
+  print(r, `  ${fx.from} with this change`);
+  const want = fx.expect.map((e) => e.code).sort();
+  const got = [...new Set([...r.errors, ...r.warnings].map((i) => i.code).filter((c) => c !== "W_BUNDLE_UNREVIEWED" || want.includes(c)))].sort();
+  const same = JSON.stringify([...new Set(want)]) === JSON.stringify(got);
+  console.log(`  expected ${[...new Set(want)].join(", ")}: ${same ? "matches" : `got ${got.join(", ") || "nothing"}`}`);
+  process.exit(same ? 0 : 1);
+} else if (cmd === "check" && target) {
   const r = await check(target, await withDeps());
   if (rest.includes("--json")) console.log(JSON.stringify({ ok: r.ok, errors: r.errors, warnings: r.warnings, report: r.report, bundle: r.bundle && { id: r.bundle.id, version: r.bundle.version, hash: r.bundle.hash } }, null, 2));
   else print(r, target);

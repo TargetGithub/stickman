@@ -185,3 +185,15 @@ test("2 MB of bundle files are checked (and refused) in under 2 s", () => {
   assert.ok(r.errors.some((e) => e.code === "E_BUNDLE_SCHEMA"), "refused by the schemas (64 moves per file)");
   assert.ok(ms < 2000, `${ms.toFixed(0)} ms`);
 });
+
+test("bundle.mjs: --fixture checks a bad fixture, and a non-bundle file gets a plain message", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const cli = fileURLToPath(new URL("../../tools/bundle.mjs", import.meta.url));
+  const fx = spawnSync(process.execPath, [cli, "check", "--fixture", `${BAD}E_BUNDLE_REF.json`], { encoding: "utf8" });
+  assert.equal(fx.status, 0, fx.stdout + fx.stderr);
+  assert.match(fx.stdout, /E_BUNDLE_REF .*robo_pals:wind_up/);
+  assert.match(fx.stdout, /expected E_BUNDLE_REF: matches/);
+  const raw = spawnSync(process.execPath, [cli, "check", `${BAD}E_BUNDLE_REF.json`], { encoding: "utf8" });
+  assert.equal(raw.status, 2);
+  assert.match(raw.stderr, /is not a bundle: pass a bundle folder or a \.zip\. This is a test fixture .*--fixture/);
+});
