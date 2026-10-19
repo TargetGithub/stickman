@@ -17,6 +17,8 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | dodge_roll | movement | 0.75 | travel=200 | - | evasive | Rolls forward along the floor; hits pass through mid-roll. |
 | land_roll | movement | 0.75 | travel=220 | - | - | Lands from a fall or jump and rolls out of it forward. |
 | side_step | movement | 0.4 | travel=70 | - | evasive | A short sidestep out of the line of an attack. |
+| swim | movement | 1 | stride=200 | - | loop: distance/cycles/to | Swims along face-down, arms reaching in turn and legs kicking, floating above the floor; loops until `distance` px or `cycles`. |
+| sink | movement | 3 | - | - | holds pose | Sinks slowly from high up to the floor, limp, arms floating up (underwater, a dream fall); holds at the end. |
 | jab | attack | 0.36 | damage=5 travel=10 | - | - | A fast, light lead-hand punch; good for opening an exchange. |
 | cross | attack | 0.5 | damage=9 travel=22 | - | - | A straight rear-hand punch with the hips turned in. |
 | front_kick | attack | 0.7 | damage=10 travel=30 | - | - | A straight push kick to the middle. |
@@ -138,7 +140,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | faint | defeat | 1.8 | - | - | story only, counts as defeated, holds pose | Faints and drops to the floor; counts as defeated. |
 | vanish | defeat | 2.6 | - | - | story only, counts as defeated, holds pose | Dissolves away in sparkles; counts as defeated until return. |
 | ghost | defeat | 3.2 | - | - | story only, counts as defeated, holds pose | Rises up as a ghost with a halo; counts as defeated (general audience only). |
-| captured | defeat | 1.8 | cage=1 | - | story only, counts as defeated, holds pose | Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated. |
+| captured | defeat | 1.8 | cage=1 net=0 | - | story only, counts as defeated, holds pose | Rope binds the arms, then a cage drops over them (cage 0: rope only; net 1: a fishing net); defeated. |
 | petrify | defeat | 1.6 | dur=1.5 | - | story only, counts as defeated, holds pose | Turns to stone grey where it stands over params.dur (0: at once); defeated until return. |
 | flee | defeat | 0.6 | stride=330 | - | loop: distance/cycles/to, story only | Runs off the nearer stage edge away from everyone and fades out. |
 | return | defeat | 1.6 | - | - | story only | A vanished character re-forms from sparkles. |
@@ -177,3 +179,4 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | catch_mouth | life | 0.6 | - | - | - | A dog dips its head to snap up a ball in its mouth. |
 | drop_ball | life | 0.9 | - | - | - | A dog sits up proudly and gives back the ball in its mouth. |
 | bite_hold | interaction | 1.6 | - | - | paired: partner plays hop_partner, story only | A dog grabs a runaway's trouser leg and tugs, stopping them (comic, no harm; partner plays hop_partner). |
+| swim_dog | movement | 0.6 | stride=140 | - | loop: distance/cycles/to | A dog paddles along, head up above its body, legs churning; floats above the floor; loops until `distance` px or `cycles`. |

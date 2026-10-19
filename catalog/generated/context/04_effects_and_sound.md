@@ -30,6 +30,8 @@
 | gloom_mist | feet, lingers | Rolling grey-purple mist from the Gloom Horn: slow wide puffs spreading along the floor for about 3 s, low alpha. |
 | colour_return | body | Colour comes back: a glow, a ring and rainbow sparkles bursting out (with set_grade from). |
 | chilli_smoke | feet, lingers | Red-orange chilli smoke rolling in low and wide for about 3 s, with red specks (beats add the sneezes). |
+| whirlpool | feet, lingers | A big spinning whirlpool on the water: rings swirling in and foam spinning round for about 3 s. |
+| splash | feet | A water splash: droplets fly up and fall, with a white ring on the surface. |
 
 Hit effects come by themselves from hits, explosions and props; do not list them: impact_small, impact_med, impact_big, block_spark, spark, explosion, smoke, bolt, prop_break, energy_ball, bubble_pop, camera_flash.
 
@@ -63,6 +65,6 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - comic: pop, boing, slip, bonk, pow
 - crowd: crowd_cheer, crowd_gasp
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn, pirate_horn
-- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick
+- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash
 - magic: sparkle, magic_sparkle, crystal_chime
 - voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze

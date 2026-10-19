@@ -632,5 +632,177 @@
       }
     ],
     "characterBg": "#3d8fc0"
+  },
+  "pirate_deck": {
+    "description": "The deck of a cartoon pirate ship on the lake: planks, a rail, a tall mast with a patched sail and a fish flag, barrels and a steering wheel.",
+    "tags": [
+      "story",
+      "outdoor",
+      "ship",
+      "pirate",
+      "lake",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5fb8f0",
+      "bottom": "#d4efff"
+    },
+    "ground": {
+      "color": "#a8763f",
+      "line": "#7a5230"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.82,
+        "y": 0.14,
+        "r": 58,
+        "color": "#fff4c0",
+        "glow": "rgba(255, 240, 190, 0.5)"
+      },
+      {
+        "kind": "clouds",
+        "factor": 0.05,
+        "color": "rgba(255, 255, 255, 0.9)",
+        "count": 5,
+        "top": 0.05,
+        "band": 0.2
+      },
+      {
+        "kind": "water",
+        "factor": 0.1,
+        "top": -420,
+        "bottom": -120,
+        "color": "#4fa8d8",
+        "color2": "#3d8fc0",
+        "leaf": "#3f9a4a",
+        "flower": "#ff8fc0",
+        "flowers": 0.2,
+        "spacing": 500
+      },
+      {
+        "kind": "ship_rail",
+        "factor": 0.6,
+        "spacing": 1100,
+        "rail": 130,
+        "masts": [
+          1200
+        ],
+        "wheel": 3000,
+        "wood": "#7a5230",
+        "sail": "#f4ead2",
+        "patch": "#d9b77e",
+        "flag": "#1d3557",
+        "rope": "#c9a46c",
+        "barrel": "#9a6a38"
+      },
+      {
+        "kind": "planks",
+        "color": "#8a5e32",
+        "spacing": 120
+      }
+    ],
+    "characterBg": "#7a5230"
+  },
+  "crystal_cave": {
+    "description": "A big cave inside a lake island, glowing blue crystals in the walls, soft blue light and piles of treasure.",
+    "tags": [
+      "story",
+      "indoor",
+      "cave",
+      "crystal",
+      "treasure",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#0c1a2e",
+      "bottom": "#1d3a5a"
+    },
+    "ground": {
+      "color": "#2a3c4e",
+      "line": "#18242f"
+    },
+    "layers": [
+      {
+        "kind": "cave",
+        "factor": 0.35,
+        "wall": "#142838",
+        "color": "#0c1a28",
+        "ceiling": -760,
+        "step": 140,
+        "depth": 160,
+        "rocks": 260
+      },
+      {
+        "kind": "crystals",
+        "factor": 0.55,
+        "color": "#4fc3ff",
+        "glow": "rgba(79, 195, 255, A)",
+        "spacing": 460,
+        "height": 190
+      },
+      {
+        "kind": "lanterns",
+        "factor": 0.7,
+        "color": "#ffd23f",
+        "y": -460,
+        "spacing": 900,
+        "glow": "rgba(255, 210, 63, 0.3)"
+      }
+    ],
+    "characterBg": "#1d3a5a"
+  },
+  "underwater": {
+    "description": "Underwater in a clear lake: blue-green water, swaying seaweed, round stones on a sandy floor and rising bubbles. Calm, not dark.",
+    "tags": [
+      "story",
+      "underwater",
+      "lake",
+      "water",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5cc8d8",
+      "bottom": "#1f6f8f"
+    },
+    "ground": {
+      "color": "#d8c08a",
+      "line": "#b8a06a"
+    },
+    "layers": [
+      {
+        "kind": "hills",
+        "factor": 0.15,
+        "color": "#2a7f8f",
+        "height": 160,
+        "step": 300
+      },
+      {
+        "kind": "seaweed",
+        "factor": 0.4,
+        "spacing": 260,
+        "height": 420,
+        "color": "#2f8a5a",
+        "color2": "#3fa06a",
+        "width": 12
+      },
+      {
+        "kind": "seaweed",
+        "factor": 0.8,
+        "spacing": 520,
+        "height": 300,
+        "color": "#3fae6a",
+        "color2": "#4fbe7a",
+        "width": 16
+      },
+      {
+        "kind": "bubbles_bg",
+        "count": 50,
+        "speed": 80,
+        "color": "rgba(255, 255, 255, 0.55)"
+      }
+    ],
+    "characterBg": "#1f6f8f"
   }
 }

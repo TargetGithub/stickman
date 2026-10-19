@@ -81,13 +81,13 @@
   },
   {
     "name": "captured",
-    "description": "Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated.",
+    "description": "Rope binds the arms, then a cage drops over them (cage 0: rope only; net 1: a fishing net); defeated.",
     "tags": ["defeat", "kids", "villain"],
     "category": "defeat",
     "duration": 1.8,
     "face": "scared",
     "flags": { "hold": true, "defeat": true },
-    "params": { "cage": 1 },
+    "params": { "cage": 1, "net": 0 },
     "keys": [
       { "t": 0, "pose": "stand", "ease": "outQuad" },
       {

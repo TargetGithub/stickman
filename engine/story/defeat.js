@@ -2,7 +2,7 @@
 // The moves live in catalog/moves/defeat.json; their event flags are handled here:
 //   fade { to, dur }  opacity over story time (to 0: the character is hidden at the end)
 //   reform            a vanished character reappears (return); a petrified one thaws instead (a "thaw" event)
-//   cage              a cage object drops over the character (captured)
+//   cage              a cage object drops over the character (captured; params.net 1: a fishing net instead)
 // flee runs to the nearer stage edge away from the closest character, then fades out.
 // A defeated character keeps the move's face (scared in a cage) instead of the knocked-out face.
 // petrify (A3) holds the pose (keepPose) and marks the actor petrified; the renderer greys it from the
@@ -24,8 +24,10 @@ export function defeatMoveEvent(world, actor, e, events, t) {
     actor.alpha = 0;
     actor.fade = { a0: 0, a1: 1, t0: t, dur: 1 };
   }
-  if (e.cage && world.objects && (actor.move?.params.cage ?? 1)) {
-    events.push(...spawnObject(world.objects, { object: "cage", id: `${actor.id}_cage`, x: actor.x, layer: "front", state: "closed" }, t));
+  const net = !!actor.move?.params.net && !!world.objects?.ctx.catalog.objects?.fishing_net;
+  if (e.cage && world.objects && (net || (actor.move?.params.cage ?? 1))) {
+    const object = net ? "fishing_net" : "cage";
+    events.push(...spawnObject(world.objects, { object, id: `${actor.id}_${object}`, x: actor.x, layer: "front", state: "closed" }, t));
   }
 }
 

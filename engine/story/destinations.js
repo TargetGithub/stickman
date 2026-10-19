@@ -9,7 +9,7 @@
 import { STAGE } from "../config.js";
 
 /** Moves that take a `to`. */
-export const TO_MOVES = ["walk", "run", "sneak", "tiptoe", "walk_together"];
+export const TO_MOVES = ["walk", "run", "sneak", "tiptoe", "walk_together", "swim"];
 
 const ENTER_FADE = 0.35; // s
 const EXIT_FADE = 0.4; // s

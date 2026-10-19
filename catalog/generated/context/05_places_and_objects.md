@@ -25,6 +25,9 @@
 | spice_kitchen | #9a4a30 | bright: light blue, yellow, orange, pink, white | A big fort kitchen: brick walls, shelves of colourful spice jars and sacks, strings of chillies, warm orange light. |
 | spice_cellar | #4a3830 | bright: light blue, yellow, orange, pink, white | The dark spice cellar under the fort: grooved stone walls, dusty sacks and a few jars, one small vent of light. |
 | lotus_lake | #3d8fc0 | strong or dark: red, blue, purple, dark green, black | A wide calm lake with pink lotus flowers and round leaves, fishing huts on stilts, hills far behind; a sandy shore. |
+| pirate_deck | #7a5230 | bright: light blue, yellow, orange, pink, white | The deck of a cartoon pirate ship on the lake: planks, a rail, a tall mast with a patched sail and a fish flag, barrels and a steering wheel. |
+| crystal_cave | #1d3a5a | bright: light blue, yellow, orange, pink, white | A big cave inside a lake island, glowing blue crystals in the walls, soft blue light and piles of treasure. |
+| underwater | #1f6f8f | bright: light blue, yellow, orange, pink, white | Underwater in a clear lake: blue-green water, swaying seaweed, round stones on a sandy floor and rising bubbles. Calm, not dark. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -89,6 +92,11 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | lever | static | up/down | A wall lever on a block: state up or down (it opens the trapdoor in a story). |
 | trapdoor | static | closed/open | A plank trapdoor in the floor: closed or open (someone on it drops out of the scene with jump_down). |
 | rope_bridge | breakable | whole/broken | A wooden rope bridge across a gap; set_object state broken drops it in two hanging halves. |
+| pirate_ship | vehicle | - | Captain Kanta's small pirate ship on the water: round hull, portholes, a patched sail and a fish flag (set_object toX or exit). |
+| rowboat | vehicle | - | A small wooden rowboat with two oars, sitting in the water (ride it; set_object toX). |
+| raft | breakable | whole/broken | A wobbly raft of tied logs on the water; set_object state broken: it comes apart and sinks. |
+| fishing_net | static | closed/open | A fishing net with floats: closed drops over someone (captured with wrap net), open lies in a heap. |
+| treasure_chest | static | closed/open | A wooden treasure chest with gold trim; open shows shiny coins. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

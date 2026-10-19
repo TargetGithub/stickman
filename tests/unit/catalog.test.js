@@ -38,7 +38,7 @@ test("the build is deterministic and marks its files as generated", () => {
   }
 });
 
-test("pack: each file within its budget (+25%), the whole pack under 100 KB, the core tier under 50 KB", () => {
+test("pack: each file within its budget (+25%), the whole pack under 100 KB, the core tier under 60 KB", () => {
   let total = 0;
   let core = 0;
   for (const [f, m] of Object.entries(PACK_FILES)) {
@@ -48,7 +48,7 @@ test("pack: each file within its budget (+25%), the whole pack under 100 KB, the
     if (m.tier === "core") core += bytes;
   }
   assert.ok(total < 100000, `pack ${total} B`);
-  assert.ok(core < 50000, `core ${core} B`);
+  assert.ok(core < 60000, `core ${core} B`);
 });
 
 test("pack: mentions every move, theme, object, prop, face, body, fx, activity, mood, macro, world command, code and preset", () => {

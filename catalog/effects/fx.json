@@ -1248,5 +1248,138 @@
         ]
       }
     ]
+  },
+  "whirlpool": {
+    "description": "A big spinning whirlpool on the water: rings swirling in and foam spinning round for about 3 s.",
+    "tags": [
+      "water",
+      "lake",
+      "danger",
+      "lingers"
+    ],
+    "anchor": "feet",
+    "sustain": {
+      "duration": 3,
+      "rate": 6
+    },
+    "layers": [
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          1.2,
+          1.2
+        ],
+        "size": [
+          260,
+          40
+        ],
+        "width": 8,
+        "color": "#bfe6f5",
+        "alpha": [
+          0.7,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 3,
+        "offset": 150,
+        "angle": [
+          -180,
+          180
+        ],
+        "speed": [
+          160,
+          260
+        ],
+        "drag": 1.5,
+        "life": [
+          0.8,
+          1.2
+        ],
+        "size": [
+          9,
+          3
+        ],
+        "color": [
+          "#ffffff",
+          "#bfe6f5"
+        ],
+        "alpha": [
+          0.9,
+          0
+        ]
+      }
+    ]
+  },
+  "splash": {
+    "description": "A water splash: droplets fly up and fall, with a white ring on the surface.",
+    "tags": [
+      "water",
+      "lake",
+      "impact"
+    ],
+    "anchor": "feet",
+    "layers": [
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.5,
+          0.5
+        ],
+        "size": [
+          20,
+          140
+        ],
+        "width": 6,
+        "color": "#ffffff",
+        "alpha": [
+          0.8,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 22,
+        "offset": 10,
+        "angle": [
+          -160,
+          -20
+        ],
+        "speed": [
+          260,
+          560
+        ],
+        "drag": 0.4,
+        "gravity": 1400,
+        "life": [
+          0.6,
+          1
+        ],
+        "size": [
+          9,
+          4
+        ],
+        "color": [
+          "#bfe6f5",
+          "#ffffff",
+          "#4fa8d8"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
   }
 }

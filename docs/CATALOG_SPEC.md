@@ -163,7 +163,7 @@ Each file is Markdown with compact tables. A model reads them as project knowled
 | `07_rules_and_codes.md` | Validation rules, every validator code with its fix, limits, the "before you answer" checklist | 9 KB |
 | `08_examples.md` | One clip, one story scene of each kind (play, talk, fight, defeat, journey), one outline | 12 KB |
 
-The whole pack stays under about 100 KB (about 25,000 tokens; raised from 80 KB in 2026-10 for the Doopi & Friends assets, the core tier still under 50 KB), and the build reports each file's size. A test fails when a file exceeds its budget by more than 25%, so the pack stays cheap to attach.
+The whole pack stays under about 100 KB (about 25,000 tokens; raised from 80 KB in 2026-10 for the Doopi & Friends assets, the core tier under 60 KB), and the build reports each file's size. A test fails when a file exceeds its budget by more than 25%, so the pack stays cheap to attach.
 
 **Format decision: Markdown only (no JSON copy in the pack).** The aim is the most knowledge for the fewest tokens:
 - **Tables over JSON.** A Markdown table states each column name once; JSON repeats every key on every row (about 2-3 times the tokens for the move list). Models read both equally well.

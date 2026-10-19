@@ -716,6 +716,92 @@
       { "t": 1, "pose": { "lean": 2, "head": 14, "dx": -8 } }
     ],
     "events": [{ "t": 0.2, "sfx": "growl_soft" }]
+  },
+  {
+    "name": "swim_dog",
+    "description": "A dog paddles along, head up above its body, legs churning; floats above the floor; loops until `distance` px or `cycles`.",
+    "tags": [
+      "dog",
+      "travel",
+      "water",
+      "loop"
+    ],
+    "rig": "quadruped",
+    "category": "movement",
+    "duration": 0.6,
+    "params": {
+      "stride": 140
+    },
+    "flags": {
+      "loop": true
+    },
+    "root": [
+      {
+        "t": 0,
+        "dx": 0,
+        "dy": -110,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "dx": "stride*0.5",
+        "dy": -118,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "dx": "stride",
+        "dy": -110
+      }
+    ],
+    "keys": [
+      {
+        "t": 0,
+        "pose": {
+          "lean": 12,
+          "head": -20,
+          "lUA": 50,
+          "lFA": 60,
+          "rUA": -10,
+          "rFA": 20,
+          "lTH": 40,
+          "lSH": 60,
+          "rTH": -20,
+          "rSH": 20
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "pose": {
+          "lean": 12,
+          "head": -20,
+          "lUA": -10,
+          "lFA": 20,
+          "rUA": 50,
+          "rFA": 60,
+          "lTH": -20,
+          "lSH": 20,
+          "rTH": 40,
+          "rSH": 60
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": {
+          "lean": 12,
+          "head": -20,
+          "lUA": 50,
+          "lFA": 60,
+          "rUA": -10,
+          "rFA": 20,
+          "lTH": 40,
+          "lSH": 60,
+          "rTH": -20,
+          "rSH": 20
+        }
+      }
+    ]
   }
 ]
-
