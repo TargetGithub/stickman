@@ -6,7 +6,10 @@
 
 import { STAGE } from "../config.js";
 import { drawPaths } from "./paths.js";
-import { SHAPES } from "./object_shapes.js";
+import { SHAPES as BASE_SHAPES } from "./object_shapes.js";
+import { PLACE_SHAPES } from "./object_shapes_places.js";
+
+const SHAPES = { ...BASE_SHAPES, ...PLACE_SHAPES };
 
 /** Shape names objects can use as `draw` (drafts and the validator check against this list). */
 export const OBJECT_SHAPES = () => Object.keys(SHAPES);
