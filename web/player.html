@@ -65,7 +65,8 @@
   <script type="module">
     import { createEngine, formatIssues } from "../engine/index.js";
     import { catalog } from "../catalog/index.js";
-    import { loadBundleZips } from "./lib/bundles.js";
+    import { checkSources, zipEntries, storeEntries } from "./lib/bundles.js";
+    import { keptBundle } from "./lib/bundle_store.js";
 
     const $ = (id) => document.getElementById(id);
     const canvas = $("view");
@@ -73,6 +74,45 @@
     const createCanvas = (w, h) => Object.assign(document.createElement("canvas"), { width: w, height: h });
     let engine = createEngine({ catalog, createCanvas });
     let current = null; // [script, label]: loaded again when the bundles change
+    let picked = []; // bundle zips chosen with "Bundles" ({ name, entries, issues })
+    let found = []; // bundles a script declared, found kept in this browser or in the project store
+    let loadedBundles = [];
+
+    /** Check the picked and found bundles and rebuild the engine with them. */
+    async function useBundles() {
+      const { catalog: merged, bundles, results } = await checkSources([...picked, ...found], catalog, { determinism: false });
+      engine = createEngine({ catalog: merged, createCanvas });
+      loadedBundles = bundles;
+      return results;
+    }
+
+    /** A script's declared bundles that are not loaded yet: from IndexedDB (bundles.html), then /bundles/. */
+    async function findDeclared(script) {
+      const pins = Array.isArray(script?.bundles) ? script.bundles.filter((p) => p?.hash) : [];
+      let added = false;
+      for (const pin of pins) {
+        if (loadedBundles.some((b) => b.hash === pin.hash) || found.some((f) => f.hash === pin.hash)) continue;
+        const kept = await keptBundle(pin.hash).catch(() => null);
+        const src = kept ? { name: `${pin.id} (kept here)`, ...(await zipEntries(kept.zip)) } : await storeEntries(pin).then((e) => e && { name: `${pin.id} (project store)`, ...e }).catch(() => null);
+        if (src) (found.push({ ...src, hash: pin.hash }), (added = true));
+      }
+      if (added) await useBundles();
+    }
+
+    /** Credits for the bundles the script declares, with the NC badge, and what is missing. */
+    function showCredits(script, results = []) {
+      const pins = Array.isArray(script?.bundles) ? script.bundles : [];
+      const lines = pins.map((p) => {
+        const b = loadedBundles.find((x) => x.hash === p.hash);
+        if (!b) return `✗ ${p.id} ${p.version}: missing. Keep its zip on the Bundles page (bundles.html) or run node tools/bundle.mjs import <zip>.`;
+        const m = b.manifest;
+        return `✓ ${m.name} ${b.version} by ${m.author.name} · ${m.license}${m.license === "CC-BY-NC-4.0" ? " · NC: do not monetize" : ""}`;
+      });
+      const failed = results.filter((r) => !r.ok).map((r) => `✗ ${r.name}: ${r.errors.length} error(s)\n${formatIssues(r.errors.slice(0, 4))}`);
+      const extra = loadedBundles.filter((b) => !pins.some((p) => p.hash === b.hash)).map((b) => `· ${b.id} ${b.version} loaded (not used by this script)`);
+      $("bundles").textContent = [...lines, ...failed, ...extra].join("\n") || "none loaded";
+      $("bundles").className = lines.some((l) => l.startsWith("✗")) || failed.length ? "err" : lines.length ? "ok" : "";
+    }
     let total = 0;
     let frame = 0;
     let playing = false;
@@ -103,9 +143,11 @@
       $("frameLabel").textContent = `frame ${frame} / ${total - 1}  ·  ${(frame / 60).toFixed(2)}s${scenes.length > 1 && sc ? `  ·  scene ${sc.index} (${sc.id})` : ""}`;
     }
 
-    function load(script, label) {
+    async function load(script, label) {
       playing = false;
       current = [script, label];
+      await findDeclared(script);
+      showCredits(script);
       const r = engine.load(script);
       const issues = [...r.errors, ...r.warnings];
       $("status").innerHTML = r.ok
@@ -148,13 +190,11 @@
     $("bundleFiles").addEventListener("change", async () => {
       const zips = [...$("bundleFiles").files];
       $("bundles").textContent = `checking ${zips.length} bundle(s)...`;
-      const { catalog: merged, results } = await loadBundleZips(zips, catalog);
-      engine = createEngine({ catalog: merged, createCanvas });
-      $("bundles").textContent = results.map((r) => r.ok
-        ? `✓ ${r.bundle.id} ${r.bundle.version} (${r.bundle.manifest.license}, ${r.bundle.manifest.author.name})\n  ${r.bundle.hash}${r.warnings.some((w) => w.code === "W_BUNDLE_UNREVIEWED") ? "\n  not reviewed" : ""}`
-        : `✗ ${r.name}: ${r.errors.length} error(s)\n${formatIssues(r.errors.slice(0, 6))}`).join("\n") || "none loaded";
-      $("bundles").className = results.every((r) => r.ok) ? "ok" : "err";
-      if (current) load(...current);
+      picked = [];
+      for (const z of zips) picked.push({ name: z.name, ...(await zipEntries(await z.arrayBuffer())) });
+      const results = await useBundles();
+      if (current) await load(...current);
+      showCredits(current?.[0], results);
     });
     $("scrub").addEventListener("input", () => {
       playing = false;

@@ -4,7 +4,7 @@
 // Bundles are stored by hash and never edited after import. `npm run serve` serves the same folder at
 // /bundles/, so the player and the showcase read what the tools imported.
 
-import { existsSync, mkdirSync, readdirSync, writeFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { readBundleDir } from "./bundle_node.mjs";
@@ -50,6 +50,21 @@ export function listStore(root = storeRoot()) {
       return [];
     }
   });
+}
+
+/**
+ * bundles/index.json: what pages read to list the project store over HTTP (the showcase, the player).
+ * Rewritten after every import.
+ */
+export function writeStoreIndex(root = storeRoot()) {
+  const rows = listStore(root).map((b) => {
+    const m = JSON.parse(readFileSync(join(b.dir, "bundle.json"), "utf8"));
+    return { id: b.id, version: m.version, hash: b.hash, name: m.name, license: m.license };
+  });
+  mkdirSync(root, { recursive: true });
+  writeFileSync(join(root, "index.json"), `${JSON.stringify({ bundles: rows }, null, 2)}
+`);
+  return rows;
 }
 
 /** A stored bundle's entries, without the store's own import.json. */

@@ -13,6 +13,8 @@
 //       already in the store are found there
 //   node tools/bundle.mjs list
 //       the bundles in the store
+//   node tools/bundle.mjs pack-context <dir|zip> [--out <file.md>]
+//       the bundle's AI context file (bundle_<id>.md, 6 KB) to attach next to the base pack in a chat project
 //   node tools/bundle.mjs sheet <dir|zip> [--out <file.png>]
 //       the contact sheet for review: every pose, move, body plan, preset, face, FX, theme, object, prop, activity
 
@@ -22,7 +24,8 @@ import { checkBundle } from "./lib/bundle/check.mjs";
 import { contactSheet } from "./lib/bundle/render.mjs";
 import { catalogWithBundles } from "./lib/bundle/load.mjs";
 import { readBundlePath, nodeContext, packBundleDir } from "./lib/bundle_node.mjs";
-import { storeRoot, writeToStore, listStore, inStore, readStored } from "./lib/bundle_store.mjs";
+import { storeRoot, writeToStore, writeStoreIndex, listStore, inStore, readStored } from "./lib/bundle_store.mjs";
+import { bundleContextPack } from "./lib/bundle/context.mjs";
 import { fixtureInput, readFixture } from "./lib/bundle_fixture.mjs";
 import { loadBackend } from "./lib/canvas.mjs";
 
@@ -31,6 +34,7 @@ const USAGE = `usage: node tools/bundle.mjs check <dir|zip> [--dep <dir|zip>]...
        node tools/bundle.mjs pack <dir> --i-made-this [--out <file.zip>]
        node tools/bundle.mjs import <dir|zip> [--dep <dir|zip>]... [--no-render]
        node tools/bundle.mjs list
+       node tools/bundle.mjs pack-context <dir|zip> [--out <file.md>]
        node tools/bundle.mjs sheet <dir|zip> [--out <file.png>]`;
 const [cmd, target, ...rest] = process.argv.slice(2);
 const opt = (name) => (rest.includes(name) ? rest[rest.indexOf(name) + 1] : null);
@@ -137,6 +141,7 @@ if (cmd === "check" && target === "--fixture" && rest[0]) {
     importedFrom: target, catalogVersion: ctx.catalogVersion, fullyChecked: r.report.fullyChecked, reviewed: !r.warnings.some((w) => w.code === "W_BUNDLE_UNREVIEWED"),
     warnings: r.warnings, steps: r.report.steps, simHashes: r.report.simHashes || {},
   });
+  writeStoreIndex();
   console.log(`imported ${r.bundle.id} ${r.bundle.version} into ${dir}\nscripts declare it with: ${JSON.stringify({ id: r.bundle.id, version: r.bundle.version, hash: r.bundle.hash })}`);
 } else if (cmd === "list") {
   const all = listStore();
@@ -151,6 +156,17 @@ if (cmd === "check" && target === "--fixture" && rest[0]) {
     }
     console.log(`${b.id} ${m.version}  ${b.hash}  ${m.license}${info.reviewed ? "  reviewed" : "  not reviewed"}${info.fullyChecked === false ? "  not fully checked" : ""}`);
   }
+} else if (cmd === "pack-context" && target) {
+  const { r, ctx } = await check(target, { render: null, determinism: false });
+  if (!r.ok) {
+    print(r, target);
+    process.exit(1);
+  }
+  const text = bundleContextPack(r.bundle, catalogWithBundles(ctx.base, [...ctx.loaded, r.bundle]), r.report);
+  const out = opt("--out") || join("out", "bundles", `bundle_${r.bundle.id}.md`);
+  mkdirSync(dirname(out), { recursive: true });
+  writeFileSync(out, text);
+  console.log(`wrote ${out} (${Buffer.byteLength(text)} bytes): attach it next to the base pack in your chat project`);
 } else if (cmd === "sheet" && target) {
   const { r, ctx } = await check(target, { render: null, determinism: false });
   if (!r.ok) {

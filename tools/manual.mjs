@@ -39,10 +39,10 @@ import { manualWritePrompt, manualIdeasPrompt, manualCritiquePrompt, manualMetad
 import { loadHistory, avoidList } from "./lib/history.mjs";
 import { manualOutlinePrompt, checkOutlineReply, manualScenePrompt, checkSceneReply, manualExtendPrompt, assembleManual } from "./lib/manual_story.mjs";
 import { MIN_LENGTH } from "./lib/story_prompts.mjs";
-import { packVersion } from "./lib/lean_prompts.mjs";
+import { packVersion, withBundleLine } from "./lib/lean_prompts.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const { args: argv, catalog } = await catalogFromArgs(process.argv.slice(2), baseCatalog); // --bundle <dir|zip>, repeatable
+const { args: argv, catalog, bundles } = await catalogFromArgs(process.argv.slice(2), baseCatalog); // --bundle <dir|zip>, repeatable
 const [cmd, ...args] = argv;
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
@@ -65,6 +65,8 @@ function paste() {
 }
 
 function emit(file, text, what) {
+  // Lean prompts name the attached bundle packs and the "bundles" line (CATALOG_BUNDLE_SPEC 10.3).
+  if (bundles.length && text.startsWith("Use the Stickman catalog files")) text = withBundleLine(text, bundles);
   const path = join(DIR, file);
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, text);

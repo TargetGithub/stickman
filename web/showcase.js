@@ -4,6 +4,7 @@
 
 import { createEngine } from "../engine/index.js";
 import { buildSections } from "./lib/showcase_data.js";
+import { loadShowcaseBundles, withBundles, markBundleCards } from "./lib/showcase_bundles.js";
 import { scaledContext } from "./lib/scaled_ctx.js";
 
 const $ = (id) => document.getElementById(id);
@@ -13,10 +14,26 @@ const store = {
   set: (k, v) => { try { localStorage.setItem(`showcase.${k}`, v); } catch {} },
 };
 
-const [full, vocab] = await Promise.all(["../catalog/generated/catalog.json", "../catalog/generated/engine_vocab.json"].map((u) => fetch(u).then((r) => r.json())));
+let [full, vocab] = await Promise.all(["../catalog/generated/catalog.json", "../catalog/generated/engine_vocab.json"].map((u) => fetch(u).then((r) => r.json())));
 await Promise.all([document.fonts.load("40px Bangers"), document.fonts.load("20px Inter")]).catch(() => {});
+// The "Bundles" switch (CATALOG_BUNDLE_SPEC B5): kept and stored bundles join every section; switching reloads.
+const bundlesOn = store.get("bundles", "") === "on";
+let loadedBundles = [];
+if (bundlesOn) {
+  const r = await loadShowcaseBundles(full.catalog);
+  loadedBundles = r.bundles;
+  full = { ...withBundles(full, r.bundles, r.results), catalog: r.catalog };
+  const bad = r.results.filter((x) => !x.ok);
+  if (bad.length) console.warn(`bundles not loaded: ${bad.map((x) => `${x.name} (${x.errors[0]?.code})`).join(", ")}`);
+}
 const catalog = full.catalog;
-const sections = buildSections(full, vocab);
+const sections = markBundleCards(buildSections(full, vocab), loadedBundles);
+$("bundles").checked = bundlesOn;
+$("bundles").parentElement.title += loadedBundles.length ? `\nloaded: ${loadedBundles.map((b) => `${b.id} ${b.version}`).join(", ")}` : "";
+$("bundles").addEventListener("change", () => {
+  store.set("bundles", $("bundles").checked ? "on" : "");
+  location.reload();
+});
 const createCanvas = (w, h) => Object.assign(document.createElement("canvas"), { width: w, height: h });
 
 // ---- header controls ----
