@@ -272,6 +272,7 @@ The CLAUDE.md rules change accordingly:
 - Editing the catalog from the web page (the page is read-only; editing stays in files and the move editor).
 - Rendering procedural music in the browser (it stays a tools job; the page plays pre-rendered clips).
 - Changing any engine behavior, schema or name. This is a reorganization plus new views.
+- User-made asset packs that are validated and imported beside the catalog: see [CATALOG_BUNDLE_SPEC.md](CATALOG_BUNDLE_SPEC.md) (draft).
 
 ## 13. Decisions (Sridhar, 2026-10-18)
 
