@@ -139,7 +139,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | vanish | defeat | 2.6 | - | - | story only, counts as defeated, holds pose | Dissolves away in sparkles; counts as defeated until return. |
 | ghost | defeat | 3.2 | - | - | story only, counts as defeated, holds pose | Rises up as a ghost with a halo; counts as defeated (general audience only). |
 | captured | defeat | 1.8 | cage=1 | - | story only, counts as defeated, holds pose | Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated. |
-| petrify | defeat | 1.6 | - | - | story only, counts as defeated, holds pose | Frozen where they stand: the colours drain to stone grey and the eyes close; counts as defeated until return thaws them. |
+| petrify | defeat | 1.6 | dur=1.5 | - | story only, counts as defeated, holds pose | Turns to stone grey where it stands over params.dur (0: at once); defeated until return. |
 | flee | defeat | 0.6 | stride=330 | - | loop: distance/cycles/to, story only | Runs off the nearer stage edge away from everyone and fades out. |
 | return | defeat | 1.6 | - | - | story only | A vanished character re-forms from sparkles. |
 | idle_dog | movement | 2 | - | - | loop: distance/cycles/to | A dog stands and breathes, tail going; loops until the next beat. |

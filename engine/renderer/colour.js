@@ -155,7 +155,7 @@ export function petrifyAt(events, t) {
     const u = progress(t, last.videoT, THAW);
     return u < 1 ? { grey: 1, thaw: u } : null;
   }
-  return { grey: progress(t, last.videoT, PETRIFY_FADE), thaw: null };
+  return { grey: progress(t, last.videoT, last.dur ?? PETRIFY_FADE), thaw: null };
 }
 
 /** The canvas filter that turns a character to stone (k 0-1). */

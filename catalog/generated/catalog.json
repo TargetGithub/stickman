@@ -4180,12 +4180,13 @@
       },
       {
         "name": "petrify",
-        "description": "Frozen where they stand: the colours drain to stone grey and the eyes close; counts as defeated until return thaws them.",
+        "description": "Turns to stone grey where it stands over params.dur (0: at once); defeated until return.",
         "tags": ["defeat", "magic", "kids", "freeze"],
         "rig": "any",
         "category": "defeat",
         "duration": 1.6,
         "face": "asleep",
+        "params": { "dur": 1.5 },
         "flags": { "hold": true, "defeat": true, "keepPose": true, "petrify": true },
         "keys": [{ "t": 0, "pose": "stand" }],
         "events": [{ "t": 0, "sfx": "magic_sparkle" }, { "t": 0.95, "fx": ["sparkle"], "sfx": "sparkle" }]

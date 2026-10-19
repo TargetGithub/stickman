@@ -48,7 +48,7 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
   2. (40 s) Chores montage (`@montage`): carrying water, sweeping, catching falling apples, Dony helping. Doopi fails each one, comically.
   3. (30 s) Nani gives Doopi the Rainbow Bracelet [O5]: "Each colour you bring home will live here."
   4. (40 s) Sparring with Dony (`@fight`, `even`, low intensity, no KO). Doopi wins only when Dony "pretends" to be in danger.
-  5. (30 s) Nani's lesson: the Jalebi Spin (spin like the jalebi spiral). Doopi gets dizzy. Mooka (grey, silent) tries too and rolls away. A sad-funny moment.
+  5. (30 s) Nani's lesson: the Jalebi Spin (spin like the jalebi spiral). Doopi gets dizzy. He practises in front of stone Mooka in the grey square: "I'll get your giggle back." A sad-funny moment. (As built: `petrify` freezes Mooka, so he stays a statue until ep 5.)
   6. (35 s) Doomi brings lunch; picnic; Doopi admits he's scared. Doomi: "Scared and brave can be friends."
   7. (35 s) Final test: Nani attacks with her cane (`@fight`, Nani dominant, then Doopi lands one Jalebi Spin). Nani laughs: "Finally!"
   8. (30 s) Evening: Becky and Dony play catch (`play_catch`); the team is happy for a moment.
@@ -78,10 +78,10 @@ Each outline gives: the logline, the beats (scene by scene, with rough seconds; 
 - **Beats:**
   1. (30 s) Gloom Castle: Peepa scolds Tony & Kony; they must hide the Yellow crystal in Tokyo "where no one looks".
   2. (40 s) Market: Tony & Kony in fake moustaches (gag) try to hide the crystal in a sweets stall.
-  3. (35 s) Becky sniffs the glow; Mooka (grey) wanders off after the shiny thing.
-  4. (40 s) Mooka finds Kony, who has fallen in a basket; Mooka helps him out. A small, silent friendship (shared jalebi, `give`).
+  3. (35 s) Becky sniffs the glow; Tony & Kony hide behind stone Mooka in the square.
+  4. (40 s) Kony falls in a basket next to stone Mooka; he talks to the statue ("You're a good listener") and feels sorry for him. A small, quiet friendship.
   5. (50 s) The crystal gets mixed into a sweets basket: a comic three-way `@chase` through the market (Tony, Becky, Dony, Doopi, the Mayor).
-  6. (30 s) Kony quietly lets the crystal roll to Mooka. The Yellow crystal touches Mooka: he turns green again and giggles! Sun comes out, yellow returns.
+  6. (30 s) Kony quietly lets the crystal roll to Mooka. The Yellow crystal touches Mooka (`return`): he thaws, turns green again and giggles, and shares a jalebi with Kony (`give`)! Sun comes out, yellow returns.
   7. (25 s) Tony & Kony flee (`flee`), Tony scolding Kony.
   8. (30 s) Joy: dance in the square with Mooka.
   9. (30 s) **Cliffhanger:** the sky goes dark; Peepa appears over the square and blasts the Gloom Horn at the children. Nani steps in front of them and turns to grey stone [E2]. With her last words: "Find all the colours... and I will wake."

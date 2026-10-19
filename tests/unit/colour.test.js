@@ -61,6 +61,7 @@ const PETRIFY = [
   ["in colour", [], 1, null],
   ["turning grey", [P("defeat", 1)], 1.75, { grey: 0.5, thaw: null }],
   ["stone", [P("defeat", 1)], 9, { grey: 1, thaw: null }],
+  ["already stone (dur 0)", [{ ...P("defeat", 1), dur: 0 }], 1, { grey: 1, thaw: null }],
   ["thawing", [P("defeat", 1), P("thaw", 5)], 5.6, { grey: 1, thaw: 0.5 }],
   ["thawed", [P("defeat", 1), P("thaw", 5)], 7, null],
 ];
