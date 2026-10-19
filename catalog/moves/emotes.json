@@ -477,5 +477,43 @@
         "pose": { "lean": 2, "head": -2, "lUA": 14, "lFA": 10, "rUA": 45, "rFA": 70, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
       }
     ]
+  },
+  {
+    "name": "sneeze",
+    "description": "A big comic sneeze: head back for ah... ah..., then a sharp nod forward on CHOO, with funny tears.",
+    "tags": ["emote", "comic", "sneeze"],
+    "category": "emote",
+    "duration": 1.6,
+    "face": "hurt",
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "outQuad" },
+      {
+        "t": 0.14,
+        "pose": { "lean": -6, "head": -14, "lUA": 16, "lFA": 12, "rUA": 34, "rFA": 70, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.3,
+        "pose": { "lean": -10, "head": -24, "lUA": 22, "lFA": 16, "rUA": 46, "rFA": 104, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0, "dy": -2 },
+        "ease": "inQuad"
+      },
+      {
+        "t": 0.45,
+        "pose": { "lean": -14, "head": -32, "lUA": 26, "lFA": 20, "rUA": 50, "rFA": 112, "lTH": 4, "lSH": 2, "rTH": -8, "rSH": 2, "dy": -5 },
+        "ease": "outQuad"
+      },
+      {
+        "t": 0.52,
+        "pose": { "lean": 24, "head": 34, "lUA": 18, "lFA": 30, "rUA": 28, "rFA": 46, "lTH": 10, "lSH": 6, "rTH": -2, "rSH": 6, "dy": 6 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.66,
+        "pose": { "lean": 17, "head": 24, "lUA": 16, "lFA": 26, "rUA": 24, "rFA": 40, "lTH": 8, "lSH": 4, "rTH": -4, "rSH": 4, "dy": 4 },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "events": [{ "t": 0.03, "sfx": "sneeze" }, { "t": 0.53, "fx": ["tears"] }]
   }
 ]

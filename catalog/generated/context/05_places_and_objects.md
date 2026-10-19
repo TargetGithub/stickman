@@ -17,9 +17,9 @@
 | villain_lair | #3a2350 | bright: light blue, yellow, orange, pink, white | A purple cave lair with crystals and lanterns. |
 | home_interior | #ab8865 | strong or dark: red, blue, purple, dark green, black | Inside a cosy home: walls, windows and furniture. |
 | alley_night | #4e3530 | bright: light blue, yellow, orange, pink, white | A brick alley at night with lampposts and puddles. |
-| chirpur_village | #a06a40 | bright: light blue, yellow, orange, pink, white | A cheerful Indian hill village square by day: round mud huts with painted doors, festival bunting, green hills and a big tree far off. |
+| chirpur_village | #a06a40 | bright: light blue, yellow, orange, pink, white | An Indian hill village square: round mud huts with painted doors, bunting, green hills. |
 | banyan_hill | #5a8f48 | strong or dark: red, blue, purple, dark green, black | A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below. |
-| gloom_throne_room | #43384f | bright: light blue, yellow, orange, pink, white | Peepa's throne room in purple and grey: tall stone pillars, purple glowing windows and grey mist on the floor. |
+| gloom_throne_room | #43384f | bright: light blue, yellow, orange, pink, white | Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -64,9 +64,19 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | book | holdable | - | A book to hold or read. |
 | rope | holdable | - | A coil of rope. |
 | cane | holdable | - | A walking cane (good for an elder). |
-| crystal_socket | static | empty/red/orange/yellow/green/blue/indigo/violet | A gem socket in a banyan root knot; it glows in the colour of the rainbow crystal set in it, or sits empty. |
-| throne | seat | - | A tall dark purple throne with two curly golden horns on its back; a villain can sit on it. |
+| crystal_socket | static | empty/red/orange/yellow/green/blue/indigo/violet | A gem socket in a banyan root: glows in its crystal's colour, or sits empty. |
+| throne | seat | - | A tall purple throne with golden horns; a villain can sit on it. |
 | crystal_ball | static | - | A glowing purple crystal ball on a carved stone stand. |
+| rainbow_crystal | holdable | red/orange/yellow/green/blue/indigo/violet/dim | A glowing rainbow crystal; `set_object` state sets its colour (chimes). |
+| gloom_horn | holdable | - | The Gloom Horn; `use` blows grey mist. |
+| jalebi | holdable | - | A jalebi sweet to `eat`. |
+| jalebi_plate | holdable | - | A plate of jalebis (left hand; `eat`). |
+| kite | floater | - | A kite: held, it flies on its string. |
+| apple | ball | - | A red apple: hold and `eat`, or toss it. |
+| haystack | static | - | A round haystack (hide behind it). |
+| cart | vehicle | - | A hand cart of vegetables (set_object toX). |
+| market_stall | static | - | A market stall with an awning and baskets. |
+| basket | breakable | whole/broken | A lidded basket: carry it or break it. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

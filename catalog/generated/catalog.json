@@ -2238,6 +2238,44 @@
         ]
       },
       {
+        "name": "sneeze",
+        "description": "A big comic sneeze: head back for ah... ah..., then a sharp nod forward on CHOO, with funny tears.",
+        "tags": ["emote", "comic", "sneeze"],
+        "category": "emote",
+        "duration": 1.6,
+        "face": "hurt",
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "outQuad" },
+          {
+            "t": 0.14,
+            "pose": { "lean": -6, "head": -14, "lUA": 16, "lFA": 12, "rUA": 34, "rFA": 70, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.3,
+            "pose": { "lean": -10, "head": -24, "lUA": 22, "lFA": 16, "rUA": 46, "rFA": 104, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0, "dy": -2 },
+            "ease": "inQuad"
+          },
+          {
+            "t": 0.45,
+            "pose": { "lean": -14, "head": -32, "lUA": 26, "lFA": 20, "rUA": 50, "rFA": 112, "lTH": 4, "lSH": 2, "rTH": -8, "rSH": 2, "dy": -5 },
+            "ease": "outQuad"
+          },
+          {
+            "t": 0.52,
+            "pose": { "lean": 24, "head": 34, "lUA": 18, "lFA": 30, "rUA": 28, "rFA": 46, "lTH": 10, "lSH": 6, "rTH": -2, "rSH": 6, "dy": 6 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.66,
+            "pose": { "lean": 17, "head": 24, "lUA": 16, "lFA": 26, "rUA": 24, "rFA": 40, "lTH": 8, "lSH": 4, "rTH": -4, "rSH": 4, "dy": 4 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ],
+        "events": [{ "t": 0.03, "sfx": "sneeze" }, { "t": 0.53, "fx": ["tears"] }]
+      },
+      {
         "name": "use",
         "description": "Uses the held object: a wand blows bubbles, a phone takes a photo.",
         "tags": ["object", "story"],
@@ -5900,9 +5938,115 @@
             "alpha": [1, 0]
           }
         ]
+      },
+      "colour_powder": {
+        "description": "A festival colour-powder burst: pink, yellow, green and blue puffs that bloom above the head and drift down (Holi style).",
+        "tags": ["celebrate", "happy", "festival", "colour"],
+        "anchor": "head",
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-170, -110],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#ff5fa8", "#ff86c0"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-125, -75],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#ffd23f", "#ffe270"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-105, -55],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#4fd36a", "#7ee36b"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-70, -10],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#3fa8ff", "#6cc4ff"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 24,
+            "offset": 50,
+            "angle": [-170, -10],
+            "speed": [120, 380],
+            "drag": 1.4,
+            "gravity": 160,
+            "life": [1.6, 2.4],
+            "size": [5, 4],
+            "color": ["#ff5fa8", "#ffd23f", "#4fd36a", "#3fa8ff"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "gloom_mist": {
+        "description": "Rolling grey-purple mist from the Gloom Horn: slow wide puffs spreading along the floor for about 3 s, low alpha.",
+        "tags": ["villain", "gloom", "mist", "lingers"],
+        "anchor": "feet",
+        "sustain": { "duration": 3, "rate": 9 },
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 24,
+            "angle": [-12, 0],
+            "speed": [90, 240],
+            "drag": 0.55,
+            "life": [2.2, 3],
+            "size": [36, 120],
+            "color": ["#7d7192", "#675c7e", "#958aa8"],
+            "alpha": [0.3, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 24,
+            "angle": [180, 192],
+            "speed": [90, 240],
+            "drag": 0.55,
+            "life": [2.2, 3],
+            "size": [36, 120],
+            "color": ["#7d7192", "#675c7e", "#958aa8"],
+            "alpha": [0.3, 0]
+          }
+        ]
       }
     },
-    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo"],
+    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo", "colour_powder", "gloom_mist"],
     "themes": {
       "white_stage": {
         "description": "A plain off-white stage with no scenery; clean and simple.",
@@ -6076,7 +6220,7 @@
         "characterBg": "#4e3530"
       },
       "chirpur_village": {
-        "description": "A cheerful Indian hill village square by day: round mud huts with painted doors, festival bunting, green hills and a big tree far off.",
+        "description": "An Indian hill village square: round mud huts with painted doors, bunting, green hills.",
         "tags": ["story", "outdoor", "village", "day", "doopi"],
         "sky": { "top": "#6cc3f2", "bottom": "#d8f1ff" },
         "ground": { "color": "#d6b47e", "line": "#b48e58" },
@@ -6184,7 +6328,7 @@
         "characterBg": "#5a8f48"
       },
       "gloom_throne_room": {
-        "description": "Peepa's throne room in purple and grey: tall stone pillars, purple glowing windows and grey mist on the floor.",
+        "description": "Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist.",
         "tags": ["story", "villain", "dark", "indoor", "doopi"],
         "sky": { "top": "#120a1c", "bottom": "#2e1a42" },
         "ground": { "color": "#3a3046", "line": "#1c1526" },
@@ -6199,7 +6343,7 @@
       }
     },
     "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "chirpur_village", "banyan_hill", "gloom_throne_room"],
-    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow"],
+    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow", "gloom_horn", "sneeze", "crystal_chime"],
     "blocklist": ["blood", "bloody", "gore", "gory", "suicide", "kill yourself", "kys"],
     "softWords": [
       { "word": "kill", "alt": "defeat", "audiences": ["kids", "general"] },
@@ -6472,7 +6616,7 @@
         "hold": { "kind": "cane", "shape": "cane", "len": 92, "width": 5, "gripAt": 0.05, "grip": "rHand", "color": "#6b4a2f", "trim": "#3a2a1c", "hitRadius": 14 }
       },
       "crystal_socket": {
-        "description": "A gem socket in a banyan root knot; it glows in the colour of the rainbow crystal set in it, or sits empty.",
+        "description": "A gem socket in a banyan root: glows in its crystal's colour, or sits empty.",
         "tags": ["scenery", "magic", "crystal", "doopi"],
         "behavior": "static",
         "draw": "crystal_socket",
@@ -6482,7 +6626,7 @@
         "colors": { "wood": "#6e4a2c", "rim": "#8a6442", "hollow": "#2a1c12", "red": "#ff3b3b", "orange": "#ff9a1f", "yellow": "#ffe02e", "green": "#3ddc6a", "blue": "#2f9bff", "indigo": "#5a5cff", "violet": "#b05cff" }
       },
       "throne": {
-        "description": "A tall dark purple throne with two curly golden horns on its back; a villain can sit on it.",
+        "description": "A tall purple throne with golden horns; a villain can sit on it.",
         "tags": ["seat", "villain", "doopi"],
         "behavior": "seat",
         "draw": "throne",
@@ -6500,6 +6644,102 @@
         "w": 130,
         "h": 260,
         "colors": { "stand": "#6e6384", "trim": "#e6b84a", "ball": "#9a6cff", "swirl": "#d9c4ff", "glow": "rgba(176, 108, 255, 0.8)" }
+      },
+      "rainbow_crystal": {
+        "description": "A glowing rainbow crystal; `set_object` state sets its colour (chimes).",
+        "tags": ["holdable", "magic", "crystal", "glow"],
+        "behavior": "holdable",
+        "draw": "held",
+        "states": ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "dim"],
+        "sfx": { "red": "crystal_chime", "orange": "crystal_chime", "yellow": "crystal_chime", "green": "crystal_chime", "blue": "crystal_chime", "indigo": "crystal_chime", "violet": "crystal_chime" },
+        "hold": { "kind": "crystal", "shape": "crystal", "len": 28, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff5a6a", "trim": "#ffffff", "hitRadius": 10 }
+      },
+      "gloom_horn": {
+        "description": "The Gloom Horn; `use` blows grey mist.",
+        "tags": ["holdable", "villain", "gloom", "horn"],
+        "behavior": "holdable",
+        "draw": "held",
+        "use": { "fx": ["gloom_mist"], "sfx": "gloom_horn" },
+        "hold": { "kind": "horn", "shape": "horn", "len": 62, "width": 10, "gripAt": 0.22, "grip": "rHand", "color": "#4a2a6e", "trim": "#e2b443", "hitRadius": 12 }
+      },
+      "jalebi": {
+        "description": "A jalebi sweet to `eat`.",
+        "tags": ["holdable", "food", "sweet"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "jalebi", "shape": "jalebi", "len": 18, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff9a1f", "trim": "#c45e0e", "hitRadius": 8 }
+      },
+      "jalebi_plate": {
+        "description": "A plate of jalebis (left hand; `eat`).",
+        "tags": ["holdable", "food", "sweet", "gift"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "plate", "shape": "plate", "len": 40, "width": 8, "gripAt": 0.5, "grip": "lHand", "color": "#f6f1e4", "trim": "#d9c9a0", "hitRadius": 10 }
+      },
+      "kite": {
+        "description": "A kite: held, it flies on its string.",
+        "tags": ["floater", "play", "kite", "holdable"],
+        "behavior": "floater",
+        "draw": "kite",
+        "r": 26,
+        "life": [8, 8],
+        "rise": 70,
+        "drift": 40,
+        "wobble": 30,
+        "pop": false,
+        "colors": { "fill": "#ff5fa8", "trim": "#ffd23f" },
+        "hold": { "kind": "kite", "shape": "kite", "len": 160, "width": 2, "gripAt": 0, "grip": "rHand", "color": "#ff5fa8", "trim": "#ffd23f", "hitRadius": 10 }
+      },
+      "apple": {
+        "description": "A red apple: hold and `eat`, or toss it.",
+        "tags": ["ball", "food", "fruit", "holdable"],
+        "behavior": "ball",
+        "draw": "apple",
+        "r": 9,
+        "bounce": 0.3,
+        "colors": { "fill": "#e63946", "leaf": "#4fa85a" },
+        "hold": { "kind": "apple", "shape": "apple", "len": 16, "width": 16, "gripAt": 0.3, "grip": "rHand", "color": "#e63946", "trim": "#4fa85a", "hitRadius": 8 }
+      },
+      "haystack": {
+        "description": "A round haystack (hide behind it).",
+        "tags": ["scenery", "village", "farm"],
+        "behavior": "static",
+        "draw": "haystack",
+        "w": 224,
+        "h": 172,
+        "colors": { "straw": "#e8bf52", "dark": "#b98d2c", "light": "#f6dd86" }
+      },
+      "cart": {
+        "description": "A hand cart of vegetables (set_object toX).",
+        "tags": ["vehicle", "village", "farm"],
+        "behavior": "vehicle",
+        "draw": "cart",
+        "w": 280,
+        "h": 160,
+        "wheelR": 40,
+        "seat": { "x": -10, "y": 100 },
+        "speed": 140,
+        "colors": { "wood": "#b07c45", "dark": "#7a5230", "cabbage": "#7ccf5a", "tomato": "#e8483d", "carrot": "#ff8a26" }
+      },
+      "market_stall": {
+        "description": "A market stall with an awning and baskets.",
+        "tags": ["scenery", "village", "market", "shop"],
+        "behavior": "static",
+        "draw": "market_stall",
+        "w": 400,
+        "h": 340,
+        "colors": { "post": "#8a5a34", "wood": "#a0703f", "cloth": "#f0d9a6", "stripe1": "#e8483d", "stripe2": "#fff3dc", "basket": "#c9944f", "weave": "#8e6230", "sweet": "#ff9a1f", "sweet2": "#ffd23f", "fruit": "#e63946", "fruit2": "#7ccf5a", "sign": "#fff3dc" }
+      },
+      "basket": {
+        "description": "A lidded basket: carry it or break it.",
+        "tags": ["breakable", "holdable", "village", "market"],
+        "behavior": "breakable",
+        "draw": "basket",
+        "w": 70,
+        "h": 48,
+        "states": ["whole", "broken"],
+        "colors": { "basket": "#c9944f", "weave": "#8e6230" },
+        "hold": { "kind": "basket", "shape": "basket", "len": 30, "width": 24, "gripAt": 0.5, "grip": "rHand", "color": "#c9944f", "trim": "#8e6230", "hitRadius": 12 }
       }
     },
     "faces": {
@@ -7330,7 +7570,10 @@
     { "name": "pant", "category": "voice", "description": "A dog's happy panting." },
     { "name": "card_whoosh", "category": "story", "description": "A whoosh for title and chapter cards." },
     { "name": "bonk", "category": "comic", "description": "A cartoon bonk (kids impact word)." },
-    { "name": "pow", "category": "comic", "description": "A cartoon pow (kids impact word)." }
+    { "name": "pow", "category": "comic", "description": "A cartoon pow (kids impact word)." },
+    { "name": "gloom_horn", "category": "story", "description": "The Gloom Horn: a low wobbly horn blast that falls in a minor key, with a mist hiss." },
+    { "name": "sneeze", "category": "voice", "description": "A comic sneeze: ah... ah... CHOO!" },
+    { "name": "crystal_chime", "category": "magic", "description": "A bright bell arpeggio for a glowing crystal." }
   ],
   "appearance": {
     "eyes": { "dot": "Small dot eyes (the default).", "big": "Big round cute eyes.", "oval": "Tall oval eyes.", "sleepy": "Half-closed sleepy eyes.", "visor": "A sci-fi visor across the eyes.", "glasses": "Round glasses." },

@@ -1,8 +1,10 @@
 // Prop drawing (spec 12, 14.2). Milestone: M7. Props are drawn from butt/tip points so held,
 // flying and lying props share one routine.
 
+import { drawMoreProp, MORE_PROP_SHAPES } from "./props_more.js";
+
 /** Shapes a prop's `shape` may name (v1 weapons and the S4 holdables). */
-export const PROP_SHAPES = ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon"];
+export const PROP_SHAPES = ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon", ...MORE_PROP_SHAPES];
 
 function line(ctx, a, b, width, color) {
   ctx.strokeStyle = color;
@@ -231,7 +233,7 @@ export function drawProp(ctx, prop, t, scale, outline = "#111111") {
       break;
     }
     default:
-      line(ctx, t.butt, t.tip, w, prop.color);
+      if (!drawMoreProp(ctx, prop, t, scale, outline)) line(ctx, t.butt, t.tip, w, prop.color);
   }
   ctx.restore();
 }

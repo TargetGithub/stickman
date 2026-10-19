@@ -93,6 +93,7 @@ export function createRenderer(catalog, sim, opts = {}) {
     styles: new Map((sim.characters || []).map((c) => [c.id, c.style])),
     looks: new Map((sim.story?.legacy === false ? sim.story.cast : []).map((c) => [c.id, lookFor(catalog, c)])),
     lookChanges: sim.events.filter((e) => e.type === "world" && e.do === "set_appearance"),
+    heldStates: sim.events.filter((e) => e.type === "object" && e.what === "state" && catalog.objects?.[e.kind]?.behavior === "holdable"),
     voices: new Map((sim.story?.cast || []).map((c) => [c.id, c.voice])),
     names: sim.story?.meta?.speakerNames ? new Map(sim.story.cast.map((c) => [c.id, c.name || c.id])) : null,
     syllables: new Map(), // say event → syllables (mouth flap)
@@ -124,12 +125,21 @@ function charsAt(r, n) {
 
 const order = (chars) => [...chars].sort((a, b) => b.scale - a.scale);
 
+/** A holdable with states (the rainbow crystal) shows its latest state, carried across scenes. */
+function withState(r, sv, name, data, t) {
+  const def = r.catalog.objects?.[name];
+  if (!def?.states || def.behavior !== "holdable") return data;
+  const e = r.heldStates.findLast((x) => x.kind === name && x.videoT <= t);
+  return { ...data, state: e?.state ?? sv.set?.find((p) => p.object === name && p.state)?.state ?? def.states[0] };
+}
+
 /** Loose props: lying ones before the characters, thrown (flying) ones after. */
-function drawItems(ctx, r, items, flying) {
+function drawItems(ctx, r, items, flying, sv, t) {
   for (const it of items.filter((i) => i.flying === flying)) {
     if (it.obj) continue; // moving objects are drawn by drawMovingObjects
-    const data = holdableData(r.catalog, it.name);
-    if (!data) continue;
+    const held = holdableData(r.catalog, it.name);
+    if (!held) continue;
+    const data = withState(r, sv, it.name, held, t);
     const scale = 1;
     const half = (data.len * scale) / 2;
     const dx = Math.cos(it.angle) * half;
@@ -147,7 +157,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "back");
   drawLayerChars(ctx, r, n, f, chars, sv, inLayer("back"), "back");
   drawSetPieces(ctx, r.catalog, pieces, "mid");
-  drawItems(ctx, r, f.items, false);
+  drawItems(ctx, r, f.items, false, sv, f.videoT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "mid");
   for (const c of mid) {
     if (c.alpha <= 0.01) continue;
@@ -167,7 +177,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     });
   }
   drawChars(ctx, r, n, f, chars, sv, mid);
-  drawItems(ctx, r, f.items, true);
+  drawItems(ctx, r, f.items, true, sv, f.videoT);
   drawTrails(ctx, n, sv, trails, r);
   drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
     const c = chars.find((x) => x.id === actorId);
@@ -206,7 +216,7 @@ function drawChars(ctx, r, n, f, chars, sv, list) {
     }
     drawBehind(ctx, c, past, style);
     const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
-    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false, ...face,
+    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
       ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
       ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) });
     ctx.shadowBlur = 0;
