@@ -65,7 +65,7 @@ for (const [object, states] of PIECES) {
 }
 
 // Heroes must read on every Doopi place (BIBLE section 4; Doopi in the #5ec8ff that passes).
-const HEROES = { doopi: "#5ec8ff", dony: "#4cd964", doomi: "#ff7eb6", becky: "#f3e3c3", mooka: "#7fe8c4" };
+const HEROES = { doopi: "#5ec8ff", dony: "#4cd964", doomi: "#ff9ccc", becky: "#f3e3c3", mooka: "#7fe8c4" };
 for (const name of THEMES) {
   test(`heroes pass W_CONTRAST on ${name}`, () => {
     for (const [id, color] of Object.entries(HEROES)) assert.ok(contrastRatio(color, catalog.themes[name].characterBg) >= 1.6, id);

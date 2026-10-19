@@ -74,7 +74,7 @@ Engine notes use today's names (body plans, appearance options, voices) where th
 - **Voice:** `pitch 1.15, speed 1.0, timbre soft`. Catchphrase: "I've got you, buddy!"
 
 #### Doomi (Doopi's sweetheart)
-- **Look:** a stickman in pink (`#ff7eb6`), a ponytail with a flower clip (**NEW** accessory `hair_flower`), blush cheeks, big eyes, a little shirt. `body: stickman`, `appearance: { eyes: big, hair: ponytail, hairColor: "#5a3a2c", cheeks: "#ff9db8", outfit: shirt, outfitColor: "#ffd1e3" }`.
+- **Look:** a stickman in pink (`#ff9ccc`), a ponytail with a flower clip (**NEW** accessory `hair_flower`), blush cheeks, big eyes, a little shirt. `body: stickman`, `appearance: { eyes: big, hair: ponytail, hairColor: "#5a3a2c", cheeks: "#ff9db8", outfit: shirt, outfitColor: "#ffd1e3" }`.
 - **Personality:** lovable and charming, clever and quick; the planner of the team and the best at puzzles and traps. Kind to everyone, even the villains' sidekicks. Not a damsel: when she is captured (ep 12-19) she escapes her cell twice and leaves a trail of ribbons for the heroes.
 - **Romance (kids level):** shy smiles, blushing, hearts over heads, holding hands, one dance at the festival. Doopi gets tongue-tied around her: a running gag.
 - **Skill:** ribbon twirls and rope tricks (the `rope` holdable), gymnastic flips (`backflip`, `frontflip`).
