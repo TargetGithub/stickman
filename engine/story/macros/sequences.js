@@ -9,7 +9,7 @@ import { emotes } from "./pools.js";
 import { pick, round } from "../compile.js";
 
 const EXCHANGES = { low: 6, medium: 8, high: 10 };
-const CLOSE_UP = { ko: 1.8, faint: 2.4, vanish: 3.2, ghost: 3.8, captured: 2.6, flee: 1.6 };
+const CLOSE_UP = { ko: 1.8, faint: 2.4, vanish: 3.2, ghost: 3.8, captured: 2.6, flee: 1.6, petrify: 2.8 };
 
 function fight(ctx, p) {
   const [a, b] = p.sides;
@@ -31,9 +31,9 @@ function fight(ctx, p) {
 /** How the other side reacts to a defeat style. */
 const REACTION = {
   ko: ["flex", "victory"], faint: ["laugh", "shrug"],
-  captured: ["point", "clench_fist"], flee: ["laugh", "cheer"],
+  captured: ["point", "clench_fist"], flee: ["laugh", "cheer"], petrify: ["laugh", "point"],
 };
-const REACTION_FACE = { captured: "determined", ko: "determined", faint: "laugh", flee: "laugh" };
+const REACTION_FACE = { captured: "determined", ko: "determined", faint: "laugh", flee: "laugh", petrify: "smug" };
 
 function defeat(ctx, p) {
   const style = p.style;
@@ -41,7 +41,7 @@ function defeat(ctx, p) {
   const lead = ctx.add({ at: 0, who: p.who, do: ctx.moves.has("stagger") ? "stagger" : "hit_light", face: "hurt" });
   ctx.with(lead, { who: "world", do: "shot", params: { mode: "close_up", target: p.who, dur: CLOSE_UP[style] ?? 2 } });
   const gone = ctx.after(lead, { who: p.who, do: move }, 0.1);
-  if (style === "vanish" || style === "ghost") ctx.with(gone, { who: "world", do: "set_music", params: { mood: "sad", intensity: 0.3, fade: 1.5 } });
+  if (style === "vanish" || style === "ghost" || style === "petrify") ctx.with(gone, { who: "world", do: "set_music", params: { mood: "sad", intensity: 0.3, fade: 1.5 } });
   let end = gone;
   // The winner's reaction (a capture, a knockout); a villain who just took someone away is usually leaving.
   if (p.by && ctx.present(p.by) && style !== "vanish" && style !== "ghost") {

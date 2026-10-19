@@ -1,6 +1,12 @@
 // Procedural object shapes (STORY_SPEC 8). Milestone: S1 (set pieces), S4 (balls, floaters, vehicles).
 // Each shape draws at the current origin: the object's bottom center (balls and floaters: their center).
 // Signature: (ctx, colors, piece, def), where piece carries state, wheel turn and angle.
+// Batch A5 village shapes live in object_shapes_market.js and join this table.
+
+import { MARKET_SHAPES } from "./object_shapes_market.js";
+import { TRAVEL_SHAPES } from "./object_shapes_travel.js";
+import { FORT_SHAPES } from "./object_shapes_fort.js";
+import { SEA_SHAPES } from "./object_shapes_sea.js";
 
 export const SHAPES = {
   bench(ctx, c) {
@@ -258,6 +264,10 @@ export const SHAPES = {
       ctx.beginPath(); ctx.arc(35, -125, 7, 0, Math.PI * 2); ctx.fill();
     }
   },
+  ...MARKET_SHAPES,
+  ...TRAVEL_SHAPES,
+  ...FORT_SHAPES,
+  ...SEA_SHAPES,
 };
 
 function wheel(ctx, x, y, r, turn, color, spokes = false) {

@@ -44,6 +44,7 @@ export function sceneLook(scene, location) {
     time: scene.time ?? location?.time ?? DEFAULT_TIME,
     weather: scene.weather ?? location?.weather ?? DEFAULT_WEATHER,
     ambience: scene.ambience ?? location?.ambience ?? "none",
+    ...(scene.grade ? { grade: scene.grade } : {}),
   };
 }
 

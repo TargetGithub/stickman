@@ -1,0 +1,436 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 17: Shadow Doopi",
+    "format": "landscape",
+    "seed": 2417,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": { "headband": "#ff3b5c", "bracelet": "#e6b84a" },
+        "slots": 5
+      },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ff3b5c" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+      "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": { "eyes": "visor" },
+      "voice": { "pitch": 0.5, "speed": 0.8, "timbre": "robot" }
+    },
+    {
+      "id": "shadow",
+      "name": "Shadow Doopi",
+      "body": "stickman",
+      "color": "#1a0f3a",
+      "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#0e0820", "mouthStyle": "cartoon", "accessories": { "headband": "#3a1f6e" } },
+      "voice": { "pitch": 0.95, "speed": 1, "timbre": "deep" }
+    },
+    {
+      "id": "sh2",
+      "name": "Shadow",
+      "body": "stickman",
+      "scale": 0.7,
+      "color": "#1a0f3a",
+      "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#0e0820" },
+      "voice": { "pitch": 1.1, "timbre": "deep" }
+    },
+    {
+      "id": "sh3",
+      "name": "Shadow",
+      "body": "stickman",
+      "scale": 0.7,
+      "color": "#1a0f3a",
+      "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#0e0820" },
+      "voice": { "pitch": 1.1, "timbre": "deep" }
+    },
+    {
+      "id": "sh4",
+      "name": "Shadow",
+      "body": "stickman",
+      "scale": 0.7,
+      "color": "#1a0f3a",
+      "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#0e0820" },
+      "voice": { "pitch": 1.1, "timbre": "deep" }
+    }
+  ],
+  "locations": [
+    { "id": "valley", "theme": "shadow_valley", "stageWidth": 3400 },
+    { "id": "maze", "theme": "mirror_maze", "stageWidth": 3000, "set": [ { "id": "door", "object": "mirror", "x": 2300 } ] }
+  ],
+  "scenes": [
+    {
+      "id": "enter",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 17: Shadow Doopi" },
+      "music": { "mood": "mysterious", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 500, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 350, "facing": 1, "face": "scared" },
+        { "id": "tara", "x": 650, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 200, "facing": 1, "face": "scared" },
+        { "id": "becky", "x": 800, "facing": 1, "face": "angry" },
+        { "id": "ghoom", "x": 100, "facing": 1, "face": "neutral" }
+      ],
+      "beats": [
+        { "id": "enter_n", "at": 0.4, "who": "world", "do": "narrate", "params": { "text": "The Shadow Valley. Even the moon looked worried here." } },
+        { "id": "enter_t", "at": 1, "macro": "travel", "params": { "who": [ "doopi", "dony", "tara", "becky" ], "to": { "x": 1300 }, "mode": "sneak" } },
+        { "id": "enter_m", "at": 1.4, "who": "mooka", "do": "sneak", "to": { "x": 1000 } },
+        {
+          "id": "enter_d",
+          "at": { "after": "enter_t" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "ghoom", "GHOOMU... TOO BIG. STAY. GUARD. BEEP.", "sad" ],
+              [ "tara", "Good idea, Ghoomu. Keep the way out open.", "happy" ],
+              [ "mooka", "These trees look like they want a hug. Or to eat me.", "scared" ],
+              [ "doopi", "That shadow... it had my face. My voice. Why?", "scared" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "voice",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": { "type": "dissolve", "dur": 0.5 },
+      "music": { "mood": "mysterious", "intensity": 0.6, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1200, "facing": 1, "face": "determined" },
+        { "id": "shadow", "x": 1900, "facing": -1, "face": "smug" },
+        { "id": "dony", "x": 900, "facing": 1, "face": "scared" },
+        { "id": "becky", "x": 1050, "facing": 1, "face": "angry" }
+      ],
+      "beats": [
+        { "id": "voice_gl", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "shadow", "color": "#b05cff", "level": 0.6 } },
+        {
+          "id": "voice_d1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "shadow", "You're clumsy. You trip over your own feet.", "smug" ],
+              [ "shadow", "You lost the race. You lost your glow. You lost HER.", "smug" ],
+              [ "shadow", "They'd all be better off without you, Doopi.", "smug" ],
+              [ "doopi", "That's... that's what I think sometimes. How do you know that?", "scared" ],
+              [ "shadow", "Because I AM you. The part that whispers at night.", "laugh" ],
+              [ "dony", "Don't listen to him, Doopi! He's lying!", "angry" ],
+              [ "shadow", "Am I? Ask him. Ask him how he feels at night.", "smug" ]
+            ]
+          }
+        },
+        { "id": "voice_b1", "at": { "with": "voice_d1", "delay": 6 }, "who": "becky", "do": "growl", "say": "Grrr..." }
+      ]
+    },
+    {
+      "id": "copy",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "battle", "intensity": 0.9, "volume": 0.34 },
+      "cast": [ { "id": "doopi", "x": 1500, "facing": 1, "face": "furious" }, { "id": "shadow", "x": 1900, "facing": -1, "face": "smug" } ],
+      "beats": [
+        { "id": "copy_gl", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "shadow", "color": "#b05cff", "level": 0.6 } },
+        {
+          "id": "copy_n1",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Every punch Doopi threw, the shadow threw too. At exactly the same time." }
+        },
+        {
+          "id": "copy_f",
+          "at": { "after": "copy_n1" },
+          "macro": "fight",
+          "params": { "sides": [ "doopi", "shadow" ], "winner": "shadow", "style": "even", "intensity": "medium", "exchanges": 8, "ko": false }
+        },
+        {
+          "id": "copy_d1",
+          "at": { "after": "copy_f" },
+          "macro": "dialogue",
+          "params": { "lines": [ [ "doopi", "Stop copying me!", "furious" ], [ "shadow", "Stop copying me! Ha ha ha!", "laugh" ] ] }
+        },
+        {
+          "id": "copy_sp",
+          "at": { "after": "copy_d1" },
+          "who": "doopi",
+          "do": "spinning_kick",
+          "target": "shadow",
+          "outcome": "blocked",
+          "approach": "run",
+          "say": "JALEBI SPIN!",
+          "bubble": "shout"
+        },
+        {
+          "id": "copy_ss",
+          "at": { "with": "copy_sp", "delay": 0.1 },
+          "who": "shadow",
+          "do": "spinning_kick",
+          "target": "doopi",
+          "outcome": "blocked",
+          "say": "JALEBI SPIN!"
+        },
+        { "id": "copy_bo", "at": { "after": "copy_sp" }, "who": "doopi", "do": "dizzy", "face": "dizzy", "interrupt": true },
+        {
+          "id": "copy_d2",
+          "at": { "after": "copy_bo" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [ [ "shadow", "Everything you know, I know. Everything you do, I do.", "smug" ], [ "doopi", "Then how do I beat... myself?", "scared" ] ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "split",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "battle", "intensity": 0.8, "volume": 0.34 },
+      "cast": [
+        { "id": "shadow", "x": 1900, "facing": -1, "face": "smug" },
+        { "id": "sh2", "x": 1800, "facing": -1, "hidden": true },
+        { "id": "sh3", "x": 2000, "facing": -1, "hidden": true },
+        { "id": "sh4", "x": 2100, "facing": -1, "hidden": true },
+        { "id": "tara", "x": 1100, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 950, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 1250, "facing": 1, "face": "determined" },
+        { "id": "doopi", "x": 700, "facing": 1, "face": "tired" }
+      ],
+      "beats": [
+        { "id": "split_d0", "at": 0.3, "who": "tara", "do": "talk", "face": "determined", "say": "Leave him alone! Get him, everyone!", "bubble": "shout" },
+        { "id": "split_s1", "at": { "after": "split_d0" }, "who": "shadow", "do": "charge_up", "face": "smug", "say": "Oh, more of you? Then more of ME." },
+        { "id": "split_s2", "at": { "after": "split_s1" }, "who": "sh2", "do": "spawn", "fx": [ "smoke" ] },
+        { "id": "split_s3", "at": { "with": "split_s2", "delay": 0.2 }, "who": "sh3", "do": "spawn", "fx": [ "smoke" ] },
+        { "id": "split_s4", "at": { "with": "split_s2", "delay": 0.4 }, "who": "sh4", "do": "spawn", "fx": [ "smoke" ] },
+        {
+          "id": "split_b",
+          "at": { "after": "split_s4" },
+          "macro": "brawl",
+          "params": { "teams": { "a": [ "tara", "mooka", "dony" ], "b": [ "sh2", "sh3", "sh4" ] }, "winner": "b", "dur": 16, "intensity": "low" }
+        },
+        { "id": "split_x2", "at": { "after": "split_b" }, "who": "sh2", "do": "despawn", "fx": [ "smoke" ] },
+        { "id": "split_x3", "at": { "with": "split_x2", "delay": 0.2 }, "who": "sh3", "do": "despawn", "fx": [ "smoke" ] },
+        { "id": "split_x4", "at": { "with": "split_x2", "delay": 0.4 }, "who": "sh4", "do": "despawn", "fx": [ "smoke" ] }
+      ]
+    },
+    {
+      "id": "up",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "sad", "intensity": 0.4, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1000, "facing": 1, "face": "sad" },
+        { "id": "tara", "x": 1300, "facing": -1, "face": "hurt", "hp": 100 },
+        { "id": "mooka", "x": 1500, "facing": -1, "face": "hurt", "hp": 100 },
+        { "id": "dony", "x": 1700, "facing": -1, "face": "hurt", "hp": 100 }
+      ],
+      "beats": [
+        { "id": "up_l1", "at": 0, "who": "tara", "do": "lie_down" },
+        { "id": "up_l2", "at": 0, "who": "mooka", "do": "lie_down" },
+        { "id": "up_l3", "at": 0, "who": "dony", "do": "lie_down" },
+        { "id": "up_w", "at": 0.4, "who": "doopi", "do": "walk", "to": { "near": "tara", "gap": 110 } },
+        { "id": "up_h1", "at": { "after": "up_w" }, "who": "doopi", "do": "lift_up", "partner": "tara", "face": "sad" },
+        { "id": "up_g1", "at": { "after": "up_h1" }, "who": "tara", "do": "get_up", "face": "tired" },
+        { "id": "up_g2", "at": { "with": "up_g1", "delay": 0.4 }, "who": "mooka", "do": "get_up", "face": "tired" },
+        { "id": "up_g3", "at": { "with": "up_g1", "delay": 0.8 }, "who": "dony", "do": "get_up", "face": "tired" },
+        {
+          "id": "up_d",
+          "at": { "after": "up_g3" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "Four of them! Every time we hit one, two more laughed.", "angry" ],
+              [ "mooka", "The shadows don't even like jalebis. I offered.", "sad" ],
+              [ "doopi", "This is my fight. My shadow. I'm sorry you got hurt.", "sad" ],
+              [ "dony", "Your fight is our fight, champ. Remember?", "determined" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "doubt",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "sad", "intensity": 0.7, "volume": 0.32 },
+      "cast": [
+        { "id": "doopi", "x": 1500, "facing": 1, "face": "determined" },
+        { "id": "shadow", "x": 1900, "facing": -1, "face": "smug" },
+        { "id": "dony", "x": 900, "facing": 1, "face": "tired", "hp": 100 }
+      ],
+      "beats": [
+        { "id": "doubt_gl", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "shadow", "color": "#b05cff", "level": 0.6 } },
+        {
+          "id": "doubt_f",
+          "at": 0.3,
+          "macro": "fight",
+          "params": { "sides": [ "doopi", "shadow" ], "winner": "shadow", "style": "dominant", "intensity": "medium", "exchanges": 8, "ko": false }
+        },
+        { "id": "doubt_w1", "at": { "with": "doubt_f", "delay": 4 }, "who": "shadow", "do": "talk", "face": "smug", "say": "Clumsy. Clumsy. CLUMSY." },
+        { "id": "doubt_k1", "at": { "after": "doubt_f" }, "who": "doopi", "do": "kneel", "face": "cry" },
+        {
+          "id": "doubt_ic",
+          "at": { "after": "doubt_k1" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "shadow", "color": "#5a5cff", "level": 1, "dur": 1 }
+        },
+        {
+          "id": "doubt_n1",
+          "at": { "with": "doubt_ic", "delay": 0.4 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "And in the shadow's chest glowed something deep blue-purple: the Indigo crystal." }
+        }
+      ]
+    },
+    {
+      "id": "dony",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "heroic", "intensity": 0.6, "volume": 0.32 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "cry" },
+        { "id": "shadow", "x": 1900, "facing": -1, "face": "smug" },
+        { "id": "dony", "x": 900, "facing": 1, "face": "determined", "hp": 100 }
+      ],
+      "beats": [
+        { "id": "dony_gl", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "shadow", "color": "#5a5cff", "level": 0.8 } },
+        { "id": "dony_k0", "at": 0, "who": "doopi", "do": "kneel", "face": "cry" },
+        { "id": "dony_r1", "at": 0.3, "who": "dony", "do": "run", "to": { "x": 1600 } },
+        {
+          "id": "dony_b1",
+          "at": { "after": "dony_r1" },
+          "who": "dony",
+          "do": "block",
+          "face": "determined",
+          "say": "LEAVE MY BEST FRIEND ALONE!",
+          "bubble": "shout"
+        },
+        {
+          "id": "dony_d1",
+          "at": { "after": "dony_b1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "shadow", "The little green one. Half as strong. Twice as silly.", "smug" ],
+              [ "dony", "Maybe. But I know the REAL Doopi. And you're not him.", "determined" ],
+              [ "dony", "The real Doopi stops to help. You only push people down.", "determined" ],
+              [ "shadow", "How touching. Then you can be my FIRST prize.", "smug" ],
+              [ "dony", "...Uh oh.", "scared" ]
+            ]
+          }
+        },
+        { "id": "dony_dp", "at": { "with": "dony_d1", "delay": 5 }, "who": "doopi", "do": "gasp", "face": "surprised" }
+      ]
+    },
+    {
+      "id": "wall",
+      "location": "maze",
+      "time": "night",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "up" },
+      "music": { "mood": "tense", "intensity": 0.8, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1000, "facing": 1, "face": "scared" },
+        { "id": "dony", "x": 1800, "facing": -1, "face": "determined", "hp": 100 },
+        { "id": "shadow", "x": 2050, "facing": -1, "face": "smug" },
+        { "id": "becky", "x": 800, "facing": 1, "face": "angry" },
+        { "id": "ghoom", "x": 300, "facing": 1, "face": "neutral" }
+      ],
+      "beats": [
+        { "id": "wall_gl", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "shadow", "color": "#5a5cff", "level": 0.8 } },
+        { "id": "wall_sh", "at": 0.3, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        {
+          "id": "wall_n1",
+          "at": { "with": "wall_sh", "delay": 0.4 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Behind them, a wall of mirrors rose out of the ground." }
+        },
+        { "id": "wall_gr", "at": { "after": "wall_n1" }, "who": "shadow", "do": "drag", "partner": "dony", "approach": "walk" },
+        {
+          "id": "wall_dd",
+          "at": { "with": "wall_gr", "delay": 0.3 },
+          "who": "dony",
+          "do": "talk",
+          "face": "scared",
+          "say": "DOOPI!",
+          "bubble": "shout",
+          "interrupt": true
+        },
+        { "id": "wall_rp", "at": { "after": "wall_gr" }, "who": "shadow", "do": "walk", "to": { "x": 2280 }, "fx": [ "mirror_ripple" ] },
+        { "id": "wall_x1", "at": { "after": "wall_rp" }, "who": "shadow", "do": "despawn", "fx": [ "mirror_ripple" ] },
+        { "id": "wall_x2", "at": { "with": "wall_x1", "delay": 0.2 }, "who": "dony", "do": "despawn", "fx": [ "mirror_ripple" ], "interrupt": true },
+        { "id": "wall_r1", "at": { "with": "wall_gr" }, "who": "doopi", "do": "run", "to": { "x": 2100 }, "face": "scared", "say": "DONY!" },
+        {
+          "id": "wall_n2",
+          "at": { "after": "wall_x2" },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Dony's hand pressed against the glass from inside. Then it faded away." }
+        },
+        { "id": "wall_cl", "at": { "after": "wall_n2" }, "who": "world", "do": "sfx", "params": { "name": "clang", "volume": 1 } },
+        { "id": "wall_sh2", "at": { "with": "wall_cl" }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        { "id": "wall_end", "at": { "after": "wall_cl", "delay": 1 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

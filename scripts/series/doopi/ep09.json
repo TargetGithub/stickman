@@ -1,0 +1,524 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 9: The Pirates of Lotus Lake",
+    "format": "landscape",
+    "seed": 2409,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": { "headband": "#ff3b5c", "bracelet": "#e6b84a" },
+        "slots": 3
+      },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": { "hair_flower": "#ffffff" }
+      },
+      "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+      "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+    },
+    {
+      "id": "mallu",
+      "name": "Mallu Uncle",
+      "body": "elder",
+      "color": "#ffc2a0",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#f4f1de",
+        "outfit": "shirt",
+        "outfitColor": "#2a8f7c",
+        "accessories": { "beard": "#f4f1de" }
+      },
+      "voice": { "pitch": 0.9, "speed": 0.9, "timbre": "deep" }
+    },
+    {
+      "id": "kanta",
+      "name": "Captain Kanta",
+      "body": "stickman",
+      "color": "#9ad1d4",
+      "prop": "sword",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "outfit": "coat",
+        "outfitColor": "#1d3557",
+        "accessories": { "pirate_hat": "#1d3557", "eyepatch": "#111111", "moustache": "#2a1a14" }
+      },
+      "voice": { "pitch": 0.85, "speed": 1.05, "timbre": "deep" }
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": { "hair": "cap", "hairColor": "#e63946", "accessories": { "stub_horns": "#7a6a99" } },
+      "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" }
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": { "hair": "cap", "hairColor": "#3a6fd8", "accessories": { "stub_horns": "#7a6a99" } },
+      "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" }
+    },
+    {
+      "id": "pirate1",
+      "name": "Pirate",
+      "body": "bulky",
+      "color": "#e8e0f0",
+      "appearance": { "eyes": "sleepy", "hair": "bob", "hairColor": "#2a1a14", "accessories": { "scarf": "#e63946" } },
+      "voice": { "pitch": 0.75, "speed": 1, "timbre": "deep" }
+    },
+    {
+      "id": "fisher",
+      "name": "Fisher girl",
+      "body": "kid",
+      "scale": 0.85,
+      "color": "#ffd23f",
+      "appearance": { "hair": "bun", "hairColor": "#2a1a14" },
+      "voice": { "pitch": 1.6, "speed": 1.1, "timbre": "squeaky" }
+    }
+  ],
+  "locations": [
+    { "id": "shore", "theme": "lotus_lake", "stageWidth": 3600, "set": [ { "id": "raft1", "object": "raft", "x": 2200 } ] },
+    { "id": "village", "theme": "lotus_lake", "stageWidth": 3600, "set": [ { "id": "chest0", "object": "basket", "x": 1500 } ] },
+    { "id": "deck", "theme": "pirate_deck", "stageWidth": 3400 }
+  ],
+  "scenes": [
+    {
+      "id": "raft",
+      "location": "shore",
+      "time": "day",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 9: The Pirates of Lotus Lake" },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "playful", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1900, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 1700, "facing": 1, "face": "happy" },
+        { "id": "tara", "x": 1500, "facing": 1, "face": "smug" },
+        { "id": "doomi", "x": 1300, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "becky", "x": 950, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "raft_n1", "at": 0.4, "who": "world", "do": "narrate", "params": { "text": "Lotus Lake. Even its pink flowers were turning grey." } },
+        {
+          "id": "raft_d1",
+          "at": { "after": "raft_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Our raft is ready! Built it myself!", "smug" ],
+              [ "tara", "It has... eleven knots. And four of them are your shoelaces.", "smug" ],
+              [ "doopi", "Watch and learn!", "determined" ]
+            ]
+          }
+        },
+        { "id": "raft_j1", "at": { "after": "raft_d1" }, "who": "doopi", "do": "jump", "params": { "height": 60 } },
+        { "id": "raft_br", "at": { "with": "raft_j1", "delay": 0.8 }, "who": "world", "do": "set_object", "object": "raft1", "params": { "state": "broken" } },
+        { "id": "raft_sp", "at": { "with": "raft_br" }, "who": "doopi", "do": "knockdown", "face": "dizzy", "fx": [ "splash" ], "interrupt": true },
+        { "id": "raft_sx", "at": { "with": "raft_br" }, "who": "world", "do": "sfx", "params": { "name": "splash" } },
+        { "id": "raft_l1", "at": { "with": "raft_br", "delay": 0.5 }, "who": "mooka", "do": "laugh", "face": "laugh", "say": "Hee hee! Glub glub!" },
+        { "id": "raft_l2", "at": { "with": "raft_br", "delay": 0.7 }, "who": "tara", "do": "facepalm" },
+        { "id": "raft_up", "at": { "after": "raft_sp", "delay": 0.3 }, "who": "doopi", "do": "get_up", "face": "tired", "say": "Okay. Maybe we need a boat." }
+      ]
+    },
+    {
+      "id": "mallu",
+      "location": "shore",
+      "time": "day",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "happy", "intensity": 0.4, "volume": 0.3 },
+      "set": [ { "id": "boat", "object": "rowboat", "x": 3400, "layer": "back" } ],
+      "cast": [
+        { "id": "doopi", "x": 1900, "facing": 1, "face": "tired" },
+        { "id": "dony", "x": 1700, "facing": 1, "face": "happy" },
+        { "id": "tara", "x": 1500, "facing": 1, "face": "smug" },
+        { "id": "mooka", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "mallu", "x": 3100, "facing": -1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "mallu_b0", "at": 0.3, "who": "world", "do": "set_object", "object": "boat", "params": { "toX": 2700 } },
+        { "id": "mallu_e1", "at": 2.5, "macro": "enter", "params": { "who": "mallu", "side": "right", "to": { "x": 2400 }, "mode": "walk" } },
+        {
+          "id": "mallu_d1",
+          "at": { "after": "mallu_e1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "mallu", "Ahoy, wet little fish! Need a boat?", "laugh" ],
+              [ "mallu", "Why did the lotus go to school? To get a little... brighter! Ho ho!", "laugh" ],
+              [ "dony", "...", "tired" ],
+              [ "mallu", "Tough crowd. I'm Mallu. I row, I fish, I tell jokes.", "happy" ],
+              [ "doopi", "Can you take us across the lake, Mallu Uncle?", "happy" ],
+              [ "mallu", "Across? Kanta's pirates are out there! ...For jalebis, I'll do it.", "smug" ],
+              [ "mooka", "Jalebis? I have... zero jalebis. I ate them all.", "sad" ]
+            ]
+          }
+        },
+        { "id": "mallu_la", "at": { "after": "mallu_d1" }, "who": "mallu", "do": "laugh", "face": "laugh", "say": "Ho ho! Then pay me later!" },
+        { "id": "mallu_sh", "at": { "after": "mallu_la" }, "who": "mallu", "do": "handshake", "partner": "doopi", "face": "happy" }
+      ]
+    },
+    {
+      "id": "village",
+      "location": "village",
+      "time": "day",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "playful", "intensity": 0.5, "volume": 0.3 },
+      "extras": [ { "count": 4, "behavior": "idle_chat", "layer": "back" } ],
+      "cast": [
+        { "id": "becky", "x": 1200, "facing": 1, "face": "happy" },
+        { "id": "fisher", "x": 1650, "facing": -1, "face": "happy" },
+        { "id": "mallu", "x": 2100, "facing": -1, "face": "happy" },
+        { "id": "doomi", "x": 900, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "village_n1", "at": 0.4, "who": "world", "do": "narrate", "params": { "text": "Mallu's fishing village stood on stilts over the water." } },
+        { "id": "village_b1", "at": 1, "who": "becky", "do": "sneak", "to": { "x": 1480 } },
+        { "id": "village_b2", "at": { "after": "village_b1" }, "who": "becky", "do": "tilt_head", "face": "surprised" },
+        {
+          "id": "village_d1",
+          "at": { "after": "village_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "fisher", "Your doggy is staring at my basket. It's full of fish!", "laugh" ],
+              [ "doomi", "Becky has never met a fish before.", "happy" ],
+              [ "fisher", "Then say hello, Mister Fish! Splish!", "laugh" ]
+            ]
+          }
+        },
+        { "id": "village_b3", "at": { "after": "village_d1" }, "who": "becky", "do": "jump", "face": "surprised" },
+        { "id": "village_b4", "at": { "after": "village_b3" }, "who": "becky", "do": "bark", "params": { "cycles": 2 }, "say": "Woof?!" },
+        { "id": "village_f2", "at": { "with": "village_b4", "delay": 0.3 }, "who": "fisher", "do": "laugh", "face": "laugh" },
+        { "id": "village_m1", "at": { "after": "village_b4" }, "who": "mallu", "do": "talk", "face": "happy", "say": "Ha! It splashed her nose!" }
+      ]
+    },
+    {
+      "id": "ship",
+      "location": "village",
+      "time": "day",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "tense", "intensity": 0.6, "volume": 0.32 },
+      "set": [ { "id": "ship", "object": "pirate_ship", "x": 3450, "layer": "back" } ],
+      "cast": [
+        { "id": "doopi", "x": 1000, "facing": 1, "face": "happy" },
+        { "id": "mallu", "x": 1300, "facing": 1, "face": "happy" },
+        { "id": "tara", "x": 800, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "ship_h1", "at": 0.3, "who": "world", "do": "sfx", "params": { "name": "pirate_horn", "volume": 1, "x": 3400 } },
+        { "id": "ship_s1", "at": 0.5, "who": "world", "do": "set_object", "object": "ship", "params": { "toX": 2700 } },
+        { "id": "ship_g1", "at": 0.8, "who": "mallu", "do": "gasp", "face": "scared", "say": "The fish flag! KANTA!" },
+        {
+          "id": "ship_n1",
+          "at": { "after": "ship_g1", "delay": 1 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "On the deck stood Captain Kanta, with something blue and shiny on his hat." }
+        },
+        {
+          "id": "ship_d1",
+          "at": { "after": "ship_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "Look at his hat! The Blue crystal!", "surprised" ],
+              [ "doopi", "And Tony and Kony are on his crew?", "surprised" ],
+              [ "mallu", "Hide, children! Kanta takes anything that shines!", "scared" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "deck",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "right" },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "boss", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "kanta", "x": 1700, "facing": -1, "face": "smug" },
+        { "id": "tony", "x": 1250, "facing": 1, "face": "happy" },
+        { "id": "kony", "x": 1050, "facing": 1, "face": "sad" }
+      ],
+      "beats": [
+        { "id": "deck_g", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "kanta", "color": "#2f9bff", "level": 0.35 } },
+        { "id": "deck_f", "at": 0.4, "who": "kanta", "do": "flex", "face": "smug", "say": "Look at me hat! The BLUE crystal!" },
+        {
+          "id": "deck_d1",
+          "at": { "after": "deck_f" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tony", "Very shiny, Captain! Boss Peepa lent it to you.", "happy" ],
+              [ "kanta", "LENT? Kanta keeps what Kanta wears!", "furious" ],
+              [ "kony", "Captain... there are kids on the shore. And a doggy.", "scared" ],
+              [ "kanta", "Kids? With shiny bracelets? Ho! Drop anchor!", "laugh" ]
+            ]
+          }
+        },
+        { "id": "deck_t", "at": { "after": "deck_d1" }, "who": "tony", "do": "point", "face": "smug", "say": "To the shore, you scallywags!" },
+        { "id": "deck_k", "at": { "with": "deck_t", "delay": 0.4 }, "who": "kony", "do": "sigh", "face": "sad", "say": "I miss Mooka..." }
+      ]
+    },
+    {
+      "id": "landing",
+      "location": "shore",
+      "time": "day",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "battle", "intensity": 0.6, "volume": 0.32 },
+      "cast": [
+        { "id": "kanta", "x": 2500, "facing": -1, "hidden": true },
+        { "id": "pirate1", "x": 2300, "facing": -1, "hidden": true },
+        { "id": "tony", "x": 2700, "facing": -1, "hidden": true },
+        { "id": "kony", "x": 2850, "facing": -1, "hidden": true },
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "determined" },
+        { "id": "becky", "x": 1100, "facing": 1, "face": "angry" },
+        { "id": "dony", "x": 950, "facing": 1, "face": "scared" }
+      ],
+      "beats": [
+        { "id": "landing_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "kanta", "color": "#2f9bff", "level": 0.35 } },
+        { "id": "landing_e1", "at": 0.3, "macro": "enter", "params": { "who": "kanta", "side": "right", "to": { "x": 2300 }, "mode": "run" } },
+        {
+          "id": "landing_e2",
+          "at": { "with": "landing_e1", "delay": 0.3 },
+          "macro": "enter",
+          "params": { "who": "pirate1", "side": "right", "to": { "x": 2000 }, "mode": "run" }
+        },
+        {
+          "id": "landing_e3",
+          "at": { "with": "landing_e1", "delay": 0.6 },
+          "macro": "enter",
+          "params": { "who": "tony", "side": "right", "to": { "x": 2550 }, "mode": "run" }
+        },
+        {
+          "id": "landing_e4",
+          "at": { "with": "landing_e1", "delay": 0.8 },
+          "macro": "enter",
+          "params": { "who": "kony", "side": "right", "to": { "x": 2700 }, "mode": "run" }
+        },
+        {
+          "id": "landing_d1",
+          "at": { "after": "landing_e4" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "kanta", "Arr! Captain Kanta, terror of Lotus Lake!", "smug" ],
+              [ "kanta", "Hand over your shiny things! Bracelets! Spoons! Teeth!", "furious" ],
+              [ "doopi", "Not a chance. And that crystal on your hat isn't yours!", "determined" ],
+              [ "kanta", "Get him, Gulgul!", "angry" ]
+            ]
+          }
+        },
+        {
+          "id": "landing_f",
+          "at": { "after": "landing_d1" },
+          "macro": "fight",
+          "params": { "sides": [ "doopi", "pirate1" ], "winner": "doopi", "style": "even", "intensity": "low", "exchanges": 5, "ko": false }
+        },
+        { "id": "landing_b1", "at": { "after": "landing_f" }, "who": "becky", "do": "run", "to": { "near": "kanta", "gap": 160 } },
+        {
+          "id": "landing_b2",
+          "at": { "after": "landing_b1" },
+          "who": "becky",
+          "do": "bark",
+          "params": { "cycles": 3 },
+          "say": "WOOF WOOF WOOF!",
+          "bubble": "shout"
+        },
+        {
+          "id": "landing_k1",
+          "at": { "with": "landing_b2", "delay": 0.5 },
+          "who": "kanta",
+          "do": "cower",
+          "face": "scared",
+          "say": "A PUPPY! NOT A PUPPY!",
+          "bubble": "shout"
+        },
+        { "id": "landing_k2", "at": { "after": "landing_k1" }, "macro": "exit", "params": { "who": "kanta", "side": "right", "mode": "run" } },
+        { "id": "landing_k3", "at": { "with": "landing_k2", "delay": 0.3 }, "macro": "exit", "params": { "who": "pirate1", "side": "right", "mode": "run" } },
+        { "id": "landing_k4", "at": { "with": "landing_k2", "delay": 0.5 }, "macro": "exit", "params": { "who": "tony", "side": "right", "mode": "run" } },
+        { "id": "landing_k5", "at": { "with": "landing_k2", "delay": 0.7 }, "macro": "exit", "params": { "who": "kony", "side": "right", "mode": "run" } },
+        { "id": "landing_l1", "at": { "after": "landing_k2" }, "who": "dony", "do": "laugh", "face": "laugh", "say": "The lake terror is scared of puppies!" }
+      ]
+    },
+    {
+      "id": "plan",
+      "location": "village",
+      "time": "night",
+      "transitionIn": { "type": "fade", "dur": 0.8 },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "calm", "intensity": 0.3, "volume": 0.28 },
+      "cast": [
+        { "id": "doomi", "x": 1500, "facing": 1, "face": "determined" },
+        { "id": "doopi", "x": 1750, "facing": -1, "face": "happy" },
+        { "id": "tara", "x": 1950, "facing": -1, "face": "happy" },
+        { "id": "mooka", "x": 1250, "facing": 1, "face": "happy" },
+        { "id": "mallu", "x": 2200, "facing": -1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "plan_s1", "at": 0.2, "who": "doomi", "do": "sit" },
+        { "id": "plan_s2", "at": 0.3, "who": "doopi", "do": "sit" },
+        { "id": "plan_s3", "at": 0.4, "who": "mooka", "do": "sit" },
+        {
+          "id": "plan_d1",
+          "at": 1,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doomi", "Here's the lake. Kanta's island is here, in the middle.", "determined" ],
+              [ "mallu", "We row at dawn, when the pirates snore.", "smug" ],
+              [ "tara", "And we don't fight alone. We ask for help, like today.", "happy" ],
+              [ "doopi", "Mooka, what did you draw?", "surprised" ],
+              [ "mooka", "A jalebi. For Mallu Uncle. A promise jalebi.", "love" ],
+              [ "mallu", "Ho ho! Best map I've ever seen!", "laugh" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "moon",
+      "location": "shore",
+      "time": "night",
+      "transitionIn": { "type": "dissolve", "dur": 0.8 },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "lullaby", "volume": 0.26 },
+      "cast": [ { "id": "mooka", "x": 1200, "facing": 1, "face": "happy" } ],
+      "beats": [
+        { "id": "moon_w1", "at": 0.4, "who": "mooka", "do": "walk", "to": { "x": 2000 } },
+        { "id": "moon_d1", "at": { "after": "moon_w1" }, "who": "mooka", "do": "sit", "face": "love" },
+        { "id": "moon_t1", "at": { "after": "moon_d1" }, "who": "mooka", "do": "talk", "face": "love", "say": "Hello, Moon. Are you grey too?" },
+        { "id": "moon_t2", "at": { "after": "moon_t1", "delay": 1 }, "who": "mooka", "do": "talk", "face": "happy", "say": "Don't worry. Doopi will fix you." },
+        { "id": "moon_t3", "at": { "after": "moon_t2", "delay": 1 }, "who": "mooka", "do": "sigh", "face": "happy" },
+        { "id": "moon_t4", "at": { "after": "moon_t3", "delay": 0.6 }, "who": "mooka", "do": "talk", "face": "love", "say": "And Nani. And all the colours." },
+        { "id": "moon_t5", "at": { "after": "moon_t4", "delay": 0.8 }, "who": "mooka", "do": "laugh", "face": "laugh", "say": "Hee hee. Goodnight, Moon." }
+      ]
+    },
+    {
+      "id": "net",
+      "location": "shore",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.55 },
+      "music": { "mood": "tense", "intensity": 0.8, "volume": 0.32 },
+      "set": [ { "id": "ship", "object": "pirate_ship", "x": 3000, "layer": "back" } ],
+      "cast": [
+        { "id": "mooka", "x": 2000, "facing": 1, "face": "happy" },
+        { "id": "pirate1", "x": 3300, "facing": -1, "hidden": true },
+        { "id": "kanta", "x": 3400, "facing": -1, "hidden": true },
+        { "id": "doopi", "x": 400, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "net_s0", "at": 0, "who": "mooka", "do": "sit" },
+        { "id": "net_e1", "at": 0.6, "macro": "enter", "params": { "who": "pirate1", "side": "right", "to": { "x": 2250 }, "mode": "sneak" } },
+        {
+          "id": "net_e2",
+          "at": { "with": "net_e1", "delay": 0.5 },
+          "macro": "enter",
+          "params": { "who": "kanta", "side": "right", "to": { "x": 2600 }, "mode": "sneak" }
+        },
+        { "id": "net_c1", "at": { "after": "net_e1" }, "who": "mooka", "do": "captured", "params": { "net": 1 } },
+        {
+          "id": "net_k1",
+          "at": { "with": "net_c1", "delay": 0.6 },
+          "who": "kanta",
+          "do": "laugh",
+          "face": "smug",
+          "say": "The GOLDEN JELLY! A fortune!",
+          "bubble": "shout"
+        },
+        {
+          "id": "net_m1",
+          "at": { "with": "net_c1", "delay": 1.2 },
+          "who": "world",
+          "do": "caption",
+          "params": { "text": "Help! HELP! Doopiii!", "pos": "top", "dur": 2.5 }
+        },
+        { "id": "net_e3", "at": { "after": "net_k1" }, "macro": "enter", "params": { "who": "doopi", "side": "left", "to": { "x": 1400 }, "mode": "run" } },
+        { "id": "net_dd", "at": { "after": "net_e3" }, "who": "doopi", "do": "gasp", "face": "scared", "say": "MOOKA!", "bubble": "shout" },
+        { "id": "net_go", "at": { "with": "net_dd", "delay": 0.5 }, "who": "world", "do": "set_object", "object": "ship", "params": { "exit": "right" } },
+        { "id": "net_h1", "at": { "with": "net_go" }, "who": "world", "do": "sfx", "params": { "name": "pirate_horn", "volume": 1, "x": 3200 } },
+        {
+          "id": "net_n1",
+          "at": { "after": "net_dd", "delay": 1.5 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "And the pirate ship sailed away into the night, with Mooka inside." }
+        },
+        { "id": "net_end", "at": { "after": "net_n1", "delay": 0.4 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

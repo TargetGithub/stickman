@@ -6,6 +6,13 @@ import { mulberry32, hash32 } from "../math.js";
 import { STAGE } from "../config.js";
 import { layerTransform, screen, glowDisc, polygonBand } from "./layer_util.js";
 import { STORY_KINDS } from "./background_kinds.js";
+import { VILLAGE_KINDS } from "./background_village.js";
+import { FOREST_KINDS } from "./background_forest.js";
+import { FORT_KINDS } from "./background_fort.js";
+import { SEA_KINDS } from "./background_sea.js";
+import { IRON_KINDS } from "./background_iron.js";
+import { SHADOW_KINDS } from "./background_shadow.js";
+import { MOON_KINDS } from "./background_moon.js";
 
 const SPAN = [-2400, 8000]; // world x range covered by generated geometry (any stage up to 8000 px)
 
@@ -223,7 +230,7 @@ const KINDS = {
   },
 };
 
-Object.assign(KINDS, STORY_KINDS);
+Object.assign(KINDS, STORY_KINDS, VILLAGE_KINDS, FOREST_KINDS, FORT_KINDS, SEA_KINDS, IRON_KINDS, SHADOW_KINDS, MOON_KINDS);
 
 export const LAYER_KINDS = Object.keys(KINDS);
 

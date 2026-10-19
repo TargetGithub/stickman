@@ -44,6 +44,8 @@ const appearance = {
     hairColor: color,
     outfit: { type: "string" },
     outfitColor: color,
+    belly: { ...color, description: "A belly patch color on a capsule body (buddy); hidden under an outfit." },
+    slots: { type: "integer", minimum: 0, maximum: 7, description: "Lit gem slots on the bracelet (rainbow order)." },
     accessories: {
       type: "object",
       description: "Accessory name → color. Also accepts the v1 style accessories (headband, scarf, cape, hat).",
@@ -243,6 +245,17 @@ const macroBeat = {
   },
 };
 
+/** How colourful the scene is (A3): saturation 1 is full colour, 0 grey; keepCast keeps the characters in colour. */
+const grade = {
+  type: "object",
+  required: ["saturation"],
+  additionalProperties: false,
+  properties: {
+    saturation: { type: "number", minimum: 0, maximum: 1 },
+    keepCast: { type: "boolean", description: "Characters stay in full colour while the world is grey." },
+  },
+};
+
 const sceneFor = (music) => ({
   type: "object",
   required: ["id", "location", "cast", "beats"],
@@ -253,6 +266,7 @@ const sceneFor = (music) => ({
     time: { enum: E.time },
     weather: { enum: E.weather },
     ambience: { enum: E.ambience },
+    grade,
     duration: { type: "number", minimum: 1, maximum: L.sceneMax, description: "Fixed length; otherwise the last beat's end plus tail." },
     tail: { type: "number", minimum: 0, maximum: 5 },
     transitionIn: transition,

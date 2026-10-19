@@ -21,7 +21,8 @@
     { "name": "spiky", "description": "Spiky hero hair." },
     { "name": "bob", "description": "A rounded bob." },
     { "name": "ponytail", "description": "A ponytail." },
-    { "name": "cap", "description": "A cap (counts as headwear)." }
+    { "name": "cap", "description": "A cap (counts as headwear)." },
+    { "name": "bun", "description": "A round bun on top with a hairpin." }
   ],
   "outfit": [
     { "name": "none", "description": "No outfit lines." },
@@ -40,7 +41,22 @@
     { "name": "mask", "description": "A mask over the eyes." },
     { "name": "crown", "description": "A crown." },
     { "name": "backpack", "description": "A backpack." },
-    { "name": "eyepatch", "description": "An eyepatch." }
+    { "name": "eyepatch", "description": "An eyepatch." },
+    { "name": "hair_flower", "description": "A five-petal flower clip above the ear." },
+    { "name": "sprout", "description": "A two-leaf sprout on top of the head." },
+    { "name": "mittens", "description": "Round mitten hands." },
+    { "name": "horns", "description": "Two curly ram horns curving back." },
+    { "name": "turban", "description": "A wrapped turban with a jewel (headwear; covers the hair)." },
+    { "name": "moustache", "description": "A big curly handlebar moustache." },
+    { "name": "stub_horns", "description": "Two tiny glued-on toy horns (remove for a gag)." },
+    { "name": "bracelet", "description": "A left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order." },
+    { "name": "chilli_hat", "description": "A tall curved red-chilli hat with a green cap (headwear; covers the hair)." },
+    { "name": "pirate_hat", "description": "A pirate tricorn with a gold trim and a fish emblem (headwear; covers the hair)." },
+    { "name": "beard", "description": "A round fluffy beard." },
+    { "name": "windup_key", "description": "A big brass wind-up key in the back that turns slowly (Iron Ghoom)." }
   ],
-  "conflicts": [["hat", "crown"], ["hat", "hair:cap"], ["crown", "hair:cap"], ["mask", "eyes:visor"], ["eyepatch", "eyes:visor"]]
+  "conflicts": [["hat", "crown"], ["hat", "hair:cap"], ["crown", "hair:cap"], ["mask", "eyes:visor"], ["eyepatch", "eyes:visor"],
+    ["turban", "hat"], ["turban", "crown"], ["turban", "hair:cap"], ["turban", "horns"], ["turban", "stub_horns"], ["horns", "stub_horns"], ["horns", "hat"], ["horns", "hair:cap"],
+    ["chilli_hat", "hat"], ["chilli_hat", "crown"], ["chilli_hat", "turban"], ["chilli_hat", "horns"], ["chilli_hat", "hair:cap"],
+    ["pirate_hat", "hat"], ["pirate_hat", "crown"], ["pirate_hat", "turban"], ["pirate_hat", "horns"], ["pirate_hat", "hair:cap"], ["pirate_hat", "chilli_hat"]]
 }

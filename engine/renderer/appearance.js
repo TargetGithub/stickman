@@ -1,7 +1,10 @@
 // Appearance (STORY_SPEC 6.3). Milestone: S3. Hair, masks and head/neck/back accessories for story
 // characters, drawn around the head in face axes: angle 0 points forward, 90° up, 180° back.
 // Order (character.js): backpack and ponytail behind the body; mask before the face features; hair,
-// eyepatch, antenna and crown after them; bowtie on the neck.
+// eyepatch, antenna and crown after them; bowtie on the neck. The Doopi & Friends pieces (horns,
+// turban, sprout, hair_flower, moustache, stub_horns, the bun) are drawn by accessories_more.js.
+
+import { drawBun, drawHornsBack, drawHeadMore } from "./accessories_more.js";
 
 const INK = "#111111";
 const DEG = Math.PI / 180;
@@ -26,8 +29,9 @@ function fillPath(ctx, pts, color, lw) {
 
 const arcPts = (c, r, ax, from, to, k, n = 14) => Array.from({ length: n + 1 }, (_, i) => polar(c, r, ax, from + ((to - from) * i) / n, k));
 
-/** Ponytail (behind the head). */
+/** Ponytail and the far horn (behind the head). */
 export function drawHairBack(ctx, c, r, ax, look) {
+  if (look.accessories) drawHornsBack(ctx, c, r, ax, look.accessories);
   if (look.hair !== "ponytail") return;
   const color = look.hairColor || "#3a2a20";
   const root = polar(c, r, ax, 165, 0.95);
@@ -45,13 +49,16 @@ export function drawHairBack(ctx, c, r, ax, look) {
   ctx.stroke();
 }
 
-/** Hair over the head: bob (and the top of a ponytail), spiky, cap. Never below the brows in front. */
+/** Hair over the head: bob (and the top of a ponytail), spiky, cap, bun. Never below the brows in front. */
 export function drawHair(ctx, c, r, ax, look) {
   const hair = look.hair;
-  if (!hair || hair === "none") return;
+  const acc = look.accessories || {};
+  if (!hair || hair === "none" || acc.turban || acc.chilli_hat || acc.pirate_hat) return; // headwear covers the hair
   const color = look.hairColor || (hair === "cap" ? "#d94b4b" : "#3a2a20");
   const lw = r * 0.08;
-  if (hair === "bob" || hair === "ponytail") {
+  if (hair === "bun") {
+    drawBun(ctx, c, r, ax, color);
+  } else if (hair === "bob" || hair === "ponytail") {
     // From the forehead over the top to the back of the neck, hugging the head.
     const outer = arcPts(c, r, ax, 62, 235, 1.1);
     const inner = arcPts(c, r, ax, 225, 75, 0.82, 10);
@@ -124,8 +131,9 @@ export function drawEyepatch(ctx, c, r, ax, color) {
   ctx.stroke();
 }
 
-/** Antenna and crown on top of the head. */
+/** Antenna, crown and the accessories_more.js head pieces on top of the head. */
 export function drawHeadTop(ctx, c, r, ax, acc) {
+  drawHeadMore(ctx, c, r, ax, acc);
   if (acc.antenna) {
     const base = polar(c, r, ax, 100, 1);
     const tip = polar(c, r, ax, 112, 1.85);

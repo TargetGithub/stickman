@@ -5,12 +5,14 @@ import { unpackJoints, lowestPoint } from "../skeleton.js";
 import { drawCharacter } from "./character.js";
 import { drawProp } from "./props.js";
 import { drawBehind, drawFront, squashAt } from "./accessories.js";
+import { drawLookBehind, drawLookFront } from "./accessories_more.js";
 import { propTransform } from "../props.js";
 import { createBackground, drawBackground } from "./background.js";
 import { drawParticles } from "./particles.js";
 import { drawPostWorld, drawOverlays } from "./overlays.js";
 import { drawHold } from "./transitions.js";
 import { drawGrade, gradeState } from "./grade.js";
+import { glowAt, drawGlow, gradeAt, worldFilter, drawWorldGrade, waveOrigin, petrifyAt, stoneFilter, thawLine } from "./colour.js";
 import { drawSetPieces, staticObjectsAt, drawMovingObjects } from "./objects.js";
 import { holdableData } from "../objects.js";
 import { faceStyle } from "./face_state.js";
@@ -33,6 +35,7 @@ function sceneViews(sim) {
       worldEvents: world,
       themeChanges: world.filter((e) => e.do === "set_theme"),
       looks: world.filter((e) => e.do === "set_time" || e.do === "set_weather"),
+      gradeEvents: world.filter((e) => e.do === "set_grade"),
       says: ev.filter((e) => e.type === "say"),
       objectEvents: ev.filter((e) => e.type === "object"),
       squashEvents: ev.filter((e) => e.type === "land" || e.type === "hit"),
@@ -93,10 +96,14 @@ export function createRenderer(catalog, sim, opts = {}) {
     styles: new Map((sim.characters || []).map((c) => [c.id, c.style])),
     looks: new Map((sim.story?.legacy === false ? sim.story.cast : []).map((c) => [c.id, lookFor(catalog, c)])),
     lookChanges: sim.events.filter((e) => e.type === "world" && e.do === "set_appearance"),
+    glowChanges: sim.events.filter((e) => e.type === "world" && e.do === "set_glow"),
+    petrifyEvents: sim.events.filter((e) => (e.type === "defeat" && e.move === "petrify") || e.type === "thaw"),
+    heldStates: sim.events.filter((e) => e.type === "object" && e.what === "state" && catalog.objects?.[e.kind]?.behavior === "holdable"),
     voices: new Map((sim.story?.cast || []).map((c) => [c.id, c.voice])),
     names: sim.story?.meta?.speakerNames ? new Map(sim.story.cast.map((c) => [c.id, c.name || c.id])) : null,
     syllables: new Map(), // say event → syllables (mouth flap)
     backgrounds: new Map(),
+    castFilter: null, // "none" while the world is filtered grey and the cast keeps its colour (A3)
     charCache: new Map(), // frame index → unpacked characters (small LRU for afterimages)
   };
 }
@@ -124,12 +131,21 @@ function charsAt(r, n) {
 
 const order = (chars) => [...chars].sort((a, b) => b.scale - a.scale);
 
+/** A holdable with states (the rainbow crystal) shows its latest state, carried across scenes. */
+function withState(r, sv, name, data, t) {
+  const def = r.catalog.objects?.[name];
+  if (!def?.states || def.behavior !== "holdable") return data;
+  const e = r.heldStates.findLast((x) => x.kind === name && x.videoT <= t);
+  return { ...data, state: e?.state ?? sv.set?.find((p) => p.object === name && p.state)?.state ?? def.states[0] };
+}
+
 /** Loose props: lying ones before the characters, thrown (flying) ones after. */
-function drawItems(ctx, r, items, flying) {
+function drawItems(ctx, r, items, flying, sv, t) {
   for (const it of items.filter((i) => i.flying === flying)) {
     if (it.obj) continue; // moving objects are drawn by drawMovingObjects
-    const data = holdableData(r.catalog, it.name);
-    if (!data) continue;
+    const held = holdableData(r.catalog, it.name);
+    if (!held) continue;
+    const data = withState(r, sv, it.name, held, t);
     const scale = 1;
     const half = (data.len * scale) / 2;
     const dx = Math.cos(it.angle) * half;
@@ -143,11 +159,11 @@ function drawWorld(ctx, r, n, f, chars, sv) {
   const layered = sv.layerEvents.length || sv.characters?.some((c) => c.layer && c.layer !== "mid");
   const inLayer = (layer) => (layered ? chars.filter((c) => layerAt(sv, c.id, f.videoT) === layer) : layer === "mid" ? chars : []);
   const mid = inLayer("mid");
-  drawSetPieces(ctx, r.catalog, pieces, "back");
+  drawSetPieces(ctx, r.catalog, pieces, "back", f.fxT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "back");
   drawLayerChars(ctx, r, n, f, chars, sv, inLayer("back"), "back");
-  drawSetPieces(ctx, r.catalog, pieces, "mid");
-  drawItems(ctx, r, f.items, false);
+  drawSetPieces(ctx, r.catalog, pieces, "mid", f.fxT);
+  drawItems(ctx, r, f.items, false, sv, f.videoT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "mid");
   for (const c of mid) {
     if (c.alpha <= 0.01) continue;
@@ -167,7 +183,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     });
   }
   drawChars(ctx, r, n, f, chars, sv, mid);
-  drawItems(ctx, r, f.items, true);
+  drawItems(ctx, r, f.items, true, sv, f.videoT);
   drawTrails(ctx, n, sv, trails, r);
   drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
     const c = chars.find((x) => x.id === actorId);
@@ -175,7 +191,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     return joint === "feet" ? { x: c.j.hip.x, y: STAGE.groundY } : c.j[joint] || c.j.hip;
   });
   drawMovingObjects(ctx, r.catalog, f.items); // balls, bubbles and vehicles pass in front of the characters
-  drawSetPieces(ctx, r.catalog, pieces, "front");
+  drawSetPieces(ctx, r.catalog, pieces, "front", f.fxT);
   if (sv.extras.length) drawExtras(ctx, r, sv, f, "front");
   drawLayerChars(ctx, r, n, f, chars, sv, inLayer("front"), "front");
 }
@@ -185,34 +201,62 @@ function drawLayerChars(ctx, r, n, f, chars, sv, list, layer) {
   for (const c of list) withLayer(ctx, layer, c.j.hip.x, () => drawChars(ctx, r, n, f, chars, sv, [c]));
 }
 
-/** Draw characters (largest first), with their looks, accessories and squash. */
+/** Draw characters (largest first), with their looks, accessories and squash; glowing, petrified or thawing (A3). */
 function drawChars(ctx, r, n, f, chars, sv, list) {
   for (const c of order(list)) {
     if (c.alpha <= 0.01) continue;
-    const look = lookAt(r.looks.get(c.id), r.lookChanges.filter((e) => e.params.who === c.id), f.videoT);
-    const style = look?.style || r.styles.get(c.id) || {};
-    const index = chars.indexOf(c);
-    // Frame history (cape and scarf lag) stays inside the scene's segment.
-    const past = (k) => (n - k >= 0 && segmentIndexAt(r.sim.store, n - k) === f.segment ? charsAt(r, n - k)[index].j : null);
+    const glow = r.glowChanges.length ? glowAt(r.glowChanges.filter((e) => e.params.who === c.id), f.videoT) : null;
+    if (glow) {
+      ctx.save();
+      if (r.castFilter) ctx.filter = r.castFilter; // the glow keeps its colour with the cast
+      drawGlow(ctx, c, glow, f.videoT);
+      ctx.restore();
+    }
+    const stone = r.petrifyEvents.length ? petrifyAt(r.petrifyEvents.filter((e) => e.actor === c.id), f.videoT) : null;
+    if (!stone) {
+      drawOne(ctx, r, n, f, chars, sv, c, r.castFilter);
+      continue;
+    }
+    drawOne(ctx, r, n, f, chars, sv, c, stoneFilter(stone.grey));
+    if (stone.thaw === null) continue;
+    // Thawing: the colour floods back up from the feet over the grey body.
     ctx.save();
-    if (style.squash) {
-      // Flatten around the feet briefly after a landing or a hit.
-      const k = squashAt(sv.squashEvents, c.id, f.videoT);
-      if (k < 1) ctx.transform(1 / k, 0, 0, k, (c.j.hip.x) * (1 - 1 / k), STAGE.groundY * (1 - k));
-    }
-    if (style.glow) {
-      ctx.shadowColor = style.glow;
-      ctx.shadowBlur = 22 * c.scale;
-    }
-    drawBehind(ctx, c, past, style);
-    const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
-    drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle, alpha: c.alpha, outline: style.outline !== false, ...face,
-      ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
-      ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) });
-    ctx.shadowBlur = 0;
-    drawFront(ctx, c, past, style);
+    ctx.beginPath();
+    ctx.rect(c.j.hip.x - 2000, thawLine(c, stone.thaw), 4000, 4000);
+    ctx.clip();
+    drawOne(ctx, r, n, f, chars, sv, c, "none");
     ctx.restore();
   }
+}
+
+/** One character; filter: a canvas filter for it (stone grey, or "none" inside a greyed world). */
+function drawOne(ctx, r, n, f, chars, sv, c, filter) {
+  const look = lookAt(r.looks.get(c.id), r.lookChanges.filter((e) => e.params.who === c.id), f.videoT);
+  const style = look?.style || r.styles.get(c.id) || {};
+  const index = chars.indexOf(c);
+  // Frame history (cape and scarf lag) stays inside the scene's segment.
+  const past = (k) => (n - k >= 0 && segmentIndexAt(r.sim.store, n - k) === f.segment ? charsAt(r, n - k)[index].j : null);
+  ctx.save();
+  if (filter) ctx.filter = filter;
+  if (style.squash) {
+    // Flatten around the feet briefly after a landing or a hit.
+    const k = squashAt(sv.squashEvents, c.id, f.videoT);
+    if (k < 1) ctx.transform(1 / k, 0, 0, k, (c.j.hip.x) * (1 - 1 / k), STAGE.groundY * (1 - k));
+  }
+  if (style.glow) {
+    ctx.shadowColor = style.glow;
+    ctx.shadowBlur = 22 * c.scale;
+  }
+  drawBehind(ctx, c, past, style);
+  drawLookBehind(ctx, c, look, f.videoT);
+  const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
+  drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
+    ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
+    ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) });
+  ctx.shadowBlur = 0;
+  drawFront(ctx, c, past, style);
+  drawLookFront(ctx, c, look);
+  ctx.restore();
 }
 
 /** Slash trails behind weapon tips. */
@@ -245,12 +289,19 @@ export function renderScene(r, ctx, n) {
   const cam = f.cam;
   const { W, H } = r;
   const theme = sv.themeChanges.filter((e) => e.videoT <= f.videoT).pop()?.params.theme || sv.theme || r.defaultTheme;
+  // The scene's colour grade (A3): a canvas filter on the world when the cast keeps its colour, else a pass after it.
+  const colourGrade = gradeAt(sv.look, sv.gradeEvents, f.videoT);
+  const filter = worldFilter(colourGrade);
+  r.castFilter = filter ? "none" : null;
   ctx.save();
+  if (filter) ctx.filter = filter;
   drawBackground(ctx, background(r, theme), cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1);
   ctx.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
   drawWorld(ctx, r, n, f, chars, sv);
+  if (filter) ctx.filter = "none";
   ctx.setTransform(1, 0, 0, 1, 0, 0);
+  drawWorldGrade(ctx, colourGrade, { W, H, origin: waveOrigin(colourGrade, chars, cam, W, H, STAGE.groundY) });
   const grade = gradeState(sv.look, sv.looks, f.videoT);
   if (grade) drawGrade(ctx, grade, { W, H, fxT: f.fxT, cam });
   const prevSame = n > 0 && segmentIndexAt(r.sim.store, n - 1) === f.segment;

@@ -8,9 +8,10 @@ Decisions (2026-10-18):
 - A2, A4 and A5 run in parallel sessions next to A1; A3 follows A1.
 
 Progress: A1.1-A1.4 done and approved (reviews 1-2, 2026-10-18). A1.5-A1.8 done 2026-10-18, review 3 approved: mouth grip (`grip`, `mouthOf`), paired moves with people (`pet_dog`, `hug_dog`, `lick`, `carry`/`put_down` via `carried_dog`/`set_down_dog`, `bite_hold` + `hop_partner`), the partner rig check, the `fetch` activity (engine/story/fetch.js), the `bark` voice timbre, `@walk_together` side by side and `@chase` catching with `bite_hold`, a dog close-up, docs (STORY_SPEC 6.2/9/10, USER_GUIDE 4.1, catalog README), tests (tests/unit/quadruped_story.test.js) and the demo `scripts/samples/r1_becky.json` → `out/demos/r1_becky/final.mp4`. Still open: `swim` (batch B). Finding: the bible's Doopi blue #3fb8ff fails W_CONTRAST on city_park (1.54); #5ec8ff passes on park, street and home (for A2/A4).
+  A2, A4, A5 approved and merged into main 2026-10-18 (the village is now Tokyo, theme `tokyo_village`). A3 done and approved 2026-10-18 (review 4): `set_glow` (E1), `petrify` + `return` thaw and `return_dog` (E2), scene `grade` + `set_grade` with `keepCast` and a wave `from` a character (E3), the `colour_return` FX (F3); renderer `engine/renderer/colour.js` (ADR-021); tests `tests/unit/colour.test.js`; demo `scripts/samples/a3_colour.json` → `out/demos/a3_colour/`. Contrast fixes 2026-10-18 (W_CONTRAST on the series backgrounds): Peepa #7b4bd8 → #c9a6ff, Motumal #e07b39 → #ffb347, Tony & Kony #9a9aa8 → #c8c8d6, Doomi #ff7eb6 → #ff9ccc, Thunda #a0442c → #ff9f80. Finding: the context pack is at 79,982 of its 80,000 B limit.
  Asset ids refer to [ASSETS.md](ASSETS.md).
 
-Batch A unlocks episodes 1-5: **R1** (Becky's quadruped rig), **C1-C10** (core cast looks), **E1-E3** (Heart Glow, colour freeze, scene grade), **T1, T2, T13** (Chirpur, Banyan hill, throne room), **O1-O9** (crystals, Gloom Horn, jalebi, kite, bracelet, apple, haystack and cart, market stall, basket), **F1-F3**, **S1, S2, S6, S7**.
+Batch A unlocks episodes 1-5: **R1** (Becky's quadruped rig), **C1-C10** (core cast looks), **E1-E3** (Heart Glow, colour freeze, scene grade), **T1, T2, T13** (Tokyo, Banyan hill, throne room), **O1-O9** (crystals, Gloom Horn, jalebi, kite, bracelet, apple, haystack and cart, market stall, basket), **F1-F3**, **S1, S2, S6, S7**.
 
 ## 0. Before anything starts
 
@@ -146,7 +147,7 @@ Tests: `tests/unit/quadruped.test.js` (table-driven FK: joints for known poses, 
 - Demo: a 30 s scene: the village goes grey, Mooka petrifies, a crystal returns, colour floods back, Mooka thaws, Doopi's glow rises.
 
 ### A4 Places
-- `chirpur_village` (T1: hills, round huts with painted doors, bunting, a far tree), `banyan_hill` (T2: the giant banyan with aerial roots; the seven crystal sockets are set pieces `crystal_socket` with states per colour and `empty`), `gloom_throne_room` (T13: from `villain_lair`, plus a horned `throne` set piece and a crystal-ball stand).
+- `tokyo_village` (T1: hills, round huts with painted doors, bunting, a far tree), `banyan_hill` (T2: the giant banyan with aerial roots; the seven crystal sockets are set pieces `crystal_socket` with states per colour and `empty`), `gloom_throne_room` (T13: from `villain_lair`, plus a horned `throne` set piece and a crystal-ball stand).
 - Drafted with `node tools/draft.mjs theme "<prompt from ASSETS.md>" --manual` (copy-paste, no local models), new layer kinds coded by hand. Each gets a review sheet at three camera distances, by day, dusk and night, and grey (with E3, once A3 lands).
 
 ### A5 Objects, FX and sounds

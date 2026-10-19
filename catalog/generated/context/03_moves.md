@@ -17,6 +17,8 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | dodge_roll | movement | 0.75 | travel=200 | - | evasive | Rolls forward along the floor; hits pass through mid-roll. |
 | land_roll | movement | 0.75 | travel=220 | - | - | Lands from a fall or jump and rolls out of it forward. |
 | side_step | movement | 0.4 | travel=70 | - | evasive | A short sidestep out of the line of an attack. |
+| swim | movement | 1 | stride=200 | - | loop: distance/cycles/to | Swims along face-down, arms reaching in turn and legs kicking, floating above the floor; loops until `distance` px or `cycles`. |
+| sink | movement | 3 | - | - | holds pose | Sinks slowly from high up to the floor, limp, arms floating up (underwater, a dream fall); holds at the end. |
 | jab | attack | 0.36 | damage=5 travel=10 | - | - | A fast, light lead-hand punch; good for opening an exchange. |
 | cross | attack | 0.5 | damage=9 travel=22 | - | - | A straight rear-hand punch with the hips turned in. |
 | front_kick | attack | 0.7 | damage=10 travel=30 | - | - | A straight push kick to the middle. |
@@ -80,6 +82,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | shake_head | emote | 1 | - | - | - | Shakes the head no. |
 | look_around | emote | 1.8 | - | - | - | Looks left and right, searching or unsure. |
 | talk | emote | 0.8 | cycles=3 | - | loop: cycles | Small hand gestures while speaking; loops for `cycles`. |
+| sneeze | emote | 1.6 | - | - | - | A big comic sneeze: head back for ah... ah..., then a sharp nod forward on CHOO, with funny tears. |
 | use | utility | 1 | - | - | - | Uses the held object: a wand blows bubbles, a phone takes a photo. |
 | ride | utility | 0.6 | - | - | holds pose | Gets on a vehicle (the beat's object) and rides it until dismount. |
 | dismount | utility | 0.5 | - | - | - | Gets off the vehicle being ridden. |
@@ -137,7 +140,8 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | faint | defeat | 1.8 | - | - | story only, counts as defeated, holds pose | Faints and drops to the floor; counts as defeated. |
 | vanish | defeat | 2.6 | - | - | story only, counts as defeated, holds pose | Dissolves away in sparkles; counts as defeated until return. |
 | ghost | defeat | 3.2 | - | - | story only, counts as defeated, holds pose | Rises up as a ghost with a halo; counts as defeated (general audience only). |
-| captured | defeat | 1.8 | cage=1 | - | story only, counts as defeated, holds pose | Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated. |
+| captured | defeat | 1.8 | cage=1 net=0 | - | story only, counts as defeated, holds pose | Rope binds the arms, then a cage drops over them (cage 0: rope only; net 1: a fishing net); defeated. |
+| petrify | defeat | 1.6 | dur=1.5 | - | story only, counts as defeated, holds pose | Turns to stone grey where it stands over params.dur (0: at once); defeated until return. |
 | flee | defeat | 0.6 | stride=330 | - | loop: distance/cycles/to, story only | Runs off the nearer stage edge away from everyone and fades out. |
 | return | defeat | 1.6 | - | - | story only | A vanished character re-forms from sparkles. |
 | idle_dog | movement | 2 | - | - | loop: distance/cycles/to | A dog stands and breathes, tail going; loops until the next beat. |
@@ -166,6 +170,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | yelp | reaction | 0.5 | - | - | - | A dog jumps with a startled yelp (bumped or surprised). |
 | dizzy_dog | reaction | 1.6 | - | - | - | A dog wobbles, dizzy, with stars spinning round its head. |
 | faint_dog | defeat | 1.6 | - | - | story only, counts as defeated, holds pose | A dog wobbles and flops over with spinning stars (comic and harmless); stays down until it gets up. |
+| return_dog | defeat | 1.4 | - | - | story only | A vanished or frozen dog comes back: sparkles, a shake and a happy wag. |
 | spawn_dog | utility | 0.7 | - | - | - | A dog appears out of nowhere (it starts hidden). |
 | despawn_dog | utility | 0.7 | - | - | holds pose | A dog disappears from the stage and stays gone. |
 | lick | interaction | 1.6 | - | - | paired: partner plays lick_partner, story only | A dog jumps up with its front paws on a friend and licks their face (partner plays lick_partner). |
@@ -174,3 +179,4 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | catch_mouth | life | 0.6 | - | - | - | A dog dips its head to snap up a ball in its mouth. |
 | drop_ball | life | 0.9 | - | - | - | A dog sits up proudly and gives back the ball in its mouth. |
 | bite_hold | interaction | 1.6 | - | - | paired: partner plays hop_partner, story only | A dog grabs a runaway's trouser leg and tugs, stopping them (comic, no harm; partner plays hop_partner). |
+| swim_dog | movement | 0.6 | stride=140 | - | loop: distance/cycles/to | A dog paddles along, head up above its body, legs churning; floats above the floor; loops until `distance` px or `cycles`. |

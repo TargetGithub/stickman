@@ -140,6 +140,13 @@ export function castLookIssues(c, path, catalog) {
   if (look.hairColor && (!look.hair || look.hair === "none")) {
     out.push(issue("E_APPEARANCE", `${path}.appearance.hairColor`, "hairColor is set but there is no hair.", `Add "hair" (${(opts.hair || []).filter((h) => h !== "none").join(", ")}) or remove hairColor.`));
   }
+  const draw = catalog.bodies?.[c.body || "stickman"]?.draw;
+  if (look.belly && draw && draw !== "capsule") {
+    out.push(issue("E_APPEARANCE", `${path}.appearance.belly`, `A belly patch needs a capsule body; '${c.body || "stickman"}' is drawn as ${draw}.`, `Use body "buddy" or remove belly.`));
+  }
+  if (look.slots !== undefined && !look.accessories?.bracelet) {
+    out.push(issue("E_APPEARANCE", `${path}.appearance.slots`, "slots is set but there is no bracelet.", `Add "accessories": { "bracelet": "#e6b84a" } or remove slots.`));
+  }
   if (look.outfitColor && (!look.outfit || look.outfit === "none")) {
     out.push(issue("E_APPEARANCE", `${path}.appearance.outfitColor`, "outfitColor is set but there is no outfit.", `Add "outfit" (${(opts.outfit || []).filter((h) => h !== "none").join(", ")}) or remove outfitColor.`));
   }

@@ -81,13 +81,13 @@
   },
   {
     "name": "captured",
-    "description": "Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated.",
+    "description": "Rope binds the arms, then a cage drops over them (cage 0: rope only; net 1: a fishing net); defeated.",
     "tags": ["defeat", "kids", "villain"],
     "category": "defeat",
     "duration": 1.8,
     "face": "scared",
     "flags": { "hold": true, "defeat": true },
-    "params": { "cage": 1 },
+    "params": { "cage": 1, "net": 0 },
     "keys": [
       { "t": 0, "pose": "stand", "ease": "outQuad" },
       {
@@ -109,6 +109,19 @@
       { "t": 0.12, "fx": ["rope_bind"], "sfx": "whoosh" },
       { "t": 0.55, "cage": true, "fx": ["cage_drop"], "sfx": "clang", "shake": "small" }
     ]
+  },
+  {
+    "name": "petrify",
+    "description": "Turns to stone grey where it stands over params.dur (0: at once); defeated until return.",
+    "tags": ["defeat", "magic", "kids", "freeze"],
+    "rig": "any",
+    "category": "defeat",
+    "duration": 1.6,
+    "face": "asleep",
+    "params": { "dur": 1.5 },
+    "flags": { "hold": true, "defeat": true, "keepPose": true, "petrify": true },
+    "keys": [{ "t": 0, "pose": "stand" }],
+    "events": [{ "t": 0, "sfx": "magic_sparkle" }, { "t": 0.95, "fx": ["sparkle"], "sfx": "sparkle" }]
   },
   {
     "name": "flee",

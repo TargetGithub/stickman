@@ -17,7 +17,7 @@ A beat macro is `{ "id", "at", "macro", "params" }`; a scene macro (fight_card, 
 | @gauntlet | **hero**: id; **opponents**: [ids <=6]; per: int 1-10; travel: walk/run/none; intensity: low/medium/high; finisher: string; afterDefeat: stay/fade | start, end, opponent<N>, finisher | per=3 travel=run intensity=medium afterDefeat=stay | The hero takes on each opponent in turn (travel run/walk between them, or none: they wait in a ring). Place opponents along the stage in order. |
 | @brawl | **teams**: {a, b}; **winner**: a/b; dur: num 5-120; intensity: low/medium/high | start, end | dur=20 intensity=medium | Two teams; at most two clashes at once; the losing team goes down one by one. |
 | @chase | **runner**: id; **chasers**: [ids <=4]; dur: num 3-60; obstacles: int 0-6; caught: bool | start, end, caught | dur=8 obstacles=0 caught=false | The runner flees, everyone jumps the obstacles, the lead chaser lunges; caught or gets away. |
-| @defeat | **who**: id; by: id; **style**: ko/faint/vanish/ghost/captured/flee | start, end, gone | - | A stagger and close-up, then the defeat style; `by` reacts. The victim must be standing (not KO'd). |
+| @defeat | **who**: id; by: id; **style**: ko/faint/vanish/ghost/captured/flee/petrify | start, end, gone | - | A stagger and close-up, then the defeat style; `by` reacts. The victim must be standing (not KO'd). |
 | @grief | **who**: id; over: id; dur: num 2-20; rain: bool | start, end | dur=6 rain=false | Kneels by `over`, cries for `dur` seconds, sad music, optional rain. |
 | @fight_card | title: string; **matchups**: [objects <=6]; intro: bool; breathers: bool; finale: boss/plain; minDur: num 60-900 | - | intro=true breathers=true finale=boss minDur=180 | SCENE macro: a fight-only video (title, intro, rounds, breathers, finale, end card) from matchups. Written as a scene entry {id, macro, params}. |
 | @montage | **clips**: [objects <=8]; clipDur: num 1-10; cut: cut/dissolve/wipe | - | clipDur=3 cut=cut | SCENE macro: 2-8 short clips with quick cuts and one music bed. Written as a scene entry {id, macro, params}. |
@@ -40,7 +40,7 @@ One example of each macro is in 08_examples.md.
 | fetch | 2 | - | laugh | A friend throws a ball and a dog fetches it back in its mouth; ends laughing. |
 
 ## Defeat styles (`@defeat` style, or as moves)
-kids: ko, faint, vanish, captured, flee; general: ko, faint, vanish, ghost, captured, flee. See the defeat moves in 03_moves.md.
+kids: ko, faint, vanish, captured, flee, petrify; general: ko, faint, vanish, ghost, captured, flee, petrify. See the defeat moves in 03_moves.md.
 
 ## Music moods (scene `music`: `{ "mood", "intensity": 0-1 }`)
 
@@ -105,7 +105,10 @@ At a scene boundary the next scene's transitionIn wins, then the previous scene'
 | chapter_card | text*:text<=80 dur:0.5-10 bg:#rrggbb | A full-screen chapter card. |
 | time_card | text*:text<=80 dur:0.5-10 bg:#rrggbb | A full-screen time-skip card. |
 | end_card | text*:text<=80 dur:0.5-10 bg:#rrggbb | A full-screen end card. |
-| set_appearance | who*:id accessory:headband/scarf/cape/hat/antenna/bowtie/mask/crown/backpack/eyepatch color:#rrggbb remove:true/false eyes:dot/big/oval/sleepy/visor/glasses brows:none/thin/thick mouthStyle:line/cartoon hair:none/spiky/bob/ponytail/cap hairColor:#rrggbb outfit:none/shirt/coat/armor/robe outfitColor:#rrggbb cheeks:#rrggbb | Changes how a character looks mid-story: add or remove an accessory, change hair, outfit or eyes. |
+| set_appearance | who*:id accessory:headband/scarf/cape/hat/antenna/bowtie/mask/crown/backpack/eyepatch/hair_flower/sprout/mittens/horns/turban/moustache/stub_horns/bracelet/chilli_hat/pirate_hat/beard/windup_key color:#rrggbb remove:true/false eyes:dot/big/oval/sleepy/visor/glasses brows:none/thin/thick mouthStyle:line/cartoon hair:none/spiky/bob/ponytail/cap/bun hairColor:#rrggbb outfit:none/shirt/coat/armor/robe outfitColor:#rrggbb cheeks:#rrggbb belly:#rrggbb slots:0-7 | Changes how a character looks mid-story: add or remove an accessory, change hair, outfit or eyes. |
+| set_glow | who*:id color level*:0-1 dur:0-10 | A lasting glow around a character: a color or "rainbow", level 0-1 (0: off), over dur; carries over scenes. |
+| sfx | name* volume:0-1 x:-2000-14000 | Plays one sound effect on its own (an off-screen horn, thunder); x pans it. |
+| set_grade | saturation*:0-1 dur:0-10 keepCast:true/false from:id | Scene colour: saturation 1 full, 0 grey, over dur; keepCast keeps the cast in colour; from: a wave out from a character. |
 | shot | mode*:follow/focus/fixed/pan/push/two_shot/close_up/wide/over_shoulder/track target:id targets:[ids <=4] from:id zoom:0.3-4 dur:0.2-30 | A camera shot from a beat (wide, close_up, two_shot, ...); with dur the previous framing comes back. |
 | set_music | mood:happy/playful/calm/sad/tense/mysterious/heroic/battle/boss/triumphant/lullaby intensity:0-1 volume:0-1 fade:0-10 | Changes the music mood, intensity or volume inside a scene. |
 | activity | name*:blow_bubbles/tennis_rally/play_catch/kick_ball/eat_together/dance_together/selfie/sleep/comfort/fetch with*:[ids <=4] reps:1-40 dur:1-120 intensity:low/medium/high ending:win/miss/laugh/interrupted winner:id object | Runs an activity directly (the runtime form of @activity; prefer the macro). |
@@ -113,7 +116,7 @@ At a scene boundary the next scene's transitionIn wins, then the previous scene'
 ## Audience rules
 
 Audience: KIDS (the default). Family friendly and gore free:
-- Defeat styles: ko, faint, vanish, captured, flee (never ghost). The villain ends knocked out, captured or fleeing; never an execution.
+- Defeat styles: ko, faint, vanish, captured, flee, petrify (never ghost). The villain ends knocked out, captured or fleeing; never an execution.
 - A loved character's loss is temporary or hopeful: if someone vanishes, a later scene brings them back with "return".
 - Revenge becomes rescue or justice in the narration ("Kai set out to save Pip").
 - Swords, bats and staffs are fine in fights; nobody aims a weapon at someone who cannot fight back (a villain's energy blast at a defenseless friend is allowed as the story's incident).

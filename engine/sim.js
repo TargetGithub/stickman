@@ -55,6 +55,10 @@ function sceneActors(flat, catalog, carry, faces) {
     const a = createActor({ id: c.id, x: c.x, facing: c.facing, scale: c.scale ?? 1, hp: c.hp ?? 100, color: c.color, groundY: STAGE.groundY });
     if (c.body && c.body !== "stickman") Object.assign(a, bodyPlan(catalog, c.body)); // dims, stride, posture, plan
     if (kept && placed.hp === undefined) a.hp = kept.hp;
+    if (kept?.petrified && placed.hp === undefined) {
+      // Still frozen from an earlier scene (A3): the same pose and face, no idle breathing, until return.
+      Object.assign(a, { petrified: true, pose: kept.pose, holding: true, defeatFace: kept.defeatFace });
+    }
     // A character with a spawn beat, or placed hidden, starts invisible until it appears.
     if (flat.hidden.has(c.id) || flat.beats.some((b) => b.who === c.id && b.do === "spawn")) {
       a.hidden = true;
@@ -141,7 +145,9 @@ export function simulate(script, catalog, opts = {}) {
       const hold = catalog.objects[p.object].hold;
       world.groundProps.push({ name: p.object, kind: hold.kind, data: hold, x: p.x, y: STAGE.groundY - 4 - (p.y ?? 0), angle: 0 });
     }
-    world.objects = story.legacy ? null : createObjects(pieces.filter((q) => catalog.objects?.[q.object]?.behavior !== "holdable"),
+    // Holdables with states (the rainbow crystal) are also objects, so set_object can change them.
+    const asObject = (q) => catalog.objects?.[q.object]?.behavior !== "holdable" || !!catalog.objects[q.object].states;
+    world.objects = story.legacy ? null : createObjects(pieces.filter(asObject),
       { catalog, seed: meta.seed ?? 1, sceneId: sid, groundY: STAGE.groundY, stageWidth: flat.meta.stageWidth });
     world.onMoveEvent = (actor, e, events) => {
       if (e.use && world.objects && actor.prop) events.push(...useHeld(world.objects, actor, actor.joints.propTip || actor.joints.rHand, clock.storyT));
@@ -236,7 +242,8 @@ export function simulate(script, catalog, opts = {}) {
     anchors.push(...director.anchors);
     beats.push(...director.beats.map((b) => ({ ...b, scene: si })));
     dead = director.dead;
-    for (const a of actors) carry.set(a.id, { hp: a.hp, prop: a.prop ? a.prop.name : null, face: a.face, hidden: !!a.hidden, scene: sid });
+    for (const a of actors) carry.set(a.id, { hp: a.hp, prop: a.prop ? a.prop.name : null, face: a.face, hidden: !!a.hidden, scene: sid,
+      ...(a.petrified ? { petrified: true, pose: a.pose, defeatFace: a.defeatFace } : {}) });
     scenes.push({
       index: si, id: sid, theme: flat.meta.theme, stageWidth: flat.meta.stageWidth, look: flat.look,
       location: flat.location, set: [...(flat.location?.set || []), ...(flat.scene.set || [])],
@@ -272,7 +279,7 @@ export function simulate(script, catalog, opts = {}) {
     story,
     scenes,
     // Where everyone was when they last appeared (S8: the next scene's writer starts from here).
-    endState: Object.fromEntries([...carry].map(([id, c]) => [id, { ...c, hp: Math.round(c.hp), defeated: dead.has(id) }])),
+    endState: Object.fromEntries([...carry].map(([id, { pose, defeatFace, ...c }]) => [id, { ...c, hp: Math.round(c.hp), defeated: dead.has(id) }])),
     extraMoves: scenes.some((sc) => sc.extras.length) ? Object.fromEntries(EXTRA_MOVES.map((n) => [n, moves.get(n)])) : null,
     characters: story.cast.map((c) => ({ id: c.id, style: c.style || {} })),
   };

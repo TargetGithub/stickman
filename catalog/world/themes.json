@@ -169,5 +169,1105 @@
       { "kind": "puddles", "color": "rgba(120, 150, 210, 0.35)", "spacing": 600 }
     ],
     "characterBg": "#4e3530"
+  },
+  "tokyo_village": {
+    "description": "An Indian hill village square: round mud huts with painted doors, bunting, green hills.",
+    "tags": ["story", "outdoor", "village", "day", "doopi"],
+    "sky": { "top": "#6cc3f2", "bottom": "#d8f1ff" },
+    "ground": { "color": "#d6b47e", "line": "#b48e58" },
+    "layers": [
+      { "kind": "sun", "factor": 0.03, "x": 0.18, "y": 0.15, "r": 64, "color": "#fff4c0", "glow": "rgba(255, 240, 190, 0.5)" },
+      { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.9)", "count": 6, "top": 0.05, "band": 0.2 },
+      { "kind": "mountains", "factor": 0.08, "color": "#9cc7c4", "height": 330, "step": 240, "rough": 0.35 },
+      { "kind": "hills", "factor": 0.16, "color": "#86bf66", "height": 230, "step": 300 },
+      {
+        "kind": "banyan",
+        "factor": 0.2,
+        "at": [330],
+        "scale": 0.5,
+        "height": 520,
+        "spread": 760,
+        "trunk": "#6e5a44",
+        "roots": "#7a6650",
+        "color": "#6fa85e",
+        "color2": "#5f9852"
+      },
+      { "kind": "hills", "factor": 0.32, "color": "#5e9a4a", "height": 130, "step": 360 },
+      {
+        "kind": "huts",
+        "factor": 0.62,
+        "size": 210,
+        "spacing": 430,
+        "walls": ["#a8673d", "#b0703f", "#9a6038"],
+        "doors": ["#e63946", "#2f7de1", "#f4c430", "#2bb39a"],
+        "thatch": "#c99a4a",
+        "thatch2": "#94692b",
+        "band": "#f6e7c8",
+        "frame": "#5e3d24"
+      },
+      {
+        "kind": "bunting",
+        "factor": 0.7,
+        "y": -330,
+        "spacing": 540,
+        "sag": 50,
+        "flag": 26,
+        "line": "#6b4a2f",
+        "pole": "#7a5634",
+        "colors": ["#e63946", "#f4a62a", "#ffd23f", "#2bb39a", "#2f7de1", "#8e5bd8", "#ff7eb6"]
+      },
+      { "kind": "bushes", "factor": 0.85, "color": "#4f8a3e", "spacing": 760, "size": 46 },
+      { "kind": "floorStripes", "color": "#c9a46c", "at": [44], "width": 34 }
+    ],
+    "characterBg": "#a06a40"
+  },
+  "banyan_hill": {
+    "description": "A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below.",
+    "tags": ["story", "outdoor", "hill", "magic", "doopi"],
+    "sky": { "top": "#78c8f0", "bottom": "#e6f7ff" },
+    "ground": { "color": "#8cc76a", "line": "#6aa54e" },
+    "layers": [
+      { "kind": "sun", "factor": 0.03, "x": 0.84, "y": 0.14, "r": 60, "color": "#fff6c8", "glow": "rgba(255, 246, 200, 0.45)" },
+      { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.92)", "count": 7, "top": 0.05, "band": 0.22 },
+      { "kind": "mountains", "factor": 0.06, "color": "#a6c9dc", "height": 380, "step": 260, "rough": 0.4 },
+      { "kind": "hills", "factor": 0.1, "color": "#8fbf78", "height": 300, "step": 280 },
+      {
+        "kind": "huts",
+        "factor": 0.11,
+        "y": -190,
+        "scale": 0.18,
+        "size": 210,
+        "spacing": 1300,
+        "walls": ["#c08a5a", "#b47c4c"],
+        "doors": ["#e63946", "#2f7de1", "#f4c430"],
+        "thatch": "#cfa45a",
+        "thatch2": "#a17a3a",
+        "band": "#f6e7c8",
+        "frame": "#6b4a2f"
+      },
+      { "kind": "hills", "factor": 0.15, "color": "#5a8f48", "height": 200, "step": 330 },
+      {
+        "kind": "huts",
+        "factor": 0.16,
+        "y": -120,
+        "scale": 0.26,
+        "size": 210,
+        "spacing": 1500,
+        "walls": ["#a8673d", "#b0703f"],
+        "doors": ["#e63946", "#2bb39a", "#f4c430"],
+        "thatch": "#c99a4a",
+        "thatch2": "#94692b",
+        "band": "#f6e7c8",
+        "frame": "#5e3d24"
+      },
+      { "kind": "hills", "factor": 0.4, "color": "#6aa04e", "height": 60, "step": 420 },
+      {
+        "kind": "banyan",
+        "factor": 1,
+        "at": [1800],
+        "height": 560,
+        "spread": 820,
+        "trunk": "#7a5536",
+        "trunk2": "#5e3f26",
+        "roots": "#8a6442",
+        "color": "#3f8f45",
+        "color2": "#2f7038",
+        "color3": "#5aa84f"
+      },
+      { "kind": "bushes", "factor": 0.9, "color": "#5a9a44", "spacing": 900, "size": 40 }
+    ],
+    "characterBg": "#5a8f48"
+  },
+  "gloom_throne_room": {
+    "description": "Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist.",
+    "tags": ["story", "villain", "dark", "indoor", "doopi"],
+    "sky": { "top": "#120a1c", "bottom": "#2e1a42" },
+    "ground": { "color": "#3a3046", "line": "#1c1526" },
+    "layers": [
+      { "kind": "cave", "factor": 0.3, "wall": "#241833", "color": "#1a1026", "ceiling": -860, "step": 140, "depth": 140, "rocks": 200 },
+      { "kind": "pillars", "factor": 0.6, "spacing": 560, "width": 96, "top": -720, "wall": "#3a2d4a", "color": "#4d4458", "color2": "#423a4e", "cap": "#5e5470", "beam": "#2a1f38", "window": "#b06cff", "glow": "rgba(176, 108, 255, 0.35)", "windowW": 130, "windowH": 300, "windowY": -560 },
+      { "kind": "lanterns", "factor": 0.7, "color": "#c48aff", "y": -470, "spacing": 1120, "glow": "rgba(196, 138, 255, 0.3)" },
+      { "kind": "floorGrid", "color": "rgba(160, 140, 180, 0.18)", "spacing": 200 },
+      { "kind": "mist", "factor": 1, "color": "rgba(196, 192, 208, 0.22)", "spacing": 150, "size": 150, "depth": 70, "speed": 10 }
+    ],
+    "characterBg": "#43384f"
+  },
+  "whispering_forest": {
+    "description": "A deep friendly forest path: tall round-leaved trees, hanging vines, ferns and red mushrooms.",
+    "tags": [
+      "story",
+      "outdoor",
+      "forest",
+      "nature",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#7fc8a9",
+      "bottom": "#d8f0d0"
+    },
+    "ground": {
+      "color": "#8a6a44",
+      "line": "#6b5034"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.75,
+        "y": 0.12,
+        "r": 56,
+        "color": "#fff6c8",
+        "glow": "rgba(255, 246, 200, 0.45)"
+      },
+      {
+        "kind": "trees",
+        "factor": 0.12,
+        "spacing": 260,
+        "height": 520,
+        "crown": 170,
+        "trunk": "#4a3a2a",
+        "color": "#3f7a4a",
+        "color2": "#356b40"
+      },
+      {
+        "kind": "trees",
+        "factor": 0.3,
+        "spacing": 380,
+        "height": 430,
+        "crown": 150,
+        "trunk": "#5a4530",
+        "color": "#3f7f48",
+        "color2": "#38744a"
+      },
+      {
+        "kind": "trees",
+        "factor": 0.62,
+        "spacing": 620,
+        "height": 380,
+        "crown": 130,
+        "trunk": "#4a3624",
+        "color": "#2f6a3a",
+        "color2": "#2a5e34"
+      },
+      {
+        "kind": "vines",
+        "factor": 0.72,
+        "spacing": 420,
+        "length": 900,
+        "top": -1250,
+        "color": "#3d6b2e",
+        "leaf": "#5aa046",
+        "sway": 16,
+        "width": 8
+      },
+      {
+        "kind": "ferns",
+        "factor": 0.85,
+        "spacing": 340,
+        "size": 110,
+        "color": "#3f8a3a",
+        "cap": "#e63946",
+        "mushrooms": 0.35
+      },
+      {
+        "kind": "floorStripes",
+        "color": "#7a5c3a",
+        "at": [
+          40
+        ],
+        "width": 30
+      }
+    ],
+    "characterBg": "#2e5a34"
+  },
+  "mirchi_hill": {
+    "description": "A red-orange hilltop fort with rounded battlements, a big wooden gate and strings of drying chillies, under a hot orange sky.",
+    "tags": [
+      "story",
+      "outdoor",
+      "fort",
+      "hill",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#ff9a4a",
+      "bottom": "#ffd9a0"
+    },
+    "ground": {
+      "color": "#c98a52",
+      "line": "#a06a3a"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.8,
+        "y": 0.2,
+        "r": 70,
+        "color": "#fff0b0",
+        "glow": "rgba(255, 220, 150, 0.5)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.08,
+        "color": "#e0905a",
+        "height": 300,
+        "step": 260,
+        "rough": 0.35
+      },
+      {
+        "kind": "hills",
+        "factor": 0.2,
+        "color": "#c9703e",
+        "height": 200,
+        "step": 320
+      },
+      {
+        "kind": "fort_wall",
+        "factor": 0.55,
+        "spacing": 900,
+        "height": 420,
+        "color": "#d0603a",
+        "line": "rgba(80, 20, 10, 0.25)",
+        "gates": [
+          1200
+        ],
+        "gateW": 240,
+        "gate": "#6b4a2f",
+        "chillies": "#e63946"
+      },
+      {
+        "kind": "bushes",
+        "factor": 0.85,
+        "color": "#7a8a3a",
+        "spacing": 820,
+        "size": 40
+      }
+    ],
+    "characterBg": "#d0603a"
+  },
+  "spice_kitchen": {
+    "description": "A big fort kitchen: brick walls, shelves of colourful spice jars and sacks, strings of chillies, warm orange light.",
+    "tags": [
+      "story",
+      "indoor",
+      "kitchen",
+      "fort",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#7a3a24",
+      "bottom": "#a8573a"
+    },
+    "ground": {
+      "color": "#8a5a3a",
+      "line": "#6b4229"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.4,
+        "color": "#9a4a30",
+        "mortar": "#7a3a24",
+        "top": -1400
+      },
+      {
+        "kind": "shelves",
+        "factor": 0.5,
+        "spacing": 640,
+        "top": -760,
+        "gap": 170,
+        "rows": 3,
+        "color": "#6b4a2f",
+        "lid": "#8a6442",
+        "sack": "#d9b77e",
+        "colors": [
+          "#e63946",
+          "#ff9a1f",
+          "#ffd23f",
+          "#7ccf5a",
+          "#a0522d",
+          "#f4e1c1"
+        ]
+      },
+      {
+        "kind": "floorStripes",
+        "color": "#7a4e30",
+        "at": [
+          40
+        ],
+        "width": 30
+      }
+    ],
+    "characterBg": "#9a4a30"
+  },
+  "spice_cellar": {
+    "description": "The dark spice cellar under the fort: grooved stone walls, dusty sacks and a few jars, one small vent of light.",
+    "tags": [
+      "story",
+      "indoor",
+      "cellar",
+      "dark",
+      "fort",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#2e2420",
+      "bottom": "#4a3830"
+    },
+    "ground": {
+      "color": "#5a4636",
+      "line": "#3e3026"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.45,
+        "color": "#5e4a3e",
+        "mortar": "#3e3026",
+        "top": -1400
+      },
+      {
+        "kind": "shelves",
+        "factor": 0.55,
+        "spacing": 900,
+        "top": -620,
+        "gap": 200,
+        "rows": 2,
+        "color": "#4a3626",
+        "lid": "#6b4a2f",
+        "sack": "#8a7050",
+        "colors": [
+          "#a0522d",
+          "#7a6a50",
+          "#c0392b"
+        ]
+      }
+    ],
+    "characterBg": "#4a3830"
+  },
+  "lotus_lake": {
+    "description": "A wide calm lake with pink lotus flowers and round leaves, fishing huts on stilts, hills far behind; a sandy shore.",
+    "tags": [
+      "story",
+      "outdoor",
+      "lake",
+      "water",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5fb8f0",
+      "bottom": "#d4efff"
+    },
+    "ground": {
+      "color": "#e2c48a",
+      "line": "#c4a46a"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.25,
+        "y": 0.14,
+        "r": 60,
+        "color": "#fff4c0",
+        "glow": "rgba(255, 240, 190, 0.5)"
+      },
+      {
+        "kind": "clouds",
+        "factor": 0.05,
+        "color": "rgba(255, 255, 255, 0.9)",
+        "count": 5,
+        "top": 0.05,
+        "band": 0.2
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.08,
+        "color": "#9cc7c4",
+        "height": 260,
+        "step": 260,
+        "rough": 0.3
+      },
+      {
+        "kind": "hills",
+        "factor": 0.15,
+        "color": "#86bf66",
+        "height": 150,
+        "step": 340
+      },
+      {
+        "kind": "water",
+        "factor": 0.35,
+        "top": -300,
+        "bottom": 0,
+        "color": "#4fa8d8",
+        "color2": "#3d8fc0",
+        "leaf": "#3f9a4a",
+        "flower": "#ff8fc0",
+        "flowers": 0.45,
+        "spacing": 220
+      },
+      {
+        "kind": "huts_stilts",
+        "factor": 0.45,
+        "spacing": 1300,
+        "size": 170,
+        "y": -40,
+        "wood": "#6b4a2f",
+        "wall": "#c49a62",
+        "roof": "#9a6a38",
+        "doors": [
+          "#e63946",
+          "#2f7de1",
+          "#2bb39a"
+        ]
+      },
+      {
+        "kind": "bushes",
+        "factor": 0.9,
+        "color": "#6fae5a",
+        "spacing": 900,
+        "size": 36
+      }
+    ],
+    "characterBg": "#3d8fc0"
+  },
+  "pirate_deck": {
+    "description": "The deck of a cartoon pirate ship on the lake: planks, a rail, a tall mast with a patched sail and a fish flag, barrels and a steering wheel.",
+    "tags": [
+      "story",
+      "outdoor",
+      "ship",
+      "pirate",
+      "lake",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5fb8f0",
+      "bottom": "#d4efff"
+    },
+    "ground": {
+      "color": "#a8763f",
+      "line": "#7a5230"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.82,
+        "y": 0.14,
+        "r": 58,
+        "color": "#fff4c0",
+        "glow": "rgba(255, 240, 190, 0.5)"
+      },
+      {
+        "kind": "clouds",
+        "factor": 0.05,
+        "color": "rgba(255, 255, 255, 0.9)",
+        "count": 5,
+        "top": 0.05,
+        "band": 0.2
+      },
+      {
+        "kind": "water",
+        "factor": 0.1,
+        "top": -420,
+        "bottom": -120,
+        "color": "#4fa8d8",
+        "color2": "#3d8fc0",
+        "leaf": "#3f9a4a",
+        "flower": "#ff8fc0",
+        "flowers": 0.2,
+        "spacing": 500
+      },
+      {
+        "kind": "ship_rail",
+        "factor": 0.6,
+        "spacing": 1100,
+        "rail": 130,
+        "masts": [
+          1200
+        ],
+        "wheel": 3000,
+        "wood": "#7a5230",
+        "sail": "#f4ead2",
+        "patch": "#d9b77e",
+        "flag": "#1d3557",
+        "rope": "#c9a46c",
+        "barrel": "#9a6a38"
+      },
+      {
+        "kind": "planks",
+        "color": "#8a5e32",
+        "spacing": 120
+      }
+    ],
+    "characterBg": "#7a5230"
+  },
+  "crystal_cave": {
+    "description": "A big cave inside a lake island, glowing blue crystals in the walls, soft blue light and piles of treasure.",
+    "tags": [
+      "story",
+      "indoor",
+      "cave",
+      "crystal",
+      "treasure",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#0c1a2e",
+      "bottom": "#1d3a5a"
+    },
+    "ground": {
+      "color": "#2a3c4e",
+      "line": "#18242f"
+    },
+    "layers": [
+      {
+        "kind": "cave",
+        "factor": 0.35,
+        "wall": "#142838",
+        "color": "#0c1a28",
+        "ceiling": -760,
+        "step": 140,
+        "depth": 160,
+        "rocks": 260
+      },
+      {
+        "kind": "crystals",
+        "factor": 0.55,
+        "color": "#4fc3ff",
+        "glow": "rgba(79, 195, 255, A)",
+        "spacing": 460,
+        "height": 190
+      },
+      {
+        "kind": "lanterns",
+        "factor": 0.7,
+        "color": "#ffd23f",
+        "y": -460,
+        "spacing": 900,
+        "glow": "rgba(255, 210, 63, 0.3)"
+      }
+    ],
+    "characterBg": "#1d3a5a"
+  },
+  "underwater": {
+    "description": "Underwater in a clear lake: blue-green water, swaying seaweed, round stones on a sandy floor and rising bubbles. Calm, not dark.",
+    "tags": [
+      "story",
+      "underwater",
+      "lake",
+      "water",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5cc8d8",
+      "bottom": "#1f6f8f"
+    },
+    "ground": {
+      "color": "#d8c08a",
+      "line": "#b8a06a"
+    },
+    "layers": [
+      {
+        "kind": "hills",
+        "factor": 0.15,
+        "color": "#2a7f8f",
+        "height": 160,
+        "step": 300
+      },
+      {
+        "kind": "seaweed",
+        "factor": 0.4,
+        "spacing": 260,
+        "height": 420,
+        "color": "#2f8a5a",
+        "color2": "#3fa06a",
+        "width": 12
+      },
+      {
+        "kind": "seaweed",
+        "factor": 0.8,
+        "spacing": 520,
+        "height": 300,
+        "color": "#3fae6a",
+        "color2": "#4fbe7a",
+        "width": 16
+      },
+      {
+        "kind": "bubbles_bg",
+        "count": 50,
+        "speed": 80,
+        "color": "rgba(255, 255, 255, 0.55)"
+      }
+    ],
+    "characterBg": "#1f6f8f"
+  },
+  "iron_canyon": {
+    "description": "A rocky canyon at dusk with giant rusty gears half buried in the cliffs, fog on the floor and huge metal footprints.",
+    "tags": [
+      "story",
+      "outdoor",
+      "canyon",
+      "iron",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#c96a4a",
+      "bottom": "#f0b88a"
+    },
+    "ground": {
+      "color": "#9a7a5a",
+      "line": "#7a5a3e"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.7,
+        "y": 0.25,
+        "r": 70,
+        "color": "#ffd9a0",
+        "glow": "rgba(255, 210, 150, 0.4)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.1,
+        "color": "#a8684a",
+        "height": 420,
+        "step": 200,
+        "rough": 0.5
+      },
+      {
+        "kind": "gears_bg",
+        "factor": 0.35,
+        "spacing": 700,
+        "size": 170,
+        "y": -120,
+        "color": "#a0522d",
+        "hub": "#5a3a2a",
+        "rock": "#8a5a3e",
+        "speed": 0.04
+      },
+      {
+        "kind": "mist",
+        "factor": 0.8,
+        "spacing": 300,
+        "size": 140,
+        "depth": 60,
+        "speed": 20,
+        "color": "rgba(240, 220, 200, 0.35)"
+      }
+    ],
+    "characterBg": "#8a5a3e"
+  },
+  "iron_workshop": {
+    "description": "Peepa's iron workshop: grey metal walls, pumping pistons, pipes with steam puffs, chains and purple warning lights.",
+    "tags": [
+      "story",
+      "indoor",
+      "workshop",
+      "iron",
+      "villain",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#3a3a44",
+      "bottom": "#5a5a66"
+    },
+    "ground": {
+      "color": "#4a4a52",
+      "line": "#2e2e34"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.4,
+        "color": "#55555f",
+        "mortar": "#3e3e46",
+        "top": -1400
+      },
+      {
+        "kind": "machines",
+        "factor": 0.55,
+        "spacing": 900,
+        "top": -900,
+        "color": "#6e6e7a",
+        "pipe": "#8a6a4a",
+        "rod": "#c8ccd8",
+        "light": "#b05cff"
+      }
+    ],
+    "characterBg": "#4a4a52"
+  },
+  "mountain_cave": {
+    "description": "A rocky mountain cave shelter: grey-brown stone, a low ceiling of rock teeth, a dark opening, warm firelight.",
+    "tags": [
+      "story",
+      "indoor",
+      "cave",
+      "mountain",
+      "shelter",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#2a2420",
+      "bottom": "#4a3e34"
+    },
+    "ground": {
+      "color": "#5e4e40",
+      "line": "#3e3228"
+    },
+    "layers": [
+      {
+        "kind": "cave",
+        "factor": 0.35,
+        "wall": "#3e342c",
+        "color": "#2a2420",
+        "ceiling": -760,
+        "step": 160,
+        "depth": 140,
+        "rocks": 240
+      },
+      {
+        "kind": "lanterns",
+        "factor": 0.7,
+        "color": "#ffb347",
+        "y": -460,
+        "spacing": 1200,
+        "glow": "rgba(255, 179, 71, 0.25)"
+      }
+    ],
+    "characterBg": "#4a3e34"
+  },
+  "grey_peak": {
+    "description": "Grey Peak: a jagged dark mountain top under a heavy grey sky, grey-blue rock with frosty caps and drifting snow.",
+    "tags": [
+      "story",
+      "outdoor",
+      "mountain",
+      "snow",
+      "villain",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#3a3a52",
+      "bottom": "#7a7a94"
+    },
+    "ground": {
+      "color": "#6a6a7e",
+      "line": "#4a4a5a"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 40,
+        "color": "rgba(255, 255, 255, 0.6)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.12,
+        "color": "#5a5a72",
+        "height": 520,
+        "step": 260,
+        "rough": 0.7,
+        "caps": "#c8ccd8"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.3,
+        "color": "#4a4a5e",
+        "height": 340,
+        "step": 200,
+        "rough": 0.75,
+        "caps": "#a8acb8"
+      },
+      {
+        "kind": "snowfall",
+        "count": 90,
+        "color": "rgba(230, 230, 240, 0.8)",
+        "speed": 70
+      }
+    ],
+    "characterBg": "#4a4a5e"
+  },
+  "shadow_valley": {
+    "description": "A misty purple valley at night: bare twisted trees with curly branches and glowing purple fog close to the ground.",
+    "tags": [
+      "story",
+      "outdoor",
+      "night",
+      "shadow",
+      "spooky",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#1e1430",
+      "bottom": "#4a3466"
+    },
+    "ground": {
+      "color": "#3a2c4a",
+      "line": "#241a30"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 60,
+        "color": "rgba(255, 255, 255, 0.6)"
+      },
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.78,
+        "y": 0.16,
+        "r": 70,
+        "color": "#d8d0e8",
+        "glow": "rgba(200, 180, 240, 0.35)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.1,
+        "color": "#2e2244",
+        "height": 360,
+        "step": 260,
+        "rough": 0.5
+      },
+      {
+        "kind": "dead_trees",
+        "factor": 0.35,
+        "spacing": 520,
+        "height": 420,
+        "color": "#1e1430"
+      },
+      {
+        "kind": "dead_trees",
+        "factor": 0.6,
+        "spacing": 900,
+        "height": 560,
+        "color": "#160e24"
+      },
+      {
+        "kind": "mist",
+        "factor": 0.85,
+        "spacing": 260,
+        "size": 160,
+        "depth": 70,
+        "speed": 25,
+        "color": "rgba(176, 108, 255, 0.28)"
+      }
+    ],
+    "characterBg": "#6a4a8a"
+  },
+  "mirror_maze": {
+    "description": "A maze of tall silver mirrors with curly purple frames, a soft shine sliding over the glass, dark purple floor.",
+    "tags": [
+      "story",
+      "indoor",
+      "maze",
+      "mirror",
+      "magic",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#2a1e3e",
+      "bottom": "#4a3866"
+    },
+    "ground": {
+      "color": "#3e3052",
+      "line": "#281e36"
+    },
+    "layers": [
+      {
+        "kind": "mirrors",
+        "factor": 0.4,
+        "spacing": 300,
+        "height": 600,
+        "width": 200,
+        "glass": "#a8b0c8",
+        "glass2": "#d8dcec",
+        "frame": "#6a3fa8"
+      },
+      {
+        "kind": "mirrors",
+        "factor": 0.7,
+        "spacing": 520,
+        "height": 760,
+        "width": 260,
+        "glass": "#b8c0d8",
+        "glass2": "#e8ecf8",
+        "frame": "#8a5bd8"
+      }
+    ],
+    "characterBg": "#4a3866"
+  },
+  "gloom_castle_gate": {
+    "description": "Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind.",
+    "tags": [
+      "story",
+      "outdoor",
+      "castle",
+      "villain",
+      "night",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#1c1628",
+      "bottom": "#4a4060"
+    },
+    "ground": {
+      "color": "#4a4256",
+      "line": "#2e283a"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 50,
+        "color": "rgba(255, 255, 255, 0.5)"
+      },
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.5,
+        "y": 0.18,
+        "r": 160,
+        "color": "#c8c4d0",
+        "glow": "rgba(200, 196, 208, 0.35)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.12,
+        "color": "#2e283a",
+        "height": 300,
+        "step": 260,
+        "rough": 0.6
+      },
+      {
+        "kind": "castle",
+        "factor": 0.4,
+        "x": 700,
+        "width": 1200,
+        "height": 650,
+        "color": "#4a4060",
+        "tower": "#3e3652",
+        "horn": "#e6b84a",
+        "door": "#2a1b3d",
+        "window": "#b05cff"
+      },
+      {
+        "kind": "mist",
+        "factor": 0.85,
+        "spacing": 300,
+        "size": 140,
+        "depth": 50,
+        "speed": 15,
+        "color": "rgba(160, 150, 180, 0.25)"
+      }
+    ],
+    "characterBg": "#4a4060"
+  },
+  "grey_moon": {
+    "description": "Standing on the giant Grey Moon: grey dust and round craters, a black starry sky, and far below a tiny glowing valley with a tree.",
+    "tags": [
+      "story",
+      "outdoor",
+      "moon",
+      "space",
+      "finale",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#05040c",
+      "bottom": "#1c1a2a"
+    },
+    "ground": {
+      "color": "#8a8a96",
+      "line": "#6a6a76"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 140,
+        "color": "rgba(255, 255, 255, 0.85)"
+      },
+      {
+        "kind": "moon_surface",
+        "factor": 0.6,
+        "spacing": 600,
+        "size": 160,
+        "crater": "#74747e",
+        "rim": "rgba(255, 255, 255, 0.25)",
+        "valleyX": 0.3,
+        "valleyY": 0.55,
+        "tree": "#3a6a3a",
+        "valleyGlow": "rgba(255, 240, 160, 0.8)"
+      }
+    ],
+    "characterBg": "#4a4a56"
+  },
+  "banyan_moon": {
+    "description": "Banyan hill at night under the huge full Grey Moon: the giant banyan, its crystal sockets, a cold grey light.",
+    "tags": [
+      "story",
+      "outdoor",
+      "night",
+      "finale",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#141222",
+      "bottom": "#3a3650"
+    },
+    "ground": {
+      "color": "#4a5a40",
+      "line": "#36422e"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 60,
+        "color": "rgba(255, 255, 255, 0.6)"
+      },
+      {
+        "kind": "moon",
+        "factor": 0.02,
+        "x": 0.5,
+        "y": 0.26,
+        "r": 0.24,
+        "color": "#c8c4d0",
+        "crater": "rgba(60, 60, 80, 0.18)",
+        "glow": "rgba(200, 196, 220, 0.3)",
+        "craters": 10
+      },
+      {
+        "kind": "hills",
+        "factor": 0.16,
+        "color": "#2e3a2c",
+        "height": 220,
+        "step": 300
+      },
+      {
+        "kind": "banyan",
+        "factor": 0.45,
+        "at": [
+          1800
+        ],
+        "height": 760,
+        "spread": 1300,
+        "trunk": "#4e4034",
+        "roots": "#5a4a3c",
+        "color": "#3e5a36",
+        "color2": "#344e2e"
+      },
+      {
+        "kind": "bushes",
+        "factor": 0.85,
+        "color": "#2e3a2a",
+        "spacing": 760,
+        "size": 46
+      }
+    ],
+    "characterBg": "#3a4a34"
   }
 }

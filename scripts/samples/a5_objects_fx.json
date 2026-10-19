@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "meta": { "title": "A5 Objects and FX", "format": "landscape", "seed": 505, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "doopi", "name": "Doopi", "color": "#5ec8ff", "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#2a1a14", "mouthStyle": "cartoon", "accessories": { "headband": "#ff3b5c" } } },
+    { "id": "mooka", "name": "Mooka", "body": "buddy", "color": "#7ccf5a", "voice": { "pitch": 1.4, "timbre": "squeaky" } },
+    { "id": "kony", "name": "Kony", "color": "#ffb347", "prop": "jalebi_plate" },
+    { "id": "gloom", "name": "Gloom", "color": "#6a4a8c", "appearance": { "eyes": "sleepy" }, "prop": "gloom_horn" }
+  ],
+  "locations": [
+    { "id": "market", "theme": "city_park", "stageWidth": 2600, "set": [
+      { "id": "stall", "object": "market_stall", "x": 520, "layer": "back" },
+      { "id": "hay", "object": "haystack", "x": 2150, "layer": "back" },
+      { "id": "cart1", "object": "cart", "x": 1850 },
+      { "id": "basket1", "object": "basket", "x": 760 }
+    ] }
+  ],
+  "scenes": [
+    {
+      "id": "market", "location": "market", "time": "day",
+      "cast": [
+        { "id": "kony", "x": 650, "facing": 1, "face": "happy" },
+        { "id": "doopi", "x": 950, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 1200, "facing": -1, "face": "happy" },
+        { "id": "gloom", "x": 1650, "facing": -1, "face": "smug" }
+      ],
+      "camera": [
+        { "at": 0, "mode": "pan", "x": 1000, "zoom": 1.5 },
+        { "at": 1.9, "mode": "pan", "x": 1000, "zoom": 2.3, "dur": 0.5 },
+        { "at": { "with": "g1" }, "mode": "pan", "x": 1450, "zoom": 1.05, "dur": 0.6 },
+        { "at": 9.8, "mode": "pan", "x": 1250, "zoom": 1.5, "dur": 0.5 },
+        { "at": { "with": "p1" }, "mode": "pan", "x": 1000, "zoom": 1.05, "dur": 0.6 }
+      ],
+      "beats": [
+        { "id": "sp", "at": 0.2, "who": "world", "do": "spawn_object", "params": { "kind": "rainbow_crystal", "id": "gem", "x": 990, "state": "red" } },
+        { "id": "pk", "at": 0.5, "who": "doopi", "do": "pick_prop", "say": "The Red Crystal!" },
+        { "id": "h1", "at": 2.0, "who": "doopi", "do": "cheer", "face": "laugh" },
+        { "id": "h2", "at": 4.6, "who": "doopi", "do": "use", "face": "happy" },
+        { "id": "h3", "at": 5.7, "who": "doopi", "do": "use", "face": "love" },
+        { "id": "c2", "at": 2.4, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "orange" } },
+        { "id": "c3", "at": 3.1, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "yellow" } },
+        { "id": "c4", "at": 3.8, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "green" } },
+        { "id": "m1", "at": 3.9, "who": "mooka", "do": "clap", "face": "laugh", "say": "Ooh, shiny!" },
+        { "id": "c5", "at": 4.5, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "blue" } },
+        { "id": "c6", "at": 5.2, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "indigo" } },
+        { "id": "c7", "at": 5.9, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "violet" } },
+        { "id": "g1", "at": 7.0, "who": "gloom", "do": "use", "face": "angry", "say": "Gloom for everyone!" },
+        { "id": "s1", "at": 7.4, "who": "doopi", "do": "gasp", "face": "scared" },
+        { "id": "dm", "at": 8.0, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "dim" } },
+        { "id": "k1", "at": 7.6, "who": "kony", "do": "cower", "face": "scared" },
+        { "id": "sn", "at": 10.2, "who": "mooka", "do": "sneeze", "say": "Ah... ah... CHOO!" },
+        { "id": "g2", "at": 11.9, "who": "gloom", "do": "shake_head", "face": "surprised", "say": "Eww!" },
+        { "id": "p1", "at": 13.4, "who": "kony", "do": "cheer", "face": "laugh", "fx": ["colour_powder"], "say": "Colours!" },
+        { "id": "p2", "at": 14.0, "who": "doopi", "do": "jump_joy", "face": "laugh", "fx": ["colour_powder"] },
+        { "id": "rd", "at": 14.6, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "red" } },
+        { "id": "p3", "at": 15.0, "who": "mooka", "do": "jump_joy", "face": "laugh", "fx": ["colour_powder"] },
+        { "id": "g3", "at": 16.0, "who": "gloom", "do": "facepalm", "face": "angry" },
+        { "id": "e1", "at": 17.6, "who": "kony", "do": "eat", "face": "happy", "say": "Jalebi time!" },
+        { "id": "w1", "at": 18.0, "who": "doopi", "do": "wave", "face": "happy" },
+        { "id": "end", "at": 19.4, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

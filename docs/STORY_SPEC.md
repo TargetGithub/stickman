@@ -209,12 +209,12 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | Extras behaviors | `walk_by`, `idle_chat`, `cheer`, `flee` |
 | Beat macros | `dialogue`, `activity`, `walk_together`, `travel`, `enter`, `exit`, `fight`, `gauntlet`, `brawl`, `chase`, `defeat`, `grief` |
 | Scene macros | `fight_card`, `montage` (each expands into several scenes) |
-| Defeat styles | `ko`, `faint`, `vanish`, `ghost` (`general` only), `captured`, `flee` |
+| Defeat styles | `ko`, `faint`, `vanish`, `ghost` (`general` only), `captured`, `flee`, `petrify` (A3) |
 | Activities | `blow_bubbles`, `tennis_rally`, `play_catch`, `kick_ball`, `eat_together`, `dance_together`, `selfie`, `sleep`, `comfort` |
 | Object behaviors | `static`, `seat`, `holdable`, `ball`, `floater`, `vehicle`, `breakable` |
-| New world commands | `narrate`, `title_card`, `chapter_card`, `time_card`, `end_card`, `set_time`, `set_weather`, `set_music`, `shot`, `spawn_object`, `remove_object`, `set_object`, `set_appearance`, `activity` (added in S5: the runtime form of `@activity`) (all v1 world commands stay) |
-| New character commands | `use`, `ride`, `dismount`, `return` (sparkles re-form a vanished character) |
-| New FX presets | `sparkle`, `sparkle_rise`, `tears`, `zzz`, `camera_flash`, `rope_bind`, `cage_drop`, `bubble_pop`, `confetti`, `halo` |
+| New world commands | `narrate`, `title_card`, `chapter_card`, `time_card`, `end_card`, `set_time`, `set_weather`, `set_music`, `shot`, `spawn_object`, `remove_object`, `set_object`, `set_appearance`, `activity` (added in S5: the runtime form of `@activity`), `set_glow`, `set_grade` (A3) (all v1 world commands stay) |
+| New character commands | `use`, `ride`, `dismount`, `return` (sparkles re-form a vanished character; a petrified one thaws) |
+| New FX presets | `sparkle`, `sparkle_rise`, `tears`, `zzz`, `camera_flash`, `rope_bind`, `cage_drop`, `bubble_pop`, `confetti`, `halo`, `colour_return` (A3) |
 
 Renamed at the freeze (the old draft names now fail the schema): `"who": "@macro"` → `"macro"`; `think` field → `"bubble": "think"`; `appearance.accessory` → `accessories`; activity `rallies` → `reps`; transition `params` → flat fields; `audio.musicLibrary` removed (override files go in `assets/music/`).
 
@@ -233,6 +233,7 @@ Themes grow from 7 to 15-20, using the existing layer-kind registry and new laye
 - **New layer kinds:** `buildings` (street level, doors/windows), `trees`, `bushes`, `benches`, `lampposts`, `fence`, `clouds`, `rain`, `interior_wall`, `windows`, `furniture`, `cave`, `lair`.
 - **New themes:** `city_street`, `city_park`, `home_interior`, `alley_night`, `rooftop_city` (exists), `forest_path`, `bridge`, `warehouse`, `villain_lair`, `tennis_court`, `cemetery_hill` (for a respectful memorial scene), `sunset_hill`.
 - **Built in S1:** themes `city_park`, `city_street`, `home_interior`, `alley_night`, `villain_lair`; layer kinds `clouds`, `hills`, `trees`, `bushes`, `fence`, `buildings`, `lampposts`, `bricks`, `puddles`, `interior_wall`, `windows`, `furniture`, `cave`, `crystals`. The backdrop behind characters is kept mid-tone so both light and dark character colors pass `W_CONTRAST`.
+- **Built in batch A4 (Doopi & Friends):** themes `tokyo_village`, `banyan_hill`, `gloom_throne_room`; layer kinds `huts`, `bunting`, `banyan`, `pillars`, `mist` (`engine/renderer/background_village.js`); set pieces `crystal_socket` (states `empty` and the seven rainbow colours), `throne` (a seat), `crystal_ball` (`engine/renderer/object_shapes_places.js`). Review sheets: `node tools/place_sheet.mjs [theme ...]`.
 - **Set pieces in S1** are drawn statically from `catalog/world/objects.json`: `bench`, `chair`, `table`, `tree_big`, `bush`, `lamppost`, `tennis_net`, `sign`, `crate`, `fountain`, `door` (with `state` open/closed). Back-layer pieces draw at 0.75 scale and 80% opacity, front-layer pieces at 1.15 after the characters. S4 adds behaviors.
 
 ```json
@@ -248,6 +249,9 @@ Themes grow from 7 to 15-20, using the existing layer-kind registry and new laye
 - Each scene sets `time` (`dawn`, `day`, `dusk`, `night`) and `weather` (`clear`, `cloudy`, `rain`, `snow`, `wind`, `fog`). Both are presentation layers over the theme.
 - `time` sets a color grade (tint, sky gradient shift, lit windows at night). `weather` adds particle layers and ambience.
 - Both can change mid-scene with world commands `set_time` (`time`*, `dur` 0-10) and `set_weather` (`weather`*, `dur` 0-10), blending over `dur` (a happy scene turning grey and rainy).
+- **Colour grade (A3):** a scene's `grade: { "saturation": 0-1, "keepCast": true|false }` sets how colourful it is for the whole scene (1 full colour, the default; 0 grey), so "how grey the village is" can change episode by episode. `set_grade` (`saturation`*, `dur` 0-10, `keepCast`, `from`) changes it mid-scene. `keepCast: true` greys only the world (background, set pieces, particles) and keeps the characters in colour. `from` (a character in the scene) spreads the change out from them as a growing circle with a white edge and bursts `colour_return` sparkles there (the crystal brings the colour back); with `keepCast` the change blends evenly instead. A grade does not carry into the next scene.
+- **A sound on its own (batch B):** `sfx` (`name`* an SFX key, `volume` 0-1, `x` to pan it) plays one sound effect, for something heard but not seen (a ship's horn across the lake, thunder).
+- **Heart Glow (A3):** `set_glow` (`who`*, `color` a hex color or `"rainbow"`, `level`* 0-1, `dur` 0-10) puts a soft pulsing halo behind a character; `level` 0 turns it off, and it carries over between scenes. A rainbow glow cycles its hue.
 - Grades: `dawn` warm pink, `day` none, `dusk` orange, `night` deep blue (multiply tints over the whole picture). Weather: `cloudy` grey tint, `rain` tint plus slanted streaks, `snow` flakes, `wind` drifting streaks, `fog` a light gradient, heavier near the floor.
 
 ### 5.3 Transitions
@@ -313,7 +317,7 @@ Implementation (S3, ADR-015):
 - The elder's stoop eases out over about 0.17 s while attacking, so strikes use the plan's plain geometry (the geometry reach derivation assumes).
 - The reach check gives the lean assist only to shoulder-rooted strikes (arms, weapons); kicks and knees get none, so impossible kicks (a tall slim fighter's flying kick on a kid) are reported (`W_REACH`) instead of faked.
 - Frame store: the plan name is stored once per character per scene segment (constant), not per frame.
-- Renderer: `renderer/bodies.js` draws filled torsos and outfits (below the hips, garments hang straight down); `renderer/appearance.js` draws hair, masks, eyepatches, antennas, crowns, bowties and backpacks; `renderer/looks.js` merges plan defaults, the cast appearance and `set_appearance` changes.
+- Renderer: `renderer/bodies.js` draws filled torsos and outfits (below the hips, garments hang straight down); `renderer/appearance.js` draws hair, masks, eyepatches, antennas, crowns, bowties and backpacks; `renderer/accessories_more.js` draws the A2 options (horns, turban, sprout, flower, moustache, stub horns, bun, mittens, bracelet); `renderer/looks.js` merges plan defaults, the cast appearance and `set_appearance` changes.
 - The stickman plan is the v1 body object itself, so v1 scripts compute and render exactly as before (golden frames and every sample's warnings unchanged).
 
 ### 6.2 Other topologies: the quadruped rig
@@ -353,15 +357,17 @@ Build order (package A1): forward kinematics, the plan and the renderer with a s
 | `brows` | `none`, `thin`, `thick` |
 | `mouthStyle` | `line` (default), `cartoon` |
 | `cheeks` | color (blush) |
-| `hair`, `hairColor` | `none`, `spiky`, `bob`, `ponytail`, `cap`; a color |
-| `accessories` | Name → color. Existing (headband, scarf, cape, hat; also accepted in the v1 `style`) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch` |
+| `hair`, `hairColor` | `none`, `spiky`, `bob`, `ponytail`, `cap`, `bun`; a color |
+| `accessories` | Name → color. Existing (headband, scarf, cape, hat; also accepted in the v1 `style`) plus `antenna`, `bowtie`, `mask`, `crown`, `backpack`, `eyepatch`, and (Doopi & Friends, A2) `hair_flower`, `sprout`, `mittens`, `horns`, `turban` (headwear), `moustache`, `stub_horns`, `bracelet` (left wrist, seven gems) |
+| `belly` | A belly patch color for capsule bodies (`buddy`); hidden when an outfit is worn |
+| `slots` | 0-7: how many of the bracelet's gems are lit, in rainbow order |
 | `outfit`, `outfitColor` | Optional filled torso garment: `none`, `shirt`, `coat`, `armor`, `robe`; a color |
 
-- Option names are catalog data (`catalog/characters/appearance.json`); the schema takes strings and the validator checks them (`E_APPEARANCE`), together with things worn in the same place (`hat` + `crown`, a `cap` hairstyle with a hat or crown, `mask` or `eyepatch` with `visor` eyes) and colors without their item (`hairColor` without `hair`, `outfitColor` without `outfit`). An unknown body plan is `E_BODY_UNKNOWN`.
+- Option names are catalog data (`catalog/characters/appearance.json`); the schema takes strings and the validator checks them (`E_APPEARANCE`), together with things worn in the same place (`hat` + `crown`, a `cap` hairstyle with a hat or crown, `mask` or `eyepatch` with `visor` eyes, a `turban` with a hat, crown, cap or horns, `horns` with `stub_horns`, a hat or a cap) and colors without their item (`hairColor` without `hair`, `outfitColor` without `outfit`, `slots` without a `bracelet`, `belly` on a body that is not a capsule). An unknown body plan is `E_BODY_UNKNOWN`.
 - A body plan's `appearance` gives defaults (buddy: big eyes; elder: sleepy eyes, thick brows, white bob); the cast entry's appearance wins.
 - Eye styles replace the plain dot of neutral-type faces (`big`, `oval`, `sleepy`); `visor` replaces the eyes with a glowing band; `glasses` adds rings. Expressive eyes (happy arcs, tears, spirals) still win. `brows: "none"` hides brows; `thick` draws them heavier. `mouthStyle: "cartoon"` makes mouths about a third bigger. `cheeks` adds a soft blush in that color.
 
-Appearance may change in a beat with the `set_appearance` world command: `params.who`* is the character, plus flat fields such as `"accessory": "headband", "color": "#ff3b5c"`, `"remove": true`, or any of `eyes`, `brows`, `mouthStyle`, `hair`, `hairColor`, `outfit`, `outfitColor`, `cheeks`. Changes carry across scenes. For example, the hero ties on a headband before the journey.
+Appearance may change in a beat with the `set_appearance` world command: `params.who`* is the character, plus flat fields such as `"accessory": "headband", "color": "#ff3b5c"`, `"remove": true`, or any of `eyes`, `brows`, `mouthStyle`, `hair`, `hairColor`, `outfit`, `outfitColor`, `cheeks`, `belly`, `slots` (bracelet gems lit). Changes carry across scenes. For example, the hero ties on a headband before the journey.
 
 ### 6.4 Visual style presets
 
@@ -454,6 +460,7 @@ Objects are non-character things in the world: catalog data with a shape, a size
 - **Behaviors:** balls fly under gravity (1,800 px/s²), bounce with the kind's `bounce` and roll to a stop; floaters rise, drift and wobble in closed form (seeded per scene) and pop (bubbles) or float away (balloons); vehicles roll with turning wheels; doors, cages and lampposts change state; seats wait for the sit moves (S5); breakables break by `set_object` (being hit by attacks comes with S5).
 - **Timing:** a scene does not end while a ball is moving, a vehicle is driving or bubbles are floating; object events count as activity for `W_PACING_GAP`.
 - **Storage and drawing:** moving objects (balls, floaters, vehicles) are frame items; static ones are drawn from the scene's set pieces plus the "object" events up to the frame's time (spawn, state, break, remove), so they cost nothing per frame. Balls, bubbles and vehicles draw in front of the characters; back-layer pieces behind; front-layer pieces last.
+- **Holdables with states** (batch A5: `rainbow_crystal`, red ... violet and `dim`): placed or spawned with an `id`, they are also objects, so `set_object` `state` changes them (with the state's `sfx`, the crystal's chime) whether they lie on the floor or are held. The renderer shows the latest state of that kind, carried across scenes; two of the same kind share it. A `use` effect whose preset is anchored at the `feet` (the Gloom Horn's `gloom_mist`) starts on the floor below the object.
 - **Effects and sounds:** `bubble_pop` and `camera_flash` effects; sounds `bubble_blow`, `bubble_pop`, `racket_hit` (ball launches), `ball_bounce`, `door_open`, `car_pass`.
 - **Validator:** `E_OBJECT_UNKNOWN` (an unknown kind, or an object id that is not in the scene), `E_OBJECT_STATE` (a state the object does not have, a change that does not suit it such as launching a bench, riding something that is not a vehicle), `E_SIM_OBJECT_OFFSTAGE` (a ball or vehicle leaves the stage; vehicles leave with `exit`).
 
@@ -569,7 +576,7 @@ A scene macro is an entry in `scenes` with `{ "id", "macro", "params" }` (plus o
 | `@gauntlet` | `per` 3, `travel` run, `intensity` medium (rising toward the last opponent), `afterDefeat` stay. The hero runs to each opponent (camera on the two), the opponent squares up, they fight (`even`, the last one `close`), the opponent goes down; the next ones taunt while they wait. `travel: none`: opponents first run to a ring 340-600 px from the hero on their own side. `fade` fades each knocked-out opponent away |
 | `@brawl` | `dur` 20, `intensity` medium. Both teams run into two lines facing each other; each round has one or two clashes between different fighters (the second 0.45 s after the first; a clash across the duel zones starts with a run to the opponent); the losing team goes down one by one (a grounded finisher, a shake, a KO); the winners celebrate |
 | `@chase` | `dur` 8, `obstacles` 0, `caught` false. The runner flees away from the chasers; obstacles (crates or boxes, added to the scene's set) are jumped by everyone; the lead chaser lunges once; caught: the lead sweeps the runner, else the runner runs off the edge and the chasers give up |
-| `@defeat` | A stagger with a close-up, the style move (`ko` is `ko_fall`), sad music for `vanish` and `ghost`, and the winner's reaction for the others (`captured`: a point or a clenched fist). The victim must be standing (use `ko: false` on the fight before) |
+| `@defeat` | A stagger with a close-up, the style move (`ko` is `ko_fall`), sad music for `vanish`, `ghost` and `petrify`, and the winner's reaction for the others (`captured`: a point or a clenched fist). The victim must be standing (use `ko: false` on the fight before) |
 | `@grief` | `dur` 6. Walks to where `over` is (if in the scene), kneels; desaturate, sad music, a close-up, rain with `rain: true`; cries for the duration, then sighs |
 | `@fight_card` | `intro` true, `breathers` true, `finale` boss, `minDur` 180. Intro scene (title card, a rival exchange), one round per matchup (chapter cards "Round N", "Final Round"; fighters start fresh: `hp` in the placement clears a knock-out), breathers (the winner catches its breath, the next opponent walks in), a victory scene with an end card. Exchanges stretch to reach `minDur`; past 26 exchanges a round, matchups get rematch rounds (up to 6 rounds) |
 | `@montage` | `clipDur` 3, `cut` cut. One scene per clip: the `who` in the middle of the location doing `do` (default `walk`; a paired move with two), `text` as narration, one music bed |
@@ -610,8 +617,9 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 | `ghost` | Falls, then floats up translucent with a halo and fades out | Emotional loss, still non-graphic |
 | `captured` | Rope loops bind the arms, then a cage drops over it (scared face) | Villain defeat that isn't lethal |
 | `flee` | Turns away from the nearest character, runs to the stage edge, fades out | Comedic villain ending |
+| `petrify` (A3) | Frozen in the pose it was in: the colours drain to stone grey over 1.5 s, eyes closed, no breathing, a little sparkle | Friends "turned grey" by a spell |
 
-- **As beats (S5):** each style is a story move (`catalog/moves/defeat.json`, category `defeat`): `{"who": "vex", "do": "captured"}`. All but `flee` count as defeated, like a KO: the character can't act until `return` (sparkles re-form a vanished character, confetti) or `get_up`, and that carries into later scenes. A fled character can come back in a later scene. `captured` takes `"params": {"cage": 0}` for rope only. The `@defeat` macro (S6) adds the lead-in (hit, fall) and camera.
+- **As beats (S5):** each style is a story move (`catalog/moves/defeat.json`, category `defeat`): `{"who": "vex", "do": "captured"}`. All but `flee` count as defeated, like a KO: the character can't act until `return` (sparkles re-form a vanished character, confetti) or `get_up`, and that carries into later scenes. A fled character can come back in a later scene. `captured` takes `"params": {"cage": 0}` for rope only, or `{"net": 1}` for a fishing net instead of the cage (batch B). `petrify` holds the pose and stays grey into later scenes; `"params": {"dur": 0}` makes it stone at once (a friend still frozen when an episode starts); `return` thaws it (the colour floods back up from the feet over 1.2 s, no fade). On a dog, `return` plays `return_dog`. The `@defeat` macro (S6) adds the lead-in (hit, fall) and camera.
 - **Impact words:** in a `kids` story every hit gets a cartoon word (POW!, BONK!, BAM!, BOING!, cycling, at most one per 0.6 s) that pops up over the hit and fades. `general` stories and v1 scripts don't.
 
 - **On-screen text:** narration and dialogue avoid explicit words such as "killed" and "dead body". Use "defeated", "taken from him", "gone", "lost". The blocklist keeps graphic terms and gains a **soft list**: words that produce warnings (`W_TEXT_SOFT`) with a suggested alternative, rather than errors.
@@ -620,7 +628,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 
 | Rule | `kids` (default) | `general` |
 |---|---|---|
-| Defeat styles allowed | ko, faint, vanish, captured, flee | all, including ghost |
+| Defeat styles allowed | ko, faint, vanish, captured, flee, petrify | all, including ghost |
 | A loved character's loss | Must be temporary or hopeful: the story should bring them back or show they're safe by the end (W_KIDS_NO_HOPE if not) | May be permanent |
 | Soft-list words (warnings with alternatives) | kill, killed, die, dead, death, murder, hate, stupid, idiot, shut up, weapon names in dialogue | kill, killed, murder |
 | Impacts | Cartoon only: stars, "POW!", "BONK!" text pops, squash; no lingering on a hurt face | As v1 |
@@ -907,4 +915,4 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `W_CAST_UNUSED` | semantic | A cast member no scene places |
 | `W_STORY_SHORT` | dry run | A story (2+ scenes) is shorter than 300 s |
 | `W_FIGHT_SHORT` | dry run | A fight-only video is shorter than 180 s |
-| `W_KIDS_NO_HOPE` | semantic | `kids` audience: a cast member vanishes (`vanish`, or `@defeat` with style `vanish`) and no later beat has it `return`. (A captured villain counts as shown safe.) |
+| `W_KIDS_NO_HOPE` | semantic | `kids` audience: a cast member vanishes or is petrified (`vanish`, `petrify`, or `@defeat` with those styles) and no later beat has it `return`. (A captured villain counts as shown safe.) |

@@ -495,6 +495,22 @@
     ]
   },
   {
+    "name": "return_dog",
+    "description": "A vanished or frozen dog comes back: sparkles, a shake and a happy wag.",
+    "tags": ["dog", "magic", "hope", "enter"],
+    "rig": "quadruped",
+    "category": "defeat",
+    "duration": 1.4,
+    "face": "happy",
+    "events": [{ "t": 0, "reform": true, "fx": ["sparkle"], "sfx": "sparkle" }, { "t": 0.4, "sfx": "bark_small" }, { "t": 0.8, "fx": ["confetti"] }],
+    "keys": [
+      { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+      { "t": 0.3, "pose": { "lean": 4, "head": -10 }, "ease": "inOutQuad" },
+      { "t": 0.55, "pose": { "lean": -4, "head": 6 }, "ease": "inOutQuad" },
+      { "t": 1, "pose": "dog_stand" }
+    ]
+  },
+  {
     "name": "spawn_dog",
     "description": "A dog appears out of nowhere (it starts hidden).",
     "tags": ["dog", "magic", "enter"],
@@ -700,6 +716,92 @@
       { "t": 1, "pose": { "lean": 2, "head": 14, "dx": -8 } }
     ],
     "events": [{ "t": 0.2, "sfx": "growl_soft" }]
+  },
+  {
+    "name": "swim_dog",
+    "description": "A dog paddles along, head up above its body, legs churning; floats above the floor; loops until `distance` px or `cycles`.",
+    "tags": [
+      "dog",
+      "travel",
+      "water",
+      "loop"
+    ],
+    "rig": "quadruped",
+    "category": "movement",
+    "duration": 0.6,
+    "params": {
+      "stride": 140
+    },
+    "flags": {
+      "loop": true
+    },
+    "root": [
+      {
+        "t": 0,
+        "dx": 0,
+        "dy": -110,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "dx": "stride*0.5",
+        "dy": -118,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "dx": "stride",
+        "dy": -110
+      }
+    ],
+    "keys": [
+      {
+        "t": 0,
+        "pose": {
+          "lean": 12,
+          "head": -20,
+          "lUA": 50,
+          "lFA": 60,
+          "rUA": -10,
+          "rFA": 20,
+          "lTH": 40,
+          "lSH": 60,
+          "rTH": -20,
+          "rSH": 20
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "pose": {
+          "lean": 12,
+          "head": -20,
+          "lUA": -10,
+          "lFA": 20,
+          "rUA": 50,
+          "rFA": 60,
+          "lTH": -20,
+          "lSH": 20,
+          "rTH": 40,
+          "rSH": 60
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": {
+          "lean": 12,
+          "head": -20,
+          "lUA": 50,
+          "lFA": 60,
+          "rUA": -10,
+          "rFA": 20,
+          "lTH": 40,
+          "lSH": 60,
+          "rTH": -20,
+          "rSH": 20
+        }
+      }
+    ]
   }
 ]
-

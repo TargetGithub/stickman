@@ -443,6 +443,60 @@
         "events": [{ "t": 0.05, "sfx": "step" }]
       },
       {
+        "name": "swim",
+        "description": "Swims along face-down, arms reaching in turn and legs kicking, floating above the floor; loops until `distance` px or `cycles`.",
+        "tags": ["travel", "water", "loop"],
+        "category": "movement",
+        "duration": 1,
+        "params": { "stride": 200 },
+        "flags": { "loop": true },
+        "root": [
+          { "t": 0, "dx": 0, "dy": -60, "ease": "inOutQuad" },
+          { "t": 0.5, "dx": "stride*0.5", "dy": -75, "ease": "inOutQuad" },
+          { "t": 1, "dx": "stride", "dy": -60 }
+        ],
+        "events": [{ "t": 0.1, "sfx": "whoosh" }],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "rot": 80, "head": -55, "lUA": 195, "lFA": 0, "rUA": 20, "rFA": 10, "lTH": 10, "lSH": 25, "rTH": -12, "rSH": 10 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "rot": 80, "head": -55, "lUA": 20, "lFA": 10, "rUA": 195, "rFA": 0, "lTH": -12, "lSH": 10, "rTH": 10, "rSH": 25 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "rot": 80, "head": -55, "lUA": 195, "lFA": 0, "rUA": 20, "rFA": 10, "lTH": 10, "lSH": 25, "rTH": -12, "rSH": 10 }
+          }
+        ]
+      },
+      {
+        "name": "sink",
+        "description": "Sinks slowly from high up to the floor, limp, arms floating up (underwater, a dream fall); holds at the end.",
+        "tags": ["water", "fall", "sad"],
+        "category": "movement",
+        "duration": 3,
+        "face": "asleep",
+        "flags": { "hold": true },
+        "root": [{ "t": 0, "dx": 0, "dy": -520, "ease": "outQuad" }, { "t": 1, "dx": 30, "dy": 0 }],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "rot": 15, "lean": 10, "head": 25, "lUA": 150, "lFA": 30, "rUA": 130, "rFA": 40, "lTH": 20, "lSH": 40, "rTH": -5, "rSH": 30 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "rot": -10, "lean": 5, "head": 20, "lUA": 160, "lFA": 20, "rUA": 145, "rFA": 30, "lTH": 10, "lSH": 30, "rTH": 5, "rSH": 40 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "down" }
+        ]
+      },
+      {
         "name": "jab",
         "description": "A fast, light lead-hand punch; good for opening an exchange.",
         "tags": ["punch", "light", "fight"],
@@ -2236,6 +2290,44 @@
             "pose": { "lean": 2, "head": -2, "lUA": 14, "lFA": 10, "rUA": 45, "rFA": 70, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
           }
         ]
+      },
+      {
+        "name": "sneeze",
+        "description": "A big comic sneeze: head back for ah... ah..., then a sharp nod forward on CHOO, with funny tears.",
+        "tags": ["emote", "comic", "sneeze"],
+        "category": "emote",
+        "duration": 1.6,
+        "face": "hurt",
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "outQuad" },
+          {
+            "t": 0.14,
+            "pose": { "lean": -6, "head": -14, "lUA": 16, "lFA": 12, "rUA": 34, "rFA": 70, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.3,
+            "pose": { "lean": -10, "head": -24, "lUA": 22, "lFA": 16, "rUA": 46, "rFA": 104, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0, "dy": -2 },
+            "ease": "inQuad"
+          },
+          {
+            "t": 0.45,
+            "pose": { "lean": -14, "head": -32, "lUA": 26, "lFA": 20, "rUA": 50, "rFA": 112, "lTH": 4, "lSH": 2, "rTH": -8, "rSH": 2, "dy": -5 },
+            "ease": "outQuad"
+          },
+          {
+            "t": 0.52,
+            "pose": { "lean": 24, "head": 34, "lUA": 18, "lFA": 30, "rUA": 28, "rFA": 46, "lTH": 10, "lSH": 6, "rTH": -2, "rSH": 6, "dy": 6 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.66,
+            "pose": { "lean": 17, "head": 24, "lUA": 16, "lFA": 26, "rUA": 24, "rFA": 40, "lTH": 8, "lSH": 4, "rTH": -4, "rSH": 4, "dy": 4 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ],
+        "events": [{ "t": 0.03, "sfx": "sneeze" }, { "t": 0.53, "fx": ["tears"] }]
       },
       {
         "name": "use",
@@ -4111,13 +4203,13 @@
       },
       {
         "name": "captured",
-        "description": "Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated.",
+        "description": "Rope binds the arms, then a cage drops over them (cage 0: rope only; net 1: a fishing net); defeated.",
         "tags": ["defeat", "kids", "villain"],
         "category": "defeat",
         "duration": 1.8,
         "face": "scared",
         "flags": { "hold": true, "defeat": true },
-        "params": { "cage": 1 },
+        "params": { "cage": 1, "net": 0 },
         "keys": [
           { "t": 0, "pose": "stand", "ease": "outQuad" },
           {
@@ -4139,6 +4231,19 @@
           { "t": 0.12, "fx": ["rope_bind"], "sfx": "whoosh" },
           { "t": 0.55, "cage": true, "fx": ["cage_drop"], "sfx": "clang", "shake": "small" }
         ]
+      },
+      {
+        "name": "petrify",
+        "description": "Turns to stone grey where it stands over params.dur (0: at once); defeated until return.",
+        "tags": ["defeat", "magic", "kids", "freeze"],
+        "rig": "any",
+        "category": "defeat",
+        "duration": 1.6,
+        "face": "asleep",
+        "params": { "dur": 1.5 },
+        "flags": { "hold": true, "defeat": true, "keepPose": true, "petrify": true },
+        "keys": [{ "t": 0, "pose": "stand" }],
+        "events": [{ "t": 0, "sfx": "magic_sparkle" }, { "t": 0.95, "fx": ["sparkle"], "sfx": "sparkle" }]
       },
       {
         "name": "flee",
@@ -4687,6 +4792,26 @@
         ]
       },
       {
+        "name": "return_dog",
+        "description": "A vanished or frozen dog comes back: sparkles, a shake and a happy wag.",
+        "tags": ["dog", "magic", "hope", "enter"],
+        "rig": "quadruped",
+        "category": "defeat",
+        "duration": 1.4,
+        "face": "happy",
+        "events": [
+          { "t": 0, "reform": true, "fx": ["sparkle"], "sfx": "sparkle" },
+          { "t": 0.4, "sfx": "bark_small" },
+          { "t": 0.8, "fx": ["confetti"] }
+        ],
+        "keys": [
+          { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+          { "t": 0.3, "pose": { "lean": 4, "head": -10 }, "ease": "inOutQuad" },
+          { "t": 0.55, "pose": { "lean": -4, "head": 6 }, "ease": "inOutQuad" },
+          { "t": 1, "pose": "dog_stand" }
+        ]
+      },
+      {
         "name": "spawn_dog",
         "description": "A dog appears out of nowhere (it starts hidden).",
         "tags": ["dog", "magic", "enter"],
@@ -4904,6 +5029,37 @@
           { "t": 1, "pose": { "lean": 2, "head": 14, "dx": -8 } }
         ],
         "events": [{ "t": 0.2, "sfx": "growl_soft" }]
+      },
+      {
+        "name": "swim_dog",
+        "description": "A dog paddles along, head up above its body, legs churning; floats above the floor; loops until `distance` px or `cycles`.",
+        "tags": ["dog", "travel", "water", "loop"],
+        "rig": "quadruped",
+        "category": "movement",
+        "duration": 0.6,
+        "params": { "stride": 140 },
+        "flags": { "loop": true },
+        "root": [
+          { "t": 0, "dx": 0, "dy": -110, "ease": "inOutQuad" },
+          { "t": 0.5, "dx": "stride*0.5", "dy": -118, "ease": "inOutQuad" },
+          { "t": 1, "dx": "stride", "dy": -110 }
+        ],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 12, "head": -20, "lUA": 50, "lFA": 60, "rUA": -10, "rFA": 20, "lTH": 40, "lSH": 60, "rTH": -20, "rSH": 20 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": 12, "head": -20, "lUA": -10, "lFA": 20, "rUA": 50, "rFA": 60, "lTH": -20, "lSH": 20, "rTH": 40, "rSH": 60 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 12, "head": -20, "lUA": 50, "lFA": 60, "rUA": -10, "rFA": 20, "lTH": 40, "lSH": 60, "rTH": -20, "rSH": 20 }
+          }
+        ]
       }
     ],
     "props": {
@@ -5900,9 +6056,501 @@
             "alpha": [1, 0]
           }
         ]
+      },
+      "colour_powder": {
+        "description": "A festival colour-powder burst: pink, yellow, green and blue puffs that bloom above the head and drift down (Holi style).",
+        "tags": ["celebrate", "happy", "festival", "colour"],
+        "anchor": "head",
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-170, -110],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#ff5fa8", "#ff86c0"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-125, -75],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#ffd23f", "#ffe270"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-105, -55],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#4fd36a", "#7ee36b"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 3,
+            "offset": 40,
+            "angle": [-70, -10],
+            "speed": [160, 340],
+            "drag": 1.8,
+            "gravity": 60,
+            "life": [1.8, 2.6],
+            "size": [18, 72],
+            "color": ["#3fa8ff", "#6cc4ff"],
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 24,
+            "offset": 50,
+            "angle": [-170, -10],
+            "speed": [120, 380],
+            "drag": 1.4,
+            "gravity": 160,
+            "life": [1.6, 2.4],
+            "size": [5, 4],
+            "color": ["#ff5fa8", "#ffd23f", "#4fd36a", "#3fa8ff"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "gloom_mist": {
+        "description": "Rolling grey-purple mist from the Gloom Horn: slow wide puffs spreading along the floor for about 3 s, low alpha.",
+        "tags": ["villain", "gloom", "mist", "lingers"],
+        "anchor": "feet",
+        "sustain": { "duration": 3, "rate": 9 },
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 24,
+            "angle": [-12, 0],
+            "speed": [90, 240],
+            "drag": 0.55,
+            "life": [2.2, 3],
+            "size": [36, 120],
+            "color": ["#7d7192", "#675c7e", "#958aa8"],
+            "alpha": [0.3, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 24,
+            "angle": [180, 192],
+            "speed": [90, 240],
+            "drag": 0.55,
+            "life": [2.2, 3],
+            "size": [36, 120],
+            "color": ["#7d7192", "#675c7e", "#958aa8"],
+            "alpha": [0.3, 0]
+          }
+        ]
+      },
+      "colour_return": {
+        "description": "Colour comes back: a glow, a ring and rainbow sparkles bursting out (with set_grade from).",
+        "tags": ["magic", "colour", "hope", "celebrate"],
+        "anchor": "hip",
+        "layers": [
+          {
+            "shape": "glow",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [0.9, 0.9],
+            "size": [60, 220],
+            "color": "rgba(255, 245, 200, 0.9)",
+            "alpha": [0.9, 0]
+          },
+          {
+            "shape": "ring",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [0.8, 0.8],
+            "size": [30, 300],
+            "width": 10,
+            "color": "#ffffff",
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "star",
+            "count": 21,
+            "offset": 30,
+            "angle": [-180, 0],
+            "speed": [220, 520],
+            "drag": 1.2,
+            "life": [1.1, 1.8],
+            "size": [14, 3],
+            "color": ["#ff3b3b", "#ffe02e", "#3ddc6a", "#2f9bff"],
+            "alpha": [1, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 18,
+            "offset": 40,
+            "spreadY": 120,
+            "angle": [-110, -70],
+            "speed": [60, 160],
+            "drag": 0.6,
+            "life": [1.4, 2.2],
+            "size": [7, 1],
+            "color": ["#ff9a1f", "#5a5cff", "#b05cff", "#ffffff"],
+            "alpha": [0.9, 0]
+          }
+        ]
+      },
+      "chilli_smoke": {
+        "description": "Red-orange chilli smoke rolling in low and wide for about 3 s, with red specks (beats add the sneezes).",
+        "tags": ["spice", "smoke", "comedy", "lingers"],
+        "anchor": "feet",
+        "sustain": { "duration": 3, "rate": 8 },
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 40,
+            "angle": [-20, 0],
+            "speed": [80, 220],
+            "drag": 0.55,
+            "life": [2, 2.8],
+            "size": [40, 130],
+            "color": ["#ff6b35", "#e8483d", "#ff9a5a"],
+            "alpha": [0.35, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 40,
+            "spreadY": 40,
+            "angle": [180, 200],
+            "speed": [80, 220],
+            "drag": 0.55,
+            "life": [2, 2.8],
+            "size": [40, 130],
+            "color": ["#ff6b35", "#e8483d", "#ff9a5a"],
+            "alpha": [0.35, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 2,
+            "offset": 30,
+            "spreadY": 80,
+            "angle": [-150, -30],
+            "speed": [40, 110],
+            "drag": 0.6,
+            "life": [1.2, 1.8],
+            "size": [7, 2],
+            "color": ["#e63946", "#ff3b3b"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "whirlpool": {
+        "description": "A big spinning whirlpool on the water: rings swirling in and foam spinning round for about 3 s.",
+        "tags": ["water", "lake", "danger", "lingers"],
+        "anchor": "feet",
+        "sustain": { "duration": 3, "rate": 6 },
+        "layers": [
+          {
+            "shape": "ring",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [1.2, 1.2],
+            "size": [260, 40],
+            "width": 8,
+            "color": "#bfe6f5",
+            "alpha": [0.7, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 3,
+            "offset": 150,
+            "angle": [-180, 180],
+            "speed": [160, 260],
+            "drag": 1.5,
+            "life": [0.8, 1.2],
+            "size": [9, 3],
+            "color": ["#ffffff", "#bfe6f5"],
+            "alpha": [0.9, 0]
+          }
+        ]
+      },
+      "splash": {
+        "description": "A water splash: droplets fly up and fall, with a white ring on the surface.",
+        "tags": ["water", "lake", "impact"],
+        "anchor": "feet",
+        "layers": [
+          {
+            "shape": "ring",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [0.5, 0.5],
+            "size": [20, 140],
+            "width": 6,
+            "color": "#ffffff",
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 22,
+            "offset": 10,
+            "angle": [-160, -20],
+            "speed": [260, 560],
+            "drag": 0.4,
+            "gravity": 1400,
+            "life": [0.6, 1],
+            "size": [9, 4],
+            "color": ["#bfe6f5", "#ffffff", "#4fa8d8"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "visor_beam": {
+        "description": "A thick straight cyan beam shooting forward from the head (Iron Ghoom's visor), with a bright core.",
+        "tags": ["robot", "energy", "attack"],
+        "anchor": "head",
+        "layers": [
+          {
+            "shape": "line",
+            "count": 8,
+            "offset": 20,
+            "angle": [-2, 2],
+            "speed": [1100, 1200],
+            "drag": 0,
+            "life": [0.35, 0.45],
+            "size": [40, 18],
+            "color": ["#7ff0ff", "#bff8ff", "#ffffff"],
+            "alpha": [1, 0]
+          },
+          {
+            "shape": "glow",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [0.4, 0.4],
+            "size": [70, 20],
+            "color": "rgba(127, 240, 255, 0.9)",
+            "alpha": [0.9, 0]
+          }
+        ]
+      },
+      "avalanche": {
+        "description": "An avalanche: big snow puffs and snowball dots rushing in low from behind, for about 3 s.",
+        "tags": ["snow", "danger", "mountain", "lingers"],
+        "anchor": "feet",
+        "sustain": { "duration": 3, "rate": 10 },
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 120,
+            "spreadY": 60,
+            "angle": [-10, 10],
+            "speed": [380, 620],
+            "drag": 0.3,
+            "life": [1, 1.6],
+            "size": [60, 160],
+            "color": ["#f4f8fc", "#e2ecf6", "#ffffff"],
+            "alpha": [0.85, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 2,
+            "offset": 100,
+            "spreadY": 40,
+            "angle": [-20, 5],
+            "speed": [420, 700],
+            "drag": 0.2,
+            "gravity": 600,
+            "life": [0.8, 1.2],
+            "size": [18, 10],
+            "color": ["#ffffff", "#c9d8e8"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "mirror_ripple": {
+        "description": "Silver rings rippling out on a mirror's surface when someone goes through it.",
+        "tags": ["mirror", "magic", "portal"],
+        "anchor": "hip",
+        "layers": [
+          {
+            "shape": "ring",
+            "count": 3,
+            "speed": [0, 0],
+            "life": [0.7, 1.1],
+            "size": [20, 150],
+            "width": 5,
+            "color": "#e8ecf8",
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "star",
+            "count": 8,
+            "offset": 40,
+            "angle": [-180, 180],
+            "speed": [60, 140],
+            "drag": 1,
+            "life": [0.6, 1],
+            "size": [10, 3],
+            "color": ["#ffffff", "#c9a6ff"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "crystal_pull": {
+        "description": "Six coloured light streams flying up and away from the wrist (the crystals pulled out of the bracelet).",
+        "tags": ["magic", "crystal", "villain"],
+        "anchor": "hip",
+        "layers": [
+          {
+            "shape": "line",
+            "count": 10,
+            "offset": 20,
+            "angle": [-120, -60],
+            "speed": [500, 800],
+            "drag": 0.2,
+            "life": [0.6, 1],
+            "size": [30, 10],
+            "color": ["#ff3b30", "#ff9500", "#ffd60a", "#34c759"],
+            "alpha": [1, 0]
+          },
+          {
+            "shape": "line",
+            "count": 10,
+            "offset": 20,
+            "angle": [-120, -60],
+            "speed": [500, 800],
+            "drag": 0.2,
+            "life": [0.6, 1],
+            "size": [30, 10],
+            "color": ["#1e90ff", "#4b3bd6", "#a347e0", "#ffffff"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "grow_giant": {
+        "description": "A purple flash and swirling purple sparkles all around someone growing huge.",
+        "tags": ["magic", "villain", "giant"],
+        "anchor": "hip",
+        "layers": [
+          {
+            "shape": "glow",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [0.8, 0.8],
+            "size": [80, 300],
+            "color": "rgba(176, 108, 255, 0.9)",
+            "alpha": [0.9, 0]
+          },
+          {
+            "shape": "star",
+            "count": 30,
+            "offset": 80,
+            "angle": [-180, 180],
+            "speed": [200, 480],
+            "drag": 1,
+            "life": [1, 1.6],
+            "size": [16, 4],
+            "color": ["#b05cff", "#d9c4ff", "#ffffff"],
+            "alpha": [1, 0]
+          },
+          {
+            "shape": "ring",
+            "count": 2,
+            "speed": [0, 0],
+            "life": [0.7, 1.1],
+            "size": [40, 300],
+            "width": 10,
+            "color": "#b05cff",
+            "alpha": [0.8, 0]
+          }
+        ]
+      },
+      "giant_blast": {
+        "description": "A huge purple-grey blast with a shockwave ring (Giant Peepa's Gloom Blast).",
+        "tags": ["villain", "energy", "attack", "giant"],
+        "anchor": "hip",
+        "layers": [
+          {
+            "shape": "glow",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [0.6, 0.6],
+            "size": [60, 260],
+            "color": "rgba(130, 110, 170, 0.9)",
+            "alpha": [1, 0]
+          },
+          {
+            "shape": "ring",
+            "count": 2,
+            "speed": [0, 0],
+            "life": [0.6, 0.9],
+            "size": [30, 300],
+            "width": 10,
+            "color": "#8a7aaa",
+            "alpha": [0.9, 0]
+          },
+          {
+            "shape": "puff",
+            "count": 8,
+            "offset": 40,
+            "angle": [-180, 180],
+            "speed": [200, 420],
+            "drag": 1.2,
+            "life": [0.8, 1.2],
+            "size": [30, 90],
+            "color": ["#6a5a8a", "#8a8496", "#b05cff"],
+            "alpha": [0.7, 0]
+          }
+        ]
+      },
+      "beam_clash": {
+        "description": "Two energy beams meeting: a bright core with sparks flying out in every direction for about 2 s.",
+        "tags": ["energy", "clash", "finale", "lingers"],
+        "anchor": "hip",
+        "sustain": { "duration": 2, "rate": 10 },
+        "layers": [
+          {
+            "shape": "glow",
+            "count": 1,
+            "speed": [0, 0],
+            "life": [0.3, 0.3],
+            "size": [80, 60],
+            "color": "rgba(255, 255, 255, 0.9)",
+            "alpha": [1, 0]
+          },
+          {
+            "shape": "star",
+            "count": 3,
+            "offset": 10,
+            "angle": [-180, 180],
+            "speed": [300, 600],
+            "drag": 1,
+            "life": [0.4, 0.7],
+            "size": [12, 3],
+            "color": ["#ffd23f", "#b05cff", "#ffffff"],
+            "alpha": [1, 0]
+          }
+        ]
       }
     },
-    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo"],
+    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo", "colour_powder", "gloom_mist", "colour_return", "chilli_smoke", "whirlpool", "splash", "visor_beam", "avalanche", "mirror_ripple", "crystal_pull", "grow_giant", "giant_blast", "beam_clash"],
     "themes": {
       "white_stage": {
         "description": "A plain off-white stage with no scenery; clean and simple.",
@@ -6074,10 +6722,419 @@
           { "kind": "puddles", "color": "rgba(120, 150, 210, 0.35)", "spacing": 600 }
         ],
         "characterBg": "#4e3530"
+      },
+      "tokyo_village": {
+        "description": "An Indian hill village square: round mud huts with painted doors, bunting, green hills.",
+        "tags": ["story", "outdoor", "village", "day", "doopi"],
+        "sky": { "top": "#6cc3f2", "bottom": "#d8f1ff" },
+        "ground": { "color": "#d6b47e", "line": "#b48e58" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.18, "y": 0.15, "r": 64, "color": "#fff4c0", "glow": "rgba(255, 240, 190, 0.5)" },
+          { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.9)", "count": 6, "top": 0.05, "band": 0.2 },
+          { "kind": "mountains", "factor": 0.08, "color": "#9cc7c4", "height": 330, "step": 240, "rough": 0.35 },
+          { "kind": "hills", "factor": 0.16, "color": "#86bf66", "height": 230, "step": 300 },
+          {
+            "kind": "banyan",
+            "factor": 0.2,
+            "at": [330],
+            "scale": 0.5,
+            "height": 520,
+            "spread": 760,
+            "trunk": "#6e5a44",
+            "roots": "#7a6650",
+            "color": "#6fa85e",
+            "color2": "#5f9852"
+          },
+          { "kind": "hills", "factor": 0.32, "color": "#5e9a4a", "height": 130, "step": 360 },
+          {
+            "kind": "huts",
+            "factor": 0.62,
+            "size": 210,
+            "spacing": 430,
+            "walls": ["#a8673d", "#b0703f", "#9a6038"],
+            "doors": ["#e63946", "#2f7de1", "#f4c430", "#2bb39a"],
+            "thatch": "#c99a4a",
+            "thatch2": "#94692b",
+            "band": "#f6e7c8",
+            "frame": "#5e3d24"
+          },
+          {
+            "kind": "bunting",
+            "factor": 0.7,
+            "y": -330,
+            "spacing": 540,
+            "sag": 50,
+            "flag": 26,
+            "line": "#6b4a2f",
+            "pole": "#7a5634",
+            "colors": ["#e63946", "#f4a62a", "#ffd23f", "#2bb39a", "#2f7de1", "#8e5bd8", "#ff7eb6"]
+          },
+          { "kind": "bushes", "factor": 0.85, "color": "#4f8a3e", "spacing": 760, "size": 46 },
+          { "kind": "floorStripes", "color": "#c9a46c", "at": [44], "width": 34 }
+        ],
+        "characterBg": "#a06a40"
+      },
+      "banyan_hill": {
+        "description": "A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below.",
+        "tags": ["story", "outdoor", "hill", "magic", "doopi"],
+        "sky": { "top": "#78c8f0", "bottom": "#e6f7ff" },
+        "ground": { "color": "#8cc76a", "line": "#6aa54e" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.84, "y": 0.14, "r": 60, "color": "#fff6c8", "glow": "rgba(255, 246, 200, 0.45)" },
+          { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.92)", "count": 7, "top": 0.05, "band": 0.22 },
+          { "kind": "mountains", "factor": 0.06, "color": "#a6c9dc", "height": 380, "step": 260, "rough": 0.4 },
+          { "kind": "hills", "factor": 0.1, "color": "#8fbf78", "height": 300, "step": 280 },
+          {
+            "kind": "huts",
+            "factor": 0.11,
+            "y": -190,
+            "scale": 0.18,
+            "size": 210,
+            "spacing": 1300,
+            "walls": ["#c08a5a", "#b47c4c"],
+            "doors": ["#e63946", "#2f7de1", "#f4c430"],
+            "thatch": "#cfa45a",
+            "thatch2": "#a17a3a",
+            "band": "#f6e7c8",
+            "frame": "#6b4a2f"
+          },
+          { "kind": "hills", "factor": 0.15, "color": "#5a8f48", "height": 200, "step": 330 },
+          {
+            "kind": "huts",
+            "factor": 0.16,
+            "y": -120,
+            "scale": 0.26,
+            "size": 210,
+            "spacing": 1500,
+            "walls": ["#a8673d", "#b0703f"],
+            "doors": ["#e63946", "#2bb39a", "#f4c430"],
+            "thatch": "#c99a4a",
+            "thatch2": "#94692b",
+            "band": "#f6e7c8",
+            "frame": "#5e3d24"
+          },
+          { "kind": "hills", "factor": 0.4, "color": "#6aa04e", "height": 60, "step": 420 },
+          {
+            "kind": "banyan",
+            "factor": 1,
+            "at": [1800],
+            "height": 560,
+            "spread": 820,
+            "trunk": "#7a5536",
+            "trunk2": "#5e3f26",
+            "roots": "#8a6442",
+            "color": "#3f8f45",
+            "color2": "#2f7038",
+            "color3": "#5aa84f"
+          },
+          { "kind": "bushes", "factor": 0.9, "color": "#5a9a44", "spacing": 900, "size": 40 }
+        ],
+        "characterBg": "#5a8f48"
+      },
+      "gloom_throne_room": {
+        "description": "Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist.",
+        "tags": ["story", "villain", "dark", "indoor", "doopi"],
+        "sky": { "top": "#120a1c", "bottom": "#2e1a42" },
+        "ground": { "color": "#3a3046", "line": "#1c1526" },
+        "layers": [
+          { "kind": "cave", "factor": 0.3, "wall": "#241833", "color": "#1a1026", "ceiling": -860, "step": 140, "depth": 140, "rocks": 200 },
+          { "kind": "pillars", "factor": 0.6, "spacing": 560, "width": 96, "top": -720, "wall": "#3a2d4a", "color": "#4d4458", "color2": "#423a4e", "cap": "#5e5470", "beam": "#2a1f38", "window": "#b06cff", "glow": "rgba(176, 108, 255, 0.35)", "windowW": 130, "windowH": 300, "windowY": -560 },
+          { "kind": "lanterns", "factor": 0.7, "color": "#c48aff", "y": -470, "spacing": 1120, "glow": "rgba(196, 138, 255, 0.3)" },
+          { "kind": "floorGrid", "color": "rgba(160, 140, 180, 0.18)", "spacing": 200 },
+          { "kind": "mist", "factor": 1, "color": "rgba(196, 192, 208, 0.22)", "spacing": 150, "size": 150, "depth": 70, "speed": 10 }
+        ],
+        "characterBg": "#43384f"
+      },
+      "whispering_forest": {
+        "description": "A deep friendly forest path: tall round-leaved trees, hanging vines, ferns and red mushrooms.",
+        "tags": ["story", "outdoor", "forest", "nature", "doopi"],
+        "sky": { "top": "#7fc8a9", "bottom": "#d8f0d0" },
+        "ground": { "color": "#8a6a44", "line": "#6b5034" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.75, "y": 0.12, "r": 56, "color": "#fff6c8", "glow": "rgba(255, 246, 200, 0.45)" },
+          { "kind": "trees", "factor": 0.12, "spacing": 260, "height": 520, "crown": 170, "trunk": "#4a3a2a", "color": "#3f7a4a", "color2": "#356b40" },
+          { "kind": "trees", "factor": 0.3, "spacing": 380, "height": 430, "crown": 150, "trunk": "#5a4530", "color": "#3f7f48", "color2": "#38744a" },
+          { "kind": "trees", "factor": 0.62, "spacing": 620, "height": 380, "crown": 130, "trunk": "#4a3624", "color": "#2f6a3a", "color2": "#2a5e34" },
+          { "kind": "vines", "factor": 0.72, "spacing": 420, "length": 900, "top": -1250, "color": "#3d6b2e", "leaf": "#5aa046", "sway": 16, "width": 8 },
+          { "kind": "ferns", "factor": 0.85, "spacing": 340, "size": 110, "color": "#3f8a3a", "cap": "#e63946", "mushrooms": 0.35 },
+          { "kind": "floorStripes", "color": "#7a5c3a", "at": [40], "width": 30 }
+        ],
+        "characterBg": "#2e5a34"
+      },
+      "mirchi_hill": {
+        "description": "A red-orange hilltop fort with rounded battlements, a big wooden gate and strings of drying chillies, under a hot orange sky.",
+        "tags": ["story", "outdoor", "fort", "hill", "doopi"],
+        "sky": { "top": "#ff9a4a", "bottom": "#ffd9a0" },
+        "ground": { "color": "#c98a52", "line": "#a06a3a" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.8, "y": 0.2, "r": 70, "color": "#fff0b0", "glow": "rgba(255, 220, 150, 0.5)" },
+          { "kind": "mountains", "factor": 0.08, "color": "#e0905a", "height": 300, "step": 260, "rough": 0.35 },
+          { "kind": "hills", "factor": 0.2, "color": "#c9703e", "height": 200, "step": 320 },
+          {
+            "kind": "fort_wall",
+            "factor": 0.55,
+            "spacing": 900,
+            "height": 420,
+            "color": "#d0603a",
+            "line": "rgba(80, 20, 10, 0.25)",
+            "gates": [1200],
+            "gateW": 240,
+            "gate": "#6b4a2f",
+            "chillies": "#e63946"
+          },
+          { "kind": "bushes", "factor": 0.85, "color": "#7a8a3a", "spacing": 820, "size": 40 }
+        ],
+        "characterBg": "#d0603a"
+      },
+      "spice_kitchen": {
+        "description": "A big fort kitchen: brick walls, shelves of colourful spice jars and sacks, strings of chillies, warm orange light.",
+        "tags": ["story", "indoor", "kitchen", "fort", "doopi"],
+        "sky": { "top": "#7a3a24", "bottom": "#a8573a" },
+        "ground": { "color": "#8a5a3a", "line": "#6b4229" },
+        "layers": [
+          { "kind": "bricks", "factor": 0.4, "color": "#9a4a30", "mortar": "#7a3a24", "top": -1400 },
+          {
+            "kind": "shelves",
+            "factor": 0.5,
+            "spacing": 640,
+            "top": -760,
+            "gap": 170,
+            "rows": 3,
+            "color": "#6b4a2f",
+            "lid": "#8a6442",
+            "sack": "#d9b77e",
+            "colors": ["#e63946", "#ff9a1f", "#ffd23f", "#7ccf5a", "#a0522d", "#f4e1c1"]
+          },
+          { "kind": "floorStripes", "color": "#7a4e30", "at": [40], "width": 30 }
+        ],
+        "characterBg": "#9a4a30"
+      },
+      "spice_cellar": {
+        "description": "The dark spice cellar under the fort: grooved stone walls, dusty sacks and a few jars, one small vent of light.",
+        "tags": ["story", "indoor", "cellar", "dark", "fort", "doopi"],
+        "sky": { "top": "#2e2420", "bottom": "#4a3830" },
+        "ground": { "color": "#5a4636", "line": "#3e3026" },
+        "layers": [
+          { "kind": "bricks", "factor": 0.45, "color": "#5e4a3e", "mortar": "#3e3026", "top": -1400 },
+          {
+            "kind": "shelves",
+            "factor": 0.55,
+            "spacing": 900,
+            "top": -620,
+            "gap": 200,
+            "rows": 2,
+            "color": "#4a3626",
+            "lid": "#6b4a2f",
+            "sack": "#8a7050",
+            "colors": ["#a0522d", "#7a6a50", "#c0392b"]
+          }
+        ],
+        "characterBg": "#4a3830"
+      },
+      "lotus_lake": {
+        "description": "A wide calm lake with pink lotus flowers and round leaves, fishing huts on stilts, hills far behind; a sandy shore.",
+        "tags": ["story", "outdoor", "lake", "water", "doopi"],
+        "sky": { "top": "#5fb8f0", "bottom": "#d4efff" },
+        "ground": { "color": "#e2c48a", "line": "#c4a46a" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.25, "y": 0.14, "r": 60, "color": "#fff4c0", "glow": "rgba(255, 240, 190, 0.5)" },
+          { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.9)", "count": 5, "top": 0.05, "band": 0.2 },
+          { "kind": "mountains", "factor": 0.08, "color": "#9cc7c4", "height": 260, "step": 260, "rough": 0.3 },
+          { "kind": "hills", "factor": 0.15, "color": "#86bf66", "height": 150, "step": 340 },
+          { "kind": "water", "factor": 0.35, "top": -300, "bottom": 0, "color": "#4fa8d8", "color2": "#3d8fc0", "leaf": "#3f9a4a", "flower": "#ff8fc0", "flowers": 0.45, "spacing": 220 },
+          {
+            "kind": "huts_stilts",
+            "factor": 0.45,
+            "spacing": 1300,
+            "size": 170,
+            "y": -40,
+            "wood": "#6b4a2f",
+            "wall": "#c49a62",
+            "roof": "#9a6a38",
+            "doors": ["#e63946", "#2f7de1", "#2bb39a"]
+          },
+          { "kind": "bushes", "factor": 0.9, "color": "#6fae5a", "spacing": 900, "size": 36 }
+        ],
+        "characterBg": "#3d8fc0"
+      },
+      "pirate_deck": {
+        "description": "The deck of a cartoon pirate ship on the lake: planks, a rail, a tall mast with a patched sail and a fish flag, barrels and a steering wheel.",
+        "tags": ["story", "outdoor", "ship", "pirate", "lake", "doopi"],
+        "sky": { "top": "#5fb8f0", "bottom": "#d4efff" },
+        "ground": { "color": "#a8763f", "line": "#7a5230" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.82, "y": 0.14, "r": 58, "color": "#fff4c0", "glow": "rgba(255, 240, 190, 0.5)" },
+          { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.9)", "count": 5, "top": 0.05, "band": 0.2 },
+          { "kind": "water", "factor": 0.1, "top": -420, "bottom": -120, "color": "#4fa8d8", "color2": "#3d8fc0", "leaf": "#3f9a4a", "flower": "#ff8fc0", "flowers": 0.2, "spacing": 500 },
+          {
+            "kind": "ship_rail",
+            "factor": 0.6,
+            "spacing": 1100,
+            "rail": 130,
+            "masts": [1200],
+            "wheel": 3000,
+            "wood": "#7a5230",
+            "sail": "#f4ead2",
+            "patch": "#d9b77e",
+            "flag": "#1d3557",
+            "rope": "#c9a46c",
+            "barrel": "#9a6a38"
+          },
+          { "kind": "planks", "color": "#8a5e32", "spacing": 120 }
+        ],
+        "characterBg": "#7a5230"
+      },
+      "crystal_cave": {
+        "description": "A big cave inside a lake island, glowing blue crystals in the walls, soft blue light and piles of treasure.",
+        "tags": ["story", "indoor", "cave", "crystal", "treasure", "doopi"],
+        "sky": { "top": "#0c1a2e", "bottom": "#1d3a5a" },
+        "ground": { "color": "#2a3c4e", "line": "#18242f" },
+        "layers": [
+          { "kind": "cave", "factor": 0.35, "wall": "#142838", "color": "#0c1a28", "ceiling": -760, "step": 140, "depth": 160, "rocks": 260 },
+          { "kind": "crystals", "factor": 0.55, "color": "#4fc3ff", "glow": "rgba(79, 195, 255, A)", "spacing": 460, "height": 190 },
+          { "kind": "lanterns", "factor": 0.7, "color": "#ffd23f", "y": -460, "spacing": 900, "glow": "rgba(255, 210, 63, 0.3)" }
+        ],
+        "characterBg": "#1d3a5a"
+      },
+      "underwater": {
+        "description": "Underwater in a clear lake: blue-green water, swaying seaweed, round stones on a sandy floor and rising bubbles. Calm, not dark.",
+        "tags": ["story", "underwater", "lake", "water", "doopi"],
+        "sky": { "top": "#5cc8d8", "bottom": "#1f6f8f" },
+        "ground": { "color": "#d8c08a", "line": "#b8a06a" },
+        "layers": [
+          { "kind": "hills", "factor": 0.15, "color": "#2a7f8f", "height": 160, "step": 300 },
+          { "kind": "seaweed", "factor": 0.4, "spacing": 260, "height": 420, "color": "#2f8a5a", "color2": "#3fa06a", "width": 12 },
+          { "kind": "seaweed", "factor": 0.8, "spacing": 520, "height": 300, "color": "#3fae6a", "color2": "#4fbe7a", "width": 16 },
+          { "kind": "bubbles_bg", "count": 50, "speed": 80, "color": "rgba(255, 255, 255, 0.55)" }
+        ],
+        "characterBg": "#1f6f8f"
+      },
+      "iron_canyon": {
+        "description": "A rocky canyon at dusk with giant rusty gears half buried in the cliffs, fog on the floor and huge metal footprints.",
+        "tags": ["story", "outdoor", "canyon", "iron", "doopi"],
+        "sky": { "top": "#c96a4a", "bottom": "#f0b88a" },
+        "ground": { "color": "#9a7a5a", "line": "#7a5a3e" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.7, "y": 0.25, "r": 70, "color": "#ffd9a0", "glow": "rgba(255, 210, 150, 0.4)" },
+          { "kind": "mountains", "factor": 0.1, "color": "#a8684a", "height": 420, "step": 200, "rough": 0.5 },
+          { "kind": "gears_bg", "factor": 0.35, "spacing": 700, "size": 170, "y": -120, "color": "#a0522d", "hub": "#5a3a2a", "rock": "#8a5a3e", "speed": 0.04 },
+          { "kind": "mist", "factor": 0.8, "spacing": 300, "size": 140, "depth": 60, "speed": 20, "color": "rgba(240, 220, 200, 0.35)" }
+        ],
+        "characterBg": "#8a5a3e"
+      },
+      "iron_workshop": {
+        "description": "Peepa's iron workshop: grey metal walls, pumping pistons, pipes with steam puffs, chains and purple warning lights.",
+        "tags": ["story", "indoor", "workshop", "iron", "villain", "doopi"],
+        "sky": { "top": "#3a3a44", "bottom": "#5a5a66" },
+        "ground": { "color": "#4a4a52", "line": "#2e2e34" },
+        "layers": [
+          { "kind": "bricks", "factor": 0.4, "color": "#55555f", "mortar": "#3e3e46", "top": -1400 },
+          { "kind": "machines", "factor": 0.55, "spacing": 900, "top": -900, "color": "#6e6e7a", "pipe": "#8a6a4a", "rod": "#c8ccd8", "light": "#b05cff" }
+        ],
+        "characterBg": "#4a4a52"
+      },
+      "mountain_cave": {
+        "description": "A rocky mountain cave shelter: grey-brown stone, a low ceiling of rock teeth, a dark opening, warm firelight.",
+        "tags": ["story", "indoor", "cave", "mountain", "shelter", "doopi"],
+        "sky": { "top": "#2a2420", "bottom": "#4a3e34" },
+        "ground": { "color": "#5e4e40", "line": "#3e3228" },
+        "layers": [
+          { "kind": "cave", "factor": 0.35, "wall": "#3e342c", "color": "#2a2420", "ceiling": -760, "step": 160, "depth": 140, "rocks": 240 },
+          { "kind": "lanterns", "factor": 0.7, "color": "#ffb347", "y": -460, "spacing": 1200, "glow": "rgba(255, 179, 71, 0.25)" }
+        ],
+        "characterBg": "#4a3e34"
+      },
+      "grey_peak": {
+        "description": "Grey Peak: a jagged dark mountain top under a heavy grey sky, grey-blue rock with frosty caps and drifting snow.",
+        "tags": ["story", "outdoor", "mountain", "snow", "villain", "doopi"],
+        "sky": { "top": "#3a3a52", "bottom": "#7a7a94" },
+        "ground": { "color": "#6a6a7e", "line": "#4a4a5a" },
+        "layers": [
+          { "kind": "stars", "count": 40, "color": "rgba(255, 255, 255, 0.6)" },
+          { "kind": "mountains", "factor": 0.12, "color": "#5a5a72", "height": 520, "step": 260, "rough": 0.7, "caps": "#c8ccd8" },
+          { "kind": "mountains", "factor": 0.3, "color": "#4a4a5e", "height": 340, "step": 200, "rough": 0.75, "caps": "#a8acb8" },
+          { "kind": "snowfall", "count": 90, "color": "rgba(230, 230, 240, 0.8)", "speed": 70 }
+        ],
+        "characterBg": "#4a4a5e"
+      },
+      "shadow_valley": {
+        "description": "A misty purple valley at night: bare twisted trees with curly branches and glowing purple fog close to the ground.",
+        "tags": ["story", "outdoor", "night", "shadow", "spooky", "doopi"],
+        "sky": { "top": "#1e1430", "bottom": "#4a3466" },
+        "ground": { "color": "#3a2c4a", "line": "#241a30" },
+        "layers": [
+          { "kind": "stars", "count": 60, "color": "rgba(255, 255, 255, 0.6)" },
+          { "kind": "sun", "factor": 0.03, "x": 0.78, "y": 0.16, "r": 70, "color": "#d8d0e8", "glow": "rgba(200, 180, 240, 0.35)" },
+          { "kind": "mountains", "factor": 0.1, "color": "#2e2244", "height": 360, "step": 260, "rough": 0.5 },
+          { "kind": "dead_trees", "factor": 0.35, "spacing": 520, "height": 420, "color": "#1e1430" },
+          { "kind": "dead_trees", "factor": 0.6, "spacing": 900, "height": 560, "color": "#160e24" },
+          { "kind": "mist", "factor": 0.85, "spacing": 260, "size": 160, "depth": 70, "speed": 25, "color": "rgba(176, 108, 255, 0.28)" }
+        ],
+        "characterBg": "#6a4a8a"
+      },
+      "mirror_maze": {
+        "description": "A maze of tall silver mirrors with curly purple frames, a soft shine sliding over the glass, dark purple floor.",
+        "tags": ["story", "indoor", "maze", "mirror", "magic", "doopi"],
+        "sky": { "top": "#2a1e3e", "bottom": "#4a3866" },
+        "ground": { "color": "#3e3052", "line": "#281e36" },
+        "layers": [
+          { "kind": "mirrors", "factor": 0.4, "spacing": 300, "height": 600, "width": 200, "glass": "#a8b0c8", "glass2": "#d8dcec", "frame": "#6a3fa8" },
+          { "kind": "mirrors", "factor": 0.7, "spacing": 520, "height": 760, "width": 260, "glass": "#b8c0d8", "glass2": "#e8ecf8", "frame": "#8a5bd8" }
+        ],
+        "characterBg": "#4a3866"
+      },
+      "gloom_castle_gate": {
+        "description": "Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind.",
+        "tags": ["story", "outdoor", "castle", "villain", "night", "doopi"],
+        "sky": { "top": "#1c1628", "bottom": "#4a4060" },
+        "ground": { "color": "#4a4256", "line": "#2e283a" },
+        "layers": [
+          { "kind": "stars", "count": 50, "color": "rgba(255, 255, 255, 0.5)" },
+          { "kind": "sun", "factor": 0.03, "x": 0.5, "y": 0.18, "r": 160, "color": "#c8c4d0", "glow": "rgba(200, 196, 208, 0.35)" },
+          { "kind": "mountains", "factor": 0.12, "color": "#2e283a", "height": 300, "step": 260, "rough": 0.6 },
+          { "kind": "castle", "factor": 0.4, "x": 700, "width": 1200, "height": 650, "color": "#4a4060", "tower": "#3e3652", "horn": "#e6b84a", "door": "#2a1b3d", "window": "#b05cff" },
+          { "kind": "mist", "factor": 0.85, "spacing": 300, "size": 140, "depth": 50, "speed": 15, "color": "rgba(160, 150, 180, 0.25)" }
+        ],
+        "characterBg": "#4a4060"
+      },
+      "grey_moon": {
+        "description": "Standing on the giant Grey Moon: grey dust and round craters, a black starry sky, and far below a tiny glowing valley with a tree.",
+        "tags": ["story", "outdoor", "moon", "space", "finale", "doopi"],
+        "sky": { "top": "#05040c", "bottom": "#1c1a2a" },
+        "ground": { "color": "#8a8a96", "line": "#6a6a76" },
+        "layers": [
+          { "kind": "stars", "count": 140, "color": "rgba(255, 255, 255, 0.85)" },
+          { "kind": "moon_surface", "factor": 0.6, "spacing": 600, "size": 160, "crater": "#74747e", "rim": "rgba(255, 255, 255, 0.25)", "valleyX": 0.3, "valleyY": 0.55, "tree": "#3a6a3a", "valleyGlow": "rgba(255, 240, 160, 0.8)" }
+        ],
+        "characterBg": "#4a4a56"
+      },
+      "banyan_moon": {
+        "description": "Banyan hill at night under the huge full Grey Moon: the giant banyan, its crystal sockets, a cold grey light.",
+        "tags": ["story", "outdoor", "night", "finale", "doopi"],
+        "sky": { "top": "#141222", "bottom": "#3a3650" },
+        "ground": { "color": "#4a5a40", "line": "#36422e" },
+        "layers": [
+          { "kind": "stars", "count": 60, "color": "rgba(255, 255, 255, 0.6)" },
+          { "kind": "moon", "factor": 0.02, "x": 0.5, "y": 0.26, "r": 0.24, "color": "#c8c4d0", "crater": "rgba(60, 60, 80, 0.18)", "glow": "rgba(200, 196, 220, 0.3)", "craters": 10 },
+          { "kind": "hills", "factor": 0.16, "color": "#2e3a2c", "height": 220, "step": 300 },
+          {
+            "kind": "banyan",
+            "factor": 0.45,
+            "at": [1800],
+            "height": 760,
+            "spread": 1300,
+            "trunk": "#4e4034",
+            "roots": "#5a4a3c",
+            "color": "#3e5a36",
+            "color2": "#344e2e"
+          },
+          { "kind": "bushes", "factor": 0.85, "color": "#2e3a2a", "spacing": 760, "size": 46 }
+        ],
+        "characterBg": "#3a4a34"
       }
     },
-    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"],
-    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow"],
+    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"],
+    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow", "gloom_horn", "sneeze", "crystal_chime", "pirate_horn", "splash", "robot_stomp", "robot_beep", "windup_click"],
     "blocklist": ["blood", "bloody", "gore", "gory", "suicide", "kill yourself", "kys"],
     "softWords": [
       { "word": "kill", "alt": "defeat", "audiences": ["kids", "general"] },
@@ -6348,6 +7405,353 @@
         "behavior": "holdable",
         "draw": "held",
         "hold": { "kind": "cane", "shape": "cane", "len": 92, "width": 5, "gripAt": 0.05, "grip": "rHand", "color": "#6b4a2f", "trim": "#3a2a1c", "hitRadius": 14 }
+      },
+      "crystal_socket": {
+        "description": "A gem socket in a banyan root: glows in its crystal's colour, or sits empty.",
+        "tags": ["scenery", "magic", "crystal", "doopi"],
+        "behavior": "static",
+        "draw": "crystal_socket",
+        "w": 130,
+        "h": 90,
+        "states": ["empty", "red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+        "colors": { "wood": "#6e4a2c", "rim": "#8a6442", "hollow": "#2a1c12", "red": "#ff3b3b", "orange": "#ff9a1f", "yellow": "#ffe02e", "green": "#3ddc6a", "blue": "#2f9bff", "indigo": "#5a5cff", "violet": "#b05cff" }
+      },
+      "throne": {
+        "description": "A tall purple throne with golden horns; a villain can sit on it.",
+        "tags": ["seat", "villain", "doopi"],
+        "behavior": "seat",
+        "draw": "throne",
+        "w": 300,
+        "h": 460,
+        "seatY": 112,
+        "slots": [0],
+        "colors": { "frame": "#2e2140", "cushion": "#6a3fa8", "horn": "#e6b84a", "gem": "#b05cff" }
+      },
+      "crystal_ball": {
+        "description": "A glowing purple crystal ball on a carved stone stand.",
+        "tags": ["scenery", "villain", "magic", "doopi"],
+        "behavior": "static",
+        "draw": "crystal_ball",
+        "w": 130,
+        "h": 260,
+        "colors": { "stand": "#6e6384", "trim": "#e6b84a", "ball": "#9a6cff", "swirl": "#d9c4ff", "glow": "rgba(176, 108, 255, 0.8)" }
+      },
+      "rainbow_crystal": {
+        "description": "A glowing rainbow crystal; `set_object` state sets its colour (chimes).",
+        "tags": ["holdable", "magic", "crystal", "glow"],
+        "behavior": "holdable",
+        "draw": "held",
+        "states": ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "dim"],
+        "sfx": { "red": "crystal_chime", "orange": "crystal_chime", "yellow": "crystal_chime", "green": "crystal_chime", "blue": "crystal_chime", "indigo": "crystal_chime", "violet": "crystal_chime" },
+        "hold": { "kind": "crystal", "shape": "crystal", "len": 28, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff5a6a", "trim": "#ffffff", "hitRadius": 10 }
+      },
+      "gloom_horn": {
+        "description": "The Gloom Horn; `use` blows grey mist.",
+        "tags": ["holdable", "villain", "gloom", "horn"],
+        "behavior": "holdable",
+        "draw": "held",
+        "use": { "fx": ["gloom_mist"], "sfx": "gloom_horn" },
+        "hold": { "kind": "horn", "shape": "horn", "len": 62, "width": 10, "gripAt": 0.22, "grip": "rHand", "color": "#4a2a6e", "trim": "#e2b443", "hitRadius": 12 }
+      },
+      "jalebi": {
+        "description": "A jalebi sweet to `eat`.",
+        "tags": ["holdable", "food", "sweet"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "jalebi", "shape": "jalebi", "len": 18, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff9a1f", "trim": "#c45e0e", "hitRadius": 8 }
+      },
+      "jalebi_plate": {
+        "description": "A plate of jalebis (left hand; `eat`).",
+        "tags": ["holdable", "food", "sweet", "gift"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "plate", "shape": "plate", "len": 40, "width": 8, "gripAt": 0.5, "grip": "lHand", "color": "#f6f1e4", "trim": "#d9c9a0", "hitRadius": 10 }
+      },
+      "kite": {
+        "description": "A kite: held, it flies on its string.",
+        "tags": ["floater", "play", "kite", "holdable"],
+        "behavior": "floater",
+        "draw": "kite",
+        "r": 26,
+        "life": [8, 8],
+        "rise": 70,
+        "drift": 40,
+        "wobble": 30,
+        "pop": false,
+        "colors": { "fill": "#ff5fa8", "trim": "#ffd23f" },
+        "hold": { "kind": "kite", "shape": "kite", "len": 160, "width": 2, "gripAt": 0, "grip": "rHand", "color": "#ff5fa8", "trim": "#ffd23f", "hitRadius": 10 }
+      },
+      "apple": {
+        "description": "A red apple: hold and `eat`, or toss it.",
+        "tags": ["ball", "food", "fruit", "holdable"],
+        "behavior": "ball",
+        "draw": "apple",
+        "r": 9,
+        "bounce": 0.3,
+        "colors": { "fill": "#e63946", "leaf": "#4fa85a" },
+        "hold": { "kind": "apple", "shape": "apple", "len": 16, "width": 16, "gripAt": 0.3, "grip": "rHand", "color": "#e63946", "trim": "#4fa85a", "hitRadius": 8 }
+      },
+      "haystack": {
+        "description": "A round haystack (hide behind it).",
+        "tags": ["scenery", "village", "farm"],
+        "behavior": "static",
+        "draw": "haystack",
+        "w": 224,
+        "h": 172,
+        "colors": { "straw": "#e8bf52", "dark": "#b98d2c", "light": "#f6dd86" }
+      },
+      "cart": {
+        "description": "A hand cart of vegetables (set_object toX).",
+        "tags": ["vehicle", "village", "farm"],
+        "behavior": "vehicle",
+        "draw": "cart",
+        "w": 280,
+        "h": 160,
+        "wheelR": 40,
+        "seat": { "x": -10, "y": 100 },
+        "speed": 140,
+        "colors": { "wood": "#b07c45", "dark": "#7a5230", "cabbage": "#7ccf5a", "tomato": "#e8483d", "carrot": "#ff8a26" }
+      },
+      "market_stall": {
+        "description": "A market stall with an awning and baskets.",
+        "tags": ["scenery", "village", "market", "shop"],
+        "behavior": "static",
+        "draw": "market_stall",
+        "w": 400,
+        "h": 340,
+        "colors": { "post": "#8a5a34", "wood": "#a0703f", "cloth": "#f0d9a6", "stripe1": "#e8483d", "stripe2": "#fff3dc", "basket": "#c9944f", "weave": "#8e6230", "sweet": "#ff9a1f", "sweet2": "#ffd23f", "fruit": "#e63946", "fruit2": "#7ccf5a", "sign": "#fff3dc" }
+      },
+      "basket": {
+        "description": "A lidded basket: carry it or break it.",
+        "tags": ["breakable", "holdable", "village", "market"],
+        "behavior": "breakable",
+        "draw": "basket",
+        "w": 70,
+        "h": 48,
+        "states": ["whole", "broken"],
+        "colors": { "basket": "#c9944f", "weave": "#8e6230" },
+        "hold": { "kind": "basket", "shape": "basket", "len": 30, "width": 24, "gripAt": 0.5, "grip": "rHand", "color": "#c9944f", "trim": "#8e6230", "hitRadius": 12 }
+      },
+      "bus": {
+        "description": "The friendly village bus: cream and teal with luggage on the roof (set_object toX or exit).",
+        "tags": ["vehicle", "village", "travel", "doopi"],
+        "behavior": "vehicle",
+        "draw": "bus",
+        "w": 520,
+        "h": 300,
+        "wheelR": 42,
+        "seat": { "x": 120, "y": 130 },
+        "speed": 260,
+        "colors": { "body": "#f4ead2", "lower": "#2bb39a", "stripe": "#e63946", "window": "#bfe6f5", "door": "#2a8f7c", "bag1": "#c97a3a", "bag2": "#6b8fd6" }
+      },
+      "campfire": {
+        "description": "A small campfire: crossed logs, flickering flames, a ring of stones (state out: smoke).",
+        "tags": ["scenery", "camp", "night", "fire", "doopi"],
+        "behavior": "static",
+        "draw": "campfire",
+        "animated": true,
+        "w": 170,
+        "h": 150,
+        "states": ["lit", "out"],
+        "colors": { "stone": "#8a8a8a", "stone2": "#a3a3a3", "log": "#6b4a2f", "flame": "#ff7a1a", "flame2": "#ffb52e", "core": "#fff2a0" }
+      },
+      "giant_pot": {
+        "description": "A huge round cooking pot of bubbling curry over a fire, with rising steam.",
+        "tags": ["scenery", "kitchen", "cooking", "doopi"],
+        "behavior": "static",
+        "draw": "giant_pot",
+        "animated": true,
+        "w": 480,
+        "h": 420,
+        "colors": { "pot": "#4a4a52", "rim": "#6a6a74", "curry": "#e8862e", "bubble": "#ffb347", "flame": "#ff7a1a", "flame2": "#ffd23f" }
+      },
+      "ladle": {
+        "description": "A long wooden ladle, held like a staff (staff moves work); the Orange crystal can sit in its cup.",
+        "tags": ["holdable", "kitchen", "staff", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "staff", "shape": "ladle", "len": 150, "width": 8, "gripAt": 0.3, "grip": "rHand", "color": "#b07c45", "trim": "#e8862e", "hitRadius": 16 }
+      },
+      "lever": {
+        "description": "A wall lever on a block: state up or down (it opens the trapdoor in a story).",
+        "tags": ["scenery", "machine", "fort", "doopi"],
+        "behavior": "static",
+        "draw": "lever",
+        "w": 120,
+        "h": 170,
+        "states": ["up", "down"],
+        "colors": { "base": "#6e6384", "handle": "#8a6442", "knob": "#e63946" }
+      },
+      "trapdoor": {
+        "description": "A plank trapdoor in the floor: closed or open (someone on it drops out of the scene with jump_down).",
+        "tags": ["scenery", "floor", "fort", "trap", "doopi"],
+        "behavior": "static",
+        "draw": "trapdoor",
+        "w": 220,
+        "h": 20,
+        "states": ["closed", "open"],
+        "colors": { "wood": "#8a6442", "hole": "#1a120c", "metal": "#6e6a7a" }
+      },
+      "rope_bridge": {
+        "description": "A wooden rope bridge across a gap; set_object state broken drops it in two hanging halves.",
+        "tags": ["scenery", "bridge", "breakable", "doopi"],
+        "behavior": "breakable",
+        "draw": "rope_bridge",
+        "w": 600,
+        "h": 160,
+        "states": ["whole", "broken"],
+        "colors": { "post": "#6b4a2f", "plank": "#b07c45", "rope": "#c9a46c" }
+      },
+      "pirate_ship": {
+        "description": "Captain Kanta's small pirate ship on the water: round hull, portholes, a patched sail and a fish flag (set_object toX or exit).",
+        "tags": ["vehicle", "ship", "pirate", "lake", "doopi"],
+        "behavior": "vehicle",
+        "draw": "pirate_ship",
+        "w": 800,
+        "h": 720,
+        "wheelR": 8,
+        "seat": { "x": -300, "y": 190 },
+        "speed": 220,
+        "colors": { "hull": "#8a5a2e", "trim": "#e6b84a", "port": "#3a2a1c", "wood": "#6b4a2f", "sail": "#f4ead2", "patch": "#d9b77e", "flag": "#1d3557", "water": "#3d8fc0" }
+      },
+      "rowboat": {
+        "description": "A small wooden rowboat with two oars, sitting in the water (ride it; set_object toX).",
+        "tags": ["vehicle", "boat", "lake", "doopi"],
+        "behavior": "vehicle",
+        "draw": "rowboat",
+        "w": 360,
+        "h": 80,
+        "wheelR": 8,
+        "seat": { "x": 0, "y": 60 },
+        "speed": 160,
+        "colors": { "hull": "#b07c45", "trim": "#7a5230", "oar": "#8a6442", "water": "#3d8fc0" }
+      },
+      "raft": {
+        "description": "A wobbly raft of tied logs on the water; set_object state broken: it comes apart and sinks.",
+        "tags": ["scenery", "raft", "lake", "breakable", "doopi"],
+        "behavior": "breakable",
+        "draw": "raft",
+        "w": 400,
+        "h": 40,
+        "states": ["whole", "broken"],
+        "colors": { "log": "#9a6a38", "log2": "#b07c45", "rope": "#d9b77e", "water": "#3d8fc0" }
+      },
+      "fishing_net": {
+        "description": "A fishing net with floats: closed drops over someone (captured with wrap net), open lies in a heap.",
+        "tags": ["scenery", "net", "pirate", "trap", "doopi"],
+        "behavior": "static",
+        "draw": "fishing_net",
+        "w": 200,
+        "h": 230,
+        "states": ["closed", "open"],
+        "colors": { "mesh": "#d9c49a", "float": "#e63946" }
+      },
+      "treasure_chest": {
+        "description": "A wooden treasure chest with gold trim; open shows shiny coins.",
+        "tags": ["scenery", "treasure", "pirate", "doopi"],
+        "behavior": "static",
+        "draw": "treasure_chest",
+        "w": 160,
+        "h": 160,
+        "states": ["closed", "open"],
+        "colors": { "wood": "#8a5a2e", "trim": "#e6b84a", "gold": "#ffd23f" }
+      },
+      "lantern_string": {
+        "description": "A string of round paper lanterns in many colours between two poles, glowing softly.",
+        "tags": ["scenery", "festival", "night", "light", "doopi"],
+        "behavior": "static",
+        "draw": "lantern_string",
+        "animated": true,
+        "w": 620,
+        "h": 340,
+        "colors": { "pole": "#7a5634", "line": "#5a4632" }
+      },
+      "ribbon": {
+        "description": "A pink ribbon bow lying on the ground (Doomi's trail).",
+        "tags": ["scenery", "trail", "clue", "doopi"],
+        "behavior": "static",
+        "draw": "ribbon",
+        "w": 60,
+        "h": 30,
+        "colors": { "ribbon": "#ff7eb6" }
+      },
+      "dhol": {
+        "description": "A red and gold barrel drum (dhol) on a strap; `use` beats it.",
+        "tags": ["holdable", "music", "festival", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "use": { "sfx": "punch_light" },
+        "hold": { "kind": "drum", "shape": "drum", "len": 60, "width": 40, "gripAt": 0.5, "grip": "lHand", "color": "#e63946", "trim": "#e6b84a", "hitRadius": 14 }
+      },
+      "windup_key": {
+        "description": "Iron Ghoom's big brass wind-up key, pulled off his back.",
+        "tags": ["holdable", "robot", "key", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "key", "shape": "key", "len": 70, "width": 8, "gripAt": 0.1, "grip": "rHand", "color": "#e6b84a", "trim": "#a07a2a", "hitRadius": 12 }
+      },
+      "pot_and_pan": {
+        "description": "A frying pan, held like a bat: the village's funny shield (bat moves work).",
+        "tags": ["holdable", "kitchen", "comedy", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "bat", "shape": "pan", "len": 80, "width": 7, "gripAt": 0.1, "grip": "rHand", "color": "#5a5f6a", "trim": "#3a2a1c", "hitRadius": 16 }
+      },
+      "mirror": {
+        "description": "A tall standing mirror in a curly purple frame; set_object state broken cracks it (no sharp shards).",
+        "tags": ["scenery", "mirror", "magic", "breakable", "doopi"],
+        "behavior": "breakable",
+        "draw": "mirror",
+        "w": 200,
+        "h": 420,
+        "states": ["whole", "broken"],
+        "colors": { "glass": "#c8d0e4", "dim": "#7a7f94", "frame": "#8a5bd8" }
+      },
+      "snowball": {
+        "description": "A big rolling snowball (an avalanche throws them).",
+        "tags": ["ball", "snow", "winter", "doopi"],
+        "behavior": "ball",
+        "draw": "ball",
+        "r": 34,
+        "bounce": 0.2,
+        "colors": { "fill": "#f4f8fc", "seam": "#c9d8e8" }
+      },
+      "rock_round": {
+        "description": "A round grey rock that rolls.",
+        "tags": ["ball", "rock", "mountain", "doopi"],
+        "behavior": "ball",
+        "draw": "ball",
+        "r": 28,
+        "bounce": 0.15,
+        "colors": { "fill": "#8a8a94", "seam": "#6a6a74" }
+      },
+      "hanging_cage": {
+        "description": "A round bird-cage cage hanging from a chain, big enough for a person; closed or open.",
+        "tags": ["scenery", "villain", "rescue", "cage", "doopi"],
+        "behavior": "static",
+        "draw": "hanging_cage",
+        "w": 240,
+        "h": 300,
+        "states": ["closed", "open"],
+        "colors": { "chain": "#5a5f6a", "bar": "#3b3f47", "base": "#3b3f47" }
+      },
+      "rainbow_bridge": {
+        "description": "A shimmering rainbow arc rising from the ground up and out of the sky (the friends' glow).",
+        "tags": ["scenery", "magic", "rainbow", "finale", "doopi"],
+        "behavior": "static",
+        "draw": "rainbow_bridge",
+        "animated": true,
+        "w": 800,
+        "h": 800
+      },
+      "rainbow_shield": {
+        "description": "A pulsing dome of rainbow light that protects whoever stands inside it.",
+        "tags": ["scenery", "magic", "rainbow", "shield", "doopi"],
+        "behavior": "static",
+        "draw": "rainbow_shield",
+        "animated": true,
+        "w": 720,
+        "h": 300
       }
     },
     "faces": {
@@ -6511,6 +7915,15 @@
         "dims": { "headR": 20, "neck": 6, "torso": 82, "upperArm": 42, "forearm": 40, "thigh": 46, "shin": 44, "lineWidth": 13 },
         "appearance": { "brows": "thick" }
       },
+      "robot": {
+        "description": "A big iron robot: a rounded box body with rivets, a square head, bolts at the joints (Iron Ghoom).",
+        "tags": ["robot", "big", "iron", "doopi"],
+        "rig": "humanoid",
+        "draw": "box",
+        "torsoWidth": 34,
+        "dims": { "headR": 20, "neck": 6, "torso": 80, "upperArm": 42, "forearm": 40, "thigh": 46, "shin": 44, "lineWidth": 15 },
+        "appearance": { "eyes": "visor", "brows": "none" }
+      },
       "slim": {
         "description": "A tall, thin figure with oval eyes; sneaky or elegant.",
         "tags": ["tall", "villain"],
@@ -6538,19 +7951,44 @@
         "dims": { "headR": 17, "neck": 8, "torso": 38, "upperArm": 16, "forearm": 15, "thigh": 17, "shin": 16, "lineWidth": 7 },
         "quad": { "ears": "floppy", "earColor": "#8a5a3c", "tail": "wag", "patch": "#c4935f", "belly": "#fff6e6", "collar": "#e63946", "bell": "#f2c94c" },
         "appearance": { "eyes": "big" },
-        "moves": { "idle": "idle_dog", "walk": "walk_dog", "run": "run_dog", "jump": "jump_dog", "sneak": "sniff", "tiptoe": "sniff", "sit": "sit_dog", "lie_down": "lie_dog", "sleep": "sleep_dog", "get_up": "get_up_dog", "stand_up": "get_up_dog", "kneel": "sit_dog", "spawn": "spawn_dog", "despawn": "despawn_dog", "wave": "wag", "cheer": "wag", "clap": "wag", "laugh": "wag", "victory": "wag", "jump_joy": "jump_dog", "nod": "tilt_head", "shrug": "tilt_head", "look_around": "tilt_head", "peek": "tilt_head", "shake_head": "shake_off", "facepalm": "shake_off", "talk": "bark", "point": "bark", "taunt": "growl", "cry": "whimper", "sigh": "whimper", "cower": "whimper", "gasp": "yelp", "hit_light": "yelp", "hit_heavy": "yelp", "hit_launch": "yelp", "stagger": "yelp", "knockdown": "faint_dog", "ko_fall": "faint_dog", "ko_spin": "faint_dog", "dizzy": "dizzy_dog", "faint": "faint_dog", "dodge_back": "dodge_dog", "duck": "dodge_dog", "hide": "lie_dog", "carried": "carried_dog", "set_down": "set_down_dog", "pick_prop": "pick_dog", "drop_prop": "drop_dog", "catch_ball": "catch_mouth", "dash": "pounce" },
+        "moves": { "idle": "idle_dog", "walk": "walk_dog", "run": "run_dog", "jump": "jump_dog", "sneak": "sniff", "tiptoe": "sniff", "sit": "sit_dog", "lie_down": "lie_dog", "sleep": "sleep_dog", "get_up": "get_up_dog", "stand_up": "get_up_dog", "kneel": "sit_dog", "spawn": "spawn_dog", "despawn": "despawn_dog", "wave": "wag", "cheer": "wag", "clap": "wag", "laugh": "wag", "victory": "wag", "jump_joy": "jump_dog", "nod": "tilt_head", "shrug": "tilt_head", "look_around": "tilt_head", "peek": "tilt_head", "shake_head": "shake_off", "facepalm": "shake_off", "talk": "bark", "point": "bark", "taunt": "growl", "cry": "whimper", "sigh": "whimper", "cower": "whimper", "gasp": "yelp", "hit_light": "yelp", "hit_heavy": "yelp", "hit_launch": "yelp", "stagger": "yelp", "knockdown": "faint_dog", "ko_fall": "faint_dog", "ko_spin": "faint_dog", "dizzy": "dizzy_dog", "faint": "faint_dog", "dodge_back": "dodge_dog", "duck": "dodge_dog", "hide": "lie_dog", "carried": "carried_dog", "set_down": "set_down_dog", "pick_prop": "pick_dog", "drop_prop": "drop_dog", "catch_ball": "catch_mouth", "dash": "pounce", "return": "return_dog", "sneeze": "shake_off", "swim": "swim_dog" },
         "grip": { "offset": [20, 4], "angle": 0 }
       }
     },
-    "bodyNames": ["stickman", "buddy", "kid", "bulky", "slim", "elder", "dog_small"],
+    "bodyNames": ["stickman", "buddy", "kid", "bulky", "robot", "slim", "elder", "dog_small"],
     "appearance": {
       "eyes": ["dot", "big", "oval", "sleepy", "visor", "glasses"],
       "brows": ["none", "thin", "thick"],
       "mouthStyle": ["line", "cartoon"],
-      "hair": ["none", "spiky", "bob", "ponytail", "cap"],
+      "hair": ["none", "spiky", "bob", "ponytail", "cap", "bun"],
       "outfit": ["none", "shirt", "coat", "armor", "robe"],
-      "accessories": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch"],
-      "conflicts": [["hat", "crown"], ["hat", "hair:cap"], ["crown", "hair:cap"], ["mask", "eyes:visor"], ["eyepatch", "eyes:visor"]]
+      "accessories": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key"],
+      "conflicts": [
+        ["hat", "crown"],
+        ["hat", "hair:cap"],
+        ["crown", "hair:cap"],
+        ["mask", "eyes:visor"],
+        ["eyepatch", "eyes:visor"],
+        ["turban", "hat"],
+        ["turban", "crown"],
+        ["turban", "hair:cap"],
+        ["turban", "horns"],
+        ["turban", "stub_horns"],
+        ["horns", "stub_horns"],
+        ["horns", "hat"],
+        ["horns", "hair:cap"],
+        ["chilli_hat", "hat"],
+        ["chilli_hat", "crown"],
+        ["chilli_hat", "turban"],
+        ["chilli_hat", "horns"],
+        ["chilli_hat", "hair:cap"],
+        ["pirate_hat", "hat"],
+        ["pirate_hat", "crown"],
+        ["pirate_hat", "turban"],
+        ["pirate_hat", "horns"],
+        ["pirate_hat", "hair:cap"],
+        ["pirate_hat", "chilli_hat"]
+      ]
     },
     "activities": {
       "blow_bubbles": {
@@ -6941,7 +8379,7 @@
         "appearance": { "eyes": "big" },
         "voice": { "pitch": 1.4, "timbre": "bark" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "bo",
@@ -6956,7 +8394,7 @@
         "appearance": { "outfit": "coat", "outfitColor": "#f2c14e", "eyes": "glasses" },
         "voice": { "pitch": 0.9, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "banyan_moon"]
     },
     {
       "id": "brute",
@@ -6972,7 +8410,7 @@
         "hp": 160,
         "voice": { "pitch": 0.6, "speed": 0.9, "timbre": "deep" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "banyan_moon"]
     },
     {
       "id": "crowd_adult",
@@ -6982,7 +8420,7 @@
       "tags": ["extra", "town"],
       "audience": ["kids", "general"],
       "cast": { "body": "stickman", "color": "#8d99ae" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest", "spice_kitchen", "spice_cellar", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "crowd_kid",
@@ -6992,7 +8430,104 @@
       "tags": ["extra", "kid"],
       "audience": ["kids", "general"],
       "cast": { "body": "kid", "color": "#f4a261" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "description": "Doopi's loyal best friend in leaf green with a yellow cap and scarf; a worrier who always shares his food.",
+      "role": "friend",
+      "tags": ["loyal", "kind", "worrier"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 1.1,
+        "color": "#4cd964",
+        "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+        "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "description": "Clever pink planner with a ponytail and a flower clip; kind to everyone, great at puzzles, ribbons and flips.",
+      "role": "friend",
+      "tags": ["clever", "kind", "planner"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "stickman",
+        "color": "#ff9ccc",
+        "appearance": {
+          "eyes": "big",
+          "mouthStyle": "cartoon",
+          "hair": "ponytail",
+          "hairColor": "#5a3a2c",
+          "cheeks": "#ff9db8",
+          "outfit": "shirt",
+          "outfitColor": "#ffd1e3",
+          "accessories": { "hair_flower": "#ffffff" }
+        },
+        "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "description": "The sky-blue hero of Tokyo: spiky hair, a red headband, big eyes; big-hearted, brave and very clumsy.",
+      "role": "hero",
+      "tags": ["brave", "clumsy", "kind", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "stickman",
+        "color": "#5ec8ff",
+        "appearance": {
+          "eyes": "big",
+          "hair": "spiky",
+          "hairColor": "#2a1a14",
+          "mouthStyle": "cartoon",
+          "accessories": { "headband": "#ff3b5c" }
+        },
+        "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "ghoom",
+      "name": "Iron Ghoom",
+      "description": "A giant iron robot with a glowing visor and a brass wind-up key in his back; wound up by Peepa, gentle once he is free (Ghoomu).",
+      "role": "henchman",
+      "tags": ["robot", "giant", "iron", "villain", "redeemed"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "robot",
+        "scale": 2.4,
+        "color": "#c8ccd8",
+        "appearance": { "eyes": "visor", "accessories": { "windup_key": "#e6b84a" } },
+        "voice": { "pitch": 0.5, "speed": 0.8, "timbre": "robot" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "goon",
+      "name": "Grey Goon",
+      "description": "One of Peepa's grey helpers: a big, slow, silly guard in grey armour who is easy to trick.",
+      "role": "henchman",
+      "tags": ["villain", "henchman", "funny", "guard"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "bulky",
+        "color": "#e8e0f0",
+        "appearance": { "eyes": "sleepy", "outfit": "armor", "outfitColor": "#8a8496" },
+        "voice": { "pitch": 0.7, "speed": 0.85, "timbre": "deep" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "guard",
@@ -7002,7 +8537,7 @@
       "tags": ["big", "strong"],
       "audience": ["kids", "general"],
       "cast": { "body": "bulky", "color": "#ffe14d", "voice": { "pitch": 0.75, "timbre": "deep" } },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "kai",
@@ -7017,7 +8552,167 @@
         "style": { "headband": "#ff3b5c" },
         "voice": { "pitch": 1, "timbre": "soft" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "kanta",
+      "name": "Captain Kanta",
+      "description": "A loud pirate captain in a navy coat, an eyepatch and a fish-badge tricorn; loves treasure and hates baths.",
+      "role": "villain",
+      "tags": ["villain", "pirate", "funny", "sea"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "stickman",
+        "color": "#9ad1d4",
+        "prop": "sword",
+        "appearance": {
+          "eyes": "big",
+          "brows": "thick",
+          "outfit": "coat",
+          "outfitColor": "#1d3557",
+          "accessories": { "pirate_hat": "#1d3557", "eyepatch": "#111111", "moustache": "#2a1a14" }
+        },
+        "voice": { "pitch": 0.85, "speed": 1.05, "timbre": "deep" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "description": "Tony's softer almost-twin in grey with a blue cap and glued-on stub horns; a bit kind, Mooka's secret friend.",
+      "role": "henchman",
+      "tags": ["henchman", "soft", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 0.8,
+        "color": "#c8c8d6",
+        "appearance": { "hair": "cap", "hairColor": "#3a6fd8", "accessories": { "stub_horns": "#7a6a99" } },
+        "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "mallu",
+      "name": "Mallu Uncle",
+      "description": "A cheerful old boatman with a round white beard and a white cap; he rows the friends across Lotus Lake.",
+      "role": "mentor",
+      "tags": ["kind", "old", "boat", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "elder",
+        "color": "#ffc2a0",
+        "appearance": {
+          "eyes": "big",
+          "hair": "cap",
+          "hairColor": "#f4f1de",
+          "outfit": "shirt",
+          "outfitColor": "#2a8f7c",
+          "accessories": { "beard": "#f4f1de" }
+        },
+        "voice": { "pitch": 0.9, "speed": 0.9, "timbre": "deep" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "mirchi",
+      "name": "Madam Mirchi",
+      "description": "A spice sorceress in a red robe and a tall chilli hat; her chilli smoke makes everyone sneeze, but she can't stand sweets.",
+      "role": "villain",
+      "tags": ["villain", "spice", "funny", "magic"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "slim",
+        "color": "#ffb08a",
+        "appearance": {
+          "eyes": "oval",
+          "brows": "thick",
+          "mouthStyle": "cartoon",
+          "outfit": "robe",
+          "outfitColor": "#e63946",
+          "accessories": { "chilli_hat": "#e63946" }
+        },
+        "voice": { "pitch": 1.25, "speed": 1.15, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "description": "A round mint-green jelly-bean buddy with a leaf sprout, a lavender belly and orange mittens; giggly and innocent.",
+      "role": "sidekick",
+      "tags": ["cute", "funny", "innocent", "small"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "buddy",
+        "scale": 0.85,
+        "color": "#7fe8c4",
+        "appearance": {
+          "eyes": "big",
+          "mouthStyle": "cartoon",
+          "cheeks": "#ffb3c7",
+          "belly": "#c9b6ff",
+          "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+        },
+        "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "motumal",
+      "name": "Motumal",
+      "description": "Tokyo's round, pompous mayor with a big moustache, a saffron turban and an orange coat; kind and scared of everything.",
+      "role": "friend",
+      "tags": ["pompous", "kind", "scared", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "bulky",
+        "color": "#ffb347",
+        "appearance": { "outfit": "coat", "outfitColor": "#ff9f1c", "accessories": { "moustache": "#2a1a14", "turban": "#f6c445" } },
+        "voice": { "pitch": 0.75, "speed": 0.9, "timbre": "deep" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "description": "A tiny stooped granny with a white bun, round glasses and a purple shawl; strict, funny, spins her cane like a staff.",
+      "role": "mentor",
+      "tags": ["wise", "strict", "funny", "elder"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "elder",
+        "scale": 0.9,
+        "color": "#e8a87c",
+        "prop": "cane",
+        "appearance": { "eyes": "glasses", "hair": "bun", "hairColor": "#f2f2f2", "outfit": "robe", "outfitColor": "#8e5bd6" },
+        "voice": { "pitch": 1.1, "speed": 0.85, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "description": "Tall dark-violet villain with curly golden ram horns, thick brows and a long dark cape; dramatic, vain and lonely.",
+      "role": "villain",
+      "tags": ["villain", "dramatic", "vain"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "slim",
+        "scale": 1.15,
+        "color": "#c9a6ff",
+        "appearance": { "eyes": "oval", "brows": "thick", "accessories": { "horns": "#e6b84a", "cape": "#2a1b3d" } },
+        "voice": { "pitch": 0.7, "speed": 0.95, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "pip",
@@ -7032,7 +8727,7 @@
         "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } },
         "voice": { "pitch": 1.5, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "rook",
@@ -7049,7 +8744,7 @@
         "appearance": { "hair": "spiky", "hairColor": "#1e1e1e" },
         "voice": { "pitch": 0.95, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest", "spice_cellar", "crystal_cave", "iron_workshop", "mountain_cave", "grey_peak", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "sage",
@@ -7065,7 +8760,7 @@
         "prop": "cane",
         "voice": { "pitch": 0.85, "speed": 0.85, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "spice_cellar", "crystal_cave", "iron_workshop", "mountain_cave", "grey_peak", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "sly",
@@ -7081,7 +8776,7 @@
         "appearance": { "accessories": { "mask": "#222222" } },
         "voice": { "pitch": 1.1, "speed": 1.2, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate"]
     },
     {
       "id": "tam",
@@ -7096,7 +8791,57 @@
         "appearance": { "hair": "spiky", "hairColor": "#3a2a1a" },
         "voice": { "pitch": 1.4, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "description": "A brave, bossy forest girl in orange with a ponytail and a green scarf; knows every path in the Whispering Forest.",
+      "role": "friend",
+      "tags": ["brave", "bossy", "forest", "climber"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "color": "#ffa45c",
+        "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+        "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "thunda",
+      "name": "Thunda",
+      "description": "A huge brown-red wrestler-bandit with a big moustache and armor; very strong, very slow, gets dizzy when he spins.",
+      "role": "villain",
+      "tags": ["villain", "strong", "wrestler", "boss"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "bulky",
+        "scale": 1.5,
+        "color": "#ff9f80",
+        "appearance": { "outfit": "armor", "outfitColor": "#7a7a86", "accessories": { "moustache": "#2a1a14" } },
+        "voice": { "pitch": 0.6, "speed": 0.85, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "description": "Peepa's bossy mini boy in grey with a red cap and glued-on stub horns; boastful, cowardly, always messes up.",
+      "role": "henchman",
+      "tags": ["henchman", "boastful", "funny"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 0.8,
+        "color": "#c8c8d6",
+        "appearance": { "hair": "cap", "hairColor": "#e63946", "accessories": { "stub_horns": "#7a6a99" } },
+        "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
     },
     {
       "id": "vex",
@@ -7113,7 +8858,7 @@
         "voice": { "pitch": 0.7, "timbre": "deep" },
         "hp": 200
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate"]
     }
   ],
   "roles": [
@@ -7178,15 +8923,23 @@
     { "name": "pant", "category": "voice", "description": "A dog's happy panting." },
     { "name": "card_whoosh", "category": "story", "description": "A whoosh for title and chapter cards." },
     { "name": "bonk", "category": "comic", "description": "A cartoon bonk (kids impact word)." },
-    { "name": "pow", "category": "comic", "description": "A cartoon pow (kids impact word)." }
+    { "name": "pow", "category": "comic", "description": "A cartoon pow (kids impact word)." },
+    { "name": "gloom_horn", "category": "story", "description": "The Gloom Horn: a low wobbly horn blast that falls in a minor key, with a mist hiss." },
+    { "name": "sneeze", "category": "voice", "description": "A comic sneeze: ah... ah... CHOO!" },
+    { "name": "crystal_chime", "category": "magic", "description": "A bright bell arpeggio for a glowing crystal." },
+    { "name": "pirate_horn", "category": "story", "description": "A bright two-note ship horn (pirates coming!)." },
+    { "name": "splash", "category": "object", "description": "Something falls into the water: a thump and a spray." },
+    { "name": "robot_stomp", "category": "movement", "description": "A giant robot's step: a deep thud with a metal ring." },
+    { "name": "robot_beep", "category": "voice", "description": "A robot's two-tone beep, high then low." },
+    { "name": "windup_click", "category": "object", "description": "A wind-up key turning: a ratchet of quick clicks." }
   ],
   "appearance": {
     "eyes": { "dot": "Small dot eyes (the default).", "big": "Big round cute eyes.", "oval": "Tall oval eyes.", "sleepy": "Half-closed sleepy eyes.", "visor": "A sci-fi visor across the eyes.", "glasses": "Round glasses." },
     "brows": { "none": "No eyebrows.", "thin": "Thin eyebrows.", "thick": "Thick eyebrows." },
     "mouthStyle": { "line": "A simple line mouth (the default).", "cartoon": "A filled cartoon mouth." },
-    "hair": { "none": "No hair.", "spiky": "Spiky hero hair.", "bob": "A rounded bob.", "ponytail": "A ponytail.", "cap": "A cap (counts as headwear)." },
+    "hair": { "none": "No hair.", "spiky": "Spiky hero hair.", "bob": "A rounded bob.", "ponytail": "A ponytail.", "cap": "A cap (counts as headwear).", "bun": "A round bun on top with a hairpin." },
     "outfit": { "none": "No outfit lines.", "shirt": "A shirt.", "coat": "A long coat.", "armor": "Armor plates.", "robe": "A long robe." },
-    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch." }
+    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch.", "hair_flower": "A five-petal flower clip above the ear.", "sprout": "A two-leaf sprout on top of the head.", "mittens": "Round mitten hands.", "horns": "Two curly ram horns curving back.", "turban": "A wrapped turban with a jewel (headwear; covers the hair).", "moustache": "A big curly handlebar moustache.", "stub_horns": "Two tiny glued-on toy horns (remove for a gag).", "bracelet": "A left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order.", "chilli_hat": "A tall curved red-chilli hat with a green cap (headwear; covers the hair).", "pirate_hat": "A pirate tricorn with a gold trim and a fish emblem (headwear; covers the hair).", "beard": "A round fluffy beard.", "windup_key": "A big brass wind-up key in the back that turns slowly (Iron Ghoom)." }
   },
   "voices": [
     { "name": "soft", "description": "A gentle, warm voice (the default)." },
@@ -7331,6 +9084,23 @@
           "do": "set_appearance",
           "params": { "who": "kai", "accessory": "cape", "color": "#d23c3c" }
         }
+      },
+      "sfx": {
+        "description": "Plays one sound effect on its own (an off-screen horn, thunder); x pans it.",
+        "example": { "at": 0, "who": "world", "do": "sfx", "params": { "name": "pirate_horn", "volume": 0.8 } }
+      },
+      "set_glow": {
+        "description": "A lasting glow around a character: a color or \"rainbow\", level 0-1 (0: off), over dur; carries over scenes.",
+        "example": {
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "kai", "color": "#ffd23f", "level": 0.6, "dur": 1.5 }
+        }
+      },
+      "set_grade": {
+        "description": "Scene colour: saturation 1 full, 0 grey, over dur; keepCast keeps the cast in colour; from: a wave out from a character.",
+        "example": { "at": 0, "who": "world", "do": "set_grade", "params": { "saturation": 1, "dur": 2, "from": "kai" } }
       },
       "shot": {
         "description": "A camera shot from a beat (wide, close_up, two_shot, ...); with dur the previous framing comes back.",
@@ -7649,7 +9419,7 @@
       "W_PARTICLE_BUDGET": { "meaning": "too many effects at once", "fix": "Fewer effects at once." },
       "W_DIALOGUE_FAST": { "meaning": "a line too short to read, or talking over itself", "fix": "Give the line more time." },
       "W_TEXT_SOFT": { "meaning": "a strong word for the audience", "fix": "Use the suggested word." },
-      "W_KIDS_NO_HOPE": { "meaning": "kids: someone vanishes and never returns", "fix": "Bring them back with return." },
+      "W_KIDS_NO_HOPE": { "meaning": "kids: vanished or petrified, never back", "fix": "Bring them back with return." },
       "W_STORY_SHORT": { "meaning": "a story under 300 s", "fix": "Make it 300 s or more." },
       "W_FIGHT_SHORT": { "meaning": "a fight video under 180 s", "fix": "Make it 180 s or more." },
       "W_SCENE_STATIC": { "meaning": "over 4 s of a scene where nothing moves", "fix": "Add movement, a line or narration." },

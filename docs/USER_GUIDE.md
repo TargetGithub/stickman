@@ -312,7 +312,15 @@ Body plan `dog_small` is a small four-legged puppy (its back at a stickman's kne
 
 Sample: `scripts/samples/r1_becky.json`. Review sheets: `node tools/becky_sheet.mjs` (the look) and `node tools/move_sheet.mjs --rig quadruped --plans dog_small` (the moves).
 
-### 4.2 Catalog bundles (characters, moves and places made by others)
+### 4.2 Glow, grey worlds and friends turned to stone
+
+- **Heart Glow:** `{"who": "world", "do": "set_glow", "params": {"who": "doopi", "color": "#ffd23f", "level": 0.6, "dur": 1.5}}` puts a soft pulsing halo behind a character. `"color": "rainbow"` cycles the colours; `"level": 0` turns it off. It stays on into later scenes.
+- **A grey world:** a scene's `"grade": {"saturation": 0.3}` makes the whole scene greyer (1 is full colour, 0 grey); add `"keepCast": true` to keep the characters in colour. `set_grade` changes it during a scene: `{"who": "world", "do": "set_grade", "params": {"saturation": 1, "dur": 2, "from": "doopi"}}` sends the colour out from Doopi in a wave with rainbow sparkles.
+- **Turned to stone:** `{"who": "mooka", "do": "petrify"}` freezes a character where it stands and drains its colour; it stays frozen into later scenes. `{"who": "mooka", "do": "return"}` brings the colour back from the feet up. In a kids story, a friend who is never thawed gets `W_KIDS_NO_HOPE`.
+
+Sample: `scripts/samples/a3_colour.json`.
+
+### 4.3 Catalog bundles (characters, moves and places made by others)
 
 A catalog bundle is a folder or `.zip` of catalog data someone else made (docs/CATALOG_BUNDLE_SPEC.md). Its names have a colon: `robo_pals:boxbot`. To use one:
 
@@ -353,7 +361,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | Command | What it does |
 |---|---|
 | `node tools/validate.mjs <script> [--json]` | Check a script; print errors, warnings and the timeline |
-| `... --bundle <dir\|zip>` | On validate, record, generate and manual: load a catalog bundle the script declares (repeatable; section 4.2) |
+| `... --bundle <dir\|zip>` | On validate, record, generate and manual: load a catalog bundle the script declares (repeatable; section 4.3) |
 | `node tools/bundle.mjs check <dir\|zip>` | Check a catalog bundle (`--fixture <file>` for a test fixture) |
 | `node tools/bundle.mjs pack <dir> --i-made-this` | Write a bundle's hashes and zip it |
 | `node tools/bundle.mjs new <id>` | Start a bundle folder (manifest, README, example story) |

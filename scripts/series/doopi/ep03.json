@@ -1,0 +1,512 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 3: Nani Nimbu's Kitchen Kung Fu",
+    "format": "landscape",
+    "seed": 2403,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#2a1a14", "mouthStyle": "cartoon", "accessories": { "headband": "#ff3b5c" } },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "jalebi_plate",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": { "hair_flower": "#ffffff" }
+      },
+      "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "body": "elder",
+      "scale": 0.9,
+      "color": "#e8a87c",
+      "prop": "cane",
+      "appearance": { "eyes": "glasses", "hair": "bun", "hairColor": "#f2f2f2", "outfit": "robe", "outfitColor": "#8e5bd6" },
+      "voice": { "pitch": 1.1, "speed": 0.85, "timbre": "soft" }
+    },
+    {
+      "id": "thunda",
+      "name": "Thunda",
+      "body": "bulky",
+      "scale": 1.5,
+      "color": "#ff9f80",
+      "appearance": { "outfit": "armor", "outfitColor": "#7a7a86", "accessories": { "moustache": "#2a1a14" } },
+      "voice": { "pitch": 0.6, "speed": 0.85, "timbre": "deep" }
+    }
+  ],
+  "locations": [
+    { "id": "ground", "theme": "dojo_dusk", "stageWidth": 3000, "set": [ { "id": "tree", "object": "tree_big", "x": 2500, "layer": "back" } ] },
+    { "id": "square", "theme": "tokyo_village", "stageWidth": 3200, "set": [ { "id": "bench1", "object": "bench", "x": 1300, "layer": "back" } ] }
+  ],
+  "scenes": [
+    {
+      "id": "late",
+      "location": "ground",
+      "time": "dawn",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 3: Nani Nimbu's Kitchen Kung Fu" },
+      "music": { "mood": "playful", "volume": 0.3 },
+      "cast": [
+        { "id": "nani", "x": 1700, "facing": -1, "face": "neutral" },
+        { "id": "becky", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "doopi", "x": 300, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "late_n1", "at": 0.4, "who": "world", "do": "narrate", "params": { "text": "Dawn. The first day of training. Nani Nimbu was waiting." } },
+        { "id": "late_w1", "at": 1, "who": "nani", "do": "wait", "params": { "seconds": 2 } },
+        { "id": "late_in", "at": { "after": "late_n1" }, "macro": "enter", "params": { "who": "doopi", "side": "left", "to": { "x": 1000 }, "mode": "run" } },
+        { "id": "late_tr", "at": { "after": "late_in" }, "who": "doopi", "do": "knockdown", "face": "dizzy", "say": "Sorry Becky!", "bubble": "shout" },
+        { "id": "late_b1", "at": { "with": "late_tr", "delay": 0.2 }, "who": "becky", "do": "yelp" },
+        { "id": "late_up", "at": { "after": "late_tr", "delay": 0.4 }, "who": "doopi", "do": "get_up", "face": "tired" },
+        {
+          "id": "late_d1",
+          "at": { "after": "late_up" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "I'm here, Nani! Not late! Only a little bit late!", "laugh" ],
+              [ "nani", "The sun was up before you. Even the sun is a better student.", "smug" ]
+            ]
+          }
+        },
+        { "id": "late_wk", "at": { "after": "late_d1" }, "who": "nani", "do": "walk", "to": { "near": "doopi", "gap": 110 } },
+        { "id": "late_bk", "at": { "after": "late_wk" }, "who": "nani", "do": "poke", "face": "smug" },
+        { "id": "late_ow", "at": { "with": "late_bk", "delay": 0.3 }, "who": "doopi", "do": "hold_head", "face": "hurt", "say": "Ow! My head!" },
+        {
+          "id": "late_d2",
+          "at": { "after": "late_ow" },
+          "macro": "dialogue",
+          "params": { "lines": [ [ "nani", "First lesson: kung fu starts in the kitchen.", "happy" ], [ "doopi", "The KITCHEN?", "surprised" ] ] }
+        }
+      ]
+    },
+    {
+      "id": "chores",
+      "macro": "montage",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "music": { "mood": "playful", "intensity": 0.6, "volume": 0.32 },
+      "params": {
+        "clipDur": 4,
+        "clips": [
+          { "location": "ground", "time": "dawn", "who": [ "doopi" ], "do": "pull", "text": "Carry the water pots. Don't spill!" },
+          { "location": "ground", "time": "day", "who": [ "doopi" ], "do": "push", "text": "Sweep the whole yard. Twice." },
+          { "location": "ground", "time": "day", "who": [ "doopi", "dony" ], "do": "high_five", "text": "Dony came to help. Of course he did." },
+          { "location": "ground", "time": "day", "who": [ "doopi" ], "do": "climb_up", "text": "Climb the old wall. Again. And again." }
+        ]
+      }
+    },
+    {
+      "id": "apples",
+      "location": "ground",
+      "time": "day",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "playful", "intensity": 0.6, "volume": 0.32 },
+      "cast": [
+        { "id": "doopi", "x": 1500, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 1900, "facing": -1, "face": "happy" },
+        { "id": "nani", "x": 2300, "facing": -1, "face": "neutral" }
+      ],
+      "beats": [
+        { "id": "apples_n1", "at": 0.3, "who": "nani", "do": "talk", "say": "Now catch the apples. Gently!" },
+        {
+          "id": "apples_a1",
+          "at": { "after": "apples_n1" },
+          "who": "world",
+          "do": "spawn_object",
+          "params": { "kind": "apple", "id": "ap1", "x": 1560, "y": 700 }
+        },
+        { "id": "apples_c1", "at": { "with": "apples_a1", "delay": 0.2 }, "who": "doopi", "do": "catch_ball" },
+        {
+          "id": "apples_h1",
+          "at": { "with": "apples_a1", "delay": 0.6 },
+          "who": "doopi",
+          "do": "stagger",
+          "face": "dizzy",
+          "say": "BONK!",
+          "bubble": "shout",
+          "interrupt": true
+        },
+        {
+          "id": "apples_a2",
+          "at": { "after": "apples_h1", "delay": 0.4 },
+          "who": "world",
+          "do": "spawn_object",
+          "params": { "kind": "apple", "id": "ap2", "x": 1440, "y": 700 }
+        },
+        { "id": "apples_c2", "at": { "with": "apples_a2", "delay": 0.1 }, "who": "doopi", "do": "dodge_back", "face": "scared" },
+        {
+          "id": "apples_a3",
+          "at": { "after": "apples_c2", "delay": 0.4 },
+          "who": "world",
+          "do": "spawn_object",
+          "params": { "kind": "apple", "id": "ap3", "x": 1880, "y": 700 }
+        },
+        { "id": "apples_c3", "at": { "with": "apples_a3", "delay": 0.2 }, "who": "dony", "do": "catch_ball", "face": "laugh" },
+        {
+          "id": "apples_d1",
+          "at": { "after": "apples_c3" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "Like this, Doopi! Soft hands!", "laugh" ],
+              [ "doopi", "My hands are soft! The apples are hard!", "angry" ],
+              [ "nani", "Hmm-hmm. Come here, both of you.", "happy" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "bracelet",
+      "location": "ground",
+      "time": "day",
+      "transitionIn": { "type": "dissolve", "dur": 0.6 },
+      "music": { "mood": "calm", "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "tired" },
+        { "id": "dony", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "nani", "x": 1600, "facing": -1, "face": "happy" }
+      ],
+      "beats": [
+        {
+          "id": "bracelet_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "nani", "This was mine when I was small. The Rainbow Bracelet.", "happy" ],
+              [ "nani", "Seven stones. Each colour you bring home will live here.", "love" ]
+            ]
+          }
+        },
+        {
+          "id": "bracelet_gv",
+          "at": { "after": "bracelet_d1" },
+          "who": "world",
+          "do": "set_appearance",
+          "params": { "who": "doopi", "accessory": "bracelet", "color": "#e6b84a" }
+        },
+        { "id": "bracelet_fx", "at": { "with": "bracelet_gv" }, "who": "doopi", "do": "gasp", "face": "surprised", "fx": [ "sparkle" ] },
+        {
+          "id": "bracelet_d2",
+          "at": { "after": "bracelet_fx" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "It's empty...", "sad" ],
+              [ "nani", "For now. Fill it, and Tokyo will shine again.", "happy" ],
+              [ "dony", "Ooh, it's so shiny! Can I hold it?", "love" ],
+              [ "nani", "No.", "smug" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "spar",
+      "location": "ground",
+      "time": "day",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "music": { "mood": "battle", "intensity": 0.4, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 1700, "facing": -1, "face": "determined" },
+        { "id": "nani", "x": 2300, "facing": -1, "face": "neutral" },
+        { "id": "becky", "x": 2500, "facing": -1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "spar_n1", "at": 0.3, "who": "nani", "do": "talk", "say": "Spar! Gently. Like brothers." },
+        {
+          "id": "spar_f",
+          "at": { "after": "spar_n1" },
+          "macro": "fight",
+          "params": { "sides": [ "doopi", "dony" ], "winner": "dony", "style": "even", "intensity": "low", "ko": false }
+        },
+        {
+          "id": "spar_d1",
+          "at": { "after": "spar_f" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "Ha! Got you again, champ!", "laugh" ],
+              [ "nani", "Dony. Pretend Becky is in danger.", "smug" ],
+              [ "dony", "Oh no! Becky is in danger! Help!", "scared" ]
+            ]
+          }
+        },
+        { "id": "spar_b1", "at": { "with": "spar_d1", "delay": 4 }, "who": "becky", "do": "whimper", "face": "scared" },
+        {
+          "id": "spar_f2",
+          "at": { "after": "spar_d1" },
+          "macro": "fight",
+          "params": { "sides": [ "doopi", "dony" ], "winner": "doopi", "style": "dominant", "intensity": "low", "exchanges": 3, "ko": false }
+        },
+        {
+          "id": "spar_d2",
+          "at": { "after": "spar_f2" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [ [ "dony", "Whoa! Where did THAT come from?", "surprised" ], [ "nani", "From here. When he fights for someone else.", "happy" ] ]
+          }
+        },
+        { "id": "spar_pt", "at": { "with": "spar_d2", "delay": 2.5 }, "who": "nani", "do": "point" }
+      ]
+    },
+    {
+      "id": "spin",
+      "location": "square",
+      "time": "day",
+      "transitionIn": { "type": "fade", "dur": 0.6 },
+      "grade": { "saturation": 0.3 },
+      "music": { "mood": "sad", "intensity": 0.3, "volume": 0.3 },
+      "cast": [
+        { "id": "mooka", "x": 1800, "facing": -1 },
+        { "id": "doopi", "x": 1350, "facing": 1, "face": "determined" },
+        { "id": "nani", "x": 1050, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "spin_st", "at": 0, "who": "mooka", "do": "petrify", "params": { "dur": 0 } },
+        {
+          "id": "spin_d1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "nani", "The Jalebi Spin. Round and round, like the sweet spiral.", "happy" ],
+              [ "nani", "Spin so fast your enemy forgets where you are.", "smug" ]
+            ]
+          }
+        },
+        { "id": "spin_s1", "at": { "after": "spin_d1" }, "who": "doopi", "do": "dance_b", "face": "determined" },
+        { "id": "spin_s2", "at": { "after": "spin_s1" }, "who": "doopi", "do": "dance_b", "face": "determined" },
+        { "id": "spin_s3", "at": { "after": "spin_s2" }, "who": "doopi", "do": "dizzy", "face": "dizzy", "say": "The sky... is spinning..." },
+        { "id": "spin_w1", "at": { "after": "spin_s3" }, "who": "doopi", "do": "walk", "to": { "near": "mooka", "gap": 140 }, "face": "sad" },
+        {
+          "id": "spin_d2",
+          "at": { "after": "spin_w1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Did you see that, Mooka? I almost did it.", "sad" ],
+              [ "doopi", "You would laugh at me. I wish you could laugh at me.", "cry" ],
+              [ "doopi", "I'll get your giggle back. Promise.", "determined" ]
+            ]
+          }
+        },
+        { "id": "spin_na", "at": { "after": "spin_d2" }, "who": "nani", "do": "nod", "face": "sad" }
+      ]
+    },
+    {
+      "id": "picnic",
+      "location": "square",
+      "time": "day",
+      "transitionIn": { "type": "dissolve", "dur": 0.6 },
+      "grade": { "saturation": 0.3 },
+      "music": { "mood": "calm", "volume": 0.3 },
+      "cast": [ { "id": "doopi", "x": 1100, "facing": 1, "face": "sad" }, { "id": "doomi", "x": 600, "facing": 1, "hidden": true } ],
+      "beats": [
+        { "id": "picnic_s0", "at": 0.2, "who": "doopi", "do": "sit", "object": "bench1" },
+        { "id": "picnic_in", "at": 1, "macro": "enter", "params": { "who": "doomi", "side": "left", "to": { "x": 1150 }, "mode": "walk" } },
+        {
+          "id": "picnic_d1",
+          "at": { "after": "picnic_in" },
+          "macro": "dialogue",
+          "params": { "lines": [ [ "doomi", "Lunch! Hot jalebis, for the hero in training.", "happy" ], [ "doopi", "Thanks, Doomi.", "sad" ] ] }
+        },
+        {
+          "id": "picnic_eat",
+          "at": { "after": "picnic_d1" },
+          "macro": "activity",
+          "params": { "name": "eat_together", "with": [ "doomi", "doopi" ], "dur": 5, "object": "bench1" }
+        },
+        {
+          "id": "picnic_d2",
+          "at": { "after": "picnic_eat" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Doomi... can I tell you a secret? I'm scared.", "sad" ],
+              [ "doopi", "Peepa is so big. And I'm just... me.", "sad" ],
+              [ "doomi", "Scared and brave can be friends, you know.", "love" ],
+              [ "doomi", "You were scared on the hill. And you still stood in front of us.", "love" ],
+              [ "doopi", "...Yeah. I did, didn't I?", "happy" ]
+            ]
+          }
+        },
+        {
+          "id": "picnic_hg",
+          "at": { "after": "picnic_d2" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "doopi", "color": "#ffd23f", "level": 0.3, "dur": 1 }
+        },
+        {
+          "id": "picnic_hg2",
+          "at": { "after": "picnic_hg", "delay": 1.5 },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "doopi", "level": 0, "dur": 1 }
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "location": "ground",
+      "time": "dusk",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "music": { "mood": "battle", "intensity": 0.6, "volume": 0.32 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "determined" },
+        { "id": "nani", "x": 1700, "facing": -1, "face": "smug" },
+        { "id": "dony", "x": 700, "facing": 1, "face": "happy" },
+        { "id": "becky", "x": 550, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        {
+          "id": "test_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": { "lines": [ [ "nani", "Final test. Touch me once, and you pass.", "smug" ], [ "doopi", "Just once? Easy!", "laugh" ] ] }
+        },
+        {
+          "id": "test_f",
+          "at": { "after": "test_d1" },
+          "macro": "fight",
+          "params": {
+            "sides": [ "doopi", "nani" ],
+            "winner": "doopi",
+            "intensity": "low",
+            "ko": false,
+            "phases": [ { "exchanges": 4, "style": "dominant" }, { "exchanges": 2, "style": "comeback" } ]
+          }
+        },
+        { "id": "test_c1", "at": { "with": "test_f", "delay": 4 }, "who": "dony", "do": "cheer", "say": "Go, Doopi!" },
+        { "id": "test_la", "at": { "after": "test_f" }, "who": "nani", "do": "laugh", "face": "laugh", "say": "Finally! The Jalebi Spin!", "bubble": "shout" },
+        { "id": "test_j1", "at": { "after": "test_la" }, "who": "doopi", "do": "jump_joy", "face": "laugh" },
+        { "id": "test_j2", "at": { "with": "test_j1" }, "who": "becky", "do": "jump" }
+      ]
+    },
+    {
+      "id": "evening",
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": { "type": "fade", "dur": 0.6 },
+      "grade": { "saturation": 0.3 },
+      "music": { "mood": "happy", "intensity": 0.4, "volume": 0.3 },
+      "cast": [
+        { "id": "dony", "x": 900, "facing": 1, "face": "happy" },
+        { "id": "becky", "x": 1100, "facing": -1, "face": "happy" },
+        { "id": "doopi", "x": 2100, "facing": -1, "face": "happy" },
+        { "id": "doomi", "x": 2300, "facing": -1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "evening_n1", "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "For one evening, even grey Tokyo felt a little bit bright." } },
+        { "id": "evening_fe", "at": 1, "macro": "activity", "params": { "name": "fetch", "with": [ "dony", "becky" ], "reps": 2 } },
+        {
+          "id": "evening_d1",
+          "at": { "with": "evening_fe", "delay": 2 },
+          "macro": "dialogue",
+          "params": {
+            "lines": [ [ "doomi", "You did it today, Doopi.", "love" ], [ "doopi", "We did it. Tomorrow we go find the first crystal!", "determined" ] ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "location": "square",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.3 },
+      "music": { "mood": "boss", "intensity": 0.7, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "happy" },
+        { "id": "dony", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "becky", "x": 1500, "facing": 1, "face": "happy" },
+        { "id": "thunda", "x": 2600, "facing": -1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "gate_sh", "at": 0.5, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        { "id": "gate_g1", "at": { "with": "gate_sh" }, "who": "doopi", "do": "gasp", "face": "scared" },
+        { "id": "gate_g2", "at": { "with": "gate_sh", "delay": 0.2 }, "who": "becky", "do": "growl", "face": "angry" },
+        { "id": "gate_sh2", "at": { "after": "gate_g1", "delay": 0.5 }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        {
+          "id": "gate_in",
+          "at": { "with": "gate_sh2" },
+          "macro": "enter",
+          "params": { "who": "thunda", "side": "right", "to": { "x": 2200 }, "mode": "walk" }
+        },
+        {
+          "id": "gate_gl",
+          "at": { "with": "gate_in" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "thunda", "color": "#ff3b3b", "level": 0.45, "dur": 1.5 }
+        },
+        { "id": "gate_st", "at": { "after": "gate_in" }, "who": "thunda", "do": "charge_up", "face": "furious" },
+        { "id": "gate_sh3", "at": { "with": "gate_st", "delay": 0.4 }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        { "id": "gate_ro", "at": { "after": "gate_st" }, "who": "thunda", "do": "flex", "face": "furious", "say": "I am THUNDA!", "bubble": "shout" },
+        {
+          "id": "gate_ro2",
+          "at": { "after": "gate_ro", "delay": 1.9 },
+          "who": "thunda",
+          "do": "point",
+          "face": "angry",
+          "say": "Where is the boy who glows?",
+          "bubble": "shout"
+        },
+        { "id": "gate_cu", "at": { "with": "gate_ro2" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "doopi", "dur": 2.5 } },
+        { "id": "gate_dg", "at": { "with": "gate_ro2", "delay": 0.6 }, "who": "doopi", "do": "gasp", "face": "scared" },
+        { "id": "gate_end", "at": { "after": "gate_ro2", "delay": 1.5 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

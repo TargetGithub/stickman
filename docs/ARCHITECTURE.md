@@ -541,7 +541,7 @@ export function bodyPlan(catalog, name): { dims, stride, posture, plan };   // a
 // validator/story.js: castLookIssues(cast, path, catalog) → E_BODY_UNKNOWN, E_APPEARANCE
 ```
 - Move state keeps `scale` (heights) and `strideScale` (forward root motion). Actors with a posture keep `postureW`, eased toward 0 during attack moves.
-- `drawCharacter` style gains `dims`, `draw`, `torsoWidth` and `look`; draw order: backpack, far limbs, torso (filled or stroked), outfit, bowtie, head (ponytail, head, mask, face, hair, eyepatch, antenna/crown), near leg, near arm.
+- `drawCharacter` style gains `dims`, `draw`, `torsoWidth` and `look`; draw order: backpack, far limbs, torso (filled or stroked), outfit (or the belly patch), bowtie, head (far horn, ponytail, head, mask, face, hair, eyepatch, moustache/turban/horns/sprout/flower, antenna/crown), near leg, near arm. The renderer draws the far mitten before the character and the near mitten and the bracelet after it (`accessories_more.js` `drawLookBehind`/`drawLookFront`).
 - Tools: `tools/body_sheet.mjs` (plans × moves review sheet); the catalog page and the pose viewer have a body-plan selector.
 
 ### Objects (S4)
@@ -754,3 +754,8 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Decision** (STORY_SPEC 6.2): a quadruped keeps the 13 joints and channels and gives them other meanings (rear hip as the root, the spine running forward to the shoulders, arms as front legs, legs as rear legs). `computeJoints` branches on `dims.rig` to `computeJointsQuad` (`engine/skeleton_quad.js`); nothing else in the simulation changes shape. Tail and ears are drawn procedurally by the renderer, not stored. A body plan's `moves` map renames generic moves for its rig through one resolver, so callers keep asking for `walk`.
 - **Consequences**: the frame store, determinism and every humanoid frame are unchanged; a quadruped costs no extra memory. Quadruped moves are authored per rig (`rig` on each move); the catalog checks run each move on the plans of its rig only. A rig whose topology doesn't fit 13 joints (a bird with wings and legs, a snake) would need a real per-rig joint list later.
 
+
+### ADR-021 Colour effects are drawn from the event log (A3)
+- **Context**: the series needs a lasting Heart Glow, a per-scene "how grey the world is" grade with a colour wave, and friends frozen to stone grey across scenes.
+- **Decision**: no new frame-store fields. The renderer reads the effects from the event log (`set_glow` and `set_grade` world events, the `defeat` event of `petrify` and the `thaw` event that `return` emits for a petrified character), as it already does for `set_appearance`; `engine/renderer/colour.js` holds the pure state functions. A grey world is a `saturation` composite pass after the world (it can leave a growing circle for a wave `from` a character); with `keepCast`, and for a stone-grey character, a canvas `filter` is set while drawing. The simulation only holds the petrified pose (`keepPose`, no idle) and carries it into later scenes.
+- **Consequences**: the frame store, golden frames and determinism are unchanged, and glow and petrify carry over between scenes for free. With `keepCast` a wave blends evenly instead of spreading. The canvas backend must support `ctx.filter` (`@napi-rs/canvas` and current browsers do).

@@ -41,3 +41,26 @@ test("every SFX key used by move data and hit kinds is a required key", () => {
     for (const h of m.hits || []) if (h.sfx) assert.ok(catalog.sfxKeys.includes(h.sfx), `${m.name} ${h.sfx}`);
   }
 });
+
+const SFX_CASES = [
+  ["a world sfx beat plays its sound at full volume by default", { name: "pirate_horn" }, 0.8, null],
+  ["volume and pan follow the params", { name: "gloom_horn", volume: 0.5, x: 3000 }, 0.5, "right"],
+];
+for (const [name, params, volume, side] of SFX_CASES) {
+  test(`sfx world command (batch B): ${name}`, () => {
+    const story = {
+      version: 2, meta: { title: "sfx", format: "landscape", seed: 3, kind: "clip", audience: "kids" },
+      cast: [{ id: "kai", color: "#3fd8ff" }],
+      locations: [{ id: "park", theme: "city_park" }],
+      scenes: [{ id: "s", location: "park", cast: [{ id: "kai", x: 1500, facing: 1 }], beats: [
+        { id: "h", at: 0.5, who: "world", do: "sfx", params },
+        { id: "w", at: 0.6, who: "kai", do: "wave" },
+      ] }],
+    };
+    const got = collectAudioEvents(simulate(story, catalog)).find((a) => a.sfx === params.name);
+    assert.ok(got, "the sound plays");
+    assert.equal(got.volume, volume);
+    if (side === "right") assert.ok(got.pan > 0);
+    else assert.equal(got.pan, 0);
+  });
+}

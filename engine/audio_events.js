@@ -51,6 +51,7 @@ export function collectAudioEvents(sim) {
       if (e.speed > PHYSICS.shakeImpactSpeed) add(e.videoT, "land_heavy", 0.9, actorX(e.videoT, e.actor));
       else if (e.speed > PHYSICS.dustImpactSpeed) add(e.videoT, "land", 0.7, actorX(e.videoT, e.actor));
     } else if (e.type === "world" && e.do === "explosion") add(e.videoT, "explosion", 1, e.params.x);
+    else if (e.type === "world" && e.do === "sfx") add(e.videoT, e.params.name, e.params.volume ?? 0.8, e.params.x); // a sound on its own (off-screen horns, thunder)
     else if (e.type === "object" && e.sfx) add(e.videoT, e.sfx, e.volume ?? 0.7, e.x);
   }
   if (story) out.push(...storySounds(sim, actorX, panAt), ...storyCues(sim, actorX, panAt));

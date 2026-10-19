@@ -116,8 +116,12 @@ export function presentEvent(p, e, world, clock) {
       break;
     }
     case "object":
-      // Object events (S4): effects at the object's position (heights are measured up from the floor).
-      for (const name of e.fx || []) emitFx(p.fx, name, { x: e.x, y: STAGE.groundY - (e.y || 0) }, { dir: 1, scale: 1 }, fxT);
+      // Object events (S4): effects at the object's position (heights are measured up from the floor);
+      // feet-anchored presets (the Gloom Horn's mist) start on the floor below it.
+      for (const name of e.fx || []) {
+        const floor = p.fx.presets[name]?.anchor === "feet";
+        emitFx(p.fx, name, { x: e.x, y: STAGE.groundY - (floor ? 0 : e.y || 0) }, { dir: 1, scale: 1 }, fxT);
+      }
       break;
     case "camera":
       p.shot = null; // a camera key ends any shot

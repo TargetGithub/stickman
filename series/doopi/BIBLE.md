@@ -8,7 +8,7 @@ Decisions taken with Sridhar:
 
 ## 1. The show in one line
 
-> When horned Peepa steals the seven Rainbow Crystals and Chirpur starts turning grey, clumsy, kind-hearted Doopi and his friends set out to bring the colours home, and learn that the strongest power is the one friends share.
+> When horned Peepa steals the seven Rainbow Crystals and Tokyo starts turning grey, clumsy, kind-hearted Doopi and his friends set out to bring the colours home, and learn that the strongest power is the one friends share.
 
 | | |
 |---|---|
@@ -30,15 +30,15 @@ Lessons the episodes carry, one per episode (stated by a narration line at the e
 
 ## 3. The world
 
-### Chirpur
+### Tokyo
 A cheerful hill village in the **Valley of Colours**: round huts with bright doors, a market of sweets and kites, a dusty training ground, and in the middle the **Rainbow Banyan**, a giant old tree whose roots hold seven glowing **Rainbow Crystals**. The crystals keep the valley's colours bright and its people laughing.
 
 ### The Rainbow Crystals (the MacGuffin)
-Seven crystals, one per colour. Peepa steals them in episode 2 and gives one to each of his lieutenants. Each one the heroes win back brings that colour back to Chirpur and slots into Doopi's **Rainbow Bracelet** (a gift from Nani Nimbu in episode 3), so the audience can count progress.
+Seven crystals, one per colour. Peepa steals them in episode 2 and gives one to each of his lieutenants. Each one the heroes win back brings that colour back to Tokyo and slots into Doopi's **Rainbow Bracelet** (a gift from Nani Nimbu in episode 3), so the audience can count progress.
 
 | Crystal | Held by | Won back in | What comes back |
 |---|---|---|---|
-| Red | Thunda | Ep 4 | Red flowers, the red doors of Chirpur |
+| Red | Thunda | Ep 4 | Red flowers, the red doors of Tokyo |
 | Yellow | Tony & Kony | Ep 5 | Sunshine, and Mooka's giggle |
 | Orange | Madam Mirchi | Ep 8 | Sunsets, oranges, marigolds |
 | Blue | Captain Kanta | Ep 11 | The sky and the lake |
@@ -50,7 +50,7 @@ Seven crystals, one per colour. Peepa steals them in episode 2 and gives one to 
 Nani Nimbu's legend: if the crystals are not home by the night of the **Grey Moon**, the valley stays grey forever. Narration counts down the nights (40 nights at the start, about 12 by episode 8, 5 by episode 15, the Grey Moon rises in episode 20).
 
 ### Look of the world (how it uses the engine)
-- **Colour drains as stakes rise.** Each episode sets how grey Chirpur is (the `desaturate` world command today; ASSETS.md item E3 asks for a per-scene grade). Episode 1 is full colour; after episode 2 the valley is mostly grey and gets colour back crystal by crystal; episodes 20-23 are almost black and white; episode 24 bursts back into full colour.
+- **Colour drains as stakes rise.** Each episode sets how grey Tokyo is (the `desaturate` world command today; ASSETS.md item E3 asks for a per-scene grade). Episode 1 is full colour; after episode 2 the valley is mostly grey and gets colour back crystal by crystal; episodes 20-23 are almost black and white; episode 24 bursts back into full colour.
 - Times of day and weather do mood work: the cliffhangers are mostly dusk or night, the comedy mostly day.
 - No blood, no gore, no weapons aimed at anyone who cannot fight back. Hits are cartoon (POW!, BONK!), losers are KO'd with stars, captured with rope or a cage, or flee. Friends who are "lost" are frozen grey or carried off, never gone for good, and always come back.
 
@@ -61,7 +61,7 @@ Engine notes use today's names (body plans, appearance options, voices) where th
 ### Heroes
 
 #### Doopi (hero)
-- **Look:** a classic stickman in sky blue (`#3fb8ff`), spiky hair, a red headband with long tails, big eyes, a cartoon mouth. From episode 3 he wears the Rainbow Bracelet (**NEW**) on his left wrist; its slots light up as crystals come home. `body: stickman`, `appearance: { eyes: big, hair: spiky, mouthStyle: cartoon, accessories: { headband: "#ff3b5c" } }`.
+- **Look:** a classic stickman in sky blue (`#5ec8ff`; first drafted as `#3fb8ff`, which is too dark on the park), spiky hair, a red headband with long tails, big eyes, a cartoon mouth. From episode 3 he wears the Rainbow Bracelet (**NEW**) on his left wrist; its slots light up as crystals come home. `body: stickman`, `appearance: { eyes: big, hair: spiky, mouthStyle: cartoon, accessories: { headband: "#ff3b5c" } }`.
 - **Personality:** big-hearted, brave, hungry (jalebis are his favourite), very clumsy. Trips over his own feet, talks before thinking, never gives up on a friend. Funny because he tries too hard; heroic because he never stops trying.
 - **Powers:** grows across the series. Ep 1-2 none (just heart). Ep 3 the Heart Glow wakes (a golden aura when his friends cheer). Learns from Nani: the **Jalebi Spin** (spinning kick, ep 3), the **Banyan Root Stance** (unbreakable block, ep 8), the **Rainbow Punch** (ep 15), and in the finale the **Friendship Blast**, a full rainbow energy blast that only works with everyone cheering (ep 23-24).
 - **Weakness:** trying to do it alone. Each time he does, he loses (ep 4 round 1, ep 13, ep 20).
@@ -74,7 +74,7 @@ Engine notes use today's names (body plans, appearance options, voices) where th
 - **Voice:** `pitch 1.15, speed 1.0, timbre soft`. Catchphrase: "I've got you, buddy!"
 
 #### Doomi (Doopi's sweetheart)
-- **Look:** a stickman in pink (`#ff7eb6`), a ponytail with a flower clip (**NEW** accessory `hair_flower`), blush cheeks, big eyes, a little shirt. `body: stickman`, `appearance: { eyes: big, hair: ponytail, hairColor: "#5a3a2c", cheeks: "#ff9db8", outfit: shirt, outfitColor: "#ffd1e3" }`.
+- **Look:** a stickman in pink (`#ff9ccc`), a ponytail with a flower clip (**NEW** accessory `hair_flower`), blush cheeks, big eyes, a little shirt. `body: stickman`, `appearance: { eyes: big, hair: ponytail, hairColor: "#5a3a2c", cheeks: "#ff9db8", outfit: shirt, outfitColor: "#ffd1e3" }`.
 - **Personality:** lovable and charming, clever and quick; the planner of the team and the best at puzzles and traps. Kind to everyone, even the villains' sidekicks. Not a damsel: when she is captured (ep 12-19) she escapes her cell twice and leaves a trail of ribbons for the heroes.
 - **Romance (kids level):** shy smiles, blushing, hearts over heads, holding hands, one dance at the festival. Doopi gets tongue-tied around her: a running gag.
 - **Skill:** ribbon twirls and rope tricks (the `rope` holdable), gymnastic flips (`backflip`, `frontflip`).
@@ -113,12 +113,12 @@ Engine notes use today's names (body plans, appearance options, voices) where th
 | **Mallu Uncle** | Ep 9 | `elder`, brown, cap, white beard (**NEW** `beard`) | The lake boatman with a rowboat (**NEW** object); tells awful jokes | Ep 10-12, 22-24 |
 | **Ghoomu** (Iron Ghoom reformed) | Ep 15 | Iron Ghoom without the control key: friendly robot | Carries the team up Grey Peak; gentle, says "BEEP" sadly when he can't help | Ep 16-24 |
 | **Tony & Kony** (turned good) | Ep 21 | as below | Switch sides in the finale thanks to Mooka's kindness | Ep 21-24 |
-| Villagers of Chirpur | Ep 1 | extras and a few named kids (`kid`) | Cheer, gasp, flee, and finally fight for their village | Throughout |
+| Villagers of Tokyo | Ep 1 | extras and a few named kids (`kid`) | Cheer, gasp, flee, and finally fight for their village | Throughout |
 
 ### Villains
 
 #### Peepa (main villain)
-- **Look:** tall and thin, dark violet (`#7b4bd8`), two curly golden **horns** (**NEW** accessory `horns`), oval glowing eyes, thick angry brows, a long dark cape, a smirk. Carries the **Gloom Horn** (**NEW** holdable), a curled horn trumpet that blows grey mist and drains colour. `body: slim`, `scale 1.15`, `appearance: { eyes: oval, brows: thick, accessories: { horns: "#e6b84a", cape: "#2a1b3d" } }`.
+- **Look:** tall and thin, lavender violet (`#c9a6ff`; the darker #7b4bd8 failed the contrast check on Tokyo and the hill), two curly golden **horns** (**NEW** accessory `horns`), oval glowing eyes, thick angry brows, a long dark cape, a smirk. Carries the **Gloom Horn** (**NEW** holdable), a curled horn trumpet that blows grey mist and drains colour. `body: slim`, `scale 1.15`, `appearance: { eyes: oval, brows: thick, accessories: { horns: "#e6b84a", cape: "#2a1b3d" } }`.
 - **Personality:** dramatic, vain, sarcastic, secretly lonely. Talks to himself, gives himself titles ("Peepa the Grey, Lord of Gloom"), hates laughter, loves his own echo. Funny to kids, scary enough to make the stakes real.
 - **Powers:** the Gloom Horn (grey mist: freezes friends grey, which can be undone), Gloom Blasts (purple energy), shadow-teleport (`teleport`), and in the finale **Giant Peepa** (scale 3, aura, after absorbing six crystals, ep 20-24).
 - **Backstory (revealed ep 20):** a horned little boy laughed at by other kids, who decided the world would be better grey and silent. He is not forgiven for what he did, but he is offered a way back.
@@ -152,9 +152,9 @@ Four acts of six episodes. Each act ends on a bigger cliffhanger than the last.
 
 | Act | Episodes | Title | What happens | Peak |
 |---|---|---|---|---|
-| 1 | 1-6 | **The Grey Begins** | Meet Chirpur and the gang; Peepa steals the crystals; Doopi trains with Nani; the first boss (Thunda) and the comic Tony & Kony episode; Nani is frozen grey; the friends leave home | Nani frozen (ep 5), Dony kidnapped (ep 6) |
+| 1 | 1-6 | **The Grey Begins** | Meet Tokyo and the gang; Peepa steals the crystals; Doopi trains with Nani; the first boss (Thunda) and the comic Tony & Kony episode; Nani is frozen grey; the friends leave home | Nani frozen (ep 5), Dony kidnapped (ep 6) |
 | 2 | 7-12 | **The Road of Colours** | Madam Mirchi's spice fort; Lotus Lake and Captain Kanta's pirates; a half-colour festival back home | Iron Ghoom carries Doomi away (ep 12, midpoint) |
-| 3 | 13-18 | **Iron and Shadow** | Doopi tries to win alone and loses his glow; learns friendship is the power; the battle for Chirpur and Ghoomu's rescue; the climb up Grey Peak; Shadow Doopi and the Mirror Maze | Gloom Castle and the Grey Moon rising (ep 18) |
+| 3 | 13-18 | **Iron and Shadow** | Doopi tries to win alone and loses his glow; learns friendship is the power; the battle for Tokyo and Ghoomu's rescue; the climb up Grey Peak; Shadow Doopi and the Mirror Maze | Gloom Castle and the Grey Moon rising (ep 18) |
 | 4 | 19-24 | **The Last Colour** | Storming Gloom Castle; Peepa's story; Giant Peepa takes the crystals and the world goes grey; Tony & Kony switch sides; the three-part final battle; colours come home | The do-or-die fight inside the Grey Moon (ep 23-24) |
 
 ### Rising intensity (planned)
@@ -202,6 +202,6 @@ Script rules for this series (on top of CLAUDE.md and STORY_SPEC section 13):
 
 1. **Becky's rig** is a big engine feature (a new skeleton, pose channels and about 18 moves). Should I plan it as its own milestone in docs/STORY_PLAN.md, and hold episode scripts until it exists, or write episode 1 now with Becky's beats marked to be filled in later?
 2. **Doomi as "girlfriend":** I've kept it at a sweetheart level (blushes, hearts, holding hands, one dance), which suits YouTube Kids. OK?
-3. **Names:** Thunda, Madam Mirchi, Captain Kanta, Iron Ghoom/Ghoomu, Tara Treetop, Mallu Uncle, Nani Nimbu, Mayor Motumal and Chirpur are my suggestions. Change any you like.
+3. **Names:** Thunda, Madam Mirchi, Captain Kanta, Iron Ghoom/Ghoomu, Tara Treetop, Mallu Uncle, Nani Nimbu, Mayor Motumal and Tokyo are my suggestions. Change any you like.
 4. **Peepa's ending:** captured and offered friendship (he stays caged but hopeful). Alternatively he could flee and set up a season 2.
 5. **Episode length:** about 5:00-5:30 each. Longer (6-8 min) is possible and helps YouTube watch time; it makes each script bigger.

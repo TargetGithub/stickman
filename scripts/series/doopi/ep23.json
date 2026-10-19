@@ -1,0 +1,785 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 23: The Final Battle, Part 2",
+    "format": "landscape",
+    "seed": 2423,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": { "headband": "#ff3b5c", "bracelet": "#e6b84a" },
+        "slots": 0
+      },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": { "hair_flower": "#ffffff" }
+      },
+      "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ff3b5c" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+      "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": { "eyes": "visor" },
+      "voice": { "pitch": 0.5, "speed": 0.8, "timbre": "robot" }
+    },
+    {
+      "id": "motumal",
+      "name": "Mayor Motumal",
+      "body": "bulky",
+      "color": "#ffb347",
+      "appearance": { "outfit": "coat", "outfitColor": "#ff9f1c", "accessories": { "moustache": "#2a1a14", "turban": "#f6c445" } },
+      "voice": { "pitch": 0.75, "speed": 0.9, "timbre": "deep" }
+    },
+    {
+      "id": "mallu",
+      "name": "Mallu Uncle",
+      "body": "elder",
+      "color": "#ffc2a0",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#f4f1de",
+        "outfit": "shirt",
+        "outfitColor": "#2a8f7c",
+        "accessories": { "beard": "#f4f1de" }
+      },
+      "voice": { "pitch": 0.9, "speed": 0.9, "timbre": "deep" }
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": { "hair": "cap", "hairColor": "#e63946", "accessories": { "stub_horns": "#7a6a99" } },
+      "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" }
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": { "hair": "cap", "hairColor": "#3a6fd8", "accessories": { "stub_horns": "#7a6a99" } },
+      "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" }
+    },
+    {
+      "id": "giant",
+      "name": "Giant Peepa",
+      "body": "slim",
+      "scale": 3,
+      "color": "#c9a6ff",
+      "prop": "gloom_horn",
+      "appearance": { "eyes": "oval", "brows": "thick", "accessories": { "horns": "#e6b84a", "cape": "#2a1b3d" } },
+      "voice": { "pitch": 0.55, "speed": 0.85, "timbre": "deep" }
+    }
+  ],
+  "locations": [ { "id": "hill", "theme": "banyan_moon", "stageWidth": 4000 }, { "id": "moon", "theme": "grey_moon", "stageWidth": 3600 } ],
+  "scenes": [
+    {
+      "id": "voices",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 23: The Final Battle, Part 2" },
+      "grade": { "saturation": 0, "keepCast": true },
+      "music": { "mood": "sad", "intensity": 0.3, "volume": 0.26 },
+      "cast": [
+        { "id": "doopi", "x": 1500, "facing": 1, "face": "cry" },
+        { "id": "giant", "x": 2600, "facing": -1, "face": "furious" },
+        { "id": "doomi", "x": 300, "facing": 1, "hidden": true },
+        { "id": "mooka", "x": 300, "facing": 1, "hidden": true },
+        { "id": "becky", "x": 300, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "voices_k0", "at": 0, "who": "doopi", "do": "kneel", "face": "cry" },
+        { "id": "voices_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 1 } },
+        { "id": "voices_n1", "at": 0.5, "who": "world", "do": "narrate", "params": { "text": "Grey. Silent. And then... a voice." } },
+        { "id": "voices_c1", "at": { "after": "voices_n1" }, "who": "world", "do": "caption", "params": { "text": "\"DOOPI!\"", "pos": "top", "dur": 1.6 } },
+        {
+          "id": "voices_e1",
+          "at": { "with": "voices_c1" },
+          "macro": "enter",
+          "params": { "who": "doomi", "side": "left", "to": { "x": 1250 }, "mode": "run" }
+        },
+        {
+          "id": "voices_c2",
+          "at": { "after": "voices_c1", "delay": 0.4 },
+          "who": "world",
+          "do": "caption",
+          "params": { "text": "\"MOOKA!\"", "pos": "top", "dur": 1.6 }
+        },
+        {
+          "id": "voices_e2",
+          "at": { "with": "voices_c2" },
+          "macro": "enter",
+          "params": { "who": "mooka", "side": "left", "to": { "x": 1100 }, "mode": "run" }
+        },
+        {
+          "id": "voices_c3",
+          "at": { "after": "voices_c2", "delay": 0.4 },
+          "who": "world",
+          "do": "caption",
+          "params": { "text": "\"WOOF WOOF!\"", "pos": "top", "dur": 1.6 }
+        },
+        {
+          "id": "voices_e3",
+          "at": { "with": "voices_c3" },
+          "macro": "enter",
+          "params": { "who": "becky", "side": "left", "to": { "x": 1350 }, "mode": "run" }
+        },
+        {
+          "id": "voices_d1",
+          "at": { "after": "voices_e3" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doomi", "You're not alone, Doopi. You never were.", "love" ],
+              [ "mooka", "Get up, Doopi! Pretty please with jalebis!", "laugh" ],
+              [ "doopi", "Doomi... Mooka... Becky... you came back for me.", "cry" ],
+              [ "doomi", "Always. That's what we do.", "love" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "macro": "montage",
+      "transitionIn": { "type": "dissolve", "dur": 0.6 },
+      "music": { "mood": "calm", "intensity": 0.4, "volume": 0.3 },
+      "params": {
+        "clipDur": 5,
+        "cut": "dissolve",
+        "clips": [
+          { "location": "banyan_hill", "who": [ "doopi", "dony" ], "do": "high_five", "text": "The race he lost, and the friend who stayed." },
+          { "location": "spice_kitchen", "who": [ "dony" ], "do": "cheer", "text": "Dony, holding off two goons alone." },
+          { "location": "lotus_lake", "who": [ "becky" ], "do": "swim", "text": "Becky, diving into the deep." },
+          { "location": "mountain_cave", "who": [ "doopi", "mooka" ], "do": "hug", "text": "Mooka, sharing his giggles." },
+          { "location": "tokyo_village", "who": [ "doomi", "doopi" ], "do": "hug", "text": "And Doomi. Always Doomi." }
+        ]
+      }
+    },
+    {
+      "id": "line",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0, "keepCast": true },
+      "music": { "mood": "heroic", "intensity": 0.7, "volume": 0.32 },
+      "cast": [
+        { "id": "doopi", "x": 1400, "facing": 1, "face": "surprised" },
+        { "id": "giant", "x": 2800, "facing": -1, "face": "furious" },
+        { "id": "motumal", "x": 300, "facing": 1, "hidden": true },
+        { "id": "tara", "x": 300, "facing": 1, "hidden": true },
+        { "id": "mallu", "x": 300, "facing": 1, "hidden": true },
+        { "id": "tony", "x": 300, "facing": 1, "hidden": true },
+        { "id": "kony", "x": 300, "facing": 1, "hidden": true },
+        { "id": "ghoom", "x": 300, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "line_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 1 } },
+        { "id": "line_e1", "at": 0.3, "macro": "enter", "params": { "who": "motumal", "side": "left", "to": { "x": 1650 }, "mode": "run" } },
+        { "id": "line_s1", "at": { "after": "line_e1" }, "who": "motumal", "do": "block", "face": "determined", "say": "The Mayor stands HERE!" },
+        {
+          "id": "line_l1",
+          "at": { "with": "line_s1", "delay": 0.4 },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "motumal", "color": "#ffd23f", "level": 0.6, "dur": 1 }
+        },
+        {
+          "id": "line_e2",
+          "at": { "with": "line_s1", "delay": 0.5 },
+          "macro": "enter",
+          "params": { "who": "tara", "side": "left", "to": { "x": 1800 }, "mode": "run" }
+        },
+        {
+          "id": "line_l2",
+          "at": { "after": "line_e2" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "tara", "color": "#ffd23f", "level": 0.6, "dur": 1 }
+        },
+        {
+          "id": "line_e3",
+          "at": { "with": "line_e2", "delay": 0.6 },
+          "macro": "enter",
+          "params": { "who": "mallu", "side": "left", "to": { "x": 1950 }, "mode": "run" }
+        },
+        {
+          "id": "line_l3",
+          "at": { "after": "line_e3" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "mallu", "color": "#ffd23f", "level": 0.6, "dur": 1 }
+        },
+        {
+          "id": "line_e4",
+          "at": { "with": "line_e3", "delay": 0.6 },
+          "macro": "enter",
+          "params": { "who": "tony", "side": "left", "to": { "x": 2100 }, "mode": "run" }
+        },
+        {
+          "id": "line_e5",
+          "at": { "with": "line_e4", "delay": 0.3 },
+          "macro": "enter",
+          "params": { "who": "kony", "side": "left", "to": { "x": 2200 }, "mode": "run" }
+        },
+        {
+          "id": "line_l4",
+          "at": { "after": "line_e5" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "kony", "color": "#ffd23f", "level": 0.6, "dur": 1 }
+        },
+        {
+          "id": "line_l5",
+          "at": { "with": "line_l4", "delay": 0.3 },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "tony", "color": "#ffd23f", "level": 0.6, "dur": 1 }
+        },
+        {
+          "id": "line_e6",
+          "at": { "with": "line_e5", "delay": 0.6 },
+          "macro": "enter",
+          "params": { "who": "ghoom", "side": "left", "to": { "x": 900 }, "mode": "walk" }
+        },
+        {
+          "id": "line_l6",
+          "at": { "after": "line_e6" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "ghoom", "color": "#ffd23f", "level": 0.6, "dur": 1 }
+        },
+        {
+          "id": "line_d1",
+          "at": { "after": "line_l6", "delay": 2.9 },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "We're all here, Doopi. Every single one of us.", "determined" ],
+              [ "kony", "Even the bad guys who turned good!", "laugh" ],
+              [ "ghoom", "FRIENDS. SHIELD. BEEP!", "determined" ],
+              [ "mallu", "And I brought jokes! In case of emergency!", "laugh" ],
+              [ "motumal", "This IS the emergency, Mallu!", "scared" ],
+              [ "doopi", "...Everyone.", "love" ]
+            ]
+          }
+        },
+        {
+          "id": "line_motumal_s",
+          "at": { "after": "line_s1", "delay": 2.5 },
+          "who": "motumal",
+          "do": "talk",
+          "face": "determined",
+          "say": "I faint at everything. Not today!"
+        },
+        {
+          "id": "line_tara_s",
+          "at": { "after": "line_l2", "delay": 0.2 },
+          "who": "tara",
+          "do": "talk",
+          "face": "determined",
+          "say": "Nobody hurts my village kids."
+        },
+        {
+          "id": "line_mallu_s",
+          "at": { "after": "line_l3", "delay": 0.2 },
+          "who": "mallu",
+          "do": "talk",
+          "face": "laugh",
+          "say": "Ho ho! Why did the hero win? FRIENDS!"
+        },
+        {
+          "id": "line_kony_s",
+          "at": { "after": "line_l4", "delay": 0.2 },
+          "who": "kony",
+          "do": "talk",
+          "face": "happy",
+          "say": "Mooka was nice to me. Now I'm nice back!"
+        }
+      ]
+    },
+    {
+      "id": "shield",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0, "keepCast": true },
+      "music": { "mood": "boss", "intensity": 1, "volume": 0.36 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "surprised" },
+        { "id": "giant", "x": 2800, "facing": -1, "face": "furious" },
+        { "id": "motumal", "x": 1650, "facing": 1, "face": "determined" },
+        { "id": "tara", "x": 1800, "facing": 1, "face": "determined" },
+        { "id": "doomi", "x": 1500, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 1950, "facing": 1, "face": "determined" },
+        { "id": "kony", "x": 2100, "facing": 1, "face": "determined" }
+      ],
+      "beats": [
+        { "id": "shield_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 1 } },
+        { "id": "shield_g1", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "doomi", "color": "#ffd23f", "level": 0.6 } },
+        { "id": "shield_g2", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "mooka", "color": "#ffd23f", "level": 0.6 } },
+        { "id": "shield_g3", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "tara", "color": "#ffd23f", "level": 0.6 } },
+        { "id": "shield_c1", "at": 0.3, "who": "giant", "do": "charge_up", "face": "furious", "say": "Then ALL of you go grey!", "bubble": "shout" },
+        {
+          "id": "shield_sp",
+          "at": { "after": "shield_c1" },
+          "who": "world",
+          "do": "spawn_object",
+          "params": { "kind": "rainbow_shield", "id": "shield1", "x": 1850 }
+        },
+        {
+          "id": "shield_bl",
+          "at": { "with": "shield_sp", "delay": 0.2 },
+          "who": "giant",
+          "do": "energy_blast",
+          "fx": [ "giant_blast" ],
+          "target": "motumal",
+          "outcome": "blocked"
+        },
+        { "id": "shield_sh", "at": { "with": "shield_bl", "delay": 0.4 }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        { "id": "shield_fl", "at": { "with": "shield_bl", "delay": 0.4 }, "who": "world", "do": "flash", "params": { "color": "#ffffff", "dur": 0.3 } },
+        {
+          "id": "shield_n1",
+          "at": { "after": "shield_bl" },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "The blast hit the line of friends... and bounced right off their glow." }
+        },
+        {
+          "id": "shield_st",
+          "at": { "with": "shield_n1", "delay": 0.5 },
+          "who": "giant",
+          "do": "stagger",
+          "face": "surprised",
+          "say": "WHAT?!",
+          "bubble": "shout"
+        },
+        {
+          "id": "shield_d",
+          "at": { "after": "shield_st", "delay": 1.6 },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "giant", "How?! I have six crystals! I have the HORN!", "furious" ],
+              [ "doomi", "You have power. We have each other. That's stronger.", "determined" ],
+              [ "giant", "Friends are just people who will LAUGH at you later!", "furious" ],
+              [ "mooka", "We laugh WITH you, silly! Hee hee!", "laugh" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "return",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0, "keepCast": true },
+      "music": { "mood": "triumphant", "intensity": 0.8, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1400, "facing": 1, "face": "determined" },
+        { "id": "giant", "x": 2600, "facing": -1, "face": "scared" },
+        { "id": "doomi", "x": 1150, "facing": 1, "face": "love" }
+      ],
+      "beats": [
+        { "id": "return_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 1 } },
+        { "id": "return_u1", "at": 0.3, "who": "doopi", "do": "stand_up", "face": "determined" },
+        {
+          "id": "return_gl",
+          "at": { "with": "return_u1", "delay": 0.3 },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "doopi", "color": "rainbow", "level": 1, "dur": 1.5 }
+        },
+        {
+          "id": "return_cp",
+          "at": { "after": "return_u1" },
+          "who": "giant",
+          "do": "hold_head",
+          "face": "scared",
+          "fx": [ "crystal_pull" ],
+          "say": "My crystals! NO!",
+          "bubble": "shout"
+        },
+        { "id": "return_bl", "at": { "with": "return_cp", "delay": 0.8 }, "who": "world", "do": "set_appearance", "params": { "who": "doopi", "slots": 6 } },
+        { "id": "return_gr", "at": { "with": "return_bl" }, "who": "world", "do": "set_grade", "params": { "saturation": 0.6, "dur": 2, "from": "doopi" } },
+        {
+          "id": "return_n1",
+          "at": { "with": "return_bl", "delay": 0.4 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "The six crystals tore free and flew home to the bracelet. Colour flashed back in streaks." }
+        }
+      ]
+    },
+    {
+      "id": "phase2",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6, "keepCast": true },
+      "music": { "mood": "boss", "intensity": 1, "volume": 0.36 },
+      "cast": [
+        { "id": "doopi", "x": 1500, "facing": 1, "face": "determined" },
+        { "id": "giant", "x": 1850, "facing": -1, "face": "furious" },
+        { "id": "doomi", "x": 900, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 750, "facing": 1, "face": "laugh" }
+      ],
+      "beats": [
+        { "id": "phase2_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 0.8 } },
+        { "id": "phase2_g1", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "rainbow", "level": 1 } },
+        {
+          "id": "phase2_f",
+          "at": 0.3,
+          "macro": "fight",
+          "params": { "sides": [ "doopi", "giant" ], "winner": "doopi", "style": "even", "intensity": "high", "exchanges": 5, "ko": false }
+        },
+        { "id": "phase2_c1", "at": { "with": "phase2_f", "delay": 4 }, "who": "mooka", "do": "cheer", "say": "Rainbow Punch! Rainbow Punch!" },
+        { "id": "phase2_c2", "at": { "with": "phase2_f", "delay": 9 }, "who": "doomi", "do": "cheer", "say": "Jalebi Spin, Doopi!" }
+      ]
+    },
+    {
+      "id": "phase3",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6, "keepCast": true },
+      "music": { "mood": "boss", "intensity": 1, "volume": 0.36 },
+      "cast": [
+        { "id": "doopi", "x": 1500, "facing": 1, "face": "determined" },
+        { "id": "giant", "x": 1850, "facing": -1, "face": "furious" },
+        { "id": "doomi", "x": 900, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 750, "facing": 1, "face": "laugh" }
+      ],
+      "beats": [
+        { "id": "phase3_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 0.8 } },
+        { "id": "phase3_g1", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "rainbow", "level": 1 } },
+        {
+          "id": "phase3_f",
+          "at": 0.3,
+          "macro": "fight",
+          "params": { "sides": [ "doopi", "giant" ], "winner": "doopi", "style": "comeback", "intensity": "high", "exchanges": 5, "ko": false }
+        },
+        {
+          "id": "phase3_cap",
+          "at": { "with": "phase3_f", "delay": 3 },
+          "who": "world",
+          "do": "caption",
+          "params": { "text": "Every hit made Peepa a little smaller.", "pos": "top", "dur": 2.5 }
+        },
+        {
+          "id": "phase3_rp",
+          "at": { "after": "phase3_f" },
+          "who": "doopi",
+          "do": "haymaker",
+          "target": "giant",
+          "outcome": "hit",
+          "approach": "run",
+          "say": "RAINBOW PUNCH!",
+          "bubble": "shout"
+        },
+        {
+          "id": "phase3_d",
+          "at": { "after": "phase3_rp", "delay": 2 },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "giant", "I'm... getting SMALLER? No! NO!", "scared" ],
+              [ "doopi", "You can stop, Peepa. Give back the colours, and we'll stop too.", "determined" ],
+              [ "giant", "NEVER! I'd rather drag you to the moon!", "furious" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "guard",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6, "keepCast": true },
+      "music": { "mood": "calm", "intensity": 0.4, "volume": 0.3 },
+      "cast": [
+        { "id": "dony", "x": 900, "facing": 1, "face": "asleep", "hp": 100 },
+        { "id": "ghoom", "x": 1300, "facing": -1, "face": "sad" },
+        { "id": "becky", "x": 700, "facing": 1, "face": "sad" }
+      ],
+      "beats": [
+        { "id": "guard_l", "at": 0, "who": "dony", "do": "lie_down" },
+        {
+          "id": "guard_n",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "At the edge of the battle, Ghoomu stood guard over sleeping Dony." }
+        },
+        {
+          "id": "guard_d",
+          "at": { "after": "guard_n" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "ghoom", "WAKE UP, SMALL GREEN FRIEND. DOOPI NEEDS YOU. BEEP.", "sad" ],
+              [ "becky", "Woof...", "sad" ],
+              [ "ghoom", "GHOOMU WAS ALONE ONCE. NOT ANYMORE. BECAUSE OF DOOPI.", "sad" ],
+              [ "ghoom", "PLEASE. WAKE UP. BEEP BOOP.", "sad" ]
+            ]
+          }
+        },
+        { "id": "guard_b", "at": { "after": "guard_d" }, "who": "becky", "do": "lick", "partner": "dony" },
+        { "id": "guard_t", "at": { "after": "guard_b" }, "who": "dony", "do": "talk", "face": "tired", "say": "...Doopi...?", "bubble": "whisper" }
+      ]
+    },
+    {
+      "id": "beams",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6, "keepCast": true },
+      "music": { "mood": "tense", "intensity": 1, "volume": 0.36 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "determined" },
+        { "id": "giant", "x": 2500, "facing": -1, "face": "furious" },
+        { "id": "dony", "x": 600, "facing": 1, "face": "tired", "hp": 100 }
+      ],
+      "beats": [
+        { "id": "beams_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 0.8 } },
+        { "id": "beams_g1", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "rainbow", "level": 1 } },
+        { "id": "beams_l0", "at": 0, "who": "dony", "do": "lie_down" },
+        {
+          "id": "beams_b1",
+          "at": 0.3,
+          "who": "giant",
+          "do": "energy_blast",
+          "face": "furious",
+          "fx": [ "giant_blast" ],
+          "say": "GLOOM BEAM!",
+          "bubble": "shout",
+          "target": "doopi",
+          "outcome": "blocked"
+        },
+        {
+          "id": "beams_b2",
+          "at": { "with": "beams_b1", "delay": 0.2 },
+          "who": "doopi",
+          "do": "energy_blast",
+          "face": "determined",
+          "fx": [ "colour_return" ],
+          "say": "RAINBOW BEAM!",
+          "bubble": "shout",
+          "target": "giant",
+          "outcome": "blocked"
+        },
+        { "id": "beams_cl", "at": { "with": "beams_b2", "delay": 0.4 }, "who": "doopi", "do": "block", "fx": [ "beam_clash" ], "interrupt": true },
+        {
+          "id": "beams_n1",
+          "at": { "with": "beams_cl", "delay": 0.5 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "The two beams met in the middle. And the grey one was winning." }
+        },
+        { "id": "beams_p1", "at": { "after": "beams_n1" }, "who": "doopi", "do": "push", "face": "hurt", "say": "Too... strong...", "bubble": "whisper" },
+        { "id": "beams_w1", "at": { "after": "beams_p1" }, "who": "dony", "do": "get_up", "face": "determined" },
+        {
+          "id": "beams_w2",
+          "at": { "after": "beams_w1" },
+          "who": "dony",
+          "do": "cheer",
+          "face": "determined",
+          "say": "I'VE GOT YOU, BUDDY!",
+          "bubble": "shout"
+        },
+        {
+          "id": "beams_p2",
+          "at": { "after": "beams_w2" },
+          "who": "doopi",
+          "do": "push",
+          "face": "furious",
+          "fx": [ "colour_return" ],
+          "say": "TOGETHER!",
+          "bubble": "shout"
+        },
+        { "id": "beams_st", "at": { "with": "beams_p2", "delay": 0.4 }, "who": "giant", "do": "stagger", "face": "hurt" },
+        { "id": "beams_sh", "at": { "with": "beams_p2", "delay": 0.4 }, "who": "world", "do": "shake", "params": { "preset": "big" } }
+      ]
+    },
+    {
+      "id": "taken",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6, "keepCast": true },
+      "music": { "mood": "boss", "intensity": 1, "volume": 0.36 },
+      "cast": [
+        { "id": "doopi", "x": 1700, "facing": 1, "face": "determined" },
+        { "id": "giant", "x": 2300, "facing": -1, "face": "furious" },
+        { "id": "doomi", "x": 1000, "facing": 1, "face": "scared" },
+        { "id": "dony", "x": 850, "facing": 1, "face": "scared", "hp": 100 },
+        { "id": "mooka", "x": 700, "facing": 1, "face": "scared" }
+      ],
+      "beats": [
+        { "id": "taken_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 0.8 } },
+        { "id": "taken_d1", "at": 0.3, "who": "giant", "do": "talk", "face": "furious", "say": "If I can't win here... we go UP!", "bubble": "shout" },
+        { "id": "taken_gr", "at": { "after": "taken_d1" }, "who": "giant", "do": "drag", "partner": "doopi", "approach": "walk" },
+        { "id": "taken_tp", "at": { "after": "taken_gr" }, "who": "giant", "do": "despawn", "fx": [ "smoke" ] },
+        { "id": "taken_tp2", "at": { "with": "taken_tp" }, "who": "doopi", "do": "despawn", "fx": [ "smoke" ], "interrupt": true },
+        { "id": "taken_s1", "at": { "after": "taken_tp" }, "who": "doomi", "do": "gasp", "face": "cry", "say": "DOOPI!", "bubble": "shout" },
+        {
+          "id": "taken_s2",
+          "at": { "with": "taken_s1", "delay": 0.4 },
+          "who": "dony",
+          "do": "point",
+          "face": "scared",
+          "say": "LOOK! On the MOON!",
+          "bubble": "shout"
+        }
+      ]
+    },
+    {
+      "id": "below",
+      "location": "hill",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6, "keepCast": true },
+      "music": { "mood": "sad", "intensity": 0.6, "volume": 0.32 },
+      "cast": [
+        { "id": "doomi", "x": 1400, "facing": 1, "face": "cry" },
+        { "id": "dony", "x": 1200, "facing": 1, "face": "scared", "hp": 100 },
+        { "id": "mooka", "x": 1600, "facing": 1, "face": "scared" },
+        { "id": "becky", "x": 1800, "facing": 1, "face": "scared" },
+        { "id": "tara", "x": 1000, "facing": 1, "face": "scared" }
+      ],
+      "beats": [
+        {
+          "id": "below_d",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doomi", "He's up there. Alone. With Peepa.", "cry" ],
+              [ "dony", "He's not alone. We're RIGHT here. He knows it.", "determined" ],
+              [ "mooka", "Can the moon hear us if we shout really loud?", "scared" ],
+              [ "tara", "Let's find out. On three. ONE, TWO...", "determined" ]
+            ]
+          }
+        },
+        { "id": "below_c", "at": { "after": "below_d" }, "who": "world", "do": "caption", "params": { "text": "\"DOOPIIIII!\"", "pos": "top", "dur": 2 } },
+        { "id": "below_b", "at": { "with": "below_c" }, "who": "becky", "do": "bark", "params": { "cycles": 3 } }
+      ]
+    },
+    {
+      "id": "moon",
+      "location": "moon",
+      "time": "night",
+      "transitionIn": { "type": "wipe", "dur": 0.6, "dir": "up" },
+      "music": { "mood": "boss", "intensity": 0.8, "volume": 0.34 },
+      "cast": [ { "id": "doopi", "x": 1300, "facing": 1, "face": "surprised" }, { "id": "giant", "x": 2300, "facing": -1, "face": "smug" } ],
+      "beats": [
+        { "id": "moon_g0", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "giant", "color": "#9a6cff", "level": 1 } },
+        { "id": "moon_g1", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "rainbow", "level": 0.6 } },
+        {
+          "id": "moon_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "In a puff of purple smoke, they landed on the Grey Moon itself." }
+        },
+        {
+          "id": "moon_d1",
+          "at": { "after": "moon_n1" },
+          "who": "giant",
+          "do": "laugh",
+          "face": "smug",
+          "say": "No friends up here, little hero.",
+          "bubble": "shout"
+        },
+        { "id": "moon_d2", "at": { "after": "moon_d1" }, "who": "doopi", "do": "look_around", "face": "scared" },
+        {
+          "id": "moon_d4",
+          "at": { "after": "moon_d2" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [ [ "giant", "Up here, the moon is highest. In minutes, grey is FOREVER.", "smug" ], [ "doopi", "Then I've got minutes.", "determined" ] ]
+          }
+        },
+        { "id": "moon_cu", "at": { "after": "moon_d4" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "doopi", "dur": 2.5 } },
+        {
+          "id": "moon_d3",
+          "at": { "with": "moon_cu", "delay": 0.4 },
+          "who": "doopi",
+          "do": "clench_fist",
+          "face": "determined",
+          "say": "They're always with me."
+        },
+        { "id": "moon_end", "at": { "after": "moon_d3", "delay": 1 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

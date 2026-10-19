@@ -1,0 +1,443 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 16: The Road to Grey Peak",
+    "format": "landscape",
+    "seed": 2416,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": { "headband": "#ff3b5c", "bracelet": "#e6b84a", "scarf": "#ff3b5c" },
+        "slots": 5
+      },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+      "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": { "eyes": "visor" },
+      "voice": { "pitch": 0.5, "speed": 0.8, "timbre": "robot" }
+    },
+    {
+      "id": "shadow",
+      "name": "???",
+      "body": "stickman",
+      "color": "#1a0f3a",
+      "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#0e0820", "mouthStyle": "cartoon", "accessories": { "headband": "#3a1f6e" } },
+      "voice": { "pitch": 0.95, "speed": 1, "timbre": "deep" }
+    }
+  ],
+  "locations": [
+    { "id": "foot", "theme": "tokyo_village", "stageWidth": 3200 },
+    { "id": "peak", "theme": "grey_peak", "stageWidth": 4400 },
+    { "id": "cave", "theme": "mountain_cave", "stageWidth": 2800, "set": [ { "id": "fire", "object": "campfire", "x": 1400 } ] },
+    { "id": "gate", "theme": "shadow_valley", "stageWidth": 3400 }
+  ],
+  "scenes": [
+    {
+      "id": "leave",
+      "location": "foot",
+      "time": "dawn",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 16: The Road to Grey Peak" },
+      "grade": { "saturation": 0.95 },
+      "music": { "mood": "heroic", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "ghoom", "x": 2000, "facing": 1, "face": "happy" },
+        { "id": "doopi", "x": 1500, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 1300, "facing": 1, "face": "happy" },
+        { "id": "tara", "x": 1100, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 900, "facing": 1, "face": "laugh" },
+        { "id": "becky", "x": 700, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "leave_n1", "at": 0.4, "who": "world", "do": "narrate", "params": { "text": "Five nights left. At dawn, the friends set off for Grey Peak." } },
+        {
+          "id": "leave_d1",
+          "at": { "after": "leave_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "ghoom", "GHOOMU. CARRY. FRIENDS. BEEP!", "happy" ],
+              [ "mooka", "A robot ride! Best day EVER!", "laugh" ],
+              [ "doopi", "Thank you, Ghoomu. Let's bring Doomi home.", "determined" ],
+              [ "tara", "Grey Peak is three days' walk. With Ghoomu... maybe one.", "happy" ],
+              [ "dony", "And no scary robots this time. Just a friendly one.", "laugh" ]
+            ]
+          }
+        },
+        { "id": "leave_c1", "at": { "after": "leave_d1" }, "who": "ghoom", "do": "carry", "partner": "mooka", "approach": "walk" },
+        { "id": "leave_w1", "at": { "after": "leave_c1" }, "who": "ghoom", "do": "walk", "to": { "x": 2900 } },
+        { "id": "leave_w2", "at": { "with": "leave_w1", "delay": 0.4 }, "who": "doopi", "do": "run", "to": { "x": 2700 } },
+        { "id": "leave_w3", "at": { "with": "leave_w1", "delay": 0.6 }, "who": "dony", "do": "run", "to": { "x": 2550 } },
+        { "id": "leave_w4", "at": { "with": "leave_w1", "delay": 0.8 }, "who": "tara", "do": "run", "to": { "x": 2400 } },
+        { "id": "leave_w5", "at": { "with": "leave_w1", "delay": 1 }, "who": "becky", "do": "run", "to": { "x": 2250 } }
+      ]
+    },
+    {
+      "id": "climb",
+      "location": "peak",
+      "time": "day",
+      "weather": "snow",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "grade": { "saturation": 0.95 },
+      "music": { "mood": "playful", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 500, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 380, "facing": 1, "face": "tired" },
+        { "id": "tara", "x": 650, "facing": 1, "face": "happy" },
+        { "id": "becky", "x": 800, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 250, "facing": 1, "face": "laugh" }
+      ],
+      "beats": [
+        { "id": "climb_tr", "at": 0.3, "macro": "travel", "params": { "who": [ "doopi", "dony", "tara", "becky" ], "to": { "x": 2200 }, "mode": "walk" } },
+        { "id": "climb_mk", "at": 0.6, "who": "mooka", "do": "walk", "to": { "x": 1900 } },
+        {
+          "id": "climb_d1",
+          "at": { "after": "climb_tr" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "So. Cold. My nose is an ice cube.", "tired" ],
+              [ "mooka", "SNOW! Look! I'm making a snow angel!", "laugh" ],
+              [ "tara", "Mooka, we don't have time for-", "smug" ],
+              [ "tara", "...Okay, one snow angel.", "laugh" ]
+            ]
+          }
+        },
+        { "id": "climb_m1", "at": { "after": "climb_mk" }, "who": "mooka", "do": "lie_down", "face": "laugh" },
+        { "id": "climb_b1", "at": { "after": "climb_d1" }, "who": "becky", "do": "lie_down", "face": "surprised" },
+        { "id": "climb_b2", "at": { "after": "climb_b1" }, "who": "becky", "do": "whimper", "say": "Woof?" },
+        { "id": "climb_d2", "at": { "after": "climb_b2" }, "who": "doopi", "do": "laugh", "face": "laugh", "say": "Becky sank in the snow! Only her ears!" },
+        { "id": "climb_p1", "at": { "after": "climb_d2" }, "who": "doopi", "do": "pet_dog", "partner": "becky", "face": "happy" }
+      ]
+    },
+    {
+      "id": "blizzard",
+      "location": "peak",
+      "time": "day",
+      "weather": "snow",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.8 },
+      "music": { "mood": "tense", "intensity": 0.6, "volume": 0.32 },
+      "cast": [
+        { "id": "doopi", "x": 800, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 650, "facing": 1, "face": "scared" },
+        { "id": "tara", "x": 500, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 350, "facing": 1, "face": "scared" },
+        { "id": "becky", "x": 950, "facing": 1, "face": "scared" }
+      ],
+      "beats": [
+        {
+          "id": "blizzard_n1",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Higher up, a blizzard howled. They couldn't see their own hands." }
+        },
+        {
+          "id": "blizzard_d1",
+          "at": { "after": "blizzard_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Hold hands! Nobody lets go!", "determined" ],
+              [ "dony", "Not letting go. Never letting go.", "scared" ],
+              [ "tara", "I can't see the path! Becky, stay close!", "scared" ],
+              [ "mooka", "My sprout is FROZEN!", "cry" ],
+              [ "doopi", "Keep walking. One step at a time. Together.", "determined" ]
+            ]
+          }
+        },
+        {
+          "id": "blizzard_wt",
+          "at": { "after": "blizzard_d1" },
+          "macro": "walk_together",
+          "params": { "who": [ "doopi", "dony", "tara", "mooka" ], "to": { "x": 2600 } }
+        },
+        { "id": "blizzard_bk", "at": { "with": "blizzard_wt", "delay": 0.3 }, "who": "becky", "do": "walk", "to": { "x": 2850 } },
+        { "id": "blizzard_ws", "at": { "with": "blizzard_wt", "delay": 2 }, "who": "world", "do": "set_weather", "params": { "weather": "wind", "dur": 2 } }
+      ]
+    },
+    {
+      "id": "avalanche",
+      "location": "peak",
+      "time": "day",
+      "weather": "snow",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.8 },
+      "music": { "mood": "battle", "intensity": 0.9, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 2200, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 2050, "facing": 1, "face": "scared" },
+        { "id": "tara", "x": 1900, "facing": 1, "face": "scared" },
+        { "id": "mooka", "x": 1750, "facing": 1, "face": "scared" },
+        { "id": "becky", "x": 2400, "facing": 1, "face": "scared" }
+      ],
+      "beats": [
+        { "id": "avalanche_rm", "at": 0.3, "who": "world", "do": "shake", "params": { "preset": "med" } },
+        { "id": "avalanche_x1", "at": { "with": "avalanche_rm" }, "who": "world", "do": "sfx", "params": { "name": "explosion", "volume": 0.5, "x": 400 } },
+        {
+          "id": "avalanche_t1",
+          "at": { "with": "avalanche_rm", "delay": 0.4 },
+          "who": "tara",
+          "do": "point",
+          "face": "scared",
+          "say": "AVALANCHE! RUN!",
+          "bubble": "shout"
+        },
+        { "id": "avalanche_av", "at": { "after": "avalanche_t1" }, "who": "mooka", "do": "run", "to": { "x": 3700 }, "fx": [ "avalanche" ] },
+        { "id": "avalanche_r2", "at": { "with": "avalanche_av", "delay": 0.1 }, "who": "tara", "do": "run", "to": { "x": 3800 } },
+        { "id": "avalanche_r3", "at": { "with": "avalanche_av", "delay": 0.2 }, "who": "becky", "do": "run", "to": { "x": 3950 } },
+        { "id": "avalanche_r4", "at": { "with": "avalanche_av", "delay": 0.3 }, "who": "doopi", "do": "run", "to": { "x": 3000 } },
+        { "id": "avalanche_r5", "at": { "with": "avalanche_av", "delay": 0.4 }, "who": "dony", "do": "run", "to": { "x": 2900 } },
+        {
+          "id": "avalanche_sb",
+          "at": { "with": "avalanche_av", "delay": 1 },
+          "who": "world",
+          "do": "spawn_object",
+          "params": { "kind": "snowball", "id": "sb1", "x": 1900, "y": 40 }
+        },
+        { "id": "avalanche_sv", "at": { "with": "avalanche_sb", "delay": 0.1 }, "who": "world", "do": "set_object", "object": "sb1", "params": { "vx": 700 } },
+        { "id": "avalanche_tp", "at": { "after": "avalanche_r4" }, "who": "doopi", "do": "knockdown", "face": "scared", "say": "Whoa! I slipped!" },
+        {
+          "id": "avalanche_ps",
+          "at": { "after": "avalanche_r5" },
+          "who": "dony",
+          "do": "push",
+          "face": "determined",
+          "say": "Doopi, MOVE!",
+          "bubble": "shout"
+        },
+        { "id": "avalanche_hit", "at": { "after": "avalanche_ps" }, "who": "dony", "do": "faint", "face": "dizzy" },
+        { "id": "avalanche_sm", "at": { "with": "avalanche_hit" }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        { "id": "avalanche_up", "at": { "after": "avalanche_tp", "delay": 0.4 }, "who": "doopi", "do": "get_up", "face": "scared" },
+        { "id": "avalanche_cr", "at": { "after": "avalanche_hit" }, "who": "doopi", "do": "gasp", "face": "cry", "say": "DONY!", "bubble": "shout" }
+      ]
+    },
+    {
+      "id": "dig",
+      "location": "peak",
+      "time": "day",
+      "weather": "snow",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.8 },
+      "music": { "mood": "sad", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "dony", "x": 2000, "facing": 1, "face": "dizzy", "hp": 100 },
+        { "id": "doopi", "x": 1700, "facing": 1, "face": "cry" },
+        { "id": "ghoom", "x": 2600, "facing": -1, "face": "neutral" },
+        { "id": "becky", "x": 2300, "facing": -1, "face": "scared" }
+      ],
+      "beats": [
+        { "id": "dig_l0", "at": 0, "who": "dony", "do": "lie_down" },
+        { "id": "dig_g1", "at": 0.4, "who": "ghoom", "do": "walk", "to": { "near": "dony", "gap": 200 } },
+        { "id": "dig_g2", "at": { "after": "dig_g1" }, "who": "ghoom", "do": "kneel", "face": "sad" },
+        { "id": "dig_g3", "at": { "after": "dig_g2" }, "who": "ghoom", "do": "pull", "face": "determined", "say": "DIG. DIG. BEEP." },
+        { "id": "dig_b1", "at": { "with": "dig_g3", "delay": 0.3 }, "who": "becky", "do": "dig" },
+        { "id": "dig_u1", "at": { "after": "dig_g3" }, "who": "dony", "do": "get_up", "face": "dizzy" },
+        {
+          "id": "dig_d1",
+          "at": { "after": "dig_u1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "Did I... win?", "dizzy" ],
+              [ "doopi", "You pushed me out of the way! You got hit instead of me!", "cry" ],
+              [ "dony", "Told you, champ. I've got you. Always.", "happy" ]
+            ]
+          }
+        },
+        { "id": "dig_h1", "at": { "after": "dig_d1" }, "who": "doopi", "do": "hug", "partner": "dony", "face": "cry" }
+      ]
+    },
+    {
+      "id": "camp",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": { "type": "fade", "dur": 0.8 },
+      "music": { "mood": "calm", "intensity": 0.3, "volume": 0.28 },
+      "cast": [
+        { "id": "doopi", "x": 1150, "facing": 1, "face": "sad" },
+        { "id": "dony", "x": 1650, "facing": -1, "face": "tired" },
+        { "id": "becky", "x": 900, "facing": 1, "face": "asleep" }
+      ],
+      "beats": [
+        { "id": "camp_s1", "at": 0.2, "who": "doopi", "do": "sit" },
+        { "id": "camp_s2", "at": 0.3, "who": "dony", "do": "sit" },
+        { "id": "camp_z", "at": 0.3, "who": "becky", "do": "sleep_dog" },
+        {
+          "id": "camp_d1",
+          "at": 1,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Your scarf is all wet. Here. Take mine.", "love" ],
+              [ "dony", "But it's your lucky scarf.", "surprised" ],
+              [ "doopi", "You're my lucky friend. That's better.", "happy" ]
+            ]
+          }
+        },
+        {
+          "id": "camp_a1",
+          "at": { "after": "camp_d1" },
+          "who": "world",
+          "do": "set_appearance",
+          "params": { "who": "doopi", "accessory": "scarf", "remove": true }
+        },
+        {
+          "id": "camp_a2",
+          "at": { "with": "camp_a1" },
+          "who": "world",
+          "do": "set_appearance",
+          "params": { "who": "dony", "accessory": "scarf", "color": "#ff3b5c" }
+        },
+        {
+          "id": "camp_d2",
+          "at": { "after": "camp_a1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "Doopi... are you scared of what's at the top?", "scared" ],
+              [ "doopi", "Yes. But you said it on day one: scared and brave can be friends.", "determined" ],
+              [ "dony", "Doomi said that.", "laugh" ],
+              [ "doopi", "...Then she's right twice.", "love" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "path",
+      "location": "peak",
+      "time": "dawn",
+      "weather": "snow",
+      "transitionIn": { "type": "fade", "dur": 0.6 },
+      "grade": { "saturation": 0.8 },
+      "music": { "mood": "mysterious", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "becky", "x": 1300, "facing": 1, "face": "determined" },
+        { "id": "tara", "x": 1000, "facing": 1, "face": "tired" },
+        { "id": "doopi", "x": 800, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 600, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "path_b1", "at": 0.3, "who": "becky", "do": "sneak", "to": { "x": 2000 } },
+        { "id": "path_b2", "at": { "after": "path_b1" }, "who": "becky", "do": "bark", "params": { "cycles": 3 }, "say": "WOOF WOOF!", "bubble": "shout" },
+        {
+          "id": "path_d1",
+          "at": { "after": "path_b2" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "She found a path! A secret path between the rocks!", "surprised" ],
+              [ "mooka", "Becky, you're a genius doggy!", "laugh" ],
+              [ "doopi", "Good girl. Lead the way.", "happy" ]
+            ]
+          }
+        },
+        { "id": "path_go", "at": { "after": "path_d1" }, "who": "becky", "do": "run", "to": { "x": 3200 } },
+        { "id": "path_go2", "at": { "with": "path_go", "delay": 0.3 }, "who": "doopi", "do": "run", "to": { "x": 3000 } }
+      ]
+    },
+    {
+      "id": "mirror",
+      "location": "gate",
+      "time": "night",
+      "transitionIn": { "type": "wipe", "dur": 0.6, "dir": "left" },
+      "music": { "mood": "boss", "intensity": 0.6, "volume": 0.32 },
+      "cast": [
+        { "id": "doopi", "x": 1000, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 820, "facing": 1, "face": "scared" },
+        { "id": "becky", "x": 1180, "facing": 1, "face": "angry" },
+        { "id": "shadow", "x": 2200, "facing": -1, "hidden": true }
+      ],
+      "beats": [
+        {
+          "id": "mirror_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "At the gate of the Shadow Valley, someone was waiting in the mist." }
+        },
+        { "id": "mirror_sp", "at": { "after": "mirror_n1" }, "who": "shadow", "do": "spawn", "fx": [ "smoke" ] },
+        {
+          "id": "mirror_gl",
+          "at": { "with": "mirror_sp" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "shadow", "color": "#b05cff", "level": 0.7, "dur": 1.5 }
+        },
+        { "id": "mirror_b1", "at": { "with": "mirror_sp", "delay": 0.5 }, "who": "becky", "do": "growl", "say": "Grrr!" },
+        {
+          "id": "mirror_d1",
+          "at": { "after": "mirror_sp" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "Doopi... that's... YOU.", "scared" ],
+              [ "doopi", "That's me? But dark. And purple.", "scared" ],
+              [ "shadow", "Hello, Doopi. I've been waiting for you.", "smug" ],
+              [ "shadow", "I am everything you're afraid of. Clumsy. Slow. Alone.", "smug" ],
+              [ "doopi", "I'm not alone.", "determined" ],
+              [ "shadow", "We'll see about that, little hero.", "smug" ]
+            ]
+          }
+        },
+        { "id": "mirror_sm", "at": { "after": "mirror_d1" }, "who": "shadow", "do": "laugh", "face": "smug" },
+        { "id": "mirror_cu", "at": { "with": "mirror_sm" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "shadow", "dur": 2.5 } },
+        { "id": "mirror_end", "at": { "after": "mirror_sm", "delay": 1.2 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

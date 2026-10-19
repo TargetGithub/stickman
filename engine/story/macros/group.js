@@ -262,16 +262,18 @@ function chase(ctx, p) {
   frame(); // the camera stays on the runner and the lead chaser
   let caught = null;
   let end = lastRun;
+  const leadDog = ctx.catalog.bodies?.[ctx.castById.get(lead)?.body]?.rig === "quadruped";
   if (p.caught) {
     // A dog never attacks: it grabs the runner's trouser leg instead (a comic hop, no hit; ADR-020).
-    const dog = ctx.catalog.bodies?.[ctx.castById.get(lead)?.body]?.rig === "quadruped" && ctx.moves.has("bite_hold");
+    const dog = leadDog && ctx.moves.has("bite_hold");
     caught = ctx.with(lastRun, dog ? { who: lead, do: "bite_hold", partner: runner, approach: "run" }
       : { who: lead, do: ctx.moves.has("sweep") ? "sweep" : "jab", target: runner, outcome: "hit", approach: "run" }, 0.6);
     end = ctx.after(caught, { who: runner, do: "hold_head", face: "scared" }, 0.8);
   } else {
-    end = ctx.after(lastRun, { who: lead, do: pick(ctx, emotes(ctx, ["hold_head", "shake_head", "facepalm"])), face: "angry" }, 0.3);
+    // The runner got away: a person grumbles, a dog barks after them.
+    end = ctx.after(lastRun, { who: lead, do: leadDog ? "bark" : pick(ctx, emotes(ctx, ["hold_head", "shake_head", "facepalm"])), face: "angry" }, 0.3);
   }
-  const caughtAt = caught && ctx.catalog.bodies?.[ctx.castById.get(lead)?.body]?.rig === "quadruped" ? `${caught}.start` : `${caught}.hit`;
+  const caughtAt = caught && leadDog ? `${caught}.start` : `${caught}.hit`;
   return { anchors: { start: `${segments[0]?.run ?? lastRun}.start`, end: `${end}.end`, caught: caught ? caughtAt : `${end}.end` } };
 }
 

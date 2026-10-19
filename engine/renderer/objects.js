@@ -6,7 +6,10 @@
 
 import { STAGE } from "../config.js";
 import { drawPaths } from "./paths.js";
-import { SHAPES } from "./object_shapes.js";
+import { SHAPES as BASE_SHAPES } from "./object_shapes.js";
+import { PLACE_SHAPES } from "./object_shapes_places.js";
+
+const SHAPES = { ...BASE_SHAPES, ...PLACE_SHAPES };
 
 /** Shape names objects can use as `draw` (drafts and the validator check against this list). */
 export const OBJECT_SHAPES = () => Object.keys(SHAPES);
@@ -47,7 +50,7 @@ export function staticObjectsAt(catalog, set, events, t) {
  * @param {object} catalog  needs catalog.objects (no-op without it)
  * @param {Array<{ id, object, x, y?, layer?, facing?, state? }>} set
  */
-export function drawSetPieces(ctx, catalog, set, layer) {
+export function drawSetPieces(ctx, catalog, set, layer, t = 0) {
   if (!set || !set.length || !catalog.objects) return;
   for (const piece of set) {
     if ((piece.layer || "mid") !== layer) continue;
@@ -59,7 +62,7 @@ export function drawSetPieces(ctx, catalog, set, layer) {
     ctx.translate(piece.x, STAGE.groundY - (piece.y ?? 0));
     ctx.scale(look.scale * (piece.facing === -1 ? -1 : 1), look.scale);
     ctx.globalAlpha = look.alpha;
-    shape(ctx, def, piece);
+    shape(ctx, def, def.animated ? { ...piece, t } : piece);
     ctx.restore();
   }
 }

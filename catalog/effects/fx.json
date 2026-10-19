@@ -911,5 +911,995 @@
         "alpha": [1, 0]
       }
     ]
+  },
+  "colour_powder": {
+    "description": "A festival colour-powder burst: pink, yellow, green and blue puffs that bloom above the head and drift down (Holi style).",
+    "tags": ["celebrate", "happy", "festival", "colour"],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-170, -110],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#ff5fa8", "#ff86c0"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-125, -75],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#ffd23f", "#ffe270"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-105, -55],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#4fd36a", "#7ee36b"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 3,
+        "offset": 40,
+        "angle": [-70, -10],
+        "speed": [160, 340],
+        "drag": 1.8,
+        "gravity": 60,
+        "life": [1.8, 2.6],
+        "size": [18, 72],
+        "color": ["#3fa8ff", "#6cc4ff"],
+        "alpha": [0.8, 0]
+      },
+      {
+        "shape": "dot",
+        "count": 24,
+        "offset": 50,
+        "angle": [-170, -10],
+        "speed": [120, 380],
+        "drag": 1.4,
+        "gravity": 160,
+        "life": [1.6, 2.4],
+        "size": [5, 4],
+        "color": ["#ff5fa8", "#ffd23f", "#4fd36a", "#3fa8ff"],
+        "alpha": [1, 0]
+      }
+    ]
+  },
+  "gloom_mist": {
+    "description": "Rolling grey-purple mist from the Gloom Horn: slow wide puffs spreading along the floor for about 3 s, low alpha.",
+    "tags": ["villain", "gloom", "mist", "lingers"],
+    "anchor": "feet",
+    "sustain": {"duration": 3, "rate": 9},
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 40,
+        "spreadY": 24,
+        "angle": [-12, 0],
+        "speed": [90, 240],
+        "drag": 0.55,
+        "life": [2.2, 3],
+        "size": [36, 120],
+        "color": ["#7d7192", "#675c7e", "#958aa8"],
+        "alpha": [0.3, 0]
+      },
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 40,
+        "spreadY": 24,
+        "angle": [180, 192],
+        "speed": [90, 240],
+        "drag": 0.55,
+        "life": [2.2, 3],
+        "size": [36, 120],
+        "color": ["#7d7192", "#675c7e", "#958aa8"],
+        "alpha": [0.3, 0]
+      }
+    ]
+  },
+  "colour_return": {
+    "description": "Colour comes back: a glow, a ring and rainbow sparkles bursting out (with set_grade from).",
+    "tags": [
+      "magic",
+      "colour",
+      "hope",
+      "celebrate"
+    ],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.9,
+          0.9
+        ],
+        "size": [
+          60,
+          220
+        ],
+        "color": "rgba(255, 245, 200, 0.9)",
+        "alpha": [
+          0.9,
+          0
+        ]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.8,
+          0.8
+        ],
+        "size": [
+          30,
+          300
+        ],
+        "width": 10,
+        "color": "#ffffff",
+        "alpha": [
+          0.8,
+          0
+        ]
+      },
+      {
+        "shape": "star",
+        "count": 21,
+        "offset": 30,
+        "angle": [
+          -180,
+          0
+        ],
+        "speed": [
+          220,
+          520
+        ],
+        "drag": 1.2,
+        "life": [
+          1.1,
+          1.8
+        ],
+        "size": [
+          14,
+          3
+        ],
+        "color": [
+          "#ff3b3b",
+          "#ffe02e",
+          "#3ddc6a",
+          "#2f9bff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 18,
+        "offset": 40,
+        "spreadY": 120,
+        "angle": [
+          -110,
+          -70
+        ],
+        "speed": [
+          60,
+          160
+        ],
+        "drag": 0.6,
+        "life": [
+          1.4,
+          2.2
+        ],
+        "size": [
+          7,
+          1
+        ],
+        "color": [
+          "#ff9a1f",
+          "#5a5cff",
+          "#b05cff",
+          "#ffffff"
+        ],
+        "alpha": [
+          0.9,
+          0
+        ]
+      }
+    ]
+  },
+  "chilli_smoke": {
+    "description": "Red-orange chilli smoke rolling in low and wide for about 3 s, with red specks (beats add the sneezes).",
+    "tags": [
+      "spice",
+      "smoke",
+      "comedy",
+      "lingers"
+    ],
+    "anchor": "feet",
+    "sustain": {
+      "duration": 3,
+      "rate": 8
+    },
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 40,
+        "spreadY": 40,
+        "angle": [
+          -20,
+          0
+        ],
+        "speed": [
+          80,
+          220
+        ],
+        "drag": 0.55,
+        "life": [
+          2,
+          2.8
+        ],
+        "size": [
+          40,
+          130
+        ],
+        "color": [
+          "#ff6b35",
+          "#e8483d",
+          "#ff9a5a"
+        ],
+        "alpha": [
+          0.35,
+          0
+        ]
+      },
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 40,
+        "spreadY": 40,
+        "angle": [
+          180,
+          200
+        ],
+        "speed": [
+          80,
+          220
+        ],
+        "drag": 0.55,
+        "life": [
+          2,
+          2.8
+        ],
+        "size": [
+          40,
+          130
+        ],
+        "color": [
+          "#ff6b35",
+          "#e8483d",
+          "#ff9a5a"
+        ],
+        "alpha": [
+          0.35,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 2,
+        "offset": 30,
+        "spreadY": 80,
+        "angle": [
+          -150,
+          -30
+        ],
+        "speed": [
+          40,
+          110
+        ],
+        "drag": 0.6,
+        "life": [
+          1.2,
+          1.8
+        ],
+        "size": [
+          7,
+          2
+        ],
+        "color": [
+          "#e63946",
+          "#ff3b3b"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "whirlpool": {
+    "description": "A big spinning whirlpool on the water: rings swirling in and foam spinning round for about 3 s.",
+    "tags": [
+      "water",
+      "lake",
+      "danger",
+      "lingers"
+    ],
+    "anchor": "feet",
+    "sustain": {
+      "duration": 3,
+      "rate": 6
+    },
+    "layers": [
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          1.2,
+          1.2
+        ],
+        "size": [
+          260,
+          40
+        ],
+        "width": 8,
+        "color": "#bfe6f5",
+        "alpha": [
+          0.7,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 3,
+        "offset": 150,
+        "angle": [
+          -180,
+          180
+        ],
+        "speed": [
+          160,
+          260
+        ],
+        "drag": 1.5,
+        "life": [
+          0.8,
+          1.2
+        ],
+        "size": [
+          9,
+          3
+        ],
+        "color": [
+          "#ffffff",
+          "#bfe6f5"
+        ],
+        "alpha": [
+          0.9,
+          0
+        ]
+      }
+    ]
+  },
+  "splash": {
+    "description": "A water splash: droplets fly up and fall, with a white ring on the surface.",
+    "tags": [
+      "water",
+      "lake",
+      "impact"
+    ],
+    "anchor": "feet",
+    "layers": [
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.5,
+          0.5
+        ],
+        "size": [
+          20,
+          140
+        ],
+        "width": 6,
+        "color": "#ffffff",
+        "alpha": [
+          0.8,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 22,
+        "offset": 10,
+        "angle": [
+          -160,
+          -20
+        ],
+        "speed": [
+          260,
+          560
+        ],
+        "drag": 0.4,
+        "gravity": 1400,
+        "life": [
+          0.6,
+          1
+        ],
+        "size": [
+          9,
+          4
+        ],
+        "color": [
+          "#bfe6f5",
+          "#ffffff",
+          "#4fa8d8"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "visor_beam": {
+    "description": "A thick straight cyan beam shooting forward from the head (Iron Ghoom's visor), with a bright core.",
+    "tags": [
+      "robot",
+      "energy",
+      "attack"
+    ],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 8,
+        "offset": 20,
+        "angle": [
+          -2,
+          2
+        ],
+        "speed": [
+          1100,
+          1200
+        ],
+        "drag": 0,
+        "life": [
+          0.35,
+          0.45
+        ],
+        "size": [
+          40,
+          18
+        ],
+        "color": [
+          "#7ff0ff",
+          "#bff8ff",
+          "#ffffff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.4,
+          0.4
+        ],
+        "size": [
+          70,
+          20
+        ],
+        "color": "rgba(127, 240, 255, 0.9)",
+        "alpha": [
+          0.9,
+          0
+        ]
+      }
+    ]
+  },
+  "avalanche": {
+    "description": "An avalanche: big snow puffs and snowball dots rushing in low from behind, for about 3 s.",
+    "tags": [
+      "snow",
+      "danger",
+      "mountain",
+      "lingers"
+    ],
+    "anchor": "feet",
+    "sustain": {
+      "duration": 3,
+      "rate": 10
+    },
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 120,
+        "spreadY": 60,
+        "angle": [
+          -10,
+          10
+        ],
+        "speed": [
+          380,
+          620
+        ],
+        "drag": 0.3,
+        "life": [
+          1,
+          1.6
+        ],
+        "size": [
+          60,
+          160
+        ],
+        "color": [
+          "#f4f8fc",
+          "#e2ecf6",
+          "#ffffff"
+        ],
+        "alpha": [
+          0.85,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 2,
+        "offset": 100,
+        "spreadY": 40,
+        "angle": [
+          -20,
+          5
+        ],
+        "speed": [
+          420,
+          700
+        ],
+        "drag": 0.2,
+        "gravity": 600,
+        "life": [
+          0.8,
+          1.2
+        ],
+        "size": [
+          18,
+          10
+        ],
+        "color": [
+          "#ffffff",
+          "#c9d8e8"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "mirror_ripple": {
+    "description": "Silver rings rippling out on a mirror's surface when someone goes through it.",
+    "tags": [
+      "mirror",
+      "magic",
+      "portal"
+    ],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "ring",
+        "count": 3,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.7,
+          1.1
+        ],
+        "size": [
+          20,
+          150
+        ],
+        "width": 5,
+        "color": "#e8ecf8",
+        "alpha": [
+          0.8,
+          0
+        ]
+      },
+      {
+        "shape": "star",
+        "count": 8,
+        "offset": 40,
+        "angle": [
+          -180,
+          180
+        ],
+        "speed": [
+          60,
+          140
+        ],
+        "drag": 1,
+        "life": [
+          0.6,
+          1
+        ],
+        "size": [
+          10,
+          3
+        ],
+        "color": [
+          "#ffffff",
+          "#c9a6ff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "crystal_pull": {
+    "description": "Six coloured light streams flying up and away from the wrist (the crystals pulled out of the bracelet).",
+    "tags": [
+      "magic",
+      "crystal",
+      "villain"
+    ],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "line",
+        "count": 10,
+        "offset": 20,
+        "angle": [
+          -120,
+          -60
+        ],
+        "speed": [
+          500,
+          800
+        ],
+        "drag": 0.2,
+        "life": [
+          0.6,
+          1
+        ],
+        "size": [
+          30,
+          10
+        ],
+        "color": [
+          "#ff3b30",
+          "#ff9500",
+          "#ffd60a",
+          "#34c759"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "line",
+        "count": 10,
+        "offset": 20,
+        "angle": [
+          -120,
+          -60
+        ],
+        "speed": [
+          500,
+          800
+        ],
+        "drag": 0.2,
+        "life": [
+          0.6,
+          1
+        ],
+        "size": [
+          30,
+          10
+        ],
+        "color": [
+          "#1e90ff",
+          "#4b3bd6",
+          "#a347e0",
+          "#ffffff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "grow_giant": {
+    "description": "A purple flash and swirling purple sparkles all around someone growing huge.",
+    "tags": [
+      "magic",
+      "villain",
+      "giant"
+    ],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.8,
+          0.8
+        ],
+        "size": [
+          80,
+          300
+        ],
+        "color": "rgba(176, 108, 255, 0.9)",
+        "alpha": [
+          0.9,
+          0
+        ]
+      },
+      {
+        "shape": "star",
+        "count": 30,
+        "offset": 80,
+        "angle": [
+          -180,
+          180
+        ],
+        "speed": [
+          200,
+          480
+        ],
+        "drag": 1,
+        "life": [
+          1,
+          1.6
+        ],
+        "size": [
+          16,
+          4
+        ],
+        "color": [
+          "#b05cff",
+          "#d9c4ff",
+          "#ffffff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "ring",
+        "count": 2,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.7,
+          1.1
+        ],
+        "size": [
+          40,
+          300
+        ],
+        "width": 10,
+        "color": "#b05cff",
+        "alpha": [
+          0.8,
+          0
+        ]
+      }
+    ]
+  },
+  "giant_blast": {
+    "description": "A huge purple-grey blast with a shockwave ring (Giant Peepa's Gloom Blast).",
+    "tags": [
+      "villain",
+      "energy",
+      "attack",
+      "giant"
+    ],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.6,
+          0.6
+        ],
+        "size": [
+          60,
+          260
+        ],
+        "color": "rgba(130, 110, 170, 0.9)",
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "ring",
+        "count": 2,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.6,
+          0.9
+        ],
+        "size": [
+          30,
+          300
+        ],
+        "width": 10,
+        "color": "#8a7aaa",
+        "alpha": [
+          0.9,
+          0
+        ]
+      },
+      {
+        "shape": "puff",
+        "count": 8,
+        "offset": 40,
+        "angle": [
+          -180,
+          180
+        ],
+        "speed": [
+          200,
+          420
+        ],
+        "drag": 1.2,
+        "life": [
+          0.8,
+          1.2
+        ],
+        "size": [
+          30,
+          90
+        ],
+        "color": [
+          "#6a5a8a",
+          "#8a8496",
+          "#b05cff"
+        ],
+        "alpha": [
+          0.7,
+          0
+        ]
+      }
+    ]
+  },
+  "beam_clash": {
+    "description": "Two energy beams meeting: a bright core with sparks flying out in every direction for about 2 s.",
+    "tags": [
+      "energy",
+      "clash",
+      "finale",
+      "lingers"
+    ],
+    "anchor": "hip",
+    "sustain": {
+      "duration": 2,
+      "rate": 10
+    },
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.3,
+          0.3
+        ],
+        "size": [
+          80,
+          60
+        ],
+        "color": "rgba(255, 255, 255, 0.9)",
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "star",
+        "count": 3,
+        "offset": 10,
+        "angle": [
+          -180,
+          180
+        ],
+        "speed": [
+          300,
+          600
+        ],
+        "drag": 1,
+        "life": [
+          0.4,
+          0.7
+        ],
+        "size": [
+          12,
+          3
+        ],
+        "color": [
+          "#ffd23f",
+          "#b05cff",
+          "#ffffff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
   }
 }

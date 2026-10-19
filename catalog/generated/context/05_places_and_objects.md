@@ -17,6 +17,26 @@
 | villain_lair | #3a2350 | bright: light blue, yellow, orange, pink, white | A purple cave lair with crystals and lanterns. |
 | home_interior | #ab8865 | strong or dark: red, blue, purple, dark green, black | Inside a cosy home: walls, windows and furniture. |
 | alley_night | #4e3530 | bright: light blue, yellow, orange, pink, white | A brick alley at night with lampposts and puddles. |
+| tokyo_village | #a06a40 | bright: light blue, yellow, orange, pink, white | An Indian hill village square: round mud huts with painted doors, bunting, green hills. |
+| banyan_hill | #5a8f48 | strong or dark: red, blue, purple, dark green, black | A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below. |
+| gloom_throne_room | #43384f | bright: light blue, yellow, orange, pink, white | Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist. |
+| whispering_forest | #2e5a34 | bright: light blue, yellow, orange, pink, white | A deep friendly forest path: tall round-leaved trees, hanging vines, ferns and red mushrooms. |
+| mirchi_hill | #d0603a | strong or dark: red, blue, purple, dark green, black | A red-orange hilltop fort with rounded battlements, a big wooden gate and strings of drying chillies, under a hot orange sky. |
+| spice_kitchen | #9a4a30 | bright: light blue, yellow, orange, pink, white | A big fort kitchen: brick walls, shelves of colourful spice jars and sacks, strings of chillies, warm orange light. |
+| spice_cellar | #4a3830 | bright: light blue, yellow, orange, pink, white | The dark spice cellar under the fort: grooved stone walls, dusty sacks and a few jars, one small vent of light. |
+| lotus_lake | #3d8fc0 | strong or dark: red, blue, purple, dark green, black | A wide calm lake with pink lotus flowers and round leaves, fishing huts on stilts, hills far behind; a sandy shore. |
+| pirate_deck | #7a5230 | bright: light blue, yellow, orange, pink, white | The deck of a cartoon pirate ship on the lake: planks, a rail, a tall mast with a patched sail and a fish flag, barrels and a steering wheel. |
+| crystal_cave | #1d3a5a | bright: light blue, yellow, orange, pink, white | A big cave inside a lake island, glowing blue crystals in the walls, soft blue light and piles of treasure. |
+| underwater | #1f6f8f | bright: light blue, yellow, orange, pink, white | Underwater in a clear lake: blue-green water, swaying seaweed, round stones on a sandy floor and rising bubbles. Calm, not dark. |
+| iron_canyon | #8a5a3e | bright: light blue, yellow, orange, pink, white | A rocky canyon at dusk with giant rusty gears half buried in the cliffs, fog on the floor and huge metal footprints. |
+| iron_workshop | #4a4a52 | bright: light blue, yellow, orange, pink, white | Peepa's iron workshop: grey metal walls, pumping pistons, pipes with steam puffs, chains and purple warning lights. |
+| mountain_cave | #4a3e34 | bright: light blue, yellow, orange, pink, white | A rocky mountain cave shelter: grey-brown stone, a low ceiling of rock teeth, a dark opening, warm firelight. |
+| grey_peak | #4a4a5e | bright: light blue, yellow, orange, pink, white | Grey Peak: a jagged dark mountain top under a heavy grey sky, grey-blue rock with frosty caps and drifting snow. |
+| shadow_valley | #6a4a8a | bright: light blue, yellow, orange, pink, white | A misty purple valley at night: bare twisted trees with curly branches and glowing purple fog close to the ground. |
+| mirror_maze | #4a3866 | bright: light blue, yellow, orange, pink, white | A maze of tall silver mirrors with curly purple frames, a soft shine sliding over the glass, dark purple floor. |
+| gloom_castle_gate | #4a4060 | bright: light blue, yellow, orange, pink, white | Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind. |
+| grey_moon | #4a4a56 | bright: light blue, yellow, orange, pink, white | Standing on the giant Grey Moon: grey dust and round craters, a black starry sky, and far below a tiny glowing valley with a tree. |
+| banyan_moon | #3a4a34 | bright: light blue, yellow, orange, pink, white | Banyan hill at night under the huge full Grey Moon: the giant banyan, its crystal sockets, a cold grey light. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -61,6 +81,42 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | book | holdable | - | A book to hold or read. |
 | rope | holdable | - | A coil of rope. |
 | cane | holdable | - | A walking cane (good for an elder). |
+| crystal_socket | static | empty/red/orange/yellow/green/blue/indigo/violet | A gem socket in a banyan root: glows in its crystal's colour, or sits empty. |
+| throne | seat | - | A tall purple throne with golden horns; a villain can sit on it. |
+| crystal_ball | static | - | A glowing purple crystal ball on a carved stone stand. |
+| rainbow_crystal | holdable | red/orange/yellow/green/blue/indigo/violet/dim | A glowing rainbow crystal; `set_object` state sets its colour (chimes). |
+| gloom_horn | holdable | - | The Gloom Horn; `use` blows grey mist. |
+| jalebi | holdable | - | A jalebi sweet to `eat`. |
+| jalebi_plate | holdable | - | A plate of jalebis (left hand; `eat`). |
+| kite | floater | - | A kite: held, it flies on its string. |
+| apple | ball | - | A red apple: hold and `eat`, or toss it. |
+| haystack | static | - | A round haystack (hide behind it). |
+| cart | vehicle | - | A hand cart of vegetables (set_object toX). |
+| market_stall | static | - | A market stall with an awning and baskets. |
+| basket | breakable | whole/broken | A lidded basket: carry it or break it. |
+| bus | vehicle | - | The friendly village bus: cream and teal with luggage on the roof (set_object toX or exit). |
+| campfire | static | lit/out | A small campfire: crossed logs, flickering flames, a ring of stones (state out: smoke). |
+| giant_pot | static | - | A huge round cooking pot of bubbling curry over a fire, with rising steam. |
+| ladle | holdable | - | A long wooden ladle, held like a staff (staff moves work); the Orange crystal can sit in its cup. |
+| lever | static | up/down | A wall lever on a block: state up or down (it opens the trapdoor in a story). |
+| trapdoor | static | closed/open | A plank trapdoor in the floor: closed or open (someone on it drops out of the scene with jump_down). |
+| rope_bridge | breakable | whole/broken | A wooden rope bridge across a gap; set_object state broken drops it in two hanging halves. |
+| pirate_ship | vehicle | - | Captain Kanta's small pirate ship on the water: round hull, portholes, a patched sail and a fish flag (set_object toX or exit). |
+| rowboat | vehicle | - | A small wooden rowboat with two oars, sitting in the water (ride it; set_object toX). |
+| raft | breakable | whole/broken | A wobbly raft of tied logs on the water; set_object state broken: it comes apart and sinks. |
+| fishing_net | static | closed/open | A fishing net with floats: closed drops over someone (captured with wrap net), open lies in a heap. |
+| treasure_chest | static | closed/open | A wooden treasure chest with gold trim; open shows shiny coins. |
+| lantern_string | static | - | A string of round paper lanterns in many colours between two poles, glowing softly. |
+| ribbon | static | - | A pink ribbon bow lying on the ground (Doomi's trail). |
+| dhol | holdable | - | A red and gold barrel drum (dhol) on a strap; `use` beats it. |
+| windup_key | holdable | - | Iron Ghoom's big brass wind-up key, pulled off his back. |
+| pot_and_pan | holdable | - | A frying pan, held like a bat: the village's funny shield (bat moves work). |
+| mirror | breakable | whole/broken | A tall standing mirror in a curly purple frame; set_object state broken cracks it (no sharp shards). |
+| snowball | ball | - | A big rolling snowball (an avalanche throws them). |
+| rock_round | ball | - | A round grey rock that rolls. |
+| hanging_cage | static | closed/open | A round bird-cage cage hanging from a chain, big enough for a person; closed or open. |
+| rainbow_bridge | static | - | A shimmering rainbow arc rising from the ground up and out of the sky (the friends' glow). |
+| rainbow_shield | static | - | A pulsing dome of rainbow light that protects whoever stands inside it. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

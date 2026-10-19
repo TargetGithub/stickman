@@ -1,0 +1,559 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 8: Hot Hot Battle",
+    "format": "landscape",
+    "seed": 2408,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": { "headband": "#ff3b5c", "bracelet": "#e6b84a" },
+        "slots": 2
+      },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": { "hair_flower": "#ffffff" }
+      },
+      "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "prop": "jalebi_plate",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+      "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+    },
+    {
+      "id": "mirchi",
+      "name": "Madam Mirchi",
+      "body": "slim",
+      "color": "#ffb08a",
+      "prop": "ladle",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "mouthStyle": "cartoon",
+        "outfit": "robe",
+        "outfitColor": "#e63946",
+        "accessories": { "chilli_hat": "#e63946" }
+      },
+      "voice": { "pitch": 1.25, "speed": 1.15, "timbre": "squeaky" }
+    },
+    {
+      "id": "goon1",
+      "name": "Grey Goon",
+      "body": "bulky",
+      "color": "#e8e0f0",
+      "appearance": { "eyes": "sleepy", "outfit": "armor", "outfitColor": "#8a8496" },
+      "voice": { "pitch": 0.7, "speed": 0.85, "timbre": "deep" }
+    },
+    {
+      "id": "goon2",
+      "name": "Grey Goon",
+      "body": "bulky",
+      "scale": 0.9,
+      "color": "#e8e0f0",
+      "appearance": { "eyes": "sleepy", "outfit": "armor", "outfitColor": "#8a8496" },
+      "voice": { "pitch": 0.8, "speed": 0.85, "timbre": "deep" }
+    }
+  ],
+  "locations": [
+    { "id": "cellar", "theme": "spice_cellar", "stageWidth": 2400 },
+    {
+      "id": "kitchen",
+      "theme": "spice_kitchen",
+      "stageWidth": 3200,
+      "set": [
+        { "id": "pot", "object": "giant_pot", "x": 1100 },
+        { "id": "lever", "object": "lever", "x": 2700, "state": "down" },
+        { "id": "trap", "object": "trapdoor", "x": 2250, "state": "open" }
+      ]
+    },
+    { "id": "lake", "theme": "lotus_lake", "stageWidth": 3600, "ambience": "wind", "set": [ { "id": "bridge", "object": "rope_bridge", "x": 2400 } ] }
+  ],
+  "scenes": [
+    {
+      "id": "walls",
+      "location": "cellar",
+      "time": "night",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 8: Hot Hot Battle" },
+      "music": { "mood": "tense", "intensity": 0.8, "volume": 0.32 },
+      "cast": [ { "id": "doopi", "x": 1100, "facing": 1, "face": "determined" }, { "id": "doomi", "x": 1300, "facing": -1, "face": "scared" } ],
+      "beats": [
+        { "id": "walls_sh", "at": 0.3, "who": "world", "do": "shake", "params": { "preset": "med" } },
+        { "id": "walls_n1", "at": 0.5, "who": "world", "do": "narrate", "params": { "text": "The walls kept sliding in. Closer. And closer." } },
+        {
+          "id": "walls_d1",
+          "at": { "after": "walls_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doomi", "Look! A little vent up there! Light!", "surprised" ],
+              [ "doopi", "Too high. I'll hold the wall. Nani's Banyan Root Stance!", "determined" ]
+            ]
+          }
+        },
+        { "id": "walls_st", "at": { "after": "walls_d1" }, "who": "doopi", "do": "charge_up", "face": "determined" },
+        {
+          "id": "walls_gl",
+          "at": { "with": "walls_st" },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "doopi", "color": "#ffd23f", "level": 0.4, "dur": 1 }
+        },
+        {
+          "id": "walls_pu",
+          "at": { "after": "walls_st" },
+          "who": "doopi",
+          "do": "push",
+          "face": "determined",
+          "say": "Like roots... deep in the ground!",
+          "bubble": "shout"
+        },
+        { "id": "walls_sh2", "at": { "with": "walls_pu", "delay": 0.5 }, "who": "world", "do": "shake", "params": { "preset": "small" } },
+        {
+          "id": "walls_d2",
+          "at": { "after": "walls_pu" },
+          "macro": "dialogue",
+          "params": { "lines": [ [ "doomi", "It stopped! Doopi, you're holding it!", "laugh" ], [ "doopi", "Not... for... long! Somebody... help!", "hurt" ] ] }
+        },
+        { "id": "walls_pu2", "at": { "with": "walls_d2" }, "who": "doopi", "do": "push", "face": "hurt" },
+        { "id": "walls_g0", "at": { "after": "walls_d2" }, "who": "world", "do": "set_glow", "params": { "who": "doopi", "level": 0, "dur": 1 } }
+      ]
+    },
+    {
+      "id": "above",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "up" },
+      "music": { "mood": "playful", "intensity": 0.6, "volume": 0.3 },
+      "cast": [
+        { "id": "becky", "x": 1900, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 2500, "facing": 1, "face": "scared" },
+        { "id": "tara", "x": 1600, "facing": 1, "face": "determined" }
+      ],
+      "beats": [
+        { "id": "above_b1", "at": 0.3, "who": "becky", "do": "sneak", "to": { "x": 2120 } },
+        { "id": "above_b2", "at": { "after": "above_b1" }, "who": "becky", "do": "bark", "params": { "cycles": 2 }, "say": "Woof! Woof!" },
+        {
+          "id": "above_d1",
+          "at": { "after": "above_b2" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "They're under the trapdoor! But how do we stop the walls?", "scared" ],
+              [ "mooka", "I'm so tired. I'll just sit on this... lever thing.", "tired" ]
+            ]
+          }
+        },
+        { "id": "above_m1", "at": { "after": "above_d1" }, "who": "mooka", "do": "walk", "to": { "x": 2660 } },
+        { "id": "above_m2", "at": { "after": "above_m1" }, "who": "mooka", "do": "sit" },
+        { "id": "above_lv", "at": { "with": "above_m2", "delay": 0.4 }, "who": "world", "do": "set_object", "object": "lever", "params": { "state": "up" } },
+        { "id": "above_sh", "at": { "with": "above_lv" }, "who": "world", "do": "shake", "params": { "preset": "small" } },
+        {
+          "id": "above_d2",
+          "at": { "after": "above_m2" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [ [ "tara", "Mooka! The rumbling stopped! You did it!", "laugh" ], [ "mooka", "I did? I did! Hee hee! I'm a genius!", "laugh" ] ]
+          }
+        },
+        { "id": "above_sp", "at": { "after": "above_d2" }, "who": "world", "do": "spawn_object", "params": { "kind": "rope", "id": "rope1", "x": 2160 } },
+        { "id": "above_b3", "at": { "after": "above_sp" }, "who": "becky", "do": "pick_prop", "face": "happy" },
+        { "id": "above_b4", "at": { "after": "above_b3" }, "who": "becky", "do": "walk", "to": { "x": 2200 } },
+        { "id": "above_b5", "at": { "after": "above_b4" }, "who": "becky", "do": "drop_prop" },
+        {
+          "id": "above_n1",
+          "at": { "with": "above_b5" },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Becky dropped the rope down the hole. Good girl!" }
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "heroic", "intensity": 0.5, "volume": 0.32 },
+      "cast": [
+        { "id": "becky", "x": 2000, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 2650, "facing": -1, "face": "happy" },
+        { "id": "tara", "x": 1700, "facing": 1, "face": "happy" },
+        { "id": "doopi", "x": 2250, "facing": 1, "hidden": true },
+        { "id": "doomi", "x": 2330, "facing": -1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "climb_s1", "at": 0.4, "who": "doopi", "do": "spawn" },
+        { "id": "climb_c1", "at": { "after": "climb_s1" }, "who": "doopi", "do": "climb_up", "face": "tired" },
+        { "id": "climb_s2", "at": { "with": "climb_c1", "delay": 0.8 }, "who": "doomi", "do": "spawn" },
+        { "id": "climb_c2", "at": { "after": "climb_s2" }, "who": "doomi", "do": "climb_up", "face": "tired" },
+        { "id": "climb_h1", "at": { "after": "climb_c2" }, "who": "becky", "do": "lick", "partner": "doopi" },
+        {
+          "id": "climb_d1",
+          "at": { "after": "climb_h1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Becky! Mooka! Tara! You saved us!", "laugh" ],
+              [ "doomi", "Next time, we wait for the team. Deal?", "smug" ],
+              [ "doopi", "Deal. A good plan needs patience.", "determined" ],
+              [ "mooka", "And I sat on a lever! Hee hee! Best day ever!", "laugh" ],
+              [ "becky", "Woof!", "happy" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "huddle",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "mysterious", "intensity": 0.4, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "determined" },
+        { "id": "doomi", "x": 1500, "facing": -1, "face": "determined" },
+        { "id": "mooka", "x": 1150, "facing": 1, "face": "happy" },
+        { "id": "tara", "x": 1650, "facing": -1, "face": "determined" },
+        { "id": "becky", "x": 1000, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "huddle_n1", "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "Footsteps upstairs. Madam Mirchi was coming back." } },
+        {
+          "id": "huddle_d1",
+          "at": { "after": "huddle_n1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doomi", "Dony said she can't stand sweet things. Mooka, your jalebis!", "determined" ],
+              [ "mooka", "My jalebis? My PRECIOUS jalebis?", "cry" ],
+              [ "doopi", "When I say 'sweets', you throw. Okay?", "determined" ],
+              [ "mooka", "...Okay. For Tokyo. Goodbye, my sweet friends.", "sad" ],
+              [ "tara", "And I'll find Dony. Go!", "determined" ]
+            ]
+          }
+        },
+        { "id": "huddle_t", "at": { "after": "huddle_d1" }, "macro": "exit", "params": { "who": "tara", "side": "right", "mode": "run" } }
+      ]
+    },
+    {
+      "id": "boss",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "boss", "intensity": 0.9, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1600, "facing": 1, "face": "determined" },
+        { "id": "mirchi", "x": 2050, "facing": -1, "face": "furious" },
+        { "id": "doomi", "x": 700, "facing": 1, "face": "determined" },
+        { "id": "tara", "x": 550, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 850, "facing": 1, "face": "scared" },
+        { "id": "becky", "x": 400, "facing": 1, "face": "angry" }
+      ],
+      "beats": [
+        {
+          "id": "boss_d0",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": { "lines": [ [ "mirchi", "OUT of my cellar? Then into my SMOKE!", "furious" ], [ "doopi", "Not this time, Madam Mirchi!", "determined" ] ] }
+        },
+        {
+          "id": "boss_f",
+          "at": { "after": "boss_d0" },
+          "macro": "fight",
+          "params": {
+            "sides": [ "doopi", "mirchi" ],
+            "winner": "doopi",
+            "intensity": "high",
+            "ko": false,
+            "phases": [ { "exchanges": 6, "style": "dominant" }, { "exchanges": 6, "style": "comeback", "chargeUp": true } ]
+          }
+        },
+        {
+          "id": "boss_sm",
+          "at": { "with": "boss_f", "delay": 3 },
+          "who": "world",
+          "do": "caption",
+          "params": { "text": "Mirchi's spinning ladle!", "pos": "top", "dur": 2 }
+        },
+        { "id": "boss_c1", "at": { "with": "boss_f", "delay": 6 }, "who": "tara", "do": "cheer", "say": "Keep going, Doopi!" },
+        { "id": "boss_c2", "at": { "with": "boss_f", "delay": 12 }, "who": "becky", "do": "bark", "params": { "cycles": 2 } }
+      ]
+    },
+    {
+      "id": "dony",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "heroic", "intensity": 0.8, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1600, "facing": 1, "face": "tired" },
+        { "id": "mirchi", "x": 2050, "facing": -1, "face": "angry" },
+        { "id": "goon1", "x": 2900, "facing": -1, "hidden": true },
+        { "id": "goon2", "x": 3000, "facing": -1, "hidden": true },
+        { "id": "dony", "x": 900, "facing": 1, "face": "scared" }
+      ],
+      "beats": [
+        { "id": "dony_m1", "at": 0.3, "who": "mirchi", "do": "point", "face": "smug", "say": "GOONS! Get him!", "bubble": "shout" },
+        {
+          "id": "dony_e1",
+          "at": { "with": "dony_m1", "delay": 0.4 },
+          "macro": "enter",
+          "params": { "who": "goon1", "side": "right", "to": { "x": 2500 }, "mode": "run" }
+        },
+        {
+          "id": "dony_e2",
+          "at": { "with": "dony_e1", "delay": 0.4 },
+          "macro": "enter",
+          "params": { "who": "goon2", "side": "right", "to": { "x": 2750 }, "mode": "run" }
+        },
+        {
+          "id": "dony_dr",
+          "at": { "after": "dony_e1" },
+          "who": "dony",
+          "do": "run",
+          "to": { "x": 2300 },
+          "face": "determined",
+          "say": "I've got you, buddy!",
+          "bubble": "shout"
+        },
+        {
+          "id": "dony_g",
+          "at": { "after": "dony_dr" },
+          "macro": "gauntlet",
+          "params": { "hero": "dony", "opponents": [ "goon1", "goon2" ], "travel": "none", "per": 2, "intensity": "low" }
+        },
+        {
+          "id": "dony_d1",
+          "at": { "after": "dony_g" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Dony! You beat two goons!", "surprised" ],
+              [ "dony", "I'm only half as strong as you. But I'm twice as stubborn!", "laugh" ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sweet",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": { "type": "cut" },
+      "music": { "mood": "triumphant", "intensity": 0.8, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1600, "facing": 1, "face": "determined" },
+        { "id": "mirchi", "x": 2050, "facing": -1, "face": "angry" },
+        { "id": "mooka", "x": 1250, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 900, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "sweet_m1", "at": 0.3, "who": "mooka", "do": "talk", "face": "determined", "say": "Hey, chilli lady! SWEETS!", "bubble": "shout" },
+        { "id": "sweet_m2", "at": { "after": "sweet_m1" }, "who": "mooka", "do": "throw_prop", "target": "mirchi" },
+        {
+          "id": "sweet_r1",
+          "at": { "with": "sweet_m2", "delay": 0.6 },
+          "who": "mirchi",
+          "do": "gasp",
+          "face": "scared",
+          "say": "SWEET?! Noooo!",
+          "bubble": "shout"
+        },
+        { "id": "sweet_r2", "at": { "after": "sweet_r1" }, "who": "mirchi", "do": "sneeze", "face": "hurt", "interrupt": true },
+        { "id": "sweet_r3", "at": { "after": "sweet_r2" }, "who": "mirchi", "do": "dizzy", "face": "dizzy" },
+        {
+          "id": "sweet_fn",
+          "at": { "with": "sweet_r3", "delay": 0.3 },
+          "who": "doopi",
+          "do": "spinning_kick",
+          "target": "mirchi",
+          "outcome": "hit",
+          "approach": "run",
+          "say": "JALEBI SPIN!",
+          "bubble": "shout"
+        },
+        { "id": "sweet_fl", "at": { "after": "sweet_fn" }, "who": "mirchi", "do": "flee", "say": "You'll be sorry! Ha-CHOO!" },
+        {
+          "id": "sweet_sp",
+          "at": { "with": "sweet_fl", "delay": 0.3 },
+          "who": "world",
+          "do": "spawn_object",
+          "params": { "kind": "rainbow_crystal", "id": "orange_gem", "x": 2000, "state": "orange" }
+        },
+        { "id": "sweet_wk", "at": { "after": "sweet_fn", "delay": 0.4 }, "who": "doopi", "do": "walk", "to": { "x": 1930 } },
+        { "id": "sweet_pk", "at": { "after": "sweet_wk" }, "who": "doopi", "do": "pick_prop", "face": "laugh" },
+        { "id": "sweet_bl", "at": { "after": "sweet_pk" }, "who": "world", "do": "set_appearance", "params": { "who": "doopi", "slots": 3 } },
+        { "id": "sweet_gr", "at": { "with": "sweet_bl" }, "who": "world", "do": "set_grade", "params": { "saturation": 1, "dur": 2, "from": "doopi" } },
+        {
+          "id": "sweet_n1",
+          "at": { "with": "sweet_bl", "delay": 0.5 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Orange came home: sunsets, oranges and marigolds, all bright again." }
+        }
+      ]
+    },
+    {
+      "id": "thanks",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": { "type": "dissolve", "dur": 0.5 },
+      "music": { "mood": "happy", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1500, "facing": 1, "face": "happy" },
+        { "id": "dony", "x": 1750, "facing": -1, "face": "happy" },
+        { "id": "tara", "x": 2000, "facing": -1, "face": "happy" },
+        { "id": "doomi", "x": 1250, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 1050, "facing": 1, "face": "laugh" },
+        { "id": "becky", "x": 2250, "facing": -1, "face": "happy" }
+      ],
+      "beats": [
+        {
+          "id": "thanks_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "Dony. Today you were the hero. Thank you.", "love" ],
+              [ "dony", "Best friends, champ. Always right behind you.", "happy" ],
+              [ "tara", "Hmph. Not bad, for village kids.", "smug" ],
+              [ "mooka", "Can we eat the rest of the jalebis now?", "love" ]
+            ]
+          }
+        },
+        { "id": "thanks_hf", "at": { "after": "thanks_d1" }, "who": "doopi", "do": "high_five", "partner": "dony", "face": "laugh" },
+        { "id": "thanks_j1", "at": { "with": "thanks_hf" }, "who": "becky", "do": "jump" },
+        {
+          "id": "thanks_eat",
+          "at": { "after": "thanks_hf" },
+          "macro": "activity",
+          "params": { "name": "eat_together", "with": [ "mooka", "dony", "tara", "doomi" ], "dur": 9 }
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "location": "lake",
+      "time": "dusk",
+      "transitionIn": { "type": "fade", "dur": 0.8 },
+      "music": { "mood": "mysterious", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 900, "facing": 1, "face": "happy" },
+        { "id": "dony", "x": 750, "facing": 1, "face": "happy" },
+        { "id": "doomi", "x": 600, "facing": 1, "face": "happy" },
+        { "id": "tara", "x": 1050, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 450, "facing": 1, "face": "happy" },
+        { "id": "becky", "x": 1200, "facing": 1, "face": "happy" }
+      ],
+      "beats": [
+        { "id": "bridge_gl", "at": 0.4, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "#ffb52e", "level": 0.35, "dur": 0.5 } },
+        { "id": "bridge_g0", "at": 1.4, "who": "world", "do": "set_glow", "params": { "who": "doopi", "level": 0, "dur": 0.6 } },
+        {
+          "id": "bridge_n1",
+          "at": 0.6,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Three colours home. Twelve nights to the Grey Moon. Next stop: Lotus Lake." }
+        },
+        { "id": "bridge_w1", "at": { "after": "bridge_n1" }, "who": "becky", "do": "run", "to": { "x": 1900 } },
+        { "id": "bridge_w2", "at": { "with": "bridge_w1", "delay": 0.3 }, "who": "tara", "do": "walk", "to": { "x": 1800 } },
+        { "id": "bridge_w3", "at": { "with": "bridge_w1", "delay": 0.4 }, "who": "doopi", "do": "walk", "to": { "x": 1650 } },
+        { "id": "bridge_cr", "at": { "after": "bridge_w2" }, "who": "tara", "do": "talk", "face": "scared", "say": "Wait... this bridge is creaking!" },
+        { "id": "bridge_hn", "at": { "after": "bridge_cr" }, "who": "world", "do": "sfx", "params": { "name": "pirate_horn", "volume": 0.9, "x": 3400 } },
+        {
+          "id": "bridge_br",
+          "at": { "with": "bridge_hn", "delay": 1 },
+          "who": "world",
+          "do": "set_object",
+          "object": "bridge",
+          "params": { "state": "broken" }
+        },
+        { "id": "bridge_sh", "at": { "with": "bridge_br" }, "who": "world", "do": "shake", "params": { "preset": "med" } },
+        { "id": "bridge_bb", "at": { "with": "bridge_br", "delay": 0.2 }, "who": "becky", "do": "bark", "params": { "cycles": 2 }, "face": "scared" },
+        {
+          "id": "bridge_d1",
+          "at": { "after": "bridge_br" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "The bridge! It's gone!", "scared" ],
+              [ "doomi", "And what was that horn?", "scared" ],
+              [ "tara", "Pirates. Captain Kanta's pirates.", "scared" ],
+              [ "doopi", "Then we find a boat. Twelve nights. We can't stop now.", "determined" ]
+            ]
+          }
+        },
+        { "id": "bridge_hn2", "at": { "after": "bridge_d1" }, "who": "world", "do": "sfx", "params": { "name": "pirate_horn", "volume": 1, "x": 3400 } },
+        { "id": "bridge_cu", "at": { "with": "bridge_hn2" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "doopi", "dur": 2.5 } },
+        {
+          "id": "bridge_dd",
+          "at": { "with": "bridge_hn2", "delay": 0.4 },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "surprised",
+          "say": "We're stranded!",
+          "bubble": "shout"
+        },
+        { "id": "bridge_end", "at": { "after": "bridge_dd", "delay": 1 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

@@ -63,6 +63,7 @@ const RULES = [
   ["pat_head with a dog partner points to pet_dog", [{ id: "p", at: 0.3, who: "doopi", do: "pat_head", partner: "becky" }], ["E_MOVE_RIG"]],
   ["a person can't be the partner of pet_dog", [{ id: "p", at: 0.3, who: "doopi", do: "pet_dog", partner: "becky" }], []],
   ["@chase with a dog chaser catches without an attack", [{ id: "c", at: 0.3, macro: "chase", params: { runner: "tony", chasers: ["becky"], dur: 4, caught: true } }], []],
+  ["@chase with a dog chaser that doesn't catch barks after the runner", [{ id: "c", at: 0.3, macro: "chase", params: { runner: "tony", chasers: ["becky", "doopi"], dur: 4 } }], []],
   ["@walk_together with a dog walks side by side", [{ id: "w", at: 0.3, macro: "walk_together", params: { who: ["doopi", "becky"], to: { x: 1900 } } }], []],
   ["@dialogue lines for a dog bark", [{ id: "d", at: 0.3, macro: "dialogue", params: { lines: [["doopi", "Ready?"], ["becky", "Woof!"]] } }], []],
 ];

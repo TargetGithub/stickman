@@ -1,0 +1,496 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Doopi & Friends 13: One Against Iron",
+    "format": "landscape",
+    "seed": 2413,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": { "headband": "#ff3b5c", "bracelet": "#e6b84a", "backpack": "#c97a3a" },
+        "slots": 4
+      },
+      "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": { "hair_flower": "#ffffff" }
+      },
+      "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
+      "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" }
+      },
+      "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
+    },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
+      "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
+    },
+    {
+      "id": "ghoom",
+      "name": "Iron Ghoom",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": { "eyes": "visor", "accessories": { "windup_key": "#e6b84a" } },
+      "voice": { "pitch": 0.5, "speed": 0.8, "timbre": "robot" }
+    }
+  ],
+  "locations": [
+    { "id": "square", "theme": "tokyo_village", "stageWidth": 3200 },
+    {
+      "id": "trail",
+      "theme": "whispering_forest",
+      "stageWidth": 3600,
+      "set": [
+        { "id": "rib1", "object": "ribbon", "x": 1100 },
+        { "id": "rib2", "object": "ribbon", "x": 2000 },
+        { "id": "rib3", "object": "ribbon", "x": 2900 }
+      ]
+    },
+    { "id": "canyon", "theme": "iron_canyon", "stageWidth": 3600, "set": [ { "id": "rib4", "object": "ribbon", "x": 900 } ] }
+  ],
+  "scenes": [
+    {
+      "id": "alone",
+      "location": "square",
+      "time": "dawn",
+      "weather": "rain",
+      "transitionIn": { "type": "card", "kind": "title", "title": "Doopi & Friends", "subtitle": "Episode 13: One Against Iron" },
+      "grade": { "saturation": 0.7 },
+      "music": { "mood": "sad", "intensity": 0.4, "volume": 0.3 },
+      "cast": [ { "id": "doopi", "x": 1300, "facing": 1, "face": "determined" } ],
+      "beats": [
+        {
+          "id": "alone_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "The rain didn't stop all night. Before dawn, Doopi packed his bag. Alone." }
+        },
+        {
+          "id": "alone_t1",
+          "at": { "after": "alone_n1" },
+          "who": "doopi",
+          "do": "talk",
+          "face": "determined",
+          "say": "This is my fault. I'll fix it myself.",
+          "bubble": "think"
+        },
+        { "id": "alone_t2", "at": { "after": "alone_t1", "delay": 0.5 }, "who": "doopi", "do": "look_around", "face": "sad" },
+        {
+          "id": "alone_t3",
+          "at": { "after": "alone_t2" },
+          "who": "doopi",
+          "do": "talk",
+          "face": "sad",
+          "say": "Sorry, Dony. Sorry, Becky.",
+          "bubble": "whisper"
+        },
+        { "id": "alone_go", "at": { "after": "alone_t3" }, "macro": "exit", "params": { "who": "doopi", "side": "right", "mode": "sneak" } }
+      ]
+    },
+    {
+      "id": "rally",
+      "location": "square",
+      "time": "day",
+      "weather": "rain",
+      "transitionIn": { "type": "dissolve", "dur": 0.6 },
+      "grade": { "saturation": 0.7 },
+      "music": { "mood": "tense", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "dony", "x": 1200, "facing": 1, "face": "tired" },
+        { "id": "becky", "x": 1500, "facing": -1, "face": "scared" },
+        { "id": "mooka", "x": 600, "facing": 1, "hidden": true },
+        { "id": "tara", "x": 500, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "rally_s1", "at": 0.3, "who": "dony", "do": "stretch", "face": "tired", "say": "Morning, champ! ...Champ?" },
+        { "id": "rally_b1", "at": { "after": "rally_s1" }, "who": "becky", "do": "whimper" },
+        {
+          "id": "rally_d1",
+          "at": { "after": "rally_b1" },
+          "who": "dony",
+          "do": "gasp",
+          "face": "scared",
+          "say": "His bag is gone! He went ALONE!",
+          "bubble": "shout"
+        },
+        { "id": "rally_e1", "at": { "after": "rally_d1" }, "macro": "enter", "params": { "who": "mooka", "side": "left", "to": { "x": 900 }, "mode": "run" } },
+        {
+          "id": "rally_e2",
+          "at": { "with": "rally_e1", "delay": 0.3 },
+          "macro": "enter",
+          "params": { "who": "tara", "side": "left", "to": { "x": 750 }, "mode": "run" }
+        },
+        {
+          "id": "rally_d2",
+          "at": { "after": "rally_e2" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "Alone? Against a giant iron robot? Is he crazy?", "angry" ],
+              [ "mooka", "He's sad. Sad people do silly things.", "sad" ],
+              [ "dony", "Then we go after him. Right now. Becky, find him!", "determined" ],
+              [ "tara", "Becky, you have the best nose in the valley. Find him.", "determined" ],
+              [ "becky", "Woof!", "determined" ]
+            ]
+          }
+        },
+        { "id": "rally_go", "at": { "after": "rally_d2" }, "who": "becky", "do": "run", "to": { "x": 2800 } },
+        { "id": "rally_go2", "at": { "with": "rally_go", "delay": 0.3 }, "who": "dony", "do": "run", "to": { "x": 2600 } }
+      ]
+    },
+    {
+      "id": "tracks",
+      "location": "trail",
+      "time": "day",
+      "weather": "rain",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "grade": { "saturation": 0.7 },
+      "music": { "mood": "mysterious", "intensity": 0.5, "volume": 0.3 },
+      "cast": [ { "id": "doopi", "x": 400, "facing": 1, "face": "determined" } ],
+      "beats": [
+        { "id": "tracks_w1", "at": 0.3, "who": "doopi", "do": "walk", "to": { "x": 1050 } },
+        { "id": "tracks_k1", "at": { "after": "tracks_w1" }, "who": "doopi", "do": "kneel", "face": "surprised" },
+        { "id": "tracks_t1", "at": { "after": "tracks_k1" }, "who": "doopi", "do": "talk", "face": "love", "say": "A pink ribbon. Doomi's!" },
+        { "id": "tracks_t2", "at": { "after": "tracks_t1" }, "who": "doopi", "do": "stand_up", "face": "determined" },
+        { "id": "tracks_w2", "at": { "after": "tracks_t2" }, "who": "doopi", "do": "run", "to": { "x": 1950 } },
+        { "id": "tracks_t3", "at": { "after": "tracks_w2" }, "who": "doopi", "do": "talk", "say": "Another one! She's leaving me a trail!" },
+        { "id": "tracks_w3", "at": { "after": "tracks_t3" }, "who": "doopi", "do": "run", "to": { "x": 2850 } },
+        {
+          "id": "tracks_n1",
+          "at": { "with": "tracks_w3" },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Huge iron footprints. And every few steps, a little pink ribbon." }
+        },
+        { "id": "tracks_t4", "at": { "after": "tracks_w3" }, "who": "doopi", "do": "clench_fist", "face": "determined", "say": "Hold on, Doomi. I'm coming." },
+        {
+          "id": "tracks_m",
+          "at": { "after": "tracks_t4", "delay": 2.8 },
+          "who": "doopi",
+          "do": "talk",
+          "face": "sad",
+          "say": "I should have kept her safe.",
+          "bubble": "think"
+        }
+      ]
+    },
+    {
+      "id": "path",
+      "location": "trail",
+      "time": "day",
+      "weather": "rain",
+      "transitionIn": { "type": "wipe", "dur": 0.5, "dir": "left" },
+      "grade": { "saturation": 0.7 },
+      "music": { "mood": "heroic", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "tara", "x": 600, "facing": 1, "face": "determined" },
+        { "id": "becky", "x": 800, "facing": 1, "face": "determined" },
+        { "id": "dony", "x": 450, "facing": 1, "face": "determined" },
+        { "id": "mooka", "x": 300, "facing": 1, "face": "sad" }
+      ],
+      "beats": [
+        { "id": "path_b", "at": 0.3, "who": "becky", "do": "sneak", "to": { "x": 1050 } },
+        { "id": "path_t", "at": 0.5, "who": "tara", "do": "walk", "to": { "x": 1000 } },
+        {
+          "id": "path_d",
+          "at": { "after": "path_t" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "tara", "Ribbons. Doomi's leaving a trail. Smart girl.", "smug" ],
+              [ "dony", "And small footprints next to the big ones. Doopi's.", "scared" ],
+              [ "mooka", "Why didn't he wake us up? We're his friends.", "sad" ],
+              [ "dony", "Because he thinks a hero has to do it alone. He's wrong.", "determined" ],
+              [ "tara", "Then let's go prove it. Run!", "determined" ]
+            ]
+          }
+        },
+        { "id": "path_r1", "at": { "after": "path_d" }, "who": "tara", "do": "run", "to": { "x": 3200 } },
+        { "id": "path_r2", "at": { "with": "path_r1", "delay": 0.2 }, "who": "becky", "do": "run", "to": { "x": 3300 } },
+        { "id": "path_r3", "at": { "with": "path_r1", "delay": 0.4 }, "who": "dony", "do": "run", "to": { "x": 3100 } },
+        { "id": "path_r4", "at": { "with": "path_r1", "delay": 0.6 }, "who": "mooka", "do": "run", "to": { "x": 3000 } }
+      ]
+    },
+    {
+      "id": "hand",
+      "location": "canyon",
+      "time": "dusk",
+      "transitionIn": { "type": "fade", "dur": 0.6 },
+      "grade": { "saturation": 0.7 },
+      "music": { "mood": "calm", "intensity": 0.3, "volume": 0.28 },
+      "cast": [ { "id": "ghoom", "x": 1800, "facing": 1, "face": "neutral" }, { "id": "doomi", "x": 2050, "facing": -1, "face": "sad" } ],
+      "beats": [
+        { "id": "hand_l1", "at": 0.2, "who": "ghoom", "do": "lift_up", "partner": "doomi" },
+        {
+          "id": "hand_d1",
+          "at": { "after": "hand_l1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doomi", "Hey. Big iron man. Can you hear me?", "sad" ],
+              [ "ghoom", "...BEEP.", "neutral" ],
+              [ "doomi", "You don't look mean. You look... tired. Are you sad in there?", "sad" ],
+              [ "ghoom", "...beep... boop...", "sad" ],
+              [ "doomi", "Do you have a name? A real one, not Iron Ghoom?", "happy" ],
+              [ "ghoom", "...G... GHOO... MU.", "sad" ],
+              [ "doomi", "Ghoomu. That's a nice name. I'm Doomi.", "love" ],
+              [ "ghoom", "DOO... MI. BEEP.", "happy" ]
+            ]
+          }
+        },
+        { "id": "hand_bp", "at": { "with": "hand_d1", "delay": 9 }, "who": "world", "do": "sfx", "params": { "name": "robot_beep", "volume": 0.5 } },
+        {
+          "id": "hand_n1",
+          "at": { "after": "hand_d1" },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "It was the saddest little beep Doomi had ever heard." }
+        }
+      ]
+    },
+    {
+      "id": "fight",
+      "location": "canyon",
+      "time": "dusk",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.7 },
+      "music": { "mood": "battle", "intensity": 1, "volume": 0.34 },
+      "cast": [
+        { "id": "doopi", "x": 1100, "facing": 1, "face": "furious" },
+        { "id": "ghoom", "x": 1800, "facing": -1, "face": "neutral" },
+        { "id": "doomi", "x": 2500, "facing": -1, "face": "scared" }
+      ],
+      "beats": [
+        { "id": "fight_g1", "at": 0, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "#ffd23f", "level": 0.6 } },
+        {
+          "id": "fight_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "doopi", "GHOOM! Let her go!", "furious" ],
+              [ "doomi", "Doopi! Where are the others?", "scared" ],
+              [ "doopi", "I don't need them! I'll do this MYSELF!", "furious" ]
+            ]
+          }
+        },
+        {
+          "id": "fight_f",
+          "at": { "after": "fight_d1" },
+          "macro": "fight",
+          "params": {
+            "sides": [ "doopi", "ghoom" ],
+            "winner": "ghoom",
+            "intensity": "medium",
+            "ko": false,
+            "phases": [ { "exchanges": 6, "style": "dominant" }, { "exchanges": 6, "style": "dominant", "chargeUp": true } ]
+          }
+        },
+        { "id": "fight_c1", "at": { "with": "fight_f", "delay": 6 }, "who": "doomi", "do": "talk", "face": "scared", "say": "Doopi, stop! You'll get hurt!" },
+        {
+          "id": "fight_sp",
+          "at": { "after": "fight_f" },
+          "who": "doopi",
+          "do": "spinning_kick",
+          "target": "ghoom",
+          "outcome": "blocked",
+          "approach": "run",
+          "say": "JALEBI SPIN!",
+          "bubble": "shout"
+        },
+        { "id": "fight_no", "at": { "after": "fight_sp" }, "who": "ghoom", "do": "shake_head", "face": "neutral" },
+        { "id": "fight_dd", "at": { "with": "fight_no", "delay": 1.9 }, "who": "doopi", "do": "gasp", "face": "scared", "say": "It didn't even move him..." },
+        {
+          "id": "fight_gp",
+          "at": { "after": "fight_dd" },
+          "who": "ghoom",
+          "do": "ground_pound",
+          "face": "neutral",
+          "target": "doopi",
+          "outcome": "hit",
+          "approach": "walk"
+        },
+        { "id": "fight_x1", "at": { "with": "fight_gp", "delay": 0.4 }, "who": "world", "do": "sfx", "params": { "name": "robot_stomp", "volume": 1 } },
+        { "id": "fight_sh", "at": { "with": "fight_gp", "delay": 0.4 }, "who": "world", "do": "shake", "params": { "preset": "big" } },
+        { "id": "fight_kd", "at": { "with": "fight_gp", "delay": 0.5 }, "who": "doopi", "do": "knockdown", "face": "hurt", "interrupt": true },
+        { "id": "fight_dk", "at": { "after": "fight_kd" }, "who": "world", "do": "set_appearance", "params": { "who": "doopi", "slots": 0 } },
+        { "id": "fight_g0", "at": { "with": "fight_dk" }, "who": "world", "do": "set_glow", "params": { "who": "doopi", "level": 0, "dur": 1 } },
+        {
+          "id": "fight_n1",
+          "at": { "with": "fight_dk", "delay": 0.4 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "And one by one, the four crystals in the bracelet went dark." }
+        },
+        { "id": "fight_sm", "at": { "with": "fight_f", "delay": 8 }, "who": "world", "do": "slowmo", "params": { "scale": 0.4, "duration": 1.2 } },
+        {
+          "id": "fight_cap",
+          "at": { "with": "fight_f", "delay": 8 },
+          "who": "world",
+          "do": "caption",
+          "params": { "text": "Every punch bounced off the iron.", "pos": "top", "dur": 2.2 }
+        }
+      ]
+    },
+    {
+      "id": "friends",
+      "location": "canyon",
+      "time": "dusk",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.7 },
+      "music": { "mood": "sad", "intensity": 0.5, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1200, "facing": 1, "face": "hurt" },
+        { "id": "ghoom", "x": 2300, "facing": 1, "face": "neutral" },
+        { "id": "doomi", "x": 2550, "facing": -1, "face": "cry" },
+        { "id": "dony", "x": 300, "facing": 1, "hidden": true },
+        { "id": "becky", "x": 300, "facing": 1, "hidden": true },
+        { "id": "tara", "x": 300, "facing": 1, "hidden": true },
+        { "id": "mooka", "x": 300, "facing": 1, "hidden": true }
+      ],
+      "beats": [
+        { "id": "friends_l0", "at": 0, "who": "doopi", "do": "lie_down" },
+        { "id": "friends_e1", "at": 0.4, "macro": "enter", "params": { "who": "becky", "side": "left", "to": { "x": 1050 }, "mode": "run" } },
+        { "id": "friends_e2", "at": 0.7, "macro": "enter", "params": { "who": "dony", "side": "left", "to": { "x": 950 }, "mode": "run" } },
+        { "id": "friends_e3", "at": 1, "macro": "enter", "params": { "who": "tara", "side": "left", "to": { "x": 750 }, "mode": "run" } },
+        { "id": "friends_e4", "at": 1.3, "macro": "enter", "params": { "who": "mooka", "side": "left", "to": { "x": 600 }, "mode": "run" } },
+        { "id": "friends_b1", "at": { "after": "friends_e1" }, "who": "becky", "do": "lick", "partner": "doopi" },
+        { "id": "friends_u1", "at": { "after": "friends_e2" }, "who": "dony", "do": "lift_up", "partner": "doopi", "face": "scared" },
+        {
+          "id": "friends_d1",
+          "at": { "after": "friends_u1" },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [ "dony", "Champ! What were you thinking?!", "angry" ],
+              [ "doopi", "I wanted to save her myself. I'm the one with the glow.", "cry" ],
+              [ "tara", "And look how that went.", "sad" ],
+              [ "mooka", "Doopi... you're not alone. You never were.", "sad" ],
+              [ "dony", "Remember Pinky? On the race day? You stopped to help her.", "sad" ],
+              [ "dony", "You didn't win alone. You won by caring. That's your glow.", "determined" ],
+              [ "doopi", "I don't feel like I have any glow left.", "cry" ],
+              [ "mooka", "Then borrow ours! We have lots!", "love" ]
+            ]
+          }
+        },
+        { "id": "friends_cf", "at": { "after": "friends_d1" }, "macro": "activity", "params": { "name": "comfort", "with": [ "dony", "doopi" ], "dur": 5 } }
+      ]
+    },
+    {
+      "id": "gone",
+      "location": "canyon",
+      "time": "night",
+      "weather": "fog",
+      "transitionIn": { "type": "cut" },
+      "grade": { "saturation": 0.6 },
+      "music": { "mood": "sad", "intensity": 0.6, "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1300, "facing": 1, "face": "sad" },
+        { "id": "dony", "x": 1100, "facing": 1, "face": "sad" },
+        { "id": "becky", "x": 1500, "facing": 1, "face": "sad" },
+        { "id": "ghoom", "x": 2600, "facing": 1, "face": "neutral" },
+        { "id": "doomi", "x": 2850, "facing": -1, "face": "cry" }
+      ],
+      "beats": [
+        { "id": "gone_t1", "at": 0.3, "who": "doopi", "do": "charge_up", "face": "determined", "say": "Come on... Heart Glow... come ON!", "bubble": "shout" },
+        {
+          "id": "gone_g1",
+          "at": { "with": "gone_t1", "delay": 0.6 },
+          "who": "world",
+          "do": "set_glow",
+          "params": { "who": "doopi", "color": "#ffd23f", "level": 0.08, "dur": 0.3 }
+        },
+        { "id": "gone_g2", "at": { "with": "gone_t1", "delay": 1.1 }, "who": "world", "do": "set_glow", "params": { "who": "doopi", "level": 0, "dur": 0.3 } },
+        { "id": "gone_h", "at": { "after": "gone_t1", "delay": 0.2 }, "who": "doopi", "do": "hold_head", "face": "sad" },
+        { "id": "gone_t2", "at": { "after": "gone_t1", "delay": 3.2 }, "who": "doopi", "do": "kneel", "face": "cry", "say": "Nothing. My power... it's gone." },
+        { "id": "gone_ex", "at": { "after": "gone_t2", "delay": 0.5 }, "macro": "exit", "params": { "who": "ghoom", "side": "right", "mode": "walk" } },
+        { "id": "gone_xd", "at": { "with": "gone_ex", "delay": 0.1 }, "who": "doomi", "do": "despawn", "fx": [ "smoke" ] },
+        {
+          "id": "gone_s1",
+          "at": { "with": "gone_ex", "delay": 0.5 },
+          "who": "world",
+          "do": "sfx",
+          "params": { "name": "robot_stomp", "volume": 0.6, "x": 3200 }
+        },
+        {
+          "id": "gone_s2",
+          "at": { "with": "gone_ex", "delay": 2 },
+          "who": "world",
+          "do": "sfx",
+          "params": { "name": "robot_stomp", "volume": 0.35, "x": 3600 }
+        },
+        {
+          "id": "gone_s3",
+          "at": { "with": "gone_ex", "delay": 3.5 },
+          "who": "world",
+          "do": "sfx",
+          "params": { "name": "robot_stomp", "volume": 0.15, "x": 4000 }
+        },
+        {
+          "id": "gone_n1",
+          "at": { "with": "gone_ex", "delay": 2 },
+          "who": "world",
+          "do": "narrate",
+          "params": { "text": "Ghoom's footsteps faded into the fog. And Doomi with them." }
+        },
+        { "id": "gone_cu", "at": { "after": "gone_n1" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "doopi", "dur": 3 } },
+        { "id": "gone_dd", "at": { "with": "gone_cu", "delay": 0.4 }, "who": "doopi", "do": "cry", "face": "cry" },
+        { "id": "gone_end", "at": { "after": "gone_cu", "delay": 0.4 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

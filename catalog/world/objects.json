@@ -252,5 +252,154 @@
     "behavior": "holdable",
     "draw": "held",
     "hold": { "kind": "cane", "shape": "cane", "len": 92, "width": 5, "gripAt": 0.05, "grip": "rHand", "color": "#6b4a2f", "trim": "#3a2a1c", "hitRadius": 14 }
-  }
+  },
+  "crystal_socket": {
+    "description": "A gem socket in a banyan root: glows in its crystal's colour, or sits empty.",
+    "tags": ["scenery", "magic", "crystal", "doopi"],
+    "behavior": "static",
+    "draw": "crystal_socket",
+    "w": 130,
+    "h": 90,
+    "states": ["empty", "red", "orange", "yellow", "green", "blue", "indigo", "violet"],
+    "colors": { "wood": "#6e4a2c", "rim": "#8a6442", "hollow": "#2a1c12", "red": "#ff3b3b", "orange": "#ff9a1f", "yellow": "#ffe02e", "green": "#3ddc6a", "blue": "#2f9bff", "indigo": "#5a5cff", "violet": "#b05cff" }
+  },
+  "throne": {
+    "description": "A tall purple throne with golden horns; a villain can sit on it.",
+    "tags": ["seat", "villain", "doopi"],
+    "behavior": "seat",
+    "draw": "throne",
+    "w": 300,
+    "h": 460,
+    "seatY": 112,
+    "slots": [0],
+    "colors": { "frame": "#2e2140", "cushion": "#6a3fa8", "horn": "#e6b84a", "gem": "#b05cff" }
+  },
+  "crystal_ball": {
+    "description": "A glowing purple crystal ball on a carved stone stand.",
+    "tags": ["scenery", "villain", "magic", "doopi"],
+    "behavior": "static",
+    "draw": "crystal_ball",
+    "w": 130,
+    "h": 260,
+    "colors": { "stand": "#6e6384", "trim": "#e6b84a", "ball": "#9a6cff", "swirl": "#d9c4ff", "glow": "rgba(176, 108, 255, 0.8)" }
+  },
+  "rainbow_crystal": {
+    "description": "A glowing rainbow crystal; `set_object` state sets its colour (chimes).",
+    "tags": ["holdable", "magic", "crystal", "glow"],
+    "behavior": "holdable",
+    "draw": "held",
+    "states": ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "dim"],
+    "sfx": {"red": "crystal_chime", "orange": "crystal_chime", "yellow": "crystal_chime", "green": "crystal_chime", "blue": "crystal_chime", "indigo": "crystal_chime", "violet": "crystal_chime"},
+    "hold": {"kind": "crystal", "shape": "crystal", "len": 28, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff5a6a", "trim": "#ffffff", "hitRadius": 10}
+  },
+  "gloom_horn": {
+    "description": "The Gloom Horn; `use` blows grey mist.",
+    "tags": ["holdable", "villain", "gloom", "horn"],
+    "behavior": "holdable",
+    "draw": "held",
+    "use": {"fx": ["gloom_mist"], "sfx": "gloom_horn"},
+    "hold": {"kind": "horn", "shape": "horn", "len": 62, "width": 10, "gripAt": 0.22, "grip": "rHand", "color": "#4a2a6e", "trim": "#e2b443", "hitRadius": 12}
+  },
+  "jalebi": {
+    "description": "A jalebi sweet to `eat`.",
+    "tags": ["holdable", "food", "sweet"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": {"kind": "jalebi", "shape": "jalebi", "len": 18, "width": 18, "gripAt": 0.3, "grip": "rHand", "color": "#ff9a1f", "trim": "#c45e0e", "hitRadius": 8}
+  },
+  "jalebi_plate": {
+    "description": "A plate of jalebis (left hand; `eat`).",
+    "tags": ["holdable", "food", "sweet", "gift"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": {"kind": "plate", "shape": "plate", "len": 40, "width": 8, "gripAt": 0.5, "grip": "lHand", "color": "#f6f1e4", "trim": "#d9c9a0", "hitRadius": 10}
+  },
+  "kite": {
+    "description": "A kite: held, it flies on its string.",
+    "tags": ["floater", "play", "kite", "holdable"],
+    "behavior": "floater",
+    "draw": "kite",
+    "r": 26,
+    "life": [8, 8],
+    "rise": 70,
+    "drift": 40,
+    "wobble": 30,
+    "pop": false,
+    "colors": {"fill": "#ff5fa8", "trim": "#ffd23f"},
+    "hold": {"kind": "kite", "shape": "kite", "len": 160, "width": 2, "gripAt": 0, "grip": "rHand", "color": "#ff5fa8", "trim": "#ffd23f", "hitRadius": 10}
+  },
+  "apple": {
+    "description": "A red apple: hold and `eat`, or toss it.",
+    "tags": ["ball", "food", "fruit", "holdable"],
+    "behavior": "ball",
+    "draw": "apple",
+    "r": 9,
+    "bounce": 0.3,
+    "colors": {"fill": "#e63946", "leaf": "#4fa85a"},
+    "hold": {"kind": "apple", "shape": "apple", "len": 16, "width": 16, "gripAt": 0.3, "grip": "rHand", "color": "#e63946", "trim": "#4fa85a", "hitRadius": 8}
+  },
+  "haystack": {
+    "description": "A round haystack (hide behind it).",
+    "tags": ["scenery", "village", "farm"],
+    "behavior": "static",
+    "draw": "haystack",
+    "w": 224,
+    "h": 172,
+    "colors": {"straw": "#e8bf52", "dark": "#b98d2c", "light": "#f6dd86"}
+  },
+  "cart": {
+    "description": "A hand cart of vegetables (set_object toX).",
+    "tags": ["vehicle", "village", "farm"],
+    "behavior": "vehicle",
+    "draw": "cart",
+    "w": 280,
+    "h": 160,
+    "wheelR": 40,
+    "seat": {"x": -10, "y": 100},
+    "speed": 140,
+    "colors": {"wood": "#b07c45", "dark": "#7a5230", "cabbage": "#7ccf5a", "tomato": "#e8483d", "carrot": "#ff8a26"}
+  },
+  "market_stall": {
+    "description": "A market stall with an awning and baskets.",
+    "tags": ["scenery", "village", "market", "shop"],
+    "behavior": "static",
+    "draw": "market_stall",
+    "w": 400,
+    "h": 340,
+    "colors": {"post": "#8a5a34", "wood": "#a0703f", "cloth": "#f0d9a6", "stripe1": "#e8483d", "stripe2": "#fff3dc", "basket": "#c9944f", "weave": "#8e6230", "sweet": "#ff9a1f", "sweet2": "#ffd23f", "fruit": "#e63946", "fruit2": "#7ccf5a", "sign": "#fff3dc"}
+  },
+  "basket": {
+    "description": "A lidded basket: carry it or break it.",
+    "tags": ["breakable", "holdable", "village", "market"],
+    "behavior": "breakable",
+    "draw": "basket",
+    "w": 70,
+    "h": 48,
+    "states": ["whole", "broken"],
+    "colors": {"basket": "#c9944f", "weave": "#8e6230"},
+    "hold": {"kind": "basket", "shape": "basket", "len": 30, "width": 24, "gripAt": 0.5, "grip": "rHand", "color": "#c9944f", "trim": "#8e6230", "hitRadius": 12}
+  },
+  "bus": {"description": "The friendly village bus: cream and teal with luggage on the roof (set_object toX or exit).", "tags": ["vehicle", "village", "travel", "doopi"], "behavior": "vehicle", "draw": "bus", "w": 520, "h": 300, "wheelR": 42, "seat": {"x": 120, "y": 130}, "speed": 260, "colors": {"body": "#f4ead2", "lower": "#2bb39a", "stripe": "#e63946", "window": "#bfe6f5", "door": "#2a8f7c", "bag1": "#c97a3a", "bag2": "#6b8fd6"}},
+  "campfire": {"description": "A small campfire: crossed logs, flickering flames, a ring of stones (state out: smoke).", "tags": ["scenery", "camp", "night", "fire", "doopi"], "behavior": "static", "draw": "campfire", "animated": true, "w": 170, "h": 150, "states": ["lit", "out"], "colors": {"stone": "#8a8a8a", "stone2": "#a3a3a3", "log": "#6b4a2f", "flame": "#ff7a1a", "flame2": "#ffb52e", "core": "#fff2a0"}},
+  "giant_pot": {"description": "A huge round cooking pot of bubbling curry over a fire, with rising steam.", "tags": ["scenery", "kitchen", "cooking", "doopi"], "behavior": "static", "draw": "giant_pot", "animated": true, "w": 480, "h": 420, "colors": {"pot": "#4a4a52", "rim": "#6a6a74", "curry": "#e8862e", "bubble": "#ffb347", "flame": "#ff7a1a", "flame2": "#ffd23f"}},
+  "ladle": {"description": "A long wooden ladle, held like a staff (staff moves work); the Orange crystal can sit in its cup.", "tags": ["holdable", "kitchen", "staff", "doopi"], "behavior": "holdable", "draw": "held", "hold": {"kind": "staff", "shape": "ladle", "len": 150, "width": 8, "gripAt": 0.3, "grip": "rHand", "color": "#b07c45", "trim": "#e8862e", "hitRadius": 16}},
+  "lever": {"description": "A wall lever on a block: state up or down (it opens the trapdoor in a story).", "tags": ["scenery", "machine", "fort", "doopi"], "behavior": "static", "draw": "lever", "w": 120, "h": 170, "states": ["up", "down"], "colors": {"base": "#6e6384", "handle": "#8a6442", "knob": "#e63946"}},
+  "trapdoor": {"description": "A plank trapdoor in the floor: closed or open (someone on it drops out of the scene with jump_down).", "tags": ["scenery", "floor", "fort", "trap", "doopi"], "behavior": "static", "draw": "trapdoor", "w": 220, "h": 20, "states": ["closed", "open"], "colors": {"wood": "#8a6442", "hole": "#1a120c", "metal": "#6e6a7a"}},
+  "rope_bridge": {"description": "A wooden rope bridge across a gap; set_object state broken drops it in two hanging halves.", "tags": ["scenery", "bridge", "breakable", "doopi"], "behavior": "breakable", "draw": "rope_bridge", "w": 600, "h": 160, "states": ["whole", "broken"], "colors": {"post": "#6b4a2f", "plank": "#b07c45", "rope": "#c9a46c"}},
+  "pirate_ship": {"description": "Captain Kanta's small pirate ship on the water: round hull, portholes, a patched sail and a fish flag (set_object toX or exit).", "tags": ["vehicle", "ship", "pirate", "lake", "doopi"], "behavior": "vehicle", "draw": "pirate_ship", "w": 800, "h": 720, "wheelR": 8, "seat": {"x": -300, "y": 190}, "speed": 220, "colors": {"hull": "#8a5a2e", "trim": "#e6b84a", "port": "#3a2a1c", "wood": "#6b4a2f", "sail": "#f4ead2", "patch": "#d9b77e", "flag": "#1d3557", "water": "#3d8fc0"}},
+  "rowboat": {"description": "A small wooden rowboat with two oars, sitting in the water (ride it; set_object toX).", "tags": ["vehicle", "boat", "lake", "doopi"], "behavior": "vehicle", "draw": "rowboat", "w": 360, "h": 80, "wheelR": 8, "seat": {"x": 0, "y": 60}, "speed": 160, "colors": {"hull": "#b07c45", "trim": "#7a5230", "oar": "#8a6442", "water": "#3d8fc0"}},
+  "raft": {"description": "A wobbly raft of tied logs on the water; set_object state broken: it comes apart and sinks.", "tags": ["scenery", "raft", "lake", "breakable", "doopi"], "behavior": "breakable", "draw": "raft", "w": 400, "h": 40, "states": ["whole", "broken"], "colors": {"log": "#9a6a38", "log2": "#b07c45", "rope": "#d9b77e", "water": "#3d8fc0"}},
+  "fishing_net": {"description": "A fishing net with floats: closed drops over someone (captured with wrap net), open lies in a heap.", "tags": ["scenery", "net", "pirate", "trap", "doopi"], "behavior": "static", "draw": "fishing_net", "w": 200, "h": 230, "states": ["closed", "open"], "colors": {"mesh": "#d9c49a", "float": "#e63946"}},
+  "treasure_chest": {"description": "A wooden treasure chest with gold trim; open shows shiny coins.", "tags": ["scenery", "treasure", "pirate", "doopi"], "behavior": "static", "draw": "treasure_chest", "w": 160, "h": 160, "states": ["closed", "open"], "colors": {"wood": "#8a5a2e", "trim": "#e6b84a", "gold": "#ffd23f"}},
+  "lantern_string": {"description": "A string of round paper lanterns in many colours between two poles, glowing softly.", "tags": ["scenery", "festival", "night", "light", "doopi"], "behavior": "static", "draw": "lantern_string", "animated": true, "w": 620, "h": 340, "colors": {"pole": "#7a5634", "line": "#5a4632"}},
+  "ribbon": {"description": "A pink ribbon bow lying on the ground (Doomi's trail).", "tags": ["scenery", "trail", "clue", "doopi"], "behavior": "static", "draw": "ribbon", "w": 60, "h": 30, "colors": {"ribbon": "#ff7eb6"}},
+  "dhol": {"description": "A red and gold barrel drum (dhol) on a strap; `use` beats it.", "tags": ["holdable", "music", "festival", "doopi"], "behavior": "holdable", "draw": "held", "use": {"sfx": "punch_light"}, "hold": {"kind": "drum", "shape": "drum", "len": 60, "width": 40, "gripAt": 0.5, "grip": "lHand", "color": "#e63946", "trim": "#e6b84a", "hitRadius": 14}},
+  "windup_key": {"description": "Iron Ghoom's big brass wind-up key, pulled off his back.", "tags": ["holdable", "robot", "key", "doopi"], "behavior": "holdable", "draw": "held", "hold": {"kind": "key", "shape": "key", "len": 70, "width": 8, "gripAt": 0.1, "grip": "rHand", "color": "#e6b84a", "trim": "#a07a2a", "hitRadius": 12}},
+  "pot_and_pan": {"description": "A frying pan, held like a bat: the village's funny shield (bat moves work).", "tags": ["holdable", "kitchen", "comedy", "doopi"], "behavior": "holdable", "draw": "held", "hold": {"kind": "bat", "shape": "pan", "len": 80, "width": 7, "gripAt": 0.1, "grip": "rHand", "color": "#5a5f6a", "trim": "#3a2a1c", "hitRadius": 16}},
+  "mirror": {"description": "A tall standing mirror in a curly purple frame; set_object state broken cracks it (no sharp shards).", "tags": ["scenery", "mirror", "magic", "breakable", "doopi"], "behavior": "breakable", "draw": "mirror", "w": 200, "h": 420, "states": ["whole", "broken"], "colors": {"glass": "#c8d0e4", "dim": "#7a7f94", "frame": "#8a5bd8"}},
+  "snowball": {"description": "A big rolling snowball (an avalanche throws them).", "tags": ["ball", "snow", "winter", "doopi"], "behavior": "ball", "draw": "ball", "r": 34, "bounce": 0.2, "colors": {"fill": "#f4f8fc", "seam": "#c9d8e8"}},
+  "rock_round": {"description": "A round grey rock that rolls.", "tags": ["ball", "rock", "mountain", "doopi"], "behavior": "ball", "draw": "ball", "r": 28, "bounce": 0.15, "colors": {"fill": "#8a8a94", "seam": "#6a6a74"}},
+  "hanging_cage": {"description": "A round bird-cage cage hanging from a chain, big enough for a person; closed or open.", "tags": ["scenery", "villain", "rescue", "cage", "doopi"], "behavior": "static", "draw": "hanging_cage", "w": 240, "h": 300, "states": ["closed", "open"], "colors": {"chain": "#5a5f6a", "bar": "#3b3f47", "base": "#3b3f47"}},
+  "rainbow_bridge": {"description": "A shimmering rainbow arc rising from the ground up and out of the sky (the friends' glow).", "tags": ["scenery", "magic", "rainbow", "finale", "doopi"], "behavior": "static", "draw": "rainbow_bridge", "animated": true, "w": 800, "h": 800},
+  "rainbow_shield": {"description": "A pulsing dome of rainbow light that protects whoever stands inside it.", "tags": ["scenery", "magic", "rainbow", "shield", "doopi"], "behavior": "static", "draw": "rainbow_shield", "animated": true, "w": 720, "h": 300}
 }

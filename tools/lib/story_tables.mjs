@@ -88,7 +88,7 @@ export function outlineCatalogMarkdown(catalog) {
     "### Body plans (cast[].body)",
     table(["body", "drawn as", "height at scale 1", "default look"], bodies),
     "",
-    `### Appearance (cast[].appearance): eyes ${a.eyes.join("|")}; brows ${a.brows.join("|")}; mouthStyle ${a.mouthStyle.join("|")}; hair ${a.hair.join("|")} (+ hairColor); outfit ${a.outfit.join("|")} (+ outfitColor); cheeks #rrggbb; accessories {name: "#rrggbb"} from ${a.accessories.join(", ")}. Not together: ${a.conflicts.map((c) => c.join(" + ")).join(", ")}.`,
+    `### Appearance (cast[].appearance): eyes ${a.eyes.join("|")}; brows ${a.brows.join("|")}; mouthStyle ${a.mouthStyle.join("|")}; hair ${a.hair.join("|")} (+ hairColor); outfit ${a.outfit.join("|")} (+ outfitColor); cheeks #rrggbb; belly #rrggbb (capsule bodies); slots 0-7 (bracelet gems); accessories {name: "#rrggbb"} from ${a.accessories.join(", ")}. Not together: ${a.conflicts.map((c) => c.join(" + ")).join(", ")}.`,
     `### Voices (cast[].voice): pitch 0.5-2, speed 0.7-1.4, timbre ${V2_ENUMS.timbre.join("|")}`,
     "### Themes (locations[].theme). Character colors must stand out against the background behind the characters:",
     table(["theme", "background", "good character colors"], catalog.themeNames.map((t) => [t, catalog.themes[t].characterBg, colorAdvice(catalog.themes[t].characterBg)])),

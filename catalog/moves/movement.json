@@ -319,5 +319,164 @@
       { "t": 1, "dx": "-travel", "dy": 0 }
     ],
     "events": [{ "t": 0.05, "sfx": "step" }]
+  },
+  {
+    "name": "swim",
+    "description": "Swims along face-down, arms reaching in turn and legs kicking, floating above the floor; loops until `distance` px or `cycles`.",
+    "tags": [
+      "travel",
+      "water",
+      "loop"
+    ],
+    "category": "movement",
+    "duration": 1,
+    "params": {
+      "stride": 200
+    },
+    "flags": {
+      "loop": true
+    },
+    "root": [
+      {
+        "t": 0,
+        "dx": 0,
+        "dy": -60,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "dx": "stride*0.5",
+        "dy": -75,
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "dx": "stride",
+        "dy": -60
+      }
+    ],
+    "events": [
+      {
+        "t": 0.1,
+        "sfx": "whoosh"
+      }
+    ],
+    "keys": [
+      {
+        "t": 0,
+        "pose": {
+          "rot": 80,
+          "head": -55,
+          "lUA": 195,
+          "lFA": 0,
+          "rUA": 20,
+          "rFA": 10,
+          "lTH": 10,
+          "lSH": 25,
+          "rTH": -12,
+          "rSH": 10
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "pose": {
+          "rot": 80,
+          "head": -55,
+          "lUA": 20,
+          "lFA": 10,
+          "rUA": 195,
+          "rFA": 0,
+          "lTH": -12,
+          "lSH": 10,
+          "rTH": 10,
+          "rSH": 25
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": {
+          "rot": 80,
+          "head": -55,
+          "lUA": 195,
+          "lFA": 0,
+          "rUA": 20,
+          "rFA": 10,
+          "lTH": 10,
+          "lSH": 25,
+          "rTH": -12,
+          "rSH": 10
+        }
+      }
+    ]
+  },
+  {
+    "name": "sink",
+    "description": "Sinks slowly from high up to the floor, limp, arms floating up (underwater, a dream fall); holds at the end.",
+    "tags": [
+      "water",
+      "fall",
+      "sad"
+    ],
+    "category": "movement",
+    "duration": 3,
+    "face": "asleep",
+    "flags": {
+      "hold": true
+    },
+    "root": [
+      {
+        "t": 0,
+        "dx": 0,
+        "dy": -520,
+        "ease": "outQuad"
+      },
+      {
+        "t": 1,
+        "dx": 30,
+        "dy": 0
+      }
+    ],
+    "keys": [
+      {
+        "t": 0,
+        "pose": {
+          "rot": 15,
+          "lean": 10,
+          "head": 25,
+          "lUA": 150,
+          "lFA": 30,
+          "rUA": 130,
+          "rFA": 40,
+          "lTH": 20,
+          "lSH": 40,
+          "rTH": -5,
+          "rSH": 30
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "pose": {
+          "rot": -10,
+          "lean": 5,
+          "head": 20,
+          "lUA": 160,
+          "lFA": 20,
+          "rUA": 145,
+          "rFA": 30,
+          "lTH": 10,
+          "lSH": 30,
+          "rTH": 5,
+          "rSH": 40
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": "down"
+      }
+    ]
   }
 ]
