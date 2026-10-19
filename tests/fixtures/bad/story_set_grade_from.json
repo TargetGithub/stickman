@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "mo",
+      "color": "#ffd23f"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1500,
+          "facing": 1
+        },
+        {
+          "id": "mo",
+          "x": 1750,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "g",
+          "at": 0.3,
+          "who": "world",
+          "do": "set_grade",
+          "params": {
+            "saturation": 1,
+            "dur": 2,
+            "from": "nobody"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -104,7 +104,7 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - W_PARTICLE_BUDGET: too many effects at once → Fewer effects at once.
 - W_DIALOGUE_FAST: a line too short to read, or talking over itself → Give the line more time.
 - W_TEXT_SOFT: a strong word for the audience → Use the suggested word.
-- W_KIDS_NO_HOPE: kids: someone vanishes and never returns → Bring them back with return.
+- W_KIDS_NO_HOPE: kids: vanished or petrified, never back → Bring them back with return.
 - W_STORY_SHORT: a story under 300 s → Make it 300 s or more.
 - W_FIGHT_SHORT: a fight video under 180 s → Make it 180 s or more.
 - W_SCENE_STATIC: over 4 s of a scene where nothing moves → Add movement, a line or narration.

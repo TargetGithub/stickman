@@ -50,6 +50,9 @@ export const WORLD_COMMANDS_V2 = {
     hair: { enum: V2_ENUMS.hair }, hairColor: HEX, outfit: { enum: V2_ENUMS.outfit }, outfitColor: HEX, cheeks: HEX,
     belly: HEX, slots: { min: 0, max: 7 },
   },
+  // A3: a lasting glow around a character (level 0 turns it off) and the scene's colour grade.
+  set_glow: { who: { character: true, required: true }, color: { glowColor: true }, level: { min: 0, max: 1, required: true }, dur: { min: 0, max: 10 } },
+  set_grade: { saturation: { min: 0, max: 1, required: true }, dur: { min: 0, max: 10 }, keepCast: { enum: [true, false] }, from: { character: true } },
   // Story camera shots (S6): a camera key from a beat; with dur, the previous framing comes back after it.
   shot: {
     mode: { enum: V2_ENUMS.cameraMode, required: true }, target: { character: true }, targets: { characters: 4 }, from: { character: true },
@@ -127,6 +130,7 @@ function checkWorldParams(beat, path, ctx, out) {
     if (rule.enum && !rule.enum.includes(v)) bad(`Use one of: ${rule.enum.join(", ")}.`);
     else if (rule.min !== undefined && (typeof v !== "number" || v < rule.min || v > rule.max)) bad(`Use a number from ${rule.min} to ${rule.max}.`);
     else if (rule.type === "color" && !/^#[0-9a-fA-F]{6}$/.test(v)) bad('Use a color like "#ffffff".');
+    else if (rule.glowColor && v !== "rainbow" && !/^#[0-9a-fA-F]{6}$/.test(v)) bad('Use a color like "#ffd23f", or "rainbow".');
     else if (rule.text) {
       if (typeof v !== "string" || !v.length || v.length > rule.text) bad(`Use text of 1 to ${rule.text} characters.`);
       else checkText(v, p, ctx.catalog.blocklist, out);

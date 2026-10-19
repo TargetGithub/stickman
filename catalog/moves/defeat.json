@@ -111,6 +111,18 @@
     ]
   },
   {
+    "name": "petrify",
+    "description": "Frozen where they stand: the colours drain to stone grey and the eyes close; counts as defeated until return thaws them.",
+    "tags": ["defeat", "magic", "kids", "freeze"],
+    "rig": "any",
+    "category": "defeat",
+    "duration": 1.6,
+    "face": "asleep",
+    "flags": { "hold": true, "defeat": true, "keepPose": true, "petrify": true },
+    "keys": [{ "t": 0, "pose": "stand" }],
+    "events": [{ "t": 0, "sfx": "magic_sparkle" }, { "t": 0.95, "fx": ["sparkle"], "sfx": "sparkle" }]
+  },
+  {
     "name": "flee",
     "description": "Runs off the nearer stage edge away from everyone and fades out.",
     "tags": ["defeat", "exit", "villain", "kids"],

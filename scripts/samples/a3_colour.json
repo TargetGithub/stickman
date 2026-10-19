@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "meta": { "title": "The Colours Come Home", "format": "landscape", "seed": 303, "kind": "clip", "audience": "kids", "speakerNames": true, "autoCamera": "story", "style": "soft" },
+  "cast": [
+    { "id": "doopi", "name": "Doopi", "body": "stickman", "color": "#5ec8ff", "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#2a1a14", "mouthStyle": "cartoon", "accessories": { "headband": "#ff3b5c" } }, "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" } },
+    { "id": "mooka", "name": "Mooka", "body": "buddy", "scale": 0.85, "color": "#7fe8c4", "appearance": { "eyes": "big", "mouthStyle": "cartoon", "cheeks": "#ffb3c7", "belly": "#c9b6ff", "accessories": { "sprout": "#3fae5a", "mittens": "#ff9f43" } }, "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" } },
+    { "id": "peepa", "name": "Peepa", "body": "slim", "scale": 1.15, "color": "#7b4bd8", "prop": "gloom_horn", "appearance": { "eyes": "oval", "brows": "thick", "accessories": { "horns": "#e6b84a", "cape": "#2a1b3d" } }, "voice": { "pitch": 0.7, "speed": 0.95, "timbre": "deep" } }
+  ],
+  "locations": [
+    { "id": "square", "theme": "tokyo_village", "stageWidth": 2800, "ambience": "park_birds" }
+  ],
+  "scenes": [
+    {
+      "id": "grey", "location": "square", "time": "day",
+      "music": { "mood": "playful", "volume": 0.3 },
+      "cast": [
+        { "id": "doopi", "x": 1050, "facing": 1, "face": "happy" },
+        { "id": "mooka", "x": 1320, "facing": -1, "face": "happy" },
+        { "id": "peepa", "x": 2150, "facing": -1, "face": "smug", "hidden": true }
+      ],
+      "beats": [
+        { "id": "n1", "at": 0.3, "who": "world", "do": "narrate", "params": { "text": "A sunny morning in Tokyo village..." } },
+        { "id": "j1", "at": 0.6, "who": "mooka", "do": "jump_joy" },
+        { "id": "in", "at": 2.6, "macro": "enter", "params": { "who": "peepa", "side": "right", "to": { "x": 2000 }, "mode": "walk" } },
+        { "id": "p1", "at": { "after": "in" }, "who": "peepa", "do": "talk", "say": "Grey! Grey for everyone!", "bubble": "shout" },
+        { "id": "p2", "at": { "after": "p1" }, "who": "peepa", "do": "use" },
+        { "id": "m0", "at": { "with": "p2", "delay": 0.4 }, "who": "world", "do": "set_music", "params": { "mood": "tense", "intensity": 0.5, "fade": 1 } },
+        { "id": "g1", "at": { "with": "p2", "delay": 0.5 }, "who": "world", "do": "set_grade", "params": { "saturation": 0.15, "dur": 2.5 } },
+        { "id": "m1", "at": { "with": "p2", "delay": 0.8 }, "who": "mooka", "do": "gasp", "face": "scared" },
+        { "id": "m2", "at": { "with": "m1", "delay": 0.45 }, "who": "mooka", "do": "petrify", "interrupt": true },
+        { "id": "d1", "at": { "after": "m2" }, "who": "doopi", "do": "gasp", "face": "scared", "say": "Mooka!", "bubble": "shout" },
+        { "id": "p3", "at": { "after": "d1" }, "who": "peepa", "do": "laugh", "say": "Ha ha ha!" },
+        { "id": "out", "at": { "after": "p3" }, "macro": "exit", "params": { "who": "peepa", "side": "right", "mode": "run" } },
+        { "id": "sp", "at": { "after": "out" }, "who": "world", "do": "spawn_object", "params": { "kind": "rainbow_crystal", "id": "gem", "x": 1100, "state": "dim" } },
+        { "id": "n2", "at": { "with": "sp" }, "who": "world", "do": "narrate", "params": { "text": "But one little crystal still remembered the colours." } },
+        { "id": "pk", "at": { "after": "sp", "delay": 0.8 }, "who": "doopi", "do": "pick_prop", "face": "determined" },
+        { "id": "c1", "at": { "after": "pk" }, "who": "world", "do": "set_object", "object": "gem", "params": { "state": "red" } },
+        { "id": "c2", "at": { "with": "c1" }, "who": "doopi", "do": "use", "say": "Come back, colours!", "bubble": "shout" },
+        { "id": "m3", "at": { "with": "c1", "delay": 0.3 }, "who": "world", "do": "set_music", "params": { "mood": "triumphant", "intensity": 0.6, "fade": 1.5 } },
+        { "id": "g2", "at": { "with": "c1", "delay": 0.4 }, "who": "world", "do": "set_grade", "params": { "saturation": 1, "dur": 2, "from": "doopi" } },
+        { "id": "r1", "at": { "with": "g2", "delay": 1.4 }, "who": "mooka", "do": "return" },
+        { "id": "h1", "at": { "after": "r1" }, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "#ffb3d9", "level": 0.8, "dur": 2 } },
+        { "id": "d2", "at": { "with": "h1" }, "macro": "dialogue", "params": { "lines": [["mooka", "I'm green again!", "laugh"], ["doopi", "Nobody turns my friends grey!", "happy"]] } },
+        { "id": "j2", "at": { "after": "d2" }, "who": "mooka", "do": "jump_joy", "face": "laugh" },
+        { "id": "h2", "at": { "with": "j2" }, "who": "world", "do": "set_glow", "params": { "who": "doopi", "color": "rainbow", "level": 1, "dur": 1 } },
+        { "id": "end", "at": { "after": "j2", "delay": 0.6 }, "who": "world", "do": "end_card", "params": { "text": "To be continued..." } }
+      ]
+    }
+  ],
+  "audio": { "musicVolume": 0.3 }
+}

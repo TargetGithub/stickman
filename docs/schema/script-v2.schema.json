@@ -518,6 +518,24 @@
                   "cave_drip"
                 ]
               },
+              "grade": {
+                "type": "object",
+                "required": [
+                  "saturation"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "saturation": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "keepCast": {
+                    "type": "boolean",
+                    "description": "Characters stay in full colour while the world is grey."
+                  }
+                }
+              },
               "duration": {
                 "type": "number",
                 "minimum": 1,
@@ -1769,7 +1787,8 @@
         "vanish",
         "ghost",
         "captured",
-        "flee"
+        "flee",
+        "petrify"
       ],
       "activity": [
         "blow_bubbles",
@@ -2432,7 +2451,8 @@
               "vanish",
               "ghost",
               "captured",
-              "flee"
+              "flee",
+              "petrify"
             ]
           }
         }

@@ -139,6 +139,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | vanish | defeat | 2.6 | - | - | story only, counts as defeated, holds pose | Dissolves away in sparkles; counts as defeated until return. |
 | ghost | defeat | 3.2 | - | - | story only, counts as defeated, holds pose | Rises up as a ghost with a halo; counts as defeated (general audience only). |
 | captured | defeat | 1.8 | cage=1 | - | story only, counts as defeated, holds pose | Rope binds the arms, then a cage drops over them (params.cage 0: rope only); counts as defeated. |
+| petrify | defeat | 1.6 | - | - | story only, counts as defeated, holds pose | Frozen where they stand: the colours drain to stone grey and the eyes close; counts as defeated until return thaws them. |
 | flee | defeat | 0.6 | stride=330 | - | loop: distance/cycles/to, story only | Runs off the nearer stage edge away from everyone and fades out. |
 | return | defeat | 1.6 | - | - | story only | A vanished character re-forms from sparkles. |
 | idle_dog | movement | 2 | - | - | loop: distance/cycles/to | A dog stands and breathes, tail going; loops until the next beat. |
@@ -167,6 +168,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | yelp | reaction | 0.5 | - | - | - | A dog jumps with a startled yelp (bumped or surprised). |
 | dizzy_dog | reaction | 1.6 | - | - | - | A dog wobbles, dizzy, with stars spinning round its head. |
 | faint_dog | defeat | 1.6 | - | - | story only, counts as defeated, holds pose | A dog wobbles and flops over with spinning stars (comic and harmless); stays down until it gets up. |
+| return_dog | defeat | 1.4 | - | - | story only | A vanished or frozen dog comes back: sparkles, a shake and a happy wag. |
 | spawn_dog | utility | 0.7 | - | - | - | A dog appears out of nowhere (it starts hidden). |
 | despawn_dog | utility | 0.7 | - | - | holds pose | A dog disappears from the stage and stays gone. |
 | lick | interaction | 1.6 | - | - | paired: partner plays lick_partner, story only | A dog jumps up with its front paws on a friend and licks their face (partner plays lick_partner). |

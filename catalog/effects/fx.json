@@ -1017,5 +1017,125 @@
         "alpha": [0.3, 0]
       }
     ]
+  },
+  "colour_return": {
+    "description": "Colour comes back: a glow, a ring and rainbow sparkles bursting out (with set_grade from).",
+    "tags": [
+      "magic",
+      "colour",
+      "hope",
+      "celebrate"
+    ],
+    "anchor": "hip",
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.9,
+          0.9
+        ],
+        "size": [
+          60,
+          220
+        ],
+        "color": "rgba(255, 245, 200, 0.9)",
+        "alpha": [
+          0.9,
+          0
+        ]
+      },
+      {
+        "shape": "ring",
+        "count": 1,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.8,
+          0.8
+        ],
+        "size": [
+          30,
+          300
+        ],
+        "width": 10,
+        "color": "#ffffff",
+        "alpha": [
+          0.8,
+          0
+        ]
+      },
+      {
+        "shape": "star",
+        "count": 21,
+        "offset": 30,
+        "angle": [
+          -180,
+          0
+        ],
+        "speed": [
+          220,
+          520
+        ],
+        "drag": 1.2,
+        "life": [
+          1.1,
+          1.8
+        ],
+        "size": [
+          14,
+          3
+        ],
+        "color": [
+          "#ff3b3b",
+          "#ffe02e",
+          "#3ddc6a",
+          "#2f9bff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 18,
+        "offset": 40,
+        "spreadY": 120,
+        "angle": [
+          -110,
+          -70
+        ],
+        "speed": [
+          60,
+          160
+        ],
+        "drag": 0.6,
+        "life": [
+          1.4,
+          2.2
+        ],
+        "size": [
+          7,
+          1
+        ],
+        "color": [
+          "#ff9a1f",
+          "#5a5cff",
+          "#b05cff",
+          "#ffffff"
+        ],
+        "alpha": [
+          0.9,
+          0
+        ]
+      }
+    ]
   }
 }

@@ -312,6 +312,14 @@ Body plan `dog_small` is a small four-legged puppy (its back at a stickman's kne
 
 Sample: `scripts/samples/r1_becky.json`. Review sheets: `node tools/becky_sheet.mjs` (the look) and `node tools/move_sheet.mjs --rig quadruped --plans dog_small` (the moves).
 
+### 4.2 Glow, grey worlds and friends turned to stone
+
+- **Heart Glow:** `{"who": "world", "do": "set_glow", "params": {"who": "doopi", "color": "#ffd23f", "level": 0.6, "dur": 1.5}}` puts a soft pulsing halo behind a character. `"color": "rainbow"` cycles the colours; `"level": 0` turns it off. It stays on into later scenes.
+- **A grey world:** a scene's `"grade": {"saturation": 0.3}` makes the whole scene greyer (1 is full colour, 0 grey); add `"keepCast": true` to keep the characters in colour. `set_grade` changes it during a scene: `{"who": "world", "do": "set_grade", "params": {"saturation": 1, "dur": 2, "from": "doopi"}}` sends the colour out from Doopi in a wave with rainbow sparkles.
+- **Turned to stone:** `{"who": "mooka", "do": "petrify"}` freezes a character where it stands and drains its colour; it stays frozen into later scenes. `{"who": "mooka", "do": "return"}` brings the colour back from the feet up. In a kids story, a friend who is never thawed gets `W_KIDS_NO_HOPE`.
+
+Sample: `scripts/samples/a3_colour.json`.
+
 ## 5. Fixing validator errors
 
 The validator runs before every render. Each message names the problem, where it is, and how to fix it. The most common ones:

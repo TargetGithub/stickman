@@ -34,4 +34,6 @@ export const WORLD_DURATION = {
   set_time: (p) => p.dur ?? 0,
   set_weather: (p) => p.dur ?? 0,
   shot: (p) => p.dur ?? 0,
+  set_glow: (p) => p.dur ?? 0,
+  set_grade: (p) => p.dur ?? 0,
 };

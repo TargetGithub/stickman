@@ -32,7 +32,7 @@ export const V2_ENUMS = {
   cameraMode: ["follow", "focus", "fixed", "pan", "push", "two_shot", "close_up", "wide", "over_shoulder", "track"],
   beatMacro: ["dialogue", "activity", "walk_together", "travel", "enter", "exit", "fight", "gauntlet", "brawl", "chase", "defeat", "grief"],
   sceneMacro: ["fight_card", "montage"],
-  defeatStyle: ["ko", "faint", "vanish", "ghost", "captured", "flee"],
+  defeatStyle: ["ko", "faint", "vanish", "ghost", "captured", "flee", "petrify"],
   activity: ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"], // catalog (fetch: A1)
   ending: ["win", "miss", "laugh", "interrupted"],
   intensity: ["low", "medium", "high"],
@@ -71,6 +71,7 @@ export const V2_WORLD_COMMANDS = [
   "narrate", "title_card", "chapter_card", "time_card", "end_card",
   "set_time", "set_weather", "set_music", "shot",
   "spawn_object", "remove_object", "set_object", "set_appearance",
+  "set_glow", "set_grade", // A3: Heart Glow and how grey the world is
   "activity", // S5: the runtime form of the @activity macro
 ];
 
@@ -79,8 +80,8 @@ export const V2_CHARACTER_COMMANDS = ["use", "ride", "dismount", "return"];
 
 /** Defeat styles allowed per audience (spec 13, ADR-018). */
 export const DEFEAT_STYLES_BY_AUDIENCE = {
-  kids: ["ko", "faint", "vanish", "captured", "flee"],
-  general: ["ko", "faint", "vanish", "ghost", "captured", "flee"],
+  kids: ["ko", "faint", "vanish", "captured", "flee", "petrify"],
+  general: ["ko", "faint", "vanish", "ghost", "captured", "flee", "petrify"],
 };
 
 /** New FX presets the story milestones add (catalog). */

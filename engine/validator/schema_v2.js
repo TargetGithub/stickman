@@ -245,6 +245,17 @@ const macroBeat = {
   },
 };
 
+/** How colourful the scene is (A3): saturation 1 is full colour, 0 grey; keepCast keeps the characters in colour. */
+const grade = {
+  type: "object",
+  required: ["saturation"],
+  additionalProperties: false,
+  properties: {
+    saturation: { type: "number", minimum: 0, maximum: 1 },
+    keepCast: { type: "boolean", description: "Characters stay in full colour while the world is grey." },
+  },
+};
+
 const sceneFor = (music) => ({
   type: "object",
   required: ["id", "location", "cast", "beats"],
@@ -255,6 +266,7 @@ const sceneFor = (music) => ({
     time: { enum: E.time },
     weather: { enum: E.weather },
     ambience: { enum: E.ambience },
+    grade,
     duration: { type: "number", minimum: 1, maximum: L.sceneMax, description: "Fixed length; otherwise the last beat's end plus tail." },
     tail: { type: "number", minimum: 0, maximum: 5 },
     transitionIn: transition,

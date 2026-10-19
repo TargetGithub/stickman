@@ -1,10 +1,12 @@
 // Defeat styles at runtime (STORY_SPEC 13, S5.5). Milestone: S5.
 // The moves live in catalog/moves/defeat.json; their event flags are handled here:
 //   fade { to, dur }  opacity over story time (to 0: the character is hidden at the end)
-//   reform            a vanished character reappears (return)
+//   reform            a vanished character reappears (return); a petrified one thaws instead (a "thaw" event)
 //   cage              a cage object drops over the character (captured)
 // flee runs to the nearer stage edge away from the closest character, then fades out.
 // A defeated character keeps the move's face (scared in a cage) instead of the knocked-out face.
+// petrify (A3) holds the pose (keepPose) and marks the actor petrified; the renderer greys it from the
+// "defeat" event and floods the colour back from the "thaw" event. Both carry over between scenes.
 
 import { spawnObject } from "../objects.js";
 import { STAGE } from "../config.js";
@@ -14,7 +16,10 @@ const FLEE_FADE = 0.4; // s
 /** Story move events of defeat moves (world.onMoveEvent). */
 export function defeatMoveEvent(world, actor, e, events, t) {
   if (e.fade) actor.fade = { a0: actor.alpha, a1: e.fade.to, t0: t, dur: e.fade.dur };
-  if (e.reform) {
+  if (e.reform && actor.petrified) {
+    actor.petrified = false;
+    events.push({ type: "thaw", actor: actor.id });
+  } else if (e.reform) {
     actor.hidden = false;
     actor.alpha = 0;
     actor.fade = { a0: 0, a1: 1, t0: t, dur: 1 };
@@ -30,6 +35,7 @@ export function defeatMoveEvent(world, actor, e, events, t) {
  */
 export function defeatStart(world, actor, def, opts) {
   actor.defeatFace = def.flags.defeat ? def.face ?? null : null;
+  if (def.flags.petrify) actor.petrified = true;
   if (def.name !== "flee") return opts;
   let nearest = null;
   for (const a of world.actors) {

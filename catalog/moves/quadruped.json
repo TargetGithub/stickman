@@ -495,6 +495,22 @@
     ]
   },
   {
+    "name": "return_dog",
+    "description": "A vanished or frozen dog comes back: sparkles, a shake and a happy wag.",
+    "tags": ["dog", "magic", "hope", "enter"],
+    "rig": "quadruped",
+    "category": "defeat",
+    "duration": 1.4,
+    "face": "happy",
+    "events": [{ "t": 0, "reform": true, "fx": ["sparkle"], "sfx": "sparkle" }, { "t": 0.4, "sfx": "bark_small" }, { "t": 0.8, "fx": ["confetti"] }],
+    "keys": [
+      { "t": 0, "pose": "dog_stand", "ease": "inOutQuad" },
+      { "t": 0.3, "pose": { "lean": 4, "head": -10 }, "ease": "inOutQuad" },
+      { "t": 0.55, "pose": { "lean": -4, "head": 6 }, "ease": "inOutQuad" },
+      { "t": 1, "pose": "dog_stand" }
+    ]
+  },
+  {
     "name": "spawn_dog",
     "description": "A dog appears out of nowhere (it starts hidden).",
     "tags": ["dog", "magic", "enter"],

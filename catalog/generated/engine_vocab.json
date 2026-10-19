@@ -26,7 +26,7 @@
     "cameraMode": ["follow", "focus", "fixed", "pan", "push", "two_shot", "close_up", "wide", "over_shoulder", "track"],
     "beatMacro": ["dialogue", "activity", "walk_together", "travel", "enter", "exit", "fight", "gauntlet", "brawl", "chase", "defeat", "grief"],
     "sceneMacro": ["fight_card", "montage"],
-    "defeatStyle": ["ko", "faint", "vanish", "ghost", "captured", "flee"],
+    "defeatStyle": ["ko", "faint", "vanish", "ghost", "captured", "flee", "petrify"],
     "activity": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"],
     "ending": ["win", "miss", "laugh", "interrupted"],
     "intensity": ["low", "medium", "high"],
@@ -37,8 +37,8 @@
   "moveCategories": ["attack", "movement", "reaction", "defensive", "emote", "utility", "life", "interaction", "defeat"],
   "objectBehaviors": ["static", "seat", "holdable", "ball", "floater", "vehicle", "breakable"],
   "defeatStylesByAudience": {
-    "kids": ["ko", "faint", "vanish", "captured", "flee"],
-    "general": ["ko", "faint", "vanish", "ghost", "captured", "flee"]
+    "kids": ["ko", "faint", "vanish", "captured", "flee", "petrify"],
+    "general": ["ko", "faint", "vanish", "ghost", "captured", "flee", "petrify"]
   },
   "voice": { "pitch": [0.5, 2], "speed": [0.7, 1.4], "timbre": ["soft", "squeaky", "deep", "robot", "bark"] },
   "worldCommands": {
@@ -182,6 +182,24 @@
         "cheeks": { "type": "color" },
         "belly": { "type": "color" },
         "slots": { "min": 0, "max": 7 }
+      }
+    },
+    "set_glow": {
+      "v1": false,
+      "params": {
+        "who": { "character": true, "required": true },
+        "color": { "glowColor": true },
+        "level": { "min": 0, "max": 1, "required": true },
+        "dur": { "min": 0, "max": 10 }
+      }
+    },
+    "set_grade": {
+      "v1": false,
+      "params": {
+        "saturation": { "min": 0, "max": 1, "required": true },
+        "dur": { "min": 0, "max": 10 },
+        "keepCast": { "enum": [true, false] },
+        "from": { "character": true }
       }
     },
     "shot": {
@@ -500,7 +518,7 @@
       "properties": {
         "who": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
         "by": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
-        "style": { "enum": ["ko", "faint", "vanish", "ghost", "captured", "flee"] }
+        "style": { "enum": ["ko", "faint", "vanish", "ghost", "captured", "flee", "petrify"] }
       }
     },
     "grief": {

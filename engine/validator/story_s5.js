@@ -2,7 +2,7 @@
 //   E_ACTIVITY_OBJECT  an activity's `object` is not in the scene, or is not a kind it can use
 //   E_WORLD_PARAM      wrong number of players, or a winner who isn't playing
 //   E_DEFEAT_STYLE     a defeat style the audience doesn't allow (ghost is for "general" only)
-//   W_KIDS_NO_HOPE     kids: someone vanishes and never comes back (`return`) later in the story
+//   W_KIDS_NO_HOPE     kids: someone vanishes or is petrified and never comes back (`return`) later in the story
 
 import { V2_ENUMS, DEFEAT_STYLES_BY_AUDIENCE } from "./v2_names.js";
 
@@ -63,14 +63,14 @@ export function defeatIssues(story) {
           `Use one of: ${allowed.join(", ")}${audience === "kids" ? ' (or set meta.audience to "general")' : ""}.`));
       }
       const who = b.macro === "defeat" ? b.params?.who : b.who;
-      if (style === "vanish" && who) gone.set(who, path);
+      if ((style === "vanish" || style === "petrify") && who) gone.set(who, { path, style });
       if (b.do === "return") gone.delete(b.who);
     });
   });
   if (audience === "kids") {
-    for (const [id, path] of gone) {
-      out.push(issue("W_KIDS_NO_HOPE", path, `'${id}' vanishes and never comes back; kids stories keep losses temporary or hopeful.`,
-        `Add a "return" beat for '${id}' in a later scene (sparkles bring them back), or show they're safe.`, "warning"));
+    for (const [id, { path, style }] of gone) {
+      out.push(issue("W_KIDS_NO_HOPE", path, `'${id}' ${style === "petrify" ? "is turned to stone and never thaws" : "vanishes and never comes back"}; kids stories keep losses temporary or hopeful.`,
+        `Add a "return" beat for '${id}' in a later scene (${style === "petrify" ? "the colour floods back" : "sparkles bring them back"}), or show they're safe.`, "warning"));
     }
   }
   return out;

@@ -147,6 +147,8 @@ function dispatchWorld(director, beat, ctx) {
   else if (beat.do === "freeze") requestFreeze(clock, p.duration ?? 0.5);
   else if (CARD_COMMANDS.includes(beat.do)) requestFreeze(clock, WORLD_DURATION[beat.do](p));
   emit({ type: "world", do: beat.do, params: p, beatId: beat.id });
+  // A colour wave from a character (A3, F3): the renderer spreads the grade from them; sparkles burst there.
+  if (beat.do === "set_grade" && ctx.world.byId.get(p.from)) emit({ type: "fx", names: ["colour_return"], actor: p.from, beatId: beat.id });
   if (beat.do === "activity") {
     // Ends with its activityEnd event (onEvents), not a timer.
     const started = startActivity(ctx.world, beat, p, storyT, ctx.catalog);
