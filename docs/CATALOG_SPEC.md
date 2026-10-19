@@ -106,7 +106,7 @@ A preset is a ready-made cast entry that an author or AI tool can use as it is o
   - from the stories: Kai (hero, stickman), Pip (sidekick, buddy), Vex (villain, slim), a guard (bulky);
   - new: a kid friend, an elder mentor, a rival fighter with a staff, a big bruiser, a friendly shopkeeper (kid or elder), a sneaky henchman (slim), and two crowd types for extras.
 - **Growth:** the copy-paste and automatic pipelines may save a story's cast as presets on request (`node tools/manual.mjs save-presets <story.json>`). They are reviewed like any catalog change, never added automatically.
-- **Context pack:** presets appear as one compact table (id, role, body, colors, look, good themes). The full JSON stays in the catalog: the model only needs the id to say "use preset kai" and copy the fields from the table.
+- **Context pack:** presets appear as one compact table (id, role, body, colors, look, good themes). Presets with a `series` field (for example the Doopi & Friends cast, `"series": "doopi"`) are listed by id and role only, one line per series, so a series cast does not grow the pack. The full JSON stays in the catalog: the model only needs the id to say "use preset kai" and copy the fields from the table.
 
 Notes:
 - **Descriptions and tags** sit next to the data they describe: `{ "name": "hug", "description": "Two characters hug; a short buddy hugs a tall friend round the waist.", "tags": ["paired", "kind"], ... }`. The engine ignores fields it does not use.

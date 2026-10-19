@@ -57,7 +57,7 @@ Accessories and hair styles are renderer code (`engine/renderer/appearance.js`) 
 
 | Id | Item | Kind | Eps | Spec | Creation prompt |
 |---|---|---|---|---|---|
-| C1 | **Doopi** cast entry + preset | Data | all | `stickman`, `#3fb8ff`, `eyes: big`, `hair: spiky` (`#2a1a14`), `mouthStyle: cartoon`, headband `#ff3b5c` | Preset `doopi.json`, role hero |
+| C1 | **Doopi** cast entry + preset | Data | all | `stickman`, `#5ec8ff` (was `#3fb8ff`: W_CONTRAST on city_park), `eyes: big`, `hair: spiky` (`#2a1a14`), `mouthStyle: cartoon`, headband `#ff3b5c` | Preset `doopi.json`, role hero |
 | C2 | **Dony** preset | Data | all | `kid`, `scale 1.1`, `#4cd964`, `hair: cap` `#ffcc00`, scarf `#ffcc00` | Preset `dony.json`, role friend |
 | C3 | **Doomi** preset + accessory `hair_flower` | Renderer | all | `stickman`, `#ff7eb6`, ponytail `#5a3a2c`, cheeks `#ff9db8`, shirt `#ffd1e3`; NEW `hair_flower`: a 5-petal flower clip on the side of the head (16 px), petal colour + yellow centre | "A small five-petal flower hair clip worn above the right ear, flat cartoon, petals in the given colour, a yellow dot centre, dark outline." |
 | C4 | **Becky** look (on R1) | Renderer | all | see R1: cream, eye patch, floppy ears, red collar + bell | (in R1) |

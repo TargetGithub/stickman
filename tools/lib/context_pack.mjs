@@ -86,18 +86,26 @@ function characters(src) {
   const faces = Object.entries(c.faces).map(([n, f]) => [n, f.description]);
   const fields = ({ body, color, ...rest }) => (Object.keys(rest).length ? `\`${JSON.stringify(rest)}\`` : "-");
   const hard = (p) => c.themeNames.filter((t) => !(src.facts.goodThemes[p.id] || []).includes(t)).join(", ") || "-";
-  const presets = src.presets.map((p) => [p.id, p.name, p.role, p.cast.body || "stickman", p.cast.color, fields(p.cast), hard(p)]);
+  const presets = src.presets.filter((p) => !p.series).map((p) => [p.id, p.name, p.role, p.cast.body || "stickman", p.cast.color, fields(p.cast), hard(p)]);
   return doc("Characters",
     "A cast entry: `{ \"id\", \"name\", \"body\", \"color\", \"scale\", \"hp\", \"prop\", \"style\", \"appearance\", \"voice\" }` (01_script_format.md). Only id and color are required.",
     "## Body plans (`body`; default stickman)", table(["body", "height px", "default look", "about"], Object.entries(c.bodies).map(([n, b]) => [n, height(b), kv(b.appearance) || "-", b.description])),
     "## Appearance (`appearance`)", opts.join("\n"),
-    "hairColor and outfitColor need hair and outfit; cheeks is a color; accessories map a name to a color: `{\"cape\": \"#d23c3c\"}`. v1 `style` takes headband, scarf, cape, hat or glow colors.",
+    "hairColor and outfitColor need hair and outfit; cheeks is a color; belly is a patch color (buddy only); accessories map a name to a color: `{\"cape\": \"#d23c3c\"}`. v1 `style` takes headband, scarf, cape, hat or glow colors.",
     `Not together: ${look.conflicts.map((x) => x.join(" + ")).join(", ")}.`,
     "## Faces (`face` on a beat or a scene cast entry)", table(["face", "look"], faces),
     "## Voices (`voice`)", `pitch 0.5-2, speed 0.7-1.4, timbre: ${files["characters/voices.json"].timbres.map((t) => `${t.name} = ${say(t.description)}`).join("; ")}.`,
     "## Ready-made characters (presets)", "Use them as they are (a cast entry with that id, name, body, color and the other fields) or change them. \"hard to see on\": themes where the color is too close to the background.",
     table(["id", "name", "role", "body", "color", "other cast fields", "hard to see on"], presets),
+    ...seriesLines(src.presets),
     `Roles: ${names(files["characters/roles.json"].roles).join(", ")}.`);
+}
+
+/** Series presets (a `series` field) take one line per series: ids and roles; the cast fields stay in the catalog. */
+function seriesLines(presets) {
+  const by = {};
+  for (const p of presets.filter((x) => x.series)) (by[p.series] ||= []).push(`${p.id} (${p.role})`);
+  return Object.entries(by).map(([s, list]) => `Series \`${s}\` presets (cast fields in catalog/characters/presets/<id>.json): ${list.join(", ")}.`);
 }
 
 function moves(src) {

@@ -20,13 +20,13 @@ A cast entry: `{ "id", "name", "body", "color", "scale", "hp", "prop", "style", 
 - **eyes**: dot = small dot eyes (the default); big = big round cute eyes; oval = tall oval eyes; sleepy = half-closed sleepy eyes; visor = a sci-fi visor across the eyes; glasses = round glasses
 - **brows**: none = no eyebrows; thin = thin eyebrows; thick = thick eyebrows
 - **mouthStyle**: line = a simple line mouth (the default); cartoon = a filled cartoon mouth
-- **hair**: none = no hair; spiky = spiky hero hair; bob = a rounded bob; ponytail = a ponytail; cap = a cap (counts as headwear)
+- **hair**: none = no hair; spiky = spiky hero hair; bob = a rounded bob; ponytail = a ponytail; cap = a cap (counts as headwear); bun = a round bun on top with a hairpin
 - **outfit**: none = no outfit lines; shirt = a shirt; coat = a long coat; armor = armor plates; robe = a long robe
-- **accessories**: headband = a headband with trailing tails; scarf = a scarf that flutters; cape = a cape that flows behind; hat = a hat on top of the head; antenna = a little antenna (robots, aliens); bowtie = a bow tie; mask = a mask over the eyes; crown = a crown; backpack = a backpack; eyepatch = an eyepatch
+- **accessories**: headband = a headband with trailing tails; scarf = a scarf that flutters; cape = a cape that flows behind; hat = a hat on top of the head; antenna = a little antenna (robots, aliens); bowtie = a bow tie; mask = a mask over the eyes; crown = a crown; backpack = a backpack; eyepatch = an eyepatch; hair_flower = a five-petal flower clip above the ear; sprout = a two-leaf sprout on top of the head; mittens = round mitten hands; horns = two curly ram horns curving back; turban = a wrapped turban with a jewel (headwear; covers the hair); moustache = a big curly handlebar moustache; stub_horns = two tiny glued-on toy horns (remove for a gag); bracelet = a left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order
 
-hairColor and outfitColor need hair and outfit; cheeks is a color; accessories map a name to a color: `{"cape": "#d23c3c"}`. v1 `style` takes headband, scarf, cape, hat or glow colors.
+hairColor and outfitColor need hair and outfit; cheeks is a color; belly is a patch color (buddy only); accessories map a name to a color: `{"cape": "#d23c3c"}`. v1 `style` takes headband, scarf, cape, hat or glow colors.
 
-Not together: hat + crown, hat + hair:cap, crown + hair:cap, mask + eyes:visor, eyepatch + eyes:visor.
+Not together: hat + crown, hat + hair:cap, crown + hair:cap, mask + eyes:visor, eyepatch + eyes:visor, turban + hat, turban + crown, turban + hair:cap, turban + horns, turban + stub_horns, horns + stub_horns, horns + hat, horns + hair:cap.
 
 ## Faces (`face` on a beat or a scene cast entry)
 
@@ -72,5 +72,7 @@ Use them as they are (a cast entry with that id, name, body, color and the other
 | sly | Sly | henchman | slim | #556b2f | `{"style":{"scarf":"#222222"},"appearance":{"accessories":{"mask":"#222222"}},"voice":{"pitch":1.1,"speed":1.2,"timbre":"squeaky"}}` | city_street |
 | tam | Tam | friend | kid | #ff8c1a | `{"appearance":{"hair":"spiky","hairColor":"#3a2a1a"},"voice":{"pitch":1.4,"timbre":"soft"}}` | desert_noon, city_park, home_interior |
 | vex | Vex | villain | slim | #8a2be2 | `{"style":{"cape":"#1a1a1a"},"appearance":{"eyes":"oval","brows":"thick"},"voice":{"pitch":0.7,"timbre":"deep"},"hp":200}` | city_street |
+
+Series `doopi` presets (cast fields in catalog/characters/presets/<id>.json): dony (friend), doomi (friend), doopi (hero), kony (henchman), mooka (sidekick), motumal (friend), nani (mentor), peepa (villain), thunda (villain), tony (henchman).
 
 Roles: hero, sidekick, friend, family, mentor, villain, henchman, rival, guard, crowd, animal-like.

@@ -48,6 +48,7 @@ export const WORLD_COMMANDS_V2 = {
     accessory: { enum: V2_ENUMS.accessory }, color: HEX, remove: { enum: [true, false] },
     eyes: { enum: V2_ENUMS.eyes }, brows: { enum: V2_ENUMS.brows }, mouthStyle: { enum: V2_ENUMS.mouthStyle },
     hair: { enum: V2_ENUMS.hair }, hairColor: HEX, outfit: { enum: V2_ENUMS.outfit }, outfitColor: HEX, cheeks: HEX,
+    belly: HEX, slots: { min: 0, max: 7 },
   },
   // Story camera shots (S6): a camera key from a beat; with dur, the previous framing comes back after it.
   shot: {

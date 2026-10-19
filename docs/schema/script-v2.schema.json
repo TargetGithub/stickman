@@ -200,6 +200,17 @@
                 "type": "string",
                 "pattern": "^#[0-9a-fA-F]{6}$"
               },
+              "belly": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$",
+                "description": "A belly patch color on a capsule body (buddy); hidden under an outfit."
+              },
+              "slots": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 7,
+                "description": "Lit gem slots on the bracelet (rainbow order)."
+              },
               "accessories": {
                 "type": "object",
                 "description": "Accessory name → color. Also accepts the v1 style accessories (headband, scarf, cape, hat).",
@@ -242,6 +253,38 @@
                     "pattern": "^#[0-9a-fA-F]{6}$"
                   },
                   "eyepatch": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "hair_flower": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "sprout": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "mittens": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "horns": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "turban": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "moustache": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "stub_horns": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "bracelet": {
                     "type": "string",
                     "pattern": "^#[0-9a-fA-F]{6}$"
                   }
@@ -1580,7 +1623,8 @@
         "spiky",
         "bob",
         "ponytail",
-        "cap"
+        "cap",
+        "bun"
       ],
       "outfit": [
         "none",
@@ -1599,7 +1643,15 @@
         "mask",
         "crown",
         "backpack",
-        "eyepatch"
+        "eyepatch",
+        "hair_flower",
+        "sprout",
+        "mittens",
+        "horns",
+        "turban",
+        "moustache",
+        "stub_horns",
+        "bracelet"
       ],
       "timbre": [
         "soft",

@@ -43,6 +43,8 @@ const appearance = {
     hairColor: color,
     outfit: { type: "string" },
     outfitColor: color,
+    belly: { ...color, description: "A belly patch color on a capsule body (buddy); hidden under an outfit." },
+    slots: { type: "integer", minimum: 0, maximum: 7, description: "Lit gem slots on the bracelet (rainbow order)." },
     accessories: {
       type: "object",
       description: "Accessory name → color. Also accepts the v1 style accessories (headband, scarf, cape, hat).",
