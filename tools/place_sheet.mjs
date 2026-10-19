@@ -12,7 +12,7 @@ import { catalog } from "../catalog/index.js";
 const args = process.argv.slice(2);
 const outDir = args.includes("--out") ? args[args.indexOf("--out") + 1] : "out/demos";
 const themes = args.filter((a, i) => !a.startsWith("--") && args[i - 1] !== "--out");
-const list = themes.length ? themes : ["chirpur_village", "banyan_hill", "gloom_throne_room"];
+const list = themes.length ? themes : ["tokyo_village", "banyan_hill", "gloom_throne_room"];
 
 const DOOPI = { id: "doopi", body: "stickman", color: "#5ec8ff", appearance: { eyes: "big", hair: "spiky", hairColor: "#2a1a14", mouthStyle: "cartoon", accessories: { headband: "#ff3b5c" } } };
 const BECKY = { id: "becky", ...JSON.parse(readFileSync(new URL("../catalog/characters/presets/becky.json", import.meta.url))).cast };

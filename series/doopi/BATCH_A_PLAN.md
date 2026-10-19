@@ -146,7 +146,7 @@ Tests: `tests/unit/quadruped.test.js` (table-driven FK: joints for known poses, 
 - Demo: a 30 s scene: the village goes grey, Mooka petrifies, a crystal returns, colour floods back, Mooka thaws, Doopi's glow rises.
 
 ### A4 Places
-- `Tokyo_village` (T1: hills, round huts with painted doors, bunting, a far tree), `banyan_hill` (T2: the giant banyan with aerial roots; the seven crystal sockets are set pieces `crystal_socket` with states per colour and `empty`), `gloom_throne_room` (T13: from `villain_lair`, plus a horned `throne` set piece and a crystal-ball stand).
+- `tokyo_village` (T1: hills, round huts with painted doors, bunting, a far tree), `banyan_hill` (T2: the giant banyan with aerial roots; the seven crystal sockets are set pieces `crystal_socket` with states per colour and `empty`), `gloom_throne_room` (T13: from `villain_lair`, plus a horned `throne` set piece and a crystal-ball stand).
 - Drafted with `node tools/draft.mjs theme "<prompt from ASSETS.md>" --manual` (copy-paste, no local models), new layer kinds coded by hand. Each gets a review sheet at three camera distances, by day, dusk and night, and grey (with E3, once A3 lands).
 
 ### A5 Objects, FX and sounds

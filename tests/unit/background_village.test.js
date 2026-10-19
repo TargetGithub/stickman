@@ -24,7 +24,7 @@ function fakeCtx() {
   });
 }
 
-const THEMES = ["chirpur_village", "banyan_hill", "gloom_throne_room"];
+const THEMES = ["tokyo_village", "banyan_hill", "gloom_throne_room"];
 
 test("village kinds are registered layer kinds", () => {
   for (const k of Object.keys(VILLAGE_KINDS)) assert.ok(LAYER_KINDS.includes(k), k);

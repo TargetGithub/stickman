@@ -17,7 +17,7 @@
 | villain_lair | #3a2350 | bright: light blue, yellow, orange, pink, white | A purple cave lair with crystals and lanterns. |
 | home_interior | #ab8865 | strong or dark: red, blue, purple, dark green, black | Inside a cosy home: walls, windows and furniture. |
 | alley_night | #4e3530 | bright: light blue, yellow, orange, pink, white | A brick alley at night with lampposts and puddles. |
-| chirpur_village | #a06a40 | bright: light blue, yellow, orange, pink, white | An Indian hill village square: round mud huts with painted doors, bunting, green hills. |
+| tokyo_village | #a06a40 | bright: light blue, yellow, orange, pink, white | An Indian hill village square: round mud huts with painted doors, bunting, green hills. |
 | banyan_hill | #5a8f48 | strong or dark: red, blue, purple, dark green, black | A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below. |
 | gloom_throne_room | #43384f | bright: light blue, yellow, orange, pink, white | Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist. |
 

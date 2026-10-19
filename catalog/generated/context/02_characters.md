@@ -60,18 +60,18 @@ Use them as they are (a cast entry with that id, name, body, color and the other
 | id | name | role | body | color | other cast fields | hard to see on |
 |---|---|---|---|---|---|---|
 | becky | Becky | animal-like | dog_small | #f3e3c3 | `{"appearance":{"eyes":"big"},"voice":{"pitch":1.4,"timbre":"bark"}}` | white_stage, desert_noon, snow_mountain |
-| bo | Grandpa Bo | family | elder | #c2185b | `{"appearance":{"outfit":"coat","outfitColor":"#f2c14e","eyes":"glasses"},"voice":{"pitch":0.9,"timbre":"soft"}}` | city_street, chirpur_village, banyan_hill |
-| brute | Brute | henchman | bulky | #8d5a3b | `{"scale":1.3,"hp":160,"voice":{"pitch":0.6,"speed":0.9,"timbre":"deep"}}` | city_street, chirpur_village, banyan_hill |
-| crowd_adult | Passer-by | crowd | stickman | #8d99ae | - | city_park, city_street, home_interior, chirpur_village, banyan_hill |
+| bo | Grandpa Bo | family | elder | #c2185b | `{"appearance":{"outfit":"coat","outfitColor":"#f2c14e","eyes":"glasses"},"voice":{"pitch":0.9,"timbre":"soft"}}` | city_street, tokyo_village, banyan_hill |
+| brute | Brute | henchman | bulky | #8d5a3b | `{"scale":1.3,"hp":160,"voice":{"pitch":0.6,"speed":0.9,"timbre":"deep"}}` | city_street, tokyo_village, banyan_hill |
+| crowd_adult | Passer-by | crowd | stickman | #8d99ae | - | city_park, city_street, home_interior, tokyo_village, banyan_hill |
 | crowd_kid | Kid | crowd | kid | #f4a261 | - | desert_noon, snow_mountain, home_interior |
 | guard | Guard | guard | bulky | #ffe14d | `{"voice":{"pitch":0.75,"timbre":"deep"}}` | white_stage, desert_noon, snow_mountain |
 | kai | Kai | hero | stickman | #3fd8ff | `{"style":{"headband":"#ff3b5c"},"voice":{"pitch":1,"timbre":"soft"}}` | white_stage, desert_noon, snow_mountain |
 | pip | Pip | sidekick | buddy | #2fd3c0 | `{"appearance":{"eyes":"big","accessories":{"antenna":"#ffcc00"}},"voice":{"pitch":1.5,"timbre":"squeaky"}}` | desert_noon, snow_mountain |
-| rook | Rook | rival | stickman | #d23c3c | `{"prop":"staff","style":{"scarf":"#2b2b2b"},"appearance":{"hair":"spiky","hairColor":"#1e1e1e"},"voice":{"pitch":0.95,"timbre":"soft"}}` | city_park, city_street, home_interior, chirpur_village, banyan_hill |
-| sage | Sage | mentor | elder | #2e7d4f | `{"appearance":{"outfit":"robe","outfitColor":"#e8dfc8"},"prop":"cane","voice":{"pitch":0.85,"speed":0.85,"timbre":"soft"}}` | city_park, city_street, home_interior, chirpur_village, banyan_hill |
-| sly | Sly | henchman | slim | #556b2f | `{"style":{"scarf":"#222222"},"appearance":{"accessories":{"mask":"#222222"}},"voice":{"pitch":1.1,"speed":1.2,"timbre":"squeaky"}}` | city_street, chirpur_village, banyan_hill |
+| rook | Rook | rival | stickman | #d23c3c | `{"prop":"staff","style":{"scarf":"#2b2b2b"},"appearance":{"hair":"spiky","hairColor":"#1e1e1e"},"voice":{"pitch":0.95,"timbre":"soft"}}` | city_park, city_street, home_interior, tokyo_village, banyan_hill |
+| sage | Sage | mentor | elder | #2e7d4f | `{"appearance":{"outfit":"robe","outfitColor":"#e8dfc8"},"prop":"cane","voice":{"pitch":0.85,"speed":0.85,"timbre":"soft"}}` | city_park, city_street, home_interior, tokyo_village, banyan_hill |
+| sly | Sly | henchman | slim | #556b2f | `{"style":{"scarf":"#222222"},"appearance":{"accessories":{"mask":"#222222"}},"voice":{"pitch":1.1,"speed":1.2,"timbre":"squeaky"}}` | city_street, tokyo_village, banyan_hill |
 | tam | Tam | friend | kid | #ff8c1a | `{"appearance":{"hair":"spiky","hairColor":"#3a2a1a"},"voice":{"pitch":1.4,"timbre":"soft"}}` | desert_noon, city_park, home_interior |
-| vex | Vex | villain | slim | #8a2be2 | `{"style":{"cape":"#1a1a1a"},"appearance":{"eyes":"oval","brows":"thick"},"voice":{"pitch":0.7,"timbre":"deep"},"hp":200}` | city_street, chirpur_village, banyan_hill |
+| vex | Vex | villain | slim | #8a2be2 | `{"style":{"cape":"#1a1a1a"},"appearance":{"eyes":"oval","brows":"thick"},"voice":{"pitch":0.7,"timbre":"deep"},"hp":200}` | city_street, tokyo_village, banyan_hill |
 
 Series `doopi` presets (cast fields in catalog/characters/presets/<id>.json): dony (friend), doomi (friend), doopi (hero), kony (henchman), mooka (sidekick), motumal (friend), nani (mentor), peepa (villain), thunda (villain), tony (henchman).
 
