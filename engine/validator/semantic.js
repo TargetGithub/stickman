@@ -52,6 +52,8 @@ export const WORLD_COMMANDS_V2 = {
   },
   // A3: a lasting glow around a character (level 0 turns it off) and the scene's colour grade.
   set_glow: { who: { character: true, required: true }, color: { glowColor: true }, level: { min: 0, max: 1, required: true }, dur: { min: 0, max: 10 } },
+  // A sound on its own (batch B): an off-screen horn, thunder, a knock; x pans it (stage px).
+  sfx: { name: { sfx: true, required: true }, volume: { min: 0, max: 1 }, x: { min: -2000, max: 14000 } },
   set_grade: { saturation: { min: 0, max: 1, required: true }, dur: { min: 0, max: 10 }, keepCast: { enum: [true, false] }, from: { character: true } },
   // Story camera shots (S6): a camera key from a beat; with dur, the previous framing comes back after it.
   shot: {
@@ -140,6 +142,7 @@ function checkWorldParams(beat, path, ctx, out) {
       bad(`Use a list of 1 to ${rule.characters} different character ids in this scene: ${[...ctx.charIds].join(", ")}.`);
     }
     else if (rule.theme && !ctx.catalog.themeNames.includes(v)) bad(`Use one of: ${ctx.catalog.themeNames.join(", ")}.`);
+    else if (rule.sfx && !ctx.catalog.sfxKeys.includes(v)) bad(`Use one of: ${nearest(v, ctx.catalog.sfxKeys).join(", ")}.`);
   }
 }
 
