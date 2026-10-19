@@ -24,7 +24,68 @@ function busWheel(ctx, x, y, r, turn) {
   ctx.stroke();
 }
 
+const RAINBOW = ["#ff3b30", "#ff9500", "#ffd60a", "#34c759", "#1e90ff", "#4b3bd6", "#a347e0"];
+
 export const TRAVEL_SHAPES = {
+  hanging_cage(ctx, c, piece) {
+    // A round bird-cage cage hanging from a chain, its bottom at y (piece.y lifts it); open swings the door.
+    const top = -300;
+    ctx.strokeStyle = c.chain;
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.moveTo(0, top - 600);
+    ctx.lineTo(0, top);
+    ctx.stroke();
+    ctx.strokeStyle = c.bar;
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.ellipse(0, top + 60, 110, 60, 0, Math.PI, 0);
+    for (let k = -4; k <= 4; k++) { ctx.moveTo(k * 26, top + 60 - Math.sqrt(Math.max(0, 1 - (k / 4.3) ** 2)) * 60); ctx.lineTo(k * 26, -4); }
+    ctx.stroke();
+    ctx.fillStyle = c.base;
+    ctx.fillRect(-115, -12, 230, 12);
+    if (piece.state === "open") {
+      ctx.strokeStyle = c.bar;
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.moveTo(110, -12); ctx.lineTo(190, -40); ctx.lineTo(190, top + 80);
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = "#e6b84a";
+      ctx.fillRect(96, -150, 26, 30);
+    }
+  },
+  rainbow_bridge(ctx, c, piece) {
+    // A rainbow arc rising from the floor up and out of the frame, shimmering with time.
+    const t = piece.t ?? 0;
+    ctx.save();
+    ctx.globalAlpha = 0.8 + 0.15 * Math.sin(t * 2);
+    ctx.lineCap = "butt";
+    RAINBOW.forEach((col, k) => {
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 26;
+      ctx.beginPath();
+      ctx.arc(900, 0, 900 - k * 26 + 3 * Math.sin(t * 3 + k), Math.PI, Math.PI * 1.55);
+      ctx.stroke();
+    });
+    ctx.restore();
+  },
+  rainbow_shield(ctx, c, piece) {
+    // A dome of rainbow light, pulsing.
+    const t = piece.t ?? 0;
+    const p = 1 + 0.04 * Math.sin(t * 6);
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    RAINBOW.forEach((col, k) => {
+      ctx.strokeStyle = col;
+      ctx.globalAlpha = 0.45;
+      ctx.lineWidth = 12;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, (360 - k * 14) * p, (300 - k * 14) * p, 0, Math.PI, 0);
+      ctx.stroke();
+    });
+    ctx.restore();
+  },
   lantern_string(ctx, c, piece) {
     // Paper lanterns on a sagging string between two poles; they glow softly and sway with time.
     const t = piece.t ?? 0;

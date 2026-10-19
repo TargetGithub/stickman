@@ -12,6 +12,7 @@ import { FORT_KINDS } from "./background_fort.js";
 import { SEA_KINDS } from "./background_sea.js";
 import { IRON_KINDS } from "./background_iron.js";
 import { SHADOW_KINDS } from "./background_shadow.js";
+import { MOON_KINDS } from "./background_moon.js";
 
 const SPAN = [-2400, 8000]; // world x range covered by generated geometry (any stage up to 8000 px)
 
@@ -229,7 +230,7 @@ const KINDS = {
   },
 };
 
-Object.assign(KINDS, STORY_KINDS, VILLAGE_KINDS, FOREST_KINDS, FORT_KINDS, SEA_KINDS, IRON_KINDS, SHADOW_KINDS);
+Object.assign(KINDS, STORY_KINDS, VILLAGE_KINDS, FOREST_KINDS, FORT_KINDS, SEA_KINDS, IRON_KINDS, SHADOW_KINDS, MOON_KINDS);
 
 export const LAYER_KINDS = Object.keys(KINDS);
 

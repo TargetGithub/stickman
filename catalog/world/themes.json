@@ -1166,5 +1166,108 @@
       }
     ],
     "characterBg": "#4a4060"
+  },
+  "grey_moon": {
+    "description": "Standing on the giant Grey Moon: grey dust and round craters, a black starry sky, and far below a tiny glowing valley with a tree.",
+    "tags": [
+      "story",
+      "outdoor",
+      "moon",
+      "space",
+      "finale",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#05040c",
+      "bottom": "#1c1a2a"
+    },
+    "ground": {
+      "color": "#8a8a96",
+      "line": "#6a6a76"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 140,
+        "color": "rgba(255, 255, 255, 0.85)"
+      },
+      {
+        "kind": "moon_surface",
+        "factor": 0.6,
+        "spacing": 600,
+        "size": 160,
+        "crater": "#74747e",
+        "rim": "rgba(255, 255, 255, 0.25)",
+        "valleyX": 0.3,
+        "valleyY": 0.55,
+        "tree": "#3a6a3a",
+        "valleyGlow": "rgba(255, 240, 160, 0.8)"
+      }
+    ],
+    "characterBg": "#4a4a56"
+  },
+  "banyan_moon": {
+    "description": "Banyan hill at night under the huge full Grey Moon: the giant banyan, its crystal sockets, a cold grey light.",
+    "tags": [
+      "story",
+      "outdoor",
+      "night",
+      "finale",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#141222",
+      "bottom": "#3a3650"
+    },
+    "ground": {
+      "color": "#4a5a40",
+      "line": "#36422e"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 60,
+        "color": "rgba(255, 255, 255, 0.6)"
+      },
+      {
+        "kind": "moon",
+        "factor": 0.02,
+        "x": 0.5,
+        "y": 0.26,
+        "r": 0.24,
+        "color": "#c8c4d0",
+        "crater": "rgba(60, 60, 80, 0.18)",
+        "glow": "rgba(200, 196, 220, 0.3)",
+        "craters": 10
+      },
+      {
+        "kind": "hills",
+        "factor": 0.16,
+        "color": "#2e3a2c",
+        "height": 220,
+        "step": 300
+      },
+      {
+        "kind": "banyan",
+        "factor": 0.45,
+        "at": [
+          1800
+        ],
+        "height": 760,
+        "spread": 1300,
+        "trunk": "#4e4034",
+        "roots": "#5a4a3c",
+        "color": "#3e5a36",
+        "color2": "#344e2e"
+      },
+      {
+        "kind": "bushes",
+        "factor": 0.85,
+        "color": "#2e3a2a",
+        "spacing": 760,
+        "size": 46
+      }
+    ],
+    "characterBg": "#3a4a34"
   }
 }

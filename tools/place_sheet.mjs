@@ -28,6 +28,8 @@ const SETS = {
   iron_canyon: [{ id: "rib", object: "ribbon", x: 1350 }],
   iron_workshop: [{ id: "cage", object: "cage", x: 2200 }],
   tokyo_village: [{ id: "lan", object: "lantern_string", x: 1650, layer: "back" }],
+  banyan_moon: [{ id: "shield", object: "rainbow_shield", x: 1500 }, { id: "cage", object: "hanging_cage", x: 2100, y: 200 }],
+  grey_moon: [{ id: "bridge", object: "rainbow_bridge", x: 1100, layer: "back" }],
 };
 const TIMES = ["day", "dusk", "night"];
 const ZOOMS = [0.6, 1, 1.7];

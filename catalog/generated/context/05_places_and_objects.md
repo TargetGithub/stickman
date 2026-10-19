@@ -35,6 +35,8 @@
 | shadow_valley | #6a4a8a | bright: light blue, yellow, orange, pink, white | A misty purple valley at night: bare twisted trees with curly branches and glowing purple fog close to the ground. |
 | mirror_maze | #4a3866 | bright: light blue, yellow, orange, pink, white | A maze of tall silver mirrors with curly purple frames, a soft shine sliding over the glass, dark purple floor. |
 | gloom_castle_gate | #4a4060 | bright: light blue, yellow, orange, pink, white | Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind. |
+| grey_moon | #4a4a56 | bright: light blue, yellow, orange, pink, white | Standing on the giant Grey Moon: grey dust and round craters, a black starry sky, and far below a tiny glowing valley with a tree. |
+| banyan_moon | #3a4a34 | bright: light blue, yellow, orange, pink, white | Banyan hill at night under the huge full Grey Moon: the giant banyan, its crystal sockets, a cold grey light. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -112,6 +114,9 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | mirror | breakable | whole/broken | A tall standing mirror in a curly purple frame; set_object state broken cracks it (no sharp shards). |
 | snowball | ball | - | A big rolling snowball (an avalanche throws them). |
 | rock_round | ball | - | A round grey rock that rolls. |
+| hanging_cage | static | closed/open | A round bird-cage cage hanging from a chain, big enough for a person; closed or open. |
+| rainbow_bridge | static | - | A shimmering rainbow arc rising from the ground up and out of the sky (the friends' glow). |
+| rainbow_shield | static | - | A pulsing dome of rainbow light that protects whoever stands inside it. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

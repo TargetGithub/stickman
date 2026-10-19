@@ -35,6 +35,10 @@
 | visor_beam | head | A thick straight cyan beam shooting forward from the head (Iron Ghoom's visor), with a bright core. |
 | avalanche | feet, lingers | An avalanche: big snow puffs and snowball dots rushing in low from behind, for about 3 s. |
 | mirror_ripple | body | Silver rings rippling out on a mirror's surface when someone goes through it. |
+| crystal_pull | body | Six coloured light streams flying up and away from the wrist (the crystals pulled out of the bracelet). |
+| grow_giant | body | A purple flash and swirling purple sparkles all around someone growing huge. |
+| giant_blast | body | A huge purple-grey blast with a shockwave ring (Giant Peepa's Gloom Blast). |
+| beam_clash | body, lingers | Two energy beams meeting: a bright core with sparks flying out in every direction for about 2 s. |
 
 Hit effects come by themselves from hits, explosions and props; do not list them: impact_small, impact_med, impact_big, block_spark, spark, explosion, smoke, bolt, prop_break, energy_ball, bubble_pop, camera_flash.
 
