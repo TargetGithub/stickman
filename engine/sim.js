@@ -258,6 +258,7 @@ export function simulate(script, catalog, opts = {}) {
         return { id: c.id, style: c.style || {}, layer: placed.layer ?? "mid", ...(flat.depth ? { z: zOf(placed, flat.depth) } : {}) };
       }),
       depth: flat.depth, // V3.2: null for v1/v2 scenes
+      light: flat.depth ? (flat.scene.light ?? flat.location?.light ?? null) : null, // V3.3: the scene's light rig choice
       extras: story.legacy ? [] : planExtras(flat.scene, flat.location, catalog, meta.seed ?? 1, flat.meta.stageWidth),
     });
   }

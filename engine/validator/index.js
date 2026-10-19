@@ -92,7 +92,7 @@ export function validate(script, catalog) {
   if (v2) {
     // Macro params first, then compile (ADR-014), then every check on the compiled beats.
     const authored = normalize(script);
-    const pre = [...macroIssues(authored, catalog, moves), ...depthIssues(authored)];
+    const pre = [...macroIssues(authored, catalog, moves), ...depthIssues(authored, catalog)];
     if (pre.length) return result("semantic", pre);
     try {
       story = compileStory(authored, catalog, moves).story;

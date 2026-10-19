@@ -21,11 +21,19 @@ function spine(j) {
 export function drawTorso(ctx, j, o) {
   if (o.draw === "box") return drawBoxTorso(ctx, j, o); // the robot (batch C)
   if (o.draw !== "capsule" && o.draw !== "trapezoid") return false;
-  const { up, across, len } = spine(j);
-  const w = (o.torsoWidth ?? 20) * o.scale;
   ctx.fillStyle = o.color;
   ctx.strokeStyle = o.outlineColor;
   ctx.lineWidth = o.outline ? o.lw * 0.45 : 0;
+  torsoPath(ctx, j, o);
+  ctx.fill();
+  if (o.outline) ctx.stroke();
+  return true;
+}
+
+/** Begin the path of a capsule or trapezoid torso (shared by drawTorso and the shading clip, V3.3). */
+export function torsoPath(ctx, j, o) {
+  const { up, across, len } = spine(j);
+  const w = (o.torsoWidth ?? 20) * o.scale;
   ctx.beginPath();
   if (o.draw === "capsule") {
     // A rounded bean: semicircle ends at the hip and the neck, sides along the spine.
@@ -51,9 +59,6 @@ export function drawTorso(ctx, j, o) {
     for (const p of pts.slice(1)) ctx.lineTo(p.x, p.y);
     ctx.closePath();
   }
-  ctx.fill();
-  if (o.outline) ctx.stroke();
-  return true;
 }
 
 /** Outline points of a garment along the spine: from `from` to `to` (fractions of hip→neck; negative is below the hip). */

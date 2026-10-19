@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "meta": { "title": "Light unknown", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
+  "cast": [{ "id": "kai", "color": "#3fd8ff" }, { "id": "pip", "body": "buddy", "color": "#ffd23f" }],
+  "locations": [{ "id": "park", "theme": "city_park", "light": "sunny" }],
+  "scenes": [{ "id": "s1", "location": "park", "light": { "preset": "noon", "fog": { "density": 0.1 } },
+    "cast": [{ "id": "kai", "x": 1300, "facing": 1 }, { "id": "pip", "x": 1900, "facing": -1 }],
+    "beats": [{ "id": "b1", "at": 0.5, "who": "pip", "do": "wave" }, { "id": "b2", "at": { "after": "b1" }, "who": "world", "do": "set_light", "params": { "preset": "sunset", "dur": 1 } }, { "id": "b3", "at": { "after": "b1" }, "who": "kai", "do": "wave" }, { "id": "end", "at": { "after": "b3", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.5 } }] }]
+}

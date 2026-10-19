@@ -338,6 +338,19 @@ export function characterDepths(nodes): Map<id, z>;
 ```
 A depth event `{ type: "depth", actor, z0, z1, t0, dur, beatId }` is emitted by the director when a walk with `to.z` starts (dur from the walk's ground speed) and, with `dur` 0, on a layer beat in a v3 scene. `sim.scenes[i].depth` is the scene's depth settings (null for v1/v2) and each `characters[]` entry carries its placement `z`.
 
+### lighting.js (V3.3, ENGINE_V3_SPEC 5.2)
+```js
+export function lightRigOf(catalog, scene, location, look): Rig | null;   // scene.light, location.light, else lights.byTime[look.time]; null = flat
+export function resolveRig(lights, want): Rig | null;                      // a preset name or { preset, ...overrides }
+export function blendRigs(a, b, u): Rig;  export function lightAt(rig0, setLightEvents, videoT, lights): Rig | null;
+export function shadeTones(hex, rig): { lit, base, dark, rim, rimAlpha, rimWidth, dir };   // three flat tones + the light direction
+export function contactShadow(rig, scale, height): { dx, rx, ry, alpha };  export function castShadow(rig): { a, b, c, d, alpha } | null;
+export function fogAt(rig, z, depth): number;  export function fogVeils(fogs, background): number[];  export function ambientTint(rig);
+// Rig: { name, key: { angle, color, strength }, fill, rim, ambient: { color, strength }, shadow: { alpha, length, cast }, fog: { color, density } }
+// renderer/shading.js: shadeStrokes, shadeHead, shadeTorso (clipped to bodies.js torsoPath), drawLitContactShadow, drawCastShadow
+```
+`drawCharacter` takes `style.light` (the tones); the renderer sets `r.frameLight = lightAt(...)` per frame of a v3 scene and `drawOne`/`drawExtras` pass the tones. `sim.scenes[i].light` carries the scene's `light` choice.
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -801,4 +814,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: v3 draws every node at a depth z with perspective scaling, replacing the three fixed layers, while v1 and v2 golden frames must not change and the frame store (CHAR_STRIDE) is shared by every script.
 - **Decision**: `version: 3` is the v2 story format plus optional depth fields (`z` on placements and set pieces, `to: { z, x? }`, a scene `depth` block); `normalize` marks the story `v3` and the sim gives such scenes a depth lane (`world.depth`). v2 scenes keep the legacy layer path untouched. The z of a character over time is not stored per frame: the director emits `depth` events (a walk's z0, z1 and duration; a layer beat's jump) and both the sim (`updateDepth`) and the renderer (`depthAt`) lerp them from story time, so they always agree and the store layout is unchanged (ADR-012). The layer presets are -800 and 313 so that a v3 script saying `back` or `front` draws at the legacy scales 0.75 and 1.15. Far feet rise toward a horizon (`depth.horizon`, 260 px) so the ground reads as a plane. A depth walk always covers at least half of |dz| in x, so the walk cycle has ground to cover. Characters more than 60 px apart in z never collide or hit.
 - **Consequences**: frame hashes, golden frames and the determinism test are unchanged for v1 and v2; a v3 scene costs one extra sort per frame. Camera framing still uses unprojected x (a far character frames as if on the stage line); lighting, fog and depth of field build on the same nodes in V3.3 and V3.4. The G1 giant reach work is still open.
+
+### ADR-024 Light rigs are catalog data; shading is three flat tones drawn inside the shapes (V3.3)
+- **Context**: the 2.5D look needs lit and shadow sides, rim light, cast shadows and haze, with the same frames for the same script, on the canvas 2D API, and without changing v1/v2 output or the frame store.
+- **Decision**: a light rig is a catalog preset (`catalog/world/lights.json`) chosen per scene from the time of day or named by the scene or location; `set_light` world events change it and the renderer blends rigs over `dur` from the event log (ADR-012). Shading is cartoon-stepped: three flat tones (`shadeTones`) drawn as bands inside each limb, a clipped crescent on the head and a clipped band on filled torsos, so the silhouette and outlines are exactly the v2 ones and no gradients are needed. Shadows are the stretched contact ellipse plus a flattened silhouette of the same joints drawn through a shear about the feet as a multiply pass. Fog by depth is a chain of screen-space veils between the depth-sorted nodes (`fogVeils`), so it costs one fill per depth step and no offscreen canvas. Everything runs only in the v3 depth path.
+- **Consequences**: v1 and v2 frames are unchanged; lighting reads the catalog, so bundles can ship rigs once the bundle format gains a `lights` kind. Set pieces, props and particles are not shaded yet; overlapping limb strokes darken a cast shadow slightly more where they cross.
 

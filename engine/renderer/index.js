@@ -20,11 +20,12 @@ import { lookFor, lookAt } from "./looks.js";
 import { bodyPlan } from "../story/bodies.js";
 import { drawExtras, withLayer } from "./extras.js";
 import { drawDepthWorld, projectedChars } from "./depth_draw.js";
+import { lightRigOf, lightAt, shadeTones, ambientTint, rgbText } from "../lighting.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 
 /** Per-scene views of the event log and fx records (overlays and particles never leak across scenes). */
-function sceneViews(sim) {
+function sceneViews(sim, catalog) {
   const scenes = sim.scenes || [{ index: 0, theme: sim.meta?.theme, fxStart: 0, fxEnd: sim.fx.log.length, fxT0: 0, set: [] }];
   return scenes.map((sc, i) => {
     const ev = sim.events.filter((e) => (e.scene ?? 0) === sc.index);
@@ -44,6 +45,9 @@ function sceneViews(sim) {
       layerEvents: ev.filter((e) => e.type === "layer"),
       // The depth lane (V3.2): a v3 scene's depth settings, each character's placement z and depth events (scene story seconds).
       depth: sc.depth || null,
+      // Light rigs (V3.3): the scene's starting rig (null: flat) and its set_light changes.
+      rig0: sc.depth ? lightRigOf(catalog, { light: sc.light ?? undefined }, null, sc.look) : null,
+      lightEvents: world.filter((e) => e.do === "set_light"),
       placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
       depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
       extras: sc.extras || [],
@@ -97,7 +101,7 @@ function layerAt(sv, id, t) {
 export function createRenderer(catalog, sim, opts = {}) {
   const meta = sim.meta || {};
   return {
-    scenes: sceneViews(sim),
+    scenes: sceneViews(sim, catalog),
     createCanvas: opts.createCanvas || null,
     scratch: null,
     catalog,
@@ -120,6 +124,7 @@ export function createRenderer(catalog, sim, opts = {}) {
     backgrounds: new Map(),
     castFilter: null, // "none" while the world is filtered grey and the cast keeps its colour (A3)
     charCache: new Map(), // frame index → unpacked characters (small LRU for afterimages)
+    frameLight: null, // the light rig of the frame being drawn (V3.3; null: the flat look)
   };
 }
 
@@ -298,6 +303,7 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
   const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
   drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
     ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
+    ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight) } : {}),
     ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) });
   ctx.shadowBlur = 0;
   drawFront(ctx, c, past, style);
@@ -339,9 +345,19 @@ export function renderScene(r, ctx, n) {
   const colourGrade = gradeAt(sv.look, sv.gradeEvents, f.videoT);
   const filter = worldFilter(colourGrade);
   r.castFilter = filter ? "none" : null;
+  r.frameLight = sv.depth ? lightAt(sv.rig0, sv.lightEvents, f.videoT, r.catalog.lights) : null; // V3.3
   ctx.save();
   if (filter) ctx.filter = filter;
   drawBackground(ctx, background(r, theme), cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1);
+  const ambient = ambientTint(r.frameLight);
+  if (ambient) {
+    // The key light's colour over the whole background (V3.3): a multiply tint, as the time-of-day grade does.
+    ctx.save();
+    ctx.globalCompositeOperation = "multiply";
+    ctx.fillStyle = `rgba(${rgbText(ambient.color)},${ambient.alpha.toFixed(3)})`;
+    ctx.fillRect(0, 0, W, H);
+    ctx.restore();
+  }
   ctx.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
   const depths = drawWorld(ctx, r, n, f, chars, sv);

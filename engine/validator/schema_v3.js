@@ -5,6 +5,7 @@
 //   scenes[].cast[].z         where a character stands in depth (0 the stage line; + toward the camera)
 //   set[].z                   a set piece's depth (locations and scenes)
 //   beats[].to                gains { x?, z }: walk to a depth (and an x)
+//   scenes[].light, locations[].light   the light rig (V3.3): a preset name or a preset with overrides
 // `layer` names stay accepted and map to z presets (engine/depth.js LAYER_Z); a node gives one or the other.
 
 import { jsonSchemaV2, schemaV2For } from "./schema_v2.js";
@@ -25,6 +26,28 @@ export const DEPTH_SCHEMA = {
   },
 };
 
+const tint = { type: "object", additionalProperties: false, properties: { color: { type: "string", pattern: "^#[0-9a-fA-F]{6}$" }, strength: { type: "number", minimum: 0, maximum: 1 } } };
+/** A scene's or location's light: a preset name, or a preset with overrides (ENGINE_V3_SPEC 5.2). */
+export const LIGHT_SCHEMA = {
+  description: 'The light rig: a preset name from the catalog (noon, dawn, golden, moonlit, indoor, stage, gloom, flat; E_LIGHT_UNKNOWN), or { "preset", ...overrides }. Default: the preset for the scene\'s time of day.',
+  oneOf: [
+    { type: "string", pattern: "^[a-z][a-z0-9_]{0,31}$" },
+    {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        preset: { type: "string", pattern: "^[a-z][a-z0-9_]{0,31}$" },
+        key: { type: "object", additionalProperties: false, properties: { angle: { type: "number", minimum: 0, maximum: 180 }, color: { type: "string", pattern: "^#[0-9a-fA-F]{6}$" }, strength: { type: "number", minimum: 0, maximum: 1 } } },
+        fill: tint,
+        rim: tint,
+        ambient: tint,
+        shadow: { type: "object", additionalProperties: false, properties: { alpha: { type: "number", minimum: 0, maximum: 1 }, length: { type: "number", minimum: 0, maximum: 3 }, cast: { enum: ["none", "ground", "wall"] } } },
+        fog: { type: "object", additionalProperties: false, properties: { color: { type: "string", pattern: "^#[0-9a-fA-F]{6}$" }, density: { type: "number", minimum: 0, maximum: 1 } } },
+      },
+    },
+  ],
+};
+
 /** The v3 `to` destination: the v2 forms plus a depth. */
 function destV3(dest) {
   return {
@@ -41,9 +64,13 @@ export function withDepth(v2) {
   s.description = "A v2 story with the optional depth fields of ENGINE_V3_SPEC 7 (z on placements, set pieces and walks; a scene depth block).";
   s.properties.version = { const: 3 };
   const setZ = (piece) => { piece.properties.z = Z; };
-  for (const loc of [s.properties.locations.items]) setZ(loc.properties.set.items);
+  for (const loc of [s.properties.locations.items]) {
+    setZ(loc.properties.set.items);
+    loc.properties.light = LIGHT_SCHEMA;
+  }
   const scene = s.properties.scenes.items.oneOf[0];
   scene.properties.depth = DEPTH_SCHEMA;
+  scene.properties.light = LIGHT_SCHEMA;
   setZ(scene.properties.set.items);
   scene.properties.cast.items.properties.z = Z;
   const beat = scene.properties.beats.items.oneOf[0];

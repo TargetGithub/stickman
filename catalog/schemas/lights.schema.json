@@ -1,0 +1,79 @@
+{
+  "title": "catalog/world/lights.json: light rig presets (ENGINE_V3_SPEC 5.2) and which one each time of day uses.",
+  "type": "object",
+  "required": ["byTime", "rigs"],
+  "additionalProperties": false,
+  "properties": {
+    "byTime": {
+      "type": "object",
+      "required": ["dawn", "day", "dusk", "night"],
+      "additionalProperties": false,
+      "properties": {
+        "dawn": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "day": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "dusk": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+        "night": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" }
+      }
+    },
+    "rigs": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 64,
+      "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "tags"],
+        "additionalProperties": false,
+        "properties": {
+          "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+          "tags": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,23}$" } },
+          "flat": { "const": true, "description": "No lighting at all (the v2 look)." },
+          "key": { "$ref": "#/$defs/light" },
+          "fill": { "$ref": "#/$defs/tint" },
+          "rim": { "$ref": "#/$defs/tint" },
+          "ambient": { "$ref": "#/$defs/tint" },
+          "shadow": {
+            "type": "object",
+            "required": ["alpha", "length", "cast"],
+            "additionalProperties": false,
+            "properties": {
+              "alpha": { "type": "number", "minimum": 0, "maximum": 1 },
+              "length": { "type": "number", "minimum": 0, "maximum": 3, "description": "Shadow length as a share of the body height (0: a disc at the feet)." },
+              "cast": { "enum": ["none", "ground", "wall"], "description": "A flattened silhouette: on the ground away from the light, or on a wall behind." }
+            }
+          },
+          "fog": {
+            "type": "object",
+            "required": ["color", "density"],
+            "additionalProperties": false,
+            "properties": {
+              "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+              "density": { "type": "number", "minimum": 0, "maximum": 1, "description": "How much of the fog colour covers a node at the far end of the depth range." }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "light": {
+      "type": "object",
+      "required": ["angle", "color", "strength"],
+      "additionalProperties": false,
+      "properties": {
+        "angle": { "type": "number", "minimum": 0, "maximum": 180, "description": "Where the light comes from, in screen degrees: 0 the right, 90 straight above, 180 the left." },
+        "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "strength": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "tint": {
+      "type": "object",
+      "required": ["color", "strength"],
+      "additionalProperties": false,
+      "properties": {
+        "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "strength": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

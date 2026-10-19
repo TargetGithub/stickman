@@ -130,8 +130,8 @@ Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visua
 | # | Milestone | Status |
 |---|---|---|
 | V3.1 | Bundle loader and registry (ADR-022) | DONE 2026-10-19, reviewed |
-| V3.2 | Depth lane (ADR-023) | DONE 2026-10-19, awaiting review |
-| V3.3 | Lighting and shading | next |
+| V3.2 | Depth lane (ADR-023) | DONE 2026-10-19, reviewed |
+| V3.3 | Lighting and shading (ADR-024) | DONE 2026-10-19, awaiting review |
 | V3.4 | v3 camera | |
 | V3.5-V3.8 | Timeline and compositor, turnaround views, motion quality, audio tracks and templates | can run in parallel after V3.4 |
 | V3.9 | Polish pass against the reference | |

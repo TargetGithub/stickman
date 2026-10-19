@@ -27,6 +27,7 @@ export const ENGINE_FILES = [
   "world/themes.json",
   "world/objects.json",
   "world/props.json",
+  "world/lights.json",
   "story/activities.json",
   "story/music_moods.json",
   "story/macro_lines.json",
@@ -35,7 +36,7 @@ export const ENGINE_FILES = [
 ];
 
 /** The catalog files a bundle may carry (CATALOG_BUNDLE_SPEC 3): the engine files minus the engine-owned ones. */
-export const BUNDLE_FILES = ENGINE_FILES.filter((p) => !["moves/defeat.json", "characters/appearance.json", "effects/sfx.json", "story/macro_lines.json", "story/blocklist.json", "bundles.json"].includes(p));
+export const BUNDLE_FILES = ENGINE_FILES.filter((p) => !["moves/defeat.json", "characters/appearance.json", "effects/sfx.json", "world/lights.json", "story/macro_lines.json", "story/blocklist.json", "bundles.json"].includes(p));
 
 /** Appearance lists of {name, description} entries; the engine sees the names. */
 export const APPEARANCE_LISTS = ["eyes", "brows", "mouthStyle", "hair", "outfit", "accessories"];
@@ -81,6 +82,8 @@ export function assembleCatalog(f) {
     macroLines: f["story/macro_lines.json"],
     musicMoods: music.moods, // read by tools/lib/music_gen.mjs (the engine only checks mood names)
     scales: music.scales,
+    lights: f["world/lights.json"], // light rig presets and the time-of-day map (V3.3)
+    lightNames: Object.keys(f["world/lights.json"].rigs),
     bundles: [{ id: BASE_ID, version: base.version, audience: ["kids", "general"] }], // the loaded bundles (mergeBundles appends)
   };
 }

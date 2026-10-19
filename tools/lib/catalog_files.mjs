@@ -28,7 +28,7 @@ export function schemaFor(rel) {
   if (rel === "moves/poses.json") return "poses";
   if (rel.startsWith("moves/")) return "moves";
   if (rel.startsWith("characters/presets/")) return "preset";
-  const own = { "effects/sfx.json": "sfx", "characters/appearance.json": "appearance", "story/music_moods.json": "music_moods", "story/blocklist.json": "blocklist", "story/macro_lines.json": "macro_lines", "bundles.json": "bundles" };
+  const own = { "effects/sfx.json": "sfx", "characters/appearance.json": "appearance", "story/music_moods.json": "music_moods", "story/blocklist.json": "blocklist", "story/macro_lines.json": "macro_lines", "bundles.json": "bundles", "world/lights.json": "lights" };
   return own[rel] || "described";
 }
 

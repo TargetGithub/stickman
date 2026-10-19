@@ -483,6 +483,128 @@
                 }
               }
             }
+          },
+          "light": {
+            "description": "The light rig: a preset name from the catalog (noon, dawn, golden, moonlit, indoor, stage, gloom, flat; E_LIGHT_UNKNOWN), or { \"preset\", ...overrides }. Default: the preset for the scene's time of day.",
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,31}$"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "preset": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  },
+                  "key": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "angle": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 180
+                      },
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "fill": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "rim": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "ambient": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "shadow": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "length": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 3
+                      },
+                      "cast": {
+                        "enum": [
+                          "none",
+                          "ground",
+                          "wall"
+                        ]
+                      }
+                    }
+                  },
+                  "fog": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "density": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  }
+                }
+              }
+            ]
           }
         }
       }
@@ -1434,6 +1556,128 @@
                     "description": "How far (px) the feet line rises for a node at infinite distance."
                   }
                 }
+              },
+              "light": {
+                "description": "The light rig: a preset name from the catalog (noon, dawn, golden, moonlit, indoor, stage, gloom, flat; E_LIGHT_UNKNOWN), or { \"preset\", ...overrides }. Default: the preset for the scene's time of day.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "preset": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                      },
+                      "key": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "angle": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 180
+                          },
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "fill": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "rim": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "ambient": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "shadow": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "alpha": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "length": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 3
+                          },
+                          "cast": {
+                            "enum": [
+                              "none",
+                              "ground",
+                              "wall"
+                            ]
+                          }
+                        }
+                      },
+                      "fog": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "density": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           },

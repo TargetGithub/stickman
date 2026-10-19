@@ -9,6 +9,7 @@ import { drawQuadruped } from "./quadruped.js";
 import { drawTorso, drawOutfit } from "./bodies.js";
 import { boxHeadPath, drawBolts } from "./robot.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
+import { shadeStrokes, shadeHead, shadeTorso } from "./shading.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
 
@@ -26,8 +27,8 @@ function polyline(ctx, points) {
   ctx.stroke();
 }
 
-/** Stroke a group of polylines: dark outline pass, then color pass, so each layer reads on its own. */
-function strokeGroup(ctx, lines, color, lw, style) {
+/** Stroke a group of polylines: dark outline pass, then color pass, so each layer reads on its own; then the light's tones (V3.3). */
+function strokeGroup(ctx, lines, color, lw, style, tones = style.light) {
   if (style.outline) {
     ctx.strokeStyle = style.outlineColor;
     ctx.lineWidth = lw * 1.45;
@@ -36,6 +37,7 @@ function strokeGroup(ctx, lines, color, lw, style) {
   ctx.strokeStyle = color;
   ctx.lineWidth = lw;
   for (const pts of lines) polyline(ctx, pts);
+  if (tones) shadeStrokes(ctx, lines, lw, tones);
 }
 
 function drawHead(ctx, j, r, lw, style, facing) {
@@ -52,6 +54,7 @@ function drawHead(ctx, j, r, lw, style, facing) {
   }
   ctx.fillStyle = style.color;
   ctx.fill();
+  if (style.light && style.draw !== "box") shadeHead(ctx, j.head, r, style.light);
   if (style.outline) {
     ctx.lineWidth = lw * 0.45;
     ctx.strokeStyle = style.outlineColor;
@@ -121,6 +124,7 @@ function headAxes(j, facing) {
  *   Body plans (S3): dims (bone lengths, line width), draw (stick | capsule | trapezoid), torsoWidth, and
  *   look (appearance: eyes, brows, mouthStyle, cheeks, hair, hairColor, outfit, outfitColor, accessories)
  *   Quadrupeds (draw "quad"): quad, faceName, id, time, prevHip, prevHead (renderer/quadruped.js)
+ *   light (V3.3): shadeTones() of the body colour under the scene's light rig; absent = the flat v2 look
  */
 export function drawCharacter(ctx, j, style) {
   const s = { ...DEFAULTS, ...style };
@@ -134,14 +138,17 @@ export function drawCharacter(ctx, j, style) {
   ctx.lineJoin = "round";
 
   const far = shade(s.color, s.farBrightness);
+  // Under a light rig (V3.3) the far limbs take the same tones, a little darker, so both sides read as lit from one side.
+  const farTones = s.light ? { ...s.light, base: far, lit: shade(s.light.lit, s.farBrightness), dark: shade(s.light.dark, s.farBrightness) } : null;
   const prop = s.prop ? propTransform(j, s.prop.data, s.prop.angle, s.facing, s.scale) : null;
   const headR = dims.headR * s.scale;
   if (acc.backpack) drawBackpack(ctx, j, headR, acc.backpack, s.facing);
-  strokeGroup(ctx, [[j.hip, j.lKnee, j.lFoot], [j.shoulder, j.lElbow, j.lHand]], far, lw, s);
+  strokeGroup(ctx, [[j.hip, j.lKnee, j.lFoot], [j.shoulder, j.lElbow, j.lHand]], far, lw, s, farTones);
   if (prop && s.prop.data.grip === "lHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
-  if (!drawTorso(ctx, j, { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale })) {
+  const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale };
+  if (!drawTorso(ctx, j, torso)) {
     strokeGroup(ctx, [[j.hip, j.shoulder, j.neckTop]], s.color, lw, s);
-  }
+  } else if (s.light) shadeTorso(ctx, j, torso, s.light);
   if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth });
   if (acc.bowtie) drawBowtie(ctx, j, headR, acc.bowtie, s.facing);
   drawHead(ctx, j, headR, lw, s, s.facing);

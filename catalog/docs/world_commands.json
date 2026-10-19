@@ -126,7 +126,12 @@
   },
   "set_glow": {
     "description": "A lasting glow around a character: a color or \"rainbow\", level 0-1 (0: off), over dur; carries over scenes.",
-    "example": { "at": 0, "who": "world", "do": "set_glow", "params": { "who": "kai", "color": "#ffd23f", "level": 0.6, "dur": 1.5 } }
+    "example": {
+      "at": 0,
+      "who": "world",
+      "do": "set_glow",
+      "params": { "who": "kai", "color": "#ffd23f", "level": 0.6, "dur": 1.5 }
+    }
   },
   "set_grade": {
     "description": "Scene colour: saturation 1 full, 0 grey, over dur; keepCast keeps the cast in colour; from: a wave out from a character.",
@@ -143,5 +148,9 @@
   "activity": {
     "description": "Runs an activity directly (the runtime form of @activity; prefer the macro).",
     "example": { "at": 0, "who": "world", "do": "activity", "params": { "name": "play_catch", "with": ["kai", "pip"], "reps": 4 } }
+  },
+  "set_light": {
+    "description": "The light rig of a version 3 scene: a preset (noon, dawn, golden, moonlit, indoor, stage, gloom, flat) or overrides (angle, strength, fog), blended over dur.",
+    "example": { "at": 0, "who": "world", "do": "set_light", "params": { "preset": "golden", "dur": 2 } }
   }
 }

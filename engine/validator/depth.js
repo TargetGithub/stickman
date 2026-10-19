@@ -1,5 +1,5 @@
-// Depth checks for v3 stories (ENGINE_V3_SPEC 5.1, V3.2): every z stays inside its scene's depth range,
-// and a node says `z` or `layer`, not both.
+// Depth and light checks for v3 stories (ENGINE_V3_SPEC 5.1-5.2, V3.2-V3.3): every z stays inside its
+// scene's depth range, a node says `z` or `layer` (not both), and light presets exist in the catalog.
 
 import { depthOf, LAYER_Z } from "../depth.js";
 
@@ -7,11 +7,17 @@ const issue = (code, path, message, fix) => ({ code, path, message, fix });
 
 /**
  * @param {object} story  a normalized v3 story (compiled or not)
- * @returns {object[]} issues: E_DEPTH_RANGE, E_DEPTH_LAYER
+ * @returns {object[]} issues: E_DEPTH_RANGE, E_DEPTH_LAYER, E_LIGHT_UNKNOWN
  */
-export function depthIssues(story) {
+export function depthIssues(story, catalog = null) {
   const out = [];
   if (!story.v3) return out;
+  // Light rigs (V3.3): a scene's or location's `light` names a catalog preset.
+  const lightCheck = (light, path) => {
+    const name = typeof light === "string" ? light : light?.preset;
+    if (name !== undefined && catalog?.lights && !catalog.lights.rigs[name]) out.push(issue("E_LIGHT_UNKNOWN", path, `Unknown light preset '${name}'.`, `Use one of: ${catalog.lightNames.join(", ")}.`));
+  };
+  (story.locations || []).forEach((l, i) => lightCheck(l.light, `locations[${i}].light`));
   const locations = new Map((story.locations || []).map((l, i) => [l.id, { l, i }]));
   const check = (node, path, depth, what) => {
     if (typeof node?.z !== "number") return;
@@ -21,6 +27,7 @@ export function depthIssues(story) {
   story.scenes.forEach((scene, si) => {
     if (scene.macro) return;
     const sp = scene.srcPath ?? `scenes[${si}]`;
+    lightCheck(scene.light, `${sp}.light`);
     const depth = depthOf(scene);
     if (depth.far >= depth.near) out.push(issue("E_DEPTH_RANGE", `${sp}.depth`, `far (${depth.far}) must be below near (${depth.near}).`, "Use a negative far and a positive near."));
     (scene.cast || []).forEach((p, i) => check(p, `${sp}.cast[${i}]`, depth, `'${p.id}'`));

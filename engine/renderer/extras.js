@@ -8,6 +8,7 @@ import { samplePoseKeys } from "../pose.js";
 import { bodyPlan } from "../story/bodies.js";
 import { drawCharacter } from "./character.js";
 import { STAGE } from "../config.js";
+import { shadeTones } from "../lighting.js";
 
 export const LAYER_LOOK = { back: { scale: 0.75, alpha: 0.75 }, mid: { scale: 1, alpha: 1 }, front: { scale: 1.15, alpha: 0.95 } };
 const WRAP = 300; // px past the area a walker turns up again on the other side
@@ -73,6 +74,7 @@ export function drawExtras(ctx, r, sv, f, layer, plain = false) {
     place(ctx, layer, s.x, (alpha) => drawCharacter(ctx, j, {
       color: e.color, scale: e.scale, facing: s.facing, alpha: 0.85 * alpha, outline: false,
       dims: plan.dims, draw: style?.draw, torsoWidth: style?.torsoWidth,
+      ...(r.frameLight ? { light: shadeTones(e.color, r.frameLight) } : {}), // V3.3
     }));
   }
 }

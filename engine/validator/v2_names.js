@@ -73,6 +73,7 @@ export const V2_WORLD_COMMANDS = [
   "spawn_object", "remove_object", "set_object", "set_appearance",
   "set_glow", "set_grade", // A3: Heart Glow and how grey the world is
   "sfx", // batch B: a sound on its own
+  "set_light", // V3.3: the scene's light rig (v3 scenes)
   "activity", // S5: the runtime form of the @activity macro
 ];
 
