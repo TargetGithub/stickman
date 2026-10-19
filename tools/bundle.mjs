@@ -13,6 +13,12 @@
 //       already in the store are found there
 //   node tools/bundle.mjs list
 //       the bundles in the store
+//   node tools/bundle.mjs new <id> [--dir <path>] [--name "Robo Pals"] [--author "Name"] [--license CC-BY-4.0]
+//       scaffold a bundle folder: manifest, README, an example story that later entries join
+//   node tools/bundle.mjs prompt <dir> "<what to make>" [--kinds poses,moves,objects | all]
+//       the "make a bundle" prompt for a chat project with the catalog pack (copy-paste, no API key)
+//   node tools/bundle.mjs reply <dir> <reply.txt> | --mock
+//       write the files of the chat's reply into the folder (then review, pack and check)
 //   node tools/bundle.mjs pack-context <dir|zip> [--out <file.md>]
 //       the bundle's AI context file (bundle_<id>.md, 6 KB) to attach next to the base pack in a chat project
 //   node tools/bundle.mjs sheet <dir|zip> [--out <file.png>]
@@ -26,6 +32,10 @@ import { catalogWithBundles } from "./lib/bundle/load.mjs";
 import { readBundlePath, nodeContext, packBundleDir } from "./lib/bundle_node.mjs";
 import { storeRoot, writeToStore, writeStoreIndex, listStore, inStore, readStored } from "./lib/bundle_store.mjs";
 import { bundleContextPack } from "./lib/bundle/context.mjs";
+import { makeBundlePrompt, mockBundleReply, KIND_FILES } from "./lib/bundle/prompt.mjs";
+import { scaffoldBundle, writeReplyFiles } from "./lib/bundle_write.mjs";
+import { leanHeader, packVersion } from "./lib/lean_prompts.mjs";
+import { parseJsonText } from "./lib/llm/index.mjs";
 import { fixtureInput, readFixture } from "./lib/bundle_fixture.mjs";
 import { loadBackend } from "./lib/canvas.mjs";
 
@@ -34,6 +44,9 @@ const USAGE = `usage: node tools/bundle.mjs check <dir|zip> [--dep <dir|zip>]...
        node tools/bundle.mjs pack <dir> --i-made-this [--out <file.zip>]
        node tools/bundle.mjs import <dir|zip> [--dep <dir|zip>]... [--no-render]
        node tools/bundle.mjs list
+       node tools/bundle.mjs new <id> [--dir <path>] [--name "..."] [--author "..."] [--license CC-BY-4.0]
+       node tools/bundle.mjs prompt <dir> "<what to make>" [--kinds poses,moves,objects|all]
+       node tools/bundle.mjs reply <dir> <reply.txt>|--mock
        node tools/bundle.mjs pack-context <dir|zip> [--out <file.md>]
        node tools/bundle.mjs sheet <dir|zip> [--out <file.png>]`;
 const [cmd, target, ...rest] = process.argv.slice(2);
@@ -156,6 +169,43 @@ if (cmd === "check" && target === "--fixture" && rest[0]) {
     }
     console.log(`${b.id} ${m.version}  ${b.hash}  ${m.license}${info.reviewed ? "  reviewed" : "  not reviewed"}${info.fullyChecked === false ? "  not fully checked" : ""}`);
   }
+} else if (cmd === "new" && target) {
+  const dir = opt("--dir") || target;
+  try {
+    scaffoldBundle(dir, target, { name: opt("--name") || undefined, author: opt("--author") || undefined, license: opt("--license") || undefined });
+  } catch (err) {
+    console.error(err.message);
+    process.exit(2);
+  }
+  console.log(`made ${dir}/ for the bundle "${target}". Next:
+  - fill in bundle.json (name, description, author, licence, audience)
+  - add entries: node tools/draft.mjs move|object|theme "<description>" --bundle ${dir}   (or by hand, or with a chat:
+    node tools/bundle.mjs prompt ${dir} "<what to make>", then node tools/bundle.mjs reply ${dir} <reply.txt>)
+  - node tools/bundle.mjs pack ${dir} --i-made-this   (writes the hashes and the zip, then checks it)`);
+} else if (cmd === "prompt" && target && rest[0]) {
+  const manifest = JSON.parse(readFileSync(join(target, "bundle.json"), "utf8"));
+  const k = opt("--kinds");
+  const kinds = !k ? undefined : k === "all" ? Object.keys(KIND_FILES) : k.split(",");
+  const text = makeBundlePrompt(manifest, rest[0], { kinds, schemas: nodeContext().schemas, header: leanHeader(packVersion(), "01_script_format.md (version 2), 03_moves.md, 05_places_and_objects.md and 06_story_tools.md") });
+  const out = opt("--out") || join("out", "bundles", `${manifest.id}.prompt.md`);
+  mkdirSync(dirname(out), { recursive: true });
+  writeFileSync(out, text);
+  console.log(`wrote ${out} (${text.length} characters): paste it into a chat in the project with the catalog pack, save the reply, then run:
+  node tools/bundle.mjs reply ${target} <reply.txt>`);
+} else if (cmd === "reply" && target && (rest[0] || rest.includes("--mock"))) {
+  const manifest = JSON.parse(readFileSync(join(target, "bundle.json"), "utf8"));
+  let reply;
+  try {
+    reply = rest.includes("--mock") ? mockBundleReply(manifest) : parseJsonText(readFileSync(rest[0], "utf8"));
+  } catch (err) {
+    console.error(`the reply is not one JSON object: ${err.message}`);
+    process.exit(1);
+  }
+  const pattern = nodeContext().schemas["bundle.schema.json"].properties.files.items.properties.path.pattern;
+  const { written, skipped } = writeReplyFiles(target, reply, pattern);
+  console.log(`wrote ${written.length} file(s) into ${target}: ${written.join(", ")}`);
+  if (skipped.length) console.log(`skipped (not bundle files): ${skipped.join(", ")}`);
+  console.log(`Review them (node tools/bundle.mjs sheet ${target} once it checks), then: node tools/bundle.mjs pack ${target} --i-made-this`);
 } else if (cmd === "pack-context" && target) {
   const { r, ctx } = await check(target, { render: null, determinism: false });
   if (!r.ok) {

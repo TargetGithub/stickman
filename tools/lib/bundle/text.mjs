@@ -36,7 +36,8 @@ export function textsOf(files) {
     t("examples/index.json", `examples[${i}].title`, e.title);
     t("examples/index.json", `examples[${i}].description`, e.description, "description");
   });
-  t("README.md", "", files["README.md"]);
+  // README: plain text over many lines; each line is checked like any other text.
+  String(files["README.md"] ?? "").split("\n").forEach((line, i) => line.trim() && t("README.md", `line ${i + 1}`, line.replace(/\t/g, " ")));
   return out;
 }
 
