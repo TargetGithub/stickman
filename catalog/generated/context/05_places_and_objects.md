@@ -32,6 +32,9 @@
 | iron_workshop | #4a4a52 | bright: light blue, yellow, orange, pink, white | Peepa's iron workshop: grey metal walls, pumping pistons, pipes with steam puffs, chains and purple warning lights. |
 | mountain_cave | #4a3e34 | bright: light blue, yellow, orange, pink, white | A rocky mountain cave shelter: grey-brown stone, a low ceiling of rock teeth, a dark opening, warm firelight. |
 | grey_peak | #4a4a5e | bright: light blue, yellow, orange, pink, white | Grey Peak: a jagged dark mountain top under a heavy grey sky, grey-blue rock with frosty caps and drifting snow. |
+| shadow_valley | #6a4a8a | bright: light blue, yellow, orange, pink, white | A misty purple valley at night: bare twisted trees with curly branches and glowing purple fog close to the ground. |
+| mirror_maze | #4a3866 | bright: light blue, yellow, orange, pink, white | A maze of tall silver mirrors with curly purple frames, a soft shine sliding over the glass, dark purple floor. |
+| gloom_castle_gate | #4a4060 | bright: light blue, yellow, orange, pink, white | Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -106,6 +109,9 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | dhol | holdable | - | A red and gold barrel drum (dhol) on a strap; `use` beats it. |
 | windup_key | holdable | - | Iron Ghoom's big brass wind-up key, pulled off his back. |
 | pot_and_pan | holdable | - | A frying pan, held like a bat: the village's funny shield (bat moves work). |
+| mirror | breakable | whole/broken | A tall standing mirror in a curly purple frame; set_object state broken cracks it (no sharp shards). |
+| snowball | ball | - | A big rolling snowball (an avalanche throws them). |
+| rock_round | ball | - | A round grey rock that rolls. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

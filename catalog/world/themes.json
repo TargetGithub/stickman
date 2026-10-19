@@ -992,5 +992,179 @@
       }
     ],
     "characterBg": "#4a4a5e"
+  },
+  "shadow_valley": {
+    "description": "A misty purple valley at night: bare twisted trees with curly branches and glowing purple fog close to the ground.",
+    "tags": [
+      "story",
+      "outdoor",
+      "night",
+      "shadow",
+      "spooky",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#1e1430",
+      "bottom": "#4a3466"
+    },
+    "ground": {
+      "color": "#3a2c4a",
+      "line": "#241a30"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 60,
+        "color": "rgba(255, 255, 255, 0.6)"
+      },
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.78,
+        "y": 0.16,
+        "r": 70,
+        "color": "#d8d0e8",
+        "glow": "rgba(200, 180, 240, 0.35)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.1,
+        "color": "#2e2244",
+        "height": 360,
+        "step": 260,
+        "rough": 0.5
+      },
+      {
+        "kind": "dead_trees",
+        "factor": 0.35,
+        "spacing": 520,
+        "height": 420,
+        "color": "#1e1430"
+      },
+      {
+        "kind": "dead_trees",
+        "factor": 0.6,
+        "spacing": 900,
+        "height": 560,
+        "color": "#160e24"
+      },
+      {
+        "kind": "mist",
+        "factor": 0.85,
+        "spacing": 260,
+        "size": 160,
+        "depth": 70,
+        "speed": 25,
+        "color": "rgba(176, 108, 255, 0.28)"
+      }
+    ],
+    "characterBg": "#6a4a8a"
+  },
+  "mirror_maze": {
+    "description": "A maze of tall silver mirrors with curly purple frames, a soft shine sliding over the glass, dark purple floor.",
+    "tags": [
+      "story",
+      "indoor",
+      "maze",
+      "mirror",
+      "magic",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#2a1e3e",
+      "bottom": "#4a3866"
+    },
+    "ground": {
+      "color": "#3e3052",
+      "line": "#281e36"
+    },
+    "layers": [
+      {
+        "kind": "mirrors",
+        "factor": 0.4,
+        "spacing": 300,
+        "height": 600,
+        "width": 200,
+        "glass": "#a8b0c8",
+        "glass2": "#d8dcec",
+        "frame": "#6a3fa8"
+      },
+      {
+        "kind": "mirrors",
+        "factor": 0.7,
+        "spacing": 520,
+        "height": 760,
+        "width": 260,
+        "glass": "#b8c0d8",
+        "glass2": "#e8ecf8",
+        "frame": "#8a5bd8"
+      }
+    ],
+    "characterBg": "#4a3866"
+  },
+  "gloom_castle_gate": {
+    "description": "Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind.",
+    "tags": [
+      "story",
+      "outdoor",
+      "castle",
+      "villain",
+      "night",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#1c1628",
+      "bottom": "#4a4060"
+    },
+    "ground": {
+      "color": "#4a4256",
+      "line": "#2e283a"
+    },
+    "layers": [
+      {
+        "kind": "stars",
+        "count": 50,
+        "color": "rgba(255, 255, 255, 0.5)"
+      },
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.5,
+        "y": 0.18,
+        "r": 160,
+        "color": "#c8c4d0",
+        "glow": "rgba(200, 196, 208, 0.35)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.12,
+        "color": "#2e283a",
+        "height": 300,
+        "step": 260,
+        "rough": 0.6
+      },
+      {
+        "kind": "castle",
+        "factor": 0.4,
+        "x": 700,
+        "width": 1200,
+        "height": 650,
+        "color": "#4a4060",
+        "tower": "#3e3652",
+        "horn": "#e6b84a",
+        "door": "#2a1b3d",
+        "window": "#b05cff"
+      },
+      {
+        "kind": "mist",
+        "factor": 0.85,
+        "spacing": 300,
+        "size": 140,
+        "depth": 50,
+        "speed": 15,
+        "color": "rgba(160, 150, 180, 0.25)"
+      }
+    ],
+    "characterBg": "#4a4060"
   }
 }

@@ -14,6 +14,34 @@ function outlined(ctx, fill, lw = 4) {
 }
 
 export const FORT_SHAPES = {
+  mirror(ctx, c, piece) {
+    // A tall standing mirror in a curly purple frame; broken shows a cracked, dimmed glass (no sharp shards).
+    const w = 180;
+    const h = 420;
+    ctx.beginPath();
+    ctx.roundRect(-w / 2, -h, w, h - 20, [w / 2, w / 2, 10, 10]);
+    const broken = piece.state === "broken";
+    ctx.fillStyle = broken ? c.dim : c.glass;
+    ctx.fill();
+    ctx.strokeStyle = c.frame;
+    ctx.lineWidth = 16;
+    ctx.stroke();
+    if (broken) {
+      ctx.strokeStyle = "rgba(255,255,255,0.7)";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      for (const [a, l] of [[-0.6, 120], [0.4, 140], [1.6, 110], [2.6, 130], [3.6, 100]]) { ctx.moveTo(0, -h * 0.55); ctx.lineTo(Math.cos(a) * l * 0.6, -h * 0.55 + Math.sin(a) * l); }
+      ctx.stroke();
+    } else {
+      ctx.fillStyle = "rgba(255,255,255,0.35)";
+      ctx.beginPath();
+      ctx.moveTo(-50, -60); ctx.lineTo(-20, -60); ctx.lineTo(40, -h + 80); ctx.lineTo(10, -h + 80);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.fillStyle = c.frame;
+    ctx.fillRect(-w / 2 - 10, -24, w + 20, 24);
+  },
   giant_pot(ctx, c, piece) {
     const t = piece.t ?? 0;
     // Fire under the pot.

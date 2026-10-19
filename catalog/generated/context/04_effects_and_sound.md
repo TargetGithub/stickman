@@ -33,6 +33,8 @@
 | whirlpool | feet, lingers | A big spinning whirlpool on the water: rings swirling in and foam spinning round for about 3 s. |
 | splash | feet | A water splash: droplets fly up and fall, with a white ring on the surface. |
 | visor_beam | head | A thick straight cyan beam shooting forward from the head (Iron Ghoom's visor), with a bright core. |
+| avalanche | feet, lingers | An avalanche: big snow puffs and snowball dots rushing in low from behind, for about 3 s. |
+| mirror_ripple | body | Silver rings rippling out on a mirror's surface when someone goes through it. |
 
 Hit effects come by themselves from hits, explosions and props; do not list them: impact_small, impact_med, impact_big, block_spark, spark, explosion, smoke, bolt, prop_break, energy_ball, bubble_pop, camera_flash.
 

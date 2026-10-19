@@ -19,4 +19,4 @@ Notes:
 | Slice | For | Assets | Status |
 |---|---|---|---|
 | C1 | ep 12-15 | C15 `robot` body plan (`draw: "box"`: box torso, square head, joint bolts) + `windup_key` accessory, Iron Ghoom preset; T11 `iron_canyon` (`gears_bg`), T12 `iron_workshop` (`machines`); O21 `lantern_string` (animated), O22 `dhol`, O23 `ribbon`, O24 `windup_key`, O25 `pot_and_pan`; F7 `visor_beam`; S5 `robot_stomp`, `robot_beep`, `windup_click` | done 2026-10-18 |
-| C2 | ep 16-18 | C17 shadow look, T14 `shadow_valley`, T15 `mirror_maze`, T16 `gloom_castle_gate`, O26 `snowball`/`rock_round`, O27 `mirror`, F8 `avalanche`, F9 `mirror_ripple` | next |
+| C2 | ep 16-18 | C17 shadow look (authoring only: Doopi's look in `#1a0f3a` with a purple `set_glow`), T14 `shadow_valley` (`dead_trees`), T15 `mirror_maze` (`mirrors`), T16 `gloom_castle_gate` (`castle`), O26 `snowball`/`rock_round`, O27 `mirror` (breakable), F8 `avalanche`, F9 `mirror_ripple`; also `grey_peak`, `mountain_cave` | done 2026-10-18 |
