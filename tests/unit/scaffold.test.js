@@ -24,6 +24,7 @@ const expected = {
   "../../engine/framestore.js": ["createStore", "writeFrame", "frameView", "jointsAt"],
   "../../engine/audio_events.js": ["collectAudioEvents"],
   "../../engine/index.js": ["createEngine"],
+  "../../engine/bundles.js": ["mergeBundles", "bundleOf", "scriptNames", "bundleIssues"],
   "../../engine/validator/index.js": ["validate", "jsonSchema"],
   "../../engine/renderer/index.js": ["createRenderer", "renderFrame"],
 };

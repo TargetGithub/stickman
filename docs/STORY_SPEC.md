@@ -122,6 +122,7 @@ The reference story, used as the acceptance test (Appendix A has the full script
 | `locations` | Reusable places: background theme, set pieces, stage width, default lighting and ambience. |
 | `scenes` | Ordered list. Each scene has a location, the cast present and their starting positions, a camera track, beats, and transitions in and out. |
 | `audio` | Global levels: `musicVolume`, `ambienceVolume`, `voices` (speech sounds on/off). Music moods are set per scene. |
+| `bundles` | Optional (V3.1, CATALOG_BUNDLE_SPEC 7): the catalog bundles the script uses, `[{ "id", "version", "hash" }]`, at most 8. Names with a colon (`robo_pals:boxbot`) come from bundles and need their bundle declared (`E_BUNDLE_UNDECLARED`); bare names are the base catalog, which is never declared. Without `hash` the script is accepted with `W_BUNDLE_UNPINNED`. v1 scripts take the same field. |
 
 ### 4.1 Cast entry
 

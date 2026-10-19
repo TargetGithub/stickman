@@ -23,7 +23,7 @@ import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
-import { catalog } from "../catalog/index.js";
+import { catalogForScript } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
@@ -36,6 +36,7 @@ if (!file) {
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "video";
 const script = JSON.parse(readFileSync(file, "utf8"));
+const catalog = catalogForScript(script); // the base catalog plus the bundles the script declares (V3.1)
 const backend = await loadBackend();
 const engine = createEngine({ catalog, createCanvas: backend.createCanvas });
 const loaded = engine.load(script);

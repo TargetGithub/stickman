@@ -73,6 +73,7 @@ Every script goes through three checks in order. Each problem has a code; errors
 - Stage: characters[].x is between 60 and stageWidth - 60 (3140 by default).
 - Text: plain Latin letters, digits and common punctuation only; no emoji or other scripts (E_TEXT_GLYPH). Family friendly: no gore, slurs or self-harm words (E_TEXT_BLOCKED). Length limits: say 40, text_pop 16, caption 80, title 80.
 - Contrast (W_CONTRAST): each character color must stand out against the theme's background color listed in the catalog.
+- Bundles: names with a colon (`robo_pals:boxbot`) come from a catalog bundle, which the script must declare in a top-level `bundles` list (`[{ "id", "version", "hash" }]`, E_BUNDLE_UNDECLARED); bare names are the built-in catalog, which is never declared (E_BUNDLE_RESERVED). A declared bundle must be loaded at that version and hash (E_BUNDLE_MISSING, E_BUNDLE_HASH), with its dependencies declared too (E_BUNDLE_DEPENDENCY) and made for the script's audience (E_BUNDLE_AUDIENCE). Leaving out the hash is accepted with W_BUNDLE_UNPINNED; a bundle nothing uses gives W_BUNDLE_UNUSED. Only use bundle names when the user gives you a bundle.
 
 ### 3. Dry run (the script is simulated)
 - E_SIM_UNREACHABLE: an attack starts more than 60 px x scale from where it must start. Fix: "approach": "run" on every attack with a target.

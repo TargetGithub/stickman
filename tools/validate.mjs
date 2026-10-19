@@ -11,7 +11,7 @@ import { validate, formatIssues, buildJsonSchema, WORLD_COMMANDS } from "../engi
 import { jsonSchemaV2 } from "../engine/validator/schema_v2.js";
 import { exportSchema } from "../engine/validator/schema.js";
 import { v1MoveNames } from "../engine/sim.js";
-import { catalog } from "../catalog/index.js";
+import { catalog, catalogForScript } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 if (args.includes("--schema-v2")) {
@@ -34,7 +34,7 @@ try {
   console.error(`cannot read ${file}: ${e.message}`);
   process.exit(2);
 }
-const r = validate(script, catalog);
+const r = validate(script, catalogForScript(script));
 if (args.includes("--json")) {
   console.log(JSON.stringify(r, null, 2));
 } else {

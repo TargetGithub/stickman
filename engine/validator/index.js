@@ -10,6 +10,7 @@ import { simulate, movesFor } from "../sim.js";
 import { normalize } from "../story/normalize.js";
 import { compileStory } from "../story/compile.js";
 import { macroIssues } from "./macros.js";
+import { bundleIssues } from "../bundles.js";
 import { LIMITS, LIMITS_V2 } from "../config.js";
 
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues };
@@ -79,6 +80,9 @@ export function validate(script, catalog) {
   const v2 = script.version === 2;
   const schemaIssues = v2 ? checkSchemaV2(script, catalog) : checkSchema(script);
   if (schemaIssues.length) return result("schema", schemaIssues);
+  // Declared bundles against the loaded ones, before any name is looked up (CATALOG_BUNDLE_SPEC 7.4).
+  const bundle = bundleIssues(script, catalog);
+  if (bundle.some((i) => !isWarning(i))) return result("semantic", bundle);
 
   const moves = movesFor(catalog);
   let story = null;
@@ -98,7 +102,7 @@ export function validate(script, catalog) {
   if (semantic.some((i) => !isWarning(i))) return result("semantic", semantic);
 
   const sim = simulate(v2 ? story : script, catalog, { dryRun: true });
-  const issues = [...semantic, ...sim.issues];
+  const issues = [...bundle, ...semantic, ...sim.issues];
   if (sim.durationSec < LIMITS.minDuration) {
     issues.push({ code: "E_SIM_DURATION", path: v2 ? "scenes" : "beats", message: `The video is only ${sim.durationSec.toFixed(1)}s long.`, fix: `Make it at least ${LIMITS.minDuration}s.` });
   }

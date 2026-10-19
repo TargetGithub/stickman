@@ -6,6 +6,7 @@
 import { LIMITS_V2 as L } from "../config.js";
 import { ID, COLOR, V2_ENUMS as E, DEST, catalogNames } from "./v2_names.js";
 import { MACRO_PARAMS, MACRO_ANCHORS, macroParamsFor } from "./macro_params.js";
+import { BUNDLES } from "./schema.js";
 
 const idRef = { type: "string", pattern: ID };
 const color = { type: "string", pattern: COLOR };
@@ -343,6 +344,7 @@ const makeSchemaV2 = (moods, enums, macroParams) => ({
         voices: { type: "boolean", description: "Speech sounds while characters talk (default true)." },
       },
     },
+    bundles: BUNDLES,
   },
   $defs: { enums, macroParams, macroAnchors: MACRO_ANCHORS },
 });

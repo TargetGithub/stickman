@@ -109,3 +109,11 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - W_FIGHT_SHORT: a fight video under 180 s → Make it 180 s or more.
 - W_SCENE_STATIC: over 4 s of a scene where nothing moves → Add movement, a line or narration.
 - W_CAST_UNUSED: a cast member no scene places → Place them in a scene or drop them.
+- E_BUNDLE_RESERVED: bundles lists base or a reserved id → Remove base (always loaded); declare bundles under their real ids.
+- E_BUNDLE_MISSING: a declared bundle (or that version) is not loaded → Register it in catalog/bundles.json or import it, and match the loaded version.
+- E_BUNDLE_HASH: the loaded bundle has another hash than the script pins → Pin the loaded hash, or load the bundle the script was written for.
+- E_BUNDLE_DEPENDENCY: a declared bundle depends on a bundle the script does not declare → Add the dependency to bundles with its version and hash.
+- E_BUNDLE_AUDIENCE: a kids script declares a bundle not made for kids → Use a kids bundle or set meta.audience to general.
+- E_BUNDLE_UNDECLARED: a name with a colon comes from a bundle the script does not declare → Add that bundle to bundles (id, version, hash).
+- W_BUNDLE_UNPINNED: a declared bundle has no hash → Add the bundle's contentHash so the video is pinned.
+- W_BUNDLE_UNUSED: a declared bundle is used by nothing in the script → Remove it or use one of its entries.

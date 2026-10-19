@@ -33,6 +33,7 @@ function withAcme() {
   c.activityNames = [...c.activityNames, N];
   c.musicMoods = add("musicMoods", "happy");
   c.moves = [...c.moves, { ...copy(c.moves.find((m) => m.name === "wave")), name: N }];
+  c.bundles = [...c.bundles, { id: "acme", version: "1.0.0", hash: `sha256-${"a".repeat(64)}`, audience: ["kids", "general"], dependencies: [] }]; // loaded (V3.1)
   return c;
 }
 const acme = withAcme();
@@ -118,6 +119,7 @@ test("mood and activity names come from the catalog, with the frozen lists as th
 test("a v2 story using namespaced names of every kind validates", () => {
   const story = {
     version: 2,
+    bundles: [{ id: "acme", version: "1.0.0", hash: `sha256-${"a".repeat(64)}` }],
     meta: { title: "Acme", format: "landscape", seed: 1, kind: "clip", audience: "kids" },
     cast: [
       { id: "kai", color: "#3fd8ff" },
@@ -147,6 +149,7 @@ test("a v2 story using namespaced names of every kind validates", () => {
 test("a v1 script using namespaced names validates", () => {
   const script = {
     version: 1,
+    bundles: [{ id: "acme", version: "1.0.0", hash: `sha256-${"a".repeat(64)}` }],
     meta: { title: "Acme", format: "landscape", seed: 1, theme: N },
     characters: [{ id: "a", x: 1200, facing: 1, color: "#3fd8ff", prop: N }, { id: "b", x: 1700, facing: -1, color: "#ff7a3d" }],
     camera: [{ at: 0, mode: "follow", targets: ["a", "b"] }],

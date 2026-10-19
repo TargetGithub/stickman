@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "bundles": [{ "id": "base", "version": "1.0.0" }],
+  "meta": { "title": "Bundle reserved", "format": "landscape", "seed": 1 },
+  "characters": [{ "id": "a", "x": 1200, "facing": 1, "color": "#3366cc" }, { "id": "b", "x": 2000, "facing": -1, "color": "#cc3333" }],
+  "camera": [{ "at": 0, "mode": "follow" }],
+  "beats": [{ "id": "j", "at": 0.5, "who": "a", "do": "jab", "target": "b", "outcome": "hit" }, { "id": "v", "at": { "after": "j", "delay": 0.5 }, "who": "a", "do": "victory" }]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "meta": { "title": "Bundle undeclared", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
+  "cast": [{ "id": "kai", "color": "#3fd8ff" }, { "id": "bolt", "body": "robo_pals:boxbot", "color": "#3d7bd9" }],
+  "scenes": [{ "id": "s1", "location": "city_park", "cast": [{ "id": "kai", "x": 1300, "facing": 1 }, { "id": "bolt", "x": 1900, "facing": -1 }],
+    "beats": [{ "id": "b1", "at": 0.5, "who": "bolt", "do": "robo_pals:robot_dance" }, { "id": "b2", "at": { "after": "b1" }, "who": "kai", "do": "wave" }, { "id": "end", "at": { "after": "b2", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.5 } }] }]
+}

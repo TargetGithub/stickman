@@ -20,7 +20,7 @@ test("loadCatalog takes sync and async readers and does no I/O itself", async ()
 
 test("the catalog object has today's shape, and the name lists follow their tables", () => {
   const keys = ["poses", "moves", "props", "fxPresets", "fxNames", "themes", "themeNames", "sfxKeys", "blocklist", "softWords", "objects", "faces", "faceNames",
-    "bodies", "bodyNames", "appearance", "activities", "activityNames", "macroLines", "musicMoods", "scales"];
+    "bodies", "bodyNames", "appearance", "activities", "activityNames", "macroLines", "musicMoods", "scales", "bundles"];
   assert.deepEqual(Object.keys(catalog), keys);
   assert.deepEqual(catalog.themeNames, Object.keys(catalog.themes));
   assert.deepEqual(catalog.fxNames, Object.keys(catalog.fxPresets).filter((n) => !catalog.fxPresets[n].internal));

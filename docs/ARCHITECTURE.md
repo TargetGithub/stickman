@@ -305,6 +305,17 @@ Modules: `background.js` (registry of procedural layer kinds with parallax; geom
 
 
 
+### bundles.js (V3.1, ENGINE_V3_SPEC 4, CATALOG_BUNDLE_SPEC 7)
+```js
+export const BUNDLE_ID, NAMESPACED, SEMVER, SHA256, RESERVED_IDS, BASE_ID, BUNDLE_MAPS, NAME_LISTS;
+export function bundleOf(name): string;                                  // "base" for a bare name, else the id before the colon
+export function mergeBundles(base, bundles): Catalog;                    // add-only, ascending id order; throws on collisions; sets catalog.bundles
+//   bundles: [{ id, version, hash, audience?, license?, dependencies?, catalog: partial }] (catalog/index.js assembleBundle)
+export function scriptNames(script): Map<string, string>;                // namespaced name → path of its first use (prose fields skipped)
+export function bundleIssues(script, catalog): Issue[];                  // E_BUNDLE_RESERVED | MISSING | HASH | DEPENDENCY | AUDIENCE | UNDECLARED, W_BUNDLE_UNPINNED | UNUSED
+```
+`validate()` runs `bundleIssues` right after the schema stage, so a name from an undeclared bundle is a bundle error, never an unknown move. The engine catalog always carries `catalog.bundles = [{ id: "base", version }]` (from `catalog/bundles.json`); `mergeBundles` appends the loaded bundles' pins.
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -316,6 +327,10 @@ export function assembleCatalog(files): Catalog;           // path → parsed JS
 export function loadCatalog(read): Catalog | Promise<Catalog>; // read(path) → JSON or a promise; no I/O of its own
 export function loadCatalogSync(root?): Catalog;           // Node only
 export const catalog: Catalog;                             // the default catalog (fs in Node, fetch in the browser)
+export const BUNDLE_FILES: string[];                       // the catalog files a bundle may carry (V3.1)
+export function assembleBundle(manifest, files): Bundle;   // bundle files → the partial catalog mergeBundles() takes
+export function readBundleDir(dir), loadBundleSync(dir);   // Node: a bundle folder
+export function catalogForScript(script, opts?): Catalog;  // Node: base + the bundles the script declares (bundles.json paths or the store)
 ```
 Description and tag fields pass through; prepared moves (`prepareCatalog`) drop them.
 
@@ -754,3 +769,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: the series needs a lasting Heart Glow, a per-scene "how grey the world is" grade with a colour wave, and friends frozen to stone grey across scenes.
 - **Decision**: no new frame-store fields. The renderer reads the effects from the event log (`set_glow` and `set_grade` world events, the `defeat` event of `petrify` and the `thaw` event that `return` emits for a petrified character), as it already does for `set_appearance`; `engine/renderer/colour.js` holds the pure state functions. A grey world is a `saturation` composite pass after the world (it can leave a growing circle for a wave `from` a character); with `keepCast`, and for a stone-grey character, a canvas `filter` is set while drawing. The simulation only holds the petrified pose (`keepPose`, no idle) and carries it into later scenes.
 - **Consequences**: the frame store, golden frames and determinism are unchanged, and glow and petrify carry over between scenes for free. With `keepCast` a wave blends evenly instead of spreading. The canvas backend must support `ctx.filter` (`@napi-rs/canvas` and current browsers do).
+
+### ADR-022 Bundles are merged outside the engine, pinned inside the script (V3.1)
+- **Context**: v3 (ENGINE_V3_SPEC 2) makes every character, place and effect come from a catalog bundle, with the engine shipping no content of its own. The engine may not read folders (ADR-006), yet the validator must know which bundles a script relies on so that the same script and bundles give the same frames (CATALOG_BUNDLE_SPEC 7.3).
+- **Decision**: the base catalog is the bundle `base`, registered first in `catalog/bundles.json` with the other bundles a script may declare (a folder path, or the store by hash). The host turns a bundle folder into a partial catalog (`catalog/index.js` `assembleBundle`) and the pure `engine/bundles.js` `mergeBundles` adds it to the base, add-only and in ascending id order, recording each bundle's pin in `catalog.bundles`. A script declares what it uses in `bundles: [{ id, version, hash }]` (v1 and v2 schemas); `bundleIssues` compares the pins with the loaded bundles and with every namespaced name the script uses before any name lookup. A bundle's own examples pin the bundle without a hash (the hash covers the example file itself, the open question of B1), so `hash` is optional and its absence is `W_BUNDLE_UNPINNED`. The check pipeline lives in `tools/lib/bundle_check.mjs` (steps 1-11 of CATALOG_BUNDLE_SPEC 6 for folders: strict JSON with duplicate-key detection, manifest and per-file schemas, canonical hashes, namespacing, references, caps, text, every bundle move on every plan of its rig and every base move on each bundle plan, presets and examples) behind `npm run bundle:check <folder>` and `bundle:pack`.
+- **Consequences**: the engine never hashes or reads files; tools pass `catalogForScript(script)` to `createEngine`. v1 and v2 scripts without `bundles` are unchanged (golden frames and determinism hashes identical). Zip import, the hash store, allow and block lists and the browser importer stay B4-B5 work; the registry's `path` entries carry the project's bundles until then.
+
