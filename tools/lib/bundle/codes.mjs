@@ -28,6 +28,7 @@ export const BUNDLE_CODES = {
   E_BUNDLE_ENTRY: { step: 11, meaning: "An FX, theme, object, activity or mood breaks a semantic rule of its schema section (section 4)." },
   E_BUNDLE_PRESET: { step: 11, meaning: "A preset's cast entry does not validate on stage." },
   E_BUNDLE_EXAMPLE: { step: 11, meaning: "An example script does not validate, is too long, misses its own bundle pin, or the examples leave an added entry unused." },
+  E_BUNDLE_DETERMINISM: { step: 12, meaning: "The same script with this bundle gave different frames in two runs (an engine bug the data triggers)." },
   E_BUNDLE_BLOCKED: { step: 14, meaning: "The content hash is on the bundle blocklist." },
   W_BUNDLE_UNREVIEWED: { step: 14, meaning: "The content hash is not on the allow list: the bundle is imported with the unreviewed banner." },
 };

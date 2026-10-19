@@ -9,6 +9,7 @@
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
 //   --no-audio             skip the audio mix
 //   --crf 16 --preset medium   x264 quality settings
+//   --bundle <dir|zip>     a catalog bundle the script declares (repeatable); credits go into meta.json
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { basename, join } from "node:path";
@@ -23,14 +24,15 @@ import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
-import { catalog } from "../catalog/index.js";
+import { catalog as baseCatalog } from "../catalog/index.js";
+import { catalogFromArgs, bundleCredits } from "./lib/bundle_args.mjs";
 
-const args = process.argv.slice(2);
+const { args, catalog, bundles } = await catalogFromArgs(process.argv.slice(2), baseCatalog); // --bundle <dir|zip>, repeatable
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
 const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene)$/));
 if (!file) {
-  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio]");
+  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]...");
   process.exit(2);
 }
 
@@ -143,6 +145,8 @@ const info = {
   timeline: loaded.timeline,
   renderSeconds: Number(renderSeconds.toFixed(2)),
   totalSeconds: Number(seconds().toFixed(2)),
+  // Bundles the script uses (CATALOG_BUNDLE_SPEC 7.3, 8): pins and credits; NC bundles mark the video non-commercial.
+  ...(script.bundles?.length ? { bundles: bundleCredits(script, bundles), nonCommercial: bundleCredits(script, bundles).some((b) => b.license === "CC-BY-NC-4.0") } : {}),
   files: [enc ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
 };
 writeFileSync(join(dir, "meta.json"), JSON.stringify(info, null, 2) + "\n");

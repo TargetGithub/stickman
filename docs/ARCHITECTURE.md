@@ -271,7 +271,7 @@ The run ends after `meta.tail` seconds of quiet: director idle, everyone settled
 export function validate(script, catalog): { ok, errors, warnings, timeline, durationSec, stage };
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues, formatTimeline };
 ```
-Stages: `schema.js` (the script schemas; the JSON Schema subset checker is `check_value.js`) → `semantic.js` → dry run (`simulate` with `dryRun`) + pacing. Each stage stops the next on errors.
+Stages: `bundles.js` (a script's `bundles` against `catalog.bundles`, namespaced names, `catalog.bundleCombos`; first, whenever the pin list itself is well formed, so a missing bundle explains names the schema would reject) → `schema.js` (the script schemas; the JSON Schema subset checker is `check_value.js`) → `semantic.js` → dry run (`simulate` with `dryRun`) + pacing. Each stage stops the next on errors.
 
 ### framestore.js
 ```js
@@ -411,6 +411,7 @@ Description and tag fields pass through; prepared moves (`prepareCatalog`) drop 
 | `tools/lib/catalog_write.mjs` | adds a reviewed draft to `catalog/` (`draft.mjs --write`, `svg_import.mjs --write`) |
 | `tools/lib/json_format.mjs`, `zip.mjs` | stable JSON formatting for catalog files; a small zip writer for `catalog:pack` |
 | `tools/lib/move_check.mjs` | `checkMove(def, catalog, { draft, plans })` and `runMove(def, moves, catalog, opts)`: the move checks shared by drafts, the catalog build and bundles (browser-safe) |
+| `tools/lib/bundle_args.mjs` | `--bundle <dir\|zip>` for validate, record, generate and manual: check, merge (`tools/lib/bundle/load.mjs` `catalogWithBundles`, with the combination check), credits for `meta.json`; the player uses `web/lib/bundles.js` |
 | `tools/lib/bundle/` + `tools/bundle.mjs` | catalog bundles (CATALOG_BUNDLE_SPEC): `checkBundle(entries, ctx)` runs steps 1-11 and 14 (pure, browser-safe: strict JSON and JCS, SHA-256, zip reading through an inflate adapter); `bundle.mjs check` and `pack`; Node adapters in `tools/lib/bundle_node.mjs`; `catalog/merge.js` `mergeBundles(base, bundles)` |
 | `tools/catalog_media.mjs` | `npm run catalog:media`: music mood clips for the showcase (`out/catalog_media/`) |
 | `web/showcase.html`, `web/showcase.js`, `web/lib/showcase_data.js`, `showcase_scripts.js`, `scaled_ctx.js` | the showcase page: cards from `catalog/generated/catalog.json`, preview stories run through the public engine, drawn at thumbnail size (a context that scales `setTransform`), lazy and paused off-screen |

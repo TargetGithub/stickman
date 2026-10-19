@@ -312,6 +312,16 @@ Body plan `dog_small` is a small four-legged puppy (its back at a stickman's kne
 
 Sample: `scripts/samples/r1_becky.json`. Review sheets: `node tools/becky_sheet.mjs` (the look) and `node tools/move_sheet.mjs --rig quadruped --plans dog_small` (the moves).
 
+### 4.2 Catalog bundles (characters, moves and places made by others)
+
+A catalog bundle is a folder or `.zip` of catalog data someone else made (docs/CATALOG_BUNDLE_SPEC.md). Its names have a colon: `robo_pals:boxbot`. To use one:
+
+1. Check it: `node tools/bundle.mjs check robo_pals-1.0.0.zip`. It prints every problem with a fix, and the bundle's hash.
+2. Declare it at the top of the script, exactly as the bundle gives it: `"bundles": [{ "id": "robo_pals", "version": "1.0.0", "hash": "sha256-…" }]`.
+3. Pass it to the tools: `node tools/validate.mjs story.json --bundle robo_pals-1.0.0.zip`, `npm run record -- story.json --bundle robo_pals-1.0.0.zip` (the credits go into `meta.json`). In the player, pick the zip under "Bundles".
+
+A missing bundle, a different hash or an undeclared name stops the script (`E_BUNDLE_MISSING`, `E_BUNDLE_HASH`, `E_BUNDLE_UNDECLARED`); there is no fallback. The same script with the same bundle hash gives the same frames. To make a bundle: `node tools/bundle.mjs pack <folder> --i-made-this` writes the hashes and the zip; the worked example is `tests/fixtures/bundles/robo_pals/`.
+
 ## 5. Fixing validator errors
 
 The validator runs before every render. Each message names the problem, where it is, and how to fix it. The most common ones:
@@ -337,6 +347,9 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | Command | What it does |
 |---|---|
 | `node tools/validate.mjs <script> [--json]` | Check a script; print errors, warnings and the timeline |
+| `... --bundle <dir\|zip>` | On validate, record, generate and manual: load a catalog bundle the script declares (repeatable; section 4.2) |
+| `node tools/bundle.mjs check <dir\|zip>` | Check a catalog bundle (`--fixture <file>` for a test fixture) |
+| `node tools/bundle.mjs pack <dir> --i-made-this` | Write a bundle's hashes and zip it |
 | `node tools/validate.mjs --schema` | Print the JSON Schema (with every move name) |
 | `node tools/compile.mjs <story> [--summary]` | Print a story with every macro expanded into beats (or one line per macro) |
 | `node tools/compile.mjs <story> --eject <id> --out <file>` | Write the story with one macro replaced by its beats, to hand-tune them |
@@ -376,7 +389,7 @@ Browser pages (after `npm run serve`):
 
 | Page | Use |
 |---|---|
-| `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file. Stories show scene markers above the scrubber (click one to jump) |
+| `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file. Stories show scene markers above the scrubber (click one to jump). "Bundles" loads catalog bundle zips the script declares (checked in the page) |
 | `/web/showcase.html` | The whole catalog with live previews: characters and presets, looks, faces, moves, effects, sounds, places, objects, activities, macros, camera and transitions, music moods, examples and rules. Search, tag filter, body plan and color pickers, light/dark, "copy JSON" on every card, deep links such as `showcase.html#moves/hug`. Run `npm run catalog:media` once to hear the moods, `npm run sfx` for the sounds |
 | `/web/catalog.html` | Redirects to the Moves section of the showcase |
 | `/web/player.html?src=<url>` | Opens a script or example directly (the showcase's "open in player") |

@@ -7,6 +7,9 @@ export const MOVE_GROUPS = ["movement", "unarmed", "armed", "defensive", "reacti
 /** Bundle ids nobody may use (5.1); the bundle blocklist adds more. */
 export const RESERVED_IDS = ["base", "core", "catalog", "stickman", "engine", "self", "user", "test", "draft", "local", "world"];
 
+/** The bundle schema files (catalog/schemas/bundle/), for hosts that fetch them (the player). */
+export const BUNDLE_SCHEMA_FILES = ["activities", "bodies", "bundle", "common", "examples", "faces", "fx", "moves", "music_moods", "objects", "poses", "preset", "props", "themes"].map((n) => `${n}.schema.json`);
+
 /** The value examples write for their own bundle's hash (4.15, 7.1). */
 export const SELF_HASH = "self";
 

@@ -41,6 +41,7 @@
         <option value="../scripts/samples/showdown.json">showdown (spec appendix: not valid yet)</option>
       </select>
       <input id="file" type="file" accept=".json,application/json">
+      <label title="Catalog bundles (.zip) the script declares in &quot;bundles&quot;; checked here like bundle.mjs check">Bundles <input id="bundleFiles" type="file" accept=".zip,application/zip" multiple></label>
     </div>
     <div id="stage"><canvas id="view" width="1920" height="1080"></canvas></div>
     <div class="bar">
@@ -53,6 +54,8 @@
   <aside>
     <h1><a href="index.html" style="color: inherit; text-decoration: none" title="Home">⌂</a> Stickman player</h1>
     <div id="status"></div>
+    <h2>Bundles</h2>
+    <pre id="bundles">none loaded</pre>
     <h2>Issues</h2>
     <pre id="issues"></pre>
     <h2>Timeline</h2>
@@ -62,12 +65,14 @@
   <script type="module">
     import { createEngine, formatIssues } from "../engine/index.js";
     import { catalog } from "../catalog/index.js";
+    import { loadBundleZips } from "./lib/bundles.js";
 
     const $ = (id) => document.getElementById(id);
     const canvas = $("view");
     const ctx = canvas.getContext("2d");
     const createCanvas = (w, h) => Object.assign(document.createElement("canvas"), { width: w, height: h });
-    const engine = createEngine({ catalog, createCanvas });
+    let engine = createEngine({ catalog, createCanvas });
+    let current = null; // [script, label]: loaded again when the bundles change
     let total = 0;
     let frame = 0;
     let playing = false;
@@ -100,6 +105,7 @@
 
     function load(script, label) {
       playing = false;
+      current = [script, label];
       const r = engine.load(script);
       const issues = [...r.errors, ...r.warnings];
       $("status").innerHTML = r.ok
@@ -137,6 +143,18 @@
       } catch (e) {
         $("issues").textContent = `Not valid JSON: ${e.message}`;
       }
+    });
+    // Bundles: every dropped zip is checked (steps 1-12, 14); clean ones join the catalog the engine uses.
+    $("bundleFiles").addEventListener("change", async () => {
+      const zips = [...$("bundleFiles").files];
+      $("bundles").textContent = `checking ${zips.length} bundle(s)...`;
+      const { catalog: merged, results } = await loadBundleZips(zips, catalog);
+      engine = createEngine({ catalog: merged, createCanvas });
+      $("bundles").textContent = results.map((r) => r.ok
+        ? `✓ ${r.bundle.id} ${r.bundle.version} (${r.bundle.manifest.license}, ${r.bundle.manifest.author.name})\n  ${r.bundle.hash}${r.warnings.some((w) => w.code === "W_BUNDLE_UNREVIEWED") ? "\n  not reviewed" : ""}`
+        : `✗ ${r.name}: ${r.errors.length} error(s)\n${formatIssues(r.errors.slice(0, 6))}`).join("\n") || "none loaded";
+      $("bundles").className = results.every((r) => r.ok) ? "ok" : "err";
+      if (current) load(...current);
     });
     $("scrub").addEventListener("input", () => {
       playing = false;

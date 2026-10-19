@@ -10,6 +10,8 @@ import { readBundleSchemas, CATALOG_DIR } from "./catalog_files.mjs";
 import { readZip, ARCHIVE_LIMITS } from "./bundle/archive.mjs";
 import { parseEntries, packManifest } from "./bundle/manifest.mjs";
 import { formatJson } from "./json_format.mjs";
+import { checkBundle } from "./bundle/check.mjs";
+import { catalogWithBundles } from "./bundle/load.mjs";
 import { zip } from "./zip.mjs";
 
 const posix = (p) => p.split(sep).join("/");
@@ -62,4 +64,30 @@ export function packBundleDir(dir) {
   writeFileSync(join(dir, "bundle.json"), formatJson(manifest));
   const again = readBundleDir(dir).entries;
   return { manifest, zip: zip(again.map((e) => ({ name: e.path, data: Buffer.from(e.bytes) }))), issues: [] };
+}
+
+/**
+ * Check bundle folders or zips and build the engine catalog from them (dependencies first, whatever the
+ * order of the paths). Bundles that do not check clean are returned as failures with their issues.
+ * @returns {Promise<{ catalog, bundles: object[], failures: Array<{ path, errors }> }>}
+ */
+export async function loadBundlePaths(paths, extra = {}) {
+  const ctx = nodeContext(extra);
+  const pending = [];
+  for (const path of paths) pending.push({ path, ...(await readBundlePath(path)) });
+  const failures = [];
+  for (let progress = true; pending.length && progress;) {
+    progress = false;
+    for (const p of [...pending]) {
+      const r = checkBundle(p.entries, { ...ctx, preIssues: p.issues });
+      const waits = !r.ok && r.errors.every((e) => e.code === "E_BUNDLE_DEPENDENCY" && /not loaded/.test(e.message));
+      if (waits) continue; // its dependency may be later in the list
+      pending.splice(pending.indexOf(p), 1);
+      progress = true;
+      if (r.ok) ctx.loaded.push(r.bundle);
+      else failures.push({ path: p.path, errors: r.errors });
+    }
+  }
+  for (const p of pending) failures.push({ path: p.path, errors: checkBundle(p.entries, { ...ctx, preIssues: p.issues }).errors });
+  return { catalog: catalogWithBundles(ctx.base, ctx.loaded), bundles: ctx.loaded, failures };
 }

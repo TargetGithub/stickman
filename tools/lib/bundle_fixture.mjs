@@ -9,6 +9,7 @@
 //   raw      { path: text | { repeat, times } } unparsed entries added after packing
 //   zip      "crc": zip the bundle, then damage one entry's data
 //   ctx      { blockSelf: true }               the bundle's hash on the blocklist
+//            { flakyEngine: true }             step 12 with an engine whose every other run drifts
 //   expect   [{ code, file, path }]           issues that must be reported; the reported codes are exactly these
 
 import { readFileSync } from "node:fs";
@@ -18,6 +19,7 @@ import { readBundleDir, nodeContext, nodeInflate } from "./bundle_node.mjs";
 import { parseEntries, packManifest } from "./bundle/manifest.mjs";
 import { readZip } from "./bundle/archive.mjs";
 import { zip } from "./zip.mjs";
+import { createEngine } from "../../engine/index.js";
 
 export const FIXTURES = fileURLToPath(new URL("../../tests/fixtures/bundles/", import.meta.url));
 
@@ -55,8 +57,19 @@ export async function fixtureInput(fx, { root = FIXTURES } = {}) {
     ({ entries, issues: preIssues } = await readZip(bytes, { inflateRaw: nodeInflate }));
   }
   const ctx = nodeContext();
+  if (fx.ctx?.flakyEngine) ctx.createEngine = flakyEngine();
   if (fx.ctx?.blockSelf) ctx.blocklist = [{ hash: files["bundle.json"].contentHash, reason: "test fixture" }];
   return { entries, ctx: { ...ctx, preIssues } };
+}
+
+/** An engine factory whose second, fourth ... engine moves the camera a little: a stand-in for an engine bug. */
+function flakyEngine() {
+  let made = 0;
+  return (opts) => {
+    const e = createEngine(opts);
+    if (++made % 2) return e;
+    return { ...e, load: (s) => e.load(s), getFrame: (n) => { const f = e.getFrame(n); return { ...f, cam: { ...f.cam, x: f.cam.x + 0.5 } }; } };
+  };
 }
 
 export const readFixture = (file) => JSON.parse(readFileSync(file, "utf8"));

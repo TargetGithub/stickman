@@ -5,11 +5,12 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { checkBundle } from "../../tools/lib/bundle/check.mjs";
+import { checkBundle, toMerge } from "../../tools/lib/bundle/check.mjs";
+import { checkDeterminism, showcaseScripts } from "../../tools/lib/bundle/determinism.mjs";
 import { BUNDLE_CODES } from "../../tools/lib/bundle/codes.mjs";
 import { packManifest, contentHashOf, inRange, inCatalogRange } from "../../tools/lib/bundle/manifest.mjs";
 import { readZip } from "../../tools/lib/bundle/archive.mjs";
-import { MOVE_GROUPS, catalogFragment } from "../../tools/lib/bundle/layout.mjs";
+import { MOVE_GROUPS, BUNDLE_SCHEMA_FILES, catalogFragment } from "../../tools/lib/bundle/layout.mjs";
 import { readBundleDir, nodeContext, nodeInflate } from "../../tools/lib/bundle_node.mjs";
 import { mergeBundles } from "../../catalog/merge.js";
 import { MOVE_FILES, catalog as base } from "../../catalog/index.js";
@@ -34,6 +35,10 @@ for (const f of fixtures) {
   });
 }
 
+test("BUNDLE_SCHEMA_FILES lists catalog/schemas/bundle/", () => {
+  assert.deepEqual(BUNDLE_SCHEMA_FILES, Object.keys(nodeContext().schemas));
+});
+
 test("every bundle code has a fixture named after it, and every fixture's code is in the table", () => {
   assert.deepEqual(fixtures.map((f) => f.replace(".json", "")), Object.keys(BUNDLE_CODES).sort());
 });
@@ -42,7 +47,9 @@ test("every code the pipeline can report is in the codes table", () => {
   const dir = fileURLToPath(new URL("../../tools/lib/bundle/", import.meta.url));
   const text = readdirSync(dir).filter((f) => f.endsWith(".mjs") && f !== "codes.mjs").map((f) => readFileSync(dir + f, "utf8")).join("\n") + readFileSync(fileURLToPath(new URL("../../tools/lib/bundle_node.mjs", import.meta.url)), "utf8");
   const used = new Set(text.match(/\b[EW]_BUNDLE_[A-Z]+\b/g));
-  assert.deepEqual([...used].sort(), Object.keys(BUNDLE_CODES).sort());
+  const validator = new Set(Object.keys(JSON.parse(readFileSync(fileURLToPath(new URL("../../catalog/docs/codes.json", import.meta.url)), "utf8"))));
+  for (const c of Object.keys(BUNDLE_CODES)) assert.ok(used.has(c), `${c} is in the table but never reported`);
+  for (const c of used) assert.ok(c in BUNDLE_CODES || validator.has(c), `${c} is reported but in neither codes table`);
 });
 
 test("the worked example robo_pals packs to its committed manifest and checks clean", async () => {
@@ -133,7 +140,7 @@ test("mergeBundles adds entries in ascending id order and leaves the base unchan
   assert.throws(() => mergeBundles(base, [{ ...other, entries: { themes: { white_stage: {} } } }]), /already there/);
 });
 
-test("a bundle near every cap checks in under 2 s", () => {
+test("a bundle near every cap checks in under 2 s, the simulation hashes of its 100 showcase scripts included", () => {
   const files = structuredClone(goodFiles("robo_pals"));
   const dance = files["moves/emotes.json"][0];
   files["moves/emotes.json"] = Array.from({ length: 64 }, (_, i) => ({ ...structuredClone(dance), name: `robo_pals:dance${i}` }));
@@ -147,9 +154,14 @@ test("a bundle near every cap checks in under 2 s", () => {
   const entries = Object.entries(files).map(([path, v]) => ({ path, bytes: new TextEncoder().encode(JSON.stringify(v)) }));
   const t = process.cpuUsage(); // CPU time of this process: other test files run in parallel processes
   const r = checkBundle(entries, nodeContext());
+  // Step 12 is skipped here (the one example does not use 228 entries), so run it on the 100 showcase scripts too.
+  const merged = mergeBundles(base, [toMerge(files["bundle.json"], files["bundle.json"].contentHash, files)]);
+  const det = checkDeterminism(showcaseScripts(files, merged, merged.bundles.map(({ id, version, hash }) => ({ id, version, hash }))), merged);
   const used = process.cpuUsage(t);
   const ms = (used.user + used.system) / 1000;
-  assert.ok(r.report.steps.every((s) => !s.skipped), JSON.stringify(r.errors.slice(0, 3)));
+  assert.ok(r.report.steps.filter((s) => s.step <= 11).every((s) => !s.skipped), JSON.stringify(r.errors.slice(0, 3)));
+  assert.equal(Object.keys(det.hashes).length, 100);
+  assert.deepEqual(det.issues, []);
   assert.ok(ms < 2000, `${ms.toFixed(0)} ms`);
 });
 
@@ -168,6 +180,8 @@ test("the check pipeline is browser-safe: no node: imports and no catalog loader
   };
   walk(new URL("../../tools/lib/bundle/check.mjs", import.meta.url));
   walk(new URL("../../tools/lib/bundle/archive.mjs", import.meta.url));
+  walk(new URL("../../tools/lib/bundle/load.mjs", import.meta.url));
+  walk(new URL("../../web/lib/bundles.js", import.meta.url)); // the player's adapter
   assert.ok(seen.size > 10);
 });
 

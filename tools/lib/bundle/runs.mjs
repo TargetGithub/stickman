@@ -164,6 +164,17 @@ export function checkExamples(files, manifest, merged) {
   return out;
 }
 
+/** The example scripts with the own pin's "self" replaced by the contentHash (for step 12). */
+export function exampleScripts(files, manifest) {
+  return (files["examples/index.json"]?.examples || []).flatMap((e) => {
+    const raw = files[`examples/${e.path}`];
+    const script = e.kind === "story" ? raw?.story : raw;
+    if (!script) return [];
+    const bundles = (script.bundles || []).map((b) => (b?.id === manifest.id && b.hash === SELF_HASH ? { ...b, hash: manifest.contentHash } : b));
+    return [{ label: `example ${e.path}`, file: `examples/${e.path}`, script: { ...script, bundles } }];
+  });
+}
+
 /** The entry a reference belongs to (its path's first segment), as a name. */
 function ownerOf(ref, files) {
   const m = ref.path.match(/^\[(\d+)\]/);
