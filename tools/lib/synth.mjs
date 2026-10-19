@@ -135,6 +135,15 @@ const RECIPES = {
     drive(o, 2.2);
     noise(o, r, { gain: 0.25, attack: 0.5, decay: 1.6, lp0: 2400, lp1: 900, hp: 400, start: 0.3 });
   },
+  pirate_horn: (o, r) => {
+    // A bright two-note ship horn: G3 then up to C4, brassy, with a soft breath of air.
+    for (const [k, g] of [[1, 0.7], [2, 0.5], [3, 0.35], [5, 0.12]]) {
+      sweepSine(o, { f0: 196 * k, f1: 196 * k, sweep: 1, attack: 0.06, decay: 0.55, gain: g, vibrato: 0.01, vibratoRate: 6 });
+      sweepSine(o, { f0: 261.6 * k, f1: 261.6 * k, sweep: 1, attack: 0.06, decay: 1.0, gain: g, vibrato: 0.012, vibratoRate: 6, start: 0.6 });
+    }
+    drive(o, 1.8);
+    noise(o, r, { gain: 0.12, attack: 0.05, decay: 1.2, lp0: 3000, lp1: 1200, hp: 600 });
+  },
   sneeze: (o, r) => {
     // "ah" (rising), "ah" (higher), then a sharp noisy "CHOO" at 0.75 s.
     sweepSine(o, { f0: 300, f1: 360, sweep: 0.2, attack: 0.04, decay: 0.2, gain: 0.45 });
@@ -147,7 +156,7 @@ const RECIPES = {
   crystal_chime: (o) => { [1046.5, 1318.5, 1568, 2093].forEach((f, k) => partials(o, [f, f * 2.76, f * 5.4], { gain: 0.6, decay: 1.1, attack: 0.003, start: k * 0.09 })); },
 };
 
-const LENGTH = { gloom_horn: 2.4, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { gloom_horn: 2.4, pirate_horn: 1.9, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

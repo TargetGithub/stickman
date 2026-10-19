@@ -17,7 +17,7 @@ export const V2_ENUMS = {
   hair: ["none", "spiky", "bob", "ponytail", "cap", "bun"],
   outfit: ["none", "shirt", "coat", "armor", "robe"],
   accessory: ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch",
-    "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet"],
+    "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard"],
   timbre: ["soft", "squeaky", "deep", "robot", "bark"],
   time: ["dawn", "day", "dusk", "night"],
   weather: ["clear", "cloudy", "rain", "snow", "wind", "fog"],

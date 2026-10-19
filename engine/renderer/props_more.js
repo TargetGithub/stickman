@@ -235,6 +235,39 @@ export function basketShape(ctx, x, y, w, color, trim, outline) {
  * Draw one of this module's shapes. Returns false for shapes it does not know.
  * @param {{ butt, tip, grip? }} t
  */
+/** A long wooden ladle (batch B): a handle with a deep round cup at the tip; trim colours the cup's inside. */
+function ladle(ctx, prop, t, scale, outline) {
+  const L = Math.hypot(t.tip.x - t.butt.x, t.tip.y - t.butt.y);
+  const w = prop.width * scale;
+  ctx.save();
+  ctx.translate(t.butt.x, t.butt.y);
+  ctx.rotate(angleOf(t));
+  ctx.lineCap = "round";
+  ctx.strokeStyle = outline;
+  ctx.lineWidth = w + 3;
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(L * 0.86, 0);
+  ctx.stroke();
+  ctx.strokeStyle = prop.color;
+  ctx.lineWidth = w;
+  ctx.stroke();
+  const r = w * 2.6;
+  ctx.fillStyle = prop.color;
+  ctx.strokeStyle = outline;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(L - r, r * 0.5, r, Math.PI * 1.05, Math.PI * 1.95, true);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = prop.trim;
+  ctx.beginPath();
+  ctx.ellipse(L - r, r * 0.5 - r * 0.15, r * 0.8, r * 0.22, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
 export function drawMoreProp(ctx, prop, t, scale, outline) {
   const mid = lerpPt(t.butt, t.tip, 0.5);
   switch (prop.shape) {
@@ -243,6 +276,9 @@ export function drawMoreProp(ctx, prop, t, scale, outline) {
       return true;
     case "horn":
       horn(ctx, prop, t, scale, outline);
+      return true;
+    case "ladle":
+      ladle(ctx, prop, t, scale, outline);
       return true;
     case "jalebi":
       jalebi(ctx, lerpPt(t.butt, t.tip, 0.65), prop.len * 0.5 * scale, prop.color, prop.trim, scale);
@@ -294,4 +330,4 @@ export function drawMoreProp(ctx, prop, t, scale, outline) {
 }
 
 /** Shape names this module draws. */
-export const MORE_PROP_SHAPES = ["crystal", "horn", "jalebi", "plate", "apple", "kite", "basket"];
+export const MORE_PROP_SHAPES = ["crystal", "horn", "jalebi", "plate", "apple", "kite", "basket", "ladle"];

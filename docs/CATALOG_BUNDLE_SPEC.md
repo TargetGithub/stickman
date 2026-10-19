@@ -667,7 +667,7 @@ Semantic rules (step 8 and 11): `capsule`/`trapezoid` need `torsoWidth`; a quadr
                 "hair_flower": { "$ref": "common.schema.json#/$defs/hex" }, "sprout": { "$ref": "common.schema.json#/$defs/hex" },
                 "mittens": { "$ref": "common.schema.json#/$defs/hex" }, "horns": { "$ref": "common.schema.json#/$defs/hex" },
                 "turban": { "$ref": "common.schema.json#/$defs/hex" }, "moustache": { "$ref": "common.schema.json#/$defs/hex" },
-                "stub_horns": { "$ref": "common.schema.json#/$defs/hex" }, "bracelet": { "$ref": "common.schema.json#/$defs/hex" }
+                "stub_horns": { "$ref": "common.schema.json#/$defs/hex" }, "bracelet": { "$ref": "common.schema.json#/$defs/hex" }, "chilli_hat": { "$ref": "common.schema.json#/$defs/hex" }, "pirate_hat": { "$ref": "common.schema.json#/$defs/hex" }, "beard": { "$ref": "common.schema.json#/$defs/hex" }
               }
             }
           }
@@ -818,8 +818,7 @@ Each layer kind is one branch, holding exactly the fields its generator and draw
               { "$ref": "#/$defs/buildings" }, { "$ref": "#/$defs/lampposts" }, { "$ref": "#/$defs/fence" }, { "$ref": "#/$defs/bricks" },
               { "$ref": "#/$defs/interior_wall" }, { "$ref": "#/$defs/windows" }, { "$ref": "#/$defs/furniture" }, { "$ref": "#/$defs/cave" },
               { "$ref": "#/$defs/crystals" }, { "$ref": "#/$defs/puddles" }, { "$ref": "#/$defs/hills" }, { "$ref": "#/$defs/huts" },
-              { "$ref": "#/$defs/bunting" }, { "$ref": "#/$defs/banyan" }, { "$ref": "#/$defs/pillars" }, { "$ref": "#/$defs/mist" }, { "$ref": "#/$defs/vines" }, { "$ref": "#/$defs/ferns" }
-            ]
+              { "$ref": "#/$defs/bunting" }, { "$ref": "#/$defs/banyan" }, { "$ref": "#/$defs/pillars" }, { "$ref": "#/$defs/mist" }, { "$ref": "#/$defs/vines" }, { "$ref": "#/$defs/ferns" }, { "$ref": "#/$defs/fort_wall" }, { "$ref": "#/$defs/shelves" }, { "$ref": "#/$defs/water" }, { "$ref": "#/$defs/huts_stilts" } ]
           }
         }
       }
@@ -857,7 +856,11 @@ Each layer kind is one branch, holding exactly the fields its generator and draw
     "pillars": { "type": "object", "required": ["kind", "spacing", "top", "wall", "color", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "pillars" }, "spacing": { "type": "number", "minimum": 150, "maximum": 2000 }, "width": { "type": "number", "minimum": 20, "maximum": 300 }, "top": { "type": "number", "minimum": -1400, "maximum": -100 }, "wall": { "$ref": "#/$defs/c" }, "color": { "$ref": "#/$defs/c" }, "color2": { "$ref": "#/$defs/c" }, "cap": { "$ref": "#/$defs/c" }, "beam": { "$ref": "#/$defs/c" }, "window": { "$ref": "#/$defs/c" }, "glow": { "$ref": "#/$defs/c" }, "windowW": { "type": "number", "minimum": 20, "maximum": 600 }, "windowH": { "type": "number", "minimum": 20, "maximum": 900 }, "windowY": { "$ref": "#/$defs/up" }, "factor": { "$ref": "#/$defs/f" } } },
     "mist": { "type": "object", "required": ["kind", "color"], "additionalProperties": false, "properties": { "kind": { "const": "mist" }, "spacing": { "type": "number", "minimum": 40, "maximum": 2000 }, "size": { "type": "number", "minimum": 20, "maximum": 600 }, "depth": { "type": "number", "minimum": 0, "maximum": 400 }, "speed": { "type": "number", "minimum": 0, "maximum": 200 }, "color": { "$ref": "#/$defs/c" }, "factor": { "$ref": "#/$defs/f" } } },
     "vines": { "type": "object", "required": ["kind", "spacing", "length", "color", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "vines" }, "spacing": { "type": "number", "minimum": 40, "maximum": 2000 }, "length": { "type": "number", "minimum": 50, "maximum": 1400 }, "top": { "type": "number", "minimum": -1600, "maximum": -100 }, "width": { "type": "number", "minimum": 1, "maximum": 20 }, "sway": { "type": "number", "minimum": 0, "maximum": 80 }, "color": { "$ref": "#/$defs/c" }, "leaf": { "$ref": "#/$defs/c" }, "factor": { "$ref": "#/$defs/f" } } },
-    "ferns": { "type": "object", "required": ["kind", "spacing", "size", "color", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "ferns" }, "spacing": { "type": "number", "minimum": 40, "maximum": 2000 }, "size": { "type": "number", "minimum": 10, "maximum": 300 }, "mushrooms": { "type": "number", "minimum": 0, "maximum": 1 }, "color": { "$ref": "#/$defs/c" }, "cap": { "$ref": "#/$defs/c" }, "stem": { "$ref": "#/$defs/c" }, "factor": { "$ref": "#/$defs/f" } } }
+    "ferns": { "type": "object", "required": ["kind", "spacing", "size", "color", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "ferns" }, "spacing": { "type": "number", "minimum": 40, "maximum": 2000 }, "size": { "type": "number", "minimum": 10, "maximum": 300 }, "mushrooms": { "type": "number", "minimum": 0, "maximum": 1 }, "color": { "$ref": "#/$defs/c" }, "cap": { "$ref": "#/$defs/c" }, "stem": { "$ref": "#/$defs/c" }, "factor": { "$ref": "#/$defs/f" } } },
+    "fort_wall": { "type": "object", "required": ["kind", "spacing", "height", "color", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "fort_wall" }, "spacing": { "type": "number", "minimum": 200, "maximum": 3000 }, "height": { "type": "number", "minimum": 50, "maximum": 1200 }, "merlon": { "type": "number", "minimum": 10, "maximum": 200 }, "gates": { "type": "array", "maxItems": 6, "items": { "type": "number", "minimum": -2400, "maximum": 12400 } }, "gateW": { "type": "number", "minimum": 40, "maximum": 800 }, "color": { "$ref": "#/$defs/c" }, "line": { "$ref": "#/$defs/c" }, "gate": { "$ref": "#/$defs/c" }, "chillies": { "$ref": "#/$defs/c" }, "factor": { "$ref": "#/$defs/f" } } },
+    "shelves": { "type": "object", "required": ["kind", "spacing", "colors", "color", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "shelves" }, "spacing": { "type": "number", "minimum": 200, "maximum": 2000 }, "top": { "type": "number", "minimum": -1400, "maximum": -100 }, "gap": { "type": "number", "minimum": 60, "maximum": 400 }, "rows": { "type": "integer", "minimum": 1, "maximum": 6 }, "colors": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "$ref": "#/$defs/c" } }, "color": { "$ref": "#/$defs/c" }, "lid": { "$ref": "#/$defs/c" }, "sack": { "$ref": "#/$defs/c" }, "factor": { "$ref": "#/$defs/f" } } },
+    "water": { "type": "object", "required": ["kind", "spacing", "color", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "water" }, "spacing": { "type": "number", "minimum": 40, "maximum": 2000 }, "top": { "type": "number", "minimum": -1400, "maximum": 0 }, "bottom": { "type": "number", "minimum": -1400, "maximum": 400 }, "flowers": { "type": "number", "minimum": 0, "maximum": 1 }, "color": { "$ref": "#/$defs/c" }, "color2": { "$ref": "#/$defs/c" }, "wave": { "$ref": "#/$defs/c" }, "leaf": { "$ref": "#/$defs/c" }, "flower": { "$ref": "#/$defs/c" }, "factor": { "$ref": "#/$defs/f" } } },
+    "huts_stilts": { "type": "object", "required": ["kind", "spacing", "size", "factor"], "additionalProperties": false, "properties": { "kind": { "const": "huts_stilts" }, "spacing": { "type": "number", "minimum": 200, "maximum": 4000 }, "size": { "type": "number", "minimum": 40, "maximum": 600 }, "y": { "type": "number", "minimum": -800, "maximum": 0 }, "wood": { "$ref": "#/$defs/c" }, "wall": { "$ref": "#/$defs/c" }, "roof": { "$ref": "#/$defs/c" }, "doors": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "$ref": "#/$defs/c" } }, "factor": { "$ref": "#/$defs/f" } } }
   }
 }
 ```
@@ -888,7 +891,7 @@ Semantic rules: `maxW >= minW`, `maxH >= minH`; the theme's character colours ar
       "additionalProperties": { "$ref": "common.schema.json#/$defs/color" },
       "description": "For a shape: exactly the keys that shape reads (table in 4.11). For paths: the palette that \"colors.<key>\" names."
     },
-    "shape": { "enum": ["bench", "chair", "table", "tree", "bush", "lamppost", "net", "sign", "crate", "fountain", "cage", "box", "car", "bike", "ball", "football", "bubble", "balloon", "door", "haystack", "cart", "market_stall", "basket", "kite", "apple", "bus", "campfire", "crystal_socket", "throne", "crystal_ball", "paths"] },
+    "shape": { "enum": ["bench", "chair", "table", "tree", "bush", "lamppost", "net", "sign", "crate", "fountain", "cage", "box", "car", "bike", "ball", "football", "bubble", "balloon", "door", "haystack", "cart", "market_stall", "basket", "kite", "apple", "bus", "campfire", "giant_pot", "lever", "trapdoor", "rope_bridge", "crystal_socket", "throne", "crystal_ball", "paths"] },
     "paths": {
       "type": "array", "minItems": 1, "maxItems": 64,
       "items": {
@@ -905,7 +908,7 @@ Semantic rules: `maxW >= minW`, `maxH >= minH`; the theme's character colours ar
       "type": "object", "required": ["kind", "shape", "len", "width", "gripAt", "grip", "color", "trim", "hitRadius"], "additionalProperties": false,
       "properties": {
         "kind": { "$ref": "common.schema.json#/$defs/ref" },
-        "shape": { "enum": ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon", "crystal", "horn", "jalebi", "plate", "apple", "kite", "basket"] },
+        "shape": { "enum": ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon", "crystal", "horn", "jalebi", "plate", "apple", "kite", "basket", "ladle"] },
         "len": { "type": "number", "minimum": 8, "maximum": 200 },
         "width": { "type": "number", "minimum": 1, "maximum": 40 },
         "gripAt": { "$ref": "common.schema.json#/$defs/unit" },
@@ -962,7 +965,7 @@ Semantic rules: `paths` is present exactly when `draw` is `"paths"`; each path c
       "description": { "$ref": "common.schema.json#/$defs/description" },
       "tags": { "$ref": "common.schema.json#/$defs/tags" },
       "kind": { "$ref": "common.schema.json#/$defs/ref" },
-      "shape": { "enum": ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon", "crystal", "horn", "jalebi", "plate", "apple", "kite", "basket"] },
+      "shape": { "enum": ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon", "crystal", "horn", "jalebi", "plate", "apple", "kite", "basket", "ladle"] },
       "len": { "type": "number", "minimum": 8, "maximum": 200 },
       "width": { "type": "number", "minimum": 1, "maximum": 40 },
       "gripAt": { "$ref": "common.schema.json#/$defs/unit" },

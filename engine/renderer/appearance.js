@@ -52,7 +52,8 @@ export function drawHairBack(ctx, c, r, ax, look) {
 /** Hair over the head: bob (and the top of a ponytail), spiky, cap, bun. Never below the brows in front. */
 export function drawHair(ctx, c, r, ax, look) {
   const hair = look.hair;
-  if (!hair || hair === "none" || look.accessories?.turban) return; // a turban covers the hair
+  const acc = look.accessories || {};
+  if (!hair || hair === "none" || acc.turban || acc.chilli_hat || acc.pirate_hat) return; // headwear covers the hair
   const color = look.hairColor || (hair === "cap" ? "#d94b4b" : "#3a2a20");
   const lw = r * 0.08;
   if (hair === "bun") {

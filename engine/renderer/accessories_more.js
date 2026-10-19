@@ -5,6 +5,7 @@
 // joints: the far mitten goes behind the character, the near mitten and the bracelet in front.
 
 import { dimsOf } from "../skeleton.js";
+import { drawHats } from "./accessories_hats.js";
 
 const INK = "#111111";
 const DEG = Math.PI / 180;
@@ -228,6 +229,7 @@ export function drawHeadMore(ctx, c, r, ax, acc) {
   if (acc.horns) ramHorn(ctx, c, r, ax, acc.horns, { f: 0, u: 0 });
   if (acc.sprout) sprout(ctx, c, r, ax, acc.sprout);
   if (acc.hair_flower) hairFlower(ctx, c, r, ax, acc.hair_flower);
+  drawHats(ctx, c, r, ax, acc); // batch B: chilli_hat, pirate_hat, beard
 }
 
 // ---- Hand pieces -------------------------------------------------------------------------------

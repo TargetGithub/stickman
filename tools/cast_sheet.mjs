@@ -2,7 +2,7 @@
 // Doopi & Friends cast sheet (package A2 review): every cast preset (Becky included) in the neutral,
 // happy, angry and scared faces, a close-up row, and checks for the new options: the cast far away
 // on the park (horns and sprout in silhouette), the bracelet's slots, and Tony's stub-horn gag.
-// Usage: node tools/cast_sheet.mjs [out.png]
+// Usage: node tools/cast_sheet.mjs [out.png] [id,id,...]
 
 import { readFileSync } from "node:fs";
 import { loadBackend } from "./lib/canvas.mjs";
@@ -16,7 +16,8 @@ import { drawBehind, drawFront } from "../engine/renderer/accessories.js";
 import { catalog } from "../catalog/index.js";
 
 const out = process.argv[2] || "out/demos/a2_cast.png";
-const IDS = ["doopi", "dony", "doomi", "mooka", "becky", "nani", "motumal", "peepa", "tony", "kony", "thunda"];
+// Optional second argument: a comma-separated list of preset ids (batch B: mirchi,kanta,mallu,goon,...).
+const IDS = process.argv[3] ? process.argv[3].split(",") : ["doopi", "dony", "doomi", "mooka", "becky", "nani", "motumal", "peepa", "tony", "kony", "thunda"];
 const preset = (id) => JSON.parse(readFileSync(new URL(`../catalog/characters/presets/${id}.json`, import.meta.url)));
 const CAST = IDS.map((id) => { const p = preset(id); return { id, name: p.name, ...p.cast, body: p.cast.body || "stickman" }; });
 const FACES = ["neutral", "happy", "angry", "scared"];
@@ -122,7 +123,7 @@ for (const [k, x0] of [[0.2, 60], [0.4, 1020]]) {
 y += 200;
 label("bracelet on Doopi's left wrist: slots 0, 3, 7 (set_appearance slots)", 520, y);
 label("Tony: stub_horns, then set_appearance remove", 1500, y);
-const doopi = CAST[0];
+const doopi = CAST.find((c) => c.id === "doopi") || CAST[0];
 const ARM = { lUA: 95, lFA: 25, rUA: -10 };
 [0, 3, 7].forEach((slots, i) => {
   const look = lookAt(lookFor(catalog, doopi), [{ videoT: 0, params: { who: "doopi", accessory: "bracelet", color: "#e6b84a", slots } }], 1);
@@ -141,7 +142,7 @@ const ARM = { lUA: 95, lFA: 25, rUA: -10 };
   ctx.restore();
   label(`slots ${slots}`, cx, cy + 145);
 });
-const tony = CAST[8];
+const tony = CAST.find((c) => c.id === "tony") || CAST.at(-1);
 const g7 = y + 380;
 ground(g7, 1150, 1850);
 figure(tony, 1330, g7, 1.6, "smug");

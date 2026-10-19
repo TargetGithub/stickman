@@ -379,5 +379,258 @@
       }
     ],
     "characterBg": "#2e5a34"
+  },
+  "mirchi_hill": {
+    "description": "A red-orange hilltop fort with rounded battlements, a big wooden gate and strings of drying chillies, under a hot orange sky.",
+    "tags": [
+      "story",
+      "outdoor",
+      "fort",
+      "hill",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#ff9a4a",
+      "bottom": "#ffd9a0"
+    },
+    "ground": {
+      "color": "#c98a52",
+      "line": "#a06a3a"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.8,
+        "y": 0.2,
+        "r": 70,
+        "color": "#fff0b0",
+        "glow": "rgba(255, 220, 150, 0.5)"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.08,
+        "color": "#e0905a",
+        "height": 300,
+        "step": 260,
+        "rough": 0.35
+      },
+      {
+        "kind": "hills",
+        "factor": 0.2,
+        "color": "#c9703e",
+        "height": 200,
+        "step": 320
+      },
+      {
+        "kind": "fort_wall",
+        "factor": 0.55,
+        "spacing": 900,
+        "height": 420,
+        "color": "#d0603a",
+        "line": "rgba(80, 20, 10, 0.25)",
+        "gates": [
+          1200
+        ],
+        "gateW": 240,
+        "gate": "#6b4a2f",
+        "chillies": "#e63946"
+      },
+      {
+        "kind": "bushes",
+        "factor": 0.85,
+        "color": "#7a8a3a",
+        "spacing": 820,
+        "size": 40
+      }
+    ],
+    "characterBg": "#d0603a"
+  },
+  "spice_kitchen": {
+    "description": "A big fort kitchen: brick walls, shelves of colourful spice jars and sacks, strings of chillies, warm orange light.",
+    "tags": [
+      "story",
+      "indoor",
+      "kitchen",
+      "fort",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#7a3a24",
+      "bottom": "#a8573a"
+    },
+    "ground": {
+      "color": "#8a5a3a",
+      "line": "#6b4229"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.4,
+        "color": "#9a4a30",
+        "mortar": "#7a3a24",
+        "top": -1400
+      },
+      {
+        "kind": "shelves",
+        "factor": 0.5,
+        "spacing": 640,
+        "top": -760,
+        "gap": 170,
+        "rows": 3,
+        "color": "#6b4a2f",
+        "lid": "#8a6442",
+        "sack": "#d9b77e",
+        "colors": [
+          "#e63946",
+          "#ff9a1f",
+          "#ffd23f",
+          "#7ccf5a",
+          "#a0522d",
+          "#f4e1c1"
+        ]
+      },
+      {
+        "kind": "floorStripes",
+        "color": "#7a4e30",
+        "at": [
+          40
+        ],
+        "width": 30
+      }
+    ],
+    "characterBg": "#9a4a30"
+  },
+  "spice_cellar": {
+    "description": "The dark spice cellar under the fort: grooved stone walls, dusty sacks and a few jars, one small vent of light.",
+    "tags": [
+      "story",
+      "indoor",
+      "cellar",
+      "dark",
+      "fort",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#2e2420",
+      "bottom": "#4a3830"
+    },
+    "ground": {
+      "color": "#5a4636",
+      "line": "#3e3026"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.45,
+        "color": "#5e4a3e",
+        "mortar": "#3e3026",
+        "top": -1400
+      },
+      {
+        "kind": "shelves",
+        "factor": 0.55,
+        "spacing": 900,
+        "top": -620,
+        "gap": 200,
+        "rows": 2,
+        "color": "#4a3626",
+        "lid": "#6b4a2f",
+        "sack": "#8a7050",
+        "colors": [
+          "#a0522d",
+          "#7a6a50",
+          "#c0392b"
+        ]
+      }
+    ],
+    "characterBg": "#4a3830"
+  },
+  "lotus_lake": {
+    "description": "A wide calm lake with pink lotus flowers and round leaves, fishing huts on stilts, hills far behind; a sandy shore.",
+    "tags": [
+      "story",
+      "outdoor",
+      "lake",
+      "water",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5fb8f0",
+      "bottom": "#d4efff"
+    },
+    "ground": {
+      "color": "#e2c48a",
+      "line": "#c4a46a"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.25,
+        "y": 0.14,
+        "r": 60,
+        "color": "#fff4c0",
+        "glow": "rgba(255, 240, 190, 0.5)"
+      },
+      {
+        "kind": "clouds",
+        "factor": 0.05,
+        "color": "rgba(255, 255, 255, 0.9)",
+        "count": 5,
+        "top": 0.05,
+        "band": 0.2
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.08,
+        "color": "#9cc7c4",
+        "height": 260,
+        "step": 260,
+        "rough": 0.3
+      },
+      {
+        "kind": "hills",
+        "factor": 0.15,
+        "color": "#86bf66",
+        "height": 150,
+        "step": 340
+      },
+      {
+        "kind": "water",
+        "factor": 0.35,
+        "top": -300,
+        "bottom": 0,
+        "color": "#4fa8d8",
+        "color2": "#3d8fc0",
+        "leaf": "#3f9a4a",
+        "flower": "#ff8fc0",
+        "flowers": 0.45,
+        "spacing": 220
+      },
+      {
+        "kind": "huts_stilts",
+        "factor": 0.45,
+        "spacing": 1300,
+        "size": 170,
+        "y": -40,
+        "wood": "#6b4a2f",
+        "wall": "#c49a62",
+        "roof": "#9a6a38",
+        "doors": [
+          "#e63946",
+          "#2f7de1",
+          "#2bb39a"
+        ]
+      },
+      {
+        "kind": "bushes",
+        "factor": 0.9,
+        "color": "#6fae5a",
+        "spacing": 900,
+        "size": 36
+      }
+    ],
+    "characterBg": "#3d8fc0"
   }
 }

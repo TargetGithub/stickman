@@ -19,7 +19,7 @@
       "additionalProperties": { "$ref": "common.schema.json#/$defs/color" },
       "description": "For a shape: exactly the keys that shape reads (table in 4.11). For paths: the palette that \"colors.<key>\" names."
     },
-    "shape": { "enum": ["bench", "chair", "table", "tree", "bush", "lamppost", "net", "sign", "crate", "fountain", "cage", "box", "car", "bike", "ball", "football", "bubble", "balloon", "door", "haystack", "cart", "market_stall", "basket", "kite", "apple", "bus", "campfire", "crystal_socket", "throne", "crystal_ball", "paths"] },
+    "shape": { "enum": ["bench", "chair", "table", "tree", "bush", "lamppost", "net", "sign", "crate", "fountain", "cage", "box", "car", "bike", "ball", "football", "bubble", "balloon", "door", "haystack", "cart", "market_stall", "basket", "kite", "apple", "bus", "campfire", "giant_pot", "lever", "trapdoor", "rope_bridge", "crystal_socket", "throne", "crystal_ball", "paths"] },
     "paths": {
       "type": "array", "minItems": 1, "maxItems": 64,
       "items": {
@@ -36,7 +36,7 @@
       "type": "object", "required": ["kind", "shape", "len", "width", "gripAt", "grip", "color", "trim", "hitRadius"], "additionalProperties": false,
       "properties": {
         "kind": { "$ref": "common.schema.json#/$defs/ref" },
-        "shape": { "enum": ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon", "crystal", "horn", "jalebi", "plate", "apple", "kite", "basket"] },
+        "shape": { "enum": ["sword", "club", "bat", "staff", "disc", "blaster", "racket", "wand", "phone", "book", "ice_cream", "flower", "rope", "cane", "balloon", "crystal", "horn", "jalebi", "plate", "apple", "kite", "basket", "ladle"] },
         "len": { "type": "number", "minimum": 8, "maximum": 200 },
         "width": { "type": "number", "minimum": 1, "maximum": 40 },
         "gripAt": { "$ref": "common.schema.json#/$defs/unit" },

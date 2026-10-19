@@ -21,6 +21,10 @@
 | banyan_hill | #5a8f48 | strong or dark: red, blue, purple, dark green, black | A grassy hill top with one giant old banyan tree and its hanging roots, a valley of tiny huts far below. |
 | gloom_throne_room | #43384f | bright: light blue, yellow, orange, pink, white | Peepa's purple-grey throne room: stone pillars, glowing windows, floor mist. |
 | whispering_forest | #2e5a34 | bright: light blue, yellow, orange, pink, white | A deep friendly forest path: tall round-leaved trees, hanging vines, ferns and red mushrooms. |
+| mirchi_hill | #d0603a | strong or dark: red, blue, purple, dark green, black | A red-orange hilltop fort with rounded battlements, a big wooden gate and strings of drying chillies, under a hot orange sky. |
+| spice_kitchen | #9a4a30 | bright: light blue, yellow, orange, pink, white | A big fort kitchen: brick walls, shelves of colourful spice jars and sacks, strings of chillies, warm orange light. |
+| spice_cellar | #4a3830 | bright: light blue, yellow, orange, pink, white | The dark spice cellar under the fort: grooved stone walls, dusty sacks and a few jars, one small vent of light. |
+| lotus_lake | #3d8fc0 | strong or dark: red, blue, purple, dark green, black | A wide calm lake with pink lotus flowers and round leaves, fishing huts on stilts, hills far behind; a sandy shore. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -80,6 +84,11 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | basket | breakable | whole/broken | A lidded basket: carry it or break it. |
 | bus | vehicle | - | The friendly village bus: cream and teal with luggage on the roof (set_object toX or exit). |
 | campfire | static | lit/out | A small campfire: crossed logs, flickering flames, a ring of stones (state out: smoke). |
+| giant_pot | static | - | A huge round cooking pot of bubbling curry over a fire, with rising steam. |
+| ladle | holdable | - | A long wooden ladle, held like a staff (staff moves work); the Orange crystal can sit in its cup. |
+| lever | static | up/down | A wall lever on a block: state up or down (it opens the trapdoor in a story). |
+| trapdoor | static | closed/open | A plank trapdoor in the floor: closed or open (someone on it drops out of the scene with jump_down). |
+| rope_bridge | breakable | whole/broken | A wooden rope bridge across a gap; set_object state broken drops it in two hanging halves. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 
