@@ -5,6 +5,7 @@
 // turban, sprout, hair_flower, moustache, stub_horns, the bun) are drawn by accessories_more.js.
 
 import { drawBun, drawHornsBack, drawHeadMore, mirrorAxes, slideAt } from "./accessories_more.js";
+import { faceBox, guardOutline } from "./hair_guard.js";
 
 const INK = "#111111";
 const DEG = Math.PI / 180;
@@ -27,7 +28,14 @@ function fillPath(ctx, pts, color, lw) {
   ctx.stroke();
 }
 
-const arcPts = (c, r, ax, from, to, k, n = 14) => Array.from({ length: n + 1 }, (_, i) => polar(c, r, ax, from + ((to - from) * i) / n, k));
+const arcSpec = (from, to, k, n = 14) => Array.from({ length: n + 1 }, (_, i) => [from + ((to - from) * i) / n, k]);
+
+/** Outline points from [phi, k] specs; in turned views kept off the face (hair_guard.js; s: the copy's mirror scale). */
+function outline(c, r, ax, specs, s, box) {
+  if (!box) return specs.map(([phi, k]) => polar(c, r, ax, phi, k));
+  const local = specs.map(([phi, k]) => [k * Math.cos(phi * DEG), k * Math.sin(phi * DEG)]);
+  return guardOutline(local, s, box).map(([fa, ua]) => ({ x: c.x + r * (fa * ax.f.x + ua * ax.u.x), y: c.y + r * (fa * ax.f.y + ua * ax.u.y) }));
+}
 
 /** Ponytail and the far horn (behind the head). */
 export function drawHairBack(ctx, c, r, ax, look) {
@@ -68,28 +76,28 @@ export function drawHair(ctx, c, r, ax, look) {
     ctx.fill();
   }
   if (hair === "bun") drawBun(ctx, c, r, ax, color);
-  else for (const a of mirrorAxes(ax)) hairMass(ctx, c, r, a, hair, color);
+  else {
+    // Turned views: the mirrored copy (first) and the piece stay off the face (hair_guard.js).
+    const masses = mirrorAxes(ax);
+    const box = faceBox(ax);
+    masses.forEach((a, i) => hairMass(ctx, c, r, a, hair, color, i < masses.length - 1 ? -ax.wrap : 1, box));
+  }
   if (hair === "ponytail" && ax.back) ponytail(ctx, c, r, ax, look);
 }
 
-function hairMass(ctx, c, r, ax, hair, color) {
+/** One hair mass in axes `ax`; `s` and `box`: see outline. */
+function hairMass(ctx, c, r, ax, hair, color, s, box) {
   const lw = r * 0.08;
+  const shape = (specs) => fillPath(ctx, outline(c, r, ax, specs, s, box), color, lw);
   if (hair === "bob" || hair === "ponytail") {
     // From the forehead over the top to the back of the neck, hugging the head.
-    const outer = arcPts(c, r, ax, 62, 235, 1.1);
-    const inner = arcPts(c, r, ax, 225, 75, 0.82, 10);
-    fillPath(ctx, [...outer, ...inner], color, lw);
+    shape([...arcSpec(62, 235, 1.1), ...arcSpec(225, 75, 0.82, 10)]);
   } else if (hair === "spiky") {
-    const pts = [];
-    for (let i = 0; i <= 10; i++) {
-      const phi = 55 + i * 15;
-      pts.push(polar(c, r, ax, phi, i % 2 ? 1.5 : 0.98));
-    }
-    pts.push(polar(c, r, ax, 200, 0.75), polar(c, r, ax, 70, 0.75));
-    fillPath(ctx, pts, color, lw);
+    const specs = [];
+    for (let i = 0; i <= 10; i++) specs.push([55 + i * 15, i % 2 ? 1.5 : 0.98]);
+    shape([...specs, [200, 0.75], [70, 0.75]]);
   } else if (hair === "cap") {
-    const dome = arcPts(c, r, ax, 25, 185, 1.06);
-    fillPath(ctx, [...dome, polar(c, r, ax, 185, 0.55), polar(c, r, ax, 25, 0.55)], color, lw);
+    shape([...arcSpec(25, 185, 1.06), [185, 0.55], [25, 0.55]]);
     // Brim forward.
     const a = polar(c, r, ax, 30, 1.0);
     const b = { x: a.x + ax.f.x * r * 0.75 - ax.u.x * r * 0.05, y: a.y + ax.f.y * r * 0.75 - ax.u.y * r * 0.05 };
