@@ -7,6 +7,7 @@ import { easings } from "../math.js";
 import { STAGE } from "../config.js";
 import { drawCard, drawNarration } from "./cards.js";
 import { BUBBLE_KINDS, nameTag } from "./bubbles.js";
+import { drawSubtitles, sentences } from "./subtitles.js";
 import { CARD_COMMANDS, cardDuration, cardKind, narrateDuration } from "../story/timing.js";
 
 const SAFE = { landscape: { top: 0.06, bottom: 0.06 }, portrait: { top: 0.12, bottom: 0.2 } };
@@ -121,7 +122,13 @@ export function drawOverlays(ctx, view) {
   const k = H / 1080;
   ctx.setTransform(1, 0, 0, 1, 0, 0);
 
-  for (const s of activeAt(says, t, (e) => e.dur)) {
+  const active = activeAt(says, t, (e) => e.dur);
+  if (view.subtitles) {
+    // A pace's subtitles (ADR-038): voiced lines at the bottom; thoughts stay bubbles.
+    const spoken = activeAt(sentences(says), t, (e) => e.dur).filter((s) => s.bubble !== "think" && chars.some((c) => c.id === s.actor));
+    drawSubtitles(ctx, spoken, { W, H, t, scale: Math.max(0.8, k), safeBottom: safe.bottom, names: view.names, colors: new Map(chars.map((c) => [c.id, c.color])) });
+  }
+  for (const s of view.subtitles ? active.filter((x) => x.bubble === "think") : active) {
     const c = chars.find((x) => x.id === s.actor);
     if (!c) continue;
     const head = toScreen(cam, W, H, { x: c.j.head.x, y: c.j.head.y - 22 * c.scale });

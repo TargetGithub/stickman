@@ -13,6 +13,7 @@
 
 import { dimsOf } from "./skeleton.js";
 import { isIdleMove } from "./moves.js";
+import { mediumFraming, createCuts, cutsEvent, cutsKey } from "./camera_cuts.js";
 
 export const STORY_MODES = ["two_shot", "close_up", "wide", "over_shoulder", "track"];
 const CLOSE_UP_MAX = 3; // zoom
@@ -26,6 +27,11 @@ const AUTO = { wide: 2.5, closeUp: 2, sayPad: 0.5, fight: 1.5, talkReach: 800, a
 export function storyFraming(cam, actors, k, helpers) {
   const byId = (id) => actors.find((a) => a.id === id && !a.hidden) || null;
   const { bounds, fitZoom } = helpers;
+  if (k.mode === "medium") {
+    // Paced scenes (ADR-038, camera_cuts.js): an internal mode of the auto camera, not a shot mode.
+    const group = (k.targets || []).map(byId).filter(Boolean);
+    return group.length ? mediumFraming(cam, group, k, helpers) : null;
+  }
   if (k.mode === "wide") {
     return { x: cam.stageWidth / 2, zoom: typeof k.zoom === "number" ? k.zoom : Math.max(0.4, Math.min(1, cam.W / cam.stageWidth)) };
   }
@@ -77,13 +83,14 @@ export function shotKey(p) {
 }
 
 /** State for the story auto camera of one scene. */
-export function createStoryAuto(t0, { tight = false } = {}) {
-  return { t0, lastHit: -Infinity, say: null, close: null, faces: new Map(), current: "start", tight, active: new Map() };
+export function createStoryAuto(t0, { tight = false, pace = null } = {}) {
+  return { t0, lastHit: -Infinity, say: null, close: null, faces: new Map(), current: "start", tight, active: new Map(), cuts: pace ? createCuts(pace) : null };
 }
 
 /** Record the events the auto camera reacts to (story seconds). */
 export function storyAutoEvent(auto, e, t) {
   if (e.type === "hit") auto.lastHit = t;
+  if (auto.cuts) cutsEvent(auto.cuts, e, t);
   if (e.type === "say") {
     auto.say = { actor: e.actor, until: t + e.dur + AUTO.sayPad };
     auto.active.set(e.actor, t + e.dur);
@@ -102,6 +109,7 @@ export function storyAutoKey(auto, actors, t) {
     auto.faces.set(a.id, a.face);
   }
   if (t - auto.lastHit < AUTO.fight) return null;
+  if (auto.cuts) return cutsKey(auto, auto.cuts, actors, t, (all, now) => activeIds(auto, all, now)); // a pace (ADR-038)
   if (auto.close && t < auto.close.until) return { mode: "close_up", target: auto.close.target };
   if (auto.say && t < auto.say.until) {
     const speaker = actors.find((a) => a.id === auto.say.actor);
@@ -117,14 +125,20 @@ export function storyAutoKey(auto, actors, t) {
 
 /** Follow the characters active in the last AUTO.active seconds (a lone one with its nearest neighbour); null: none. */
 function activeKey(auto, actors, t) {
+  const targets = activeIds(auto, actors, t);
+  return targets.length ? { mode: "follow", targets, padding: AUTO.activePad } : null;
+}
+
+/** Ids of the characters active in the last AUTO.active seconds (a lone one with its nearest neighbour), in cast order. */
+function activeIds(auto, actors, t) {
   const shown = actors.filter((a) => !a.hidden);
   const active = shown.filter((a) => t - (auto.active.get(a.id) ?? -Infinity) < AUTO.active);
-  if (!active.length) return null;
+  if (!active.length) return [];
   if (active.length === 1) {
     const [one] = active;
     const others = shown.filter((a) => a !== one && Math.abs(a.x - one.x) < AUTO.talkReach);
     if (others.length) active.push(others.reduce((b, a) => (Math.abs(a.x - one.x) < Math.abs(b.x - one.x) ? a : b)));
   }
   const ids = new Set(active.map((a) => a.id));
-  return { mode: "follow", targets: shown.filter((a) => ids.has(a.id)).map((a) => a.id), padding: AUTO.activePad };
+  return shown.filter((a) => ids.has(a.id)).map((a) => a.id);
 }

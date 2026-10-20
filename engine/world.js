@@ -16,6 +16,7 @@ import {
 import { rootOffsetAt, isIdleMove } from "./moves.js";
 import { COMBAT, STAGE } from "./config.js";
 import { sameDepth } from "./depth.js";
+import { pacedOpts } from "./story/pace.js";
 
 export const OUTCOMES = ["hit", "whiff", "blocked", "parried", "dodged"];
 
@@ -41,7 +42,7 @@ export function command(world, actorId, name, opts = {}) {
   if (!actor) throw new Error(`unknown actor '${actorId}'`);
   const target = opts.target ? world.byId.get(opts.target) : null;
   if (!opts.queue && target) actor.facing = toward(actor, target);
-  playMove(actor, name, world.moves, opts);
+  playMove(actor, name, world.moves, world.pace ? pacedOpts(world.pace, name, opts) : opts); // pace (ADR-038): travel steps faster
 }
 
 /** Run a command at a later story time (used for defender reactions to choreographed outcomes). */

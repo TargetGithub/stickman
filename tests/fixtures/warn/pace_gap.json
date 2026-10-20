@@ -1,0 +1,64 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Paced fixture",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "pace": {},
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "rex",
+      "color": "#ff7a3d"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "stageWidth": 6000
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 2800,
+          "facing": 1
+        },
+        {
+          "id": "rex",
+          "x": 3200,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "w",
+          "at": 0.3,
+          "who": "kai",
+          "do": "wave"
+        },
+        {
+          "id": "v",
+          "at": {
+            "after": "w",
+            "delay": 2.5
+          },
+          "who": "rex",
+          "do": "wave",
+          "say": "Hi there!"
+        }
+      ]
+    }
+  ]
+}

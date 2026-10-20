@@ -14,6 +14,7 @@ import { simulate, movesFor } from "../sim.js";
 import { normalize } from "../story/normalize.js";
 import { compileStory } from "../story/compile.js";
 import { macroIssues } from "./macros.js";
+import { paceIssues } from "./pace.js";
 import { expandScript } from "../templates.js";
 import { bundleIssues } from "./bundles.js";
 import { BUNDLE_PINS } from "./v2_names.js";
@@ -124,7 +125,7 @@ export function validate(script, catalog) {
   if (sim.durationSec < LIMITS.minDuration) {
     issues.push({ code: "E_SIM_DURATION", path: v2 ? "scenes" : "beats", message: `The video is only ${sim.durationSec.toFixed(1)}s long.`, fix: `Make it at least ${LIMITS.minDuration}s.` });
   }
-  if (v2) issues.push(...lengthIssues(story, sim), ...overlappingLines(sim), ...staticScenes(sim));
+  if (v2) issues.push(...lengthIssues(story, sim), ...overlappingLines(sim), ...staticScenes(sim), ...paceIssues(sim));
   issues.push(...pacing(v2 ? { meta: story.meta } : script, sim, moves, v2 ? { path: "scenes", impact: story.meta.kind === "fight", endsWithTransition: !!story.scenes[story.scenes.length - 1].transitionOut } : {}));
   return result("dry-run", issues, sim);
 }

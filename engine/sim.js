@@ -22,6 +22,7 @@ import { updateActivities, activityMoveEvent } from "./story/activities.js";
 import { updateExits, updateDepth } from "./story/destinations.js";
 import { depthOf, zOf } from "./depth.js";
 import { planExtras, EXTRA_MOVES } from "./story/extras.js";
+import { paceOf } from "./story/pace.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
 const prepared = new WeakMap();
@@ -114,6 +115,7 @@ export function simulate(script, catalog, opts = {}) {
   const beats = [];
   const issues = [];
   const scenes = [];
+  const cameraLog = []; // framing changes in video time (presentation.js), for pacing reports
   const carry = new Map(); // id → { hp, prop } at the end of the last scene it was in
   let dead = new Set();
   let fx = null;
@@ -144,6 +146,7 @@ export function simulate(script, catalog, opts = {}) {
     const actors = sceneActors(flat, catalog, carry, !story.legacy);
     const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth: flat.meta.stageWidth });
     world.depth = flat.depth;
+    world.pace = paceOf(story, flat.scene); // ADR-038: null unless a v3 script asks for a pace
     world.passOver = !story.legacy; // story scripts: walkers pass over characters who are not moving themselves
     // Objects (S4): set pieces and spawned objects; holdable set pieces lie on the floor as props.
     const pieces = [...(flat.location?.set || []), ...(flat.scene.set || [])];
@@ -168,7 +171,7 @@ export function simulate(script, catalog, opts = {}) {
     const fresh = new Set((flat.scene.cast || []).filter((p) => p.hp !== undefined).map((p) => p.id));
     const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `${scenePath}.`, tag: story.legacy ? "" : `${sid}.`, dead: [...dead].filter((id) => !fresh.has(id)), story: !story.legacy });
     present = createPresentation(flat, catalog, { suffix, fx, kids: !story.legacy && (meta.audience ?? "kids") === "kids",
-      storyCamera: !story.legacy && meta.autoCamera === "story" && !(flat.scene.camera || []).length, tightFraming: !!story.v3, t0 });
+      storyCamera: !story.legacy && meta.autoCamera === "story" && !(flat.scene.camera || []).length, tightFraming: !!story.v3, t0, cameraLog, pace: world.pace });
     fx = present.fx;
     format = present.format;
     const fxLogStart = fx.log.length;
@@ -260,6 +263,7 @@ export function simulate(script, catalog, opts = {}) {
         return { id: c.id, style: c.style || {}, layer: placed.layer ?? "mid", ...(flat.depth ? { z: zOf(placed, flat.depth), view: placed.view ?? story.cast.find((x) => x.id === c.id)?.view ?? "side", body: c.body ?? "stickman" } : {}) };
       }),
       depth: flat.depth, // V3.2: null for v1/v2 scenes
+      pace: world.pace, // ADR-038: null without a pace
       light: flat.depth ? (flat.scene.light ?? flat.location?.light ?? null) : null, // V3.3: the scene's light rig choice
       lens: flat.depth ? flat.scene.lens ?? null : null, // V3.4: the lens the scene starts with
       extras: story.legacy ? [] : planExtras(flat.scene, flat.location, catalog, meta.seed ?? 1, flat.meta.stageWidth),
@@ -280,6 +284,7 @@ export function simulate(script, catalog, opts = {}) {
   return {
     store,
     events: log,
+    cameraLog,
     anchors,
     beats,
     issues,

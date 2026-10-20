@@ -1,0 +1,122 @@
+// Paced story camera (ADR-038): the story auto camera of a scene with a pace cuts like a preschool show.
+//   - a wide only to establish (pace.establish s at the scene start);
+//   - dialogue: a medium two-shot on the first line of an exchange, then shot/reverse-shot (over the listener's
+//     shoulder, a close-up of the speaker, alternating) on each new line, and a reaction close-up of the listener
+//     when a line runs past pace.shot[1]; no cut comes sooner than pace.shot[0] / 2 after the last one;
+//   - otherwise a medium shot (characters about 60% of the frame height) on whoever is acting, cut to a looser
+//     (or tighter) medium when it has run longer than 1.25 x pace.shot[1];
+//   - a travel cut (cut-to-arrival) cuts with the walker.
+// Every framing change is a hard cut, except a medium that keeps one of its characters (it follows smoothly).
+// Pure state; the keys are read by camera.js (storyFraming → mediumFraming).
+
+const MEDIUM = { height: 0.6, loose: 0.42, pad: 170, maxZoom: 2.4, lift: 0.07 };
+const TALK = { reach: 800, exchange: 3, reaction: 1.6, hold: 0.8 }; // px, s, s, s
+
+/**
+ * Framing for a "medium" key: the targets standing about MEDIUM.height of the frame tall (k.loose: smaller),
+ * feet near the lower edge and room above the heads.
+ */
+export function mediumFraming(cam, group, k, { bounds }) {
+  const b = bounds(group);
+  const floor = Math.max(...group.map((a) => Math.max(a.joints.lFoot.y, a.joints.rFoot.y, a.groundY ?? -Infinity)));
+  const tall = Math.max(60, floor - b.minY);
+  const byHeight = (cam.H * (k.loose ? MEDIUM.loose : MEDIUM.height)) / tall;
+  const byWidth = cam.W / (b.maxX - b.minX + 2 * MEDIUM.pad);
+  const fav = k.favor && group.find((a) => a.id === k.favor);
+  const zoom = Math.max(0.45, Math.min(MEDIUM.maxZoom, byHeight, fav ? byWidth * 1.35 : byWidth));
+  const mid = (b.minX + b.maxX) / 2;
+  const x = fav ? mid + Math.sign(fav.x - mid) * Math.min(Math.abs(fav.x - mid), (cam.W * 0.18) / zoom) : mid;
+  return { x, zoom, y: (b.minY + floor) / 2 - (cam.H * MEDIUM.lift) / zoom, smoothY: true, maxZoom: MEDIUM.maxZoom };
+}
+
+/** Paced state on the story auto camera (camera_story.js createStoryAuto). */
+export function createCuts(pace) {
+  return { pace, key: null, since: -Infinity, line: null, lineSeen: null, lines: 0, lastLineEnd: -Infinity, travelCut: false, variant: 0 };
+}
+
+/** A say or travel cut event (story seconds). */
+export function cutsEvent(cuts, e, t) {
+  if (e.type === "travelCut") cuts.travelCut = true;
+  if (e.type === "say" && e.bubble !== "think") {
+    cuts.line = { actor: e.actor, to: e.to ?? null, t0: t, until: t + e.dur };
+  }
+}
+
+const sameKey = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const keeps = (a, b) => a?.mode === "medium" && b?.mode === "medium" && a.loose === b.loose && !a.favor && !b.favor && a.targets.some((id) => b.targets.includes(id));
+
+/** The listener of a line: the beat's target, else the nearest visible character within talking reach. */
+function listenerOf(line, actors) {
+  const speaker = actors.find((a) => a.id === line.actor && !a.hidden);
+  if (!speaker) return null;
+  const named = line.to && actors.find((a) => a.id === line.to && !a.hidden);
+  if (named) return named;
+  const others = actors.filter((a) => a !== speaker && !a.hidden && Math.abs(a.x - speaker.x) < TALK.reach);
+  return others.length ? others.reduce((b, a) => (Math.abs(a.x - speaker.x) < Math.abs(b.x - speaker.x) ? a : b)) : null;
+}
+
+/** The shot for a line: a medium two-shot opens an exchange, then over-the-shoulder and close-up alternate. */
+function lineShot(cuts, line, actors, t) {
+  const listener = listenerOf(line, actors);
+  if (!listener) return { mode: "medium", targets: [line.actor] };
+  const opening = t - cuts.lastLineEnd > TALK.exchange;
+  if (opening) cuts.lines = 0;
+  const n = cuts.lines++;
+  if (n === 0) return { mode: "medium", targets: [line.actor, listener.id] };
+  // Over the listener's shoulder: a medium on both, pushed toward the speaker (the listener half out of frame).
+  return n % 2 ? { mode: "medium", targets: [listener.id, line.actor], favor: line.actor } : { mode: "close_up", target: line.actor };
+}
+
+/**
+ * The paced auto key at story time t, with `cut` set when the change is a hard cut.
+ * @param {{ t0, active: Map, close }} auto  the story auto camera state (its close-up and activity tracking)
+ * @param {Function} activeIds  (actors, t) → ids of the characters acting now (camera_story.js)
+ */
+export function cutsKey(auto, cuts, actors, t, activeIds) {
+  const { pace } = cuts;
+  const age = t - cuts.since;
+  let want = null;
+  if (cuts.travelCut) {
+    cuts.travelCut = false;
+    want = mediumOf(activeIds(actors, t), actors, 0);
+    return choose(cuts, want, t, true);
+  }
+  const line = cuts.line && t < cuts.line.until ? cuts.line : null;
+  if (auto.close && t < auto.close.until) want = { mode: "close_up", target: auto.close.target };
+  else if (t - auto.t0 < pace.establish && !line) want = { mode: "wide" };
+  else if (line) {
+    cuts.lastLineEnd = line.until;
+    if (cuts.lineSeen !== line) {
+      if (age < pace.shot[0] / 2 && cuts.key) return cuts.key; // too soon after the last cut: wait
+      cuts.lineSeen = line;
+      want = lineShot(cuts, line, actors, t);
+    } else if (age > pace.shot[1] && !cuts.key?.reaction) {
+      const listener = listenerOf(line, actors);
+      if (listener) want = { mode: "close_up", target: listener.id, reaction: t + TALK.reaction };
+    } else if (cuts.key?.reaction && t > cuts.key.reaction) want = { mode: "close_up", target: line.actor };
+    want ??= cuts.key;
+  } else if (t - cuts.lastLineEnd < TALK.hold && cuts.key) {
+    want = cuts.key; // between two lines of an exchange: no cut
+  } else {
+    if (age > pace.shot[1] * 1.25 && cuts.key?.mode === "medium") cuts.variant++;
+    want = mediumOf(activeIds(actors, t), actors, cuts.variant);
+  }
+  return choose(cuts, want, t, false);
+}
+
+function mediumOf(ids, actors, variant) {
+  const shown = actors.filter((a) => !a.hidden);
+  const targets = ids.length ? ids : shown.map((a) => a.id);
+  if (!targets.length) return { mode: "wide" };
+  return { mode: "medium", targets, ...(variant % 2 ? { loose: true } : {}) };
+}
+
+function choose(cuts, wanted, t, force) {
+  const { cut: _w, ...want } = wanted;
+  const { cut: _p, ...prev } = cuts.key || {};
+  if (!force && cuts.key && sameKey(want, prev)) return cuts.key;
+  const cut = force || !keeps(prev, want);
+  if (cut) cuts.since = t;
+  cuts.key = { ...want, cut };
+  return cuts.key;
+}

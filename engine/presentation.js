@@ -51,10 +51,19 @@ export function createPresentation(script, catalog, opts = {}) {
     shot: null,
     lasting: false,
     // meta.autoCamera "story" in a scene without camera keys of its own
-    storyAuto: opts.storyCamera ? createStoryAuto(opts.t0 ?? 0, { tight: !!opts.tightFraming }) : null,
+    storyAuto: opts.storyCamera ? createStoryAuto(opts.t0 ?? 0, { tight: !!opts.tightFraming, pace: opts.pace ?? null }) : null,
     autoKey: null,
     baseKey: null,
+    pace: opts.pace ?? null, // a pace (ADR-038): shots cut instead of panning
+    log: opts.cameraLog ?? null, // every framing change [{ t (video s), mode, cut }] for pacing reports
   };
+}
+
+/** Set a camera key and log the framing change. */
+function keyed(p, key, clock, cut = false) {
+  setCameraKey(p.cam, key, clock.videoT);
+  if (cut) cutCamera(p.cam);
+  p.log?.push({ t: clock.videoT, mode: key.mode, ...(key.target ? { target: key.target } : {}), ...(key.targets ? { targets: key.targets } : {}), cut: cut || p.cam.cut });
 }
 
 function emitAt(p, world, name, actorId, fxT, extra = {}) {
@@ -110,7 +119,7 @@ export function presentEvent(p, e, world, clock) {
         const prev = p.shot && p.shot.until !== Infinity ? p.shot.prev : p.cam.key;
         p.shot = { prev, until: q.dur !== undefined ? clock.storyT + q.dur : Infinity };
         if (q.dur === undefined) p.lasting = true; // an explicit framing from here on: no auto camera
-        setCameraKey(p.cam, shotKey(q), clock.videoT);
+        keyed(p, shotKey(q), clock, !!p.pace);
         p.lastKeyVideo = clock.videoT;
       }
       break;
@@ -123,15 +132,17 @@ export function presentEvent(p, e, world, clock) {
         emitFx(p.fx, name, { x: e.x, y: STAGE.groundY - (floor ? 0 : e.y || 0) }, { dir: 1, scale: 1 }, fxT);
       }
       break;
+    case "travelCut":
+      // Cut-to-arrival (ADR-038): the walker jumped ahead, so the camera cuts instead of panning after it.
+      cutCamera(p.cam);
+      p.log?.push({ t: clock.videoT, mode: "travelCut", cut: true });
+      break;
     case "camera":
       p.shot = null; // a camera key ends any shot
       p.baseKey = e.key;
-      setCameraKey(p.cam, e.key, clock.videoT);
+      keyed(p, e.key, clock, p.pendingCut);
       p.lastKeyVideo = clock.videoT;
-      if (p.pendingCut) {
-        cutCamera(p.cam);
-        p.pendingCut = false;
-      }
+      p.pendingCut = false;
       break;
     default:
   }
@@ -140,15 +151,16 @@ export function presentEvent(p, e, world, clock) {
 /** Shots that run out, and the story auto camera (S6). */
 function storyCamera(p, world, clock) {
   if (p.shot && clock.storyT >= p.shot.until - 1e-9) {
-    setCameraKey(p.cam, p.shot.prev, clock.videoT);
+    keyed(p, p.shot.prev, clock, !!p.pace);
     p.shot = null;
+    if (p.storyAuto?.cuts) p.storyAuto.cuts.key = null; // the auto camera picks a fresh shot
   }
   if (!p.storyAuto || p.shot || p.lasting) return;
   const key = storyAutoKey(p.storyAuto, world.actors, clock.storyT);
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   if (same(key, p.autoKey)) return;
   p.autoKey = key;
-  setCameraKey(p.cam, key ?? p.baseKey ?? { mode: "follow" }, clock.videoT);
+  keyed(p, key ?? p.baseKey ?? { mode: "follow" }, clock, !!key?.cut); // a pace cuts (ADR-038)
 }
 
 /** Advance sustained FX and the camera one video frame; returns the camera state for the frame. */

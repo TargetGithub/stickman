@@ -23,6 +23,7 @@ export function prepareSpeech(script, { catalog, backend, table = loadVoiceTable
   const compiled = structuredClone(compileScript(script, catalog).script);
   const lines = synthesizeLines(collectLines(compiled, table, overrides), backend, { cacheDir, log });
   const report = injectDurations(compiled, lines);
+  compiled.meta = { ...compiled.meta, speech: "tts" }; // a pace's captions "auto" shows subtitles for voiced lines (ADR-038)
   return { script: compiled, lines, report };
 }
 

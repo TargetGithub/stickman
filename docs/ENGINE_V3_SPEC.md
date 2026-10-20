@@ -113,6 +113,23 @@ The back is drawn as a curve through a mid-spine point instead of one straight b
 
 `time: "night"` (and `set_time` to night) makes a real night on any theme, in every script version. The background draws its layers darkened and a little desaturated (a canvas filter), switches lights on right after each layer so nearer layers still cover them (lit windows in `buildings`, `huts` and `skyline`, brighter `lampposts` and `lanterns`, a night sky with stars in a room's `windows`), fades the sun out, and puts a dark sky gradient with stars and a moon (where the sun was) behind everything. How much a theme takes comes from its tags: daytime outdoor themes all of it, `indoor` themes half (no moon or stars), themes tagged `night` or `dark` a third (their own sky). The grade over the whole frame is lighter than before: a multiply of the moonlit rig's ambient colour (#4a5aa0) at 0.4, so characters stay readable and look as they do under the `moonlit` rig. Dawn and dusk are unchanged; blends to and from night (`set_time` with `dur`) fade the sky, lights, moon and stars together. Golden frames of night scenes changed deliberately (s1_transitions 298, 362, 419; s6_gauntlet 380-3045; s6_fights 180).
 
+### 5.8 Pace: preschool-show timing (ADR-038)
+
+A version 3 script can ask for the snappy timing and cutting of a preschool show (Sheriff Labrador) with a top-level `pace` block; `"pace": {}` takes every default, a scene's `pace` goes over the script's and `"pace": false` turns it off for that scene. Without a block nothing changes.
+
+| Field | Default | What it does |
+|---|---|---|
+| `travel` | walk 1.7, run 1.25, sneak 2.5, tiptoe 2, walk_together 1.6, swim 1.3 | Speed multipliers: the cycle plays f^0.45 faster and each step reaches f^0.55 further (feet still plant). A travel move counted in `cycles` keeps its stride. |
+| `moves` | 1.25 | Playback speed of other one-shot moves a beat starts (not attacks, defeats, paired moves, loops, timed holds like `wait`, or a beat that speaks). |
+| `gap` | 0.2 | Seconds between `@dialogue` lines. Reading time is 0.5 s + 0.05 s per character (at least 1 s); with TTS the voice clip sets it (SPEECH_SPEC 4). |
+| `maxTravel`, `leave`, `arrive` | 3, 0.9, 1.2 | A walk with `to` that would take over `maxTravel` s walks `leave` s, cuts (the walker jumps ahead) and walks the last `arrive` s; an entering walker starts `arrive` s out. Not for paired or depth walks. |
+| `maxExit` | 1.5 | Seconds an `exit` walk lasts before the fade. |
+| `shot`, `establish` | [2, 4], 2 | The story auto camera cuts (shot/reverse-shot, reactions, medium shots; STORY_SPEC 16). |
+| `captions` | auto | `auto`: voiced lines as subtitles when `meta.speech` is tts, else bubbles; or `bubbles`, `subtitles`. Thoughts stay cloud bubbles. |
+| `bubble` | 1.5 | Bubble and text scale, times `look.bubble`. |
+
+The validator warns `W_PACE_TRAVEL` (a travel beat over 4 s) and `W_PACE_GAP` (over 1.5 s with nobody acting, speaking or narrated) in paced scenes. `node tools/pace_report.mjs <script> [--speech tts]` prints the length, shot lengths, travel times, talk share and gaps of any script.
+
 ## 6. Standard video-creation features (JSON)
 
 New optional top-level blocks in a v3 script, usable with or without a story:
@@ -137,6 +154,8 @@ The v2 story compiler emits these same primitives, so a story scene and a hand-k
 ## 7. Script format v3
 
 `version: 3`. A v2 script is a valid v3 script. v3 adds: `bundles` (required when any non-base id is used), `layers`, `tracks`, `text`, `shapes`, `post`, `audio.tracks`, `templates`; cast gets `view` defaults and per-view overrides; scenes get `depth` range, `light`, `camera` keyframes (v3 fields) and `fog`; beats get `to.z`, `view`, `set_light`, `set_camera` (keyframes), `layer` by name. The validator grows the matching codes (E_BUNDLE_*, E_TRACK_*, E_VIEW_* ...) with fixtures.
+
+**Pace (ADR-038, 5.8):** a top-level `pace` block and `scenes[].pace` (an object or false).
 
 **Limb styles (ADR-034, 5.7):** `cast[].limbStyle`, `scenes[].limbStyle` and `scenes[].cast[].limbStyle` (`straight`, `bendy`, `rubber`), and `motion.stretch` (0-1, default 1) for rubber limbs.
 
