@@ -2930,6 +2930,19 @@
           "maximum": 1
         }
       }
+    },
+    "look": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The automatic v3 look.",
+      "properties": {
+        "strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How strong the automatic lighting, vignette, focus blur and turns are (default 0.2; explicit lights, lens settings and views are always full)."
+        }
+      }
     }
   },
   "$defs": {

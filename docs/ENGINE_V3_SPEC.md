@@ -91,6 +91,10 @@ Rigs carry up to four views. The engine picks the view from the character's faci
 ### 5.5 Motion quality
 Pose interpolation gets overshoot and settle curves, squash-and-stretch on landings and hits (today's squash extended to any axis), secondary motion for hair, scarves, capes and tails (spring chains), follow-through on arms, breathing idles with noise, and motion blur as an optional post effect. Target 60 fps render, 30 fps default output.
 
+### 5.6 The automatic look strength (Sridhar, 2026-10-19)
+
+The effects a version 3 scene gets without asking (the time-of-day light rig with its shading, rim, tint, shadows and haze; the default vignette; the focus blur that story shots pull by themselves; the turns that moves like wave and cheer make) run at a **look strength**, default **0.2** (20%), so v3 stays close to the flat v2 look. A script sets it with `"look": { "strength": 0-1 }`. Anything a script asks for explicitly runs at full strength: a scene's or location's `light`, `set_light`, lens values in a `lens` block, camera keys or `set_camera`, and `view` on cast, placements and beats.
+
 ## 6. Standard video-creation features (JSON)
 
 New optional top-level blocks in a v3 script, usable with or without a story:

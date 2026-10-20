@@ -182,3 +182,15 @@ test("the validator knows the v3 camera: lens block, key fields, set_camera, mov
   const v2 = { ...story(), version: 2 };
   assert.ok(validate(v2, catalog).errors.some((e) => e.code === "E_SCHEMA_UNKNOWN_FIELD"), "v2 camera keys have no lens fields");
 });
+
+test("the look strength: default 0.2, from the v3 script's look block", async () => {
+  const { lookStrength, LOOK_STRENGTH } = await import("../../engine/renderer/scene_views.js");
+  assert.equal(LOOK_STRENGTH, 0.2);
+  assert.equal(lookStrength({}), 0.2);
+  assert.equal(lookStrength({ look: { strength: 0.6 } }), 0.6);
+  assert.equal(lookStrength({ look: { strength: 0 } }), 0);
+  const story = { version: 3, look: { strength: 0.5 }, meta: { title: "L", format: "landscape", seed: 1, kind: "clip", audience: "kids" }, cast: [{ id: "a", color: "#3d7bd9" }],
+    scenes: [{ id: "s1", location: "city_park", cast: [{ id: "a", x: 1200, facing: 1 }], beats: [{ id: "b1", at: 0, who: "a", do: "wave" }, { id: "b2", at: { after: "b1", delay: 1.5 }, who: "a", do: "wave" }] }] };
+  assert.deepEqual(validate(story, catalog).errors, []);
+  assert.ok(validate({ ...story, look: { strength: 2 } }, catalog).errors.some((e) => e.code === "E_SCHEMA_RANGE"));
+});

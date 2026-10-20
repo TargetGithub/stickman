@@ -57,6 +57,13 @@ export function resolveRig(lights, want) {
   return out;
 }
 
+/** A rig at a share of its strength (the v3 look strength): light, rim, tint, shadows and haze scaled by k. */
+export function scaleRig(rig, k) {
+  if (!rig || k >= 1) return rig;
+  const t = (x) => ({ ...x, strength: x.strength * k });
+  return { ...rig, key: t(rig.key), fill: t(rig.fill), rim: t(rig.rim), ambient: t(rig.ambient), shadow: { ...rig.shadow, alpha: rig.shadow.alpha * k }, fog: { ...rig.fog, density: rig.fog.density * k } };
+}
+
 /** Linear blend of two rigs (tints: colour and strength; shadow and fog: numbers; cast and name: b's past half). */
 export function blendRigs(a, b, u) {
   if (!a) a = flatLike(b);

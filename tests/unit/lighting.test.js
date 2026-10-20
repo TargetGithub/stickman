@@ -114,3 +114,17 @@ test("the validator knows set_light and light presets", () => {
   const v2 = { ...story("golden"), version: 2 };
   assert.ok(validate(v2, catalog).errors.some((e) => e.code === "E_SCHEMA_UNKNOWN_FIELD"), "v2 has no light field");
 });
+
+test("scaleRig: the look strength scales light, rim, tint, shadows and haze, and keeps colours and angles", async () => {
+  const { scaleRig } = await import("../../engine/lighting.js");
+  const rig = resolveRig(L, "golden");
+  const s = scaleRig(rig, 0.2);
+  near(s.key.strength, rig.key.strength * 0.2);
+  near(s.rim.strength, rig.rim.strength * 0.2);
+  near(s.ambient.strength, rig.ambient.strength * 0.2);
+  near(s.shadow.alpha, rig.shadow.alpha * 0.2);
+  near(s.fog.density, rig.fog.density * 0.2);
+  assert.deepEqual([s.key.angle, s.key.color, s.shadow.length], [rig.key.angle, rig.key.color, rig.shadow.length]);
+  assert.equal(scaleRig(rig, 1), rig);
+  assert.equal(scaleRig(null, 0.2), null);
+});

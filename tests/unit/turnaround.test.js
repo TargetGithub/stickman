@@ -90,3 +90,11 @@ test("the validator: views in the v3 schema, and only views the body plan has", 
   assert.ok(codes(story("top")).includes("E_SCHEMA_ENUM"));
   assert.ok(validate({ ...story("front"), version: 2 }, catalog).errors.some((e) => e.code === "E_SCHEMA_UNKNOWN_FIELD"));
 });
+
+test("automatic turns go a share of the way (the look strength); set views go all the way", () => {
+  const track = { base: "side", sets: [], hints: [{ t0: 1, t1: 3, view: "front", amount: 0.2 }] };
+  near(yawAt(track, 2), 90 - 90 * 0.2);
+  const set = { base: "side", sets: [{ storyT: 0, view: "front" }], hints: [{ t0: 1, t1: 3, view: "three_quarter", amount: 0.5 }] };
+  near(yawAt(set, 2), 0 + (50 - 0) * 0.5);
+  assert.equal(yawAt(set, 4), 0);
+});

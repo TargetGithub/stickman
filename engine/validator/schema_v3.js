@@ -121,6 +121,8 @@ export function withDepth(v2) {
   beat.properties.view = { ...VIEW, description: "The character turns to this view from this beat on (E_VIEW_BODY)." };
   // Motion graphics (V3.5): top-level layers, text, shapes, tracks and post; a scene may set its own post.
   Object.assign(s.properties, { layers: LAYERS_SCHEMA, text: TEXT_SCHEMA, shapes: SHAPES_SCHEMA, tracks: TRACKS_SCHEMA, post: POST_SCHEMA });
+  // The automatic v3 look (time-of-day lighting, default vignette, auto focus, automatic turns) at a strength.
+  s.properties.look = { type: "object", additionalProperties: false, description: "The automatic v3 look.", properties: { strength: { type: "number", minimum: 0, maximum: 1, description: "How strong the automatic lighting, vignette, focus blur and turns are (default 0.2; explicit lights, lens settings and views are always full)." } } };
   scene.properties.post = POST_SCHEMA;
   return s;
 }

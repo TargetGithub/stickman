@@ -33,24 +33,25 @@ export function resolveView(plan, want) {
 
 /**
  * The view changes of one character in a scene: explicit views ({ storyT, view }) and move hints
- * ({ t0, t1, view } while a move with a view hint runs). See viewEvents in renderer/scene_views.js.
+ * ({ t0, t1, view, amount? } while a move with a view hint runs; amount 0-1 turns that share of the way,
+ * the look strength for automatic turns). See viewTracks in renderer/scene_views.js.
  * @returns {number} the yaw (degrees) at scene story time t, turning smoothly over TURN_TIME
  */
 export function yawAt(track, t) {
   const want = (time) => {
-    const hint = track.hints.findLast((h) => h.t0 <= time && time < h.t1);
-    if (hint) return { view: hint.view, since: hint.t0 };
     const set = track.sets.findLast((e) => e.storyT <= time);
+    const setYaw = VIEW_YAW[set ? set.view : track.base];
+    const hint = track.hints.findLast((h) => h.t0 <= time && time < h.t1);
+    if (hint) return { yaw: setYaw + (VIEW_YAW[hint.view] - setYaw) * (hint.amount ?? 1), since: hint.t0 };
     // The view changed when it was set, or when the last hint before `time` ended, whichever is later.
     const ended = track.hints.reduce((m, h) => (h.t1 <= time && h.t1 > m ? h.t1 : m), -Infinity);
-    return { view: set ? set.view : track.base, since: Math.max(set ? set.storyT : -Infinity, ended) };
+    return { yaw: setYaw, since: Math.max(set ? set.storyT : -Infinity, ended) };
   };
   const now = want(t);
-  const yaw = VIEW_YAW[now.view];
   const u = (t - now.since) / TURN_TIME;
-  if (u >= 1) return yaw;
+  if (u >= 1) return now.yaw;
   const before = want(now.since - 1e-6);
-  return before.view === now.view ? yaw : VIEW_YAW[before.view] + (yaw - VIEW_YAW[before.view]) * easings.inOutQuad(clamp(u, 0, 1));
+  return before.yaw + (now.yaw - before.yaw) * easings.inOutQuad(clamp(u, 0, 1));
 }
 
 /** How far the face slides across the head (in head radii) at a yaw: 0 in profile, FACE_SHIFT from the front. */
