@@ -1,0 +1,23 @@
+{
+  "why": "A key names a pose the bundle does not have (11.2).",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "moves/emotes.json",
+      [
+        0,
+        "keys",
+        1,
+        "pose"
+      ],
+      "robo_pals:wind_up"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_REF",
+      "file": "moves/emotes.json",
+      "path": "[0].keys[1].pose"
+    }
+  ]
+}

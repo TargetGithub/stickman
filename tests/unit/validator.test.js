@@ -19,7 +19,9 @@ for (const group of ["bad", "warn"]) {
   for (const file of fixtures(group)) {
     test(`${group}/${file}`, () => {
       const expect = load(new URL(file.replace(".json", ".expect.json"), dir(group)));
-      const r = validate(load(new URL(file, dir(group))), catalog);
+      // Bundle fixtures describe what is loaded (catalog.bundles, catalog.bundleCombos), as mergeBundles records it.
+      const cat = expect.catalogBundles || expect.bundleCombos ? { ...catalog, bundles: expect.catalogBundles || [], bundleCombos: expect.bundleCombos || [] } : catalog;
+      const r = validate(load(new URL(file, dir(group))), cat);
       const codes = [...r.errors, ...r.warnings].map((i) => i.code);
       assert.equal(r.ok, expect.ok, `ok: ${JSON.stringify(r.errors)}`);
       for (const c of expect.codes) assert.ok(codes.includes(c), `expected ${c}, got ${codes.join(", ") || "nothing"}`);

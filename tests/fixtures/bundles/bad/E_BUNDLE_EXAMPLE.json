@@ -1,0 +1,23 @@
+{
+  "why": "The example pins its own bundle with a made-up hash instead of \"self\".",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "examples/stories/bolt_dances.json",
+      [
+        "story",
+        "bundles",
+        0,
+        "hash"
+      ],
+      "sha256-abababababababababababababababababababababababababababababababab"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_EXAMPLE",
+      "file": "examples/stories/bolt_dances.json",
+      "path": "bundles"
+    }
+  ]
+}

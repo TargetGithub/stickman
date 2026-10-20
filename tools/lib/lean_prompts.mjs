@@ -16,6 +16,18 @@ export function packVersion(root = CATALOG_DIR) {
   return JSON.parse(readFileSync(join(root, "manifest.json"), "utf8")).version;
 }
 
+/**
+ * Lean prompts with catalog bundles (CATALOG_BUNDLE_SPEC 10.3): a line after the first naming the attached
+ * bundle packs and the `bundles` line scripts must carry.
+ */
+export function withBundleLine(text, bundles) {
+  if (!bundles?.length) return text;
+  const pins = JSON.stringify(bundles.map(({ id, version, hash }) => ({ id, version, hash })));
+  const line = `This project also has catalog bundle packs attached (${bundles.map((b) => `bundle_${b.id}.md`).join(", ")}). Names with a colon come from them; a script that uses any of them carries "bundles": ${pins}.`;
+  const nl = text.indexOf("\n");
+  return nl < 0 ? `${text}\n${line}` : `${text.slice(0, nl + 1)}${line}\n${text.slice(nl + 1)}`;
+}
+
 /** The first line of every lean prompt. */
 export const leanHeader = (version, files) =>
   `Use the Stickman catalog files attached to this project (catalog version ${version}).${files ? ` For this task read ${files}.` : ""}`;

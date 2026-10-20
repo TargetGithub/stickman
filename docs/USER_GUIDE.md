@@ -320,6 +320,22 @@ Sample: `scripts/samples/r1_becky.json`. Review sheets: `node tools/becky_sheet.
 
 Sample: `scripts/samples/a3_colour.json`.
 
+### 4.3 Catalog bundles (characters, moves and places made by others)
+
+A catalog bundle is a folder or `.zip` of catalog data someone else made (docs/CATALOG_BUNDLE_SPEC.md). Its names have a colon: `robo_pals:boxbot`. To use one:
+
+1. Check it: `node tools/bundle.mjs check robo_pals-1.0.0.zip`. It prints every problem with a fix, and the bundle's hash.
+2. Declare it at the top of the script, exactly as the bundle gives it: `"bundles": [{ "id": "robo_pals", "version": "1.0.0", "hash": "sha256-…" }]`.
+3. Pass it to the tools: `node tools/validate.mjs story.json --bundle robo_pals-1.0.0.zip`, `npm run record -- story.json --bundle robo_pals-1.0.0.zip` (the credits go into `meta.json`). In the player, pick the zip under "Bundles".
+
+Imported bundles need no `--bundle`: `node tools/bundle.mjs import robo_pals-1.0.0.zip` checks it (with the render checks) and keeps it in the store, `bundles/<id>/<hash>/` (git-ignored; set `STICKMAN_BUNDLES` to keep it elsewhere). The tools find the bundles a script declares there, and `npm run serve` serves the store at `/bundles/`. `node tools/bundle.mjs list` shows the store; `node tools/bundle.mjs sheet <zip>` writes a contact sheet (every pose, move, body plan, preset, face, effect, place, object and activity) to look at before using a bundle. In the browser, `/web/bundles.html` does the same check, shows the sheet and keeps the bundle in the browser. The player loads a script's declared bundles from the browser or the project store by itself and lists their credits (with an NC badge for non-commercial ones); the showcase's "bundles" switch adds their entries to every section (deep links such as `showcase.html#moves/robo_pals:robot_dance`). Music moods from bundles have no browser preview: `npm run catalog:media -- --bundle <zip>` renders their clips.
+
+**Making a bundle.** `node tools/bundle.mjs new my_pack` makes a folder with the manifest, a README and an example story. Add entries the way you draft catalog entries, with `--bundle my_pack` on the final `--write`: `node tools/draft.mjs move "<description>" --manual`, paste the prompt into any chat, then `node tools/draft.mjs move "<description>" --reply reply.txt --write --bundle my_pack` (the same for `object` and `theme`, and `node tools/svg_import.mjs art.svg --name lamp --write "<description>" --bundle my_pack`). Each entry is named `my_pack:<name>` and joins the example story. Or have a chat app make several entries at once: `node tools/bundle.mjs prompt my_pack "<what to make>" --kinds poses,moves,objects`, paste it into a chat in the project with the catalog pack, then `node tools/bundle.mjs reply my_pack reply.txt` (`--mock` tries the flow offline). Review, then `node tools/bundle.mjs pack my_pack --i-made-this` writes the hashes and the zip and checks it.
+
+To write stories with a bundle in a chat app (section 7.6), attach `node tools/bundle.mjs pack-context <zip>`'s file next to the catalog pack; the AI copies the `bundles` line from it.
+
+A missing bundle, a different hash or an undeclared name stops the script (`E_BUNDLE_MISSING`, `E_BUNDLE_HASH`, `E_BUNDLE_UNDECLARED`); there is no fallback. The same script with the same bundle hash gives the same frames. To make a bundle: `node tools/bundle.mjs pack <folder> --i-made-this` writes the hashes and the zip; the worked example is `tests/fixtures/bundles/robo_pals/`.
+
 ## 5. Fixing validator errors
 
 The validator runs before every render. Each message names the problem, where it is, and how to fix it. The most common ones:
@@ -345,6 +361,14 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | Command | What it does |
 |---|---|
 | `node tools/validate.mjs <script> [--json]` | Check a script; print errors, warnings and the timeline |
+| `... --bundle <dir\|zip>` | On validate, record, generate and manual: load a catalog bundle the script declares (repeatable; section 4.3) |
+| `node tools/bundle.mjs check <dir\|zip>` | Check a catalog bundle (`--fixture <file>` for a test fixture) |
+| `node tools/bundle.mjs pack <dir> --i-made-this` | Write a bundle's hashes and zip it |
+| `node tools/bundle.mjs new <id>` | Start a bundle folder (manifest, README, example story) |
+| `node tools/bundle.mjs prompt <dir> "<what>"`, `reply <dir> <reply.txt>` | Have a chat app make bundle entries (copy-paste), and write its reply into the folder |
+| `node tools/bundle.mjs import <dir\|zip>` | Check a bundle and keep it in the store (`bundles/`); `list` shows the store |
+| `node tools/bundle.mjs sheet <dir\|zip>` | A contact sheet of everything a bundle adds, for review |
+| `node tools/bundle.mjs pack-context <dir\|zip>` | The bundle's AI context file (`bundle_<id>.md`) to attach next to the catalog pack in a chat project; `manual.mjs ... --lean --bundle <zip>` then names it in the prompt |
 | `node tools/validate.mjs --schema` | Print the JSON Schema (with every move name) |
 | `node tools/compile.mjs <story> [--summary]` | Print a story with every macro expanded into beats (or one line per macro) |
 | `node tools/compile.mjs <story> --eject <id> --out <file>` | Write the story with one macro replaced by its beats, to hand-tune them |
@@ -384,11 +408,13 @@ Browser pages (after `npm run serve`):
 
 | Page | Use |
 |---|---|
-| `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file. Stories show scene markers above the scrubber (click one to jump) |
+| `/web/player.html` | Play any script with a timeline scrubber; load your own JSON file. Stories show scene markers above the scrubber (click one to jump). "Bundles" loads catalog bundle zips the script declares (checked in the page) |
 | `/web/showcase.html` | The whole catalog with live previews: characters and presets, looks, faces, moves, effects, sounds, places, objects, activities, macros, camera and transitions, music moods, examples and rules. Search, tag filter, body plan and color pickers, light/dark, "copy JSON" on every card, deep links such as `showcase.html#moves/hug`. Run `npm run catalog:media` once to hear the moods, `npm run sfx` for the sounds |
 | `/web/catalog.html` | Redirects to the Moves section of the showcase |
 | `/web/player.html?src=<url>` | Opens a script or example directly (the showcase's "open in player") |
 | `/web/editor.html` | Pose and move editor, for adding or changing moves |
+| `/web/bundles.html` | Check a catalog bundle zip (every step, with the render checks), see its contact sheet and README, keep it in this browser |
+| `/web/showcase.html` "bundles" switch | Adds the kept and imported bundles' entries to every section, marked with the bundle's name |
 | `/` (`/web/index.html`) | Home page: links to every page, showcase sections and samples, the catalog's counts, common commands |
 | `/web/poses.html` | Pose viewer |
 

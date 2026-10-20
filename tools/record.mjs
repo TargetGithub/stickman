@@ -11,6 +11,8 @@
 //   --crf 16 --preset medium   x264 quality settings
 //   --speech babble|tts    spoken dialogue (SPEECH_SPEC): babble (default, or meta.speech) or offline Piper voices
 //   --voices file.json     per-character TTS voices for --speech tts (cast id → { model, speaker, rate, pitch, off })
+//   --bundle <dir|zip>     a catalog bundle the script declares (repeatable; imported bundles are found in
+//                          the store without it); credits go into meta.json
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { basename, join } from "node:path";
@@ -28,19 +30,22 @@ import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
-import { catalog } from "../catalog/index.js";
+import { catalog as baseCatalog } from "../catalog/index.js";
+import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_args.mjs";
 
-const args = process.argv.slice(2);
+const { args } = splitBundleArgs(process.argv.slice(2));
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
 const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices)$/));
 if (!file) {
-  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio]");
+  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
   process.exit(2);
 }
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "video";
 const script = JSON.parse(readFileSync(file, "utf8"));
+// --bundle <dir|zip> (repeatable), and the store (bundles/) for the bundles the script declares.
+const { catalog, bundles } = await catalogFromArgs(process.argv.slice(2), baseCatalog, script);
 const backend = await loadBackend();
 const engine = createEngine({ catalog, createCanvas: backend.createCanvas });
 // Spoken dialogue: render (or reuse) each line's audio first, so the engine can give every line its length.
@@ -175,6 +180,8 @@ const info = {
   timeline: loaded.timeline,
   renderSeconds: Number(renderSeconds.toFixed(2)),
   totalSeconds: Number(seconds().toFixed(2)),
+  // Bundles the script uses (CATALOG_BUNDLE_SPEC 7.3, 8): pins and credits; NC bundles mark the video non-commercial.
+  ...(script.bundles?.length ? { bundles: bundleCredits(script, bundles), nonCommercial: bundleCredits(script, bundles).some((b) => b.license === "CC-BY-NC-4.0") } : {}),
   files: [enc ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(speech ? ["speech.json"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
 };
 writeFileSync(join(dir, "meta.json"), JSON.stringify(info, null, 2) + "\n");

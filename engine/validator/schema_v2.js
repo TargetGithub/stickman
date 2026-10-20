@@ -4,7 +4,7 @@
 // validate() checks with schemaV2For(catalog), which takes those names from the catalog.
 
 import { LIMITS_V2 as L } from "../config.js";
-import { ID, COLOR, V2_ENUMS as E, DEST, catalogNames } from "./v2_names.js";
+import { ID, COLOR, V2_ENUMS as E, DEST, BUNDLE_PINS, catalogNames } from "./v2_names.js";
 import { MACRO_PARAMS, MACRO_ANCHORS, macroParamsFor } from "./macro_params.js";
 
 const idRef = { type: "string", pattern: ID };
@@ -322,6 +322,7 @@ const makeSchemaV2 = (moods, enums, macroParams) => ({
   additionalProperties: false,
   properties: {
     version: { const: 2 },
+    bundles: BUNDLE_PINS,
     meta: {
       type: "object",
       required: ["title", "format", "seed"],

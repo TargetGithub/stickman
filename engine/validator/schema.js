@@ -3,6 +3,7 @@
 // The checker below implements the subset of JSON Schema this schema uses.
 
 import { checkValue } from "./check_value.js";
+import { BUNDLE_PINS } from "./v2_names.js";
 import { LIMITS } from "../config.js";
 
 const ID = "^[a-z][a-z0-9_]{0,23}$";
@@ -28,6 +29,7 @@ export const jsonSchema = {
   additionalProperties: false,
   properties: {
     version: { const: 1 },
+    bundles: BUNDLE_PINS,
     meta: {
       type: "object",
       required: ["title", "format", "seed"],

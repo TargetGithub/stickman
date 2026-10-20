@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Stickman Bundles</title>
+  <style>
+    @font-face { font-family: "Bangers"; src: url("../assets/fonts/Bangers-Regular.ttf"); }
+    @font-face { font-family: "Inter"; src: url("../assets/fonts/Inter.ttf"); }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 13px Inter, system-ui, sans-serif; background: #15161a; color: #e8e8ea; padding: 16px 20px 40px; }
+    h1 { font-size: 17px; margin: 0 0 4px; }
+    h2 { font-size: 12px; color: #9a9ca3; text-transform: uppercase; letter-spacing: .04em; margin: 22px 0 8px; }
+    p.lead { color: #9a9ca3; margin: 0 0 14px; max-width: 760px; }
+    a { color: #7fd8ff; }
+    button, input[type=file] { font: inherit; background: #2b2e35; color: inherit; border: 1px solid #3a3e47; border-radius: 4px; padding: 4px 10px; }
+    button { cursor: pointer; }
+    button:disabled { opacity: .5; cursor: default; }
+    #drop { border: 2px dashed #3a3e47; border-radius: 8px; padding: 22px; text-align: center; color: #9a9ca3; max-width: 760px; }
+    #drop.over { border-color: #7fd8ff; color: #e8e8ea; }
+    .card { background: #1d1f24; border: 1px solid #2b2e35; border-radius: 8px; padding: 12px 14px; margin: 12px 0; max-width: 1560px; }
+    .card h3 { font-size: 14px; margin: 0 0 6px; }
+    .meta { color: #9a9ca3; font-size: 12px; margin-bottom: 8px; word-break: break-all; }
+    .badge { display: inline-block; font-size: 11px; border-radius: 3px; padding: 1px 6px; margin-right: 6px; background: #2b2e35; }
+    .badge.nc { background: #6b4d12; color: #ffd98a; }
+    .badge.unreviewed { background: #4a3b10; color: #ffcc55; }
+    .badge.reviewed { background: #154a26; color: #7bd88f; }
+    pre { white-space: pre-wrap; font: 11px ui-monospace, monospace; background: #111216; border-radius: 4px; padding: 8px; margin: 6px 0; }
+    .err { color: #ff7b7b; }
+    .warn { color: #ffcc55; }
+    .ok { color: #7bd88f; }
+    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 6px 0; }
+    canvas.sheet { max-width: 100%; border-radius: 6px; background: #fff; margin-top: 8px; }
+    table { border-collapse: collapse; }
+    td { padding: 4px 10px 4px 0; border-bottom: 1px solid #2b2e35; vertical-align: top; }
+  </style>
+</head>
+<body>
+  <h1><a href="index.html" style="color: inherit; text-decoration: none" title="Home">⌂</a> Catalog bundles</h1>
+  <p class="lead">Drop a bundle zip to check it the same way as <code>node tools/bundle.mjs check</code>: every step, with the render checks on this page's canvas, and a contact sheet to look at before you use it. A clean bundle can be kept in this browser; the player then loads it for scripts that declare it. Bundles imported with <code>node tools/bundle.mjs import</code> are in the project store (<code>bundles/</code>) and need no keeping here.</p>
+  <div id="drop">Drop .zip files here, or <input id="pick" type="file" accept=".zip,application/zip" multiple></div>
+  <div id="results"></div>
+  <h2>Kept in this browser</h2>
+  <div id="kept">none</div>
+
+  <script type="module">
+    import { catalog } from "../catalog/index.js";
+    import { checkSources, zipEntries, pageIo, reportSummary } from "./lib/bundles.js";
+    import { contactSheet } from "../tools/lib/bundle/render.mjs";
+    import { catalogWithBundles } from "../tools/lib/bundle/load.mjs";
+    import { keepBundle, keptBundles, forgetBundle } from "./lib/bundle_store.js";
+
+    const $ = (id) => document.getElementById(id);
+    const make = (tag, props = {}, kids = []) => { const e = Object.assign(document.createElement(tag), props); e.append(...kids); return e; };
+
+    /** Bundles already kept here: checked quickly (no render), so new bundles can depend on them. */
+    async function keptLoaded() {
+      const rows = await keptBundles();
+      const sources = [];
+      for (const r of rows) sources.push({ name: `${r.id} (kept)`, ...(await zipEntries(r.zip)) });
+      const { bundles } = await checkSources(sources, catalog, { determinism: false });
+      return bundles;
+    }
+
+    async function showKept() {
+      const rows = await keptBundles();
+      const box = $("kept");
+      box.replaceChildren();
+      if (!rows.length) return (box.textContent = "none");
+      const table = make("table");
+      for (const r of rows.sort((a, b) => (a.id < b.id ? -1 : 1))) {
+        const forget = make("button", { textContent: "Remove", onclick: async () => { await forgetBundle(r.hash); showKept(); } });
+        table.append(make("tr", {}, [
+          make("td", { textContent: `${r.id} ${r.version}` }), make("td", { textContent: r.name }),
+          make("td", {}, [badges(r.license, r.reviewed)]), make("td", { className: "meta", textContent: r.hash }), make("td", {}, [forget]),
+        ]));
+      }
+      box.append(table);
+    }
+
+    function badges(license, reviewed) {
+      const span = make("span");
+      span.append(make("span", { className: "badge", textContent: license }));
+      if (license === "CC-BY-NC-4.0") span.append(make("span", { className: "badge nc", textContent: "NC: do not monetize", title: "Non-commercial licence: videos that use this bundle are marked non-commercial." }));
+      span.append(make("span", { className: `badge ${reviewed ? "reviewed" : "unreviewed"}`, textContent: reviewed ? "reviewed" : "not reviewed" }));
+      return span;
+    }
+
+    async function check(files) {
+      const box = $("results");
+      box.replaceChildren(make("p", { className: "meta", textContent: `checking ${files.length} bundle(s): schemas, references, every move on every body plan, examples, two runs of every script, renders...` }));
+      const loaded = await keptLoaded();
+      const sources = [];
+      for (const f of files) sources.push({ name: f.name, file: f, ...(await zipEntries(await f.arrayBuffer())) });
+      const { catalog: merged, results } = await checkSources(sources, catalog, { render: true, loaded });
+      box.replaceChildren();
+      for (const r of results) box.append(await card(r, sources.find((s) => s.name === r.name), merged, loaded));
+    }
+
+    async function card(r, source, merged, loaded) {
+      const m = r.bundle?.manifest;
+      const div = make("div", { className: "card" });
+      const reviewed = !r.warnings.some((w) => w.code === "W_BUNDLE_UNREVIEWED");
+      div.append(make("h3", { textContent: m ? `${m.name} (${m.id} ${m.version})` : r.name }));
+      if (m) {
+        div.append(make("div", { className: "meta" }, [badges(m.license, reviewed), ` by ${m.author.name} · audience ${m.audience.join(", ")} · ${Object.entries(r.report.counts).map(([k, n]) => `${n} ${k}`).join(", ")}`]));
+        div.append(make("div", { className: "meta", textContent: `hash ${r.bundle.hash} · scripts declare: ${JSON.stringify({ id: m.id, version: m.version, hash: r.bundle.hash })}` }));
+        div.append(make("div", { className: "meta", textContent: m.description }));
+      }
+      div.append(make("div", { className: r.ok ? "ok" : "err", textContent: r.ok ? `checks pass${r.warnings.length ? `, ${r.warnings.length} warning(s)` : ""}${r.report.fullyChecked ? "" : " (not fully checked)"}` : `${r.errors.length} error(s): not imported` }));
+      const issues = [...r.errors, ...r.warnings];
+      if (issues.length) div.append(make("pre", { className: r.ok ? "warn" : "err", textContent: issues.map((i) => `${i.code} ${i.file}${i.path ? ` ${i.path}` : ""}: ${i.message}\n    fix: ${i.fix}`).join("\n") }));
+      div.append(make("div", { className: "meta", textContent: `steps: ${r.report.steps.map((s) => `${s.step}${s.skipped ? " (skipped)" : ` ${s.ms} ms`}`).join(", ")}` }));
+      const row = make("div", { className: "row" });
+      const copy = make("button", { textContent: "Copy report", onclick: () => navigator.clipboard.writeText(JSON.stringify(reportSummary(r), null, 2)) });
+      row.append(copy);
+      if (r.ok) {
+        const keep = make("button", { textContent: "Keep in this browser" });
+        keep.onclick = async () => {
+          await keepBundle({ hash: r.bundle.hash, id: m.id, version: m.version, name: m.name, license: m.license, reviewed, zip: new Uint8Array(await source.file.arrayBuffer()), report: reportSummary(r) });
+          keep.disabled = true;
+          keep.textContent = "Kept";
+          showKept();
+        };
+        row.append(keep);
+      }
+      div.append(row);
+      div.dataset.summary = JSON.stringify(reportSummary(r));
+      const readme = r.bundle?.files["README.md"];
+      if (readme) div.append(make("pre", { textContent: readme })); // plain text, never HTML
+      if (r.ok) {
+        const pins = [...loaded, r.bundle].map(({ id, version, hash }) => ({ id, version, hash }));
+        const sheet = contactSheet(r.bundle.files, catalogWithBundles(catalog, [...loaded, r.bundle]), pageIo(), { title: `${m.name} (${m.id} ${m.version}, ${m.license})`, pins });
+        sheet.className = "sheet";
+        div.append(sheet);
+      }
+      return div;
+    }
+
+    await Promise.all([document.fonts.load("40px Bangers"), document.fonts.load("20px Inter")]);
+    $("pick").addEventListener("change", () => check([...$("pick").files]));
+    const drop = $("drop");
+    drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("over"); });
+    drop.addEventListener("dragleave", () => drop.classList.remove("over"));
+    drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("over"); check([...e.dataTransfer.files].filter((f) => f.name.endsWith(".zip"))); });
+    showKept();
+    window.__bundlesReady = true;
+  </script>
+</body>
+</html>

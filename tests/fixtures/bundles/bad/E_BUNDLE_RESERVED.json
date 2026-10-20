@@ -1,0 +1,20 @@
+{
+  "why": "The id 'world' is reserved.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "bundle.json",
+      [
+        "id"
+      ],
+      "world"
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_RESERVED",
+      "file": "bundle.json",
+      "path": "id"
+    }
+  ]
+}

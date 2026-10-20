@@ -23,6 +23,7 @@ test("the catalog passes every check", () => {
 });
 
 const CASES = [
+  ["a base name of the last release removed", (f) => f["base_names.json"].names.moves.push("old_spin_kick"), /base_names.json moves.old_spin_kick.*bundles may refer to it/],
   ["a move without a description", (f) => delete f["moves/emotes.json"][0].description, /emotes.json.*description/],
   ["a move with no tags", (f) => (f["moves/life.json"][0].tags = []), /life.json.*E_SCHEMA_SIZE/],
   ["a tag in capitals", (f) => (f["world/themes.json"].arena.tags = ["Fight"]), /themes.json.*E_SCHEMA_PATTERN/],

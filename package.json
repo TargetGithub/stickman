@@ -11,6 +11,7 @@
     "test": "node --test tests/",
     "test:unit": "node --test tests/unit/",
     "test:integration": "node --test tests/integration/",
+    "test:timing": "STICKMAN_TIMING=1 node --test tests/unit/bundle_check.test.js",
     "serve": "node tools/serve.mjs 5173",
     "validate": "node tools/validate.mjs",
     "record": "node tools/record.mjs",
