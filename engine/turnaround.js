@@ -54,6 +54,12 @@ export function yawAt(track, t) {
   return before.yaw + (now.yaw - before.yaw) * easings.inOutQuad(clamp(u, 0, 1));
 }
 
+/**
+ * A yaw kept within maxTurn degrees of profile (look.maxTurn, V3.9): 90 allows full front and back; 60 makes a
+ * front view a near-front three-quarter (30°) and a back view 150°, the way 2D cartoons avoid a flat front.
+ */
+export const limitYaw = (yaw, maxTurn = 90) => clamp(yaw, 90 - maxTurn, 90 + maxTurn);
+
 /** How far the face slides across the head (in head radii) at a yaw: 0 in profile, FACE_SHIFT from the front. */
 export const faceShiftOf = (yaw) => FACE_SHIFT * Math.max(0, Math.cos((Math.min(yaw, 90) * Math.PI) / 180));
 /** Whether the face shows at a yaw (it turns away past three-quarter back). */

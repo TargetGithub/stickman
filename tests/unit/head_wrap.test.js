@@ -35,3 +35,8 @@ test("turnedHumanoid: wrap is |cos yaw| (0 side, 1 front and back)", () => {
   assert.equal(turnedHumanoid(c, 90, null), null);
   for (const [yaw, wrap] of [[0, 1], [45, Math.SQRT1_2], [135, Math.SQRT1_2], [180, 1]]) near(turnedHumanoid(c, yaw, null).wrap, wrap, 1e-9);
 });
+
+test("limitYaw: look.maxTurn keeps a turn within that many degrees of profile", async () => {
+  const { limitYaw } = await import("../../engine/turnaround.js");
+  for (const [yaw, max, want] of [[0, 90, 0], [180, 90, 180], [0, 60, 30], [180, 60, 150], [50, 60, 50], [90, 0, 90], [0, 0, 90]]) assert.equal(limitYaw(yaw, max), want, `${yaw} at ${max}`);
+});

@@ -49,6 +49,7 @@ export function sceneViews(sim, catalog) {
         lensBase: { ...LENS_DEFAULTS, vignette: LENS_DEFAULTS.vignette * k, ...(sc.lens || {}) },
         handheld: createHandheld(deriveRng(sim.meta?.seed ?? 1, `handheld@${sc.id ?? i}`)),
         viewTracks: viewTracks(ev, sc, catalog, k),
+        maxTurn: sim.story?.look?.maxTurn ?? 90,
       } : {}),
       placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
       depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),

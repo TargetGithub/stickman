@@ -6,7 +6,7 @@ import { propTransform } from "../props.js";
 import { drawProp } from "./props.js";
 import { drawFace } from "./face.js";
 import { drawQuadruped } from "./quadruped.js";
-import { drawTorso, drawOutfit } from "./bodies.js";
+import { drawTorso, drawOutfit, torsoPath } from "./bodies.js";
 import { boxHeadPath, drawBolts } from "./robot.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
 import { shadeStrokes, shadeHead, shadeTorso } from "./shading.js";
@@ -66,7 +66,12 @@ function drawHead(ctx, j, r, lw, style, facing) {
   }
   ctx.fillStyle = style.color;
   ctx.fill();
-  if (style.light && style.draw !== "box") shadeHead(ctx, j.head, r, style.light);
+  if (style.light && style.draw !== "box") {
+    shadeHead(ctx, j.head, r, style.light);
+    // The shading leaves its own last arc as the current path (paths are not part of save/restore): redo the head.
+    ctx.beginPath();
+    ctx.arc(j.head.x, j.head.y, r, 0, Math.PI * 2);
+  }
   if (style.outline) {
     ctx.lineWidth = lw * 0.45;
     ctx.strokeStyle = style.outlineColor;
@@ -164,7 +169,16 @@ export function drawCharacter(ctx, j, style) {
   const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale };
   if (!drawTorso(ctx, j, torso)) {
     strokeGroup(ctx, [[j.hip, j.shoulder, j.neckTop]], s.color, lw, s);
-  } else if (s.light) shadeTorso(ctx, j, torso, s.light);
+  } else if (s.light) {
+    shadeTorso(ctx, j, torso, s.light);
+    // The shading covers the inner half of the outline: stroke it again on top, as wide as v1/v2 draw it.
+    if (s.outline && s.draw !== "box") {
+      ctx.strokeStyle = s.outlineColor;
+      ctx.lineWidth = lw * 0.45;
+      torsoPath(ctx, j, torso);
+      ctx.stroke();
+    }
+  }
   if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth });
   if (acc.bowtie) drawBowtie(ctx, j, headR, acc.bowtie, s.facing);
   drawHead(ctx, j, headR, lw, s, s.facing);
