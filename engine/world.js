@@ -13,8 +13,9 @@ import { spawnProjectile, stepWorldProjectiles, projectileArrival } from "./proj
 import {
   deriveReach, requiredStartX, whiffGap, canReach, motionScale, limbReach, MAX_ASSIST_LEAN, resolveAimPoint, aimPointByName, aimCandidates, applyAimIK, ikWeight, sweptHit, buildHurtboxes,
 } from "./combat.js";
-import { rootOffsetAt } from "./moves.js";
+import { rootOffsetAt, isIdleMove } from "./moves.js";
 import { COMBAT, STAGE } from "./config.js";
+import { sameDepth } from "./depth.js";
 
 export const OUTCOMES = ["hit", "whiff", "blocked", "parried", "dodged"];
 
@@ -233,7 +234,7 @@ function resolveHits(world, windowsByActor) {
       const part = attacker.joints[hit.part] || attacker.joints.rHand;
       const prev = m.prevPart[index] || part;
       m.prevPart[index] = part;
-      const targets = (world.mode === "choreographed" ? [world.byId.get(m.target)] : world.actors.filter((t) => t !== attacker && t.alive)).filter((t) => !t.hidden);
+      const targets = (world.mode === "choreographed" ? [world.byId.get(m.target)] : world.actors.filter((t) => t !== attacker && t.alive)).filter((t) => t && !t.hidden && sameDepth(attacker, t));
       for (const target of targets) {
         const key = `${index}:${target.id}`;
         if (m.hitIds.has(key)) continue;
@@ -327,6 +328,7 @@ function fadeVisibility(actor, dt) {
 
 function separationSkip(a, b) {
   if (a.hidden || b.hidden) return true;
+  if (!sameDepth(a, b)) return true; // different depths never touch (V3.2)
   if (a.pairedWith === b.id || b.pairedWith === a.id) return true; // paired moves touch (S5)
   const engaged = (x, y) => x.move && x.move.target === y.id && x.move.def.category === "attack";
   const ghost = (x) => x.move?.def.flags.passThrough || x.holding || x.launched;
@@ -335,6 +337,14 @@ function separationSkip(a, b) {
   const passing = (x, y) => x.move && x.move.target && x.move.target !== y.id && x.move.def.category === "movement";
   return engaged(a, b) || engaged(b, a) || ghost(a) || ghost(b) || passing(a, b) || passing(b, a);
 }
+
+/**
+ * Story scripts (Sridhar, 2026-10-19): a character only moves when its own script moves it. A walker passes
+ * over anyone standing, waving or sitting; separation applies only between two characters that are both
+ * travelling or attacking under their own moves.
+ */
+const travelling = (x) => !!x.move && (x.move.def.category === "movement" || x.move.def.category === "attack") && !isIdleMove(x.move.def);
+const storySeparationSkip = (a, b) => separationSkip(a, b) || !travelling(a) || !travelling(b);
 
 /**
  * Advance the world by dt story seconds (spec 6). dt = 0 (hitstop, freeze) only re-poses.
@@ -371,7 +381,7 @@ export function stepWorld(world, dt) {
         if (e.type === "land") onLand(world, actor, e);
       }
     }
-    separate(world.actors, separationSkip);
+    separate(world.actors, world.passOver ? storySeparationSkip : separationSkip);
   }
   for (const actor of world.actors) poseActor(actor, dt, snapHard.get(actor));
   for (const actor of world.actors) aimLimbs(world, actor);

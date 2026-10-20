@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "meta": { "title": "Camera move unknown", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
+  "cast": [{ "id": "kai", "color": "#3fd8ff" }, { "id": "pip", "body": "buddy", "color": "#ffd23f" }],
+  "scenes": [{ "id": "s1", "location": "city_park", "camera": [{ "at": 0, "mode": "follow", "move": "barrel_roll" }],
+    "cast": [{ "id": "kai", "x": 1300, "facing": 1 }, { "id": "pip", "x": 1900, "facing": -1 }],
+    "beats": [{ "id": "b1", "at": 0.5, "who": "pip", "do": "wave" }, { "id": "b2", "at": { "after": "b1" }, "who": "world", "do": "set_camera", "params": { "move": "zoomzoom" } }, { "id": "b3", "at": { "after": "b1" }, "who": "kai", "do": "wave" }, { "id": "end", "at": { "after": "b3", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.5 } }] }]
+}

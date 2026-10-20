@@ -116,7 +116,7 @@ function activities(full) {
 function macros(full, vocab) {
   const docs = full.docs.macros;
   const world = full.docs.world_commands;
-  const story = ["narrate", "title_card", "chapter_card", "time_card", "end_card", "shot", "set_music", "music_cue", "set_appearance", "set_glow", "set_grade", "sfx", "activity"].filter((n) => world[n]);
+  const story = ["narrate", "title_card", "chapter_card", "time_card", "end_card", "shot", "set_music", "music_cue", "set_appearance", "set_glow", "set_grade", "set_light", "set_camera", "sfx", "activity"].filter((n) => world[n]);
   return { title: "Story macros", intro: "One macro beat replaces many beats. Each card plays the macro's example.",
     cards: [
       ...Object.entries(docs).map(([n, d]) => card({ id: n, name: `@${n}`, description: d.description, tags: ["macro"], group: "Macros",

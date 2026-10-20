@@ -32,7 +32,7 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 
 ## Validator codes
 
-- E_VERSION: version is not 1 or 2 → 1 for a clip, 2 for a story.
+- E_VERSION: version is not 1, 2 or 3 → 1 for a clip, 2 for a story, 3 for a story with depth.
 - E_SCHEMA_TYPE: wrong JSON type → Numbers unquoted, lists in [], objects in {}.
 - E_SCHEMA_REQUIRED: a required field is missing → Add the field the message names.
 - E_SCHEMA_UNKNOWN_FIELD: a field that does not exist → Remove it or use the suggested name.
@@ -116,3 +116,4 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - E_BUNDLE_MISSING: a bundle the script declares in "bundles" is not loaded → Import the bundle (or pass --bundle to the tool), or remove it from "bundles".
 - E_BUNDLE_UNDECLARED: a name with a colon (bundle:name) from a bundle the script does not declare → Add that bundle's {id, version, hash} line to "bundles".
 - W_BUNDLE_UNUSED: a declared bundle that no name in the script uses → Remove it from "bundles", or use one of its entries.
+- Version 3 scripts only: E_DEPTH_RANGE (a z (placement, set piece or to.z) is outside the scene's depth range); E_DEPTH_LAYER (a node gives both z and layer); E_LIGHT_UNKNOWN (an unknown light rig preset (scene or location light, set_light)); E_CAMERA_MOVE (an unknown named camera move (a v3 camera key move or set_camera)); E_LAYER_REF (a text, shape, mask or parent names a layer or shape that does not exist, or layer parents loop); E_REF_SCENE (a layer, text, shape or track names a scene that does not exist); E_TRACK_TARGET (a track target that is not keyable, or names a missing node); E_TRACK_KEYS (a key value of the wrong kind, two keys at one time, or a path or line missing its points); E_TRACK_EASE (an unknown easing on a key); E_TEXT_STYLE (an unknown text style); E_VIEW_BODY (a character is asked for a turnaround view its body plan does not have); E_AUDIO_TRACK (an audio track with an unknown mood, bed or SFX key, a missing field, or a duck rule under nothing); E_MARKER_UNKNOWN (a beat or sfx track starts at a marker that does not exist, or that is in another scene); E_TEMPLATE_UNKNOWN (a scene uses a template that is not in the catalog); E_TEMPLATE_PARAM (a template param is missing, unknown or of the wrong type).

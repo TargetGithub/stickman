@@ -1,0 +1,43 @@
+{
+  "version": 3,
+  "meta": { "title": "V3.6 Turnaround: Say Hello to the Camera", "format": "landscape", "seed": 36, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "sam", "name": "Sam", "color": "#ff9f43" },
+    { "id": "kai", "name": "Kai", "body": "kid", "color": "#3fd8ff", "appearance": { "hair": "spiky", "hairColor": "#2b2b2b", "outfit": "shirt", "outfitColor": "#ffd23f" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#ffb0d0", "appearance": { "eyes": "big", "cheeks": "#ff8fb0" } },
+    { "id": "brute", "name": "Brute", "body": "bulky", "color": "#c9d2ff" },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f0d2a0" }
+  ],
+  "locations": [{ "id": "park", "theme": "city_park", "set": [{ "id": "tree_far", "object": "tree_big", "x": 2600, "z": -1200 }] }],
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "park",
+      "music": { "mood": "playful" },
+      "camera": [{ "at": 0, "mode": "fixed", "x": 1600, "zoom": 1.05 }],
+      "cast": [
+        { "id": "sam", "x": 900, "facing": 1 },
+        { "id": "kai", "x": 1250, "facing": 1 },
+        { "id": "pip", "x": 1600, "facing": -1, "view": "three_quarter" },
+        { "id": "brute", "x": 1950, "facing": -1 },
+        { "id": "becky", "x": 2300, "facing": -1 }
+      ],
+      "beats": [
+        { "id": "turn1", "at": 0.8, "who": "kai", "do": "wait", "params": { "seconds": 0.6 }, "view": "front" },
+        { "id": "turn2", "at": { "with": "turn1", "delay": 0.3 }, "who": "sam", "do": "wait", "params": { "seconds": 0.6 }, "view": "three_quarter" },
+        { "id": "turn3", "at": { "with": "turn1", "delay": 0.6 }, "who": "becky", "do": "wait", "params": { "seconds": 0.6 }, "view": "front" },
+        { "id": "hi", "at": { "after": "turn1", "delay": 0.4 }, "macro": "dialogue", "params": { "lines": [["kai", "Hello, everyone at home!", "happy"]] } },
+        { "id": "w1", "at": { "after": "hi" }, "who": "pip", "do": "wave" },
+        { "id": "away", "at": { "with": "w1" }, "who": "brute", "do": "wait", "params": { "seconds": 0.6 }, "view": "back" },
+        { "id": "look", "at": { "after": "away", "delay": 0.8 }, "macro": "dialogue", "params": { "lines": [["brute", "What a big tree back there.", "surprised"]] } },
+        { "id": "back", "at": { "after": "look" }, "who": "brute", "do": "wait", "params": { "seconds": 0.6 }, "view": "front" },
+        { "id": "cheer", "at": { "after": "back" }, "who": "sam", "do": "cheer" },
+        { "id": "clap", "at": { "with": "cheer", "delay": 0.2 }, "who": "brute", "do": "clap" },
+        { "id": "jump", "at": { "with": "cheer", "delay": 0.4 }, "who": "kai", "do": "jump_joy" },
+        { "id": "side", "at": { "after": "cheer", "delay": 0.4 }, "who": "kai", "do": "walk", "to": { "x": 1450 }, "view": "side" },
+        { "id": "dogside", "at": { "with": "side" }, "who": "becky", "do": "walk", "to": { "x": 2000 }, "view": "side" },
+        { "id": "end", "at": { "after": "side", "delay": 0.6 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

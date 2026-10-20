@@ -1,0 +1,431 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "V3.9 Polish: Good Morning, Village",
+    "format": "landscape",
+    "seed": 39,
+    "kind": "clip",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      }
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1.0
+        }
+      }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      }
+    },
+    {
+      "id": "motumal",
+      "name": "Mayor Motumal",
+      "body": "bulky",
+      "color": "#ffb347",
+      "appearance": {
+        "outfit": "coat",
+        "outfitColor": "#ff9f1c",
+        "accessories": {
+          "moustache": "#2a1a14",
+          "turban": "#f6c445"
+        }
+      },
+      "voice": {
+        "pitch": 0.75,
+        "speed": 0.9,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -4,
+          "rate": 0.9
+        }
+      }
+    },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "body": "elder",
+      "scale": 0.9,
+      "color": "#e8a87c",
+      "appearance": {
+        "eyes": "glasses",
+        "hair": "bun",
+        "hairColor": "#f2f2f2",
+        "outfit": "robe",
+        "outfitColor": "#8e5bd6"
+      },
+      "voice": {
+        "pitch": 1.1,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": -2,
+          "rate": 0.85
+        }
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "square",
+      "theme": "tokyo_village",
+      "stageWidth": 3200,
+      "ambience": "park_birds",
+      "set": [
+        {
+          "id": "far_tree",
+          "object": "tree_big",
+          "x": 2350,
+          "z": -900
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "square",
+      "music": {
+        "mood": "playful"
+      },
+      "camera": [
+        {
+          "at": 0,
+          "mode": "fixed",
+          "x": 1600,
+          "zoom": 1.15
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1
+        },
+        {
+          "id": "doomi",
+          "x": 1480,
+          "facing": -1
+        },
+        {
+          "id": "mooka",
+          "x": 1650,
+          "facing": -1
+        },
+        {
+          "id": "motumal",
+          "x": 1880,
+          "facing": -1
+        },
+        {
+          "id": "nani",
+          "x": 2250,
+          "facing": -1,
+          "z": -700
+        }
+      ],
+      "beats": [
+        {
+          "id": "t1",
+          "at": 0.6,
+          "who": "doopi",
+          "do": "wait",
+          "params": {
+            "seconds": 0.5
+          },
+          "view": "front"
+        },
+        {
+          "id": "t2",
+          "at": {
+            "with": "t1",
+            "delay": 0.2
+          },
+          "who": "doomi",
+          "do": "wait",
+          "params": {
+            "seconds": 0.5
+          },
+          "view": "front"
+        },
+        {
+          "id": "t3",
+          "at": {
+            "with": "t1",
+            "delay": 0.4
+          },
+          "who": "motumal",
+          "do": "wait",
+          "params": {
+            "seconds": 0.5
+          },
+          "view": "front"
+        },
+        {
+          "id": "t4",
+          "at": {
+            "with": "t1",
+            "delay": 0.5
+          },
+          "who": "mooka",
+          "do": "wait",
+          "params": {
+            "seconds": 0.5
+          },
+          "view": "front"
+        },
+        {
+          "id": "hi",
+          "at": {
+            "after": "t4",
+            "delay": 0.3
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Good morning, everyone!",
+                "happy"
+              ],
+              [
+                "motumal",
+                "Welcome to our village square.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "look",
+          "at": {
+            "after": "hi",
+            "delay": 0.3
+          },
+          "who": "doomi",
+          "do": "wait",
+          "params": {
+            "seconds": 0.6
+          },
+          "view": "back"
+        },
+        {
+          "id": "q",
+          "at": {
+            "with": "look",
+            "delay": 0.5
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Look, Nani is coming!",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "rack",
+          "at": {
+            "with": "q"
+          },
+          "who": "world",
+          "do": "set_camera",
+          "params": {
+            "focus": "nani",
+            "dof": 0.7,
+            "dur": 1.2
+          }
+        },
+        {
+          "id": "nwave",
+          "at": {
+            "after": "q",
+            "delay": 0.2
+          },
+          "who": "nani",
+          "do": "wave"
+        },
+        {
+          "id": "nsay",
+          "at": {
+            "after": "nwave"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "Hello, my little ones.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "back",
+          "at": {
+            "after": "nsay"
+          },
+          "who": "world",
+          "do": "set_camera",
+          "params": {
+            "focus": "doopi",
+            "dof": 0,
+            "dur": 1
+          }
+        },
+        {
+          "id": "ncome",
+          "at": {
+            "after": "nsay",
+            "delay": 0.2
+          },
+          "who": "nani",
+          "do": "walk",
+          "to": {
+            "z": 0,
+            "x": 2080
+          }
+        },
+        {
+          "id": "front2",
+          "at": {
+            "with": "back"
+          },
+          "who": "doomi",
+          "do": "wait",
+          "params": {
+            "seconds": 0.5
+          },
+          "view": "front"
+        },
+        {
+          "id": "cheer",
+          "at": {
+            "after": "ncome",
+            "delay": 0.2
+          },
+          "who": "mooka",
+          "do": "jump_joy"
+        },
+        {
+          "id": "clap",
+          "at": {
+            "with": "cheer",
+            "delay": 0.2
+          },
+          "who": "doopi",
+          "do": "clap"
+        },
+        {
+          "id": "leave",
+          "at": {
+            "after": "clap",
+            "delay": 0.3
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "z": -650,
+            "x": 1150
+          }
+        },
+        {
+          "id": "end",
+          "at": {
+            "after": "leave",
+            "delay": 0.4
+          },
+          "who": "world",
+          "do": "fade",
+          "params": {
+            "to": "black",
+            "dur": 0.8
+          }
+        }
+      ]
+    }
+  ]
+}

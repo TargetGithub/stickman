@@ -172,8 +172,14 @@ function storyTools(src) {
     "## Audience rules", audienceMarkdown(c, "kids"), audienceMarkdown(c, "general"));
 }
 
+/** Codes only version 3 scripts can get (depth, light, camera, motion graphics, views, audio tracks, templates). */
+export const V3_CODES = new Set(["E_DEPTH_RANGE", "E_DEPTH_LAYER", "E_LIGHT_UNKNOWN", "E_CAMERA_MOVE", "E_LAYER_REF", "E_REF_SCENE", "E_TRACK_TARGET", "E_TRACK_KEYS", "E_TRACK_EASE", "E_TEXT_STYLE", "E_VIEW_BODY", "E_AUDIO_TRACK", "E_MARKER_UNKNOWN", "E_TEMPLATE_UNKNOWN", "E_TEMPLATE_PARAM"]);
+
 function rules(src) {
-  const codes = Object.entries(src.files["docs/codes.json"]).map(([k, v]) => `- ${k}: ${v.meaning} → ${v.fix}`).join("\n");
+  const all = Object.entries(src.files["docs/codes.json"]);
+  // v1/v2 codes with their fixes; the version 3 codes on one line (meanings only) to keep the pack small.
+  const codes = [...all.filter(([k]) => !V3_CODES.has(k)).map(([k, v]) => `- ${k}: ${v.meaning} → ${v.fix}`),
+    `- Version 3 scripts only: ${all.filter(([k]) => V3_CODES.has(k)).map(([k, v]) => `${k} (${v.meaning})`).join("; ")}.`].join("\n");
   const lim = `Clips: up to ${LIMITS.characters} characters, ${LIMITS.beats} beats, ${LIMITS.minDuration}-${LIMITS.maxDuration} s. Stories: up to ${LIMITS_V2.cast} in the cast, ${LIMITS_V2.onStage} on stage, ${LIMITS_V2.scenes} scenes, ${LIMITS_V2.locations} locations, ${LIMITS_V2.extras} extras, ${LIMITS_V2.beatsPerScene} beats a scene, scenes up to ${LIMITS_V2.sceneMax} s, at most ${LIMITS_V2.maxDuration} s in all.`;
   return doc("Rules and codes", src.texts["docs/rules.md"], "## Limits", lim, "## Validator codes", codes);
 }

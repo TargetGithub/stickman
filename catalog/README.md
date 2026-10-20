@@ -33,9 +33,13 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `world/themes.json` | themes: sky, layers, ground, `characterBg` |
 | `world/objects.json` | objects: behavior, drawing, size, colors, states, slots, hold data |
 | `world/props.json` | the six v1 props |
+| `world/lights.json` | light rig presets (V3.3): key, fill, rim, ambient, shadow and fog per rig, and `byTime` (which rig each time of day uses) |
+| `world/camera_moves.json` | named camera moves (V3.4): keyframe curves over dolly, truck, crane, tilt, roll, push and handheld, with a default `dur` (`absolute` moves blend to their last key) |
+| `world/text_styles.json` | text styles for v3 titles and captions (V3.5): font (Bangers or Inter), size, colour, outline, shadow, box |
 | `world/ambience.json` | ambience beds (names are the engine's; recipes in `tools/lib/ambience.mjs`) |
 | `story/activities.json` | activities: players, roles, objects, endings, rally data |
 | `story/music_moods.json` | `scales` and `moods` (read by `tools/lib/music_gen.mjs`) |
+| `story/templates.json` | script templates for v3 scripts (V3.8): typed `params` and a `fragment` (scenes, text, layers, shapes, tracks, audioTracks, markers) with `${name}` placeholders; `${id}` is the using scene's id |
 | `story/macro_lines.json` | lines the story compiler writes itself (under 40 characters) |
 | `story/blocklist.json` | `blocklist` (errors) and `softWords` (warnings with a kinder word) |
 | `story/tts_voices.json` | default Piper voices per timbre and the narrator for `--speech tts` (SPEECH_SPEC 5; tools only) |
@@ -75,6 +79,7 @@ Drafts added with `--write` get the tag `draft` and the description they were dr
 
 - **Moves** (spec 8.1): keys `{t, pose, ease, propAngle}`, root `{t, dx, dy, ease}` (numbers or param expressions such as `"travel*1.05"`), hits, events, flags (`loop`, `hold`, `airborne`, `ranged`, `guard [t0, t1, kind]`, `invulnerable [t0, t1]`, `keepPose`, `durationParam`, `partner`, `defeat`), `needsProp` (a prop kind, `"any"`), `pair` (paired moves, `engine/story/pairs.js`). Attack wind-ups take at least 15% of the duration.
 - **Poses**: `+` is forward for rot, lean, head, UA, TH; FA `+` flexes the elbow; SH `+` flexes the knee. `l*` is the far limb, `r*` the near limb. Missing channels default to stand.
+- **Views** (V3.6): body plans list `views` (side, three_quarter, front, back) and `turn` widths (`shoulder`, `hip` half spans at scale 1, `foreshorten`); a move's `view` turns the character to that view while it runs (v3 scenes).
 - **Bodies**: `draw` stick, capsule or trapezoid; `torsoWidth` is the half-width of a filled torso; `posture` offsets every pose; `avoid` lists attacks the compiler leaves out of generated fights.
 - **FX layers**: shape, count, angle, speed, life, size, width, gravity, drag, color, alpha, offset, spreadY, vrot, attach, orbit, glyph, tintable (spec 13.1).
 - **Themes**: sky gradient, parallax layers (`factor` 0-1; kinds in `engine/renderer/background.js`), ground, `characterBg` (the contrast check's background).

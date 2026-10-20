@@ -1,0 +1,4465 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Script schema v2.0-rc (S0 freeze, 2026-10-16). Generated from engine/validator/schema_v2.js. Catalog enums (moves, themes, objects, world commands) are filled in on export, as in v1.",
+  "title": "StickmanStoryV3",
+  "type": "object",
+  "required": [
+    "version",
+    "meta",
+    "cast",
+    "scenes"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 3
+    },
+    "bundles": {
+      "type": "array",
+      "maxItems": 8,
+      "description": "Catalog bundles this script uses: each { id, version, hash } exactly as the bundle's context pack gives it. Names with a colon come from these bundles.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "version",
+          "hash"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{2,31}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})$"
+          },
+          "hash": {
+            "type": "string",
+            "pattern": "^sha256-[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "title",
+        "format",
+        "seed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "format": {
+          "enum": [
+            "landscape",
+            "portrait"
+          ]
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2147483647
+        },
+        "kind": {
+          "enum": [
+            "story",
+            "fight",
+            "clip"
+          ],
+          "description": "story (default; at least 300 s), fight (fight-only video; at least 180 s) or clip (no minimum)."
+        },
+        "audience": {
+          "enum": [
+            "kids",
+            "general"
+          ],
+          "description": "Content rules (STORY_SPEC 13). Default kids."
+        },
+        "style": {
+          "enum": [
+            "default",
+            "soft",
+            "ink"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "choreographed",
+            "simulated"
+          ]
+        },
+        "hpBars": {
+          "type": "boolean"
+        },
+        "autoCamera": {
+          "enum": [
+            true,
+            false,
+            "story"
+          ]
+        },
+        "speakerNames": {
+          "type": "boolean"
+        },
+        "tail": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "speech": {
+          "enum": [
+            "babble",
+            "tts"
+          ],
+          "description": "Default speech for renders (SPEECH_SPEC 2): babble syllables or offline spoken voices."
+        },
+        "narrator": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.-]{1,64}$",
+              "description": "Piper voice name, e.g. en_US-kristin-medium."
+            },
+            "speaker": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2000
+            },
+            "rate": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 2
+            },
+            "pitch": {
+              "type": "number",
+              "minimum": -12,
+              "maximum": 12,
+              "description": "Semitones, applied after synthesis."
+            },
+            "off": {
+              "type": "boolean",
+              "description": "Keep babble for this voice even in tts renders."
+            }
+          },
+          "description": "Spoken voice for narration in tts renders (SPEECH_SPEC 3)."
+        }
+      }
+    },
+    "cast": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "color"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 16,
+            "description": "Display name for HP bars and speaker labels."
+          },
+          "body": {
+            "type": "string",
+            "description": "Body plan from the catalog (default stickman; E_BODY_UNKNOWN)."
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "scale": {
+            "type": "number",
+            "minimum": 0.4,
+            "maximum": 4
+          },
+          "hp": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "prop": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "A holdable object kind (the v1 props are holdables)."
+          },
+          "style": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "overlap": {
+                "type": "boolean"
+              },
+              "outline": {
+                "type": "boolean"
+              },
+              "squash": {
+                "type": "boolean"
+              },
+              "glow": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "headband": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "cape": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "hat": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "scarf": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              }
+            }
+          },
+          "appearance": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "eyes": {
+                "type": "string"
+              },
+              "brows": {
+                "type": "string"
+              },
+              "mouthStyle": {
+                "type": "string"
+              },
+              "cheeks": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "hair": {
+                "type": "string"
+              },
+              "hairColor": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "outfit": {
+                "type": "string"
+              },
+              "outfitColor": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              },
+              "belly": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$",
+                "description": "A belly patch color on a capsule body (buddy); hidden under an outfit."
+              },
+              "slots": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 7,
+                "description": "Lit gem slots on the bracelet (rainbow order)."
+              },
+              "accessories": {
+                "type": "object",
+                "description": "Accessory name → color. Also accepts the v1 style accessories (headband, scarf, cape, hat).",
+                "additionalProperties": false,
+                "properties": {
+                  "headband": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "scarf": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "cape": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "hat": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "antenna": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "bowtie": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "mask": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "crown": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "backpack": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "eyepatch": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "hair_flower": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "sprout": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "mittens": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "horns": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "turban": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "moustache": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "stub_horns": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "bracelet": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "chilli_hat": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "pirate_hat": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "beard": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "windup_key": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  }
+                }
+              }
+            }
+          },
+          "voice": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "pitch": {
+                "type": "number",
+                "minimum": 0.5,
+                "maximum": 2
+              },
+              "speed": {
+                "type": "number",
+                "minimum": 0.7,
+                "maximum": 1.4
+              },
+              "timbre": {
+                "enum": [
+                  "soft",
+                  "squeaky",
+                  "deep",
+                  "robot",
+                  "bark"
+                ]
+              },
+              "tts": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.-]{1,64}$",
+                    "description": "Piper voice name, e.g. en_US-kristin-medium."
+                  },
+                  "speaker": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2000
+                  },
+                  "rate": {
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 2
+                  },
+                  "pitch": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Semitones, applied after synthesis."
+                  },
+                  "off": {
+                    "type": "boolean",
+                    "description": "Keep babble for this voice even in tts renders."
+                  }
+                },
+                "description": "Spoken voice for --speech tts renders (SPEECH_SPEC 3); the engine ignores it."
+              }
+            }
+          },
+          "view": {
+            "enum": [
+              "side",
+              "three_quarter",
+              "front",
+              "back"
+            ],
+            "description": "Turnaround view: side, three_quarter, front or back (the body plan must have it: E_VIEW_BODY)."
+          }
+        }
+      }
+    },
+    "locations": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "theme"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Theme from the catalog."
+          },
+          "stageWidth": {
+            "type": "number",
+            "minimum": 1600,
+            "maximum": 12000
+          },
+          "time": {
+            "enum": [
+              "dawn",
+              "day",
+              "dusk",
+              "night"
+            ]
+          },
+          "weather": {
+            "enum": [
+              "clear",
+              "cloudy",
+              "rain",
+              "snow",
+              "wind",
+              "fog"
+            ]
+          },
+          "ambience": {
+            "enum": [
+              "none",
+              "city_traffic",
+              "park_birds",
+              "rain",
+              "wind",
+              "crowd_murmur",
+              "cave_drip"
+            ]
+          },
+          "set": {
+            "type": "array",
+            "maxItems": 40,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "object",
+                "x"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                },
+                "object": {
+                  "type": "string",
+                  "description": "Object kind from the catalog."
+                },
+                "x": {
+                  "type": "number"
+                },
+                "y": {
+                  "type": "number",
+                  "description": "Height above the floor (default 0)."
+                },
+                "layer": {
+                  "enum": [
+                    "back",
+                    "mid",
+                    "front"
+                  ]
+                },
+                "facing": {
+                  "enum": [
+                    1,
+                    -1
+                  ]
+                },
+                "state": {
+                  "type": "string",
+                  "description": "Initial state for objects with states (door: open/closed)."
+                },
+                "z": {
+                  "type": "number",
+                  "minimum": -4000,
+                  "maximum": 2000,
+                  "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
+                }
+              }
+            }
+          },
+          "extras": {
+            "type": "array",
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "required": [
+                "count",
+                "behavior"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 12
+                },
+                "behavior": {
+                  "enum": [
+                    "walk_by",
+                    "idle_chat",
+                    "cheer",
+                    "flee"
+                  ]
+                },
+                "layer": {
+                  "enum": [
+                    "back",
+                    "mid",
+                    "front"
+                  ]
+                },
+                "from": {
+                  "type": "number",
+                  "description": "Left edge of their area (world px)."
+                },
+                "to": {
+                  "type": "number",
+                  "description": "Right edge of their area (world px)."
+                }
+              }
+            }
+          },
+          "light": {
+            "description": "The light rig: a preset name from the catalog (noon, dawn, golden, moonlit, indoor, stage, gloom, flat; E_LIGHT_UNKNOWN), or { \"preset\", ...overrides }. Default: the preset for the scene's time of day.",
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,31}$"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "preset": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  },
+                  "key": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "angle": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 180
+                      },
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "fill": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "rim": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "ambient": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "strength": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  },
+                  "shadow": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "alpha": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "length": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 3
+                      },
+                      "cast": {
+                        "enum": [
+                          "none",
+                          "ground",
+                          "wall"
+                        ]
+                      }
+                    }
+                  },
+                  "fog": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "color": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      "density": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 40,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "location",
+              "cast",
+              "beats"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,31}$"
+              },
+              "location": {
+                "type": "string",
+                "description": "A location id from 'locations', or a theme name (a location with defaults)."
+              },
+              "time": {
+                "enum": [
+                  "dawn",
+                  "day",
+                  "dusk",
+                  "night"
+                ]
+              },
+              "weather": {
+                "enum": [
+                  "clear",
+                  "cloudy",
+                  "rain",
+                  "snow",
+                  "wind",
+                  "fog"
+                ]
+              },
+              "ambience": {
+                "enum": [
+                  "none",
+                  "city_traffic",
+                  "park_birds",
+                  "rain",
+                  "wind",
+                  "crowd_murmur",
+                  "cave_drip"
+                ]
+              },
+              "grade": {
+                "type": "object",
+                "required": [
+                  "saturation"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "saturation": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "keepCast": {
+                    "type": "boolean",
+                    "description": "Characters stay in full colour while the world is grey."
+                  }
+                }
+              },
+              "duration": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 300,
+                "description": "Fixed length; otherwise the last beat's end plus tail."
+              },
+              "tail": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "transitionIn": {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "cut",
+                      "fade",
+                      "dissolve",
+                      "wipe",
+                      "iris",
+                      "card"
+                    ]
+                  },
+                  "dur": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "dir": {
+                    "enum": [
+                      "left",
+                      "right",
+                      "up",
+                      "down"
+                    ],
+                    "description": "wipe: direction."
+                  },
+                  "target": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                    "description": "iris: the character the circle closes on or opens from."
+                  },
+                  "kind": {
+                    "enum": [
+                      "title",
+                      "chapter",
+                      "time",
+                      "end"
+                    ],
+                    "description": "card: which card style (default chapter)."
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  }
+                }
+              },
+              "transitionOut": {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "cut",
+                      "fade",
+                      "dissolve",
+                      "wipe",
+                      "iris",
+                      "card"
+                    ]
+                  },
+                  "dur": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "dir": {
+                    "enum": [
+                      "left",
+                      "right",
+                      "up",
+                      "down"
+                    ],
+                    "description": "wipe: direction."
+                  },
+                  "target": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                    "description": "iris: the character the circle closes on or opens from."
+                  },
+                  "kind": {
+                    "enum": [
+                      "title",
+                      "chapter",
+                      "time",
+                      "end"
+                    ],
+                    "description": "card: which card style (default chapter)."
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  }
+                }
+              },
+              "music": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "mood"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "mood": {
+                        "enum": [
+                          "happy",
+                          "playful",
+                          "calm",
+                          "sad",
+                          "tense",
+                          "mysterious",
+                          "heroic",
+                          "battle",
+                          "boss",
+                          "triumphant",
+                          "lullaby"
+                        ]
+                      },
+                      "intensity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "volume": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  }
+                ]
+              },
+              "cast": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "x"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                    },
+                    "x": {
+                      "type": "number"
+                    },
+                    "facing": {
+                      "enum": [
+                        1,
+                        -1
+                      ]
+                    },
+                    "face": {
+                      "type": "string",
+                      "description": "Face from the catalog (checked semantically: E_FACE_UNKNOWN)."
+                    },
+                    "layer": {
+                      "enum": [
+                        "back",
+                        "mid",
+                        "front"
+                      ]
+                    },
+                    "hp": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 1000
+                    },
+                    "prop": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "hidden": {
+                      "type": "boolean",
+                      "description": "Placed but invisible until it enters (spawn move or the enter macro)."
+                    },
+                    "z": {
+                      "type": "number",
+                      "minimum": -4000,
+                      "maximum": 2000,
+                      "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
+                    },
+                    "view": {
+                      "enum": [
+                        "side",
+                        "three_quarter",
+                        "front",
+                        "back"
+                      ],
+                      "description": "Turnaround view: side, three_quarter, front or back (the body plan must have it: E_VIEW_BODY)."
+                    }
+                  }
+                }
+              },
+              "set": {
+                "type": "array",
+                "maxItems": 20,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "object",
+                    "x"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                    },
+                    "object": {
+                      "type": "string",
+                      "description": "Object kind from the catalog."
+                    },
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number",
+                      "description": "Height above the floor (default 0)."
+                    },
+                    "layer": {
+                      "enum": [
+                        "back",
+                        "mid",
+                        "front"
+                      ]
+                    },
+                    "facing": {
+                      "enum": [
+                        1,
+                        -1
+                      ]
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "Initial state for objects with states (door: open/closed)."
+                    },
+                    "z": {
+                      "type": "number",
+                      "minimum": -4000,
+                      "maximum": 2000,
+                      "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
+                    }
+                  }
+                },
+                "description": "Extra set pieces for this scene only."
+              },
+              "extras": {
+                "type": "array",
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "count",
+                    "behavior"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 12
+                    },
+                    "behavior": {
+                      "enum": [
+                        "walk_by",
+                        "idle_chat",
+                        "cheer",
+                        "flee"
+                      ]
+                    },
+                    "layer": {
+                      "enum": [
+                        "back",
+                        "mid",
+                        "front"
+                      ]
+                    },
+                    "from": {
+                      "type": "number",
+                      "description": "Left edge of their area (world px)."
+                    },
+                    "to": {
+                      "type": "number",
+                      "description": "Right edge of their area (world px)."
+                    }
+                  }
+                }
+              },
+              "camera": {
+                "type": "array",
+                "maxItems": 60,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "at",
+                    "mode"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "at": {
+                      "description": "When the beat runs: seconds from the scene start, or relative to another beat in the same scene.",
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 300
+                        },
+                        {
+                          "type": "object",
+                          "required": [
+                            "after"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "after": {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                            },
+                            "delay": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 30,
+                              "description": "Seconds after the referenced moment."
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "required": [
+                            "with"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "with": {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                            },
+                            "delay": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 30,
+                              "description": "Seconds after the referenced moment."
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "required": [
+                            "on"
+                          ],
+                          "additionalProperties": false,
+                          "properties": {
+                            "on": {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_]{0,31}\\.[a-zA-Z][a-zA-Z0-9_]{0,23}$",
+                              "description": "<beatId>.<anchor>: start, windowOpen, hit, end, or a macro anchor."
+                            },
+                            "delay": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 30,
+                              "description": "Seconds after the referenced moment."
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "mode": {
+                      "enum": [
+                        "follow",
+                        "focus",
+                        "fixed",
+                        "pan",
+                        "push",
+                        "two_shot",
+                        "close_up",
+                        "wide",
+                        "over_shoulder",
+                        "track"
+                      ]
+                    },
+                    "targets": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 8
+                    },
+                    "target": {
+                      "type": "string"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "over_shoulder: the character the camera looks past."
+                    },
+                    "zoom": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0.3,
+                          "maximum": 4
+                        },
+                        {
+                          "const": "auto"
+                        }
+                      ]
+                    },
+                    "padding": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1200
+                    },
+                    "x": {
+                      "type": "number"
+                    },
+                    "y": {
+                      "type": "number"
+                    },
+                    "ease": {
+                      "type": "string"
+                    },
+                    "dur": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "dolly": {
+                      "type": "number",
+                      "minimum": -1500,
+                      "maximum": 1500,
+                      "description": "Move the camera toward (+) or away from (-) the stage, px: near things grow faster than far ones."
+                    },
+                    "truck": {
+                      "type": "number",
+                      "minimum": -3000,
+                      "maximum": 3000,
+                      "description": "Slide the camera sideways, px; depth layers slide past each other."
+                    },
+                    "crane": {
+                      "type": "number",
+                      "minimum": -1000,
+                      "maximum": 1000,
+                      "description": "Raise (-) or lower (+) the camera, px."
+                    },
+                    "tilt": {
+                      "type": "number",
+                      "minimum": -30,
+                      "maximum": 30,
+                      "description": "Tilt the view up (+) or down (-), degrees."
+                    },
+                    "roll": {
+                      "type": "number",
+                      "minimum": -45,
+                      "maximum": 45,
+                      "description": "Lean the frame, degrees (a dutch angle)."
+                    },
+                    "push": {
+                      "type": "number",
+                      "minimum": 0.3,
+                      "maximum": 4,
+                      "description": "A zoom multiplier on top of the framing (1 = none)."
+                    },
+                    "handheld": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Handheld sway, 0 still to 1 shaky."
+                    },
+                    "dof": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Depth of field: how much things away from the focus blur."
+                    },
+                    "focus": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                      "description": "Keep this character in focus."
+                    },
+                    "focusZ": {
+                      "type": "number",
+                      "minimum": -4000,
+                      "maximum": 2000,
+                      "description": "Keep this depth in focus."
+                    },
+                    "vignette": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Darkened corners."
+                    },
+                    "letterbox": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Cinema bars: 1 crops to 2.39:1."
+                    },
+                    "lag": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "description": "Follow with lag: 0 tight, 1 trailing well behind."
+                    },
+                    "move": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                      "description": "A named camera move from the catalog (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld; E_CAMERA_MOVE)."
+                    }
+                  }
+                }
+              },
+              "beats": {
+                "type": "array",
+                "maxItems": 200,
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "required": [
+                        "at",
+                        "who",
+                        "do"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                        },
+                        "at": {
+                          "description": "When the beat runs: seconds from the scene start, or relative to another beat in the same scene.",
+                          "oneOf": [
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 300
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "after"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "after": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                                },
+                                "delay": {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 30,
+                                  "description": "Seconds after the referenced moment."
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "with"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "with": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                                },
+                                "delay": {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 30,
+                                  "description": "Seconds after the referenced moment."
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "on"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "on": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}\\.[a-zA-Z][a-zA-Z0-9_]{0,23}$",
+                                  "description": "<beatId>.<anchor>: start, windowOpen, hit, end, or a macro anchor."
+                                },
+                                "delay": {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 30,
+                                  "description": "Seconds after the referenced moment."
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "who": {
+                          "type": "string",
+                          "description": "A character id, or \"world\" for effects, camera, objects, narration and cards."
+                        },
+                        "do": {
+                          "type": "string",
+                          "description": "A move name (characters) or a world command."
+                        },
+                        "target": {
+                          "type": "string"
+                        },
+                        "outcome": {
+                          "enum": [
+                            "hit",
+                            "whiff",
+                            "blocked",
+                            "parried",
+                            "dodged"
+                          ]
+                        },
+                        "params": {
+                          "type": "object",
+                          "description": "Move or world-command params: numbers, strings, booleans, or a short list of ids (activity `with`).",
+                          "additionalProperties": {
+                            "oneOf": [
+                              {
+                                "type": [
+                                  "number",
+                                  "string",
+                                  "boolean"
+                                ]
+                              },
+                              {
+                                "type": "array",
+                                "maxItems": 4,
+                                "items": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "speed": {
+                          "type": "number",
+                          "minimum": 0.25,
+                          "maximum": 3
+                        },
+                        "approach": {
+                          "enum": [
+                            "run",
+                            "walk",
+                            false
+                          ]
+                        },
+                        "interrupt": {
+                          "type": "boolean"
+                        },
+                        "fx": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "maxItems": 6
+                        },
+                        "say": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 40
+                        },
+                        "sayDur": {
+                          "type": "number",
+                          "minimum": 0.2,
+                          "maximum": 10
+                        },
+                        "bubble": {
+                          "enum": [
+                            "speech",
+                            "think",
+                            "shout",
+                            "whisper"
+                          ],
+                          "description": "How 'say' is drawn (default speech)."
+                        },
+                        "face": {
+                          "type": "string",
+                          "description": "Emotion from this beat on: a face from the catalog (E_FACE_UNKNOWN)."
+                        },
+                        "partner": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                          "description": "The other character in a paired move."
+                        },
+                        "object": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                          "description": "The object (set piece or spawned object id) the beat acts on."
+                        },
+                        "to": {
+                          "oneOf": [
+                            {
+                              "type": "object",
+                              "required": [
+                                "z"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "z": {
+                                  "type": "number",
+                                  "minimum": -4000,
+                                  "maximum": 2000,
+                                  "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
+                                },
+                                "x": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "x"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "x": {
+                                  "type": "number"
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "near"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "near": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                                },
+                                "gap": {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 600
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "exit"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "exit": {
+                                  "enum": [
+                                    "left",
+                                    "right"
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "layer": {
+                          "enum": [
+                            "back",
+                            "mid",
+                            "front"
+                          ]
+                        },
+                        "view": {
+                          "enum": [
+                            "side",
+                            "three_quarter",
+                            "front",
+                            "back"
+                          ],
+                          "description": "The character turns to this view from this beat on (E_VIEW_BODY)."
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "at",
+                        "macro"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                        },
+                        "at": {
+                          "description": "When the beat runs: seconds from the scene start, or relative to another beat in the same scene.",
+                          "oneOf": [
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 300
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "after"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "after": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                                },
+                                "delay": {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 30,
+                                  "description": "Seconds after the referenced moment."
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "with"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "with": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                                },
+                                "delay": {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 30,
+                                  "description": "Seconds after the referenced moment."
+                                }
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "required": [
+                                "on"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "on": {
+                                  "type": "string",
+                                  "pattern": "^[a-z][a-z0-9_]{0,31}\\.[a-zA-Z][a-zA-Z0-9_]{0,23}$",
+                                  "description": "<beatId>.<anchor>: start, windowOpen, hit, end, or a macro anchor."
+                                },
+                                "delay": {
+                                  "type": "number",
+                                  "minimum": 0,
+                                  "maximum": 30,
+                                  "description": "Seconds after the referenced moment."
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "macro": {
+                          "enum": [
+                            "dialogue",
+                            "activity",
+                            "walk_together",
+                            "travel",
+                            "enter",
+                            "exit",
+                            "fight",
+                            "gauntlet",
+                            "brawl",
+                            "chase",
+                            "defeat",
+                            "grief"
+                          ],
+                          "description": "A story macro; the compiler expands it into beats."
+                        },
+                        "params": {
+                          "type": "object",
+                          "description": "Checked per macro; see $defs.macroParams."
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "depth": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "The scene's depth lane (defaults: near 600, far -2000, focal 2400, horizon 260).",
+                "properties": {
+                  "near": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2000,
+                    "description": "Nearest z a node may have (toward the camera)."
+                  },
+                  "far": {
+                    "type": "number",
+                    "minimum": -4000,
+                    "maximum": 0,
+                    "description": "Farthest z a node may have."
+                  },
+                  "focal": {
+                    "type": "number",
+                    "minimum": 600,
+                    "maximum": 8000,
+                    "description": "Camera focal length: scale = focal / (focal - z)."
+                  },
+                  "horizon": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 800,
+                    "description": "How far (px) the feet line rises for a node at infinite distance."
+                  }
+                }
+              },
+              "light": {
+                "description": "The light rig: a preset name from the catalog (noon, dawn, golden, moonlit, indoor, stage, gloom, flat; E_LIGHT_UNKNOWN), or { \"preset\", ...overrides }. Default: the preset for the scene's time of day.",
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "preset": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                      },
+                      "key": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "angle": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 180
+                          },
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "fill": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "rim": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "ambient": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      },
+                      "shadow": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "alpha": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          },
+                          "length": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 3
+                          },
+                          "cast": {
+                            "enum": [
+                              "none",
+                              "ground",
+                              "wall"
+                            ]
+                          }
+                        }
+                      },
+                      "fog": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          },
+                          "density": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "lens": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "The lens the scene starts with (V3.4); camera keys and set_camera change it. Defaults: vignette 0.18, no depth of field, autoFocus on.",
+                "properties": {
+                  "dolly": {
+                    "type": "number",
+                    "minimum": -1500,
+                    "maximum": 1500,
+                    "description": "Move the camera toward (+) or away from (-) the stage, px: near things grow faster than far ones."
+                  },
+                  "truck": {
+                    "type": "number",
+                    "minimum": -3000,
+                    "maximum": 3000,
+                    "description": "Slide the camera sideways, px; depth layers slide past each other."
+                  },
+                  "crane": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000,
+                    "description": "Raise (-) or lower (+) the camera, px."
+                  },
+                  "tilt": {
+                    "type": "number",
+                    "minimum": -30,
+                    "maximum": 30,
+                    "description": "Tilt the view up (+) or down (-), degrees."
+                  },
+                  "roll": {
+                    "type": "number",
+                    "minimum": -45,
+                    "maximum": 45,
+                    "description": "Lean the frame, degrees (a dutch angle)."
+                  },
+                  "push": {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 4,
+                    "description": "A zoom multiplier on top of the framing (1 = none)."
+                  },
+                  "handheld": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Handheld sway, 0 still to 1 shaky."
+                  },
+                  "dof": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Depth of field: how much things away from the focus blur."
+                  },
+                  "focus": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                    "description": "Keep this character in focus."
+                  },
+                  "focusZ": {
+                    "type": "number",
+                    "minimum": -4000,
+                    "maximum": 2000,
+                    "description": "Keep this depth in focus."
+                  },
+                  "vignette": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Darkened corners."
+                  },
+                  "letterbox": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "Cinema bars: 1 crops to 2.39:1."
+                  },
+                  "autoFocus": {
+                    "type": "boolean",
+                    "description": "Close-ups, over-the-shoulder shots and two-shots pull focus by themselves (default true)."
+                  }
+                }
+              },
+              "post": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "Post effects over the whole frame (V3.5); a scene's post overrides the script's.",
+                "properties": {
+                  "exposure": {
+                    "type": "number",
+                    "minimum": -2,
+                    "maximum": 2,
+                    "description": "Stops."
+                  },
+                  "contrast": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 3
+                  },
+                  "saturation": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 3
+                  },
+                  "gamma": {
+                    "type": "number",
+                    "minimum": 0.3,
+                    "maximum": 3,
+                    "description": "Above 1 brightens the midtones."
+                  },
+                  "bloom": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "grain": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "chroma": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                    "description": "A tiny chromatic aberration."
+                  },
+                  "vignette": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "letterbox": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": [
+              "id",
+              "macro",
+              "params"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,31}$"
+              },
+              "macro": {
+                "enum": [
+                  "fight_card",
+                  "montage"
+                ],
+                "description": "A scene macro; expands into several scenes."
+              },
+              "params": {
+                "type": "object",
+                "description": "Checked per macro; see $defs.macroParams."
+              },
+              "transitionIn": {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "cut",
+                      "fade",
+                      "dissolve",
+                      "wipe",
+                      "iris",
+                      "card"
+                    ]
+                  },
+                  "dur": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "dir": {
+                    "enum": [
+                      "left",
+                      "right",
+                      "up",
+                      "down"
+                    ],
+                    "description": "wipe: direction."
+                  },
+                  "target": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                    "description": "iris: the character the circle closes on or opens from."
+                  },
+                  "kind": {
+                    "enum": [
+                      "title",
+                      "chapter",
+                      "time",
+                      "end"
+                    ],
+                    "description": "card: which card style (default chapter)."
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  }
+                }
+              },
+              "transitionOut": {
+                "type": "object",
+                "required": [
+                  "type"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "cut",
+                      "fade",
+                      "dissolve",
+                      "wipe",
+                      "iris",
+                      "card"
+                    ]
+                  },
+                  "dur": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "dir": {
+                    "enum": [
+                      "left",
+                      "right",
+                      "up",
+                      "down"
+                    ],
+                    "description": "wipe: direction."
+                  },
+                  "target": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$",
+                    "description": "iris: the character the circle closes on or opens from."
+                  },
+                  "kind": {
+                    "enum": [
+                      "title",
+                      "chapter",
+                      "time",
+                      "end"
+                    ],
+                    "description": "card: which card style (default chapter)."
+                  },
+                  "title": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60
+                  },
+                  "subtitle": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 80
+                  }
+                }
+              },
+              "music": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "required": [
+                      "mood"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "mood": {
+                        "enum": [
+                          "happy",
+                          "playful",
+                          "calm",
+                          "sad",
+                          "tense",
+                          "mysterious",
+                          "heroic",
+                          "battle",
+                          "boss",
+                          "triumphant",
+                          "lullaby"
+                        ]
+                      },
+                      "intensity": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      },
+                      "volume": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "musicVolume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "ambienceVolume": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "voices": {
+          "type": "boolean",
+          "description": "Speech sounds while characters talk (default true)."
+        },
+        "tracks": {
+          "type": "array",
+          "maxItems": 32,
+          "description": "Audio tracks over the story's own sound (V3.8): music, ambience, sound effects and bus gains.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "kind"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,47}$"
+              },
+              "kind": {
+                "enum": [
+                  "music",
+                  "ambience",
+                  "sfx",
+                  "bus"
+                ]
+              },
+              "scene": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,47}$",
+                "description": "Times are from this scene's start and the track plays inside it."
+              },
+              "from": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3600
+              },
+              "to": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 3600
+              },
+              "mood": {
+                "type": "string",
+                "description": "music: a mood from the catalog (E_AUDIO_TRACK)."
+              },
+              "bed": {
+                "type": "string",
+                "description": "ambience: an ambience bed (E_AUDIO_TRACK)."
+              },
+              "sfx": {
+                "type": "string",
+                "description": "sfx: an SFX key (E_AUDIO_TRACK)."
+              },
+              "at": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 64,
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 3600
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "marker"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "marker": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_]{0,47}$"
+                        },
+                        "delay": {
+                          "type": "number",
+                          "minimum": -30,
+                          "maximum": 30
+                        }
+                      }
+                    }
+                  ]
+                },
+                "description": "sfx: when it plays: seconds, or { \"marker\", \"delay\" }."
+              },
+              "bus": {
+                "enum": [
+                  "music",
+                  "ambience",
+                  "sfx",
+                  "voice"
+                ],
+                "description": "bus: the part of the mix the volume keys scale."
+              },
+              "volume": {
+                "description": "Volume (1 = as mixed): a number, or keys [{ \"t\", \"v\", \"ease\" }] in seconds from the track's base (its scene's start, or the video start).",
+                "oneOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 2
+                  },
+                  {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 64,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "t",
+                        "v"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "t": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 3600
+                        },
+                        "v": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 2
+                        },
+                        "ease": {
+                          "type": [
+                            "string",
+                            "array"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "pan": {
+                "description": "Pan (-1 left, 1 right): a number, or keys [{ \"t\", \"v\", \"ease\" }] in seconds from the track's base (its scene's start, or the video start).",
+                "oneOf": [
+                  {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 64,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "t",
+                        "v"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "t": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 3600
+                        },
+                        "v": {
+                          "type": "number",
+                          "minimum": -1,
+                          "maximum": 1
+                        },
+                        "ease": {
+                          "type": [
+                            "string",
+                            "array"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "fadeIn": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+              },
+              "fadeOut": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+              },
+              "intensity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "music: how busy the generated music is."
+              }
+            }
+          }
+        },
+        "markers": {
+          "type": "array",
+          "maxItems": 64,
+          "description": "Named moments: { \"id\", \"scene\", \"t\" } (seconds into the scene). Beats can start at one: \"at\": { \"marker\": \"drop\" } (E_MARKER_UNKNOWN).",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "scene",
+              "t"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,47}$"
+              },
+              "scene": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,47}$"
+              },
+              "t": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 900
+              }
+            }
+          }
+        },
+        "duck": {
+          "type": "array",
+          "maxItems": 8,
+          "description": "Ducking rules: lower one stem while something else sounds.",
+          "items": {
+            "type": "object",
+            "required": [
+              "duck",
+              "under"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "duck": {
+                "enum": [
+                  "music",
+                  "ambience"
+                ]
+              },
+              "under": {
+                "type": "string",
+                "description": "voice (speech and narration), sfx (sound effects), or a track id."
+              },
+              "db": {
+                "type": "number",
+                "minimum": -40,
+                "maximum": 0,
+                "description": "How far down (default -8 dB)."
+              },
+              "attack": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "release": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10
+              }
+            }
+          }
+        }
+      }
+    },
+    "layers": {
+      "type": "array",
+      "maxItems": 32,
+      "description": "Named layers that group text and shapes (V3.5).",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "scene": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$",
+            "description": "Times are from this scene's start, and the element shows only in that scene."
+          },
+          "from": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3600,
+            "description": "When it appears (seconds)."
+          },
+          "to": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3600,
+            "description": "When it goes (seconds; default: never)."
+          },
+          "in": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "fade",
+                  "pop",
+                  "slide_up",
+                  "slide_down",
+                  "slide_left",
+                  "slide_right",
+                  "wipe_left",
+                  "wipe_right",
+                  "wipe_up",
+                  "wipe_down",
+                  "iris",
+                  "typewriter"
+                ]
+              },
+              "dur": {
+                "type": "number",
+                "minimum": 0.05,
+                "maximum": 5,
+                "description": "Seconds (default 0.4)."
+              }
+            }
+          },
+          "out": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "fade",
+                  "pop",
+                  "slide_up",
+                  "slide_down",
+                  "slide_left",
+                  "slide_right",
+                  "wipe_left",
+                  "wipe_right",
+                  "wipe_up",
+                  "wipe_down",
+                  "iris",
+                  "typewriter"
+                ]
+              },
+              "dur": {
+                "type": "number",
+                "minimum": 0.05,
+                "maximum": 5,
+                "description": "Seconds (default 0.4)."
+              }
+            }
+          },
+          "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "x": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "y": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "scale": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 20
+          },
+          "rotation": {
+            "type": "number",
+            "minimum": -3600,
+            "maximum": 3600,
+            "description": "Degrees."
+          },
+          "z": {
+            "type": "number",
+            "minimum": -1000,
+            "maximum": 1000,
+            "description": "Draw order inside its layer (or among layers)."
+          },
+          "place": {
+            "enum": [
+              "back",
+              "over"
+            ],
+            "description": "back: after the background, before the world; over (default): over the world."
+          },
+          "space": {
+            "enum": [
+              "screen",
+              "world"
+            ],
+            "description": "screen (default): 1920 x 1080 frame units; world: stage px, moving with the camera."
+          },
+          "blend": {
+            "enum": [
+              "normal",
+              "multiply",
+              "screen",
+              "add",
+              "overlay"
+            ]
+          },
+          "mask": {
+            "type": "object",
+            "required": [
+              "shape"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "shape": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,31}$"
+              },
+              "invert": {
+                "type": "boolean"
+              }
+            }
+          },
+          "parent": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "char": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,31}$"
+              },
+              "joint": {
+                "enum": [
+                  "head",
+                  "hip",
+                  "shoulder",
+                  "neckTop",
+                  "lHand",
+                  "rHand",
+                  "lFoot",
+                  "rFoot",
+                  "center"
+                ]
+              },
+              "layer": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,31}$"
+              }
+            }
+          },
+          "reveal": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "How much of the layer shows, wiping from the left (keyable)."
+          }
+        }
+      }
+    },
+    "text": {
+      "type": "array",
+      "maxItems": 64,
+      "description": "Titles, captions, lower thirds and labels (V3.5).",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120,
+            "description": "Use \\n for a new line."
+          },
+          "layer": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "style": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$",
+            "description": "A text style from the catalog (title, subtitle, caption, lower_third, comic, label; E_TEXT_STYLE)."
+          },
+          "scene": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$",
+            "description": "Times are from this scene's start, and the element shows only in that scene."
+          },
+          "from": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3600,
+            "description": "When it appears (seconds)."
+          },
+          "to": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3600,
+            "description": "When it goes (seconds; default: never)."
+          },
+          "in": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "fade",
+                  "pop",
+                  "slide_up",
+                  "slide_down",
+                  "slide_left",
+                  "slide_right",
+                  "wipe_left",
+                  "wipe_right",
+                  "wipe_up",
+                  "wipe_down",
+                  "iris",
+                  "typewriter"
+                ]
+              },
+              "dur": {
+                "type": "number",
+                "minimum": 0.05,
+                "maximum": 5,
+                "description": "Seconds (default 0.4)."
+              }
+            }
+          },
+          "out": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "fade",
+                  "pop",
+                  "slide_up",
+                  "slide_down",
+                  "slide_left",
+                  "slide_right",
+                  "wipe_left",
+                  "wipe_right",
+                  "wipe_up",
+                  "wipe_down",
+                  "iris",
+                  "typewriter"
+                ]
+              },
+              "dur": {
+                "type": "number",
+                "minimum": 0.05,
+                "maximum": 5,
+                "description": "Seconds (default 0.4)."
+              }
+            }
+          },
+          "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "x": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "y": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "scale": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 20
+          },
+          "rotation": {
+            "type": "number",
+            "minimum": -3600,
+            "maximum": 3600,
+            "description": "Degrees."
+          },
+          "z": {
+            "type": "number",
+            "minimum": -1000,
+            "maximum": 1000,
+            "description": "Draw order inside its layer (or among layers)."
+          },
+          "font": {
+            "enum": [
+              "Bangers",
+              "Inter"
+            ]
+          },
+          "size": {
+            "type": "number",
+            "minimum": 8,
+            "maximum": 400
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "outline": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          },
+          "outlineWidth": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 40
+          },
+          "shadow": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
+          },
+          "box": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
+          },
+          "padding": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 80
+          },
+          "align": {
+            "enum": [
+              "left",
+              "center",
+              "right"
+            ]
+          },
+          "reveal": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "How many of the letters show (keyable; the typewriter animation sets it)."
+          }
+        }
+      }
+    },
+    "shapes": {
+      "type": "array",
+      "maxItems": 64,
+      "description": "Rectangles, circles, ellipses, lines and paths with fills, gradients and strokes (V3.5).",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "type": {
+            "enum": [
+              "rect",
+              "circle",
+              "ellipse",
+              "line",
+              "path"
+            ]
+          },
+          "layer": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "scene": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$",
+            "description": "Times are from this scene's start, and the element shows only in that scene."
+          },
+          "from": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3600,
+            "description": "When it appears (seconds)."
+          },
+          "to": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3600,
+            "description": "When it goes (seconds; default: never)."
+          },
+          "in": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "fade",
+                  "pop",
+                  "slide_up",
+                  "slide_down",
+                  "slide_left",
+                  "slide_right",
+                  "wipe_left",
+                  "wipe_right",
+                  "wipe_up",
+                  "wipe_down",
+                  "iris",
+                  "typewriter"
+                ]
+              },
+              "dur": {
+                "type": "number",
+                "minimum": 0.05,
+                "maximum": 5,
+                "description": "Seconds (default 0.4)."
+              }
+            }
+          },
+          "out": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "enum": [
+                  "fade",
+                  "pop",
+                  "slide_up",
+                  "slide_down",
+                  "slide_left",
+                  "slide_right",
+                  "wipe_left",
+                  "wipe_right",
+                  "wipe_up",
+                  "wipe_down",
+                  "iris",
+                  "typewriter"
+                ]
+              },
+              "dur": {
+                "type": "number",
+                "minimum": 0.05,
+                "maximum": 5,
+                "description": "Seconds (default 0.4)."
+              }
+            }
+          },
+          "opacity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "x": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "y": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "scale": {
+            "type": "number",
+            "minimum": 0.01,
+            "maximum": 20
+          },
+          "rotation": {
+            "type": "number",
+            "minimum": -3600,
+            "maximum": 3600,
+            "description": "Degrees."
+          },
+          "z": {
+            "type": "number",
+            "minimum": -1000,
+            "maximum": 1000,
+            "description": "Draw order inside its layer (or among layers)."
+          },
+          "w": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20000
+          },
+          "h": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 20000
+          },
+          "r": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 10000,
+            "description": "Circle radius, or a rectangle's corner radius."
+          },
+          "x2": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "y2": {
+            "type": "number",
+            "minimum": -10000,
+            "maximum": 20000
+          },
+          "d": {
+            "type": "array",
+            "maxItems": 400,
+            "items": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 7,
+              "items": {
+                "type": [
+                  "string",
+                  "number"
+                ]
+              }
+            },
+            "description": "Path commands as in imported art: [\"M\", x, y], [\"L\", x, y], [\"C\", ...], [\"Q\", ...], [\"Z\"]."
+          },
+          "fill": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "type",
+                  "stops"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "linear",
+                      "radial"
+                    ]
+                  },
+                  "angle": {
+                    "type": "number",
+                    "minimum": -360,
+                    "maximum": 360,
+                    "description": "Linear gradients: 90 runs top to bottom."
+                  },
+                  "stops": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 8,
+                    "items": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "items": {
+                        "type": [
+                          "number",
+                          "string"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "stroke": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
+          },
+          "lineWidth": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 200
+          },
+          "reveal": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "tracks": {
+      "type": "array",
+      "maxItems": 128,
+      "description": "Keyframed properties: { \"target\": \"text.title.y\", \"keys\": [{ \"t\": 0, \"v\": 900 }, { \"t\": 1, \"v\": 540, \"ease\": \"outBack\" }] } (V3.5).",
+      "items": {
+        "type": "object",
+        "required": [
+          "target",
+          "keys"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "target": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 64,
+            "description": "layer.<id>.<prop>, text.<id>.<prop>, shape.<id>.<prop>, lens.<channel> or post.<prop> (E_TRACK_TARGET)."
+          },
+          "scene": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "keys": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 64,
+            "items": {
+              "type": "object",
+              "required": [
+                "t",
+                "v"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "t": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 3600
+                },
+                "v": {
+                  "type": [
+                    "number",
+                    "string"
+                  ],
+                  "description": "A number, or a #rrggbb colour for color, fill and stroke."
+                },
+                "ease": {
+                  "type": [
+                    "string",
+                    "array"
+                  ],
+                  "description": "An easing name, \"step\", \"cubic-bezier(x1, y1, x2, y2)\" or [x1, y1, x2, y2] (E_TRACK_EASE)."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Post effects over the whole frame (V3.5); a scene's post overrides the script's.",
+      "properties": {
+        "exposure": {
+          "type": "number",
+          "minimum": -2,
+          "maximum": 2,
+          "description": "Stops."
+        },
+        "contrast": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "saturation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "gamma": {
+          "type": "number",
+          "minimum": 0.3,
+          "maximum": 3,
+          "description": "Above 1 brightens the midtones."
+        },
+        "bloom": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "grain": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "chroma": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "A tiny chromatic aberration."
+        },
+        "vignette": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "letterbox": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Motion quality for v3 scenes, drawn over the stored motion (the simulation is unchanged).",
+      "properties": {
+        "followThrough": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Arms and head trail and overshoot their poses (default 1)."
+        },
+        "squash": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Stretch in the air, squash on landing and along a hit (default 1)."
+        },
+        "secondary": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Hair sways with the head (default 1)."
+        },
+        "breathing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "The upper body breathes while standing still (default 1)."
+        },
+        "blur": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Faint ghosts behind fast limbs (default 0)."
+        }
+      }
+    },
+    "look": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The automatic v3 look.",
+      "properties": {
+        "strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How strong the automatic lighting, vignette, focus blur and turns are (default 0.2; explicit lights, lens settings and views are always full)."
+        },
+        "outline": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 2.5,
+          "description": "Scale of the dark outline around limbs, heads and bodies (default 1)."
+        },
+        "limbs": {
+          "type": "number",
+          "minimum": 0.6,
+          "maximum": 2,
+          "description": "Scale of the limb width (default 1)."
+        },
+        "bubble": {
+          "type": "number",
+          "minimum": 0.7,
+          "maximum": 2,
+          "description": "Scale of speech bubbles and their text (default 1)."
+        },
+        "maxTurn": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 90,
+          "description": "How far a body turns from profile toward or away from the camera, in degrees (default 90: full front and back; 60: front is a near-front three-quarter)."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "enums": {
+      "kind": [
+        "story",
+        "fight",
+        "clip"
+      ],
+      "audience": [
+        "kids",
+        "general"
+      ],
+      "style": [
+        "default",
+        "soft",
+        "ink"
+      ],
+      "body": [
+        "stickman",
+        "buddy",
+        "kid",
+        "bulky",
+        "slim",
+        "elder"
+      ],
+      "face": [
+        "neutral",
+        "happy",
+        "laugh",
+        "sad",
+        "cry",
+        "angry",
+        "furious",
+        "scared",
+        "surprised",
+        "determined",
+        "smug",
+        "tired",
+        "love",
+        "dizzy",
+        "hurt",
+        "asleep"
+      ],
+      "eyes": [
+        "dot",
+        "big",
+        "oval",
+        "sleepy",
+        "visor",
+        "glasses"
+      ],
+      "brows": [
+        "none",
+        "thin",
+        "thick"
+      ],
+      "mouthStyle": [
+        "line",
+        "cartoon"
+      ],
+      "hair": [
+        "none",
+        "spiky",
+        "bob",
+        "ponytail",
+        "cap",
+        "bun"
+      ],
+      "outfit": [
+        "none",
+        "shirt",
+        "coat",
+        "armor",
+        "robe"
+      ],
+      "accessory": [
+        "headband",
+        "scarf",
+        "cape",
+        "hat",
+        "antenna",
+        "bowtie",
+        "mask",
+        "crown",
+        "backpack",
+        "eyepatch",
+        "hair_flower",
+        "sprout",
+        "mittens",
+        "horns",
+        "turban",
+        "moustache",
+        "stub_horns",
+        "bracelet",
+        "chilli_hat",
+        "pirate_hat",
+        "beard",
+        "windup_key"
+      ],
+      "timbre": [
+        "soft",
+        "squeaky",
+        "deep",
+        "robot",
+        "bark"
+      ],
+      "time": [
+        "dawn",
+        "day",
+        "dusk",
+        "night"
+      ],
+      "weather": [
+        "clear",
+        "cloudy",
+        "rain",
+        "snow",
+        "wind",
+        "fog"
+      ],
+      "layer": [
+        "back",
+        "mid",
+        "front"
+      ],
+      "transition": [
+        "cut",
+        "fade",
+        "dissolve",
+        "wipe",
+        "iris",
+        "card"
+      ],
+      "cardKind": [
+        "title",
+        "chapter",
+        "time",
+        "end"
+      ],
+      "dir": [
+        "left",
+        "right",
+        "up",
+        "down"
+      ],
+      "mood": [
+        "happy",
+        "playful",
+        "calm",
+        "sad",
+        "tense",
+        "mysterious",
+        "heroic",
+        "battle",
+        "boss",
+        "triumphant",
+        "lullaby"
+      ],
+      "ambience": [
+        "none",
+        "city_traffic",
+        "park_birds",
+        "rain",
+        "wind",
+        "crowd_murmur",
+        "cave_drip"
+      ],
+      "bubble": [
+        "speech",
+        "think",
+        "shout",
+        "whisper"
+      ],
+      "extrasBehavior": [
+        "walk_by",
+        "idle_chat",
+        "cheer",
+        "flee"
+      ],
+      "cameraMode": [
+        "follow",
+        "focus",
+        "fixed",
+        "pan",
+        "push",
+        "two_shot",
+        "close_up",
+        "wide",
+        "over_shoulder",
+        "track"
+      ],
+      "beatMacro": [
+        "dialogue",
+        "activity",
+        "walk_together",
+        "travel",
+        "enter",
+        "exit",
+        "fight",
+        "gauntlet",
+        "brawl",
+        "chase",
+        "defeat",
+        "grief"
+      ],
+      "sceneMacro": [
+        "fight_card",
+        "montage"
+      ],
+      "defeatStyle": [
+        "ko",
+        "faint",
+        "vanish",
+        "ghost",
+        "captured",
+        "flee",
+        "petrify"
+      ],
+      "activity": [
+        "blow_bubbles",
+        "tennis_rally",
+        "play_catch",
+        "kick_ball",
+        "eat_together",
+        "dance_together",
+        "selfie",
+        "sleep",
+        "comfort",
+        "fetch"
+      ],
+      "ending": [
+        "win",
+        "miss",
+        "laugh",
+        "interrupted"
+      ],
+      "intensity": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "fightStyle": [
+        "even",
+        "dominant",
+        "comeback",
+        "close"
+      ],
+      "pace": [
+        "walk",
+        "run",
+        "sneak"
+      ],
+      "side": [
+        "left",
+        "right"
+      ]
+    },
+    "macroParams": {
+      "dialogue": {
+        "type": "object",
+        "required": [
+          "lines"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "lines": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 30,
+            "description": "[speaker, text], [speaker, text, face] or [speaker, text, face, bubble]; text up to 120 characters, split into 40-character bubbles.",
+            "items": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 4,
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "gap": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 3,
+            "description": "Pause between lines (default 0.3 s)."
+          },
+          "gestures": {
+            "type": "boolean",
+            "description": "Talk gestures while speaking (default true)."
+          },
+          "camera": {
+            "enum": [
+              "auto",
+              "none"
+            ]
+          }
+        }
+      },
+      "activity": {
+        "type": "object",
+        "required": [
+          "name",
+          "with"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "enum": [
+              "blow_bubbles",
+              "tennis_rally",
+              "play_catch",
+              "kick_ball",
+              "eat_together",
+              "dance_together",
+              "selfie",
+              "sleep",
+              "comfort",
+              "fetch"
+            ]
+          },
+          "with": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+            }
+          },
+          "reps": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 40
+          },
+          "dur": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 120
+          },
+          "intensity": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "ending": {
+            "enum": [
+              "win",
+              "miss",
+              "laugh",
+              "interrupted"
+            ]
+          },
+          "winner": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "object": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$",
+            "description": "Use this set piece (a bench, a net) instead of spawning one."
+          }
+        }
+      },
+      "walk_together": {
+        "type": "object",
+        "required": [
+          "who",
+          "to"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "who": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+            }
+          },
+          "to": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": [
+                  "x"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "near"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "near": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  },
+                  "gap": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 600
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "exit"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "exit": {
+                    "enum": [
+                      "left",
+                      "right"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "pace": {
+            "enum": [
+              "walk",
+              "run"
+            ]
+          },
+          "holdHands": {
+            "type": "boolean"
+          }
+        }
+      },
+      "travel": {
+        "type": "object",
+        "required": [
+          "who",
+          "to"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "who": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+            }
+          },
+          "to": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": [
+                  "x"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "near"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "near": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  },
+                  "gap": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 600
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "exit"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "exit": {
+                    "enum": [
+                      "left",
+                      "right"
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "mode": {
+            "enum": [
+              "walk",
+              "run",
+              "sneak"
+            ]
+          },
+          "camera": {
+            "enum": [
+              "track",
+              "wide",
+              "none"
+            ]
+          }
+        }
+      },
+      "enter": {
+        "type": "object",
+        "required": [
+          "who",
+          "side"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "who": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "side": {
+            "enum": [
+              "left",
+              "right"
+            ]
+          },
+          "mode": {
+            "enum": [
+              "walk",
+              "run",
+              "sneak"
+            ]
+          },
+          "to": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": [
+                  "x"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "x": {
+                    "type": "number"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "near"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "near": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  },
+                  "gap": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 600
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "exit"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "exit": {
+                    "enum": [
+                      "left",
+                      "right"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "exit": {
+        "type": "object",
+        "required": [
+          "who",
+          "side"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "who": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "side": {
+            "enum": [
+              "left",
+              "right"
+            ]
+          },
+          "mode": {
+            "enum": [
+              "walk",
+              "run",
+              "sneak"
+            ]
+          }
+        }
+      },
+      "fight": {
+        "type": "object",
+        "required": [
+          "sides",
+          "winner"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "sides": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+            }
+          },
+          "winner": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "exchanges": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
+          },
+          "intensity": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "style": {
+            "enum": [
+              "even",
+              "dominant",
+              "comeback",
+              "close"
+            ]
+          },
+          "finisher": {
+            "type": "string",
+            "description": "Attack move for the last exchange."
+          },
+          "ko": {
+            "type": "boolean",
+            "description": "Loser ends knocked out (default true); false leaves them standing for a defeat macro."
+          },
+          "phases": {
+            "type": "array",
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "required": [
+                "exchanges"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "exchanges": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 15
+                },
+                "style": {
+                  "enum": [
+                    "even",
+                    "dominant",
+                    "comeback",
+                    "close"
+                  ]
+                },
+                "intensity": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                },
+                "chargeUp": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "gauntlet": {
+        "type": "object",
+        "required": [
+          "hero",
+          "opponents"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "hero": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "opponents": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+            }
+          },
+          "per": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "travel": {
+            "enum": [
+              "walk",
+              "run",
+              "none"
+            ]
+          },
+          "intensity": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "finisher": {
+            "type": "string"
+          },
+          "afterDefeat": {
+            "enum": [
+              "stay",
+              "fade"
+            ]
+          }
+        }
+      },
+      "brawl": {
+        "type": "object",
+        "required": [
+          "teams",
+          "winner"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "teams": {
+            "type": "object",
+            "required": [
+              "a",
+              "b"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "a": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 6,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                }
+              },
+              "b": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 6,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                }
+              }
+            }
+          },
+          "winner": {
+            "enum": [
+              "a",
+              "b"
+            ]
+          },
+          "dur": {
+            "type": "number",
+            "minimum": 5,
+            "maximum": 120
+          },
+          "intensity": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          }
+        }
+      },
+      "chase": {
+        "type": "object",
+        "required": [
+          "runner",
+          "chasers"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "runner": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "chasers": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{0,31}$"
+            }
+          },
+          "dur": {
+            "type": "number",
+            "minimum": 3,
+            "maximum": 60
+          },
+          "obstacles": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6
+          },
+          "caught": {
+            "type": "boolean"
+          }
+        }
+      },
+      "defeat": {
+        "type": "object",
+        "required": [
+          "who",
+          "style"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "who": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "by": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "style": {
+            "enum": [
+              "ko",
+              "faint",
+              "vanish",
+              "ghost",
+              "captured",
+              "flee",
+              "petrify"
+            ]
+          }
+        }
+      },
+      "grief": {
+        "type": "object",
+        "required": [
+          "who"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "who": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "over": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$"
+          },
+          "dur": {
+            "type": "number",
+            "minimum": 2,
+            "maximum": 20
+          },
+          "rain": {
+            "type": "boolean"
+          }
+        }
+      },
+      "fight_card": {
+        "type": "object",
+        "required": [
+          "matchups"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          },
+          "matchups": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "required": [
+                "sides",
+                "winner"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "sides": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  }
+                },
+                "winner": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "exchanges": {
+                  "type": "integer",
+                  "minimum": 3,
+                  "maximum": 30
+                },
+                "style": {
+                  "enum": [
+                    "even",
+                    "dominant",
+                    "comeback",
+                    "close"
+                  ]
+                }
+              }
+            }
+          },
+          "intro": {
+            "type": "boolean"
+          },
+          "breathers": {
+            "type": "boolean"
+          },
+          "finale": {
+            "enum": [
+              "boss",
+              "plain"
+            ]
+          },
+          "minDur": {
+            "type": "number",
+            "minimum": 60,
+            "maximum": 900,
+            "description": "Target length in seconds (default 180)."
+          }
+        }
+      },
+      "montage": {
+        "type": "object",
+        "required": [
+          "clips"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "clips": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "required": [
+                "location",
+                "who"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "location": {
+                  "type": "string"
+                },
+                "who": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                  }
+                },
+                "do": {
+                  "type": "string"
+                },
+                "time": {
+                  "enum": [
+                    "dawn",
+                    "day",
+                    "dusk",
+                    "night"
+                  ]
+                },
+                "weather": {
+                  "enum": [
+                    "clear",
+                    "cloudy",
+                    "rain",
+                    "snow",
+                    "wind",
+                    "fog"
+                  ]
+                },
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                }
+              }
+            }
+          },
+          "clipDur": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "cut": {
+            "enum": [
+              "cut",
+              "dissolve",
+              "wipe"
+            ]
+          }
+        }
+      }
+    },
+    "macroAnchors": {
+      "dialogue": [
+        "start",
+        "end",
+        "line<N>"
+      ],
+      "activity": [
+        "start",
+        "end",
+        "ending"
+      ],
+      "walk_together": [
+        "start",
+        "end"
+      ],
+      "travel": [
+        "start",
+        "end"
+      ],
+      "enter": [
+        "start",
+        "end"
+      ],
+      "exit": [
+        "start",
+        "end"
+      ],
+      "fight": [
+        "start",
+        "end",
+        "finisher",
+        "ko"
+      ],
+      "gauntlet": [
+        "start",
+        "end",
+        "opponent<N>",
+        "finisher"
+      ],
+      "brawl": [
+        "start",
+        "end"
+      ],
+      "chase": [
+        "start",
+        "end",
+        "caught"
+      ],
+      "defeat": [
+        "start",
+        "end",
+        "gone"
+      ],
+      "grief": [
+        "start",
+        "end"
+      ]
+    }
+  },
+  "description": "A v2 story with the optional depth fields of ENGINE_V3_SPEC 7 (z on placements, set pieces and walks; a scene depth block)."
+}

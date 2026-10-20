@@ -24,8 +24,19 @@ const expected = {
   "../../engine/framestore.js": ["createStore", "writeFrame", "frameView", "jointsAt"],
   "../../engine/audio_events.js": ["collectAudioEvents"],
   "../../engine/index.js": ["createEngine"],
+  "../../engine/depth.js": ["DEPTH", "LAYER_Z", "depthOf", "zOf", "projectScale", "depthTransform", "projectJoints", "depthAt", "planDepthWalk", "sameDepth", "depthOrder"],
+  "../../engine/scene.js": ["sceneNodes", "characterDepths"],
+  "../../engine/templates.js": ["expandScript", "substitute", "templateParams", "templateKey"],
+  "../../engine/audio_tracks.js": ["collectAudioTracks", "busGainAt", "duckGainAt", "trackGainAt", "trackPanAt", "BUSES"],
+  "../../engine/motion_fx.js": ["MOTION_DEFAULTS", "WINDOW", "springTrack", "followThrough", "squashStretch", "axisScale", "hairSway", "standingStill", "breathe", "blurGhosts"],
+  "../../engine/turnaround.js": ["VIEWS", "VIEW_YAW", "viewsOf", "resolveView", "yawAt", "faceShiftOf", "faceShows", "turnJoints"],
+  "../../engine/timeline.js": ["parseTarget", "cubicBezier", "easingOf", "sampleTrack", "compileTracks", "trackValuesAt"],
+  "../../engine/compositor.js": ["hasMotion", "compileMotion", "composeAt", "postAt", "motionValuesAt", "animState", "lifeOf"],
+  "../../engine/camera3.js": ["LENS_DEFAULTS", "lensChanges", "lensAt", "sampleMove", "autoFocusSpans", "autoFocusAt", "createHandheld", "handheldAt", "lensCamera", "blurFor", "coverScale", "letterboxBar"],
+  "../../engine/lighting.js": ["lightRigOf", "resolveRig", "blendRigs", "lightAt", "shadeTones", "contactShadow", "castShadow", "fogAt", "fogVeils", "ambientTint"],
   "../../engine/validator/index.js": ["validate", "jsonSchema"],
   "../../engine/renderer/index.js": ["createRenderer", "renderFrame"],
+  "../../engine/renderer/draw_chars.js": ["charsAt", "order", "drawLayerChars", "drawChars"],
 };
 
 for (const [path, names] of Object.entries(expected)) {

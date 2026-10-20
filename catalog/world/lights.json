@@ -1,0 +1,80 @@
+{
+  "byTime": { "dawn": "dawn", "day": "noon", "dusk": "golden", "night": "moonlit" },
+  "rigs": {
+    "flat": {
+      "description": "No lighting: the plain v2 look with no shading, rim or cast shadows.",
+      "tags": ["flat", "plain"],
+      "flat": true
+    },
+    "noon": {
+      "description": "Bright midday sun high on the right: soft two-tone shading, short shadows, a light blue haze far away.",
+      "tags": ["day", "sun", "outdoor"],
+      "key": { "angle": 112, "color": "#fff3d0", "strength": 0.3 },
+      "fill": { "color": "#cfe3ff", "strength": 0.12 },
+      "rim": { "color": "#ffffff", "strength": 0.22 },
+      "ambient": { "color": "#ffffff", "strength": 0 },
+      "shadow": { "alpha": 0.22, "length": 0.35, "cast": "ground" },
+      "fog": { "color": "#cfe0f6", "density": 0.3 }
+    },
+    "dawn": {
+      "description": "Low pink morning light from the left: long soft shadows and a rosy haze.",
+      "tags": ["dawn", "morning", "outdoor"],
+      "key": { "angle": 158, "color": "#ffd6c2", "strength": 0.34 },
+      "fill": { "color": "#b8c8ff", "strength": 0.16 },
+      "rim": { "color": "#fff0e6", "strength": 0.3 },
+      "ambient": { "color": "#ffd2bf", "strength": 0.12 },
+      "shadow": { "alpha": 0.2, "length": 1.1, "cast": "ground" },
+      "fog": { "color": "#f2d6d2", "density": 0.42 }
+    },
+    "golden": {
+      "description": "Golden hour from low on the right: warm lit sides, cool violet shadows, long shadows and a warm haze.",
+      "tags": ["dusk", "golden", "outdoor"],
+      "key": { "angle": 22, "color": "#ffc466", "strength": 0.42 },
+      "fill": { "color": "#8a7ad0", "strength": 0.2 },
+      "rim": { "color": "#ffe2a8", "strength": 0.38 },
+      "ambient": { "color": "#ffb070", "strength": 0.16 },
+      "shadow": { "alpha": 0.26, "length": 1.4, "cast": "ground" },
+      "fog": { "color": "#e8b890", "density": 0.4 }
+    },
+    "moonlit": {
+      "description": "Cool blue moonlight from high on the left: dark shadow sides, a pale rim and a deep blue haze.",
+      "tags": ["night", "moon", "outdoor"],
+      "key": { "angle": 120, "color": "#c8d8ff", "strength": 0.3 },
+      "fill": { "color": "#30386a", "strength": 0.3 },
+      "rim": { "color": "#dbe6ff", "strength": 0.42 },
+      "ambient": { "color": "#4a5aa0", "strength": 0.3 },
+      "shadow": { "alpha": 0.3, "length": 0.8, "cast": "ground" },
+      "fog": { "color": "#1e2a52", "density": 0.5 }
+    },
+    "indoor": {
+      "description": "A warm lamp overhead and slightly to the right: gentle shading, soft shadows on the floor and a flattened shadow on the wall behind.",
+      "tags": ["indoor", "lamp", "home"],
+      "key": { "angle": 100, "color": "#ffe9c4", "strength": 0.26 },
+      "fill": { "color": "#d8c8e8", "strength": 0.14 },
+      "rim": { "color": "#fff6e0", "strength": 0.18 },
+      "ambient": { "color": "#ffe0b8", "strength": 0.08 },
+      "shadow": { "alpha": 0.18, "length": 0.5, "cast": "wall" },
+      "fog": { "color": "#e0d6c8", "density": 0.12 }
+    },
+    "stage": {
+      "description": "A hard spotlight from straight above: strong three-tone shading, a tight shadow at the feet and no haze.",
+      "tags": ["stage", "spotlight", "drama"],
+      "key": { "angle": 90, "color": "#ffffff", "strength": 0.5 },
+      "fill": { "color": "#303040", "strength": 0.35 },
+      "rim": { "color": "#ffffff", "strength": 0.5 },
+      "ambient": { "color": "#202030", "strength": 0.25 },
+      "shadow": { "alpha": 0.4, "length": 0.15, "cast": "none" },
+      "fog": { "color": "#000000", "density": 0 }
+    },
+    "gloom": {
+      "description": "Dim greenish light from the left for villain lairs: murky shading, heavy shadows and a thick dark haze.",
+      "tags": ["night", "lair", "villain"],
+      "key": { "angle": 150, "color": "#b8e8c0", "strength": 0.3 },
+      "fill": { "color": "#243030", "strength": 0.34 },
+      "rim": { "color": "#c8ffd0", "strength": 0.32 },
+      "ambient": { "color": "#2c4a3c", "strength": 0.28 },
+      "shadow": { "alpha": 0.34, "length": 0.9, "cast": "ground" },
+      "fog": { "color": "#1a2a24", "density": 0.55 }
+    }
+  }
+}

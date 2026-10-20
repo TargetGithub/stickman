@@ -4,6 +4,7 @@
 import { parseAt, ANCHORS } from "../director.js";
 import { closestMatch, nearest } from "./report.js";
 import { STAGE } from "../config.js";
+import { easings } from "../math.js";
 import { V2_ENUMS, catalogNames } from "./v2_names.js";
 import { STORY_ONLY } from "../moves.js";
 import { beatRigIssues } from "./rigs.js";
@@ -55,6 +56,15 @@ export const WORLD_COMMANDS_V2 = {
   // A sound on its own (batch B): an off-screen horn, thunder, a knock; x pans it (stage px).
   sfx: { name: { sfx: true, required: true }, volume: { min: 0, max: 1 }, x: { min: -2000, max: 14000 } },
   set_grade: { saturation: { min: 0, max: 1, required: true }, dur: { min: 0, max: 10 }, keepCast: { enum: [true, false] }, from: { character: true } },
+  // The light rig (V3.3): a preset, or overrides of the current one (angle, strength, fog density), over dur.
+  set_light: { preset: { light: true }, angle: { min: 0, max: 180 }, strength: { min: 0, max: 1 }, fog: { min: 0, max: 1 }, dur: { min: 0, max: 10 } },
+  // The v3 lens (V3.4): channels blend over dur with ease; move plays a named camera move.
+  set_camera: {
+    move: { cameraMove: true }, dur: { min: 0, max: 30 }, ease: { enum: Object.keys(easings) },
+    dolly: { min: -1500, max: 1500 }, truck: { min: -3000, max: 3000 }, crane: { min: -1000, max: 1000 }, tilt: { min: -30, max: 30 }, roll: { min: -45, max: 45 },
+    push: { min: 0.3, max: 4 }, handheld: { min: 0, max: 1 }, dof: { min: 0, max: 1 }, focus: { character: true }, focusZ: { min: -4000, max: 2000 },
+    vignette: { min: 0, max: 1 }, letterbox: { min: 0, max: 1 },
+  },
   // Story camera shots (S6): a camera key from a beat; with dur, the previous framing comes back after it.
   shot: {
     mode: { enum: V2_ENUMS.cameraMode, required: true }, target: { character: true }, targets: { characters: 4 }, from: { character: true },
@@ -143,6 +153,8 @@ function checkWorldParams(beat, path, ctx, out) {
     }
     else if (rule.theme && !ctx.catalog.themeNames.includes(v)) bad(`Use one of: ${ctx.catalog.themeNames.join(", ")}.`);
     else if (rule.sfx && !ctx.catalog.sfxKeys.includes(v)) bad(`Use one of: ${nearest(v, ctx.catalog.sfxKeys).join(", ")}.`);
+    else if (rule.cameraMove && !ctx.catalog.cameraMoves?.[v]) out.push({ code: "E_CAMERA_MOVE", path: p, message: `Unknown camera move '${v}'.`, fix: `Use one of: ${(ctx.catalog.cameraMoveNames || []).join(", ")}.` });
+    else if (rule.light && !ctx.catalog.lights?.rigs[v]) out.push({ code: "E_LIGHT_UNKNOWN", path: p, message: `Unknown light preset '${v}'.`, fix: `Use one of: ${(ctx.catalog.lightNames || []).join(", ")}.` });
   }
 }
 

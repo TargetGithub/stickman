@@ -51,7 +51,7 @@ export function createPresentation(script, catalog, opts = {}) {
     shot: null,
     lasting: false,
     // meta.autoCamera "story" in a scene without camera keys of its own
-    storyAuto: opts.storyCamera ? createStoryAuto(opts.t0 ?? 0) : null,
+    storyAuto: opts.storyCamera ? createStoryAuto(opts.t0 ?? 0, { tight: !!opts.tightFraming }) : null,
     autoKey: null,
     baseKey: null,
   };

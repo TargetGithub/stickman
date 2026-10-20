@@ -100,12 +100,15 @@ export function drawHornsBack(ctx, c, r, ax, acc) {
 }
 
 /** A round bun on top of the head with a hairpin, over a short cap of hair. */
-export function drawBun(ctx, c, r, ax, color) {
+export function drawBun(ctx, c0, r, ax0, color) {
   const lw = r * 0.08;
+  const { c, ax } = slideAt(c0, r, ax0, 120, 1.22);
   disc(ctx, polar(c, r, ax, 120, 1.22), r * 0.55, color, lw);
-  const outer = Array.from({ length: 15 }, (_, i) => polar(c, r, ax, 55 + (150 * i) / 14, 1.08));
-  const inner = Array.from({ length: 11 }, (_, i) => polar(c, r, ax, 205 - (130 * i) / 10, 0.86));
-  fillPath(ctx, [...outer, ...inner], color, lw);
+  for (const a of mirrorAxes(ax0)) {
+    const outer = Array.from({ length: 15 }, (_, i) => polar(c0, r, a, 55 + (150 * i) / 14, 1.08));
+    const inner = Array.from({ length: 11 }, (_, i) => polar(c0, r, a, 205 - (130 * i) / 10, 0.86));
+    fillPath(ctx, [...outer, ...inner], color, lw);
+  }
   // The hairpin: a wooden stick through the bun.
   const a = polar(c, r, ax, 92, 1.32);
   const b = polar(c, r, ax, 140, 1.5);
@@ -222,15 +225,37 @@ function stubHorns(ctx, c, r, ax, color) {
   }
 }
 
-/** Head pieces drawn after the face and the hair (near horn, turban, sprout, flower, moustache). */
-export function drawHeadMore(ctx, c, r, ax, acc) {
-  if (acc.moustache) moustache(ctx, c, r, ax, acc.moustache);
-  if (acc.turban) turban(ctx, c, r, ax, acc.turban);
-  if (acc.stub_horns) stubHorns(ctx, c, r, ax, acc.stub_horns);
-  if (acc.horns) ramHorn(ctx, c, r, ax, acc.horns, { f: 0, u: 0 });
-  if (acc.sprout) sprout(ctx, c, r, ax, acc.sprout);
-  if (acc.hair_flower) hairFlower(ctx, c, r, ax, acc.hair_flower);
-  drawHats(ctx, c, r, ax, acc); // batch B: chilli_hat, pirate_hat, beard
+/**
+ * Turned views (V3.9): head pieces are authored in profile. `ax.wrap` (0 at the side, 1 from the front or back)
+ * says how far the head faces the camera. Masses (hair, cap, turban, horns, crown, moustache) are drawn twice: a
+ * mirrored copy whose forward axis is scaled by wrap, then the piece itself, so they wrap round the head and are
+ * symmetric from the front. Single pieces (ponytail, bun, antenna, sprout, flower) keep their shape and slide
+ * toward the middle of the head, as a point on a turning head does (its forward offset times sin(yaw)).
+ */
+export function mirrorAxes(ax) {
+  const w = ax.wrap || 0;
+  const self = { u: ax.u, f: ax.f };
+  return w > 0.05 ? [{ u: ax.u, f: { x: -ax.f.x * w, y: -ax.f.y * w } }, self] : [self];
+}
+/** The head centre to draw a single piece anchored at (phi degrees, dist radii) with, and the plain axes. */
+export function slideAt(c, r, ax, phi, dist) {
+  const k = Math.sqrt(Math.max(0, 1 - (ax.wrap || 0) ** 2));
+  const d = r * dist * Math.cos((phi * Math.PI) / 180) * (k - 1);
+  return { c: { x: c.x + ax.f.x * d, y: c.y + ax.f.y * d }, ax: { u: ax.u, f: ax.f } };
+}
+
+/** Head pieces drawn after the face and the hair (near horn, turban, sprout, flower, moustache); `ax.wrap`: see mirrorAxes. */
+export function drawHeadMore(ctx, c, r, ax0, acc) {
+  const masses = mirrorAxes(ax0);
+  for (const ax of masses) {
+    if (acc.moustache && !ax0.back) moustache(ctx, c, r, ax, acc.moustache);
+    if (acc.turban) turban(ctx, c, r, ax, acc.turban);
+    if (acc.stub_horns) stubHorns(ctx, c, r, ax, acc.stub_horns);
+    if (acc.horns) ramHorn(ctx, c, r, ax, acc.horns, { f: 0, u: 0 });
+  }
+  if (acc.sprout) { const p = slideAt(c, r, ax0, 98, 0.96); sprout(ctx, p.c, r, p.ax, acc.sprout); }
+  if (acc.hair_flower) { const p = slideAt(c, r, ax0, 135, 0.98); hairFlower(ctx, p.c, r, p.ax, acc.hair_flower); }
+  for (const ax of masses) drawHats(ctx, c, r, ax, acc); // batch B: chilli_hat, pirate_hat, beard
 }
 
 // ---- Hand pieces -------------------------------------------------------------------------------

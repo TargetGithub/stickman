@@ -1833,6 +1833,7 @@
         "description": "Punches the air in victory and holds the pose.",
         "tags": ["emote", "win"],
         "category": "emote",
+        "view": "front",
         "duration": 1.4,
         "mouth": "grin",
         "flags": { "hold": true },
@@ -1864,6 +1865,7 @@
         "description": "Waves hello with one hand.",
         "tags": ["emote", "friendly", "greet"],
         "category": "emote",
+        "view": "three_quarter",
         "duration": 1.2,
         "mouth": "grin",
         "keys": [
@@ -1881,6 +1883,7 @@
         "description": "Bows politely from the waist.",
         "tags": ["emote", "polite", "greet"],
         "category": "emote",
+        "view": "front",
         "duration": 1.3,
         "keys": [
           { "t": 0, "pose": "stand", "ease": "inOutQuad" },
@@ -2145,6 +2148,7 @@
         "description": "Jumps up with both arms raised for joy.",
         "tags": ["emote", "happy", "win"],
         "category": "emote",
+        "view": "front",
         "duration": 1,
         "face": "laugh",
         "keys": [
@@ -2209,6 +2213,7 @@
         "description": "Nods yes; loops for `cycles`.",
         "tags": ["emote", "gesture", "loop"],
         "category": "emote",
+        "view": "three_quarter",
         "duration": 0.7,
         "params": { "cycles": 2 },
         "flags": { "loop": true },
@@ -2249,6 +2254,7 @@
         "description": "Looks left and right, searching or unsure.",
         "tags": ["emote", "search"],
         "category": "emote",
+        "view": "three_quarter",
         "duration": 1.8,
         "keys": [
           { "t": 0, "pose": "stand", "ease": "inOutQuad" },
@@ -2673,6 +2679,7 @@
         "description": "Cheers with arms pumping; loops for `cycles`.",
         "tags": ["life", "happy", "loop", "crowd"],
         "category": "life",
+        "view": "front",
         "duration": 0.8,
         "params": { "cycles": 3 },
         "face": "laugh",
@@ -2704,6 +2711,7 @@
         "description": "Claps the hands; loops for `cycles`.",
         "tags": ["life", "happy", "loop", "crowd"],
         "category": "life",
+        "view": "front",
         "duration": 0.5,
         "params": { "cycles": 4 },
         "face": "happy",
@@ -7886,7 +7894,9 @@
         "tags": ["classic", "hero"],
         "rig": "humanoid",
         "draw": "stick",
-        "dims": { "headR": 22, "neck": 8, "torso": 78, "upperArm": 38, "forearm": 36, "thigh": 48, "shin": 46, "lineWidth": 9 }
+        "dims": { "headR": 22, "neck": 8, "torso": 78, "upperArm": 38, "forearm": 36, "thigh": 48, "shin": 46, "lineWidth": 9 },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 13, "hip": 8, "foreshorten": 0.3 }
       },
       "buddy": {
         "description": "A short, round, cute sidekick with a filled body and big eyes.",
@@ -7896,7 +7906,9 @@
         "torsoWidth": 27,
         "dims": { "headR": 26, "neck": 2, "torso": 42, "upperArm": 22, "forearm": 20, "thigh": 24, "shin": 22, "lineWidth": 8 },
         "appearance": { "eyes": "big", "brows": "thin" },
-        "avoid": ["axe_kick"]
+        "avoid": ["axe_kick"],
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 20, "hip": 13, "foreshorten": 0.3 }
       },
       "kid": {
         "description": "A small child stick figure with big eyes.",
@@ -7904,7 +7916,9 @@
         "rig": "humanoid",
         "draw": "stick",
         "dims": { "headR": 21, "neck": 5, "torso": 52, "upperArm": 26, "forearm": 25, "thigh": 32, "shin": 31, "lineWidth": 8 },
-        "appearance": { "eyes": "big" }
+        "appearance": { "eyes": "big" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 12, "hip": 8, "foreshorten": 0.3 }
       },
       "bulky": {
         "description": "A big, broad, strong figure with a filled chest and thick brows.",
@@ -7913,7 +7927,9 @@
         "draw": "trapezoid",
         "torsoWidth": 30,
         "dims": { "headR": 20, "neck": 6, "torso": 82, "upperArm": 42, "forearm": 40, "thigh": 46, "shin": 44, "lineWidth": 13 },
-        "appearance": { "brows": "thick" }
+        "appearance": { "brows": "thick" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 26, "hip": 15, "foreshorten": 0.3 }
       },
       "robot": {
         "description": "A big iron robot: a rounded box body with rivets, a square head, bolts at the joints (Iron Ghoom).",
@@ -7922,7 +7938,9 @@
         "draw": "box",
         "torsoWidth": 34,
         "dims": { "headR": 20, "neck": 6, "torso": 80, "upperArm": 42, "forearm": 40, "thigh": 46, "shin": 44, "lineWidth": 15 },
-        "appearance": { "eyes": "visor", "brows": "none" }
+        "appearance": { "eyes": "visor", "brows": "none" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 28, "hip": 16, "foreshorten": 0.3 }
       },
       "slim": {
         "description": "A tall, thin figure with oval eyes; sneaky or elegant.",
@@ -7930,7 +7948,9 @@
         "rig": "humanoid",
         "draw": "stick",
         "dims": { "headR": 18, "neck": 10, "torso": 90, "upperArm": 45, "forearm": 43, "thigh": 57, "shin": 55, "lineWidth": 7 },
-        "appearance": { "eyes": "oval" }
+        "appearance": { "eyes": "oval" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 11, "hip": 7, "foreshorten": 0.3 }
       },
       "elder": {
         "description": "An older figure with a stoop, sleepy eyes and white hair.",
@@ -7940,7 +7960,9 @@
         "posture": { "lean": 12, "head": 8 },
         "dims": { "headR": 21, "neck": 7, "torso": 72, "upperArm": 36, "forearm": 34, "thigh": 44, "shin": 42, "lineWidth": 8 },
         "appearance": { "brows": "thick", "eyes": "sleepy", "hair": "bob", "hairColor": "#e8e8e8" },
-        "avoid": ["flying_kick", "spinning_kick", "axe_kick", "flurry"]
+        "avoid": ["flying_kick", "spinning_kick", "axe_kick", "flurry"],
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 12, "hip": 8, "foreshorten": 0.3 }
       },
       "dog_small": {
         "description": "A small four-legged puppy (back at a stickman's knee) with floppy ears and a wagging tail; never fights.",
@@ -7952,7 +7974,9 @@
         "quad": { "ears": "floppy", "earColor": "#8a5a3c", "tail": "wag", "patch": "#c4935f", "belly": "#fff6e6", "collar": "#e63946", "bell": "#f2c94c" },
         "appearance": { "eyes": "big" },
         "moves": { "idle": "idle_dog", "walk": "walk_dog", "run": "run_dog", "jump": "jump_dog", "sneak": "sniff", "tiptoe": "sniff", "sit": "sit_dog", "lie_down": "lie_dog", "sleep": "sleep_dog", "get_up": "get_up_dog", "stand_up": "get_up_dog", "kneel": "sit_dog", "spawn": "spawn_dog", "despawn": "despawn_dog", "wave": "wag", "cheer": "wag", "clap": "wag", "laugh": "wag", "victory": "wag", "jump_joy": "jump_dog", "nod": "tilt_head", "shrug": "tilt_head", "look_around": "tilt_head", "peek": "tilt_head", "shake_head": "shake_off", "facepalm": "shake_off", "talk": "bark", "point": "bark", "taunt": "growl", "cry": "whimper", "sigh": "whimper", "cower": "whimper", "gasp": "yelp", "hit_light": "yelp", "hit_heavy": "yelp", "hit_launch": "yelp", "stagger": "yelp", "knockdown": "faint_dog", "ko_fall": "faint_dog", "ko_spin": "faint_dog", "dizzy": "dizzy_dog", "faint": "faint_dog", "dodge_back": "dodge_dog", "duck": "dodge_dog", "hide": "lie_dog", "carried": "carried_dog", "set_down": "set_down_dog", "pick_prop": "pick_dog", "drop_prop": "drop_dog", "catch_ball": "catch_mouth", "dash": "pounce", "return": "return_dog", "sneeze": "shake_off", "swim": "swim_dog" },
-        "grip": { "offset": [20, 4], "angle": 0 }
+        "grip": { "offset": [20, 4], "angle": 0 },
+        "views": ["side", "front"],
+        "turn": { "shoulder": 9, "hip": 9, "foreshorten": 0.2 }
       }
     },
     "bodyNames": ["stickman", "buddy", "kid", "bulky", "robot", "slim", "elder", "dog_small"],
@@ -8363,7 +8387,378 @@
       "mixolydian": [0, 2, 4, 5, 7, 9, 10],
       "harmonic": [0, 2, 3, 5, 7, 8, 11],
       "phrygian": [0, 1, 3, 5, 7, 8, 10]
-    }
+    },
+    "lights": {
+      "byTime": { "dawn": "dawn", "day": "noon", "dusk": "golden", "night": "moonlit" },
+      "rigs": {
+        "flat": {
+          "description": "No lighting: the plain v2 look with no shading, rim or cast shadows.",
+          "tags": ["flat", "plain"],
+          "flat": true
+        },
+        "noon": {
+          "description": "Bright midday sun high on the right: soft two-tone shading, short shadows, a light blue haze far away.",
+          "tags": ["day", "sun", "outdoor"],
+          "key": { "angle": 112, "color": "#fff3d0", "strength": 0.3 },
+          "fill": { "color": "#cfe3ff", "strength": 0.12 },
+          "rim": { "color": "#ffffff", "strength": 0.22 },
+          "ambient": { "color": "#ffffff", "strength": 0 },
+          "shadow": { "alpha": 0.22, "length": 0.35, "cast": "ground" },
+          "fog": { "color": "#cfe0f6", "density": 0.3 }
+        },
+        "dawn": {
+          "description": "Low pink morning light from the left: long soft shadows and a rosy haze.",
+          "tags": ["dawn", "morning", "outdoor"],
+          "key": { "angle": 158, "color": "#ffd6c2", "strength": 0.34 },
+          "fill": { "color": "#b8c8ff", "strength": 0.16 },
+          "rim": { "color": "#fff0e6", "strength": 0.3 },
+          "ambient": { "color": "#ffd2bf", "strength": 0.12 },
+          "shadow": { "alpha": 0.2, "length": 1.1, "cast": "ground" },
+          "fog": { "color": "#f2d6d2", "density": 0.42 }
+        },
+        "golden": {
+          "description": "Golden hour from low on the right: warm lit sides, cool violet shadows, long shadows and a warm haze.",
+          "tags": ["dusk", "golden", "outdoor"],
+          "key": { "angle": 22, "color": "#ffc466", "strength": 0.42 },
+          "fill": { "color": "#8a7ad0", "strength": 0.2 },
+          "rim": { "color": "#ffe2a8", "strength": 0.38 },
+          "ambient": { "color": "#ffb070", "strength": 0.16 },
+          "shadow": { "alpha": 0.26, "length": 1.4, "cast": "ground" },
+          "fog": { "color": "#e8b890", "density": 0.4 }
+        },
+        "moonlit": {
+          "description": "Cool blue moonlight from high on the left: dark shadow sides, a pale rim and a deep blue haze.",
+          "tags": ["night", "moon", "outdoor"],
+          "key": { "angle": 120, "color": "#c8d8ff", "strength": 0.3 },
+          "fill": { "color": "#30386a", "strength": 0.3 },
+          "rim": { "color": "#dbe6ff", "strength": 0.42 },
+          "ambient": { "color": "#4a5aa0", "strength": 0.3 },
+          "shadow": { "alpha": 0.3, "length": 0.8, "cast": "ground" },
+          "fog": { "color": "#1e2a52", "density": 0.5 }
+        },
+        "indoor": {
+          "description": "A warm lamp overhead and slightly to the right: gentle shading, soft shadows on the floor and a flattened shadow on the wall behind.",
+          "tags": ["indoor", "lamp", "home"],
+          "key": { "angle": 100, "color": "#ffe9c4", "strength": 0.26 },
+          "fill": { "color": "#d8c8e8", "strength": 0.14 },
+          "rim": { "color": "#fff6e0", "strength": 0.18 },
+          "ambient": { "color": "#ffe0b8", "strength": 0.08 },
+          "shadow": { "alpha": 0.18, "length": 0.5, "cast": "wall" },
+          "fog": { "color": "#e0d6c8", "density": 0.12 }
+        },
+        "stage": {
+          "description": "A hard spotlight from straight above: strong three-tone shading, a tight shadow at the feet and no haze.",
+          "tags": ["stage", "spotlight", "drama"],
+          "key": { "angle": 90, "color": "#ffffff", "strength": 0.5 },
+          "fill": { "color": "#303040", "strength": 0.35 },
+          "rim": { "color": "#ffffff", "strength": 0.5 },
+          "ambient": { "color": "#202030", "strength": 0.25 },
+          "shadow": { "alpha": 0.4, "length": 0.15, "cast": "none" },
+          "fog": { "color": "#000000", "density": 0 }
+        },
+        "gloom": {
+          "description": "Dim greenish light from the left for villain lairs: murky shading, heavy shadows and a thick dark haze.",
+          "tags": ["night", "lair", "villain"],
+          "key": { "angle": 150, "color": "#b8e8c0", "strength": 0.3 },
+          "fill": { "color": "#243030", "strength": 0.34 },
+          "rim": { "color": "#c8ffd0", "strength": 0.32 },
+          "ambient": { "color": "#2c4a3c", "strength": 0.28 },
+          "shadow": { "alpha": 0.34, "length": 0.9, "cast": "ground" },
+          "fog": { "color": "#1a2a24", "density": 0.55 }
+        }
+      }
+    },
+    "lightNames": ["flat", "noon", "dawn", "golden", "moonlit", "indoor", "stage", "gloom"],
+    "cameraMoves": {
+      "push_in": {
+        "description": "A slow dolly toward the stage: near things grow faster than far ones, so the scene deepens.",
+        "tags": ["dolly", "push", "slow"],
+        "dur": 3,
+        "keys": [{ "t": 0, "dolly": 0 }, { "t": 1, "dolly": 420, "ease": "inOutCubic" }]
+      },
+      "pull_out": {
+        "description": "A dolly back from the stage that reveals more of the place around the characters.",
+        "tags": ["dolly", "reveal", "wide"],
+        "dur": 3,
+        "keys": [{ "t": 0, "dolly": 0 }, { "t": 1, "dolly": -420, "ease": "inOutCubic" }]
+      },
+      "slow_push": {
+        "description": "A gentle zoom in over a few seconds, for a quiet or emotional moment.",
+        "tags": ["zoom", "slow", "emotion"],
+        "dur": 5,
+        "keys": [{ "t": 0, "push": 1 }, { "t": 1, "push": 1.14, "ease": "inOutQuad" }]
+      },
+      "crane_up": {
+        "description": "The camera rises and tilts down a little, as if on a crane, for an opening or an ending.",
+        "tags": ["crane", "rise", "opening"],
+        "dur": 4,
+        "keys": [{ "t": 0, "crane": 0, "tilt": 0 }, { "t": 1, "crane": -180, "tilt": -3, "ease": "inOutCubic" }]
+      },
+      "crane_down": {
+        "description": "The camera comes down from high above to the characters' height.",
+        "tags": ["crane", "descend", "opening"],
+        "dur": 4,
+        "keys": [{ "t": 0, "crane": -180, "tilt": -3 }, { "t": 1, "crane": 0, "tilt": 0, "ease": "inOutCubic" }]
+      },
+      "orbit_sweep": {
+        "description": "A sideways glide with a small push in and out, so the layers slide past each other.",
+        "tags": ["truck", "parallax", "sweep"],
+        "dur": 4,
+        "keys": [
+          { "t": 0, "truck": 0, "dolly": 0, "roll": 0 },
+          { "t": 0.5, "truck": 300, "dolly": 220, "roll": 1.2, "ease": "inOutQuad" },
+          { "t": 1, "truck": 600, "dolly": 0, "roll": 0, "ease": "inOutQuad" }
+        ]
+      },
+      "dutch_tilt": {
+        "description": "The frame leans a few degrees to one side for a funny or uneasy moment.",
+        "tags": ["roll", "comedy", "tension"],
+        "dur": 0.6,
+        "keys": [{ "t": 0, "roll": 0 }, { "t": 1, "roll": 7, "ease": "outBack" }]
+      },
+      "level": {
+        "description": "Back to a straight, still camera: no lean, crane, truck or dolly.",
+        "tags": ["reset", "level", "still"],
+        "dur": 1,
+        "absolute": true,
+        "keys": [
+          { "t": 0 },
+          { "t": 1, "dolly": 0, "truck": 0, "crane": 0, "tilt": 0, "roll": 0, "push": 1, "ease": "inOutCubic" }
+        ]
+      },
+      "handheld": {
+        "description": "A light handheld sway that keeps going after the move, for lively or nervous scenes.",
+        "tags": ["handheld", "sway", "lively"],
+        "dur": 1,
+        "keys": [{ "t": 0, "handheld": 0 }, { "t": 1, "handheld": 0.6, "ease": "linear" }]
+      }
+    },
+    "cameraMoveNames": ["push_in", "pull_out", "slow_push", "crane_up", "crane_down", "orbit_sweep", "dutch_tilt", "level", "handheld"],
+    "textStyles": {
+      "title": {
+        "description": "A big bouncy cartoon title: yellow letters with a thick dark outline and a drop shadow.",
+        "tags": ["title", "big", "cartoon"],
+        "font": "Bangers",
+        "size": 140,
+        "color": "#ffd23f",
+        "outline": "#2b1d0e",
+        "outlineWidth": 12,
+        "shadow": "#00000066"
+      },
+      "subtitle": {
+        "description": "A clean white line under a title, with a soft dark outline.",
+        "tags": ["subtitle", "clean"],
+        "font": "Inter",
+        "size": 54,
+        "color": "#ffffff",
+        "outline": "#1a1a24",
+        "outlineWidth": 6
+      },
+      "caption": {
+        "description": "Plain white words on a dark rounded box near the bottom of the frame.",
+        "tags": ["caption", "box", "readable"],
+        "font": "Inter",
+        "size": 42,
+        "color": "#ffffff",
+        "box": "#000000aa",
+        "padding": 18
+      },
+      "lower_third": {
+        "description": "A name strip: white text on a coloured bar, for introducing a character.",
+        "tags": ["name", "strip", "intro"],
+        "font": "Inter",
+        "size": 46,
+        "color": "#ffffff",
+        "box": "#3d7bd9",
+        "padding": 20
+      },
+      "comic": {
+        "description": "A comic sound word: red letters with a white outline, for a pop or a bonk.",
+        "tags": ["comic", "sound", "impact"],
+        "font": "Bangers",
+        "size": 110,
+        "color": "#ff4d4d",
+        "outline": "#ffffff",
+        "outlineWidth": 10,
+        "shadow": "#00000055"
+      },
+      "label": {
+        "description": "Small dark letters for a sign or a label inside the picture.",
+        "tags": ["label", "sign", "small"],
+        "font": "Inter",
+        "size": 34,
+        "color": "#2b2b2b"
+      }
+    },
+    "textStyleNames": ["title", "subtitle", "caption", "lower_third", "comic", "label"],
+    "templates": {
+      "intro_card": {
+        "description": "A title card scene: a character waves on an empty stage while a title pops in and a subtitle slides up.",
+        "tags": ["intro", "title", "card"],
+        "params": {
+          "who": { "type": "string", "required": true, "description": "The character who waves (in the cast)." },
+          "title": { "type": "string", "required": true, "maxLength": 48, "description": "The big title." },
+          "subtitle": { "type": "string", "default": " ", "maxLength": 60, "description": "The line under it." },
+          "theme": { "type": "string", "default": "white_stage", "description": "A theme or location id for the backdrop." },
+          "mood": { "type": "string", "default": "happy", "description": "The music mood." }
+        },
+        "fragment": {
+          "scenes": [
+            {
+              "id": "${id}",
+              "location": "${theme}",
+              "music": { "mood": "${mood}", "volume": 0.35 },
+              "camera": [{ "at": 0, "mode": "fixed", "x": 1600, "zoom": 1 }],
+              "cast": [{ "id": "${who}", "x": 1600, "facing": 1, "face": "happy" }],
+              "beats": [
+                { "id": "${id}_wave", "at": 0.8, "who": "${who}", "do": "wave" },
+                {
+                  "id": "${id}_end",
+                  "at": { "after": "${id}_wave", "delay": 1.4 },
+                  "who": "world",
+                  "do": "fade",
+                  "params": { "to": "black", "dur": 0.5 }
+                }
+              ]
+            }
+          ],
+          "layers": [{ "id": "${id}_titles", "scene": "${id}", "from": 0.2, "to": 4.2, "out": { "type": "fade", "dur": 0.5 } }],
+          "text": [
+            {
+              "id": "${id}_title",
+              "text": "${title}",
+              "style": "title",
+              "layer": "${id}_titles",
+              "x": 960,
+              "y": 300,
+              "from": 0.2,
+              "in": { "type": "pop", "dur": 0.5 }
+            },
+            {
+              "id": "${id}_sub",
+              "text": "${subtitle}",
+              "style": "subtitle",
+              "layer": "${id}_titles",
+              "x": 960,
+              "y": 420,
+              "from": 0.8,
+              "in": { "type": "slide_up", "dur": 0.5 }
+            }
+          ],
+          "audioTracks": [{ "id": "${id}_whoosh", "kind": "sfx", "sfx": "card_whoosh", "scene": "${id}", "at": [0.2] }]
+        }
+      },
+      "doopi_intro": {
+        "description": "The Doopi & Friends opening: Doopi waves, Becky runs in, the show title pops in and the episode line slides up, with sparkles and a music lift.",
+        "tags": ["intro", "series", "doopi"],
+        "params": {
+          "episode": { "type": "number", "required": true, "description": "The episode number." },
+          "title": { "type": "string", "required": true, "maxLength": 48, "description": "The episode title." },
+          "location": { "type": "string", "default": "tokyo_village", "description": "A location id or theme for the backdrop." },
+          "hero": { "type": "string", "default": "doopi", "description": "The hero who waves." },
+          "dog": { "type": "string", "default": "becky", "description": "The dog who runs in." },
+          "mood": { "type": "string", "default": "happy", "description": "The music mood." }
+        },
+        "fragment": {
+          "scenes": [
+            {
+              "id": "${id}",
+              "location": "${location}",
+              "time": "day",
+              "music": { "mood": "${mood}", "volume": 0.3 },
+              "camera": [{ "at": 0, "mode": "fixed", "x": 1600, "zoom": 1.05 }],
+              "cast": [
+                { "id": "${hero}", "x": 1350, "facing": 1, "face": "happy" },
+                { "id": "${dog}", "x": 2900, "facing": -1, "hidden": true }
+              ],
+              "beats": [
+                { "id": "${id}_wave", "at": 0.5, "who": "${hero}", "do": "wave" },
+                {
+                  "id": "${id}_dog",
+                  "at": 1.1,
+                  "macro": "enter",
+                  "params": { "who": "${dog}", "side": "right", "to": { "x": 1750 }, "mode": "run" }
+                },
+                { "id": "${id}_jump", "at": { "marker": "${id}_drop" }, "who": "${hero}", "do": "jump_joy" },
+                { "id": "${id}_wag", "at": { "with": "${id}_jump" }, "who": "${dog}", "do": "wag" },
+                {
+                  "id": "${id}_end",
+                  "at": { "after": "${id}_jump", "delay": 1.8 },
+                  "who": "world",
+                  "do": "fade",
+                  "params": { "to": "black", "dur": 0.6 }
+                }
+              ]
+            }
+          ],
+          "layers": [{ "id": "${id}_titles", "scene": "${id}", "from": 0.3, "to": 5.6, "out": { "type": "fade", "dur": 0.5 } }],
+          "shapes": [
+            {
+              "id": "${id}_band",
+              "type": "rect",
+              "layer": "${id}_titles",
+              "x": 960,
+              "y": 330,
+              "w": 1180,
+              "h": 300,
+              "r": 60,
+              "opacity": 0.92,
+              "fill": { "type": "linear", "angle": 90, "stops": [[0, "#ff7eb6"], [1, "#6a4fb0"]] },
+              "in": { "type": "wipe_right", "dur": 0.5 },
+              "from": 0.3
+            }
+          ],
+          "text": [
+            {
+              "id": "${id}_show",
+              "text": "Doopi & Friends",
+              "style": "title",
+              "layer": "${id}_titles",
+              "x": 960,
+              "y": 290,
+              "from": 0.6,
+              "in": { "type": "pop", "dur": 0.5 }
+            },
+            {
+              "id": "${id}_ep",
+              "text": "Episode ${episode}: ${title}",
+              "style": "subtitle",
+              "layer": "${id}_titles",
+              "x": 960,
+              "y": 410,
+              "from": 1.3,
+              "in": { "type": "slide_up", "dur": 0.5 }
+            }
+          ],
+          "tracks": [
+            {
+              "target": "text.${id}_show.scale",
+              "scene": "${id}",
+              "keys": [{ "t": 3, "v": 1 }, { "t": 3.2, "v": 1.12, "ease": "outBack" }, { "t": 3.5, "v": 1 }]
+            }
+          ],
+          "markers": [{ "id": "${id}_drop", "scene": "${id}", "t": 3 }],
+          "audioTracks": [
+            { "id": "${id}_sparkle", "kind": "sfx", "sfx": "sparkle", "scene": "${id}", "at": [0.6, 1.3] },
+            {
+              "id": "${id}_shimmer",
+              "kind": "sfx",
+              "sfx": "magic_sparkle",
+              "scene": "${id}",
+              "at": [{ "marker": "${id}_drop" }]
+            },
+            {
+              "id": "${id}_lift",
+              "kind": "bus",
+              "bus": "music",
+              "scene": "${id}",
+              "volume": [{ "t": 0, "v": 0.7 }, { "t": 3, "v": 1.3, "ease": "inOutQuad" }, { "t": 5, "v": 1 }]
+            }
+          ]
+        }
+      }
+    },
+    "templateNames": ["intro_card", "doopi_intro"]
   },
   "presets": [
     {
@@ -9118,6 +9513,19 @@
           "do": "activity",
           "params": { "name": "play_catch", "with": ["kai", "pip"], "reps": 4 }
         }
+      },
+      "set_light": {
+        "description": "The light rig of a version 3 scene: a preset (noon, dawn, golden, moonlit, indoor, stage, gloom, flat) or overrides (angle, strength, fog), blended over dur.",
+        "example": { "at": 0, "who": "world", "do": "set_light", "params": { "preset": "golden", "dur": 2 } }
+      },
+      "set_camera": {
+        "description": "The lens of a version 3 scene: a named move (push_in, pull_out, crane_up, orbit_sweep, dutch_tilt, level, handheld ...) and/or channels (dolly, truck, crane, tilt, roll, push, handheld, dof, focus, vignette, letterbox) over dur.",
+        "example": {
+          "at": 0,
+          "who": "world",
+          "do": "set_camera",
+          "params": { "move": "push_in", "dof": 0.5, "focus": "kai", "dur": 3 }
+        }
       }
     },
     "macros": {
@@ -9347,7 +9755,7 @@
       "rule": "At a scene boundary the next scene's transitionIn wins, then the previous scene's transitionOut, else cut. Transitions add video time but no story time."
     },
     "codes": {
-      "E_VERSION": { "meaning": "version is not 1 or 2", "fix": "1 for a clip, 2 for a story." },
+      "E_VERSION": { "meaning": "version is not 1, 2 or 3", "fix": "1 for a clip, 2 for a story, 3 for a story with depth." },
       "E_SCHEMA_TYPE": { "meaning": "wrong JSON type", "fix": "Numbers unquoted, lists in [], objects in {}." },
       "E_SCHEMA_REQUIRED": { "meaning": "a required field is missing", "fix": "Add the field the message names." },
       "E_SCHEMA_UNKNOWN_FIELD": { "meaning": "a field that does not exist", "fix": "Remove it or use the suggested name." },
@@ -9430,7 +9838,22 @@
       "E_BUNDLE_HASH": { "meaning": "a bundle with the declared id is loaded, but with another hash (different content)", "fix": "Load the pinned bundle, or pin the loaded one if you mean it." },
       "E_BUNDLE_MISSING": { "meaning": "a bundle the script declares in \"bundles\" is not loaded", "fix": "Import the bundle (or pass --bundle to the tool), or remove it from \"bundles\"." },
       "E_BUNDLE_UNDECLARED": { "meaning": "a name with a colon (bundle:name) from a bundle the script does not declare", "fix": "Add that bundle's {id, version, hash} line to \"bundles\"." },
-      "W_BUNDLE_UNUSED": { "meaning": "a declared bundle that no name in the script uses", "fix": "Remove it from \"bundles\", or use one of its entries." }
+      "W_BUNDLE_UNUSED": { "meaning": "a declared bundle that no name in the script uses", "fix": "Remove it from \"bundles\", or use one of its entries." },
+      "E_DEPTH_RANGE": { "meaning": "a z (placement, set piece or to.z) is outside the scene's depth range", "fix": "Keep z between the scene's far and near (default -2000..600) or widen depth." },
+      "E_DEPTH_LAYER": { "meaning": "a node gives both z and layer", "fix": "Keep one: layer is a z preset (back -800, front 313)." },
+      "E_LIGHT_UNKNOWN": { "meaning": "an unknown light rig preset (scene or location light, set_light)", "fix": "Use a preset from catalog/world/lights.json (noon, dawn, golden, moonlit, indoor, stage, gloom, flat)." },
+      "E_CAMERA_MOVE": { "meaning": "an unknown named camera move (a v3 camera key move or set_camera)", "fix": "Use a move from catalog/world/camera_moves.json (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld)." },
+      "E_LAYER_REF": { "meaning": "a text, shape, mask or parent names a layer or shape that does not exist, or layer parents loop", "fix": "Use an id from layers or shapes; list parents first." },
+      "E_REF_SCENE": { "meaning": "a layer, text, shape or track names a scene that does not exist", "fix": "Use a scene id from scenes." },
+      "E_TRACK_TARGET": { "meaning": "a track target that is not keyable, or names a missing node", "fix": "Use layer.<id>.<prop>, text.<id>.<prop>, shape.<id>.<prop>, lens.<channel> or post.<prop>." },
+      "E_TRACK_KEYS": { "meaning": "a key value of the wrong kind, two keys at one time, or a path or line missing its points", "fix": "Numbers for numbers, #rrggbb for colours; one key per time." },
+      "E_TRACK_EASE": { "meaning": "an unknown easing on a key", "fix": "Use an easing name, step or cubic-bezier(x1, y1, x2, y2)." },
+      "E_TEXT_STYLE": { "meaning": "an unknown text style", "fix": "Use a style from catalog/world/text_styles.json (title, subtitle, caption, lower_third, comic, label)." },
+      "E_VIEW_BODY": { "meaning": "a character is asked for a turnaround view its body plan does not have", "fix": "Use a view the plan lists (the dog has side and front; humanoids have side, three_quarter, front and back)." },
+      "E_AUDIO_TRACK": { "meaning": "an audio track with an unknown mood, bed or SFX key, a missing field, or a duck rule under nothing", "fix": "Use catalog moods, ambience beds and SFX keys; give sfx tracks at times and bus tracks a bus." },
+      "E_MARKER_UNKNOWN": { "meaning": "a beat or sfx track starts at a marker that does not exist, or that is in another scene", "fix": "Add the marker to audio.markers with the beat's scene." },
+      "E_TEMPLATE_UNKNOWN": { "meaning": "a scene uses a template that is not in the catalog", "fix": "Use a template from catalog/story/templates.json (intro_card, doopi_intro)." },
+      "E_TEMPLATE_PARAM": { "meaning": "a template param is missing, unknown or of the wrong type", "fix": "Give the params the template lists, with their types." }
     }
   },
   "examples": [

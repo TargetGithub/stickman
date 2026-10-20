@@ -3,6 +3,10 @@
 
 import { checkSchema, checkValue, jsonSchema, buildJsonSchema } from "./schema.js";
 import { schemaV2For } from "./schema_v2.js";
+import { schemaV3For } from "./schema_v3.js";
+import { depthIssues } from "./depth.js";
+import { motionIssues } from "./motion.js";
+import { audioTrackIssues } from "./audio.js";
 import { checkSemantics, WORLD_COMMANDS } from "./semantic.js";
 import { checkStory } from "./story.js";
 import { formatIssues, formatTimeline } from "./report.js";
@@ -10,6 +14,7 @@ import { simulate, movesFor } from "../sim.js";
 import { normalize } from "../story/normalize.js";
 import { compileStory } from "../story/compile.js";
 import { macroIssues } from "./macros.js";
+import { expandScript } from "../templates.js";
 import { bundleIssues } from "./bundles.js";
 import { BUNDLE_PINS } from "./v2_names.js";
 import { LIMITS, LIMITS_V2 } from "../config.js";
@@ -82,7 +87,11 @@ export function validate(script, catalog) {
   }
   const version = versionIssue(script);
   if (version) return result("schema", [version]);
-  const v2 = script.version === 2;
+  // Templates and markers (V3.8): expand them first; everything after sees a plain v3 script.
+  const expanded = expandScript(script, catalog);
+  if (expanded.issues.length) return result("semantic", expanded.issues);
+  script = expanded.script;
+  const v2 = script.version >= 2; // 2, or 3 with the depth lane (V3.2)
   // Declared bundles before anything else (CATALOG_BUNDLE_SPEC 7.4): a missing bundle explains every unknown
   // name, including names the schema would reject (a bundle mood). A malformed "bundles" list is a schema issue.
   if (!checkValue(script.bundles ?? [], BUNDLE_PINS).length) {
@@ -99,7 +108,7 @@ export function validate(script, catalog) {
   if (v2) {
     // Macro params first, then compile (ADR-014), then every check on the compiled beats.
     const authored = normalize(script);
-    const pre = macroIssues(authored, catalog, moves);
+    const pre = [...macroIssues(authored, catalog, moves), ...depthIssues(authored, catalog), ...motionIssues(authored, catalog), ...audioTrackIssues(authored, catalog)];
     if (pre.length) return result("semantic", pre);
     try {
       story = compileStory(authored, catalog, moves).story;
@@ -180,15 +189,15 @@ function staticScenes(sim) {
   return out;
 }
 
-/** E_VERSION: an unknown version, or a v1-shaped script labeled version 2. */
+/** E_VERSION: an unknown version, or a v1-shaped script labeled version 2 or 3. */
 function versionIssue(script) {
-  if (script.version === 1 || script.version === 2) {
-    if (script.version === 2 && "characters" in script && !("scenes" in script)) {
-      return { code: "E_VERSION", path: "version", message: "This looks like a version 1 script (characters, camera, beats) labeled version 2.", fix: 'Set "version": 1, or write a story with "cast" and "scenes".' };
+  if (script.version === 1 || script.version === 2 || script.version === 3) {
+    if (script.version >= 2 && "characters" in script && !("scenes" in script)) {
+      return { code: "E_VERSION", path: "version", message: `This looks like a version 1 script (characters, camera, beats) labeled version ${script.version}.`, fix: 'Set "version": 1, or write a story with "cast" and "scenes".' };
     }
     return null;
   }
-  return { code: "E_VERSION", path: "version", message: `Unknown script version ${JSON.stringify(script.version)}.`, fix: 'Use "version": 1 (a single fight clip) or "version": 2 (a story with scenes).' };
+  return { code: "E_VERSION", path: "version", message: `Unknown script version ${JSON.stringify(script.version)}.`, fix: 'Use "version": 1 (a single fight clip), 2 (a story with scenes) or 3 (a story with the depth lane).' };
 }
 
 function checkSchemaV2(script, catalog) {
@@ -196,7 +205,7 @@ function checkSchemaV2(script, catalog) {
   if (size > LIMITS_V2.scriptBytes) {
     return [{ code: "E_SCHEMA_SIZE", path: "", message: `Script is ${size} bytes.`, fix: `Keep scripts under ${LIMITS_V2.scriptBytes} bytes.` }];
   }
-  const out = checkValue(script, schemaV2For(catalog));
+  const out = checkValue(script, script.version === 3 ? schemaV3For(catalog) : schemaV2For(catalog));
   const beats = (script.scenes || []).reduce((n, s) => n + (Array.isArray(s?.beats) ? s.beats.length : 0), 0);
   if (beats > LIMITS_V2.beatsAuthored) {
     out.push({ code: "E_SCHEMA_SIZE", path: "scenes", message: `The story has ${beats} beats.`, fix: `Keep it under ${LIMITS_V2.beatsAuthored} authored beats; use fewer, longer scenes.` });

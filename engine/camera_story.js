@@ -7,14 +7,17 @@
 //   track          follow `target` with lead room ahead of it
 // Auto camera for stories (meta.autoCamera "story", scenes without camera keys): a wide at the scene start,
 // two-shots while someone talks to a neighbour, close-ups when a face turns cry, furious or determined,
-// and the v1 follow during fights. A `shot` beat or a camera key always wins.
+// and the v1 follow during fights. A `shot` beat or a camera key always wins. In version 3 scripts (V3.9,
+// `tight`) the rest of the time frames only the characters who spoke or moved in the last few seconds (and
+// the nearest one to a lone actor), not the whole cast, so the shot is as close as the action.
 
 import { dimsOf } from "./skeleton.js";
+import { isIdleMove } from "./moves.js";
 
 export const STORY_MODES = ["two_shot", "close_up", "wide", "over_shoulder", "track"];
 const CLOSE_UP_MAX = 3; // zoom
 const CLOSE_FACES = ["cry", "furious", "determined"];
-const AUTO = { wide: 2.5, closeUp: 2, sayPad: 0.5, fight: 1.5, talkReach: 800 }; // seconds, px
+const AUTO = { wide: 2.5, closeUp: 2, sayPad: 0.5, fight: 1.5, talkReach: 800, active: 3.5, activePad: 200 }; // seconds, px
 
 /**
  * Target framing for a story shot mode, or null for other modes.
@@ -74,14 +77,17 @@ export function shotKey(p) {
 }
 
 /** State for the story auto camera of one scene. */
-export function createStoryAuto(t0) {
-  return { t0, lastHit: -Infinity, say: null, close: null, faces: new Map(), current: "start" };
+export function createStoryAuto(t0, { tight = false } = {}) {
+  return { t0, lastHit: -Infinity, say: null, close: null, faces: new Map(), current: "start", tight, active: new Map() };
 }
 
 /** Record the events the auto camera reacts to (story seconds). */
 export function storyAutoEvent(auto, e, t) {
   if (e.type === "hit") auto.lastHit = t;
-  if (e.type === "say") auto.say = { actor: e.actor, until: t + e.dur + AUTO.sayPad };
+  if (e.type === "say") {
+    auto.say = { actor: e.actor, until: t + e.dur + AUTO.sayPad };
+    auto.active.set(e.actor, t + e.dur);
+  }
 }
 
 /**
@@ -90,6 +96,7 @@ export function storyAutoEvent(auto, e, t) {
  */
 export function storyAutoKey(auto, actors, t) {
   for (const a of actors) {
+    if (auto.tight && !a.hidden && ((a.move && !isIdleMove(a.move.def)) || Math.abs(a.vx || 0) > 20)) auto.active.set(a.id, t);
     const prev = auto.faces.get(a.id);
     if (prev !== undefined && a.face !== prev && CLOSE_FACES.includes(a.face) && !a.hidden) auto.close = { target: a.id, until: t + AUTO.closeUp };
     auto.faces.set(a.id, a.face);
@@ -105,5 +112,19 @@ export function storyAutoKey(auto, actors, t) {
     }
   }
   if (t - auto.t0 < AUTO.wide) return { mode: "wide" };
-  return null;
+  return auto.tight ? activeKey(auto, actors, t) : null;
+}
+
+/** Follow the characters active in the last AUTO.active seconds (a lone one with its nearest neighbour); null: none. */
+function activeKey(auto, actors, t) {
+  const shown = actors.filter((a) => !a.hidden);
+  const active = shown.filter((a) => t - (auto.active.get(a.id) ?? -Infinity) < AUTO.active);
+  if (!active.length) return null;
+  if (active.length === 1) {
+    const [one] = active;
+    const others = shown.filter((a) => a !== one && Math.abs(a.x - one.x) < AUTO.talkReach);
+    if (others.length) active.push(others.reduce((b, a) => (Math.abs(a.x - one.x) < Math.abs(b.x - one.x) ? a : b)));
+  }
+  const ids = new Set(active.map((a) => a.id));
+  return { mode: "follow", targets: shown.filter((a) => ids.has(a.id)).map((a) => a.id), padding: AUTO.activePad };
 }

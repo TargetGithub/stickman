@@ -4,7 +4,7 @@
 // eyepatch, antenna and crown after them; bowtie on the neck. The Doopi & Friends pieces (horns,
 // turban, sprout, hair_flower, moustache, stub_horns, the bun) are drawn by accessories_more.js.
 
-import { drawBun, drawHornsBack, drawHeadMore } from "./accessories_more.js";
+import { drawBun, drawHornsBack, drawHeadMore, mirrorAxes, slideAt } from "./accessories_more.js";
 
 const INK = "#111111";
 const DEG = Math.PI / 180;
@@ -31,8 +31,13 @@ const arcPts = (c, r, ax, from, to, k, n = 14) => Array.from({ length: n + 1 }, 
 
 /** Ponytail and the far horn (behind the head). */
 export function drawHairBack(ctx, c, r, ax, look) {
-  if (look.accessories) drawHornsBack(ctx, c, r, ax, look.accessories);
-  if (look.hair !== "ponytail") return;
+  if (look.accessories) for (const a of mirrorAxes(ax)) drawHornsBack(ctx, c, r, a, look.accessories);
+  if (look.hair === "ponytail" && !ax.back) ponytail(ctx, c, r, ax, look);
+}
+
+/** The ponytail: behind the head, or over it when seen from behind (`ax.back`, V3.9). */
+function ponytail(ctx, c, r, ax, look) {
+  ({ c, ax } = slideAt(c, r, ax, 185, 1.3));
   const color = look.hairColor || "#3a2a20";
   const root = polar(c, r, ax, 165, 0.95);
   const tip = polar(c, r, ax, 200, 2.0);
@@ -55,10 +60,21 @@ export function drawHair(ctx, c, r, ax, look) {
   const acc = look.accessories || {};
   if (!hair || hair === "none" || acc.turban || acc.chilli_hat || acc.pirate_hat) return; // headwear covers the hair
   const color = look.hairColor || (hair === "cap" ? "#d94b4b" : "#3a2a20");
+  if (ax.back && hair !== "cap") {
+    // Seen from behind, the hair covers the back of the head (V3.9).
+    ctx.beginPath();
+    ctx.arc(c.x + ax.u.x * r * 0.06, c.y + ax.u.y * r * 0.06, r * 0.97, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+  if (hair === "bun") drawBun(ctx, c, r, ax, color);
+  else for (const a of mirrorAxes(ax)) hairMass(ctx, c, r, a, hair, color);
+  if (hair === "ponytail" && ax.back) ponytail(ctx, c, r, ax, look);
+}
+
+function hairMass(ctx, c, r, ax, hair, color) {
   const lw = r * 0.08;
-  if (hair === "bun") {
-    drawBun(ctx, c, r, ax, color);
-  } else if (hair === "bob" || hair === "ponytail") {
+  if (hair === "bob" || hair === "ponytail") {
     // From the forehead over the top to the back of the neck, hugging the head.
     const outer = arcPts(c, r, ax, 62, 235, 1.1);
     const inner = arcPts(c, r, ax, 225, 75, 0.82, 10);
@@ -134,6 +150,8 @@ export function drawEyepatch(ctx, c, r, ax, color) {
 /** Antenna, crown and the accessories_more.js head pieces on top of the head. */
 export function drawHeadTop(ctx, c, r, ax, acc) {
   drawHeadMore(ctx, c, r, ax, acc);
+  for (const a of acc.crown ? mirrorAxes(ax) : []) crown(ctx, c, r, a, acc.crown);
+  ({ c, ax } = slideAt(c, r, ax, 100, 1));
   if (acc.antenna) {
     const base = polar(c, r, ax, 100, 1);
     const tip = polar(c, r, ax, 112, 1.85);
@@ -149,7 +167,10 @@ export function drawHeadTop(ctx, c, r, ax, acc) {
     ctx.fill();
     ctx.stroke();
   }
-  if (acc.crown) {
+}
+
+function crown(ctx, c, r, ax, color) {
+  {
     const a = polar(c, r, ax, 125, 0.95);
     const b = polar(c, r, ax, 60, 0.95);
     const up = (p, k) => ({ x: p.x + ax.u.x * r * k, y: p.y + ax.u.y * r * k });
@@ -159,7 +180,7 @@ export function drawHeadTop(ctx, c, r, ax, acc) {
       pts.push(up(p, i % 2 ? 0.25 : 0.55));
     }
     pts.push(b);
-    fillPath(ctx, pts, acc.crown, r * 0.07);
+    fillPath(ctx, pts, color, r * 0.07);
   }
 }
 

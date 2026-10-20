@@ -1,0 +1,24 @@
+{
+  "title": "catalog/world/text_styles.json: text styles for v3 titles, captions and labels (ENGINE_V3_SPEC 6): font, size, colours, outline, shadow and box.",
+  "type": "object",
+  "minProperties": 1,
+  "maxProperties": 64,
+  "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,31}$" },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "tags", "font", "size", "color"],
+    "additionalProperties": false,
+    "properties": {
+      "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+      "tags": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,23}$" } },
+      "font": { "enum": ["Bangers", "Inter"], "description": "A font the hosts register (assets/fonts)." },
+      "size": { "type": "number", "minimum": 8, "maximum": 400 },
+      "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+      "outline": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+      "outlineWidth": { "type": "number", "minimum": 0, "maximum": 40 },
+      "shadow": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$" },
+      "box": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$", "description": "A rounded box behind the text." },
+      "padding": { "type": "number", "minimum": 0, "maximum": 80 }
+    }
+  }
+}

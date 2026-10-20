@@ -4,6 +4,7 @@
 // hold frames for transitions between them. A v1 script is one scene and runs exactly as before.
 
 import { createActor } from "./actor.js";
+import { expandScript } from "./templates.js";
 import { prepareCatalog, STORY_ONLY, isIdleMove } from "./moves.js";
 import { createWorld, stepWorld } from "./world.js";
 import { createClock, tick, holdTick, requestHitstop, timeEffectsActive } from "./clock.js";
@@ -18,7 +19,8 @@ import { updatePairs, pairMoveEvent } from "./story/pairs.js";
 import { defeatMoveEvent, updateDefeats } from "./story/defeat.js";
 import { createObjects, stepObjects, useHeld, movingItems, holdableData, holdableNames, objectsBusy, holdableProps, popNear } from "./objects.js";
 import { updateActivities, activityMoveEvent } from "./story/activities.js";
-import { updateExits } from "./story/destinations.js";
+import { updateExits, updateDepth } from "./story/destinations.js";
+import { depthOf, zOf } from "./depth.js";
 import { planExtras, EXTRA_MOVES } from "./story/extras.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
@@ -68,6 +70,7 @@ function sceneActors(flat, catalog, carry, faces) {
       a.face = placed.face ?? kept?.face ?? "neutral";
       a.layer = placed.layer ?? "mid";
     }
+    a.z = flat.depth ? zOf(placed, flat.depth) : 0; // the depth lane (V3.2): v2 layers stay flat
     const name = kept && placed.prop === undefined ? kept.prop : c.prop;
     const data = name ? holdableData(catalog, name) : null;
     a.prop = data ? { name, kind: data.kind, data } : null;
@@ -100,7 +103,7 @@ function ridersFollow(world) {
  */
 export function simulate(script, catalog, opts = {}) {
   const moves = movesFor(catalog);
-  const story = compileStory(normalize(script), catalog, moves).story; // macros → beats (S6)
+  const story = compileStory(normalize(expandScript(script, catalog).script), catalog, moves).story; // templates (V3.8), then macros → beats (S6)
   const meta = story.meta || {};
   const limit = story.legacy ? LIMITS.maxDuration : LIMITS_V2.maxDuration;
   const maxFrames = Math.round((opts.maxSeconds ?? limit + 5) * FPS);
@@ -137,8 +140,11 @@ export function simulate(script, catalog, opts = {}) {
     const t = transitionInto(story, si);
     if (t && t.type !== "cut") hold(t, si);
 
+    flat.depth = story.v3 ? depthOf(flat.scene) : null; // V3.2: a v3 scene has a depth lane
     const actors = sceneActors(flat, catalog, carry, !story.legacy);
     const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth: flat.meta.stageWidth });
+    world.depth = flat.depth;
+    world.passOver = !story.legacy; // story scripts: walkers pass over characters who are not moving themselves
     // Objects (S4): set pieces and spawned objects; holdable set pieces lie on the floor as props.
     const pieces = [...(flat.location?.set || []), ...(flat.scene.set || [])];
     for (const p of pieces.filter((q) => catalog.objects?.[q.object]?.behavior === "holdable")) {
@@ -162,7 +168,7 @@ export function simulate(script, catalog, opts = {}) {
     const fresh = new Set((flat.scene.cast || []).filter((p) => p.hp !== undefined).map((p) => p.id));
     const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `${scenePath}.`, tag: story.legacy ? "" : `${sid}.`, dead: [...dead].filter((id) => !fresh.has(id)), story: !story.legacy });
     present = createPresentation(flat, catalog, { suffix, fx, kids: !story.legacy && (meta.audience ?? "kids") === "kids",
-      storyCamera: !story.legacy && meta.autoCamera === "story" && !(flat.scene.camera || []).length, t0 });
+      storyCamera: !story.legacy && meta.autoCamera === "story" && !(flat.scene.camera || []).length, tightFraming: !!story.v3, t0 });
     fx = present.fx;
     format = present.format;
     const fxLogStart = fx.log.length;
@@ -200,6 +206,7 @@ export function simulate(script, catalog, opts = {}) {
       if (!story.legacy) {
         updateExits(world, events, clock.storyT);
         updateDefeats(world, events, clock.storyT);
+        if (world.depth) updateDepth(world, clock.storyT);
       }
       if (world.activities?.length) events.push(...updateActivities(world, clock.storyT));
       for (const e of events) {
@@ -248,7 +255,13 @@ export function simulate(script, catalog, opts = {}) {
       index: si, id: sid, theme: flat.meta.theme, stageWidth: flat.meta.stageWidth, look: flat.look,
       location: flat.location, set: [...(flat.location?.set || []), ...(flat.scene.set || [])],
       startFrame, frames, storyStart: t0, fxStart: fxLogStart, fxEnd: fx.log.length, fxT0: clock.fxAt[startFrame],
-      characters: flat.characters.map((c) => ({ id: c.id, style: c.style || {}, layer: (flat.scene.cast || []).find((p) => p.id === c.id)?.layer ?? "mid" })),
+      characters: flat.characters.map((c) => {
+        const placed = (flat.scene.cast || []).find((p) => p.id === c.id) || {};
+        return { id: c.id, style: c.style || {}, layer: placed.layer ?? "mid", ...(flat.depth ? { z: zOf(placed, flat.depth), view: placed.view ?? story.cast.find((x) => x.id === c.id)?.view ?? "side", body: c.body ?? "stickman" } : {}) };
+      }),
+      depth: flat.depth, // V3.2: null for v1/v2 scenes
+      light: flat.depth ? (flat.scene.light ?? flat.location?.light ?? null) : null, // V3.3: the scene's light rig choice
+      lens: flat.depth ? flat.scene.lens ?? null : null, // V3.4: the lens the scene starts with
       extras: story.legacy ? [] : planExtras(flat.scene, flat.location, catalog, meta.seed ?? 1, flat.meta.stageWidth),
     });
   }

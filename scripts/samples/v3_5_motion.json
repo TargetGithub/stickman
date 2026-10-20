@@ -1,0 +1,70 @@
+{
+  "version": 3,
+  "meta": { "title": "V3.5 Motion Graphics: Pip's Big Day", "format": "landscape", "seed": 35, "kind": "clip", "audience": "kids", "speakerNames": false },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "kid", "color": "#3fd8ff", "appearance": { "hair": "spiky", "hairColor": "#2b2b2b", "outfit": "shirt", "outfitColor": "#ffd23f" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#ffb0d0", "appearance": { "eyes": "big", "cheeks": "#ff8fb0" } }
+  ],
+  "locations": [
+    { "id": "park", "theme": "city_park", "set": [{ "id": "bench", "object": "bench", "x": 1100, "z": -400 }, { "id": "tree_far", "object": "tree_big", "x": 2600, "z": -1300 }] }
+  ],
+  "layers": [
+    { "id": "sky_glow", "place": "back", "blend": "screen", "opacity": 0.8, "from": 0, "to": 15 },
+    { "id": "rays", "place": "back", "space": "world", "x": 2300, "y": 260, "blend": "add", "opacity": 0.16, "from": 0, "to": 15 },
+    { "id": "titles", "from": 0.3, "to": 5.2, "out": { "type": "fade", "dur": 0.6 } },
+    { "id": "card", "from": 0.3, "to": 5.2, "mask": { "shape": "card_mask" }, "in": { "type": "wipe_right", "dur": 0.6 }, "out": { "type": "iris", "dur": 0.6 } },
+    { "id": "tag", "space": "world", "parent": { "char": "pip", "joint": "head" }, "from": 6, "to": 11, "in": { "type": "pop", "dur": 0.4 }, "out": { "type": "fade", "dur": 0.3 } },
+    { "id": "strip", "from": 6.5, "to": 11.5, "in": { "type": "slide_right", "dur": 0.5 }, "out": { "type": "slide_left", "dur": 0.4 } },
+    { "id": "boom", "from": 11.8, "to": 13.6, "in": { "type": "pop", "dur": 0.35 }, "out": { "type": "fade", "dur": 0.3 } }
+  ],
+  "shapes": [
+    { "id": "glow", "type": "ellipse", "layer": "sky_glow", "x": 1500, "y": 260, "w": 1700, "h": 700, "fill": { "type": "radial", "stops": [[0, "#fff2b0"], [1, "#fff2b000"]] } },
+    { "id": "ray_a", "type": "rect", "layer": "rays", "w": 2200, "h": 70, "r": 35, "fill": { "type": "linear", "angle": 0, "stops": [[0, "#ffffff00"], [0.5, "#fff6c8"], [1, "#ffffff00"]] } },
+    { "id": "ray_b", "type": "rect", "layer": "rays", "w": 2200, "h": 70, "r": 35, "rotation": 60, "fill": { "type": "linear", "angle": 0, "stops": [[0, "#ffffff00"], [0.5, "#fff6c8"], [1, "#ffffff00"]] } },
+    { "id": "ray_c", "type": "rect", "layer": "rays", "w": 2200, "h": 70, "r": 35, "rotation": 120, "fill": { "type": "linear", "angle": 0, "stops": [[0, "#ffffff00"], [0.5, "#fff6c8"], [1, "#ffffff00"]] } },
+    { "id": "card_mask", "type": "rect", "x": 960, "y": 420, "w": 1240, "h": 430, "r": 60 },
+    { "id": "card_bg", "type": "rect", "layer": "card", "x": 960, "y": 420, "w": 1240, "h": 430, "fill": { "type": "linear", "angle": 90, "stops": [[0, "#6a4fb0"], [1, "#3d7bd9"]] } },
+    { "id": "card_star", "type": "path", "layer": "card", "x": 1440, "y": 290, "scale": 1.4, "fill": "#ffd23f", "stroke": "#2b1d0e", "lineWidth": 5,
+      "d": [["M", 0, -40], ["L", 12, -12], ["L", 42, -12], ["L", 18, 6], ["L", 26, 36], ["L", 0, 18], ["L", -26, 36], ["L", -18, 6], ["L", -42, -12], ["L", -12, -12], ["Z"]] },
+    { "id": "tag_bg", "type": "rect", "layer": "tag", "x": 0, "y": -90, "w": 170, "h": 64, "r": 32, "fill": "#ffffff", "stroke": "#2b2b2b", "lineWidth": 4 },
+    { "id": "tag_tail", "type": "path", "layer": "tag", "x": 0, "y": -90, "fill": "#ffffff", "stroke": "#2b2b2b", "lineWidth": 4, "d": [["M", -14, 30], ["L", 0, 52], ["L", 14, 30]] },
+    { "id": "strip_bar", "type": "rect", "layer": "strip", "x": 380, "y": 930, "w": 640, "h": 90, "r": 14, "fill": "#ff7eb6" }
+  ],
+  "text": [
+    { "id": "title", "text": "Pip's Big Day", "style": "title", "layer": "card", "x": 960, "y": 380, "in": { "type": "pop", "dur": 0.5 }, "from": 0.6 },
+    { "id": "subtitle", "text": "a V3.5 motion graphics test", "style": "subtitle", "layer": "card", "x": 960, "y": 530, "from": 1.2, "in": { "type": "slide_up", "dur": 0.5 } },
+    { "id": "tag_text", "text": "Pip!", "style": "label", "layer": "tag", "x": 0, "y": -92, "size": 40 },
+    { "id": "strip_text", "text": "PIP  |  best friend", "style": "lower_third", "layer": "strip", "x": 380, "y": 930, "box": "#ff7eb600", "in": { "type": "typewriter", "dur": 1.2 } },
+    { "id": "boom_text", "text": "HOORAY!", "style": "comic", "layer": "boom", "x": 1300, "y": 360, "rotation": -8 }
+  ],
+  "tracks": [
+    { "target": "shape.ray_a.rotation", "keys": [{ "t": 0, "v": 0 }, { "t": 15, "v": 40 }] },
+    { "target": "shape.ray_b.rotation", "keys": [{ "t": 0, "v": 60 }, { "t": 15, "v": 100 }] },
+    { "target": "shape.ray_c.rotation", "keys": [{ "t": 0, "v": 120 }, { "t": 15, "v": 160 }] },
+    { "target": "shape.card_star.rotation", "keys": [{ "t": 0, "v": -20 }, { "t": 2, "v": 15, "ease": "outElastic" }] },
+    { "target": "text.title.color", "keys": [{ "t": 2.5, "v": "#ffd23f" }, { "t": 3.5, "v": "#ffffff", "ease": "inOutQuad" }, { "t": 4.5, "v": "#ffd23f", "ease": "inOutQuad" }] },
+    { "target": "text.boom_text.scale", "keys": [{ "t": 12, "v": 1 }, { "t": 12.4, "v": 1.25, "ease": "cubic-bezier(0.3, 1.6, 0.6, 1)" }, { "t": 13, "v": 1 }] },
+    { "target": "post.bloom", "keys": [{ "t": 0, "v": 0.15 }, { "t": 11.8, "v": 0.15 }, { "t": 12.2, "v": 0.6, "ease": "outQuad" }, { "t": 13.4, "v": 0.15 }] },
+    { "target": "lens.push", "keys": [{ "t": 6, "v": 1 }, { "t": 11, "v": 1.12, "ease": "inOutCubic" }] }
+  ],
+  "post": { "grain": 0.35, "vignette": 0.3, "gamma": 1.08, "saturation": 1.08, "chroma": 0.25 },
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "park",
+      "music": { "mood": "playful" },
+      "camera": [{ "at": 0, "mode": "fixed", "x": 1500, "zoom": 0.95 }],
+      "cast": [{ "id": "kai", "x": 1300, "facing": 1 }, { "id": "pip", "x": 1700, "facing": -1 }],
+      "beats": [
+        { "id": "w1", "at": 1.5, "who": "kai", "do": "wave" },
+        { "id": "w2", "at": { "with": "w1", "delay": 0.4 }, "who": "pip", "do": "wave" },
+        { "id": "nod", "at": 3.6, "who": "kai", "do": "nod" },
+        { "id": "walk", "at": 6, "who": "pip", "do": "walk", "to": { "x": 1900, "z": -300 } },
+        { "id": "look", "at": { "after": "walk" }, "who": "pip", "do": "look_around" },
+        { "id": "joy", "at": 11.8, "who": "pip", "do": "jump_joy" },
+        { "id": "cheer", "at": { "with": "joy" }, "who": "kai", "do": "cheer" },
+        { "id": "end", "at": 14, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

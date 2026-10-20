@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "motion": { "blur": 0.6 },
+  "meta": { "title": "V3.7 Motion Quality: Bounce and Follow-through", "format": "landscape", "seed": 37, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "kid", "color": "#3fd8ff", "appearance": { "hair": "spiky", "hairColor": "#2b2b2b", "outfit": "shirt", "outfitColor": "#ffd23f" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#ffb0d0", "appearance": { "eyes": "big", "cheeks": "#ff8fb0", "hair": "ponytail", "hairColor": "#8a4b2a" } },
+    { "id": "sam", "name": "Sam", "color": "#ff9f43", "appearance": { "hair": "bob", "hairColor": "#3b2a1a" } }
+  ],
+  "locations": [{ "id": "park", "theme": "city_park" }],
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "park",
+      "music": { "mood": "playful" },
+      "camera": [{ "at": 0, "mode": "fixed", "x": 1600, "zoom": 1.1 }],
+      "cast": [{ "id": "kai", "x": 1250, "facing": 1 }, { "id": "pip", "x": 1650, "facing": -1 }, { "id": "sam", "x": 2050, "facing": -1 }],
+      "beats": [
+        { "id": "breathe", "at": 0.3, "who": "sam", "do": "idle" },
+        { "id": "wave", "at": 1.2, "who": "kai", "do": "wave" },
+        { "id": "jump", "at": { "after": "wave" }, "who": "pip", "do": "jump_joy" },
+        { "id": "jump2", "at": { "after": "jump" }, "who": "pip", "do": "jump_joy" },
+        { "id": "spin", "at": { "with": "jump", "delay": 0.4 }, "who": "sam", "do": "cheer" },
+        { "id": "spar", "at": { "after": "jump2", "delay": 0.3 }, "who": "kai", "do": "jab", "target": "pip", "outcome": "blocked", "approach": "run" },
+        { "id": "spar2", "at": { "after": "spar" }, "who": "kai", "do": "cross", "target": "pip", "outcome": "hit" },
+        { "id": "oops", "at": { "after": "spar2", "delay": 0.4 }, "macro": "dialogue", "params": { "lines": [["kai", "Sorry, Pip! Just practice.", "sad"], ["pip", "That was a bouncy one!", "happy"]] } },
+        { "id": "run", "at": { "after": "oops" }, "who": "sam", "do": "run", "to": { "x": 1250 } },
+        { "id": "stop", "at": { "after": "run" }, "who": "sam", "do": "wave" },
+        { "id": "end", "at": { "after": "stop", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

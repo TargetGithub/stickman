@@ -8,6 +8,7 @@ import { samplePoseKeys } from "../pose.js";
 import { bodyPlan } from "../story/bodies.js";
 import { drawCharacter } from "./character.js";
 import { STAGE } from "../config.js";
+import { shadeTones } from "../lighting.js";
 
 export const LAYER_LOOK = { back: { scale: 0.75, alpha: 0.75 }, mid: { scale: 1, alpha: 1 }, front: { scale: 1.15, alpha: 0.95 } };
 const WRAP = 300; // px past the area a walker turns up again on the other side
@@ -57,8 +58,9 @@ function extraState(e, t, reactions) {
  * Draw the extras of one layer.
  * @param {object} sv  scene view: extras, storyStart, reactions { hits[], defeats[], first, center } (scene story s)
  */
-export function drawExtras(ctx, r, sv, f, layer) {
+export function drawExtras(ctx, r, sv, f, layer, plain = false) {
   const t = f.storyT - sv.storyStart;
+  const place = plain ? (ctx2, _layer, _x, draw) => draw(1) : withLayer;
   for (const e of sv.extras) {
     if (e.layer !== layer) continue;
     const s = extraState(e, t, sv.reactions);
@@ -69,9 +71,10 @@ export function drawExtras(ctx, r, sv, f, layer) {
     const probe = computeJoints(pose, { x: s.x, y: 0 }, s.facing, e.scale, plan.dims);
     const j = computeJoints(pose, { x: s.x, y: STAGE.groundY - lowestPoint(probe, e.scale, plan.dims) }, s.facing, e.scale, plan.dims);
     const style = r.catalog.bodies?.[e.plan];
-    withLayer(ctx, layer, s.x, (alpha) => drawCharacter(ctx, j, {
+    place(ctx, layer, s.x, (alpha) => drawCharacter(ctx, j, {
       color: e.color, scale: e.scale, facing: s.facing, alpha: 0.85 * alpha, outline: false,
       dims: plan.dims, draw: style?.draw, torsoWidth: style?.torsoWidth,
+      ...(r.frameLight ? { light: shadeTones(e.color, r.frameLight) } : {}), // V3.3
     }));
   }
 }

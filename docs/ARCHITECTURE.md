@@ -305,6 +305,120 @@ Modules: `background.js` (registry of procedural layer kinds with parallax; geom
 
 
 
+### bundles.js (V3.1, ENGINE_V3_SPEC 4, CATALOG_BUNDLE_SPEC 7)
+```js
+export const BUNDLE_ID, NAMESPACED, SEMVER, SHA256, RESERVED_IDS, BASE_ID, BUNDLE_MAPS, NAME_LISTS;
+export function bundleOf(name): string;                                  // "base" for a bare name, else the id before the colon
+export function mergeBundles(base, bundles): Catalog;                    // add-only, ascending id order; throws on collisions; sets catalog.bundles
+//   bundles: [{ id, version, hash, audience?, license?, dependencies?, catalog: partial }] (catalog/index.js assembleBundle)
+export function scriptNames(script): Map<string, string>;                // namespaced name → path of its first use (prose fields skipped)
+export function bundleIssues(script, catalog): Issue[];                  // E_BUNDLE_RESERVED | MISSING | HASH | DEPENDENCY | AUDIENCE | UNDECLARED, W_BUNDLE_UNPINNED | UNUSED
+```
+`validate()` runs `bundleIssues` right after the schema stage, so a name from an undeclared bundle is a bundle error, never an unknown move. The engine catalog always carries `catalog.bundles = [{ id: "base", version }]` (from `catalog/bundles.json`); `mergeBundles` appends the loaded bundles' pins.
+
+### depth.js and scene.js (V3.2, ENGINE_V3_SPEC 5.1)
+```js
+// depth.js (pure; shared by the sim and the renderer)
+export const DEPTH, DEPTH_TOUCH, LAYER_Z, DEPTH_WALK_DRIFT;
+export function depthOf(scene): { focal, near, far, horizon };        // scene.depth with defaults
+export function zOf(node, depth): number;                              // node.z, else its layer's preset, clamped
+export function projectScale(z, focal?): number;                       // focal / (focal - z)
+export function depthTransform(z, x, cam, groundY, depth): { s, tx, ty }; // ctx.transform(s,0,0,s,tx,ty) draws a node at z whose feet are at (x, groundY)
+export function projectPoint(p, z, x, cam, groundY, depth), projectJoints(j, z, x, cam, groundY, depth);
+export function depthAt(events, z0, t): number;                        // z from depth events (lerp over walks, jumps on layer beats)
+export function planDepthWalk(actor, to, depth, speed, stage): { x, z1, dur };
+export const sameDepth = (a, b) => boolean;                            // within DEPTH_TOUCH
+export function depthOrder(nodes): nodes;                              // far to near, stable; the stage line kept together
+// scene.js
+export function sceneNodes({ chars, pieces, extras, depthEvents, placementZ, storyT, depth }): [{ kind, z, ref }]; // far to near
+export function characterDepths(nodes): Map<id, z>;
+// renderer/depth_draw.js: withDepth, drawContactShadow, frameNodes, projectedChars, drawDepthWorld
+// story/destinations.js: updateDepth(world, t) (actor.depthMove → actor.z); validator/depth.js: depthIssues(story)
+// validator/schema_v3.js: jsonSchemaV3, schemaV3For(catalog), withDepth(v2Schema), DEPTH_SCHEMA
+```
+A depth event `{ type: "depth", actor, z0, z1, t0, dur, beatId }` is emitted by the director when a walk with `to.z` starts (dur from the walk's ground speed) and, with `dur` 0, on a layer beat in a v3 scene. `sim.scenes[i].depth` is the scene's depth settings (null for v1/v2) and each `characters[]` entry carries its placement `z`.
+
+### lighting.js (V3.3, ENGINE_V3_SPEC 5.2)
+```js
+export function lightRigOf(catalog, scene, location, look): Rig | null;   // scene.light, location.light, else lights.byTime[look.time]; null = flat
+export function resolveRig(lights, want): Rig | null;                      // a preset name or { preset, ...overrides }
+export function blendRigs(a, b, u): Rig;  export function lightAt(rig0, setLightEvents, videoT, lights): Rig | null;
+export function shadeTones(hex, rig): { lit, base, dark, rim, rimAlpha, rimWidth, dir };   // three flat tones + the light direction
+export function contactShadow(rig, scale, height): { dx, rx, ry, alpha };  export function castShadow(rig): { a, b, c, d, alpha } | null;
+export function fogAt(rig, z, depth): number;  export function fogVeils(fogs, background): number[];  export function ambientTint(rig);
+// Rig: { name, key: { angle, color, strength }, fill, rim, ambient: { color, strength }, shadow: { alpha, length, cast }, fog: { color, density } }
+// renderer/shading.js: shadeStrokes, shadeHead, shadeTorso (clipped to bodies.js torsoPath), drawLitContactShadow, drawCastShadow
+```
+`drawCharacter` takes `style.light` (the tones); the renderer sets `r.frameLight = lightAt(...)` per frame of a v3 scene and `drawOne`/`drawExtras` pass the tones. `sim.scenes[i].light` carries the scene's `light` choice.
+
+### camera3.js (V3.4, ENGINE_V3_SPEC 5.3)
+```js
+export const LENS_DEFAULTS, LENS_CHANNELS;
+export function lensChanges(events): [{ t0, dur, ease, set, move, focus, focusZ }];   // camera keys with lens fields + set_camera, in video order
+export function lensAt(changes, videoT, cameraMoves, base): Lens;                       // channels blended over dur; moves added (absolute: blended to targets)
+export function sampleMove(move, u): { channel: value };
+export function autoFocusSpans(events), autoFocusAt(spans, t): { dof, ids } | null;    // close_up / over_shoulder / two_shot pull focus
+export function createHandheld(rng), handheldAt(h, amount, t): { x, y, roll };
+export function lensCamera(cam, lens, depth, handheld, groundY): { cam, bgZoom, depth, tiltPx, roll };   // dolly folds into the depth focal length
+export function blurFor(z, focusZ, dof): px;  coverScale(W, H, roll);  letterboxBar(W, H, amount);
+// renderer/lens_draw.js: lensMatrix, framedContext (setTransform composed with a base matrix), dofScratch, blurFrame, blurLayer, drawVignette, drawLetterbox
+// renderer/scene_views.js: sceneViews(sim, catalog) (split from renderer/index.js) and frameLens(r, sv, f)
+// camera.js: a key's `lag` (0-1) slows the follow springs
+```
+
+### timeline.js and compositor.js (V3.5, ENGINE_V3_SPEC 6)
+```js
+// timeline.js
+export const TRACK_PROPS;  export function parseTarget(target): { kind, id, prop } | null;
+export function cubicBezier(x1, y1, x2, y2), easingOf(ease);          // table names, "step", cubic-bezier(...) or [x1,y1,x2,y2]
+export function sampleTrack(keys, t), compileTracks(tracks, sceneStarts), trackValuesAt(compiled, t, inScene), valueFits(prop, v);
+// compositor.js
+export const BLENDS, ANIMS, DEFAULT_LAYER, POST_DEFAULTS;
+export function hasMotion(story), compileMotion(story, sceneSpans), lifeOf(m, e, t), animState(anim, p);
+export function composeAt(m, videoT, anchorOf): { back: Layer[], over: Layer[], values };   // layers with resolved items
+export function motionValuesAt(m, t), postAt(m, t, values), withLensTracks(lens, values);
+// renderer/motion.js: drawMotionLayers(ctx, layers, { W, H, worldTransform, styles, shapes }), textLook, motionAnchor
+// renderer/post.js: applyPost(ctx, r, post, n), gradeFilter, gammaGrey, postActive
+// validator/schema_motion.js: LAYERS_SCHEMA, TEXT_SCHEMA, SHAPES_SCHEMA, TRACKS_SCHEMA, POST_SCHEMA; validator/motion.js: motionIssues(story, catalog)
+```
+`createRenderer` compiles the motion blocks once (`r.motion`, null without them); `renderScene` draws back layers after the background and over layers after the lens passes, before the overlays; `renderFrame` applies post last.
+
+### turnaround.js (V3.6, ENGINE_V3_SPEC 5.4)
+```js
+export const VIEWS, VIEW_YAW, TURN_TIME, TURN_DEFAULTS;
+export function viewsOf(plan), resolveView(plan, want);                 // the plan's views; the nearest one it has
+export function yawAt(track, sceneStoryT): degrees;                     // track: { base, sets: [{ storyT, view }], hints: [{ t0, t1, view }] }
+export function faceShiftOf(yaw), faceShows(yaw), nearSide(yaw);
+export function turnJoints(j, facing, yaw, turn, scale): Joints;        // adds lShoulder, rShoulder, lHip, rHip off the side view
+// renderer/turnaround_draw.js: turnedHumanoid(c, yaw, plan), drawQuadFront(ctx, j, style, shade), quadBlend(yaw)
+// renderer/world_items.js (split from renderer/index.js): withState, drawItems, drawTrails
+```
+The director emits `view` (a beat's view) and `viewHint` (a move's view, ended by its `moveEnd`) events in v3 scenes; `sim.scenes[i].characters[]` carry their starting `view` and `body`; `renderer/scene_views.js` builds the per-character view tracks. Prepared moves keep `view`; body plans carry `views` and `turn`.
+
+### motion_fx.js (V3.7, ENGINE_V3_SPEC 5.5)
+```js
+export const MOTION_DEFAULTS, WINDOW;                                   // { followThrough, squash, secondary, breathing, blur }, 14 frames
+export function springTrack(series, spring?, dt?): { value, target };   // a damped spring over an (unwrapped) series
+export function followThrough(history, amount): Joints;                 // arms and head trail and overshoot; legs unchanged
+export function squashStretch(history, events, t, groundY, amount): { m: [a, b, c, d], pivot } | null;
+export function axisScale(dir, k), hairSway(history, amount), standingStill(history), breathe(j, id, t, scale, amount), blurGhosts(history, amount);
+// renderer/motion_draw.js: motionFrame(ctx, r, sv, f, c, chars, past, ownSquash) → { j, hairTilt }; motionSettings(r)
+// character.js: style.hairTilt turns the hair's axes
+```
+
+### templates.js and audio_tracks.js (V3.8, ENGINE_V3_SPEC 6)
+```js
+// templates.js (pure; run by validate(), simulate() and compileScript() before anything else)
+export function expandScript(script, catalog): { script, issues, expansions };   // template uses → scenes and blocks; marker `at`s → seconds
+export function substitute(value, vars), templateParams(tpl, given, path), templateKey(name);
+// audio_tracks.js (pure; ADR-017: data only)
+export const BUSES;  export function collectAudioTracks(sim): { tracks, buses, sfx, duck, markers } | null;   // video seconds
+export function busGainAt(plan, bus, t), duckGainAt(plan, stem, t), trackGainAt(track, t), trackPanAt(track, t);
+// index.js: engine.getAudioTracks(); export { expandScript, audioTrackGains }; collectAudioEvents adds the track sfx hits
+// tools/lib/track_mix.mjs: addTrackStems(stems, plan, opts), applyEventBuses(events, plan, offset), stemGains(plan, offset)
+// tools/lib/mixer.mjs mixdownStory({ ..., musicGain?, ambienceGain? }); validator/schema_audio.js, validator/audio.js
+```
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -316,6 +430,10 @@ export function assembleCatalog(files): Catalog;           // path → parsed JS
 export function loadCatalog(read): Catalog | Promise<Catalog>; // read(path) → JSON or a promise; no I/O of its own
 export function loadCatalogSync(root?): Catalog;           // Node only
 export const catalog: Catalog;                             // the default catalog (fs in Node, fetch in the browser)
+export const BUNDLE_FILES: string[];                       // the catalog files a bundle may carry (V3.1)
+export function assembleBundle(manifest, files): Bundle;   // bundle files → the partial catalog mergeBundles() takes
+export function readBundleDir(dir), loadBundleSync(dir);   // Node: a bundle folder
+export function catalogForScript(script, opts?): Catalog;  // Node: base + the bundles the script declares (bundles.json paths or the store)
 ```
 Description and tag fields pass through; prepared moves (`prepareCatalog`) drop them.
 
@@ -759,3 +877,65 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: the series needs a lasting Heart Glow, a per-scene "how grey the world is" grade with a colour wave, and friends frozen to stone grey across scenes.
 - **Decision**: no new frame-store fields. The renderer reads the effects from the event log (`set_glow` and `set_grade` world events, the `defeat` event of `petrify` and the `thaw` event that `return` emits for a petrified character), as it already does for `set_appearance`; `engine/renderer/colour.js` holds the pure state functions. A grey world is a `saturation` composite pass after the world (it can leave a growing circle for a wave `from` a character); with `keepCast`, and for a stone-grey character, a canvas `filter` is set while drawing. The simulation only holds the petrified pose (`keepPose`, no idle) and carries it into later scenes.
 - **Consequences**: the frame store, golden frames and determinism are unchanged, and glow and petrify carry over between scenes for free. With `keepCast` a wave blends evenly instead of spreading. The canvas backend must support `ctx.filter` (`@napi-rs/canvas` and current browsers do).
+
+### ADR-022 Bundles are merged outside the engine, pinned inside the script (V3.1)
+- **Context**: v3 (ENGINE_V3_SPEC 2) makes every character, place and effect come from a catalog bundle, with the engine shipping no content of its own. The engine may not read folders (ADR-006), yet the validator must know which bundles a script relies on so that the same script and bundles give the same frames (CATALOG_BUNDLE_SPEC 7.3).
+- **Decision**: the base catalog is the bundle `base`, registered first in `catalog/bundles.json` with the other bundles a script may declare (a folder path, or the store by hash). The host turns a bundle folder into a partial catalog (`catalog/index.js` `assembleBundle`) and the pure `engine/bundles.js` `mergeBundles` adds it to the base, add-only and in ascending id order, recording each bundle's pin in `catalog.bundles`. A script declares what it uses in `bundles: [{ id, version, hash }]` (v1 and v2 schemas); `bundleIssues` compares the pins with the loaded bundles and with every namespaced name the script uses before any name lookup. A bundle's own examples pin the bundle without a hash (the hash covers the example file itself, the open question of B1), so `hash` is optional and its absence is `W_BUNDLE_UNPINNED`. The check pipeline lives in `tools/lib/bundle_check.mjs` (steps 1-11 of CATALOG_BUNDLE_SPEC 6 for folders: strict JSON with duplicate-key detection, manifest and per-file schemas, canonical hashes, namespacing, references, caps, text, every bundle move on every plan of its rig and every base move on each bundle plan, presets and examples) behind `npm run bundle:check <folder>` and `bundle:pack`.
+- **Consequences**: the engine never hashes or reads files; tools pass `catalogForScript(script)` to `createEngine`. v1 and v2 scripts without `bundles` are unchanged (golden frames and determinism hashes identical). Zip import, the hash store, allow and block lists and the browser importer stay B4-B5 work; the registry's `path` entries carry the project's bundles until then.
+- **Superseded (merge of main, 2026-10-19)**: main's bundle pipeline (CATALOG_BUNDLE_SPEC B1-B6: `tools/bundle.mjs`, the hash store, allow and block lists, `catalog/merge.js`, `engine/validator/bundles.js`) replaces this branch's V3.1 checker, registry (`catalog/bundles.json`), `engine/bundles.js` and `W_BUNDLE_UNPINNED`/`E_BUNDLE_RESERVED` as defined here. The decision stands in substance (merged outside the engine, pinned in the script); the v3 validator runs template expansion first, then main's bundle check, then the v3 schema. `scripts/samples/v3_1_bundles.json` now pins the `tests/fixtures/bundles/robo_pals` fixture (`--bundle`).
+
+### ADR-023 The depth lane is on for version 3 only, and z lives in events, not frames (V3.2)
+- **Context**: v3 draws every node at a depth z with perspective scaling, replacing the three fixed layers, while v1 and v2 golden frames must not change and the frame store (CHAR_STRIDE) is shared by every script.
+- **Decision**: `version: 3` is the v2 story format plus optional depth fields (`z` on placements and set pieces, `to: { z, x? }`, a scene `depth` block); `normalize` marks the story `v3` and the sim gives such scenes a depth lane (`world.depth`). v2 scenes keep the legacy layer path untouched. The z of a character over time is not stored per frame: the director emits `depth` events (a walk's z0, z1 and duration; a layer beat's jump) and both the sim (`updateDepth`) and the renderer (`depthAt`) lerp them from story time, so they always agree and the store layout is unchanged (ADR-012). The layer presets are -800 and 313 so that a v3 script saying `back` or `front` draws at the legacy scales 0.75 and 1.15. Far feet rise toward a horizon (`depth.horizon`, 260 px) so the ground reads as a plane. A depth walk always covers at least half of |dz| in x, so the walk cycle has ground to cover. Characters more than 60 px apart in z never collide or hit.
+- **Consequences**: frame hashes, golden frames and the determinism test are unchanged for v1 and v2; a v3 scene costs one extra sort per frame. Camera framing still uses unprojected x (a far character frames as if on the stage line); lighting, fog and depth of field build on the same nodes in V3.3 and V3.4. The G1 giant reach work is still open.
+
+### ADR-024 Light rigs are catalog data; shading is three flat tones drawn inside the shapes (V3.3)
+- **Context**: the 2.5D look needs lit and shadow sides, rim light, cast shadows and haze, with the same frames for the same script, on the canvas 2D API, and without changing v1/v2 output or the frame store.
+- **Decision**: a light rig is a catalog preset (`catalog/world/lights.json`) chosen per scene from the time of day or named by the scene or location; `set_light` world events change it and the renderer blends rigs over `dur` from the event log (ADR-012). Shading is cartoon-stepped: three flat tones (`shadeTones`) drawn as bands inside each limb, a clipped crescent on the head and a clipped band on filled torsos, so the silhouette and outlines are exactly the v2 ones and no gradients are needed. Shadows are the stretched contact ellipse plus a flattened silhouette of the same joints drawn through a shear about the feet as a multiply pass. Fog by depth is a chain of screen-space veils between the depth-sorted nodes (`fogVeils`), so it costs one fill per depth step and no offscreen canvas. Everything runs only in the v3 depth path.
+- **Consequences**: v1 and v2 frames are unchanged; lighting reads the catalog, so bundles can ship rigs once the bundle format gains a `lights` kind. Set pieces, props and particles are not shaded yet; overlapping limb strokes darken a cast shadow slightly more where they cross.
+
+### ADR-025 The v3 camera is a lens over the stored camera, evaluated from events (V3.4)
+- **Context**: v3 needs dolly, crane, tilt, roll, handheld, depth of field, vignette and letterbox with keyframes and named moves, while frames stay random access and deterministic, the frame store (CAM_STRIDE 5) stays shared by every script, and v1/v2 frames do not change.
+- **Decision**: framing stays in `camera.js` (the stored, spring-smoothed x, y and zoom; `lag` slows its springs). Everything else is a lens computed per frame from the scene's event log (`camera` events whose keys carry lens fields and `set_camera` world events) by the pure `camera3.js`, exactly like overlays (ADR-012) and depth (ADR-023). Named moves are catalog curves. Handheld sway is value noise from a scene-scoped `deriveRng` stream, so it is a closed-form function of time. Dolly is folded into the depth projection (stage-line zoom f/(f-d), depth focal f-d), so it reads differently from a zoom. Tilt and roll are a base matrix composed into every `setTransform` (a proxy context), so no drawing code changes. Depth of field uses one scratch canvas from the host and the canvas `blur` filter, grouped by quantized blur level.
+- **Consequences**: no frame-store or simulation change except the follow lag; v1/v2 frames are byte-identical. Depth of field costs one full-frame blur per blur level per frame (no caching yet) and needs `createCanvas` from the host (record.mjs passes it; pages without it render sharp). Overlays (bubbles, captions) are drawn without the roll, so they stay level.
+
+### ADR-026 Motion graphics are data composed per frame, drawn by the renderer (V3.5)
+- **Context**: v3 adds video-tool features (layers, keyframes, masks, blend modes, text, shapes, post effects) written in JSON, beside or on top of a story, with random-access, deterministic frames and no pixel reads in the engine.
+- **Decision**: the blocks are top-level script data compiled once in the renderer (`compileMotion`), and `composeAt(m, t)` resolves them for any frame: lifetimes on a video or scene time base, in/out animations, tracks (any keyable property, a key's ease arriving at it), parents and layer order. The renderer draws the result in screen or world space; text layout stays renderer-only. Post effects run last in `renderFrame` as canvas filter and composite passes over copies of the frame (no getImageData); film grain is a seeded tile offset by a frame hash, so it is deterministic. Lens tracks override the V3.4 lens. The simulation and the frame store are untouched.
+- **Consequences**: a motion-graphics element can never change what the characters do; scripts without the blocks draw exactly as before. Blend modes apply per item (no layer-group offscreen), masks are shapes only, and the story compiler does not emit these primitives yet (a later step for titles and lower thirds from story data).
+
+### ADR-027 Turnaround views are a render-time yaw of the side-view joints (V3.6)
+- **Context**: v3 needs characters to turn to three-quarter, front and back views, and the series' dog to face the camera, without re-authoring 195 moves per view, without changing the simulation (reach, hits, IK are all side-on) and with the catalog able to describe views.
+- **Decision**: a view is a yaw applied by the renderer to the profile joints, with per-plan `turn` widths giving each side its own shoulder and hip, the forward part of a pose foreshortened onto the ground, the face slid across the head and hidden from behind. Views are catalog data (`views`, `turn` on body plans; `view` hints on moves), bundles can set them (bundle schemas extended with the spec), and the active view comes from director events, lerped over a 0.2 s turn. The quadruped gets a dedicated front drawing that cross-fades with its side drawing.
+- **Consequences**: every move works in every view with no extra data; the simulation, frame store and v1/v2 frames are unchanged. Hair, hats and capes keep their profile shapes in other views, and very forward poses (a punch at the camera) shorten to nearly nothing from the front, which is right for a camera but can read as a loss of the gesture. True per-view drawings (vector shapes per view in a rig) remain a later bundle extension.
+
+### ADR-028 The automatic v3 look runs at 20% (Sridhar's review of V3.6, 2026-10-19)
+- **Context**: at full strength the defaults a v3 scene gets without asking (time-of-day lighting with limb shading, rim, tint, haze and cast shadows; a vignette; auto focus blur; automatic turns) made the Doopi characters look striped, washed out and scribbled compared with v2.
+- **Decision**: those defaults run at a look strength, `look.strength` on a v3 script, default 0.2: `scaleRig` scales the time-of-day rig (`renderer/scene_views.js`), the default vignette and the auto focus are multiplied by it, and move-hint turns go that share of the way (`amount` on view hints, `yawAt`). Explicit choices (a named light, lens values, camera keys, `set_camera`, `set_light`, `view`) stay at full strength.
+- **Consequences**: v3 scenes look close to v2 unless a script asks for more; v1/v2 frames are unchanged. The shading style itself (bands on thin limbs, limb-shaped cast shadows) still needs the V3.9 polish pass.
+
+### ADR-029 Motion quality is a render-time layer over stored frames (V3.7)
+- **Context**: v3 needs overshoot, follow-through, squash and stretch, secondary motion, breathing and motion blur, while choreographed hits must still land where the simulation put them, frames stay random access and v1/v2 output stays identical.
+- **Decision**: the renderer applies motion quality per character from the last 14 stored frames of the same scene (`engine/motion_fx.js`, pure; `renderer/motion_draw.js`): springs over bone angles for the arms and head (bounded, lengths kept, legs untouched), squash and stretch as a context transform about the feet or the body, hair sway from the head's motion, breathing while still, and faint ghosts for fast limbs. A v3 `motion` block tunes each part.
+- **Consequences**: the simulation, frame store and every hit are unchanged; the effects only exist in v3 scenes. Rendering a frame unpacks up to 14 past frames per character (cached, small). Moves keep their own keyframe easing (no overshoot inside the pose data), so a hand at a contact frame can be up to 18° × followThrough off its stored angle; at the default this reads as follow-through, not a miss, in the review renders.
+
+### ADR-030 In story scripts a character only moves when its own script moves it (Sridhar, 2026-10-19)
+- **Context**: separation (spec 9.1 rule 6) pushed any two grounded characters closer than 40 px x scale apart, half each. When an authored walk passed through characters standing, waving or sitting, the walker kept going and shoved them aside with no walk cycle, which showed in every Doopi episode.
+- **Decision**: in story scripts (v2 and v3; `world.passOver`), separation applies only when both characters are travelling or attacking under their own moves (movement or attack category, not idle). A walker passes over anyone else. Hits, knockbacks, launches, pairs, rides and activities still move characters as before. v1 clips keep the old symmetric separation, so fighters in clips never overlap.
+- **Consequences**: v1 golden frames are unchanged; the v2 goldens `s5_pairs`, `s5_scene1`, `s6_gauntlet` and `s6_fights` change by a few pixels (bystanders stay put) and `s6_fights` gets shorter scenes (shorter run-ups); they were re-recorded after Sridhar's review. All 24 Doopi episodes still validate; ep01 gains one `W_DIALOGUE_FAST` (a line now starts while the speaker's previous bubble shows). Characters placed on the same spot now stay overlapped instead of being spread apart. `tests/unit/pass_over.test.js` covers both rules.
+
+### ADR-031 Audio tracks are plan data; templates expand before validation (V3.8)
+- **Context**: v3 adds keyframed audio tracks, ducking rules, markers beats can anchor to, and reusable templates (the Doopi intro), while the engine stays free of audio synthesis (ADR-017) and every check keeps working on what the simulation sees.
+- **Decision**: the engine turns `audio.tracks`, `audio.duck` and `audio.markers` into a plan in video seconds (`collectAudioTracks`), adds track sound effects to the audio events, and exposes pure gain helpers; the tools render music and ambience tracks into the existing stems and apply bus gains and ducking in the story mixdown. Markers are resolved to beat times and templates are expanded by `expandScript` before validation, simulation and compilation, so the schema, the semantic checks, the dry run and the renderer all see one plain v3 script; template issues (`E_TEMPLATE_UNKNOWN`, `E_TEMPLATE_PARAM`) and marker issues (`E_MARKER_UNKNOWN`) are reported first.
+- **Consequences**: the same script gives the same audio (all inputs are seeded or data). Paths in later issues point at the expanded script (a template's scenes take the use's place, its blocks are appended). The schema export cannot describe `use` scenes or marker `at`s, since they never reach it; STORY_SPEC documents them.
+
+### ADR-032 Polish without new look choices: wrap hair by yaw, blur less, speak v3 (V3.9)
+- **Context**: the V3.9 review of a Doopi scene against the reference found problems of two kinds: things that were plainly wrong or slow (profile hair on a front-facing head, depth-of-field shots at about 3 fps, no spoken voices in v3 renders) and look choices (framing, line weight, shadows) that are Sridhar's to make (CLAUDE.md).
+- **Decision**: fix only the first kind. Head pieces stay authored in profile; a turned head draws masses twice (a mirrored copy with the forward axis scaled by |cos yaw|) and slides single pieces by sin(yaw) (`mirrorAxes`, `slideAt` in `renderer/accessories_more.js`), so no per-view drawings are needed and the side view is exactly as before. Depth of field keeps one scratch canvas but blurs a downscaled copy for blurs of 1.2 px or more and limits each layer to the boxes its characters and set pieces announce (`blurLayer().add`), with the region snapped to the downsampling grid so a region blurs as the whole frame would. `prepareSpeech` accepts version 3 scripts, and `plainScript`/`ejectMacro` restore `version: 3`. Heads re-path their circle after shading before the outline stroke, and shaded torsos are outlined again on top. `look.maxTurn` (default 60) clamps turns toward the camera at draw time (`limitYaw`), so the simulation, view events and hints are unchanged; depth events carry the walk's `dx`, and `viewTracks` turns a walker along its path (`walkYaw`) while it walks in depth. On a blur layer a cast shadow is black at its alpha (`drawCastShadow(..., onLayer)`), since multiply has nothing under it to darken there.
+- **Consequences**: v1/v2 golden frames and hashes are unchanged (none of this runs outside v3 scenes, and turned views do not exist in v2). v3 DOF frames change by under 0.15/255 on average; anything a blurred piece draws outside its box is clipped (the boxes are generous: a lamp's glow and a tree's canopy fit). The look gaps go to Sridhar as choices with the demo.
+
+### ADR-033 v3 framing follows who is acting; contact shadows ignore the look strength (V3.9, Sridhar)
+- **Context**: compared with the reference, v3 scenes were framed too wide (the story camera's default follow keeps every visible character in shot, so a spread-out cast is always a wide) and the contact shadows had almost vanished (the look strength 0.2 scaled the rig's shadow alpha to about 0.04).
+- **Decision**: the story auto camera (`camera_story.js`) gets a `tight` mode, on for version 3 scripts (`sim.js` `tightFraming`): it records who spoke (until the line ends) or ran a non-idle move or moved, and where it used to return to the follow-all it follows those active in the last 3.5 s, adding the nearest neighbour to a lone actor. Wides, two-shots, close-ups, fights, `shot` beats and camera keys keep their priority. The contact shadow uses the rig's unscaled shadow alpha (`shadow.contact`, kept by `scaleRig` and `blendRigs`) times 1.2, at least 0.28, drawn as a soft radial ellipse that takes only a little of the light's direction.
+- **Consequences**: the stored camera changes only for version 3 story scripts with `autoCamera: "story"`; v1/v2 golden frames and hashes are unchanged. Cast shadows still follow the look strength. The 3.5 s window and 200 px padding are constants, not script fields, until a scene needs otherwise.
+

@@ -7,6 +7,9 @@
 // A hidden character that starts a beat with `to` walks in: it shows and fades in (the enter macro).
 
 import { STAGE } from "../config.js";
+import { planDepthWalk } from "../depth.js";
+import { resolveMove, rootOffsetAt } from "../moves.js";
+import { motionScale } from "../combat.js";
 
 /** Moves that take a `to`. */
 export const TO_MOVES = ["walk", "run", "sneak", "tiptoe", "walk_together", "swim"];
@@ -38,7 +41,14 @@ export function destinationX(world, actor, to, move = "walk") {
  * @returns {object|null} the command options to use, or null when the destination is unknown
  */
 export function startTo(world, actor, beat, opts, t, paired = false) {
-  const x = destinationX(world, actor, beat.to, beat.do);
+  let x = destinationX(world, actor, beat.to, beat.do);
+  // A walk in depth (V3.2, `to: { z, x? }`): plan where it ends and how long it takes; the sim and the
+  // renderer lerp z over that time (actor.depthMove; the director emits the depth event).
+  if (typeof beat.to.z === "number" && world.depth) {
+    const plan = planDepthWalk(actor, { ...beat.to, ...(x !== null ? { x } : {}) }, world.depth, walkSpeed(world, actor, beat.do), { lo: STAGE.margin, hi: world.stageWidth - STAGE.margin });
+    actor.depthMove = { z0: actor.z || 0, z1: plan.z1, t0: t, dur: plan.dur, dx: plan.x - actor.x }; // dx: the walker's turn (V3.9)
+    x = plan.x;
+  }
   if (x === null) return null;
   const d = x - actor.x;
   if (!paired && Math.abs(d) > 0.5) actor.facing = Math.sign(d);
@@ -49,6 +59,25 @@ export function startTo(world, actor, beat, opts, t, paired = false) {
   }
   actor.exiting = beat.to.exit ? beat.id : null;
   return { ...opts, params: { ...opts.params, distance: Math.max(1, Math.abs(d)) } };
+}
+
+/** Ground px per second a travel move covers for this actor (its root motion over one cycle). */
+function walkSpeed(world, actor, name) {
+  const def = resolveMove(world.moves, actor, name);
+  if (!def) return 200;
+  const dx = Math.abs(rootOffsetAt(def, 1, def.params).dx || 0) * motionScale(actor);
+  return dx > 1 ? dx / def.duration : 200;
+}
+
+/** After each world step: characters walking in depth move along z (V3.2). */
+export function updateDepth(world, t) {
+  for (const a of world.actors) {
+    const m = a.depthMove;
+    if (!m) continue;
+    const u = Math.min(1, (t - m.t0) / m.dur);
+    a.z = m.z0 + (m.z1 - m.z0) * u;
+    if (u >= 1) a.depthMove = null;
+  }
 }
 
 /** After each world step: characters who reached an exit fade out (and are hidden at the end). */

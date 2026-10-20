@@ -26,6 +26,7 @@ import { prepareSpeech, speechReport } from "./lib/tts/index.mjs";
 import { createPiperBackend } from "./lib/tts/piper.mjs";
 import { speechClips, clipSampler } from "./lib/tts/synth.mjs";
 import { renderScore, storyDuck } from "./lib/score.mjs";
+import { addTrackStems, applyEventBuses, stemGains } from "./lib/track_mix.mjs";
 import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
@@ -131,10 +132,14 @@ if (enc && !flag("--no-audio")) {
     const full = meta.totalFrames / meta.fps;
     const score = renderScore({ musicPlan: plan, ambiencePlan: engine.getAmbiencePlan(), seconds: full, seed: meta.seed, catalog,
       musicVolume: script.audio?.musicVolume ?? 0.35, ambienceVolume: script.audio?.ambienceVolume ?? 0.8, loadOverride: (mood) => loadMusic(mood).music });
+    // v3 audio tracks (V3.8): music and ambience tracks into the stems, bus gains and duck rules in the mix.
+    const tracks = engine.getAudioTracks();
+    const trackInfo = tracks ? addTrackStems(score, tracks, { seed: meta.seed, catalog, musicVolume: script.audio?.musicVolume ?? 0.35, ambienceVolume: script.audio?.ambienceVolume ?? 0.8, loadOverride: (mood) => loadMusic(mood).music }) : [];
     const cut = (buf) => buf.subarray(Math.round(startT * SR) * 2, Math.round((startT + durationSec) * SR) * 2);
     const shift = (spans) => spans.map(([a, b]) => [a - startT, b - startT]);
-    mix = mixdownStory({ events, durationSec, sampleFor, music: cut(score.music), ambience: cut(score.ambience),
-      duck: shift(plan.duck), dips: shift(plan.dips), storyDuck, normalize: normalizeLoudness, loudness: measureLoudness });
+    mix = mixdownStory({ events: applyEventBuses(events, tracks, startT), durationSec, sampleFor, music: cut(score.music), ambience: cut(score.ambience),
+      duck: shift(plan.duck), dips: shift(plan.dips), storyDuck, normalize: normalizeLoudness, loudness: measureLoudness, ...stemGains(tracks, startT) });
+    if (trackInfo.length) score.segments.push(...trackInfo.map((x) => ({ mood: `${x.kind}:${x.id}`, source: "track" })));
     note = score.segments.map((x) => `${x.mood} (${x.source})`).join(", ") || "no music";
   } else {
     ({ music, note } = loadMusic(script.audio?.music));

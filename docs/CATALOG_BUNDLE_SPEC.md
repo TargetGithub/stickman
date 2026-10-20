@@ -412,6 +412,7 @@ Poses have no description or tags (as in the base catalog).
         },
         "mouth": { "enum": ["neutral", "shout", "grin"] },
         "face": { "$ref": "common.schema.json#/$defs/ref" },
+        "view": { "enum": ["side", "three_quarter", "front", "back"], "description": "A view hint while the move runs (v3 scenes, V3.6)." },
         "chain": { "$ref": "common.schema.json#/$defs/ref" },
         "pair": { "$ref": "#/$defs/pair" }
       }
@@ -520,6 +521,8 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
             "cheeks": { "$ref": "common.schema.json#/$defs/hex" }
           }
         },
+        "views": { "type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": { "enum": ["side", "three_quarter", "front", "back"] }, "description": "Turnaround views the plan has (V3.6); side is the simulation's own." },
+        "turn": { "type": "object", "additionalProperties": false, "description": "Turnaround widths at scale 1 (V3.6): half the shoulder and hip spans, and the ground foreshortening of forward limbs.", "properties": { "shoulder": { "type": "number", "minimum": 0, "maximum": 60 }, "hip": { "type": "number", "minimum": 0, "maximum": 60 }, "foreshorten": { "type": "number", "minimum": 0, "maximum": 1 } } },
         "avoid": { "type": "array", "maxItems": 24, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/ref" } }
       }
     },
@@ -574,6 +577,8 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
             "cheeks": { "$ref": "common.schema.json#/$defs/hex" }
           }
         },
+        "views": { "type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": { "enum": ["side", "three_quarter", "front", "back"] }, "description": "Turnaround views the plan has (V3.6); side is the simulation's own." },
+        "turn": { "type": "object", "additionalProperties": false, "description": "Turnaround widths at scale 1 (V3.6): half the shoulder and hip spans, and the ground foreshortening of forward limbs.", "properties": { "shoulder": { "type": "number", "minimum": 0, "maximum": 60 }, "hip": { "type": "number", "minimum": 0, "maximum": 60 }, "foreshorten": { "type": "number", "minimum": 0, "maximum": 1 } } },
         "moves": {
           "type": "object", "minProperties": 1, "maxProperties": 96,
           "propertyNames": { "$ref": "common.schema.json#/$defs/localName" },

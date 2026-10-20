@@ -1,0 +1,68 @@
+{
+  "version": 3,
+  "meta": { "title": "V3.3 Lights: Golden Hour to Moonlight", "format": "landscape", "seed": 33, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "kid", "color": "#3fd8ff", "appearance": { "hair": "spiky", "hairColor": "#2b2b2b", "outfit": "shirt", "outfitColor": "#ffd23f" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#ffb0d0", "appearance": { "eyes": "big", "cheeks": "#ff8fb0" } },
+    { "id": "brute", "name": "Brute", "body": "bulky", "color": "#4a4a58", "scale": 1.4 },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f0d2a0" }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "stageWidth": 3600,
+      "set": [
+        { "id": "tree_far", "object": "tree_big", "x": 800, "z": -1400 },
+        { "id": "tree_far2", "object": "tree_big", "x": 2800, "z": -1100 },
+        { "id": "bench", "object": "bench", "x": 1100, "z": -300 },
+        { "id": "lamp", "object": "lamppost", "x": 2500, "z": -200 },
+        { "id": "bush", "object": "bush", "x": 3000, "z": 300 }
+      ]
+    },
+    { "id": "home", "theme": "home_interior", "light": "indoor", "set": [{ "id": "table", "object": "table", "x": 2200, "z": -200 }] }
+  ],
+  "scenes": [
+    {
+      "id": "sunset",
+      "location": "park",
+      "time": "dusk",
+      "music": { "mood": "calm" },
+      "camera": [{ "at": 0, "mode": "fixed", "x": 1800, "zoom": 0.9 }],
+      "cast": [
+        { "id": "kai", "x": 1500, "facing": 1 },
+        { "id": "pip", "x": 1900, "facing": -1 },
+        { "id": "brute", "x": 2600, "facing": -1, "z": -700 },
+        { "id": "becky", "x": 1200, "facing": 1, "z": 250 }
+      ],
+      "beats": [
+        { "id": "hi", "at": 0.5, "macro": "dialogue", "params": { "lines": [["kai", "Look at the long shadows!", "happy"], ["pip", "The sun is going down.", "happy"]] } },
+        { "id": "wag", "at": { "with": "hi", "delay": 0.5 }, "who": "becky", "do": "wave" },
+        { "id": "brute_in", "at": { "after": "hi" }, "who": "brute", "do": "walk", "to": { "x": 2300, "z": 0 } },
+        { "id": "night", "at": { "with": "brute_in", "delay": 0.5 }, "who": "world", "do": "set_light", "params": { "preset": "moonlit", "dur": 4 } },
+        { "id": "dusk", "at": { "with": "night", "delay": 0.5 }, "who": "world", "do": "set_time", "params": { "time": "night", "dur": 4 } },
+        { "id": "look", "at": { "after": "brute_in" }, "who": "brute", "do": "look_around" },
+        { "id": "moon", "at": { "after": "look" }, "macro": "dialogue", "params": { "lines": [["brute", "Moonlight already.", "surprised"], ["kai", "Time to go home!", "happy"]] } },
+        { "id": "go", "at": { "after": "moon" }, "who": "kai", "do": "walk", "to": { "exit": "left" } },
+        { "id": "go2", "at": { "with": "go", "delay": 0.3 }, "who": "pip", "do": "walk", "to": { "exit": "left" } }
+      ],
+      "transitionOut": { "type": "fade", "dur": 0.6 }
+    },
+    {
+      "id": "home",
+      "location": "home",
+      "time": "night",
+      "music": { "mood": "calm", "volume": 0.3 },
+      "camera": [{ "at": 0, "mode": "fixed", "x": 1600, "zoom": 1.05 }],
+      "cast": [
+        { "id": "kai", "x": 1300, "facing": 1 },
+        { "id": "pip", "x": 1750, "facing": -1, "z": -150 }
+      ],
+      "beats": [
+        { "id": "lamp", "at": 0.4, "macro": "dialogue", "params": { "lines": [["pip", "The lamp makes a wall shadow.", "happy"], ["kai", "Goodnight, Pip!", "happy"]] } },
+        { "id": "wave", "at": { "after": "lamp" }, "who": "kai", "do": "wave" },
+        { "id": "end", "at": { "after": "wave", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

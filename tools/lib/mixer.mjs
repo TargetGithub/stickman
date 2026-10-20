@@ -146,7 +146,7 @@ export const STORY_LUFS = -16;
  *           duckAt?:(t:number, duck, dips)=>number, loudness:(buf)=>object, normalize:(buf, target, opts)=>number }} o
  *   loudness/normalize come from tools/lib/loudness.mjs (passed in to keep this module dependency-free)
  */
-export function mixdownStory({ events, durationSec, sampleFor, music = null, ambience = null, duck = [], dips = [], storyDuck, normalize, loudness, targetLufs = STORY_LUFS }) {
+export function mixdownStory({ events, durationSec, sampleFor, music = null, ambience = null, duck = [], dips = [], storyDuck, normalize, loudness, targetLufs = STORY_LUFS, musicGain = null, ambienceGain = null }) {
   const out = mixEvents(events, durationSec, sampleFor, { gain: 1 });
   const frames = out.length / 2;
   const heavy = events.filter((e) => HEAVY.has(e.sfx)).map((e) => e.t);
@@ -157,8 +157,8 @@ export function mixdownStory({ events, durationSec, sampleFor, music = null, amb
       // Gains every 5 ms: smooth enough for ramps of 150 ms and more.
       const t = i / SR;
       const speech = storyDuck ? storyDuck(t, duck, []) : 1;
-      gm = speech * (storyDuck ? storyDuck(t, [], dips) : 1) * duckAt(t, heavy);
-      ga = 0.7 + 0.3 * speech;
+      gm = speech * (storyDuck ? storyDuck(t, [], dips) : 1) * duckAt(t, heavy) * (musicGain ? musicGain(t) : 1);
+      ga = (0.7 + 0.3 * speech) * (ambienceGain ? ambienceGain(t) : 1); // v3 audio tracks: bus gains and duck rules
     }
     if (music && i * 2 < music.length) {
       out[i * 2] += music[i * 2] * gm;

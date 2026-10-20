@@ -1,0 +1,53 @@
+{
+  "version": 3,
+  "meta": { "title": "V3.2 Depth Lane: Path in the Park", "format": "landscape", "seed": 32, "kind": "clip", "audience": "kids", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "kid", "color": "#3fd8ff", "appearance": { "hair": "spiky", "hairColor": "#2b2b2b", "outfit": "shirt", "outfitColor": "#ffd23f" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#ffb0d0", "appearance": { "eyes": "big", "cheeks": "#ff8fb0" } },
+    { "id": "sage", "name": "Sage", "body": "elder", "color": "#e8e8f0", "appearance": { "hair": "bun", "hairColor": "#d0d0d8", "outfit": "robe", "outfitColor": "#6a4fb0" } },
+    { "id": "brute", "name": "Brute", "body": "bulky", "color": "#2b2b2b", "scale": 1.6 }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "stageWidth": 3600,
+      "set": [
+        { "id": "tree_far", "object": "tree_big", "x": 700, "z": -1500 },
+        { "id": "tree_far2", "object": "tree_big", "x": 2900, "z": -1300 },
+        { "id": "bench_mid", "object": "bench", "x": 1200, "z": -500 },
+        { "id": "lamp", "object": "lamppost", "x": 2600, "z": -400 },
+        { "id": "bush_near", "object": "bush", "x": 600, "z": 350 },
+        { "id": "sign_near", "object": "sign", "x": 3100, "z": 450 }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "park",
+      "music": { "mood": "calm" },
+      "depth": { "far": -2000, "near": 600 },
+      "camera": [{ "at": 0, "mode": "fixed", "x": 1800, "zoom": 0.85 }],
+      "cast": [
+        { "id": "kai", "x": 1500, "facing": 1 },
+        { "id": "pip", "x": 1000, "facing": 1, "z": -1400 },
+        { "id": "sage", "x": 2400, "facing": -1, "z": -700 },
+        { "id": "brute", "x": 2100, "facing": -1, "z": 300 }
+      ],
+      "beats": [
+        { "id": "far_wave", "at": 0.5, "who": "pip", "do": "wave" },
+        { "id": "look", "at": { "with": "far_wave", "delay": 0.3 }, "who": "kai", "do": "look_around" },
+        { "id": "come", "at": { "after": "far_wave" }, "who": "pip", "do": "run", "to": { "x": 1300, "z": 0 } },
+        { "id": "hi", "at": { "after": "come" }, "macro": "dialogue", "params": { "lines": [["pip", "I ran all the way here!", "happy"], ["kai", "You looked so tiny back there.", "happy"]] } },
+        { "id": "sage_walk", "at": { "with": "hi", "delay": 1 }, "who": "sage", "do": "walk", "to": { "x": 1900, "z": 0 } },
+        { "id": "brute_back", "at": { "after": "hi" }, "who": "brute", "do": "walk", "to": { "x": 2700, "z": -1200 } },
+        { "id": "sage_nod", "at": { "after": "sage_walk" }, "who": "sage", "do": "nod" },
+        { "id": "kai_near", "at": { "after": "brute_back", "delay": 0.2 }, "who": "kai", "do": "walk", "to": { "x": 1200, "z": 400 } },
+        { "id": "kai_wave", "at": { "after": "kai_near" }, "who": "kai", "do": "wave" },
+        { "id": "bye", "at": { "with": "kai_wave" }, "macro": "dialogue", "params": { "lines": [["kai", "Hello from up close!", "happy"]] } },
+        { "id": "end", "at": { "after": "bye", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

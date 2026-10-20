@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "meta": { "title": "Depth and layer", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
+  "cast": [{ "id": "kai", "color": "#3fd8ff" }, { "id": "pip", "body": "buddy", "color": "#ffd23f" }],
+  "scenes": [{ "id": "s1", "location": "city_park",
+    "cast": [{ "id": "kai", "x": 1300, "facing": 1, "z": -600, "layer": "back" }, { "id": "pip", "x": 1900, "facing": -1 }],
+    "beats": [{ "id": "b1", "at": 0.5, "who": "pip", "do": "wave" }, { "id": "b2", "at": { "after": "b1" }, "who": "kai", "do": "wave" }, { "id": "end", "at": { "after": "b2", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.5 } }] }]
+}

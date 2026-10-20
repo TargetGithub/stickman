@@ -1,0 +1,49 @@
+{
+  "version": 2,
+  "bundles": [
+    { "id": "robo_pals", "version": "1.0.0", "hash": "sha256-f94edfdad94640cea08b88575c9c7e684da78e2a2cf22837d9d233408a660252" }
+  ],
+  "meta": { "title": "V3.1 Bolt's Charging Dance", "format": "landscape", "seed": 31, "kind": "clip", "audience": "kids", "autoCamera": "story", "speakerNames": true },
+  "cast": [
+    { "id": "kai", "name": "Kai", "body": "kid", "color": "#3fd8ff", "appearance": { "hair": "spiky", "hairColor": "#2b2b2b", "outfit": "shirt", "outfitColor": "#ffd23f" } },
+    { "id": "pip", "name": "Pip", "body": "buddy", "color": "#ffb0d0", "appearance": { "eyes": "big", "cheeks": "#ff8fb0" } },
+    { "id": "bolt", "name": "Bolt", "body": "robo_pals:boxbot", "color": "#8fc8ff", "appearance": { "accessories": { "antenna": "#ffcc33" } }, "voice": { "pitch": 1.1, "timbre": "robot" } }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "set": [
+        { "id": "bench1", "object": "bench", "x": 900 },
+        { "id": "pad", "object": "robo_pals:charging_pad", "x": 2000 },
+        { "id": "tree1", "object": "tree_big", "x": 2700, "layer": "back" }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1",
+      "location": "park",
+      "music": { "mood": "playful" },
+      "cast": [
+        { "id": "kai", "x": 1250, "facing": 1 },
+        { "id": "pip", "x": 1450, "facing": 1 },
+        { "id": "bolt", "x": 1700, "facing": -1 }
+      ],
+      "beats": [
+        { "id": "hi", "at": 0.6, "macro": "dialogue", "params": { "lines": [["kai", "Bolt, is your battery low?", "sad"], ["bolt", "Beep! Watch this.", "happy"]] } },
+        { "id": "walk", "at": { "after": "hi" }, "who": "bolt", "do": "walk", "to": { "x": 2000 } },
+        { "id": "look", "at": { "with": "walk", "delay": 0.4 }, "who": "pip", "do": "look_around" },
+        { "id": "glow", "at": { "after": "walk" }, "who": "world", "do": "set_object", "object": "pad", "params": { "state": "on" } },
+        { "id": "dance1", "at": { "after": "glow", "delay": 0.2 }, "who": "bolt", "do": "robo_pals:robot_dance", "fx": ["sparkle"] },
+        { "id": "dance2", "at": { "after": "dance1" }, "who": "bolt", "do": "robo_pals:robot_dance" },
+        { "id": "cheer", "at": { "with": "dance2" }, "who": "kai", "do": "cheer" },
+        { "id": "clap", "at": { "with": "dance2", "delay": 0.3 }, "who": "pip", "do": "clap" },
+        { "id": "bye", "at": { "after": "dance2", "delay": 0.3 }, "macro": "dialogue", "params": { "lines": [["pip", "Fully charged!", "happy"], ["bolt", "Beep beep. Thank you!", "happy"]] } },
+        { "id": "wave", "at": { "after": "bye" }, "who": "bolt", "do": "wave" },
+        { "id": "wave2", "at": { "with": "wave", "delay": 0.2 }, "who": "kai", "do": "wave" },
+        { "id": "end", "at": { "after": "wave", "delay": 0.4 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.8 } }
+      ]
+    }
+  ]
+}

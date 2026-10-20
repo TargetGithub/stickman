@@ -183,7 +183,8 @@ const clean = ({ path, expandedFrom, ...b }) => b;
  * @returns {object|null} the new v2 script, or null when no macro has that id
  */
 export function ejectMacro(story, macroId, catalog, moves) {
-  const { legacy, ...script } = story;
+  const { legacy, v3, ...rest0 } = story;
+  const script = v3 ? { ...rest0, version: 3 } : rest0;
   const sceneMacro = story.scenes.findIndex((s) => s.macro && s.id === macroId);
   if (sceneMacro >= 0) {
     const s = story.scenes[sceneMacro];
@@ -207,6 +208,6 @@ export function ejectMacro(story, macroId, catalog, moves) {
 
 /** The compiled story as a plain v2 script (no internal fields), e.g. to print or save. */
 export function plainScript(compiled) {
-  const { legacy, compiled: _c, expansions, ...script } = compiled;
-  return { ...script, scenes: compiled.scenes.map(({ srcPath, expandedFrom, ...s }) => ({ ...s, beats: (s.beats || []).map(clean) })) };
+  const { legacy, compiled: _c, expansions, v3, ...script } = compiled;
+  return { ...script, ...(v3 ? { version: 3 } : {}), scenes: compiled.scenes.map(({ srcPath, expandedFrom, ...s }) => ({ ...s, beats: (s.beats || []).map(clean) })) };
 }

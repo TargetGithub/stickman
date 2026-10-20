@@ -21,10 +21,14 @@ export const ENGINE_FILES = [
   "world/themes.json",
   "world/objects.json",
   "world/props.json",
+  "world/lights.json",
+  "world/camera_moves.json",
+  "world/text_styles.json",
   "story/activities.json",
   "story/music_moods.json",
   "story/macro_lines.json",
   "story/blocklist.json",
+  "story/templates.json",
 ];
 
 /** Appearance lists of {name, description} entries; the engine sees the names. */
@@ -70,6 +74,15 @@ export function assembleCatalog(f) {
     macroLines: f["story/macro_lines.json"],
     musicMoods: music.moods, // read by tools/lib/music_gen.mjs (the engine only checks mood names)
     scales: music.scales,
+    // Engine v3 data (ENGINE_V3_SPEC): light rigs (V3.3), camera moves (V3.4), text styles (V3.5), templates (V3.8).
+    lights: f["world/lights.json"],
+    lightNames: Object.keys(f["world/lights.json"].rigs),
+    cameraMoves: f["world/camera_moves.json"],
+    cameraMoveNames: Object.keys(f["world/camera_moves.json"]),
+    textStyles: f["world/text_styles.json"],
+    textStyleNames: Object.keys(f["world/text_styles.json"]),
+    templates: f["story/templates.json"],
+    templateNames: Object.keys(f["story/templates.json"]),
   };
 }
 
