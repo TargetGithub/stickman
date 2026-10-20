@@ -1,6 +1,6 @@
 // Per-frame face drawing options (STORY_SPEC 7.1). Milestone: S2.
 // Combines the stored face with things derived from the event log at render time (ADR-012):
-// the mouth shape while a line is spoken (lip-sync, ADR-024), blinking, gaze toward whoever is talking,
+// the mouth shape while a line is spoken (lip-sync, ADR-032), blinking, gaze toward whoever is talking,
 // and the level of detail (a neutral face far away keeps the classic two dots).
 
 import { blinkAt } from "./face.js";

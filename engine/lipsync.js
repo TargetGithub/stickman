@@ -1,4 +1,4 @@
-// Lip-sync (STORY_SPEC 7.1a, ADR-024). Milestone: S2 follow-up.
+// Lip-sync (STORY_SPEC 7.1a, ADR-032). Milestone: S2 follow-up.
 // Which mouth shape (viseme) a talking character shows at a moment of a spoken line. Pure and
 // deterministic: computed at render time from the say event and either
 //   - an audio track the host passes to load() (a TTS clip's loudness envelope plus its spoken text), or

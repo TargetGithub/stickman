@@ -63,7 +63,7 @@ export function assembleCatalog(f) {
     objects: f["world/objects.json"],
     faces,
     faceNames: Object.keys(faces),
-    visemes: f["characters/visemes.json"], // talking mouth shapes (lip-sync, ADR-024)
+    visemes: f["characters/visemes.json"], // talking mouth shapes (lip-sync, ADR-032)
     bodies,
     bodyNames: Object.keys(bodies),
     appearance,

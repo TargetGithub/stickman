@@ -289,7 +289,7 @@ export function drawFace(ctx, c, r, axes, face, o = {}) {
       }
     }
     const scale = look.mouthStyle === "cartoon" ? 1.35 : 1;
-    // Lip-sync (ADR-024): a viseme while a line is spoken; "rest" keeps the face's own mouth.
+    // Lip-sync (ADR-032): a viseme while a line is spoken; "rest" keeps the face's own mouth.
     const lip = o.lip && o.lip.v !== "rest" ? o.lip : null;
     if (lip) drawViseme(ctx, at, r, lip.shape, { k: lip.k, scale, cartoon: look.mouthStyle === "cartoon", jaw: lip.jaw, mouth: face.mouth, teeth: face.talk === "teeth" });
     else mouth(ctx, o.talking && !o.lip ? face.talk || "open" : face.mouth, at, r, scale);

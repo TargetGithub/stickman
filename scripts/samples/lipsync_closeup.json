@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "meta": { "title": "Lip-sync close-up", "format": "landscape", "seed": 2401, "kind": "clip", "audience": "kids", "style": "soft" },
+  "cast": [
+    { "id": "doopi", "name": "Doopi", "body": "stickman", "color": "#5ec8ff", "appearance": { "eyes": "big", "hair": "spiky", "hairColor": "#2a1a14", "mouthStyle": "cartoon", "accessories": { "headband": "#ff3b5c" } }, "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" } },
+    { "id": "dony", "name": "Dony", "body": "kid", "scale": 1.1, "color": "#4cd964", "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } }, "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" } },
+    { "id": "becky", "name": "Becky", "body": "dog_small", "color": "#f3e3c3", "appearance": { "eyes": "big" }, "voice": { "pitch": 1.4, "timbre": "bark" } }
+  ],
+  "locations": [{ "id": "hut", "theme": "home_interior", "stageWidth": 2400 }],
+  "scenes": [
+    {
+      "id": "talk",
+      "location": "hut",
+      "cast": [
+        { "id": "doopi", "x": 1000, "facing": 1, "face": "happy" },
+        { "id": "dony", "x": 1350, "facing": -1, "face": "neutral" },
+        { "id": "becky", "x": 1650, "facing": -1 }
+      ],
+      "beats": [
+        { "id": "cu1", "at": 0, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "doopi", "dur": 7 } },
+        { "id": "l1", "at": 0.5, "who": "doopi", "do": "talk", "say": "Mama made a mango pie for me!" },
+        { "id": "l2", "at": { "after": "l1", "delay": 0.3 }, "who": "doopi", "do": "talk", "face": "surprised", "say": "Oh wow, look! Who ate it?" },
+        { "id": "cu2", "at": { "after": "l2" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "dony", "dur": 5 } },
+        { "id": "l3", "at": { "with": "cu2", "delay": 0.3 }, "who": "dony", "do": "talk", "say": "Well, I thought it was for everyone." },
+        { "id": "cu3", "at": { "after": "l3" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "becky", "dur": 3 } },
+        { "id": "l4", "at": { "with": "cu3", "delay": 0.3 }, "who": "becky", "do": "bark", "params": { "cycles": 2 }, "say": "Woof woof!" },
+        { "id": "cu4", "at": { "after": "l4" }, "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "doopi", "dur": 4 } },
+        { "id": "l5", "at": { "with": "cu4", "delay": 0.3 }, "who": "doopi", "do": "talk", "face": "laugh", "say": "Fine, fine. Becky, you funny thief!" }
+      ]
+    }
+  ]
+}

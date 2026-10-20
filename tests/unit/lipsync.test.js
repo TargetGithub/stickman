@@ -1,4 +1,4 @@
-// Lip-sync (STORY_SPEC 7.1a, ADR-024): letters to visemes, babble and audio plans, the face state's
+// Lip-sync (STORY_SPEC 7.1a, ADR-032): letters to visemes, babble and audio plans, the face state's
 // lip shape, the mouth drawing (on a recording fake context) and the tools' envelope tracks.
 import { test } from "node:test";
 import assert from "node:assert/strict";

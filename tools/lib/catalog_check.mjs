@@ -91,7 +91,7 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
   for (const m of Object.keys(files["story/tts_voices.json"].moods || {})) if (!catalog.faces[m]) bad("story/tts_voices.json", `moods.${m}`, `"${m}" is not a face (moods are keyed by face name)`);
   if (!files["story/tts_voices.json"].moods?.neutral) bad("story/tts_voices.json", "moods", "needs a neutral mood (the fallback)");
 
-  // Talking mouth shapes (ADR-024): a rest shape, sizes in head radii, each grapheme on one viseme only.
+  // Talking mouth shapes (ADR-032): a rest shape, sizes in head radii, each grapheme on one viseme only.
   const vis = files["characters/visemes.json"];
   if (!vis.rest) bad("characters/visemes.json", "rest", "needs a rest shape (the face's own mouth)");
   const owner = new Map();

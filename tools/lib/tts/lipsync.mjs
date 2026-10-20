@@ -1,4 +1,4 @@
-// Lip-sync tracks for spoken lines (STORY_SPEC 7.1a, ADR-024): each clip's loudness envelope plus the text it
+// Lip-sync tracks for spoken lines (STORY_SPEC 7.1a, ADR-032): each clip's loudness envelope plus the text it
 // speaks, keyed by say beat id, for engine.load(script, { lipSync }). The engine turns them into mouth shapes.
 
 import { readWav } from "../wav.mjs";

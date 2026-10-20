@@ -61,7 +61,7 @@ export function createEngine(opts) {
      * Validate and simulate a script.
      * @param {{ lipSync?: Record<string, { text:string, env:number[], hz:number, head?:string }> }} [o]
      *   lipSync: per say beat id, the loudness envelope of its recorded line (tools/lib/tts/lipsync.mjs), so mouths
-     *   follow the audio; lines without one follow their babble syllables (ADR-024)
+     *   follow the audio; lines without one follow their babble syllables (ADR-032)
      * @returns {{ ok, errors, warnings, timeline, totalFrames, fps, width, height, durationSec }}
      */
     load(script, o = {}) {

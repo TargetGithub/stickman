@@ -23,6 +23,7 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `characters/bodies.json` | body plans: bone lengths (`dims`), draw style, `torsoWidth`, `posture`, default `appearance`, `avoid` |
 | `characters/appearance.json` | eyes, brows, mouthStyle, hair, outfit, accessories (each `{name, description}`), `conflicts` |
 | `characters/faces.json` | faces: eyes, brows, mouth, extras, talk mouth |
+| `characters/visemes.json` | talking mouth shapes for lip-sync (STORY_SPEC 7.1a): `rest` plus A, E, O, U, M, F, L |
 | `characters/voices.json` | voice timbres (the names are the engine's; descriptions here) |
 | `characters/roles.json` | the closed list of preset roles |
 | `characters/presets/<id>.json` | ready-made characters: `{ id, name, description, role, tags, audience, cast }` |
@@ -81,3 +82,4 @@ Drafts added with `--write` get the tag `draft` and the description they were dr
 - **Objects**: behaviors static, seat (`seatY`, `slots`), holdable (`hold` in the props format, `use`), ball, floater, vehicle, breakable; `draw` is a shape in `engine/renderer/objects.js` or `paths`.
 - **Activities**: runner loop or rally; `players [min, max]`, `spacing`, `facing`, `roles` (start, moves, wait, face, fx, holds, partner), `objects`, `dur`/`reps`, `ending`, `rally`.
 - **Moods**: scale, roots, tempo, meter, progressions, bass, drums per intensity, melody, arp, patches, intensity, swing.
+- **Visemes**: `open` and `width` in head radii (0-0.4), `round` 0-1 (0.5 and up is an oval), `teeth`, `tongue`, `tongueUp`, `press` (closed lips), `bite` (teeth on the lower lip), `letters` (lowercase graphemes, each on one viseme only). `rest` is required and draws the face's own mouth; drawing lives in `engine/renderer/mouth_shapes.js`.

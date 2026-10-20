@@ -1,4 +1,4 @@
-// Talking mouth shapes (STORY_SPEC 7.1a, ADR-024). Draws one viseme from its catalog data
+// Talking mouth shapes (STORY_SPEC 7.1a, ADR-032). Draws one viseme from its catalog data
 // (catalog/characters/visemes.json: open, width, round, teeth, tongue, tongueUp, press, bite) in the
 // face's coordinates. The "line" mouth style draws ink shapes; "cartoon" adds a dark-red inside,
 // a pink tongue and white teeth. Quadrupeds (jaw) only open and close.
@@ -89,14 +89,21 @@ export function drawViseme(ctx, at, r, shape, o) {
   return null;
 }
 
-/** f and v: the lower lip with the top teeth resting on it. */
+/** f and v: the lower lip tucked under the top teeth. */
 function bite(ctx, m, w, lift, lw) {
-  const a = m(-w * 0.55, 0.045);
-  const b = m(w * 0.55, 0.045);
-  const c = m(w * 0.55, -0.005);
-  const d = m(-w * 0.55, -0.005);
+  const p = m(-w, lift);
+  const q = m(w, lift);
+  const low = m(0, -0.06);
+  ctx.beginPath();
+  ctx.moveTo(p.x, p.y);
+  ctx.quadraticCurveTo(low.x, low.y, q.x, q.y);
+  ctx.stroke();
+  const a = m(-w * 0.6, 0.06);
+  const b = m(w * 0.6, 0.06);
+  const c = m(w * 0.6, -0.015);
+  const d = m(-w * 0.6, -0.015);
   ctx.fillStyle = TEETH;
-  ctx.lineWidth = lw * 0.45;
+  ctx.lineWidth = lw * 0.5;
   ctx.beginPath();
   ctx.moveTo(a.x, a.y);
   ctx.lineTo(b.x, b.y);
@@ -104,14 +111,6 @@ function bite(ctx, m, w, lift, lw) {
   ctx.lineTo(d.x, d.y);
   ctx.closePath();
   ctx.fill();
-  ctx.stroke();
-  ctx.lineWidth = lw;
-  const p = m(-w, lift);
-  const q = m(w, lift);
-  const low = m(0, -0.05);
-  ctx.beginPath();
-  ctx.moveTo(p.x, p.y);
-  ctx.quadraticCurveTo(low.x, low.y, q.x, q.y);
   ctx.stroke();
   return null;
 }

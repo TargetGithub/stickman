@@ -71,7 +71,7 @@ if (speechMode === "tts" && script.audio?.voices !== false) {
   console.log(`speech: ${speech.lines.length} lines (${fresh} new, ${speech.lines.length - fresh} from the cache)`);
   for (const r of speech.report.filter((x) => x.long)) console.log(`warning: line ${r.id} is longer than its beat can be; split it into shorter lines`);
 }
-// Lip-sync (ADR-024): mouths follow each clip's loudness; other lines follow their babble syllables.
+// Lip-sync (ADR-032): mouths follow each clip's loudness; other lines follow their babble syllables.
 const loaded = engine.load(speech ? speech.script : script, speech ? { lipSync: lipTracks(speech.lines) } : {});
 if (loaded.warnings.length) console.log(formatIssues(loaded.warnings));
 if (!loaded.ok) {
