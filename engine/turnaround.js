@@ -13,7 +13,7 @@ export const VIEW_YAW = Object.freeze({ side: 90, three_quarter: 50, front: 0, b
 export const TURN_TIME = 0.2; // s for a turn between two views
 /** Default turn widths at scale 1 (px): half the shoulder span, half the hip span, ground foreshortening. */
 export const TURN_DEFAULTS = Object.freeze({ shoulder: 16, hip: 10, foreshorten: 0.3 });
-const FACE_SHIFT = 0.31; // of the head radius: how far the face slides to the middle of the head from the front
+export const FACE_SHIFT = 0.31; // of the head radius: how far the face slides to the middle of the head from the front
 const LATERAL = { lElbow: -1, lHand: -1, rElbow: 1, rHand: 1, lKnee: -1, lFoot: -1, rKnee: 1, rFoot: 1 };
 const ARMS = new Set(["lElbow", "lHand", "rElbow", "rHand"]);
 
