@@ -1,0 +1,870 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends 1: The Boy Who Tripped",
+    "format": "landscape",
+    "seed": 2401,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "narrator": {"model": "en_GB-cori-medium", "rate": 0.8, "pitch": 0},
+    "speech": "tts",
+    "lipSync": true
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {"eyes": "big", "hair": "spiky", "hairColor": "#2a1a14", "mouthStyle": "cartoon", "accessories": {"headband": "#ff3b5c"}},
+      "voice": {"pitch": 1, "speed": 1.05, "timbre": "soft", "tts": {"model": "en_US-john-medium", "pitch": 3, "rate": 1.05}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {"hair_flower": "#ffffff"}
+      },
+      "voice": {"pitch": 1.35, "speed": 1, "timbre": "soft", "tts": {"model": "en_US-kristin-medium", "pitch": 3, "rate": 1.0}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {"hair": "cap", "hairColor": "#ffcc00", "accessories": {"scarf": "#ffcc00"}},
+      "voice": {"pitch": 1.15, "speed": 1, "timbre": "soft", "tts": {"model": "en_US-john-medium", "pitch": 5, "rate": 1.0}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "prop": "jalebi_plate",
+      "appearance": {"eyes": "big", "mouthStyle": "cartoon", "cheeks": "#ffb3c7", "belly": "#c9b6ff", "accessories": {"sprout": "#3fae5a", "mittens": "#ff9f43"}},
+      "voice": {"pitch": 1.9, "speed": 1.3, "timbre": "squeaky", "tts": {"model": "en_GB-cori-medium", "pitch": 7, "rate": 1.15}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {"eyes": "big"},
+      "voice": {"pitch": 1.4, "timbre": "bark", "tts": {"off": true}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "motumal",
+      "name": "Mayor Motumal",
+      "body": "bulky",
+      "color": "#ffb347",
+      "appearance": {"outfit": "coat", "outfitColor": "#ff9f1c", "accessories": {"moustache": "#2a1a14", "turban": "#f6c445"}},
+      "voice": {"pitch": 0.75, "speed": 0.9, "timbre": "deep", "tts": {"model": "en_US-john-medium", "pitch": -4, "rate": 0.9}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "body": "elder",
+      "scale": 0.9,
+      "color": "#e8a87c",
+      "prop": "cane",
+      "appearance": {"eyes": "glasses", "hair": "bun", "hairColor": "#f2f2f2", "outfit": "robe", "outfitColor": "#8e5bd6"},
+      "voice": {"pitch": 1.1, "speed": 0.85, "timbre": "soft", "tts": {"model": "en_US-kristin-medium", "pitch": -2, "rate": 0.85}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "chintu",
+      "name": "Chintu",
+      "body": "kid",
+      "color": "#f4a261",
+      "appearance": {"hair": "spiky", "hairColor": "#2a1a14"},
+      "voice": {"pitch": 1.5, "speed": 1.15, "timbre": "squeaky", "tts": {"model": "en_US-john-medium", "pitch": 6, "rate": 1.1}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "pinky",
+      "name": "Pinky",
+      "body": "kid",
+      "scale": 0.75,
+      "color": "#ffb3c7",
+      "appearance": {"hair": "ponytail", "hairColor": "#2a1a14", "eyes": "big"},
+      "voice": {"pitch": 1.8, "speed": 1.1, "timbre": "squeaky", "tts": {"model": "en_GB-cori-medium", "pitch": 5, "rate": 1.05}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {"hair": "cap", "hairColor": "#e63946", "accessories": {"stub_horns": "#7a6a99"}},
+      "voice": {"pitch": 1.6, "speed": 1.2, "timbre": "squeaky", "tts": {"model": "en_US-kristin-medium", "pitch": 6, "rate": 1.1}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {"hair": "cap", "hairColor": "#3a6fd8", "accessories": {"stub_horns": "#7a6a99"}},
+      "voice": {"pitch": 1.7, "speed": 1.1, "timbre": "squeaky", "tts": {"model": "en_GB-cori-medium", "pitch": 6, "rate": 1.05}},
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {"eyes": "oval", "brows": "thick", "accessories": {"horns": "#e6b84a", "cape": "#2a1b3d"}},
+      "voice": {"pitch": 0.7, "speed": 0.95, "timbre": "deep", "tts": {"model": "en_US-john-medium", "pitch": -6, "rate": 0.95}},
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "hill",
+      "theme": "banyan_hill",
+      "stageWidth": 3600,
+      "ambience": "park_birds",
+      "set": [
+        {"id": "s_red", "object": "crystal_socket", "x": 1290, "state": "red", "z": -260},
+        {"id": "s_orange", "object": "crystal_socket", "x": 1440, "state": "orange", "z": -260},
+        {"id": "s_yellow", "object": "crystal_socket", "x": 1590, "state": "yellow", "z": -260},
+        {"id": "s_green", "object": "crystal_socket", "x": 1740, "state": "green", "z": -260},
+        {"id": "s_blue", "object": "crystal_socket", "x": 2010, "state": "blue", "z": -260},
+        {"id": "s_indigo", "object": "crystal_socket", "x": 2160, "state": "indigo", "z": -260},
+        {"id": "s_violet", "object": "crystal_socket", "x": 2310, "state": "violet", "z": -260},
+        {"id": "hill_bush", "object": "bush", "x": 700, "z": 420},
+        {"id": "hill_flower", "object": "flower", "x": 2900, "z": 360}
+      ]
+    },
+    {"id": "hut", "theme": "home_interior", "stageWidth": 2400, "light": "indoor"},
+    {
+      "id": "square",
+      "theme": "tokyo_village",
+      "stageWidth": 3200,
+      "ambience": "park_birds",
+      "set": [{"id": "sq_tree", "object": "tree_big", "x": 2900, "z": -1100}, {"id": "sq_bush", "object": "bush", "x": 450, "z": 400}]
+    },
+    {
+      "id": "market",
+      "theme": "tokyo_village",
+      "stageWidth": 3200,
+      "ambience": "crowd_murmur",
+      "set": [
+        {"id": "stall", "object": "market_stall", "x": 700, "z": -480},
+        {"id": "cart1", "object": "cart", "x": 2500, "z": -320},
+        {"id": "bench1", "object": "bench", "x": 1500, "z": -260},
+        {"id": "hay", "object": "haystack", "x": 2900, "z": 330}
+      ]
+    }
+  ],
+  "scenes": [
+    {"id": "intro", "use": {"template": "doopi_intro", "params": {"episode": 1, "title": "The Boy Who Tripped", "location": "square"}}},
+    {
+      "id": "legend",
+      "location": "hill",
+      "time": "dawn",
+      "transitionIn": {"type": "fade", "dur": 0.6},
+      "music": {"mood": "calm", "volume": 0.3},
+      "cast": [{"id": "becky", "x": 2700, "facing": -1, "face": "happy"}],
+      "beats": [
+        {"id": "legend_cr", "at": 0, "who": "world", "do": "set_camera", "params": {"move": "crane_down", "dur": 4}},
+        {
+          "id": "legend_n1",
+          "at": 0.5,
+          "who": "world",
+          "do": "narrate",
+          "params": {"text": "Far away, in the Valley of Colours, there is a little village called Tokyo."}
+        },
+        {"id": "legend_b1", "at": 1, "who": "becky", "do": "sneak", "to": {"x": 2100}},
+        {
+          "id": "legend_n2",
+          "at": {"after": "legend_n1", "delay": 0.3},
+          "who": "world",
+          "do": "narrate",
+          "params": {"text": "On the hill stands the Rainbow Banyan, and in its roots shine seven magic crystals."}
+        },
+        {"id": "legend_push", "at": {"with": "legend_n2", "delay": 0.4}, "who": "world", "do": "set_camera", "params": {"move": "push_in", "dur": 4}},
+        {
+          "id": "legend_ch",
+          "at": {"with": "legend_n2", "delay": 2.4},
+          "who": "world",
+          "do": "sfx",
+          "params": {"name": "crystal_chime", "volume": 0.7}
+        },
+        {"id": "legend_b2", "at": {"after": "legend_b1"}, "who": "becky", "do": "tilt_head"},
+        {"id": "legend_b3", "at": {"after": "legend_b2", "delay": 0.4}, "who": "becky", "do": "wag", "face": "love"},
+        {
+          "id": "legend_n3",
+          "at": {"after": "legend_n2", "delay": 0.3},
+          "who": "world",
+          "do": "narrate",
+          "params": {"text": "They keep every colour in the valley bright. And today is the Colour Festival!"}
+        },
+        {"id": "legend_lv", "at": {"with": "legend_n3"}, "who": "world", "do": "set_camera", "params": {"move": "pull_out", "dur": 3}},
+        {"id": "legend_b4", "at": {"after": "legend_n3"}, "macro": "exit", "params": {"who": "becky", "side": "left", "mode": "run"}}
+      ],
+      "light": "dawn",
+      "lens": {"vignette": 0.25}
+    },
+    {
+      "id": "wake",
+      "location": "hut",
+      "time": "dawn",
+      "transitionIn": {"type": "fade", "dur": 0.6},
+      "music": {"mood": "playful", "volume": 0.3},
+      "cast": [{"id": "doopi", "x": 1000, "facing": 1, "face": "asleep"}, {"id": "becky", "x": 1800, "facing": -1, "hidden": true}],
+      "beats": [
+        {"id": "wake_z", "at": 0, "who": "doopi", "do": "sleep", "fx": ["zzz"]},
+        {"id": "wake_n1", "at": 0.6, "who": "world", "do": "narrate", "params": {"text": "Everyone was up early. Well... almost everyone."}},
+        {"id": "wake_z2", "at": 3.2, "who": "doopi", "do": "sleep", "fx": ["zzz"], "say": "Five more minutes...", "bubble": "think"},
+        {"id": "wake_in", "at": 4.5, "macro": "enter", "params": {"who": "becky", "side": "right", "to": {"x": 1200}, "mode": "run"}},
+        {"id": "wake_b1", "at": {"after": "wake_in"}, "who": "becky", "do": "bark", "params": {"cycles": 2}, "say": "Woof woof!"},
+        {"id": "wake_b2", "at": {"after": "wake_b1", "delay": 0.2}, "who": "becky", "do": "lick", "partner": "doopi"},
+        {"id": "wake_up", "at": {"after": "wake_b2"}, "who": "doopi", "do": "get_up", "face": "surprised"},
+        {"id": "wake_tr", "at": {"after": "wake_up"}, "who": "doopi", "do": "knockdown", "face": "dizzy", "say": "Whoa-whoa-WHOA!", "bubble": "shout"},
+        {"id": "wake_dt", "at": {"with": "wake_tr"}, "who": "world", "do": "set_camera", "params": {"move": "dutch_tilt"}},
+        {"id": "wake_up2", "at": {"after": "wake_tr", "delay": 0.3}, "who": "doopi", "do": "get_up", "face": "tired"},
+        {
+          "id": "wake_v1",
+          "at": {"after": "wake_up2", "delay": 0.1},
+          "who": "doopi",
+          "do": "wait",
+          "params": {"seconds": 0.3},
+          "view": "three_quarter"
+        },
+        {"id": "wake_lv", "at": {"with": "wake_up2"}, "who": "world", "do": "set_camera", "params": {"move": "level", "dur": 0.8}},
+        {
+          "id": "wake_d1",
+          "at": {"after": "wake_up2", "delay": 2.2},
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              ["doopi", "The festival! Becky, why didn't you wake me?", "surprised"],
+              ["becky", "Woof!", "happy"],
+              ["doopi", "Okay, okay. You did. Twice.", "laugh"]
+            ]
+          }
+        },
+        {
+          "id": "wake_hb",
+          "at": {"after": "wake_d1"},
+          "who": "world",
+          "do": "set_appearance",
+          "params": {"who": "doopi", "accessory": "headband", "color": "#ff3b5c"}
+        },
+        {"id": "wake_f1", "at": {"with": "wake_hb"}, "who": "doopi", "do": "flex", "face": "determined", "say": "Doopi is ready!", "view": "front"},
+        {"id": "wake_v2", "at": {"after": "wake_f1"}, "who": "doopi", "do": "wait", "params": {"seconds": 0.2}, "view": "side"},
+        {"id": "wake_cu", "at": {"with": "wake_f1"}, "who": "world", "do": "shot", "params": {"mode": "close_up", "target": "doopi", "dur": 2.6}},
+        {"id": "wake_out", "at": {"after": "wake_f1", "delay": 0.3}, "macro": "exit", "params": {"who": "doopi", "side": "right", "mode": "run"}},
+        {"id": "wake_out2", "at": {"with": "wake_out", "delay": 0.4}, "macro": "exit", "params": {"who": "becky", "side": "right", "mode": "run"}}
+      ]
+    },
+    {
+      "id": "market",
+      "location": "market",
+      "time": "day",
+      "transitionIn": {"type": "wipe", "dur": 0.6, "dir": "left"},
+      "music": {"mood": "happy", "volume": 0.3},
+      "cast": [
+        {"id": "dony", "x": 1350, "facing": 1, "face": "happy", "prop": "jalebi", "view": "three_quarter"},
+        {"id": "mooka", "x": 1900, "facing": -1, "face": "happy", "view": "three_quarter"},
+        {"id": "doopi", "x": 300, "facing": 1, "hidden": true},
+        {"id": "motumal", "x": 3000, "facing": -1, "hidden": true},
+        {"id": "chintu", "x": 2350, "facing": -1, "face": "happy", "view": "three_quarter", "z": -200}
+      ],
+      "beats": [
+        {"id": "market_in", "at": 0.3, "macro": "enter", "params": {"who": "doopi", "side": "left", "to": {"x": 1100}, "mode": "run"}},
+        {"id": "market_v1", "at": {"after": "market_in"}, "who": "doopi", "do": "wait", "params": {"seconds": 0.3}, "view": "three_quarter"},
+        {
+          "id": "market_d1",
+          "at": {"after": "market_in"},
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              ["dony", "Doopi! You're late again! I saved you a jalebi.", "laugh"],
+              ["doopi", "Dony, you're the best friend in the whole valley!", "happy"]
+            ]
+          }
+        },
+        {
+          "id": "market_eat",
+          "at": {"after": "market_d1"},
+          "macro": "activity",
+          "params": {"name": "eat_together", "with": ["doopi", "dony"], "dur": 6}
+        },
+        {"id": "market_m1", "at": {"with": "market_eat", "delay": 1.5}, "who": "mooka", "do": "eat", "face": "love"},
+        {"id": "market_m2", "at": {"after": "market_m1"}, "who": "mooka", "do": "eat", "face": "love"},
+        {
+          "id": "market_d2",
+          "at": {"after": "market_eat"},
+          "macro": "dialogue",
+          "params": {"lines": [["dony", "Mooka! That plate was for the whole village!", "surprised"], ["mooka", "Hee hee! Was?", "laugh"]]}
+        },
+        {
+          "id": "market_mm",
+          "at": {"after": "market_d2"},
+          "macro": "enter",
+          "params": {"who": "motumal", "side": "right", "to": {"x": 2200}, "mode": "walk"}
+        },
+        {
+          "id": "market_a1",
+          "at": {"after": "market_mm"},
+          "who": "motumal",
+          "do": "talk",
+          "say": "Hear ye! The Banyan Games begin!",
+          "bubble": "shout",
+          "view": "three_quarter"
+        },
+        {"id": "market_sp", "at": {"with": "market_a1"}, "who": "world", "do": "set_camera", "params": {"move": "slow_push", "dur": 3}},
+        {"id": "market_c0", "at": {"after": "market_a1", "delay": 0.2}, "who": "dony", "do": "jump_joy", "face": "laugh", "view": "front"},
+        {
+          "id": "market_a2",
+          "at": {"after": "market_a1", "delay": 3.2},
+          "who": "motumal",
+          "do": "point",
+          "say": "The winner gets a garland from Nani!"
+        },
+        {"id": "market_c1", "at": {"with": "market_a2", "delay": 0.4}, "who": "chintu", "do": "cheer", "view": "front"},
+        {"id": "market_c2", "at": {"with": "market_a2", "delay": 0.6}, "who": "mooka", "do": "jump_joy", "view": "front"},
+        {"id": "market_lv", "at": {"with": "market_d3"}, "who": "world", "do": "set_camera", "params": {"move": "level", "dur": 1.2}},
+        {"id": "market_v2", "at": {"with": "market_d3"}, "who": "dony", "do": "wait", "params": {"seconds": 0.3}, "view": "three_quarter"},
+        {
+          "id": "market_d3",
+          "at": {"after": "market_a2"},
+          "macro": "dialogue",
+          "params": {"lines": [["doopi", "A garland... Doomi would see me win!", "love"], ["dony", "Then let's go win it, champ!", "determined"]]}
+        },
+        {"id": "market_hf", "at": {"after": "market_d3"}, "who": "doopi", "do": "high_five", "partner": "dony", "face": "laugh"}
+      ]
+    },
+    {
+      "id": "games",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {"type": "wipe", "dur": 0.6, "dir": "left"},
+      "music": {"mood": "playful", "volume": 0.32},
+      "cast": [
+        {"id": "doopi", "x": 1100, "facing": 1, "face": "determined"},
+        {"id": "dony", "x": 1600, "facing": -1, "face": "happy"},
+        {"id": "motumal", "x": 2300, "facing": -1, "face": "happy"},
+        {"id": "chintu", "x": 2700, "facing": -1, "face": "happy", "z": -250, "view": "three_quarter"}
+      ],
+      "beats": [
+        {"id": "games_n1", "at": 0.3, "who": "world", "do": "narrate", "params": {"text": "Game one: the kick-ball challenge!"}},
+        {"id": "games_kb", "at": 1, "macro": "activity", "params": {"name": "kick_ball", "with": ["doopi", "dony"], "reps": 6}},
+        {"id": "games_c0", "at": {"with": "games_kb", "delay": 2}, "who": "chintu", "do": "clap"},
+        {
+          "id": "games_d1",
+          "at": {"after": "games_kb"},
+          "macro": "dialogue",
+          "params": {"lines": [["dony", "Now the big one, Doopi! Kick it to the sky!", "happy"], ["doopi", "Watch THIS!", "determined"]]}
+        },
+        {
+          "id": "games_sp",
+          "at": {"after": "games_d1"},
+          "who": "world",
+          "do": "spawn_object",
+          "params": {"kind": "football", "id": "bigball", "x": 1180}
+        },
+        {"id": "games_k1", "at": {"after": "games_sp", "delay": 0.2}, "who": "doopi", "do": "kick_pass"},
+        {"id": "games_hh", "at": {"with": "games_k1"}, "who": "world", "do": "set_camera", "params": {"handheld": 0.35, "dur": 0.5}},
+        {
+          "id": "games_fly",
+          "at": {"with": "games_k1", "delay": 0.3},
+          "who": "world",
+          "do": "set_object",
+          "object": "bigball",
+          "params": {"toX": 2260, "height": 260}
+        },
+        {
+          "id": "games_ow",
+          "at": {"with": "games_fly", "delay": 1},
+          "who": "motumal",
+          "do": "stagger",
+          "face": "dizzy",
+          "say": "OOF! My turban!",
+          "bubble": "shout"
+        },
+        {"id": "games_dt", "at": {"with": "games_ow"}, "who": "world", "do": "set_camera", "params": {"move": "dutch_tilt"}},
+        {"id": "games_dz", "at": {"after": "games_ow"}, "who": "motumal", "do": "dizzy"},
+        {"id": "games_l1", "at": {"with": "games_ow", "delay": 0.4}, "who": "chintu", "do": "laugh"},
+        {"id": "games_l2", "at": {"with": "games_ow", "delay": 0.6}, "who": "dony", "do": "facepalm"},
+        {
+          "id": "games_d2",
+          "at": {"after": "games_dz"},
+          "macro": "dialogue",
+          "params": {"lines": [["doopi", "Sorry, Mayor ji! Very sorry!", "scared"], ["motumal", "Next game. Far away from me. VERY far.", "tired"]]}
+        },
+        {"id": "games_lv", "at": {"with": "games_d2"}, "who": "world", "do": "set_camera", "params": {"move": "level", "handheld": 0, "dur": 1}}
+      ]
+    },
+    {
+      "id": "bubbles",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {"type": "dissolve", "dur": 0.6},
+      "music": {"mood": "calm", "volume": 0.3},
+      "cast": [
+        {"id": "doomi", "x": 1500, "facing": 1, "face": "happy", "view": "three_quarter"},
+        {"id": "doopi", "x": 700, "facing": 1, "hidden": true},
+        {"id": "mooka", "x": 2500, "facing": -1, "hidden": true}
+      ],
+      "beats": [
+        {"id": "bubbles_bb", "at": 0.3, "macro": "activity", "params": {"name": "blow_bubbles", "with": ["doomi"], "dur": 5}},
+        {"id": "bubbles_in", "at": 1, "macro": "enter", "params": {"who": "doopi", "side": "left", "to": {"x": 1250}, "mode": "walk"}},
+        {"id": "bubbles_v1", "at": {"after": "bubbles_in"}, "who": "doopi", "do": "wait", "params": {"seconds": 0.3}, "view": "three_quarter"},
+        {
+          "id": "bubbles_d1",
+          "at": {"after": "bubbles_bb"},
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              ["doomi", "Hi, Doopi! Want to make bubbles with me?", "happy"],
+              ["doopi", "B-b-bubbles? Yes! I mean... you look very... bubbly today.", "love"],
+              ["doomi", "Bubbly? Hee hee. Thank you!", "laugh"]
+            ]
+          }
+        },
+        {"id": "bubbles_h1", "at": {"with": "bubbles_d1", "delay": 2.5}, "who": "doopi", "do": "hold_head", "fx": ["heart"]},
+        {"id": "bubbles_cu", "at": {"with": "bubbles_h1"}, "who": "world", "do": "shot", "params": {"mode": "close_up", "target": "doopi", "dur": 3}},
+        {
+          "id": "bubbles_bb2",
+          "at": {"after": "bubbles_d1"},
+          "macro": "activity",
+          "params": {"name": "blow_bubbles", "with": ["doomi", "doopi"], "dur": 6}
+        },
+        {
+          "id": "bubbles_mk",
+          "at": {"with": "bubbles_bb2", "delay": 1},
+          "macro": "enter",
+          "params": {"who": "mooka", "side": "right", "to": {"x": 1750}, "mode": "run"}
+        },
+        {"id": "bubbles_p1", "at": {"after": "bubbles_mk"}, "who": "mooka", "do": "poke", "face": "laugh", "say": "Pop! Pop! Pop!"},
+        {"id": "bubbles_p2", "at": {"after": "bubbles_p1"}, "who": "mooka", "do": "jump_joy", "face": "laugh"},
+        {"id": "bubbles_p3", "at": {"after": "bubbles_p2"}, "who": "mooka", "do": "poke", "face": "laugh"},
+        {
+          "id": "bubbles_d2",
+          "at": {"after": "bubbles_bb2"},
+          "macro": "dialogue",
+          "params": {"lines": [["doopi", "Mookaaa!", "angry"], ["doomi", "Let him play. Good luck in the race, Doopi.", "love"]]}
+        },
+        {"id": "bubbles_j1", "at": {"after": "bubbles_d2"}, "who": "doopi", "do": "jump_joy", "face": "love", "view": "front"}
+      ]
+    },
+    {
+      "id": "race",
+      "location": "hill",
+      "time": "day",
+      "transitionIn": {"type": "wipe", "dur": 0.6, "dir": "left"},
+      "music": {"mood": "heroic", "intensity": 0.5, "volume": 0.32},
+      "cast": [
+        {"id": "doopi", "x": 500, "facing": 1, "face": "determined"},
+        {"id": "dony", "x": 380, "facing": 1, "face": "determined", "z": -120},
+        {"id": "chintu", "x": 640, "facing": 1, "face": "determined", "z": 120},
+        {"id": "pinky", "x": 260, "facing": 1, "face": "happy"},
+        {"id": "doomi", "x": 2950, "facing": -1, "face": "happy", "z": -380, "view": "three_quarter"},
+        {"id": "nani", "x": 3150, "facing": -1, "face": "neutral", "z": -380, "view": "three_quarter"}
+      ],
+      "beats": [
+        {"id": "race_crane", "at": 0, "who": "world", "do": "set_camera", "params": {"move": "crane_up", "dur": 4}},
+        {
+          "id": "race_n1",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {"text": "The last game: the race up Banyan hill! Ready... steady... GO!"}
+        },
+        {"id": "race_r1", "at": {"after": "race_n1"}, "who": "doopi", "do": "run", "to": {"x": 1500}},
+        {"id": "race_hh", "at": {"with": "race_r1"}, "who": "world", "do": "set_camera", "params": {"move": "level", "handheld": 0.4, "dur": 0.8}},
+        {"id": "race_r2", "at": {"with": "race_r1", "delay": 0.1}, "who": "chintu", "do": "run", "to": {"x": 1650}},
+        {"id": "race_r3", "at": {"with": "race_r1", "delay": 0.2}, "who": "dony", "do": "run", "to": {"x": 1350}},
+        {"id": "race_r4", "at": {"with": "race_r1", "delay": 0.3}, "who": "pinky", "do": "run", "to": {"x": 900}},
+        {"id": "race_fall", "at": {"after": "race_r4"}, "who": "pinky", "do": "knockdown", "face": "hurt", "say": "Owww!", "bubble": "shout"},
+        {"id": "race_cr", "at": {"after": "race_fall"}, "who": "pinky", "do": "cry", "face": "cry"},
+        {"id": "race_look", "at": {"after": "race_r1"}, "who": "doopi", "do": "face", "target": "pinky"},
+        {"id": "race_th", "at": {"after": "race_look"}, "who": "doopi", "do": "gasp", "face": "surprised", "say": "Pinky fell!", "bubble": "think"},
+        {"id": "race_r5", "at": {"after": "race_r2"}, "who": "chintu", "do": "run", "to": {"x": 2700}},
+        {"id": "race_r6", "at": {"after": "race_r3", "delay": 0.4}, "who": "dony", "do": "run", "to": {"x": 2550}},
+        {"id": "race_back", "at": {"after": "race_th"}, "who": "doopi", "do": "run", "to": {"near": "pinky", "gap": 110}},
+        {"id": "race_help", "at": {"after": "race_back", "delay": 1}, "who": "doopi", "do": "kneel", "face": "sad", "say": "Are you okay, Pinky?"},
+        {"id": "race_cu", "at": {"with": "race_help"}, "who": "world", "do": "shot", "params": {"mode": "close_up", "target": "doopi", "dur": 3.5}},
+        {"id": "race_still", "at": {"with": "race_help"}, "who": "world", "do": "set_camera", "params": {"handheld": 0, "dur": 0.6}},
+        {"id": "race_up", "at": {"after": "race_cr"}, "who": "pinky", "do": "get_up", "face": "sad"},
+        {
+          "id": "race_pat",
+          "at": {"after": "race_up"},
+          "who": "doopi",
+          "do": "pat_head",
+          "partner": "pinky",
+          "face": "happy",
+          "say": "Brave girl. Let's walk up together."
+        },
+        {"id": "race_win", "at": {"after": "race_r5"}, "who": "chintu", "do": "victory", "say": "I WON!", "bubble": "shout", "view": "front"},
+        {"id": "race_wt", "at": {"after": "race_pat"}, "macro": "walk_together", "params": {"who": ["doopi", "pinky"], "to": {"x": 2300}}},
+        {"id": "race_dm", "at": {"with": "race_wt", "delay": 0.5}, "who": "doomi", "do": "walk", "to": {"x": 2600, "z": -60}},
+        {
+          "id": "race_d1",
+          "at": {"after": "race_wt"},
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              ["doopi", "I lost the race... and the garland.", "sad"],
+              ["doomi", "You stopped to help Pinky. That was the real win, Doopi.", "love"],
+              ["pinky", "Thank you, Doopi bhaiya!", "happy"]
+            ]
+          }
+        },
+        {
+          "id": "race_na",
+          "at": {"after": "race_d1"},
+          "who": "nani",
+          "do": "nod",
+          "face": "happy",
+          "say": "Hmm. A kind heart. Interesting...",
+          "bubble": "think"
+        },
+        {
+          "id": "race_np",
+          "at": {"with": "race_na"},
+          "who": "world",
+          "do": "set_camera",
+          "params": {"move": "slow_push", "focus": "nani", "dof": 0.55, "dur": 2.5}
+        }
+      ],
+      "light": "noon"
+    },
+    {
+      "id": "festival",
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": {"type": "fade", "dur": 0.8},
+      "music": {"mood": "happy", "intensity": 0.7, "volume": 0.34},
+      "cast": [
+        {"id": "doopi", "x": 1200, "facing": 1, "face": "happy"},
+        {"id": "doomi", "x": 1450, "facing": -1, "face": "happy"},
+        {"id": "dony", "x": 1700, "facing": -1, "face": "happy"},
+        {"id": "mooka", "x": 1950, "facing": -1, "face": "laugh"},
+        {"id": "chintu", "x": 2300, "facing": -1, "face": "happy", "z": -220},
+        {"id": "pinky", "x": 900, "facing": 1, "face": "happy", "z": 160}
+      ],
+      "beats": [
+        {
+          "id": "festival_n1",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {"text": "That evening, the whole village danced in the colours."}
+        },
+        {"id": "festival_v0", "at": 0.4, "who": "doopi", "do": "wait", "params": {"seconds": 0.2}, "view": "front"},
+        {"id": "festival_v1", "at": 0.5, "who": "doomi", "do": "wait", "params": {"seconds": 0.2}, "view": "front"},
+        {"id": "festival_v2", "at": 0.6000000000000001, "who": "dony", "do": "wait", "params": {"seconds": 0.2}, "view": "front"},
+        {"id": "festival_v3", "at": 0.7000000000000001, "who": "mooka", "do": "wait", "params": {"seconds": 0.2}, "view": "front"},
+        {
+          "id": "festival_dn",
+          "at": 1,
+          "macro": "activity",
+          "params": {"name": "dance_together", "with": ["doopi", "doomi", "dony", "mooka"], "dur": 9}
+        },
+        {
+          "id": "festival_os",
+          "at": {"with": "festival_dn", "delay": 1},
+          "who": "world",
+          "do": "set_camera",
+          "params": {"move": "orbit_sweep", "dur": 6}
+        },
+        {"id": "festival_p1", "at": 2, "who": "chintu", "do": "cheer", "fx": ["colour_powder"], "view": "front"},
+        {"id": "festival_p2", "at": 4, "who": "pinky", "do": "jump_joy", "fx": ["colour_powder"], "view": "front"},
+        {"id": "festival_p3", "at": 6.5, "who": "chintu", "do": "toss", "fx": ["colour_powder"]},
+        {"id": "festival_p4", "at": 8, "who": "pinky", "do": "cheer", "fx": ["colour_powder", "confetti"], "view": "front"},
+        {"id": "festival_lv", "at": {"with": "festival_d1"}, "who": "world", "do": "set_camera", "params": {"move": "level", "dur": 1}},
+        {"id": "festival_v9", "at": {"with": "festival_d1"}, "who": "dony", "do": "wait", "params": {"seconds": 0.3}, "view": "three_quarter"},
+        {
+          "id": "festival_d1",
+          "at": {"after": "festival_dn"},
+          "macro": "dialogue",
+          "params": {"lines": [["mooka", "Pink! Yellow! Green! I love colours!", "laugh"], ["dony", "Best festival ever!", "happy"]]}
+        }
+      ],
+      "light": "golden",
+      "set": [{"id": "fest_lanterns", "object": "lantern_string", "x": 1600, "z": -360}],
+      "post": {"bloom": 0.25, "saturation": 1.08}
+    },
+    {
+      "id": "story",
+      "location": "square",
+      "time": "night",
+      "transitionIn": {"type": "fade", "dur": 0.8},
+      "music": {"mood": "lullaby", "volume": 0.28},
+      "cast": [
+        {"id": "nani", "x": 1500, "facing": 1, "face": "happy", "view": "three_quarter"},
+        {"id": "doopi", "x": 1800, "facing": -1, "face": "happy", "view": "three_quarter"},
+        {"id": "doomi", "x": 2000, "facing": -1, "face": "happy", "view": "three_quarter"},
+        {"id": "dony", "x": 2200, "facing": -1, "face": "happy", "view": "three_quarter"},
+        {"id": "becky", "x": 2400, "facing": -1, "face": "happy"}
+      ],
+      "beats": [
+        {"id": "story_s1", "at": 0.2, "who": "doopi", "do": "sit"},
+        {"id": "story_s2", "at": 0.3, "who": "doomi", "do": "sit"},
+        {"id": "story_s3", "at": 0.4, "who": "dony", "do": "sit"},
+        {"id": "story_s4", "at": 0.5, "who": "becky", "do": "lie_down"},
+        {
+          "id": "story_d1",
+          "at": 1.2,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              ["nani", "Long ago, the seven crystals fell from a rainbow into our Banyan tree.", "happy"],
+              ["nani", "Red for courage, orange for joy, yellow for laughter, green for growing...", "neutral"],
+              ["nani", "Blue for calm, indigo for wisdom, and violet for dreams.", "neutral"],
+              ["dony", "And if someone takes them?", "scared"],
+              ["nani", "Then the valley turns grey. Unless a Heart Glow shines.", "neutral"],
+              ["doopi", "A Heart Glow? What is that, Nani?", "surprised"],
+              ["nani", "A light that only comes from a kind heart. Like the one I saw today.", "love"]
+            ]
+          }
+        },
+        {
+          "id": "story_sp",
+          "at": {"with": "story_d1"},
+          "who": "world",
+          "do": "set_camera",
+          "params": {"move": "slow_push", "focus": "nani", "dof": 0.45, "dur": 9}
+        },
+        {"id": "story_lk", "at": {"after": "story_d1"}, "who": "doopi", "do": "look_around", "face": "surprised"},
+        {
+          "id": "story_rf",
+          "at": {"with": "story_lk"},
+          "who": "world",
+          "do": "set_camera",
+          "params": {"move": "level", "focus": "doopi", "dof": 0.35, "dur": 1.2}
+        },
+        {
+          "id": "story_d2",
+          "at": {"after": "story_lk"},
+          "macro": "dialogue",
+          "params": {"lines": [["doopi", "Me? Nani, I just trip over things!", "laugh"], ["nani", "Hmm-hmm. Off to bed now, all of you.", "happy"]]}
+        },
+        {"id": "story_end", "at": {"after": "story_d2"}, "who": "world", "do": "set_camera", "params": {"dof": 0, "dur": 1}}
+      ],
+      "light": {"preset": "moonlit", "fill": {"color": "#ffa25a", "strength": 0.55}},
+      "set": [{"id": "story_fire", "object": "campfire", "x": 1650, "z": -320}, {"id": "story_lanterns", "object": "lantern_string", "x": 1900, "z": -420}]
+    },
+    {
+      "id": "sneak",
+      "location": "market",
+      "time": "night",
+      "transitionIn": {"type": "dissolve", "dur": 0.6},
+      "music": {"mood": "mysterious", "volume": 0.3},
+      "cast": [
+        {"id": "becky", "x": 600, "facing": 1, "face": "neutral"},
+        {"id": "doopi", "x": 350, "facing": 1, "face": "tired"},
+        {"id": "tony", "x": 3050, "facing": -1, "hidden": true},
+        {"id": "kony", "x": 3150, "facing": -1, "hidden": true, "z": -260}
+      ],
+      "beats": [
+        {"id": "sneak_b1", "at": 0.3, "who": "becky", "do": "sneak", "to": {"x": 1300}},
+        {"id": "sneak_b2", "at": {"after": "sneak_b1"}, "who": "becky", "do": "growl", "face": "angry", "say": "Grrr...", "bubble": "whisper"},
+        {
+          "id": "sneak_e1",
+          "at": {"with": "sneak_b2", "delay": 0.3},
+          "macro": "enter",
+          "params": {"who": "tony", "side": "right", "to": {"x": 2400}, "mode": "sneak"}
+        },
+        {
+          "id": "sneak_e2",
+          "at": {"with": "sneak_e1", "delay": 0.4},
+          "macro": "enter",
+          "params": {"who": "kony", "side": "right", "to": {"x": 2600}, "mode": "sneak"}
+        },
+        {
+          "id": "sneak_d1",
+          "at": {"after": "sneak_e2"},
+          "macro": "dialogue",
+          "params": {
+            "lines": [["tony", "Shh! The boss wants to see the Banyan tonight.", "smug"], ["kony", "Tony... why is the doggy looking at us?", "scared"]]
+          }
+        },
+        {"id": "sneak_d2", "at": {"after": "sneak_d1"}, "who": "doopi", "do": "talk", "say": "Becky? Who's there?", "face": "surprised"},
+        {"id": "sneak_pi", "at": {"with": "sneak_d2"}, "who": "world", "do": "set_camera", "params": {"move": "push_in", "dur": 2.5}},
+        {"id": "sneak_b3", "at": {"after": "sneak_d2"}, "who": "becky", "do": "bark", "params": {"cycles": 3}, "say": "WOOF WOOF!", "bubble": "shout"},
+        {"id": "sneak_t1", "at": {"after": "sneak_b3"}, "who": "tony", "do": "gasp", "face": "scared", "say": "RUN!", "bubble": "shout"},
+        {
+          "id": "sneak_ch",
+          "at": {"after": "sneak_t1"},
+          "macro": "chase",
+          "params": {"runner": "tony", "chasers": ["becky"], "dur": 5, "obstacles": 1, "caught": true}
+        },
+        {"id": "sneak_hh", "at": {"with": "sneak_ch"}, "who": "world", "do": "set_camera", "params": {"move": "level", "handheld": 0.55, "dur": 0.6}},
+        {"id": "sneak_k1", "at": {"with": "sneak_ch", "delay": 0.3}, "macro": "exit", "params": {"who": "kony", "side": "right", "mode": "run"}},
+        {"id": "sneak_t2", "at": {"after": "sneak_ch"}, "who": "tony", "do": "cower", "say": "Let go! Let go of my shorts!", "bubble": "shout"},
+        {"id": "sneak_t3", "at": {"after": "sneak_t2"}, "macro": "exit", "params": {"who": "tony", "side": "right", "mode": "run"}},
+        {"id": "sneak_w1", "at": {"after": "sneak_t3"}, "who": "becky", "do": "bark", "params": {"cycles": 2}, "face": "happy"},
+        {"id": "sneak_lv", "at": {"with": "sneak_w1"}, "who": "world", "do": "set_camera", "params": {"handheld": 0, "dur": 1}},
+        {"id": "sneak_w2", "at": {"with": "sneak_w1"}, "who": "doopi", "do": "run", "to": {"near": "becky", "gap": 140}},
+        {
+          "id": "sneak_w3",
+          "at": {"after": "sneak_w2"},
+          "who": "doopi",
+          "do": "pet_dog",
+          "partner": "becky",
+          "say": "Good girl. But who were they?",
+          "face": "surprised"
+        }
+      ],
+      "light": {"preset": "moonlit", "fog": {"color": "#2a3550", "density": 0.35}},
+      "lens": {"vignette": 0.35}
+    },
+    {
+      "id": "horns",
+      "location": "hill",
+      "time": "night",
+      "weather": "cloudy",
+      "transitionIn": {"type": "fade", "dur": 0.6},
+      "music": {"mood": "boss", "intensity": 0.6, "volume": 0.32},
+      "cast": [{"id": "peepa", "x": 1800, "facing": 1, "hidden": true, "z": -700}, {"id": "becky", "x": 2900, "facing": -1, "hidden": true}],
+      "beats": [
+        {"id": "horns_th", "at": 0.5, "who": "world", "do": "flash", "params": {"color": "#ffffff", "dur": 0.15}},
+        {"id": "horns_sh", "at": {"with": "horns_th"}, "who": "world", "do": "shake", "params": {"preset": "med"}},
+        {
+          "id": "horns_f1",
+          "at": {"with": "horns_th", "delay": 0.3},
+          "who": "world",
+          "do": "set_object",
+          "object": "s_red",
+          "params": {"state": "empty"}
+        },
+        {
+          "id": "horns_f2",
+          "at": {"with": "horns_th", "delay": 0.6},
+          "who": "world",
+          "do": "set_object",
+          "object": "s_red",
+          "params": {"state": "red"}
+        },
+        {
+          "id": "horns_f3",
+          "at": {"with": "horns_th", "delay": 0.7},
+          "who": "world",
+          "do": "set_object",
+          "object": "s_violet",
+          "params": {"state": "empty"}
+        },
+        {
+          "id": "horns_f4",
+          "at": {"with": "horns_th", "delay": 1.1},
+          "who": "world",
+          "do": "set_object",
+          "object": "s_violet",
+          "params": {"state": "violet"}
+        },
+        {
+          "id": "horns_f5",
+          "at": {"with": "horns_th", "delay": 1.2},
+          "who": "world",
+          "do": "set_object",
+          "object": "s_green",
+          "params": {"state": "empty"}
+        },
+        {
+          "id": "horns_f6",
+          "at": {"with": "horns_th", "delay": 1.6},
+          "who": "world",
+          "do": "set_object",
+          "object": "s_green",
+          "params": {"state": "green"}
+        },
+        {"id": "horns_bk", "at": 1.5, "macro": "enter", "params": {"who": "becky", "side": "right", "to": {"x": 2500}, "mode": "run"}},
+        {"id": "horns_bk2", "at": {"after": "horns_bk"}, "who": "becky", "do": "whimper", "face": "scared"},
+        {"id": "horns_sp", "at": {"after": "horns_bk2"}, "who": "peepa", "do": "spawn"},
+        {
+          "id": "horns_pi",
+          "at": {"with": "horns_sp", "delay": 0.2},
+          "who": "world",
+          "do": "set_camera",
+          "params": {"move": "push_in", "focus": "peepa", "dof": 0.5, "dur": 3}
+        },
+        {"id": "horns_hn", "at": {"with": "horns_sp"}, "who": "world", "do": "sfx", "params": {"name": "gloom_horn", "volume": 0.6}},
+        {"id": "horns_dk", "at": {"with": "horns_sp"}, "who": "world", "do": "set_light", "params": {"preset": "gloom", "dur": 1.5}},
+        {
+          "id": "horns_gl",
+          "at": {"with": "horns_sp"},
+          "who": "world",
+          "do": "set_glow",
+          "params": {"who": "peepa", "color": "#9a6cff", "level": 0.7, "dur": 1.5}
+        },
+        {"id": "horns_la", "at": {"after": "horns_sp"}, "who": "peepa", "do": "laugh", "face": "smug", "say": "Mwa-ha-ha-ha...", "bubble": "whisper"},
+        {"id": "horns_dt", "at": {"with": "horns_la"}, "who": "world", "do": "set_camera", "params": {"move": "dutch_tilt"}},
+        {"id": "horns_th2", "at": {"with": "horns_la", "delay": 0.8}, "who": "world", "do": "flash", "params": {"color": "#ffffff", "dur": 0.15}},
+        {
+          "id": "horns_n1",
+          "at": {"after": "horns_la"},
+          "who": "world",
+          "do": "narrate",
+          "params": {"text": "That night, two glowing horns rose over the hill. Peepa had come to Tokyo."}
+        },
+        {"id": "horns_pw", "at": {"with": "horns_n1", "delay": 0.5}, "who": "peepa", "do": "walk", "to": {"x": 1500, "z": -300}},
+        {"id": "horns_end", "at": {"after": "horns_n1", "delay": 4.6}, "who": "world", "do": "fade", "params": {"to": "black", "dur": 0.8}}
+      ],
+      "light": "moonlit",
+      "lens": {"vignette": 0.35},
+      "tail": 0.6
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {"duck": "music", "under": "voice", "db": -8, "attack": 0.15, "release": 0.6},
+      {"duck": "ambience", "under": "voice", "db": -6, "attack": 0.2, "release": 0.8}
+    ],
+    "tracks": [
+      {
+        "id": "fest_lift",
+        "kind": "bus",
+        "bus": "music",
+        "scene": "festival",
+        "volume": [{"t": 0, "v": 0.9}, {"t": 2, "v": 1.25, "ease": "inOutQuad"}, {"t": 10, "v": 1.25}, {"t": 12, "v": 1, "ease": "inOutQuad"}]
+      },
+      {"id": "night_wind", "kind": "ambience", "bed": "wind", "scene": "horns", "volume": 0.6, "fadeIn": 1.5},
+      {"id": "voices", "kind": "bus", "bus": "voice", "volume": 1.1}
+    ]
+  },
+  "look": {"strength": 0.45},
+  "motion": {"followThrough": 1, "squash": 1, "secondary": 1, "breathing": 1, "blur": 0},
+  "layers": [{"id": "tbc_layer", "scene": "horns", "from": 13.3, "in": {"type": "fade", "dur": 1}}],
+  "shapes": [{"id": "tbc_black", "type": "rect", "layer": "tbc_layer", "x": 960, "y": 540, "w": 1920, "h": 1080, "fill": "#000000"}],
+  "text": [
+    {
+      "id": "tbc",
+      "text": "To be continued...",
+      "style": "title",
+      "layer": "tbc_layer",
+      "x": 960,
+      "y": 540,
+      "from": 14.3,
+      "in": {"type": "typewriter", "dur": 1.4}
+    }
+  ]
+}
