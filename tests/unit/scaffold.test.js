@@ -28,7 +28,7 @@ const expected = {
   "../../engine/scene.js": ["sceneNodes", "characterDepths"],
   "../../engine/templates.js": ["expandScript", "substitute", "templateParams", "templateKey"],
   "../../engine/audio_tracks.js": ["collectAudioTracks", "busGainAt", "duckGainAt", "trackGainAt", "trackPanAt", "BUSES"],
-  "../../engine/motion_fx.js": ["MOTION_DEFAULTS", "WINDOW", "springTrack", "followThrough", "squashStretch", "axisScale", "hairSway", "standingStill", "breathe", "blurGhosts"],
+  "../../engine/motion_fx.js": ["MOTION_DEFAULTS", "WINDOW", "springTrack", "followThrough", "squashStretch", "axisScale", "hairSway", "standingStill", "breathe", "blurGhosts", "MAX_STRETCH", "limbStretch", "applyStretch"],
   "../../engine/turnaround.js": ["VIEWS", "VIEW_YAW", "viewsOf", "resolveView", "yawAt", "faceShiftOf", "faceShows", "turnJoints"],
   "../../engine/timeline.js": ["parseTarget", "cubicBezier", "easingOf", "sampleTrack", "compileTracks", "trackValuesAt"],
   "../../engine/compositor.js": ["hasMotion", "compileMotion", "composeAt", "postAt", "motionValuesAt", "animState", "lifeOf"],
@@ -37,6 +37,7 @@ const expected = {
   "../../engine/validator/index.js": ["validate", "jsonSchema"],
   "../../engine/renderer/index.js": ["createRenderer", "renderFrame"],
   "../../engine/renderer/draw_chars.js": ["charsAt", "order", "drawLayerChars", "drawChars"],
+  "../../engine/renderer/limb_curves.js": ["LIMB_STYLES", "limbStyleOf", "limbControl", "limbLine", "bowedLeg"],
 };
 
 for (const [path, names] of Object.entries(expected)) {

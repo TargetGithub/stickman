@@ -444,6 +444,14 @@
               "back"
             ],
             "description": "Turnaround view: side, three_quarter, front or back (the body plan must have it: E_VIEW_BODY)."
+          },
+          "limbStyle": {
+            "enum": [
+              "straight",
+              "bendy",
+              "rubber"
+            ],
+            "description": "How arms and legs are drawn: straight (default), bendy (smooth curves through elbows and knees) or rubber (cartoon noodle limbs that also stretch on fast reaches and hits)."
           }
         }
       }
@@ -1040,6 +1048,14 @@
                         "back"
                       ],
                       "description": "Turnaround view: side, three_quarter, front or back (the body plan must have it: E_VIEW_BODY)."
+                    },
+                    "limbStyle": {
+                      "enum": [
+                        "straight",
+                        "bendy",
+                        "rubber"
+                      ],
+                      "description": "This character's limb style in this scene (over the scene's and the cast entry's)."
                     }
                   }
                 }
@@ -1972,6 +1988,14 @@
                     "description": "Close-ups, over-the-shoulder shots and two-shots pull focus by themselves (default true)."
                   }
                 }
+              },
+              "limbStyle": {
+                "enum": [
+                  "straight",
+                  "bendy",
+                  "rubber"
+                ],
+                "description": "Limb style for everyone in the scene (over each cast entry's; a placement's own limbStyle wins)."
               },
               "post": {
                 "type": "object",
@@ -3305,6 +3329,12 @@
           "minimum": 0,
           "maximum": 1,
           "description": "Faint ghosts behind fast limbs (default 0)."
+        },
+        "stretch": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Rubber limbs stretch on fast reaches and when a blow lands (default 1)."
         }
       }
     },

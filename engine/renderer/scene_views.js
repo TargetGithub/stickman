@@ -9,6 +9,7 @@ import { withLensTracks } from "../compositor.js";
 import { depthAt } from "../depth.js";
 import { deriveRng } from "../math.js";
 import { resolveView, viewsOf, walkYaw, MAX_TURN } from "../turnaround.js";
+import { limbStyleOf } from "./limb_curves.js";
 import { STAGE } from "../config.js";
 
 /** Per-scene views of the event log and fx records (overlays and particles never leak across scenes). */
@@ -50,6 +51,7 @@ export function sceneViews(sim, catalog) {
         handheld: createHandheld(deriveRng(sim.meta?.seed ?? 1, `handheld@${sc.id ?? i}`)),
         viewTracks: viewTracks(ev, sc, catalog, k),
         maxTurn: sim.story?.look?.maxTurn ?? MAX_TURN,
+        limbStyles: limbStyles(sim.story, sc, catalog),
       } : {}),
       placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
       depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
@@ -131,3 +133,19 @@ function viewTracks(ev, sc, catalog, k = 1) {
   return out;
 }
 
+
+/**
+ * Limb styles of a v3 scene (ADR-034), per character, only those that are not straight: the scene placement's
+ * limbStyle, else the scene's, else the cast entry's, else the body plan's, else straight.
+ */
+export function limbStyles(story, sc, catalog) {
+  const out = new Map();
+  const scene = story?.scenes?.[sc.index];
+  for (const c of sc.characters || []) {
+    const placed = (scene?.cast || []).find((p) => p.id === c.id);
+    const def = (story?.cast || []).find((x) => x.id === c.id);
+    const style = limbStyleOf(placed?.limbStyle ?? scene?.limbStyle ?? def?.limbStyle ?? catalog.bodies?.[c.body ?? "stickman"]?.limbStyle);
+    if (style !== "straight") out.set(c.id, style);
+  }
+  return out;
+}

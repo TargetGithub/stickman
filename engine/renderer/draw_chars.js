@@ -91,7 +91,9 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ctx.shadowBlur = 22 * c.scale;
   }
   // Motion quality (V3.7, v3 scenes): follow-through, breathing, squash and stretch, hair sway, blur ghosts.
-  const mo = sv.depth ? motionFrame(ctx, r, sv, f, c, chars, past, !!style.squash) : null;
+  // Limb style (ADR-034, v3 scenes): straight (v2), bendy or rubber; v1/v2 scenes are always straight.
+  const limbStyle = (sv.depth && sv.limbStyles?.get(c.id)) || "straight";
+  const mo = sv.depth ? motionFrame(ctx, r, sv, f, c, chars, past, !!style.squash, limbStyle) : null;
   const cm = mo ? { ...c, j: mo.j } : c;
   // Turnaround views (V3.6, v3 scenes): the yaw from the scene's view track.
   const track = sv.viewTracks?.get(c.id);
@@ -106,6 +108,7 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight) } : {}),
     ...(turned ? { faceShift: turned.faceShift, hideFace: turned.hideFace, farBrightness: turned.farBrightness, wrap: turned.wrap } : {}),
     ...(mo?.hairTilt ? { hairTilt: mo.hairTilt } : {}),
+    ...(limbStyle !== "straight" ? { limbStyle } : {}),
     ...(sv.depth ? lineLook(r.sim.story?.look) : {}),
     ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) };
   if (c.quad && yaw < 89.5) {

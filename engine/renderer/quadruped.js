@@ -7,6 +7,7 @@ import { drawFace } from "./face.js";
 import { drawProp } from "./props.js";
 import { propTransform } from "../props.js";
 import { SNOUT_TURN } from "../skeleton_quad.js";
+import { limbLine } from "./limb_curves.js";
 
 const WAG = {
   happy: { lift: 55, amp: 26, hz: 3.4 },
@@ -52,7 +53,8 @@ function fillShape(ctx, path, color, s) {
   }
 }
 
-function strokeLeg(ctx, pts, color, lw, s) {
+function strokeLeg(ctx, pts0, color, lw, s) {
+  const pts = s.limbStyle ? limbLine(pts0, s.limbStyle) : pts0; // rubber-hose legs (ADR-034)
   const line = () => {
     ctx.beginPath();
     ctx.moveTo(pts[0].x, pts[0].y);
@@ -68,7 +70,7 @@ function strokeLeg(ctx, pts, color, lw, s) {
   ctx.lineWidth = lw;
   line();
   // A round paw, a little forward of the leg's end.
-  const paw = add(pts[2], { x: s.facing, y: 0 }, lw * 0.35);
+  const paw = add(pts0[2], { x: s.facing, y: 0 }, lw * 0.35);
   fillShape(ctx, () => ctx.ellipse(paw.x, paw.y, lw * 0.85, lw * 0.55, 0, 0, Math.PI * 2), color, s);
 }
 

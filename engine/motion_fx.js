@@ -6,12 +6,14 @@
 //   the blow when hit;
 // - secondary motion: the hair sways against the head's motion (capes and scarves already trail, tails wag);
 // - breathing: a slow rise of the upper body with per-character timing while standing still;
-// - motion blur: faint ghosts behind fast limbs (off unless a script asks).
+// - motion blur: faint ghosts behind fast limbs (off unless a script asks);
+// - limb stretch (rubber limbs only, ADR-034): an arm or an airborne leg grows a little longer on a fast reach
+//   and at the moment its blow lands, bounded by MAX_STRETCH; every other channel keeps bone lengths.
 // All pure functions of joint history (oldest first, the current frame last), events and time.
 
 import { clamp, hash32 } from "./math.js";
 
-export const MOTION_DEFAULTS = Object.freeze({ followThrough: 1, squash: 1, secondary: 1, breathing: 1, blur: 0 });
+export const MOTION_DEFAULTS = Object.freeze({ followThrough: 1, squash: 1, secondary: 1, breathing: 1, blur: 0, stretch: 1 });
 export const WINDOW = 14; // frames of history the springs run over
 const SPRING = { omega: 22, zeta: 0.45 }; // rad/s; under-damped: about 20% overshoot
 const MAX_DEV = (18 * Math.PI) / 180; // a limb never strays more than this from its stored angle
@@ -148,4 +150,66 @@ export function blurGhosts(history, amount) {
   if (speed < 1400) return [];
   const k = clamp((speed - 1400) / 1600, 0, 1) * amount;
   return [{ back: 2, alpha: 0.1 * k }, { back: 1, alpha: 0.18 * k }];
+}
+
+export const MAX_STRETCH = 0.22; // a limb is never drawn more than 22% longer than its bones
+const LIMBS = { lArm: ["shoulder", "lElbow", "lHand"], rArm: ["shoulder", "rElbow", "rHand"], lLeg: ["hip", "lKnee", "lFoot"], rLeg: ["hip", "rKnee", "rFoot"] };
+const IMPACT = 0.15; // s: how long a landed blow stretches the striking limb
+
+/**
+ * The stretch channel (ADR-034): how much longer each limb is drawn this frame, as factors >= 1
+ * ({ lArm, rArm, lLeg, rLeg }), or null when none stretches. A limb stretches with the speed its end moves away
+ * from its root (fast reaches; the last 4 frames, fading) and pulses when a hit the character made lands
+ * (the limb nearest the hit's point strikes). Legs stretch only while their foot is off the floor, so feet never slide.
+ * @param {object[]} history  joints, oldest first (current last)
+ * @param {object[]} hits  hits this character made, each with videoT and point (world, where it landed)
+ */
+export function limbStretch(history, hits, t, groundY, scale, amount) {
+  if (amount <= 0 || history.length < 2) return null;
+  const j = history[history.length - 1];
+  const reachOf = (h, [a, , c]) => dist(h[a], h[c]);
+  let impact = 0;
+  for (const e of hits) {
+    const age = t - e.videoT;
+    if (age >= 0 && age <= IMPACT) impact = Math.max(impact, Math.sin(Math.PI * (age / IMPACT)));
+  }
+  // The striking limb: the one whose end is nearest where the blow landed (else the most extended one).
+  let striker = null;
+  if (impact > 0) {
+    const point = hits.find((e) => e.point)?.point;
+    let best = Infinity;
+    for (const [name, chain] of Object.entries(LIMBS)) {
+      const score = point ? dist(j[chain[2]], point) : -reachOf(j, chain) / (dist(j[chain[0]], j[chain[1]]) + dist(j[chain[1]], j[chain[2]]) || 1);
+      if (score < best) [best, striker] = [score, name];
+    }
+  }
+  const out = {};
+  let any = false;
+  for (const [name, chain] of Object.entries(LIMBS)) {
+    if (name.endsWith("Leg") && j[chain[2]].y >= groundY - 6) continue;
+    let reach = 0;
+    for (let k = 0; k < 4 && history.length - 2 - k >= 0; k++) {
+      const v = (reachOf(history[history.length - 1 - k], chain) - reachOf(history[history.length - 2 - k], chain)) / DT / (scale || 1);
+      reach = Math.max(reach, clamp((v - 400) / 2000, 0, 1) * (1 - k / 4));
+    }
+    const s = clamp(reach * 0.14 + (name === striker ? impact * 0.12 : 0), 0, MAX_STRETCH) * amount;
+    if (s > 0.002) {
+      out[name] = 1 + s;
+      any = true;
+    }
+  }
+  return any ? out : null;
+}
+
+/** The joints with limbs stretched from their roots by the factors of limbStretch (the root stays put). */
+export function applyStretch(j, stretch) {
+  if (!stretch) return j;
+  const out = { ...j };
+  for (const [name, k] of Object.entries(stretch)) {
+    const [a, b, c] = LIMBS[name];
+    out[b] = { x: j[a].x + (j[b].x - j[a].x) * k, y: j[a].y + (j[b].y - j[a].y) * k };
+    out[c] = { x: out[b].x + (j[c].x - j[b].x) * k, y: out[b].y + (j[c].y - j[b].y) * k };
+  }
+  if (j.propTip && stretch.rArm) out.propTip = { x: j.propTip.x + (out.rHand.x - j.rHand.x), y: j.propTip.y + (out.rHand.y - j.rHand.y) };
+  return out;
 }

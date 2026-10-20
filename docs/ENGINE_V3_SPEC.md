@@ -97,6 +97,12 @@ Pose interpolation gets overshoot and settle curves, squash-and-stretch on landi
 
 The effects a version 3 scene gets without asking (the time-of-day light rig with its shading, rim, tint, shadows and haze; the default vignette; the focus blur that story shots pull by themselves; the turns that moves like wave and cheer make) run at a **look strength**, default **0.2** (20%), so v3 stays close to the flat v2 look. A script sets it with `"look": { "strength": 0-1 }`. Anything a script asks for explicitly runs at full strength: a scene's or location's `light`, `set_light`, lens values in a `lens` block, camera keys or `set_camera`, and `view` on cast, placements and beats.
 
+### 5.7 Limb styles: rubber-hose limbs (ADR-034)
+
+Arms and legs can be drawn as cartoon curves instead of two straight bones, per character or per scene: `limbStyle` is `straight` (the default, exactly the v2 drawing), `bendy` (one smooth curve that passes through the elbow or knee) or `rubber` (a noodle that bows 1.45x past the joint and never goes quite straight, and that stretches). It is set on a cast entry (`cast[].limbStyle`), a scene (`scenes[].limbStyle`, for everyone in it) or a placement (`scenes[].cast[].limbStyle`); a placement wins over its scene, the scene over the cast entry, and that over the body plan's default (`limbStyle` in `characters/bodies.json` or a bundle's body plan; no base plan sets one). Version 3 scenes only; v1/v2 are always straight.
+
+**As built:** draw time only (`engine/renderer/limb_curves.js`). The joints are where the simulation, follow-through and turnaround put them; the line between root, joint and end becomes a quadratic curve sampled as a polyline, so the outline pass, the V3.3 light bands (which offset the polyline) and cast shadows follow the curve with no changes of their own. Turned views (V3.6) curve the foreshortened joints, so a limb pointing at the camera bends less; a quadruped's legs curve in its side view and, for `rubber`, bow outward in its front view. The spine never bends. **Stretch** (`rubber` only, `motion.stretch` 0-1, default 1; `engine/motion_fx.js` `limbStretch`): an arm, or a leg whose foot is off the floor, is drawn up to 22% longer, growing with the speed its end moves away from its root over the last 4 frames (fast reaches; about 14% at most) and pulsing for 0.15 s when a hit the character made lands (the limb nearest the hit's point; about 12% more). The root stays put, so bodies and feet never slide; hits, reach and the frame store are unchanged (a stretched blow is drawn a little past where it landed). Quadrupeds do not stretch.
+
 ## 6. Standard video-creation features (JSON)
 
 New optional top-level blocks in a v3 script, usable with or without a story:
@@ -121,6 +127,8 @@ The v2 story compiler emits these same primitives, so a story scene and a hand-k
 ## 7. Script format v3
 
 `version: 3`. A v2 script is a valid v3 script. v3 adds: `bundles` (required when any non-base id is used), `layers`, `tracks`, `text`, `shapes`, `post`, `audio.tracks`, `templates`; cast gets `view` defaults and per-view overrides; scenes get `depth` range, `light`, `camera` keyframes (v3 fields) and `fog`; beats get `to.z`, `view`, `set_light`, `set_camera` (keyframes), `layer` by name. The validator grows the matching codes (E_BUNDLE_*, E_TRACK_*, E_VIEW_* ...) with fixtures.
+
+**Limb styles (ADR-034, 5.7):** `cast[].limbStyle`, `scenes[].limbStyle` and `scenes[].cast[].limbStyle` (`straight`, `bendy`, `rubber`), and `motion.stretch` (0-1, default 1) for rubber limbs.
 
 ## 8. Rendering
 
