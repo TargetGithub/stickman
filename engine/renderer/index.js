@@ -24,6 +24,7 @@ import { applyPost, postActive } from "./post.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 import { charsAt, drawChars, drawLayerChars } from "./draw_chars.js";
+import { subtitlesOn } from "../story/pace.js";
 
 /** Crowd excitement (S6): it jumps after a hit and fades over a second; a defeat hushes it briefly. */
 function crowdReact(sv, f) {
@@ -218,7 +219,8 @@ export function renderScene(r, ctx, n) {
     says: sv.says, worldEvents: sv.worldEvents, flashes: sv.flashes, hpBars: r.hpBars,
     slowness: storyRate > 0 && storyRate < 0.95 ? 1 - storyRate : 0,
     names: r.names,
-    bubbleScale: sv.depth ? (r.sim.story?.look?.bubble ?? 1) : 1, // look.bubble (v3, V3.9)
+    bubbleScale: sv.depth ? (r.sim.story?.look?.bubble ?? 1) * (sv.pace?.bubble ?? 1) : 1, // look.bubble (v3, V3.9) times a pace's (ADR-038)
+    subtitles: subtitlesOn(sv.pace),
   };
   drawPostWorld(ctx, view);
   if (lens) {

@@ -142,8 +142,27 @@ export function withDepth(v2) {
   // The automatic v3 look (time-of-day lighting, default vignette, auto focus, automatic turns) at a strength.
   s.properties.look = { type: "object", additionalProperties: false, description: "The automatic v3 look.", properties: { strength: { type: "number", minimum: 0, maximum: 1, description: "How strong the automatic lighting, vignette, focus blur and turns are (default 0.2; explicit lights, lens settings and views are always full)." }, outline: { type: "number", minimum: 0.5, maximum: 2.5, description: "Scale of the dark outline around limbs, heads and bodies (default 1)." }, limbs: { type: "number", minimum: 0.6, maximum: 2, description: "Scale of the limb width (default 1)." }, bubble: { type: "number", minimum: 0.7, maximum: 2, description: "Scale of speech bubbles and their text (default 1)." }, maxTurn: { type: "number", minimum: 0, maximum: 90, description: "How far a body turns from profile toward or away from the camera, in degrees (default 90: full front and back; 60: front is a near-front three-quarter)." } } };
   scene.properties.post = POST_SCHEMA;
+  // Pace (ADR-038): preschool-show timing, cutting and captions; a scene's block goes over the script's, false turns it off.
+  s.properties.pace = PACE_SCHEMA;
+  scene.properties.pace = { oneOf: [{ const: false }, PACE_SCHEMA], description: "This scene's pace over the script's, or false for none." };
   return s;
 }
+
+const pn = (min, max, d) => ({ type: "number", minimum: min, maximum: max, description: d });
+const PACE_SCHEMA = { type: "object", additionalProperties: false, description: "Snappy preschool-show timing (ADR-038): faster travel and gestures, tight dialogue, a cutting auto camera with medium shots, cut-to-arrival for long walks, bigger bubbles or subtitles. {} takes every default.", properties: {
+  travel: { type: "object", additionalProperties: false, description: "Speed multipliers per travel move (defaults: walk 1.7, run 1.25, sneak 2.5, tiptoe 2, walk_together 1.6, swim 1.3).",
+    properties: Object.fromEntries(["walk", "run", "sneak", "tiptoe", "walk_together", "swim"].map((m) => [m, pn(0.5, 4, `${m} speed multiplier.`)])) },
+  moves: pn(0.5, 2, "Playback speed of other one-shot moves beats start (not attacks, defeats, paired moves, timed holds or speaking beats; default 1.25)."),
+  gap: pn(0, 2, "Seconds between dialogue lines (default 0.2)."),
+  maxTravel: pn(1, 30, "Seconds a walk may take on screen before it becomes a walk out, a cut and the arrival (default 3)."),
+  maxExit: pn(0.5, 10, "Seconds an exit walk lasts before the fade (default 1.5)."),
+  arrive: pn(0.3, 5, "Seconds of walking after a travel cut (default 1.2)."),
+  leave: pn(0.3, 5, "Seconds of walking before a travel cut (default 0.9)."),
+  shot: { type: "array", minItems: 2, maxItems: 2, items: pn(0.5, 20, "Seconds."), description: "[min, max] seconds a dialogue shot lasts before the auto camera cuts (default [2, 4])." },
+  establish: pn(0, 10, "Seconds of the opening wide shot (default 2)."),
+  captions: { enum: ["auto", "bubbles", "subtitles"], description: "auto (default): subtitles when meta.speech is tts, else bubbles." },
+  bubble: pn(0.7, 2.5, "Bubble and text scale, times look.bubble (default 1.5)."),
+} };
 
 export const jsonSchemaV3 = withDepth(jsonSchemaV2);
 

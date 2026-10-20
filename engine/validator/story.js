@@ -8,6 +8,7 @@ import { flatScene, resolveLocation } from "../story/normalize.js";
 import { readingTime } from "../story/speech.js";
 import { holdableNames } from "../objects.js";
 import { activityIssues, defeatIssues } from "./story_s5.js";
+import { paceOf, PACED_MIN } from "../story/pace.js";
 
 const issue = (code, path, message, fix, severity) => ({ code, path, message, fix, ...(severity ? { severity } : {}) });
 
@@ -256,10 +257,12 @@ export function checkStory(story, catalog, moves) {
       out.push(issue("E_FACE_UNKNOWN", path, `Unknown face '${name}'.`, `Use one of: ${names.join(", ")}${near ? ` (closest: ${near})` : ""}.`));
     };
     (scene.cast || []).forEach((p, k) => p.face !== undefined && faceIssue(p.face, `${pre}.cast[${k}].face`));
+    // Under a pace (ADR-038) a line's voice sets its length: only a flash shorter than PACED_MIN is too fast.
+    const read = paceOf(story, scene) ? () => PACED_MIN : readingTime;
     (scene.beats || []).forEach((b, bi) => {
       if (b.face !== undefined) faceIssue(b.face, `${pre}.beats[${bi}].face`);
-      if (b.say && b.sayDur !== undefined && b.sayDur < readingTime(b.say) - 1e-9) {
-        out.push(issue("W_DIALOGUE_FAST", `${pre}.beats[${bi}].sayDur`, `"${b.say}" shows for ${b.sayDur}s; it needs about ${readingTime(b.say).toFixed(1)}s to read.`, `Remove "sayDur" (the default is the reading time) or use at least ${readingTime(b.say).toFixed(1)}.`));
+      if (b.say && b.sayDur !== undefined && b.sayDur < read(b.say) - 1e-9) {
+        out.push(issue("W_DIALOGUE_FAST", `${pre}.beats[${bi}].sayDur`, `"${b.say}" shows for ${b.sayDur}s; it needs about ${read(b.say).toFixed(1)}s to read.`, `Remove "sayDur" (the default is the reading time) or use at least ${read(b.say).toFixed(1)}.`));
       }
     });
     // Audience: soft-listed words in on-screen text.

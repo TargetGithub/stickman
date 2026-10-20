@@ -103,6 +103,23 @@ Arms and legs can be drawn as cartoon curves instead of two straight bones, per 
 
 **As built:** draw time only (`engine/renderer/limb_curves.js`). The joints are where the simulation, follow-through and turnaround put them; the line between root, joint and end becomes a quadratic curve sampled as a polyline, so the outline pass, the V3.3 light bands (which offset the polyline) and cast shadows follow the curve with no changes of their own. Turned views (V3.6) curve the foreshortened joints, so a limb pointing at the camera bends less; a quadruped's legs curve in its side view and, for `rubber`, bow outward in its front view. The spine never bends. **Stretch** (`rubber` only, `motion.stretch` 0-1, default 1; `engine/motion_fx.js` `limbStretch`): an arm, or a leg whose foot is off the floor, is drawn up to 22% longer, growing with the speed its end moves away from its root over the last 4 frames (fast reaches; about 14% at most) and pulsing for 0.15 s when a hit the character made lands (the limb nearest the hit's point; about 12% more). The root stays put, so bodies and feet never slide; hits, reach and the frame store are unchanged (a stretched blow is drawn a little past where it landed). Quadrupeds do not stretch.
 
+### 5.8 Pace: preschool-show timing (ADR-038)
+
+A version 3 script can ask for the snappy timing and cutting of a preschool show (Sheriff Labrador) with a top-level `pace` block; `"pace": {}` takes every default, a scene's `pace` goes over the script's and `"pace": false` turns it off for that scene. Without a block nothing changes.
+
+| Field | Default | What it does |
+|---|---|---|
+| `travel` | walk 1.7, run 1.25, sneak 2.5, tiptoe 2, walk_together 1.6, swim 1.3 | Speed multipliers: the cycle plays f^0.45 faster and each step reaches f^0.55 further (feet still plant). A travel move counted in `cycles` keeps its stride. |
+| `moves` | 1.25 | Playback speed of other one-shot moves a beat starts (not attacks, defeats, paired moves, loops, timed holds like `wait`, or a beat that speaks). |
+| `gap` | 0.2 | Seconds between `@dialogue` lines. Reading time is 0.5 s + 0.05 s per character (at least 1 s); with TTS the voice clip sets it (SPEECH_SPEC 4). |
+| `maxTravel`, `leave`, `arrive` | 3, 0.9, 1.2 | A walk with `to` that would take over `maxTravel` s walks `leave` s, cuts (the walker jumps ahead) and walks the last `arrive` s; an entering walker starts `arrive` s out. Not for paired or depth walks. |
+| `maxExit` | 1.5 | Seconds an `exit` walk lasts before the fade. |
+| `shot`, `establish` | [2, 4], 2 | The story auto camera cuts (shot/reverse-shot, reactions, medium shots; STORY_SPEC 16). |
+| `captions` | auto | `auto`: voiced lines as subtitles when `meta.speech` is tts, else bubbles; or `bubbles`, `subtitles`. Thoughts stay cloud bubbles. |
+| `bubble` | 1.5 | Bubble and text scale, times `look.bubble`. |
+
+The validator warns `W_PACE_TRAVEL` (a travel beat over 4 s) and `W_PACE_GAP` (over 1.5 s with nobody acting, speaking or narrated) in paced scenes. `node tools/pace_report.mjs <script> [--speech tts]` prints the length, shot lengths, travel times, talk share and gaps of any script.
+
 ## 6. Standard video-creation features (JSON)
 
 New optional top-level blocks in a v3 script, usable with or without a story:
@@ -127,6 +144,8 @@ The v2 story compiler emits these same primitives, so a story scene and a hand-k
 ## 7. Script format v3
 
 `version: 3`. A v2 script is a valid v3 script. v3 adds: `bundles` (required when any non-base id is used), `layers`, `tracks`, `text`, `shapes`, `post`, `audio.tracks`, `templates`; cast gets `view` defaults and per-view overrides; scenes get `depth` range, `light`, `camera` keyframes (v3 fields) and `fog`; beats get `to.z`, `view`, `set_light`, `set_camera` (keyframes), `layer` by name. The validator grows the matching codes (E_BUNDLE_*, E_TRACK_*, E_VIEW_* ...) with fixtures.
+
+**Pace (ADR-038, 5.8):** a top-level `pace` block and `scenes[].pace` (an object or false).
 
 **Limb styles (ADR-034, 5.7):** `cast[].limbStyle`, `scenes[].limbStyle` and `scenes[].cast[].limbStyle` (`straight`, `bendy`, `rubber`), and `motion.stretch` (0-1, default 1) for rubber limbs.
 

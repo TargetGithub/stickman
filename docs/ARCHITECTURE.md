@@ -221,7 +221,8 @@ Shake moved to camera.js.
 
 ### presentation.js
 ```js
-export function createPresentation(script, catalog): { fx, cam, format, autoCamera, ... };
+export function createPresentation(script, catalog, { suffix, fx, kids, storyCamera, tightFraming, t0, cameraLog, pace }): { fx, cam, format, autoCamera, ... };
+// cameraLog: every framing change { t, mode, target?, targets?, cut } (engine.getCameraLog(), tools/pace_report.mjs)
 export function presentEvent(p, event, world, clock): void;   // hit/moveEvent/land/fx/world/camera → FX + camera
 export function stepPresentation(p, world, clock, fxDt, videoDt): CameraState;
 export function anchorPoint(actor, "head"|"hip"|"feet"|"point"): Vec;
@@ -782,7 +783,18 @@ TO_MOVES; destinationX(world, actor, to, move); startTo(world, actor, beat, opts
 planExtras(scene, location, catalog, seed, stageWidth) -> extras[]; EXTRA_MOVES
 // camera_story.js
 storyFraming(cam, actors, key, { bounds, fitZoom }) -> { x, zoom, y?, smoothY?, maxZoom? } | null
-shotKey(params); createStoryAuto(t0); storyAutoEvent(auto, e, t); storyAutoKey(auto, actors, t) -> key | null
+shotKey(params); createStoryAuto(t0, { tight, pace }); storyAutoEvent(auto, e, t); storyAutoKey(auto, actors, t) -> key | null
+// story/pace.js (ADR-038)
+PACE_DEFAULTS; PACED_MIN; paceOf(story, scene) -> pace | null; travelFactor(pace, move); pacedOpts(pace, move, opts) -> opts (speed, stride)
+moveSpeed(pace, def, beat) -> speed | undefined; pacedReadingTime(text); talkFor(seconds) -> { cycles, speed }; subtitlesOn(pace)
+// camera_cuts.js (ADR-038)
+mediumFraming(cam, group, key, helpers); createCuts(pace); cutsEvent(cuts, e, t); cutsKey(auto, cuts, actors, t, activeIds) -> key (with cut)
+// story/destinations.js (ADR-038 additions)
+walkSpeed(world, actor, move) -> px/s (pace included); travelCut(world, actor, move, x) -> { enter? , skip?: { at, by } } | null
+// renderer/subtitles.js (ADR-038)
+sentences(says) -> lines (bubbles of one sentence joined); drawSubtitles(ctx, lines, { W, H, t, scale, safeBottom, names, colors })
+// validator/pace.js (ADR-038)
+PACE_LIMITS; paceIssues(sim) -> issues   // W_PACE_TRAVEL, W_PACE_GAP
 // renderer/extras.js
 drawExtras(ctx, r, sceneView, frame, layer); withLayer(ctx, layer, x, draw); LAYER_LOOK
 // validator/macros.js
@@ -979,3 +991,8 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: Sridhar asked for cartoon bendy and stretchy limbs. The simulation's reach, hit sweeps and joint positions are tuned and choreographed fights land on exact frames, v1/v2 output must stay identical, and v3 limbs already carry shading (V3.3), turnaround (V3.6) and follow-through (V3.7).
 - **Decision**: a `limbStyle` (`straight`, `bendy`, `rubber`) chosen per cast entry, scene or placement in version 3 scripts, with a body plan default, changes only how a limb chain is stroked: `renderer/limb_curves.js` turns root, joint and end into a quadratic curve (through the joint for bendy, bowed 1.45x with a minimum bow for rubber) sampled as a polyline, which every existing pass (outline, colour, light bands, cast shadow, blur ghosts) already strokes. Stretch is a bounded channel in `motion_fx.js` (`limbStretch`, at most 22%) applied to rubber limbs after follow-through and before turnaround, from the joint history and the character's own hit events; the root never moves and grounded legs never stretch.
 - **Consequences**: the simulation, frame store, hits and v1/v2 golden frames are unchanged, and a v3 script without `limbStyle` renders exactly as before (straight limbs return their own points). A stretched or bowed limb can be drawn a little past the stored contact point; at the bounds chosen it reads as cartoon follow-through in the demo. Curves cost about 10-12 segments per limb per pass. Quadrupeds curve but do not stretch, and the spine stays straight; tapering limbs (thicker at the shoulder) are not done.
+
+### ADR-038 Pace: preschool-show timing is an opt-in v3 block, applied where each timing is decided (Sridhar's request, 2026-10-20)
+- **Context**: the ep01 v3 pilot ran 6:39 against Sheriff Labrador's pace: walks at 120 px/s and sneaks at 58 px/s (four sneaks averaged 14.5 s), lines held for 1.2 s + 0.06 s per character even with a voice, authored pauses up to 3 s, and an auto camera that panned (11 hard cuts in the episode) on wide framings with characters about a third of the frame tall and small bubbles. v1/v2 output and the golden frames must not change.
+- **Decision**: a `pace` block on a version 3 script (`{}` takes every default; a scene's block goes over it, `false` turns it off) resolved by `story/pace.js` `paceOf` and carried as `world.pace` and `sim.scenes[i].pace`. Each timing is changed where it is decided: travel moves get `speed` x `stride` = the travel factor in `world.command` (walk 1.7, run 1.25, sneak 2.5; the cycle plays f^0.45 faster and steps reach f^0.55 further, so feet still plant); a beat's own one-shot move plays at `moves` (1.25) unless it is an attack, defeat, pair, loop, timed hold or speaks; a walk with `to` longer than `maxTravel` (3 s) walks `leave` s, jumps (a `skip` on the move, a `travelCut` event) and walks the last `arrive` s, and a hidden (entering) walker starts `arrive` s out; exits last `maxExit` s; the dialogue macro uses `gap` 0.2 s, reading time 0.5 s + 0.05 s per character and talk loops played at the speed that ends them with the line; with TTS the voice alone sets a line (`audio + 0.1 s`, at least 0.6 s). The story auto camera hands over to `camera_cuts.js`: an establishing wide, then a medium two-shot opening each exchange, alternating over-the-shoulder and close-up on each new line, a reaction close-up when a line runs past `shot[1]`, and otherwise a medium on whoever acts (about 60% of the frame tall, a looser one every 5 s); every change is a hard cut except a medium that keeps one of its characters, and `shot` beats cut too. Bubbles scale by `bubble` (1.5); `captions` "auto" shows voiced lines as subtitles (speaker name in their colour, the bubbles of one sentence joined) when `meta.speech` is tts, which `prepareSpeech` sets. `W_PACE_TRAVEL` (a travel beat over 4 s) and `W_PACE_GAP` (over 1.5 s with nobody acting, speaking or narrated) check paced scenes.
+- **Consequences**: without a block nothing runs differently (the pace tests compare a `pace: false` scene with no pace; all golden frames unchanged). The cut-to-arrival does not apply to paired walks (`walk_together`, approaches to a partner) or depth walks, so those still need short distances (the validator warns). The medium is an internal camera mode, not a shot mode, so the v2 schema is unchanged. Re-timed ep01_v3 (pace on, five authored delays trimmed, two walks shortened): 6:39 → 4:39, hard cuts 11 → 114 (one per 2.5 s), sneaks 14.5 → 1.6 s average, no travel over 4 s; talk stays 45% of the (shorter) episode. `tools/pace_report.mjs` measures any script; `engine.getCameraLog()` lists the framing changes.

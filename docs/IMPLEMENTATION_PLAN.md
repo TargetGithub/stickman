@@ -139,6 +139,7 @@ Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visua
 | V3.8 | Audio tracks and templates (ADR-031) | DONE 2026-10-19, awaiting review |
 | V3.9 | Polish pass against the reference (ADR-032, ADR-033) | DONE 2026-10-20 (approved); framing and contact shadows awaiting review |
 | V3.10 | Rubber-hose limbs: `limbStyle` straight/bendy/rubber and the stretch channel (ADR-034, spec 5.7) | DONE 2026-10-20, reviewed (`out/demos/v3_10_limbs`) |
+| V3.12 | Pace: preschool-show timing, cutting and subtitles (`pace` block, ADR-038, spec 5.8); ep01_v3 re-timed (6:39 → 4:39) | DONE 2026-10-20, awaiting review (`out/series/doopi/ep01_v3_paced`) |
 
 ## Schedule summary
 

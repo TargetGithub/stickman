@@ -8,6 +8,7 @@ import { requiredStartX, motionScale } from "./combat.js";
 import { COMBAT, LIMITS } from "./config.js";
 import { CARD_COMMANDS, WORLD_DURATION } from "./story/timing.js";
 import { readingTime } from "./story/speech.js";
+import { moveSpeed, pacedReadingTime, travelFactor } from "./story/pace.js";
 import { pairGate } from "./story/pair_beats.js";
 import { resolveMove, isIdleMove } from "./moves.js";
 import { startPair } from "./story/pairs.js";
@@ -180,7 +181,7 @@ function approach(director, beat, actor, ctx) {
   if (Math.abs(need) <= slack) return false;
   if (need > 0) {
     const mode = beat.approach === "walk" ? "walk" : "run";
-    const speed = (mode === "walk" ? 120 : 550) * motionScale(actor); // px/s from the walk/run strides
+    const speed = (mode === "walk" ? 120 : 550) * motionScale(actor) * travelFactor(ctx.world.pace, mode); // px/s from the walk/run strides
     const seconds = need / speed;
     if (seconds > LIMITS.maxApproach) {
       issue(director, "E_SIM_APPROACH", beat, `'${beat.who}' would ${mode} ${seconds.toFixed(1)}s to reach '${beat.target}' (max ${LIMITS.maxApproach}s).`,
@@ -273,7 +274,7 @@ function execute(director, beat, ctx) {
   if (beat.do === "ride") actor.riding = beat.object; // the sim keeps riders on their vehicle
   if (actor.seatY != null && (def.category === "movement" || def.category === "attack")) actor.seatY = actor.seatId = null;
   if (beat.do === "dismount") actor.riding = null;
-  let opts = { target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed, beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,
+  let opts = { target: beat.target, outcome: beat.outcome, params: beat.params, speed: beat.speed ?? moveSpeed(world.pace, def, beat), beatId: beat.id, blend: beat.interrupt ? 0.04 : undefined,
     ...(director.story && beat.approach && def.category === "attack" ? { approached: true } : {}) };
   if (def.category === "defeat") opts = defeatStart(world, actor, def, opts); // defeat styles (S5): face, flee side
   if (walksTo) opts = startTo(world, actor, beat, opts, storyT, !!def.pair) ?? opts; // S6: distance from where everyone is
@@ -305,8 +306,9 @@ function execute(director, beat, ctx) {
   if (beat.do === "return") actor.hp = actor.maxHp; // sparkles re-form a vanished character whole (S8: the end state shows it)
   if (beat.fx?.length) emit({ type: "fx", names: beat.fx, actor: beat.who, beatId: beat.id });
   if (beat.say) {
-    const dur = beat.sayDur ?? (director.story ? readingTime(beat.say) : 1.2);
-    emit({ type: "say", actor: beat.who, text: beat.say, dur, beatId: beat.id, ...(beat.bubble ? { bubble: beat.bubble } : {}) });
+    const dur = beat.sayDur ?? (world.pace ? pacedReadingTime(beat.say) : director.story ? readingTime(beat.say) : 1.2);
+    // Under a pace the auto camera cuts to the listener for reactions (camera_cuts.js), so the say names it.
+    emit({ type: "say", actor: beat.who, text: beat.say, dur, beatId: beat.id, ...(beat.bubble ? { bubble: beat.bubble } : {}), ...(world.pace && beat.target ? { to: beat.target } : {}) });
   }
 }
 

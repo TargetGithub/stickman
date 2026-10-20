@@ -3,10 +3,12 @@
 
 import { readingTime, voiceOf } from "../../../engine/story/speech.js";
 import { narrateDuration } from "../../../engine/story/timing.js";
+import { paceOf, talkFor, PACED_MIN } from "../../../engine/story/pace.js";
 
 export const MAX_SAY = 10; // s, the schema's sayDur maximum
 export const MAX_NARRATE = 15; // s, the validator's narrate dur maximum
 export const SAY_TAIL = 0.25; // s of bubble after the voice stops
+export const PACED_TAIL = 0.1; // the same under a pace (ADR-038): the next line comes right after
 export const NARRATE_LEAD = 0.3; // s from the chime to the voice
 export const NARRATE_TAIL = 0.4;
 const TALK_CYCLE = 0.8; // s, one cycle of the talk gesture (catalog/moves/emotes.json)
@@ -123,6 +125,8 @@ export function collectLines(compiled, table, overrides = {}) {
  * Make each spoken beat last as long as its audio (SPEECH_SPEC 4.4), in place:
  *   say:     sayDur = clamp(audio + 0.25, readingTime, 10); a talk gesture loops that long, a wait waits that long;
  *            a line over several bubbles shares the audio out by characters (each bubble at least its reading time)
+ *            Under a pace (ADR-038) the audio alone sets it: clamp(audio + 0.1, 0.6, 10), and a talk gesture
+ *            plays whole cycles at the speed that ends them with the voice
  *   narrate: dur = clamp(audio + lead + tail, narrateDuration, 15)
  * @param {Array<{ id, kind, scene, beat, dur:number }>} lines  dur: audio seconds
  * @returns {Array<{ id, beatDur, long }>}  long: the audio does not fit the longest allowed beat
@@ -138,17 +142,22 @@ export function injectDurations(compiled, lines) {
     }
     const parts = l.parts ?? [{ beat: l.beat, text: b.say }];
     const chars = parts.reduce((n, p) => n + p.text.length, 0);
+    const paced = !!paceOf(compiled, compiled.scenes[l.scene]);
     let long = false;
     let total = 0;
     for (const [k, p] of parts.entries()) {
       const pb = compiled.scenes[l.scene].beats[p.beat];
-      const want = (l.dur * p.text.length) / chars + (k === parts.length - 1 ? SAY_TAIL : 0);
-      const sayDur = round2(Math.min(MAX_SAY, Math.max(readingTime(pb.say), want)));
+      const want = (l.dur * p.text.length) / chars + (k === parts.length - 1 ? (paced ? PACED_TAIL : SAY_TAIL) : 0);
+      const sayDur = round2(Math.min(MAX_SAY, Math.max(paced ? PACED_MIN : readingTime(pb.say), want)));
       long ||= want > MAX_SAY;
       total += sayDur;
       pb.sayDur = sayDur;
-      if (pb.do === "talk") pb.params = { ...pb.params, cycles: Math.max(pb.params?.cycles ?? 1, Math.ceil(sayDur / TALK_CYCLE)) };
-      if (pb.do === "wait") pb.params = { ...pb.params, seconds: Math.max(pb.params?.seconds ?? 0, sayDur) };
+      if (pb.do === "talk" && paced) {
+        const { cycles, speed } = talkFor(sayDur, TALK_CYCLE);
+        pb.params = { ...pb.params, cycles };
+        pb.speed = speed;
+      } else if (pb.do === "talk") pb.params = { ...pb.params, cycles: Math.max(pb.params?.cycles ?? 1, Math.ceil(sayDur / TALK_CYCLE)) };
+      if (pb.do === "wait") pb.params = { ...pb.params, seconds: paced ? sayDur : Math.max(pb.params?.seconds ?? 0, sayDur) };
     }
     return { id: l.id, beatDur: round2(total), long };
   });

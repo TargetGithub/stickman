@@ -9,6 +9,7 @@ import { readingTime } from "../speech.js";
 import { round } from "../compile.js";
 import { EXIT_REACH } from "../destinations.js";
 import { strideOf } from "../../skeleton.js";
+import { paceOf, pacedReadingTime, talkFor, travelFactor } from "../pace.js";
 
 const BUBBLE_CHARS = 40;
 const TALK_CYCLE = 0.8; // s, one cycle of the talk gesture loop
@@ -56,7 +57,10 @@ function spaced(ctx, who, to, k) {
 }
 
 function dialogue(ctx, p) {
-  const gap = p.gap ?? 0.3;
+  // Under a pace (ADR-038): tighter gaps and reading times, talk gestures that end with the line, and no
+  // two-shot of their own when the paced auto camera cuts between the speakers.
+  const pace = paceOf(ctx.story, ctx.scene);
+  const gap = p.gap ?? pace?.gap ?? 0.3;
   const gestures = p.gestures !== false;
   const speakers = [...new Set(p.lines.map((l) => l[0]))];
   const starts = [];
@@ -66,10 +70,12 @@ function dialogue(ctx, p) {
     // Talk toward the other speaker (or whoever spoke last), so speakers turn to each other.
     const listener = speakers.length === 2 ? speakers.find((s) => s !== who) : p.lines[k - 1]?.[0] !== who ? p.lines[k - 1]?.[0] : p.lines[k + 1]?.[0];
     splitText(text).forEach((chunk, ci) => {
-      const rt = readingTime(chunk);
+      const rt = pace ? pacedReadingTime(chunk) : readingTime(chunk);
+      const talk = pace ? talkFor(rt, TALK_CYCLE) : { cycles: Math.max(1, Math.ceil(rt / TALK_CYCLE)) };
       const beat = {
         who, do: gestures ? "talk" : "wait",
-        params: gestures ? { cycles: Math.max(1, Math.ceil(rt / TALK_CYCLE)) } : { seconds: round(rt) },
+        params: gestures ? { cycles: talk.cycles } : { seconds: round(rt) },
+        ...(gestures && talk.speed ? { speed: talk.speed } : {}),
         say: chunk,
         ...(listener && listener !== who && ctx.present(listener) ? { target: listener } : {}),
         ...(face && ci === 0 ? { face } : {}),
@@ -81,7 +87,8 @@ function dialogue(ctx, p) {
       prev = id;
     });
   });
-  if (p.camera !== "none" && speakers.length === 2 && speakers.every((s) => ctx.present(s))) {
+  const cutting = pace && ctx.story.meta.autoCamera === "story" && !(ctx.scene.camera || []).length;
+  if (p.camera !== "none" && !cutting && speakers.length === 2 && speakers.every((s) => ctx.present(s))) {
     ctx.with(starts[0], { who: "world", do: "shot", params: { mode: "two_shot", targets: speakers, dur: round(Math.min(30, total)) } });
   }
   const anchors = { start: `${starts[0]}.start`, end: `${prev}.end` };
@@ -161,7 +168,9 @@ function walkTogether(ctx, p) {
 function travel(ctx, p) {
   const mode = p.mode ?? "walk";
   const g = group(ctx, p.who, p.to, mode);
-  const dur = round(Math.max(1, Math.min(30, g.far / PACE_SPEED[mode] + 0.5))); // far: px at stickman speed
+  const pace = paceOf(ctx.story, ctx.scene); // ADR-038: faster, and cut to the arrival after maxTravel s
+  const secs = g.far / (PACE_SPEED[mode] * travelFactor(pace, mode));
+  const dur = round(Math.max(1, Math.min(30, (pace ? Math.min(secs, pace.leave + pace.arrive) : secs) + 0.5))); // far: px at stickman speed
   const camera = p.camera ?? "track";
   if (camera === "track") ctx.with(g.first, { who: "world", do: "shot", params: { mode: "track", target: p.who[0], dur } });
   if (camera === "wide") ctx.with(g.first, { who: "world", do: "shot", params: { mode: "wide", dur } });

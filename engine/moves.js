@@ -226,7 +226,8 @@ export function startMove(actor, def, opts = {}) {
     // Root motion is authored at scale 1 for the stickman. It scales with the character; forward travel
     // also scales with leg length (body plans, S3), heights do not (contact heights stay comparable).
     scale: actor.scale ?? 1,
-    strideScale: (actor.scale ?? 1) * (actor.stride ?? 1),
+    strideScale: (actor.scale ?? 1) * (actor.stride ?? 1) * (opts.stride ?? 1), // opts.stride: a pace's longer steps (ADR-038)
+    skip: opts.skip ? { ...opts.skip } : null, // a travel cut (ADR-038): { at, by } px of params.distance
     // A finished flip ends at rot ±360: wrap to (-180, 180] so the next move does not spin back.
     blendFrom: actor.pose ? { ...actor.pose, rot: wrapAngle(actor.pose.rot) } : null,
     blendT: 0,
@@ -242,7 +243,7 @@ export function startMove(actor, def, opts = {}) {
 
 /**
  * Advance the actor's current move by dt story seconds.
- * @returns {{ pose, rootDx, rootDy, openWindows, events, ended, snapHard, mouth }}
+ * @returns {{ pose, rootDx, rootDy, openWindows, events, ended, snapHard, mouth, cut }}  cut: a travel cut jumped this tick
  *   rootDx: forward distance moved this tick (facing space); rootDy: current visual root offset.
  *   Both are in world px: authored values times the actor's scale. params.distance is in world px too.
  */
@@ -292,6 +293,12 @@ export function stepMove(actor, dt) {
   if (!(ended && loop)) rootDx += root.dx - m.lastRoot.dx;
   m.lastRoot = root;
   rootDx *= m.strideScale ?? m.scale;
+  // A travel cut (ADR-038): once `at` px are walked, jump `by` px further on (the camera cuts there).
+  let cut = false;
+  if (m.skip && !m.skip.done && m.traveled + rootDx >= m.skip.at) {
+    rootDx += m.skip.by;
+    m.skip.done = cut = true;
+  }
 
   if (m.params.distance !== undefined) {
     const remaining = m.params.distance - m.traveled;
@@ -325,5 +332,5 @@ export function stepMove(actor, dt) {
     const d = ((((propAngle - m.blendFromAngle) % 360) + 540) % 360) - 180;
     propAngle = m.blendFromAngle + d * easings.outQuad(Math.min(1, m.blendT / m.blendDur));
   }
-  return { pose, rootDx, rootDy: root.dy * m.scale, openWindows, events, ended, snapHard, mouth: def.mouth, propAngle };
+  return { pose, rootDx, rootDy: root.dy * m.scale, openWindows, events, ended, snapHard, mouth: def.mouth, propAngle, cut };
 }

@@ -94,6 +94,7 @@ export function advanceMove(actor, dt, moves) {
   // Move events with `turn: true` flip the character mid-move (spinning attacks).
   for (const e of events) if (e.type === "moveEvent" && e.turn) actor.facing = -actor.facing;
   actor.x += actor.facing * r.rootDx;
+  if (r.cut) events.push({ type: "travelCut", actor: actor.id, beatId: actor.move.beatId });
   actor.rootDy = r.rootDy;
   actor.mouth = r.mouth;
   actor.pose = r.pose;

@@ -138,6 +138,11 @@ export function createEngine(opts) {
       return loaded().sim.events;
     },
 
+    /** Framing changes [{ t (video s), mode, target?, targets?, cut }]: camera keys, shots and the story auto camera. */
+    getCameraLog() {
+      return loaded().sim.cameraLog;
+    },
+
     getMeta() {
       const s = loaded();
       const m = s.script.meta;

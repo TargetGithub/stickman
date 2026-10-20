@@ -726,6 +726,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
   Explicit camera keys always win.
 - `shot` beats for quick cut sequences: `{ "who": "world", "do": "shot", "params": { "mode": "close_up", "target": "kai" } }`.
 - **As built (S6):** `shot` params are `mode` (any camera mode), `target`, `targets` (up to 4), `from`, `zoom` and `dur`. With `dur` the framing before the shot comes back afterwards; without it the shot lasts until the next shot or camera key (and the story auto camera stays off for the scene). `two_shot` needs `targets`; `close_up` and `track` a `target`; `over_shoulder` a `target` and `from` (E_CAMERA_FIELD on keys, E_WORLD_PARAM on shots). A close-up frames head to hip (zoom up to 3). The auto camera runs only in scenes without camera keys: a wide for the first 2.5 s, two-shots while someone talks to a neighbour within 800 px, 2 s close-ups when a face turns cry, furious or determined, and the plain follow while hits land.
+- **Pace (version 3, ADR-038):** in a scene with a `pace` block the auto camera cuts instead of panning: an establishing wide (`establish` s), a medium two-shot opening each exchange, then over-the-shoulder and close-up shots alternating on each new line, a reaction close-up on the listener when a line runs past `shot[1]`, and a medium shot (characters about 60% of the frame tall) on whoever acts otherwise; `shot` beats cut too, and the `@dialogue` macro adds no two-shot of its own there. A long walk cuts to the arrival. See ENGINE_V3_SPEC 5.8.
 - **`set_music`** (`mood`, `intensity` 0-1, `volume`, `fade` s) is accepted from S6; the macros emit it (fight intensity, sad music at a loss) and S7 plays it.
 
 ## 17. Validator v2
@@ -932,6 +933,8 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `E_SIM_SCENE_LENGTH` | dry run | Scene longer than the limit |
 | `W_DIALOGUE_FAST` | dry run | A line shows for less than its reading time |
 | `W_TEXT_SOFT` | semantic | Soft-listed word (for example "killed"); suggests an alternative |
+| `W_PACE_TRAVEL` | dry run | A scene with a pace (ADR-038): a walk, run, sneak, tiptoe, walk_together or swim beat lasting over 4 s |
+| `W_PACE_GAP` | dry run | A scene with a pace (ADR-038): over 1.5 s in which nobody acts (`wait`, `idle` and `sleep` do not count), speaks or is narrated |
 | `W_SCENE_STATIC` | dry run | A scene with over 4 s in which nobody moves (`idle`, `wait` and held poses count as still) and no narration, card or bubble shows |
 | `W_NO_ARC` | dry run | The story has no climax or resolution scene (story pacing heuristic) |
 | `W_CAST_UNUSED` | semantic | A cast member no scene places |

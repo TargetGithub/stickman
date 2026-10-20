@@ -10,6 +10,7 @@ import { STAGE } from "../config.js";
 import { planDepthWalk } from "../depth.js";
 import { resolveMove, rootOffsetAt } from "../moves.js";
 import { motionScale } from "../combat.js";
+import { travelFactor } from "./pace.js";
 
 /** Moves that take a `to`. */
 export const TO_MOVES = ["walk", "run", "sneak", "tiptoe", "walk_together", "swim"];
@@ -25,7 +26,9 @@ export function destinationX(world, actor, to, move = "walk") {
   const hi = world.stageWidth - STAGE.margin;
   if (typeof to.x === "number") return Math.max(lo, Math.min(hi, to.x));
   if (to.exit) {
-    const reach = (EXIT_REACH[move] ?? 700) * actor.scale;
+    // Under a pace (ADR-038) an exit walk lasts at most pace.maxExit seconds before the fade.
+    const paced = world.pace ? walkSpeed(world, actor, move) * world.pace.maxExit : Infinity;
+    const reach = Math.min((EXIT_REACH[move] ?? 700) * actor.scale, paced);
     return to.exit === "right" ? Math.min(hi, actor.x + reach) : Math.max(lo, actor.x - reach);
   }
   const other = world.byId.get(to.near) || world.objects?.byId.get(to.near);
@@ -50,6 +53,8 @@ export function startTo(world, actor, beat, opts, t, paired = false) {
     x = plan.x;
   }
   if (x === null) return null;
+  const cut = paired || actor.depthMove || beat.to.exit ? null : travelCut(world, actor, beat.do, x);
+  if (cut?.enter) actor.x = cut.enter; // an entering walker starts near where it is going
   const d = x - actor.x;
   if (!paired && Math.abs(d) > 0.5) actor.facing = Math.sign(d);
   if (actor.hidden) {
@@ -58,15 +63,33 @@ export function startTo(world, actor, beat, opts, t, paired = false) {
     actor.fade = { a0: 0, a1: 1, t0: t, dur: ENTER_FADE };
   }
   actor.exiting = beat.to.exit ? beat.id : null;
-  return { ...opts, params: { ...opts.params, distance: Math.max(1, Math.abs(d)) } };
+  return { ...opts, params: { ...opts.params, distance: Math.max(1, Math.abs(d)) }, ...(cut?.skip ? { skip: cut.skip } : {}) };
 }
 
-/** Ground px per second a travel move covers for this actor (its root motion over one cycle). */
-function walkSpeed(world, actor, name) {
+/**
+ * Cut-to-arrival under a pace (ADR-038): a walk longer than pace.maxTravel seconds walks pace.leave seconds,
+ * jumps (the camera cuts) and walks the last pace.arrive seconds. A hidden walker (entering) skips the leaving
+ * part and starts pace.arrive seconds out. Null when the walk is short enough or there is no pace.
+ * @returns {{ enter?:number, skip?:{ at:number, by:number } } | null}
+ */
+export function travelCut(world, actor, name, x) {
+  const pace = world.pace;
+  if (!pace) return null;
+  const v = walkSpeed(world, actor, name);
+  const dist = Math.abs(x - actor.x);
+  if (dist / v <= pace.maxTravel) return null;
+  const dir = Math.sign(x - actor.x);
+  if (actor.hidden) return { enter: x - dir * v * pace.arrive };
+  const leave = v * pace.leave;
+  return { skip: { at: leave, by: dist - leave - v * pace.arrive } };
+}
+
+/** Ground px per second a travel move covers for this actor (its root motion over one cycle; a pace's speed-up included). */
+export function walkSpeed(world, actor, name) {
   const def = resolveMove(world.moves, actor, name);
   if (!def) return 200;
   const dx = Math.abs(rootOffsetAt(def, 1, def.params).dx || 0) * motionScale(actor);
-  return dx > 1 ? dx / def.duration : 200;
+  return (dx > 1 ? dx / def.duration : 200) * travelFactor(world.pace, name);
 }
 
 /** After each world step: characters walking in depth move along z (V3.2). */
