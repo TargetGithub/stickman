@@ -13,7 +13,7 @@ import { spawnProjectile, stepWorldProjectiles, projectileArrival } from "./proj
 import {
   deriveReach, requiredStartX, whiffGap, canReach, motionScale, limbReach, MAX_ASSIST_LEAN, resolveAimPoint, aimPointByName, aimCandidates, applyAimIK, ikWeight, sweptHit, buildHurtboxes,
 } from "./combat.js";
-import { rootOffsetAt } from "./moves.js";
+import { rootOffsetAt, isIdleMove } from "./moves.js";
 import { COMBAT, STAGE } from "./config.js";
 import { sameDepth } from "./depth.js";
 
@@ -339,6 +339,14 @@ function separationSkip(a, b) {
 }
 
 /**
+ * Story scripts (Sridhar, 2026-10-19): a character only moves when its own script moves it. A walker passes
+ * over anyone standing, waving or sitting; separation applies only between two characters that are both
+ * travelling or attacking under their own moves.
+ */
+const travelling = (x) => !!x.move && (x.move.def.category === "movement" || x.move.def.category === "attack") && !isIdleMove(x.move.def);
+const storySeparationSkip = (a, b) => separationSkip(a, b) || !travelling(a) || !travelling(b);
+
+/**
  * Advance the world by dt story seconds (spec 6). dt = 0 (hitstop, freeze) only re-poses.
  * @returns {Array<object>} events: moveEvent, windowOpen, moveEnd, anchor, hit, hitstop, land, wall, positionError
  */
@@ -373,7 +381,7 @@ export function stepWorld(world, dt) {
         if (e.type === "land") onLand(world, actor, e);
       }
     }
-    separate(world.actors, separationSkip);
+    separate(world.actors, world.passOver ? storySeparationSkip : separationSkip);
   }
   for (const actor of world.actors) poseActor(actor, dt, snapHard.get(actor));
   for (const actor of world.actors) aimLimbs(world, actor);

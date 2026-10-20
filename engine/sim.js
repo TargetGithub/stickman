@@ -143,6 +143,7 @@ export function simulate(script, catalog, opts = {}) {
     const actors = sceneActors(flat, catalog, carry, !story.legacy);
     const world = createWorld({ actors, moves, mode: meta.mode ?? "choreographed", stageWidth: flat.meta.stageWidth });
     world.depth = flat.depth;
+    world.passOver = !story.legacy; // story scripts: walkers pass over characters who are not moving themselves
     // Objects (S4): set pieces and spawned objects; holdable set pieces lie on the floor as props.
     const pieces = [...(flat.location?.set || []), ...(flat.scene.set || [])];
     for (const p of pieces.filter((q) => catalog.objects?.[q.object]?.behavior === "holdable")) {

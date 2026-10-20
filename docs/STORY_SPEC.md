@@ -656,6 +656,8 @@ The engine stays **family friendly and gore free**. Stories may include loss and
 - **Crowds** (the v1 `crowd` layer kind) gain reactions tied to events: cheering on hits, gasping on a defeat.
 - **As built (S6):** a scene uses its own `extras`, else its location's, up to 12. `from`/`to` set their area (default: the whole stage). Extras are seeded per scene (colour from a soft palette, body plan, place, pace) and posed by the renderer from the scene time: `walk_by` walks across and around again, `idle_chat` stands in pairs taking turns to talk, `cheer` watches and cheers for 1.2 s after each hit and gasps after a defeat, `flee` stands about until the first hit or defeat and then runs off. They have no face or outline, are never simulated, and cost nothing in the frame store. Back-layer characters and extras are drawn at 0.75 scale (75% opacity) before the mid set pieces; front-layer ones at 1.15 after the front set pieces. The `crowd` background layer bobs harder after hits and stops briefly after a defeat (story scripts only).
 
+- **Walking past people (2026-10-19, ADR-030):** in story scripts a character only moves when its own beats move it. A walker passes over characters who are standing, emoting or sitting instead of pushing them; two characters that are both walking or attacking still keep apart. v1 clips keep pushing apart as before.
+
 ## 15. Audio: moods, ambience, voice
 
 **Music is generated procedurally** (decision 4), in `/tools` like the SFX synth, so there are no licenses to manage and no manual work.
