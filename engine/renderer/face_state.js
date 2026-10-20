@@ -1,11 +1,12 @@
 // Per-frame face drawing options (STORY_SPEC 7.1). Milestone: S2.
 // Combines the stored face with things derived from the event log at render time (ADR-012):
-// the mouth flap while a line is spoken, blinking, gaze toward whoever is talking, and the level of
-// detail (a neutral face far away keeps the classic two dots).
+// the mouth shape while a line is spoken (lip-sync, ADR-024), blinking, gaze toward whoever is talking,
+// and the level of detail (a neutral face far away keeps the classic two dots).
 
 import { blinkAt } from "./face.js";
 import { syllables, mouthOpenAt } from "../story/speech.js";
 import { dimsOf } from "../skeleton.js";
+import { visemeTable, audioPlan, textPlan, visemeAt } from "../lipsync.js";
 
 const DETAIL_PX = 30; // head radius on screen above which the neutral face shows its full features
 
@@ -23,6 +24,23 @@ function sylls(r, say) {
 }
 
 /**
+ * The lip-sync shape for a spoken line at video time t, or null when lip-sync is off (meta.lipSync false,
+ * v1 scripts, a catalog without visemes). Lines with a host audio track (engine.load(script, { lipSync }))
+ * follow the audio; the later bubbles of a line spoken as one clip (track.head) follow the head line's clip.
+ */
+function lipAt(r, sv, say, t) {
+  const story = r.sim.story;
+  if (!story || story.legacy || story.meta?.lipSync === false || !r.catalog.visemes) return null;
+  r.lip ??= { table: visemeTable(r.catalog.visemes), plans: new Map() };
+  const track = r.lipTracks?.[say.beatId];
+  const head = track?.head ? sv.says.find((s) => s.beatId === track.head) ?? say : say;
+  const key = track ? `audio:${track.head ?? say.beatId}` : say;
+  if (!r.lip.plans.has(key)) r.lip.plans.set(key, track ? audioPlan(track, r.lip.table) : textPlan(sylls(r, say), say.text, r.lip.table));
+  const at = visemeAt(r.lip.plans.get(key), t - head.videoT);
+  return { ...at, shape: r.catalog.visemes[at.v] ?? r.catalog.visemes.rest };
+}
+
+/**
  * @param {object} r  renderer; c: character view (with j, face, mouth); chars: all characters this frame
  * @param {object} sv  scene view (says); f: frame view (videoT, cam)
  * @returns {{ face:object, faceOpts:object }}
@@ -36,7 +54,8 @@ export function faceStyle(r, c, chars, sv, f) {
   if (c.face === "neutral" && c.mouth === "shout") data = { ...data, mouth: "open" };
   if (c.face === "neutral" && c.mouth === "grin") data = { ...data, mouth: "grin" };
   const own = activeSay(sv, c.id, t);
-  const talking = own ? mouthOpenAt(sylls(r, own), t - own.videoT) : false;
+  const lip = own ? lipAt(r, sv, own, t) : null;
+  const talking = lip ? lip.v !== "rest" : own ? mouthOpenAt(sylls(r, own), t - own.videoT) : false;
   // Look at another character who is talking; otherwise straight ahead.
   let gaze = { f: 0, u: 0 };
   for (const o of chars) {
@@ -48,6 +67,7 @@ export function faceStyle(r, c, chars, sv, f) {
   const screenR = dimsOf(c).headR * c.scale * f.cam.zoom;
   return {
     face: data,
-    faceOpts: { blink: blinkAt(r.seed, c.id, t), talking, gaze, t, neutral, detail: screenR >= DETAIL_PX ? "full" : "simple" },
+    faceOpts: { blink: blinkAt(r.seed, c.id, t), talking, gaze, t, neutral, detail: screenR >= DETAIL_PX ? "full" : "simple",
+      ...(lip ? { lip: { ...lip, jaw: !!c.quad } } : {}) },
   };
 }

@@ -91,6 +91,21 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
   for (const m of Object.keys(files["story/tts_voices.json"].moods || {})) if (!catalog.faces[m]) bad("story/tts_voices.json", `moods.${m}`, `"${m}" is not a face (moods are keyed by face name)`);
   if (!files["story/tts_voices.json"].moods?.neutral) bad("story/tts_voices.json", "moods", "needs a neutral mood (the fallback)");
 
+  // Talking mouth shapes (ADR-024): a rest shape, sizes in head radii, each grapheme on one viseme only.
+  const vis = files["characters/visemes.json"];
+  if (!vis.rest) bad("characters/visemes.json", "rest", "needs a rest shape (the face's own mouth)");
+  const owner = new Map();
+  for (const [name, v] of Object.entries(vis)) {
+    for (const k of ["open", "width"]) if (typeof v[k] !== "number" || v[k] < 0 || v[k] > 0.4) bad("characters/visemes.json", `${name}.${k}`, "needs a number from 0 to 0.4 (head radii)");
+    if (v.round !== undefined && !(v.round >= 0 && v.round <= 1)) bad("characters/visemes.json", `${name}.round`, "needs a number from 0 to 1");
+    if (!Array.isArray(v.letters)) bad("characters/visemes.json", `${name}.letters`, "needs a list of letters");
+    for (const g of v.letters || []) {
+      if (!/^[a-z]{1,3}$/.test(g)) bad("characters/visemes.json", `${name}.letters`, `"${g}" is not 1-3 lowercase letters`);
+      else if (owner.has(g)) bad("characters/visemes.json", `${name}.letters`, `"${g}" is already on ${owner.get(g)}`);
+      else owner.set(g, name);
+    }
+  }
+
   // 3. References.
   const moveNames = new Set(catalog.moves.map((m) => m.name));
   const holdKinds = new Set([...Object.values(catalog.props).map((p) => p.kind), ...Object.values(catalog.objects).filter((o) => o.hold).map((o) => o.hold.kind), "any"]);

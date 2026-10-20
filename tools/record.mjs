@@ -25,6 +25,7 @@ import { mixdown, mixdownStory, swapSpeech, SR } from "./lib/mixer.mjs";
 import { prepareSpeech, speechReport } from "./lib/tts/index.mjs";
 import { createPiperBackend } from "./lib/tts/piper.mjs";
 import { speechClips, clipSampler } from "./lib/tts/synth.mjs";
+import { lipTracks } from "./lib/tts/lipsync.mjs";
 import { renderScore, storyDuck } from "./lib/score.mjs";
 import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
@@ -70,7 +71,8 @@ if (speechMode === "tts" && script.audio?.voices !== false) {
   console.log(`speech: ${speech.lines.length} lines (${fresh} new, ${speech.lines.length - fresh} from the cache)`);
   for (const r of speech.report.filter((x) => x.long)) console.log(`warning: line ${r.id} is longer than its beat can be; split it into shorter lines`);
 }
-const loaded = engine.load(speech ? speech.script : script);
+// Lip-sync (ADR-024): mouths follow each clip's loudness; other lines follow their babble syllables.
+const loaded = engine.load(speech ? speech.script : script, speech ? { lipSync: lipTracks(speech.lines) } : {});
 if (loaded.warnings.length) console.log(formatIssues(loaded.warnings));
 if (!loaded.ok) {
   console.error(formatIssues(loaded.errors));

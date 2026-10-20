@@ -7880,6 +7880,73 @@
       }
     },
     "faceNames": ["neutral", "happy", "laugh", "sad", "cry", "angry", "furious", "scared", "surprised", "determined", "smug", "tired", "love", "dizzy", "hurt", "asleep"],
+    "visemes": {
+      "rest": {
+        "description": "Mouth at rest between words: the face's own mouth (smile, frown, line) is drawn.",
+        "tags": ["rest", "closed"],
+        "open": 0,
+        "width": 0.14,
+        "letters": []
+      },
+      "A": {
+        "description": "Wide open jaw with the tongue showing, for a, i and ah sounds.",
+        "tags": ["vowel", "open"],
+        "open": 0.24,
+        "width": 0.17,
+        "round": 0.2,
+        "teeth": true,
+        "tongue": true,
+        "letters": ["a", "i", "ai", "ay", "ah", "igh"]
+      },
+      "E": {
+        "description": "Wide, half-open mouth with teeth, for e and ee and most quick consonants (t, d, s, n, k, r).",
+        "tags": ["vowel", "wide"],
+        "open": 0.12,
+        "width": 0.2,
+        "teeth": true,
+        "letters": ["e", "ee", "ea", "ey", "ie", "y", "c", "d", "g", "k", "n", "r", "s", "t", "x", "z", "j", "ch", "sh", "ck", "ng"]
+      },
+      "O": {
+        "description": "Round open mouth, for o and ow sounds.",
+        "tags": ["vowel", "round"],
+        "open": 0.2,
+        "width": 0.11,
+        "round": 1,
+        "letters": ["o", "oa", "ow", "ou", "au", "aw", "oi", "oy"]
+      },
+      "U": {
+        "description": "Small pursed circle, for u, oo and w sounds.",
+        "tags": ["vowel", "round"],
+        "open": 0.08,
+        "width": 0.07,
+        "round": 1,
+        "letters": ["u", "oo", "ue", "w", "wh", "q"]
+      },
+      "M": {
+        "description": "Lips pressed shut, for m, b and p.",
+        "tags": ["consonant", "closed"],
+        "open": 0,
+        "width": 0.13,
+        "press": true,
+        "letters": ["m", "b", "p", "mm", "bb", "pp"]
+      },
+      "F": {
+        "description": "Top teeth resting on the lower lip, for f and v.",
+        "tags": ["consonant", "teeth"],
+        "open": 0.04,
+        "width": 0.15,
+        "bite": true,
+        "letters": ["f", "v", "ph", "ff"]
+      },
+      "L": {
+        "description": "Half-open mouth with the tongue tip up behind the teeth, for l and th.",
+        "tags": ["consonant", "tongue"],
+        "open": 0.14,
+        "width": 0.14,
+        "tongueUp": true,
+        "letters": ["l", "th", "ll"]
+      }
+    },
     "bodies": {
       "stickman": {
         "description": "The classic stick figure (the v1 body); all-round.",

@@ -16,6 +16,7 @@ export const ENGINE_FILES = [
   "characters/bodies.json",
   "characters/appearance.json",
   "characters/faces.json",
+  "characters/visemes.json",
   "effects/fx.json",
   "effects/sfx.json",
   "world/themes.json",
@@ -62,6 +63,7 @@ export function assembleCatalog(f) {
     objects: f["world/objects.json"],
     faces,
     faceNames: Object.keys(faces),
+    visemes: f["characters/visemes.json"], // talking mouth shapes (lip-sync, ADR-024)
     bodies,
     bodyNames: Object.keys(bodies),
     appearance,
