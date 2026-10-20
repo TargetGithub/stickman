@@ -14,13 +14,17 @@ export const CACHE_DIR = fileURLToPath(new URL("../../../assets/speech/cache/", 
 export const SPEECH_LUFS = -16;
 export const STYLE_DB = { speech: 0, shout: 2, whisper: -6 };
 export const NOISE = { scale: 0.333, w: 0.333 }; // fixed Piper noise: the same text always sounds the same
-const POST = 1; // bump when the trim or levelling below changes, so old cache files are not reused
+const POST = 2; // bump when the trim or levelling below changes, so old cache files are not reused
 
 /**
  * @typedef {{ id:string, version:string, render:(jobs:Array<{ line:object, out:string, seed:number }>) => void }} TtsBackend
  *   render writes, for each job, a 16-bit PCM WAV at 48 kHz (mono or stereo) of line.spoken in line.voice to `out`;
  *   seed (from the cache key) makes any randomness in the backend repeatable.
  */
+
+// Voice rate × mood rate stays within this range: slower drags words out, faster slurs them.
+export const MIN_RATE = 0.75;
+export const MAX_RATE = 1.5;
 
 const sorted = (o) => (o && typeof o === "object" && !Array.isArray(o) ? Object.keys(o).sort().map((k) => [k, sorted(o[k])]) : o);
 
@@ -32,7 +36,7 @@ export function renderSettings(line) {
   const v = line.voice;
   const t = line.tone || {};
   return {
-    rate: Math.round(v.rate * (t.rate ?? 1) * (line.bubble === "shout" ? 1.08 : 1) * 1000) / 1000,
+    rate: Math.round(Math.max(MIN_RATE, Math.min(MAX_RATE, v.rate * (t.rate ?? 1) * (line.bubble === "shout" ? 1.08 : 1))) * 1000) / 1000,
     pitch: Math.max(-12, Math.min(12, (v.pitch ?? 0) + (t.pitch ?? 0))),
     noise: t.noise ?? NOISE.scale,
     noiseW: NOISE.w,
@@ -127,7 +131,13 @@ export function synthesizeLines(lines, backend, { cacheDir = CACHE_DIR, log = ()
   }
   return keyed.map(({ line, key, file, cached }) => {
     const { samples } = readWav(file);
-    return { ...line, key, file, dur: samples.length / SR, cached };
+    const dur = samples.length / SR;
+    // A voice can garble a short sentence into seconds of noise: flag clips far longer than their text.
+    const s = renderSettings(line);
+    const expected = (0.075 * line.spoken.length) / s.rate + s.pause * (line.spoken.split(/[.!?]+\s+/).length - 1);
+    const odd = dur > 2 * expected + 0.6;
+    if (odd && !cached) log(`warning: "${line.spoken}" (${line.voice.model}) is ${dur.toFixed(1)} s, about ${expected.toFixed(1)} s expected: listen to it`);
+    return { ...line, key, file, dur, cached, ...(odd ? { odd: true } : {}) };
   });
 }
 

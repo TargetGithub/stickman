@@ -7,8 +7,18 @@ import json
 import sys
 import wave
 
+import numpy
 import onnxruntime
 from piper import PiperVoice, SynthesisConfig
+
+
+def trim(audio, rate):
+    """A sentence without the silence Piper leaves around it (kept: 40 ms), so pauses are exactly as long as asked."""
+    loud = numpy.flatnonzero(numpy.abs(audio) > 300)
+    if not len(loud):
+        return audio[:0]
+    pad = int(0.04 * rate)
+    return audio[max(0, loud[0] - pad):loud[-1] + 1 + pad]
 
 
 def main():
@@ -23,10 +33,14 @@ def main():
             w.setnchannels(1)
             w.setsampwidth(2)
             w.setframerate(rate)
-            for i, chunk in enumerate(voice.synthesize(job["text"], syn_config=cfg)):
-                if i:
-                    w.writeframes(pause)  # a pause between sentences (moods: sad, tired, smug)
-                w.writeframes(chunk.audio_int16_bytes)
+            chunks = list(voice.synthesize(job["text"], syn_config=cfg))
+            for i, chunk in enumerate(chunks):
+                audio = chunk.audio_int16_array
+                if len(chunks) > 1:
+                    audio = trim(audio, rate)
+                    if i:
+                        w.writeframes(pause)  # a pause between sentences (moods: sad, tired, smug)
+                w.writeframes(audio.tobytes())
         print(job["out"], flush=True)
 
 

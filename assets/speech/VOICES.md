@@ -8,8 +8,8 @@ are allowed. Check `node tools/tts_setup.mjs --check` for what is installed.
 |---|---|---|---|---|---|
 | `en_US-kristin-medium` | `soft` timbre; Doomi, Nani, Tony | LibriVox recordings | public domain | trained from scratch | huggingface.co/rhasspy/piper-voices `en/en_US/kristin/medium/` |
 | `en_GB-cori-medium` | `squeaky` timbre, narrator; Mooka, Pinky, Kony | LibriVox recordings | public domain | trained from scratch | `en/en_GB/cori/medium/` |
-| `en_US-norman-medium` | `deep` timbre; Mayor Motumal, Peepa | LibriVox recordings | public domain | trained from scratch | `en/en_US/norman/medium/` |
-| `en_US-john-medium` | `robot` timbre; Doopi, Dony, Chintu | LibriVox recordings | public domain | fine-tuned from kristin | `en/en_US/john/medium/` |
+| `en_US-norman-medium` | not used: it garbles short sentences ("Very far." comes out as 3.6 s of noise) | LibriVox recordings | public domain | trained from scratch | `en/en_US/norman/medium/` |
+| `en_US-john-medium` | `deep` (pitched down) and `robot` timbres; Doopi, Dony, Chintu, Mayor Motumal, Peepa | LibriVox recordings | public domain | fine-tuned from kristin | `en/en_US/john/medium/` |
 
 Each licence is as stated in the voice's `MODEL_CARD` in rhasspy/piper-voices (read 2026-10-19). Files: one
 `<voice>.onnx` (63.5 MB) and one `<voice>.onnx.json` (5 KB) per voice.

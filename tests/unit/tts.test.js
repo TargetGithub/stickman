@@ -14,7 +14,7 @@ import { prepareSpeech, loadVoiceTable } from "../../tools/lib/tts/index.mjs";
 import { postFilters } from "../../tools/lib/tts/piper.mjs";
 import { swapSpeech, SR } from "../../tools/lib/mixer.mjs";
 import { fakeBackend, speechStory } from "../helpers/fake_tts.mjs";
-import { readWav } from "../../tools/lib/wav.mjs";
+import { readWav, writeWav } from "../../tools/lib/wav.mjs";
 
 const readWavSamples = (f) => readWav(f).samples;
 
@@ -264,6 +264,7 @@ test("tones: in the cache key, and they change rate, pitch, pauses and loudness"
   assert.equal(r.pause, 0.45);
   assert.equal(renderSettings({ ...line, voice: { ...line.voice, pitch: 11 }, tone: moodTone("surprised", table) }).pitch, 12, "clamped");
   assert.equal(renderSettings({ ...line, bubble: "shout" }).rate, 1.08);
+  assert.equal(renderSettings({ ...line, voice: { ...line.voice, rate: 0.85 }, tone: moodTone("asleep", table) }).rate, 0.75, "slow voice × slow mood is held at 0.75");
   const dir = tmp();
   try {
     const [plain, sad, happy] = synthesizeLines([{ ...line, id: "a" }, { ...sadLine, id: "b" }, { ...line, id: "c", tone: moodTone("happy", table) }], b, { cacheDir: dir });
@@ -279,4 +280,20 @@ test("postFilters adds the mood colour", () => {
   assert.match(postFilters(22050, { pitch: 0 }, "speech", moodTone("cry", table)), /vibrato=f=6:d=0\.25,tremolo=f=5:d=0\.3/);
   assert.match(postFilters(22050, { pitch: 0 }, "speech", moodTone("sad", table)), /lowpass=f=5000/);
   assert.equal(postFilters(22050, { pitch: 0 }, "speech", null), "aresample=48000");
+});
+
+test("a clip far longer than its text is flagged (a voice garbling a short sentence)", () => {
+  const dir = tmp();
+  const logs = [];
+  try {
+    const garbled = { ...fakeBackend(), id: "garble", render: (jobs) => jobs.forEach((j) => writeWav(j.out, new Float32Array(48000 * 4).fill(0.2), 48000, 1)) };
+    const voice = { model: "m", speaker: 0, rate: 1, pitch: 0, filter: null };
+    const [l] = synthesizeLines([{ id: "a", spoken: "Very far.", bubble: "speech", voice }], garbled, { cacheDir: dir, log: (m) => logs.push(m) });
+    assert.equal(l.odd, true);
+    assert.ok(logs.some((m) => m.startsWith("warning:")));
+    const [ok] = synthesizeLines([{ id: "b", spoken: "Very far.", bubble: "speech", voice }], fakeBackend(), { cacheDir: dir });
+    assert.equal(ok.odd, undefined);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
