@@ -399,6 +399,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `--slug NAME` | Output folder name (default: from the title) |
 | `--from N --to M` | Render only frames N to M (quick checks of one moment) |
 | `--scene N` | Render only scene N of a story (index from 0, or the scene id) |
+| `--fps 24\|25\|30\|60` | Output frame rate (default 60). Use 24 or 30 for review renders: about 2-2.5x fewer frames to draw. The story still runs at 60 fps; each output frame shows the nearest simulated one, so `--from`/`--to` and scene numbers stay in 60 fps frames |
 | `--no-audio` | Skip the sound mix |
 | `--frames-only` | Write PNG frames instead of a video |
 | `--hash` | Write a SHA-256 per frame (determinism checks) |

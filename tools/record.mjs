@@ -9,6 +9,8 @@
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
 //   --no-audio             skip the audio mix
 //   --crf 16 --preset medium   x264 quality settings
+//   --fps 24|25|30|60      output frame rate (default 60, the engine's): 24 or 30 for quicker review renders;
+//                          the simulation still runs at 60 and only the nearest frames are drawn
 //   --speech babble|tts    spoken dialogue (SPEECH_SPEC): babble (default, or meta.speech) or offline Piper voices
 //   --voices file.json     per-character TTS voices for --speech tts (cast id → { model, speaker, rate, pitch, off })
 //   --bundle <dir|zip>     a catalog bundle the script declares (repeatable; imported bundles are found in
@@ -31,6 +33,7 @@ import { addTrackStems, applyEventBuses, stemGains } from "./lib/track_mix.mjs";
 import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
+import { parseOutputFps, outputFrames } from "./lib/output_fps.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
 import { catalog as baseCatalog } from "../catalog/index.js";
 import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_args.mjs";
@@ -38,9 +41,9 @@ import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_ar
 const { args } = splitBundleArgs(process.argv.slice(2));
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices)$/));
+const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices|fps)$/));
 if (!file) {
-  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
+  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--fps 24|25|30|60] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
   process.exit(2);
 }
 
@@ -91,6 +94,12 @@ const dir = join(opt("--out-dir", "out"), slug);
 mkdirSync(dir, { recursive: true });
 const from = scene ? scene.startFrame : Math.max(0, Number(opt("--from", 0)));
 const to = scene ? scene.startFrame + scene.frames - 1 : Math.min(meta.totalFrames - 1, Number(opt("--to", meta.totalFrames - 1)));
+const outFps = parseOutputFps(opt("--fps", null), meta.fps);
+if (outFps.error) {
+  console.error(outFps.error);
+  process.exit(2);
+}
+const picks = outputFrames(from, to, meta.fps, outFps.fps);
 const t0 = process.hrtime.bigint();
 const seconds = () => Number(process.hrtime.bigint() - t0) / 1e9;
 const canvas = backend.createCanvas(meta.width, meta.height);
@@ -99,15 +108,16 @@ const ctx = canvas.getContext("2d");
 // 1. Video (or PNG frames)
 const videoPath = join(dir, "video.mp4");
 const hashes = [];
-const enc = flag("--frames-only") ? null : startEncoder(videoPath, meta.width, meta.height, { crf: Number(opt("--crf", 16)), preset: opt("--preset", "medium") });
+const enc = flag("--frames-only") ? null : startEncoder(videoPath, meta.width, meta.height, { fps: outFps.fps, crf: Number(opt("--crf", 16)), preset: opt("--preset", "medium") });
 if (!enc) mkdirSync(join(dir, "frames"), { recursive: true });
-for (let n = from; n <= to; n++) {
+for (let i = 0; i < picks.length; i++) {
+  const n = picks[i];
   engine.renderFrame(ctx, n);
   const rgba = backend.readRGBA(canvas);
   if (flag("--hash")) hashes.push(`${n} ${createHash("sha256").update(rgba).digest("hex")}`);
   if (enc) await enc.write(rgba);
   else await backend.savePng(canvas, join(dir, "frames", `${String(n).padStart(5, "0")}.png`));
-  if ((n - from) % 300 === 299) process.stdout.write(`  frame ${n + 1}/${to + 1} (${((n - from + 1) / seconds()).toFixed(0)} fps)\n`);
+  if (i % 300 === 299) process.stdout.write(`  frame ${i + 1}/${picks.length} (${((i + 1) / seconds()).toFixed(0)} fps)\n`);
 }
 if (enc) await enc.close();
 const renderSeconds = seconds();
@@ -180,6 +190,8 @@ const info = {
   engineVersion: ENGINE_VERSION,
   durationSec: Number(((to - from + 1) / meta.fps).toFixed(3)),
   frames: { from, to, total: meta.totalFrames },
+  fps: outFps.fps,
+  outputFrames: picks.length,
   thumbnail: thumb,
   audio,
   ...(speech ? { speech: { mode: "tts", backend: `${speech.backend.id} ${speech.backend.version}`, lines: speech.lines.length } } : {}),
@@ -192,4 +204,4 @@ const info = {
   files: [enc ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(speech ? ["speech.json"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
 };
 writeFileSync(join(dir, "meta.json"), JSON.stringify(info, null, 2) + "\n");
-console.log(`wrote ${dir}/ (${info.durationSec}s video, rendered at ${((to - from + 1) / renderSeconds).toFixed(0)} fps, total ${info.totalSeconds}s)`);
+console.log(`wrote ${dir}/ (${info.durationSec}s video, ${picks.length} frames at ${outFps.fps} fps, rendered at ${(picks.length / renderSeconds).toFixed(1)} frames/s, total ${info.totalSeconds}s)`);
