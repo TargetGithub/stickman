@@ -55,6 +55,7 @@
         },
         "views": { "type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": { "enum": ["side", "three_quarter", "front", "back"] }, "description": "Turnaround views the plan has (V3.6); side is the simulation's own." },
         "turn": { "type": "object", "additionalProperties": false, "description": "Turnaround widths at scale 1 (V3.6): half the shoulder and hip spans, and the ground foreshortening of forward limbs.", "properties": { "shoulder": { "type": "number", "minimum": 0, "maximum": 60 }, "hip": { "type": "number", "minimum": 0, "maximum": 60 }, "foreshorten": { "type": "number", "minimum": 0, "maximum": 1 } } },
+        "limbStyle": { "enum": ["straight", "bendy", "rubber"], "description": "Default limb drawing in v3 scenes (ADR-034): straight, bendy curves or rubber noodles; scripts can override it." },
         "avoid": { "type": "array", "maxItems": 24, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/ref" } }
       }
     },
@@ -68,6 +69,7 @@
         "rig": { "const": "quadruped" },
         "draw": { "const": "quad" },
         "bodyWidth": { "type": "number", "minimum": 8, "maximum": 30 },
+        "limbStyle": { "enum": ["straight", "bendy", "rubber"], "description": "Default leg drawing in v3 scenes (ADR-034): straight, bendy curves or rubber noodles; scripts can override it." },
         "dims": {
           "type": "object",
           "required": ["headR", "neck", "torso", "upperArm", "forearm", "thigh", "shin", "lineWidth"],

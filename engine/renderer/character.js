@@ -10,6 +10,7 @@ import { drawTorso, drawOutfit, torsoPath } from "./bodies.js";
 import { boxHeadPath, drawBolts } from "./robot.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
 import { shadeStrokes, shadeHead, shadeTorso } from "./shading.js";
+import { limbLine } from "./limb_curves.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
 
@@ -27,8 +28,12 @@ function polyline(ctx, points) {
   ctx.stroke();
 }
 
-/** Stroke a group of polylines: dark outline pass, then color pass, so each layer reads on its own; then the light's tones (V3.3). */
-function strokeGroup(ctx, lines, color, lw, style, tones = style.light) {
+/**
+ * Stroke a group of polylines: dark outline pass, then color pass, so each layer reads on its own; then the light's
+ * tones (V3.3). Limb chains take the style's curve (ADR-034); the shading bands offset the curve, so they follow it.
+ */
+function strokeGroup(ctx, lines0, color, lw, style, tones = style.light, limbs = true) {
+  const lines = limbs && style.limbStyle ? lines0.map((pts) => limbLine(pts, style.limbStyle)) : lines0;
   if (style.outline) {
     ctx.strokeStyle = style.outlineColor;
     ctx.lineWidth = lw * (1 + 0.45 * (style.outlineScale ?? 1)); // look.outline (v3, V3.9) scales the dark rim
@@ -145,6 +150,7 @@ function headAxes(j, facing) {
  *   look (appearance: eyes, brows, mouthStyle, cheeks, hair, hairColor, outfit, outfitColor, accessories)
  *   Quadrupeds (draw "quad"): quad, faceName, id, time, prevHip, prevHead (renderer/quadruped.js)
  *   light (V3.3): shadeTones() of the body colour under the scene's light rig; absent = the flat v2 look
+ *   limbStyle (ADR-034): straight (absent) | bendy | rubber: arms and legs as curves through the elbow and knee
  */
 export function drawCharacter(ctx, j, style) {
   const s = { ...DEFAULTS, ...style };
@@ -168,7 +174,7 @@ export function drawCharacter(ctx, j, style) {
   if (prop && s.prop.data.grip === "lHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
   const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale, outlineScale: s.outlineScale };
   if (!drawTorso(ctx, j, torso)) {
-    strokeGroup(ctx, [[j.hip, j.shoulder, j.neckTop]], s.color, lw, s);
+    strokeGroup(ctx, [[j.hip, j.shoulder, j.neckTop]], s.color, lw, s, s.light, false); // the spine stays straight
   } else if (s.light) {
     shadeTorso(ctx, j, torso, s.light);
     // The shading covers the inner half of the outline: stroke it again on top, as wide as v1/v2 draw it.

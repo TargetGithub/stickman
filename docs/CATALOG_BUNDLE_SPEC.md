@@ -87,6 +87,7 @@ Humanoid (`rig: "humanoid"`):
 - `posture`: offsets added to every pose (`rot`, `lean`, `head`).
 - `appearance`: defaults from the existing option names (`V2_ENUMS` eyes, brows, mouthStyle, hair, outfit; colours `hairColor`, `outfitColor`, `cheeks`).
 - `avoid`: attack names the fight compiler leaves out for this plan.
+- `limbStyle` (optional, both rigs): `straight`, `bendy` or `rubber`, the plan's default limb drawing in v3 scenes (ADR-034); draw-time only.
 
 Quadruped (`rig: "quadruped"`, STORY_SPEC 6.2, ADR-020):
 - `draw: "quad"`, `dims` with the quadruped meanings (`torso` = spine, `upperArm`/`forearm` = front leg, `thigh`/`shin` = rear leg), `bodyWidth` (half the body's height).
@@ -523,6 +524,7 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
         },
         "views": { "type": "array", "minItems": 1, "maxItems": 4, "uniqueItems": true, "items": { "enum": ["side", "three_quarter", "front", "back"] }, "description": "Turnaround views the plan has (V3.6); side is the simulation's own." },
         "turn": { "type": "object", "additionalProperties": false, "description": "Turnaround widths at scale 1 (V3.6): half the shoulder and hip spans, and the ground foreshortening of forward limbs.", "properties": { "shoulder": { "type": "number", "minimum": 0, "maximum": 60 }, "hip": { "type": "number", "minimum": 0, "maximum": 60 }, "foreshorten": { "type": "number", "minimum": 0, "maximum": 1 } } },
+        "limbStyle": { "enum": ["straight", "bendy", "rubber"], "description": "Default limb drawing in v3 scenes (ADR-034): straight, bendy curves or rubber noodles; scripts can override it." },
         "avoid": { "type": "array", "maxItems": 24, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/ref" } }
       }
     },
@@ -536,6 +538,7 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
         "rig": { "const": "quadruped" },
         "draw": { "const": "quad" },
         "bodyWidth": { "type": "number", "minimum": 8, "maximum": 30 },
+        "limbStyle": { "enum": ["straight", "bendy", "rubber"], "description": "Default leg drawing in v3 scenes (ADR-034): straight, bendy curves or rubber noodles; scripts can override it." },
         "dims": {
           "type": "object",
           "required": ["headR", "neck", "torso", "upperArm", "forearm", "thigh", "shin", "lineWidth"],

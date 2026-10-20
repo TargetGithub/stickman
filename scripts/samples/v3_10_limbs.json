@@ -1,0 +1,290 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "V3.10 rubber hose limbs",
+    "format": "landscape",
+    "seed": 3110,
+    "kind": "clip",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft"
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 5
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft"
+      }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft"
+      }
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky"
+      }
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark"
+      }
+    },
+    {
+      "id": "shadow",
+      "name": "Shadow Doopi",
+      "body": "stickman",
+      "color": "#1a0f3a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#0e0820",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#3a1f6e"
+        }
+      },
+      "voice": {
+        "pitch": 0.95,
+        "speed": 1,
+        "timbre": "deep"
+      }
+    }
+  ],
+  "look": {
+    "strength": 0.6
+  },
+  "scenes": [
+    {
+      "id": "fight",
+      "location": "valley",
+      "time": "dusk",
+      "light": "golden",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.8,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1450,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "shadow",
+          "x": 1850,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "beats": [
+        {
+          "id": "f1",
+          "at": 0.4,
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "doopi",
+              "shadow"
+            ],
+            "winner": "doopi",
+            "style": "even",
+            "intensity": "high",
+            "exchanges": 6,
+            "ko": false
+          }
+        },
+        {
+          "id": "f2",
+          "at": {
+            "after": "f1"
+          },
+          "who": "doopi",
+          "do": "flying_kick",
+          "target": "shadow",
+          "outcome": "hit",
+          "approach": "run",
+          "say": "JALEBI KICK!",
+          "bubble": "shout"
+        },
+        {
+          "id": "f3",
+          "at": {
+            "after": "f2",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "fade",
+          "params": {
+            "to": "black",
+            "dur": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "dance",
+      "location": "city_park",
+      "time": "day",
+      "transitionIn": {
+        "type": "fade"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.7,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy",
+          "view": "three_quarter"
+        },
+        {
+          "id": "mooka",
+          "x": 1950,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 2200,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "d1",
+          "at": 0.3,
+          "who": "doopi",
+          "do": "dance_a"
+        },
+        {
+          "id": "d2",
+          "at": 0.3,
+          "who": "dony",
+          "do": "dance_b"
+        },
+        {
+          "id": "d3",
+          "at": 0.5,
+          "who": "mooka",
+          "do": "dance_a"
+        },
+        {
+          "id": "d4",
+          "at": 0.5,
+          "who": "becky",
+          "do": "wag"
+        },
+        {
+          "id": "d5",
+          "at": {
+            "after": "d1"
+          },
+          "who": "doopi",
+          "do": "dance_b",
+          "view": "three_quarter"
+        },
+        {
+          "id": "d6",
+          "at": {
+            "after": "d2"
+          },
+          "who": "dony",
+          "do": "dance_a"
+        },
+        {
+          "id": "d7",
+          "at": {
+            "after": "d5",
+            "delay": 0.6
+          },
+          "who": "world",
+          "do": "fade",
+          "params": {
+            "to": "black",
+            "dur": 0.5
+          }
+        }
+      ]
+    }
+  ],
+  "locations": [
+    {
+      "id": "valley",
+      "theme": "shadow_valley",
+      "stageWidth": 3400
+    }
+  ]
+}

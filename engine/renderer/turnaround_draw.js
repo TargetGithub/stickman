@@ -6,6 +6,7 @@
 
 import { drawFace } from "./face.js";
 import { turnJoints, faceShiftOf, faceShows } from "../turnaround.js";
+import { bowedLeg } from "./limb_curves.js";
 
 /** The joints and style changes for a humanoid at a yaw (null at the side view). */
 export function turnedHumanoid(c, yaw, plan) {
@@ -34,13 +35,15 @@ const fill = (ctx, path, color, s) => {
   }
 };
 
-function leg(ctx, top, bottom, color, lw, s) {
+/** A front-view leg; rubber limbs bow outward (side -1 left, +1 right; ADR-034). */
+function leg(ctx, top, bottom, color, lw, s, side) {
+  const pts = bowedLeg(top, bottom, s.limbStyle, side);
   for (const [col, w] of s.outline ? [[s.outlineColor, lw * 1.45], [color, lw]] : [[color, lw]]) {
     ctx.strokeStyle = col;
     ctx.lineWidth = w;
     ctx.beginPath();
-    ctx.moveTo(top.x, top.y);
-    ctx.lineTo(bottom.x, bottom.y);
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for (const p of pts.slice(1)) ctx.lineTo(p.x, p.y);
     ctx.stroke();
   }
   fill(ctx, () => ctx.ellipse(bottom.x, bottom.y, lw * 0.75, lw * 0.5, 0, 0, Math.PI * 2), color, s);
@@ -64,7 +67,7 @@ export function drawQuadFront(ctx, j, s0, shade) {
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   // Back legs (behind, wider apart), the tail tip wagging over the back, the body, then the front legs.
-  for (const [side, foot] of [[-1, j.lFoot], [1, j.rFoot]]) leg(ctx, { x: c.x + side * bw * 0.95, y: c.y }, { x: c.x + side * bw * 1.05, y: foot.y }, far, lw, s);
+  for (const [side, foot] of [[-1, j.lFoot], [1, j.rFoot]]) leg(ctx, { x: c.x + side * bw * 0.95, y: c.y }, { x: c.x + side * bw * 1.05, y: foot.y }, far, lw, s, side);
   if (q.tail !== "none") {
     const wag = Math.sin((s.time ?? 0) * 2 * Math.PI * 2.4) * bw * 0.5;
     ctx.strokeStyle = s.color;
@@ -81,7 +84,7 @@ export function drawQuadFront(ctx, j, s0, shade) {
     ctx.fillStyle = q.belly;
     ctx.fill();
   }
-  for (const [side, paw] of [[-1, j.lHand], [1, j.rHand]]) leg(ctx, { x: c.x + side * bw * 0.5, y: c.y + bw * 0.3 }, { x: c.x + side * bw * 0.55, y: paw.y }, s.color, lw, s);
+  for (const [side, paw] of [[-1, j.lHand], [1, j.rHand]]) leg(ctx, { x: c.x + side * bw * 0.5, y: c.y + bw * 0.3 }, { x: c.x + side * bw * 0.55, y: paw.y }, s.color, lw, s, side);
   // Head: over the chest, facing the camera.
   const r = dims.headR * s.scale;
   const h = { x: c.x, y: Math.min(j.head.y, c.y - bw * 1.2) };

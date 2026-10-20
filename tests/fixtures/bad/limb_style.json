@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "meta": { "title": "Limb style", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
+  "cast": [{ "id": "kai", "color": "#3fd8ff", "limbStyle": "rubber" }, { "id": "pip", "body": "buddy", "color": "#2fd3c0" }],
+  "scenes": [{ "id": "s1", "location": "city_park", "limbStyle": "bendy", "cast": [{ "id": "kai", "x": 1300, "facing": 1 }, { "id": "pip", "x": 1900, "facing": -1, "limbStyle": "noodle" }],
+    "beats": [{ "id": "b1", "at": 0.5, "who": "pip", "do": "wave" }, { "id": "end", "at": { "after": "b1", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.5 } }] }]
+}

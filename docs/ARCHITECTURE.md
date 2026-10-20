@@ -291,7 +291,7 @@ export function collectMusicCues(sim): Array<{ t, cue, volume }>;
 
 ### renderer/character.js
 ```js
-export function drawCharacter(ctx, joints, style:{ color, scale, facing, mouth?, outline?, outlineColor?, farBrightness?, alpha? }): void;
+export function drawCharacter(ctx, joints, style:{ color, scale, facing, mouth?, outline?, outlineColor?, farBrightness?, alpha?, limbStyle? }): void;
 export function shade(hex, k): string;
 ```
 
@@ -397,13 +397,27 @@ The director emits `view` (a beat's view) and `viewHint` (a move's view, ended b
 
 ### motion_fx.js (V3.7, ENGINE_V3_SPEC 5.5)
 ```js
-export const MOTION_DEFAULTS, WINDOW;                                   // { followThrough, squash, secondary, breathing, blur }, 14 frames
+export const MOTION_DEFAULTS, WINDOW;                                   // { followThrough, squash, secondary, breathing, blur, stretch }, 14 frames
 export function springTrack(series, spring?, dt?): { value, target };   // a damped spring over an (unwrapped) series
 export function followThrough(history, amount): Joints;                 // arms and head trail and overshoot; legs unchanged
 export function squashStretch(history, events, t, groundY, amount): { m: [a, b, c, d], pivot } | null;
 export function axisScale(dir, k), hairSway(history, amount), standingStill(history), breathe(j, id, t, scale, amount), blurGhosts(history, amount);
-// renderer/motion_draw.js: motionFrame(ctx, r, sv, f, c, chars, past, ownSquash) → { j, hairTilt }; motionSettings(r)
+export const MAX_STRETCH;                                               // 0.22 (ADR-034)
+export function limbStretch(history, hits, t, groundY, scale, amount): { lArm?, rArm?, lLeg?, rLeg? } | null;   // factors >= 1
+export function applyStretch(j, stretch): Joints;                       // limbs scaled from their roots
+// renderer/motion_draw.js: motionFrame(ctx, r, sv, f, c, chars, past, ownSquash, limbStyle) → { j, hairTilt }; motionSettings(r)
 // character.js: style.hairTilt turns the hair's axes
+```
+
+### renderer/limb_curves.js (ADR-034, ENGINE_V3_SPEC 5.7)
+```js
+export const LIMB_STYLES;                                               // ["straight", "bendy", "rubber"]
+export function limbStyleOf(s): string;                                 // a known style, else "straight"
+export function limbControl(a, b, c, style): { x, y } | null;           // the quadratic control point (null when straight)
+export function limbLine(pts, style): Point[];                          // the polyline to stroke; straight returns pts itself
+export function bowedLeg(top, bottom, style, side): Point[];            // a quadruped's front-view leg (rubber bows outward)
+// character.js and quadruped.js stroke limbLine(...) for limbs when style.limbStyle is set (the spine stays straight);
+// renderer/scene_views.js limbStyles(story, sc, catalog): Map id → style for a v3 scene (placement > scene > cast > plan)
 ```
 
 ### templates.js and audio_tracks.js (V3.8, ENGINE_V3_SPEC 6)
@@ -961,3 +975,7 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Decision**: the story auto camera (`camera_story.js`) gets a `tight` mode, on for version 3 scripts (`sim.js` `tightFraming`): it records who spoke (until the line ends) or ran a non-idle move or moved, and where it used to return to the follow-all it follows those active in the last 3.5 s, adding the nearest neighbour to a lone actor. Wides, two-shots, close-ups, fights, `shot` beats and camera keys keep their priority. The contact shadow uses the rig's unscaled shadow alpha (`shadow.contact`, kept by `scaleRig` and `blendRigs`) times 1.2, at least 0.28, drawn as a soft radial ellipse that takes only a little of the light's direction.
 - **Consequences**: the stored camera changes only for version 3 story scripts with `autoCamera: "story"`; v1/v2 golden frames and hashes are unchanged. Cast shadows still follow the look strength. The 3.5 s window and 200 px padding are constants, not script fields, until a scene needs otherwise.
 
+### ADR-034 Rubber-hose limbs are drawn, never simulated (Sridhar's request, 2026-10-20)
+- **Context**: Sridhar asked for cartoon bendy and stretchy limbs. The simulation's reach, hit sweeps and joint positions are tuned and choreographed fights land on exact frames, v1/v2 output must stay identical, and v3 limbs already carry shading (V3.3), turnaround (V3.6) and follow-through (V3.7).
+- **Decision**: a `limbStyle` (`straight`, `bendy`, `rubber`) chosen per cast entry, scene or placement in version 3 scripts, with a body plan default, changes only how a limb chain is stroked: `renderer/limb_curves.js` turns root, joint and end into a quadratic curve (through the joint for bendy, bowed 1.45x with a minimum bow for rubber) sampled as a polyline, which every existing pass (outline, colour, light bands, cast shadow, blur ghosts) already strokes. Stretch is a bounded channel in `motion_fx.js` (`limbStretch`, at most 22%) applied to rubber limbs after follow-through and before turnaround, from the joint history and the character's own hit events; the root never moves and grounded legs never stretch.
+- **Consequences**: the simulation, frame store, hits and v1/v2 golden frames are unchanged, and a v3 script without `limbStyle` renders exactly as before (straight limbs return their own points). A stretched or bowed limb can be drawn a little past the stored contact point; at the bounds chosen it reads as cartoon follow-through in the demo. Curves cost about 10-12 segments per limb per pass. Quadrupeds curve but do not stretch, and the spine stays straight; tapering limbs (thicker at the shoulder) are not done.

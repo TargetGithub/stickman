@@ -107,7 +107,7 @@ export function drawDepthWorld(ctx0, r, f, chars, sv, pieces, { stage, character
         if (!rig) drawContactShadow(ctx, c);
         else {
           drawLitContactShadow(ctx, c, contactShadow(rig, c.scale, bodyHeight(c)), STAGE.groundY);
-          if (cast) drawCastShadow(ctx, c, cast, STAGE.groundY, (g, grey, alpha) => drawCharacter(g, c.j, { color: grey, alpha, outline: false, outlineColor: grey, farBrightness: 1, scale: c.scale, facing: c.facing, mouth: "neutral", dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth, ...(c.quad ? { quad: Object.fromEntries(Object.entries(c.quad).map(([k, v]) => [k, typeof v === "string" && v.startsWith("#") ? grey : v])), grip: c.grip } : {}) }), !!layer);
+          if (cast) drawCastShadow(ctx, c, cast, STAGE.groundY, (g, grey, alpha) => drawCharacter(g, c.j, { color: grey, alpha, outline: false, outlineColor: grey, farBrightness: 1, scale: c.scale, facing: c.facing, mouth: "neutral", dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth, limbStyle: sv.limbStyles?.get(c.id), ...(c.quad ? { quad: Object.fromEntries(Object.entries(c.quad).map(([k, v]) => [k, typeof v === "string" && v.startsWith("#") ? grey : v])), grip: c.grip } : {}) }), !!layer);
         }
         character(c, ctx);
         if (layer) ctx.restore();

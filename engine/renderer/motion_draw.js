@@ -3,7 +3,7 @@
 // squash or stretch applied to the context, and faint motion-blur ghosts drawn first. History comes from
 // the frame store (the same scene's frames only), so any frame renders the same in any order.
 
-import { MOTION_DEFAULTS, WINDOW, followThrough, squashStretch, hairSway, standingStill, breathe, blurGhosts } from "../motion_fx.js";
+import { MOTION_DEFAULTS, WINDOW, followThrough, squashStretch, hairSway, standingStill, breathe, blurGhosts, limbStretch, applyStretch } from "../motion_fx.js";
 import { drawCharacter } from "./character.js";
 import { STAGE } from "../config.js";
 
@@ -13,9 +13,10 @@ export const motionSettings = (r) => (r.motionCfg ??= { ...MOTION_DEFAULTS, ...(
 /**
  * @param {(k: number) => object|null} past  the character's joints k frames back in this scene (null outside it)
  * @param {boolean} ownSquash  the character's v1 style already squashes (style.squash): skip ours
+ * @param {string} [limbStyle]  straight | bendy | rubber (ADR-034): rubber limbs also stretch, and ghosts take the style
  * @returns {{ j: object, hairTilt: number }}
  */
-export function motionFrame(ctx, r, sv, f, c, chars, past, ownSquash = false) {
+export function motionFrame(ctx, r, sv, f, c, chars, past, ownSquash = false, limbStyle = "straight") {
   const cfg = motionSettings(r);
   const hist = [];
   for (let k = WINDOW - 1; k >= 1; k--) {
@@ -25,9 +26,14 @@ export function motionFrame(ctx, r, sv, f, c, chars, past, ownSquash = false) {
   hist.push(c.j);
   let j = c.quad ? c.j : followThrough(hist, cfg.followThrough);
   if (!c.quad && cfg.breathing > 0 && standingStill(hist)) j = breathe(j, c.id, f.videoT, c.scale, cfg.breathing);
+  if (!c.quad && limbStyle === "rubber" && cfg.stretch > 0) {
+    // Hits land on the stored (unstretched) joints; the stretch only draws the blow a little longer (ADR-034).
+    const hits = sv.squashEvents.filter((e) => e.type === "hit" && e.attacker === c.id);
+    j = applyStretch(j, limbStretch(hist, hits, f.videoT, STAGE.groundY, c.scale, cfg.stretch));
+  }
   for (const g of blurGhosts(hist, cfg.blur)) {
     const pj = hist[hist.length - 1 - g.back];
-    if (pj) drawCharacter(ctx, pj, { color: c.color, scale: c.scale, facing: c.facing, alpha: g.alpha * (c.alpha ?? 1), outline: false, ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(c.quad ? { quad: c.quad, grip: c.grip } : {}) });
+    if (pj) drawCharacter(ctx, pj, { color: c.color, scale: c.scale, facing: c.facing, alpha: g.alpha * (c.alpha ?? 1), outline: false, limbStyle, ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(c.quad ? { quad: c.quad, grip: c.grip } : {}) });
   }
   if (!ownSquash && cfg.squash > 0) {
     const events = [];

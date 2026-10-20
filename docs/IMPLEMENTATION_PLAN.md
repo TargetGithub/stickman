@@ -138,6 +138,7 @@ Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visua
 | V3.7 | Motion quality (ADR-029); pass-over fix (ADR-030) | DONE 2026-10-19, reviewed |
 | V3.8 | Audio tracks and templates (ADR-031) | DONE 2026-10-19, awaiting review |
 | V3.9 | Polish pass against the reference (ADR-032, ADR-033) | DONE 2026-10-20 (approved); framing and contact shadows awaiting review |
+| V3.10 | Rubber-hose limbs: `limbStyle` straight/bendy/rubber and the stretch channel (ADR-034, spec 5.7) | DONE 2026-10-20, awaiting review (`out/demos/v3_10_limbs`) |
 
 ## Schedule summary
 

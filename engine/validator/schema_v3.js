@@ -9,6 +9,7 @@
 //   scenes[].lens, camera[] lens fields, lag and move   the v3 camera (V3.4)
 //   layers, text, shapes, tracks, post (and scenes[].post)   motion graphics (V3.5, schema_motion.js)
 //   cast[].view, scenes[].cast[].view, beats[].view   turnaround views (V3.6)
+//   cast[].limbStyle, scenes[].limbStyle, scenes[].cast[].limbStyle, motion.stretch   rubber-hose limbs (ADR-034)
 //   audio.tracks, audio.markers, audio.duck   audio tracks (V3.8, schema_audio.js); templates and marker `at`s are
 //   expanded before the schema check (engine/templates.js)
 // `layer` names stay accepted and map to z presets (engine/depth.js LAYER_Z); a node gives one or the other.
@@ -122,6 +123,11 @@ export function withDepth(v2) {
   s.properties.cast.items.properties.view = VIEW;
   scene.properties.cast.items.properties.view = VIEW;
   beat.properties.view = { ...VIEW, description: "The character turns to this view from this beat on (E_VIEW_BODY)." };
+  // Limb styles (ADR-034): drawn only; a placement wins over its scene, the scene over the cast entry, that over the body plan.
+  const LIMB = { enum: ["straight", "bendy", "rubber"], description: "How arms and legs are drawn: straight (default), bendy (smooth curves through elbows and knees) or rubber (cartoon noodle limbs that also stretch on fast reaches and hits)." };
+  s.properties.cast.items.properties.limbStyle = LIMB;
+  scene.properties.cast.items.properties.limbStyle = { ...LIMB, description: "This character's limb style in this scene (over the scene's and the cast entry's)." };
+  scene.properties.limbStyle = { ...LIMB, description: "Limb style for everyone in the scene (over each cast entry's; a placement's own limbStyle wins)." };
   // Motion graphics (V3.5): top-level layers, text, shapes, tracks and post; a scene may set its own post.
   Object.assign(s.properties, { layers: LAYERS_SCHEMA, text: TEXT_SCHEMA, shapes: SHAPES_SCHEMA, tracks: TRACKS_SCHEMA, post: POST_SCHEMA });
   // Audio tracks, markers and ducking (V3.8) on the v2 audio block.
@@ -131,6 +137,7 @@ export function withDepth(v2) {
   s.properties.motion = { type: "object", additionalProperties: false, description: "Motion quality for v3 scenes, drawn over the stored motion (the simulation is unchanged).", properties: {
     followThrough: amt("Arms and head trail and overshoot their poses", 1), squash: amt("Stretch in the air, squash on landing and along a hit", 1),
     secondary: amt("Hair sways with the head", 1), breathing: amt("The upper body breathes while standing still", 1), blur: amt("Faint ghosts behind fast limbs", 0),
+    stretch: amt("Rubber limbs stretch on fast reaches and when a blow lands", 1),
   } };
   // The automatic v3 look (time-of-day lighting, default vignette, auto focus, automatic turns) at a strength.
   s.properties.look = { type: "object", additionalProperties: false, description: "The automatic v3 look.", properties: { strength: { type: "number", minimum: 0, maximum: 1, description: "How strong the automatic lighting, vignette, focus blur and turns are (default 0.2; explicit lights, lens settings and views are always full)." }, outline: { type: "number", minimum: 0.5, maximum: 2.5, description: "Scale of the dark outline around limbs, heads and bodies (default 1)." }, limbs: { type: "number", minimum: 0.6, maximum: 2, description: "Scale of the limb width (default 1)." }, bubble: { type: "number", minimum: 0.7, maximum: 2, description: "Scale of speech bubbles and their text (default 1)." }, maxTurn: { type: "number", minimum: 0, maximum: 90, description: "How far a body turns from profile toward or away from the camera, in degrees (default 90: full front and back; 60: front is a near-front three-quarter)." } } };
