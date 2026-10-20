@@ -218,6 +218,7 @@ export function renderScene(r, ctx, n) {
     says: sv.says, worldEvents: sv.worldEvents, flashes: sv.flashes, hpBars: r.hpBars,
     slowness: storyRate > 0 && storyRate < 0.95 ? 1 - storyRate : 0,
     names: r.names,
+    bubbleScale: sv.depth ? (r.sim.story?.look?.bubble ?? 1) : 1, // look.bubble (v3, V3.9)
   };
   drawPostWorld(ctx, view);
   if (lens) {

@@ -106,6 +106,7 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight) } : {}),
     ...(turned ? { faceShift: turned.faceShift, hideFace: turned.hideFace, farBrightness: turned.farBrightness, wrap: turned.wrap } : {}),
     ...(mo?.hairTilt ? { hairTilt: mo.hairTilt } : {}),
+    ...(sv.depth ? lineLook(r.sim.story?.look) : {}),
     ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) };
   if (c.quad && yaw < 89.5) {
     // A four-legged character cross-fades from its side drawing to its front drawing, squashed mid-turn.
@@ -120,4 +121,12 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
   drawFront(ctx, ct, past, style);
   drawLookFront(ctx, ct, look);
   ctx.restore();
+}
+
+/** look.outline and look.limbs (v3 scenes, V3.9): scales of the dark outline and of the limb width (1: as v2). */
+function lineLook(look) {
+  const out = {};
+  if (look?.outline !== undefined && look.outline !== 1) out.outlineScale = look.outline;
+  if (look?.limbs !== undefined && look.limbs !== 1) out.limbScale = look.limbs;
+  return out;
 }

@@ -52,3 +52,17 @@ test("a shaded filled torso is outlined after its shading", () => {
   const head = ctx.calls.findIndex((c, i) => i > restore && c[0] === "arc" && c[3] === DIMS.headR);
   assert.ok(ctx.calls.slice(restore, head).some((c) => c[0] === "stroke"), "the torso outline, between its shading and the head");
 });
+
+test("look.outline and look.limbs scale the outline and limb strokes (1: unchanged)", () => {
+  const j = computeJoints({}, { x: 500, y: 600 }, 1, 1, DIMS);
+  const widths = (style) => {
+    const seen = [];
+    const ctx = new Proxy({}, { get: (t, k) => (k in t ? t[k] : () => (String(k).startsWith("create") ? { addColorStop() {} } : undefined)), set: (t, k, v) => { if (k === "lineWidth") seen.push(v); t[k] = v; return true; } });
+    drawCharacter(ctx, j, { color: "#5ec8ff", scale: 1, facing: 1, dims: DIMS, ...style });
+    return seen;
+  };
+  const base = widths({});
+  assert.deepEqual(widths({ outlineScale: 1, limbScale: 1 }), base);
+  assert.ok(Math.max(...widths({ outlineScale: 2 })) > Math.max(...base), "a wider outline rim");
+  assert.ok(widths({ limbScale: 1.3 }).includes(DIMS.lineWidth * 1.3), "wider limbs");
+});

@@ -125,7 +125,7 @@ export function drawOverlays(ctx, view) {
     const c = chars.find((x) => x.id === s.actor);
     if (!c) continue;
     const head = toScreen(cam, W, H, { x: c.j.head.x, y: c.j.head.y - 22 * c.scale });
-    const scale = Math.max(0.8, k);
+    const scale = Math.max(0.8, k) * (view.bubbleScale ?? 1);
     const draw = BUBBLE_KINDS[s.bubble];
     const rect = draw ? draw(ctx, s.text, head, W, H, scale, safe) : bubble(ctx, s.text, head, W, H, scale, safe);
     if (view.names?.has(s.actor)) nameTag(ctx, view.names.get(s.actor), rect, scale, c.color);

@@ -31,7 +31,7 @@ function polyline(ctx, points) {
 function strokeGroup(ctx, lines, color, lw, style, tones = style.light) {
   if (style.outline) {
     ctx.strokeStyle = style.outlineColor;
-    ctx.lineWidth = lw * 1.45;
+    ctx.lineWidth = lw * (1 + 0.45 * (style.outlineScale ?? 1)); // look.outline (v3, V3.9) scales the dark rim
     for (const pts of lines) polyline(ctx, pts);
   }
   ctx.strokeStyle = color;
@@ -73,7 +73,7 @@ function drawHead(ctx, j, r, lw, style, facing) {
     ctx.arc(j.head.x, j.head.y, r, 0, Math.PI * 2);
   }
   if (style.outline) {
-    ctx.lineWidth = lw * 0.45;
+    ctx.lineWidth = lw * 0.45 * (style.outlineScale ?? 1);
     ctx.strokeStyle = style.outlineColor;
     ctx.stroke();
   }
@@ -150,7 +150,7 @@ export function drawCharacter(ctx, j, style) {
   const s = { ...DEFAULTS, ...style };
   if (s.draw === "quad") return drawQuadruped(ctx, j, s, shade); // four-legged plans (ADR-020)
   const dims = s.dims || BODY;
-  const lw = dims.lineWidth * s.scale;
+  const lw = dims.lineWidth * s.scale * (s.limbScale ?? 1); // look.limbs (v3, V3.9)
   const acc = s.look?.accessories || {};
   ctx.save();
   ctx.globalAlpha = s.alpha ?? 1;
@@ -166,7 +166,7 @@ export function drawCharacter(ctx, j, style) {
   // Turned views (V3.6) give each side its own shoulder and hip; the side view uses the shared ones.
   strokeGroup(ctx, [[j.lHip || j.hip, j.lKnee, j.lFoot], [j.lShoulder || j.shoulder, j.lElbow, j.lHand]], far, lw, s, farTones);
   if (prop && s.prop.data.grip === "lHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
-  const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale };
+  const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale, outlineScale: s.outlineScale };
   if (!drawTorso(ctx, j, torso)) {
     strokeGroup(ctx, [[j.hip, j.shoulder, j.neckTop]], s.color, lw, s);
   } else if (s.light) {
@@ -174,7 +174,7 @@ export function drawCharacter(ctx, j, style) {
     // The shading covers the inner half of the outline: stroke it again on top, as wide as v1/v2 draw it.
     if (s.outline && s.draw !== "box") {
       ctx.strokeStyle = s.outlineColor;
-      ctx.lineWidth = lw * 0.45;
+      ctx.lineWidth = lw * 0.45 * (s.outlineScale ?? 1);
       torsoPath(ctx, j, torso);
       ctx.stroke();
     }

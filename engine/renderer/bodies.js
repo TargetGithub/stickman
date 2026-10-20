@@ -23,7 +23,7 @@ export function drawTorso(ctx, j, o) {
   if (o.draw !== "capsule" && o.draw !== "trapezoid") return false;
   ctx.fillStyle = o.color;
   ctx.strokeStyle = o.outlineColor;
-  ctx.lineWidth = o.outline ? o.lw * 0.45 : 0;
+  ctx.lineWidth = o.outline ? o.lw * 0.45 * (o.outlineScale ?? 1) : 0;
   torsoPath(ctx, j, o);
   ctx.fill();
   if (o.outline) ctx.stroke();
