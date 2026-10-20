@@ -24,6 +24,9 @@ import { lightAt, shadeTones, ambientTint, rgbText } from "../lighting.js";
 import { letterboxBar } from "../camera3.js";
 import { framedContext, blurFrame, drawVignette, drawLetterbox } from "./lens_draw.js";
 import { sceneViews, frameLens } from "./scene_views.js";
+import { hasMotion, compileMotion, composeAt, postAt, motionValuesAt } from "../compositor.js";
+import { drawMotionLayers, motionAnchor } from "./motion.js";
+import { applyPost, postActive } from "./post.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 
@@ -74,6 +77,9 @@ export function createRenderer(catalog, sim, opts = {}) {
     castFilter: null, // "none" while the world is filtered grey and the cast keeps its colour (A3)
     charCache: new Map(), // frame index → unpacked characters (small LRU for afterimages)
     frameLight: null, // the light rig of the frame being drawn (V3.3; null: the flat look)
+    // Motion graphics (V3.5): layers, text, shapes, tracks and post of a v3 script, compiled once.
+    motion: hasMotion(sim.story) ? compileMotion(sim.story, (sim.scenes || []).map((sc) => ({ id: sc.id, t0: sc.startFrame / FPS, t1: (sc.startFrame + sc.frames) / FPS }))) : null,
+    frameValues: null, // the keyed track values of the frame being drawn
   };
 }
 
@@ -288,6 +294,7 @@ export function frameCount(r) {
 export function renderScene(r, ctx, n) {
   const f0 = frameView(r.sim.store, n, FPS);
   const sv0 = r.scenes[f0.scene] || r.scenes[0];
+  r.frameValues = r.motion ? motionValuesAt(r.motion, f0.videoT) : null;
   // A v3 scene draws through its lens (V3.4): a moved camera, tilt and roll on the frame, depth of field.
   const lens = sv0.depth ? frameLens(r, sv0, f0) : null;
   const f = lens ? { ...f0, cam: lens.lc.cam } : f0;
@@ -316,8 +323,12 @@ export function renderScene(r, ctx, n) {
     g.restore();
   }
   if (lens?.bgBlur) blurFrame(g, r, lens.bgBlur); // the far background out of focus (V3.4)
-  g.setTransform(cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom);
   const chars = charsAt(r, n);
+  const worldTransform = [cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom];
+  const comp = r.motion ? composeAt(r.motion, f.videoT, (p, space) => motionAnchor(r, sv, f, chars, p, space, cam)) : null;
+  const motionView = comp && { W, H, worldTransform, styles: r.catalog.textStyles, shapes: new Map((r.sim.story.shapes || []).map((x) => [x.id, x])) };
+  if (comp?.back.length) drawMotionLayers(g, comp.back, motionView); // V3.5: layers behind the world
+  g.setTransform(...worldTransform);
   const depths = drawWorld(g, r, n, f, chars, sv);
   if (filter) g.filter = "none";
   g.setTransform(1, 0, 0, 1, 0, 0);
@@ -340,6 +351,8 @@ export function renderScene(r, ctx, n) {
     drawVignette(ctx, W, H, lens.L.vignette);
     drawLetterbox(ctx, W, H, letterboxBar(W, H, lens.L.letterbox));
   }
+  if (comp?.over.length) drawMotionLayers(ctx, comp.over, motionView); // V3.5: titles and graphics over the world
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
   drawOverlays(ctx, view);
   ctx.restore();
 }
@@ -349,4 +362,9 @@ export function renderFrame(r, ctx, n) {
   const f = frameView(r.sim.store, n, FPS);
   if (f.hold) drawHold(r, ctx, f, renderScene);
   else renderScene(r, ctx, n);
+  if (!r.motion) return;
+  // Post effects over the finished frame, holds included (V3.5).
+  const t = n / FPS;
+  const p = postAt(r.motion, t, motionValuesAt(r.motion, t));
+  if (postActive(p)) applyPost(ctx, r, p, n);
 }

@@ -366,6 +366,23 @@ export function blurFor(z, focusZ, dof): px;  coverScale(W, H, roll);  letterbox
 // camera.js: a key's `lag` (0-1) slows the follow springs
 ```
 
+### timeline.js and compositor.js (V3.5, ENGINE_V3_SPEC 6)
+```js
+// timeline.js
+export const TRACK_PROPS;  export function parseTarget(target): { kind, id, prop } | null;
+export function cubicBezier(x1, y1, x2, y2), easingOf(ease);          // table names, "step", cubic-bezier(...) or [x1,y1,x2,y2]
+export function sampleTrack(keys, t), compileTracks(tracks, sceneStarts), trackValuesAt(compiled, t, inScene), valueFits(prop, v);
+// compositor.js
+export const BLENDS, ANIMS, DEFAULT_LAYER, POST_DEFAULTS;
+export function hasMotion(story), compileMotion(story, sceneSpans), lifeOf(m, e, t), animState(anim, p);
+export function composeAt(m, videoT, anchorOf): { back: Layer[], over: Layer[], values };   // layers with resolved items
+export function motionValuesAt(m, t), postAt(m, t, values), withLensTracks(lens, values);
+// renderer/motion.js: drawMotionLayers(ctx, layers, { W, H, worldTransform, styles, shapes }), textLook, motionAnchor
+// renderer/post.js: applyPost(ctx, r, post, n), gradeFilter, gammaGrey, postActive
+// validator/schema_motion.js: LAYERS_SCHEMA, TEXT_SCHEMA, SHAPES_SCHEMA, TRACKS_SCHEMA, POST_SCHEMA; validator/motion.js: motionIssues(story, catalog)
+```
+`createRenderer` compiles the motion blocks once (`r.motion`, null without them); `renderScene` draws back layers after the background and over layers after the lens passes, before the overlays; `renderFrame` applies post last.
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -839,4 +856,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: v3 needs dolly, crane, tilt, roll, handheld, depth of field, vignette and letterbox with keyframes and named moves, while frames stay random access and deterministic, the frame store (CAM_STRIDE 5) stays shared by every script, and v1/v2 frames do not change.
 - **Decision**: framing stays in `camera.js` (the stored, spring-smoothed x, y and zoom; `lag` slows its springs). Everything else is a lens computed per frame from the scene's event log (`camera` events whose keys carry lens fields and `set_camera` world events) by the pure `camera3.js`, exactly like overlays (ADR-012) and depth (ADR-023). Named moves are catalog curves. Handheld sway is value noise from a scene-scoped `deriveRng` stream, so it is a closed-form function of time. Dolly is folded into the depth projection (stage-line zoom f/(f-d), depth focal f-d), so it reads differently from a zoom. Tilt and roll are a base matrix composed into every `setTransform` (a proxy context), so no drawing code changes. Depth of field uses one scratch canvas from the host and the canvas `blur` filter, grouped by quantized blur level.
 - **Consequences**: no frame-store or simulation change except the follow lag; v1/v2 frames are byte-identical. Depth of field costs one full-frame blur per blur level per frame (no caching yet) and needs `createCanvas` from the host (record.mjs passes it; pages without it render sharp). Overlays (bubbles, captions) are drawn without the roll, so they stay level.
+
+### ADR-026 Motion graphics are data composed per frame, drawn by the renderer (V3.5)
+- **Context**: v3 adds video-tool features (layers, keyframes, masks, blend modes, text, shapes, post effects) written in JSON, beside or on top of a story, with random-access, deterministic frames and no pixel reads in the engine.
+- **Decision**: the blocks are top-level script data compiled once in the renderer (`compileMotion`), and `composeAt(m, t)` resolves them for any frame: lifetimes on a video or scene time base, in/out animations, tracks (any keyable property, a key's ease arriving at it), parents and layer order. The renderer draws the result in screen or world space; text layout stays renderer-only. Post effects run last in `renderFrame` as canvas filter and composite passes over copies of the frame (no getImageData); film grain is a seeded tile offset by a frame hash, so it is deterministic. Lens tracks override the V3.4 lens. The simulation and the frame store are untouched.
+- **Consequences**: a motion-graphics element can never change what the characters do; scripts without the blocks draw exactly as before. Blend modes apply per item (no layer-group offscreen), masks are shapes only, and the story compiler does not emit these primitives yet (a later step for titles and lower thirds from story data).
 

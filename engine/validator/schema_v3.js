@@ -7,10 +7,12 @@
 //   beats[].to                gains { x?, z }: walk to a depth (and an x)
 //   scenes[].light, locations[].light   the light rig (V3.3): a preset name or a preset with overrides
 //   scenes[].lens, camera[] lens fields, lag and move   the v3 camera (V3.4)
+//   layers, text, shapes, tracks, post (and scenes[].post)   motion graphics (V3.5, schema_motion.js)
 // `layer` names stay accepted and map to z presets (engine/depth.js LAYER_Z); a node gives one or the other.
 
 import { jsonSchemaV2, schemaV2For } from "./schema_v2.js";
 import { DEPTH } from "../depth.js";
+import { LAYERS_SCHEMA, TEXT_SCHEMA, SHAPES_SCHEMA, TRACKS_SCHEMA, POST_SCHEMA } from "./schema_motion.js";
 
 const Z = { type: "number", minimum: -4000, maximum: 2000, description: "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)." };
 
@@ -111,6 +113,9 @@ export function withDepth(v2) {
   scene.properties.cast.items.properties.z = Z;
   const beat = scene.properties.beats.items.oneOf[0];
   beat.properties.to = destV3(beat.properties.to);
+  // Motion graphics (V3.5): top-level layers, text, shapes, tracks and post; a scene may set its own post.
+  Object.assign(s.properties, { layers: LAYERS_SCHEMA, text: TEXT_SCHEMA, shapes: SHAPES_SCHEMA, tracks: TRACKS_SCHEMA, post: POST_SCHEMA });
+  scene.properties.post = POST_SCHEMA;
   return s;
 }
 

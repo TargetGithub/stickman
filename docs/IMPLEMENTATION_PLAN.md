@@ -132,8 +132,9 @@ Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visua
 | V3.1 | Bundle loader and registry (ADR-022) | DONE 2026-10-19, reviewed |
 | V3.2 | Depth lane (ADR-023) | DONE 2026-10-19, reviewed |
 | V3.3 | Lighting and shading (ADR-024) | DONE 2026-10-19, reviewed |
-| V3.4 | v3 camera (ADR-025) | DONE 2026-10-19, awaiting review |
-| V3.5-V3.8 | Timeline and compositor, turnaround views, motion quality, audio tracks and templates | can run in parallel after V3.4 |
+| V3.4 | v3 camera (ADR-025) | DONE 2026-10-19, reviewed |
+| V3.5 | Timeline and compositor (ADR-026) | DONE 2026-10-19, awaiting review |
+| V3.6-V3.8 | Turnaround views, motion quality, audio tracks and templates | next, one at a time |
 | V3.9 | Polish pass against the reference | |
 
 ## Schedule summary

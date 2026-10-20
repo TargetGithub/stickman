@@ -5,6 +5,7 @@ import { checkSchema, checkValue, jsonSchema, buildJsonSchema } from "./schema.j
 import { schemaV2For } from "./schema_v2.js";
 import { schemaV3For } from "./schema_v3.js";
 import { depthIssues } from "./depth.js";
+import { motionIssues } from "./motion.js";
 import { checkSemantics, WORLD_COMMANDS } from "./semantic.js";
 import { checkStory } from "./story.js";
 import { formatIssues, formatTimeline } from "./report.js";
@@ -92,7 +93,7 @@ export function validate(script, catalog) {
   if (v2) {
     // Macro params first, then compile (ADR-014), then every check on the compiled beats.
     const authored = normalize(script);
-    const pre = [...macroIssues(authored, catalog, moves), ...depthIssues(authored, catalog)];
+    const pre = [...macroIssues(authored, catalog, moves), ...depthIssues(authored, catalog), ...motionIssues(authored, catalog)];
     if (pre.length) return result("semantic", pre);
     try {
       story = compileStory(authored, catalog, moves).story;

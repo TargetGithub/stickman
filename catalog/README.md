@@ -35,6 +35,7 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `world/props.json` | the six v1 props |
 | `world/lights.json` | light rig presets (V3.3): key, fill, rim, ambient, shadow and fog per rig, and `byTime` (which rig each time of day uses) |
 | `world/camera_moves.json` | named camera moves (V3.4): keyframe curves over dolly, truck, crane, tilt, roll, push and handheld, with a default `dur` (`absolute` moves blend to their last key) |
+| `world/text_styles.json` | text styles for v3 titles and captions (V3.5): font (Bangers or Inter), size, colour, outline, shadow, box |
 | `world/ambience.json` | ambience beds (names are the engine's; recipes in `tools/lib/ambience.mjs`) |
 | `story/activities.json` | activities: players, roles, objects, endings, rally data |
 | `story/music_moods.json` | `scales` and `moods` (read by `tools/lib/music_gen.mjs`) |

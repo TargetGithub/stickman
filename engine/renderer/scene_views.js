@@ -5,6 +5,7 @@
 import { lightRigOf } from "../lighting.js";
 import { LENS_DEFAULTS, lensChanges, lensAt, autoFocusSpans, autoFocusAt, createHandheld, handheldAt, lensCamera, blurFor, coverScale } from "../camera3.js";
 import { lensMatrix } from "./lens_draw.js";
+import { withLensTracks } from "../compositor.js";
 import { depthAt } from "../depth.js";
 import { deriveRng } from "../math.js";
 import { STAGE } from "../config.js";
@@ -75,7 +76,8 @@ function reactionsOf(ev, sc) {
  * @returns {{ L, lc, matrix, dof: { zf, amount }|null, bgBlur }}
  */
 export function frameLens(r, sv, f) {
-  const L = lensAt(sv.lensChanges, f.videoT, r.catalog.cameraMoves, sv.lensBase);
+  // Lens tracks (V3.5: lens.<channel>) override the lens channels.
+  const L = withLensTracks(lensAt(sv.lensChanges, f.videoT, r.catalog.cameraMoves, sv.lensBase), r.frameValues || {});
   const hh = handheldAt(sv.handheld, L.handheld, f.videoT);
   const lc = lensCamera(f.cam, L, sv.depth, hh, STAGE.groundY);
   const tilt = (lc.tiltPx * r.H) / 1080;

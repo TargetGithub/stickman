@@ -121,3 +121,9 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - E_DEPTH_LAYER: a node gives both z and layer → Keep one: layer is a z preset (back -800, front 313).
 - E_LIGHT_UNKNOWN: an unknown light rig preset (scene or location light, set_light) → Use a preset from catalog/world/lights.json (noon, dawn, golden, moonlit, indoor, stage, gloom, flat).
 - E_CAMERA_MOVE: an unknown named camera move (a v3 camera key move or set_camera) → Use a move from catalog/world/camera_moves.json (push_in, pull_out, slow_push, crane_up, crane_down, orbit_sweep, dutch_tilt, level, handheld).
+- E_LAYER_REF: a text, shape, mask or parent names a layer or shape that does not exist, or layer parents loop → Use an id from layers or shapes; list parents first.
+- E_REF_SCENE: a layer, text, shape or track names a scene that does not exist → Use a scene id from scenes.
+- E_TRACK_TARGET: a track target that is not keyable, or names a missing node → Use layer.<id>.<prop>, text.<id>.<prop>, shape.<id>.<prop>, lens.<channel> or post.<prop>.
+- E_TRACK_KEYS: a key value of the wrong kind, two keys at one time, or a path or line missing its points → Numbers for numbers, #rrggbb for colours; one key per time.
+- E_TRACK_EASE: an unknown easing on a key → Use an easing name, step or cubic-bezier(x1, y1, x2, y2).
+- E_TEXT_STYLE: an unknown text style → Use a style from catalog/world/text_styles.json (title, subtitle, caption, lower_third, comic, label).

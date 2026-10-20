@@ -29,6 +29,7 @@ export const ENGINE_FILES = [
   "world/props.json",
   "world/lights.json",
   "world/camera_moves.json",
+  "world/text_styles.json",
   "story/activities.json",
   "story/music_moods.json",
   "story/macro_lines.json",
@@ -37,7 +38,7 @@ export const ENGINE_FILES = [
 ];
 
 /** The catalog files a bundle may carry (CATALOG_BUNDLE_SPEC 3): the engine files minus the engine-owned ones. */
-export const BUNDLE_FILES = ENGINE_FILES.filter((p) => !["moves/defeat.json", "characters/appearance.json", "effects/sfx.json", "world/lights.json", "world/camera_moves.json", "story/macro_lines.json", "story/blocklist.json", "bundles.json"].includes(p));
+export const BUNDLE_FILES = ENGINE_FILES.filter((p) => !["moves/defeat.json", "characters/appearance.json", "effects/sfx.json", "world/lights.json", "world/camera_moves.json", "world/text_styles.json", "story/macro_lines.json", "story/blocklist.json", "bundles.json"].includes(p));
 
 /** Appearance lists of {name, description} entries; the engine sees the names. */
 export const APPEARANCE_LISTS = ["eyes", "brows", "mouthStyle", "hair", "outfit", "accessories"];
@@ -87,6 +88,8 @@ export function assembleCatalog(f) {
     lightNames: Object.keys(f["world/lights.json"].rigs),
     cameraMoves: f["world/camera_moves.json"], // named lens moves (V3.4)
     cameraMoveNames: Object.keys(f["world/camera_moves.json"]),
+    textStyles: f["world/text_styles.json"], // v3 text styles (V3.5)
+    textStyleNames: Object.keys(f["world/text_styles.json"]),
     bundles: [{ id: BASE_ID, version: base.version, audience: ["kids", "general"] }], // the loaded bundles (mergeBundles appends)
   };
 }
