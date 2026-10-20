@@ -6,7 +6,7 @@ import { existsSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { NOISE } from "./synth.mjs";
+import { renderSettings } from "./synth.mjs";
 
 export const PIPER_DIR = fileURLToPath(new URL("../../bin/piper/", import.meta.url));
 export const MODELS_DIR = fileURLToPath(new URL("../../../assets/speech/models/", import.meta.url));
@@ -36,14 +36,21 @@ export function listModels(dir = MODELS_DIR) {
   return out;
 }
 
-/** ffmpeg filter chain for a line: pitch shift at constant length, bubble style, robot. */
-export function postFilters(inputRate, voice, bubble) {
+/**
+ * ffmpeg filter chain for a line: pitch shift at constant length, bubble style, mood colour (lowpass, vibrato,
+ * tremolo), robot.
+ * @param {{ pitch?: number, filter?: string }} voice  pitch: the total shift (voice + mood) in semitones
+ */
+export function postFilters(inputRate, voice, bubble, tone = null) {
   const f = [];
   if (voice.pitch) {
     const r = 2 ** (voice.pitch / 12);
     f.push(`asetrate=${Math.round(inputRate * r)}`, `aresample=${inputRate}`, `atempo=${(1 / r).toFixed(6)}`);
   }
   if (bubble === "whisper") f.push("highpass=f=350", "lowpass=f=6000");
+  if (tone?.lowpass) f.push(`lowpass=f=${tone.lowpass}`);
+  if (tone?.vibrato) f.push(`vibrato=f=${tone.vibrato.f}:d=${tone.vibrato.d}`);
+  if (tone?.tremolo) f.push(`tremolo=f=${tone.tremolo.f}:d=${tone.tremolo.d}`);
   if (voice.filter === "robot") f.push("aeval='val(0)*(0.55+0.45*sin(2*PI*55*t))':c=same", "aecho=0.8:0.5:6|11:0.35|0.25");
   f.push("aresample=48000");
   return f.join(",");
@@ -74,15 +81,19 @@ export function createPiperBackend({ bin = findPiper(), modelsDir = MODELS_DIR }
       }
       for (const [name, list] of byModel) {
         const m = models[name];
-        const req = { model: m.onnx, config: m.config, jobs: list.map((j) => ({ text: j.line.spoken, out: `${j.out}.piper.wav`, speaker: j.line.voice.speaker ?? 0,
-          length_scale: Number((1 / (j.line.voice.rate * (j.line.bubble === "shout" ? 1.08 : 1))).toFixed(4)), noise_scale: NOISE.scale, noise_w: NOISE.w, seed: j.seed })) };
+        const req = { model: m.onnx, config: m.config, jobs: list.map((j) => {
+          const r = renderSettings(j.line);
+          return { text: j.line.spoken, out: `${j.out}.piper.wav`, speaker: j.line.voice.speaker ?? 0, length_scale: Number((1 / r.rate).toFixed(4)),
+            noise_scale: r.noise, noise_w: r.noiseW, sentence_silence: r.pause, seed: j.seed };
+        }) };
         const r = spawnSync(python, ["-I", BATCH], { input: JSON.stringify(req), encoding: "utf8", cwd: PIPER_DIR, maxBuffer: 1 << 26 });
         if (r.status !== 0) throw new Error(`piper failed with ${name}: ${(r.stderr || r.error?.message || "").trim().split("\n").slice(-3).join(" ")}`);
         const inputRate = sampleRateOf(m.config);
         for (const j of list) {
           const raw = `${j.out}.piper.wav`;
           try {
-            const ff = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", raw, "-af", postFilters(inputRate, j.line.voice, j.line.bubble), "-ac", "1", "-c:a", "pcm_s16le", j.out]);
+            const voice = { ...j.line.voice, pitch: renderSettings(j.line).pitch };
+            const ff = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", raw, "-af", postFilters(inputRate, voice, j.line.bubble, j.line.tone), "-ac", "1", "-c:a", "pcm_s16le", j.out]);
             if (ff.status !== 0) throw new Error(`ffmpeg failed on a speech clip: ${String(ff.stderr).trim()}`);
           } finally {
             rmSync(raw, { force: true });

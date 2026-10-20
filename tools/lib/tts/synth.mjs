@@ -22,12 +22,30 @@ const POST = 1; // bump when the trim or levelling below changes, so old cache f
  *   seed (from the cache key) makes any randomness in the backend repeatable.
  */
 
-/** sha256 of the settings (keys sorted, so the key does not depend on property order). */
+const sorted = (o) => (o && typeof o === "object" && !Array.isArray(o) ? Object.keys(o).sort().map((k) => [k, sorted(o[k])]) : o);
+
+/**
+ * What the backend should render for a line: the character's voice with its mood tone applied
+ * (rate × tone.rate, pitch + tone.pitch, the tone's noise and sentence pause, the shout speed-up).
+ */
+export function renderSettings(line) {
+  const v = line.voice;
+  const t = line.tone || {};
+  return {
+    rate: Math.round(v.rate * (t.rate ?? 1) * (line.bubble === "shout" ? 1.08 : 1) * 1000) / 1000,
+    pitch: Math.max(-12, Math.min(12, (v.pitch ?? 0) + (t.pitch ?? 0))),
+    noise: t.noise ?? NOISE.scale,
+    noiseW: NOISE.w,
+    pause: t.pause ?? 0,
+  };
+}
+
+/** sha256 of the settings (keys sorted at every level, so the key does not depend on property order). */
 export function cacheKey(backend, line) {
   const v = line.voice;
   const parts = { backend: backend.id, version: backend.version, model: v.model, speaker: v.speaker, rate: v.rate, pitch: v.pitch, filter: v.filter ?? null,
-    noise: NOISE, style: line.bubble ?? "speech", text: line.spoken, post: POST };
-  const canon = JSON.stringify(Object.keys(parts).sort().map((k) => [k, parts[k]]));
+    noise: NOISE, style: line.bubble ?? "speech", text: line.spoken, post: POST, ...(line.tone ? { tone: line.tone } : {}) };
+  const canon = JSON.stringify(sorted(parts));
   return createHash("sha256").update(canon).digest("hex");
 }
 
@@ -99,7 +117,7 @@ export function synthesizeLines(lines, backend, { cacheDir = CACHE_DIR, log = ()
         const wav = readWav(j.out);
         if (wav.sampleRate !== SR) throw new Error(`backend ${backend.id} wrote ${wav.sampleRate} Hz; expected ${SR}`);
         const clip = trimSilence(mono(wav.samples, wav.channels));
-        levelClip(clip, SPEECH_LUFS + (STYLE_DB[j.line.bubble] ?? 0));
+        levelClip(clip, SPEECH_LUFS + (STYLE_DB[j.line.bubble] ?? 0) + (j.line.tone?.gainDb ?? 0));
         writeWav(`${todo[i].file}.tmp`, clip, SR, 1);
         renameSync(`${todo[i].file}.tmp`, todo[i].file);
       }

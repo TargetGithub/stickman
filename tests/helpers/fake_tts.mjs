@@ -1,6 +1,7 @@
-// A fake TTS backend for tests (SPEECH_SPEC 7): a sine tone of 0.06 s per character of the spoken text,
-// at a frequency from the voice's pitch, so tests run without Piper.
+// A fake TTS backend for tests (SPEECH_SPEC 7): a sine tone of 0.06 s per character of the spoken text (divided by
+// the rate a mood gives, plus its sentence pauses), at a frequency from the pitch, so tests run without Piper.
 import { writeWav } from "../../tools/lib/wav.mjs";
+import { renderSettings } from "../../tools/lib/tts/synth.mjs";
 
 export function fakeBackend({ version = "1" } = {}) {
   const calls = [];
@@ -13,8 +14,10 @@ export function fakeBackend({ version = "1" } = {}) {
     },
     one(line, outPath) {
       calls.push(line.id);
-      const n = Math.round(0.06 * line.spoken.length * 48000);
-      const f = 220 * 2 ** ((line.voice.pitch ?? 0) / 12);
+      const r = renderSettings({ ...line, bubble: null });
+      const sentences = line.spoken.split(/[.!?]+\s+/).length;
+      const n = Math.round(((0.06 * line.spoken.length) / ((line.tone?.rate ?? 1)) + r.pause * (sentences - 1)) * 48000);
+      const f = 220 * 2 ** (r.pitch / 12);
       const x = new Float32Array(n);
       for (let i = 0; i < n; i++) x[i] = 0.3 * Math.sin((2 * Math.PI * f * i) / 48000);
       writeWav(outPath, x, 48000, 1);

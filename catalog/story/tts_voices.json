@@ -1,5 +1,5 @@
 {
-  "description": "Default spoken voices per timbre for --speech tts renders (SPEECH_SPEC 5). Read by tools/lib/tts, never by the engine. Models are Piper voices in assets/speech/models/ (see assets/speech/VOICES.md for licenses).",
+  "description": "Default spoken voices per timbre, the narrator and tones per face (moods) for --speech tts renders (SPEECH_SPEC 5). Read by tools/lib/tts, never by the engine. Models are Piper voices in assets/speech/models/ (see assets/speech/VOICES.md for licenses).",
   "backend": "piper",
   "timbres": {
     "soft": {
@@ -50,5 +50,131 @@
     "model": "en_GB-cori-medium",
     "rate": 0.85,
     "pitch": 0
+  },
+  "moods": {
+    "neutral": {
+      "description": "Plain speech: the character's own voice, no tone change.",
+      "tags": ["calm"]
+    },
+    "happy": {
+      "description": "Bright and bouncy: a little faster, higher and livelier.",
+      "tags": ["bright"],
+      "rate": 1.1,
+      "pitch": 1,
+      "gainDb": 1,
+      "noise": 0.45
+    },
+    "laugh": {
+      "description": "Giggly: faster and higher, with a light bubbly wobble.",
+      "tags": ["bright", "fun"],
+      "rate": 1.12,
+      "pitch": 2,
+      "gainDb": 1,
+      "noise": 0.5,
+      "tremolo": { "f": 7, "d": 0.15 }
+    },
+    "love": {
+      "description": "Warm and soft: a touch slower and gentler.",
+      "tags": ["warm", "soft"],
+      "rate": 0.94,
+      "pitch": 1,
+      "gainDb": -1,
+      "pause": 0.25
+    },
+    "surprised": {
+      "description": "Excited or amazed: quick, high and loud.",
+      "tags": ["excited"],
+      "rate": 1.2,
+      "pitch": 2,
+      "gainDb": 2,
+      "noise": 0.5
+    },
+    "determined": {
+      "description": "Firm and sure: steady pace, a little louder, less wobble.",
+      "tags": ["firm"],
+      "gainDb": 1.5,
+      "noise": 0.3
+    },
+    "smug": {
+      "description": "Sly and pleased: slower, lower, with knowing pauses.",
+      "tags": ["sly"],
+      "rate": 0.92,
+      "pitch": -1,
+      "noise": 0.4,
+      "pause": 0.3
+    },
+    "sad": {
+      "description": "Sad: slow, lower and quieter, with long pauses and a dull tone.",
+      "tags": ["sad", "soft"],
+      "rate": 0.78,
+      "pitch": -2,
+      "gainDb": -3,
+      "noise": 0.25,
+      "pause": 0.45,
+      "lowpass": 5000
+    },
+    "cry": {
+      "description": "Tearful: slow and shaky, the voice trembles.",
+      "tags": ["sad", "shaky"],
+      "rate": 0.75,
+      "pitch": -1,
+      "gainDb": -2,
+      "pause": 0.5,
+      "vibrato": { "f": 6, "d": 0.25 },
+      "tremolo": { "f": 5, "d": 0.3 }
+    },
+    "angry": {
+      "description": "Cross: a bit faster, lower and louder.",
+      "tags": ["loud"],
+      "rate": 1.1,
+      "pitch": -1,
+      "gainDb": 3,
+      "noise": 0.4
+    },
+    "furious": {
+      "description": "Very angry: fast, low and loud.",
+      "tags": ["loud"],
+      "rate": 1.18,
+      "pitch": -1,
+      "gainDb": 4,
+      "noise": 0.45
+    },
+    "scared": {
+      "description": "Frightened: very fast, high and quiet, with a nervous shake.",
+      "tags": ["shaky"],
+      "rate": 1.25,
+      "pitch": 2,
+      "gainDb": -1,
+      "vibrato": { "f": 7, "d": 0.15 }
+    },
+    "tired": {
+      "description": "Sleepy: slow, low and quiet, with long pauses.",
+      "tags": ["slow", "soft"],
+      "rate": 0.75,
+      "pitch": -2,
+      "gainDb": -3,
+      "pause": 0.5
+    },
+    "dizzy": {
+      "description": "Woozy: slower, with a slow wobbly pitch.",
+      "tags": ["wobbly"],
+      "rate": 0.85,
+      "vibrato": { "f": 3, "d": 0.4 }
+    },
+    "hurt": {
+      "description": "In pain (cartoon 'ow'): strained and shaky, a little higher.",
+      "tags": ["shaky"],
+      "rate": 0.9,
+      "pitch": 1,
+      "tremolo": { "f": 8, "d": 0.4 },
+      "vibrato": { "f": 6, "d": 0.2 }
+    },
+    "asleep": {
+      "description": "Talking in sleep: very slow, low and quiet.",
+      "tags": ["slow", "soft"],
+      "rate": 0.75,
+      "pitch": -2,
+      "gainDb": -6
+    }
   }
 }

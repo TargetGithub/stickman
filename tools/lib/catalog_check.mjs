@@ -76,6 +76,8 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
   // Spoken voices (SPEECH_SPEC 5): one entry per engine timbre.
   const ttsTimbres = Object.keys(files["story/tts_voices.json"].timbres).sort();
   if (ttsTimbres.join() !== [...V2_ENUMS.timbre].sort().join()) bad("story/tts_voices.json", "timbres", `needs exactly the timbres ${V2_ENUMS.timbre.join(", ")}`);
+  for (const m of Object.keys(files["story/tts_voices.json"].moods || {})) if (!catalog.faces[m]) bad("story/tts_voices.json", `moods.${m}`, `"${m}" is not a face (moods are keyed by face name)`);
+  if (!files["story/tts_voices.json"].moods?.neutral) bad("story/tts_voices.json", "moods", "needs a neutral mood (the fallback)");
 
   // 3. References.
   const moveNames = new Set(catalog.moves.map((m) => m.name));

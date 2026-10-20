@@ -62,9 +62,23 @@ export function narratorVoice(meta, table, override = {}) {
 }
 
 /**
+ * The tone for a mood (a face name) from the table's moods; neutral (null) for unknown faces or when moods are off.
+ * @returns {{ mood, rate?, pitch?, gainDb?, noise?, pause?, lowpass?, vibrato?, tremolo? } | null}
+ */
+export function moodTone(face, table, enabled = true) {
+  const m = enabled && face && face !== "neutral" ? table.moods?.[face] : null;
+  if (!m) return null;
+  const { description, tags, ...tone } = m;
+  return Object.keys(tone).length ? { mood: face, ...tone } : null;
+}
+
+/**
  * Every spoken line of a compiled v2 script, in script order. Beats without an id get one
  * ("tts_<scene>_<beat>") so the sim's events can be matched back to the line; the script is changed in place.
  * Skipped: thoughts (silent, as babble), characters that keep babble (bark, tts.off), text with no words.
+ * Each say line gets the tone of the speaker's face at that beat (SPEECH_SPEC 4.2a): the beat's own face, else the last
+ * face an earlier beat of the scene gave the speaker, else the face the scene starts them with. Narration is neutral.
+ * The --voices file can turn tones off with "moods": false.
  * @param {object} compiled  compileScript(...).script
  * @param {{ timbres, narrator }} table  catalog/story/tts_voices.json
  * @param {{ cast?: Record<string, object>, narrator?: object }} overrides  the --voices file
@@ -77,7 +91,10 @@ export function collectLines(compiled, table, overrides = {}) {
   compiled.scenes.forEach((sc, si) => {
     const beats = sc.beats || [];
     const merged = new Set();
+    const faces = new Map((sc.cast || []).filter((c) => c.face).map((c) => [c.id, c.face]));
     beats.forEach((b, bi) => {
+      const face = b.face ?? faces.get(b.who);
+      if (b.face && b.who !== "world") faces.set(b.who, b.face); // "from this beat on" (STORY_SPEC 4.3)
       if (merged.has(bi)) return;
       const narrate = b.who === "world" && b.do === "narrate";
       const text = narrate ? b.params?.text : b.say;
@@ -96,7 +113,7 @@ export function collectLines(compiled, table, overrides = {}) {
       const spoken = cleanText(parts.map((p) => p.text).join(" "));
       if (!voice || !spoken) return;
       out.push({ id: b.id, kind: narrate ? "narrate" : "say", scene: si, beat: bi, who: narrate ? "narrator" : b.who, text: parts.map((p) => p.text).join(" "), spoken,
-        bubble: narrate ? null : b.bubble ?? "speech", voice, ...(parts.length > 1 ? { parts } : {}) });
+        bubble: narrate ? null : b.bubble ?? "speech", voice, tone: narrate ? null : moodTone(face, table, overrides.moods !== false), ...(parts.length > 1 ? { parts } : {}) });
     });
   });
   return out;

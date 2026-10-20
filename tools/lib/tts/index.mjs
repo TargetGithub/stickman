@@ -31,7 +31,7 @@ export function speechReport(lines, report, backend) {
   const byId = new Map(report.map((r) => [r.id, r]));
   return {
     backend: `${backend.id} ${backend.version}`,
-    lines: lines.map((l) => ({ id: l.id, who: l.who, text: l.text, spoken: l.spoken, model: l.voice.model, speaker: l.voice.speaker, rate: l.voice.rate, pitch: l.voice.pitch,
+    lines: lines.map((l) => ({ id: l.id, who: l.who, text: l.text, spoken: l.spoken, model: l.voice.model, speaker: l.voice.speaker, rate: l.voice.rate, pitch: l.voice.pitch, mood: l.tone?.mood ?? "neutral",
       file: `${l.key}.wav`, dur: Number(l.dur.toFixed(3)), beatDur: byId.get(l.id)?.beatDur, cached: l.cached, ...(byId.get(l.id)?.long ? { long: true } : {}) })),
   };
 }

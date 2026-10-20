@@ -8,12 +8,15 @@ import { join } from "node:path";
 import { createEngine, compileScript, validate } from "../../engine/index.js";
 import { catalog } from "../../catalog/index.js";
 import { readingTime } from "../../engine/story/speech.js";
-import { cleanText, resolveVoice, collectLines, injectDurations, SAY_TAIL } from "../../tools/lib/tts/lines.mjs";
-import { cacheKey, synthesizeLines, speechClips, trimSilence, clipLoudness, levelClip } from "../../tools/lib/tts/synth.mjs";
+import { cleanText, resolveVoice, collectLines, injectDurations, moodTone, SAY_TAIL } from "../../tools/lib/tts/lines.mjs";
+import { cacheKey, synthesizeLines, speechClips, trimSilence, clipLoudness, levelClip, renderSettings } from "../../tools/lib/tts/synth.mjs";
 import { prepareSpeech, loadVoiceTable } from "../../tools/lib/tts/index.mjs";
 import { postFilters } from "../../tools/lib/tts/piper.mjs";
 import { swapSpeech, SR } from "../../tools/lib/mixer.mjs";
 import { fakeBackend, speechStory } from "../helpers/fake_tts.mjs";
+import { readWav } from "../../tools/lib/wav.mjs";
+
+const readWavSamples = (f) => readWav(f).samples;
 
 const table = loadVoiceTable();
 const tmp = () => mkdtempSync(join(tmpdir(), "stickman-tts-"));
@@ -214,4 +217,66 @@ test("a line the dialogue macro splits into bubbles is spoken once, spread over 
   assert.equal(clips.get(kai.parts[1].id).sfx, null);
   const out = swapSpeech([{ t: 0, sfx: "voice:soft:a:0", volume: 1, pan: 0, line: kai.parts[0].id }, { t: 4, sfx: "voice:soft:a:0", volume: 1, pan: 0, line: kai.parts[1].id }], clips);
   assert.deepEqual(out.map((e) => e.sfx), ["tts:k"], "the second bubble's babble is gone and adds no clip");
+});
+
+test("moodTone: a tone per face; neutral, unknown faces and moods off give none", () => {
+  for (const [face, enabled, want] of [["sad", true, "sad"], ["cry", true, "cry"], ["neutral", true, null], [undefined, true, null], ["no_such_face", true, null], ["sad", false, null]]) {
+    assert.equal(moodTone(face, table, enabled)?.mood ?? null, want, `${face} ${enabled}`);
+  }
+  const sad = moodTone("sad", table);
+  assert.ok(sad.rate < 1 && sad.pitch < 0 && sad.gainDb < 0 && sad.pause > 0, "sad is slower, lower, quieter, with pauses");
+  assert.ok(!("description" in sad) && !("tags" in sad));
+  const excited = moodTone("surprised", table);
+  assert.ok(excited.rate > 1 && excited.pitch > 0 && excited.gainDb > 0);
+  for (const face of Object.keys(table.moods)) assert.ok(catalog.faces[face], `mood "${face}" is a face`);
+});
+
+test("collectLines: each line takes the speaker's face at that beat (own, carried over, scene start)", () => {
+  const story = speechStory();
+  const sc = story.scenes[0];
+  sc.cast[1].face = "angry"; // mo starts the scene angry
+  sc.beats[1].params.lines[0][2] = "sad"; // kai's first dialogue line is sad
+  sc.beats.find((b) => b.id === "bye").face = "happy";
+  const lines = collectLines(compileScript(story, catalog).script, table);
+  const mood = (who, i = 0) => lines.filter((l) => l.who === who)[i].tone?.mood ?? null;
+  assert.equal(lines[0].tone, null, "narration is neutral");
+  assert.equal(mood("kai"), "sad");
+  assert.equal(mood("mo"), "angry", "the scene's starting face");
+  assert.equal(mood("kai", 1), "happy");
+  // Without its own face, a later line keeps the face the speaker last had.
+  delete sc.beats.find((b) => b.id === "bye").face;
+  const again = collectLines(compileScript(story, catalog).script, table);
+  assert.equal(again.filter((l) => l.who === "kai")[1].tone?.mood, "sad");
+  const off = collectLines(compileScript(story, catalog).script, table, { moods: false });
+  assert.ok(off.every((l) => l.tone === null), '"moods": false in the --voices file');
+});
+
+test("tones: in the cache key, and they change rate, pitch, pauses and loudness", () => {
+  const b = fakeBackend();
+  const line = { spoken: "Oh no. It is gone.", bubble: "speech", voice: { model: "m", speaker: 0, rate: 1, pitch: 2, filter: null } };
+  const sadLine = { ...line, tone: moodTone("sad", table) };
+  assert.equal(cacheKey(b, { ...line, tone: null }), cacheKey(b, line), "neutral lines keep their old cache files");
+  assert.notEqual(cacheKey(b, sadLine), cacheKey(b, line));
+  assert.notEqual(cacheKey(b, sadLine), cacheKey(b, { ...line, tone: moodTone("cry", table) }));
+  const r = renderSettings(sadLine);
+  assert.equal(r.rate, 0.78);
+  assert.equal(r.pitch, 0, "voice +2, sad -2");
+  assert.equal(r.pause, 0.45);
+  assert.equal(renderSettings({ ...line, voice: { ...line.voice, pitch: 11 }, tone: moodTone("surprised", table) }).pitch, 12, "clamped");
+  assert.equal(renderSettings({ ...line, bubble: "shout" }).rate, 1.08);
+  const dir = tmp();
+  try {
+    const [plain, sad, happy] = synthesizeLines([{ ...line, id: "a" }, { ...sadLine, id: "b" }, { ...line, id: "c", tone: moodTone("happy", table) }], b, { cacheDir: dir });
+    assert.ok(sad.dur > plain.dur + 0.45, `sad is slower with a pause: ${sad.dur} vs ${plain.dur}`);
+    assert.ok(happy.dur < plain.dur);
+    assert.ok(Math.abs(clipLoudness(readWavSamples(sad.file)) - (-16 - 3)) < 0.6, "sad is 3 dB quieter");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("postFilters adds the mood colour", () => {
+  assert.match(postFilters(22050, { pitch: 0 }, "speech", moodTone("cry", table)), /vibrato=f=6:d=0\.25,tremolo=f=5:d=0\.3/);
+  assert.match(postFilters(22050, { pitch: 0 }, "speech", moodTone("sad", table)), /lowpass=f=5000/);
+  assert.equal(postFilters(22050, { pitch: 0 }, "speech", null), "aresample=48000");
 });
