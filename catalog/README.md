@@ -39,6 +39,7 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `world/ambience.json` | ambience beds (names are the engine's; recipes in `tools/lib/ambience.mjs`) |
 | `story/activities.json` | activities: players, roles, objects, endings, rally data |
 | `story/music_moods.json` | `scales` and `moods` (read by `tools/lib/music_gen.mjs`) |
+| `story/templates.json` | script templates for v3 scripts (V3.8): typed `params` and a `fragment` (scenes, text, layers, shapes, tracks, audioTracks, markers) with `${name}` placeholders; `${id}` is the using scene's id |
 | `story/macro_lines.json` | lines the story compiler writes itself (under 40 characters) |
 | `story/blocklist.json` | `blocklist` (errors) and `softWords` (warnings with a kinder word) |
 | `docs/*.json` | descriptions of engine-owned names: world commands, macros, camera modes, transitions and cards, validator codes |

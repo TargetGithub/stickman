@@ -9,11 +9,14 @@
 //   scenes[].lens, camera[] lens fields, lag and move   the v3 camera (V3.4)
 //   layers, text, shapes, tracks, post (and scenes[].post)   motion graphics (V3.5, schema_motion.js)
 //   cast[].view, scenes[].cast[].view, beats[].view   turnaround views (V3.6)
+//   audio.tracks, audio.markers, audio.duck   audio tracks (V3.8, schema_audio.js); templates and marker `at`s are
+//   expanded before the schema check (engine/templates.js)
 // `layer` names stay accepted and map to z presets (engine/depth.js LAYER_Z); a node gives one or the other.
 
 import { jsonSchemaV2, schemaV2For } from "./schema_v2.js";
 import { DEPTH } from "../depth.js";
 import { LAYERS_SCHEMA, TEXT_SCHEMA, SHAPES_SCHEMA, TRACKS_SCHEMA, POST_SCHEMA } from "./schema_motion.js";
+import { AUDIO_TRACKS_SCHEMA, MARKERS_SCHEMA, DUCK_SCHEMA } from "./schema_audio.js";
 
 const Z = { type: "number", minimum: -4000, maximum: 2000, description: "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)." };
 
@@ -121,6 +124,8 @@ export function withDepth(v2) {
   beat.properties.view = { ...VIEW, description: "The character turns to this view from this beat on (E_VIEW_BODY)." };
   // Motion graphics (V3.5): top-level layers, text, shapes, tracks and post; a scene may set its own post.
   Object.assign(s.properties, { layers: LAYERS_SCHEMA, text: TEXT_SCHEMA, shapes: SHAPES_SCHEMA, tracks: TRACKS_SCHEMA, post: POST_SCHEMA });
+  // Audio tracks, markers and ducking (V3.8) on the v2 audio block.
+  Object.assign(s.properties.audio.properties, { tracks: AUDIO_TRACKS_SCHEMA, markers: MARKERS_SCHEMA, duck: DUCK_SCHEMA });
   // Motion quality (V3.7): render-time follow-through, squash and stretch, hair sway, breathing and motion blur.
   const amt = (d, def) => ({ type: "number", minimum: 0, maximum: 1, description: `${d} (default ${def}).` });
   s.properties.motion = { type: "object", additionalProperties: false, description: "Motion quality for v3 scenes, drawn over the stored motion (the simulation is unchanged).", properties: {

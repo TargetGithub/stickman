@@ -94,5 +94,9 @@
   "E_TRACK_KEYS": { "meaning": "a key value of the wrong kind, two keys at one time, or a path or line missing its points", "fix": "Numbers for numbers, #rrggbb for colours; one key per time." },
   "E_TRACK_EASE": { "meaning": "an unknown easing on a key", "fix": "Use an easing name, step or cubic-bezier(x1, y1, x2, y2)." },
   "E_TEXT_STYLE": { "meaning": "an unknown text style", "fix": "Use a style from catalog/world/text_styles.json (title, subtitle, caption, lower_third, comic, label)." },
-  "E_VIEW_BODY": { "meaning": "a character is asked for a turnaround view its body plan does not have", "fix": "Use a view the plan lists (the dog has side and front; humanoids have side, three_quarter, front and back)." }
+  "E_VIEW_BODY": { "meaning": "a character is asked for a turnaround view its body plan does not have", "fix": "Use a view the plan lists (the dog has side and front; humanoids have side, three_quarter, front and back)." },
+  "E_AUDIO_TRACK": { "meaning": "an audio track with an unknown mood, bed or SFX key, a missing field, or a duck rule under nothing", "fix": "Use catalog moods, ambience beds and SFX keys; give sfx tracks at times and bus tracks a bus." },
+  "E_MARKER_UNKNOWN": { "meaning": "a beat or sfx track starts at a marker that does not exist, or that is in another scene", "fix": "Add the marker to audio.markers with the beat's scene." },
+  "E_TEMPLATE_UNKNOWN": { "meaning": "a scene uses a template that is not in the catalog", "fix": "Use a template from catalog/story/templates.json (intro_card, doopi_intro)." },
+  "E_TEMPLATE_PARAM": { "meaning": "a template param is missing, unknown or of the wrong type", "fix": "Give the params the template lists, with their types." }
 }

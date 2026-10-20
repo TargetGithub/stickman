@@ -4,6 +4,7 @@
 // hold frames for transitions between them. A v1 script is one scene and runs exactly as before.
 
 import { createActor } from "./actor.js";
+import { expandScript } from "./templates.js";
 import { prepareCatalog, STORY_ONLY, isIdleMove } from "./moves.js";
 import { createWorld, stepWorld } from "./world.js";
 import { createClock, tick, holdTick, requestHitstop, timeEffectsActive } from "./clock.js";
@@ -102,7 +103,7 @@ function ridersFollow(world) {
  */
 export function simulate(script, catalog, opts = {}) {
   const moves = movesFor(catalog);
-  const story = compileStory(normalize(script), catalog, moves).story; // macros → beats (S6)
+  const story = compileStory(normalize(expandScript(script, catalog).script), catalog, moves).story; // templates (V3.8), then macros → beats (S6)
   const meta = story.meta || {};
   const limit = story.legacy ? LIMITS.maxDuration : LIMITS_V2.maxDuration;
   const maxFrames = Math.round((opts.maxSeconds ?? limit + 5) * FPS);

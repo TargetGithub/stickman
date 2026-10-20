@@ -1,0 +1,347 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "V3.8 Audio Tracks and Templates: The Sound Test",
+    "format": "landscape",
+    "seed": 38,
+    "kind": "clip",
+    "audience": "kids",
+    "speakerNames": true
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft"
+      }
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft"
+      }
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark"
+      }
+    }
+  ],
+  "locations": [
+    {
+      "id": "square",
+      "theme": "tokyo_village",
+      "stageWidth": 3200,
+      "ambience": "park_birds"
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.35,
+    "markers": [
+      {
+        "id": "drum",
+        "scene": "test",
+        "t": 2.0
+      },
+      {
+        "id": "bell",
+        "scene": "test",
+        "t": 4.4
+      },
+      {
+        "id": "cheer",
+        "scene": "test",
+        "t": 11.3
+      }
+    ],
+    "tracks": [
+      {
+        "id": "beat",
+        "kind": "music",
+        "mood": "playful",
+        "scene": "test",
+        "from": 0,
+        "to": 14.6,
+        "volume": [
+          {
+            "t": 0,
+            "v": 0.6
+          },
+          {
+            "t": 11,
+            "v": 1.2,
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 14,
+            "v": 0.8
+          }
+        ],
+        "fadeIn": 1,
+        "fadeOut": 1.5
+      },
+      {
+        "id": "birds",
+        "kind": "ambience",
+        "bed": "park_birds",
+        "scene": "test",
+        "volume": 0.9,
+        "pan": [
+          {
+            "t": 0,
+            "v": -0.8
+          },
+          {
+            "t": 12,
+            "v": 0.8
+          }
+        ]
+      },
+      {
+        "id": "hits",
+        "kind": "sfx",
+        "sfx": "pop",
+        "scene": "test",
+        "at": [
+          {
+            "marker": "drum"
+          },
+          {
+            "marker": "drum",
+            "delay": 0.4
+          },
+          {
+            "marker": "drum",
+            "delay": 0.8
+          }
+        ]
+      },
+      {
+        "id": "bells",
+        "kind": "sfx",
+        "sfx": "crystal_chime",
+        "scene": "test",
+        "at": [
+          {
+            "marker": "bell"
+          }
+        ],
+        "volume": 0.8,
+        "pan": 0.5
+      },
+      {
+        "id": "yay",
+        "kind": "sfx",
+        "sfx": "magic_sparkle",
+        "scene": "test",
+        "at": [
+          {
+            "marker": "cheer"
+          }
+        ]
+      },
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "scene": "test",
+        "volume": 1.2
+      },
+      {
+        "id": "m2",
+        "kind": "music",
+        "mood": "disco"
+      }
+    ],
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -12,
+        "attack": 0.2,
+        "release": 0.5
+      },
+      {
+        "duck": "ambience",
+        "under": "bells",
+        "db": -10
+      },
+      {
+        "duck": "music",
+        "under": "nobody"
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 25,
+          "title": "The Sound Test",
+          "location": "square"
+        }
+      }
+    },
+    {
+      "id": "test",
+      "location": "square",
+      "time": "day",
+      "music": null,
+      "camera": [
+        {
+          "at": 0,
+          "mode": "fixed",
+          "x": 1600,
+          "zoom": 1.05
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 2200,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "hi",
+          "at": 0.4,
+          "who": "doopi",
+          "say": "Listen! Drum, drum, drum!",
+          "do": "talk",
+          "face": "happy"
+        },
+        {
+          "id": "nod1",
+          "at": {
+            "marker": "drum"
+          },
+          "who": "dony",
+          "do": "nod"
+        },
+        {
+          "id": "nod2",
+          "at": {
+            "marker": "drum",
+            "delay": 0.4
+          },
+          "who": "becky",
+          "do": "tilt_head"
+        },
+        {
+          "id": "bell",
+          "at": {
+            "marker": "bell"
+          },
+          "who": "dony",
+          "do": "look_around"
+        },
+        {
+          "id": "what",
+          "at": {
+            "after": "bell"
+          },
+          "who": "dony",
+          "say": "A bell? From where?",
+          "do": "talk",
+          "face": "surprised"
+        },
+        {
+          "id": "dance",
+          "at": {
+            "after": "what"
+          },
+          "who": "doopi",
+          "do": "dance_a"
+        },
+        {
+          "id": "wag",
+          "at": {
+            "with": "dance"
+          },
+          "who": "becky",
+          "do": "wag"
+        },
+        {
+          "id": "yay",
+          "at": {
+            "marker": "cheer"
+          },
+          "who": "dony",
+          "do": "cheer"
+        },
+        {
+          "id": "jump",
+          "at": {
+            "marker": "cheer",
+            "delay": 0.2
+          },
+          "who": "doopi",
+          "do": "jump_joy"
+        },
+        {
+          "id": "end",
+          "at": {
+            "after": "jump",
+            "delay": 1.5
+          },
+          "who": "world",
+          "do": "fade",
+          "params": {
+            "to": "black",
+            "dur": 0.8
+          }
+        }
+      ]
+    }
+  ]
+}

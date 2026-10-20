@@ -6,6 +6,7 @@ import { schemaV2For } from "./schema_v2.js";
 import { schemaV3For } from "./schema_v3.js";
 import { depthIssues } from "./depth.js";
 import { motionIssues } from "./motion.js";
+import { audioTrackIssues } from "./audio.js";
 import { checkSemantics, WORLD_COMMANDS } from "./semantic.js";
 import { checkStory } from "./story.js";
 import { formatIssues, formatTimeline } from "./report.js";
@@ -14,6 +15,7 @@ import { normalize } from "../story/normalize.js";
 import { compileStory } from "../story/compile.js";
 import { macroIssues } from "./macros.js";
 import { bundleIssues } from "../bundles.js";
+import { expandScript } from "../templates.js";
 import { LIMITS, LIMITS_V2 } from "../config.js";
 
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues };
@@ -80,6 +82,10 @@ export function validate(script, catalog) {
   }
   const version = versionIssue(script);
   if (version) return result("schema", [version]);
+  // Templates and markers (V3.8): expand them first; everything after sees a plain v3 script.
+  const expanded = expandScript(script, catalog);
+  if (expanded.issues.length) return result("semantic", expanded.issues);
+  script = expanded.script;
   const v2 = script.version >= 2; // 2, or 3 with the depth lane (V3.2)
   const schemaIssues = v2 ? checkSchemaV2(script, catalog) : checkSchema(script);
   if (schemaIssues.length) return result("schema", schemaIssues);
@@ -93,7 +99,7 @@ export function validate(script, catalog) {
   if (v2) {
     // Macro params first, then compile (ADR-014), then every check on the compiled beats.
     const authored = normalize(script);
-    const pre = [...macroIssues(authored, catalog, moves), ...depthIssues(authored, catalog), ...motionIssues(authored, catalog)];
+    const pre = [...macroIssues(authored, catalog, moves), ...depthIssues(authored, catalog), ...motionIssues(authored, catalog), ...audioTrackIssues(authored, catalog)];
     if (pre.length) return result("semantic", pre);
     try {
       story = compileStory(authored, catalog, moves).story;

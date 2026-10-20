@@ -406,6 +406,19 @@ export function axisScale(dir, k), hairSway(history, amount), standingStill(hist
 // character.js: style.hairTilt turns the hair's axes
 ```
 
+### templates.js and audio_tracks.js (V3.8, ENGINE_V3_SPEC 6)
+```js
+// templates.js (pure; run by validate(), simulate() and compileScript() before anything else)
+export function expandScript(script, catalog): { script, issues, expansions };   // template uses → scenes and blocks; marker `at`s → seconds
+export function substitute(value, vars), templateParams(tpl, given, path), templateKey(name);
+// audio_tracks.js (pure; ADR-017: data only)
+export const BUSES;  export function collectAudioTracks(sim): { tracks, buses, sfx, duck, markers } | null;   // video seconds
+export function busGainAt(plan, bus, t), duckGainAt(plan, stem, t), trackGainAt(track, t), trackPanAt(track, t);
+// index.js: engine.getAudioTracks(); export { expandScript, audioTrackGains }; collectAudioEvents adds the track sfx hits
+// tools/lib/track_mix.mjs: addTrackStems(stems, plan, opts), applyEventBuses(events, plan, offset), stemGains(plan, offset)
+// tools/lib/mixer.mjs mixdownStory({ ..., musicGain?, ambienceGain? }); validator/schema_audio.js, validator/audio.js
+```
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -904,4 +917,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: separation (spec 9.1 rule 6) pushed any two grounded characters closer than 40 px x scale apart, half each. When an authored walk passed through characters standing, waving or sitting, the walker kept going and shoved them aside with no walk cycle, which showed in every Doopi episode.
 - **Decision**: in story scripts (v2 and v3; `world.passOver`), separation applies only when both characters are travelling or attacking under their own moves (movement or attack category, not idle). A walker passes over anyone else. Hits, knockbacks, launches, pairs, rides and activities still move characters as before. v1 clips keep the old symmetric separation, so fighters in clips never overlap.
 - **Consequences**: v1 golden frames are unchanged; the v2 goldens `s5_pairs`, `s5_scene1`, `s6_gauntlet` and `s6_fights` change by a few pixels (bystanders stay put) and `s6_fights` gets shorter scenes (shorter run-ups); they were re-recorded after Sridhar's review. All 24 Doopi episodes still validate; ep01 gains one `W_DIALOGUE_FAST` (a line now starts while the speaker's previous bubble shows). Characters placed on the same spot now stay overlapped instead of being spread apart. `tests/unit/pass_over.test.js` covers both rules.
+
+### ADR-031 Audio tracks are plan data; templates expand before validation (V3.8)
+- **Context**: v3 adds keyframed audio tracks, ducking rules, markers beats can anchor to, and reusable templates (the Doopi intro), while the engine stays free of audio synthesis (ADR-017) and every check keeps working on what the simulation sees.
+- **Decision**: the engine turns `audio.tracks`, `audio.duck` and `audio.markers` into a plan in video seconds (`collectAudioTracks`), adds track sound effects to the audio events, and exposes pure gain helpers; the tools render music and ambience tracks into the existing stems and apply bus gains and ducking in the story mixdown. Markers are resolved to beat times and templates are expanded by `expandScript` before validation, simulation and compilation, so the schema, the semantic checks, the dry run and the renderer all see one plain v3 script; template issues (`E_TEMPLATE_UNKNOWN`, `E_TEMPLATE_PARAM`) and marker issues (`E_MARKER_UNKNOWN`) are reported first.
+- **Consequences**: the same script gives the same audio (all inputs are seeded or data). Paths in later issues point at the expanded script (a template's scenes take the use's place, its blocks are appended). The schema export cannot describe `use` scenes or marker `at`s, since they never reach it; STORY_SPEC documents them.
 

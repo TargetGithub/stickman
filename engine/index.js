@@ -15,9 +15,13 @@ import { storyToVideo } from "./clock.js";
 import { createRenderer, renderFrame as drawFrame } from "./renderer/index.js";
 import { collectAudioEvents, collectMusicCues } from "./audio_events.js";
 import { collectMusicPlan, collectAmbiencePlan } from "./audio_plan.js";
+import { collectAudioTracks, busGainAt, duckGainAt, trackGainAt, trackPanAt } from "./audio_tracks.js";
+import { expandScript } from "./templates.js";
 import { FPS, FORMATS, ENGINE_VERSION } from "./config.js";
 
-export { validate, formatIssues, ENGINE_VERSION };
+export { validate, formatIssues, ENGINE_VERSION, expandScript };
+/** Audio track mixing helpers for tools (V3.8): gains and pans of a getAudioTracks() plan at a video time. */
+export const audioTrackGains = { busGainAt, duckGainAt, trackGainAt, trackPanAt };
 
 /** JSON Schema for scripts with this catalog's enums (for LLM structured output). */
 export function scriptSchema(catalog) {
@@ -31,7 +35,7 @@ export function scriptSchema(catalog) {
  */
 export function compileScript(script, catalog) {
   if (script?.version !== 2 && script?.version !== 3) return { script, expansions: [] };
-  const { story, expansions } = compileStory(normalize(script), catalog, movesFor(catalog));
+  const { story, expansions } = compileStory(normalize(expandScript(script, catalog).script), catalog, movesFor(catalog));
   return { script: plainScript(story), expansions };
 }
 
@@ -99,6 +103,11 @@ export function createEngine(opts) {
     /** Story scripts (S7): ambience beds over time; null for v1 scripts. */
     getAmbiencePlan() {
       return collectAmbiencePlan(loaded().sim);
+    },
+
+    /** v3 scripts (V3.8): audio tracks, buses, sfx hits and ducking rules in video seconds; null without tracks. */
+    getAudioTracks() {
+      return collectAudioTracks(loaded().sim);
     },
 
     /** Resolved anchors [{ beatId, anchor, t (story s), videoT }]. */

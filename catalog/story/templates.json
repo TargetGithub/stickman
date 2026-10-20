@@ -1,0 +1,167 @@
+{
+  "intro_card": {
+    "description": "A title card scene: a character waves on an empty stage while a title pops in and a subtitle slides up.",
+    "tags": ["intro", "title", "card"],
+    "params": {
+      "who": { "type": "string", "required": true, "description": "The character who waves (in the cast)." },
+      "title": { "type": "string", "required": true, "maxLength": 48, "description": "The big title." },
+      "subtitle": { "type": "string", "default": " ", "maxLength": 60, "description": "The line under it." },
+      "theme": { "type": "string", "default": "white_stage", "description": "A theme or location id for the backdrop." },
+      "mood": { "type": "string", "default": "happy", "description": "The music mood." }
+    },
+    "fragment": {
+      "scenes": [
+        {
+          "id": "${id}",
+          "location": "${theme}",
+          "music": { "mood": "${mood}", "volume": 0.35 },
+          "camera": [{ "at": 0, "mode": "fixed", "x": 1600, "zoom": 1 }],
+          "cast": [{ "id": "${who}", "x": 1600, "facing": 1, "face": "happy" }],
+          "beats": [
+            { "id": "${id}_wave", "at": 0.8, "who": "${who}", "do": "wave" },
+            {
+              "id": "${id}_end",
+              "at": { "after": "${id}_wave", "delay": 1.4 },
+              "who": "world",
+              "do": "fade",
+              "params": { "to": "black", "dur": 0.5 }
+            }
+          ]
+        }
+      ],
+      "layers": [{ "id": "${id}_titles", "scene": "${id}", "from": 0.2, "to": 4.2, "out": { "type": "fade", "dur": 0.5 } }],
+      "text": [
+        {
+          "id": "${id}_title",
+          "text": "${title}",
+          "style": "title",
+          "layer": "${id}_titles",
+          "x": 960,
+          "y": 300,
+          "from": 0.2,
+          "in": { "type": "pop", "dur": 0.5 }
+        },
+        {
+          "id": "${id}_sub",
+          "text": "${subtitle}",
+          "style": "subtitle",
+          "layer": "${id}_titles",
+          "x": 960,
+          "y": 420,
+          "from": 0.8,
+          "in": { "type": "slide_up", "dur": 0.5 }
+        }
+      ],
+      "audioTracks": [{ "id": "${id}_whoosh", "kind": "sfx", "sfx": "card_whoosh", "scene": "${id}", "at": [0.2] }]
+    }
+  },
+  "doopi_intro": {
+    "description": "The Doopi & Friends opening: Doopi waves, Becky runs in, the show title pops in and the episode line slides up, with sparkles and a music lift.",
+    "tags": ["intro", "series", "doopi"],
+    "params": {
+      "episode": { "type": "number", "required": true, "description": "The episode number." },
+      "title": { "type": "string", "required": true, "maxLength": 48, "description": "The episode title." },
+      "location": { "type": "string", "default": "tokyo_village", "description": "A location id or theme for the backdrop." },
+      "hero": { "type": "string", "default": "doopi", "description": "The hero who waves." },
+      "dog": { "type": "string", "default": "becky", "description": "The dog who runs in." },
+      "mood": { "type": "string", "default": "happy", "description": "The music mood." }
+    },
+    "fragment": {
+      "scenes": [
+        {
+          "id": "${id}",
+          "location": "${location}",
+          "time": "day",
+          "music": { "mood": "${mood}", "volume": 0.3 },
+          "camera": [{ "at": 0, "mode": "fixed", "x": 1600, "zoom": 1.05 }],
+          "cast": [
+            { "id": "${hero}", "x": 1350, "facing": 1, "face": "happy" },
+            { "id": "${dog}", "x": 2900, "facing": -1, "hidden": true }
+          ],
+          "beats": [
+            { "id": "${id}_wave", "at": 0.5, "who": "${hero}", "do": "wave" },
+            {
+              "id": "${id}_dog",
+              "at": 1.1,
+              "macro": "enter",
+              "params": { "who": "${dog}", "side": "right", "to": { "x": 1750 }, "mode": "run" }
+            },
+            { "id": "${id}_jump", "at": { "marker": "${id}_drop" }, "who": "${hero}", "do": "jump_joy" },
+            { "id": "${id}_wag", "at": { "with": "${id}_jump" }, "who": "${dog}", "do": "wag" },
+            {
+              "id": "${id}_end",
+              "at": { "after": "${id}_jump", "delay": 1.8 },
+              "who": "world",
+              "do": "fade",
+              "params": { "to": "black", "dur": 0.6 }
+            }
+          ]
+        }
+      ],
+      "layers": [{ "id": "${id}_titles", "scene": "${id}", "from": 0.3, "to": 5.6, "out": { "type": "fade", "dur": 0.5 } }],
+      "shapes": [
+        {
+          "id": "${id}_band",
+          "type": "rect",
+          "layer": "${id}_titles",
+          "x": 960,
+          "y": 330,
+          "w": 1180,
+          "h": 300,
+          "r": 60,
+          "opacity": 0.92,
+          "fill": { "type": "linear", "angle": 90, "stops": [[0, "#ff7eb6"], [1, "#6a4fb0"]] },
+          "in": { "type": "wipe_right", "dur": 0.5 },
+          "from": 0.3
+        }
+      ],
+      "text": [
+        {
+          "id": "${id}_show",
+          "text": "Doopi & Friends",
+          "style": "title",
+          "layer": "${id}_titles",
+          "x": 960,
+          "y": 290,
+          "from": 0.6,
+          "in": { "type": "pop", "dur": 0.5 }
+        },
+        {
+          "id": "${id}_ep",
+          "text": "Episode ${episode}: ${title}",
+          "style": "subtitle",
+          "layer": "${id}_titles",
+          "x": 960,
+          "y": 410,
+          "from": 1.3,
+          "in": { "type": "slide_up", "dur": 0.5 }
+        }
+      ],
+      "tracks": [
+        {
+          "target": "text.${id}_show.scale",
+          "scene": "${id}",
+          "keys": [{ "t": 3, "v": 1 }, { "t": 3.2, "v": 1.12, "ease": "outBack" }, { "t": 3.5, "v": 1 }]
+        }
+      ],
+      "markers": [{ "id": "${id}_drop", "scene": "${id}", "t": 3 }],
+      "audioTracks": [
+        { "id": "${id}_sparkle", "kind": "sfx", "sfx": "sparkle", "scene": "${id}", "at": [0.6, 1.3] },
+        {
+          "id": "${id}_shimmer",
+          "kind": "sfx",
+          "sfx": "magic_sparkle",
+          "scene": "${id}",
+          "at": [{ "marker": "${id}_drop" }]
+        },
+        {
+          "id": "${id}_lift",
+          "kind": "bus",
+          "bus": "music",
+          "scene": "${id}",
+          "volume": [{ "t": 0, "v": 0.7 }, { "t": 3, "v": 1.3, "ease": "inOutQuad" }, { "t": 5, "v": 1 }]
+        }
+      ]
+    }
+  }
+}

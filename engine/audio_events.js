@@ -7,6 +7,7 @@ import { FPS, PHYSICS, COMBAT } from "./config.js";
 import { syllables, voiceOf } from "./story/speech.js";
 import { storyToVideo } from "./clock.js";
 import { CARD_COMMANDS } from "./story/timing.js";
+import { collectAudioTracks } from "./audio_tracks.js";
 
 const VOLUME = { step: 0.35, whoosh: 0.55, crowd_cheer: 0.6, crowd_gasp: 0.6 };
 const PAN_WIDTH = 0.8; // keep stereo placement subtle
@@ -116,6 +117,12 @@ function storyCues(sim, actorX, panAt) {
   }
   for (const seg of sim.store?.segments || []) {
     if (seg.kind === "hold" && seg.info.type === "card") out.push({ t: seg.start / FPS, sfx: "card_whoosh", volume: 0.5, pan: 0 });
+  }
+  // Audio tracks (V3.8): sound effects a v3 script places at times or markers.
+  const tracks = collectAudioTracks(sim);
+  if (tracks?.sfx.length) {
+    for (const e of tracks.sfx) out.push({ t: e.t, sfx: e.sfx, volume: e.volume, pan: e.pan });
+    out.sort((a, b) => a.t - b.t);
   }
   return out;
 }
