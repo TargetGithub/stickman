@@ -52,7 +52,9 @@ function turnAxes(ax, a) {
 function drawHead(ctx, j, r, lw, style, facing) {
   const look = style.look;
   const ax = headAxes(j, facing);
-  const hairAx = turnAxes(ax, style.hairTilt || 0);
+  // wrap (turned views, V3.9): how far hair and hats wrap round the head (appearance.js mirrorAxes).
+  const wrap = style.wrap || 0;
+  const hairAx = { ...turnAxes(ax, style.hairTilt || 0), wrap, back: !!style.hideFace };
   if (look) drawHairBack(ctx, j.head, r, hairAx, look);
   if (style.draw === "box") {
     const hu = { x: j.head.x - j.neckTop.x, y: j.head.y - j.neckTop.y };
@@ -88,7 +90,7 @@ function drawHead(ctx, j, r, lw, style, facing) {
     if (look) {
       drawHair(ctx, j.head, r, hairAx, look);
       if (acc.eyepatch && !style.hideFace) drawEyepatch(ctx, j.head, r, ax, acc.eyepatch);
-      drawHeadTop(ctx, j.head, r, ax, acc);
+      drawHeadTop(ctx, j.head, r, { ...ax, wrap, back: !!style.hideFace }, acc);
     }
     return;
   }

@@ -13,13 +13,13 @@ export const TABLE_FILE = fileURLToPath(new URL("../../../catalog/story/tts_voic
 export const loadVoiceTable = (file = TABLE_FILE) => JSON.parse(readFileSync(file, "utf8"));
 
 /**
- * @param {object} script  a v2 story script (left unchanged)
+ * @param {object} script  a v2 or v3 story script (left unchanged; v3 templates and markers are expanded by compileScript)
  * @param {{ catalog, backend, table?, overrides?, cacheDir?, log? }} o  overrides: the --voices file
  * @returns {{ script: object, lines: Array<object>, report: Array<{ id, beatDur, long }> }}
  *   script: the compiled script with sayDur / narration dur set from the audio
  */
 export function prepareSpeech(script, { catalog, backend, table = loadVoiceTable(), overrides = {}, cacheDir = CACHE_DIR, log }) {
-  if (script?.version !== 2) throw new Error("--speech tts needs a v2 story script");
+  if (script?.version !== 2 && script?.version !== 3) throw new Error("--speech tts needs a v2 or v3 story script");
   const compiled = structuredClone(compileScript(script, catalog).script);
   const lines = synthesizeLines(collectLines(compiled, table, overrides), backend, { cacheDir, log });
   const report = injectDurations(compiled, lines);

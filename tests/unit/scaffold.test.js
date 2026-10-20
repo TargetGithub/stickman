@@ -36,6 +36,7 @@ const expected = {
   "../../engine/lighting.js": ["lightRigOf", "resolveRig", "blendRigs", "lightAt", "shadeTones", "contactShadow", "castShadow", "fogAt", "fogVeils", "ambientTint"],
   "../../engine/validator/index.js": ["validate", "jsonSchema"],
   "../../engine/renderer/index.js": ["createRenderer", "renderFrame"],
+  "../../engine/renderer/draw_chars.js": ["charsAt", "order", "drawLayerChars", "drawChars"],
 };
 
 for (const [path, names] of Object.entries(expected)) {

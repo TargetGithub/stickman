@@ -111,20 +111,23 @@ export function drawLitContactShadow(ctx, c, sh, groundY) {
 /**
  * A cast shadow: the character's silhouette drawn through a flattening transform about its feet.
  * @param {{ a, b, c, d, alpha }} cast  castShadow() from lighting.js
- * @param {(ctx, grey) => void} silhouette  draws the character in the grey colour given, no outline, no face
+ * @param {(ctx, grey, alpha?) => void} silhouette  draws the character in the colour (and alpha) given, no outline, no face
+ * @param {boolean} [onLayer]  ctx is a transparent depth-of-field layer (V3.9): multiply has nothing to darken
+ *   there, so the shadow is black at the shadow's alpha instead (the same darkening once composited)
  */
-export function drawCastShadow(ctx, c, cast, groundY, silhouette) {
+export function drawCastShadow(ctx, c, cast, groundY, silhouette, onLayer = false) {
   if (c.alpha <= 0.01) return;
   const fx = c.j.hip.x;
   ctx.save();
   // A multiply pass with a grey darkens whatever is under the silhouette by the shadow's alpha, whatever the
   // character drawer does with globalAlpha; overlapping strokes darken a little more, as real shadows do not,
   // but the grey keeps it soft.
-  ctx.globalCompositeOperation = "multiply";
+  if (!onLayer) ctx.globalCompositeOperation = "multiply";
   ctx.translate(fx + (cast.tx || 0) * c.scale, groundY + (cast.ty || 0) * c.scale);
   ctx.transform(cast.a, cast.b, cast.c, cast.d, 0, 0);
   ctx.translate(-fx, -groundY);
   const g = Math.round(255 * (1 - cast.alpha * c.alpha));
-  silhouette(ctx, `#${g.toString(16).padStart(2, "0").repeat(3)}`);
+  if (onLayer) silhouette(ctx, "#000000", 1 - g / 255);
+  else silhouette(ctx, `#${g.toString(16).padStart(2, "0").repeat(3)}`);
   ctx.restore();
 }

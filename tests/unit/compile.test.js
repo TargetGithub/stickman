@@ -111,3 +111,15 @@ test("macro checks: unknown macros, bad params and anchors are caught before com
   anchor.scenes[0].beats[1].at.on = "d.line2";
   assert.deepEqual(macroIssues(normalize(anchor), catalog, moves), []);
 });
+
+test("compileScript and ejectMacro keep a version 3 script at version 3 (no internal v3 flag)", () => {
+  const v3 = { version: 3, meta: { title: "t", format: "landscape", seed: 1, audience: "kids" }, cast: [{ id: "a", name: "A", body: "kid", color: "#3fd8ff" }, { id: "b", name: "B", body: "kid", color: "#ffb0d0" }],
+    locations: [{ id: "p", theme: "city_park" }], scenes: [{ id: "s", location: "p", cast: [{ id: "a", x: 1200 }, { id: "b", x: 1500 }], beats: [{ id: "chat", at: 0, macro: "dialogue", params: { lines: [["a", "Hi there."], ["b", "Hello!"]] } }] }] };
+  const out = compileScript(v3, catalog).script;
+  assert.equal(out.version, 3);
+  assert.equal("v3" in out, false);
+  assert.deepEqual(validate(out, catalog).errors, []);
+  const ej = ejectMacro(v3, "chat", catalog);
+  assert.equal(ej.version, 3);
+  assert.equal("v3" in ej, false);
+});

@@ -90,22 +90,69 @@ export function drawDepthWorld(ctx0, r, f, chars, sv, pieces, { stage, character
       veil(ctx0, r, rig.fog.color, veils[i]);
     }
     const ctx = target(dof ? blurFor(node.z, dof.zf, dof.amount) : 0);
-    if (node.kind === "piece") withDepth(ctx, node.z, node.ref.x, cam, sv.depth, () => drawSetPiece(ctx, r.catalog, node.ref, f.fxT));
+    if (layer && node.kind !== "character" && node.kind !== "piece") layer.add(null); // crowds and the stage group: the whole frame
+    if (node.kind === "piece") {
+      withDepth(ctx, node.z, node.ref.x, cam, sv.depth, () => {
+        const box = layer && pieceBox(r.catalog.objects?.[node.ref.object], node.ref);
+        if (layer) box ? clipToBox(ctx, layer, box) : layer.add(null);
+        drawSetPiece(ctx, r.catalog, node.ref, f.fxT);
+        if (box) ctx.restore();
+      });
+    }
     else if (node.kind === "extras") withDepth(ctx, node.z, cam.x, cam, sv.depth, () => drawExtras(ctx, r, sv, f, node.ref, true));
     else if (node.kind === "character") {
       const c = node.ref;
       withDepth(ctx, node.z, c.j.hip.x, cam, sv.depth, () => {
+        if (layer) clipToBox(ctx, layer, characterBox(c, !!cast));
         if (!rig) drawContactShadow(ctx, c);
         else {
           drawLitContactShadow(ctx, c, contactShadow(rig, c.scale, bodyHeight(c)), STAGE.groundY);
-          if (cast) drawCastShadow(ctx, c, cast, STAGE.groundY, (g, grey) => drawCharacter(g, c.j, { color: grey, outline: false, outlineColor: grey, farBrightness: 1, scale: c.scale, facing: c.facing, mouth: "neutral", dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth, ...(c.quad ? { quad: Object.fromEntries(Object.entries(c.quad).map(([k, v]) => [k, typeof v === "string" && v.startsWith("#") ? grey : v])), grip: c.grip } : {}) }));
+          if (cast) drawCastShadow(ctx, c, cast, STAGE.groundY, (g, grey, alpha) => drawCharacter(g, c.j, { color: grey, alpha, outline: false, outlineColor: grey, farBrightness: 1, scale: c.scale, facing: c.facing, mouth: "neutral", dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth, ...(c.quad ? { quad: Object.fromEntries(Object.entries(c.quad).map(([k, v]) => [k, typeof v === "string" && v.startsWith("#") ? grey : v])), grip: c.grip } : {}) }), !!layer);
         }
         character(c, ctx);
+        if (layer) ctx.restore();
       });
     } else stage(ctx);
   });
   flush();
   return depths;
+}
+
+/**
+ * A generous world box around a character: its joints, hair and hats, a held prop, the contact shadow and (with a
+ * cast shadow) the ground and wall around it. A blurred character draws clipped to it (V3.9).
+ */
+export function characterBox(c, cast) {
+  let x0 = Infinity;
+  let y0 = Infinity;
+  let x1 = -Infinity;
+  for (const p of Object.values(c.j)) {
+    if (p.x < x0) x0 = p.x;
+    if (p.x > x1) x1 = p.x;
+    if (p.y < y0) y0 = p.y;
+  }
+  const h = bodyHeight(c);
+  const side = cast ? h * 2.5 : h * 0.9;
+  return { x0: x0 - side, y0: y0 - (cast ? h : h * 0.6), x1: x1 + side, y1: STAGE.groundY + h * 0.5 };
+}
+
+/** A generous world box around a set piece from its catalog size (null without one: the whole frame). */
+export function pieceBox(def, piece) {
+  if (!def || !(def.w > 0) || !(def.h > 0)) return null;
+  const base = STAGE.groundY - (piece.y ?? 0);
+  const side = Math.max(def.w, def.h * 0.35) + 40; // tall pieces overhang: a lamp's glow, a tree's canopy
+  return { x0: piece.x - side, y0: base - def.h * 1.6, x1: piece.x + side, y1: base + Math.max(40, def.h * 0.3) };
+}
+
+/** Clip ctx to a world box and announce its screen rect to the blur layer (ctx.save(); the caller restores). */
+function clipToBox(ctx, layer, b) {
+  const m = ctx.getTransform();
+  const pts = [[b.x0, b.y0], [b.x1, b.y0], [b.x0, b.y1], [b.x1, b.y1]].map(([x, y]) => ({ x: m.a * x + m.c * y + m.e, y: m.b * x + m.d * y + m.f }));
+  layer.add({ x0: Math.min(...pts.map((p) => p.x)), y0: Math.min(...pts.map((p) => p.y)), x1: Math.max(...pts.map((p) => p.x)), y1: Math.max(...pts.map((p) => p.y)) });
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(b.x0, b.y0, b.x1 - b.x0, b.y1 - b.y0);
+  ctx.clip();
 }
 
 /** Feet to head top, in world px. */

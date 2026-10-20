@@ -18,7 +18,8 @@ export function turnedHumanoid(c, yaw, plan) {
     j = swap;
   }
   const front = Math.abs(Math.cos((yaw * Math.PI) / 180));
-  return { j, faceShift: faceShiftOf(yaw), hideFace: !faceShows(yaw), farBrightness: 0.85 + 0.15 * front };
+  // wrap: how far hair and hats wrap round the head (0 at the side, 1 from the front or back; V3.9).
+  return { j, faceShift: faceShiftOf(yaw), hideFace: !faceShows(yaw), farBrightness: 0.85 + 0.15 * front, wrap: front };
 }
 
 const fill = (ctx, path, color, s) => {
