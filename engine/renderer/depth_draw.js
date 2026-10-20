@@ -7,7 +7,8 @@
 import { depthTransform, projectJoints, LAYER_Z } from "../depth.js";
 import { sceneNodes, characterDepths } from "../scene.js";
 import { lowestPoint } from "../skeleton.js";
-import { drawSetPiece } from "./objects.js";
+import { drawSetPiece, setPieceDef, glows } from "./objects.js";
+import { drawLit, pieceShadow } from "./piece_light.js";
 import { drawExtras } from "./extras.js";
 import { drawCharacter } from "./character.js";
 import { drawLitContactShadow, drawCastShadow } from "./shading.js";
@@ -93,9 +94,14 @@ export function drawDepthWorld(ctx0, r, f, chars, sv, pieces, { stage, character
     if (layer && node.kind !== "character" && node.kind !== "piece") layer.add(null); // crowds and the stage group: the whole frame
     if (node.kind === "piece") {
       withDepth(ctx, node.z, node.ref.x, cam, sv.depth, () => {
+        const def = setPieceDef(r.catalog, node.ref);
         const box = layer && pieceBox(r.catalog.objects?.[node.ref.object], node.ref);
         if (layer) box ? clipToBox(ctx, layer, box) : layer.add(null);
-        drawSetPiece(ctx, r.catalog, node.ref, f.fxT);
+        // Under a light rig (ADR-035): a contact shadow where it stands, then the piece with the light's tones.
+        if (rig && def) {
+          pieceShadow(ctx, rig, def, node.ref.x, node.ref.y ?? 0);
+          drawLit(ctx, r, glows(def) ? null : r.framePieceTones, pieceBox(def, node.ref), (g) => drawSetPiece(g, r.catalog, node.ref, f.fxT), Math.min(def.w ?? 200, def.h ?? 200) * 0.5);
+        } else drawSetPiece(ctx, r.catalog, node.ref, f.fxT);
         if (box) ctx.restore();
       });
     }

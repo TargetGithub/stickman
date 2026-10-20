@@ -6,13 +6,17 @@
 import { mulberry32 } from "../math.js";
 
 const TIMES = ["dawn", "day", "dusk", "night"];
+/** The night dimming over the whole frame: the moonlit rig's ambient colour (catalog lights.json) at 0.4. */
+export const NIGHT_DIM = Object.freeze({ color: "74,90,160", alpha: 0.4 });
 const WEATHERS = ["clear", "cloudy", "rain", "snow", "wind", "fog"];
 
 const TIME_GRADE = {
   dawn: [{ op: "multiply", color: "255,205,185", alpha: 0.35 }, { op: "screen", color: "255,170,140", alpha: 0.08 }],
   day: [],
   dusk: [{ op: "multiply", color: "255,160,120", alpha: 0.4 }, { op: "screen", color: "120,60,90", alpha: 0.06 }],
-  night: [{ op: "multiply", color: "70,82,150", alpha: 0.62 }, { op: "screen", color: "20,30,70", alpha: 0.1 }],
+  // Night (ADR-037): the background itself goes dark (night.js), so the grade only dims the characters the way the
+  // moonlit light rig tints a scene: a multiply of its ambient colour (#4a5aa0), not the old 0.62 blue wash.
+  night: [{ op: "multiply", color: NIGHT_DIM.color, alpha: NIGHT_DIM.alpha }, { op: "screen", color: "20,30,70", alpha: 0.05 }],
 };
 const WEATHER_TINT = {
   cloudy: { color: "175,180,192", alpha: 0.32 },

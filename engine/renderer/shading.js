@@ -4,7 +4,7 @@
 // Every pass stays inside the shape it shades (bands are thinner than the limb and offset by less than the
 // margin; the head and torso passes are clipped), so outlines never change. Pure drawing helpers.
 
-import { torsoPath } from "./bodies.js";
+import { torsoPath, torsoLine } from "./bodies.js";
 
 /** Offset a polyline by a vector. */
 const shift = (pts, dx, dy) => pts.map((p) => ({ x: p.x + dx, y: p.y + dy }));
@@ -84,7 +84,7 @@ export function shadeTorso(ctx, j, o, tones) {
   ctx.save();
   torsoPath(ctx, j, o);
   ctx.clip();
-  const spine = [j.hip, j.neckTop];
+  const spine = torsoLine(j, o); // along a bent back too (ADR-036)
   stroke(ctx, [shift(spine, -dir.x * w * 0.95, -dir.y * w * 0.95)], tones.dark, w * 0.7);
   stroke(ctx, [shift(spine, dir.x * w * 0.9, dir.y * w * 0.9)], tones.lit, w * 0.45);
   if (tones.rimAlpha > 0.01) {

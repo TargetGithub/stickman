@@ -14,7 +14,7 @@ import { drawSetPieces, staticObjectsAt, drawMovingObjects } from "./objects.js"
 import { lookFor } from "./looks.js";
 import { drawExtras } from "./extras.js";
 import { drawDepthWorld, projectedChars } from "./depth_draw.js";
-import { lightAt, ambientTint, rgbText } from "../lighting.js";
+import { lightAt, ambientTint, rgbText, pieceTones } from "../lighting.js";
 import { letterboxBar } from "../camera3.js";
 import { framedContext, blurFrame, drawVignette, drawLetterbox } from "./lens_draw.js";
 import { sceneViews, frameLens } from "./scene_views.js";
@@ -152,7 +152,7 @@ function drawDepthScene(ctx0, r, n, f, chars, sv, pieces) {
       if (!c) return null;
       return joint === "feet" ? { x: c.j.hip.x, y: c.z ? c.j.lFoot.y : STAGE.groundY } : c.j[joint] || c.j.hip;
     });
-    drawMovingObjects(ctx, r.catalog, f.items);
+    drawMovingObjects(ctx, r.catalog, f.items, r);
   };
   depths = drawDepthWorld(ctx0, r, f, chars, sv, pieces, { stage, character: (c, g = ctx0) => drawChars(g, r, n, f, chars, sv, [c]) });
   return depths;
@@ -182,9 +182,11 @@ export function renderScene(r, ctx, n) {
   const filter = worldFilter(colourGrade);
   r.castFilter = filter ? "none" : null;
   r.frameLight = sv.depth ? lightAt(sv.rig0, sv.lightEvents, f.videoT, r.catalog.lights) : null; // V3.3
+  r.framePieceTones = r.frameLight ? pieceTones(r.frameLight) : null; // set pieces and props (ADR-035)
   g.save();
   if (filter) g.filter = filter;
-  drawBackground(g, background(r, theme), lens ? { ...cam, zoom: lens.lc.bgZoom } : cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1);
+  const grade = gradeState(sv.look, sv.looks, f.videoT);
+  drawBackground(g, background(r, theme), lens ? { ...cam, zoom: lens.lc.bgZoom } : cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1, grade?.time.night ?? 0);
   const ambient = ambientTint(r.frameLight);
   if (ambient) {
     // The key light's colour over the whole background (V3.3): a multiply tint, as the time-of-day grade does.
@@ -206,7 +208,6 @@ export function renderScene(r, ctx, n) {
   if (filter) g.filter = "none";
   g.setTransform(1, 0, 0, 1, 0, 0);
   drawWorldGrade(g, colourGrade, { W, H, origin: waveOrigin(colourGrade, chars, cam, W, H, STAGE.groundY) });
-  const grade = gradeState(sv.look, sv.looks, f.videoT);
   if (grade) drawGrade(g, grade, { W, H, fxT: f.fxT, cam });
   g.restore();
   ctx.save();

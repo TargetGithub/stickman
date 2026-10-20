@@ -416,8 +416,24 @@ export function limbStyleOf(s): string;                                 // a kno
 export function limbControl(a, b, c, style): { x, y } | null;           // the quadratic control point (null when straight)
 export function limbLine(pts, style): Point[];                          // the polyline to stroke; straight returns pts itself
 export function bowedLeg(top, bottom, style, side): Point[];            // a quadruped's front-view leg (rubber bows outward)
-// character.js and quadruped.js stroke limbLine(...) for limbs when style.limbStyle is set (the spine stays straight);
+// character.js and quadruped.js stroke limbLine(...) for limbs when style.limbStyle is set (the spine: spine.js, ADR-036);
 // renderer/scene_views.js limbStyles(story, sc, catalog): Map id → style for a v3 scene (placement > scene > cast > plan)
+```
+
+### spine.js, renderer/piece_light.js, renderer/night.js (V3.11: ADR-036, ADR-035, ADR-037)
+```js
+// spine.js (pure)
+export const MAX_BEND;                                                  // 0.2 of the hip-to-shoulder bone
+export function spineBend(history, events, t, facing, amount, quad?): number;   // + toward the back (a quadruped: an arch)
+export function spineControl(a, b, facing, bend, quad?): Point;         // quadratic control for hip → shoulders
+export function spineLine(j, facing, bend, samples?): Point[];          // a stick spine to stroke ([hip, shoulder, neckTop] when 0)
+export function leanOf(j, facing), curveAt(a, p, b, u): { p, t };
+// renderer/motion_draw.js: spineAmount(cfg, limbStyle); motionFrame → { j, hairTilt, spine }; style.spineBend (character.js)
+// lighting.js: pieceTones(rig) → { dark (multiply), lit, litAlpha, rim, rimAlpha, dir }; pieceContact(rig, def, lift) → { dx, rx, ry, alpha } | null
+// renderer/piece_light.js: drawLit(ctx, r, tones, box, draw, size); pieceShadow(ctx, rig, def, x, lift); bandWidths; screenRect; propBox
+// renderer/objects.js: setPieceDef(catalog, piece), glows(def); drawMovingObjects(ctx, catalog, items, r?)
+// renderer/night.js: nightLook(theme) → { amount, sky }; nightSky; moonOf; windowLit; nightFilter(n); drawNightBackground(ctx, bg, kinds, view, n, sky)
+// renderer/background.js: drawBackground(ctx, bg, cam, W, H, fxT, react, night)   // night: gradeState().time.night
 ```
 
 ### templates.js and audio_tracks.js (V3.8, ENGINE_V3_SPEC 6)
@@ -978,4 +994,19 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 ### ADR-034 Rubber-hose limbs are drawn, never simulated (Sridhar's request, 2026-10-20)
 - **Context**: Sridhar asked for cartoon bendy and stretchy limbs. The simulation's reach, hit sweeps and joint positions are tuned and choreographed fights land on exact frames, v1/v2 output must stay identical, and v3 limbs already carry shading (V3.3), turnaround (V3.6) and follow-through (V3.7).
 - **Decision**: a `limbStyle` (`straight`, `bendy`, `rubber`) chosen per cast entry, scene or placement in version 3 scripts, with a body plan default, changes only how a limb chain is stroked: `renderer/limb_curves.js` turns root, joint and end into a quadratic curve (through the joint for bendy, bowed 1.45x with a minimum bow for rubber) sampled as a polyline, which every existing pass (outline, colour, light bands, cast shadow, blur ghosts) already strokes. Stretch is a bounded channel in `motion_fx.js` (`limbStretch`, at most 22%) applied to rubber limbs after follow-through and before turnaround, from the joint history and the character's own hit events; the root never moves and grounded legs never stretch.
-- **Consequences**: the simulation, frame store, hits and v1/v2 golden frames are unchanged, and a v3 script without `limbStyle` renders exactly as before (straight limbs return their own points). A stretched or bowed limb can be drawn a little past the stored contact point; at the bounds chosen it reads as cartoon follow-through in the demo. Curves cost about 10-12 segments per limb per pass. Quadrupeds curve but do not stretch, and the spine stays straight; tapering limbs (thicker at the shoulder) are not done.
+- **Consequences**: the simulation, frame store, hits and v1/v2 golden frames are unchanged, and a v3 script without `limbStyle` renders exactly as before (straight limbs return their own points). A stretched or bowed limb can be drawn a little past the stored contact point; at the bounds chosen it reads as cartoon follow-through in the demo. Curves cost about 10-12 segments per limb per pass. Quadrupeds curve but do not stretch; tapering limbs (thicker at the shoulder) are not done. The spine bends since ADR-036.
+
+### ADR-035 Set pieces and props are lit from their own silhouette (V3.11, Sridhar)
+- **Context**: V3.3 shaded characters only; set pieces, world objects and props stayed flat next to lit characters. Their shapes are hundreds of procedural drawings plus imported SVGs, with no shared path to clip or offset.
+- **Decision**: draw each piece or prop into a scratch layer the size of its screen box (`renderer/piece_light.js` `drawLit`) and shade the layer from its own alpha: a band is the piece minus itself shifted along the light, inside the piece eroded by its outline width; the dark band is multiplied, the lit band and rim are laid over source-atop, then the layer is composited. Tones come from the rig (`lighting.js` `pieceTones`, the shadeTones formulas applied to any colour); standing pieces get a soft contact ellipse (`pieceContact`). Shapes with additive glows (`GLOW_SHAPES`) keep their look.
+- **Consequences**: v3 scenes under a rig only; v1/v2 output is unchanged and pieces draw unlit without a host canvas factory. Each lit piece costs about a dozen region-sized drawImage calls; a piece cut by the frame edge is layered up to 40 px past it so no band shows along the edge. Glow halos drawn source-over inside a piece are banded like the rest.
+
+### ADR-036 The spine bends at draw time (V3.11, Sridhar)
+- **Context**: the spine was one straight bone, stiff next to bendy and rubber limbs. Reach, hits and the frame store must not change and v1/v2 goldens must stay identical.
+- **Decision**: one signed bend per character and frame (`engine/spine.js` `spineBend`: lean posture, a spring on the torso angle over the motion window, landings and blows), drawn as a quadratic between hip and shoulders (`spineControl`); stick spines stroke it, filled torsos, garments and the quadruped body are laid along it. On by default for bendy and rubber limbs, `motion.spine` for everyone; scaled by sin(yaw) in turned views.
+- **Consequences**: the joints never move, so nothing outside drawing sees the bend; v3 scripts with straight limbs and no `motion.spine` draw as before. Cast shadows and blur ghosts keep the straight back.
+
+### ADR-037 Night darkens the theme, not the characters (V3.11, Sridhar)
+- **Context**: night was a 0.62 blue multiply over the whole frame: a daytime theme kept its blue sky and its sun, and characters were dimmed as much as the sky (a known S1 limitation).
+- **Decision**: at night `drawBackground` takes `renderer/night.js`: the theme's layers are drawn over a cleared frame through a darkening filter, each followed by its lights (windows, lamps, lanterns), and the sky (gradient, stars, moon where the sun was) is drawn behind with destination-over; the theme's tags set how much (outdoor 1, indoor 0.5, night/dark 0.35). The whole-frame grade is now the moonlit rig's ambient colour at 0.4.
+- **Consequences**: applies to every script version, so night golden frames changed deliberately (s1_transitions 298, 362, 419; s6_gauntlet 380, 761, 1142, 1522, 1903, 2284, 2664, 3045; s6_fights 180). Lights exist for the layer kinds that have windows or lamps; others just go dark. Set pieces (lampposts, houses) do not switch on lights yet.

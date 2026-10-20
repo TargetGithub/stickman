@@ -8,6 +8,7 @@ import { drawProp } from "./props.js";
 import { propTransform } from "../props.js";
 import { SNOUT_TURN } from "../skeleton_quad.js";
 import { limbLine } from "./limb_curves.js";
+import { spineControl, curveAt } from "../spine.js";
 
 const WAG = {
   happy: { lift: 55, amp: 26, hz: 3.4 },
@@ -40,6 +41,31 @@ const turn = (v, deg) => {
   return { x: v.x * Math.cos(a) - v.y * Math.sin(a), y: v.x * Math.sin(a) + v.y * Math.cos(a) };
 };
 const add = (p, v, k) => ({ x: p.x + v.x * k, y: p.y + v.y * k });
+
+/** The body bean along the quadratic a → p → b: round ends (radius w at b, 1.05 w at a), sides along the curve. */
+function bentBean(ctx, a, p, b, w) {
+  const N = 12;
+  const at = (u, side) => {
+    const { p: q, t } = curveAt(a, p, b, u);
+    const r = w * (1.05 - 0.05 * u);
+    return { x: q.x - t.y * r * side, y: q.y + t.x * r * side };
+  };
+  const tb = curveAt(a, p, b, 1).t;
+  const ta = curveAt(a, p, b, 0).t;
+  const angB = Math.atan2(tb.y, tb.x);
+  const angA = Math.atan2(ta.y, ta.x);
+  ctx.arc(b.x, b.y, w, angB - Math.PI / 2, angB + Math.PI / 2, false);
+  for (let i = N - 1; i >= 1; i--) {
+    const q = at(i / N, 1);
+    ctx.lineTo(q.x, q.y);
+  }
+  ctx.arc(a.x, a.y, w * 1.05, angA + Math.PI / 2, angA - Math.PI / 2, false);
+  for (let i = 1; i < N; i++) {
+    const q = at(i / N, -1);
+    ctx.lineTo(q.x, q.y);
+  }
+  ctx.closePath();
+}
 
 function fillShape(ctx, path, color, s) {
   ctx.beginPath();
@@ -168,17 +194,21 @@ export function drawQuadruped(ctx, j, s0, shade) {
     ctx.stroke();
   }
 
-  // Body: a bean from the rear hip to the shoulders, a lighter belly underneath.
+  // Body: a bean from the rear hip to the shoulders, a lighter belly underneath. A bent back (ADR-036) lays the
+  // bean along a curve through the middle of the back (spineBend: + arches up, - sags).
   const a = add(j.hip, back, s.bw * 0.15);
   const b = add(j.shoulder, fwd, s.bw * 0.1);
   const ang = Math.atan2(fwd.y, fwd.x);
+  const bendP = s.spineBend ? spineControl(a, b, s.facing, s.spineBend, true) : null;
   fillShape(ctx, () => {
+    if (bendP) return bentBean(ctx, a, bendP, b, s.bw);
     ctx.arc(b.x, b.y, s.bw, ang - Math.PI / 2, ang + Math.PI / 2, false);
     ctx.arc(a.x, a.y, s.bw * 1.05, ang + Math.PI / 2, ang - Math.PI / 2, false);
     ctx.closePath();
   }, s.color, s);
   if (q.belly) {
-    const c = add(add(j.hip, fwd, Math.hypot(j.shoulder.x - j.hip.x, j.shoulder.y - j.hip.y) * 0.5), up, -s.bw * 0.45);
+    let c = add(add(j.hip, fwd, Math.hypot(j.shoulder.x - j.hip.x, j.shoulder.y - j.hip.y) * 0.5), up, -s.bw * 0.45);
+    if (bendP) c = add(c, { x: curveAt(a, bendP, b, 0.5).p.x - (a.x + b.x) / 2, y: curveAt(a, bendP, b, 0.5).p.y - (a.y + b.y) / 2 }, 1);
     ctx.beginPath();
     ctx.ellipse(c.x, c.y, Math.hypot(j.shoulder.x - j.hip.x, j.shoulder.y - j.hip.y) * 0.42, s.bw * 0.42, ang, 0, Math.PI * 2);
     ctx.fillStyle = q.belly;

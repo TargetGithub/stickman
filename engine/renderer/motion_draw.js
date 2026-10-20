@@ -5,16 +5,23 @@
 
 import { MOTION_DEFAULTS, WINDOW, followThrough, squashStretch, hairSway, standingStill, breathe, blurGhosts, limbStretch, applyStretch } from "../motion_fx.js";
 import { drawCharacter } from "./character.js";
+import { spineBend } from "../spine.js";
 import { STAGE } from "../config.js";
 
 /** The script's motion settings (the v3 `motion` block over the defaults), once per renderer. */
 export const motionSettings = (r) => (r.motionCfg ??= { ...MOTION_DEFAULTS, ...(r.sim.story?.motion || {}) });
 
 /**
+ * How much the back bends (ADR-036): the script's motion.spine, else 1 for bendy and rubber limbs and 0 for straight
+ * ones (straight stays the v2 drawing); rubber bodies bend 1.35x.
+ */
+export const spineAmount = (cfg, limbStyle) => (cfg.spine ?? (limbStyle === "straight" ? 0 : 1)) * (limbStyle === "rubber" ? 1.35 : 1);
+
+/**
  * @param {(k: number) => object|null} past  the character's joints k frames back in this scene (null outside it)
  * @param {boolean} ownSquash  the character's v1 style already squashes (style.squash): skip ours
  * @param {string} [limbStyle]  straight | bendy | rubber (ADR-034): rubber limbs also stretch, and ghosts take the style
- * @returns {{ j: object, hairTilt: number }}
+ * @returns {{ j: object, hairTilt: number, spine: number }}  spine: the back's bend (ADR-036; 0 straight)
  */
 export function motionFrame(ctx, r, sv, f, c, chars, past, ownSquash = false, limbStyle = "straight") {
   const cfg = motionSettings(r);
@@ -35,15 +42,18 @@ export function motionFrame(ctx, r, sv, f, c, chars, past, ownSquash = false, li
     const pj = hist[hist.length - 1 - g.back];
     if (pj) drawCharacter(ctx, pj, { color: c.color, scale: c.scale, facing: c.facing, alpha: g.alpha * (c.alpha ?? 1), outline: false, limbStyle, ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(c.quad ? { quad: c.quad, grip: c.grip } : {}) });
   }
-  if (!ownSquash && cfg.squash > 0) {
-    const events = [];
-    for (const e of sv.squashEvents) {
-      if (e.type === "land" && e.actor === c.id) events.push(e);
-      else if (e.type === "hit" && e.target === c.id) {
-        const a = chars.find((x) => x.id === e.attacker);
-        events.push({ ...e, dir: a ? Math.sign(c.j.hip.x - a.j.hip.x) || 1 : 1 });
-      }
+  const events = [];
+  for (const e of sv.squashEvents) {
+    if (e.type === "land" && e.actor === c.id) events.push(e);
+    else if (e.type === "hit" && e.target === c.id) {
+      const a = chars.find((x) => x.id === e.attacker);
+      events.push({ ...e, dir: a ? Math.sign(c.j.hip.x - a.j.hip.x) || 1 : 1 });
     }
+  }
+  // The back bends with the stored torso (not the followed-through arms), so it is the same in any frame order.
+  const bendAmt = spineAmount(cfg, limbStyle);
+  const spine = bendAmt > 0 ? spineBend(hist, events, f.videoT, c.facing, bendAmt, !!c.quad) : 0;
+  if (!ownSquash && cfg.squash > 0) {
     const sq = squashStretch(hist, events, f.videoT, STAGE.groundY, cfg.squash);
     if (sq) {
       const [a, b, cc, d] = sq.m;
@@ -51,5 +61,5 @@ export function motionFrame(ctx, r, sv, f, c, chars, past, ownSquash = false, li
       ctx.transform(a, b, cc, d, x - a * x - cc * y, y - b * x - d * y);
     }
   }
-  return { j, hairTilt: c.quad ? 0 : hairSway(hist, cfg.secondary) };
+  return { j, hairTilt: c.quad ? 0 : hairSway(hist, cfg.secondary), spine };
 }
