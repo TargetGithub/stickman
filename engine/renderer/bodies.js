@@ -4,6 +4,7 @@
 // neck top, so every pose, lean and flip works unchanged.
 
 import { drawBoxTorso } from "./robot.js";
+import { spineControl, curveAt } from "../spine.js";
 
 /** Unit vectors along the spine (up) and across it. */
 function spine(j) {
@@ -30,8 +31,81 @@ export function drawTorso(ctx, j, o) {
   return true;
 }
 
+/**
+ * The bent spine from the hip to the neck top (ADR-036), or null when straight: pos(u) gives the point, the unit up
+ * tangent and the across vector at u (0 hip, 1 neck top), like the straight spine's frame.
+ * o.spineBend: the bend as a share of the hip-to-shoulder bone; o.facing.
+ */
+export function bentSpine(j, o) {
+  if (!o?.spineBend) return null;
+  const len = Math.hypot(j.neckTop.x - j.hip.x, j.neckTop.y - j.hip.y) || 1;
+  const bone = Math.hypot(j.shoulder.x - j.hip.x, j.shoulder.y - j.hip.y);
+  // The same mid offset in px over the longer hip-to-neck-top chord.
+  const P = spineControl(j.hip, j.neckTop, o.facing ?? 1, (o.spineBend * bone) / len);
+  return {
+    len,
+    pos(u) {
+      const { p, t } = curveAt(j.hip, P, j.neckTop, u);
+      return { p, up: t, across: { x: -t.y, y: t.x } };
+    },
+  };
+}
+
+/** The centre line of a torso to offset the shading bands from: hip to neck top, along the bend when bent. */
+export function torsoLine(j, o) {
+  const b = bentSpine(j, o);
+  if (!b) return [j.hip, j.neckTop];
+  return Array.from({ length: 11 }, (_, i) => b.pos(i / 10).p);
+}
+
+/** A bent capsule or trapezoid (ADR-036): the straight shapes' outlines laid along the curved spine. */
+function bentTorsoPath(ctx, b, o, w) {
+  const off = (u, d, side) => {
+    const f = b.pos(u);
+    return { x: f.p.x + f.across.x * d * side, y: f.p.y + f.across.y * d * side };
+  };
+  const N = 12;
+  ctx.beginPath();
+  if (o.draw === "capsule") {
+    const ua = Math.min(0.45, (w * 0.35) / b.len);
+    const ub = Math.max(0.55, 1 - (w * 0.15) / b.len);
+    const top = b.pos(ub);
+    const bot = b.pos(ua);
+    const angT = Math.atan2(top.up.y, top.up.x);
+    const angB = Math.atan2(bot.up.y, bot.up.x);
+    const r = (u) => w * (1.08 + (1 - 1.08) * ((u - ua) / (ub - ua)));
+    ctx.arc(top.p.x, top.p.y, w, angT - Math.PI / 2, angT + Math.PI / 2, false);
+    for (let i = N - 1; i >= 1; i--) {
+      const u = ua + ((ub - ua) * i) / N;
+      const q = off(u, r(u), 1);
+      ctx.lineTo(q.x, q.y);
+    }
+    ctx.arc(bot.p.x, bot.p.y, w * 1.08, angB + Math.PI / 2, angB - Math.PI / 2, false);
+    for (let i = 1; i < N; i++) {
+      const u = ua + ((ub - ua) * i) / N;
+      const q = off(u, r(u), -1);
+      ctx.lineTo(q.x, q.y);
+    }
+    ctx.closePath();
+    return;
+  }
+  const hipW = w * 0.62;
+  const width = (u) => hipW + (w - hipW) * (u / 0.92);
+  const sh = b.pos(0.92);
+  const pts = [];
+  for (let i = 0; i <= N; i++) pts.push(off((0.92 * i) / N, width((0.92 * i) / N), 1));
+  pts.push({ x: sh.p.x + sh.up.x * w * 0.3 + sh.across.x * w * 0.6, y: sh.p.y + sh.up.y * w * 0.3 + sh.across.y * w * 0.6 });
+  pts.push({ x: sh.p.x + sh.up.x * w * 0.3 - sh.across.x * w * 0.6, y: sh.p.y + sh.up.y * w * 0.3 - sh.across.y * w * 0.6 });
+  for (let i = N; i >= 0; i--) pts.push(off((0.92 * i) / N, width((0.92 * i) / N), -1));
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (const p of pts.slice(1)) ctx.lineTo(p.x, p.y);
+  ctx.closePath();
+}
+
 /** Begin the path of a capsule or trapezoid torso (shared by drawTorso and the shading clip, V3.3). */
 export function torsoPath(ctx, j, o) {
+  const bent = bentSpine(j, o);
+  if (bent) return bentTorsoPath(ctx, bent, o, (o.torsoWidth ?? 20) * o.scale);
   const { up, across, len } = spine(j);
   const w = (o.torsoWidth ?? 20) * o.scale;
   ctx.beginPath();
@@ -62,15 +136,21 @@ export function torsoPath(ctx, j, o) {
 }
 
 /** Outline points of a garment along the spine: from `from` to `to` (fractions of hip→neck; negative is below the hip). */
-function band(j, from, to, wBottom, wTop) {
+function band(j, from, to, wBottom, wTop, bent = null) {
   const { up, across, len } = spine(j);
-  // Above the hip the garment follows the spine; below it, it hangs straight down (a skirt, coat tails).
+  // Above the hip the garment follows the spine (bent or not); below it, it hangs straight down (a skirt, coat tails).
+  const along = (u, w, side) => {
+    const f = bent.pos(u);
+    return { x: f.p.x + f.across.x * w * side, y: f.p.y + f.across.y * w * side };
+  };
   const at = (u, w, side) => (u >= 0
-    ? { x: j.hip.x + up.x * len * u + across.x * w * side, y: j.hip.y + up.y * len * u + across.y * w * side }
+    ? (bent ? along(u, w, side) : { x: j.hip.x + up.x * len * u + across.x * w * side, y: j.hip.y + up.y * len * u + across.y * w * side })
     : { x: j.hip.x + w * side, y: j.hip.y - len * u });
   const pts = [at(from, wBottom, 1)];
   if (from < 0) pts.push(at(0, (wBottom + wTop) / 2, 1));
+  if (bent) for (let i = 1; i < 8; i++) pts.push(at(Math.max(0, from) + ((to - Math.max(0, from)) * i) / 8, wBottom + ((wTop - wBottom) * i) / 8, 1));
   pts.push(at(to, wTop, 1), at(to, wTop, -1));
+  if (bent) for (let i = 7; i >= 1; i--) pts.push(at(Math.max(0, from) + ((to - Math.max(0, from)) * i) / 8, wBottom + ((wTop - wBottom) * i) / 8, -1));
   if (from < 0) pts.push(at(0, (wBottom + wTop) / 2, -1));
   pts.push(at(from, wBottom, -1));
   return pts;
@@ -79,18 +159,19 @@ function band(j, from, to, wBottom, wTop) {
 /**
  * Outfits over the torso: shirt, coat, armor, robe, and the belly patch (looks.js turns a look's
  * `belly` into the "belly" outfit when nothing else is worn).
- * @param {{ outfit, color, outlineColor, lw, scale, torsoWidth }} o
+ * @param {{ outfit, color, outlineColor, lw, scale, torsoWidth, spineBend?, facing? }} o  spineBend: garments follow a bent back
  */
 export function drawOutfit(ctx, j, o) {
   if (!o.outfit || o.outfit === "none") return;
   const w = Math.max(o.lw * 0.95, (o.torsoWidth ?? 0) * o.scale * 1.06);
+  const bent = bentSpine(j, o);
   const shapes = {
-    shirt: [band(j, 0.02, 0.98, w, w * 1.05)],
-    coat: [band(j, -0.45, 0.98, w * 1.35, w * 1.08)],
-    robe: [band(j, -0.95, 0.98, w * 2.1, w * 1.05)],
-    armor: [band(j, 0.42, 0.97, w * 0.82, w * 1.04)], // follows a trapezoid chest; a breastplate on stick bodies
+    shirt: [band(j, 0.02, 0.98, w, w * 1.05, bent)],
+    coat: [band(j, -0.45, 0.98, w * 1.35, w * 1.08, bent)],
+    robe: [band(j, -0.95, 0.98, w * 2.1, w * 1.05, bent)],
+    armor: [band(j, 0.42, 0.97, w * 0.82, w * 1.04, bent)], // follows a trapezoid chest; a breastplate on stick bodies
   }[o.outfit];
-  if (o.outfit === "belly") return drawBelly(ctx, j, o, w);
+  if (o.outfit === "belly") return drawBelly(ctx, j, o, w, bent);
   if (!shapes) return;
   ctx.save();
   ctx.fillStyle = o.color;
@@ -107,7 +188,7 @@ export function drawOutfit(ctx, j, o) {
   }
   if (o.outfit === "armor") {
     // A shine line across the plate.
-    const p = band(j, 0.72, 0.72, w * 0.8, w * 0.8);
+    const p = band(j, 0.72, 0.72, w * 0.8, w * 0.8, bent);
     const a = p[0];
     const b = p[p.length - 1];
     ctx.strokeStyle = "rgba(255,255,255,0.6)";
@@ -121,9 +202,11 @@ export function drawOutfit(ctx, j, o) {
 }
 
 /** A soft oval patch on the lower front of a filled torso. */
-function drawBelly(ctx, j, o, w) {
-  const { up, len } = spine(j);
-  const c = { x: j.hip.x + up.x * len * 0.3, y: j.hip.y + up.y * len * 0.3 };
+function drawBelly(ctx, j, o, w, bent = null) {
+  const { len } = spine(j);
+  let { up } = spine(j);
+  let c = { x: j.hip.x + up.x * len * 0.3, y: j.hip.y + up.y * len * 0.3 };
+  if (bent) ({ p: c, up } = bent.pos(0.3));
   ctx.save();
   ctx.fillStyle = o.color;
   ctx.strokeStyle = o.outlineColor;

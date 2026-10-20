@@ -8,6 +8,8 @@ import { STAGE } from "../config.js";
 import { drawPaths } from "./paths.js";
 import { SHAPES as BASE_SHAPES } from "./object_shapes.js";
 import { PLACE_SHAPES } from "./object_shapes_places.js";
+import { drawLit, pieceShadow } from "./piece_light.js";
+import { GLOW_SHAPES } from "./object_shapes_travel.js";
 
 const SHAPES = { ...BASE_SHAPES, ...PLACE_SHAPES };
 
@@ -58,11 +60,20 @@ export function drawSetPieces(ctx, catalog, set, layer, t = 0) {
   }
 }
 
+/** The catalog object of a set piece that draws as one (a known shape, not a prop or a frame item), else null. */
+export function setPieceDef(catalog, piece) {
+  const def = catalog.objects?.[piece.object];
+  if (!def || (!SHAPES[def.draw] && !def.paths)) return null;
+  return ["holdable", "ball", "floater", "vehicle"].includes(def.behavior) ? null : def; // props and frame items
+}
+
+/** Whether a catalog object gives light (a campfire): it keeps its own look under a light rig (ADR-035). */
+export const glows = (def) => !def.paths && GLOW_SHAPES.includes(def.draw);
+
 /** One set piece on the floor at its x (and y lift), with a layer look (scale, alpha; the depth lane passes none). */
 export function drawSetPiece(ctx, catalog, piece, t = 0, look = LAYER_LOOK.mid) {
-  const def = catalog.objects?.[piece.object];
-  if (!def || (!SHAPES[def.draw] && !def.paths)) return;
-  if (["holdable", "ball", "floater", "vehicle"].includes(def.behavior)) return; // props and frame items
+  const def = setPieceDef(catalog, piece);
+  if (!def) return;
   ctx.save();
   ctx.translate(piece.x, STAGE.groundY - (piece.y ?? 0));
   ctx.scale(look.scale * (piece.facing === -1 ? -1 : 1), look.scale);
@@ -71,18 +82,30 @@ export function drawSetPiece(ctx, catalog, piece, t = 0, look = LAYER_LOOK.mid) 
   ctx.restore();
 }
 
-/** Draw moving objects (frame items with `obj`): balls and floaters around their center, vehicles on the floor. */
-export function drawMovingObjects(ctx, catalog, items) {
+/**
+ * Draw moving objects (frame items with `obj`): balls and floaters around their center, vehicles on the floor.
+ * r (v3 scenes under a light rig, ADR-035): balls and vehicles get contact shadows and every object the light's tones.
+ */
+export function drawMovingObjects(ctx, catalog, items, r = null) {
+  const rig = r?.frameLight;
   for (const it of items) {
     if (!it.obj) continue;
     const def = catalog.objects?.[it.kind];
     if (!def) continue;
-    ctx.save();
     const lift = def.behavior === "ball" ? def.r : 0;
-    ctx.translate(it.x, it.y - lift);
-    if (def.behavior === "vehicle" && it.facing === -1) ctx.scale(-1, 1);
-    if (def.behavior === "floater") ctx.rotate(it.angle || 0);
-    shape(ctx, def, it);
-    ctx.restore();
+    if (rig && def.behavior !== "floater") pieceShadow(ctx, rig, def, it.x, Math.max(0, STAGE.groundY - it.y));
+    const draw = (g) => {
+      g.save();
+      g.translate(it.x, it.y - lift);
+      if (def.behavior === "vehicle" && it.facing === -1) g.scale(-1, 1);
+      if (def.behavior === "floater") g.rotate(it.angle || 0);
+      shape(g, def, it);
+      g.restore();
+    };
+    const w = def.w ?? (def.r ?? 40) * 2;
+    const h = def.h ?? (def.r ?? 40) * 2;
+    const box = { x0: it.x - w - 30, y0: it.y - lift - h * 1.3 - 30, x1: it.x + w + 30, y1: it.y + h * 0.5 + 30 };
+    if (rig && !glows(def)) drawLit(ctx, r, r.framePieceTones, box, draw, Math.min(w, h) * 0.5);
+    else draw(ctx);
   }
 }

@@ -158,6 +158,46 @@ export function castShadow(rig) {
   return { a: 1, b: 0, c: dir.x * 0.9, d: sy, tx: 0, ty: 0, alpha };
 }
 
+// ---------- set pieces and props (ADR-035) ----------
+
+/**
+ * The tones a set piece, a world object or a prop takes under a rig. A piece has many colours, so its tones are
+ * passes over whatever it drew: `dark` is a multiply colour (white with the shadow side's tint and darkening, the
+ * shadeTones dark formula applied to white), `lit` a colour and alpha laid over the lit side (the shadeTones lit
+ * formula as one source-over layer), and the rim; `dir` points to the light.
+ */
+export function pieceTones(rig) {
+  const ks = rig.key.strength;
+  const fs = rig.fill.strength;
+  const dark = mixHex(mixHex("#ffffff", rig.fill.color, 0.6 * fs), "#000000", 0.3 * (ks + fs));
+  // lit = mix(mix(c, key, a1), white, a2) is c under one layer of colour C at alpha 1 - (1 - a1)(1 - a2).
+  const a1 = 0.35 * ks;
+  const a2 = 0.45 * ks;
+  const litAlpha = 1 - (1 - a1) * (1 - a2);
+  const K = hexToRgb(rig.key.color);
+  const lit = litAlpha > 1e-6 ? rgbToHex(K.map((v) => (v * a1 * (1 - a2) + 255 * a2) / litAlpha)) : "#ffffff";
+  return { dark, lit, litAlpha, rim: rig.rim.color, rimAlpha: rig.rim.strength, dir: lightDir(rig.key.angle) };
+}
+
+/**
+ * The contact shadow under a set piece standing on the floor (its catalog w and h): a soft ellipse about as wide as
+ * the piece's foot, shifted a little away from the light; null for flat or lifted pieces.
+ * @param {{ w?, h?, r? }} def  the catalog object (balls use r)
+ * @param {number} lift  height above the floor (px)
+ * @returns {{ dx, rx, ry, alpha }|null}
+ */
+export function pieceContact(rig, def, lift = 0) {
+  const w = def.w ?? (def.r ? def.r * 2 : 0);
+  const h = def.h ?? (def.r ? def.r * 2 : 0);
+  if (!(w > 0) || !(h >= 12) || def.shadow === false) return null;
+  const k = clamp(1 - lift / 300, 0, 1); // fades as the piece rises off the floor
+  if (k <= 0) return null;
+  const dir = lightDir(rig.key.angle);
+  const along = -dir.x * Math.min(h, 300) * rig.shadow.length * 0.18;
+  const alpha = Math.max(CONTACT_MIN, (rig.shadow.contact ?? rig.shadow.alpha) * 1.2) * 0.85 * k;
+  return { dx: along, rx: (w * 0.5 + Math.abs(along) * 0.4) * (0.7 + 0.3 * k), ry: clamp(w * 0.07, 6, 22) * (0.7 + 0.3 * k), alpha };
+}
+
 // ---------- fog and tint ----------
 
 /** The share of the fog colour over a node at z (0 at the stage line and nearer; density at the far end). */

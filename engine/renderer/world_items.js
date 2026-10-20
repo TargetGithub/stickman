@@ -3,6 +3,7 @@
 
 import { drawProp } from "./props.js";
 import { holdableData } from "../objects.js";
+import { drawLit, propBox } from "./piece_light.js";
 
 /** A holdable with states (the rainbow crystal) shows its latest state, carried across scenes. */
 export function withState(r, sv, name, data, t) {
@@ -23,7 +24,10 @@ export function drawItems(ctx, r, items, flying, sv, t) {
     const half = (data.len * scale) / 2;
     const dx = Math.cos(it.angle) * half;
     const dy = Math.sin(it.angle) * half;
-    drawProp(ctx, data, { butt: { x: it.x - dx, y: it.y - dy }, tip: { x: it.x + dx, y: it.y + dy }, grip: { x: it.x, y: it.y } }, scale);
+    const pt = { butt: { x: it.x - dx, y: it.y - dy }, tip: { x: it.x + dx, y: it.y + dy }, grip: { x: it.x, y: it.y } };
+    // Under a light rig (v3, ADR-035) loose props take the light's tones like set pieces.
+    if (r.frameLight && sv?.depth) drawLit(ctx, r, r.framePieceTones, propBox(pt, data.width), (g) => drawProp(g, data, pt, scale), data.width * 2.2);
+    else drawProp(ctx, data, pt, scale);
   }
 }
 

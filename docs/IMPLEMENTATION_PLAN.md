@@ -139,6 +139,7 @@ Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visua
 | V3.8 | Audio tracks and templates (ADR-031) | DONE 2026-10-19, awaiting review |
 | V3.9 | Polish pass against the reference (ADR-032, ADR-033) | DONE 2026-10-20 (approved); framing and contact shadows awaiting review |
 | V3.10 | Rubber-hose limbs: `limbStyle` straight/bendy/rubber and the stretch channel (ADR-034, spec 5.7) | DONE 2026-10-20, reviewed (`out/demos/v3_10_limbs`) |
+| V3.11 | Renderer polish: lit set pieces and props (ADR-035), a bendable spine (ADR-036), night on every theme (ADR-037) | DONE 2026-10-20, awaiting review (`out/demos/v3_polish`) |
 
 ## Schedule summary
 

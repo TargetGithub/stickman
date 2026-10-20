@@ -26,6 +26,9 @@ function busWheel(ctx, x, y, r, turn) {
 
 const RAINBOW = ["#ff3b30", "#ff9500", "#ffd60a", "#34c759", "#1e90ff", "#4b3bd6", "#a347e0"];
 
+/** Shapes that give light (additive glows): drawn as they are under a light rig, never shaded (ADR-035). */
+export const GLOW_SHAPES = Object.freeze(["campfire", "lantern_string", "rainbow_shield"]);
+
 export const TRAVEL_SHAPES = {
   hanging_cage(ctx, c, piece) {
     // A round bird-cage cage hanging from a chain, its bottom at y (piece.y lifts it); open swings the door.

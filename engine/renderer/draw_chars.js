@@ -18,6 +18,7 @@ import { lookAt } from "./looks.js";
 import { bodyPlan } from "../story/bodies.js";
 import { withLayer } from "./extras.js";
 import { shadeTones } from "../lighting.js";
+import { drawLit, propBox } from "./piece_light.js";
 import { STAGE, FPS } from "../config.js";
 import { frameView, segmentIndexAt } from "../framestore.js";
 
@@ -105,10 +106,12 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
   const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
   const st = { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
     ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
-    ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight) } : {}),
+    ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight), propLit: (g, t, w, draw) => drawLit(g, r, r.framePieceTones, propBox(t, w), draw, w * 2.2) } : {}),
     ...(turned ? { faceShift: turned.faceShift, hideFace: turned.hideFace, farBrightness: turned.farBrightness, wrap: turned.wrap } : {}),
     ...(mo?.hairTilt ? { hairTilt: mo.hairTilt } : {}),
     ...(limbStyle !== "straight" ? { limbStyle } : {}),
+    // A bent back (ADR-036) shows from the side; turning toward the camera puts the bend in depth (sin of the yaw).
+    ...(mo?.spine ? { spineBend: mo.spine * (c.quad ? 1 : Math.abs(Math.sin((yaw * Math.PI) / 180))) } : {}),
     ...(sv.depth ? lineLook(r.sim.story?.look) : {}),
     ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) };
   if (c.quad && yaw < 89.5) {

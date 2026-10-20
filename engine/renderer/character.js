@@ -11,6 +11,7 @@ import { boxHeadPath, drawBolts } from "./robot.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
 import { shadeStrokes, shadeHead, shadeTorso } from "./shading.js";
 import { limbLine } from "./limb_curves.js";
+import { spineLine } from "../spine.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
 
@@ -138,6 +139,13 @@ function headAxes(j, facing) {
   return { u, f: facing === 1 ? { x: -u.y, y: u.x } : { x: u.y, y: -u.x } };
 }
 
+/** A held prop; under a light rig (v3, ADR-035) style.propLit draws it with the light's tones. */
+function heldProp(ctx, s, t) {
+  const draw = (g) => drawProp(g, s.prop.data, t, s.scale, s.outlineColor);
+  if (s.propLit) s.propLit(ctx, t, s.prop.data.width * s.scale, draw);
+  else draw(ctx);
+}
+
 /**
  * Draw one character.
  * @param {CanvasRenderingContext2D} ctx
@@ -150,6 +158,8 @@ function headAxes(j, facing) {
  *   look (appearance: eyes, brows, mouthStyle, cheeks, hair, hairColor, outfit, outfitColor, accessories)
  *   Quadrupeds (draw "quad"): quad, faceName, id, time, prevHip, prevHead (renderer/quadruped.js)
  *   light (V3.3): shadeTones() of the body colour under the scene's light rig; absent = the flat v2 look
+ *   spineBend (ADR-036): the back's bend (share of the hip-to-shoulder bone, + toward the back); absent = straight
+ *   propLit (ADR-035): (ctx, t, w, draw) draws the held prop with the light's tones (renderer/piece_light.js)
  *   limbStyle (ADR-034): straight (absent) | bendy | rubber: arms and legs as curves through the elbow and knee
  */
 export function drawCharacter(ctx, j, style) {
@@ -171,10 +181,12 @@ export function drawCharacter(ctx, j, style) {
   if (acc.backpack) drawBackpack(ctx, j, headR, acc.backpack, s.facing);
   // Turned views (V3.6) give each side its own shoulder and hip; the side view uses the shared ones.
   strokeGroup(ctx, [[j.lHip || j.hip, j.lKnee, j.lFoot], [j.lShoulder || j.shoulder, j.lElbow, j.lHand]], far, lw, s, farTones);
-  if (prop && s.prop.data.grip === "lHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
-  const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale, outlineScale: s.outlineScale };
+  if (prop && s.prop.data.grip === "lHand") heldProp(ctx, s, prop);
+  // spineBend (ADR-036): the back curves through a mid-spine point; hip, shoulders and neck stay put.
+  const bend = s.draw === "box" ? 0 : s.spineBend || 0;
+  const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale, outlineScale: s.outlineScale, ...(bend ? { spineBend: bend, facing: s.facing } : {}) };
   if (!drawTorso(ctx, j, torso)) {
-    strokeGroup(ctx, [[j.hip, j.shoulder, j.neckTop]], s.color, lw, s, s.light, false); // the spine stays straight
+    strokeGroup(ctx, [spineLine(j, s.facing, bend)], s.color, lw, s, s.light, false);
   } else if (s.light) {
     shadeTorso(ctx, j, torso, s.light);
     // The shading covers the inner half of the outline: stroke it again on top, as wide as v1/v2 draw it.
@@ -185,11 +197,11 @@ export function drawCharacter(ctx, j, style) {
       ctx.stroke();
     }
   }
-  if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth });
+  if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth, ...(bend ? { spineBend: bend, facing: s.facing } : {}) });
   if (acc.bowtie) drawBowtie(ctx, j, headR, acc.bowtie, s.facing);
   drawHead(ctx, j, headR, lw, s, s.facing);
   strokeGroup(ctx, [[j.rHip || j.hip, j.rKnee, j.rFoot]], s.color, lw, s);
-  if (prop && s.prop.data.grip === "rHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
+  if (prop && s.prop.data.grip === "rHand") heldProp(ctx, s, prop);
   strokeGroup(ctx, [[j.rShoulder || j.shoulder, j.rElbow, j.rHand]], s.color, lw, s);
   if (s.draw === "box") drawBolts(ctx, j, lw, shade(s.color, 0.75));
 

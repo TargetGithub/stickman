@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "meta": { "title": "Spine bend", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
+  "motion": { "spine": 1.5 },
+  "cast": [{ "id": "kai", "color": "#3fd8ff", "limbStyle": "rubber" }],
+  "scenes": [{ "id": "s1", "location": "city_park", "cast": [{ "id": "kai", "x": 1300, "facing": 1 }],
+    "beats": [{ "id": "b1", "at": 0.5, "who": "kai", "do": "wave" }, { "id": "end", "at": { "after": "b1", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.5 } }] }]
+}

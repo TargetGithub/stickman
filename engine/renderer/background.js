@@ -13,6 +13,7 @@ import { SEA_KINDS } from "./background_sea.js";
 import { IRON_KINDS } from "./background_iron.js";
 import { SHADOW_KINDS } from "./background_shadow.js";
 import { MOON_KINDS } from "./background_moon.js";
+import { nightLook, drawNightBackground } from "./night.js";
 
 const SPAN = [-2400, 8000]; // world x range covered by generated geometry (any stage up to 8000 px)
 
@@ -243,11 +244,15 @@ export function createBackground(theme, name, seed = 1) {
 
 /**
  * Draw sky, parallax layers, floor and floor layers for a camera state at fx time fxT.
- * Leaves the transform reset; the caller sets the world transform afterwards.
+ * night (0..1): the share of night in the time of day (grade.js gradeState); the theme goes dark with lit windows,
+ * stars and a moon by its night look (night.js, ADR-037). Leaves the transform reset; the caller sets the world
+ * transform afterwards.
  */
-export function drawBackground(ctx, bg, cam, W, H, fxT = 0, react = 1) {
+export function drawBackground(ctx, bg, cam, W, H, fxT = 0, react = 1, night = 0) {
   const t = bg.theme;
   const view = { cam, W, H, fxT, react }; // react: crowd excitement (story scripts: up after hits, down after a defeat)
+  const nl = night > 0.001 ? nightLook(t) : null;
+  if (nl) return drawNightBackground(ctx, bg, KINDS, view, night * nl.amount, nl.sky);
   screen(ctx);
   const sky = ctx.createLinearGradient(0, 0, 0, H);
   sky.addColorStop(0, t.sky.top);
