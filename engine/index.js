@@ -63,9 +63,12 @@ export function createEngine(opts) {
   return {
     /**
      * Validate and simulate a script.
+     * @param {{ lipSync?: Record<string, { text:string, env:number[], hz:number, head?:string }> }} [o]
+     *   lipSync: per say beat id, the loudness envelope of its recorded line (tools/lib/tts/lipsync.mjs), so mouths
+     *   follow the audio; lines without one follow their babble syllables (ADR-032)
      * @returns {{ ok, errors, warnings, timeline, totalFrames, fps, width, height, durationSec }}
      */
-    load(script) {
+    load(script, o = {}) {
       state = null;
       const format = FORMATS[script?.meta?.format] || FORMATS.landscape;
       const v = validate(script, catalog);
@@ -73,6 +76,7 @@ export function createEngine(opts) {
       if (!v.ok) return { ok: false, ...base, totalFrames: 0, durationSec: 0 };
       const sim = simulate(script, catalog);
       state = { script, sim, renderer: createRenderer(catalog, sim, { createCanvas: opts.createCanvas }), audio: null };
+      if (o.lipSync) state.renderer.lipTracks = o.lipSync;
       return { ok: true, ...base, totalFrames: sim.totalFrames, durationSec: sim.durationSec };
     },
 

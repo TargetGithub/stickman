@@ -640,6 +640,23 @@ export function mouthOpenAt(syllables, age): boolean;
 - `collectAudioEvents` adds one `voice:*` event per syllable and a `narrate_chime` per narration for story scripts; `createSfxLibrary().sampleFor` synthesizes `voice:*` keys on demand.
 - `tools/face_sheet.mjs` renders every face at three on-screen sizes (review sheet).
 
+### Lip-sync (ADR-032)
+```js
+// lipsync.js (pure; the viseme set is catalog.visemes, catalog/characters/visemes.json)
+export const REST, LEAD;                                    // "rest" = the face's own mouth; shapes lead the sound by 0.03 s
+export function visemeTable(visemes): { map: Map<grapheme, viseme>, longest };
+export function letterVisemes(text, table): [{ v, vowel, group }];      // one per letter, longest grapheme first
+export function textPlan(syllables, text, table): { kind: "text", keys: [{ t0, t1, v, k }] };  // babble timing
+export function audioPlan({ text, env, hz }, table): { kind: "audio", hz, frames: [{ v, k }] }; // TTS timing
+export function visemeAt(plan, age): { v, k };              // k: how far the shape opens, 0..1
+// renderer/mouth_shapes.js: drawViseme(ctx, at, r, shape, { k, scale, cartoon, jaw, mouth, teeth })
+// tools/lib/tts/lipsync.mjs: envelope(samples, sr, hz) → RMS per 10 ms; lipTracks(lines) → { [beatId]: { text, env, hz, head? } }
+// engine.load(script, { lipSync }): the host's tracks; tools/record.mjs passes them with --speech tts
+```
+- `faceStyle` adds `faceOpts.lip = { v, k, shape, jaw }` while a story character speaks (unless `meta.lipSync` is false). Plans are cached per line on the renderer (`r.lip`); the later bubbles of a line spoken as one clip carry `head` and follow that clip.
+- `drawFace` draws the viseme in place of the mouth; `rest` keeps the face's mouth, so expressions show between words. Quadrupeds (`c.quad`) get `jaw`: the shape's opening only.
+- `tools/viseme_sheet.mjs` renders every shape per mouth style (review sheet).
+
 ### Body plans and appearance (S3)
 ```js
 // skeleton.js
@@ -872,6 +889,11 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Decision** (STORY_SPEC 6.2): a quadruped keeps the 13 joints and channels and gives them other meanings (rear hip as the root, the spine running forward to the shoulders, arms as front legs, legs as rear legs). `computeJoints` branches on `dims.rig` to `computeJointsQuad` (`engine/skeleton_quad.js`); nothing else in the simulation changes shape. Tail and ears are drawn procedurally by the renderer, not stored. A body plan's `moves` map renames generic moves for its rig through one resolver, so callers keep asking for `walk`.
 - **Consequences**: the frame store, determinism and every humanoid frame are unchanged; a quadruped costs no extra memory. Quadruped moves are authored per rig (`rig` on each move); the catalog checks run each move on the plans of its rig only. A rig whose topology doesn't fit 13 joints (a bird with wings and legs, a snake) would need a real per-rig joint list later.
 
+
+### ADR-032 Lip-sync is computed at render time from the say events and host audio tracks
+- **Context**: with spoken TTS lines, the open/closed mouth flap no longer matches what is heard. Mouths should take shapes in time with the words, for babble and silent renders too, without changing the simulation.
+- **Decision**: eight visemes are catalog data (`characters/visemes.json`: size, roundness, teeth, tongue, letters). `engine/lipsync.js` maps text to visemes by graphemes and times them either from the line's babble syllables (the same ones the babble sound uses) or, when the host passes a track for the say beat (`engine.load(script, { lipSync })`), from the clip's loudness envelope: silence rests the mouth and the voiced stretches walk the letters in order, so pauses re-align the words. The renderer looks the shape up per frame (as ADR-012 overlays); `rest` draws the face's own mouth. `meta.lipSync: false` keeps the old flap. The tracks are host data, not script data: the engine still does no I/O. Numbered 032 because the engine-v3 branch uses 022-031.
+- **Consequences**: the frame store, simulation and determinism are unchanged; golden frames stay within tolerance (talking mouths are small at quarter size). Letter-to-time is proportional over voiced audio, not a phoneme alignment, so a long unvoiced consonant run can lag a few frames. A phoneme-aligned backend could supply the same track shape later.
 
 ### ADR-021 Colour effects are drawn from the event log (A3)
 - **Context**: the series needs a lasting Heart Glow, a per-scene "how grey the world is" grade with a colour wave, and friends frozen to stone grey across scenes.

@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids",
+    "lipSync": "yes"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "pip",
+      "body": "buddy",
+      "color": "#2fd3c0"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "set": [
+        {
+          "id": "bench1",
+          "object": "bench",
+          "x": 1300
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1500,
+          "facing": 1
+        },
+        {
+          "id": "pip",
+          "x": 1750,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "hi",
+          "at": 0.3,
+          "who": "kai",
+          "do": "talk",
+          "say": "Hello!"
+        }
+      ]
+    }
+  ]
+}

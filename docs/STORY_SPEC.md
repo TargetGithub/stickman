@@ -398,8 +398,18 @@ Faces scale with the camera so they read in close-ups.
 - What is drawn each frame (highest first): knocked out → `dizzy`; hit → `hurt` for 0.4 s; a move with its own face (`cry`, `sigh`, `gasp`, ... via the move's `face` field) → that face; an attack with a neutral base face → `determined`; otherwise the base face. A neutral face takes the move's v1 mouth (`shout` → open, `grin` → grin).
 - Level of detail: a neutral face on a head smaller than 30 px on screen draws only the two dots (the classic look); every other face, and any close-up, draws brows, mouth and extras.
 - Blinking is automatic: every 2.6-5 s per character, 0.12 s, deterministic from the seed and the id. Eyes look toward whoever else is talking.
-- Mouth flaps while a character speaks: the mouth is open exactly while a speech syllable sounds (section 15), so sound and mouth match. No lip-sync.
+- Mouth flaps while a character speaks: the mouth is open exactly while a speech syllable sounds (section 15), so sound and mouth match. Lip-sync (7.1a) gives the open mouth its shape.
 - Frame store: one face index per character is added (CHAR_STRIDE 34). The mouth flap is derived from the say events at render time (ADR-012), so no mouth-open bit is stored.
+
+### 7.1a Lip-sync
+
+- While a story character speaks, its mouth takes one of eight shapes (visemes, `catalog/characters/visemes.json`): `rest` (the face's own mouth: smile, frown, line), `A` (a, i: wide open, tongue), `E` (e, ee and quick consonants t, d, s, n, k, r: wide, teeth), `O` (round), `U` (u, oo, w: small round), `M` (m, b, p: pressed shut), `F` (f, v: teeth on the lower lip), `L` (l, th: tongue up).
+- Text to shapes: each letter of the line gets the shape of the longest matching grapheme (`th` before `t`); letters without one (`h`) borrow a neighbour's.
+- Timing with spoken audio (`record.mjs --speech tts`): the record tool passes each clip's loudness envelope (10 ms RMS) and spoken text to the engine. Quiet stretches close the mouth (`rest`); the voiced stretches walk through the letters in order; louder vowels open wider. A line spoken over several bubbles follows its one clip. Shapes lead the sound by 0.03 s.
+- Timing without audio (babble, silent renders, characters that keep babble in tts mode): each babble syllable shows its vowel group's shape, led in by the consonant before it when that has its own shape (`M`, `F`, `L`, `U`). Thoughts stay closed.
+- Mouth styles: `line` draws ink shapes; `cartoon` (larger) adds a dark-red inside, a pink tongue and white teeth. Faces whose `talk` mouth is `teeth` (angry, furious) show teeth on every open shape; smiles and frowns keep their corners. Quadrupeds (Becky) only open and close the jaw.
+- `meta.lipSync: false` keeps the plain open/closed flap (`talk` mouth). Default true. v1 scripts never lip-sync.
+- Everything is computed at render time from the say events (ADR-032); same script and same audio give the same frames.
 - A headband sits higher on story characters so it never covers brows and eyes.
 
 ### 7.2 Dialogue

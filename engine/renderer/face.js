@@ -3,6 +3,7 @@
 // hearts, blush). Pure: everything comes from the face data and the frame's time.
 
 import { hash32 } from "../math.js";
+import { drawViseme } from "./mouth_shapes.js";
 
 const INK = "#111111";
 const TEAR = "#2f6fe8"; // darker than most character colors, so tears read on cyan heads too
@@ -234,7 +235,9 @@ function extras(ctx, list, at, r, t, color) {
  * @param {{ x, y }} c  head center; r: head radius (world px)
  * @param {{ u:{x,y}, f:{x,y} }} axes  u: up for the face, f: forward
  * @param {object} face  catalog face data
- * @param {{ blink?:boolean, talking?:boolean, gaze?:{f,u}, detail?:"full"|"simple", t?:number, neutral?:boolean }} o
+ * @param {{ blink?:boolean, talking?:boolean, gaze?:{f,u}, detail?:"full"|"simple", t?:number, neutral?:boolean,
+ *           lip?:{ v:string, k:number, shape:object, jaw:boolean } }} o
+ *   lip: the lip-sync shape while a line is spoken (face_state.js); without it, talking flaps face.talk
  *   detail "simple" with the neutral face draws only the two dots (the classic far-away look)
  */
 export function drawFace(ctx, c, r, axes, face, o = {}) {
@@ -285,7 +288,11 @@ export function drawFace(ctx, c, r, axes, face, o = {}) {
         line(ctx, a, b, r * (look.brows === "thick" ? 0.13 : 0.08));
       }
     }
-    mouth(ctx, o.talking ? face.talk || "open" : face.mouth, at, r, look.mouthStyle === "cartoon" ? 1.35 : 1);
+    const scale = look.mouthStyle === "cartoon" ? 1.35 : 1;
+    // Lip-sync (ADR-032): a viseme while a line is spoken; "rest" keeps the face's own mouth.
+    const lip = o.lip && o.lip.v !== "rest" ? o.lip : null;
+    if (lip) drawViseme(ctx, at, r, lip.shape, { k: lip.k, scale, cartoon: look.mouthStyle === "cartoon", jaw: lip.jaw, mouth: face.mouth, teeth: face.talk === "teeth" });
+    else mouth(ctx, o.talking && !o.lip ? face.talk || "open" : face.mouth, at, r, scale);
     extras(ctx, face.extras, at, r, opts.t);
   }
   ctx.restore();

@@ -341,6 +341,7 @@ const makeSchemaV2 = (moods, enums, macroParams) => ({
         tail: { type: "number", minimum: 0, maximum: 3 },
         speech: { enum: ["babble", "tts"], description: "Default speech for renders (SPEECH_SPEC 2): babble syllables or offline spoken voices." },
         narrator: { ...ttsVoice, description: "Spoken voice for narration in tts renders (SPEECH_SPEC 3)." },
+        lipSync: { type: "boolean", description: "Mouths take shapes in time with spoken lines (STORY_SPEC 7.1a; default true). false keeps the plain open/closed flap." },
       },
     },
     cast: { type: "array", minItems: 1, maxItems: L.cast, items: castEntry },
