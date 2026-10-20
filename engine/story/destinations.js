@@ -46,8 +46,8 @@ export function startTo(world, actor, beat, opts, t, paired = false) {
   // renderer lerp z over that time (actor.depthMove; the director emits the depth event).
   if (typeof beat.to.z === "number" && world.depth) {
     const plan = planDepthWalk(actor, { ...beat.to, ...(x !== null ? { x } : {}) }, world.depth, walkSpeed(world, actor, beat.do), { lo: STAGE.margin, hi: world.stageWidth - STAGE.margin });
+    actor.depthMove = { z0: actor.z || 0, z1: plan.z1, t0: t, dur: plan.dur, dx: plan.x - actor.x }; // dx: the walker's turn (V3.9)
     x = plan.x;
-    actor.depthMove = { z0: actor.z || 0, z1: plan.z1, t0: t, dur: plan.dur };
   }
   if (x === null) return null;
   const d = x - actor.x;

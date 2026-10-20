@@ -357,6 +357,19 @@
           }
         },
         {
+          "id": "ncome",
+          "at": {
+            "after": "nsay",
+            "delay": 0.2
+          },
+          "who": "nani",
+          "do": "walk",
+          "to": {
+            "z": 0,
+            "x": 2080
+          }
+        },
+        {
           "id": "front2",
           "at": {
             "with": "back"
@@ -371,7 +384,7 @@
         {
           "id": "cheer",
           "at": {
-            "after": "front2",
+            "after": "ncome",
             "delay": 0.2
           },
           "who": "mooka",
@@ -387,10 +400,23 @@
           "do": "clap"
         },
         {
+          "id": "leave",
+          "at": {
+            "after": "clap",
+            "delay": 0.3
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "z": -650,
+            "x": 1150
+          }
+        },
+        {
           "id": "end",
           "at": {
-            "after": "cheer",
-            "delay": 0.8
+            "after": "leave",
+            "delay": 0.4
           },
           "who": "world",
           "do": "fade",

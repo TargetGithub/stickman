@@ -42,7 +42,7 @@ export function yawAt(track, t) {
     const set = track.sets.findLast((e) => e.storyT <= time);
     const setYaw = VIEW_YAW[set ? set.view : track.base];
     const hint = track.hints.findLast((h) => h.t0 <= time && time < h.t1);
-    if (hint) return { yaw: setYaw + (VIEW_YAW[hint.view] - setYaw) * (hint.amount ?? 1), since: hint.t0 };
+    if (hint) return { yaw: setYaw + ((hint.yaw ?? VIEW_YAW[hint.view]) - setYaw) * (hint.amount ?? 1), since: hint.t0 };
     // The view changed when it was set, or when the last hint before `time` ended, whichever is later.
     const ended = track.hints.reduce((m, h) => (h.t1 <= time && h.t1 > m ? h.t1 : m), -Infinity);
     return { yaw: setYaw, since: Math.max(set ? set.storyT : -Infinity, ended) };
@@ -55,10 +55,17 @@ export function yawAt(track, t) {
 }
 
 /**
- * A yaw kept within maxTurn degrees of profile (look.maxTurn, V3.9): 90 allows full front and back; 60 makes a
- * front view a near-front three-quarter (30°) and a back view 150°, the way 2D cartoons avoid a flat front.
+ * A yaw turned at most maxTurn degrees from profile toward the camera (look.maxTurn, V3.9; default 60): a front
+ * view is a near-front three-quarter (30°), the way 2D cartoons avoid a flat front. Turns away (back) are free.
  */
-export const limitYaw = (yaw, maxTurn = 90) => clamp(yaw, 90 - maxTurn, 90 + maxTurn);
+export const MAX_TURN = 60;
+export const limitYaw = (yaw, maxTurn = MAX_TURN) => Math.max(yaw, 90 - maxTurn);
+
+/**
+ * The yaw of a walk in depth (V3.9): the walk's direction on the ground, 90° along the stage line, toward 0°
+ * walking at the camera (dz > 0) and toward 180° walking away.
+ */
+export const walkYaw = (dx, dz) => 90 - (Math.atan2(dz, Math.abs(dx)) * 180) / Math.PI;
 
 /** How far the face slides across the head (in head radii) at a yaw: 0 in profile, FACE_SHIFT from the front. */
 export const faceShiftOf = (yaw) => FACE_SHIFT * Math.max(0, Math.cos((Math.min(yaw, 90) * Math.PI) / 180));

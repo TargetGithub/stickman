@@ -36,7 +36,29 @@ test("turnedHumanoid: wrap is |cos yaw| (0 side, 1 front and back)", () => {
   for (const [yaw, wrap] of [[0, 1], [45, Math.SQRT1_2], [135, Math.SQRT1_2], [180, 1]]) near(turnedHumanoid(c, yaw, null).wrap, wrap, 1e-9);
 });
 
-test("limitYaw: look.maxTurn keeps a turn within that many degrees of profile", async () => {
-  const { limitYaw } = await import("../../engine/turnaround.js");
-  for (const [yaw, max, want] of [[0, 90, 0], [180, 90, 180], [0, 60, 30], [180, 60, 150], [50, 60, 50], [90, 0, 90], [0, 0, 90]]) assert.equal(limitYaw(yaw, max), want, `${yaw} at ${max}`);
+test("limitYaw: turns toward the camera stop at maxTurn from profile (default 60); turns away are free", async () => {
+  const { limitYaw, walkYaw } = await import("../../engine/turnaround.js");
+  for (const [yaw, max, want] of [[0, undefined, 30], [180, undefined, 180], [50, undefined, 50], [0, 90, 0], [0, 0, 90], [150, 0, 150]]) assert.equal(limitYaw(yaw, max), want, `${yaw} at ${max}`);
+  for (const [dx, dz, want] of [[100, 0, 90], [100, 100, 45], [-100, 100, 45], [100, -100, 135], [0, 50, 0]]) near(walkYaw(dx, dz), want, 1e-9);
+});
+
+test("a walk in depth turns the walker along its path: toward the camera, then away", async () => {
+  const { simulate } = await import("../../engine/sim.js");
+  const { sceneViews } = await import("../../engine/renderer/scene_views.js");
+  const { catalog } = await import("../../catalog/index.js");
+  const { yawAt, limitYaw } = await import("../../engine/turnaround.js");
+  const script = { version: 3, meta: { title: "walk", format: "landscape", seed: 3, kind: "clip", audience: "kids" }, cast: [{ id: "a", name: "A", body: "kid", color: "#3fd8ff" }],
+    locations: [{ id: "p", theme: "city_park" }],
+    scenes: [{ id: "s", location: "p", cast: [{ id: "a", x: 1400, z: -600 }], beats: [{ id: "come", at: 0.5, who: "a", do: "walk", to: { z: 200 } }, { id: "go", at: { after: "come", delay: 0.5 }, who: "a", do: "walk", to: { z: -600 } }] }] };
+  const sim = simulate(script, catalog);
+  const sv = sceneViews(sim, catalog)[0];
+  const tr = sv.viewTracks.get("a");
+  assert.equal(tr.hints.length, 2);
+  const [come, go] = tr.hints;
+  assert.ok(come.yaw < 30 && go.yaw > 150, `toward ${come.yaw}, away ${go.yaw}`);
+  assert.equal(sv.maxTurn, 60);
+  const mid = (h) => (h.t0 + h.t1) / 2;
+  assert.equal(limitYaw(yawAt(tr, mid(come)), sv.maxTurn), 30, "toward the camera: a near-front three-quarter");
+  assert.ok(Math.abs(yawAt(tr, mid(go)) - go.yaw) < 1e-6, "away: not capped");
+  assert.equal(yawAt(tr, 0.2), 90, "standing: profile");
 });

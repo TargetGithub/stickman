@@ -8,7 +8,7 @@ import { lensMatrix } from "./lens_draw.js";
 import { withLensTracks } from "../compositor.js";
 import { depthAt } from "../depth.js";
 import { deriveRng } from "../math.js";
-import { resolveView } from "../turnaround.js";
+import { resolveView, viewsOf, walkYaw, MAX_TURN } from "../turnaround.js";
 import { STAGE } from "../config.js";
 
 /** Per-scene views of the event log and fx records (overlays and particles never leak across scenes). */
@@ -49,7 +49,7 @@ export function sceneViews(sim, catalog) {
         lensBase: { ...LENS_DEFAULTS, vignette: LENS_DEFAULTS.vignette * k, ...(sc.lens || {}) },
         handheld: createHandheld(deriveRng(sim.meta?.seed ?? 1, `handheld@${sc.id ?? i}`)),
         viewTracks: viewTracks(ev, sc, catalog, k),
-        maxTurn: sim.story?.look?.maxTurn ?? 90,
+        maxTurn: sim.story?.look?.maxTurn ?? MAX_TURN,
       } : {}),
       placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
       depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
@@ -123,6 +123,9 @@ function viewTracks(ev, sc, catalog, k = 1) {
     else if (e.type === "viewHint") {
       const end = ends.find((x) => x.actor === e.actor && x.beatId === e.beatId && x.storyT >= e.storyT);
       tr.hints.push({ t0: e.storyT - t0, t1: end ? end.storyT - t0 : Infinity, view: resolveView(tr.plan, e.view), amount: k }); // automatic turns at the look strength
+    } else if (e.type === "depth" && e.dur > 0 && Math.abs(e.z1 - e.z0) > 20 && typeof e.dx === "number" && viewsOf(tr.plan).includes("front")) {
+      // A walk in depth turns the walker along its path (V3.9): toward the camera (capped by maxTurn) or away.
+      tr.hints.push({ t0: e.t0 - t0, t1: e.t0 - t0 + e.dur, view: "side", yaw: walkYaw(e.dx, e.z1 - e.z0), amount: 1 });
     }
   }
   return out;
