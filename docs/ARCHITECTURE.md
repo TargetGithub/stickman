@@ -395,6 +395,17 @@ export function turnJoints(j, facing, yaw, turn, scale): Joints;        // adds 
 ```
 The director emits `view` (a beat's view) and `viewHint` (a move's view, ended by its `moveEnd`) events in v3 scenes; `sim.scenes[i].characters[]` carry their starting `view` and `body`; `renderer/scene_views.js` builds the per-character view tracks. Prepared moves keep `view`; body plans carry `views` and `turn`.
 
+### motion_fx.js (V3.7, ENGINE_V3_SPEC 5.5)
+```js
+export const MOTION_DEFAULTS, WINDOW;                                   // { followThrough, squash, secondary, breathing, blur }, 14 frames
+export function springTrack(series, spring?, dt?): { value, target };   // a damped spring over an (unwrapped) series
+export function followThrough(history, amount): Joints;                 // arms and head trail and overshoot; legs unchanged
+export function squashStretch(history, events, t, groundY, amount): { m: [a, b, c, d], pivot } | null;
+export function axisScale(dir, k), hairSway(history, amount), standingStill(history), breathe(j, id, t, scale, amount), blurGhosts(history, amount);
+// renderer/motion_draw.js: motionFrame(ctx, r, sv, f, c, chars, past, ownSquash) → { j, hairTilt }; motionSettings(r)
+// character.js: style.hairTilt turns the hair's axes
+```
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -883,4 +894,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: at full strength the defaults a v3 scene gets without asking (time-of-day lighting with limb shading, rim, tint, haze and cast shadows; a vignette; auto focus blur; automatic turns) made the Doopi characters look striped, washed out and scribbled compared with v2.
 - **Decision**: those defaults run at a look strength, `look.strength` on a v3 script, default 0.2: `scaleRig` scales the time-of-day rig (`renderer/scene_views.js`), the default vignette and the auto focus are multiplied by it, and move-hint turns go that share of the way (`amount` on view hints, `yawAt`). Explicit choices (a named light, lens values, camera keys, `set_camera`, `set_light`, `view`) stay at full strength.
 - **Consequences**: v3 scenes look close to v2 unless a script asks for more; v1/v2 frames are unchanged. The shading style itself (bands on thin limbs, limb-shaped cast shadows) still needs the V3.9 polish pass.
+
+### ADR-029 Motion quality is a render-time layer over stored frames (V3.7)
+- **Context**: v3 needs overshoot, follow-through, squash and stretch, secondary motion, breathing and motion blur, while choreographed hits must still land where the simulation put them, frames stay random access and v1/v2 output stays identical.
+- **Decision**: the renderer applies motion quality per character from the last 14 stored frames of the same scene (`engine/motion_fx.js`, pure; `renderer/motion_draw.js`): springs over bone angles for the arms and head (bounded, lengths kept, legs untouched), squash and stretch as a context transform about the feet or the body, hair sway from the head's motion, breathing while still, and faint ghosts for fast limbs. A v3 `motion` block tunes each part.
+- **Consequences**: the simulation, frame store and every hit are unchanged; the effects only exist in v3 scenes. Rendering a frame unpacks up to 14 past frames per character (cached, small). Moves keep their own keyframe easing (no overshoot inside the pose data), so a hand at a contact frame can be up to 18° × followThrough off its stored angle; at the default this reads as follow-through, not a miss, in the review renders.
 

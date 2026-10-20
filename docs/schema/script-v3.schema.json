@@ -2931,6 +2931,43 @@
         }
       }
     },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Motion quality for v3 scenes, drawn over the stored motion (the simulation is unchanged).",
+      "properties": {
+        "followThrough": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Arms and head trail and overshoot their poses (default 1)."
+        },
+        "squash": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Stretch in the air, squash on landing and along a hit (default 1)."
+        },
+        "secondary": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Hair sways with the head (default 1)."
+        },
+        "breathing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "The upper body breathes while standing still (default 1)."
+        },
+        "blur": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Faint ghosts behind fast limbs (default 0)."
+        }
+      }
+    },
     "look": {
       "type": "object",
       "additionalProperties": false,

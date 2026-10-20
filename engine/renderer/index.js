@@ -5,6 +5,7 @@ import { unpackJoints, lowestPoint } from "../skeleton.js";
 import { drawCharacter, shade } from "./character.js";
 import { withState, drawItems, drawTrails as drawTrailsOf } from "./world_items.js";
 import { yawAt } from "../turnaround.js";
+import { motionFrame } from "./motion_draw.js";
 import { turnedHumanoid, drawQuadFront, quadBlend } from "./turnaround_draw.js";
 import { drawBehind, drawFront, squashAt } from "./accessories.js";
 import { drawLookBehind, drawLookFront } from "./accessories_more.js";
@@ -233,11 +234,14 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ctx.shadowColor = style.glow;
     ctx.shadowBlur = 22 * c.scale;
   }
+  // Motion quality (V3.7, v3 scenes): follow-through, breathing, squash and stretch, hair sway, blur ghosts.
+  const mo = sv.depth ? motionFrame(ctx, r, sv, f, c, chars, past, !!style.squash) : null;
+  const cm = mo ? { ...c, j: mo.j } : c;
   // Turnaround views (V3.6, v3 scenes): the yaw from the scene's view track.
   const track = sv.viewTracks?.get(c.id);
   const yaw = track ? yawAt(track, f.storyT - (sv.storyStart ?? 0)) : 90;
-  const turned = !c.quad && yaw !== 90 ? turnedHumanoid(c, yaw, r.catalog.bodies?.[c.plan]) : null;
-  const ct = turned ? { ...c, j: turned.j } : c;
+  const turned = !c.quad && yaw !== 90 ? turnedHumanoid(cm, yaw, r.catalog.bodies?.[c.plan]) : null;
+  const ct = turned ? { ...cm, j: turned.j } : cm;
   drawBehind(ctx, ct, past, style);
   drawLookBehind(ctx, ct, look, f.videoT);
   const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
@@ -245,14 +249,15 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
     ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight) } : {}),
     ...(turned ? { faceShift: turned.faceShift, hideFace: turned.hideFace, farBrightness: turned.farBrightness } : {}),
+    ...(mo?.hairTilt ? { hairTilt: mo.hairTilt } : {}),
     ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) };
   if (c.quad && yaw < 89.5) {
     // A four-legged character cross-fades from its side drawing to its front drawing, squashed mid-turn.
     const b = quadBlend(yaw);
-    if (b.front < 0.99) drawCharacter(ctx, c.j, { ...st, alpha: st.alpha * (1 - b.front) });
+    if (b.front < 0.99) drawCharacter(ctx, cm.j, { ...st, alpha: st.alpha * (1 - b.front) });
     ctx.save();
     ctx.transform(b.squash, 0, 0, 1, c.j.hip.x * (1 - b.squash), 0);
-    drawQuadFront(ctx, c.j, { ...st, alpha: st.alpha * b.front }, shade);
+    drawQuadFront(ctx, cm.j, { ...st, alpha: st.alpha * b.front }, shade);
     ctx.restore();
   } else drawCharacter(ctx, ct.j, st);
   ctx.shadowBlur = 0;

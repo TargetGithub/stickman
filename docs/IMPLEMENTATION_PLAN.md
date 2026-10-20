@@ -134,8 +134,9 @@ Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visua
 | V3.3 | Lighting and shading (ADR-024) | DONE 2026-10-19, reviewed |
 | V3.4 | v3 camera (ADR-025) | DONE 2026-10-19, reviewed |
 | V3.5 | Timeline and compositor (ADR-026) | DONE 2026-10-19, reviewed |
-| V3.6 | Turnaround views (ADR-027) | DONE 2026-10-19, awaiting review |
-| V3.7-V3.8 | Motion quality, audio tracks and templates | next, one at a time |
+| V3.6 | Turnaround views (ADR-027); look strength 20% (ADR-028) | DONE 2026-10-19, reviewed |
+| V3.7 | Motion quality (ADR-029) | DONE 2026-10-19, awaiting review |
+| V3.8 | Audio tracks and templates | next |
 | V3.9 | Polish pass against the reference | |
 
 ## Schedule summary

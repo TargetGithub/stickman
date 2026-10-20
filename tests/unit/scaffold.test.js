@@ -27,6 +27,7 @@ const expected = {
   "../../engine/bundles.js": ["mergeBundles", "bundleOf", "scriptNames", "bundleIssues"],
   "../../engine/depth.js": ["DEPTH", "LAYER_Z", "depthOf", "zOf", "projectScale", "depthTransform", "projectJoints", "depthAt", "planDepthWalk", "sameDepth", "depthOrder"],
   "../../engine/scene.js": ["sceneNodes", "characterDepths"],
+  "../../engine/motion_fx.js": ["MOTION_DEFAULTS", "WINDOW", "springTrack", "followThrough", "squashStretch", "axisScale", "hairSway", "standingStill", "breathe", "blurGhosts"],
   "../../engine/turnaround.js": ["VIEWS", "VIEW_YAW", "viewsOf", "resolveView", "yawAt", "faceShiftOf", "faceShows", "turnJoints"],
   "../../engine/timeline.js": ["parseTarget", "cubicBezier", "easingOf", "sampleTrack", "compileTracks", "trackValuesAt"],
   "../../engine/compositor.js": ["hasMotion", "compileMotion", "composeAt", "postAt", "motionValuesAt", "animState", "lifeOf"],

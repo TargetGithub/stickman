@@ -40,10 +40,20 @@ function strokeGroup(ctx, lines, color, lw, style, tones = style.light) {
   if (tones) shadeStrokes(ctx, lines, lw, tones);
 }
 
+/** Axes turned by an angle (radians): the hair sways with secondary motion (V3.7). */
+function turnAxes(ax, a) {
+  if (!a) return ax;
+  const c = Math.cos(a);
+  const s = Math.sin(a);
+  const rot = (v) => ({ x: v.x * c - v.y * s, y: v.x * s + v.y * c });
+  return { u: rot(ax.u), f: rot(ax.f) };
+}
+
 function drawHead(ctx, j, r, lw, style, facing) {
   const look = style.look;
   const ax = headAxes(j, facing);
-  if (look) drawHairBack(ctx, j.head, r, ax, look);
+  const hairAx = turnAxes(ax, style.hairTilt || 0);
+  if (look) drawHairBack(ctx, j.head, r, hairAx, look);
   if (style.draw === "box") {
     const hu = { x: j.head.x - j.neckTop.x, y: j.head.y - j.neckTop.y };
     const hl = Math.hypot(hu.x, hu.y) || 1;
@@ -76,7 +86,7 @@ function drawHead(ctx, j, r, lw, style, facing) {
     if (acc.mask && !style.hideFace) drawMask(ctx, fc, r, ax, acc.mask);
     if (!style.hideFace) drawFace(ctx, fc, r, { u, f }, style.face, { ...(style.faceOpts || {}), look });
     if (look) {
-      drawHair(ctx, j.head, r, ax, look);
+      drawHair(ctx, j.head, r, hairAx, look);
       if (acc.eyepatch && !style.hideFace) drawEyepatch(ctx, j.head, r, ax, acc.eyepatch);
       drawHeadTop(ctx, j.head, r, ax, acc);
     }
