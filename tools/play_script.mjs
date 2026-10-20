@@ -12,7 +12,7 @@ import { createPreview } from "./lib/preview.mjs";
 import { createRenderer, renderFrame } from "../engine/renderer/index.js";
 import { validate, formatIssues } from "../engine/validator/index.js";
 import { simulate } from "../engine/sim.js";
-import { catalogForScript } from "../catalog/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const file = args.find((a) => !a.startsWith("--"));
@@ -22,7 +22,6 @@ if (!file) {
 }
 const out = args.includes("--out") ? args[args.indexOf("--out") + 1] : `out/demos/${basename(file, ".json")}.mp4`;
 const script = JSON.parse(readFileSync(file, "utf8"));
-const catalog = catalogForScript(script); // plus the bundles the script declares (V3.1)
 const check = validate(script, catalog);
 if (check.warnings.length) console.log(formatIssues(check.warnings));
 if (!check.ok) {

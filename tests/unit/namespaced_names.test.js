@@ -13,6 +13,7 @@ import { WORLD_COMMANDS_V2, worldCommandsV2For } from "../../engine/validator/se
 import { V2_ENUMS, catalogNames } from "../../engine/validator/v2_names.js";
 
 const N = "acme:robo";
+const PIN = { id: "acme", version: "1.0.0", hash: `sha256-${"a".repeat(64)}` };
 const copy = (v) => JSON.parse(JSON.stringify(v));
 
 /** The base catalog plus one entry named "acme:robo" of every kind a bundle can add. */
@@ -33,7 +34,7 @@ function withAcme() {
   c.activityNames = [...c.activityNames, N];
   c.musicMoods = add("musicMoods", "happy");
   c.moves = [...c.moves, { ...copy(c.moves.find((m) => m.name === "wave")), name: N }];
-  c.bundles = [...c.bundles, { id: "acme", version: "1.0.0", hash: `sha256-${"a".repeat(64)}`, audience: ["kids", "general"], dependencies: [] }]; // loaded (V3.1)
+  c.bundles = [{ ...PIN, audience: ["kids", "general"], dependencies: [] }]; // what mergeBundles records
   return c;
 }
 const acme = withAcme();
@@ -119,7 +120,7 @@ test("mood and activity names come from the catalog, with the frozen lists as th
 test("a v2 story using namespaced names of every kind validates", () => {
   const story = {
     version: 2,
-    bundles: [{ id: "acme", version: "1.0.0", hash: `sha256-${"a".repeat(64)}` }],
+    bundles: [PIN],
     meta: { title: "Acme", format: "landscape", seed: 1, kind: "clip", audience: "kids" },
     cast: [
       { id: "kai", color: "#3fd8ff" },
@@ -143,13 +144,18 @@ test("a v2 story using namespaced names of every kind validates", () => {
   assert.deepEqual(r.errors, []);
   assert.ok(r.stage === "dry-run");
   const unknown = validate(story, base);
-  assert.ok(!unknown.ok, "the same story fails on the base catalog");
+  assert.deepEqual(unknown.errors.map((e) => e.code), ["E_BUNDLE_MISSING"], "the same story without the bundle loaded");
+  const { bundles, ...undeclared } = story;
+  const u = validate(undeclared, acme);
+  assert.equal(u.stage, "bundles");
+  assert.ok(u.errors.length && u.errors.every((e) => e.code === "E_BUNDLE_UNDECLARED"), JSON.stringify(u.errors));
+  assert.equal(u.errors[0].path, "cast[1].body");
 });
 
 test("a v1 script using namespaced names validates", () => {
   const script = {
     version: 1,
-    bundles: [{ id: "acme", version: "1.0.0", hash: `sha256-${"a".repeat(64)}` }],
+    bundles: [PIN],
     meta: { title: "Acme", format: "landscape", seed: 1, theme: N },
     characters: [{ id: "a", x: 1200, facing: 1, color: "#3fd8ff", prop: N }, { id: "b", x: 1700, facing: -1, color: "#ff7a3d" }],
     camera: [{ at: 0, mode: "follow", targets: ["a", "b"] }],

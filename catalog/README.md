@@ -42,10 +42,12 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `story/templates.json` | script templates for v3 scripts (V3.8): typed `params` and a `fragment` (scenes, text, layers, shapes, tracks, audioTracks, markers) with `${name}` placeholders; `${id}` is the using scene's id |
 | `story/macro_lines.json` | lines the story compiler writes itself (under 40 characters) |
 | `story/blocklist.json` | `blocklist` (errors) and `softWords` (warnings with a kinder word) |
+| `story/tts_voices.json` | default Piper voices per timbre and the narrator for `--speech tts` (SPEECH_SPEC 5; tools only) |
 | `docs/*.json` | descriptions of engine-owned names: world commands, macros, camera modes, transitions and cards, validator codes |
 | `docs/*.md` | the pack's prose: script format (`format.md`), rules and checklist, start page, project instructions |
 | `examples/` | example clips and stories, indexed by `examples/index.json` (which also picks the pack's examples) |
-| `bundles.json` | the bundle registry (V3.1): `base` (this folder) first, then every bundle a script may declare, each with a folder `path` (relative to the project root) or found in the store by hash; `npm run bundle:check <folder>` checks a bundle, `bundle:pack` writes its hashes |
+| `bundle_blocklist.json`, `bundle_allowlist.json` | catalog bundles that are blocked, and bundles Sridhar reviewed (by content hash; docs/CATALOG_BUNDLE_SPEC.md section 8) |
+| `base_names.json` | base names as of the last release: bundles refer to them, so the build fails when one disappears. Update it only at a release: `node tools/catalog_build.mjs --release-names` |
 | `schemas/` | JSON Schemas for the authored files, checked by the build with the engine's schema checker; `schemas/bundle/` holds the catalog bundle schemas (docs/CATALOG_BUNDLE_SPEC.md section 4), which the build does not apply to catalog files |
 | `generated/` | `engine_vocab.json`, `catalog.json`, `context/` (the AI pack) |
 | `manifest.json` | catalog version, authored file list, counts, pack sizes |

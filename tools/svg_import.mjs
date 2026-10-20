@@ -5,6 +5,8 @@
 //   node tools/svg_import.mjs <file.svg> --name castle [--behavior static] [--height 300]
 //        [--palette theme|none] [--source "author, license, URL"] [--out out/drafts]
 //        [--write "a stone castle with towers"]   → after review: add it to catalog/ with that description
+//        [--bundle <dir>]   with --write: add it to a catalog bundle folder instead, as <bundle id>:<name>; the
+//                           --source line goes into the bundle's README.md (CATALOG_BUNDLE_SPEC B6)
 // Colors snap to a small palette (the stick-figure look) unless --palette none; every shape gets the
 // standard dark outline. With --source, the license line is appended to assets/art/SOURCES.md.
 
@@ -14,6 +16,7 @@ import { parseSvg, toCatalogPaths } from "./lib/svg.mjs";
 import { loadBackend } from "./lib/canvas.mjs";
 import { drawPaths } from "../engine/renderer/paths.js";
 import { addToCatalog } from "./lib/catalog_write.mjs";
+import { addToBundle } from "./lib/bundle_write.mjs";
 
 export const PALETTE = ["#111111", "#ffffff", "#e8e8e8", "#9aa7b4", "#5a5f6a", "#3b3b44", "#6b4a2f", "#a0703f", "#d2a96b", "#e9d9a8",
   "#3f9a4a", "#86c56a", "#2f7fd9", "#7fc8ef", "#8a2be2", "#e04f4f", "#ff7a3d", "#ffcc33", "#ff6fa8", "#2fd3c0"];
@@ -21,6 +24,7 @@ export const PALETTE = ["#111111", "#ffffff", "#e8e8e8", "#9aa7b4", "#5a5f6a", "
 const args = process.argv.slice(2);
 const opt = (n, d) => (args.includes(n) ? args[args.indexOf(n) + 1] : d);
 const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").startsWith("--"));
+const bundleDir = opt("--bundle", null);
 if (!file) {
   console.error("usage: node tools/svg_import.mjs <file.svg> --name <kind> [--behavior static] [--height 300] [--palette theme|none] [--source \"...\"] [--out out/drafts]");
   process.exit(2);
@@ -53,13 +57,17 @@ ctx.restore();
 await backend.savePng(canvas, join(outDir, `${name}.object.png`));
 
 const source = opt("--source", null);
-if (source) {
+if (source && bundleDir) appendFileSync(join(bundleDir, "README.md"), `\nArt for ${name}: ${basename(file)}, ${source}\n`);
+else if (source) {
   const sources = new URL("../assets/art/SOURCES.md", import.meta.url).pathname;
   if (!existsSync(sources)) writeFileSync(sources, "# Imported art sources\n\n| Object | File | Source and license |\n|---|---|---|\n");
   appendFileSync(sources, `| ${name} | ${basename(file)} | ${source} |\n`);
 }
 console.log(`wrote ${json} (${paths.length} paths, ${w}×${h} px) and ${name}.object.png`);
-if (opt("--write", null)) {
+if (opt("--write", null) && bundleDir) {
+  const r = addToBundle(bundleDir, "object", name, entry, { description: opt("--write") });
+  console.log(`added "${r.name}" to ${bundleDir}/${r.file} (tag "draft")${r.inExample ? " and to the example story" : ""}; next: node tools/bundle.mjs pack ${bundleDir} --i-made-this`);
+} else if (opt("--write", null)) {
   const rel = addToCatalog("object", name, entry, { description: opt("--write") });
   console.log(`added "${name}" to catalog/${rel} (tag "draft"); run npm run catalog:build to check it`);
 } else {

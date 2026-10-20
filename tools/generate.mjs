@@ -35,7 +35,8 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 import { randomInt } from "node:crypto";
-import { catalog } from "../catalog/index.js";
+import { catalog as baseCatalog } from "../catalog/index.js";
+import { catalogFromArgs } from "./lib/bundle_args.mjs";
 import { createEngine } from "../engine/index.js";
 import { createLlm, loadProvider, LlmError } from "./lib/llm/index.mjs";
 import { IDEATION_SCHEMA } from "./lib/llm_schema.mjs";
@@ -46,7 +47,7 @@ import { storyIdeationSystem, storyOutlineSystem, storySceneSystem } from "./lib
 import { loadHistory, saveHistory, avoidList, historyEntry, appendReviewQueue } from "./lib/history.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const args = process.argv.slice(2);
+const { args, catalog } = await catalogFromArgs(process.argv.slice(2), baseCatalog); // --bundle <dir|zip>, repeatable
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
 

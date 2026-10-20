@@ -54,6 +54,26 @@ export function catalogNames(catalog) {
   return { mood, activity, frozen: same(mood, V2_ENUMS.mood) && same(activity, V2_ENUMS.activity) };
 }
 
+/** Namespaced names (CATALOG_BUNDLE_SPEC 5.1): "<bundle id>:<name>". */
+export const NAMESPACED = "^[a-z][a-z0-9_]{2,31}:[a-z][a-z0-9_]{0,31}$";
+
+/** The catalog bundles a script declares (CATALOG_BUNDLE_SPEC 7.1), in v1 and v2. */
+export const BUNDLE_PINS = {
+  type: "array",
+  maxItems: 8,
+  description: "Catalog bundles this script uses: each { id, version, hash } exactly as the bundle's context pack gives it. Names with a colon come from these bundles.",
+  items: {
+    type: "object",
+    required: ["id", "version", "hash"],
+    additionalProperties: false,
+    properties: {
+      id: { type: "string", pattern: "^[a-z][a-z0-9_]{2,31}$" },
+      version: { type: "string", pattern: "^(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})$" },
+      hash: { type: "string", pattern: "^sha256-[0-9a-f]{64}$" },
+    },
+  },
+};
+
 /** Object behaviors (spec 8) and the initial object kinds (S4.6, catalog). */
 export const OBJECT_BEHAVIORS = ["static", "seat", "holdable", "ball", "floater", "vehicle", "breakable"];
 export const OBJECT_KINDS = {

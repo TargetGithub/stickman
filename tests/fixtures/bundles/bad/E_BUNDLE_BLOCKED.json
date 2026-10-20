@@ -1,0 +1,14 @@
+{
+  "why": "The bundle's hash is on the blocklist.",
+  "from": "robo_pals",
+  "ctx": {
+    "blockSelf": true
+  },
+  "expect": [
+    {
+      "code": "E_BUNDLE_BLOCKED",
+      "file": "bundle.json",
+      "path": "contentHash"
+    }
+  ]
+}

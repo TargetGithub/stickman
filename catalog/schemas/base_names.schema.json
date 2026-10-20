@@ -1,0 +1,118 @@
+{
+  "title": "catalog/base_names.json: the base names of the last release; bundles refer to them, so they are a public interface (CATALOG_BUNDLE_SPEC 9). Written only on purpose (node tools/catalog_build.mjs --release-names).",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "names"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 999
+    },
+    "names": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "poses": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "moves": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "bodies": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "faces": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "fx": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "sfx": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "themes": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "objects": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "props": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "activities": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "moods": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        },
+        "scales": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,31}$"
+          }
+        }
+      }
+    }
+  }
+}

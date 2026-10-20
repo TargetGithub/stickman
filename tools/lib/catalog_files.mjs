@@ -14,12 +14,16 @@ export const EXTRA_FILES = {
   "characters/voices.json": "named_list",
   "characters/roles.json": "named_list",
   "world/ambience.json": "named_list",
+  "story/tts_voices.json": "tts_voices",
   "docs/world_commands.json": "doc_entries",
   "docs/macros.json": "doc_entries",
   "docs/camera.json": "camera",
   "docs/transitions.json": "transitions",
   "docs/codes.json": "codes",
   "examples/index.json": "examples",
+  "bundle_blocklist.json": "bundle_blocklist",
+  "bundle_allowlist.json": "bundle_allowlist",
+  "base_names.json": "base_names",
 };
 
 /** The schema (catalog/schemas/<name>.schema.json) for an authored file. */
@@ -72,7 +76,7 @@ export function readCatalogDir(root = CATALOG_DIR) {
     schemas,
     formatMd: readFileSync(join(root, "docs/format.md"), "utf8"),
     texts: Object.fromEntries(all.filter((f) => f.startsWith("docs/") && f.endsWith(".md")).map((f) => [f, readFileSync(join(root, f), "utf8")])),
-    authored: all.filter((f) => f !== "index.js" && f !== "manifest.json" && f !== "README.md"),
+    authored: all.filter((f) => !f.endsWith(".js") && f !== "manifest.json" && f !== "README.md"), // data only: index.js and merge.js are code
   };
 }
 

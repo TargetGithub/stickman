@@ -42,6 +42,7 @@ catalog/
   README.md                    how to add things (section 9), file map, the authored/generated rule
   manifest.json                schema version, list of authored files, counts (written by the build)
   index.js                     loadCatalog(read) → the engine catalog object (Node and browser; section 5)
+  merge.js                     mergeBundles(base, bundles): the engine catalog plus catalog bundles (CATALOG_BUNDLE_SPEC 7.2)
 
   characters/
     bodies.json                body plans: dims, draw style, torsoWidth, posture, default appearance, avoid list
@@ -72,6 +73,7 @@ catalog/
     music_moods.json           moods and scales
     macro_lines.json           the compiler's built-in lines
     blocklist.json             blocked and soft-listed words (with alternatives)
+    tts_voices.json            spoken voices per timbre and the narrator (tools only, SPEECH_SPEC 5)
 
   docs/                        descriptions of engine-owned vocabularies (authored)
     world_commands.json        each world command: description, example beat
@@ -85,6 +87,11 @@ catalog/
 
   schemas/                     JSON Schemas for the authored files (hand-written)
     bundle/                    the catalog bundle schemas (CATALOG_BUNDLE_SPEC 4); not catalog file schemas
+
+  bundle_blocklist.json        catalog bundles that may not be imported or played (CATALOG_BUNDLE_SPEC 8)
+  bundle_allowlist.json        catalog bundles reviewed from their contact sheet (shown as reviewed)
+  base_names.json              the base names of the last release; the build fails when one disappears
+                               (bundles refer to them; written on purpose by catalog_build.mjs --release-names)
 
   examples/
     clips/*.json               v1 example scripts (today prompts/examples/*.json)

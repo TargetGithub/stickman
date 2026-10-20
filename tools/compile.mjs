@@ -9,7 +9,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { validate, formatIssues, compileScript, ejectMacro } from "../engine/index.js";
-import { catalogForScript } from "../catalog/index.js";
+import { catalog } from "../catalog/index.js";
 
 const args = process.argv.slice(2);
 const opt = (name) => (args.includes(name) ? args[args.indexOf(name) + 1] : undefined);
@@ -25,7 +25,6 @@ try {
   console.error(`cannot read ${file}: ${e.message}`);
   process.exit(2);
 }
-const catalog = catalogForScript(script); // plus the bundles the script declares (V3.1)
 const v = validate(script, catalog);
 if (v.stage !== "dry-run") {
   console.error(`INVALID (${v.stage}): fix these before compiling\n${formatIssues(v.errors)}`);

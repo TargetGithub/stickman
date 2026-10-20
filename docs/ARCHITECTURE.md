@@ -271,7 +271,7 @@ The run ends after `meta.tail` seconds of quiet: director idle, everyone settled
 export function validate(script, catalog): { ok, errors, warnings, timeline, durationSec, stage };
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues, formatTimeline };
 ```
-Stages: `schema.js` (the script schemas; the JSON Schema subset checker is `check_value.js`) → `semantic.js` → dry run (`simulate` with `dryRun`) + pacing. Each stage stops the next on errors.
+Stages: `bundles.js` (a script's `bundles` against `catalog.bundles`, namespaced names, `catalog.bundleCombos`; first, whenever the pin list itself is well formed, so a missing bundle explains names the schema would reject) → `schema.js` (the script schemas; the JSON Schema subset checker is `check_value.js`) → `semantic.js` → dry run (`simulate` with `dryRun`) + pacing. Each stage stops the next on errors.
 
 ### framestore.js
 ```js
@@ -285,7 +285,7 @@ export function storeBytes(store): number;
 
 ### audio_events.js
 ```js
-export function collectAudioEvents(sim): Array<{ t, sfx, volume, pan }>;   // video seconds; pan from screen x
+export function collectAudioEvents(sim): Array<{ t, sfx, volume, pan, line? }>;   // video seconds; pan from screen x; line: the beat id of a babble syllable or narration chime
 export function collectMusicCues(sim): Array<{ t, cue, volume }>;
 ```
 
@@ -528,6 +528,11 @@ Description and tag fields pass through; prepared moves (`prepareCatalog`) drop 
 | `tools/lib/lean_prompts.mjs` | lean copy-paste prompts for chat projects with the pack: the pack line and version, files to read, reminders, the full prompts' task text (`manual.mjs --lean`) |
 | `tools/lib/catalog_write.mjs` | adds a reviewed draft to `catalog/` (`draft.mjs --write`, `svg_import.mjs --write`) |
 | `tools/lib/json_format.mjs`, `zip.mjs` | stable JSON formatting for catalog files; a small zip writer for `catalog:pack` |
+| `tools/lib/move_check.mjs` | `checkMove(def, catalog, { draft, plans })` and `runMove(def, moves, catalog, opts)`: the move checks shared by drafts, the catalog build and bundles (browser-safe) |
+| `tools/lib/bundle_args.mjs` | `--bundle <dir\|zip>` for validate, record, generate and manual: check, merge (`tools/lib/bundle/load.mjs` `catalogWithBundles`, with the combination check), credits for `meta.json`; the player uses `web/lib/bundles.js` |
+| `tools/lib/bundle_store.mjs` | the Node bundle store: `bundles/<id>/<hash>/` (or `$STICKMAN_BUNDLES`), served at `/bundles/`; the browser keeps bundles in IndexedDB (`web/lib/bundle_store.js`) |
+| `tools/lib/bundle/render.mjs` | `renderChecks` (step 12 pixel hashes in two orders, step 13 render smoke and frame budget) and `contactSheet`, with a canvas and a clock passed in |
+| `tools/lib/bundle/` + `tools/bundle.mjs` | catalog bundles (CATALOG_BUNDLE_SPEC): `checkBundle(entries, ctx)` runs steps 1-11 and 14 (pure, browser-safe: strict JSON and JCS, SHA-256, zip reading through an inflate adapter); `bundle.mjs check` and `pack`; Node adapters in `tools/lib/bundle_node.mjs`; `catalog/merge.js` `mergeBundles(base, bundles)` |
 | `tools/catalog_media.mjs` | `npm run catalog:media`: music mood clips for the showcase (`out/catalog_media/`) |
 | `web/showcase.html`, `web/showcase.js`, `web/lib/showcase_data.js`, `showcase_scripts.js`, `scaled_ctx.js` | the showcase page: cards from `catalog/generated/catalog.json`, preview stories run through the public engine, drawn at thumbnail size (a context that scales `setTransform`), lazy and paused off-screen |
 | `tools/lib/prompt_pack.mjs` | assembles `prompts/*.md` + tables + examples into byte-stable system prompts; builds user turns |
@@ -681,7 +686,7 @@ export function movingItems(objs, groundY): Item[];
 ### Slice-of-life moves and seats (S5 batch 1)
 - `moves.js` `CATEGORIES` adds `life` and `interaction`. `objects.js` `holdableProps(catalog)` is the prop table the move loader resolves `needsProp` against (v1 props first); every `prepareCatalog` call in the engine, tools, page and tests passes it.
 - Seats: the director's `walkToSeat` walks a sitting character to the nearest free slot of a seat, then sets `actor.seatY`, `seatId`, `seatSlot`; `poseActor` places the hip at the seat height and `displayPose` applies the seated leg mask. The `unseat` move event (and movement or attack moves) clears it.
-- Tools: `tools/lib/filmstrip.mjs` `moveSheet(defs, out, { plans, frames })` (used by `tools/draft.mjs move` and `tools/move_sheet.mjs`); `tools/lib/draft.mjs` `checkMove(def, catalog)`.
+- Tools: `tools/lib/filmstrip.mjs` `moveSheet(defs, out, { plans, frames })` (used by `tools/draft.mjs move` and `tools/move_sheet.mjs`); `tools/lib/move_check.mjs` `checkMove(def, catalog)` (re-exported by `draft.mjs`).
 
 ### Paired moves (S5 batch 2)
 ```js
@@ -877,6 +882,7 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: v3 (ENGINE_V3_SPEC 2) makes every character, place and effect come from a catalog bundle, with the engine shipping no content of its own. The engine may not read folders (ADR-006), yet the validator must know which bundles a script relies on so that the same script and bundles give the same frames (CATALOG_BUNDLE_SPEC 7.3).
 - **Decision**: the base catalog is the bundle `base`, registered first in `catalog/bundles.json` with the other bundles a script may declare (a folder path, or the store by hash). The host turns a bundle folder into a partial catalog (`catalog/index.js` `assembleBundle`) and the pure `engine/bundles.js` `mergeBundles` adds it to the base, add-only and in ascending id order, recording each bundle's pin in `catalog.bundles`. A script declares what it uses in `bundles: [{ id, version, hash }]` (v1 and v2 schemas); `bundleIssues` compares the pins with the loaded bundles and with every namespaced name the script uses before any name lookup. A bundle's own examples pin the bundle without a hash (the hash covers the example file itself, the open question of B1), so `hash` is optional and its absence is `W_BUNDLE_UNPINNED`. The check pipeline lives in `tools/lib/bundle_check.mjs` (steps 1-11 of CATALOG_BUNDLE_SPEC 6 for folders: strict JSON with duplicate-key detection, manifest and per-file schemas, canonical hashes, namespacing, references, caps, text, every bundle move on every plan of its rig and every base move on each bundle plan, presets and examples) behind `npm run bundle:check <folder>` and `bundle:pack`.
 - **Consequences**: the engine never hashes or reads files; tools pass `catalogForScript(script)` to `createEngine`. v1 and v2 scripts without `bundles` are unchanged (golden frames and determinism hashes identical). Zip import, the hash store, allow and block lists and the browser importer stay B4-B5 work; the registry's `path` entries carry the project's bundles until then.
+- **Superseded (merge of main, 2026-10-19)**: main's bundle pipeline (CATALOG_BUNDLE_SPEC B1-B6: `tools/bundle.mjs`, the hash store, allow and block lists, `catalog/merge.js`, `engine/validator/bundles.js`) replaces this branch's V3.1 checker, registry (`catalog/bundles.json`), `engine/bundles.js` and `W_BUNDLE_UNPINNED`/`E_BUNDLE_RESERVED` as defined here. The decision stands in substance (merged outside the engine, pinned in the script); the v3 validator runs template expansion first, then main's bundle check, then the v3 schema. `scripts/samples/v3_1_bundles.json` now pins the `tests/fixtures/bundles/robo_pals` fixture (`--bundle`).
 
 ### ADR-023 The depth lane is on for version 3 only, and z lives in events, not frames (V3.2)
 - **Context**: v3 draws every node at a depth z with perspective scaling, replacing the three fixed layers, while v1 and v2 golden frames must not change and the frame store (CHAR_STRIDE) is shared by every script.

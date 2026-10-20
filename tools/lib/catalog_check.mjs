@@ -12,7 +12,7 @@ import { OBJECT_SHAPES } from "../../engine/renderer/objects.js";
 import { PROP_SHAPES } from "../../engine/renderer/props.js";
 import { LAYER_KINDS } from "../../engine/renderer/background.js";
 import { MOVE_FILES } from "../../catalog/index.js";
-import { checkMove } from "./draft.mjs";
+import { checkMove } from "./move_check.mjs";
 import { schemaFor } from "./catalog_files.mjs";
 import { worldCommandStory, macroStory, cameraStory, transitionStory, presetStory } from "./catalog_harness.mjs";
 
@@ -27,6 +27,18 @@ export function engineNames(codes) {
     "docs/codes.json": [...codes].sort(),
     "characters/voices.json timbres": V2_ENUMS.timbre,
     "world/ambience.json beds": V2_ENUMS.ambience,
+  };
+}
+
+/**
+ * The base names bundles can refer to (CATALOG_BUNDLE_SPEC 9: a public interface once bundles ship).
+ * catalog/base_names.json keeps them as of the last release; the check below fails when one disappears.
+ */
+export function baseNames(catalog) {
+  return {
+    poses: Object.keys(catalog.poses), moves: catalog.moves.map((m) => m.name), bodies: catalog.bodyNames, faces: catalog.faceNames,
+    fx: Object.keys(catalog.fxPresets), sfx: catalog.sfxKeys, themes: catalog.themeNames, objects: Object.keys(catalog.objects),
+    props: Object.keys(catalog.props), activities: catalog.activityNames, moods: Object.keys(catalog.musicMoods), scales: Object.keys(catalog.scales),
   };
 }
 
@@ -72,6 +84,12 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
   uniq("effects/sfx.json", files["effects/sfx.json"], "");
   for (const [k, v] of Object.entries(files["characters/appearance.json"])) if (k !== "conflicts") uniq("characters/appearance.json", v, k);
   for (const [rel, key] of [["characters/voices.json", "timbres"], ["characters/roles.json", "roles"], ["world/ambience.json", "beds"]]) uniq(rel, files[rel][key], key);
+
+  // Spoken voices (SPEECH_SPEC 5): one entry per engine timbre.
+  const ttsTimbres = Object.keys(files["story/tts_voices.json"].timbres).sort();
+  if (ttsTimbres.join() !== [...V2_ENUMS.timbre].sort().join()) bad("story/tts_voices.json", "timbres", `needs exactly the timbres ${V2_ENUMS.timbre.join(", ")}`);
+  for (const m of Object.keys(files["story/tts_voices.json"].moods || {})) if (!catalog.faces[m]) bad("story/tts_voices.json", `moods.${m}`, `"${m}" is not a face (moods are keyed by face name)`);
+  if (!files["story/tts_voices.json"].moods?.neutral) bad("story/tts_voices.json", "moods", "needs a neutral mood (the fallback)");
 
   // 3. References.
   const moveNames = new Set(catalog.moves.map((m) => m.name));
@@ -159,6 +177,13 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
     for (const err of errorsOf(script, catalog)) bad(e.path, "", err);
     for (const c of ex.outline?.cast || []) if (c.role && !roles.has(c.role)) bad(e.path, `outline.cast.${c.id}`, `unknown role "${c.role}"`);
   }
+  // 9. Base names: every name of the last release is still there (bundles refer to them).
+  const now = baseNames(catalog);
+  for (const [kind, names] of Object.entries(files["base_names.json"]?.names || {})) {
+    const have = new Set(now[kind] || []);
+    for (const n of names) if (!have.has(n)) bad("base_names.json", `${kind}.${n}`, `the base name "${n}" is gone: bundles may refer to it. Keep it (or an entry by that name) until the next catalog format version; then run node tools/catalog_build.mjs --release-names`);
+  }
+
   const pick = index.pack;
   for (const p of [pick.clip, pick.outline]) if (!listed.has(p)) bad("examples/index.json", "pack", `"${p}" is not an indexed example`);
   for (const s of pick.scenes) if (!src.examples[s.story]?.story.scenes.some((x) => x.id === s.scene)) bad("examples/index.json", "pack.scenes", `${s.story} has no scene "${s.scene}"`);

@@ -1,0 +1,102 @@
+{
+  "title": "catalog/story/tts_voices.json: default Piper voices per timbre, the narrator and tones per face (SPEECH_SPEC 5).",
+  "type": "object",
+  "required": ["description", "backend", "timbres", "narrator", "moods"],
+  "additionalProperties": false,
+  "$defs": {
+    "voice": {
+      "type": "object",
+      "required": ["description", "tags"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{1,23}$"
+          }
+        },
+        "model": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]{1,64}$"
+        },
+        "speaker": { "type": "integer", "minimum": 0 },
+        "rate": { "type": "number", "minimum": 0.5, "maximum": 2 },
+        "pitch": { "type": "number", "minimum": -12, "maximum": 12 },
+        "pitchScale": { "type": "number", "minimum": 0, "maximum": 2 },
+        "pitchOffset": { "type": "number", "minimum": -12, "maximum": 12 },
+        "pitchMin": { "type": "number", "minimum": -12, "maximum": 12 },
+        "pitchMax": { "type": "number", "minimum": -12, "maximum": 12 },
+        "rateScale": { "type": "number", "minimum": 0.5, "maximum": 2 },
+        "filter": {
+          "enum": ["robot"]
+        },
+        "off": { "type": "boolean" }
+      }
+    },
+    "mood": {
+      "type": "object",
+      "required": ["description", "tags"],
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+        "tags": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{1,23}$"
+          }
+        },
+        "rate": { "type": "number", "minimum": 0.5, "maximum": 1.6, "description": "Speed multiplier on the voice's rate." },
+        "pitch": { "type": "number", "minimum": -6, "maximum": 6, "description": "Semitones added to the voice's pitch." },
+        "gainDb": { "type": "number", "minimum": -12, "maximum": 6 },
+        "noise": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Piper noise_scale (more = livelier intonation)."
+        },
+        "pause": { "type": "number", "minimum": 0, "maximum": 1.5, "description": "Seconds of silence between sentences." },
+        "lowpass": { "type": "number", "minimum": 1000, "maximum": 12000 },
+        "vibrato": {
+          "type": "object",
+          "required": ["f", "d"],
+          "additionalProperties": false,
+          "properties": {
+            "f": { "type": "number", "minimum": 0.5, "maximum": 20 },
+            "d": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "tremolo": {
+          "type": "object",
+          "required": ["f", "d"],
+          "additionalProperties": false,
+          "properties": {
+            "f": { "type": "number", "minimum": 0.5, "maximum": 20 },
+            "d": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "description": { "type": "string", "minLength": 8 },
+    "backend": {
+      "enum": ["piper"]
+    },
+    "timbres": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/voice" }
+    },
+    "narrator": { "$ref": "#/$defs/voice" },
+    "moods": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/mood" }
+    }
+  }
+}

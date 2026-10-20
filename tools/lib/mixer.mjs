@@ -173,3 +173,26 @@ export function mixdownStory({ events, durationSec, sampleFor, music = null, amb
   const reductionDb = limit(out);
   return { samples: out, reductionDb, gainDb, loudness: loudness ? loudness(out) : null };
 }
+
+/**
+ * Spoken dialogue (SPEECH_SPEC 4.6): for every line in `clips`, its babble syllables are replaced by one clip
+ * (panned where the first syllable was) and its narration chime is softened. Other lines keep their babble.
+ * @param {Array<{ t, sfx, volume, pan, line? }>} events  engine audio events (babble and chimes carry `line`)
+ * @param {Map<string, { t:number, sfx:string|null, volume:number }>} clips  line id → clip event (sfx null: babble removed, no clip)
+ */
+export function swapSpeech(events, clips, { chime = 0.5 } = {}) {
+  const out = [];
+  const placed = new Set();
+  for (const e of events) {
+    const c = e.line != null ? clips.get(e.line) : null;
+    if (!c) out.push(e);
+    else if (e.sfx === "narrate_chime") out.push({ ...e, volume: e.volume * chime });
+    else if (!placed.has(e.line)) {
+      if (c.sfx) out.push({ t: c.t, sfx: c.sfx, volume: c.volume, pan: e.pan ?? 0, line: e.line });
+      placed.add(e.line);
+    }
+  }
+  // Narration has no babble: its clip goes in on its own.
+  for (const [line, c] of clips) if (!placed.has(line) && c.sfx) out.push({ t: c.t, sfx: c.sfx, volume: c.volume, pan: 0, line });
+  return out.sort((a, b) => a.t - b.t);
+}

@@ -9,6 +9,10 @@
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
 //   --no-audio             skip the audio mix
 //   --crf 16 --preset medium   x264 quality settings
+//   --speech babble|tts    spoken dialogue (SPEECH_SPEC): babble (default, or meta.speech) or offline Piper voices
+//   --voices file.json     per-character TTS voices for --speech tts (cast id → { model, speaker, rate, pitch, off })
+//   --bundle <dir|zip>     a catalog bundle the script declares (repeatable; imported bundles are found in
+//                          the store without it); credits go into meta.json
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import { basename, join } from "node:path";
@@ -17,30 +21,57 @@ import { spawnSync } from "node:child_process";
 import { loadBackend } from "./lib/canvas.mjs";
 import { startEncoder } from "./lib/encode.mjs";
 import { writeWav } from "./lib/wav.mjs";
-import { mixdown, mixdownStory, SR } from "./lib/mixer.mjs";
+import { mixdown, mixdownStory, swapSpeech, SR } from "./lib/mixer.mjs";
+import { prepareSpeech, speechReport } from "./lib/tts/index.mjs";
+import { createPiperBackend } from "./lib/tts/piper.mjs";
+import { speechClips, clipSampler } from "./lib/tts/synth.mjs";
 import { renderScore, storyDuck } from "./lib/score.mjs";
 import { addTrackStems, applyEventBuses, stemGains } from "./lib/track_mix.mjs";
 import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
-import { catalogForScript } from "../catalog/index.js";
+import { catalog as baseCatalog } from "../catalog/index.js";
+import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_args.mjs";
 
-const args = process.argv.slice(2);
+const { args } = splitBundleArgs(process.argv.slice(2));
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene)$/));
+const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices)$/));
 if (!file) {
-  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio]");
+  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
   process.exit(2);
 }
 
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "video";
 const script = JSON.parse(readFileSync(file, "utf8"));
-const catalog = catalogForScript(script); // the base catalog plus the bundles the script declares (V3.1)
+// --bundle <dir|zip> (repeatable), and the store (bundles/) for the bundles the script declares.
+const { catalog, bundles } = await catalogFromArgs(process.argv.slice(2), baseCatalog, script);
 const backend = await loadBackend();
 const engine = createEngine({ catalog, createCanvas: backend.createCanvas });
-const loaded = engine.load(script);
+// Spoken dialogue: render (or reuse) each line's audio first, so the engine can give every line its length.
+const speechMode = opt("--speech", script.meta?.speech ?? "babble");
+if (!["babble", "tts"].includes(speechMode)) {
+  console.error(`--speech must be babble or tts, not "${speechMode}"`);
+  process.exit(2);
+}
+let speech = null;
+if (speechMode === "tts" && script.audio?.voices !== false) {
+  let tts;
+  try {
+    tts = createPiperBackend();
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+  const voicesFile = opt("--voices", null);
+  const overrides = voicesFile ? JSON.parse(readFileSync(voicesFile, "utf8")) : {};
+  speech = { backend: tts, ...prepareSpeech(script, { catalog, backend: tts, overrides, log: (m) => console.log(m) }) };
+  const fresh = speech.lines.filter((l) => !l.cached).length;
+  console.log(`speech: ${speech.lines.length} lines (${fresh} new, ${speech.lines.length - fresh} from the cache)`);
+  for (const r of speech.report.filter((x) => x.long)) console.log(`warning: line ${r.id} is longer than its beat can be; split it into shorter lines`);
+}
+const loaded = engine.load(speech ? speech.script : script);
 if (loaded.warnings.length) console.log(formatIssues(loaded.warnings));
 if (!loaded.ok) {
   console.error(formatIssues(loaded.errors));
@@ -87,7 +118,10 @@ if (enc && !flag("--no-audio")) {
   const lib = createSfxLibrary(meta.seed);
   const startT = from / meta.fps;
   const durationSec = (to - from + 1) / meta.fps;
-  const events = engine.getAudioEvents().map((e) => ({ ...e, t: e.t - startT })).filter((e) => e.t > -2 && e.t < durationSec);
+  const clip = speech ? clipSampler() : null;
+  const sampleFor = (k) => (clip && k.startsWith("tts:") ? clip(k) : lib.sampleFor(k));
+  const all = speech ? swapSpeech(engine.getAudioEvents(), speechClips(speech.lines, engine.getEvents())) : engine.getAudioEvents();
+  const events = all.map((e) => ({ ...e, t: e.t - startT })).filter((e) => e.t > -2 && e.t < durationSec);
   const cues = engine.getMusicCues().map((c) => ({ ...c, t: c.t - startT }));
   const plan = engine.getMusicPlan();
   let music = null;
@@ -103,13 +137,13 @@ if (enc && !flag("--no-audio")) {
     const trackInfo = tracks ? addTrackStems(score, tracks, { seed: meta.seed, catalog, musicVolume: script.audio?.musicVolume ?? 0.35, ambienceVolume: script.audio?.ambienceVolume ?? 0.8, loadOverride: (mood) => loadMusic(mood).music }) : [];
     const cut = (buf) => buf.subarray(Math.round(startT * SR) * 2, Math.round((startT + durationSec) * SR) * 2);
     const shift = (spans) => spans.map(([a, b]) => [a - startT, b - startT]);
-    mix = mixdownStory({ events: applyEventBuses(events, tracks, startT), durationSec, sampleFor: (k) => lib.sampleFor(k), music: cut(score.music), ambience: cut(score.ambience),
+    mix = mixdownStory({ events: applyEventBuses(events, tracks, startT), durationSec, sampleFor, music: cut(score.music), ambience: cut(score.ambience),
       duck: shift(plan.duck), dips: shift(plan.dips), storyDuck, normalize: normalizeLoudness, loudness: measureLoudness, ...stemGains(tracks, startT) });
     if (trackInfo.length) score.segments.push(...trackInfo.map((x) => ({ mood: `${x.kind}:${x.id}`, source: "track" })));
     note = score.segments.map((x) => `${x.mood} (${x.source})`).join(", ") || "no music";
   } else {
     ({ music, note } = loadMusic(script.audio?.music));
-    mix = mixdown({ events, durationSec, sampleFor: (k) => lib.sampleFor(k), music, musicVolume: script.audio?.musicVolume ?? 0.35, cues });
+    mix = mixdown({ events, durationSec, sampleFor, music, musicVolume: script.audio?.musicVolume ?? 0.35, cues });
   }
   const wavPath = join(dir, "audio.wav");
   writeWav(wavPath, mix.samples, SR, 2);
@@ -133,6 +167,7 @@ engine.renderFrame(ctx, thumb.frame);
 await backend.savePng(canvas, join(dir, "thumb.png"));
 await backend.savePng(contactSheet(engine, backend), join(dir, "contact_sheet.png"));
 writeFileSync(join(dir, "script.json"), JSON.stringify(script, null, 2) + "\n");
+if (speech) writeFileSync(join(dir, "speech.json"), JSON.stringify(speechReport(speech.lines, speech.report, speech.backend), null, 2) + "\n");
 const info = {
   title: meta.title,
   slug,
@@ -145,11 +180,14 @@ const info = {
   frames: { from, to, total: meta.totalFrames },
   thumbnail: thumb,
   audio,
+  ...(speech ? { speech: { mode: "tts", backend: `${speech.backend.id} ${speech.backend.version}`, lines: speech.lines.length } } : {}),
   warnings: loaded.warnings,
   timeline: loaded.timeline,
   renderSeconds: Number(renderSeconds.toFixed(2)),
   totalSeconds: Number(seconds().toFixed(2)),
-  files: [enc ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
+  // Bundles the script uses (CATALOG_BUNDLE_SPEC 7.3, 8): pins and credits; NC bundles mark the video non-commercial.
+  ...(script.bundles?.length ? { bundles: bundleCredits(script, bundles), nonCommercial: bundleCredits(script, bundles).some((b) => b.license === "CC-BY-NC-4.0") } : {}),
+  files: [enc ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(speech ? ["speech.json"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
 };
 writeFileSync(join(dir, "meta.json"), JSON.stringify(info, null, 2) + "\n");
 console.log(`wrote ${dir}/ (${info.durationSec}s video, rendered at ${((to - from + 1) / renderSeconds).toFixed(0)} fps, total ${info.totalSeconds}s)`);

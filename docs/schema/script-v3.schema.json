@@ -14,6 +14,34 @@
     "version": {
       "const": 3
     },
+    "bundles": {
+      "type": "array",
+      "maxItems": 8,
+      "description": "Catalog bundles this script uses: each { id, version, hash } exactly as the bundle's context pack gives it. Names with a colon come from these bundles.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "version",
+          "hash"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{2,31}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})$"
+          },
+          "hash": {
+            "type": "string",
+            "pattern": "^sha256-[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
     "meta": {
       "type": "object",
       "required": [
@@ -84,6 +112,45 @@
           "type": "number",
           "minimum": 0,
           "maximum": 3
+        },
+        "speech": {
+          "enum": [
+            "babble",
+            "tts"
+          ],
+          "description": "Default speech for renders (SPEECH_SPEC 2): babble syllables or offline spoken voices."
+        },
+        "narrator": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "model": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_.-]{1,64}$",
+              "description": "Piper voice name, e.g. en_US-kristin-medium."
+            },
+            "speaker": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2000
+            },
+            "rate": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 2
+            },
+            "pitch": {
+              "type": "number",
+              "minimum": -12,
+              "maximum": 12,
+              "description": "Semitones, applied after synthesis."
+            },
+            "off": {
+              "type": "boolean",
+              "description": "Keep babble for this voice even in tts renders."
+            }
+          },
+          "description": "Spoken voice for narration in tts renders (SPEECH_SPEC 3)."
         }
       }
     },
@@ -330,6 +397,38 @@
                   "robot",
                   "bark"
                 ]
+              },
+              "tts": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.-]{1,64}$",
+                    "description": "Piper voice name, e.g. en_US-kristin-medium."
+                  },
+                  "speaker": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2000
+                  },
+                  "rate": {
+                    "type": "number",
+                    "minimum": 0.5,
+                    "maximum": 2
+                  },
+                  "pitch": {
+                    "type": "number",
+                    "minimum": -12,
+                    "maximum": 12,
+                    "description": "Semitones, applied after synthesis."
+                  },
+                  "off": {
+                    "type": "boolean",
+                    "description": "Keep babble for this voice even in tts renders."
+                  }
+                },
+                "description": "Spoken voice for --speech tts renders (SPEECH_SPEC 3); the engine ignores it."
               }
             }
           },
@@ -2409,33 +2508,6 @@
                 "maximum": 10
               }
             }
-          }
-        }
-      }
-    },
-    "bundles": {
-      "type": "array",
-      "maxItems": 8,
-      "description": "Catalog bundles the script uses (names with a colon, such as robo_pals:boxbot). Each pin: id, version and the bundle's contentHash.",
-      "items": {
-        "type": "object",
-        "required": [
-          "id",
-          "version"
-        ],
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string",
-            "pattern": "^[a-z][a-z0-9_]{2,31}$"
-          },
-          "version": {
-            "type": "string",
-            "pattern": "^(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})\\.(0|[1-9][0-9]{0,3})$"
-          },
-          "hash": {
-            "type": "string",
-            "pattern": "^sha256-[0-9a-f]{64}$"
           }
         }
       }

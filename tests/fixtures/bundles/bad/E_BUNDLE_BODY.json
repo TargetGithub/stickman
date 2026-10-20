@@ -1,0 +1,29 @@
+{
+  "why": "A capsule body without torsoWidth.",
+  "from": "robo_pals",
+  "edit": [
+    [
+      "characters/bodies.json",
+      [
+        "robo_pals:boxbot",
+        "draw"
+      ],
+      "capsule"
+    ],
+    [
+      "characters/bodies.json",
+      [
+        "robo_pals:boxbot",
+        "torsoWidth"
+      ],
+      null
+    ]
+  ],
+  "expect": [
+    {
+      "code": "E_BUNDLE_BODY",
+      "file": "characters/bodies.json",
+      "path": "robo_pals:boxbot.torsoWidth"
+    }
+  ]
+}

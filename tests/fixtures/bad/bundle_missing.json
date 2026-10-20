@@ -1,8 +1,111 @@
 {
   "version": 2,
-  "bundles": [{ "id": "robo_pals", "version": "1.0.0", "hash": "sha256-0000000000000000000000000000000000000000000000000000000000000000" }],
-  "meta": { "title": "Bundle missing", "format": "landscape", "seed": 3, "kind": "clip", "audience": "kids" },
-  "cast": [{ "id": "kai", "color": "#3fd8ff" }, { "id": "bolt", "body": "robo_pals:boxbot", "color": "#3d7bd9" }],
-  "scenes": [{ "id": "s1", "location": "city_park", "cast": [{ "id": "kai", "x": 1300, "facing": 1 }, { "id": "bolt", "x": 1900, "facing": -1 }],
-    "beats": [{ "id": "b1", "at": 0.5, "who": "bolt", "do": "wave" }, { "id": "b2", "at": { "after": "b1" }, "who": "kai", "do": "wave" }, { "id": "end", "at": { "after": "b2", "delay": 0.5 }, "who": "world", "do": "fade", "params": { "to": "black", "dur": 0.5 } }] }]
+  "bundles": [
+    {
+      "id": "robo_pals",
+      "version": "1.0.0",
+      "hash": "sha256-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "meta": {
+    "title": "Fixture story",
+    "format": "landscape",
+    "seed": 3,
+    "kind": "clip",
+    "audience": "kids"
+  },
+  "cast": [
+    {
+      "id": "kai",
+      "color": "#3fd8ff"
+    },
+    {
+      "id": "pip",
+      "color": "#2fd3c0",
+      "scale": 0.8,
+      "body": "robo_pals:boxbot"
+    }
+  ],
+  "locations": [
+    {
+      "id": "park",
+      "theme": "city_park",
+      "set": [
+        {
+          "id": "bench1",
+          "object": "bench",
+          "x": 1300
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "one",
+      "location": "park",
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1500,
+          "facing": 1
+        },
+        {
+          "id": "pip",
+          "x": 1750,
+          "facing": -1
+        }
+      ],
+      "beats": [
+        {
+          "id": "w1",
+          "at": 0.3,
+          "who": "kai",
+          "do": "wave",
+          "say": "Hi Pip!"
+        },
+        {
+          "id": "l1",
+          "at": {
+            "after": "w1"
+          },
+          "who": "pip",
+          "do": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "two",
+      "location": "city_street",
+      "transitionIn": {
+        "type": "card",
+        "kind": "chapter",
+        "text": "Later"
+      },
+      "cast": [
+        {
+          "id": "kai",
+          "x": 1200,
+          "facing": 1
+        }
+      ],
+      "beats": [
+        {
+          "id": "p2",
+          "at": 0.3,
+          "who": "kai",
+          "do": "point"
+        },
+        {
+          "at": {
+            "after": "p2"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "The End"
+          }
+        }
+      ]
+    }
+  ]
 }

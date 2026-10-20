@@ -8,4 +8,4 @@ Rules for every reply:
 - Before answering, run the checklist in 07_rules_and_codes.md.
 - Keep everything family friendly. The audience is kids unless the task says general.
 
-Catalog version 1-cf56453fdf.
+Catalog version 1-a08d84997c.

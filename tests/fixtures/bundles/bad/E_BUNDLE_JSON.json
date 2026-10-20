@@ -1,0 +1,14 @@
+{
+  "why": "A duplicate key (JSON.parse would keep the last one).",
+  "from": "robo_pals",
+  "raw": {
+    "world/props.json": "{ \"robo_pals:wrench\": {}, \"robo_pals:wrench\": {} }"
+  },
+  "expect": [
+    {
+      "code": "E_BUNDLE_JSON",
+      "file": "world/props.json",
+      "path": ""
+    }
+  ]
+}

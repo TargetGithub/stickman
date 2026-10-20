@@ -66,7 +66,8 @@ function storySounds(sim, actorX, panAt) {
   const voices = new Map(story.cast.map((c) => [c.id, voiceOf(c.voice)]));
   const seed = story.meta.seed ?? 1;
   for (const e of sim.events) {
-    if (e.type === "world" && e.do === "narrate") out.push({ t: e.videoT, sfx: "narrate_chime", volume: 0.45, pan: 0 });
+    // `line` names the beat a sound belongs to, so hosts can swap a whole line's babble for recorded speech.
+    if (e.type === "world" && e.do === "narrate") out.push({ t: e.videoT, sfx: "narrate_chime", volume: 0.45, pan: 0, line: e.beatId });
     if (e.type !== "say" || story.audio?.voices === false) continue;
     const v = voices.get(e.actor) || voiceOf(null);
     for (const sy of syllables({ ...e, at: e.videoT }, v, seed)) {
@@ -74,7 +75,7 @@ function storySounds(sim, actorX, panAt) {
       const x = actorX(t, e.actor);
       // Key: voice:<timbre>:<vowel>:<semitones from A3 at pitch 1>; the synthesizer caches each key.
       const semi = Math.round(12 * Math.log2(v.pitch)) + sy.semi;
-      out.push({ t, sfx: `voice:${v.timbre}:${sy.vowel}:${semi}`, volume: 0.42 * sy.gain, pan: x == null ? 0 : panAt(t, x) });
+      out.push({ t, sfx: `voice:${v.timbre}:${sy.vowel}:${semi}`, volume: 0.42 * sy.gain, pan: x == null ? 0 : panAt(t, x), line: e.beatId });
     }
   }
   return out;

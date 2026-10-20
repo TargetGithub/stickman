@@ -1,0 +1,14 @@
+{
+  "why": "Raw SVG in the archive: outside the closed path grammar.",
+  "from": "robo_pals",
+  "raw": {
+    "assets/logo.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"/>"
+  },
+  "expect": [
+    {
+      "code": "E_BUNDLE_PATH",
+      "file": "assets/logo.svg",
+      "path": ""
+    }
+  ]
+}

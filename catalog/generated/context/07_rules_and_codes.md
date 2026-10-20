@@ -109,12 +109,11 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - W_FIGHT_SHORT: a fight video under 180 s → Make it 180 s or more.
 - W_SCENE_STATIC: over 4 s of a scene where nothing moves → Add movement, a line or narration.
 - W_CAST_UNUSED: a cast member no scene places → Place them in a scene or drop them.
-- E_BUNDLE_RESERVED: bundles lists base or a reserved id → Remove base (always loaded); declare bundles under their real ids.
-- E_BUNDLE_MISSING: a declared bundle (or that version) is not loaded → Register it in catalog/bundles.json or import it, and match the loaded version.
-- E_BUNDLE_HASH: the loaded bundle has another hash than the script pins → Pin the loaded hash, or load the bundle the script was written for.
-- E_BUNDLE_DEPENDENCY: a declared bundle depends on a bundle the script does not declare → Add the dependency to bundles with its version and hash.
-- E_BUNDLE_AUDIENCE: a kids script declares a bundle not made for kids → Use a kids bundle or set meta.audience to general.
-- E_BUNDLE_UNDECLARED: a name with a colon comes from a bundle the script does not declare → Add that bundle to bundles (id, version, hash).
-- W_BUNDLE_UNPINNED: a declared bundle has no hash → Add the bundle's contentHash so the video is pinned.
-- W_BUNDLE_UNUSED: a declared bundle is used by nothing in the script → Remove it or use one of its entries.
+- E_BUNDLE_AUDIENCE: a kids story declares a bundle that is not made for kids → Use a bundle that lists kids, or set meta.audience to general if that fits.
+- E_BUNDLE_COMBO: two declared bundles do not work together: a move of one breaks on a body plan of the other → Use one of the two bundles.
+- E_BUNDLE_DEPENDENCY: a declared bundle needs another bundle that the script does not declare → Declare the dependency too, with its hash.
+- E_BUNDLE_HASH: a bundle with the declared id is loaded, but with another hash (different content) → Load the pinned bundle, or pin the loaded one if you mean it.
+- E_BUNDLE_MISSING: a bundle the script declares in "bundles" is not loaded → Import the bundle (or pass --bundle to the tool), or remove it from "bundles".
+- E_BUNDLE_UNDECLARED: a name with a colon (bundle:name) from a bundle the script does not declare → Add that bundle's {id, version, hash} line to "bundles".
+- W_BUNDLE_UNUSED: a declared bundle that no name in the script uses → Remove it from "bundles", or use one of its entries.
 - Version 3 scripts only: E_DEPTH_RANGE (a z (placement, set piece or to.z) is outside the scene's depth range); E_DEPTH_LAYER (a node gives both z and layer); E_LIGHT_UNKNOWN (an unknown light rig preset (scene or location light, set_light)); E_CAMERA_MOVE (an unknown named camera move (a v3 camera key move or set_camera)); E_LAYER_REF (a text, shape, mask or parent names a layer or shape that does not exist, or layer parents loop); E_REF_SCENE (a layer, text, shape or track names a scene that does not exist); E_TRACK_TARGET (a track target that is not keyable, or names a missing node); E_TRACK_KEYS (a key value of the wrong kind, two keys at one time, or a path or line missing its points); E_TRACK_EASE (an unknown easing on a key); E_TEXT_STYLE (an unknown text style); E_VIEW_BODY (a character is asked for a turnaround view its body plan does not have); E_AUDIO_TRACK (an audio track with an unknown mood, bed or SFX key, a missing field, or a duck rule under nothing); E_MARKER_UNKNOWN (a beat or sfx track starts at a marker that does not exist, or that is in another scene); E_TEMPLATE_UNKNOWN (a scene uses a template that is not in the catalog); E_TEMPLATE_PARAM (a template param is missing, unknown or of the wrong type).

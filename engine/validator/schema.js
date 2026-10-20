@@ -3,25 +3,8 @@
 // The checker below implements the subset of JSON Schema this schema uses.
 
 import { checkValue } from "./check_value.js";
+import { BUNDLE_PINS } from "./v2_names.js";
 import { LIMITS } from "../config.js";
-import { BUNDLE_ID, SEMVER, SHA256 } from "../bundles.js";
-
-/** The catalog bundles a script uses (CATALOG_BUNDLE_SPEC 7.1, V3.1); shared by the v1 and v2 schemas. */
-export const BUNDLES = {
-  type: "array",
-  maxItems: 8,
-  description: "Catalog bundles the script uses (names with a colon, such as robo_pals:boxbot). Each pin: id, version and the bundle's contentHash.",
-  items: {
-    type: "object",
-    required: ["id", "version"],
-    additionalProperties: false,
-    properties: {
-      id: { type: "string", pattern: BUNDLE_ID },
-      version: { type: "string", pattern: SEMVER },
-      hash: { type: "string", pattern: SHA256 },
-    },
-  },
-};
 
 const ID = "^[a-z][a-z0-9_]{0,23}$";
 const COLOR = "^#[0-9a-fA-F]{6}$";
@@ -46,6 +29,7 @@ export const jsonSchema = {
   additionalProperties: false,
   properties: {
     version: { const: 1 },
+    bundles: BUNDLE_PINS,
     meta: {
       type: "object",
       required: ["title", "format", "seed"],
@@ -149,7 +133,6 @@ export const jsonSchema = {
         musicVolume: { type: "number", minimum: 0, maximum: 1 },
       },
     },
-    bundles: BUNDLES,
   },
 };
 
