@@ -10,6 +10,7 @@ import { clamp, lerp } from "./math.js";
 const TINTS = ["key", "fill", "rim", "ambient"];
 const RIM_WIDTH = 0.28; // of the limb width
 export const SHADOW_BASE = 44; // px: the contact ellipse half-width at scale 1 (the v2 ellipse)
+export const CONTACT_MIN = 0.28; // the lightest contact shadow under a light rig (v2's flat ellipse is 0.18)
 
 // ---------- colours ----------
 
@@ -61,7 +62,7 @@ export function resolveRig(lights, want) {
 export function scaleRig(rig, k) {
   if (!rig || k >= 1) return rig;
   const t = (x) => ({ ...x, strength: x.strength * k });
-  return { ...rig, key: t(rig.key), fill: t(rig.fill), rim: t(rig.rim), ambient: t(rig.ambient), shadow: { ...rig.shadow, alpha: rig.shadow.alpha * k }, fog: { ...rig.fog, density: rig.fog.density * k } };
+  return { ...rig, key: t(rig.key), fill: t(rig.fill), rim: t(rig.rim), ambient: t(rig.ambient), shadow: { ...rig.shadow, alpha: rig.shadow.alpha * k, contact: rig.shadow.contact ?? rig.shadow.alpha }, fog: { ...rig.fog, density: rig.fog.density * k } };
 }
 
 /** Linear blend of two rigs (tints: colour and strength; shadow and fog: numbers; cast and name: b's past half). */
@@ -73,7 +74,7 @@ export function blendRigs(a, b, u) {
     name: u < 0.5 ? a.name : b.name,
     ...Object.fromEntries(TINTS.map((k) => [k, tint(k)])),
     key: { ...tint("key"), angle: lerp(a.key.angle, b.key.angle, u) },
-    shadow: { alpha: lerp(a.shadow.alpha, b.shadow.alpha, u), length: lerp(a.shadow.length, b.shadow.length, u), cast: u < 0.5 ? a.shadow.cast : b.shadow.cast },
+    shadow: { alpha: lerp(a.shadow.alpha, b.shadow.alpha, u), contact: lerp(a.shadow.contact ?? a.shadow.alpha, b.shadow.contact ?? b.shadow.alpha, u), length: lerp(a.shadow.length, b.shadow.length, u), cast: u < 0.5 ? a.shadow.cast : b.shadow.cast },
     fog: { color: mixHex(a.fog.color, b.fog.color, u), density: lerp(a.fog.density, b.fog.density, u) },
   };
 }
@@ -133,7 +134,11 @@ export function contactShadow(rig, scale, height) {
   const dir = lightDir(rig.key.angle);
   const len = rig.shadow.length * height * 0.5;
   const along = -dir.x * len; // the shadow falls away from the light
-  return { dx: along * 0.5, rx: SHADOW_BASE * scale + Math.abs(along) * 0.5, ry: 8 * scale, alpha: rig.shadow.alpha };
+  // The contact shadow grounds a character, so it keeps the rig's full alpha at any look strength (V3.9, Sridhar:
+  // "stronger contact shadows"), never lighter than CONTACT_MIN.
+  const alpha = Math.max(CONTACT_MIN, (rig.shadow.contact ?? rig.shadow.alpha) * 1.2);
+  // Compact under the feet (V3.9): only a little of the light's direction; the cast shadow carries the rest.
+  return { dx: along * 0.15, rx: SHADOW_BASE * scale + Math.abs(along) * 0.12, ry: 9 * scale, alpha };
 }
 
 /**

@@ -2,7 +2,7 @@
 // tones, contact and cast shadows, fog veils, and the catalog's presets.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { lightRigOf, resolveRig, blendRigs, lightAt, shadeTones, contactShadow, castShadow, fogAt, fogVeils, ambientTint, lightDir, mixHex, hexToRgb } from "../../engine/lighting.js";
+import { lightRigOf, resolveRig, blendRigs, lightAt, shadeTones, contactShadow, castShadow, scaleRig, CONTACT_MIN, fogAt, fogVeils, ambientTint, lightDir, mixHex, hexToRgb } from "../../engine/lighting.js";
 import { depthOf } from "../../engine/depth.js";
 import { catalog } from "../../catalog/index.js";
 import { validate } from "../../engine/index.js";
@@ -69,9 +69,14 @@ test("shading tones are three flat tones around the base, with the rim and the l
 test("contact and cast shadows follow the key light", () => {
   const golden = resolveRig(L, "golden"); // low on the right: shadows fall left
   const sh = contactShadow(golden, 1, 220);
-  assert.ok(sh.dx < 0 && sh.rx > 44 && sh.ry === 8 && sh.alpha === golden.shadow.alpha);
+  assert.ok(sh.dx < 0 && sh.rx > 44 && sh.ry === 9 && Math.abs(sh.alpha - Math.max(CONTACT_MIN, golden.shadow.alpha * 1.2)) < 1e-9);
   const noon = contactShadow(resolveRig(L, "noon"), 2, 220);
-  assert.ok(Math.abs(noon.dx) < Math.abs(sh.dx) && noon.ry === 16);
+  assert.ok(Math.abs(noon.dx) < Math.abs(sh.dx) && noon.ry === 18);
+  // V3.9: the contact shadow keeps its full strength under the automatic look (scaleRig), unlike the cast shadow.
+  const weak = scaleRig(golden, 0.2);
+  assert.equal(contactShadow(weak, 1, 220).alpha, sh.alpha);
+  assert.ok(castShadow(weak).alpha < castShadow(golden).alpha);
+  assert.equal(contactShadow(blendRigs(golden, weak, 0.5), 1, 220).alpha, sh.alpha);
   const cast = castShadow(golden);
   assert.ok(cast.d < 0 && cast.c > 0, "lies flat on the floor, sheared away from the light (to the left)");
   const wall = castShadow(resolveRig(L, "indoor"));

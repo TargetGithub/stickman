@@ -168,7 +168,7 @@ export function simulate(script, catalog, opts = {}) {
     const fresh = new Set((flat.scene.cast || []).filter((p) => p.hp !== undefined).map((p) => p.id));
     const director = createDirector(flat, moves, { t0, prefix: story.legacy ? "" : `${scenePath}.`, tag: story.legacy ? "" : `${sid}.`, dead: [...dead].filter((id) => !fresh.has(id)), story: !story.legacy });
     present = createPresentation(flat, catalog, { suffix, fx, kids: !story.legacy && (meta.audience ?? "kids") === "kids",
-      storyCamera: !story.legacy && meta.autoCamera === "story" && !(flat.scene.camera || []).length, t0 });
+      storyCamera: !story.legacy && meta.autoCamera === "story" && !(flat.scene.camera || []).length, tightFraming: !!story.v3, t0 });
     fx = present.fx;
     format = present.format;
     const fxLogStart = fx.log.length;

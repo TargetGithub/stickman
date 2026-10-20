@@ -102,10 +102,22 @@ export function drawLitContactShadow(ctx, c, sh, groundY) {
   if (c.alpha <= 0.01) return;
   const h = groundY - Math.max(c.j.lFoot.y, c.j.rFoot.y);
   const k = Math.max(0, 1 - h / 400); // fades and shrinks as the character jumps
-  ctx.fillStyle = `rgba(0,0,0,${(sh.alpha * k * c.alpha).toFixed(3)})`;
+  // A soft ellipse (V3.9): darkest under the feet, fading out at the rim.
+  const a = sh.alpha * k * c.alpha;
+  const rx = sh.rx * (0.6 + 0.4 * k);
+  const ry = sh.ry * (0.6 + 0.4 * k);
+  ctx.save();
+  ctx.translate(c.j.hip.x + sh.dx, groundY + 3);
+  ctx.scale(1, ry / rx);
+  const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+  g.addColorStop(0, `rgba(0,0,0,${(a * 1.2).toFixed(3)})`);
+  g.addColorStop(0.6, `rgba(0,0,0,${(a * 0.9).toFixed(3)})`);
+  g.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = g;
   ctx.beginPath();
-  ctx.ellipse(c.j.hip.x + sh.dx, groundY + 3, sh.rx * (0.6 + 0.4 * k), sh.ry * (0.6 + 0.4 * k), 0, 0, Math.PI * 2);
+  ctx.arc(0, 0, rx, 0, Math.PI * 2);
   ctx.fill();
+  ctx.restore();
 }
 
 /**
