@@ -383,6 +383,18 @@ export function motionValuesAt(m, t), postAt(m, t, values), withLensTracks(lens,
 ```
 `createRenderer` compiles the motion blocks once (`r.motion`, null without them); `renderScene` draws back layers after the background and over layers after the lens passes, before the overlays; `renderFrame` applies post last.
 
+### turnaround.js (V3.6, ENGINE_V3_SPEC 5.4)
+```js
+export const VIEWS, VIEW_YAW, TURN_TIME, TURN_DEFAULTS;
+export function viewsOf(plan), resolveView(plan, want);                 // the plan's views; the nearest one it has
+export function yawAt(track, sceneStoryT): degrees;                     // track: { base, sets: [{ storyT, view }], hints: [{ t0, t1, view }] }
+export function faceShiftOf(yaw), faceShows(yaw), nearSide(yaw);
+export function turnJoints(j, facing, yaw, turn, scale): Joints;        // adds lShoulder, rShoulder, lHip, rHip off the side view
+// renderer/turnaround_draw.js: turnedHumanoid(c, yaw, plan), drawQuadFront(ctx, j, style, shade), quadBlend(yaw)
+// renderer/world_items.js (split from renderer/index.js): withState, drawItems, drawTrails
+```
+The director emits `view` (a beat's view) and `viewHint` (a move's view, ended by its `moveEnd`) events in v3 scenes; `sim.scenes[i].characters[]` carry their starting `view` and `body`; `renderer/scene_views.js` builds the per-character view tracks. Prepared moves keep `view`; body plans carry `views` and `turn`.
+
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
@@ -861,4 +873,9 @@ exampleStories() -> [{ name, outline, story }]; MIN_LENGTH { story: 300, fight: 
 - **Context**: v3 adds video-tool features (layers, keyframes, masks, blend modes, text, shapes, post effects) written in JSON, beside or on top of a story, with random-access, deterministic frames and no pixel reads in the engine.
 - **Decision**: the blocks are top-level script data compiled once in the renderer (`compileMotion`), and `composeAt(m, t)` resolves them for any frame: lifetimes on a video or scene time base, in/out animations, tracks (any keyable property, a key's ease arriving at it), parents and layer order. The renderer draws the result in screen or world space; text layout stays renderer-only. Post effects run last in `renderFrame` as canvas filter and composite passes over copies of the frame (no getImageData); film grain is a seeded tile offset by a frame hash, so it is deterministic. Lens tracks override the V3.4 lens. The simulation and the frame store are untouched.
 - **Consequences**: a motion-graphics element can never change what the characters do; scripts without the blocks draw exactly as before. Blend modes apply per item (no layer-group offscreen), masks are shapes only, and the story compiler does not emit these primitives yet (a later step for titles and lower thirds from story data).
+
+### ADR-027 Turnaround views are a render-time yaw of the side-view joints (V3.6)
+- **Context**: v3 needs characters to turn to three-quarter, front and back views, and the series' dog to face the camera, without re-authoring 195 moves per view, without changing the simulation (reach, hits, IK are all side-on) and with the catalog able to describe views.
+- **Decision**: a view is a yaw applied by the renderer to the profile joints, with per-plan `turn` widths giving each side its own shoulder and hip, the forward part of a pose foreshortened onto the ground, the face slid across the head and hidden from behind. Views are catalog data (`views`, `turn` on body plans; `view` hints on moves), bundles can set them (bundle schemas extended with the spec), and the active view comes from director events, lerped over a 0.2 s turn. The quadruped gets a dedicated front drawing that cross-fades with its side drawing.
+- **Consequences**: every move works in every view with no extra data; the simulation, frame store and v1/v2 frames are unchanged. Hair, hats and capes keep their profile shapes in other views, and very forward poses (a punch at the camera) shorten to nearly nothing from the front, which is right for a camera but can read as a loss of the gesture. True per-view drawings (vector shapes per view in a rig) remain a later bundle extension.
 

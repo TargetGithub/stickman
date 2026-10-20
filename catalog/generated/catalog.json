@@ -1833,6 +1833,7 @@
         "description": "Punches the air in victory and holds the pose.",
         "tags": ["emote", "win"],
         "category": "emote",
+        "view": "front",
         "duration": 1.4,
         "mouth": "grin",
         "flags": { "hold": true },
@@ -1864,6 +1865,7 @@
         "description": "Waves hello with one hand.",
         "tags": ["emote", "friendly", "greet"],
         "category": "emote",
+        "view": "three_quarter",
         "duration": 1.2,
         "mouth": "grin",
         "keys": [
@@ -1881,6 +1883,7 @@
         "description": "Bows politely from the waist.",
         "tags": ["emote", "polite", "greet"],
         "category": "emote",
+        "view": "front",
         "duration": 1.3,
         "keys": [
           { "t": 0, "pose": "stand", "ease": "inOutQuad" },
@@ -2145,6 +2148,7 @@
         "description": "Jumps up with both arms raised for joy.",
         "tags": ["emote", "happy", "win"],
         "category": "emote",
+        "view": "front",
         "duration": 1,
         "face": "laugh",
         "keys": [
@@ -2209,6 +2213,7 @@
         "description": "Nods yes; loops for `cycles`.",
         "tags": ["emote", "gesture", "loop"],
         "category": "emote",
+        "view": "three_quarter",
         "duration": 0.7,
         "params": { "cycles": 2 },
         "flags": { "loop": true },
@@ -2249,6 +2254,7 @@
         "description": "Looks left and right, searching or unsure.",
         "tags": ["emote", "search"],
         "category": "emote",
+        "view": "three_quarter",
         "duration": 1.8,
         "keys": [
           { "t": 0, "pose": "stand", "ease": "inOutQuad" },
@@ -2673,6 +2679,7 @@
         "description": "Cheers with arms pumping; loops for `cycles`.",
         "tags": ["life", "happy", "loop", "crowd"],
         "category": "life",
+        "view": "front",
         "duration": 0.8,
         "params": { "cycles": 3 },
         "face": "laugh",
@@ -2704,6 +2711,7 @@
         "description": "Claps the hands; loops for `cycles`.",
         "tags": ["life", "happy", "loop", "crowd"],
         "category": "life",
+        "view": "front",
         "duration": 0.5,
         "params": { "cycles": 4 },
         "face": "happy",
@@ -7886,7 +7894,9 @@
         "tags": ["classic", "hero"],
         "rig": "humanoid",
         "draw": "stick",
-        "dims": { "headR": 22, "neck": 8, "torso": 78, "upperArm": 38, "forearm": 36, "thigh": 48, "shin": 46, "lineWidth": 9 }
+        "dims": { "headR": 22, "neck": 8, "torso": 78, "upperArm": 38, "forearm": 36, "thigh": 48, "shin": 46, "lineWidth": 9 },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 13, "hip": 8, "foreshorten": 0.3 }
       },
       "buddy": {
         "description": "A short, round, cute sidekick with a filled body and big eyes.",
@@ -7896,7 +7906,9 @@
         "torsoWidth": 27,
         "dims": { "headR": 26, "neck": 2, "torso": 42, "upperArm": 22, "forearm": 20, "thigh": 24, "shin": 22, "lineWidth": 8 },
         "appearance": { "eyes": "big", "brows": "thin" },
-        "avoid": ["axe_kick"]
+        "avoid": ["axe_kick"],
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 20, "hip": 13, "foreshorten": 0.3 }
       },
       "kid": {
         "description": "A small child stick figure with big eyes.",
@@ -7904,7 +7916,9 @@
         "rig": "humanoid",
         "draw": "stick",
         "dims": { "headR": 21, "neck": 5, "torso": 52, "upperArm": 26, "forearm": 25, "thigh": 32, "shin": 31, "lineWidth": 8 },
-        "appearance": { "eyes": "big" }
+        "appearance": { "eyes": "big" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 12, "hip": 8, "foreshorten": 0.3 }
       },
       "bulky": {
         "description": "A big, broad, strong figure with a filled chest and thick brows.",
@@ -7913,7 +7927,9 @@
         "draw": "trapezoid",
         "torsoWidth": 30,
         "dims": { "headR": 20, "neck": 6, "torso": 82, "upperArm": 42, "forearm": 40, "thigh": 46, "shin": 44, "lineWidth": 13 },
-        "appearance": { "brows": "thick" }
+        "appearance": { "brows": "thick" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 26, "hip": 15, "foreshorten": 0.3 }
       },
       "robot": {
         "description": "A big iron robot: a rounded box body with rivets, a square head, bolts at the joints (Iron Ghoom).",
@@ -7922,7 +7938,9 @@
         "draw": "box",
         "torsoWidth": 34,
         "dims": { "headR": 20, "neck": 6, "torso": 80, "upperArm": 42, "forearm": 40, "thigh": 46, "shin": 44, "lineWidth": 15 },
-        "appearance": { "eyes": "visor", "brows": "none" }
+        "appearance": { "eyes": "visor", "brows": "none" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 28, "hip": 16, "foreshorten": 0.3 }
       },
       "slim": {
         "description": "A tall, thin figure with oval eyes; sneaky or elegant.",
@@ -7930,7 +7948,9 @@
         "rig": "humanoid",
         "draw": "stick",
         "dims": { "headR": 18, "neck": 10, "torso": 90, "upperArm": 45, "forearm": 43, "thigh": 57, "shin": 55, "lineWidth": 7 },
-        "appearance": { "eyes": "oval" }
+        "appearance": { "eyes": "oval" },
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 11, "hip": 7, "foreshorten": 0.3 }
       },
       "elder": {
         "description": "An older figure with a stoop, sleepy eyes and white hair.",
@@ -7940,7 +7960,9 @@
         "posture": { "lean": 12, "head": 8 },
         "dims": { "headR": 21, "neck": 7, "torso": 72, "upperArm": 36, "forearm": 34, "thigh": 44, "shin": 42, "lineWidth": 8 },
         "appearance": { "brows": "thick", "eyes": "sleepy", "hair": "bob", "hairColor": "#e8e8e8" },
-        "avoid": ["flying_kick", "spinning_kick", "axe_kick", "flurry"]
+        "avoid": ["flying_kick", "spinning_kick", "axe_kick", "flurry"],
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 12, "hip": 8, "foreshorten": 0.3 }
       },
       "dog_small": {
         "description": "A small four-legged puppy (back at a stickman's knee) with floppy ears and a wagging tail; never fights.",
@@ -7952,7 +7974,9 @@
         "quad": { "ears": "floppy", "earColor": "#8a5a3c", "tail": "wag", "patch": "#c4935f", "belly": "#fff6e6", "collar": "#e63946", "bell": "#f2c94c" },
         "appearance": { "eyes": "big" },
         "moves": { "idle": "idle_dog", "walk": "walk_dog", "run": "run_dog", "jump": "jump_dog", "sneak": "sniff", "tiptoe": "sniff", "sit": "sit_dog", "lie_down": "lie_dog", "sleep": "sleep_dog", "get_up": "get_up_dog", "stand_up": "get_up_dog", "kneel": "sit_dog", "spawn": "spawn_dog", "despawn": "despawn_dog", "wave": "wag", "cheer": "wag", "clap": "wag", "laugh": "wag", "victory": "wag", "jump_joy": "jump_dog", "nod": "tilt_head", "shrug": "tilt_head", "look_around": "tilt_head", "peek": "tilt_head", "shake_head": "shake_off", "facepalm": "shake_off", "talk": "bark", "point": "bark", "taunt": "growl", "cry": "whimper", "sigh": "whimper", "cower": "whimper", "gasp": "yelp", "hit_light": "yelp", "hit_heavy": "yelp", "hit_launch": "yelp", "stagger": "yelp", "knockdown": "faint_dog", "ko_fall": "faint_dog", "ko_spin": "faint_dog", "dizzy": "dizzy_dog", "faint": "faint_dog", "dodge_back": "dodge_dog", "duck": "dodge_dog", "hide": "lie_dog", "carried": "carried_dog", "set_down": "set_down_dog", "pick_prop": "pick_dog", "drop_prop": "drop_dog", "catch_ball": "catch_mouth", "dash": "pounce", "return": "return_dog", "sneeze": "shake_off", "swim": "swim_dog" },
-        "grip": { "offset": [20, 4], "angle": 0 }
+        "grip": { "offset": [20, 4], "angle": 0 },
+        "views": ["side", "front"],
+        "turn": { "shoulder": 9, "hip": 9, "foreshorten": 0.2 }
       }
     },
     "bodyNames": ["stickman", "buddy", "kid", "bulky", "robot", "slim", "elder", "dog_small"],
@@ -9658,7 +9682,8 @@
       "E_TRACK_TARGET": { "meaning": "a track target that is not keyable, or names a missing node", "fix": "Use layer.<id>.<prop>, text.<id>.<prop>, shape.<id>.<prop>, lens.<channel> or post.<prop>." },
       "E_TRACK_KEYS": { "meaning": "a key value of the wrong kind, two keys at one time, or a path or line missing its points", "fix": "Numbers for numbers, #rrggbb for colours; one key per time." },
       "E_TRACK_EASE": { "meaning": "an unknown easing on a key", "fix": "Use an easing name, step or cubic-bezier(x1, y1, x2, y2)." },
-      "E_TEXT_STYLE": { "meaning": "an unknown text style", "fix": "Use a style from catalog/world/text_styles.json (title, subtitle, caption, lower_third, comic, label)." }
+      "E_TEXT_STYLE": { "meaning": "an unknown text style", "fix": "Use a style from catalog/world/text_styles.json (title, subtitle, caption, lower_third, comic, label)." },
+      "E_VIEW_BODY": { "meaning": "a character is asked for a turnaround view its body plan does not have", "fix": "Use a view the plan lists (the dog has side and front; humanoids have side, three_quarter, front and back)." }
     }
   },
   "examples": [

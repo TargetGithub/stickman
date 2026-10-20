@@ -2,8 +2,10 @@
 // → post effects → overlays. Milestone: M4. renderFrame is a pure function of (sim result, n).
 
 import { unpackJoints, lowestPoint } from "../skeleton.js";
-import { drawCharacter } from "./character.js";
-import { drawProp } from "./props.js";
+import { drawCharacter, shade } from "./character.js";
+import { withState, drawItems, drawTrails as drawTrailsOf } from "./world_items.js";
+import { yawAt } from "../turnaround.js";
+import { turnedHumanoid, drawQuadFront, quadBlend } from "./turnaround_draw.js";
 import { drawBehind, drawFront, squashAt } from "./accessories.js";
 import { drawLookBehind, drawLookFront } from "./accessories_more.js";
 import { propTransform } from "../props.js";
@@ -106,29 +108,6 @@ function charsAt(r, n) {
 
 const order = (chars) => [...chars].sort((a, b) => b.scale - a.scale);
 
-/** A holdable with states (the rainbow crystal) shows its latest state, carried across scenes. */
-function withState(r, sv, name, data, t) {
-  const def = r.catalog.objects?.[name];
-  if (!def?.states || def.behavior !== "holdable") return data;
-  const e = r.heldStates.findLast((x) => x.kind === name && x.videoT <= t);
-  return { ...data, state: e?.state ?? sv.set?.find((p) => p.object === name && p.state)?.state ?? def.states[0] };
-}
-
-/** Loose props: lying ones before the characters, thrown (flying) ones after. */
-function drawItems(ctx, r, items, flying, sv, t) {
-  for (const it of items.filter((i) => i.flying === flying)) {
-    if (it.obj) continue; // moving objects are drawn by drawMovingObjects
-    const held = holdableData(r.catalog, it.name);
-    if (!held) continue;
-    const data = withState(r, sv, it.name, held, t);
-    const scale = 1;
-    const half = (data.len * scale) / 2;
-    const dx = Math.cos(it.angle) * half;
-    const dy = Math.sin(it.angle) * half;
-    drawProp(ctx, data, { butt: { x: it.x - dx, y: it.y - dy }, tip: { x: it.x + dx, y: it.y + dy }, grip: { x: it.x, y: it.y } }, scale);
-  }
-}
-
 function drawWorld(ctx, r, n, f, chars, sv) {
   const pieces = sv.objectEvents.length ? staticObjectsAt(r.catalog, sv.set, sv.objectEvents, f.videoT) : sv.set;
   if (sv.depth) return drawDepthScene(ctx, r, n, f, chars, sv, pieces);
@@ -160,7 +139,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
   }
   drawChars(ctx, r, n, f, chars, sv, mid);
   drawItems(ctx, r, f.items, true, sv, f.videoT);
-  drawTrails(ctx, n, sv, trails, r);
+  drawTrailsOf(ctx, n, sv, trails, r, charsAt);
   drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
     const c = chars.find((x) => x.id === actorId);
     if (!c) return null;
@@ -190,7 +169,7 @@ function drawDepthScene(ctx0, r, n, f, chars, sv, pieces) {
       });
     }
     drawItems(ctx, r, f.items, true, sv, f.videoT);
-    drawTrails(ctx, n, sv, trails, r);
+    drawTrailsOf(ctx, n, sv, trails, r, charsAt);
     const shown = depths ? projectedChars(chars, depths, f.cam, sv.depth) : chars;
     drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
       const c = shown.find((x) => x.id === actorId);
@@ -254,35 +233,32 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ctx.shadowColor = style.glow;
     ctx.shadowBlur = 22 * c.scale;
   }
-  drawBehind(ctx, c, past, style);
-  drawLookBehind(ctx, c, look, f.videoT);
+  // Turnaround views (V3.6, v3 scenes): the yaw from the scene's view track.
+  const track = sv.viewTracks?.get(c.id);
+  const yaw = track ? yawAt(track, f.storyT - (sv.storyStart ?? 0)) : 90;
+  const turned = !c.quad && yaw !== 90 ? turnedHumanoid(c, yaw, r.catalog.bodies?.[c.plan]) : null;
+  const ct = turned ? { ...c, j: turned.j } : c;
+  drawBehind(ctx, ct, past, style);
+  drawLookBehind(ctx, ct, look, f.videoT);
   const face = c.face ? faceStyle(r, c, chars, sv, f) : null;
-  drawCharacter(ctx, c.j, { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
+  const st = { color: c.color, scale: c.scale, facing: c.facing, mouth: c.mouth, prop: c.propStyle && { ...c.propStyle, data: withState(r, sv, c.prop.name, c.propStyle.data, f.videoT) }, alpha: c.alpha, outline: style.outline !== false, ...face,
     ...(c.dims ? { dims: c.dims, draw: c.draw, torsoWidth: c.torsoWidth } : {}), ...(look ? { look } : {}),
     ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight) } : {}),
-    ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) });
+    ...(turned ? { faceShift: turned.faceShift, hideFace: turned.hideFace, farBrightness: turned.farBrightness } : {}),
+    ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) };
+  if (c.quad && yaw < 89.5) {
+    // A four-legged character cross-fades from its side drawing to its front drawing, squashed mid-turn.
+    const b = quadBlend(yaw);
+    if (b.front < 0.99) drawCharacter(ctx, c.j, { ...st, alpha: st.alpha * (1 - b.front) });
+    ctx.save();
+    ctx.transform(b.squash, 0, 0, 1, c.j.hip.x * (1 - b.squash), 0);
+    drawQuadFront(ctx, c.j, { ...st, alpha: st.alpha * b.front }, shade);
+    ctx.restore();
+  } else drawCharacter(ctx, ct.j, st);
   ctx.shadowBlur = 0;
-  drawFront(ctx, c, past, style);
-  drawLookFront(ctx, c, look);
+  drawFront(ctx, ct, past, style);
+  drawLookFront(ctx, ct, look);
   ctx.restore();
-}
-
-/** Slash trails behind weapon tips. */
-function drawTrails(ctx, n, sv, trails, r) {
-  for (const t of trails.filter((x) => x.kind === "slash" && x.part)) {
-    const pts = [];
-    for (let back = 8; back >= 0; back--) {
-      if (n - back < 0) continue;
-      const c = charsAt(r, n - back).find((x) => x.id === t.actorId);
-      if (c && c.j[t.part]) pts.push(c.j[t.part]);
-    }
-    ctx.lineCap = "round";
-    for (let i = 1; i < pts.length; i++) {
-      ctx.strokeStyle = `rgba(255,255,255,${(i / pts.length) * 0.85})`;
-      ctx.lineWidth = 3 + 9 * (i / pts.length);
-      ctx.beginPath(); ctx.moveTo(pts[i - 1].x, pts[i - 1].y); ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke();
-    }
-  }
 }
 
 /** Number of frames available. */

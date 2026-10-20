@@ -8,6 +8,7 @@ import { lensMatrix } from "./lens_draw.js";
 import { withLensTracks } from "../compositor.js";
 import { depthAt } from "../depth.js";
 import { deriveRng } from "../math.js";
+import { resolveView } from "../turnaround.js";
 import { STAGE } from "../config.js";
 
 /** Per-scene views of the event log and fx records (overlays and particles never leak across scenes). */
@@ -40,6 +41,7 @@ export function sceneViews(sim, catalog) {
         autoFocus: autoFocusSpans(ev),
         lensBase: { ...LENS_DEFAULTS, ...(sc.lens || {}) },
         handheld: createHandheld(deriveRng(sim.meta?.seed ?? 1, `handheld@${sc.id ?? i}`)),
+        viewTracks: viewTracks(ev, sc, catalog),
       } : {}),
       placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
       depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
@@ -92,5 +94,29 @@ export function frameLens(r, sv, f) {
   else if (auto?.ids.length) zf = auto.ids.reduce((sum, id) => sum + zOfId(id), 0) / auto.ids.length;
   const dof = amount > 0.01 ? { zf, amount } : null;
   return { L, lc, matrix, dof, bgBlur: dof ? blurFor(sv.depth.far * 1.5, zf, amount) : 0 };
+}
+
+/**
+ * Turnaround views of a v3 scene (V3.6), per character: { base, sets: [{ storyT, view }], hints: [{ t0, t1, view }] }
+ * in scene story seconds. Views the body plan lacks fall back to the nearest one it has.
+ */
+function viewTracks(ev, sc, catalog) {
+  const t0 = sc.storyStart ?? 0;
+  const out = new Map();
+  for (const c of sc.characters || []) {
+    const plan = catalog.bodies?.[c.body ?? "stickman"] ?? null;
+    out.set(c.id, { base: resolveView(plan, c.view ?? "side"), sets: [], hints: [], plan });
+  }
+  const ends = ev.filter((e) => e.type === "moveEnd");
+  for (const e of ev) {
+    const tr = out.get(e.actor);
+    if (!tr) continue;
+    if (e.type === "view") tr.sets.push({ storyT: e.storyT - t0, view: resolveView(tr.plan, e.view) });
+    else if (e.type === "viewHint") {
+      const end = ends.find((x) => x.actor === e.actor && x.beatId === e.beatId && x.storyT >= e.storyT);
+      tr.hints.push({ t0: e.storyT - t0, t1: end ? end.storyT - t0 : Infinity, view: resolveView(tr.plan, e.view) });
+    }
+  }
+  return out;
 }
 

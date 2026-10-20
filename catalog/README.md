@@ -76,6 +76,7 @@ Drafts added with `--write` get the tag `draft` and the description they were dr
 
 - **Moves** (spec 8.1): keys `{t, pose, ease, propAngle}`, root `{t, dx, dy, ease}` (numbers or param expressions such as `"travel*1.05"`), hits, events, flags (`loop`, `hold`, `airborne`, `ranged`, `guard [t0, t1, kind]`, `invulnerable [t0, t1]`, `keepPose`, `durationParam`, `partner`, `defeat`), `needsProp` (a prop kind, `"any"`), `pair` (paired moves, `engine/story/pairs.js`). Attack wind-ups take at least 15% of the duration.
 - **Poses**: `+` is forward for rot, lean, head, UA, TH; FA `+` flexes the elbow; SH `+` flexes the knee. `l*` is the far limb, `r*` the near limb. Missing channels default to stand.
+- **Views** (V3.6): body plans list `views` (side, three_quarter, front, back) and `turn` widths (`shoulder`, `hip` half spans at scale 1, `foreshorten`); a move's `view` turns the character to that view while it runs (v3 scenes).
 - **Bodies**: `draw` stick, capsule or trapezoid; `torsoWidth` is the half-width of a filled torso; `posture` offsets every pose; `avoid` lists attacks the compiler leaves out of generated fights.
 - **FX layers**: shape, count, angle, speed, life, size, width, gravity, drag, color, alpha, offset, spreadY, vrot, attach, orbit, glyph, tintable (spec 13.1).
 - **Themes**: sky gradient, parallax layers (`factor` 0-1; kinds in `engine/renderer/background.js`), ground, `characterBg` (the contrast check's background).

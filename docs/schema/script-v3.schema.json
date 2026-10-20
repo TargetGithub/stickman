@@ -332,6 +332,15 @@
                 ]
               }
             }
+          },
+          "view": {
+            "enum": [
+              "side",
+              "three_quarter",
+              "front",
+              "back"
+            ],
+            "description": "Turnaround view: side, three_quarter, front or back (the body plan must have it: E_VIEW_BODY)."
           }
         }
       }
@@ -919,6 +928,15 @@
                       "minimum": -4000,
                       "maximum": 2000,
                       "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
+                    },
+                    "view": {
+                      "enum": [
+                        "side",
+                        "three_quarter",
+                        "front",
+                        "back"
+                      ],
+                      "description": "Turnaround view: side, three_quarter, front or back (the body plan must have it: E_VIEW_BODY)."
                     }
                   }
                 }
@@ -1499,6 +1517,15 @@
                             "mid",
                             "front"
                           ]
+                        },
+                        "view": {
+                          "enum": [
+                            "side",
+                            "three_quarter",
+                            "front",
+                            "back"
+                          ],
+                          "description": "The character turns to this view from this beat on (E_VIEW_BODY)."
                         }
                       }
                     },

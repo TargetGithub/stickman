@@ -70,11 +70,14 @@ function drawHead(ctx, j, r, lw, style, facing) {
   const at = (fa, ua) => ({ x: j.head.x + f.x * fa * r + u.x * ua * r, y: j.head.y + f.y * fa * r + u.y * ua * r });
   if (style.face) {
     const acc = look?.accessories || {};
-    if (acc.mask) drawMask(ctx, j.head, r, ax, acc.mask);
-    drawFace(ctx, j.head, r, { u, f }, style.face, { ...(style.faceOpts || {}), look });
+    // Turnaround (V3.6): the face slides to the middle of the head as it turns to the front; from behind it is hidden.
+    const shift = style.faceShift || 0;
+    const fc = shift ? { x: j.head.x - f.x * shift * r, y: j.head.y - f.y * shift * r } : j.head;
+    if (acc.mask && !style.hideFace) drawMask(ctx, fc, r, ax, acc.mask);
+    if (!style.hideFace) drawFace(ctx, fc, r, { u, f }, style.face, { ...(style.faceOpts || {}), look });
     if (look) {
       drawHair(ctx, j.head, r, ax, look);
-      if (acc.eyepatch) drawEyepatch(ctx, j.head, r, ax, acc.eyepatch);
+      if (acc.eyepatch && !style.hideFace) drawEyepatch(ctx, j.head, r, ax, acc.eyepatch);
       drawHeadTop(ctx, j.head, r, ax, acc);
     }
     return;
@@ -143,7 +146,8 @@ export function drawCharacter(ctx, j, style) {
   const prop = s.prop ? propTransform(j, s.prop.data, s.prop.angle, s.facing, s.scale) : null;
   const headR = dims.headR * s.scale;
   if (acc.backpack) drawBackpack(ctx, j, headR, acc.backpack, s.facing);
-  strokeGroup(ctx, [[j.hip, j.lKnee, j.lFoot], [j.shoulder, j.lElbow, j.lHand]], far, lw, s, farTones);
+  // Turned views (V3.6) give each side its own shoulder and hip; the side view uses the shared ones.
+  strokeGroup(ctx, [[j.lHip || j.hip, j.lKnee, j.lFoot], [j.lShoulder || j.shoulder, j.lElbow, j.lHand]], far, lw, s, farTones);
   if (prop && s.prop.data.grip === "lHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
   const torso = { draw: s.draw, torsoWidth: s.torsoWidth, color: s.color, outline: s.outline, outlineColor: s.outlineColor, lw, scale: s.scale };
   if (!drawTorso(ctx, j, torso)) {
@@ -152,9 +156,9 @@ export function drawCharacter(ctx, j, style) {
   if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth });
   if (acc.bowtie) drawBowtie(ctx, j, headR, acc.bowtie, s.facing);
   drawHead(ctx, j, headR, lw, s, s.facing);
-  strokeGroup(ctx, [[j.hip, j.rKnee, j.rFoot]], s.color, lw, s);
+  strokeGroup(ctx, [[j.rHip || j.hip, j.rKnee, j.rFoot]], s.color, lw, s);
   if (prop && s.prop.data.grip === "rHand") drawProp(ctx, s.prop.data, prop, s.scale, s.outlineColor);
-  strokeGroup(ctx, [[j.shoulder, j.rElbow, j.rHand]], s.color, lw, s);
+  strokeGroup(ctx, [[j.rShoulder || j.shoulder, j.rElbow, j.rHand]], s.color, lw, s);
   if (s.draw === "box") drawBolts(ctx, j, lw, shade(s.color, 0.75));
 
   ctx.restore();

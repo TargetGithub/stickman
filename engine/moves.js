@@ -116,6 +116,7 @@ function prepareMove(raw, poses, problems) {
     face: raw.face ?? null, // story scripts: the face shown while this move runs (S2)
     pair: raw.pair ?? null, // paired moves (S5): engine/story/pairs.js
     chain: raw.chain ?? null,
+    view: raw.view ?? null, // a turnaround view hint while the move runs (v3 scenes, V3.6)
   };
 }
 

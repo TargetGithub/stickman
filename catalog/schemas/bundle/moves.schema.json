@@ -103,6 +103,7 @@
         },
         "mouth": { "enum": ["neutral", "shout", "grin"] },
         "face": { "$ref": "common.schema.json#/$defs/ref" },
+        "view": { "enum": ["side", "three_quarter", "front", "back"], "description": "A view hint while the move runs (v3 scenes, V3.6)." },
         "chain": { "$ref": "common.schema.json#/$defs/ref" },
         "pair": { "$ref": "#/$defs/pair" }
       }

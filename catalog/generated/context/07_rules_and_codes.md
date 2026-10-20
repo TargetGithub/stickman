@@ -127,3 +127,4 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - E_TRACK_KEYS: a key value of the wrong kind, two keys at one time, or a path or line missing its points → Numbers for numbers, #rrggbb for colours; one key per time.
 - E_TRACK_EASE: an unknown easing on a key → Use an easing name, step or cubic-bezier(x1, y1, x2, y2).
 - E_TEXT_STYLE: an unknown text style → Use a style from catalog/world/text_styles.json (title, subtitle, caption, lower_third, comic, label).
+- E_VIEW_BODY: a character is asked for a turnaround view its body plan does not have → Use a view the plan lists (the dog has side and front; humanoids have side, three_quarter, front and back).

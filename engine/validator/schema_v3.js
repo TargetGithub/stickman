@@ -8,6 +8,7 @@
 //   scenes[].light, locations[].light   the light rig (V3.3): a preset name or a preset with overrides
 //   scenes[].lens, camera[] lens fields, lag and move   the v3 camera (V3.4)
 //   layers, text, shapes, tracks, post (and scenes[].post)   motion graphics (V3.5, schema_motion.js)
+//   cast[].view, scenes[].cast[].view, beats[].view   turnaround views (V3.6)
 // `layer` names stay accepted and map to z presets (engine/depth.js LAYER_Z); a node gives one or the other.
 
 import { jsonSchemaV2, schemaV2For } from "./schema_v2.js";
@@ -113,6 +114,11 @@ export function withDepth(v2) {
   scene.properties.cast.items.properties.z = Z;
   const beat = scene.properties.beats.items.oneOf[0];
   beat.properties.to = destV3(beat.properties.to);
+  // Turnaround views (V3.6): a cast default, a placement and a beat may name a view.
+  const VIEW = { enum: ["side", "three_quarter", "front", "back"], description: "Turnaround view: side, three_quarter, front or back (the body plan must have it: E_VIEW_BODY)." };
+  s.properties.cast.items.properties.view = VIEW;
+  scene.properties.cast.items.properties.view = VIEW;
+  beat.properties.view = { ...VIEW, description: "The character turns to this view from this beat on (E_VIEW_BODY)." };
   // Motion graphics (V3.5): top-level layers, text, shapes, tracks and post; a scene may set its own post.
   Object.assign(s.properties, { layers: LAYERS_SCHEMA, text: TEXT_SCHEMA, shapes: SHAPES_SCHEMA, tracks: TRACKS_SCHEMA, post: POST_SCHEMA });
   scene.properties.post = POST_SCHEMA;

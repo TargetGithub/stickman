@@ -255,7 +255,7 @@ export function simulate(script, catalog, opts = {}) {
       startFrame, frames, storyStart: t0, fxStart: fxLogStart, fxEnd: fx.log.length, fxT0: clock.fxAt[startFrame],
       characters: flat.characters.map((c) => {
         const placed = (flat.scene.cast || []).find((p) => p.id === c.id) || {};
-        return { id: c.id, style: c.style || {}, layer: placed.layer ?? "mid", ...(flat.depth ? { z: zOf(placed, flat.depth) } : {}) };
+        return { id: c.id, style: c.style || {}, layer: placed.layer ?? "mid", ...(flat.depth ? { z: zOf(placed, flat.depth), view: placed.view ?? story.cast.find((x) => x.id === c.id)?.view ?? "side", body: c.body ?? "stickman" } : {}) };
       }),
       depth: flat.depth, // V3.2: null for v1/v2 scenes
       light: flat.depth ? (flat.scene.light ?? flat.location?.light ?? null) : null, // V3.3: the scene's light rig choice

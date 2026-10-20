@@ -278,6 +278,9 @@ function execute(director, beat, ctx) {
   if (def.category === "defeat") opts = defeatStart(world, actor, def, opts); // defeat styles (S5): face, flee side
   if (walksTo) opts = startTo(world, actor, beat, opts, storyT, !!def.pair) ?? opts; // S6: distance from where everyone is
   if (actor.depthMove?.t0 === storyT) emit({ type: "depth", actor: beat.who, beatId: beat.id, ...actor.depthMove }); // V3.2: the renderer lerps the same z
+  // Turnaround views (V3.6, v3 scenes): a beat's view lasts from it on; a move's hint lasts while it runs.
+  if (world.depth && beat.view) emit({ type: "view", actor: beat.who, view: beat.view, beatId: beat.id });
+  if (world.depth && def.view) emit({ type: "viewHint", actor: beat.who, view: def.view, beatId: beat.id });
   if (beat.layer && director.story) {
     actor.layer = beat.layer;
     emit({ type: "layer", actor: beat.who, layer: beat.layer, beatId: beat.id });
