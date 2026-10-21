@@ -2,6 +2,8 @@
 //   W_PACE_TRAVEL  a walk, run or sneak beat lasts longer than PACE_LIMITS.travel seconds
 //   W_PACE_GAP     nothing happens on screen for more than PACE_LIMITS.gap seconds (no character acting,
 //                  speaking or narrated; holding still with wait, idle or sleep does not count)
+//   W_SPEAKER_OFFSCREEN  a character speaks while the shot (a script shot, or the auto camera) is built
+//                  around others, so they may be out of frame (the auto camera itself keeps speakers in shot)
 
 import { TO_MOVES } from "../story/destinations.js";
 import { narrateDuration } from "../story/timing.js";
@@ -46,9 +48,28 @@ export function paceIssues(sim) {
       }
       covered = Math.max(covered, e);
     }
+    out.push(...offscreenSpeakers(sim, sc));
     if (t1 - covered > PACE_LIMITS.gap) {
       out.push({ code: "W_PACE_GAP", path: `scenes[${sc.index}]`, message: `Nothing happens for the last ${(t1 - covered).toFixed(1)}s of scene '${sc.id}'.`, fix: "End the scene sooner." });
     }
   }
   return out;
 }
+
+const SPEAKER_SETTLE = 0.6; // s after a line starts: the camera has glided to the speaker by then
+
+/** Lines spoken while the camera's close-up or medium leaves the speaker out (camera log, video time). */
+function offscreenSpeakers(sim, sc) {
+  const log = (sim.cameraLog || []).filter((c) => c.mode !== "travelCut");
+  const out = [];
+  for (const e of sim.events) {
+    if (e.type !== "say" || e.scene !== sc.index || e.bubble === "think" || typeof e.videoT !== "number") continue;
+    const k = log.findLast((c) => c.t <= e.videoT + SPEAKER_SETTLE);
+    if (!k || !["close_up", "medium"].includes(k.mode) || k.target === e.actor || k.targets?.includes(e.actor)) continue;
+    out.push({ code: "W_SPEAKER_OFFSCREEN", path: sc.srcPath ?? `scenes[${sc.index}]`,
+      message: `'${e.actor}' speaks at ${(e.storyT - sc.storyStart).toFixed(1)}s in scene '${sc.id}' while the shot is on ${k.target ?? k.targets.join(", ")}.`,
+      fix: "Add a shot of the speaker with the line, shorten the shot before it, or move the line." });
+  }
+  return out;
+}
+

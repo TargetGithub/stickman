@@ -524,6 +524,7 @@
           "say": "Brave girl. Let's walk up together."
         },
         {"id": "race_win", "at": {"after": "race_r5"}, "who": "chintu", "do": "victory", "say": "I WON!", "bubble": "shout", "view": "front"},
+        {"id": "race_win_cu", "at": {"with": "race_win"}, "who": "world", "do": "shot", "params": {"mode": "close_up", "target": "chintu", "dur": 1.6}},
         {"id": "race_wt", "at": {"after": "race_pat"}, "macro": "walk_together", "params": {"who": ["doopi", "pinky"], "to": {"x": 1700}}},
         {"id": "race_dm", "at": {"with": "race_wt", "delay": 0.5}, "who": "doomi", "do": "walk", "to": {"x": 2350, "z": -60}},
         {

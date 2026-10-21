@@ -234,3 +234,30 @@ test("pace.glide: the paced camera glides between framings instead of cutting; c
   assert.ok(hard(glideLog) < hard(cutLog), "fewer hard cuts");
   assert.equal(glideLog.filter((e) => e.mode === "travelCut").length, cutLog.filter((e) => e.mode === "travelCut").length, "travel cuts unchanged");
 });
+
+test("cutsKey: a speaker outside the shot is brought in at once (quick), even inside minCut; a split line keeps its shot", () => {
+  const cuts = createCuts(paceOf({ ...v3, pace: { minCut: 3, establish: 0 } }));
+  const auto = { t0: 0, active: new Map(), close: null };
+  const actors = [actor("dony", 1000), actor("doopi", 1200), actor("mooka", 1400)];
+  const at = (t) => cutsKey(auto, cuts, actors, t, () => []);
+  cutsEvent(cuts, { type: "say", actor: "dony", to: "doopi", dur: 3 }, 1);
+  assert.deepEqual(at(1).targets, ["dony", "doopi"]);
+  cutsEvent(cuts, { type: "say", actor: "doopi", to: "dony", dur: 1 }, 4.2);
+  const cu = at(4.2); // over the shoulder: dony and doopi
+  cutsEvent(cuts, { type: "say", actor: "doopi", to: "dony", dur: 0.8 }, 5.3); // the next sentence of the same line
+  assert.equal(at(5.3), cu, "the same speaker's next bubble keeps the shot");
+  cutsEvent(cuts, { type: "say", actor: "mooka", to: "dony", dur: 1 }, 6.2); // 2 s after the last cut, mooka unseen
+  const k = at(6.2);
+  assert.ok(k.target === "mooka" || k.targets?.includes("mooka"), JSON.stringify(k));
+  assert.equal(k.quick, true);
+});
+
+test("W_SPEAKER_OFFSCREEN: a line spoken during a script shot of someone else is warned about", () => {
+  const story = pacedStory({ establish: 0 });
+  const beats = story.scenes[0].beats;
+  beats.push({ id: "cu", at: { with: "d", delay: 0.1 }, who: "world", do: "shot", params: { mode: "close_up", target: "kai", dur: 30 } });
+  const r = validate(story, catalog);
+  assert.ok(r.ok, JSON.stringify(r.errors));
+  assert.ok(r.warnings.some((w) => w.code === "W_SPEAKER_OFFSCREEN" && w.message.includes("'mo'")), JSON.stringify(r.warnings.map((w) => w.code)));
+  assert.ok(!validate(pacedStory({}), catalog).warnings.some((w) => w.code === "W_SPEAKER_OFFSCREEN"), "the auto camera alone keeps speakers in shot");
+});

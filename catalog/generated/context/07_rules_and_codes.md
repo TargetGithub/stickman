@@ -109,6 +109,7 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - W_FIGHT_SHORT: a fight video under 180 s → Make it 180 s or more.
 - W_SCENE_STATIC: over 4 s of a scene where nothing moves → Add movement, a line or narration.
 - W_PACE_TRAVEL: in a scene with a pace, a walk, run or sneak beat lasting over 4 s → Shorten the walk, start closer, or use "to" so a long walk cuts to the arrival.
+- W_SPEAKER_OFFSCREEN: in a scene with a pace, a character speaks while the shot is a close-up or medium of others → Add a shot of the speaker with the line, shorten the shot before it, or move the line.
 - W_PACE_GAP: in a scene with a pace, over 1.5 s where nobody acts, speaks or is narrated → Trim the delay before the next beat, or give someone something to do meanwhile.
 - W_CAST_UNUSED: a cast member no scene places → Place them in a scene or drop them.
 - E_BUNDLE_AUDIENCE: a kids story declares a bundle that is not made for kids → Use a bundle that lists kids, or set meta.audience to general if that fits.

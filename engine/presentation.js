@@ -60,11 +60,13 @@ export function createPresentation(script, catalog, opts = {}) {
 }
 
 /** Set a camera key and log the framing change. */
+const QUICK_GLIDE = 0.5; // s: a glide that brings a speaker who was out of the shot into it
+
 // paced: a cut the pace asked for (auto camera, shots); with pace.glide it becomes a glide instead.
 function keyed(p, key, clock, cut = false, paced = false) {
   setCameraKey(p.cam, key, clock.videoT);
   const glide = cut && paced && p.pace?.glide > 0;
-  if (glide) glideCamera(p.cam, p.pace.glide, clock.videoT);
+  if (glide) glideCamera(p.cam, key.quick ? Math.min(p.pace.glide, QUICK_GLIDE) : p.pace.glide, clock.videoT);
   else if (cut) cutCamera(p.cam);
   p.log?.push({ t: clock.videoT, mode: key.mode, ...(key.target ? { target: key.target } : {}), ...(key.targets ? { targets: key.targets } : {}), cut: (cut && !glide) || p.cam.cut, ...(glide ? { glide: true } : {}) });
 }

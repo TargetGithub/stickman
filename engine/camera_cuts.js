@@ -43,6 +43,9 @@ export function cutsEvent(cuts, e, t) {
   }
 }
 
+/** Whether a key's framing is built around a character (a wide shows everyone). */
+const framed = (key, id) => !key || key.mode === "wide" || key.target === id || !!key.targets?.includes(id);
+
 const sameKey = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const keeps = (a, b) => a?.mode === "medium" && b?.mode === "medium" && a.loose === b.loose && !a.favor && !b.favor && a.targets.some((id) => b.targets.includes(id));
 
@@ -92,9 +95,15 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
   else if (line) {
     cuts.lastLineEnd = line.until;
     if (cuts.lineSeen !== line) {
-      if (age < minCut && cuts.key) return cuts.key; // too soon after the last cut: wait
+      // The speaker must be in the shot (ep01 review, 2026-10-21): minCut only delays a new shot while they are.
+      const shows = framed(cuts.key, line.actor);
+      if (age < minCut && cuts.key && shows) return cuts.key; // too soon after the last cut: wait
+      // The next bubble of the same speaker (a long line split into sentences) keeps the shot.
+      const more = shows && cuts.seen?.actor === line.actor && line.t0 - cuts.seen.until < TALK.hold;
       cuts.lineSeen = line;
-      want = lineShot(cuts, line, actors, t);
+      cuts.seen = { actor: line.actor, until: line.until };
+      want = more ? cuts.key : lineShot(cuts, line, actors, t);
+      if (!shows && want !== cuts.key) want = { ...want, quick: true }; // bring an unseen speaker in fast
     } else if (pace.reactions !== false && age > pace.shot[1] && !cuts.key?.reaction) {
       const listener = listenerOf(line, actors);
       if (listener) want = { mode: "close_up", target: listener.id, reaction: t + TALK.reaction };
