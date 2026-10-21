@@ -160,7 +160,7 @@ const PACE_SCHEMA = { type: "object", additionalProperties: false, description: 
   arrive: pn(0.3, 5, "Seconds of walking after a travel cut (default 1.2)."),
   leave: pn(0.3, 5, "Seconds of walking before a travel cut (default 0.9)."),
   shot: { type: "array", minItems: 2, maxItems: 2, items: pn(0.5, 20, "Seconds."), description: "[min, max] seconds a dialogue shot lasts before the auto camera cuts (default [2, 4])." },
-  establish: pn(0, 10, "Seconds of the opening wide shot (default 2)."),
+  establish: pn(0, 60, "Seconds of the opening wide shot (default 2); a narrated scene can stay wide throughout."),
   minCut: pn(0.5, 10, "Fewest seconds between two auto camera cuts (default shot[0] / 2)."),
   reactions: { type: "boolean", description: "Cut to the listener's face when a line runs past shot[1] (default true)." },
   captions: { enum: ["auto", "bubbles", "subtitles"], description: "auto (default): subtitles when meta.speech is tts, else bubbles." },

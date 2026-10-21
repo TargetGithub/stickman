@@ -78,12 +78,15 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
   const age = t - cuts.since;
   const minCut = pace.minCut ?? pace.shot[0] / 2;
   let want = null;
+  const line = cuts.line && t < cuts.line.until ? cuts.line : null;
   if (cuts.travelCut) {
     cuts.travelCut = false;
+    // During the opening wide the walker just jumps ahead inside it: a medium here lasted one frame before
+    // the wide came back (a flash of zoom, ep01 review 2026-10-21).
+    if (t - auto.t0 < pace.establish && !line) return choose(cuts, { mode: "wide" }, t, true);
     want = mediumOf(activeIds(actors, t), actors, 0);
     return choose(cuts, want, t, true);
   }
-  const line = cuts.line && t < cuts.line.until ? cuts.line : null;
   if (auto.close && t < auto.close.until) want = { mode: "close_up", target: auto.close.target };
   else if (t - auto.t0 < pace.establish && !line) want = { mode: "wide" };
   else if (line) {

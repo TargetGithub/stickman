@@ -108,6 +108,19 @@ test("cutsKey: establish wide, medium two-shot, then shot/reverse-shot cuts and 
   assert.equal(at(20).cut, true, "a travel cut always cuts");
 });
 
+test("cutsKey: a travel cut during the opening wide keeps the wide (no one-frame medium)", () => {
+  const cuts = createCuts(paceOf({ ...v3, pace: { establish: 3 } }));
+  const auto = { t0: 0, active: new Map(), close: null };
+  const actors = [actor("kai", 1000)];
+  const at = (t) => cutsKey(auto, cuts, actors, t, () => ["kai"]);
+  assert.equal(at(0.5).mode, "wide");
+  cutsEvent(cuts, { type: "travelCut" }, 2.2);
+  const k = at(2.2);
+  assert.deepEqual([k.mode, k.cut], ["wide", true]);
+  assert.equal(at(2.3).mode, "wide");
+  assert.equal(at(3.5).mode, "medium", "the medium comes once the wide is over");
+});
+
 test("cutsKey: minCut spaces the cuts, reactions false keeps the speaker, and an action medium holds minCut", () => {
   const cases = [
     // [pace, second line at, expect a cut on it]
