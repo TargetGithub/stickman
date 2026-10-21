@@ -150,7 +150,7 @@ This document is the source of truth for behavior and the script schema. When th
 
 - World space: x to the right, **y down**. World origin is the left edge of the stage at the ground line's x origin.
 - Stage: x range `[0, stageWidth]`, default `stageWidth = 3200`. Ground line `groundY = 880` in world units, for both formats.
-- Formats: `landscape` = 1920x1080, `portrait` = 1080x1920. The format changes the canvas and camera framing (11.5), never world units.
+- Formats: `landscape` = 1920x1080, `portrait` = 1080x1920. The format changes the canvas and camera framing (11.5), never world units. A render scale (`createEngine({ scale })`, ADR-039) draws the same frame onto a larger canvas: scale 2 is 4K (3840x2160 / 2160x3840).
 - Script time: seconds of **story time** (section 6). Frames are an output concern.
 - Facing: `+1` (right) or `-1` (left). Poses are authored facing right; kinematics mirrors them.
 - Angles: degrees in data, radians internally.

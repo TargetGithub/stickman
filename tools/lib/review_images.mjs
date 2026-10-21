@@ -24,10 +24,10 @@ export function chooseThumbnailFrame(engine) {
 
 /** Draw a cols×rows grid of evenly spaced frames into a new canvas (quarter-size tiles). */
 export function contactSheet(engine, backend, { cols = 4, rows = 4 } = {}) {
-  const { width, height, totalFrames } = engine.getMeta();
+  const { width, height, totalFrames, outputWidth, outputHeight } = engine.getMeta();
   const tw = width / 4;
   const th = height / 4;
-  const full = backend.createCanvas(width, height);
+  const full = backend.createCanvas(outputWidth ?? width, outputHeight ?? height); // the render scale's canvas
   const sheet = backend.createCanvas(tw * cols, th * rows);
   const sctx = sheet.getContext("2d");
   const count = cols * rows;
@@ -49,11 +49,11 @@ export function contactSheet(engine, backend, { cols = 4, rows = 4 } = {}) {
  * with the scene id on the first tile.
  */
 export function storySheet(engine, backend, { cols = 4, maxRows = 16 } = {}) {
-  const { width, height } = engine.getMeta();
+  const { width, height, outputWidth, outputHeight } = engine.getMeta();
   const scenes = engine.getScenes().slice(0, maxRows);
   const tw = Math.round(width / 6);
   const th = Math.round(height / 6);
-  const full = backend.createCanvas(width, height);
+  const full = backend.createCanvas(outputWidth ?? width, outputHeight ?? height);
   const sheet = backend.createCanvas(tw * cols, th * scenes.length);
   const sctx = sheet.getContext("2d");
   scenes.forEach((sc, row) => {

@@ -49,3 +49,14 @@ ffmpeg prints one "Truncating packet of size 8294400 to 8192" line on the raw pi
 
 `node tools/record.mjs scripts/samples/s4_park.json` (7 set pieces, bubbles, a ball, a car): 1,069 frames (17.8 s) at ~59 fps, 19.4 s total.
 
+
+## V3.12 render scale: 1080p vs 4K (2026-10-21)
+
+Apple M3 Pro, @napi-rs/canvas, libx264 `medium` CRF 16. `node tools/record.mjs scripts/series/doopi/ep01_v3.json --from 3600 --to 4199 --fps 30 [--res 4k]` (Doopi ep01 v3, market scene: tokyo_village, five characters, light rig, TTS voices; 10 s, 300 output frames; demo in `out/demos/render_4k/`).
+
+| Output | Render + encode | Frames/s | Total (with speech, audio mix, thumb, contact sheet) |
+|---|---|---|---|
+| 1920x1080 (scale 1) | 71.4 s | 4.2 | 114.5 s |
+| 3840x2160 (`--res 4k`, scale 2) | 106.7 s | 2.8 | 159.4 s |
+
+4K is about 1.5x the time of 1080p, not 4x: most of a v3 frame's cost is per-draw work (paths, lit set pieces, depth sorting) rather than pixel fill, and 4K adds the fill, the larger device-pixel passes and a 4x bigger encode. At these rates a 4:52 episode at 30 fps (8,760 frames) renders in about 35 min at 1080p and about 52 min at 4K, before speech and the audio mix.

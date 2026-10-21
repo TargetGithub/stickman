@@ -16,7 +16,7 @@ import { drawExtras } from "./extras.js";
 import { drawDepthWorld, projectedChars } from "./depth_draw.js";
 import { lightAt, ambientTint, rgbText, pieceTones } from "../lighting.js";
 import { letterboxBar } from "../camera3.js";
-import { framedContext, blurFrame, drawVignette, drawLetterbox } from "./lens_draw.js";
+import { framedContext, scaledContext, deviceSize, blurFrame, drawVignette, drawLetterbox } from "./lens_draw.js";
 import { sceneViews, frameLens } from "./scene_views.js";
 import { hasMotion, compileMotion, composeAt, postAt, motionValuesAt } from "../compositor.js";
 import { drawMotionLayers, motionAnchor } from "./motion.js";
@@ -44,18 +44,24 @@ function layerAt(sv, id, t) {
 /**
  * @param {object} catalog  for themes
  * @param {object} sim  result of simulate() (frames, events, fx, format, meta, scenes)
- * @param {{ createCanvas?: (w:number, h:number) => object }} opts  scratch canvases for dissolves (host-provided)
+ * @param {{ createCanvas?: (w:number, h:number) => object, scale?: number }} opts  scratch canvases for dissolves
+ *   (host-provided); scale: the render scale (ADR-039), output px per frame px (2: a 1080p frame as 4K)
  */
 export function createRenderer(catalog, sim, opts = {}) {
   const meta = sim.meta || {};
+  const scale = opts.scale ?? 1;
+  const out = deviceSize(sim.format.width, sim.format.height, scale);
   return {
     scenes: sceneViews(sim, catalog),
     createCanvas: opts.createCanvas || null,
     scratch: null,
     catalog,
     sim,
-    W: sim.format.width,
+    W: sim.format.width, // the logical frame: camera, layout and text
     H: sim.format.height,
+    scale,
+    PW: out.width, // the output canvas in device px (scratch canvases, blurs, post)
+    PH: out.height,
     format: meta.format || "landscape",
     seed: meta.seed ?? 1,
     defaultTheme: meta.theme || "white_stage",
@@ -234,14 +240,15 @@ export function renderScene(r, ctx, n) {
   ctx.restore();
 }
 
-/** Draw frame n of a simulated script into ctx (a W×H 2D context). Hold frames draw transitions and cards. */
+/** Draw frame n of a simulated script into ctx (a PW×PH 2D context). Hold frames draw transitions and cards. */
 export function renderFrame(r, ctx, n) {
   const f = frameView(r.sim.store, n, FPS);
-  if (f.hold) drawHold(r, ctx, f, renderScene);
-  else renderScene(r, ctx, n);
+  const g = scaledContext(ctx, r.scale);
+  if (f.hold) drawHold(r, g, f, renderScene);
+  else renderScene(r, g, n);
   if (!r.motion) return;
   // Post effects over the finished frame, holds included (V3.5).
   const t = n / FPS;
   const p = postAt(r.motion, t, motionValuesAt(r.motion, t));
-  if (postActive(p)) applyPost(ctx, r, p, n);
+  if (postActive(p)) applyPost(ctx, r, p, n); // on the raw canvas, in device px
 }

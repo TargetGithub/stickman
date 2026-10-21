@@ -15,8 +15,8 @@ function scratch(r, i) {
   if (!r.createCanvas) return null;
   r.postScratch ??= [];
   const s = r.postScratch[i];
-  if (s && s.canvas.width === r.W && s.canvas.height === r.H) return s;
-  const canvas = r.createCanvas(r.W, r.H);
+  if (s && s.canvas.width === r.PW && s.canvas.height === r.PH) return s;
+  const canvas = r.createCanvas(r.PW, r.PH);
   return (r.postScratch[i] = { canvas, ctx: canvas.getContext("2d") });
 }
 
@@ -28,7 +28,7 @@ function copyFrame(ctx, r, i, filter = "none") {
   s.ctx.globalCompositeOperation = "source-over";
   s.ctx.globalAlpha = 1;
   s.ctx.filter = "none";
-  s.ctx.clearRect(0, 0, r.W, r.H);
+  s.ctx.clearRect(0, 0, r.PW, r.PH);
   s.ctx.filter = filter;
   s.ctx.drawImage(ctx.canvas, 0, 0);
   s.ctx.filter = "none";
@@ -65,12 +65,14 @@ function grainTile(r) {
 }
 
 /**
- * Apply the post settings to the frame in ctx (identity transform afterwards).
+ * Apply the post settings to the frame in ctx, the raw output canvas (identity transform afterwards). Sizes are in
+ * device px (r.PW x r.PH), so blur radii and shifts grow with the render scale; the grain tile is drawn scaled.
  * @param {object} p  postAt(): exposure, contrast, saturation, gamma, bloom, grain, chroma, vignette, letterbox
  * @param {number} n  the frame index (grain moves every frame, deterministically)
  */
 export function applyPost(ctx, r, p, n) {
-  const { W, H } = r;
+  const { PW: W, PH: H } = r;
+  const k = r.scale ?? 1;
   ctx.save();
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   const filter = gradeFilter(p);
@@ -122,9 +124,9 @@ export function applyPost(ctx, r, p, n) {
       const h = hash32(`grain:${n}`);
       ctx.globalCompositeOperation = "overlay";
       ctx.globalAlpha = Math.min(1, p.grain) * 0.35;
-      ctx.translate(-(h % GRAIN_TILE), -((h >>> 8) % GRAIN_TILE));
+      ctx.setTransform(k, 0, 0, k, -(h % GRAIN_TILE) * k, -((h >>> 8) % GRAIN_TILE) * k);
       ctx.fillStyle = ctx.createPattern(tile, "repeat");
-      ctx.fillRect(0, 0, W + GRAIN_TILE, H + GRAIN_TILE);
+      ctx.fillRect(0, 0, W / k + GRAIN_TILE, H / k + GRAIN_TILE);
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = "source-over";

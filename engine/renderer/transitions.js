@@ -9,6 +9,7 @@ import { unpackJoints } from "../skeleton.js";
 import { drawCard } from "./cards.js";
 import { transitionDuration } from "../story/normalize.js";
 import { FPS } from "../config.js";
+import { scaledContext } from "./lens_draw.js";
 
 const smooth = (u) => (u <= 0 ? 0 : u >= 1 ? 1 : u * u * (3 - 2 * u));
 
@@ -40,7 +41,7 @@ function focusPoint(r, m, id) {
 
 function scratch(r) {
   if (!r.createCanvas) return null;
-  if (!r.scratch) r.scratch = r.createCanvas(r.W, r.H);
+  if (!r.scratch) r.scratch = r.createCanvas(r.PW, r.PH); // device px (the render scale)
   return r.scratch;
 }
 
@@ -60,11 +61,11 @@ const DRAW = {
     const canvas = f.prevFrame !== null && f.nextFrame !== null ? scratch(r) : null;
     if (!canvas) return DRAW.fade(r, ctx, f, renderScene, t);
     renderScene(r, ctx, f.prevFrame);
-    renderScene(r, canvas.getContext("2d"), f.nextFrame);
+    renderScene(r, scaledContext(canvas.getContext("2d"), r.scale), f.nextFrame);
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.globalAlpha = smooth(f.u);
-    ctx.drawImage(canvas, 0, 0);
+    ctx.drawImage(canvas, 0, 0, r.W, r.H);
     ctx.restore();
   },
   wipe(r, ctx, f, renderScene, t) {

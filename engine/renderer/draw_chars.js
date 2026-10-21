@@ -89,7 +89,7 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
   }
   if (style.glow) {
     ctx.shadowColor = style.glow;
-    ctx.shadowBlur = 22 * c.scale;
+    ctx.shadowBlur = 22 * c.scale * (r.scale ?? 1); // device px: not scaled by the transform
   }
   // Motion quality (V3.7, v3 scenes): follow-through, breathing, squash and stretch, hair sway, blur ghosts.
   // Limb style (ADR-034, v3 scenes): straight (v2), bendy or rubber; v1/v2 scenes are always straight.

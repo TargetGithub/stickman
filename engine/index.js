@@ -17,7 +17,8 @@ import { collectAudioEvents, collectMusicCues } from "./audio_events.js";
 import { collectMusicPlan, collectAmbiencePlan } from "./audio_plan.js";
 import { collectAudioTracks, busGainAt, duckGainAt, trackGainAt, trackPanAt } from "./audio_tracks.js";
 import { expandScript } from "./templates.js";
-import { FPS, FORMATS, ENGINE_VERSION } from "./config.js";
+import { FPS, FORMATS, ENGINE_VERSION, RENDER_SCALE } from "./config.js";
+import { deviceSize } from "./renderer/lens_draw.js";
 
 export { validate, formatIssues, ENGINE_VERSION, expandScript };
 /** Audio track mixing helpers for tools (V3.8): gains and pans of a getAudioTracks() plan at a video time. */
@@ -46,13 +47,29 @@ export function ejectMacro(script, macroId, catalog) {
 }
 
 /**
- * @param {{ catalog: object, createCanvas?: (w:number, h:number) => object }} opts
+ * A render scale from a number or a resolution preset ("1080p", "4k", ...); undefined is 1.
+ * @param {number|string|undefined} v
+ */
+export function renderScale(v) {
+  if (v === undefined || v === null) return 1;
+  const s = typeof v === "string" ? RENDER_SCALE.presets[v.toLowerCase()] ?? Number(v) : v;
+  if (typeof s !== "number" || !Number.isFinite(s) || s < RENDER_SCALE.min || s > RENDER_SCALE.max) {
+    throw new RangeError(`render scale ${JSON.stringify(v)}: use a number in ${RENDER_SCALE.min}..${RENDER_SCALE.max} or one of ${Object.keys(RENDER_SCALE.presets).join(", ")}`);
+  }
+  return s;
+}
+
+/**
+ * @param {{ catalog: object, createCanvas?: (w:number, h:number) => object, scale?: number }} opts
  *   catalog: the catalog (catalog/index.js loads catalog/); the engine never imports it.
  *   createCanvas: optional host canvas factory, used for scratch canvases (dissolve transitions).
+ *   scale: render scale (ADR-039), 1 by default; 2 draws the 1920x1080 frame onto a 3840x2160 canvas (4K).
+ *     The simulation, camera and layout are unchanged; only the output canvas and its pixel effects grow.
  */
 export function createEngine(opts) {
   if (!opts || !opts.catalog) throw new Error("createEngine: catalog is required");
   const { catalog } = opts;
+  const scale = renderScale(opts.scale);
   let state = null;
 
   const loaded = () => {
@@ -72,15 +89,16 @@ export function createEngine(opts) {
       state = null;
       const format = FORMATS[script?.meta?.format] || FORMATS.landscape;
       const v = validate(script, catalog);
-      const base = { errors: v.errors, warnings: v.warnings, timeline: v.timeline, fps: FPS, width: format.width, height: format.height };
+      const out = deviceSize(format.width, format.height, scale);
+      const base = { errors: v.errors, warnings: v.warnings, timeline: v.timeline, fps: FPS, width: format.width, height: format.height, scale, outputWidth: out.width, outputHeight: out.height };
       if (!v.ok) return { ok: false, ...base, totalFrames: 0, durationSec: 0 };
       const sim = simulate(script, catalog);
-      state = { script, sim, renderer: createRenderer(catalog, sim, { createCanvas: opts.createCanvas }), audio: null };
+      state = { script, sim, renderer: createRenderer(catalog, sim, { createCanvas: opts.createCanvas, scale }), audio: null };
       if (o.lipSync) state.renderer.lipTracks = o.lipSync;
       return { ok: true, ...base, totalFrames: sim.totalFrames, durationSec: sim.durationSec };
     },
 
-    /** Draw frame n into ctx (a width×height CanvasRenderingContext2D). Pure with respect to (script, n). */
+    /** Draw frame n into ctx (an outputWidth×outputHeight CanvasRenderingContext2D). Pure with respect to (script, n). */
     renderFrame(ctx, n) {
       const s = loaded();
       if (!Number.isInteger(n) || n < 0 || n >= s.sim.totalFrames) throw new RangeError(`frame ${n} is outside 0..${s.sim.totalFrames - 1}`);
@@ -154,6 +172,9 @@ export function createEngine(opts) {
         scenes: s.sim.scenes.length,
         width: s.sim.format.width,
         height: s.sim.format.height,
+        scale,
+        outputWidth: s.renderer.PW,
+        outputHeight: s.renderer.PH,
         fps: FPS,
         totalFrames: s.sim.totalFrames,
         durationSec: s.sim.durationSec,
