@@ -49,6 +49,14 @@ export function cutCamera(cam) {
   cam.cut = true;
 }
 
+/**
+ * Glide (pace.glide, ADR-038): instead of a hard cut, ease from the current framing to the new key's over `dur`
+ * video seconds (ease in and out; zoom eased in log space), then follow as usual. A hard cut cancels it.
+ */
+export function glideCamera(cam, dur, videoT) {
+  cam.glide = { t0: videoT, dur, x: cam.x, zoom: cam.zoom };
+}
+
 export function addShake(cam, preset, fxT) {
   const p = SHAKE[preset] || SHAKE.small;
   cam.shakes.push({ amp: p.amplitude, dur: p.duration, t0: fxT });
@@ -138,12 +146,20 @@ export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = tru
   cam.widen += ((fast ? 1.3 : 1) - cam.widen) * Math.min(1, videoDt * 3);
   const d = desired(cam, actors, videoT);
   const snapped = cam.cut || d.direct;
+  const g = cam.glide && !snapped && videoT - cam.glide.t0 < cam.glide.dur ? cam.glide : null;
+  if (!g) cam.glide = null;
   if (cam.cut || d.direct) {
     cam.x = d.x;
     cam.zoom = d.zoom;
     cam.vx = 0;
     cam.vz = 0;
     cam.cut = false;
+  } else if (g) {
+    const u = easings.inOutCubic(Math.max(0, Math.min(1, (videoT - g.t0) / g.dur)));
+    cam.x = g.x + (d.x - g.x) * u;
+    cam.zoom = Math.exp(Math.log(g.zoom) + (Math.log(d.zoom) - Math.log(g.zoom)) * u);
+    cam.vx = 0;
+    cam.vz = 0;
   } else {
     // Follow with lag (V3.4: a v3 camera key's `lag`, 0-1): a slower spring trails the action.
     const lag = typeof cam.key.lag === "number" ? 1 - 0.8 * Math.max(0, Math.min(1, cam.key.lag)) : 1;

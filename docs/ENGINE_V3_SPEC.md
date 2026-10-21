@@ -126,6 +126,7 @@ A version 3 script can ask for the snappy timing and cutting of a preschool show
 | `maxExit` | 1.5 | Seconds an `exit` walk lasts before the fade. |
 | `shot`, `establish` | [2, 4], 2 | The story auto camera cuts (shot/reverse-shot, reactions, medium shots; STORY_SPEC 16). |
 | `minCut`, `reactions` | shot[0] / 2, true | Fewest seconds between auto camera cuts (a medium on whoever is acting also holds that long); `reactions: false` drops the listener close-ups during long lines. A calmer, more natural cut (Sridhar's ep01 review, 2026-10-21): `shot: [4, 8], minCut: 2.5, reactions: false`. |
+| `glide` | 0 | Seconds the camera eases (in and out, zoom in log space) from one framing to the next instead of a hard cut, for the auto camera and story shots (`camera.js` glideCamera). Scene changes, cut-to-arrival and script `cut` commands still cut. Series default for Doopi & Friends: `glide: 1.2` (Sridhar, 2026-10-21: cuts must be smoother); ep01 goes from 74 hard cuts inside scenes to 1. |
 | `captions` | auto | `auto`: voiced lines as subtitles when `meta.speech` is tts, else bubbles; or `bubbles`, `subtitles`. Thoughts stay cloud bubbles. |
 | `bubble` | 1.5 | Bubble and text scale, times `look.bubble`. |
 

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createCamera, setCameraKey, stepCamera, addShake, addZoomPunch, cutCamera, toScreen } from "../../engine/camera.js";
+import { createCamera, setCameraKey, stepCamera, addShake, addZoomPunch, cutCamera, glideCamera, toScreen } from "../../engine/camera.js";
 import { createActor, poseActor } from "../../engine/actor.js";
 import { mulberry32 } from "../../engine/math.js";
 import { fillPose } from "../../engine/pose.js";
@@ -91,4 +91,30 @@ test("shake is deterministic, bounded and decays to zero; zoom punch peaks mid-w
   for (let t = 2; t < 2.25; t += DT) zs.push(stepCamera(c, DT, actors, t, t).zoom);
   assert.ok(Math.max(...zs) > base * 1.12, "punch reaches about +15%");
   assert.ok(Math.abs(zs[zs.length - 1] - base) < 0.01, "and returns");
+});
+
+test("glideCamera eases to the new framing over its duration; a cut snaps and cancels a glide", () => {
+  const actors = [actor("a", 800), actor("b", 2400)];
+  const c = cam();
+  setCameraKey(c, { mode: "follow", targets: ["a"] }, 0);
+  const from = settle(c, actors, 3);
+  setCameraKey(c, { mode: "follow", targets: ["b"] }, 3);
+  glideCamera(c, 1.2, 3);
+  const xs = [];
+  for (let t = 3; t < 4.6; t += DT) xs.push(stepCamera(c, DT, actors, t, t).x);
+  const target = settle(c, actors, 2, 4.6).x;
+  const at = (s) => xs[Math.round(s / DT)];
+  assert.ok(Math.abs(at(0.1) - from.x) < 0.05 * Math.abs(target - from.x), "starts slowly (ease in)");
+  const mid = (at(0.6) - from.x) / (target - from.x);
+  assert.ok(mid > 0.35 && mid < 0.65, `about half way at the middle (${mid.toFixed(2)})`);
+  assert.ok(xs.every((x, i) => i === 0 || Math.abs(x - xs[i - 1]) < 0.06 * Math.abs(target - from.x)), "no jump between frames");
+  assert.ok(Math.abs(at(1.3) - target) < 0.02 * Math.abs(target - from.x), "arrives");
+  // A hard cut during a glide snaps.
+  setCameraKey(c, { mode: "follow", targets: ["a"] }, 7);
+  glideCamera(c, 1.2, 7);
+  stepCamera(c, DT, actors, 7, 7);
+  cutCamera(c);
+  const snapped = stepCamera(c, DT, actors, 7 + DT, 7 + DT).x;
+  assert.ok(Math.abs(snapped - from.x) < 1, "the cut lands on the new framing at once");
+  assert.equal(c.glide, null);
 });

@@ -2,7 +2,7 @@
 // each video frame (spec 10.3 step 7, 11.5, 13). Milestone: M4. Pure state, no drawing.
 
 import { createFx, emitFx, stepFx } from "./fx.js";
-import { createCamera, setCameraKey, cutCamera, addShake, addZoomPunch, stepCamera } from "./camera.js";
+import { createCamera, setCameraKey, cutCamera, glideCamera, addShake, addZoomPunch, stepCamera } from "./camera.js";
 import { deriveRng } from "./math.js";
 import { shotKey, createStoryAuto, storyAutoEvent, storyAutoKey } from "./camera_story.js";
 import { FORMATS, PHYSICS, STAGE } from "./config.js";
@@ -60,10 +60,13 @@ export function createPresentation(script, catalog, opts = {}) {
 }
 
 /** Set a camera key and log the framing change. */
-function keyed(p, key, clock, cut = false) {
+// paced: a cut the pace asked for (auto camera, shots); with pace.glide it becomes a glide instead.
+function keyed(p, key, clock, cut = false, paced = false) {
   setCameraKey(p.cam, key, clock.videoT);
-  if (cut) cutCamera(p.cam);
-  p.log?.push({ t: clock.videoT, mode: key.mode, ...(key.target ? { target: key.target } : {}), ...(key.targets ? { targets: key.targets } : {}), cut: cut || p.cam.cut });
+  const glide = cut && paced && p.pace?.glide > 0;
+  if (glide) glideCamera(p.cam, p.pace.glide, clock.videoT);
+  else if (cut) cutCamera(p.cam);
+  p.log?.push({ t: clock.videoT, mode: key.mode, ...(key.target ? { target: key.target } : {}), ...(key.targets ? { targets: key.targets } : {}), cut: (cut && !glide) || p.cam.cut, ...(glide ? { glide: true } : {}) });
 }
 
 function emitAt(p, world, name, actorId, fxT, extra = {}) {
@@ -119,7 +122,7 @@ export function presentEvent(p, e, world, clock) {
         const prev = p.shot && p.shot.until !== Infinity ? p.shot.prev : p.cam.key;
         p.shot = { prev, until: q.dur !== undefined ? clock.storyT + q.dur : Infinity };
         if (q.dur === undefined) p.lasting = true; // an explicit framing from here on: no auto camera
-        keyed(p, shotKey(q), clock, !!p.pace);
+        keyed(p, shotKey(q), clock, !!p.pace, true);
         p.lastKeyVideo = clock.videoT;
       }
       break;
@@ -151,7 +154,7 @@ export function presentEvent(p, e, world, clock) {
 /** Shots that run out, and the story auto camera (S6). */
 function storyCamera(p, world, clock) {
   if (p.shot && clock.storyT >= p.shot.until - 1e-9) {
-    keyed(p, p.shot.prev, clock, !!p.pace);
+    keyed(p, p.shot.prev, clock, !!p.pace, true);
     p.shot = null;
     if (p.storyAuto?.cuts) p.storyAuto.cuts.key = null; // the auto camera picks a fresh shot
   }
@@ -160,7 +163,7 @@ function storyCamera(p, world, clock) {
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   if (same(key, p.autoKey)) return;
   p.autoKey = key;
-  keyed(p, key ?? p.baseKey ?? { mode: "follow" }, clock, !!key?.cut); // a pace cuts (ADR-038)
+  keyed(p, key ?? p.baseKey ?? { mode: "follow" }, clock, !!key?.cut, true); // a pace cuts or glides (ADR-038)
 }
 
 /** Advance sustained FX and the camera one video frame; returns the camera state for the frame. */

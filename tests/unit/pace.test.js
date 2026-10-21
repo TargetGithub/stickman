@@ -222,3 +222,15 @@ test("injectDurations under a pace: the voice alone sets the line, and the talk 
   const v = validate(compiled, catalog);
   assert.ok(v.ok && !v.warnings.some((w) => w.code === "W_DIALOGUE_FAST"), JSON.stringify(v.warnings.map((w) => w.code)));
 });
+
+test("pace.glide: the paced camera glides between framings instead of cutting; cut-to-arrival still cuts", () => {
+  const cutLog = run(pacedStory({})).engine.getCameraLog();
+  const glideLog = run(pacedStory({ glide: 1 })).engine.getCameraLog();
+  const hard = (log) => log.filter((e) => e.cut && e.mode !== "travelCut" && e.t > 0.1).length;
+  assert.ok(hard(cutLog) > 0, "without glide the auto camera cuts");
+  assert.ok(glideLog.some((e) => e.glide), "with glide it glides");
+  const travelTimes = glideLog.filter((e) => e.mode === "travelCut").map((e) => e.t);
+  assert.ok(glideLog.filter((e) => e.glide && e.cut && e.t > 0.1).every((e) => travelTimes.includes(e.t)), "after the first frame, a glide is only a cut where a travel cut lands on it");
+  assert.ok(hard(glideLog) < hard(cutLog), "fewer hard cuts");
+  assert.equal(glideLog.filter((e) => e.mode === "travelCut").length, cutLog.filter((e) => e.mode === "travelCut").length, "travel cuts unchanged");
+});

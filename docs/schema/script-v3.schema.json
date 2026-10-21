@@ -2165,6 +2165,12 @@
                         "maximum": 10,
                         "description": "Fewest seconds between two auto camera cuts (default shot[0] / 2)."
                       },
+                      "glide": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 3,
+                        "description": "Seconds the paced camera eases from one framing to the next instead of cutting (default 0: hard cuts; scene changes, cut-to-arrival and script cuts stay cuts)."
+                      },
                       "reactions": {
                         "type": "boolean",
                         "description": "Cut to the listener's face when a line runs past shot[1] (default true)."
@@ -3624,6 +3630,12 @@
           "minimum": 0.5,
           "maximum": 10,
           "description": "Fewest seconds between two auto camera cuts (default shot[0] / 2)."
+        },
+        "glide": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3,
+          "description": "Seconds the paced camera eases from one framing to the next instead of cutting (default 0: hard cuts; scene changes, cut-to-arrival and script cuts stay cuts)."
         },
         "reactions": {
           "type": "boolean",

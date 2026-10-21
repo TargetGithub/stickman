@@ -14,6 +14,8 @@
 //   minCut     fewest seconds between two auto camera cuts (default shot[0] / 2); the camera also holds a
 //              medium that long when who is acting changes
 //   reactions  false: no reaction close-ups of the listener during long lines (default true)
+//   glide      seconds the camera eases between framings instead of cutting (default 0: hard cuts); scene
+//              changes, cut-to-arrival and script `cut` commands still cut
 //   captions   "auto" (subtitles when the script speaks with TTS, else bubbles), "bubbles" or "subtitles"
 //   bubble     bubble and text scale (times look.bubble)
 
