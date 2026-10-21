@@ -17,6 +17,7 @@ import { startActivity, stopActivity } from "./story/activities.js";
 import { OBJECT_COMMANDS, walkToSeat } from "./story/scene_beats.js";
 import { TO_MOVES, startTo } from "./story/destinations.js";
 import { zOf } from "./depth.js";
+import { beatViews } from "./turnaround.js";
 
 export const ANCHORS = ["start", "windowOpen", "hit", "end"];
 export const KO_MOVES = ["ko_fall", "ko_spin"];
@@ -280,8 +281,7 @@ function execute(director, beat, ctx) {
   if (walksTo) opts = startTo(world, actor, beat, opts, storyT, !!def.pair) ?? opts; // S6: distance from where everyone is
   if (actor.depthMove?.t0 === storyT) emit({ type: "depth", actor: beat.who, beatId: beat.id, ...actor.depthMove }); // V3.2: the renderer lerps the same z
   // Turnaround views (V3.6, v3 scenes): a beat's view lasts from it on; a move's hint lasts while it runs.
-  if (world.depth && beat.view) emit({ type: "view", actor: beat.who, view: beat.view, beatId: beat.id });
-  if (world.depth && def.view) emit({ type: "viewHint", actor: beat.who, view: def.view, beatId: beat.id });
+  if (world.depth) for (const e of beatViews(beat, def)) emit(e);
   if (beat.layer && director.story) {
     actor.layer = beat.layer;
     emit({ type: "layer", actor: beat.who, layer: beat.layer, beatId: beat.id });

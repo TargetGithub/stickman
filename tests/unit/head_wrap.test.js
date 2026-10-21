@@ -77,3 +77,18 @@ test("bodyYaw: maxTurn caps humanoids; a four-legged character turns fully to it
   ];
   for (const [yaw, quad, max, want] of cases) assert.equal(bodyYaw(yaw, quad, max), want, `${yaw} quad=${quad} max=${max}`);
 });
+
+test("beatViews: a travel beat turns back to the side unless it sets a view; hints still apply", async () => {
+  const { beatViews } = await import("../../engine/turnaround.js");
+  const cases = [
+    // [beat, def, expected events as type:view]
+    [{ who: "b", id: "1", do: "run" }, { name: "dog_run" }, ["view:side"]],
+    [{ who: "b", id: "2", do: "dog_trot" }, { name: "walk" }, ["view:side"]],
+    [{ who: "b", id: "3", do: "run", view: "front" }, { name: "run" }, ["view:front"]],
+    [{ who: "b", id: "4", do: "wag", view: "front" }, { name: "wag" }, ["view:front"]],
+    [{ who: "b", id: "5", do: "wag" }, { name: "wag" }, []],
+    [{ who: "k", id: "6", do: "cheer" }, { name: "cheer", view: "front" }, ["viewHint:front"]],
+    [{ who: "k", id: "7", do: "sneak" }, { name: "sneak", view: "three_quarter" }, ["view:side", "viewHint:three_quarter"]],
+  ];
+  for (const [beat, def, want] of cases) assert.deepEqual(beatViews(beat, def).map((e) => `${e.type}:${e.view}`), want, beat.id);
+});

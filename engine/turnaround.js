@@ -111,3 +111,21 @@ export function turnJoints(j, facing, yaw, turn, scale) {
 
 /** The order to draw the two sides in at a yaw: the side nearer the camera last. */
 export const nearSide = (yaw) => (yaw > 90 ? "l" : "r");
+
+/** Moves that carry a character across the stage: a travel beat without its own view turns back to the side. */
+export const TRAVEL_MOVES = ["walk", "run", "sneak", "tiptoe", "swim", "walk_together"];
+
+/**
+ * The view events a beat starts in a v3 scene (V3.6): its own view (lasting from it on), else the side view
+ * when it travels (a dog that wagged at the camera runs off sideways, ep01 review 2026-10-21), plus the move's
+ * hint while it runs.
+ */
+export function beatViews(beat, def) {
+  const out = [];
+  const travels = TRAVEL_MOVES.includes(beat.do) || TRAVEL_MOVES.includes(def.name); // beat.do: before a rig maps the move
+  const view = beat.view ?? (travels ? "side" : null);
+  if (view) out.push({ type: "view", actor: beat.who, view, beatId: beat.id });
+  if (def.view) out.push({ type: "viewHint", actor: beat.who, view: def.view, beatId: beat.id });
+  return out;
+}
+
