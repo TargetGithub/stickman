@@ -11,6 +11,9 @@
 //   --crf 16 --preset medium   x264 quality settings
 //   --fps 24|25|30|60      output frame rate (default 60, the engine's): 24 or 30 for quicker review renders;
 //                          the simulation still runs at 60 and only the nearest frames are drawn
+//   --scale N | --res 4k   render scale (ADR-039): output px per frame px. 2 (or --res 4k) writes 3840x2160
+//                          (2160x3840 portrait) from the same 1920x1080 frame; presets 720p, 1080p, 1440p, 4k.
+//                          thumb.png and the contact sheet stay at the frame size
 //   --speech babble|tts    spoken dialogue (SPEECH_SPEC): babble (default, or meta.speech) or offline Piper voices
 //   --voices file.json     per-character TTS voices for --speech tts (cast id → { model, speaker, rate, pitch, off })
 //   --bundle <dir|zip>     a catalog bundle the script declares (repeatable; imported bundles are found in
@@ -34,16 +37,16 @@ import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { parseOutputFps, outputFrames } from "./lib/output_fps.mjs";
-import { createEngine, formatIssues, ENGINE_VERSION } from "../engine/index.js";
+import { createEngine, formatIssues, renderScale, ENGINE_VERSION } from "../engine/index.js";
 import { catalog as baseCatalog } from "../catalog/index.js";
 import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_args.mjs";
 
 const { args } = splitBundleArgs(process.argv.slice(2));
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices|fps)$/));
+const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices|fps|scale|res)$/));
 if (!file) {
-  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--fps 24|25|30|60] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
+  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--fps 24|25|30|60] [--scale N | --res 4k] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
   process.exit(2);
 }
 
@@ -52,7 +55,14 @@ const script = JSON.parse(readFileSync(file, "utf8"));
 // --bundle <dir|zip> (repeatable), and the store (bundles/) for the bundles the script declares.
 const { catalog, bundles } = await catalogFromArgs(process.argv.slice(2), baseCatalog, script);
 const backend = await loadBackend();
-const engine = createEngine({ catalog, createCanvas: backend.createCanvas });
+let scale;
+try {
+  scale = renderScale(opt("--scale", null) ?? opt("--res", undefined));
+} catch (err) {
+  console.error(err.message);
+  process.exit(2);
+}
+const engine = createEngine({ catalog, createCanvas: backend.createCanvas, scale });
 // Spoken dialogue: render (or reuse) each line's audio first, so the engine can give every line its length.
 const speechMode = opt("--speech", script.meta?.speech ?? "babble");
 if (!["babble", "tts"].includes(speechMode)) {
@@ -102,13 +112,13 @@ if (outFps.error) {
 const picks = outputFrames(from, to, meta.fps, outFps.fps);
 const t0 = process.hrtime.bigint();
 const seconds = () => Number(process.hrtime.bigint() - t0) / 1e9;
-const canvas = backend.createCanvas(meta.width, meta.height);
+const canvas = backend.createCanvas(meta.outputWidth, meta.outputHeight);
 const ctx = canvas.getContext("2d");
 
 // 1. Video (or PNG frames)
 const videoPath = join(dir, "video.mp4");
 const hashes = [];
-const enc = flag("--frames-only") ? null : startEncoder(videoPath, meta.width, meta.height, { fps: outFps.fps, crf: Number(opt("--crf", 16)), preset: opt("--preset", "medium") });
+const enc = flag("--frames-only") ? null : startEncoder(videoPath, meta.outputWidth, meta.outputHeight, { fps: outFps.fps, crf: Number(opt("--crf", 16)), preset: opt("--preset", "medium") });
 if (!enc) mkdirSync(join(dir, "frames"), { recursive: true });
 for (let i = 0; i < picks.length; i++) {
   const n = picks[i];
@@ -176,7 +186,13 @@ if (enc && !flag("--no-audio")) {
 // 3. Thumbnail, contact sheet, script copy, metadata
 const thumb = chooseThumbnailFrame(engine);
 engine.renderFrame(ctx, thumb.frame);
-await backend.savePng(canvas, join(dir, "thumb.png"));
+if (scale === 1) await backend.savePng(canvas, join(dir, "thumb.png"));
+else {
+  // A scaled render keeps the thumbnail at the frame size (YouTube thumbnails stay small).
+  const small = backend.createCanvas(meta.width, meta.height);
+  small.getContext("2d").drawImage(canvas, 0, 0, meta.width, meta.height);
+  await backend.savePng(small, join(dir, "thumb.png"));
+}
 await backend.savePng(contactSheet(engine, backend), join(dir, "contact_sheet.png"));
 writeFileSync(join(dir, "script.json"), JSON.stringify(script, null, 2) + "\n");
 if (speech) writeFileSync(join(dir, "speech.json"), JSON.stringify(speechReport(speech.lines, speech.report, speech.backend), null, 2) + "\n");
@@ -185,6 +201,7 @@ const info = {
   slug,
   source: file,
   format: meta.format,
+  resolution: { width: meta.outputWidth, height: meta.outputHeight, scale, frame: { width: meta.width, height: meta.height } },
   theme: meta.theme,
   seed: meta.seed,
   engineVersion: ENGINE_VERSION,
@@ -204,4 +221,4 @@ const info = {
   files: [enc ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(speech ? ["speech.json"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
 };
 writeFileSync(join(dir, "meta.json"), JSON.stringify(info, null, 2) + "\n");
-console.log(`wrote ${dir}/ (${info.durationSec}s video, ${picks.length} frames at ${outFps.fps} fps, rendered at ${(picks.length / renderSeconds).toFixed(1)} frames/s, total ${info.totalSeconds}s)`);
+console.log(`wrote ${dir}/ (${info.durationSec}s video, ${meta.outputWidth}x${meta.outputHeight}, ${picks.length} frames at ${outFps.fps} fps, rendered at ${(picks.length / renderSeconds).toFixed(1)} frames/s, total ${info.totalSeconds}s)`);

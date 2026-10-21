@@ -79,8 +79,8 @@ export function drawLit(ctx, r, tones, box, draw, size) {
   if (!tones || !r?.createCanvas || !box) return draw(ctx);
   const real = realOf(ctx);
   const m = real.getTransform();
-  const W = real.canvas?.width ?? r.W;
-  const H = real.canvas?.height ?? r.H;
+  const W = real.canvas?.width ?? r.PW;
+  const H = real.canvas?.height ?? r.PH;
   const rect = screenRect(m, box, W, H, 40);
   if (!rect) return draw(ctx);
   const w = rect.x1 - rect.x0;

@@ -5,6 +5,8 @@
 //   filter; the background is blurred over its own sharp copy, so the frame edges never show a fringe. Wide
 //   blurs are made on a 2x or 4x smaller copy and scaled back up (V3.9), which is ~4-16x cheaper.
 // - Vignette and letterbox are screen-space passes after the world.
+// - Render scale (ADR-039): the same base-matrix context scales a logical frame onto a larger canvas (4K is
+//   scale 2). Passes that copy or blur pixels work on the raw canvas in device pixels (r.PW x r.PH).
 
 const mul = (A, B) => [
   A[0] * B[0] + A[2] * B[1], A[1] * B[0] + A[3] * B[1],
@@ -22,22 +24,32 @@ export function lensMatrix(W, H, roll, tiltPx, cover) {
   return [c, s, -s, c, cx - c * cx + s * cy + -s * tiltPx, cy - s * cx - c * cy + c * tiltPx];
 }
 
+const realOf = (ctx) => ctx.__real || ctx;
+/** The screen context under any lens: the frame scaled to the output canvas (the raw context at scale 1). */
+const screenOf = (ctx) => ctx.__screen || ctx;
+
 /**
  * A context whose setTransform/resetTransform compose with a base matrix. Everything else passes through.
- * @param {CanvasRenderingContext2D} ctx  @param {number[]} B  [a, b, c, d, e, f]
+ * `__real` is the raw canvas context underneath; `__screen` the screen context under a lens (a device context,
+ * the render scale, is itself the screen).
+ * @param {CanvasRenderingContext2D} ctx  @param {number[]} B  [a, b, c, d, e, f]  @param {boolean} [device]
  */
-export function framedContext(ctx, B) {
+export function framedContext(ctx, B, device = false) {
   const set = (m) => {
     const r = mul(B, m);
     ctx.setTransform(r[0], r[1], r[2], r[3], r[4], r[5]);
   };
+  const bound = new Map();
   const wrapped = new Proxy(ctx, {
     get(t, p) {
       if (p === "setTransform") return (a, b, c, d, e, f) => (typeof a === "object" ? set([a.a, a.b, a.c, a.d, a.e, a.f]) : set([a, b, c, d, e, f]));
       if (p === "resetTransform") return () => set([1, 0, 0, 1, 0, 0]);
-      if (p === "__real") return t;
+      if (p === "__real") return realOf(t);
+      if (p === "__screen") return device ? undefined : screenOf(t);
       const v = t[p];
-      return typeof v === "function" ? v.bind(t) : v;
+      if (typeof v !== "function") return v;
+      if (!bound.has(p)) bound.set(p, v.bind(t));
+      return bound.get(p);
     },
     set(t, p, v) {
       t[p] = v;
@@ -48,13 +60,17 @@ export function framedContext(ctx, B) {
   return wrapped;
 }
 
-const realOf = (ctx) => ctx.__real || ctx;
+/** The frame context for render scale s: logical frame px drawn s times larger (the context itself at 1). */
+export const scaledContext = (ctx, s) => (s === 1 ? ctx : framedContext(ctx, [s, 0, 0, s, 0, 0], true));
+
+/** The output canvas size for a logical frame W x H at render scale s. */
+export const deviceSize = (W, H, s = 1) => ({ width: Math.round(W * s), height: Math.round(H * s) });
 
 /** The renderer's scratch canvas for depth of field (null without a host canvas factory). */
 export function dofScratch(r) {
   if (!r.createCanvas) return null;
-  if (!r.dof || r.dof.canvas.width !== r.W || r.dof.canvas.height !== r.H) {
-    const canvas = r.createCanvas(r.W, r.H);
+  if (!r.dof || r.dof.canvas.width !== r.PW || r.dof.canvas.height !== r.PH) {
+    const canvas = r.createCanvas(r.PW, r.PH);
     r.dof = { canvas, ctx: canvas.getContext("2d") };
   }
   return r.dof;
@@ -79,13 +95,13 @@ export function padRect(rect, m, W, H) {
 export const unionRect = (a, b) => (!a ? b : !b ? a : { x0: Math.min(a.x0, b.x0), y0: Math.min(a.y0, b.y0), x1: Math.max(a.x1, b.x1), y1: Math.max(a.y1, b.y1) });
 
 /**
- * Draw the rect of the scratch canvas onto the frame through a blur of px frame pixels (and the frame's own filter,
+ * Draw the rect of the scratch canvas onto the frame through a blur of px device pixels (and the frame's own filter,
  * if any). Wide blurs are made on a smaller copy and scaled back up.
  */
 function compositeBlurred(real, r, s, px, frameFilter, rect) {
   const d = blurDownscale(px);
   // Snapped to the downsampling grid, so a region blurs exactly as the whole frame would there.
-  const q = { x0: rect.x0 - (rect.x0 % d), y0: rect.y0 - (rect.y0 % d), x1: Math.min(r.W, rect.x1 + ((d - (rect.x1 % d)) % d)), y1: Math.min(r.H, rect.y1 + ((d - (rect.y1 % d)) % d)) };
+  const q = { x0: rect.x0 - (rect.x0 % d), y0: rect.y0 - (rect.y0 % d), x1: Math.min(r.PW, rect.x1 + ((d - (rect.x1 % d)) % d)), y1: Math.min(r.PH, rect.y1 + ((d - (rect.y1 % d)) % d)) };
   const w = q.x1 - q.x0;
   const h = q.y1 - q.y0;
   real.save();
@@ -94,8 +110,8 @@ function compositeBlurred(real, r, s, px, frameFilter, rect) {
     real.filter = `${frameFilter}blur(${px.toFixed(2)}px)`;
     real.drawImage(s.canvas, q.x0, q.y0, w, h, q.x0, q.y0, w, h);
   } else {
-    const sw = Math.ceil(r.W / d);
-    const sh = Math.ceil(r.H / d);
+    const sw = Math.ceil(r.PW / d);
+    const sh = Math.ceil(r.PH / d);
     if (!s.small || s.small.canvas.width !== sw || s.small.canvas.height !== sh) {
       const canvas = r.createCanvas(sw, sh);
       s.small = { canvas, ctx: canvas.getContext("2d") };
@@ -116,7 +132,7 @@ function compositeBlurred(real, r, s, px, frameFilter, rect) {
   real.restore();
 }
 
-const FULL = (r) => ({ x0: 0, y0: 0, x1: r.W, y1: r.H });
+const FULL = (r) => ({ x0: 0, y0: 0, x1: r.PW, y1: r.PH });
 
 /** Blur what is already on the frame (the background) by px, over its sharp copy. */
 export function blurFrame(ctx, r, px) {
@@ -125,10 +141,10 @@ export function blurFrame(ctx, r, px) {
   const real = realOf(ctx);
   const sc = s.ctx;
   sc.setTransform(1, 0, 0, 1, 0, 0);
-  sc.clearRect(0, 0, r.W, r.H);
+  sc.clearRect(0, 0, r.PW, r.PH);
   sc.drawImage(real.canvas, 0, 0);
   s.dirty = FULL(r);
-  compositeBlurred(real, r, s, (px * r.H) / 1080, "", FULL(r));
+  compositeBlurred(real, r, s, (px * r.PH) / 1080, "", FULL(r));
 }
 
 /**
@@ -149,16 +165,16 @@ export function blurLayer(ctx, r, px) {
   sc.setTransform(m.a, m.b, m.c, m.d, m.e, m.f);
   sc.filter = "none"; // the frame's own filter (a grade) is applied once, when the layer is composited
   sc.globalAlpha = 1;
-  const blur = (px * r.H) / 1080;
+  const blur = (px * r.PH) / 1080; // device px: the render scale widens it
   let area = null;
   return {
     ctx: sc,
     add(rect) {
-      area = unionRect(area, rect ? padRect(rect, 0, r.W, r.H) : FULL(r));
+      area = unionRect(area, rect ? padRect(rect, 0, r.PW, r.PH) : FULL(r));
     },
     end() {
       // add() before every node: an unannounced layer is the whole frame.
-      const q = padRect(area || FULL(r), Math.ceil(blur * 3) + 2, r.W, r.H);
+      const q = padRect(area || FULL(r), Math.ceil(blur * 3) + 2, r.PW, r.PH);
       s.dirty = q;
       if (!q) return;
       const f = real.filter && real.filter !== "none" ? `${real.filter} ` : "";
@@ -167,10 +183,10 @@ export function blurLayer(ctx, r, px) {
   };
 }
 
-/** Darkened corners (screen space). */
+/** Darkened corners (screen space: W x H in the units of ctx's screen). */
 export function drawVignette(ctx, W, H, amount) {
   if (amount <= 0.01) return;
-  const real = realOf(ctx);
+  const real = screenOf(ctx);
   real.save();
   real.setTransform(1, 0, 0, 1, 0, 0);
   const r = Math.hypot(W, H) / 2;
@@ -185,7 +201,7 @@ export function drawVignette(ctx, W, H, amount) {
 /** Black bars at the top and bottom (screen space), bar px each. */
 export function drawLetterbox(ctx, W, H, bar) {
   if (bar <= 0.5) return;
-  const real = realOf(ctx);
+  const real = screenOf(ctx);
   real.save();
   real.setTransform(1, 0, 0, 1, 0, 0);
   real.fillStyle = "#000000";

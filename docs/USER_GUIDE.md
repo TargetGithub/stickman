@@ -400,6 +400,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `--from N --to M` | Render only frames N to M (quick checks of one moment) |
 | `--scene N` | Render only scene N of a story (index from 0, or the scene id) |
 | `--fps 24\|25\|30\|60` | Output frame rate (default 60). Use 24 or 30 for review renders: about 2-2.5x fewer frames to draw. The story still runs at 60 fps; each output frame shows the nearest simulated one, so `--from`/`--to` and scene numbers stay in 60 fps frames |
+| `--res 4k` or `--scale N` | Output resolution (render scale, ADR-039). `--res 4k` (= `--scale 2`) writes 3840x2160, or 2160x3840 for portrait; presets `720p`, `1080p`, `1440p`, `4k`, or any scale from 0.25 to 4. The story, camera, text and subtitles are the same as at 1080p, only sharper. `thumb.png` and the contact sheet stay 1080p; `meta.json` records the size under `resolution`. Expect roughly 3-4x the render time of 1080p (see `docs/benchmarks.md`); use it for finals, not reviews |
 | `--no-audio` | Skip the sound mix |
 | `--frames-only` | Write PNG frames instead of a video |
 | `--hash` | Write a SHA-256 per frame (determinism checks) |

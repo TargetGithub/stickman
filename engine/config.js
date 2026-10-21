@@ -7,6 +7,10 @@ export const FORMATS = {
   portrait: { width: 1080, height: 1920, groundScreenRatio: 0.7 },
 };
 
+// Render scale (ADR-039): output px per logical frame px. The frame stays 1920x1080 (1080x1920 portrait);
+// a resolution preset names a scale for the landscape frame's height.
+export const RENDER_SCALE = { min: 0.25, max: 4, presets: { "720p": 2 / 3, "1080p": 1, "1440p": 4 / 3, "4k": 2 } };
+
 export const STAGE = { width: 3200, groundY: 880, margin: 60 };
 
 export const PHYSICS = {

@@ -44,7 +44,7 @@ function fakeCanvas(w, h, log) {
 
 test("blurLayer: only the announced rects are blurred and cleared next time; unannounced means the whole frame", () => {
   const log = [];
-  const r = { W: 1920, H: 1080, createCanvas: (w, h) => fakeCanvas(w, h, log) };
+  const r = { W: 1920, H: 1080, PW: 1920, PH: 1080, scale: 1, createCanvas: (w, h) => fakeCanvas(w, h, log) };
   const frame = fakeCanvas(1920, 1080, log).getContext("2d");
   const a = blurLayer(frame, r, 1); // 1 px: full-size composite
   a.add({ x0: 100, y0: 200, x1: 300, y1: 400 });
