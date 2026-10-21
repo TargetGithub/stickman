@@ -239,8 +239,8 @@
       "beats": [
         {"id": "wake_z", "at": 0, "who": "doopi", "do": "sleep", "fx": ["zzz"]},
         {"id": "wake_n1", "at": 0.6, "who": "world", "do": "narrate", "params": {"text": "Everyone was up early. Well... almost everyone."}},
-        {"id": "wake_z2", "at": 2.6, "who": "doopi", "do": "sleep", "fx": ["zzz"], "say": "Five more minutes...", "bubble": "think"},
-        {"id": "wake_in", "at": 3.4, "macro": "enter", "params": {"who": "becky", "side": "right", "to": {"x": 1200}, "mode": "run"}},
+        {"id": "wake_z2", "at": 3.2, "who": "doopi", "do": "sleep", "fx": ["zzz"], "say": "Five more minutes...", "bubble": "think"},
+        {"id": "wake_in", "at": 4.5, "macro": "enter", "params": {"who": "becky", "side": "right", "to": {"x": 1200}, "mode": "run"}},
         {"id": "wake_b1", "at": {"after": "wake_in"}, "who": "becky", "do": "bark", "params": {"cycles": 2}, "say": "Woof woof!"},
         {"id": "wake_b2", "at": {"after": "wake_b1", "delay": 0.2}, "who": "becky", "do": "lick", "partner": "doopi"},
         {"id": "wake_up", "at": {"after": "wake_b2"}, "who": "doopi", "do": "get_up", "face": "surprised"},
@@ -258,7 +258,7 @@
         {"id": "wake_lv", "at": {"with": "wake_up2"}, "who": "world", "do": "set_camera", "params": {"move": "level", "dur": 0.8}},
         {
           "id": "wake_d1",
-          "at": {"after": "wake_up2", "delay": 0.4},
+          "at": {"after": "wake_up2", "delay": 1.2},
           "macro": "dialogue",
           "params": {
             "lines": [
@@ -342,7 +342,7 @@
         {"id": "market_c0", "at": {"after": "market_a1", "delay": 0.2}, "who": "dony", "do": "jump_joy", "face": "laugh", "view": "front"},
         {
           "id": "market_a2",
-          "at": {"after": "market_a1", "delay": 0.6},
+          "at": {"after": "market_a1", "delay": 2.2},
           "who": "motumal",
           "do": "point",
           "say": "The winner gets a garland from Nani!"
@@ -448,7 +448,7 @@
             ]
           }
         },
-        {"id": "bubbles_h1", "at": {"with": "bubbles_d1", "delay": 0.6}, "who": "doopi", "do": "hold_head", "fx": ["heart"]},
+        {"id": "bubbles_h1", "at": {"with": "bubbles_d1", "delay": 1.8}, "who": "doopi", "do": "hold_head", "fx": ["heart"]},
         {"id": "bubbles_cu", "at": {"with": "bubbles_h1"}, "who": "world", "do": "shot", "params": {"mode": "close_up", "target": "doopi", "dur": 3}},
         {
           "id": "bubbles_bb2",
@@ -509,7 +509,7 @@
         {"id": "race_r5", "at": {"after": "race_r2"}, "who": "chintu", "do": "run", "to": {"x": 2700}},
         {"id": "race_r6", "at": {"after": "race_r3", "delay": 0.4}, "who": "dony", "do": "run", "to": {"x": 2550}},
         {"id": "race_back", "at": {"after": "race_th"}, "who": "doopi", "do": "run", "to": {"near": "pinky", "gap": 110}},
-        {"id": "race_help", "at": {"after": "race_back", "delay": 0.3}, "who": "doopi", "do": "kneel", "face": "sad", "say": "Are you okay, Pinky?"},
+        {"id": "race_help", "at": {"after": "race_back", "delay": 0.8}, "who": "doopi", "do": "kneel", "face": "sad", "say": "Are you okay, Pinky?"},
         {"id": "race_cu", "at": {"with": "race_help"}, "who": "world", "do": "shot", "params": {"mode": "close_up", "target": "doopi", "dur": 3.5}},
         {"id": "race_still", "at": {"with": "race_help"}, "who": "world", "do": "set_camera", "params": {"handheld": 0, "dur": 0.6}},
         {"id": "race_up", "at": {"after": "race_cr"}, "who": "pinky", "do": "get_up", "face": "sad"},
@@ -853,7 +853,7 @@
   },
   "look": {"strength": 0.45},
   "motion": {"followThrough": 1, "squash": 1, "secondary": 1, "breathing": 1, "blur": 0},
-  "pace": {},
+  "pace": {"travel": {"walk": 1.3, "run": 1.1, "sneak": 1.6, "tiptoe": 1.4, "walk_together": 1.25}, "moves": 1, "gap": 0.5, "maxTravel": 4.5, "arrive": 1.6, "leave": 1.2, "shot": [4, 8], "minCut": 2.5, "reactions": false, "establish": 3},
   "layers": [{"id": "tbc_layer", "scene": "horns", "from": 13.3, "in": {"type": "fade", "dur": 1}}],
   "shapes": [{"id": "tbc_black", "type": "rect", "layer": "tbc_layer", "x": 960, "y": 540, "w": 1920, "h": 1080, "fill": "#000000"}],
   "text": [

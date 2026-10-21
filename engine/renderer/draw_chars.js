@@ -5,7 +5,7 @@
 import { unpackJoints } from "../skeleton.js";
 import { drawCharacter, shade } from "./character.js";
 import { withState } from "./world_items.js";
-import { yawAt, limitYaw } from "../turnaround.js";
+import { yawAt, bodyYaw } from "../turnaround.js";
 import { motionFrame } from "./motion_draw.js";
 import { turnedHumanoid, drawQuadFront, quadBlend } from "./turnaround_draw.js";
 import { drawBehind, drawFront, squashAt } from "./accessories.js";
@@ -98,7 +98,7 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
   const cm = mo ? { ...c, j: mo.j } : c;
   // Turnaround views (V3.6, v3 scenes): the yaw from the scene's view track.
   const track = sv.viewTracks?.get(c.id);
-  const yaw = track ? limitYaw(yawAt(track, f.storyT - (sv.storyStart ?? 0)), sv.maxTurn) : 90;
+  const yaw = track ? bodyYaw(yawAt(track, f.storyT - (sv.storyStart ?? 0)), !!c.quad, sv.maxTurn) : 90;
   const turned = !c.quad && yaw !== 90 ? turnedHumanoid(cm, yaw, r.catalog.bodies?.[c.plan]) : null;
   const ct = turned ? { ...cm, j: turned.j } : cm;
   drawBehind(ctx, ct, past, style);

@@ -62,6 +62,12 @@ export const MAX_TURN = 60;
 export const limitYaw = (yaw, maxTurn = MAX_TURN) => Math.max(yaw, 90 - maxTurn);
 
 /**
+ * The drawn yaw of a character: humanoids are capped by maxTurn; a four-legged character is not, since it has
+ * its own front drawing and a capped yaw would hold it half-way through the side-to-front cross-fade.
+ */
+export const bodyYaw = (yaw, quad, maxTurn = MAX_TURN) => (quad ? yaw : limitYaw(yaw, maxTurn));
+
+/**
  * The yaw of a walk in depth (V3.9): the walk's direction on the ground, 90° along the stage line, toward 0°
  * walking at the camera (dz > 0) and toward 180° walking away.
  */

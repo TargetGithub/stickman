@@ -62,3 +62,18 @@ test("a walk in depth turns the walker along its path: toward the camera, then a
   assert.ok(Math.abs(yawAt(tr, mid(go)) - go.yaw) < 1e-6, "away: not capped");
   assert.equal(yawAt(tr, 0.2), 90, "standing: profile");
 });
+
+test("bodyYaw: maxTurn caps humanoids; a four-legged character turns fully to its own front drawing", async () => {
+  const { bodyYaw } = await import("../../engine/turnaround.js");
+  const cases = [
+    // [yaw, quad, maxTurn, drawn]
+    [0, false, undefined, 30],
+    [0, true, undefined, 0],
+    [0, true, 60, 0],
+    [45, false, 30, 60],
+    [45, true, 30, 45],
+    [180, false, undefined, 180],
+    [90, true, undefined, 90],
+  ];
+  for (const [yaw, quad, max, want] of cases) assert.equal(bodyYaw(yaw, quad, max), want, `${yaw} quad=${quad} max=${max}`);
+});

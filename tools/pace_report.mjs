@@ -127,7 +127,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const r = paceReport(script, { speech: opt("--speech", script.meta?.speech ?? "babble"), voices: voices ? JSON.parse(readFileSync(voices, "utf8")) : {} });
   if (args.includes("--json")) console.log(JSON.stringify(r, null, 2));
   else {
-    const m = (s) => `${Math.floor(s / 60)}:${String(Math.round(s % 60)).padStart(2, "0")}`;
+    const m = (s) => { const r = Math.round(s); return `${Math.floor(r / 60)}:${String(r % 60).padStart(2, "0")}`; };
     console.log(`length        ${m(r.seconds)} (${r.seconds} s, ${r.scenes} scenes)`);
     console.log(`shots         ${r.shots} (one per ${r.avgShot} s; longest ${r.longestShot} s; ${r.shotsOver6s} over 6 s); ${r.framings} framing changes incl. pans`);
     for (const [k, v] of Object.entries(r.travel)) console.log(`${k.padEnd(13)} ${v.count} x, ${v.seconds} s (avg ${v.avg} s, max ${v.max} s)`);

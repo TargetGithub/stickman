@@ -11,6 +11,9 @@
 //              (an entering walker starts close to where it is going); an exit walk lasts at most maxExit
 //   shot       [min, max] seconds a dialogue shot lasts (the story auto camera cuts; camera_cuts.js)
 //   establish  seconds of the opening wide
+//   minCut     fewest seconds between two auto camera cuts (default shot[0] / 2); the camera also holds a
+//              medium that long when who is acting changes
+//   reactions  false: no reaction close-ups of the listener during long lines (default true)
 //   captions   "auto" (subtitles when the script speaks with TTS, else bubbles), "bubbles" or "subtitles"
 //   bubble     bubble and text scale (times look.bubble)
 

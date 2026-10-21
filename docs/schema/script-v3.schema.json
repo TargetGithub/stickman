@@ -2159,6 +2159,16 @@
                         "maximum": 10,
                         "description": "Seconds of the opening wide shot (default 2)."
                       },
+                      "minCut": {
+                        "type": "number",
+                        "minimum": 0.5,
+                        "maximum": 10,
+                        "description": "Fewest seconds between two auto camera cuts (default shot[0] / 2)."
+                      },
+                      "reactions": {
+                        "type": "boolean",
+                        "description": "Cut to the listener's face when a line runs past shot[1] (default true)."
+                      },
                       "captions": {
                         "enum": [
                           "auto",
@@ -3608,6 +3618,16 @@
           "minimum": 0,
           "maximum": 10,
           "description": "Seconds of the opening wide shot (default 2)."
+        },
+        "minCut": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 10,
+          "description": "Fewest seconds between two auto camera cuts (default shot[0] / 2)."
+        },
+        "reactions": {
+          "type": "boolean",
+          "description": "Cut to the listener's face when a line runs past shot[1] (default true)."
         },
         "captions": {
           "enum": [

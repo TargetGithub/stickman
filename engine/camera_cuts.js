@@ -2,7 +2,8 @@
 //   - a wide only to establish (pace.establish s at the scene start);
 //   - dialogue: a medium two-shot on the first line of an exchange, then shot/reverse-shot (over the listener's
 //     shoulder, a close-up of the speaker, alternating) on each new line, and a reaction close-up of the listener
-//     when a line runs past pace.shot[1]; no cut comes sooner than pace.shot[0] / 2 after the last one;
+//     when a line runs past pace.shot[1] (unless pace.reactions is false); no cut comes sooner than
+//     pace.minCut (default pace.shot[0] / 2) after the last one;
 //   - otherwise a medium shot (characters about 60% of the frame height) on whoever is acting, cut to a looser
 //     (or tighter) medium when it has run longer than 1.25 x pace.shot[1];
 //   - a travel cut (cut-to-arrival) cuts with the walker.
@@ -75,6 +76,7 @@ function lineShot(cuts, line, actors, t) {
 export function cutsKey(auto, cuts, actors, t, activeIds) {
   const { pace } = cuts;
   const age = t - cuts.since;
+  const minCut = pace.minCut ?? pace.shot[0] / 2;
   let want = null;
   if (cuts.travelCut) {
     cuts.travelCut = false;
@@ -87,10 +89,10 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
   else if (line) {
     cuts.lastLineEnd = line.until;
     if (cuts.lineSeen !== line) {
-      if (age < pace.shot[0] / 2 && cuts.key) return cuts.key; // too soon after the last cut: wait
+      if (age < minCut && cuts.key) return cuts.key; // too soon after the last cut: wait
       cuts.lineSeen = line;
       want = lineShot(cuts, line, actors, t);
-    } else if (age > pace.shot[1] && !cuts.key?.reaction) {
+    } else if (pace.reactions !== false && age > pace.shot[1] && !cuts.key?.reaction) {
       const listener = listenerOf(line, actors);
       if (listener) want = { mode: "close_up", target: listener.id, reaction: t + TALK.reaction };
     } else if (cuts.key?.reaction && t > cuts.key.reaction) want = { mode: "close_up", target: line.actor };
@@ -100,6 +102,8 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
   } else {
     if (age > pace.shot[1] * 1.25 && cuts.key?.mode === "medium") cuts.variant++;
     want = mediumOf(activeIds(actors, t), actors, cuts.variant);
+    // Who is acting changes often in action: hold the shot at least minCut, so the camera does not jump.
+    if (cuts.key && age < minCut && !keeps(cuts.key, want) && !sameKey(want, cuts.key)) return cuts.key;
   }
   return choose(cuts, want, t, false);
 }

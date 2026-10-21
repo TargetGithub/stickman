@@ -108,6 +108,39 @@ test("cutsKey: establish wide, medium two-shot, then shot/reverse-shot cuts and 
   assert.equal(at(20).cut, true, "a travel cut always cuts");
 });
 
+test("cutsKey: minCut spaces the cuts, reactions false keeps the speaker, and an action medium holds minCut", () => {
+  const cases = [
+    // [pace, second line at, expect a cut on it]
+    [{}, 3.2, true], // default minCut = shot[0] / 2 = 1 s
+    [{ minCut: 3 }, 3.2, false], // 1.1 s after the first cut: too soon
+    [{ minCut: 3 }, 5.2, true],
+  ];
+  for (const [block, t2, cut] of cases) {
+    const cuts = createCuts(paceOf({ ...v3, pace: block }));
+    const auto = { t0: 0, active: new Map(), close: null };
+    const actors = [actor("kai", 1000), actor("mo", 1200)];
+    const at = (t) => cutsKey(auto, cuts, actors, t, () => []);
+    cutsEvent(cuts, { type: "say", actor: "kai", to: "mo", dur: 0.9 }, 2.1);
+    at(2.1);
+    cutsEvent(cuts, { type: "say", actor: "mo", to: "kai", dur: 2 }, t2);
+    assert.equal(at(t2).favor === "mo", cut, JSON.stringify(block) + " @" + t2);
+  }
+  const quiet = createCuts(paceOf({ ...v3, pace: { reactions: false } }));
+  const auto = { t0: 0, active: new Map(), close: null };
+  const actors = [actor("kai", 1000), actor("mo", 1200)];
+  cutsEvent(quiet, { type: "say", actor: "kai", to: "mo", dur: 9 }, 2.1);
+  const first = cutsKey(auto, quiet, actors, 2.1, () => []);
+  assert.equal(cutsKey(auto, quiet, actors, 8, () => []), first, "no reaction close-up");
+  // Action: who is acting flips at 6.4 s, 0.4 s after a cut to kai; with minCut 2 the shot holds until 8 s.
+  const act = createCuts(paceOf({ ...v3, pace: { minCut: 2, establish: 0 } }));
+  let ids = ["kai"];
+  const key = (t) => cutsKey(auto, act, actors, t, () => ids);
+  assert.deepEqual(key(6).targets, ["kai"]);
+  ids = ["mo"];
+  assert.deepEqual(key(6.4).targets, ["kai"], "held");
+  assert.deepEqual(key(8.1).targets, ["mo"], "then cuts");
+});
+
 const pacedStory = (pace, extra = {}) => ({
   version: 3,
   meta: { title: "Pace", format: "landscape", seed: 3, kind: "clip", audience: "kids", autoCamera: "story" },
