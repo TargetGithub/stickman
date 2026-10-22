@@ -1,0 +1,48 @@
+{
+  "description": "How Doopi & Friends episodes are upgraded from version 2 to version 3 scripts (tools/upgrade_v3.mjs). These are the settings Sridhar approved on episode 1 (2026-10-21): natural pacing, camera glides instead of cuts, bendy limbs, Piper voices with lip-sync, voice ducking, and lighting by place and time of day.",
+  "meta": {
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": { "model": "en_GB-cori-medium", "rate": 0.8, "pitch": 0 }
+  },
+  "voices": "series/doopi/tts_voices.json",
+  "limbStyle": "bendy",
+  "look": { "strength": 0.45 },
+  "motion": { "followThrough": 1, "squash": 1, "secondary": 1, "breathing": 1, "blur": 0 },
+  "pace": {
+    "travel": { "walk": 1.3, "run": 1.1, "sneak": 1.6, "tiptoe": 1.4, "walk_together": 1.25 },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [4, 8],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3
+  },
+  "audio": {
+    "duck": [
+      { "duck": "music", "under": "voice", "db": -8, "attack": 0.15, "release": 0.6 },
+      { "duck": "ambience", "under": "voice", "db": -6, "attack": 0.2, "release": 0.8 }
+    ],
+    "tracks": [{ "id": "voices", "kind": "bus", "bus": "voice", "volume": 1.1 }]
+  },
+  "intro": { "template": "doopi_intro", "location": "tokyo_village" },
+  "zByLayer": { "back": -300, "front": 350 },
+  "lightByTheme": {
+    "gloom_throne_room": "gloom",
+    "villain_lair": "gloom",
+    "gloom_castle_gate": "gloom",
+    "shadow_valley": "gloom",
+    "spice_kitchen": "indoor",
+    "spice_cellar": "indoor",
+    "iron_workshop": "indoor",
+    "mirror_maze": "indoor",
+    "crystal_cave": "indoor",
+    "mountain_cave": "indoor",
+    "home_interior": "indoor"
+  },
+  "vignetteByTime": { "dawn": 0.25, "night": 0.35 }
+}

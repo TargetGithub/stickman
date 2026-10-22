@@ -5,6 +5,7 @@ import { createFx, emitFx, stepFx } from "./fx.js";
 import { createCamera, setCameraKey, cutCamera, glideCamera, addShake, addZoomPunch, stepCamera } from "./camera.js";
 import { deriveRng } from "./math.js";
 import { shotKey, createStoryAuto, storyAutoEvent, storyAutoKey } from "./camera_story.js";
+import { speakerLeftOut } from "./camera_cuts.js";
 import { FORMATS, PHYSICS, STAGE } from "./config.js";
 
 const POP_GAP = 0.6; // fx seconds between two impact words
@@ -159,6 +160,12 @@ function storyCamera(p, world, clock) {
     keyed(p, p.shot.prev, clock, !!p.pace, true);
     p.shot = null;
     if (p.storyAuto?.cuts) p.storyAuto.cuts.key = null; // the auto camera picks a fresh shot
+  }
+  if (p.shot && speakerLeftOut(p.storyAuto?.cuts, p.cam.key, clock.storyT)) {
+    // Speakers stay in frame: the shot ends, and the auto camera moves from it to whoever is talking.
+    p.shot = null;
+    p.storyAuto.cuts.key = p.cam.key;
+    p.storyAuto.cuts.since = -Infinity;
   }
   if (!p.storyAuto || p.shot || p.lasting) return;
   const key = storyAutoKey(p.storyAuto, world.actors, clock.storyT);

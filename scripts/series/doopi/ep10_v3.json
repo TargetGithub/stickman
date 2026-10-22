@@ -1,0 +1,1573 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends 10: Mooka Ahoy!",
+    "format": "landscape",
+    "seed": 2410,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 3
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": {
+        "eyes": "big",
+        "hair": "ponytail",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#3fae5a"
+        }
+      },
+      "voice": {
+        "pitch": 1.45,
+        "speed": 1.1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mallu",
+      "name": "Mallu Uncle",
+      "body": "elder",
+      "color": "#ffc2a0",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#f4f1de",
+        "outfit": "shirt",
+        "outfitColor": "#2a8f7c",
+        "accessories": {
+          "beard": "#f4f1de"
+        }
+      },
+      "voice": {
+        "pitch": 0.9,
+        "speed": 0.9,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "kanta",
+      "name": "Captain Kanta",
+      "body": "stickman",
+      "color": "#9ad1d4",
+      "prop": "sword",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "outfit": "coat",
+        "outfitColor": "#1d3557",
+        "accessories": {
+          "pirate_hat": "#1d3557",
+          "eyepatch": "#111111",
+          "moustache": "#2a1a14"
+        }
+      },
+      "voice": {
+        "pitch": 0.85,
+        "speed": 1.05,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -2,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#e63946",
+        "accessories": {
+          "stub_horns": "#7a6a99"
+        }
+      },
+      "voice": {
+        "pitch": 1.6,
+        "speed": 1.2,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 6,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "prop": "jalebi",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#3a6fd8",
+        "accessories": {
+          "stub_horns": "#7a6a99"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.1,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "pirate1",
+      "name": "Gulgul",
+      "body": "bulky",
+      "color": "#e8e0f0",
+      "appearance": {
+        "eyes": "sleepy",
+        "hair": "bob",
+        "hairColor": "#2a1a14",
+        "accessories": {
+          "scarf": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 0.75,
+        "speed": 1,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -4,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "pirate2",
+      "name": "Bulbul",
+      "body": "slim",
+      "color": "#e8e0f0",
+      "appearance": {
+        "eyes": "sleepy",
+        "accessories": {
+          "scarf": "#2f7de1",
+          "eyepatch": "#111111"
+        }
+      },
+      "voice": {
+        "pitch": 1.1,
+        "speed": 1,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 4,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "deck",
+      "theme": "pirate_deck",
+      "stageWidth": 3400
+    },
+    {
+      "id": "lake",
+      "theme": "lotus_lake",
+      "stageWidth": 4400
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 10,
+          "title": "Mooka Ahoy!",
+          "location": "tokyo_village"
+        }
+      }
+    },
+    {
+      "id": "chores",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "pirate1",
+          "x": 1900,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "pirate2",
+          "x": 2150,
+          "facing": -1,
+          "face": "angry"
+        }
+      ],
+      "beats": [
+        {
+          "id": "chores_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "On the pirate ship, the pirates had big plans for their golden jelly."
+          }
+        },
+        {
+          "id": "chores_d1",
+          "at": {
+            "after": "chores_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "pirate1",
+                "You! Jelly! Scrub the deck!",
+                "angry"
+              ],
+              [
+                "mooka",
+                "Scrubbing? Ooh! Is it a game? A sliding game?",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "chores_s1",
+          "at": {
+            "after": "chores_d1"
+          },
+          "who": "mooka",
+          "do": "slide",
+          "face": "laugh",
+          "say": "Wheee!"
+        },
+        {
+          "id": "chores_s2",
+          "at": {
+            "after": "chores_s1"
+          },
+          "who": "mooka",
+          "do": "slide",
+          "face": "laugh"
+        },
+        {
+          "id": "chores_p1",
+          "at": {
+            "with": "chores_s2",
+            "delay": 0.4
+          },
+          "who": "pirate2",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "chores_d2",
+          "at": {
+            "after": "chores_s2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "pirate1",
+                "Stop having fun! Now... polish the cannonballs!",
+                "angry"
+              ],
+              [
+                "mooka",
+                "Bouncy balls! Catch!",
+                "laugh"
+              ],
+              [
+                "pirate1",
+                "...Hee. Hee hee. Okay, ONE catch.",
+                "laugh"
+              ],
+              [
+                "pirate2",
+                "Can I play too? Nobody ever plays with Bulbul.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Of course! The more, the giggly-er!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "chores_pc",
+          "at": {
+            "after": "chores_d2"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "play_catch",
+            "with": [
+              "mooka",
+              "pirate1"
+            ],
+            "reps": 4
+          }
+        },
+        {
+          "id": "chores_p2",
+          "at": {
+            "with": "chores_pc",
+            "delay": 2
+          },
+          "who": "pirate2",
+          "do": "clap",
+          "face": "laugh"
+        },
+        {
+          "id": "chores_d3",
+          "at": {
+            "after": "chores_pc"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "pirate1",
+                "Captain says you're treasure. But you're... fun.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Everybody's fun! You just forgot!",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "snack",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.5
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "kony",
+          "x": 800,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tony",
+          "x": 400,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "snack_s1",
+          "at": 0.3,
+          "who": "mooka",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "snack_k1",
+          "at": 0.5,
+          "who": "kony",
+          "do": "sneak",
+          "to": {
+            "near": "mooka",
+            "gap": 120
+          }
+        },
+        {
+          "id": "snack_d1",
+          "at": {
+            "after": "snack_k1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kony",
+                "Psst! Mooka! I saved you a jalebi.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Kony! My friend Kony!",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "snack_g1",
+          "at": {
+            "after": "snack_d1"
+          },
+          "who": "kony",
+          "do": "give",
+          "partner": "mooka",
+          "face": "happy"
+        },
+        {
+          "id": "snack_e1",
+          "at": {
+            "with": "snack_g1",
+            "delay": 0.8
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tony",
+            "side": "left",
+            "to": {
+              "x": 650
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "snack_d2",
+          "at": {
+            "after": "snack_e1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tony",
+                "KONY! Giving snacks to the prisoner? Whose side are you on?!",
+                "furious"
+              ],
+              [
+                "kony",
+                "I... I don't know anymore, Tony.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "You can be on the jalebi side! Everybody's welcome!",
+                "laugh"
+              ],
+              [
+                "tony",
+                "...Is there one for me?",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Half! Here! Friends share!",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "snack_t1",
+          "at": {
+            "after": "snack_d2"
+          },
+          "who": "tony",
+          "do": "facepalm",
+          "face": "angry"
+        }
+      ]
+    },
+    {
+      "id": "row",
+      "location": "lake",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.6,
+        "dir": "left"
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "heroic",
+        "intensity": 0.5,
+        "volume": 0.32
+      },
+      "set": [
+        {
+          "id": "boat",
+          "object": "rowboat",
+          "x": 700
+        }
+      ],
+      "cast": [
+        {
+          "id": "mallu",
+          "x": 700,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tara",
+          "x": 1500,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "row_rd",
+          "at": 0.2,
+          "who": "mallu",
+          "do": "ride",
+          "object": "boat"
+        },
+        {
+          "id": "row_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "At dawn, Mallu Uncle rowed the friends out across the lake."
+          }
+        },
+        {
+          "id": "row_go",
+          "at": 1.5,
+          "who": "world",
+          "do": "set_object",
+          "object": "boat",
+          "params": {
+            "toX": 3400
+          }
+        },
+        {
+          "id": "row_w1",
+          "at": 1.6,
+          "who": "doopi",
+          "do": "swim",
+          "to": {
+            "x": 3100
+          }
+        },
+        {
+          "id": "row_w2",
+          "at": 1.8,
+          "who": "tara",
+          "do": "swim",
+          "to": {
+            "x": 3300
+          }
+        },
+        {
+          "id": "row_d1",
+          "at": {
+            "after": "row_w1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mallu",
+                "Why are you two swimming? There's a boat!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Because SOMEONE gets seasick in boats.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "I'm not seasick! I'm... lake-sick. It's different.",
+                "tired"
+              ],
+              [
+                "mallu",
+                "Why did the pirate never finish school? He got stuck at the letter C! Ho ho!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Mallu Uncle, please. We're sneaking.",
+                "tired"
+              ],
+              [
+                "mallu",
+                "Sneaking! Right! ...Shhh. Ho ho.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "row_dz",
+          "at": {
+            "after": "row_d1"
+          },
+          "who": "doopi",
+          "do": "dizzy",
+          "face": "dizzy"
+        },
+        {
+          "id": "row_sh",
+          "at": {
+            "after": "row_dz"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "pirate_horn",
+            "volume": 0.7,
+            "x": 4300
+          }
+        },
+        {
+          "id": "row_ml",
+          "at": {
+            "with": "row_sh",
+            "delay": 0.5
+          },
+          "who": "mallu",
+          "do": "point",
+          "say": "There! The ship!"
+        },
+        {
+          "id": "row_b1",
+          "at": 1.7,
+          "who": "becky",
+          "do": "swim",
+          "to": {
+            "x": 2900
+          }
+        },
+        {
+          "id": "row_b2",
+          "at": {
+            "after": "row_b1"
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          },
+          "say": "Woof! Woof!"
+        }
+      ]
+    },
+    {
+      "id": "board",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "dony",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "doomi",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "tara",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "pirate1",
+          "x": 2200,
+          "facing": 1,
+          "face": "tired"
+        }
+      ],
+      "beats": [
+        {
+          "id": "board_z1",
+          "at": 0.2,
+          "who": "pirate1",
+          "do": "sleep",
+          "fx": [
+            "zzz"
+          ]
+        },
+        {
+          "id": "board_s1",
+          "at": 0.5,
+          "who": "doopi",
+          "do": "spawn"
+        },
+        {
+          "id": "board_c1",
+          "at": {
+            "after": "board_s1"
+          },
+          "who": "doopi",
+          "do": "climb_up",
+          "face": "determined"
+        },
+        {
+          "id": "board_s2",
+          "at": {
+            "with": "board_c1",
+            "delay": 0.6
+          },
+          "who": "tara",
+          "do": "spawn"
+        },
+        {
+          "id": "board_c2",
+          "at": {
+            "after": "board_s2"
+          },
+          "who": "tara",
+          "do": "climb_up",
+          "face": "determined"
+        },
+        {
+          "id": "board_s3",
+          "at": {
+            "with": "board_c2",
+            "delay": 0.6
+          },
+          "who": "dony",
+          "do": "spawn"
+        },
+        {
+          "id": "board_c3",
+          "at": {
+            "after": "board_s3"
+          },
+          "who": "dony",
+          "do": "climb_up",
+          "face": "scared"
+        },
+        {
+          "id": "board_s4",
+          "at": {
+            "with": "board_c3",
+            "delay": 0.6
+          },
+          "who": "doomi",
+          "do": "spawn"
+        },
+        {
+          "id": "board_c4",
+          "at": {
+            "after": "board_s4"
+          },
+          "who": "doomi",
+          "do": "climb_up",
+          "face": "determined"
+        },
+        {
+          "id": "board_w1",
+          "at": {
+            "after": "board_c4"
+          },
+          "who": "doopi",
+          "do": "tiptoe",
+          "to": {
+            "x": 1500
+          }
+        },
+        {
+          "id": "board_w2",
+          "at": {
+            "with": "board_w1",
+            "delay": 0.4
+          },
+          "who": "tara",
+          "do": "tiptoe",
+          "to": {
+            "x": 1300
+          }
+        },
+        {
+          "id": "board_w3",
+          "at": {
+            "with": "board_w1",
+            "delay": 0.6
+          },
+          "who": "dony",
+          "do": "tiptoe",
+          "to": {
+            "x": 1100
+          }
+        },
+        {
+          "id": "board_w4",
+          "at": {
+            "with": "board_w1",
+            "delay": 0.8
+          },
+          "who": "doomi",
+          "do": "tiptoe",
+          "to": {
+            "x": 900
+          }
+        },
+        {
+          "id": "board_wk",
+          "at": {
+            "after": "board_w1"
+          },
+          "who": "pirate1",
+          "do": "get_up",
+          "face": "surprised",
+          "say": "INTRUDERS! All hands!",
+          "bubble": "shout"
+        }
+      ]
+    },
+    {
+      "id": "brawl",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.9,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tara",
+          "x": 1150,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1000,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doomi",
+          "x": 850,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "pirate1",
+          "x": 1800,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "pirate2",
+          "x": 1950,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "tony",
+          "x": 2100,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "kony",
+          "x": 2250,
+          "facing": -1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "brawl_b",
+          "at": 0.3,
+          "macro": "brawl",
+          "params": {
+            "teams": {
+              "a": [
+                "doopi",
+                "tara",
+                "dony",
+                "doomi"
+              ],
+              "b": [
+                "pirate1",
+                "pirate2",
+                "tony",
+                "kony"
+              ]
+            },
+            "winner": "a",
+            "dur": 22,
+            "intensity": "medium"
+          }
+        },
+        {
+          "id": "brawl_c1",
+          "at": {
+            "with": "brawl_b",
+            "delay": 6
+          },
+          "who": "world",
+          "do": "caption",
+          "params": {
+            "text": "BATTLE ON DECK!",
+            "pos": "top",
+            "dur": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "kanta",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "boss",
+        "intensity": 0.8,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "kanta",
+          "x": 1850,
+          "facing": -1,
+          "face": "furious"
+        },
+        {
+          "id": "mooka",
+          "x": 2700,
+          "facing": -1,
+          "face": "scared"
+        },
+        {
+          "id": "doomi",
+          "x": 900,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 700,
+          "facing": 1,
+          "face": "angry"
+        }
+      ],
+      "beats": [
+        {
+          "id": "kanta_g0",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "kanta",
+            "color": "#2f9bff",
+            "level": 0.35
+          }
+        },
+        {
+          "id": "kanta_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kanta",
+                "You beat my crew? Then face the CAPTAIN!",
+                "furious"
+              ],
+              [
+                "doopi",
+                "A sword against my bare hands? Fine. I've fought spicier.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kanta_f",
+          "at": {
+            "after": "kanta_d1"
+          },
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "doopi",
+              "kanta"
+            ],
+            "winner": "doopi",
+            "style": "comeback",
+            "intensity": "medium",
+            "exchanges": 8,
+            "ko": false
+          }
+        },
+        {
+          "id": "kanta_k1",
+          "at": {
+            "after": "kanta_f"
+          },
+          "who": "kanta",
+          "do": "run",
+          "to": {
+            "x": 3050
+          },
+          "say": "To the wheel!"
+        },
+        {
+          "id": "kanta_m1",
+          "at": {
+            "with": "kanta_k1",
+            "delay": 0.5
+          },
+          "who": "mooka",
+          "do": "run",
+          "to": {
+            "near": "doomi",
+            "gap": 90
+          },
+          "face": "laugh",
+          "say": "DOOMI!"
+        },
+        {
+          "id": "kanta_m2",
+          "at": {
+            "after": "kanta_m1"
+          },
+          "who": "doomi",
+          "do": "hug",
+          "partner": "mooka",
+          "face": "love",
+          "fx": [
+            "heart"
+          ],
+          "approach": "run"
+        },
+        {
+          "id": "kanta_b1",
+          "at": {
+            "with": "kanta_f",
+            "delay": 5
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 3
+          },
+          "say": "GRRR WOOF!",
+          "bubble": "shout"
+        },
+        {
+          "id": "kanta_k0",
+          "at": {
+            "with": "kanta_b1",
+            "delay": 0.5
+          },
+          "who": "world",
+          "do": "caption",
+          "params": {
+            "text": "Kanta shivers... a puppy!",
+            "pos": "top",
+            "dur": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "whirl",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "weather": "wind",
+      "music": {
+        "mood": "tense",
+        "intensity": 1,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 2500,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "kanta",
+          "x": 3050,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "doomi",
+          "x": 1300,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "mooka",
+          "x": 1400,
+          "facing": 1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "whirl_k1",
+          "at": 0.3,
+          "who": "kanta",
+          "do": "laugh",
+          "face": "smug",
+          "say": "Hold on to your headband, boy!"
+        },
+        {
+          "id": "whirl_n1",
+          "at": {
+            "after": "whirl_k1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Kanta steered the ship straight into the giant whirlpool."
+          }
+        },
+        {
+          "id": "whirl_w1",
+          "at": {
+            "with": "whirl_n1"
+          },
+          "who": "kanta",
+          "do": "push",
+          "fx": [
+            "whirlpool"
+          ]
+        },
+        {
+          "id": "whirl_sh",
+          "at": {
+            "with": "whirl_n1",
+            "delay": 0.5
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "whirl_sh2",
+          "at": {
+            "with": "whirl_n1",
+            "delay": 2
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "whirl_s1",
+          "at": {
+            "with": "whirl_sh2"
+          },
+          "who": "doopi",
+          "do": "hit_launch",
+          "face": "scared",
+          "interrupt": true,
+          "say": "WHOAAA!",
+          "bubble": "shout"
+        },
+        {
+          "id": "whirl_s2",
+          "at": {
+            "after": "whirl_s1"
+          },
+          "who": "doopi",
+          "do": "despawn",
+          "fx": [
+            "splash"
+          ]
+        },
+        {
+          "id": "whirl_sx",
+          "at": {
+            "with": "whirl_s2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "splash"
+          }
+        },
+        {
+          "id": "whirl_d1",
+          "at": {
+            "with": "whirl_s2",
+            "delay": 0.3
+          },
+          "who": "doomi",
+          "do": "gasp",
+          "face": "cry",
+          "say": "DOOPI!",
+          "bubble": "shout"
+        },
+        {
+          "id": "whirl_n2",
+          "at": {
+            "after": "whirl_d1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi sank into the swirl. Only bubbles came back up."
+          }
+        },
+        {
+          "id": "whirl_fd",
+          "at": {
+            "after": "whirl_n2"
+          },
+          "who": "world",
+          "do": "fade",
+          "params": {
+            "to": "black",
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "whirl_end",
+          "at": {
+            "after": "whirl_fd"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3
+  }
+}

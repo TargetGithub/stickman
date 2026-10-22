@@ -2,6 +2,8 @@
 
 Status: **draft for Sridhar's review** (2026-10-18). World, characters and the arc: [BIBLE.md](BIBLE.md). Asset ids in square brackets (`[R1]`, `[T3]`) point to [ASSETS.md](ASSETS.md).
 
+**Scripts:** the version 3 scripts `scripts/series/doopi/epNN_v3.json` are the ones to render (`node tools/record.mjs scripts/series/doopi/epNN_v3.json --speech tts --fps 30`). They were made from the version 2 `epNN.json` with `node tools/upgrade_v3.mjs series/doopi/v3_profile.json ...` (the settings Sridhar approved on episode 1) and then hand-fixed, so edit the `_v3` files from now on; re-running the upgrade would overwrite those fixes.
+
 Each outline gives: the logline, the beats (scene by scene, with rough seconds; each episode adds up to 300-330 s of story time plus cards), the cliffhanger, the intensity (1-10), the lesson, and the assets it needs beyond today's catalog. Every episode from 2 on opens with a "Last time..." narration and the title card, and closes with "To be continued..." (left out of the beat lists).
 
 ---

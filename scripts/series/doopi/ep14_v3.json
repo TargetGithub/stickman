@@ -1,0 +1,1750 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends 14: The Glow Within",
+    "format": "landscape",
+    "seed": 2414,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 0
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": {
+        "eyes": "big",
+        "hair": "ponytail",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#3fae5a"
+        }
+      },
+      "voice": {
+        "pitch": 1.45,
+        "speed": 1.1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "body": "elder",
+      "scale": 0.9,
+      "color": "#e8a87c",
+      "prop": "cane",
+      "appearance": {
+        "eyes": "glasses",
+        "hair": "bun",
+        "hairColor": "#f2f2f2",
+        "outfit": "robe",
+        "outfitColor": "#8e5bd6"
+      },
+      "voice": {
+        "pitch": 1.1,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": -2,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Iron Ghoom",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor",
+        "accessories": {
+          "windup_key": "#e6b84a"
+        }
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#e63946",
+        "accessories": {
+          "stub_horns": "#7a6a99"
+        }
+      },
+      "voice": {
+        "pitch": 1.6,
+        "speed": 1.2,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 6,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#3a6fd8",
+        "accessories": {
+          "stub_horns": "#7a6a99"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.1,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "cave",
+      "theme": "mountain_cave",
+      "stageWidth": 2800,
+      "set": [
+        {
+          "id": "fire",
+          "object": "campfire",
+          "x": 1400
+        }
+      ],
+      "light": "indoor"
+    },
+    {
+      "id": "dream",
+      "theme": "banyan_hill",
+      "stageWidth": 3600
+    },
+    {
+      "id": "shop",
+      "theme": "iron_workshop",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "cage1",
+          "object": "cage",
+          "x": 1200,
+          "state": "closed"
+        }
+      ],
+      "light": "indoor"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 14,
+          "title": "The Glow Within",
+          "location": "tokyo_village"
+        }
+      }
+    },
+    {
+      "id": "quit",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 2300,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "dony",
+          "x": 1100,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "tara",
+          "x": 900,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "mooka",
+          "x": 1250,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1550,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "quit_s1",
+          "at": 0.2,
+          "who": "doopi",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "quit_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "In a mountain cave, out of the rain, Doopi sat far away from everyone."
+          }
+        },
+        {
+          "id": "quit_d1",
+          "at": {
+            "after": "quit_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Go home, all of you. I'm not a hero. I never was.",
+                "cry"
+              ],
+              [
+                "tara",
+                "You don't get to decide that alone either, you know.",
+                "angry"
+              ],
+              [
+                "doopi",
+                "My glow is gone. The crystals are dark. It's over.",
+                "cry"
+              ]
+            ]
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "cheer",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 2300,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "tara",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1650,
+          "facing": 1,
+          "face": "laugh"
+        },
+        {
+          "id": "becky",
+          "x": 1900,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "cheer_s1",
+          "at": 0,
+          "who": "doopi",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "cheer_m1",
+          "at": 0.4,
+          "who": "mooka",
+          "do": "talk",
+          "face": "laugh",
+          "say": "Look, Doopi! The Wobbly Jelly Dance!"
+        },
+        {
+          "id": "cheer_m2",
+          "at": {
+            "after": "cheer_m1"
+          },
+          "who": "mooka",
+          "do": "dance_a",
+          "params": {
+            "cycles": 3
+          },
+          "face": "laugh"
+        },
+        {
+          "id": "cheer_b1",
+          "at": {
+            "after": "cheer_m2"
+          },
+          "who": "becky",
+          "do": "roll_over"
+        },
+        {
+          "id": "cheer_b2",
+          "at": {
+            "after": "cheer_b1"
+          },
+          "who": "becky",
+          "do": "beg",
+          "face": "love"
+        },
+        {
+          "id": "cheer_t1",
+          "at": {
+            "after": "cheer_b2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Why did the robot go on holiday? He needed to RECHARGE! Ha!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "Hee hee hee!",
+                "laugh"
+              ],
+              [
+                "becky",
+                "Woof woof!",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Becky, you're the best audience!",
+                "love"
+              ],
+              [
+                "doopi",
+                "...",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "cheer_m3",
+          "at": {
+            "after": "cheer_t1"
+          },
+          "who": "mooka",
+          "do": "sigh",
+          "face": "sad",
+          "say": "He didn't even smile."
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "dony",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1700,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "dony",
+          "x": 1200,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "dony_s1",
+          "at": 0,
+          "who": "doopi",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "dony_w1",
+          "at": 0.4,
+          "who": "dony",
+          "do": "walk",
+          "to": {
+            "x": 1500
+          }
+        },
+        {
+          "id": "dony_s2",
+          "at": {
+            "after": "dony_w1"
+          },
+          "who": "dony",
+          "do": "sit"
+        },
+        {
+          "id": "dony_d1",
+          "at": {
+            "after": "dony_s2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Remember the Banyan race? When Pinky fell down?",
+                "sad"
+              ],
+              [
+                "doopi",
+                "I lost that race.",
+                "sad"
+              ],
+              [
+                "dony",
+                "You stopped. Everybody else ran past her. You stopped.",
+                "love"
+              ],
+              [
+                "dony",
+                "That's when Nani first saw your glow. Not when you were strong. When you were kind.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "...Pinky called me Doopi bhaiya.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dony_cf",
+          "at": {
+            "after": "dony_d1"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "comfort",
+            "with": [
+              "dony",
+              "doopi"
+            ],
+            "dur": 4
+          }
+        },
+        {
+          "id": "dony_sm",
+          "at": {
+            "after": "dony_cf"
+          },
+          "who": "doopi",
+          "do": "nod",
+          "face": "happy",
+          "say": "Thanks, Dony."
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "vision",
+      "location": "dream",
+      "time": "dusk",
+      "weather": "fog",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 1.2
+      },
+      "music": {
+        "mood": "lullaby",
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "nani",
+          "x": 2000,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "vision_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "That night, Doopi dreamed of the Banyan. And someone was waiting there."
+          }
+        },
+        {
+          "id": "vision_sp",
+          "at": {
+            "after": "vision_n1"
+          },
+          "who": "nani",
+          "do": "spawn",
+          "fx": [
+            "sparkle_rise"
+          ]
+        },
+        {
+          "id": "vision_g1",
+          "at": {
+            "with": "vision_sp"
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "nani",
+            "color": "#fff3a0",
+            "level": 0.9,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "vision_d1",
+          "at": {
+            "after": "vision_sp"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Nani! You're... not grey!",
+                "surprised"
+              ],
+              [
+                "nani",
+                "In dreams, nobody is grey, little one.",
+                "love"
+              ],
+              [
+                "doopi",
+                "I lost my glow, Nani. I lost everything.",
+                "cry"
+              ],
+              [
+                "nani",
+                "The glow was never in the crystals, Doopi.",
+                "happy"
+              ],
+              [
+                "nani",
+                "It is in them.",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "vision_pt",
+          "at": {
+            "with": "vision_d1",
+            "delay": 15
+          },
+          "who": "nani",
+          "do": "point",
+          "interrupt": true
+        },
+        {
+          "id": "vision_d2",
+          "at": {
+            "after": "vision_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "Your friends. Every time they believe in you, it shines.",
+                "love"
+              ],
+              [
+                "nani",
+                "Now wake up. And don't be late.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "vision_fx",
+          "at": {
+            "after": "vision_d2"
+          },
+          "who": "nani",
+          "do": "despawn",
+          "fx": [
+            "sparkle_rise"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "breakfast",
+      "location": "cave",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 1
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1100,
+          "facing": 1,
+          "face": "asleep"
+        },
+        {
+          "id": "tara",
+          "x": 900,
+          "facing": 1,
+          "face": "asleep"
+        },
+        {
+          "id": "mooka",
+          "x": 1900,
+          "facing": -1,
+          "face": "asleep"
+        },
+        {
+          "id": "becky",
+          "x": 2150,
+          "facing": -1,
+          "face": "asleep"
+        }
+      ],
+      "beats": [
+        {
+          "id": "breakfast_z1",
+          "at": 0,
+          "who": "dony",
+          "do": "sleep"
+        },
+        {
+          "id": "breakfast_z2",
+          "at": 0,
+          "who": "tara",
+          "do": "sleep"
+        },
+        {
+          "id": "breakfast_z3",
+          "at": 0,
+          "who": "mooka",
+          "do": "sleep"
+        },
+        {
+          "id": "breakfast_c1",
+          "at": 0.4,
+          "who": "doopi",
+          "do": "push",
+          "face": "determined",
+          "say": "Breakfast! Doopi-style!"
+        },
+        {
+          "id": "breakfast_c2",
+          "at": {
+            "after": "breakfast_c1"
+          },
+          "who": "doopi",
+          "do": "toss",
+          "face": "happy",
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "breakfast_c3",
+          "at": {
+            "after": "breakfast_c2"
+          },
+          "who": "doopi",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "breakfast_w1",
+          "at": {
+            "with": "breakfast_c3"
+          },
+          "who": "dony",
+          "do": "get_up",
+          "face": "surprised",
+          "interrupt": true
+        },
+        {
+          "id": "breakfast_w2",
+          "at": {
+            "with": "breakfast_c3",
+            "delay": 0.2
+          },
+          "who": "tara",
+          "do": "get_up",
+          "face": "surprised"
+        },
+        {
+          "id": "breakfast_w3",
+          "at": {
+            "with": "breakfast_c3",
+            "delay": 0.4
+          },
+          "who": "mooka",
+          "do": "get_up",
+          "face": "surprised"
+        },
+        {
+          "id": "breakfast_d1",
+          "at": {
+            "after": "breakfast_w3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Is that... burnt chapati?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "It's... crispy chapati. Very crispy.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "I love crispy! Hee hee!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Ha! He's BACK!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "breakfast_la",
+          "at": {
+            "after": "breakfast_d1"
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "breakfast_g1",
+          "at": {
+            "with": "breakfast_la"
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "color": "#ffd23f",
+            "level": 1,
+            "dur": 2
+          }
+        },
+        {
+          "id": "breakfast_bl",
+          "at": {
+            "with": "breakfast_la",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_appearance",
+          "params": {
+            "who": "doopi",
+            "slots": 4
+          }
+        },
+        {
+          "id": "breakfast_n1",
+          "at": {
+            "with": "breakfast_la",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The Heart Glow came back. Brighter than ever before."
+          }
+        },
+        {
+          "id": "breakfast_j1",
+          "at": {
+            "after": "breakfast_la"
+          },
+          "who": "becky",
+          "do": "jump"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "plan",
+      "location": "cave",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.5
+      },
+      "music": {
+        "mood": "heroic",
+        "intensity": 0.6,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "plan_g",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "color": "#ffd23f",
+            "level": 0.7
+          }
+        },
+        {
+          "id": "plan_d",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "I'm sorry I ran off alone. I was scared, and I was proud.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "From now on, we do everything together. Deal?",
+                "determined"
+              ],
+              [
+                "dony",
+                "Deal!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Deal.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Deal! And breakfast is my job from now on.",
+                "laugh"
+              ],
+              [
+                "becky",
+                "Woof!",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Ghoom went toward Peepa's workshop. Let's bring Doomi home.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "plan_h",
+          "at": {
+            "after": "plan_d"
+          },
+          "who": "doopi",
+          "do": "high_five",
+          "partner": "dony",
+          "face": "laugh"
+        },
+        {
+          "id": "plan_j",
+          "at": {
+            "with": "plan_h"
+          },
+          "who": "becky",
+          "do": "jump"
+        }
+      ]
+    },
+    {
+      "id": "key",
+      "location": "shop",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.6,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1200,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "ghoom",
+          "x": 2300,
+          "facing": 1,
+          "face": "neutral"
+        }
+      ],
+      "beats": [
+        {
+          "id": "key_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Far away, in Peepa's iron workshop, Doomi watched the giant robot."
+          }
+        },
+        {
+          "id": "key_d1",
+          "at": {
+            "after": "key_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Wait. What's that big key on your back, Ghoomu?",
+                "surprised"
+              ],
+              [
+                "ghoom",
+                "...KEY. TURN. OBEY.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "You're wound up! You're not bad... you're CONTROLLED!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Somebody turned you into a toy. That's not fair.",
+                "angry"
+              ],
+              [
+                "ghoom",
+                "...NOT... FAIR. BEEP.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Don't worry. My friends will come. They always come.",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "key_bp",
+          "at": {
+            "with": "key_d1",
+            "delay": 4
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "windup_click",
+            "volume": 0.6
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "escape",
+      "location": "shop",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1200,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "ghoom",
+          "x": 2300,
+          "facing": 1,
+          "face": "neutral"
+        },
+        {
+          "id": "peepa",
+          "x": 2200,
+          "facing": -1,
+          "hidden": true
+        },
+        {
+          "id": "tony",
+          "x": 3000,
+          "facing": -1,
+          "hidden": true
+        },
+        {
+          "id": "kony",
+          "x": 3050,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "escape_t1",
+          "at": 0.3,
+          "who": "doomi",
+          "do": "talk",
+          "face": "smug",
+          "say": "Good thing I have a hairpin.",
+          "bubble": "whisper"
+        },
+        {
+          "id": "escape_op",
+          "at": {
+            "after": "escape_t1"
+          },
+          "who": "world",
+          "do": "set_object",
+          "object": "cage1",
+          "params": {
+            "state": "open"
+          }
+        },
+        {
+          "id": "escape_tp",
+          "at": {
+            "after": "escape_op",
+            "delay": 0.4
+          },
+          "who": "doomi",
+          "do": "tiptoe",
+          "to": {
+            "x": 1950
+          }
+        },
+        {
+          "id": "escape_rc",
+          "at": {
+            "after": "escape_tp"
+          },
+          "who": "doomi",
+          "do": "talk",
+          "face": "determined",
+          "say": "Almost... the key...",
+          "bubble": "whisper"
+        },
+        {
+          "id": "escape_s0",
+          "at": {
+            "after": "escape_rc"
+          },
+          "who": "peepa",
+          "do": "spawn",
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "escape_d1",
+          "at": {
+            "after": "escape_s0"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Clever little flower. But not clever enough.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Let go of me!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "escape_gr",
+          "at": {
+            "with": "escape_d1"
+          },
+          "who": "peepa",
+          "do": "drag",
+          "partner": "doomi",
+          "approach": "run"
+        },
+        {
+          "id": "escape_e1",
+          "at": {
+            "after": "escape_d1"
+          },
+          "who": "tony",
+          "do": "spawn"
+        },
+        {
+          "id": "escape_e2",
+          "at": {
+            "with": "escape_e1"
+          },
+          "who": "kony",
+          "do": "spawn"
+        },
+        {
+          "id": "escape_d2",
+          "at": {
+            "after": "escape_e1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Tony, Kony. Take her to my castle. Lock her in the tower.",
+                "smug"
+              ],
+              [
+                "kony",
+                "...Yes, boss. Sorry, Doomi.",
+                "sad"
+              ],
+              [
+                "tony",
+                "Come on, flower girl. And no tricks!",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Kony. You're better than this. I know you are.",
+                "sad"
+              ],
+              [
+                "kony",
+                "...",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "escape_x1",
+          "at": {
+            "after": "escape_d2"
+          },
+          "who": "doomi",
+          "do": "despawn",
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "escape_x2",
+          "at": {
+            "with": "escape_x1"
+          },
+          "who": "tony",
+          "do": "despawn",
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "escape_x3",
+          "at": {
+            "with": "escape_x1"
+          },
+          "who": "kony",
+          "do": "despawn",
+          "fx": [
+            "smoke"
+          ]
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "wind",
+      "location": "shop",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "boss",
+        "intensity": 0.9,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "ghoom",
+          "x": 2000,
+          "facing": 1,
+          "face": "neutral"
+        },
+        {
+          "id": "peepa",
+          "x": 1500,
+          "facing": 1,
+          "face": "smug"
+        }
+      ],
+      "beats": [
+        {
+          "id": "wind_w1",
+          "at": 0.3,
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "x": 1750
+          }
+        },
+        {
+          "id": "wind_w2",
+          "at": {
+            "after": "wind_w1"
+          },
+          "who": "peepa",
+          "do": "pull",
+          "face": "smug"
+        },
+        {
+          "id": "wind_k1",
+          "at": {
+            "with": "wind_w2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "windup_click"
+          }
+        },
+        {
+          "id": "wind_k2",
+          "at": {
+            "with": "wind_w2",
+            "delay": 0.7
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "windup_click"
+          }
+        },
+        {
+          "id": "wind_k3",
+          "at": {
+            "with": "wind_w2",
+            "delay": 1.4
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "windup_click"
+          }
+        },
+        {
+          "id": "wind_gl",
+          "at": {
+            "with": "wind_w2",
+            "delay": 1.4
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "ghoom",
+            "color": "#ff3b3b",
+            "level": 0.8,
+            "dur": 1
+          }
+        },
+        {
+          "id": "wind_d1",
+          "at": {
+            "after": "wind_w2"
+          },
+          "who": "peepa",
+          "do": "point",
+          "face": "smug",
+          "say": "Wound all the way. Now go."
+        },
+        {
+          "id": "wind_bp",
+          "at": {
+            "after": "wind_d1",
+            "delay": 0.6
+          },
+          "who": "ghoom",
+          "do": "nod",
+          "face": "neutral"
+        },
+        {
+          "id": "wind_bs",
+          "at": {
+            "with": "wind_bp"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep"
+          }
+        },
+        {
+          "id": "wind_d2",
+          "at": {
+            "after": "wind_d1",
+            "delay": 2.8
+          },
+          "who": "peepa",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Go and FLATTEN TOKYO!",
+          "bubble": "shout"
+        },
+        {
+          "id": "wind_gm",
+          "at": {
+            "after": "wind_d2"
+          },
+          "who": "ghoom",
+          "do": "walk",
+          "to": {
+            "x": 2600
+          }
+        },
+        {
+          "id": "wind_st",
+          "at": {
+            "with": "wind_gm"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_stomp",
+            "volume": 1
+          }
+        },
+        {
+          "id": "wind_sh",
+          "at": {
+            "with": "wind_gm"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "wind_cu",
+          "at": {
+            "with": "wind_gm",
+            "delay": 0.5
+          },
+          "who": "world",
+          "do": "shot",
+          "params": {
+            "mode": "close_up",
+            "target": "ghoom",
+            "dur": 2.5
+          }
+        },
+        {
+          "id": "wind_end",
+          "at": {
+            "after": "wind_gm",
+            "delay": 0.4
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3
+  }
+}

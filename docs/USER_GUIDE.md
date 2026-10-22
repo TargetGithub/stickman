@@ -372,6 +372,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `node tools/validate.mjs --schema` | Print the JSON Schema (with every move name) |
 | `node tools/compile.mjs <story> [--summary]` | Print a story with every macro expanded into beats (or one line per macro) |
 | `node tools/compile.mjs <story> --eject <id> --out <file>` | Write the story with one macro replaced by its beats, to hand-tune them |
+| `node tools/upgrade_v3.mjs <profile.json> <story>... [--check]` | Upgrade version 2 stories to version 3 with a series profile (pace, look, motion, voices, limbs, depth, light, intro); writes `<story>_v3.json` and validates. Doopi: `series/doopi/v3_profile.json` |
 | `npm run record -- <script> [options]` | Render the final video (see below) |
 | `npm run serve` | Start the local web server for the browser pages (port 5173) |
 | `node tools/catalog.mjs [--format json]` | Print the move, effect and world-command tables |

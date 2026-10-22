@@ -1,0 +1,1866 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends 7: Madam Mirchi's Kitchen",
+    "format": "landscape",
+    "seed": 2407,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 2
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "prop": "ladle",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": {
+        "eyes": "big",
+        "hair": "ponytail",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#3fae5a"
+        }
+      },
+      "voice": {
+        "pitch": 1.45,
+        "speed": 1.1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mirchi",
+      "name": "Madam Mirchi",
+      "body": "slim",
+      "color": "#ffb08a",
+      "prop": "ladle",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "mouthStyle": "cartoon",
+        "outfit": "robe",
+        "outfitColor": "#e63946",
+        "accessories": {
+          "chilli_hat": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.25,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 3,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "goon1",
+      "name": "Grey Goon",
+      "body": "bulky",
+      "color": "#e8e0f0",
+      "appearance": {
+        "eyes": "sleepy",
+        "outfit": "armor",
+        "outfitColor": "#8a8496"
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -5,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "goon2",
+      "name": "Grey Goon",
+      "body": "bulky",
+      "scale": 0.9,
+      "color": "#e8e0f0",
+      "appearance": {
+        "eyes": "sleepy",
+        "outfit": "armor",
+        "outfitColor": "#8a8496"
+      },
+      "voice": {
+        "pitch": 0.8,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -4,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "kitchen",
+      "theme": "spice_kitchen",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "pot",
+          "object": "giant_pot",
+          "x": 1600
+        },
+        {
+          "id": "lever",
+          "object": "lever",
+          "x": 2700,
+          "state": "up"
+        },
+        {
+          "id": "trap",
+          "object": "trapdoor",
+          "x": 2250,
+          "state": "closed"
+        },
+        {
+          "id": "basket1",
+          "object": "basket",
+          "x": 900
+        }
+      ],
+      "light": "indoor"
+    },
+    {
+      "id": "hill",
+      "theme": "mirchi_hill",
+      "stageWidth": 3400
+    },
+    {
+      "id": "cellar",
+      "theme": "spice_cellar",
+      "stageWidth": 2400,
+      "light": "indoor"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 7,
+          "title": "Madam Mirchi's Kitchen",
+          "location": "tokyo_village"
+        }
+      }
+    },
+    {
+      "id": "pot",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "mirchi",
+          "x": 2000,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "beats": [
+        {
+          "id": "pot_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "High on Mirchi Hill, in the Spice Fort, Dony had a new job."
+          }
+        },
+        {
+          "id": "pot_s1",
+          "at": 1,
+          "who": "dony",
+          "do": "push",
+          "face": "tired"
+        },
+        {
+          "id": "pot_s2",
+          "at": {
+            "after": "pot_s1"
+          },
+          "who": "dony",
+          "do": "push",
+          "face": "tired",
+          "say": "Stir, stir, stir... achoo."
+        },
+        {
+          "id": "pot_d1",
+          "at": {
+            "after": "pot_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mirchi",
+                "Faster, little cook! My sneezing curry must be PERFECT!",
+                "smug"
+              ],
+              [
+                "dony",
+                "Why do you need a curry that makes people sneeze?",
+                "tired"
+              ],
+              [
+                "mirchi",
+                "So Tokyo sneezes its silly little head off! Ha-CHOO-ha!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "pot_t1",
+          "at": {
+            "after": "pot_d1"
+          },
+          "who": "mirchi",
+          "do": "eat",
+          "face": "happy",
+          "fx": [
+            "chilli_smoke"
+          ]
+        },
+        {
+          "id": "pot_t2",
+          "at": {
+            "after": "pot_t1"
+          },
+          "who": "mirchi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Mmm! HOT HOT HOT!",
+          "bubble": "shout"
+        },
+        {
+          "id": "pot_cr",
+          "at": {
+            "after": "pot_t2"
+          },
+          "who": "mirchi",
+          "do": "use",
+          "face": "smug"
+        },
+        {
+          "id": "pot_d2",
+          "at": {
+            "after": "pot_cr"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mirchi",
+                "And see my ladle? The Orange crystal sits in its cup.",
+                "smug"
+              ],
+              [
+                "mirchi",
+                "Nobody touches Mirchi's ladle. Nobody!",
+                "angry"
+              ],
+              [
+                "dony",
+                "Doopi will come. You'll see.",
+                "determined"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "location": "hill",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.6,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "tara",
+          "x": 400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 250,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doomi",
+          "x": 150,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "mooka",
+          "x": 320,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 520,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "goon1",
+          "x": 1050,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "goon2",
+          "x": 1400,
+          "facing": -1,
+          "face": "tired"
+        }
+      ],
+      "beats": [
+        {
+          "id": "gate_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Tara led them up Mirchi Hill, to the gate of the Spice Fort."
+          }
+        },
+        {
+          "id": "gate_w1",
+          "at": 0.6,
+          "who": "tara",
+          "do": "sneak",
+          "to": {
+            "x": 750
+          }
+        },
+        {
+          "id": "gate_w2",
+          "at": 0.8,
+          "who": "doopi",
+          "do": "sneak",
+          "to": {
+            "x": 650
+          }
+        },
+        {
+          "id": "gate_w3",
+          "at": 1,
+          "who": "becky",
+          "do": "sneak",
+          "to": {
+            "x": 820
+          }
+        },
+        {
+          "id": "gate_d1",
+          "at": {
+            "after": "gate_w1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Two Grey Goons at the gate. Big, slow, and very grumpy.",
+                "neutral"
+              ],
+              [
+                "doomi",
+                "We can't fight our way in. We need a plan.",
+                "determined"
+              ],
+              [
+                "mooka",
+                "I have a plan! We say please!",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Better: we bring them... a delivery.",
+                "smug"
+              ],
+              [
+                "tara",
+                "A delivery? Of what?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "Of us.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "gate_g1",
+          "at": {
+            "with": "gate_d1",
+            "delay": 3
+          },
+          "who": "goon1",
+          "do": "stretch"
+        },
+        {
+          "id": "gate_g2",
+          "at": {
+            "with": "gate_d1",
+            "delay": 5
+          },
+          "who": "goon2",
+          "do": "sigh",
+          "say": "So bored..."
+        }
+      ]
+    },
+    {
+      "id": "disguise",
+      "location": "hill",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.5
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.6,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 600,
+          "facing": 1,
+          "face": "smug"
+        },
+        {
+          "id": "mooka",
+          "x": 450,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "goon1",
+          "x": 1050,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "goon2",
+          "x": 1400,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "tara",
+          "x": 200,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 380,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "disguise_h1",
+          "at": 0,
+          "who": "world",
+          "do": "set_appearance",
+          "params": {
+            "who": "doopi",
+            "accessory": "hat",
+            "color": "#c97a3a"
+          }
+        },
+        {
+          "id": "disguise_h2",
+          "at": 0,
+          "who": "world",
+          "do": "set_appearance",
+          "params": {
+            "who": "mooka",
+            "accessory": "hat",
+            "color": "#c97a3a"
+          }
+        },
+        {
+          "id": "disguise_w1",
+          "at": 0.4,
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 900
+          }
+        },
+        {
+          "id": "disguise_w2",
+          "at": 0.6,
+          "who": "mooka",
+          "do": "walk",
+          "to": {
+            "x": 800
+          }
+        },
+        {
+          "id": "disguise_d1",
+          "at": {
+            "after": "disguise_w1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Spice delivery! Extra hot chillies for Madam Mirchi!",
+                "happy"
+              ],
+              [
+                "goon1",
+                "Hmm. You look like the glowing boy.",
+                "tired"
+              ],
+              [
+                "mooka",
+                "No no! He's the glowing... delivery boy!",
+                "laugh"
+              ],
+              [
+                "goon2",
+                "...Makes sense. Go in.",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "disguise_in1",
+          "at": {
+            "after": "disguise_d1"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1800
+          }
+        },
+        {
+          "id": "disguise_in2",
+          "at": {
+            "with": "disguise_in1",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "walk",
+          "to": {
+            "x": 1700
+          }
+        },
+        {
+          "id": "disguise_t1",
+          "at": {
+            "with": "disguise_in1",
+            "delay": 1
+          },
+          "who": "tara",
+          "do": "sneak",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "disguise_t2",
+          "at": {
+            "with": "disguise_t1",
+            "delay": 0.3
+          },
+          "who": "doomi",
+          "do": "sneak",
+          "to": {
+            "x": 1500
+          }
+        },
+        {
+          "id": "disguise_t3",
+          "at": {
+            "with": "disguise_t1",
+            "delay": 0.5
+          },
+          "who": "becky",
+          "do": "sneak",
+          "to": {
+            "x": 1400
+          }
+        },
+        {
+          "id": "disguise_g1",
+          "at": {
+            "with": "disguise_t1",
+            "delay": 1.5
+          },
+          "who": "goon1",
+          "do": "look_around",
+          "face": "surprised"
+        },
+        {
+          "id": "disguise_g2",
+          "at": {
+            "after": "disguise_g1"
+          },
+          "who": "goon1",
+          "do": "shrug",
+          "face": "tired",
+          "say": "Must be the wind."
+        }
+      ]
+    },
+    {
+      "id": "inside",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mirchi",
+          "x": 2000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "mooka",
+          "x": 280,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "becky",
+          "x": 520,
+          "facing": 1,
+          "face": "neutral"
+        }
+      ],
+      "beats": [
+        {
+          "id": "inside_h1",
+          "at": 0,
+          "who": "world",
+          "do": "set_appearance",
+          "params": {
+            "who": "doopi",
+            "accessory": "hat",
+            "remove": true
+          }
+        },
+        {
+          "id": "inside_h2",
+          "at": 0,
+          "who": "world",
+          "do": "set_appearance",
+          "params": {
+            "who": "mooka",
+            "accessory": "hat",
+            "remove": true
+          }
+        },
+        {
+          "id": "inside_m0",
+          "at": 0.3,
+          "who": "mirchi",
+          "do": "talk",
+          "say": "La la la, a pinch of fire...",
+          "face": "happy"
+        },
+        {
+          "id": "inside_s1",
+          "at": 0.5,
+          "who": "doopi",
+          "do": "tiptoe",
+          "to": {
+            "x": 800
+          }
+        },
+        {
+          "id": "inside_s2",
+          "at": 0.8,
+          "who": "mooka",
+          "do": "tiptoe",
+          "to": {
+            "x": 680
+          }
+        },
+        {
+          "id": "inside_s3",
+          "at": 0.9,
+          "who": "becky",
+          "do": "sneak",
+          "to": {
+            "x": 920
+          }
+        },
+        {
+          "id": "inside_a1",
+          "at": {
+            "after": "inside_s2"
+          },
+          "who": "mooka",
+          "do": "hold_head",
+          "face": "hurt",
+          "say": "Ah... ah...",
+          "bubble": "whisper"
+        },
+        {
+          "id": "inside_a2",
+          "at": {
+            "after": "inside_a1"
+          },
+          "who": "mooka",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "inside_b1",
+          "at": {
+            "with": "inside_a2",
+            "delay": 0.1
+          },
+          "who": "becky",
+          "do": "jump",
+          "say": "Woof!"
+        },
+        {
+          "id": "inside_b2",
+          "at": {
+            "after": "inside_b1"
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "smug"
+        },
+        {
+          "id": "inside_mi",
+          "at": {
+            "after": "inside_a2"
+          },
+          "who": "mirchi",
+          "do": "look_around",
+          "face": "surprised",
+          "say": "Who sneezed in MY kitchen?"
+        },
+        {
+          "id": "inside_hd",
+          "at": {
+            "with": "inside_mi",
+            "delay": 0.2
+          },
+          "who": "doopi",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
+          "id": "inside_hm",
+          "at": {
+            "with": "inside_mi",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
+          "id": "inside_m1b",
+          "at": {
+            "after": "inside_mi",
+            "delay": 0.6
+          },
+          "who": "mirchi",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "inside_m2",
+          "at": {
+            "after": "inside_mi",
+            "delay": 2.8
+          },
+          "who": "mirchi",
+          "do": "shrug",
+          "say": "Ha. Me, probably. Ha-CHOO!"
+        },
+        {
+          "id": "inside_m3",
+          "at": {
+            "after": "inside_m2"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "mirchi",
+            "side": "right",
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "inside_ok",
+          "at": {
+            "after": "inside_m3"
+          },
+          "who": "doopi",
+          "do": "stand_up",
+          "say": "Phew. Good catch, Becky!"
+        }
+      ]
+    },
+    {
+      "id": "found",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.5
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "doomi",
+          "x": 500,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "doopi",
+          "x": 400,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "found_s1",
+          "at": 0.3,
+          "who": "dony",
+          "do": "push",
+          "face": "tired"
+        },
+        {
+          "id": "found_e1",
+          "at": 0.6,
+          "macro": "enter",
+          "params": {
+            "who": "doomi",
+            "side": "left",
+            "to": {
+              "x": 1000
+            },
+            "mode": "sneak"
+          }
+        },
+        {
+          "id": "found_e2",
+          "at": {
+            "with": "found_e1",
+            "delay": 0.4
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doopi",
+            "side": "left",
+            "to": {
+              "x": 850
+            },
+            "mode": "sneak"
+          }
+        },
+        {
+          "id": "found_d1",
+          "at": {
+            "after": "found_e1"
+          },
+          "who": "doomi",
+          "do": "talk",
+          "say": "Dony! Psst! It's us!",
+          "bubble": "whisper"
+        },
+        {
+          "id": "found_d2",
+          "at": {
+            "after": "found_d1"
+          },
+          "who": "dony",
+          "do": "gasp",
+          "face": "love",
+          "say": "You came!"
+        },
+        {
+          "id": "found_h1",
+          "at": {
+            "after": "found_d2"
+          },
+          "who": "doomi",
+          "do": "hug",
+          "partner": "dony",
+          "face": "love"
+        },
+        {
+          "id": "found_d3",
+          "at": {
+            "after": "found_h1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Listen! She keeps the Orange crystal in her ladle!",
+                "determined"
+              ],
+              [
+                "dony",
+                "And she can't stand sweet things. One jalebi and she screams!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "I stirred that pot for TWO DAYS. My arms are noodles.",
+                "tired"
+              ],
+              [
+                "doomi",
+                "Brave noodles.",
+                "love"
+              ],
+              [
+                "doomi",
+                "Then we wait for Mooka and Tara, and we do it together.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Wait? The ladle is RIGHT THERE. I'll be quick!",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Doopi, no-",
+                "scared"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "grab",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.7,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1000,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doomi",
+          "x": 850,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": -1,
+          "face": "scared"
+        },
+        {
+          "id": "mirchi",
+          "x": 2950,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "grab_r1",
+          "at": 0.3,
+          "who": "doopi",
+          "do": "sneak",
+          "to": {
+            "x": 2000
+          }
+        },
+        {
+          "id": "grab_e1",
+          "at": {
+            "with": "grab_r1",
+            "delay": 1
+          },
+          "macro": "enter",
+          "params": {
+            "who": "mirchi",
+            "side": "right",
+            "to": {
+              "x": 2300
+            },
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "grab_s1",
+          "at": {
+            "after": "grab_e1"
+          },
+          "who": "mirchi",
+          "do": "point",
+          "target": "doopi",
+          "face": "furious",
+          "say": "INTRUDERS! Ha-CHOO!",
+          "bubble": "shout"
+        },
+        {
+          "id": "grab_g1",
+          "at": {
+            "after": "grab_s1"
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "scared",
+          "interrupt": true
+        },
+        {
+          "id": "grab_d1",
+          "at": {
+            "after": "grab_s1",
+            "delay": 2.3
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mirchi",
+                "The glowing boy, in MY kitchen! How sweet. I can't STAND sweet!",
+                "furious"
+              ],
+              [
+                "doopi",
+                "Give back the Orange crystal and nobody sneezes!",
+                "determined"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "smoke",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.7,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1900,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "mirchi",
+          "x": 2300,
+          "facing": -1,
+          "face": "furious"
+        },
+        {
+          "id": "doomi",
+          "x": 850,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": -1,
+          "face": "scared"
+        },
+        {
+          "id": "mooka",
+          "x": 600,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "tara",
+          "x": 500,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "becky",
+          "x": 450,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "smoke_f",
+          "at": 0.3,
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "doopi",
+              "mirchi"
+            ],
+            "winner": "mirchi",
+            "style": "close",
+            "intensity": "medium",
+            "exchanges": 6,
+            "ko": false
+          }
+        },
+        {
+          "id": "smoke_e1",
+          "at": {
+            "with": "smoke_f",
+            "delay": 4
+          },
+          "macro": "enter",
+          "params": {
+            "who": "mooka",
+            "side": "left",
+            "to": {
+              "x": 1100
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "smoke_e2",
+          "at": {
+            "with": "smoke_e1",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tara",
+            "side": "left",
+            "to": {
+              "x": 950
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "smoke_e3",
+          "at": {
+            "with": "smoke_e1",
+            "delay": 0.2
+          },
+          "macro": "enter",
+          "params": {
+            "who": "becky",
+            "side": "left",
+            "to": {
+              "x": 1350
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "smoke_sm",
+          "at": {
+            "after": "smoke_f"
+          },
+          "who": "mirchi",
+          "do": "use",
+          "face": "smug",
+          "fx": [
+            "chilli_smoke"
+          ],
+          "say": "Taste my SMOKE!",
+          "bubble": "shout"
+        },
+        {
+          "id": "smoke_a1",
+          "at": {
+            "with": "smoke_sm",
+            "delay": 0.8
+          },
+          "who": "doopi",
+          "do": "sneeze",
+          "face": "hurt",
+          "fx": [
+            "tears"
+          ]
+        },
+        {
+          "id": "smoke_a2",
+          "at": {
+            "with": "smoke_sm",
+            "delay": 1.1
+          },
+          "who": "tara",
+          "do": "sneeze",
+          "face": "hurt",
+          "fx": [
+            "tears"
+          ]
+        },
+        {
+          "id": "smoke_a3",
+          "at": {
+            "with": "smoke_sm",
+            "delay": 1.3
+          },
+          "who": "dony",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "smoke_a4",
+          "at": {
+            "with": "smoke_sm",
+            "delay": 1.5
+          },
+          "who": "mooka",
+          "do": "sneeze",
+          "face": "hurt",
+          "fx": [
+            "tears"
+          ],
+          "say": "My eyes are crying!"
+        },
+        {
+          "id": "smoke_a5",
+          "at": {
+            "with": "smoke_sm",
+            "delay": 1.7
+          },
+          "who": "doomi",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "smoke_a6",
+          "at": {
+            "with": "smoke_sm",
+            "delay": 1.9
+          },
+          "who": "becky",
+          "do": "sneeze"
+        },
+        {
+          "id": "smoke_bl",
+          "at": {
+            "after": "smoke_a1"
+          },
+          "who": "doopi",
+          "do": "dizzy",
+          "face": "dizzy",
+          "say": "I can't see!"
+        },
+        {
+          "id": "smoke_m2",
+          "at": {
+            "after": "smoke_sm",
+            "delay": 2.1
+          },
+          "who": "mirchi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Ha-CHOO-ha-ha-ha!"
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "boss",
+        "intensity": 0.8,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 2220,
+          "facing": 1,
+          "face": "dizzy"
+        },
+        {
+          "id": "doomi",
+          "x": 2120,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "mirchi",
+          "x": 2600,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "trap_d1",
+          "at": 0.3,
+          "who": "doomi",
+          "do": "talk",
+          "say": "Doopi! I've got you!",
+          "face": "determined"
+        },
+        {
+          "id": "trap_m1",
+          "at": {
+            "after": "trap_d1"
+          },
+          "who": "mirchi",
+          "do": "walk",
+          "to": {
+            "x": 2700
+          }
+        },
+        {
+          "id": "trap_m2",
+          "at": {
+            "after": "trap_m1"
+          },
+          "who": "mirchi",
+          "do": "pull",
+          "face": "smug",
+          "say": "Bye-bye, little sweets!"
+        },
+        {
+          "id": "trap_lv",
+          "at": {
+            "with": "trap_m2",
+            "delay": 0.4
+          },
+          "who": "world",
+          "do": "set_object",
+          "object": "lever",
+          "params": {
+            "state": "down"
+          }
+        },
+        {
+          "id": "trap_op",
+          "at": {
+            "with": "trap_lv",
+            "delay": 0.2
+          },
+          "who": "world",
+          "do": "set_object",
+          "object": "trap",
+          "params": {
+            "state": "open"
+          }
+        },
+        {
+          "id": "trap_f1",
+          "at": {
+            "with": "trap_op",
+            "delay": 0.1
+          },
+          "who": "doopi",
+          "do": "jump_down",
+          "face": "scared",
+          "interrupt": true
+        },
+        {
+          "id": "trap_f2",
+          "at": {
+            "with": "trap_op",
+            "delay": 0.2
+          },
+          "who": "doomi",
+          "do": "jump_down",
+          "face": "scared",
+          "interrupt": true
+        },
+        {
+          "id": "trap_g1",
+          "at": {
+            "after": "trap_f1"
+          },
+          "who": "doopi",
+          "do": "despawn"
+        },
+        {
+          "id": "trap_g2",
+          "at": {
+            "after": "trap_f2"
+          },
+          "who": "doomi",
+          "do": "despawn"
+        },
+        {
+          "id": "trap_dy",
+          "at": {
+            "with": "trap_op",
+            "delay": 0.5
+          },
+          "who": "dony",
+          "do": "gasp",
+          "face": "cry",
+          "say": "NOOO!",
+          "bubble": "shout"
+        }
+      ]
+    },
+    {
+      "id": "cellar",
+      "location": "cellar",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.4
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.8,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1100,
+          "facing": 1,
+          "face": "dizzy"
+        },
+        {
+          "id": "doomi",
+          "x": 1300,
+          "facing": -1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "cellar_l1",
+          "at": 0.2,
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "dizzy"
+        },
+        {
+          "id": "cellar_u1",
+          "at": {
+            "after": "cellar_l1"
+          },
+          "who": "doopi",
+          "do": "get_up",
+          "face": "tired"
+        },
+        {
+          "id": "cellar_d1",
+          "at": {
+            "after": "cellar_u1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Doopi? Are you okay?",
+                "scared"
+              ],
+              [
+                "doopi",
+                "I should have waited. Like you said. I'm sorry.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "cellar_sh",
+          "at": {
+            "after": "cellar_d1"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "med"
+          }
+        },
+        {
+          "id": "cellar_n1",
+          "at": {
+            "with": "cellar_sh",
+            "delay": 0.5
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then, with a deep rumble, the cellar walls began to slide... closer... and closer."
+          }
+        },
+        {
+          "id": "cellar_sh2",
+          "at": {
+            "with": "cellar_sh",
+            "delay": 2
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "med"
+          }
+        },
+        {
+          "id": "cellar_g1",
+          "at": {
+            "with": "cellar_sh2",
+            "delay": 0.3
+          },
+          "who": "doomi",
+          "do": "gasp",
+          "face": "scared",
+          "say": "The walls are MOVING!",
+          "bubble": "shout"
+        },
+        {
+          "id": "cellar_cu",
+          "at": {
+            "after": "cellar_g1"
+          },
+          "who": "world",
+          "do": "shot",
+          "params": {
+            "mode": "two_shot",
+            "targets": [
+              "doopi",
+              "doomi"
+            ],
+            "dur": 3
+          }
+        },
+        {
+          "id": "cellar_hd",
+          "at": {
+            "with": "cellar_cu"
+          },
+          "who": "doopi",
+          "do": "block",
+          "face": "determined",
+          "say": "Stay behind me!"
+        },
+        {
+          "id": "cellar_end",
+          "at": {
+            "after": "cellar_hd",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3
+  }
+}

@@ -1,18 +1,178 @@
 {
-  "description": "Spoken voices for Doopi & Friends (SPEECH_SPEC 3, 8), used with: node tools/record.mjs scripts/series/doopi/epNN.json --speech tts --voices series/doopi/tts_voices.json. Draft for Sridhar's listening review; the episode scripts are unchanged. Pitch is in semitones after synthesis; rate 1 is normal speed.",
+  "description": "Spoken voices for Doopi & Friends (SPEECH_SPEC 3, 8), written into each version 3 episode's cast by tools/upgrade_v3.mjs (series/doopi/v3_profile.json). Pitch is in semitones after synthesis; rate 1 is normal speed (Ghoom's robot timbre adds the ring-modulated filter).",
   "cast": {
-    "doopi": { "model": "en_US-john-medium", "pitch": 3, "rate": 1.05 },
-    "doomi": { "model": "en_US-kristin-medium", "pitch": 3, "rate": 1.0 },
-    "dony": { "model": "en_US-john-medium", "pitch": 5, "rate": 1.0 },
-    "mooka": { "model": "en_GB-cori-medium", "pitch": 7, "rate": 1.15 },
-    "becky": { "off": true },
-    "motumal": { "model": "en_US-john-medium", "pitch": -4, "rate": 0.9 },
-    "nani": { "model": "en_US-kristin-medium", "pitch": -2, "rate": 0.85 },
-    "chintu": { "model": "en_US-john-medium", "pitch": 6, "rate": 1.1 },
-    "pinky": { "model": "en_GB-cori-medium", "pitch": 5, "rate": 1.05 },
-    "tony": { "model": "en_US-kristin-medium", "pitch": 6, "rate": 1.1 },
-    "kony": { "model": "en_GB-cori-medium", "pitch": 6, "rate": 1.05 },
-    "peepa": { "model": "en_US-john-medium", "pitch": -6, "rate": 0.95 }
+    "doopi": {
+      "model": "en_US-john-medium",
+      "pitch": 3,
+      "rate": 1.05
+    },
+    "doomi": {
+      "model": "en_US-kristin-medium",
+      "pitch": 3,
+      "rate": 1.0
+    },
+    "dony": {
+      "model": "en_US-john-medium",
+      "pitch": 5,
+      "rate": 1.0
+    },
+    "mooka": {
+      "model": "en_GB-cori-medium",
+      "pitch": 7,
+      "rate": 1.15
+    },
+    "becky": {
+      "off": true
+    },
+    "motumal": {
+      "model": "en_US-john-medium",
+      "pitch": -4,
+      "rate": 0.9
+    },
+    "nani": {
+      "model": "en_US-kristin-medium",
+      "pitch": -2,
+      "rate": 0.85
+    },
+    "chintu": {
+      "model": "en_US-john-medium",
+      "pitch": 6,
+      "rate": 1.1
+    },
+    "pinky": {
+      "model": "en_GB-cori-medium",
+      "pitch": 5,
+      "rate": 1.05
+    },
+    "tony": {
+      "model": "en_US-kristin-medium",
+      "pitch": 6,
+      "rate": 1.1
+    },
+    "kony": {
+      "model": "en_GB-cori-medium",
+      "pitch": 6,
+      "rate": 1.05
+    },
+    "peepa": {
+      "model": "en_US-john-medium",
+      "pitch": -6,
+      "rate": 0.95
+    },
+    "tara": {
+      "model": "en_US-kristin-medium",
+      "pitch": 5,
+      "rate": 1.05
+    },
+    "mallu": {
+      "model": "en_US-john-medium",
+      "pitch": -3,
+      "rate": 0.88
+    },
+    "kanta": {
+      "model": "en_US-john-medium",
+      "pitch": -2,
+      "rate": 1.0
+    },
+    "thunda": {
+      "model": "en_US-john-medium",
+      "pitch": -7,
+      "rate": 0.88
+    },
+    "mirchi": {
+      "model": "en_GB-cori-medium",
+      "pitch": 3,
+      "rate": 1.1
+    },
+    "ghoom": {
+      "model": "en_US-john-medium",
+      "pitch": -3,
+      "rate": 0.85
+    },
+    "giant": {
+      "model": "en_US-john-medium",
+      "pitch": -8,
+      "rate": 0.85
+    },
+    "littlep": {
+      "model": "en_US-kristin-medium",
+      "pitch": 7,
+      "rate": 1.0
+    },
+    "shadow": {
+      "model": "en_US-john-medium",
+      "pitch": -5,
+      "rate": 0.95
+    },
+    "sh2": {
+      "model": "en_US-john-medium",
+      "pitch": -4,
+      "rate": 0.95
+    },
+    "sh3": {
+      "model": "en_US-john-medium",
+      "pitch": -4,
+      "rate": 0.95
+    },
+    "sh4": {
+      "model": "en_US-john-medium",
+      "pitch": -4,
+      "rate": 0.95
+    },
+    "shade2": {
+      "model": "en_US-kristin-medium",
+      "pitch": -1,
+      "rate": 0.95
+    },
+    "shade3": {
+      "model": "en_US-john-medium",
+      "pitch": -4,
+      "rate": 0.95
+    },
+    "goon1": {
+      "model": "en_US-john-medium",
+      "pitch": -5,
+      "rate": 0.88
+    },
+    "goon2": {
+      "model": "en_US-john-medium",
+      "pitch": -4,
+      "rate": 0.88
+    },
+    "goon3": {
+      "model": "en_US-john-medium",
+      "pitch": -5,
+      "rate": 0.88
+    },
+    "pirate1": {
+      "model": "en_US-john-medium",
+      "pitch": -4,
+      "rate": 1.0
+    },
+    "pirate2": {
+      "model": "en_GB-cori-medium",
+      "pitch": 4,
+      "rate": 1.05
+    },
+    "fisher": {
+      "model": "en_GB-cori-medium",
+      "pitch": 6,
+      "rate": 1.1
+    },
+    "kid1": {
+      "model": "en_US-kristin-medium",
+      "pitch": 6,
+      "rate": 1.1
+    },
+    "kid2": {
+      "model": "en_GB-cori-medium",
+      "pitch": 7,
+      "rate": 1.1
+    }
   },
-  "narrator": { "model": "en_GB-cori-medium", "rate": 0.8, "pitch": 0 }
+  "narrator": {
+    "model": "en_GB-cori-medium",
+    "rate": 0.8,
+    "pitch": 0
+  }
 }

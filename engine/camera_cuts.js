@@ -39,12 +39,14 @@ export function createCuts(pace) {
 export function cutsEvent(cuts, e, t) {
   if (e.type === "travelCut") cuts.travelCut = true;
   if (e.type === "say" && e.bubble !== "think") {
-    cuts.line = { actor: e.actor, to: e.to ?? null, t0: t, until: t + e.dur };
+    // Someone else still talking (two lines at once): the shot frames both.
+    const prev = cuts.line && t < cuts.line.until - 0.05 && cuts.line.actor !== e.actor ? cuts.line.actor : null;
+    cuts.line = { actor: e.actor, to: e.to ?? null, t0: t, until: t + e.dur, ...(prev ? { also: prev } : {}) };
   }
 }
 
 /** Whether a key's framing is built around a character (a wide shows everyone). */
-const framed = (key, id) => !key || key.mode === "wide" || key.target === id || !!key.targets?.includes(id);
+export const framed = (key, id) => !key || key.mode === "wide" || key.target === id || !!key.targets?.includes(id);
 
 const sameKey = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const keeps = (a, b) => a?.mode === "medium" && b?.mode === "medium" && a.loose === b.loose && !a.favor && !b.favor && a.targets.some((id) => b.targets.includes(id));
@@ -61,6 +63,7 @@ function listenerOf(line, actors) {
 
 /** The shot for a line: a medium two-shot opens an exchange, then over-the-shoulder and close-up alternate. */
 function lineShot(cuts, line, actors, t) {
+  if (line.also) return { mode: "medium", targets: [line.actor, line.also] };
   const listener = listenerOf(line, actors);
   if (!listener) return { mode: "medium", targets: [line.actor] };
   const opening = t - cuts.lastLineEnd > TALK.exchange;
@@ -90,7 +93,9 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
     want = mediumOf(activeIds(actors, t), actors, 0);
     return choose(cuts, want, t, true);
   }
-  if (auto.close && t < auto.close.until) want = { mode: "close_up", target: auto.close.target };
+  // A face close-up gives way to a line by someone else (speakers stay in frame).
+  const closeOk = auto.close && t < auto.close.until && !(line && (line.actor !== auto.close.target || line.also));
+  if (closeOk) want = { mode: "close_up", target: auto.close.target };
   else if (t - auto.t0 < pace.establish && !line) want = { mode: "wide" };
   else if (line) {
     cuts.lastLineEnd = line.until;
@@ -136,3 +141,15 @@ function choose(cuts, wanted, t, force) {
   cuts.key = { ...want, cut };
   return cuts.key;
 }
+
+/**
+ * A script shot gives way to a speaker it leaves out (pace.keepSpeakers, default true; ep review 2026-10-21):
+ * true when a line has just started (within its first frames) whose speaker the shot's key does not frame.
+ * The auto camera then takes over from the shot's key, bringing the speaker in with a quick glide.
+ */
+export function speakerLeftOut(cuts, shotKey, t) {
+  if (!cuts || cuts.pace.keepSpeakers === false) return false;
+  const line = cuts.line && t < cuts.line.until ? cuts.line : null;
+  return !!line && cuts.lineSeen !== line && !framed(shotKey, line.actor);
+}
+

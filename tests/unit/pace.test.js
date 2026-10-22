@@ -252,12 +252,38 @@ test("cutsKey: a speaker outside the shot is brought in at once (quick), even in
   assert.equal(k.quick, true);
 });
 
-test("W_SPEAKER_OFFSCREEN: a line spoken during a script shot of someone else is warned about", () => {
-  const story = pacedStory({ establish: 0 });
+test("W_SPEAKER_OFFSCREEN: a line spoken during a script shot of someone else is warned about (keepSpeakers false)", () => {
+  const story = pacedStory({ establish: 0, keepSpeakers: false });
   const beats = story.scenes[0].beats;
   beats.push({ id: "cu", at: { with: "d", delay: 0.1 }, who: "world", do: "shot", params: { mode: "close_up", target: "kai", dur: 30 } });
   const r = validate(story, catalog);
   assert.ok(r.ok, JSON.stringify(r.errors));
   assert.ok(r.warnings.some((w) => w.code === "W_SPEAKER_OFFSCREEN" && w.message.includes("'mo'")), JSON.stringify(r.warnings.map((w) => w.code)));
   assert.ok(!validate(pacedStory({}), catalog).warnings.some((w) => w.code === "W_SPEAKER_OFFSCREEN"), "the auto camera alone keeps speakers in shot");
+});
+
+test("cutsKey: two lines at once frame both speakers; a face close-up gives way to another speaker", () => {
+  const cuts = createCuts(paceOf({ ...v3, pace: { establish: 0 } }));
+  const actors = [actor("kai", 1000), actor("mo", 1200), actor("zed", 1500)];
+  const auto = { t0: 0, active: new Map(), close: null };
+  const at = (t) => cutsKey(auto, cuts, actors, t, () => []);
+  cutsEvent(cuts, { type: "say", actor: "kai", to: "mo", dur: 2 }, 1);
+  at(1);
+  cutsEvent(cuts, { type: "say", actor: "zed", dur: 1 }, 1.5); // over kai's line
+  assert.deepEqual(at(1.5).targets, ["zed", "kai"]);
+  auto.close = { target: "mo", until: 9 }; // a face change close-up on mo
+  cutsEvent(cuts, { type: "say", actor: "kai", to: "zed", dur: 1 }, 5);
+  const k = at(5);
+  assert.ok(k.target === "kai" || k.targets?.includes("kai"), JSON.stringify(k));
+});
+
+test("a script shot gives way to a speaker it leaves out (pace keepSpeakers), and holds with keepSpeakers false", () => {
+  const story = (keep) => {
+    const s = pacedStory({ establish: 0, ...(keep === false ? { keepSpeakers: false } : {}) });
+    s.scenes[0].beats.push({ id: "cu", at: { with: "d", delay: 0.1 }, who: "world", do: "shot", params: { mode: "close_up", target: "kai", dur: 30 } });
+    return s;
+  };
+  const offscreen = (keep) => validate(story(keep), catalog).warnings.filter((w) => w.code === "W_SPEAKER_OFFSCREEN").length;
+  assert.equal(offscreen(true), 0);
+  assert.ok(offscreen(false) > 0);
 });

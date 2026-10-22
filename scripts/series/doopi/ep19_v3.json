@@ -1,0 +1,1731 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends 19: The Gates of Gloom Castle",
+    "format": "landscape",
+    "seed": 2419,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": {
+        "eyes": "big",
+        "hair": "ponytail",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#3fae5a"
+        }
+      },
+      "voice": {
+        "pitch": 1.45,
+        "speed": 1.1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "prop": "gloom_horn",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mirchi",
+      "name": "Madam Mirchi",
+      "body": "slim",
+      "color": "#ffb08a",
+      "prop": "ladle",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "mouthStyle": "cartoon",
+        "outfit": "robe",
+        "outfitColor": "#e63946",
+        "accessories": {
+          "chilli_hat": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.25,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 3,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tony",
+      "name": "Tony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#e63946",
+        "accessories": {
+          "stub_horns": "#7a6a99"
+        }
+      },
+      "voice": {
+        "pitch": 1.6,
+        "speed": 1.2,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 6,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#3a6fd8",
+        "accessories": {
+          "stub_horns": "#7a6a99"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.1,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "goon1",
+      "name": "Grey Goon",
+      "body": "bulky",
+      "color": "#e8e0f0",
+      "appearance": {
+        "eyes": "sleepy",
+        "outfit": "armor",
+        "outfitColor": "#8a8496"
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -5,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "goon2",
+      "name": "Grey Goon",
+      "body": "bulky",
+      "scale": 0.9,
+      "color": "#e8e0f0",
+      "appearance": {
+        "eyes": "sleepy",
+        "outfit": "armor",
+        "outfitColor": "#8a8496"
+      },
+      "voice": {
+        "pitch": 0.8,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -4,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "goon3",
+      "name": "Grey Goon",
+      "body": "bulky",
+      "scale": 0.95,
+      "color": "#e8e0f0",
+      "appearance": {
+        "eyes": "sleepy",
+        "outfit": "armor",
+        "outfitColor": "#8a8496"
+      },
+      "voice": {
+        "pitch": 0.75,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -5,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "ridge",
+      "theme": "grey_peak",
+      "stageWidth": 3200
+    },
+    {
+      "id": "gate",
+      "theme": "gloom_castle_gate",
+      "stageWidth": 3400,
+      "light": "gloom"
+    },
+    {
+      "id": "hall",
+      "theme": "villain_lair",
+      "stageWidth": 3600,
+      "set": [
+        {
+          "id": "crate1",
+          "object": "crate",
+          "x": 1800
+        }
+      ],
+      "light": "gloom"
+    },
+    {
+      "id": "throne",
+      "theme": "gloom_throne_room",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "throne",
+          "object": "throne",
+          "x": 2300
+        },
+        {
+          "id": "hcage",
+          "object": "hanging_cage",
+          "x": 1500,
+          "state": "closed"
+        },
+        {
+          "id": "ball",
+          "object": "crystal_ball",
+          "x": 2800
+        }
+      ],
+      "light": "gloom"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 19,
+          "title": "The Gates of Gloom Castle",
+          "location": "tokyo_village"
+        }
+      }
+    },
+    {
+      "id": "ridge",
+      "location": "ridge",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.9
+      },
+      "music": {
+        "mood": "heroic",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1200,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tara",
+          "x": 1600,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "mooka",
+          "x": 1000,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 1800,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "ghoom",
+          "x": 600,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "ridge_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "On a ridge above Gloom Castle, the friends made their last plan."
+          }
+        },
+        {
+          "id": "ridge_d1",
+          "at": {
+            "after": "ridge_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Ghoomu, Tara and Dony: the goons at the gate.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Becky and Mooka: find a way inside.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "And I go for Doomi. But nobody goes alone. Ever.",
+                "determined"
+              ],
+              [
+                "tara",
+                "Stick to the plan, stick together.",
+                "smug"
+              ],
+              [
+                "ghoom",
+                "TOGETHER. BEEP!",
+                "happy"
+              ],
+              [
+                "mooka",
+                "And after, we eat ALL the jalebis. That's part of the plan.",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Best part of the plan.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "ridge_fb",
+          "at": {
+            "after": "ridge_d1"
+          },
+          "who": "doopi",
+          "do": "fist_bump",
+          "partner": "dony",
+          "face": "laugh"
+        },
+        {
+          "id": "ridge_fb2",
+          "at": {
+            "with": "ridge_fb"
+          },
+          "who": "tara",
+          "do": "cheer"
+        },
+        {
+          "id": "ridge_fb3",
+          "at": {
+            "with": "ridge_fb",
+            "delay": 0.3
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "location": "gate",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.9,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "ghoom",
+          "x": 900,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tara",
+          "x": 1250,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1100,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "goon1",
+          "x": 1800,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "goon2",
+          "x": 1950,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "goon3",
+          "x": 2600,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "becky",
+          "x": 600,
+          "facing": 1,
+          "face": "angry"
+        }
+      ],
+      "beats": [
+        {
+          "id": "gate_b",
+          "at": 0.3,
+          "macro": "brawl",
+          "params": {
+            "teams": {
+              "a": [
+                "tara",
+                "dony"
+              ],
+              "b": [
+                "goon1",
+                "goon2"
+              ]
+            },
+            "winner": "a",
+            "dur": 24,
+            "intensity": "medium"
+          }
+        },
+        {
+          "id": "gate_bk",
+          "at": {
+            "with": "gate_b",
+            "delay": 5
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 3
+          },
+          "say": "WOOF WOOF!",
+          "bubble": "shout"
+        },
+        {
+          "id": "gate_bk2",
+          "at": {
+            "with": "gate_b",
+            "delay": 14
+          },
+          "who": "becky",
+          "do": "jump"
+        },
+        {
+          "id": "gate_d1",
+          "at": {
+            "after": "gate_b"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "The gate is OPEN!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "GOONS... NAP TIME. BEEP.",
+                "happy"
+              ],
+              [
+                "tara",
+                "Ghoomu, you just stepped on three goons at once!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "OOPS. SORRY. ...NOT SORRY. BEEP!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "gate_g1",
+          "at": {
+            "with": "gate_b",
+            "delay": 6
+          },
+          "who": "ghoom",
+          "do": "walk",
+          "to": {
+            "x": 2300
+          }
+        },
+        {
+          "id": "gate_g2",
+          "at": {
+            "after": "gate_g1"
+          },
+          "who": "ghoom",
+          "do": "ground_pound",
+          "target": "goon3",
+          "outcome": "hit",
+          "approach": "run"
+        },
+        {
+          "id": "gate_g3",
+          "at": {
+            "with": "gate_g2",
+            "delay": 0.4
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "gate_g4",
+          "at": {
+            "after": "gate_g2"
+          },
+          "who": "goon3",
+          "do": "faint"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "watch",
+      "location": "throne",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "boss",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 2600,
+          "facing": 1,
+          "face": "smug"
+        },
+        {
+          "id": "doomi",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad",
+          "z": -300
+        }
+      ],
+      "beats": [
+        {
+          "id": "watch_g",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "peepa",
+            "color": "#9a6cff",
+            "level": 0.5
+          }
+        },
+        {
+          "id": "watch_d",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Crystal ball, show me the gate.",
+                "smug"
+              ],
+              [
+                "peepa",
+                "Hmph. My goons are napping. And that robot... is MINE! Was mine.",
+                "furious"
+              ],
+              [
+                "doomi",
+                "Ghoomu was never yours. Nobody belongs to you, Peepa.",
+                "angry"
+              ],
+              [
+                "peepa",
+                "Tonight, under the Grey Moon, EVERYTHING belongs to me.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "watch_l",
+          "at": {
+            "after": "watch_d"
+          },
+          "who": "peepa",
+          "do": "laugh",
+          "face": "laugh"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "gauntlet",
+      "location": "gate",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.8,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 900,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tony",
+          "x": 1600,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "goon1",
+          "x": 2300,
+          "facing": -1,
+          "face": "angry",
+          "hp": 100
+        },
+        {
+          "id": "kony",
+          "x": 2700,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "mooka",
+          "x": 2400,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "gauntlet_g",
+          "at": 0.3,
+          "macro": "gauntlet",
+          "params": {
+            "hero": "doopi",
+            "opponents": [
+              "tony",
+              "goon1"
+            ],
+            "travel": "run",
+            "per": 3,
+            "intensity": "low"
+          }
+        },
+        {
+          "id": "gauntlet_k1",
+          "at": {
+            "with": "gauntlet_g",
+            "delay": 4
+          },
+          "who": "kony",
+          "do": "walk",
+          "to": {
+            "near": "mooka",
+            "gap": 130
+          }
+        },
+        {
+          "id": "gauntlet_d1",
+          "at": {
+            "after": "gauntlet_k1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Kony! Are you going to fight me?",
+                "scared"
+              ],
+              [
+                "kony",
+                "...No. I won't fight Mooka. Not ever.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "gauntlet_t1",
+          "at": {
+            "after": "gauntlet_g"
+          },
+          "who": "tony",
+          "do": "get_up",
+          "face": "scared"
+        },
+        {
+          "id": "gauntlet_t2",
+          "at": {
+            "after": "gauntlet_t1"
+          },
+          "who": "tony",
+          "do": "talk",
+          "face": "scared",
+          "say": "Kony! Inside! NOW!",
+          "bubble": "shout"
+        },
+        {
+          "id": "gauntlet_x1",
+          "at": {
+            "after": "gauntlet_t2"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "tony",
+            "side": "right",
+            "mode": "run"
+          }
+        },
+        {
+          "id": "gauntlet_x2",
+          "at": {
+            "with": "gauntlet_x1",
+            "delay": 0.4
+          },
+          "macro": "exit",
+          "params": {
+            "who": "kony",
+            "side": "right",
+            "mode": "run"
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "inside",
+      "location": "hall",
+      "time": "night",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.5
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "tony",
+          "x": 1500,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "kony",
+          "x": 1800,
+          "facing": -1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "inside_d",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tony",
+                "Why didn't you fight, Kony? We're Peepa's boys!",
+                "angry"
+              ],
+              [
+                "kony",
+                "Because Mooka gave me a jalebi. And a friend. Nobody ever gave me a friend.",
+                "sad"
+              ],
+              [
+                "tony",
+                "...",
+                "sad"
+              ],
+              [
+                "kony",
+                "Peepa only ever gives us orders. And yelling.",
+                "sad"
+              ],
+              [
+                "tony",
+                "...He does yell a lot.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "inside_s",
+          "at": {
+            "after": "inside_d"
+          },
+          "who": "tony",
+          "do": "sigh",
+          "face": "sad"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "traps",
+      "location": "hall",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.8,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "becky",
+          "x": 600,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "goon2",
+          "x": 300,
+          "facing": 1,
+          "face": "angry",
+          "hp": 100
+        },
+        {
+          "id": "doopi",
+          "x": 400,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "traps_n1",
+          "at": 0.3,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Inside, the castle halls were full of traps. Becky went first."
+          }
+        },
+        {
+          "id": "traps_ch",
+          "at": {
+            "after": "traps_n1"
+          },
+          "macro": "chase",
+          "params": {
+            "runner": "becky",
+            "chasers": [
+              "goon2"
+            ],
+            "dur": 8,
+            "obstacles": 2
+          }
+        },
+        {
+          "id": "traps_sh",
+          "at": {
+            "with": "traps_ch",
+            "delay": 3
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "small"
+          }
+        },
+        {
+          "id": "traps_tr",
+          "at": {
+            "after": "traps_ch"
+          },
+          "who": "goon2",
+          "do": "knockdown",
+          "face": "dizzy",
+          "say": "Ooof! The floor moved!"
+        },
+        {
+          "id": "traps_e1",
+          "at": {
+            "after": "traps_tr"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doopi",
+            "side": "left",
+            "to": {
+              "x": 1800
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "traps_bs",
+          "at": {
+            "after": "traps_e1"
+          },
+          "who": "becky",
+          "do": "spawn"
+        },
+        {
+          "id": "traps_d1",
+          "at": {
+            "after": "traps_bs"
+          },
+          "who": "doopi",
+          "do": "pet_dog",
+          "partner": "becky",
+          "say": "Best trap finder ever.",
+          "approach": "run"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "mirchi",
+      "location": "hall",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.8,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "mirchi",
+          "x": 2200,
+          "facing": -1,
+          "hidden": true
+        },
+        {
+          "id": "dony",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tara",
+          "x": 1100,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 900,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "mirchi_sp",
+          "at": 0.3,
+          "who": "mirchi",
+          "do": "spawn",
+          "fx": [
+            "chilli_smoke"
+          ]
+        },
+        {
+          "id": "mirchi_d1",
+          "at": {
+            "after": "mirchi_sp"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mirchi",
+                "Remember me, sweeties? Ha-CHOO-ha-ha!",
+                "smug"
+              ],
+              [
+                "dony",
+                "Doopi, go! Tara and I have this one.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "You sure?",
+                "scared"
+              ],
+              [
+                "tara",
+                "Go get your girl, hero!",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "mirchi_go",
+          "at": {
+            "after": "mirchi_d1"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "doopi",
+            "side": "right",
+            "mode": "run"
+          }
+        },
+        {
+          "id": "mirchi_f",
+          "at": {
+            "after": "mirchi_go"
+          },
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "dony",
+              "mirchi"
+            ],
+            "winner": "dony",
+            "style": "comeback",
+            "intensity": "medium",
+            "exchanges": 6,
+            "ko": false
+          }
+        },
+        {
+          "id": "mirchi_t1",
+          "at": {
+            "with": "mirchi_f",
+            "delay": 4
+          },
+          "who": "tara",
+          "do": "cheer",
+          "say": "Go, Dony!"
+        },
+        {
+          "id": "mirchi_fl",
+          "at": {
+            "after": "mirchi_f"
+          },
+          "who": "mirchi",
+          "do": "flee",
+          "say": "Not AGAIN! Ha-CHOOO!"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "throne",
+      "location": "throne",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "boss",
+        "intensity": 0.7,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 2300,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "doomi",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad",
+          "z": -300
+        },
+        {
+          "id": "doopi",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "becky",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "mooka",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "throne_s1",
+          "at": 0,
+          "who": "peepa",
+          "do": "sit",
+          "object": "throne"
+        },
+        {
+          "id": "throne_g1",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "peepa",
+            "color": "#9a6cff",
+            "level": 0.5
+          }
+        },
+        {
+          "id": "throne_e1",
+          "at": 0.6,
+          "macro": "enter",
+          "params": {
+            "who": "doopi",
+            "side": "left",
+            "to": {
+              "x": 900
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "throne_e2",
+          "at": 1,
+          "macro": "enter",
+          "params": {
+            "who": "becky",
+            "side": "left",
+            "to": {
+              "x": 1150
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "throne_e3",
+          "at": 1.3,
+          "macro": "enter",
+          "params": {
+            "who": "mooka",
+            "side": "left",
+            "to": {
+              "x": 1050
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "throne_gl",
+          "at": {
+            "after": "throne_e1"
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "color": "#ffd23f",
+            "level": 0.6,
+            "dur": 1
+          }
+        },
+        {
+          "id": "throne_d1",
+          "at": {
+            "after": "throne_e1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "DOOPI! You came!",
+                "love"
+              ],
+              [
+                "doopi",
+                "Of course I came. I'm only a LITTLE late.",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Six colours on that little bracelet. How generous of you to bring them to me.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Let her go, Peepa.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "Or what? You'll trip on me?",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Maybe. I trip a lot. But I always get back up.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "Then let's see how many times you can get up.",
+                "smug"
+              ]
+            ]
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "freeze",
+      "location": "throne",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.9,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 2100,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "doomi",
+          "x": 1500,
+          "facing": 1,
+          "face": "scared",
+          "z": -300
+        },
+        {
+          "id": "doopi",
+          "x": 900,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 1150,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "mooka",
+          "x": 1050,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "freeze_g1",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "peepa",
+            "color": "#9a6cff",
+            "level": 0.5
+          }
+        },
+        {
+          "id": "freeze_r1",
+          "at": 0.3,
+          "who": "becky",
+          "do": "run",
+          "to": {
+            "x": 1700
+          }
+        },
+        {
+          "id": "freeze_r2",
+          "at": 0.4,
+          "who": "mooka",
+          "do": "run",
+          "to": {
+            "x": 1600
+          },
+          "say": "We'll get the cage!",
+          "bubble": "shout"
+        },
+        {
+          "id": "freeze_u1",
+          "at": 1.2,
+          "who": "peepa",
+          "do": "use",
+          "face": "furious",
+          "say": "GLOOOOM!",
+          "bubble": "shout"
+        },
+        {
+          "id": "freeze_j1",
+          "at": {
+            "with": "freeze_u1",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "jump_joy",
+          "interrupt": true
+        },
+        {
+          "id": "freeze_j2",
+          "at": {
+            "with": "freeze_u1",
+            "delay": 0.3
+          },
+          "who": "becky",
+          "do": "jump",
+          "interrupt": true
+        },
+        {
+          "id": "freeze_p1",
+          "at": {
+            "with": "freeze_u1",
+            "delay": 0.6
+          },
+          "who": "mooka",
+          "do": "petrify",
+          "interrupt": true
+        },
+        {
+          "id": "freeze_p2",
+          "at": {
+            "with": "freeze_u1",
+            "delay": 0.6
+          },
+          "who": "becky",
+          "do": "petrify",
+          "interrupt": true
+        },
+        {
+          "id": "freeze_d1",
+          "at": {
+            "with": "freeze_p1",
+            "delay": 0.4
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "cry",
+          "say": "MOOKA! BECKY!",
+          "bubble": "shout"
+        },
+        {
+          "id": "freeze_d2",
+          "at": {
+            "with": "freeze_p1",
+            "delay": 0.6
+          },
+          "who": "doomi",
+          "do": "cry",
+          "face": "cry"
+        },
+        {
+          "id": "freeze_pl",
+          "at": {
+            "after": "freeze_d1"
+          },
+          "who": "peepa",
+          "do": "laugh",
+          "face": "smug",
+          "say": "Who's next, little hero?",
+          "bubble": "shout"
+        },
+        {
+          "id": "freeze_cu",
+          "at": {
+            "with": "freeze_pl"
+          },
+          "who": "world",
+          "do": "shot",
+          "params": {
+            "mode": "close_up",
+            "target": "peepa",
+            "dur": 2.5
+          }
+        },
+        {
+          "id": "freeze_end",
+          "at": {
+            "after": "freeze_pl",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3
+  }
+}

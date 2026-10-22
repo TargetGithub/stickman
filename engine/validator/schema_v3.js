@@ -163,6 +163,7 @@ const PACE_SCHEMA = { type: "object", additionalProperties: false, description: 
   establish: pn(0, 60, "Seconds of the opening wide shot (default 2); a narrated scene can stay wide throughout."),
   minCut: pn(0.5, 10, "Fewest seconds between two auto camera cuts (default shot[0] / 2)."),
   glide: pn(0, 3, "Seconds the paced camera eases from one framing to the next instead of cutting (default 0: hard cuts; scene changes, cut-to-arrival and script cuts stay cuts)."),
+  keepSpeakers: { type: "boolean", description: "A script shot that leaves out a character who starts speaking gives way to a shot of them (default true)." },
   reactions: { type: "boolean", description: "Cut to the listener's face when a line runs past shot[1] (default true)." },
   captions: { enum: ["auto", "bubbles", "subtitles"], description: "auto (default): subtitles when meta.speech is tts, else bubbles." },
   bubble: pn(0.7, 2.5, "Bubble and text scale, times look.bubble (default 1.5)."),

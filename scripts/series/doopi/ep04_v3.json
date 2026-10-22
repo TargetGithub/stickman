@@ -1,0 +1,1865 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends 4: Thunda's Challenge",
+    "format": "landscape",
+    "seed": 2404,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 0
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ffcc00"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "motumal",
+      "name": "Mayor Motumal",
+      "body": "bulky",
+      "color": "#ffb347",
+      "prop": "jalebi_plate",
+      "appearance": {
+        "outfit": "coat",
+        "outfitColor": "#ff9f1c",
+        "accessories": {
+          "moustache": "#2a1a14",
+          "turban": "#f6c445"
+        }
+      },
+      "voice": {
+        "pitch": 0.75,
+        "speed": 0.9,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -4,
+          "rate": 0.9
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "thunda",
+      "name": "Thunda",
+      "body": "bulky",
+      "scale": 1.5,
+      "color": "#ff9f80",
+      "appearance": {
+        "outfit": "armor",
+        "outfitColor": "#7a7a86",
+        "accessories": {
+          "moustache": "#2a1a14"
+        }
+      },
+      "voice": {
+        "pitch": 0.6,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -7,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "square",
+      "theme": "tokyo_village",
+      "stageWidth": 3400,
+      "set": [
+        {
+          "id": "cart1",
+          "object": "cart",
+          "x": 2300,
+          "z": -300
+        },
+        {
+          "id": "hay",
+          "object": "haystack",
+          "x": 600,
+          "z": -300
+        },
+        {
+          "id": "crate1",
+          "object": "crate",
+          "x": 1700,
+          "z": -300
+        }
+      ]
+    },
+    {
+      "id": "camp",
+      "theme": "city_park",
+      "stageWidth": 2600,
+      "set": [
+        {
+          "id": "tree",
+          "object": "tree_big",
+          "x": 2100,
+          "z": -300
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 4,
+          "title": "Thunda's Challenge",
+          "location": "tokyo_village"
+        }
+      }
+    },
+    {
+      "id": "morning",
+      "location": "square",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "calm",
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1600,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "morning_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Thirty-eight nights until the Grey Moon. Doopi had trained, and trained, and trained."
+          }
+        },
+        {
+          "id": "morning_s1",
+          "at": 1.2,
+          "who": "doopi",
+          "do": "dance_b",
+          "face": "determined"
+        },
+        {
+          "id": "morning_d1",
+          "at": {
+            "after": "morning_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Show me the bracelet again!",
+                "love"
+              ],
+              [
+                "doopi",
+                "Seven empty stones. One for each colour.",
+                "happy"
+              ],
+              [
+                "dony",
+                "And one for each bad guy we have to beat...",
+                "scared"
+              ],
+              [
+                "doopi",
+                "We beat them one at a time, Dony. Like Nani says.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "morning_sh",
+          "at": {
+            "after": "morning_d1"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "morning_g",
+          "at": {
+            "with": "morning_sh"
+          },
+          "who": "dony",
+          "do": "gasp",
+          "face": "scared",
+          "say": "What was THAT?"
+        },
+        {
+          "id": "morning_b",
+          "at": {
+            "with": "morning_sh",
+            "delay": 0.3
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "bully",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 4,
+          "behavior": "flee",
+          "layer": "back",
+          "from": 900,
+          "to": 2800
+        }
+      ],
+      "cast": [
+        {
+          "id": "thunda",
+          "x": 2000,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "motumal",
+          "x": 1500,
+          "facing": 1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "bully_gl",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "thunda",
+            "color": "#ff3b3b",
+            "level": 0.4
+          }
+        },
+        {
+          "id": "bully_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Thunda had come for the boy who glows. And he was hungry."
+          }
+        },
+        {
+          "id": "bully_f1",
+          "at": 1,
+          "who": "thunda",
+          "do": "flex",
+          "face": "smug"
+        },
+        {
+          "id": "bully_p1",
+          "at": {
+            "after": "bully_f1"
+          },
+          "who": "thunda",
+          "do": "push",
+          "say": "Whose little cart is this?"
+        },
+        {
+          "id": "bully_m1",
+          "at": {
+            "after": "bully_p1"
+          },
+          "who": "motumal",
+          "do": "cower",
+          "say": "The village cart, sir! Please!"
+        },
+        {
+          "id": "bully_w1",
+          "at": {
+            "after": "bully_m1"
+          },
+          "who": "thunda",
+          "do": "walk",
+          "to": {
+            "near": "motumal",
+            "gap": 130
+          }
+        },
+        {
+          "id": "bully_g1",
+          "at": {
+            "after": "bully_w1"
+          },
+          "who": "motumal",
+          "do": "give",
+          "partner": "thunda",
+          "face": "scared",
+          "say": "T-take my lunch!"
+        },
+        {
+          "id": "bully_e1",
+          "at": {
+            "after": "bully_g1"
+          },
+          "who": "thunda",
+          "do": "eat",
+          "face": "happy"
+        },
+        {
+          "id": "bully_e2",
+          "at": {
+            "after": "bully_e1"
+          },
+          "who": "thunda",
+          "do": "eat",
+          "face": "happy",
+          "say": "Mmm. Jalebi. Small."
+        },
+        {
+          "id": "bully_ro",
+          "at": {
+            "after": "bully_e2",
+            "delay": 2.3
+          },
+          "who": "thunda",
+          "do": "taunt",
+          "face": "furious",
+          "say": "WHERE IS THE GLOWING BOY?",
+          "bubble": "shout"
+        },
+        {
+          "id": "bully_mr",
+          "at": {
+            "with": "bully_ro",
+            "delay": 0.5
+          },
+          "macro": "exit",
+          "params": {
+            "who": "motumal",
+            "side": "left",
+            "mode": "run"
+          }
+        }
+      ]
+    },
+    {
+      "id": "round1",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.7,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "thunda",
+          "x": 1600,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "doopi",
+          "x": 500,
+          "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "dony",
+          "x": 400,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "round1_in",
+          "at": 0.3,
+          "macro": "enter",
+          "params": {
+            "who": "doopi",
+            "side": "left",
+            "to": {
+              "x": 1150
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "round1_d1",
+          "at": {
+            "after": "round1_in"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "I'm right here! Leave the Mayor alone!",
+                "determined"
+              ],
+              [
+                "thunda",
+                "YOU? You're the size of my sandwich.",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Then come and eat me, big guy!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "round1_f",
+          "at": {
+            "after": "round1_d1"
+          },
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "doopi",
+              "thunda"
+            ],
+            "winner": "thunda",
+            "style": "dominant",
+            "intensity": "medium",
+            "exchanges": 8,
+            "ko": false
+          }
+        },
+        {
+          "id": "round1_th",
+          "at": {
+            "after": "round1_f"
+          },
+          "who": "thunda",
+          "do": "haymaker",
+          "target": "doopi",
+          "outcome": "hit"
+        },
+        {
+          "id": "round1_fl",
+          "at": {
+            "with": "round1_th",
+            "delay": 0.25
+          },
+          "who": "doopi",
+          "do": "hit_launch",
+          "interrupt": true,
+          "face": "hurt"
+        },
+        {
+          "id": "round1_dn",
+          "at": {
+            "after": "round1_fl"
+          },
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "dizzy"
+        },
+        {
+          "id": "round1_t1",
+          "at": {
+            "after": "round1_dn"
+          },
+          "who": "thunda",
+          "do": "laugh",
+          "say": "Come back when you're grown!"
+        },
+        {
+          "id": "round1_t2",
+          "at": {
+            "after": "round1_t1"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "thunda",
+            "side": "right",
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "round1_dy",
+          "at": {
+            "with": "round1_t2",
+            "delay": 1
+          },
+          "macro": "enter",
+          "params": {
+            "who": "dony",
+            "side": "left",
+            "to": {
+              "x": 800
+            },
+            "mode": "run"
+          }
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 800,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "dony",
+          "x": 1050,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1250,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 2200,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "plan_s1",
+          "at": 0.2,
+          "who": "doopi",
+          "do": "sit"
+        },
+        {
+          "id": "plan_d1",
+          "at": 0.6,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "He's too strong. I'm just a clumsy kid with a headband.",
+                "cry"
+              ],
+              [
+                "dony",
+                "Hey. You're MY clumsy kid with a headband.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "plan_cf",
+          "at": {
+            "after": "plan_d1"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "comfort",
+            "with": [
+              "dony",
+              "doopi"
+            ],
+            "dur": 4
+          }
+        },
+        {
+          "id": "plan_in",
+          "at": {
+            "with": "plan_cf",
+            "delay": 2
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doomi",
+            "side": "right",
+            "to": {
+              "x": 1500
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "plan_d2",
+          "at": {
+            "after": "plan_cf"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Boys! Stop crying. I have a plan!",
+                "determined"
+              ],
+              [
+                "doomi",
+                "Step one: Becky steals Thunda's lunch. He chases her.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Step two: I tie my rope across the path. He trips.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Step three: Doopi does the Jalebi Spin. Thunda gets dizzy.",
+                "happy"
+              ],
+              [
+                "dony",
+                "And step four?",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Step four: we win. Together.",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "plan_up",
+          "at": {
+            "after": "plan_d2"
+          },
+          "who": "doopi",
+          "do": "stand_up",
+          "face": "determined"
+        },
+        {
+          "id": "plan_b1",
+          "at": {
+            "with": "plan_up"
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          },
+          "face": "happy",
+          "say": "Woof!"
+        },
+        {
+          "id": "plan_hf",
+          "at": {
+            "after": "plan_up"
+          },
+          "who": "doopi",
+          "do": "high_five",
+          "partner": "dony",
+          "face": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "camp",
+      "location": "camp",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "thunda",
+          "x": 1600,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 600,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "camp_g",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "thunda",
+            "color": "#ff3b3b",
+            "level": 0.4
+          }
+        },
+        {
+          "id": "camp_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "At the edge of the fields, Thunda made his camp."
+          }
+        },
+        {
+          "id": "camp_f1",
+          "at": 1,
+          "who": "thunda",
+          "do": "flex",
+          "face": "smug",
+          "say": "Who is the strongest? THUNDA!"
+        },
+        {
+          "id": "camp_f2",
+          "at": {
+            "after": "camp_f1",
+            "delay": 2.9
+          },
+          "who": "thunda",
+          "do": "victory",
+          "face": "laugh",
+          "say": "Who is the handsomest? THUNDA!"
+        },
+        {
+          "id": "camp_f3",
+          "at": {
+            "after": "camp_f2",
+            "delay": 0.8
+          },
+          "who": "thunda",
+          "do": "sit"
+        },
+        {
+          "id": "camp_b0",
+          "at": {
+            "with": "camp_f3"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "becky",
+            "side": "left",
+            "to": {
+              "x": 1050
+            },
+            "mode": "sneak"
+          }
+        },
+        {
+          "id": "camp_f4",
+          "at": {
+            "after": "camp_f3"
+          },
+          "who": "thunda",
+          "do": "talk",
+          "face": "tired",
+          "say": "Who needs a nap? ...Thunda."
+        },
+        {
+          "id": "camp_z",
+          "at": {
+            "after": "camp_f4"
+          },
+          "who": "thunda",
+          "do": "sleep",
+          "fx": [
+            "zzz"
+          ]
+        },
+        {
+          "id": "camp_b1",
+          "at": {
+            "after": "camp_b0"
+          },
+          "who": "becky",
+          "do": "tilt_head",
+          "face": "happy"
+        },
+        {
+          "id": "camp_b2",
+          "at": {
+            "after": "camp_b1",
+            "delay": 1.2
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "smug"
+        },
+        {
+          "id": "camp_b3",
+          "at": {
+            "after": "camp_b2"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "becky",
+            "side": "left",
+            "mode": "run"
+          }
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.8,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "thunda",
+          "x": 2600,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 2350,
+          "facing": 1,
+          "face": "smug"
+        },
+        {
+          "id": "doomi",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 1000,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 850,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "trap_sp",
+          "at": 0,
+          "who": "world",
+          "do": "spawn_object",
+          "params": {
+            "kind": "jalebi_plate",
+            "id": "lunch",
+            "x": 2450
+          }
+        },
+        {
+          "id": "trap_t1",
+          "at": 0.4,
+          "who": "thunda",
+          "do": "stretch",
+          "say": "Time for lunch number two."
+        },
+        {
+          "id": "trap_b1",
+          "at": {
+            "after": "trap_t1"
+          },
+          "who": "becky",
+          "do": "pick_prop",
+          "face": "smug"
+        },
+        {
+          "id": "trap_t2",
+          "at": {
+            "after": "trap_b1",
+            "delay": 2
+          },
+          "who": "thunda",
+          "do": "gasp",
+          "face": "furious",
+          "say": "HEY! My jalebis!",
+          "bubble": "shout"
+        },
+        {
+          "id": "trap_ch",
+          "at": {
+            "after": "trap_t2"
+          },
+          "macro": "chase",
+          "params": {
+            "runner": "becky",
+            "chasers": [
+              "thunda"
+            ],
+            "dur": 8,
+            "obstacles": 2
+          }
+        },
+        {
+          "id": "trap_r1",
+          "at": {
+            "with": "trap_ch",
+            "delay": 1
+          },
+          "who": "doomi",
+          "do": "use",
+          "say": "Rope ready!"
+        },
+        {
+          "id": "trap_tr",
+          "at": {
+            "after": "trap_ch"
+          },
+          "who": "thunda",
+          "do": "knockdown",
+          "face": "dizzy",
+          "say": "WHOAAA!",
+          "bubble": "shout"
+        },
+        {
+          "id": "trap_sh",
+          "at": {
+            "with": "trap_tr",
+            "delay": 0.5
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "trap_j1",
+          "at": {
+            "with": "trap_tr",
+            "delay": 0.6
+          },
+          "who": "dony",
+          "do": "jump_joy",
+          "face": "laugh",
+          "say": "It worked!"
+        },
+        {
+          "id": "trap_up",
+          "at": {
+            "after": "trap_tr",
+            "delay": 0.6
+          },
+          "who": "thunda",
+          "do": "get_up",
+          "face": "furious"
+        },
+        {
+          "id": "trap_d1",
+          "at": {
+            "after": "trap_up"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "thunda",
+                "Tricks! Little tricks! I will crush you all!",
+                "furious"
+              ],
+              [
+                "doopi",
+                "Not alone, you won't. Round two, Thunda!",
+                "determined"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "round2",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "heroic",
+        "intensity": 0.9,
+        "volume": 0.34
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "thunda",
+          "x": 1800,
+          "facing": -1,
+          "face": "furious"
+        },
+        {
+          "id": "doomi",
+          "x": 700,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 550,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 2600,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "round2_f",
+          "at": 0.3,
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "doopi",
+              "thunda"
+            ],
+            "winner": "doopi",
+            "intensity": "high",
+            "ko": false,
+            "phases": [
+              {
+                "exchanges": 5,
+                "style": "dominant"
+              },
+              {
+                "exchanges": 5,
+                "style": "comeback",
+                "chargeUp": true
+              }
+            ]
+          }
+        },
+        {
+          "id": "round2_c1",
+          "at": {
+            "with": "round2_f",
+            "delay": 3
+          },
+          "who": "dony",
+          "do": "cheer",
+          "say": "You can do it!"
+        },
+        {
+          "id": "round2_c2",
+          "at": {
+            "with": "round2_f",
+            "delay": 9
+          },
+          "who": "doomi",
+          "do": "clap",
+          "say": "Spin, Doopi! SPIN!"
+        },
+        {
+          "id": "round2_sp",
+          "at": {
+            "after": "round2_f"
+          },
+          "who": "doopi",
+          "do": "spinning_kick",
+          "target": "thunda",
+          "outcome": "hit",
+          "face": "determined",
+          "say": "JALEBI SPIN!",
+          "bubble": "shout",
+          "approach": "run"
+        },
+        {
+          "id": "round2_dz",
+          "at": {
+            "after": "round2_sp"
+          },
+          "who": "thunda",
+          "do": "dizzy",
+          "face": "dizzy"
+        },
+        {
+          "id": "round2_cp",
+          "at": {
+            "after": "round2_dz"
+          },
+          "who": "thunda",
+          "do": "captured",
+          "params": {
+            "cage": 0
+          }
+        },
+        {
+          "id": "round2_hl",
+          "at": {
+            "with": "round2_cp",
+            "delay": 0.2
+          },
+          "who": "doomi",
+          "do": "toss",
+          "face": "laugh",
+          "say": "Tied up! Like a jalebi!"
+        },
+        {
+          "id": "round2_t1",
+          "at": {
+            "with": "round2_red_sp",
+            "delay": 0.2
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Something red and shiny rolled out of Thunda's belt."
+          }
+        },
+        {
+          "id": "round2_red_sp",
+          "at": {
+            "after": "round2_cp",
+            "delay": 1.2
+          },
+          "who": "world",
+          "do": "spawn_object",
+          "params": {
+            "kind": "rainbow_crystal",
+            "id": "red_gem",
+            "x": 1600,
+            "state": "red"
+          }
+        },
+        {
+          "id": "round2_red_g1",
+          "at": {
+            "with": "round2_red_sp"
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "thunda",
+            "level": 0,
+            "dur": 0.6
+          }
+        },
+        {
+          "id": "round2_wk",
+          "at": {
+            "after": "round2_red_sp",
+            "delay": 0.5
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1530
+          }
+        },
+        {
+          "id": "round2_red_pk",
+          "at": {
+            "after": "round2_wk"
+          },
+          "who": "doopi",
+          "do": "pick_prop",
+          "face": "surprised"
+        },
+        {
+          "id": "round2_red_bl",
+          "at": {
+            "after": "round2_red_pk"
+          },
+          "who": "world",
+          "do": "set_appearance",
+          "params": {
+            "who": "doopi",
+            "slots": 1
+          }
+        },
+        {
+          "id": "round2_red_gr",
+          "at": {
+            "with": "round2_red_bl"
+          },
+          "who": "world",
+          "do": "set_grade",
+          "params": {
+            "saturation": 0.55,
+            "dur": 2.5,
+            "from": "doopi"
+          }
+        },
+        {
+          "id": "round2_red_n1",
+          "at": {
+            "with": "round2_red_gr",
+            "delay": 0.6
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The Red crystal jumped into the bracelet. And red came home to Tokyo."
+          }
+        },
+        {
+          "id": "round2_red_u1",
+          "at": {
+            "after": "round2_red_bl",
+            "delay": 0.4
+          },
+          "who": "doopi",
+          "do": "use",
+          "face": "laugh",
+          "say": "RED! Red is back!",
+          "bubble": "shout"
+        },
+        {
+          "id": "round2_gl",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "thunda",
+            "color": "#ff3b3b",
+            "level": 0.4
+          }
+        }
+      ]
+    },
+    {
+      "id": "party",
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.6,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "motumal",
+          "x": 2300,
+          "facing": -1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "party_h1",
+          "at": 0.3,
+          "who": "dony",
+          "do": "high_five",
+          "partner": "doopi",
+          "face": "laugh"
+        },
+        {
+          "id": "party_mm",
+          "at": 0.8,
+          "macro": "enter",
+          "params": {
+            "who": "motumal",
+            "side": "right",
+            "to": {
+              "x": 2050
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "party_m1",
+          "at": {
+            "after": "party_mm"
+          },
+          "who": "motumal",
+          "do": "cheer",
+          "say": "Our hero! Our red-bringing hero!"
+        },
+        {
+          "id": "party_d1",
+          "at": {
+            "after": "party_h1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Step four: we win. Told you.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Your plan was amazing, Doomi.",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "party_hg",
+          "at": {
+            "after": "party_d1"
+          },
+          "who": "doomi",
+          "do": "hug",
+          "partner": "doopi",
+          "face": "love",
+          "fx": [
+            "heart"
+          ]
+        },
+        {
+          "id": "party_fl",
+          "at": {
+            "after": "party_hg"
+          },
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "love",
+          "fx": [
+            "heart"
+          ]
+        },
+        {
+          "id": "party_la",
+          "at": {
+            "with": "party_fl",
+            "delay": 0.5
+          },
+          "who": "dony",
+          "do": "laugh",
+          "say": "Down goes the hero!"
+        },
+        {
+          "id": "party_b1",
+          "at": {
+            "with": "party_fl",
+            "delay": 0.3
+          },
+          "who": "becky",
+          "do": "lick",
+          "partner": "doopi"
+        },
+        {
+          "id": "party_up",
+          "at": {
+            "after": "party_b1"
+          },
+          "who": "doopi",
+          "do": "get_up",
+          "face": "laugh"
+        },
+        {
+          "id": "party_dn",
+          "at": {
+            "after": "party_up"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "dance_together",
+            "with": [
+              "doopi",
+              "doomi",
+              "dony",
+              "motumal"
+            ],
+            "dur": 8
+          }
+        },
+        {
+          "id": "party_d2",
+          "at": {
+            "after": "party_dn"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "motumal",
+                "Tonight, Tokyo has its red again!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "One colour home. Six to go.",
+                "determined"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "vision",
+      "location": "square",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "boss",
+        "intensity": 0.6,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy",
+          "prop": "rainbow_crystal"
+        },
+        {
+          "id": "doomi",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1900,
+          "facing": -1,
+          "hidden": true,
+          "z": -300
+        }
+      ],
+      "beats": [
+        {
+          "id": "vision_u1",
+          "at": 0.4,
+          "who": "doopi",
+          "do": "use",
+          "face": "surprised"
+        },
+        {
+          "id": "vision_fl",
+          "at": {
+            "with": "vision_u1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "flash",
+          "params": {
+            "color": "#ff3b3b",
+            "dur": 0.3
+          }
+        },
+        {
+          "id": "vision_sp",
+          "at": {
+            "with": "vision_fl"
+          },
+          "who": "peepa",
+          "do": "spawn"
+        },
+        {
+          "id": "vision_pg",
+          "at": {
+            "with": "vision_sp"
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "peepa",
+            "color": "#9a6cff",
+            "level": 0.8,
+            "dur": 0.8
+          }
+        },
+        {
+          "id": "vision_d1",
+          "at": {
+            "after": "vision_sp"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Peepa?! In the crystal?",
+                "scared"
+              ],
+              [
+                "peepa",
+                "Enjoy your little red, boy.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "vision_lk",
+          "at": {
+            "after": "vision_d1"
+          },
+          "who": "peepa",
+          "do": "point",
+          "target": "doomi",
+          "face": "smug",
+          "say": "I'm coming for what you love most."
+        },
+        {
+          "id": "vision_cu",
+          "at": {
+            "with": "vision_lk"
+          },
+          "who": "world",
+          "do": "shot",
+          "params": {
+            "mode": "close_up",
+            "target": "doomi",
+            "dur": 2.5
+          }
+        },
+        {
+          "id": "vision_dg",
+          "at": {
+            "with": "vision_lk",
+            "delay": 0.8
+          },
+          "who": "doomi",
+          "do": "gasp",
+          "face": "scared"
+        },
+        {
+          "id": "vision_ds",
+          "at": {
+            "after": "vision_lk"
+          },
+          "who": "peepa",
+          "do": "despawn"
+        },
+        {
+          "id": "vision_end",
+          "at": {
+            "after": "vision_ds",
+            "delay": 0.6
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3
+  }
+}
