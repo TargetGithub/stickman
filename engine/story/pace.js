@@ -17,7 +17,8 @@
 //   keepSpeakers  false: a script shot holds even when someone it leaves out speaks (default true: the
 //              camera moves to the speaker)
 //   framing    "cutting" (default) or "calm": one steady shot per exchange, no reaction or face close-ups,
-//              and every framing holds still until its subjects drift away (camera.js steady)
+//              and every framing holds still until its subjects drift away (camera.js steady); or "single":
+//              every line frames its speaker alone (portrait Shorts, tools/shorts.mjs)
 //   glide      seconds the camera eases between framings instead of cutting (default 0: hard cuts); scene
 //              changes, cut-to-arrival and script `cut` commands still cut
 //   captions   "auto" (subtitles when the script speaks with TTS, else bubbles), "bubbles" or "subtitles"

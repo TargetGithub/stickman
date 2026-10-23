@@ -188,6 +188,56 @@
         }
       },
       "limbStyle": "bendy"
+    },
+    {
+      "id": "motumal",
+      "name": "Mayor Motumal",
+      "body": "bulky",
+      "color": "#ffb347",
+      "appearance": {
+        "outfit": "coat",
+        "outfitColor": "#ff9f1c",
+        "accessories": {
+          "moustache": "#2a1a14",
+          "turban": "#f6c445"
+        }
+      },
+      "voice": {
+        "pitch": 0.75,
+        "speed": 0.9,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -4,
+          "rate": 0.9
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "thunda",
+      "name": "Thunda",
+      "body": "bulky",
+      "scale": 1.5,
+      "color": "#ff9f80",
+      "appearance": {
+        "outfit": "armor",
+        "outfitColor": "#7a7a86",
+        "accessories": {
+          "moustache": "#2a1a14"
+        }
+      },
+      "voice": {
+        "pitch": 0.6,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -7,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
     }
   ],
   "locations": [
@@ -232,6 +282,211 @@
           "location": "tokyo_village"
         }
       }
+    },
+    {
+      "id": "recap",
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "location": "foot",
+      "time": "day",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.95
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "ghoom",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1450,
+          "facing": 1,
+          "face": "laugh"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... all of Tokyo fought together, and Mooka pulled the key from the giant's back."
+          }
+        },
+        {
+          "id": "recap_m1",
+          "at": {
+            "with": "recap_n1",
+            "delay": 2
+          },
+          "who": "mooka",
+          "do": "jump_joy",
+          "face": "laugh"
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Iron Ghoom became Ghoomu, our friend. And green came home to Tokyo."
+          }
+        },
+        {
+          "id": "recap_g1",
+          "at": {
+            "with": "recap_n2",
+            "delay": 1
+          },
+          "who": "ghoom",
+          "do": "wave",
+          "face": "happy"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But the green crystal showed Doomi, locked in a cage on top of Grey Peak."
+          }
+        }
+      ]
+    },
+    {
+      "id": "goodbye",
+      "location": "foot",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.95
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "motumal",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "thunda",
+          "x": 2250,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "goodbye_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "motumal",
+                "Brave children! On this great morning, I would like to say a few words.",
+                "determined"
+              ],
+              [
+                "motumal",
+                "First, about the history of Tokyo. In the year-",
+                "happy"
+              ],
+              [
+                "tara",
+                "Mayor ji, we have five nights.",
+                "smug"
+              ],
+              [
+                "motumal",
+                "...Right. Good luck! Come home safe!",
+                "laugh"
+              ],
+              [
+                "thunda",
+                "Thunda packed jalebis. For the road. Thunda only ate three.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Thank you, Thunda! You're the best ex-bad-guy ever!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "goodbye_wv",
+          "at": {
+            "after": "goodbye_d1"
+          },
+          "who": "motumal",
+          "do": "wave_goodbye",
+          "face": "happy"
+        },
+        {
+          "id": "goodbye_wv2",
+          "at": {
+            "with": "goodbye_wv",
+            "delay": 0.3
+          },
+          "who": "thunda",
+          "do": "wave_goodbye",
+          "face": "happy"
+        }
+      ]
     },
     {
       "id": "leave",
@@ -408,6 +663,198 @@
       }
     },
     {
+      "id": "ride",
+      "location": "peak",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "grade": {
+        "saturation": 0.95
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "ghoom",
+          "x": 700,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 900,
+          "facing": 1,
+          "face": "laugh"
+        },
+        {
+          "id": "doopi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1550,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "ride_tr",
+          "at": 0.3,
+          "macro": "travel",
+          "params": {
+            "who": [
+              "doopi",
+              "dony",
+              "tara",
+              "becky"
+            ],
+            "to": {
+              "x": 1650
+            },
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "ride_mw",
+          "at": 0.4,
+          "who": "mooka",
+          "do": "walk",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "ride_gw",
+          "at": 0.5,
+          "who": "ghoom",
+          "do": "walk",
+          "to": {
+            "x": 1200
+          }
+        },
+        {
+          "id": "ride_d1",
+          "at": {
+            "after": "ride_tr"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Are we there yet?",
+                "happy"
+              ],
+              [
+                "tara",
+                "No.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Are we there YET?",
+                "laugh"
+              ],
+              [
+                "tara",
+                "No!",
+                "angry"
+              ],
+              [
+                "mooka",
+                "Are we there yet, yet, yet?",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "...NO. BEEP.",
+                "happy"
+              ],
+              [
+                "dony",
+                "Let's sing instead! Up, up, up the mountain!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Up, up, up we go! Doopi never gives up!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "BEEP, BEEP, BOOP! GHOOMU... SINGS TOO!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "ride_dn",
+          "at": {
+            "after": "ride_d1"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "dance_together",
+            "with": [
+              "doopi",
+              "dony",
+              "mooka",
+              "tara"
+            ],
+            "dur": 5
+          }
+        },
+        {
+          "id": "ride_bk",
+          "at": {
+            "with": "ride_dn",
+            "delay": 1
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          },
+          "face": "happy"
+        },
+        {
+          "id": "ride_gb",
+          "at": {
+            "with": "ride_dn",
+            "delay": 2
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.6
+          }
+        }
+      ]
+    },
+    {
       "id": "climb",
       "location": "peak",
       "time": "day",
@@ -561,6 +1008,46 @@
           "do": "pet_dog",
           "partner": "becky",
           "face": "happy"
+        },
+        {
+          "id": "climb_s1",
+          "at": {
+            "after": "climb_p1"
+          },
+          "who": "dony",
+          "do": "toss",
+          "face": "laugh",
+          "say": "Snowball fight!",
+          "bubble": "shout"
+        },
+        {
+          "id": "climb_s2",
+          "at": {
+            "after": "climb_s1"
+          },
+          "who": "doopi",
+          "do": "hit_light",
+          "face": "surprised"
+        },
+        {
+          "id": "climb_s3",
+          "at": {
+            "after": "climb_s2"
+          },
+          "who": "doopi",
+          "do": "toss",
+          "face": "laugh",
+          "say": "Hey! Ha! My turn!"
+        },
+        {
+          "id": "climb_s4",
+          "at": {
+            "after": "climb_s3"
+          },
+          "who": "tara",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Okay. Now we REALLY have to go."
         }
       ]
     },
@@ -649,6 +1136,16 @@
                 "mooka",
                 "My sprout is FROZEN!",
                 "cry"
+              ],
+              [
+                "dony",
+                "Mooka, are you still there?",
+                "scared"
+              ],
+              [
+                "mooka",
+                "I think so. I can't feel my toes. Do I have toes?",
+                "scared"
               ],
               [
                 "doopi",
@@ -753,8 +1250,32 @@
       ],
       "beats": [
         {
-          "id": "avalanche_rm",
+          "id": "avalanche_bk",
           "at": 0.3,
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 3
+          },
+          "face": "scared",
+          "say": "WOOF! WOOF!",
+          "bubble": "shout"
+        },
+        {
+          "id": "avalanche_dq",
+          "at": {
+            "after": "avalanche_bk"
+          },
+          "who": "doopi",
+          "do": "look_around",
+          "face": "surprised",
+          "say": "Becky? What is it, girl?"
+        },
+        {
+          "id": "avalanche_rm",
+          "at": {
+            "after": "avalanche_dq"
+          },
           "who": "world",
           "do": "shake",
           "params": {
@@ -1059,6 +1580,21 @@
                 "dony",
                 "Told you, champ. I've got you. Always.",
                 "happy"
+              ],
+              [
+                "doopi",
+                "Don't ever do that again!",
+                "cry"
+              ],
+              [
+                "dony",
+                "Do what? Save my best friend? Nope. Every time.",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "GHOOMU... ALSO... SAVES. BEEP.",
+                "happy"
               ]
             ]
           }
@@ -1204,6 +1740,31 @@
                 "doopi",
                 "...Then she's right twice.",
                 "love"
+              ],
+              [
+                "dony",
+                "When this is over, what will you do first?",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Eat a hundred jalebis. With you. And then tell Doomi...",
+                "love"
+              ],
+              [
+                "dony",
+                "Tell Doomi what?",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Nothing! Go to sleep!",
+                "surprised"
+              ],
+              [
+                "dony",
+                "Ha ha! Goodnight, champ.",
+                "laugh"
               ]
             ]
           }
@@ -1254,6 +1815,12 @@
           "x": 600,
           "facing": 1,
           "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 400,
+          "facing": 1,
+          "face": "neutral"
         }
       ],
       "beats": [
@@ -1306,9 +1873,45 @@
           }
         },
         {
-          "id": "path_go",
+          "id": "path_d2",
           "at": {
             "after": "path_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "It's a very thin path. Can Ghoomu fit?",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "path_g1",
+          "at": {
+            "after": "path_d2"
+          },
+          "who": "ghoom",
+          "do": "push",
+          "face": "determined",
+          "say": "GHOOMU... SQUEEZE. BEEP!"
+        },
+        {
+          "id": "path_m1",
+          "at": {
+            "after": "path_g1"
+          },
+          "who": "mooka",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "He fits! Just barely!"
+        },
+        {
+          "id": "path_go",
+          "at": {
+            "after": "path_m1"
           },
           "who": "becky",
           "do": "run",
@@ -1331,6 +1934,105 @@
       ],
       "lens": {
         "vignette": 0.25
+      }
+    },
+    {
+      "id": "edge",
+      "location": "gate",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "tara",
+          "x": 1300,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "ghoom",
+          "x": 850,
+          "facing": 1,
+          "face": "neutral"
+        },
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "edge_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "The Shadow Valley. Nani told stories about this place.",
+                "scared"
+              ],
+              [
+                "mooka",
+                "Funny stories?",
+                "happy"
+              ],
+              [
+                "tara",
+                "Scary stories.",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "edge_m1",
+          "at": {
+            "after": "edge_d1"
+          },
+          "who": "mooka",
+          "do": "hide",
+          "face": "scared",
+          "say": "Mooka will stay behind Ghoomu."
+        },
+        {
+          "id": "edge_g1",
+          "at": {
+            "after": "edge_m1"
+          },
+          "who": "ghoom",
+          "do": "nod",
+          "face": "happy",
+          "say": "GHOOMU... GOOD... WALL. BEEP."
+        },
+        {
+          "id": "edge_d2",
+          "at": {
+            "after": "edge_g1"
+          },
+          "who": "doopi",
+          "do": "clench_fist",
+          "face": "determined",
+          "say": "Doomi is out there. We keep going."
+        }
+      ],
+      "lens": {
+        "vignette": 0.3
       }
     },
     {
@@ -1445,6 +2147,16 @@
                 "shadow",
                 "I am everything you're afraid of. Clumsy. Slow. Alone.",
                 "smug"
+              ],
+              [
+                "shadow",
+                "Your friends will leave you. Everyone leaves the clumsy one.",
+                "smug"
+              ],
+              [
+                "dony",
+                "That's not true! I'm right here!",
+                "angry"
               ],
               [
                 "doopi",

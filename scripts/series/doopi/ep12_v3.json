@@ -392,8 +392,30 @@
           }
         },
         {
-          "id": "home_n1",
+          "id": "home_r1",
           "at": 0.5,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time, Becky saved Doopi from the lake, and Blue came home."
+          }
+        },
+        {
+          "id": "home_r2",
+          "at": {
+            "after": "home_r1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Kony's note warned them about something big, made of iron. But the fog was quiet now."
+          }
+        },
+        {
+          "id": "home_n1",
+          "at": {
+            "after": "home_r2"
+          },
           "who": "world",
           "do": "narrate",
           "params": {
@@ -550,6 +572,16 @@
                 "tara",
                 "Dony, you're standing on Becky.",
                 "smug"
+              ],
+              [
+                "dony",
+                "Oops. Sorry, Becky.",
+                "laugh"
+              ],
+              [
+                "motumal",
+                "Mooka! The drum! Give us a festival beat!",
+                "happy"
               ]
             ]
           }
@@ -653,6 +685,12 @@
           "x": 900,
           "facing": 1,
           "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
         }
       ],
       "beats": [
@@ -743,6 +781,42 @@
           "do": "laugh",
           "face": "laugh",
           "say": "My best photo ever!"
+        },
+        {
+          "id": "games_fe",
+          "at": {
+            "after": "games_sf"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "fetch",
+            "with": [
+              "dony",
+              "becky"
+            ],
+            "reps": 2
+          }
+        },
+        {
+          "id": "games_d2",
+          "at": {
+            "after": "games_fe"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Becky wins the fetching game. Again!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Nobody beats Becky. Not even pirates.",
+                "laugh"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -875,6 +949,114 @@
           "do": "facepalm"
         }
       ]
+    },
+    {
+      "id": "promise",
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mallu",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1450,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "promise_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Mallu Uncle! Your plate of jalebis. A promise is a promise.",
+                "happy"
+              ],
+              [
+                "mallu",
+                "Ho ho! A hero who keeps his promises!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "I checked them. They're... mostly there.",
+                "smug"
+              ],
+              [
+                "mallu",
+                "Why did the jalebi blush? It saw the sugar syrup! Ho ho!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "That one was actually funny!",
+                "laugh"
+              ],
+              [
+                "mallu",
+                "Finally! Somebody laughed! Best festival ever!",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "promise_g",
+          "at": {
+            "after": "promise_d1"
+          },
+          "who": "doopi",
+          "do": "give",
+          "partner": "mallu"
+        },
+        {
+          "id": "promise_e",
+          "at": {
+            "after": "promise_g"
+          },
+          "who": "mallu",
+          "do": "eat"
+        },
+        {
+          "id": "promise_m",
+          "at": {
+            "with": "promise_e"
+          },
+          "who": "mooka",
+          "do": "jump_joy"
+        }
+      ],
+      "grade": {
+        "saturation": 0.85
+      }
     },
     {
       "id": "sunset",
@@ -1171,6 +1353,16 @@
                 "dony",
                 "Probably a cat. Come on, dance!",
                 "laugh"
+              ],
+              [
+                "tara",
+                "Becky never growls at cats.",
+                "scared"
+              ],
+              [
+                "doomi",
+                "Then what is she growling at?",
+                "scared"
               ]
             ]
           }
@@ -1505,6 +1697,27 @@
           "do": "laugh",
           "face": "smug",
           "say": "Punch away. He can't feel a thing."
+        },
+        {
+          "id": "foot_d1",
+          "at": {
+            "after": "foot_p1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Doopi, my hand hurts! He's too strong!",
+                "hurt"
+              ],
+              [
+                "doopi",
+                "There has to be a way. Everyone has a weak spot!",
+                "determined"
+              ]
+            ]
+          }
         }
       ],
       "lens": {

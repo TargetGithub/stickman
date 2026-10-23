@@ -429,6 +429,139 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1350,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1600,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1850,
+          "facing": -1,
+          "face": "laugh"
+        },
+        {
+          "id": "becky",
+          "x": 2100,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Tokyo had its happiest Colour Festival ever."
+          }
+        },
+        {
+          "id": "recap_dn",
+          "at": 0.8,
+          "macro": "activity",
+          "params": {
+            "name": "dance_together",
+            "with": [
+              "doopi",
+              "doomi",
+              "dony",
+              "mooka"
+            ],
+            "dur": 6
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi lost the big race, because he stopped to help a little friend."
+          }
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But that night, two glowing horns rose over Banyan hill..."
+          }
+        },
+        {
+          "id": "recap_g1",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.2
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "scared"
+        },
+        {
+          "id": "recap_g2",
+          "at": {
+            "with": "recap_g1",
+            "delay": 0.2
+          },
+          "who": "doomi",
+          "do": "gasp",
+          "face": "scared"
+        },
+        {
+          "id": "recap_b1",
+          "at": {
+            "with": "recap_g1",
+            "delay": 0.4
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
       "id": "arrive",
       "location": "hill",
       "time": "dawn",
@@ -564,9 +697,45 @@
           }
         },
         {
-          "id": "arrive_cape",
+          "id": "arrive_t3",
           "at": {
             "after": "arrive_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Behold! Peepa the Grey! Lord of Gloom! King of...",
+                "smug"
+              ],
+              [
+                "tony",
+                "King of Cool, boss?",
+                "happy"
+              ],
+              [
+                "peepa",
+                "King of GLOOM! Boys, give me an echo!",
+                "angry"
+              ],
+              [
+                "tony",
+                "Gloom... gloom...",
+                "smug"
+              ],
+              [
+                "kony",
+                "...gloom! Hee hee.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_cape",
+          "at": {
+            "after": "arrive_t3"
           },
           "who": "peepa",
           "do": "taunt",
@@ -616,6 +785,13 @@
           "x": 2000,
           "facing": -1,
           "face": "tired"
+        },
+        {
+          "id": "mooka",
+          "x": 400,
+          "facing": 1,
+          "face": "tired",
+          "hidden": true
         }
       ],
       "beats": [
@@ -752,6 +928,64 @@
           "macro": "exit",
           "params": {
             "who": "dony",
+            "side": "right",
+            "mode": "run"
+          }
+        },
+        {
+          "id": "wakeup_m2",
+          "at": {
+            "with": "wakeup_o1",
+            "delay": 0.6
+          },
+          "who": "motumal",
+          "do": "talk",
+          "face": "determined",
+          "say": "Citizens! Stay calm! I have a speech!"
+        },
+        {
+          "id": "wakeup_m3",
+          "at": {
+            "after": "wakeup_m2"
+          },
+          "who": "motumal",
+          "do": "shrug",
+          "face": "sad",
+          "say": "...Nobody ever stays for my speeches."
+        },
+        {
+          "id": "wakeup_mk",
+          "at": {
+            "after": "wakeup_m3"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "mooka",
+            "side": "left",
+            "to": {
+              "x": 1500
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "wakeup_mk2",
+          "at": {
+            "after": "wakeup_mk"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "face": "tired",
+          "say": "Wait for meee! Mooka is coming too!"
+        },
+        {
+          "id": "wakeup_mk3",
+          "at": {
+            "after": "wakeup_mk2"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "mooka",
             "side": "right",
             "mode": "run"
           }
@@ -1182,6 +1416,32 @@
           "do": "growl",
           "face": "angry",
           "say": "Grrr!"
+        },
+        {
+          "id": "fight_tk",
+          "at": {
+            "after": "fight_dr2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tony",
+                "Did you see that? He went WHOOSH!",
+                "laugh"
+              ],
+              [
+                "kony",
+                "Hee hee... Poor little guy, though.",
+                "sad"
+              ],
+              [
+                "tony",
+                "Kony! Bad guys don't feel sorry for heroes!",
+                "angry"
+              ]
+            ]
+          }
         }
       ],
       "lens": {
@@ -1895,9 +2155,41 @@
           "say": "Even my turban feels grey."
         },
         {
-          "id": "grey_ni",
+          "id": "grey_dy0",
           "at": {
             "after": "grey_mo"
+          },
+          "who": "dony",
+          "do": "walk",
+          "to": {
+            "near": "mooka",
+            "gap": 140
+          }
+        },
+        {
+          "id": "grey_dy1",
+          "at": {
+            "after": "grey_dy0"
+          },
+          "who": "dony",
+          "do": "dance_a",
+          "face": "laugh",
+          "say": "Mooka, look! My silly dance!"
+        },
+        {
+          "id": "grey_dy2",
+          "at": {
+            "after": "grey_dy1"
+          },
+          "who": "dony",
+          "do": "sigh",
+          "face": "sad",
+          "say": "He always laughs at my silly dance."
+        },
+        {
+          "id": "grey_ni",
+          "at": {
+            "after": "grey_dy2"
           },
           "macro": "enter",
           "params": {
@@ -2014,6 +2306,37 @@
           "do": "hug",
           "partner": "doopi",
           "face": "love"
+        },
+        {
+          "id": "grey_d3",
+          "at": {
+            "after": "grey_h1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Nani... on the hill, I was so scared.",
+                "sad"
+              ],
+              [
+                "nani",
+                "Brave is standing up while you ARE scared.",
+                "love"
+              ],
+              [
+                "doopi",
+                "Then... I was brave?",
+                "surprised"
+              ],
+              [
+                "nani",
+                "A little bit. Tomorrow, we make it a big bit.",
+                "smug"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -2037,6 +2360,20 @@
           "x": 1500,
           "facing": 1,
           "face": "smug"
+        },
+        {
+          "id": "tony",
+          "x": 600,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "kony",
+          "x": 450,
+          "facing": 1,
+          "face": "sad",
+          "hidden": true
         }
       ],
       "beats": [
@@ -2059,9 +2396,101 @@
           "object": "throne"
         },
         {
-          "id": "lair_d1",
+          "id": "lair_t1",
           "at": {
             "after": "lair_s1"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tony",
+            "side": "left",
+            "to": {
+              "x": 1250
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "lair_t2",
+          "at": {
+            "with": "lair_t1",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "kony",
+            "side": "left",
+            "to": {
+              "x": 1050
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "lair_tk",
+          "at": {
+            "after": "lair_t2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tony",
+                "Boss! All seven crystals, safe in the sack!",
+                "happy"
+              ],
+              [
+                "kony",
+                "Boss? Will the little jelly bean be okay?",
+                "sad"
+              ],
+              [
+                "peepa",
+                "Okay? He is STONE. And stone does not giggle.",
+                "angry"
+              ],
+              [
+                "tony",
+                "Kony! Stop asking questions!",
+                "angry"
+              ],
+              [
+                "peepa",
+                "Out, both of you. Go polish my horns.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lair_t3",
+          "at": {
+            "after": "lair_tk"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "tony",
+            "side": "left",
+            "mode": "run"
+          }
+        },
+        {
+          "id": "lair_t4",
+          "at": {
+            "with": "lair_t3",
+            "delay": 0.3
+          },
+          "macro": "exit",
+          "params": {
+            "who": "kony",
+            "side": "left",
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "lair_d1",
+          "at": {
+            "after": "lair_t4"
           },
           "macro": "dialogue",
           "params": {

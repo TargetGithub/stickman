@@ -369,6 +369,53 @@
       }
     },
     {
+      "id": "recap",
+      "macro": "montage",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "params": {
+        "clipDur": 5,
+        "cut": "dissolve",
+        "clips": [
+          {
+            "location": "gate",
+            "time": "night",
+            "who": [
+              "doopi",
+              "dony"
+            ],
+            "do": "high_five",
+            "text": "Last time, the friends fought their way into Gloom Castle."
+          },
+          {
+            "location": "throne",
+            "time": "night",
+            "who": [
+              "peepa"
+            ],
+            "do": "use",
+            "text": "Then Peepa blew his Gloom Horn."
+          },
+          {
+            "location": "throne",
+            "time": "night",
+            "who": [
+              "mooka"
+            ],
+            "do": "jump_joy",
+            "text": "And brave Mooka and Becky turned to grey stone."
+          }
+        ]
+      }
+    },
+    {
       "id": "frozen",
       "location": "throne",
       "time": "night",
@@ -703,9 +750,30 @@
           "say": "Trip, trip, trippy Doopi!"
         },
         {
-          "id": "horn_rb",
+          "id": "horn_d0",
           "at": {
             "after": "horn_t2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Doopi! He WANTS you to get mad. Stay calm!",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Calm. Like a tree. Like Nani taught me.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "horn_rb",
+          "at": {
+            "after": "horn_d0"
           },
           "who": "world",
           "do": "set_glow",
@@ -1027,6 +1095,186 @@
       }
     },
     {
+      "id": "doopimem",
+      "location": "park",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 1
+      },
+      "grade": {
+        "saturation": 0.2
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "kid1",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "kid2",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 300,
+          "facing": 1,
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "doopimem_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi knew that feeling. He had been laughed at too."
+          }
+        },
+        {
+          "id": "doopimem_r",
+          "at": {
+            "after": "doopimem_n1"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "doopimem_tr",
+          "at": {
+            "after": "doopimem_r"
+          },
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "dizzy",
+          "say": "Whoa-WHOA!",
+          "bubble": "shout"
+        },
+        {
+          "id": "doopimem_l1",
+          "at": {
+            "after": "doopimem_tr",
+            "delay": 0.4
+          },
+          "who": "kid1",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Ha! Clumsy Doopi fell AGAIN!"
+        },
+        {
+          "id": "doopimem_l2",
+          "at": {
+            "with": "doopimem_l1",
+            "delay": 0.6
+          },
+          "who": "kid2",
+          "do": "point",
+          "face": "laugh",
+          "say": "Trippy Doopi!"
+        },
+        {
+          "id": "doopimem_s",
+          "at": {
+            "after": "doopimem_l2"
+          },
+          "who": "doopi",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "doopimem_e",
+          "at": {
+            "with": "doopimem_s",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "dony",
+            "side": "left",
+            "to": {
+              "x": 1250
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "doopimem_d",
+          "at": {
+            "after": "doopimem_e"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "I've got you, buddy! Up you get.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "They're all laughing at me, Dony.",
+                "sad"
+              ],
+              [
+                "dony",
+                "So let's laugh too! That was a GREAT fall. Like a flying noodle!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "doopimem_la",
+          "at": {
+            "after": "doopimem_d"
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "A flying noodle! Ha ha!"
+        },
+        {
+          "id": "doopimem_k1",
+          "at": {
+            "after": "doopimem_la"
+          },
+          "who": "kid1",
+          "do": "wave",
+          "face": "happy",
+          "say": "Hey... can we play too?"
+        },
+        {
+          "id": "doopimem_n2",
+          "at": {
+            "after": "doopimem_k1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi had a friend to help him up. Little Peepa never did."
+          }
+        }
+      ]
+    },
+    {
       "id": "sorry",
       "location": "throne",
       "time": "night",
@@ -1086,6 +1334,11 @@
               [
                 "doopi",
                 "I'm sorry they did that to you, Peepa. Really. That was mean.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Kids laughed at me too. But Dony helped me up. Nobody helped you.",
                 "sad"
               ],
               [
@@ -1219,10 +1472,31 @@
           "say": "Stay DOWN, clumsy!"
         },
         {
+          "id": "round2_of",
+          "at": {
+            "after": "round2_p1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Peepa... it's not too late. I could help you up too.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "Help ME? I don't NEED anyone!",
+                "furious"
+              ]
+            ]
+          }
+        },
+        {
           "id": "round2_bl",
           "at": {
-            "after": "round2_p1",
-            "delay": 2.3
+            "after": "round2_of",
+            "delay": 0.4
           },
           "who": "peepa",
           "do": "energy_blast",
@@ -1553,6 +1827,88 @@
           "do": "gasp",
           "face": "scared",
           "say": "The colours... they're going!"
+        },
+        {
+          "id": "below_d2",
+          "at": {
+            "after": "below_c"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "We have to get in there! Doopi needs us!",
+                "determined"
+              ],
+              [
+                "tara",
+                "Ghoomu! Can you push the gate open?",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "GHOOMU... TRY. BEEP!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "below_pu",
+          "at": {
+            "after": "below_d2"
+          },
+          "who": "ghoom",
+          "do": "push",
+          "face": "determined"
+        },
+        {
+          "id": "below_sh2",
+          "at": {
+            "with": "below_pu",
+            "delay": 0.6
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "below_x2",
+          "at": {
+            "with": "below_sh2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "explosion",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "below_cw",
+          "at": {
+            "with": "below_sh2",
+            "delay": 0.3
+          },
+          "who": "dony",
+          "do": "cower",
+          "face": "scared",
+          "say": "The walls! Look out!",
+          "bubble": "shout"
+        },
+        {
+          "id": "below_n2",
+          "at": {
+            "after": "below_pu"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The castle shook... and the walls came tumbling down around them."
+          }
         }
       ],
       "lens": {

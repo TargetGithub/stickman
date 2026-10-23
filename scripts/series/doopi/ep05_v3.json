@@ -343,6 +343,132 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 18,
+        "maxTravel": 20
+      },
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.55
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Doopi and his friends beat Thunda with a team plan."
+          }
+        },
+        {
+          "id": "recap_hf",
+          "at": {
+            "with": "recap_n1",
+            "delay": 1.0
+          },
+          "who": "dony",
+          "do": "high_five",
+          "partner": "doopi",
+          "face": "laugh"
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The Red crystal jumped into the bracelet, and red came home."
+          }
+        },
+        {
+          "id": "recap_j1",
+          "at": {
+            "with": "recap_n2",
+            "delay": 0.8
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "happy"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But deep inside the crystal, Peepa was watching..."
+          }
+        },
+        {
+          "id": "recap_g1",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.0
+          },
+          "who": "doomi",
+          "do": "gasp",
+          "face": "scared"
+        },
+        {
+          "id": "recap_g2",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.2
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "scared"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
       "id": "orders",
       "location": "lair",
       "time": "night",
@@ -425,9 +551,40 @@
           }
         },
         {
-          "id": "orders_s1",
+          "id": "orders_d2",
           "at": {
             "after": "orders_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tony",
+                "But boss, they know our faces!",
+                "scared"
+              ],
+              [
+                "peepa",
+                "Then wear DISGUISES, you fools! Look like grown-ups!",
+                "furious"
+              ],
+              [
+                "kony",
+                "Grown-ups have moustaches!",
+                "happy"
+              ],
+              [
+                "tony",
+                "Ooh. Big ones.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "orders_s1",
+          "at": {
+            "after": "orders_d2"
           },
           "who": "tony",
           "do": "bow",
@@ -510,6 +667,13 @@
           "x": 1150,
           "facing": -1,
           "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 3200,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
         }
       ],
       "beats": [
@@ -683,6 +847,87 @@
           "do": "nod",
           "face": "smug",
           "say": "Perfect. Totally invisible."
+        },
+        {
+          "id": "disguise_kw",
+          "at": {
+            "with": "disguise_dr",
+            "delay": 0.3
+          },
+          "who": "kony",
+          "do": "walk",
+          "to": {
+            "x": 1400
+          }
+        },
+        {
+          "id": "disguise_de",
+          "at": {
+            "after": "disguise_ok"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doomi",
+            "side": "right",
+            "to": {
+              "x": 2100
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "disguise_d3",
+          "at": {
+            "after": "disguise_de"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Hello! Are you two new in Tokyo?",
+                "happy"
+              ],
+              [
+                "tony",
+                "We are... moustache sellers!",
+                "scared"
+              ],
+              [
+                "kony",
+                "Want one? They're very sticky.",
+                "happy"
+              ],
+              [
+                "doomi",
+                "Um... no, thank you.",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "disguise_dt",
+          "at": {
+            "after": "disguise_d3"
+          },
+          "who": "doomi",
+          "do": "talk",
+          "face": "smug",
+          "say": "Glued-on moustaches... Hmm.",
+          "bubble": "whisper"
+        },
+        {
+          "id": "disguise_dx",
+          "at": {
+            "after": "disguise_dt"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "doomi",
+            "side": "right",
+            "mode": "walk"
+          }
         }
       ]
     },
@@ -961,6 +1206,32 @@
           "do": "sigh",
           "face": "sad",
           "say": "I wish I could fix you."
+        },
+        {
+          "id": "friend_d2",
+          "at": {
+            "after": "friend_k4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kony",
+                "Want to hear a joke? Why did the jalebi go to school?",
+                "happy"
+              ],
+              [
+                "kony",
+                "To get a little bit sweeter! Hee hee!",
+                "laugh"
+              ],
+              [
+                "kony",
+                "...You would have laughed. I know it.",
+                "sad"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -1166,6 +1437,27 @@
           "params": {
             "text": "Round and round the market they ran, and the crystal rolled away..."
           }
+        },
+        {
+          "id": "chase_d2",
+          "at": {
+            "after": "chase_ch"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "motumal",
+                "My jalebis! My carts! My TURBAN!",
+                "cry"
+              ],
+              [
+                "dony",
+                "Sorry, Mayor ji! Bad guy business!",
+                "scared"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -1214,6 +1506,13 @@
           "id": "dony",
           "x": 600,
           "facing": 1,
+          "hidden": true
+        },
+        {
+          "id": "doomi",
+          "x": 500,
+          "facing": 1,
+          "face": "happy",
           "hidden": true
         }
       ],
@@ -1455,6 +1754,65 @@
             "sparkle"
           ],
           "say": "Two colours! Yellow is home!"
+        },
+        {
+          "id": "thaw_de",
+          "at": {
+            "after": "thaw_bf"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doomi",
+            "side": "left",
+            "to": {
+              "x": 1450
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "thaw_d2",
+          "at": {
+            "after": "thaw_de"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Mooka! You're GREEN again!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "Doomi! Hug! Big hug!",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "thaw_hg",
+          "at": {
+            "after": "thaw_d2"
+          },
+          "who": "doomi",
+          "do": "hug",
+          "partner": "mooka",
+          "face": "love",
+          "fx": [
+            "heart"
+          ]
+        },
+        {
+          "id": "thaw_dm",
+          "at": {
+            "after": "thaw_hg"
+          },
+          "who": "doomi",
+          "do": "talk",
+          "face": "smug",
+          "say": "And I KNEW those moustaches were fake."
         }
       ]
     },
@@ -1540,9 +1898,42 @@
           }
         },
         {
-          "id": "flee_dp",
+          "id": "flee_mo",
           "at": {
             "after": "flee_d1"
+          },
+          "who": "world",
+          "do": "set_appearance",
+          "params": {
+            "who": "kony",
+            "accessory": "moustache",
+            "remove": true
+          }
+        },
+        {
+          "id": "flee_mk",
+          "at": {
+            "with": "flee_mo"
+          },
+          "who": "kony",
+          "do": "hold_head",
+          "face": "surprised",
+          "say": "My moustache!"
+        },
+        {
+          "id": "flee_ml",
+          "at": {
+            "after": "flee_mk"
+          },
+          "who": "mooka",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Hee hee! Bald lip!"
+        },
+        {
+          "id": "flee_dp",
+          "at": {
+            "after": "flee_ml"
           },
           "who": "doopi",
           "do": "clench_fist",
@@ -1701,8 +2092,148 @@
               ]
             ]
           }
+        },
+        {
+          "id": "dance_d2",
+          "at": {
+            "after": "dance_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Nani, Kony helped us today. A bad guy!",
+                "surprised"
+              ],
+              [
+                "nani",
+                "Kindness can come from very surprising people.",
+                "happy"
+              ],
+              [
+                "dony",
+                "Even from a boy with glued-on horns?",
+                "laugh"
+              ],
+              [
+                "nani",
+                "Especially from him. Remember that, children.",
+                "love"
+              ]
+            ]
+          }
         }
       ]
+    },
+    {
+      "id": "scold",
+      "location": "lair",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.6,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "boss",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1900,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "tony",
+          "x": 1250,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "kony",
+          "x": 1050,
+          "facing": 1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "scold_d1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Where. Is. My. Yellow crystal?",
+                "furious"
+              ],
+              [
+                "tony",
+                "Kony gave it away, boss! To a FRIEND!",
+                "scared"
+              ],
+              [
+                "peepa",
+                "A... FRIEND?!",
+                "furious"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "scold_kh",
+          "at": {
+            "after": "scold_d1"
+          },
+          "who": "kony",
+          "do": "cower",
+          "face": "scared"
+        },
+        {
+          "id": "scold_p1",
+          "at": {
+            "with": "scold_kh",
+            "delay": 0.4
+          },
+          "who": "peepa",
+          "do": "taunt",
+          "face": "furious",
+          "say": "Useless! Then I will go to Tokyo myself!",
+          "bubble": "shout"
+        },
+        {
+          "id": "scold_tp",
+          "at": {
+            "after": "scold_p1"
+          },
+          "who": "peepa",
+          "do": "teleport",
+          "params": {
+            "dx": 1200
+          },
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "scold_kn",
+          "at": {
+            "after": "scold_tp"
+          },
+          "who": "kony",
+          "do": "sigh",
+          "face": "sad",
+          "say": "Oh no... Mooka..."
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
     },
     {
       "id": "nani",
@@ -1932,7 +2463,7 @@
         {
           "id": "nani_end",
           "at": {
-            "after": "nani_lw",
+            "after": "nani_k3",
             "delay": 0.6
           },
           "who": "world",
@@ -1940,6 +2471,38 @@
           "params": {
             "text": "To be continued..."
           }
+        },
+        {
+          "id": "nani_kn",
+          "at": {
+            "after": "nani_tp"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "near": "nani",
+            "gap": 130
+          },
+          "face": "cry"
+        },
+        {
+          "id": "nani_k2",
+          "at": {
+            "after": "nani_kn"
+          },
+          "who": "doopi",
+          "do": "kneel",
+          "face": "cry"
+        },
+        {
+          "id": "nani_k3",
+          "at": {
+            "after": "nani_k2"
+          },
+          "who": "doopi",
+          "do": "talk",
+          "face": "determined",
+          "say": "I'll find every colour, Nani. I promise."
         }
       ]
     }

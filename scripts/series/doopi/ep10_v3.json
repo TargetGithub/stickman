@@ -352,12 +352,127 @@
       }
     },
     {
+      "id": "recap",
+      "location": "lake",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1300,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "dony",
+          "x": 1700,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "mallu",
+          "x": 1950,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 1150,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time, Captain Kanta's pirates caught Mooka in a net and sailed away into the night."
+          }
+        },
+        {
+          "id": "recap_d1",
+          "at": {
+            "after": "recap_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "They took Mooka. Our Mooka.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "They think he's golden jelly. He's just... Mooka.",
+                "sad"
+              ],
+              [
+                "mallu",
+                "Kanta always anchors by his island. My boat can catch him at dawn.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Then we sleep fast and row faster.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Hold on, Mooka. We're coming.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "recap_b",
+          "at": {
+            "with": "recap_d1",
+            "delay": 2
+          },
+          "who": "becky",
+          "do": "whimper"
+        }
+      ],
+      "grade": {
+        "saturation": 0.55
+      },
+      "set": [
+        {
+          "id": "boat",
+          "object": "rowboat",
+          "x": 2300
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
       "id": "chores",
       "location": "deck",
       "time": "day",
       "transitionIn": {
-        "type": "fade",
-        "dur": 0.6
+        "type": "dissolve",
+        "dur": 0.5
       },
       "grade": {
         "saturation": 0.55
@@ -528,8 +643,179 @@
               ]
             ]
           }
+        },
+        {
+          "id": "chores_m3",
+          "at": {
+            "after": "chores_d3"
+          },
+          "who": "mooka",
+          "do": "dance_a",
+          "params": {
+            "cycles": 3
+          },
+          "say": "Pirate wiggle! Everybody wiggle!"
+        },
+        {
+          "id": "chores_p3",
+          "at": {
+            "with": "chores_m3",
+            "delay": 0.3
+          },
+          "who": "pirate1",
+          "do": "dance_a",
+          "params": {
+            "cycles": 3
+          }
+        },
+        {
+          "id": "chores_p4",
+          "at": {
+            "with": "chores_m3",
+            "delay": 0.5
+          },
+          "who": "pirate2",
+          "do": "dance_b",
+          "params": {
+            "cycles": 2
+          }
         }
       ]
+    },
+    {
+      "id": "captain",
+      "location": "deck",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "kanta",
+          "x": 1850,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "mooka",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "pirate1",
+          "x": 2150,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "captain_g0",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "kanta",
+            "color": "#2f9bff",
+            "level": 0.35
+          }
+        },
+        {
+          "id": "captain_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kanta",
+                "Ho! My golden jelly! Peepa will pay a mountain of coins for you!",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Why do you like shiny things so much?",
+                "surprised"
+              ],
+              [
+                "kanta",
+                "Shiny things never laugh at you. People do.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "I don't laugh AT people. I laugh WITH them. Want to try?",
+                "happy"
+              ],
+              [
+                "kanta",
+                "Kanta does NOT giggle.",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "captain_pk",
+          "at": {
+            "after": "captain_d1"
+          },
+          "who": "mooka",
+          "do": "poke",
+          "partner": "kanta"
+        },
+        {
+          "id": "captain_l1",
+          "at": {
+            "after": "captain_pk"
+          },
+          "who": "kanta",
+          "do": "laugh"
+        },
+        {
+          "id": "captain_l2",
+          "at": {
+            "with": "captain_l1",
+            "delay": 0.4
+          },
+          "who": "pirate1",
+          "do": "laugh"
+        },
+        {
+          "id": "captain_d2",
+          "at": {
+            "with": "captain_l1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kanta",
+                "Ha! HA! Stop that! Ho ho!",
+                "laugh"
+              ],
+              [
+                "kanta",
+                "Lock him up! And NOBODY says the captain giggled!",
+                "furious"
+              ],
+              [
+                "pirate1",
+                "Aye, Captain. Hee hee.",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ],
+      "grade": {
+        "saturation": 0.55
+      }
     },
     {
       "id": "snack",
@@ -664,6 +950,21 @@
                 "mooka",
                 "Half! Here! Friends share!",
                 "love"
+              ],
+              [
+                "kony",
+                "Mooka... will your friends come for you?",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Always. That's what friends do.",
+                "happy"
+              ],
+              [
+                "tony",
+                "...Must be nice.",
+                "sad"
               ]
             ]
           }
@@ -811,6 +1112,16 @@
                 "mallu",
                 "Sneaking! Right! ...Shhh. Ho ho.",
                 "smug"
+              ],
+              [
+                "doopi",
+                "Mallu Uncle... one more joke and I'll be sick.",
+                "hurt"
+              ],
+              [
+                "mallu",
+                "Then I'll save the best one for later! Ho ho!",
+                "laugh"
               ]
             ]
           }
@@ -1046,9 +1357,35 @@
           }
         },
         {
-          "id": "board_wk",
+          "id": "board_d1",
           "at": {
             "after": "board_w1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Shh. That pirate is snoring.",
+                "determined"
+              ],
+              [
+                "dony",
+                "He snores louder than Mallu Uncle's jokes.",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Find Mooka. Quietly.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "board_wk",
+          "at": {
+            "after": "board_d1"
           },
           "who": "pirate1",
           "do": "get_up",
@@ -1125,8 +1462,29 @@
       ],
       "beats": [
         {
-          "id": "brawl_b",
+          "id": "brawl_d1",
           "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kony",
+                "Tony, do we HAVE to fight Mooka's friends?",
+                "sad"
+              ],
+              [
+                "tony",
+                "Captain's orders! ...Sorry, kids!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "brawl_b",
+          "at": {
+            "after": "brawl_d1"
+          },
           "macro": "brawl",
           "params": {
             "teams": {
@@ -1231,6 +1589,16 @@
             "lines": [
               [
                 "kanta",
+                "The bracelet boy! Come to steal my golden jelly?",
+                "furious"
+              ],
+              [
+                "doopi",
+                "He's not your jelly. He's our friend.",
+                "determined"
+              ],
+              [
+                "kanta",
                 "You beat my crew? Then face the CAPTAIN!",
                 "furious"
               ],
@@ -1327,6 +1695,37 @@
             "text": "Kanta shivers... a puppy!",
             "pos": "top",
             "dur": 2
+          }
+        },
+        {
+          "id": "kanta_d2",
+          "at": {
+            "after": "kanta_m2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "You came! You all came!",
+                "cry"
+              ],
+              [
+                "doomi",
+                "Of course we came, silly. We'd never leave you.",
+                "love"
+              ],
+              [
+                "mooka",
+                "I made the pirates giggly. Even the captain!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Laughing at pirates. Only you, Mooka.",
+                "laugh"
+              ]
+            ]
           }
         }
       ]
@@ -1466,7 +1865,7 @@
           "id": "whirl_d1",
           "at": {
             "with": "whirl_s2",
-            "delay": 0.3
+            "delay": 0.6
           },
           "who": "doomi",
           "do": "gasp",

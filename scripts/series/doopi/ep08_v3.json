@@ -304,6 +304,97 @@
       }
     },
     {
+      "id": "recap",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mirchi",
+          "x": 1050,
+          "facing": 1,
+          "face": "smug"
+        },
+        {
+          "id": "dony",
+          "x": 1300,
+          "facing": -1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time, the friends sneaked into Madam Mirchi's spice fort to rescue Dony."
+          }
+        },
+        {
+          "id": "recap_u1",
+          "at": 0.8,
+          "who": "dony",
+          "do": "use",
+          "face": "tired"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But Doopi rushed in alone, and a trapdoor dropped him and Doomi into the cellar."
+          }
+        },
+        {
+          "id": "recap_d1",
+          "at": {
+            "after": "recap_n3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mirchi",
+                "Stir faster, Dony! My sneezing curry must be PERFECT!",
+                "smug"
+              ],
+              [
+                "dony",
+                "Yes, Madam Mirchi...",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "recap_u2",
+          "at": {
+            "after": "recap_d1"
+          },
+          "who": "dony",
+          "do": "use",
+          "face": "determined",
+          "say": "Hang on, Doopi. Hang on."
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
       "id": "walls",
       "location": "cellar",
       "time": "night",
@@ -433,6 +524,16 @@
                 "doopi",
                 "Not... for... long! Somebody... help!",
                 "hurt"
+              ],
+              [
+                "doomi",
+                "BECKY! MOOKA! TARA! We're down here!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Louder! My arms are turning into noodles!",
+                "hurt"
               ]
             ]
           }
@@ -530,6 +631,11 @@
             "lines": [
               [
                 "tara",
+                "Becky? You hear something? It's Doomi's voice!",
+                "surprised"
+              ],
+              [
+                "tara",
                 "They're under the trapdoor! But how do we stop the walls?",
                 "scared"
               ],
@@ -601,6 +707,11 @@
                 "mooka",
                 "I did? I did! Hee hee! I'm a genius!",
                 "laugh"
+              ],
+              [
+                "tara",
+                "Mooka, don't move! Stay sitting, forever if you have to!",
+                "scared"
               ]
             ]
           }
@@ -898,6 +1009,102 @@
       }
     },
     {
+      "id": "find",
+      "location": "kitchen",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1000,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "tara",
+          "x": 400,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "find_u1",
+          "at": 0.3,
+          "who": "dony",
+          "do": "use"
+        },
+        {
+          "id": "find_t1",
+          "at": 0.5,
+          "who": "tara",
+          "do": "sneak",
+          "to": {
+            "x": 800
+          }
+        },
+        {
+          "id": "find_d1",
+          "at": {
+            "after": "find_t1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Psst! Dony? I'm Tara. Doopi's friend.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Doopi's here? Is he okay?",
+                "surprised"
+              ],
+              [
+                "tara",
+                "He was stuck in a cellar. Now he's going to fight Mirchi.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Fight Mirchi? Not without me! ...Even if my knees are shaking.",
+                "determined"
+              ],
+              [
+                "tara",
+                "Hmph. I like you already. Wait for the right moment, then jump in.",
+                "smug"
+              ],
+              [
+                "dony",
+                "The right moment. Got it.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "find_n",
+          "at": {
+            "after": "find_d1"
+          },
+          "who": "dony",
+          "do": "nod"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
       "id": "boss",
       "location": "kitchen",
       "time": "night",
@@ -1029,6 +1236,61 @@
           "params": {
             "cycles": 2
           }
+        },
+        {
+          "id": "boss_sm1",
+          "at": {
+            "after": "boss_f"
+          },
+          "who": "mirchi",
+          "do": "taunt",
+          "face": "smug",
+          "say": "Ha! My chilli smoke! Can you see now?"
+        },
+        {
+          "id": "boss_sz",
+          "at": {
+            "after": "boss_sm1"
+          },
+          "who": "doopi",
+          "do": "sneeze",
+          "face": "hurt",
+          "say": "Ah... AH... CHOO!"
+        },
+        {
+          "id": "boss_d2",
+          "at": {
+            "after": "boss_sz"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "My eyes are crying and I'm not even sad!",
+                "cry"
+              ],
+              [
+                "mirchi",
+                "Nobody beats Madam Mirchi in her own kitchen!",
+                "furious"
+              ],
+              [
+                "doopi",
+                "Nani said... when you can't see, feel the ground.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "boss_cu",
+          "at": {
+            "after": "boss_d2"
+          },
+          "who": "doopi",
+          "do": "charge_up",
+          "face": "determined"
         }
       ],
       "lens": {
@@ -1436,6 +1698,16 @@
                 "happy"
               ],
               [
+                "doomi",
+                "You don't have to be the strongest to be brave. Right, Dony?",
+                "love"
+              ],
+              [
+                "dony",
+                "Tell that to my knees. They're still wobbling!",
+                "laugh"
+              ],
+              [
                 "tara",
                 "Hmph. Not bad, for village kids.",
                 "smug"
@@ -1573,9 +1845,30 @@
           }
         },
         {
-          "id": "bridge_w1",
+          "id": "bridge_d0",
           "at": {
             "after": "bridge_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Lotus Lake is just past this bridge.",
+                "determined"
+              ],
+              [
+                "mooka",
+                "Is there a jalebi shop on the bridge? I miss my jalebis.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "bridge_w1",
+          "at": {
+            "after": "bridge_d0"
           },
           "who": "becky",
           "do": "run",

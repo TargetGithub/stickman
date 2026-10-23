@@ -419,8 +419,30 @@
           "do": "sink"
         },
         {
-          "id": "sink_n1",
+          "id": "sink_r1",
           "at": 0.6,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time, the friends freed Mooka from the pirate ship."
+          }
+        },
+        {
+          "id": "sink_r2",
+          "at": {
+            "after": "sink_r1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But Kanta steered into the whirlpool, and Doopi fell into the lake."
+          }
+        },
+        {
+          "id": "sink_n1",
+          "at": {
+            "after": "sink_r2"
+          },
           "who": "world",
           "do": "narrate",
           "params": {
@@ -429,7 +451,10 @@
         },
         {
           "id": "sink_b0",
-          "at": 3,
+          "at": {
+            "with": "sink_n1",
+            "delay": 2.4
+          },
           "who": "becky",
           "do": "spawn"
         },
@@ -581,6 +606,16 @@
                 "love"
               ],
               [
+                "doopi",
+                "Nani, I'm scared. The lake is so big.",
+                "scared"
+              ],
+              [
+                "nani",
+                "Big lake. Small dog. Brave heart. Now go.",
+                "smug"
+              ],
+              [
                 "nani",
                 "And neither do you.",
                 "happy"
@@ -706,6 +741,26 @@
                 "doopi",
                 "My glow feels so weak. And everyone's gone.",
                 "sad"
+              ],
+              [
+                "doopi",
+                "Doomi? Dony? Mooka? ...Anybody?",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Nani came in a dream. She said my friends never stop.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "So we don't stop either. Right, girl?",
+                "determined"
+              ],
+              [
+                "becky",
+                "Woof! Woof!",
+                "happy"
               ]
             ]
           }
@@ -895,6 +950,21 @@
                 "doopi",
                 "I know. I'm sorry. I'm here now.",
                 "love"
+              ],
+              [
+                "mooka",
+                "Becky, you're a hero dog!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "And guess what? Kanta's ship is hiding in a cave on this island.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Then that's where the Blue crystal is.",
+                "determined"
               ]
             ]
           }
@@ -935,6 +1005,123 @@
           }
         }
       ]
+    },
+    {
+      "id": "plan",
+      "location": "beach",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1150,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1580,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 1760,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 1950,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "mooka",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "plan_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Kanta is scared of puppies. So Becky is our secret weapon.",
+                "determined"
+              ],
+              [
+                "becky",
+                "Woof!",
+                "happy"
+              ],
+              [
+                "tara",
+                "And this time we go in together. Nobody runs ahead.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Together. I promise.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Pinky promise?",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Pinky promise, champ.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "And I'll guard the snacks. Very bravely.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "plan_fb",
+          "at": {
+            "after": "plan_d1"
+          },
+          "who": "doopi",
+          "do": "fist_bump",
+          "partner": "dony"
+        },
+        {
+          "id": "plan_bw",
+          "at": {
+            "with": "plan_fb"
+          },
+          "who": "becky",
+          "do": "wag"
+        }
+      ],
+      "grade": {
+        "saturation": 0.6
+      }
     },
     {
       "id": "cave",
@@ -1020,6 +1207,16 @@
               [
                 "kanta",
                 "One THOUSAND shiny coins! Ho ho ho!",
+                "laugh"
+              ],
+              [
+                "tony",
+                "Captain, you counted that coin twice.",
+                "smug"
+              ],
+              [
+                "kanta",
+                "Then it's worth TWICE as much! Ho ho!",
                 "laugh"
               ],
               [
@@ -1363,9 +1560,79 @@
           "interrupt": true
         },
         {
+          "id": "fight_d2",
+          "at": {
+            "after": "fight_k1",
+            "delay": 1
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kanta",
+                "Stay back! I'm the terror of Lotus Lake!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Why do you take everything shiny, Kanta?",
+                "determined"
+              ],
+              [
+                "kanta",
+                "...Because nobody ever gave me anything.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "fight_m1",
+          "at": {
+            "after": "fight_d2"
+          },
+          "who": "mooka",
+          "do": "run",
+          "to": {
+            "near": "kanta",
+            "gap": 130
+          }
+        },
+        {
+          "id": "fight_d3",
+          "at": {
+            "after": "fight_m1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Here. A shiny shell. For free.",
+                "love"
+              ],
+              [
+                "kanta",
+                "For... free? For Kanta?",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "Friends give things. They don't take them.",
+                "happy"
+              ],
+              [
+                "kanta",
+                "Hmph. Kanta has something in his eye. ...BYE!",
+                "cry"
+              ]
+            ]
+          }
+        },
+        {
           "id": "fight_cp",
           "at": {
-            "after": "fight_k1"
+            "after": "fight_d3"
           },
           "who": "kanta",
           "do": "captured",
@@ -1591,6 +1858,11 @@
                 "doopi",
                 "And we'll get every one. Together.",
                 "determined"
+              ],
+              [
+                "mooka",
+                "Kanta said thank you for the shell. Very quietly.",
+                "happy"
               ]
             ]
           }

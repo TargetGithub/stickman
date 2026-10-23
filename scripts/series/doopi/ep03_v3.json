@@ -237,6 +237,134 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 18,
+        "maxTravel": 20
+      },
+      "location": "square",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1350,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1100,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "dony",
+          "x": 1600,
+          "facing": -1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Peepa blew his Gloom Horn and stole all seven crystals."
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Tokyo turned grey, and Mooka's giggle turned to stone."
+          }
+        },
+        {
+          "id": "recap_k1",
+          "at": {
+            "with": "recap_n2",
+            "delay": 0.8
+          },
+          "who": "doomi",
+          "do": "cry",
+          "face": "cry"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But for one second, Doopi's heart glowed gold."
+          }
+        },
+        {
+          "id": "recap_cf",
+          "at": {
+            "with": "recap_n3",
+            "delay": 0.6
+          },
+          "who": "doopi",
+          "do": "clench_fist",
+          "face": "determined"
+        },
+        {
+          "id": "recap_g1",
+          "at": {
+            "with": "recap_cf",
+            "delay": 0.2
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "color": "#ffd23f",
+            "level": 0.6,
+            "dur": 0.6
+          }
+        },
+        {
+          "id": "recap_g2",
+          "at": {
+            "after": "recap_g1",
+            "delay": 1.4
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "level": 0,
+            "dur": 1
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
       "id": "late",
       "location": "ground",
       "time": "dawn",
@@ -463,6 +591,25 @@
             ],
             "do": "climb_up",
             "text": "Climb the old wall. Again. And again."
+          },
+          {
+            "location": "ground",
+            "time": "day",
+            "who": [
+              "doopi"
+            ],
+            "do": "stretch",
+            "text": "Stand on one leg. Don't wobble!"
+          },
+          {
+            "location": "ground",
+            "time": "day",
+            "who": [
+              "doopi",
+              "becky"
+            ],
+            "do": "dizzy",
+            "text": "He wobbled. Becky did not."
           }
         ]
       }
@@ -879,6 +1026,32 @@
           },
           "who": "nani",
           "do": "point"
+        },
+        {
+          "id": "spar_d3",
+          "at": {
+            "after": "spar_d2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "So I'm strong when I fight for my friends?",
+                "surprised"
+              ],
+              [
+                "nani",
+                "Everyone starts clumsy. Practice makes you good.",
+                "happy"
+              ],
+              [
+                "nani",
+                "And friends make you strong.",
+                "love"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -1051,6 +1224,13 @@
           "x": 600,
           "facing": 1,
           "hidden": true
+        },
+        {
+          "id": "nani",
+          "x": 2400,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
         }
       ],
       "beats": [
@@ -1173,6 +1353,56 @@
             "who": "doopi",
             "level": 0,
             "dur": 1
+          }
+        },
+        {
+          "id": "picnic_n0",
+          "at": {
+            "with": "picnic_hg"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "nani",
+            "side": "right",
+            "to": {
+              "x": 1450
+            },
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "picnic_n2",
+          "at": {
+            "after": "picnic_n0"
+          },
+          "who": "nani",
+          "do": "eat",
+          "face": "happy"
+        },
+        {
+          "id": "picnic_d3",
+          "at": {
+            "after": "picnic_n2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Nani! You said sweets are bad for training!",
+                "surprised"
+              ],
+              [
+                "nani",
+                "For YOUR training. Not for mine.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Ha ha! Nani has a sweet tooth!",
+                "laugh"
+              ]
+            ]
           }
         }
       ]
@@ -1300,6 +1530,32 @@
           },
           "who": "becky",
           "do": "jump"
+        },
+        {
+          "id": "test_d2",
+          "at": {
+            "after": "test_j1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "Good. Tomorrow you practise it again. And again.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Again? But I did it!",
+                "surprised"
+              ],
+              [
+                "nani",
+                "Once. Every master was a beginner who kept trying.",
+                "smug"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -1389,6 +1645,46 @@
               ]
             ]
           }
+        },
+        {
+          "id": "evening_s1",
+          "at": {
+            "after": "evening_d1"
+          },
+          "who": "doopi",
+          "do": "dance_b",
+          "face": "determined"
+        },
+        {
+          "id": "evening_s2",
+          "at": {
+            "after": "evening_s1"
+          },
+          "who": "doopi",
+          "do": "jump_joy",
+          "face": "laugh",
+          "say": "Look! No dizzy!"
+        },
+        {
+          "id": "evening_s3",
+          "at": {
+            "after": "evening_s2",
+            "delay": 0.8
+          },
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "dizzy",
+          "say": "Whoa! Sorry, Becky!"
+        },
+        {
+          "id": "evening_s4",
+          "at": {
+            "after": "evening_fe"
+          },
+          "who": "dony",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Some things never change, champ!"
         }
       ]
     },
@@ -1536,10 +1832,30 @@
           "bubble": "shout"
         },
         {
+          "id": "gate_rd",
+          "at": {
+            "after": "gate_ro"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Doopi... his belt. It's glowing red!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "The Red crystal! He has one!",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
           "id": "gate_ro2",
           "at": {
-            "after": "gate_ro",
-            "delay": 1.9
+            "after": "gate_rd"
           },
           "who": "thunda",
           "do": "point",

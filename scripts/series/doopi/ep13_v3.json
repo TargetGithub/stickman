@@ -276,8 +276,19 @@
       ],
       "beats": [
         {
-          "id": "alone_n1",
+          "id": "alone_r1",
           "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time, at the Half-Colour Festival, Iron Ghoom carried Doomi away."
+          }
+        },
+        {
+          "id": "alone_n1",
+          "at": {
+            "after": "alone_r1"
+          },
           "who": "world",
           "do": "narrate",
           "params": {
@@ -306,9 +317,18 @@
           "face": "sad"
         },
         {
-          "id": "alone_t3",
+          "id": "alone_t4",
           "at": {
             "after": "alone_t2"
+          },
+          "who": "doopi",
+          "do": "talk",
+          "say": "Four crystals. That's enough power."
+        },
+        {
+          "id": "alone_t3",
+          "at": {
+            "after": "alone_t4"
           },
           "who": "doopi",
           "do": "talk",
@@ -451,6 +471,16 @@
               [
                 "mooka",
                 "He's sad. Sad people do silly things.",
+                "sad"
+              ],
+              [
+                "dony",
+                "And he forgot his lunch. He'll be hungry AND grumpy.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Hungry heroes are the grumpiest heroes.",
                 "sad"
               ],
               [
@@ -623,6 +653,15 @@
           "face": "sad",
           "say": "I should have kept her safe.",
           "bubble": "think"
+        },
+        {
+          "id": "tracks_t5",
+          "at": {
+            "after": "tracks_m"
+          },
+          "who": "doopi",
+          "do": "talk",
+          "say": "Doomi always has a plan. I just run."
         }
       ]
     },
@@ -719,8 +758,18 @@
               ],
               [
                 "tara",
+                "Shh! Hear that? Stomping. Ghoom is close!",
+                "scared"
+              ],
+              [
+                "tara",
                 "Then let's go prove it. Run!",
                 "determined"
+              ],
+              [
+                "mooka",
+                "My legs are short! Wait for meee!",
+                "scared"
               ]
             ]
           }
@@ -771,8 +820,180 @@
           "to": {
             "x": 3000
           }
+        },
+        {
+          "id": "path_sx",
+          "at": {
+            "with": "path_d",
+            "delay": 14
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_stomp",
+            "volume": 0.5
+          }
         }
       ]
+    },
+    {
+      "id": "stumble",
+      "location": "trail",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "tired"
+        }
+      ],
+      "beats": [
+        {
+          "id": "stumble_w",
+          "at": 0.3,
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1750
+          }
+        },
+        {
+          "id": "stumble_kd",
+          "at": {
+            "after": "stumble_w"
+          },
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "hurt"
+        },
+        {
+          "id": "stumble_t1",
+          "at": {
+            "after": "stumble_kd"
+          },
+          "who": "doopi",
+          "do": "talk",
+          "say": "Ow. ...Nobody laughed this time."
+        },
+        {
+          "id": "stumble_u",
+          "at": {
+            "after": "stumble_t1"
+          },
+          "who": "doopi",
+          "do": "get_up"
+        },
+        {
+          "id": "stumble_d1",
+          "at": {
+            "after": "stumble_u"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Dony always picks me up. Every time.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "He always says, I've got you, buddy.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "No. Heroes don't need help. Keep going!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "stumble_sg",
+          "at": {
+            "with": "stumble_d1",
+            "delay": 2.5
+          },
+          "who": "doopi",
+          "do": "sigh"
+        },
+        {
+          "id": "stumble_g1",
+          "at": {
+            "with": "stumble_d1",
+            "delay": 3
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "color": "#ffd23f",
+            "level": 0.15,
+            "dur": 0.5
+          }
+        },
+        {
+          "id": "stumble_g2",
+          "at": {
+            "with": "stumble_d1",
+            "delay": 4
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "level": 0,
+            "dur": 0.5
+          }
+        },
+        {
+          "id": "stumble_t4",
+          "at": {
+            "after": "stumble_d1"
+          },
+          "who": "doopi",
+          "do": "clench_fist"
+        },
+        {
+          "id": "stumble_r",
+          "at": {
+            "after": "stumble_t4"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 2700
+          }
+        },
+        {
+          "id": "stumble_n",
+          "at": {
+            "with": "stumble_r",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But with every step alone, his glow grew a little dimmer."
+          }
+        }
+      ],
+      "weather": "rain",
+      "grade": {
+        "saturation": 0.7
+      }
     },
     {
       "id": "hand",
@@ -859,6 +1080,41 @@
                 "ghoom",
                 "DOO... MI. BEEP.",
                 "happy"
+              ],
+              [
+                "doomi",
+                "Where are you taking me, Ghoomu?",
+                "surprised"
+              ],
+              [
+                "ghoom",
+                "GREY... PEAK. ORDERS.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Do you WANT to go there?",
+                "surprised"
+              ],
+              [
+                "ghoom",
+                "...WANT? ...BEEP?",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Nobody ever asked you. I'm asking.",
+                "love"
+              ],
+              [
+                "doomi",
+                "One more ribbon. Doopi will find me. I know he will.",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "...BEEP.",
+                "sad"
               ]
             ]
           }
@@ -946,6 +1202,16 @@
                 "doopi",
                 "GHOOM! Let her go!",
                 "furious"
+              ],
+              [
+                "ghoom",
+                "SMALL BOY. GO HOME.",
+                "angry"
+              ],
+              [
+                "doopi",
+                "Not without Doomi!",
+                "determined"
               ],
               [
                 "doomi",
@@ -1329,6 +1595,21 @@
                 "mooka",
                 "Then borrow ours! We have lots!",
                 "love"
+              ],
+              [
+                "doopi",
+                "I'm sorry. I left you all behind.",
+                "sad"
+              ],
+              [
+                "tara",
+                "Next time, wake us up. Even Mooka.",
+                "determined"
+              ],
+              [
+                "mooka",
+                "ESPECIALLY Mooka!",
+                "laugh"
               ]
             ]
           }

@@ -346,6 +346,52 @@
       }
     },
     {
+      "id": "recap",
+      "macro": "montage",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "params": {
+        "clipDur": 5,
+        "cut": "dissolve",
+        "clips": [
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "dony"
+            ],
+            "do": "knockdown",
+            "text": "Last time, Dony jumped in front of a Gloom Blast to save Doopi."
+          },
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "giant"
+            ],
+            "do": "laugh",
+            "text": "Doopi fought Giant Peepa all alone... and fell, again and again."
+          },
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "doopi"
+            ],
+            "do": "kneel",
+            "text": "And his Heart Glow almost went out."
+          }
+        ]
+      }
+    },
+    {
       "id": "voices",
       "location": "hill",
       "time": "night",
@@ -535,6 +581,21 @@
                 "doomi",
                 "Always. That's what we do.",
                 "love"
+              ],
+              [
+                "doopi",
+                "I tried to do it alone. I broke my promise.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Then say sorry later. Right now, get UP.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Up, up, UP! Hee hee!",
+                "laugh"
               ]
             ]
           }
@@ -1224,6 +1285,12 @@
           "x": 1150,
           "facing": 1,
           "face": "love"
+        },
+        {
+          "id": "mooka",
+          "x": 950,
+          "facing": 1,
+          "face": "surprised"
         }
       ],
       "beats": [
@@ -1310,6 +1377,32 @@
           "do": "narrate",
           "params": {
             "text": "The six crystals tore free and flew home to the bracelet. Colour flashed back in streaks."
+          }
+        },
+        {
+          "id": "return_d1",
+          "at": {
+            "after": "return_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Colours! I can see COLOURS!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Your bracelet, Doopi! All six crystals!",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "You did this. All of you. Now let's finish it.",
+                "determined"
+              ]
+            ]
           }
         }
       ],
@@ -1417,6 +1510,53 @@
           "who": "doomi",
           "do": "cheer",
           "say": "Jalebi Spin, Doopi!"
+        },
+        {
+          "id": "phase2_bk",
+          "at": {
+            "after": "phase2_f"
+          },
+          "who": "doopi",
+          "do": "block",
+          "face": "determined",
+          "say": "Banyan Root Stance!",
+          "bubble": "shout"
+        },
+        {
+          "id": "phase2_ga",
+          "at": {
+            "with": "phase2_bk",
+            "delay": 0.3
+          },
+          "who": "giant",
+          "do": "hook",
+          "target": "doopi",
+          "outcome": "blocked",
+          "approach": "run"
+        },
+        {
+          "id": "phase2_js",
+          "at": {
+            "after": "phase2_ga",
+            "delay": 1.5
+          },
+          "who": "doopi",
+          "do": "spinning_kick",
+          "target": "giant",
+          "outcome": "hit",
+          "approach": "run",
+          "say": "JALEBI SPIN!",
+          "bubble": "shout"
+        },
+        {
+          "id": "phase2_st",
+          "at": {
+            "after": "phase2_js"
+          },
+          "who": "giant",
+          "do": "stagger",
+          "face": "surprised",
+          "say": "How is a tiny hero so STRONG?"
         }
       ],
       "lens": {
@@ -1598,6 +1738,12 @@
           "x": 700,
           "facing": 1,
           "face": "sad"
+        },
+        {
+          "id": "mallu",
+          "x": 1100,
+          "facing": -1,
+          "face": "sad"
         }
       ],
       "beats": [
@@ -1648,9 +1794,40 @@
           }
         },
         {
-          "id": "guard_b",
+          "id": "guard_mj",
           "at": {
             "after": "guard_d"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mallu",
+                "Let me try. Dony! Why did the cow cross the hill?",
+                "laugh"
+              ],
+              [
+                "mallu",
+                "To get to the UDDER side! Ho ho!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "...NOT FUNNY. BEEP.",
+                "sad"
+              ],
+              [
+                "mallu",
+                "Tough crowd.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "guard_b",
+          "at": {
+            "after": "guard_mj"
           },
           "who": "becky",
           "do": "lick",
@@ -1928,8 +2105,29 @@
           }
         },
         {
-          "id": "taken_d1",
+          "id": "taken_d0",
           "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "It's over, Peepa. Please. Just stop.",
+                "determined"
+              ],
+              [
+                "giant",
+                "Over? It's over when the MOON says so!",
+                "furious"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "taken_d1",
+          "at": {
+            "after": "taken_d0"
+          },
           "who": "giant",
           "do": "talk",
           "face": "furious",
@@ -2098,6 +2296,27 @@
           "do": "bark",
           "params": {
             "cycles": 3
+          }
+        },
+        {
+          "id": "below_d2",
+          "at": {
+            "after": "below_c"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Shouting isn't enough. We have to send him our glow.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Then we hold hands. All of us. And we don't let go.",
+                "determined"
+              ]
+            ]
           }
         }
       ],

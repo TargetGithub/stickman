@@ -286,6 +286,19 @@
       "theme": "spice_cellar",
       "stageWidth": 2400,
       "light": "indoor"
+    },
+    {
+      "id": "camp",
+      "theme": "whispering_forest",
+      "stageWidth": 2800,
+      "set": [
+        {
+          "id": "fire",
+          "object": "campfire",
+          "x": 1400,
+          "state": "out"
+        }
+      ]
     }
   ],
   "scenes": [
@@ -298,6 +311,150 @@
           "title": "Madam Mirchi's Kitchen",
           "location": "tokyo_village"
         }
+      }
+    },
+    {
+      "id": "recap",
+      "pace": {
+        "establish": 18,
+        "maxTravel": 20
+      },
+      "location": "camp",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "tara",
+          "x": 800,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 2150,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... the friends left Tokyo, and met Tara Treetop in the Whispering Forest."
+          }
+        },
+        {
+          "id": "recap_w1",
+          "at": {
+            "with": "recap_n1",
+            "delay": 1.5
+          },
+          "who": "tara",
+          "do": "wave",
+          "face": "happy"
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But in the night, a red chilli smoke drifted into their camp..."
+          }
+        },
+        {
+          "id": "recap_b1",
+          "at": {
+            "with": "recap_n2",
+            "delay": 0.6
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          },
+          "face": "angry",
+          "fx": [
+            "chilli_smoke"
+          ]
+        },
+        {
+          "id": "recap_s1",
+          "at": {
+            "with": "recap_n2",
+            "delay": 1.4
+          },
+          "who": "mooka",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And when it cleared, Dony was gone."
+          }
+        },
+        {
+          "id": "recap_l1",
+          "at": {
+            "with": "recap_n3",
+            "delay": 0.4
+          },
+          "who": "doopi",
+          "do": "look_around",
+          "face": "scared"
+        },
+        {
+          "id": "recap_l2",
+          "at": {
+            "with": "recap_n3",
+            "delay": 0.8
+          },
+          "who": "doomi",
+          "do": "gasp",
+          "face": "cry"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
       }
     },
     {
@@ -437,6 +594,65 @@
               ]
             ]
           }
+        },
+        {
+          "id": "pot_dy1",
+          "at": {
+            "after": "pot_d2"
+          },
+          "who": "dony",
+          "do": "tiptoe",
+          "to": {
+            "x": 900
+          },
+          "face": "scared"
+        },
+        {
+          "id": "pot_d3",
+          "at": {
+            "after": "pot_dy1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mirchi",
+                "And where are YOU going, little cook?",
+                "angry"
+              ],
+              [
+                "dony",
+                "To get... more chillies?",
+                "scared"
+              ],
+              [
+                "mirchi",
+                "Back to the pot! Stir! Ha-CHOO!",
+                "furious"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "pot_dy2",
+          "at": {
+            "after": "pot_d3"
+          },
+          "who": "dony",
+          "do": "walk",
+          "to": {
+            "x": 1250
+          },
+          "face": "tired"
+        },
+        {
+          "id": "pot_dy3",
+          "at": {
+            "after": "pot_dy2"
+          },
+          "who": "dony",
+          "do": "push",
+          "face": "tired"
         }
       ]
     },
@@ -594,6 +810,42 @@
           "who": "goon2",
           "do": "sigh",
           "say": "So bored..."
+        },
+        {
+          "id": "gate_d2",
+          "at": {
+            "after": "gate_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Doopi and Mooka, you go in the front door.",
+                "determined"
+              ],
+              [
+                "tara",
+                "Doomi, Becky and I sneak in behind you.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "And nobody does anything alone. Promise?",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Promise!",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Pinky promise!",
+                "laugh"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -678,8 +930,34 @@
           }
         },
         {
-          "id": "disguise_w1",
+          "id": "disguise_d0",
           "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "How do I look?",
+                "happy"
+              ],
+              [
+                "tara",
+                "Like a jelly in a hat.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Perfect!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "disguise_w1",
+          "at": {
+            "after": "disguise_d0"
+          },
           "who": "doopi",
           "do": "walk",
           "to": {
@@ -688,7 +966,10 @@
         },
         {
           "id": "disguise_w2",
-          "at": 0.6,
+          "at": {
+            "with": "disguise_w1",
+            "delay": 0.2
+          },
           "who": "mooka",
           "do": "walk",
           "to": {
@@ -727,9 +1008,49 @@
           }
         },
         {
-          "id": "disguise_in1",
+          "id": "disguise_d2",
           "at": {
             "after": "disguise_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "goon2",
+                "Wait. Delivery boys... got any snacks?",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Um... one jalebi?",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "disguise_ge",
+          "at": {
+            "after": "disguise_d2"
+          },
+          "who": "goon2",
+          "do": "eat",
+          "face": "happy"
+        },
+        {
+          "id": "disguise_gs",
+          "at": {
+            "after": "disguise_ge"
+          },
+          "who": "goon2",
+          "do": "talk",
+          "face": "love",
+          "say": "Mmm! Sweet! Don't tell the boss."
+        },
+        {
+          "id": "disguise_in1",
+          "at": {
+            "after": "disguise_gs"
           },
           "who": "doopi",
           "do": "walk",
@@ -1018,6 +1339,164 @@
       ]
     },
     {
+      "id": "pantry",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.5
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "neutral"
+        },
+        {
+          "id": "becky",
+          "x": 1300,
+          "facing": 1,
+          "face": "neutral"
+        },
+        {
+          "id": "tara",
+          "x": 400,
+          "facing": 1,
+          "face": "determined",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "pantry_te",
+          "at": 0.3,
+          "macro": "enter",
+          "params": {
+            "who": "tara",
+            "side": "left",
+            "to": {
+              "x": 850
+            },
+            "mode": "sneak"
+          }
+        },
+        {
+          "id": "pantry_d1",
+          "at": {
+            "after": "pantry_te"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Psst! Doomi went with Doopi to find Dony.",
+                "determined"
+              ],
+              [
+                "tara",
+                "We look for a way to beat Madam Mirchi.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "pantry_m1",
+          "at": {
+            "after": "pantry_d1"
+          },
+          "who": "mooka",
+          "do": "look_around",
+          "face": "surprised",
+          "say": "Chillies. Chillies. MORE chillies."
+        },
+        {
+          "id": "pantry_b1",
+          "at": {
+            "with": "pantry_m1",
+            "delay": 0.4
+          },
+          "who": "becky",
+          "do": "sniff",
+          "params": {
+            "distance": 200
+          }
+        },
+        {
+          "id": "pantry_b2",
+          "at": {
+            "after": "pantry_b1"
+          },
+          "who": "becky",
+          "do": "sneeze"
+        },
+        {
+          "id": "pantry_d2",
+          "at": {
+            "after": "pantry_m1",
+            "delay": 0.6
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Not one jalebi in this whole kitchen!",
+                "sad"
+              ],
+              [
+                "tara",
+                "Mirchi hates sweet things. Everybody knows that.",
+                "neutral"
+              ],
+              [
+                "mooka",
+                "Then I keep MY jalebis safe. Right here.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "pantry_t2",
+          "at": {
+            "after": "pantry_d2"
+          },
+          "who": "tara",
+          "do": "talk",
+          "face": "scared",
+          "say": "Shh! Someone's coming!",
+          "bubble": "whisper"
+        },
+        {
+          "id": "pantry_h1",
+          "at": {
+            "after": "pantry_t2"
+          },
+          "who": "tara",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
+          "id": "pantry_h2",
+          "at": {
+            "with": "pantry_h1",
+            "delay": 0.2
+          },
+          "who": "mooka",
+          "do": "hide",
+          "face": "scared"
+        }
+      ]
+    },
+    {
       "id": "found",
       "location": "kitchen",
       "time": "day",
@@ -1118,9 +1597,30 @@
           "face": "love"
         },
         {
-          "id": "found_d3",
+          "id": "found_d4",
           "at": {
             "after": "found_h1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Doopi! I knew you'd come!",
+                "cry"
+              ],
+              [
+                "doopi",
+                "Always, buddy. Always.",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_d3",
+          "at": {
+            "after": "found_d4"
           },
           "macro": "dialogue",
           "params": {
@@ -1499,6 +1999,45 @@
           "do": "laugh",
           "face": "laugh",
           "say": "Ha-CHOO-ha-ha-ha!"
+        },
+        {
+          "id": "smoke_t1",
+          "at": {
+            "after": "smoke_m2"
+          },
+          "who": "tara",
+          "do": "talk",
+          "face": "angry",
+          "say": "Achoo! Leave him alone!",
+          "bubble": "shout"
+        },
+        {
+          "id": "smoke_tf",
+          "at": {
+            "after": "smoke_t1"
+          },
+          "macro": "fight",
+          "params": {
+            "sides": [
+              "tara",
+              "mirchi"
+            ],
+            "winner": "mirchi",
+            "style": "dominant",
+            "intensity": "low",
+            "exchanges": 3,
+            "ko": false
+          }
+        },
+        {
+          "id": "smoke_m3",
+          "at": {
+            "after": "smoke_tf"
+          },
+          "who": "mirchi",
+          "do": "taunt",
+          "face": "smug",
+          "say": "Too slow, forest girl!"
         }
       ]
     },
@@ -1649,6 +2188,197 @@
       ]
     },
     {
+      "id": "hide",
+      "location": "kitchen",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mirchi",
+          "x": 2600,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "tara",
+          "x": 950,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "becky",
+          "x": 1400,
+          "facing": 1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "hide_m1",
+          "at": 0.3,
+          "who": "mirchi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Two little sweets, down the hole!"
+        },
+        {
+          "id": "hide_t1",
+          "at": {
+            "after": "hide_m1"
+          },
+          "who": "tara",
+          "do": "talk",
+          "face": "scared",
+          "say": "Quick! Hide!",
+          "bubble": "whisper"
+        },
+        {
+          "id": "hide_h1",
+          "at": {
+            "after": "hide_t1"
+          },
+          "who": "tara",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
+          "id": "hide_h2",
+          "at": {
+            "with": "hide_h1",
+            "delay": 0.1
+          },
+          "who": "mooka",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
+          "id": "hide_h3",
+          "at": {
+            "with": "hide_h1",
+            "delay": 0.2
+          },
+          "who": "dony",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
+          "id": "hide_h4",
+          "at": {
+            "with": "hide_h1",
+            "delay": 0.3
+          },
+          "who": "becky",
+          "do": "lie_dog",
+          "face": "scared"
+        },
+        {
+          "id": "hide_m2",
+          "at": {
+            "after": "hide_h1"
+          },
+          "who": "mirchi",
+          "do": "look_around",
+          "face": "angry",
+          "say": "Now where did the others go?"
+        },
+        {
+          "id": "hide_m3",
+          "at": {
+            "after": "hide_m2"
+          },
+          "who": "mirchi",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "hide_m4",
+          "at": {
+            "after": "hide_m3"
+          },
+          "who": "mirchi",
+          "do": "shrug",
+          "face": "smug",
+          "say": "I'll find them after dinner."
+        },
+        {
+          "id": "hide_mx",
+          "at": {
+            "after": "hide_m4"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "mirchi",
+            "side": "right",
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "hide_u1",
+          "at": {
+            "after": "hide_mx"
+          },
+          "who": "tara",
+          "do": "stand_up",
+          "face": "determined"
+        },
+        {
+          "id": "hide_u2",
+          "at": {
+            "with": "hide_u1",
+            "delay": 0.2
+          },
+          "who": "dony",
+          "do": "stand_up",
+          "face": "sad"
+        },
+        {
+          "id": "hide_d1",
+          "at": {
+            "after": "hide_u1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Doopi and Doomi are down there!",
+                "cry"
+              ],
+              [
+                "tara",
+                "Then we get them out. Together.",
+                "determined"
+              ],
+              [
+                "mooka",
+                "Pinky promise!",
+                "determined"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
       "id": "cellar",
       "location": "cellar",
       "time": "night",
@@ -1714,9 +2444,35 @@
           }
         },
         {
-          "id": "cellar_sh",
+          "id": "cellar_d2",
           "at": {
             "after": "cellar_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "It's okay. We're together. That's what matters.",
+                "love"
+              ],
+              [
+                "doomi",
+                "A good plan needs patience. So we wait, and we think.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Waiting... is the hardest kung fu.",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "cellar_sh",
+          "at": {
+            "after": "cellar_d2"
           },
           "who": "world",
           "do": "shake",

@@ -268,6 +268,125 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 18,
+        "maxTravel": 20
+      },
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1550,
+          "facing": 1,
+          "face": "laugh"
+        },
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... a kind little enemy named Kony gave Mooka his giggle back."
+          }
+        },
+        {
+          "id": "recap_m1",
+          "at": {
+            "with": "recap_n1",
+            "delay": 1.0
+          },
+          "who": "mooka",
+          "do": "jump_joy",
+          "face": "laugh"
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Yellow came home, and Tokyo danced."
+          }
+        },
+        {
+          "id": "recap_m2",
+          "at": {
+            "with": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "dance_a",
+          "face": "laugh"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But then Peepa came back. And Nani Nimbu turned to stone, to save the children."
+          }
+        },
+        {
+          "id": "recap_g1",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.0
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "cry"
+        },
+        {
+          "id": "recap_g2",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.3
+          },
+          "who": "doomi",
+          "do": "cry",
+          "face": "cry"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
       "id": "promise",
       "location": "square",
       "time": "dawn",
@@ -300,6 +419,13 @@
           "x": 1100,
           "facing": 1,
           "face": "sad"
+        },
+        {
+          "id": "mooka",
+          "x": 400,
+          "facing": 1,
+          "face": "sad",
+          "hidden": true
         }
       ],
       "beats": [
@@ -382,6 +508,50 @@
           "who": "doopi",
           "do": "clench_fist",
           "face": "determined"
+        },
+        {
+          "id": "promise_me",
+          "at": {
+            "after": "promise_cf"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "mooka",
+            "side": "left",
+            "to": {
+              "x": 1550
+            },
+            "mode": "walk"
+          }
+        },
+        {
+          "id": "promise_mk",
+          "at": {
+            "after": "promise_me"
+          },
+          "who": "mooka",
+          "do": "kneel",
+          "face": "sad"
+        },
+        {
+          "id": "promise_mt",
+          "at": {
+            "after": "promise_mk"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "face": "love",
+          "say": "A jalebi for you, Nani. For later!"
+        },
+        {
+          "id": "promise_dp",
+          "at": {
+            "after": "promise_mt"
+          },
+          "who": "doopi",
+          "do": "pat_head",
+          "partner": "mooka",
+          "face": "love"
         }
       ],
       "lens": {
@@ -730,9 +900,40 @@
           "face": "laugh"
         },
         {
+          "id": "bus_d1",
+          "at": {
+            "after": "bus_g1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "motumal",
+                "Doopi! Look after everyone!",
+                "cry"
+              ],
+              [
+                "doopi",
+                "I will, Mayor ji. And they'll look after me.",
+                "happy"
+              ],
+              [
+                "dony",
+                "That's how it works. We carry each other.",
+                "love"
+              ],
+              [
+                "mooka",
+                "And the jalebis!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
           "id": "bus_u1",
           "at": {
-            "after": "bus_w1",
+            "after": "bus_d1",
             "delay": 0.4
           },
           "who": "doopi",
@@ -977,9 +1178,58 @@
           "face": "scared"
         },
         {
-          "id": "woods_h1",
+          "id": "woods_d2",
           "at": {
             "after": "woods_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Why is it called the Whispering Forest?",
+                "scared"
+              ],
+              [
+                "doomi",
+                "Because the trees whisper. It's just the wind.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "What do they whisper?",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "woods_wh",
+          "at": {
+            "after": "woods_d2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whoosh",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "woods_dy",
+          "at": {
+            "with": "woods_wh",
+            "delay": 0.2
+          },
+          "who": "dony",
+          "do": "cower",
+          "face": "scared",
+          "say": "They said BOO!"
+        },
+        {
+          "id": "woods_h1",
+          "at": {
+            "after": "woods_dy"
           },
           "who": "becky",
           "do": "growl",
@@ -1254,9 +1504,50 @@
           }
         },
         {
-          "id": "join_q",
+          "id": "join_d2",
           "at": {
             "after": "join_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Wait. What is THAT?",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "I'm Mooka! Hello!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Can he fight?",
+                "neutral"
+              ],
+              [
+                "doopi",
+                "He can eat. A LOT.",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Peepa's mist turned half my forest grey.",
+                "sad"
+              ],
+              [
+                "tara",
+                "So I'm coming with you. For my trees.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "join_q",
+          "at": {
+            "after": "join_d2"
           },
           "who": "doopi",
           "do": "talk",
@@ -1284,6 +1575,212 @@
           "face": "laugh"
         }
       ]
+    },
+    {
+      "id": "stories",
+      "location": "camp",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.8
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "tara",
+          "x": 700,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1950,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 2200,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "stories_s1",
+          "at": 0.2,
+          "who": "doopi",
+          "do": "sit"
+        },
+        {
+          "id": "stories_s2",
+          "at": 0.3,
+          "who": "doomi",
+          "do": "sit"
+        },
+        {
+          "id": "stories_s3",
+          "at": 0.4,
+          "who": "tara",
+          "do": "sit"
+        },
+        {
+          "id": "stories_s4",
+          "at": 0.5,
+          "who": "mooka",
+          "do": "sit"
+        },
+        {
+          "id": "stories_s5",
+          "at": 0.6,
+          "who": "becky",
+          "do": "lie_down"
+        },
+        {
+          "id": "stories_n1",
+          "at": 0.6,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "That night they made camp, deep in the forest."
+          }
+        },
+        {
+          "id": "stories_d1",
+          "at": {
+            "after": "stories_n1"
+          },
+          "who": "dony",
+          "do": "talk",
+          "face": "smug",
+          "say": "Ahem! A short speech!"
+        },
+        {
+          "id": "stories_d2",
+          "at": {
+            "after": "stories_d1"
+          },
+          "who": "dony",
+          "do": "point",
+          "face": "smug",
+          "say": "In the year of the big mango..."
+        },
+        {
+          "id": "stories_l1",
+          "at": {
+            "with": "stories_d2",
+            "delay": 1.0
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "stories_l2",
+          "at": {
+            "with": "stories_d2",
+            "delay": 1.2
+          },
+          "who": "mooka",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "stories_d3",
+          "at": {
+            "after": "stories_d2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "That's EXACTLY the Mayor!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "Hee hee! Do it again!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Your Mayor sounds fun.",
+                "happy"
+              ],
+              [
+                "doomi",
+                "He cried when we left. He's sweet.",
+                "love"
+              ],
+              [
+                "tara",
+                "I'll take the first watch. Nobody sneaks past Tara.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "stories_tz",
+          "at": {
+            "after": "stories_d3"
+          },
+          "who": "tara",
+          "do": "sleep",
+          "fx": [
+            "zzz"
+          ]
+        },
+        {
+          "id": "stories_mz",
+          "at": {
+            "with": "stories_tz",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "sleep",
+          "fx": [
+            "zzz"
+          ]
+        },
+        {
+          "id": "stories_dl",
+          "at": {
+            "with": "stories_tz",
+            "delay": 0.6
+          },
+          "who": "doomi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "First watch... asleep in one second."
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
     },
     {
       "id": "fire",

@@ -329,6 +329,23 @@
         }
       ],
       "light": "indoor"
+    },
+    {
+      "id": "canyon",
+      "theme": "iron_canyon",
+      "stageWidth": 3200
+    },
+    {
+      "id": "trail",
+      "theme": "iron_canyon",
+      "stageWidth": 3600,
+      "set": [
+        {
+          "id": "rib1",
+          "object": "ribbon",
+          "x": 1900
+        }
+      ]
     }
   ],
   "scenes": [
@@ -341,6 +358,88 @@
           "title": "The Glow Within",
           "location": "tokyo_village"
         }
+      }
+    },
+    {
+      "id": "recap",
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "location": "canyon",
+      "time": "dusk",
+      "weather": "rain",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_k1",
+          "at": 0.2,
+          "who": "doopi",
+          "do": "kneel",
+          "face": "sad"
+        },
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Doopi ran after Iron Ghoom all by himself."
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "He tried every move he knew. But the giant robot was too strong."
+          }
+        },
+        {
+          "id": "recap_c1",
+          "at": {
+            "with": "recap_n2",
+            "delay": 1
+          },
+          "who": "doopi",
+          "do": "cry",
+          "face": "cry"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "His bracelet went dark. And Ghoom carried Doomi away into the fog."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
       }
     },
     {
@@ -430,6 +529,67 @@
               ]
             ]
           }
+        },
+        {
+          "id": "quit_d2",
+          "at": {
+            "after": "quit_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "We're not going home without you, Doopi.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Please. Just leave me alone.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "quit_b1",
+          "at": {
+            "after": "quit_d2"
+          },
+          "who": "becky",
+          "do": "walk",
+          "to": {
+            "near": "doopi",
+            "gap": 130
+          }
+        },
+        {
+          "id": "quit_b2",
+          "at": {
+            "after": "quit_b1"
+          },
+          "who": "becky",
+          "do": "lie_dog",
+          "face": "sad"
+        },
+        {
+          "id": "quit_b3",
+          "at": {
+            "after": "quit_b2"
+          },
+          "who": "becky",
+          "do": "whimper",
+          "face": "sad"
+        },
+        {
+          "id": "quit_t2",
+          "at": {
+            "after": "quit_b3"
+          },
+          "who": "tara",
+          "do": "sit",
+          "face": "smug",
+          "say": "Fine. We'll leave you alone. Right here."
         }
       ],
       "lens": {
@@ -564,6 +724,41 @@
           "do": "sigh",
           "face": "sad",
           "say": "He didn't even smile."
+        },
+        {
+          "id": "cheer_d2",
+          "at": {
+            "after": "cheer_m3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Do the Mayor! Do the Mayor voice!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Ahem! People of Tokyo! I have a speech. A very, very long speech!",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Hee hee! That's him! That's exactly him!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "cheer_ds",
+          "at": {
+            "after": "cheer_d2"
+          },
+          "who": "doopi",
+          "do": "sigh",
+          "face": "sad"
         }
       ],
       "lens": {
@@ -811,6 +1006,31 @@
               ],
               [
                 "nani",
+                "Remember my chores? The water buckets? The sweeping?",
+                "happy"
+              ],
+              [
+                "doopi",
+                "You made me carry water upside down!",
+                "laugh"
+              ],
+              [
+                "nani",
+                "And who helped you carry it? Hmm?",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Dony. And Mooka. And Becky held the cloth.",
+                "happy"
+              ],
+              [
+                "nani",
+                "The strongest root holds the whole tree. But no root grows alone.",
+                "love"
+              ],
+              [
+                "nani",
                 "Now wake up. And don't be late.",
                 "smug"
               ]
@@ -1039,6 +1259,47 @@
           },
           "who": "becky",
           "do": "jump"
+        },
+        {
+          "id": "breakfast_e1",
+          "at": {
+            "after": "breakfast_j1"
+          },
+          "who": "mooka",
+          "do": "eat",
+          "face": "laugh",
+          "say": "Crunch! Crunch! Crunch!"
+        },
+        {
+          "id": "breakfast_b2",
+          "at": {
+            "with": "breakfast_e1",
+            "delay": 0.6
+          },
+          "who": "becky",
+          "do": "tilt_head",
+          "face": "surprised"
+        },
+        {
+          "id": "breakfast_d2",
+          "at": {
+            "after": "breakfast_e1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Okay, okay. Tomorrow, somebody else cooks.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "Me! Me! Jalebis for breakfast!",
+                "laugh"
+              ]
+            ]
+          }
         }
       ],
       "lens": {
@@ -1167,6 +1428,182 @@
       ]
     },
     {
+      "id": "trail",
+      "location": "trail",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "heroic",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "becky",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 1100,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 800,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "mooka",
+          "x": 650,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "trail_g",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "doopi",
+            "color": "#ffd23f",
+            "level": 0.7
+          }
+        },
+        {
+          "id": "trail_t1",
+          "at": 0.3,
+          "who": "tara",
+          "do": "point",
+          "face": "surprised",
+          "say": "Giant footprints. Ghoom came this way."
+        },
+        {
+          "id": "trail_b1",
+          "at": {
+            "after": "trail_t1"
+          },
+          "who": "becky",
+          "do": "sneak",
+          "to": {
+            "x": 1800
+          }
+        },
+        {
+          "id": "trail_b1s",
+          "at": {
+            "after": "trail_b1"
+          },
+          "who": "becky",
+          "do": "sniff",
+          "params": {
+            "cycles": 2
+          }
+        },
+        {
+          "id": "trail_b2",
+          "at": {
+            "after": "trail_b1s"
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          },
+          "face": "happy",
+          "say": "Woof woof!"
+        },
+        {
+          "id": "trail_w1",
+          "at": {
+            "with": "trail_b2"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1650
+          }
+        },
+        {
+          "id": "trail_d1",
+          "at": {
+            "after": "trail_w1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "A pink ribbon! It's Doomi's!",
+                "surprised"
+              ],
+              [
+                "dony",
+                "She's leaving us a trail. Clever Doomi.",
+                "happy"
+              ],
+              [
+                "tara",
+                "She knew you would come.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Not me. We. She knew WE would come.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "trail_go",
+          "at": {
+            "after": "trail_d1"
+          },
+          "macro": "travel",
+          "params": {
+            "who": [
+              "doopi",
+              "dony",
+              "tara",
+              "becky"
+            ],
+            "to": {
+              "x": 2400
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "trail_mk",
+          "at": {
+            "with": "trail_go",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "run",
+          "to": {
+            "x": 2150
+          }
+        }
+      ]
+    },
+    {
       "id": "key",
       "location": "shop",
       "time": "night",
@@ -1236,6 +1673,21 @@
                 "ghoom",
                 "...NOT... FAIR. BEEP.",
                 "sad"
+              ],
+              [
+                "doomi",
+                "Do you even want to stomp on villages?",
+                "sad"
+              ],
+              [
+                "ghoom",
+                "...NO. GHOOM... LIKES... FLOWERS.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Flowers? Me too! See? We're friends already.",
+                "happy"
               ],
               [
                 "doomi",
@@ -1330,10 +1782,33 @@
           }
         },
         {
-          "id": "escape_tp",
+          "id": "escape_sh",
           "at": {
             "after": "escape_op",
-            "delay": 0.4
+            "delay": 0.3
+          },
+          "who": "doomi",
+          "do": "talk",
+          "face": "smug",
+          "say": "Shh, Ghoomu. Don't tell anyone.",
+          "bubble": "whisper"
+        },
+        {
+          "id": "escape_gb",
+          "at": {
+            "after": "escape_sh"
+          },
+          "who": "ghoom",
+          "do": "nod",
+          "face": "neutral",
+          "say": "...beep.",
+          "bubble": "whisper"
+        },
+        {
+          "id": "escape_tp",
+          "at": {
+            "after": "escape_gb",
+            "delay": 0.3
           },
           "who": "doomi",
           "do": "tiptoe",

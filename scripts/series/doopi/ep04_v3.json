@@ -249,6 +249,124 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 18,
+        "maxTravel": 20
+      },
+      "location": "square",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 850,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Nani Nimbu gave Doopi the Rainbow Bracelet."
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And after a lot of falling down, he learned the Jalebi Spin."
+          }
+        },
+        {
+          "id": "recap_s1",
+          "at": {
+            "with": "recap_n2",
+            "delay": 0.5
+          },
+          "who": "doopi",
+          "do": "dance_b",
+          "face": "determined"
+        },
+        {
+          "id": "recap_s2",
+          "at": {
+            "after": "recap_s1"
+          },
+          "who": "dony",
+          "do": "clap",
+          "face": "laugh"
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then a giant bandit with a red glow came stomping into Tokyo..."
+          }
+        },
+        {
+          "id": "recap_g1",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.0
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "scared"
+        },
+        {
+          "id": "recap_b1",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.3
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
       "id": "morning",
       "location": "square",
       "time": "dawn",
@@ -857,6 +975,200 @@
       ]
     },
     {
+      "id": "practice",
+      "location": "square",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "grade": {
+        "saturation": 0.3
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1200,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 800,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "practice_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "First we practise. Dony, you be Thunda.",
+                "smug"
+              ],
+              [
+                "dony",
+                "Me? Okay. Ahem.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "practice_f1",
+          "at": {
+            "after": "practice_d1"
+          },
+          "who": "dony",
+          "do": "flex",
+          "face": "angry",
+          "say": "I am THUNDA! Grrr!"
+        },
+        {
+          "id": "practice_la",
+          "at": {
+            "with": "practice_f1",
+            "delay": 0.6
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "practice_r1",
+          "at": {
+            "after": "practice_f1"
+          },
+          "who": "doomi",
+          "do": "use",
+          "face": "determined",
+          "say": "Rope ready!"
+        },
+        {
+          "id": "practice_w1",
+          "at": {
+            "after": "practice_r1"
+          },
+          "who": "dony",
+          "do": "walk",
+          "to": {
+            "x": 1450
+          },
+          "face": "angry"
+        },
+        {
+          "id": "practice_kd",
+          "at": {
+            "after": "practice_w1"
+          },
+          "who": "dony",
+          "do": "knockdown",
+          "face": "dizzy",
+          "say": "Whoa!"
+        },
+        {
+          "id": "practice_b1",
+          "at": {
+            "with": "practice_kd",
+            "delay": 0.4
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          },
+          "face": "happy"
+        },
+        {
+          "id": "practice_up",
+          "at": {
+            "after": "practice_kd",
+            "delay": 0.4
+          },
+          "who": "dony",
+          "do": "get_up",
+          "face": "tired"
+        },
+        {
+          "id": "practice_d2",
+          "at": {
+            "after": "practice_up"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Ow. Thunda is sore.",
+                "hurt"
+              ],
+              [
+                "doomi",
+                "Good! The rope works!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "My turn. Round and round, like a jalebi...",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "practice_s1",
+          "at": {
+            "after": "practice_d2"
+          },
+          "who": "doopi",
+          "do": "dance_b",
+          "face": "determined"
+        },
+        {
+          "id": "practice_s2",
+          "at": {
+            "after": "practice_s1"
+          },
+          "who": "doopi",
+          "do": "jump_joy",
+          "face": "laugh",
+          "say": "I didn't fall down!"
+        },
+        {
+          "id": "practice_s3",
+          "at": {
+            "after": "practice_s2"
+          },
+          "who": "doomi",
+          "do": "clap",
+          "face": "love"
+        }
+      ]
+    },
+    {
       "id": "camp",
       "location": "camp",
       "time": "day",
@@ -964,7 +1276,7 @@
         {
           "id": "camp_z",
           "at": {
-            "after": "camp_f4"
+            "after": "camp_st"
           },
           "who": "thunda",
           "do": "sleep",
@@ -982,10 +1294,30 @@
           "face": "happy"
         },
         {
+          "id": "camp_st",
+          "at": {
+            "after": "camp_f4"
+          },
+          "who": "thunda",
+          "do": "sleep",
+          "face": "asleep",
+          "say": "Zzz... more jalebi... zzz..."
+        },
+        {
+          "id": "camp_bh",
+          "at": {
+            "with": "camp_st",
+            "delay": 0.3
+          },
+          "who": "becky",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
           "id": "camp_b2",
           "at": {
-            "after": "camp_b1",
-            "delay": 1.2
+            "after": "camp_st",
+            "delay": 0.4
           },
           "who": "becky",
           "do": "wag",
@@ -1303,9 +1635,30 @@
           "face": "dizzy"
         },
         {
-          "id": "round2_cp",
+          "id": "round2_tl",
           "at": {
             "after": "round2_dz"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "thunda",
+                "Peepa said you were just a little boy.",
+                "dizzy"
+              ],
+              [
+                "thunda",
+                "Peepa did not say you had FRIENDS.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "round2_cp",
+          "at": {
+            "after": "round2_tl"
           },
           "who": "thunda",
           "do": "captured",
@@ -1635,6 +1988,37 @@
                 "doopi",
                 "One colour home. Six to go.",
                 "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "party_d3",
+          "at": {
+            "after": "party_d2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "motumal",
+                "And Thunda will sweep our market. For a whole month!",
+                "smug"
+              ],
+              [
+                "dony",
+                "Ha! Sweep, Thunda, sweep!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "I couldn't beat him alone. But WE beat him.",
+                "happy"
+              ],
+              [
+                "doomi",
+                "A team plan beats being strong. Every time.",
+                "love"
               ]
             ]
           }

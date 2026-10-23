@@ -408,6 +408,52 @@
       }
     },
     {
+      "id": "recap",
+      "macro": "montage",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "params": {
+        "clipDur": 5,
+        "cut": "dissolve",
+        "clips": [
+          {
+            "location": "throne",
+            "time": "night",
+            "who": [
+              "doopi"
+            ],
+            "do": "knockdown",
+            "text": "Last time, Peepa pulled all six crystals out of Doopi's bracelet."
+          },
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "giant"
+            ],
+            "do": "charge_up",
+            "text": "He grew into a giant, as big as his castle."
+          },
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "giant"
+            ],
+            "do": "use",
+            "text": "And he blew every colour out of the world."
+          }
+        ]
+      }
+    },
+    {
       "id": "wake",
       "location": "ruins",
       "time": "night",
@@ -546,6 +592,42 @@
                 "doopi",
                 "But not us. Look! We still have our colours!",
                 "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wake_d2",
+          "at": {
+            "after": "wake_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "But my bracelet... it's empty. All six crystals, gone.",
+                "sad"
+              ],
+              [
+                "tara",
+                "Then we get them back. Like always.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Where's everybody else? Doomi? Mooka? Becky?",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Still inside. I'll go. You help Ghoomu clear a way out.",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "GHOOMU LIFT ROCKS. BEEP!",
+                "happy"
               ]
             ]
           }
@@ -831,6 +913,42 @@
           "fx": [
             "heart"
           ]
+        },
+        {
+          "id": "key_d2",
+          "at": {
+            "after": "key_hg"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "You came back for me.",
+                "love"
+              ],
+              [
+                "doopi",
+                "I... you... um. Hi.",
+                "love"
+              ],
+              [
+                "doomi",
+                "Hi, Doopi.",
+                "laugh"
+              ],
+              [
+                "tony",
+                "Ew. Hugging.",
+                "smug"
+              ],
+              [
+                "kony",
+                "I think it's nice.",
+                "happy"
+              ]
+            ]
+          }
         }
       ],
       "lens": {
@@ -922,6 +1040,16 @@
                 "motumal",
                 "Mallu! I'm the Mayor! I should be... brave!",
                 "scared"
+              ],
+              [
+                "motumal",
+                "Citizens of Tokyo! I have prepared a speech for this...",
+                "determined"
+              ],
+              [
+                "mallu",
+                "No time for speeches! BOAT!",
+                "laugh"
               ],
               [
                 "mallu",
@@ -1157,9 +1285,19 @@
           "say": "Double oof!"
         },
         {
-          "id": "show_dd",
+          "id": "show_q1",
           "at": {
             "after": "show_k1"
+          },
+          "who": "doomi",
+          "do": "look_around",
+          "face": "sad",
+          "say": "Mooka? ...Still stone."
+        },
+        {
+          "id": "show_dd",
+          "at": {
+            "after": "show_q1"
           },
           "who": "doopi",
           "do": "dance_b",
@@ -1170,10 +1308,31 @@
           "say": "The world's WORST dance!"
         },
         {
+          "id": "show_df",
+          "at": {
+            "after": "show_dd"
+          },
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "dizzy",
+          "say": "Whoa! WHOA!",
+          "bubble": "shout"
+        },
+        {
+          "id": "show_dl",
+          "at": {
+            "after": "show_df",
+            "delay": 1.2
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Ha! I fell over my OWN foot!"
+        },
+        {
           "id": "show_e1",
           "at": {
-            "with": "show_dd",
-            "delay": 1
+            "after": "show_dl"
           },
           "macro": "enter",
           "params": {
@@ -1222,10 +1381,21 @@
           "say": "In the year of the big mango..."
         },
         {
+          "id": "show_s3",
+          "at": {
+            "after": "show_s2"
+          },
+          "who": "motumal",
+          "do": "stagger",
+          "face": "dizzy",
+          "say": "The mango was SO big... OOF! My turban!",
+          "bubble": "shout"
+        },
+        {
           "id": "show_j1",
           "at": {
-            "after": "show_s2",
-            "delay": 1.5
+            "after": "show_s3",
+            "delay": 0.5
           },
           "who": "mallu",
           "do": "laugh",
@@ -1273,9 +1443,20 @@
           "say": "Hee hee hee! A grey cow!"
         },
         {
+          "id": "show_mb",
+          "at": {
+            "after": "show_gm",
+            "delay": 1
+          },
+          "who": "mooka",
+          "do": "poke",
+          "face": "laugh",
+          "say": "Becky! Wake up! I found a stick!"
+        },
+        {
           "id": "show_rb",
           "at": {
-            "after": "show_gm"
+            "after": "show_mb"
           },
           "who": "becky",
           "do": "return"
@@ -1297,6 +1478,103 @@
       "lens": {
         "vignette": 0.35
       }
+    },
+    {
+      "id": "listen",
+      "location": "ruins",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "grade": {
+        "saturation": 0,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "tara",
+          "x": 1450,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "ghoom",
+          "x": 900,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "listen_p",
+          "at": 0.3,
+          "who": "ghoom",
+          "do": "push",
+          "face": "determined"
+        },
+        {
+          "id": "listen_bp",
+          "at": {
+            "with": "listen_p",
+            "delay": 0.6
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "listen_d",
+          "at": {
+            "after": "listen_p"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Shh! Listen. Do you hear that?",
+                "surprised"
+              ],
+              [
+                "dony",
+                "Is that... LAUGHING? In a grey castle?",
+                "surprised"
+              ],
+              [
+                "tara",
+                "Nobody laughs in a place like this. Nobody except...",
+                "happy"
+              ],
+              [
+                "dony",
+                "DOOPI! Come on!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "LAUGHING IS GOOD. BEEP BEEP!",
+                "happy"
+              ]
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "glow",
@@ -1537,6 +1815,12 @@
           "x": 400,
           "facing": 1,
           "face": "happy"
+        },
+        {
+          "id": "kony",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
         }
       ],
       "beats": [
@@ -1552,8 +1836,67 @@
           }
         },
         {
-          "id": "go_d",
+          "id": "go_d0",
           "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Wait. HIM? He's one of Peepa's boys!",
+                "angry"
+              ],
+              [
+                "kony",
+                "Not anymore. Tony and me are Mooka's boys now.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "My boys! Hee hee!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "If Mooka trusts them... then so do I.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "go_bg",
+          "at": {
+            "after": "go_d0"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "go_bt",
+          "at": {
+            "after": "go_bg"
+          },
+          "who": "kony",
+          "do": "cower",
+          "face": "scared",
+          "say": "Nice doggy. Good doggy."
+        },
+        {
+          "id": "go_bw",
+          "at": {
+            "after": "go_bt"
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "happy"
+        },
+        {
+          "id": "go_d",
+          "at": {
+            "after": "go_bw"
+          },
           "macro": "dialogue",
           "params": {
             "lines": [
@@ -1571,6 +1914,16 @@
                 "doopi",
                 "We go to Banyan hill. All of us. And we bring the colours home.",
                 "determined"
+              ],
+              [
+                "doomi",
+                "And we call everyone we met on our journey. Everyone!",
+                "determined"
+              ],
+              [
+                "tara",
+                "I'll bring the whole forest if I have to.",
+                "smug"
               ],
               [
                 "ghoom",
@@ -1621,6 +1974,18 @@
           "do": "run",
           "to": {
             "x": 3300
+          }
+        },
+        {
+          "id": "go_k",
+          "at": {
+            "with": "go_r",
+            "delay": 0.6
+          },
+          "who": "kony",
+          "do": "run",
+          "to": {
+            "x": 3000
           }
         }
       ],

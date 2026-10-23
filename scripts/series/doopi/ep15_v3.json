@@ -340,6 +340,29 @@
         }
       },
       "limbStyle": "bendy"
+    },
+    {
+      "id": "pinky",
+      "name": "Pinky",
+      "body": "kid",
+      "scale": 0.75,
+      "color": "#ffb3c7",
+      "appearance": {
+        "hair": "ponytail",
+        "hairColor": "#2a1a14",
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.8,
+        "speed": 1.1,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 5,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
     }
   ],
   "locations": [
@@ -368,6 +391,12 @@
           "state": "closed"
         }
       ]
+    },
+    {
+      "id": "shop",
+      "theme": "iron_workshop",
+      "stageWidth": 3200,
+      "light": "indoor"
     }
   ],
   "scenes": [
@@ -380,6 +409,105 @@
           "title": "Save Tokyo!",
           "location": "tokyo_village"
         }
+      }
+    },
+    {
+      "id": "recap",
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "location": "shop",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "ghoom",
+          "x": 1300,
+          "facing": 1,
+          "face": "neutral"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_g",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "ghoom",
+            "color": "#ff3b3b",
+            "level": 0.6
+          }
+        },
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Doopi's friends helped him find his Heart Glow again."
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But Peepa sent Doomi away to his castle, and wound Ghoom's key all the way."
+          }
+        },
+        {
+          "id": "recap_w",
+          "at": {
+            "with": "recap_n2",
+            "delay": 1
+          },
+          "who": "ghoom",
+          "do": "walk",
+          "to": {
+            "x": 1800
+          }
+        },
+        {
+          "id": "recap_st",
+          "at": {
+            "with": "recap_w"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_stomp",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Now the giant robot was marching on Tokyo."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
       }
     },
     {
@@ -413,6 +541,12 @@
           "x": 1700,
           "facing": 1,
           "face": "happy"
+        },
+        {
+          "id": "pinky",
+          "x": 1350,
+          "facing": 1,
+          "face": "scared"
         }
       ],
       "beats": [
@@ -505,6 +639,27 @@
                 "motumal",
                 "TOKYO FIGHTS BACK!",
                 "furious"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "alarm_d2",
+          "at": {
+            "after": "alarm_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "pinky",
+                "Mayor ji! Doopi bhaiya will come. He always comes!",
+                "determined"
+              ],
+              [
+                "motumal",
+                "Then until he does, WE hold the village!",
+                "determined"
               ]
             ]
           }
@@ -765,6 +920,21 @@
                 "mooka",
                 "Can I hold a jalebi instead?",
                 "love"
+              ],
+              [
+                "mallu",
+                "What does a robot eat for lunch? Micro-CHIPS! Ho ho ho!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Mallu Uncle, that was terrible.",
+                "laugh"
+              ],
+              [
+                "mallu",
+                "Thank you! I have a hundred more!",
+                "happy"
               ]
             ]
           }
@@ -948,6 +1118,16 @@
                 "thunda",
                 "They gave Thunda jalebis in jail. Thunda likes jalebis better than Peepa.",
                 "happy"
+              ],
+              [
+                "mallu",
+                "Ha! Then welcome to the team, big fellow!",
+                "laugh"
+              ],
+              [
+                "thunda",
+                "Thunda is on a TEAM. Thunda never had a team before.",
+                "love"
               ]
             ]
           }
@@ -1129,6 +1309,32 @@
           "params": {
             "preset": "big"
           }
+        },
+        {
+          "id": "giant_d2",
+          "at": {
+            "after": "giant_st"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Ghoom! I know you don't want this! Fight the key!",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "...KEY... TOO... STRONG. BEEP.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Then let my friends help you. Now, Mooka!",
+                "determined"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -1251,10 +1457,44 @@
           "say": "Heave... HO!"
         },
         {
-          "id": "keypull_off",
+          "id": "keypull_p3",
           "at": {
             "after": "keypull_p2",
-            "delay": 1.9
+            "delay": 0.4
+          },
+          "who": "mooka",
+          "do": "talk",
+          "face": "surprised",
+          "say": "It's stuck! Becky, pull ME!"
+        },
+        {
+          "id": "keypull_b2",
+          "at": {
+            "after": "keypull_p3"
+          },
+          "who": "becky",
+          "do": "tug",
+          "params": {
+            "cycles": 3
+          },
+          "face": "determined"
+        },
+        {
+          "id": "keypull_p4",
+          "at": {
+            "with": "keypull_b2"
+          },
+          "who": "mooka",
+          "do": "pull",
+          "face": "determined",
+          "say": "One, two... THREE!",
+          "bubble": "shout"
+        },
+        {
+          "id": "keypull_off",
+          "at": {
+            "after": "keypull_p4",
+            "delay": 0.3
           },
           "who": "world",
           "do": "set_appearance",
@@ -1388,6 +1628,16 @@
               [
                 "ghoom",
                 "...beep. FREE. GHOOMU... FREE.",
+                "happy"
+              ],
+              [
+                "ghoom",
+                "SORRY... TOKYO. GHOOMU... SORRY.",
+                "sad"
+              ],
+              [
+                "dony",
+                "It wasn't you. It was the key. Everybody knows that.",
                 "happy"
               ],
               [
@@ -1538,6 +1788,12 @@
           "x": 2300,
           "facing": -1,
           "face": "happy"
+        },
+        {
+          "id": "pinky",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
         }
       ],
       "beats": [
@@ -1594,9 +1850,30 @@
           "face": "laugh"
         },
         {
-          "id": "quiet_u1",
+          "id": "quiet_d2",
           "at": {
             "after": "quiet_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "pinky",
+                "Doopi bhaiya, we saved a jalebi for Doomi didi. For when you find her.",
+                "love"
+              ],
+              [
+                "doopi",
+                "When we find her. All of us. Thank you, Pinky.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "quiet_u1",
+          "at": {
+            "after": "quiet_d2"
           },
           "who": "doopi",
           "do": "use",

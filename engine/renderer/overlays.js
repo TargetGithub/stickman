@@ -126,7 +126,7 @@ export function drawOverlays(ctx, view) {
   if (view.subtitles) {
     // A pace's subtitles (ADR-038): voiced lines at the bottom; thoughts stay bubbles.
     const spoken = activeAt(sentences(says), t, (e) => e.dur).filter((s) => s.bubble !== "think" && chars.some((c) => c.id === s.actor));
-    drawSubtitles(ctx, spoken, { W, H, t, scale: Math.max(0.8, k), safeBottom: safe.bottom, names: view.names, colors: new Map(chars.map((c) => [c.id, c.color])) });
+    drawSubtitles(ctx, spoken, { W, H, t, scale: Math.max(0.8, Math.min(W, H) / 1080), safeBottom: safe.bottom, names: view.names, colors: new Map(chars.map((c) => [c.id, c.color])) });
   }
   for (const s of view.subtitles ? active.filter((x) => x.bubble === "think") : active) {
     const c = chars.find((x) => x.id === s.actor);

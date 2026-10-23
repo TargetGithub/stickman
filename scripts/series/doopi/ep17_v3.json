@@ -289,6 +289,91 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "location": "valley",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "shadow",
+          "x": 1700,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_g",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "shadow",
+            "color": "#b05cff",
+            "level": 0.6
+          }
+        },
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Ghoomu carried the friends up the frozen Grey Peak."
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "In the avalanche, Dony pushed Doopi out of the way. True friends protect each other."
+          }
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And at the Shadow Valley, someone was waiting: a dark Doopi, with purple eyes."
+          }
+        },
+        {
+          "id": "recap_l",
+          "at": {
+            "with": "recap_n3",
+            "delay": 2
+          },
+          "who": "shadow",
+          "do": "laugh",
+          "face": "smug"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
       "id": "enter",
       "location": "valley",
       "time": "night",
@@ -399,9 +484,29 @@
                 "scared"
               ],
               [
+                "mooka",
+                "Hello, tree. Please don't eat Mooka.",
+                "scared"
+              ],
+              [
                 "doopi",
                 "That shadow... it had my face. My voice. Why?",
                 "scared"
+              ],
+              [
+                "dony",
+                "Whatever that shadow says, remember who you are.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Who am I?",
+                "scared"
+              ],
+              [
+                "dony",
+                "My best friend. The boy who stops to help.",
+                "happy"
               ]
             ]
           }
@@ -482,6 +587,16 @@
                 "shadow",
                 "They'd all be better off without you, Doopi.",
                 "smug"
+              ],
+              [
+                "shadow",
+                "Remember the canyon? You ran off alone. And you LOST.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "...I did lose.",
+                "sad"
               ],
               [
                 "doopi",
@@ -662,6 +777,61 @@
               ]
             ]
           }
+        },
+        {
+          "id": "copy_t1",
+          "at": {
+            "after": "copy_d2"
+          },
+          "who": "doopi",
+          "do": "talk",
+          "face": "smug",
+          "say": "Okay. Can you copy... THIS?"
+        },
+        {
+          "id": "copy_t2",
+          "at": {
+            "after": "copy_t1"
+          },
+          "who": "doopi",
+          "do": "dance_a",
+          "params": {
+            "cycles": 2
+          },
+          "face": "smug"
+        },
+        {
+          "id": "copy_t3",
+          "at": {
+            "with": "copy_t2"
+          },
+          "who": "shadow",
+          "do": "dance_a",
+          "params": {
+            "cycles": 2
+          },
+          "face": "smug"
+        },
+        {
+          "id": "copy_t4",
+          "at": {
+            "after": "copy_t3"
+          },
+          "who": "shadow",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Ha! Same silly dance!"
+        },
+        {
+          "id": "copy_th",
+          "at": {
+            "after": "copy_t4"
+          },
+          "who": "doopi",
+          "do": "hold_head",
+          "face": "surprised",
+          "say": "He copies what I do. But what I feel?",
+          "bubble": "think"
         }
       ],
       "lens": {
@@ -810,9 +980,19 @@
           }
         },
         {
-          "id": "split_x2",
+          "id": "split_t1",
           "at": {
             "after": "split_b"
+          },
+          "who": "sh2",
+          "do": "taunt",
+          "face": "smug",
+          "say": "Clumsy friends for a clumsy boy!"
+        },
+        {
+          "id": "split_x2",
+          "at": {
+            "after": "split_t1"
           },
           "who": "sh2",
           "do": "despawn",
@@ -985,6 +1165,16 @@
                 "dony",
                 "Your fight is our fight, champ. Remember?",
                 "determined"
+              ],
+              [
+                "tara",
+                "We came up a mountain for you. We're not leaving now.",
+                "determined"
+              ],
+              [
+                "mooka",
+                "Mooka is sore. But Mooka is staying.",
+                "determined"
               ]
             ]
           }
@@ -1100,6 +1290,138 @@
           "params": {
             "text": "And in the shadow's chest glowed something deep blue-purple: the Indigo crystal."
           }
+        },
+        {
+          "id": "doubt_d1",
+          "at": {
+            "after": "doubt_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "shadow",
+                "See? Without them, you're nothing at all.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Maybe... maybe he's right.",
+                "cry"
+              ]
+            ]
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "crystal",
+      "location": "valley",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.32
+      },
+      "cast": [
+        {
+          "id": "shadow",
+          "x": 1900,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "tara",
+          "x": 1100,
+          "facing": 1,
+          "face": "surprised",
+          "hp": 100
+        },
+        {
+          "id": "mooka",
+          "x": 900,
+          "facing": 1,
+          "face": "surprised",
+          "hp": 100
+        },
+        {
+          "id": "becky",
+          "x": 1300,
+          "facing": 1,
+          "face": "angry"
+        }
+      ],
+      "beats": [
+        {
+          "id": "crystal_gl",
+          "at": 0,
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "shadow",
+            "color": "#5a5cff",
+            "level": 0.8
+          }
+        },
+        {
+          "id": "crystal_d1",
+          "at": 0.3,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Look! In the shadow's chest! The Indigo crystal!",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "Ooh, shiny! Can Mooka eat it?",
+                "happy"
+              ],
+              [
+                "tara",
+                "No, Mooka. We take it home to the Banyan.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "crystal_b1",
+          "at": {
+            "after": "crystal_d1"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry",
+          "say": "Grrr!"
+        },
+        {
+          "id": "crystal_s1",
+          "at": {
+            "after": "crystal_b1"
+          },
+          "who": "shadow",
+          "do": "taunt",
+          "face": "smug",
+          "say": "Come and take it. If you dare."
+        },
+        {
+          "id": "crystal_m1",
+          "at": {
+            "after": "crystal_s1"
+          },
+          "who": "mooka",
+          "do": "hide",
+          "face": "scared",
+          "say": "...Mooka does not dare."
         }
       ],
       "lens": {
@@ -1199,6 +1521,16 @@
               [
                 "dony",
                 "The real Doopi stops to help. You only push people down.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Dony, run! He's too strong!",
+                "scared"
+              ],
+              [
+                "dony",
+                "Nope. I've got you, buddy. Always.",
                 "determined"
               ],
               [
@@ -1418,9 +1750,40 @@
           }
         },
         {
+          "id": "wall_g1",
+          "at": {
+            "after": "wall_cl"
+          },
+          "who": "ghoom",
+          "do": "run",
+          "to": {
+            "x": 1700
+          }
+        },
+        {
+          "id": "wall_g2",
+          "at": {
+            "after": "wall_g1"
+          },
+          "who": "ghoom",
+          "do": "push",
+          "face": "determined",
+          "say": "GHOOMU... PUSH! ...BEEP."
+        },
+        {
+          "id": "wall_k1",
+          "at": {
+            "after": "wall_g2"
+          },
+          "who": "doopi",
+          "do": "kneel",
+          "face": "cry",
+          "say": "Dony... I'll find you. I promise."
+        },
+        {
           "id": "wall_end",
           "at": {
-            "after": "wall_cl",
+            "after": "wall_k1",
             "delay": 1
           },
           "who": "world",

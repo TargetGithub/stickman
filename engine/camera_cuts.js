@@ -12,6 +12,7 @@
 
 const MEDIUM = { height: 0.6, loose: 0.42, pad: 170, maxZoom: 2.4, lift: 0.07 };
 const TALK = { reach: 800, exchange: 3, reaction: 1.6, hold: 0.8 }; // px, s, s, s
+const SINGLE_REACH = 450; // px: single framing shows the latest to act and only who stands this close
 
 /**
  * Framing for a "medium" key: the targets standing about MEDIUM.height of the frame tall (k.loose: smaller),
@@ -64,6 +65,8 @@ function listenerOf(line, actors) {
 /** The shot for a line: a medium two-shot opens an exchange, then over-the-shoulder and close-up alternate. */
 function lineShot(cuts, line, actors, t) {
   if (cuts.pace.framing === "calm") return calmLineShot(cuts, line, actors, t);
+  // Single framing (Shorts): the speaker alone, even over another line; a group side by side is tiny in 9:16.
+  if (cuts.pace.framing === "single") return { mode: "close_up", target: line.actor };
   if (line.also) return { mode: "medium", targets: [line.actor, line.also] };
   const listener = listenerOf(line, actors);
   if (!listener) return { mode: "medium", targets: [line.actor] };
@@ -146,6 +149,12 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
     const holds = k?.mode === "medium" && k.targets.some((id) => shown.has(id)) && ids.every((id) => k.targets.includes(id));
     want = holds ? k : mediumOf(nearby(ids, actors), actors, 0);
     if (!holds && k && age < minCut && ids.every((id) => framed(k, id))) return k;
+  } else if (pace.framing === "single") {
+    const ids = activeIds(actors, t);
+    const last = (id) => auto.active.get(id) ?? -Infinity;
+    const lead = actors.find((a) => a.id === ids.reduce((b, id) => (last(id) > last(b) ? id : b), ids[0]));
+    want = mediumOf(lead ? ids.filter((id) => Math.abs(actors.find((a) => a.id === id).x - lead.x) < SINGLE_REACH) : ids, actors, 0);
+    if (cuts.key && age < minCut && !sameKey(want, cuts.key)) return cuts.key;
   } else {
     if (age > pace.shot[1] * 1.25 && cuts.key?.mode === "medium") cuts.variant++;
     want = mediumOf(activeIds(actors, t), actors, cuts.variant);

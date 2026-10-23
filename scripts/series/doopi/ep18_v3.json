@@ -303,6 +303,87 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "location": "maze",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_k",
+          "at": 0.2,
+          "who": "doopi",
+          "do": "kneel",
+          "face": "sad"
+        },
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Shadow Doopi copied every move Doopi made, and whispered all his fears."
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Dony stood up for his best friend. And the shadow pulled him into a mirror."
+          }
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Now Doopi had to go into the Mirror Maze to bring him back."
+          }
+        },
+        {
+          "id": "recap_u",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.5
+          },
+          "who": "doopi",
+          "do": "get_up",
+          "face": "determined"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
       "id": "inside",
       "location": "maze",
       "time": "night",
@@ -411,6 +492,39 @@
           "who": "doopi",
           "do": "shrug",
           "face": "tired"
+        },
+        {
+          "id": "inside_ff",
+          "at": {
+            "after": "inside_f1"
+          },
+          "who": "doopi",
+          "do": "taunt",
+          "face": "laugh",
+          "say": "Look, Mooka! A hundred funny faces!"
+        },
+        {
+          "id": "inside_mf",
+          "at": {
+            "with": "inside_ff",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "dance_a",
+          "params": {
+            "cycles": 2
+          },
+          "face": "laugh"
+        },
+        {
+          "id": "inside_tf",
+          "at": {
+            "after": "inside_ff"
+          },
+          "who": "tara",
+          "do": "facepalm",
+          "face": "tired",
+          "say": "Focus, you two. Dony needs us."
         }
       ],
       "lens": {
@@ -586,6 +700,174 @@
       }
     },
     {
+      "id": "sniff",
+      "location": "maze",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "becky",
+          "x": 1200,
+          "facing": 1,
+          "face": "neutral"
+        },
+        {
+          "id": "mooka",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 800,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "sniff_b1",
+          "at": 0.3,
+          "who": "becky",
+          "do": "sniff",
+          "params": {
+            "cycles": 2
+          }
+        },
+        {
+          "id": "sniff_b2",
+          "at": {
+            "after": "sniff_b1"
+          },
+          "who": "becky",
+          "do": "bark",
+          "params": {
+            "cycles": 2
+          },
+          "face": "angry",
+          "say": "Woof! Woof!"
+        },
+        {
+          "id": "sniff_d1",
+          "at": {
+            "after": "sniff_b2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Becky, that's not a dog. That's YOU. In a mirror.",
+                "laugh"
+              ],
+              [
+                "tara",
+                "She's barking at herself. Great.",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sniff_b3",
+          "at": {
+            "after": "sniff_d1"
+          },
+          "who": "becky",
+          "do": "tilt_head",
+          "face": "surprised"
+        },
+        {
+          "id": "sniff_b4",
+          "at": {
+            "after": "sniff_b3"
+          },
+          "who": "becky",
+          "do": "sniff",
+          "params": {
+            "cycles": 2
+          }
+        },
+        {
+          "id": "sniff_b5",
+          "at": {
+            "after": "sniff_b4"
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "happy"
+        },
+        {
+          "id": "sniff_d2",
+          "at": {
+            "after": "sniff_b5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Wait. She's wagging. She smells Dony!",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "Good doggy! Go, go, go!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sniff_go",
+          "at": {
+            "after": "sniff_d2"
+          },
+          "who": "becky",
+          "do": "run",
+          "to": {
+            "x": 2200
+          }
+        },
+        {
+          "id": "sniff_go2",
+          "at": {
+            "with": "sniff_go",
+            "delay": 0.3
+          },
+          "who": "mooka",
+          "do": "run",
+          "to": {
+            "x": 2000
+          }
+        },
+        {
+          "id": "sniff_go3",
+          "at": {
+            "with": "sniff_go",
+            "delay": 0.5
+          },
+          "who": "tara",
+          "do": "run",
+          "to": {
+            "x": 1850
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
       "id": "clumsy",
       "location": "maze",
       "time": "night",
@@ -708,9 +990,33 @@
           "say": "Ha! Ha ha ha!"
         },
         {
-          "id": "clumsy_d1",
+          "id": "clumsy_c5",
           "at": {
             "after": "clumsy_c4"
+          },
+          "who": "world",
+          "do": "caption",
+          "params": {
+            "text": "Doopi sinking in the snow up to his nose...",
+            "pos": "top",
+            "dur": 2.5
+          }
+        },
+        {
+          "id": "clumsy_r5",
+          "at": {
+            "with": "clumsy_c5",
+            "delay": 0.4
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Ha ha! I looked like a snowman!"
+        },
+        {
+          "id": "clumsy_d1",
+          "at": {
+            "after": "clumsy_c5"
           },
           "macro": "dialogue",
           "params": {
@@ -746,6 +1052,17 @@
             "level": 0.6,
             "dur": 1.5
           }
+        },
+        {
+          "id": "clumsy_go",
+          "at": {
+            "with": "clumsy_gl",
+            "delay": 0.3
+          },
+          "who": "doopi",
+          "do": "clench_fist",
+          "face": "determined",
+          "say": "Here I come, Dony."
         }
       ],
       "lens": {
@@ -825,6 +1142,16 @@
                 "dony",
                 "Doopi! I can see you! Behind you!",
                 "scared"
+              ],
+              [
+                "doopi",
+                "Hold on, Dony. I'm getting you out.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Hurry! It's cold in here. And it smells like old socks!",
+                "laugh"
               ]
             ]
           }
@@ -971,9 +1298,65 @@
           }
         },
         {
-          "id": "laugh_tr",
+          "id": "laugh_c1",
           "at": {
             "after": "laugh_f"
+          },
+          "who": "doopi",
+          "do": "talk",
+          "face": "smug",
+          "say": "Okay, shadow. Copy THIS!"
+        },
+        {
+          "id": "laugh_c2",
+          "at": {
+            "after": "laugh_c1"
+          },
+          "who": "doopi",
+          "do": "jump_joy",
+          "face": "laugh"
+        },
+        {
+          "id": "laugh_c3",
+          "at": {
+            "with": "laugh_c2"
+          },
+          "who": "shadow",
+          "do": "jump_joy",
+          "face": "smug"
+        },
+        {
+          "id": "laugh_c4",
+          "at": {
+            "after": "laugh_c2"
+          },
+          "who": "doopi",
+          "do": "sneeze",
+          "face": "surprised"
+        },
+        {
+          "id": "laugh_c5",
+          "at": {
+            "with": "laugh_c4"
+          },
+          "who": "shadow",
+          "do": "sneeze",
+          "face": "smug"
+        },
+        {
+          "id": "laugh_c6",
+          "at": {
+            "after": "laugh_c5"
+          },
+          "who": "shadow",
+          "do": "taunt",
+          "face": "smug",
+          "say": "Easy! I copy everything!"
+        },
+        {
+          "id": "laugh_tr",
+          "at": {
+            "after": "laugh_c6"
           },
           "who": "doopi",
           "do": "knockdown",
@@ -1104,9 +1487,30 @@
           "say": "Maybe I'll be a quiet little voice now."
         },
         {
-          "id": "indigo_s2",
+          "id": "indigo_d1",
           "at": {
             "after": "indigo_s1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "You can stay. Just don't be the boss.",
+                "love"
+              ],
+              [
+                "shadow",
+                "...Deal.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "indigo_s2",
+          "at": {
+            "after": "indigo_d1"
           },
           "who": "shadow",
           "do": "despawn",
@@ -1375,6 +1779,27 @@
           "params": {
             "text": "Outside, for the first time in weeks, the stars came back."
           }
+        },
+        {
+          "id": "hug_d2",
+          "at": {
+            "after": "hug_n1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Group hug! Everybody! Becky too!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Six colours home. One more. And then, Doomi.",
+                "determined"
+              ]
+            ]
+          }
         }
       ],
       "lens": {
@@ -1478,7 +1903,7 @@
           "who": "doopi",
           "do": "run",
           "to": {
-            "x": 3000
+            "x": 2700
           }
         },
         {
@@ -1527,6 +1952,62 @@
           "do": "sfx",
           "params": {
             "name": "clang"
+          }
+        },
+        {
+          "id": "crumble_df",
+          "at": {
+            "after": "crumble_r4"
+          },
+          "who": "dony",
+          "do": "knockdown",
+          "face": "scared",
+          "say": "Whoa! I tripped!"
+        },
+        {
+          "id": "crumble_db",
+          "at": {
+            "after": "crumble_r3"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "near": "dony",
+            "gap": 110
+          }
+        },
+        {
+          "id": "crumble_lu",
+          "at": {
+            "after": "crumble_db"
+          },
+          "who": "doopi",
+          "do": "lift_up",
+          "partner": "dony",
+          "face": "determined",
+          "say": "I've got you this time, buddy!"
+        },
+        {
+          "id": "crumble_go",
+          "at": {
+            "after": "crumble_lu"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 3200
+          }
+        },
+        {
+          "id": "crumble_go2",
+          "at": {
+            "with": "crumble_go",
+            "delay": 0.2
+          },
+          "who": "dony",
+          "do": "run",
+          "to": {
+            "x": 3100
           }
         }
       ],
@@ -1584,6 +2065,18 @@
           "x": 2250,
           "facing": -1,
           "face": "angry"
+        },
+        {
+          "id": "mooka",
+          "x": 300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 750,
+          "facing": 1,
+          "face": "determined"
         }
       ],
       "beats": [
@@ -1615,9 +2108,44 @@
                 "sad"
               ],
               [
+                "mooka",
+                "Kony! Hi! It's me, Mooka!",
+                "happy"
+              ],
+              [
+                "kony",
+                "...Hi, Mooka.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Kony, you don't have to do this.",
+                "determined"
+              ],
+              [
+                "kony",
+                "I know. But Tony says we do.",
+                "sad"
+              ],
+              [
+                "tony",
+                "Quiet, Kony!",
+                "angry"
+              ],
+              [
                 "dony",
                 "That's a LOT of goons.",
                 "scared"
+              ],
+              [
+                "tara",
+                "Doopi. How many goons is that?",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Too many to count. Good thing we're a team.",
+                "determined"
               ],
               [
                 "tony",

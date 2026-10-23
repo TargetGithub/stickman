@@ -57,12 +57,12 @@ export function drawSubtitles(ctx, lines, o) {
   const lineH = size * 1.22;
   let bottom = H * (1 - o.safeBottom);
   for (const s of [...lines].sort((a, b) => b.videoT - a.videoT || (a.actor < b.actor ? -1 : 1))) {
-    ctx.font = `600 ${size}px Inter`;
-    const rows = wrap(ctx, s.text, W * 0.78);
     const name = o.names?.get(s.actor) ?? null;
     ctx.font = `${nameSize}px Bangers`;
     const nameW = name ? ctx.measureText(name).width + size * 0.5 : 0;
     ctx.font = `600 ${size}px Inter`;
+    // Wrap to the room the box leaves beside the name (a narrow portrait frame ran the text off the edge).
+    const rows = wrap(ctx, s.text, Math.min(W * 0.78, W - 32 - nameW - size * 1.1));
     const textW = Math.max(...rows.map((r) => ctx.measureText(r).width));
     const w = Math.min(W - 32, nameW + textW + size * 1.1);
     const h = rows.length * lineH + size * 0.55;

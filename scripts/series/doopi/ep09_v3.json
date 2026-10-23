@@ -322,6 +322,26 @@
         }
       },
       "limbStyle": "bendy"
+    },
+    {
+      "id": "kid1",
+      "name": "Fisher boy",
+      "body": "kid",
+      "color": "#f4a261",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#2a1a14"
+      },
+      "voice": {
+        "pitch": 1.5,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 6,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
     }
   ],
   "locations": [
@@ -368,12 +388,168 @@
       }
     },
     {
-      "id": "raft",
+      "id": "build",
       "location": "shore",
       "time": "day",
       "transitionIn": {
         "type": "fade",
         "dur": 0.6
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1700,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1500,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "tara",
+          "x": 1300,
+          "facing": 1,
+          "face": "smug"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "build_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time, Doopi beat Madam Mirchi, and Orange came home."
+          }
+        },
+        {
+          "id": "build_n2",
+          "at": {
+            "after": "build_n1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But the only bridge to Lotus Lake fell into the water."
+          }
+        },
+        {
+          "id": "build_d1",
+          "at": {
+            "after": "build_n2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "No bridge. No boat. Now what?",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Easy! We build a raft!",
+                "determined"
+              ],
+              [
+                "tara",
+                "You? Build a raft? Do you even know how?",
+                "smug"
+              ],
+              [
+                "doopi",
+                "Sticks, string, and a lot of confidence!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "build_u1",
+          "at": {
+            "after": "build_d1"
+          },
+          "who": "doopi",
+          "do": "use"
+        },
+        {
+          "id": "build_u2",
+          "at": {
+            "with": "build_u1",
+            "delay": 0.3
+          },
+          "who": "dony",
+          "do": "use"
+        },
+        {
+          "id": "build_bd",
+          "at": {
+            "with": "build_u1"
+          },
+          "who": "becky",
+          "do": "dig"
+        },
+        {
+          "id": "build_m1",
+          "at": {
+            "after": "build_u1"
+          },
+          "who": "mooka",
+          "do": "sit",
+          "say": "I'm helping! I'm holding down the logs!"
+        },
+        {
+          "id": "build_d2",
+          "at": {
+            "after": "build_m1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Mooka, you're sitting on them.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "That's how you hold them down. Hee hee!",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ],
+      "grade": {
+        "saturation": 0.55
+      }
+    },
+    {
+      "id": "raft",
+      "location": "shore",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
       },
       "grade": {
         "saturation": 0.55
@@ -682,6 +858,27 @@
           "do": "handshake",
           "partner": "doopi",
           "face": "happy"
+        },
+        {
+          "id": "mallu_d2",
+          "at": {
+            "after": "mallu_sh"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mallu",
+                "But first, come to my village. Nobody crosses on an empty tummy!",
+                "happy"
+              ],
+              [
+                "mooka",
+                "I like this uncle!",
+                "love"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -829,8 +1026,148 @@
           "do": "talk",
           "face": "happy",
           "say": "Ha! It splashed her nose!"
+        },
+        {
+          "id": "village_d2",
+          "at": {
+            "after": "village_m1"
+          },
+          "who": "doomi",
+          "do": "laugh",
+          "say": "Fish live in water, Becky. Not on noses!"
         }
       ]
+    },
+    {
+      "id": "kids",
+      "location": "village",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "kid1",
+          "x": 1500,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "fisher",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "kids_pc",
+          "at": 0.4,
+          "macro": "activity",
+          "params": {
+            "name": "play_catch",
+            "with": [
+              "mooka",
+              "kid1"
+            ],
+            "reps": 3
+          }
+        },
+        {
+          "id": "kids_d1",
+          "at": {
+            "after": "kids_pc"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kid1",
+                "Your bracelet is so shiny! Hide it, or Kanta will take it!",
+                "scared"
+              ],
+              [
+                "fisher",
+                "He took our shiny shells. And Grandpa's spoon!",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Why does he take everything that shines?",
+                "surprised"
+              ],
+              [
+                "kid1",
+                "Mallu Uncle says his heart went grey, so he wants shiny things.",
+                "sad"
+              ],
+              [
+                "fisher",
+                "Can you help us get our shells back?",
+                "sad"
+              ],
+              [
+                "doopi",
+                "We'll try. But we'll need your help too.",
+                "determined"
+              ],
+              [
+                "kid1",
+                "Us? We're just kids!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "So are we. Nobody does it alone.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kids_j",
+          "at": {
+            "after": "kids_d1"
+          },
+          "who": "kid1",
+          "do": "jump_joy"
+        },
+        {
+          "id": "kids_j2",
+          "at": {
+            "with": "kids_j",
+            "delay": 0.2
+          },
+          "who": "fisher",
+          "do": "cheer"
+        }
+      ],
+      "grade": {
+        "saturation": 0.55
+      }
     },
     {
       "id": "ship",
@@ -1019,6 +1356,16 @@
                 "kanta",
                 "LENT? Kanta keeps what Kanta wears!",
                 "furious"
+              ],
+              [
+                "kanta",
+                "And bring me my mirror! I want to watch me hat shine!",
+                "smug"
+              ],
+              [
+                "kony",
+                "Aye, Captain...",
+                "sad"
               ],
               [
                 "kony",
@@ -1336,6 +1683,32 @@
           "do": "laugh",
           "face": "laugh",
           "say": "The lake terror is scared of puppies!"
+        },
+        {
+          "id": "landing_d2",
+          "at": {
+            "after": "landing_l1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Thanks, Becky. You did the scary part.",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Kanta saw your bracelet, champ. He'll be back.",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Then we need a plan. And Mallu Uncle's help.",
+                "determined"
+              ]
+            ]
+          }
         }
       ]
     },
@@ -1441,6 +1814,26 @@
                 "mallu",
                 "Ho ho! Best map I've ever seen!",
                 "laugh"
+              ],
+              [
+                "tara",
+                "Becky guards the huts tonight. Nobody sneaks past that nose.",
+                "determined"
+              ],
+              [
+                "mooka",
+                "I'm going to say goodnight to the moon.",
+                "tired"
+              ],
+              [
+                "doomi",
+                "Don't go far, Mooka.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Just to the water. Back in a jiffy!",
+                "happy"
               ]
             ]
           }

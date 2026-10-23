@@ -428,6 +428,86 @@
       }
     },
     {
+      "id": "recap",
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "location": "gate",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.28
+      },
+      "cast": [
+        {
+          "id": "tony",
+          "x": 1600,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "kony",
+          "x": 1800,
+          "facing": -1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_n1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Doopi laughed at his own mistakes, and his shadow could not copy him."
+          }
+        },
+        {
+          "id": "recap_n2",
+          "at": {
+            "after": "recap_n1",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Dony was free, and the Indigo crystal came home. Six colours. One to go."
+          }
+        },
+        {
+          "id": "recap_n3",
+          "at": {
+            "after": "recap_n2",
+            "delay": 0.3
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But at Gloom Castle, Tony, Kony and an army of goons were waiting."
+          }
+        },
+        {
+          "id": "recap_t",
+          "at": {
+            "with": "recap_n3",
+            "delay": 1.5
+          },
+          "who": "tony",
+          "do": "taunt",
+          "face": "smug"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
       "id": "ridge",
       "location": "ridge",
       "time": "dusk",
@@ -499,6 +579,16 @@
           "macro": "dialogue",
           "params": {
             "lines": [
+              [
+                "ghoom",
+                "GHOOMU... WAITED. GHOOMU... MISSED... FRIENDS.",
+                "happy"
+              ],
+              [
+                "dony",
+                "We missed you too, big guy!",
+                "laugh"
+              ],
               [
                 "doopi",
                 "Ghoomu, Tara and Dony: the goons at the gate.",
@@ -816,6 +906,26 @@
                 "peepa",
                 "Tonight, under the Grey Moon, EVERYTHING belongs to me.",
                 "laugh"
+              ],
+              [
+                "doomi",
+                "He's coming. And he's bringing all his friends.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "Friends! Bah! Friends only laugh at you.",
+                "angry"
+              ],
+              [
+                "doomi",
+                "Peepa... did somebody laugh at you once?",
+                "sad"
+              ],
+              [
+                "peepa",
+                "SILENCE!",
+                "furious"
               ]
             ]
           }
@@ -925,6 +1035,16 @@
                 "kony",
                 "...No. I won't fight Mooka. Not ever.",
                 "sad"
+              ],
+              [
+                "mooka",
+                "Here. Mooka saved you a jalebi.",
+                "love"
+              ],
+              [
+                "kony",
+                "...Thank you, Mooka.",
+                "happy"
               ]
             ]
           }
@@ -1037,6 +1157,16 @@
                 "tony",
                 "...He does yell a lot.",
                 "sad"
+              ],
+              [
+                "kony",
+                "Tony... what if we were on the good side?",
+                "sad"
+              ],
+              [
+                "tony",
+                "Don't be silly. ...Let me think about it.",
+                "sad"
               ]
             ]
           }
@@ -1049,6 +1179,138 @@
           "who": "tony",
           "do": "sigh",
           "face": "sad"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "ninja",
+      "location": "hall",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 900,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 1100,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "goon2",
+          "x": 2100,
+          "facing": -1,
+          "face": "neutral",
+          "hp": 100
+        }
+      ],
+      "beats": [
+        {
+          "id": "ninja_t1",
+          "at": 0.3,
+          "who": "mooka",
+          "do": "tiptoe",
+          "to": {
+            "x": 1300
+          },
+          "say": "Shh, Becky. Ninja mode.",
+          "bubble": "whisper"
+        },
+        {
+          "id": "ninja_b1",
+          "at": 0.5,
+          "who": "becky",
+          "do": "sneak",
+          "to": {
+            "x": 1500
+          }
+        },
+        {
+          "id": "ninja_s1",
+          "at": {
+            "after": "ninja_t1"
+          },
+          "who": "mooka",
+          "do": "sneeze",
+          "face": "surprised",
+          "say": "A-A-ACHOO!",
+          "bubble": "shout"
+        },
+        {
+          "id": "ninja_g1",
+          "at": {
+            "after": "ninja_s1"
+          },
+          "who": "goon2",
+          "do": "look_around",
+          "face": "angry",
+          "say": "Who's there?"
+        },
+        {
+          "id": "ninja_h1",
+          "at": {
+            "with": "ninja_g1"
+          },
+          "who": "mooka",
+          "do": "hide",
+          "face": "scared"
+        },
+        {
+          "id": "ninja_h2",
+          "at": {
+            "with": "ninja_g1",
+            "delay": 0.2
+          },
+          "who": "becky",
+          "do": "lie_dog",
+          "face": "scared"
+        },
+        {
+          "id": "ninja_m1",
+          "at": {
+            "after": "ninja_g1"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "face": "scared",
+          "say": "...Meow?"
+        },
+        {
+          "id": "ninja_g2",
+          "at": {
+            "after": "ninja_m1"
+          },
+          "who": "goon2",
+          "do": "shrug",
+          "face": "neutral",
+          "say": "Oh. Just a cat. A green cat."
+        },
+        {
+          "id": "ninja_m2",
+          "at": {
+            "after": "ninja_g2"
+          },
+          "who": "mooka",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Hee hee! Ninja Mooka wins!",
+          "bubble": "whisper"
         }
       ],
       "lens": {
@@ -1170,6 +1432,38 @@
           "partner": "becky",
           "say": "Best trap finder ever.",
           "approach": "run"
+        },
+        {
+          "id": "traps_dk",
+          "at": {
+            "after": "traps_d1"
+          },
+          "who": "doopi",
+          "do": "duck",
+          "face": "scared",
+          "say": "Whoa! A swinging gate!"
+        },
+        {
+          "id": "traps_sw",
+          "at": {
+            "with": "traps_dk"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whoosh"
+          }
+        },
+        {
+          "id": "traps_ok",
+          "at": {
+            "after": "traps_dk",
+            "delay": 1.2
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Close one! Lead on, Becky."
         }
       ],
       "lens": {
@@ -1303,6 +1597,27 @@
           "who": "mirchi",
           "do": "flee",
           "say": "Not AGAIN! Ha-CHOOO!"
+        },
+        {
+          "id": "mirchi_d2",
+          "at": {
+            "after": "mirchi_fl"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "We did it, Tara! She ran away again!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Ha-choo! Her chilli smoke gets up my nose.",
+                "laugh"
+              ]
+            ]
+          }
         }
       ],
       "lens": {
@@ -1447,6 +1762,16 @@
                 "laugh"
               ],
               [
+                "doopi",
+                "Hi, Doomi. You look... very nice. In the cage.",
+                "love"
+              ],
+              [
+                "doomi",
+                "Hee hee. Thank you, Doopi.",
+                "love"
+              ],
+              [
                 "peepa",
                 "Six colours on that little bracelet. How generous of you to bring them to me.",
                 "smug"
@@ -1465,6 +1790,11 @@
                 "doopi",
                 "Maybe. I trip a lot. But I always get back up.",
                 "determined"
+              ],
+              [
+                "doomi",
+                "Doopi, be careful! His horn turns people grey!",
+                "scared"
               ],
               [
                 "peepa",

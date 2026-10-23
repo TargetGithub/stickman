@@ -482,6 +482,52 @@
       }
     },
     {
+      "id": "recap",
+      "macro": "montage",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "heroic",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "params": {
+        "clipDur": 5,
+        "cut": "dissolve",
+        "clips": [
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "doomi"
+            ],
+            "do": "cheer",
+            "text": "Last time, every friend stood with Doopi, and their glow stopped Peepa's blast."
+          },
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "doopi"
+            ],
+            "do": "charge_up",
+            "text": "The six crystals flew home to Doopi's bracelet."
+          },
+          {
+            "location": "moon",
+            "time": "night",
+            "who": [
+              "giant"
+            ],
+            "do": "laugh",
+            "text": "But Peepa dragged Doopi all the way up to the Grey Moon."
+          }
+        ]
+      }
+    },
+    {
       "id": "alone",
       "location": "moon",
       "time": "night",
@@ -743,6 +789,27 @@
           "face": "determined",
           "say": "Not... a... chance.",
           "bubble": "shout"
+        },
+        {
+          "id": "round2_d",
+          "at": {
+            "after": "round2_u1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "giant",
+                "Why do you keep getting UP?",
+                "furious"
+              ],
+              [
+                "doopi",
+                "Because my friends never stopped getting up for me.",
+                "determined"
+              ]
+            ]
+          }
         }
       ],
       "lens": {
@@ -870,6 +937,11 @@
                 "doopi",
                 "From a grandma with a cane. And a best friend. And a bossy forest girl.",
                 "laugh"
+              ],
+              [
+                "giant",
+                "A GRANDMA? A grandma taught you that?!",
+                "furious"
               ]
             ]
           }
@@ -933,6 +1005,18 @@
           "x": 700,
           "facing": 1,
           "face": "determined"
+        },
+        {
+          "id": "tony",
+          "x": 1000,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "kony",
+          "x": 850,
+          "facing": 1,
+          "face": "scared"
         }
       ],
       "beats": [
@@ -950,6 +1034,21 @@
               [
                 "dony",
                 "All together! For Doopi!",
+                "determined"
+              ],
+              [
+                "kony",
+                "Can bad guys send glow too?",
+                "scared"
+              ],
+              [
+                "doomi",
+                "Good guys can. And that's you now. Hold on!",
+                "love"
+              ],
+              [
+                "tony",
+                "Okay. For Doopi. And for Mooka.",
                 "determined"
               ]
             ]
@@ -1029,6 +1128,36 @@
             "who": "tara",
             "color": "rainbow",
             "level": 0.8,
+            "dur": 1
+          }
+        },
+        {
+          "id": "bridge_g5",
+          "at": {
+            "with": "bridge_g1",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "kony",
+            "color": "rainbow",
+            "level": 0.6,
+            "dur": 1
+          }
+        },
+        {
+          "id": "bridge_g6",
+          "at": {
+            "with": "bridge_g1",
+            "delay": 1.2
+          },
+          "who": "world",
+          "do": "set_glow",
+          "params": {
+            "who": "tony",
+            "color": "rainbow",
+            "level": 0.6,
             "dur": 1
           }
         },
@@ -1381,9 +1510,35 @@
           "say": "I brought my rope. Just in case."
         },
         {
-          "id": "caught_cp",
+          "id": "caught_d3",
           "at": {
             "after": "caught_d1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "My horn... where is my horn?",
+                "dizzy"
+              ],
+              [
+                "mooka",
+                "The grey horn? I threw it off the moon! Hee hee!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Good throw, Mooka!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "caught_cp",
+          "at": {
+            "after": "caught_d3"
           },
           "who": "peepa",
           "do": "captured",
@@ -1517,6 +1672,16 @@
                 "peepa",
                 "...Sorry. I'm... sorry.",
                 "cry"
+              ],
+              [
+                "peepa",
+                "Will... will anyone visit me?",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Every day. I'll bring jalebis.",
+                "love"
               ]
             ]
           }
@@ -1813,6 +1978,16 @@
                 "nani",
                 "And for once... you were early.",
                 "smug"
+              ],
+              [
+                "nani",
+                "Oof. Being stone is VERY bad for old knees.",
+                "tired"
+              ],
+              [
+                "doopi",
+                "I'll carry your water pots for a week, Nani!",
+                "laugh"
               ]
             ]
           }
@@ -2142,6 +2317,73 @@
           "fx": [
             "heart"
           ]
+        },
+        {
+          "id": "festival_sp1",
+          "at": {
+            "after": "festival_hh"
+          },
+          "who": "motumal",
+          "do": "talk",
+          "face": "laugh",
+          "say": "Ahem! At LAST... my speech!",
+          "bubble": "shout"
+        },
+        {
+          "id": "festival_sp2",
+          "at": {
+            "after": "festival_sp1"
+          },
+          "who": "tara",
+          "do": "clap",
+          "face": "laugh",
+          "say": "Go on, Mayor! We're listening!"
+        },
+        {
+          "id": "festival_sp3",
+          "at": {
+            "after": "festival_sp2"
+          },
+          "who": "motumal",
+          "do": "bow",
+          "face": "love",
+          "say": "Thank you, my friends. The END!"
+        },
+        {
+          "id": "festival_sp4",
+          "at": {
+            "after": "festival_sp3"
+          },
+          "who": "mooka",
+          "do": "jump_joy",
+          "face": "laugh",
+          "say": "Best speech EVER!"
+        },
+        {
+          "id": "festival_d2",
+          "at": {
+            "after": "festival_sp4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Hey, champ. Race you to the jalebi stall?",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Only if you catch me when I trip!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Always. I've got you, buddy.",
+                "love"
+              ]
+            ]
+          }
         }
       ]
     },

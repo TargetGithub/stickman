@@ -307,3 +307,20 @@ test("calm framing: one shot holds a whole exchange, widens only for a new speak
   assert.deepEqual(k2.targets, ["kai", "mo", "zed"], "a new speaker widens the shot");
   assert.equal(k2.quick, true);
 });
+
+test("single framing (Shorts): each line frames its speaker alone, action the latest actor and who stands by", () => {
+  const cuts = createCuts(paceOf({ ...v3, pace: { establish: 0, framing: "single", minCut: 0 } }));
+  const auto = { t0: 0, active: new Map(), close: null };
+  const actors = [actor("kai", 1000), actor("mo", 1200)];
+  const at = (t) => cutsKey(auto, cuts, actors, t, () => []);
+  cutsEvent(cuts, { type: "say", actor: "kai", to: "mo", dur: 2 }, 1);
+  assert.deepEqual([at(1).mode, at(1).target], ["close_up", "kai"]);
+  cutsEvent(cuts, { type: "say", actor: "mo", to: "kai", dur: 2 }, 3.3);
+  assert.deepEqual([at(3.3).mode, at(3.3).target], ["close_up", "mo"]);
+  cutsEvent(cuts, { type: "say", actor: "kai", dur: 2 }, 4);
+  assert.deepEqual([at(4).mode, at(4).target], ["close_up", "kai"], "a line over another frames the new speaker");
+  const crowd = [actor("kai", 1000), actor("mo", 1200), actor("zed", 2600)];
+  auto.active = new Map([["kai", 9], ["mo", 8], ["zed", 7]]);
+  const k = cutsKey(auto, cuts, crowd, 10, () => ["kai", "mo", "zed"]);
+  assert.deepEqual([k.mode, k.targets], ["medium", ["kai", "mo"]], "zed is too far from kai to share a 9:16 frame");
+});

@@ -442,6 +442,53 @@
       }
     },
     {
+      "id": "recap",
+      "macro": "montage",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "params": {
+        "clipDur": 5,
+        "cut": "dissolve",
+        "clips": [
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "mooka"
+            ],
+            "do": "laugh",
+            "text": "Last time, a silly comedy show made Mooka laugh, and the grey stone broke."
+          },
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "mooka",
+              "kony"
+            ],
+            "do": "high_five",
+            "text": "Tony and Kony joined the good side."
+          },
+          {
+            "location": "hill",
+            "time": "night",
+            "who": [
+              "giant"
+            ],
+            "do": "charge_up",
+            "text": "But Giant Peepa cracked the Rainbow Banyan. One hour left."
+          }
+        ]
+      }
+    },
+    {
       "id": "gather",
       "location": "hill",
       "time": "night",
@@ -637,6 +684,46 @@
               ]
             ]
           }
+        },
+        {
+          "id": "gather_m1",
+          "at": {
+            "after": "gather_d1"
+          },
+          "who": "motumal",
+          "do": "talk",
+          "face": "determined",
+          "say": "Ahem! Before battle, a SHORT speech..."
+        },
+        {
+          "id": "gather_m2",
+          "at": {
+            "after": "gather_m1"
+          },
+          "who": "tara",
+          "do": "facepalm",
+          "face": "smug",
+          "say": "LATER, Mayor!"
+        },
+        {
+          "id": "gather_m3",
+          "at": {
+            "after": "gather_m2"
+          },
+          "who": "thunda",
+          "do": "laugh",
+          "face": "laugh",
+          "say": "Ha! Thunda likes this village."
+        },
+        {
+          "id": "gather_m4",
+          "at": {
+            "after": "gather_m3"
+          },
+          "who": "ghoom",
+          "do": "talk",
+          "face": "happy",
+          "say": "GHOOMU READY. BEEP BOOP!"
         }
       ],
       "lens": {
@@ -792,6 +879,42 @@
             "color": "#ffd23f",
             "level": 1,
             "dur": 1.5
+          }
+        },
+        {
+          "id": "speech_pl",
+          "at": {
+            "after": "speech_c1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "I have a plan! Thunda and Tara take the goons.",
+                "determined"
+              ],
+              [
+                "doomi",
+                "Tony, Kony and Mooka, you stick together.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "And I'll keep Peepa busy.",
+                "determined"
+              ],
+              [
+                "doomi",
+                "Just busy, Doopi. Not alone. Promise?",
+                "scared"
+              ],
+              [
+                "doopi",
+                "...Promise.",
+                "love"
+              ]
+            ]
           }
         }
       ],
@@ -972,6 +1095,12 @@
           "x": 800,
           "facing": 1,
           "face": "determined"
+        },
+        {
+          "id": "mooka",
+          "x": 650,
+          "facing": 1,
+          "face": "happy"
         }
       ],
       "beats": [
@@ -984,9 +1113,53 @@
           "say": "One last spicy party! Ha-CHOO!"
         },
         {
+          "id": "army_cs",
+          "at": {
+            "after": "army_m0",
+            "delay": 1
+          },
+          "who": "mirchi",
+          "do": "taunt",
+          "face": "smug",
+          "fx": [
+            "chilli_smoke"
+          ],
+          "say": "Chilli smoke for everyone!"
+        },
+        {
+          "id": "army_sz1",
+          "at": {
+            "after": "army_cs"
+          },
+          "who": "thunda",
+          "do": "sneeze",
+          "face": "hurt",
+          "say": "Ah... AH... CHOO!"
+        },
+        {
+          "id": "army_sz2",
+          "at": {
+            "with": "army_sz1",
+            "delay": 0.5
+          },
+          "who": "tara",
+          "do": "sneeze",
+          "face": "hurt"
+        },
+        {
+          "id": "army_sz3",
+          "at": {
+            "after": "army_sz1"
+          },
+          "who": "doomi",
+          "do": "talk",
+          "face": "determined",
+          "say": "Don't stop! Fight with your eyes shut!"
+        },
+        {
           "id": "army_b",
           "at": {
-            "after": "army_m0"
+            "after": "army_sz3"
           },
           "macro": "brawl",
           "params": {
@@ -1019,9 +1192,41 @@
           "bubble": "shout"
         },
         {
-          "id": "army_up",
+          "id": "army_ms1",
           "at": {
             "after": "army_b"
+          },
+          "who": "motumal",
+          "do": "slide",
+          "face": "scared",
+          "say": "Whoa-whoa-WHOA!",
+          "bubble": "shout"
+        },
+        {
+          "id": "army_ms2",
+          "at": {
+            "after": "army_ms1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Mayor! You just knocked over TWO goons!",
+                "surprised"
+              ],
+              [
+                "motumal",
+                "I... I meant to do that! Ahem.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "army_up",
+          "at": {
+            "after": "army_ms2"
           },
           "who": "mirchi",
           "do": "get_up",
@@ -1031,6 +1236,54 @@
           "id": "army_d1",
           "at": {
             "after": "army_up"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mirchi",
+                "Grr! Peepa will still win, you'll see!",
+                "furious"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "army_mk",
+          "at": {
+            "after": "army_d1"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "face": "laugh",
+          "say": "Chilli lady! Want a JALEBI?",
+          "bubble": "shout"
+        },
+        {
+          "id": "army_mg",
+          "at": {
+            "after": "army_mk"
+          },
+          "who": "mirchi",
+          "do": "gasp",
+          "face": "scared",
+          "say": "SWEET?! Noooo!",
+          "bubble": "shout"
+        },
+        {
+          "id": "army_ms",
+          "at": {
+            "after": "army_mg"
+          },
+          "who": "mirchi",
+          "do": "sneeze",
+          "face": "hurt",
+          "interrupt": true
+        },
+        {
+          "id": "army_d2",
+          "at": {
+            "after": "army_ms"
           },
           "macro": "dialogue",
           "params": {
@@ -1051,7 +1304,7 @@
         {
           "id": "army_fl",
           "at": {
-            "after": "army_d1"
+            "after": "army_d2"
           },
           "who": "mirchi",
           "do": "flee"
@@ -1136,9 +1389,35 @@
           }
         },
         {
-          "id": "tk_f",
+          "id": "tk_d2",
           "at": {
             "after": "tk_d"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kony",
+                "I'm scared, Mooka. I'm not a fighter.",
+                "scared"
+              ],
+              [
+                "mooka",
+                "Me too! Hee hee! Hold my hand.",
+                "love"
+              ],
+              [
+                "tony",
+                "Just stay behind me, little brother.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tk_f",
+          "at": {
+            "after": "tk_d2"
           },
           "macro": "fight",
           "params": {
@@ -1628,6 +1907,12 @@
           "x": 2400,
           "facing": -1,
           "face": "smug"
+        },
+        {
+          "id": "doomi",
+          "x": 1150,
+          "facing": 1,
+          "face": "scared"
         }
       ],
       "beats": [
@@ -1686,14 +1971,26 @@
           "interrupt": true
         },
         {
-          "id": "alone_u1",
+          "id": "alone_dm",
           "at": {
             "after": "alone_k1",
-            "delay": 0.5
+            "delay": 0.3
+          },
+          "who": "doomi",
+          "do": "talk",
+          "face": "scared",
+          "say": "Doopi, stop! You promised! Not alone!",
+          "bubble": "shout"
+        },
+        {
+          "id": "alone_u1",
+          "at": {
+            "after": "alone_dm"
           },
           "who": "doopi",
           "do": "get_up",
-          "face": "furious"
+          "face": "furious",
+          "say": "He hurt Dony! I have to!"
         },
         {
           "id": "alone_a3",
@@ -1737,6 +2034,17 @@
           "face": "laugh",
           "say": "Again and again and AGAIN!",
           "bubble": "shout"
+        },
+        {
+          "id": "alone_p2",
+          "at": {
+            "after": "alone_p1",
+            "delay": 1
+          },
+          "who": "giant",
+          "do": "point",
+          "face": "smug",
+          "say": "Your glow is fading. You're ALONE now."
         }
       ],
       "lens": {
