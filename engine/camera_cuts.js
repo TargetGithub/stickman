@@ -63,6 +63,7 @@ function listenerOf(line, actors) {
 
 /** The shot for a line: a medium two-shot opens an exchange, then over-the-shoulder and close-up alternate. */
 function lineShot(cuts, line, actors, t) {
+  if (cuts.pace.framing === "calm") return calmLineShot(cuts, line, actors, t);
   if (line.also) return { mode: "medium", targets: [line.actor, line.also] };
   const listener = listenerOf(line, actors);
   if (!listener) return { mode: "medium", targets: [line.actor] };
@@ -72,6 +73,26 @@ function lineShot(cuts, line, actors, t) {
   if (n === 0) return { mode: "medium", targets: [line.actor, listener.id] };
   // Over the listener's shoulder: a medium on both, pushed toward the speaker (the listener half out of frame).
   return n % 2 ? { mode: "medium", targets: [listener.id, line.actor], favor: line.actor } : { mode: "close_up", target: line.actor };
+}
+
+/**
+ * Calm framing (pace.framing "calm", Sridhar's review 2026-10-23: fewer camera changes): one medium for a whole
+ * exchange, on everyone who has spoken in it and the listener; a line keeps the shot while its speaker is in it,
+ * and the shot widens only for a speaker who is not.
+ */
+function calmLineShot(cuts, line, actors, t) {
+  const listener = listenerOf(line, actors);
+  if (t - cuts.lastLineEnd > TALK.exchange || !cuts.group) {
+    // A new exchange frames everyone near the speaker at once, so the shot rarely has to widen later.
+    const speaker = actors.find((a) => a.id === line.actor && !a.hidden);
+    cuts.group = new Set(speaker ? actors.filter((a) => !a.hidden && Math.abs(a.x - speaker.x) < TALK.reach).map((a) => a.id) : []);
+  }
+  const before = cuts.group.size;
+  for (const id of [line.actor, line.also, listener?.id]) if (id) cuts.group.add(id);
+  const shown = new Set(actors.filter((a) => !a.hidden).map((a) => a.id));
+  for (const id of [...cuts.group]) if (!shown.has(id)) cuts.group.delete(id);
+  if (cuts.key?.mode === "medium" && before && [...cuts.group].every((id) => cuts.key.targets.includes(id))) return cuts.key;
+  return { mode: "medium", targets: [...cuts.group] };
 }
 
 /**
@@ -94,7 +115,8 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
     return choose(cuts, want, t, true);
   }
   // A face close-up gives way to a line by someone else (speakers stay in frame).
-  const closeOk = auto.close && t < auto.close.until && !(line && (line.actor !== auto.close.target || line.also));
+  const calm = pace.framing === "calm";
+  const closeOk = !calm && auto.close && t < auto.close.until && !(line && (line.actor !== auto.close.target || line.also));
   if (closeOk) want = { mode: "close_up", target: auto.close.target };
   else if (t - auto.t0 < pace.establish && !line) want = { mode: "wide" };
   else if (line) {
@@ -109,13 +131,21 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
       cuts.seen = { actor: line.actor, until: line.until };
       want = more ? cuts.key : lineShot(cuts, line, actors, t);
       if (!shows && want !== cuts.key) want = { ...want, quick: true }; // bring an unseen speaker in fast
-    } else if (pace.reactions !== false && age > pace.shot[1] && !cuts.key?.reaction) {
+    } else if (!calm && pace.reactions !== false && age > pace.shot[1] && !cuts.key?.reaction) {
       const listener = listenerOf(line, actors);
       if (listener) want = { mode: "close_up", target: listener.id, reaction: t + TALK.reaction };
     } else if (cuts.key?.reaction && t > cuts.key.reaction) want = { mode: "close_up", target: line.actor };
     want ??= cuts.key;
   } else if (t - cuts.lastLineEnd < TALK.hold && cuts.key) {
     want = cuts.key; // between two lines of an exchange: no cut
+  } else if (calm) {
+    // Keep the shot while everyone acting is in it and its own characters are still on stage.
+    const ids = activeIds(actors, t);
+    const shown = new Set(actors.filter((a) => !a.hidden).map((a) => a.id));
+    const k = cuts.key;
+    const holds = k?.mode === "medium" && k.targets.some((id) => shown.has(id)) && ids.every((id) => k.targets.includes(id));
+    want = holds ? k : mediumOf(nearby(ids, actors), actors, 0);
+    if (!holds && k && age < minCut && ids.every((id) => framed(k, id))) return k;
   } else {
     if (age > pace.shot[1] * 1.25 && cuts.key?.mode === "medium") cuts.variant++;
     want = mediumOf(activeIds(actors, t), actors, cuts.variant);
@@ -123,6 +153,14 @@ export function cutsKey(auto, cuts, actors, t, activeIds) {
     if (cuts.key && age < minCut && !keeps(cuts.key, want) && !sameKey(want, cuts.key)) return cuts.key;
   }
   return choose(cuts, want, t, false);
+}
+
+/** The acting characters and everyone visible within talking reach of them (calm framing). */
+function nearby(ids, actors) {
+  const shown = actors.filter((a) => !a.hidden);
+  const active = shown.filter((a) => ids.includes(a.id));
+  if (!active.length) return ids;
+  return shown.filter((a) => active.some((b) => Math.abs(a.x - b.x) < TALK.reach)).map((a) => a.id);
 }
 
 function mediumOf(ids, actors, variant) {
@@ -134,6 +172,8 @@ function mediumOf(ids, actors, variant) {
 
 function choose(cuts, wanted, t, force) {
   const { cut: _w, ...want } = wanted;
+  // Calm framing: a group is the same shot whatever order its characters come in.
+  if (cuts.pace.framing === "calm" && want.mode === "medium" && !want.favor) want.targets = [...want.targets].sort();
   const { cut: _p, ...prev } = cuts.key || {};
   if (!force && cuts.key && sameKey(want, prev)) return cuts.key;
   const cut = force || !keeps(prev, want);
@@ -144,12 +184,14 @@ function choose(cuts, wanted, t, force) {
 
 /**
  * A script shot gives way to a speaker it leaves out (pace.keepSpeakers, default true; ep review 2026-10-21):
- * true when a line has just started (within its first frames) whose speaker the shot's key does not frame.
+ * true while a line runs (more than SPEAKER_LEFT s of it left) whose speaker the shot's key does not frame.
  * The auto camera then takes over from the shot's key, bringing the speaker in with a quick glide.
  */
+const SPEAKER_LEFT = 0.5; // s: the end of a line is not worth leaving a shot for
+
 export function speakerLeftOut(cuts, shotKey, t) {
   if (!cuts || cuts.pace.keepSpeakers === false) return false;
   const line = cuts.line && t < cuts.line.until ? cuts.line : null;
-  return !!line && cuts.lineSeen !== line && !framed(shotKey, line.actor);
+  return !!line && line.until - t > SPEAKER_LEFT && !framed(shotKey, line.actor);
 }
 

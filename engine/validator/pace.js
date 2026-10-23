@@ -56,6 +56,7 @@ export function paceIssues(sim) {
   return out;
 }
 
+const LEAVES = ["despawn", "vanish", "teleport_out"];
 const SPEAKER_SETTLE = 0.6; // s after a line starts: the camera has glided to the speaker by then
 
 /** Lines spoken while the camera's close-up or medium leaves the speaker out (camera log, video time). */
@@ -64,6 +65,9 @@ function offscreenSpeakers(sim, sc) {
   const out = [];
   for (const e of sim.events) {
     if (e.type !== "say" || e.scene !== sc.index || e.bubble === "think" || typeof e.videoT !== "number") continue;
+    // A speaker who leaves the stage during the line (despawn, vanish) cannot be framed.
+    const gone = sim.events.some((x) => x.actor === e.actor && x.type === "anchor" && LEAVES.includes(x.move) && x.videoT >= e.videoT && x.videoT <= e.videoT + SPEAKER_SETTLE);
+    if (gone) continue;
     const k = log.findLast((c) => c.t <= e.videoT + SPEAKER_SETTLE);
     if (!k || !["close_up", "medium"].includes(k.mode) || k.target === e.actor || k.targets?.includes(e.actor)) continue;
     out.push({ code: "W_SPEAKER_OFFSCREEN", path: sc.srcPath ?? `scenes[${sc.index}]`,

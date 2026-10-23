@@ -65,6 +65,8 @@ const QUICK_GLIDE = 0.5; // s: a glide that brings a speaker who was out of the 
 
 // paced: a cut the pace asked for (auto camera, shots); with pace.glide it becomes a glide instead.
 function keyed(p, key, clock, cut = false, paced = false) {
+  // Calm framing (pace.framing "calm"): auto and shot framings hold still until their subjects drift away.
+  if (paced && p.pace?.framing === "calm" && key && ["medium", "close_up", "two_shot", "over_shoulder"].includes(key.mode)) key = { ...key, hold: true };
   setCameraKey(p.cam, key, clock.videoT);
   const glide = cut && paced && p.pace?.glide > 0;
   if (glide) glideCamera(p.cam, key.quick ? Math.min(p.pace.glide, QUICK_GLIDE) : p.pace.glide, clock.videoT);
@@ -166,6 +168,7 @@ function storyCamera(p, world, clock) {
     p.shot = null;
     p.storyAuto.cuts.key = p.cam.key;
     p.storyAuto.cuts.since = -Infinity;
+    p.storyAuto.cuts.lineSeen = null; // the running line picks its shot again
   }
   if (!p.storyAuto || p.shot || p.lasting) return;
   const key = storyAutoKey(p.storyAuto, world.actors, clock.storyT);

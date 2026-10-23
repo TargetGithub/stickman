@@ -287,3 +287,23 @@ test("a script shot gives way to a speaker it leaves out (pace keepSpeakers), an
   assert.equal(offscreen(true), 0);
   assert.ok(offscreen(false) > 0);
 });
+
+test("calm framing: one shot holds a whole exchange, widens only for a new speaker, no face close-ups", () => {
+  const cuts = createCuts(paceOf({ ...v3, pace: { establish: 0, framing: "calm" } }));
+  const auto = { t0: 0, active: new Map(), close: null };
+  const actors = [actor("kai", 1000), actor("mo", 1200), actor("zed", 2600)];
+  const at = (t) => cutsKey(auto, cuts, actors, t, () => []);
+  cutsEvent(cuts, { type: "say", actor: "kai", to: "mo", dur: 2 }, 1);
+  const k1 = at(1);
+  assert.deepEqual([k1.mode, k1.targets], ["medium", ["kai", "mo"]], "everyone near the speaker, in a stable order");
+  cutsEvent(cuts, { type: "say", actor: "mo", to: "kai", dur: 2 }, 3.3);
+  assert.equal(at(3.3), k1, "the reply keeps the shot");
+  cutsEvent(cuts, { type: "say", actor: "kai", to: "mo", dur: 2 }, 5.6);
+  assert.equal(at(5.6), k1, "and so does the next line");
+  auto.close = { target: "mo", until: 20 };
+  assert.equal(at(6), k1, "no face close-up");
+  cutsEvent(cuts, { type: "say", actor: "zed", dur: 2 }, 8);
+  const k2 = at(8);
+  assert.deepEqual(k2.targets, ["kai", "mo", "zed"], "a new speaker widens the shot");
+  assert.equal(k2.quick, true);
+});

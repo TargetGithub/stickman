@@ -49,6 +49,25 @@ export function cutCamera(cam) {
   cam.cut = true;
 }
 
+// A held key (calm framing): the frame stays put while its subjects drift less than this share of the
+// visible width (or zoom by less than this ratio), then glides once to the new framing.
+const HOLD = { dx: 0.16, zoom: 0.18, glide: 1 };
+
+/** Calm framing (key.hold): keep the framing the key started with until the subjects drift out of it. */
+function steady(cam, d, videoT) {
+  if (!cam.key?.hold || d.direct) {
+    cam.held = null;
+    return d;
+  }
+  const h = cam.held && cam.held.key === cam.key ? cam.held : null;
+  if (!h) cam.held = { key: cam.key, ...d };
+  else if (Math.abs(d.x - h.x) * d.zoom / cam.W > HOLD.dx || Math.abs(Math.log(d.zoom / h.zoom)) > HOLD.zoom) {
+    cam.held = { key: cam.key, ...d };
+    if (!cam.glide) glideCamera(cam, HOLD.glide, videoT);
+  }
+  return { ...d, x: cam.held.x, zoom: cam.held.zoom, ...(cam.held.y !== undefined ? { y: cam.held.y } : {}) };
+}
+
 /**
  * Glide (pace.glide, ADR-038): instead of a hard cut, ease from the current framing to the new key's over `dur`
  * video seconds (ease in and out; zoom eased in log space), then follow as usual. A hard cut cancels it.
@@ -144,7 +163,7 @@ function spring(value, vel, target, dt, omega = CAMERA.omega) {
 export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = true } = {}) {
   const fast = autoCamera && actors.some((a) => a.launched || Math.abs(a.vx) > 300);
   cam.widen += ((fast ? 1.3 : 1) - cam.widen) * Math.min(1, videoDt * 3);
-  const d = desired(cam, actors, videoT);
+  const d = steady(cam, desired(cam, actors, videoT), videoT);
   const snapped = cam.cut || d.direct;
   const g = cam.glide && !snapped && videoT - cam.glide.t0 < cam.glide.dur ? cam.glide : null;
   if (!g) cam.glide = null;

@@ -391,7 +391,6 @@
           "params": {"kind": "football", "id": "bigball", "x": 1180}
         },
         {"id": "games_k1", "at": {"after": "games_sp", "delay": 0.2}, "who": "doopi", "do": "kick_pass"},
-        {"id": "games_hh", "at": {"with": "games_k1"}, "who": "world", "do": "set_camera", "params": {"handheld": 0.35, "dur": 0.5}},
         {
           "id": "games_fly",
           "at": {"with": "games_k1", "delay": 0.3},
@@ -409,7 +408,6 @@
           "say": "OOF! My turban!",
           "bubble": "shout"
         },
-        {"id": "games_dt", "at": {"with": "games_ow"}, "who": "world", "do": "set_camera", "params": {"move": "dutch_tilt"}},
         {"id": "games_dz", "at": {"after": "games_ow"}, "who": "motumal", "do": "dizzy"},
         {"id": "games_l1", "at": {"with": "games_ow", "delay": 0.4}, "who": "chintu", "do": "laugh"},
         {"id": "games_l2", "at": {"with": "games_ow", "delay": 0.6}, "who": "dony", "do": "facepalm"},
@@ -418,8 +416,7 @@
           "at": {"after": "games_dz"},
           "macro": "dialogue",
           "params": {"lines": [["doopi", "Sorry, Mayor ji! Very sorry!", "scared"], ["motumal", "Next game. Far away from me. VERY far.", "tired"]]}
-        },
-        {"id": "games_lv", "at": {"with": "games_d2"}, "who": "world", "do": "set_camera", "params": {"move": "level", "handheld": 0, "dur": 1}}
+        }
       ]
     },
     {
@@ -499,7 +496,6 @@
           "params": {"text": "The last game: the race up Banyan hill! Ready... steady... GO!"}
         },
         {"id": "race_r1", "at": {"after": "race_n1"}, "who": "doopi", "do": "run", "to": {"x": 1500}},
-        {"id": "race_hh", "at": {"with": "race_r1"}, "who": "world", "do": "set_camera", "params": {"move": "level", "handheld": 0.4, "dur": 0.8}},
         {"id": "race_r2", "at": {"with": "race_r1", "delay": 0.1}, "who": "chintu", "do": "run", "to": {"x": 1650}},
         {"id": "race_r3", "at": {"with": "race_r1", "delay": 0.2}, "who": "dony", "do": "run", "to": {"x": 1350}},
         {"id": "race_r4", "at": {"with": "race_r1", "delay": 0.3}, "who": "pinky", "do": "run", "to": {"x": 900}},
@@ -512,7 +508,6 @@
         {"id": "race_back", "at": {"after": "race_th"}, "who": "doopi", "do": "run", "to": {"near": "pinky", "gap": 110}},
         {"id": "race_help", "at": {"after": "race_back", "delay": 0.8}, "who": "doopi", "do": "kneel", "face": "sad", "say": "Are you okay, Pinky?"},
         {"id": "race_cu", "at": {"with": "race_help"}, "who": "world", "do": "shot", "params": {"mode": "close_up", "target": "doopi", "dur": 3.5}},
-        {"id": "race_still", "at": {"with": "race_help"}, "who": "world", "do": "set_camera", "params": {"handheld": 0, "dur": 0.6}},
         {"id": "race_up", "at": {"after": "race_cr"}, "who": "pinky", "do": "get_up", "face": "sad"},
         {
           "id": "race_pat",
@@ -590,18 +585,10 @@
           "macro": "activity",
           "params": {"name": "dance_together", "with": ["doopi", "doomi", "dony", "mooka"], "dur": 9}
         },
-        {
-          "id": "festival_os",
-          "at": {"with": "festival_dn", "delay": 1},
-          "who": "world",
-          "do": "set_camera",
-          "params": {"move": "orbit_sweep", "dur": 6}
-        },
         {"id": "festival_p1", "at": 2, "who": "chintu", "do": "cheer", "fx": ["colour_powder"], "view": "front"},
         {"id": "festival_p2", "at": 4, "who": "pinky", "do": "jump_joy", "fx": ["colour_powder"], "view": "front"},
         {"id": "festival_p3", "at": 6.5, "who": "chintu", "do": "toss", "fx": ["colour_powder"]},
         {"id": "festival_p4", "at": 8, "who": "pinky", "do": "cheer", "fx": ["colour_powder", "confetti"], "view": "front"},
-        {"id": "festival_lv", "at": {"with": "festival_d1"}, "who": "world", "do": "set_camera", "params": {"move": "level", "dur": 1}},
         {"id": "festival_v9", "at": {"with": "festival_d1"}, "who": "dony", "do": "wait", "params": {"seconds": 0.3}, "view": "three_quarter"},
         {
           "id": "festival_d1",
@@ -719,12 +706,10 @@
           "macro": "chase",
           "params": {"runner": "tony", "chasers": ["becky"], "dur": 5, "obstacles": 1, "caught": true}
         },
-        {"id": "sneak_hh", "at": {"with": "sneak_ch"}, "who": "world", "do": "set_camera", "params": {"move": "level", "handheld": 0.55, "dur": 0.6}},
         {"id": "sneak_k1", "at": {"with": "sneak_ch", "delay": 0.3}, "macro": "exit", "params": {"who": "kony", "side": "right", "mode": "run"}},
         {"id": "sneak_t2", "at": {"after": "sneak_ch"}, "who": "tony", "do": "cower", "say": "Let go! Let go of my shorts!", "bubble": "shout"},
         {"id": "sneak_t3", "at": {"after": "sneak_t2"}, "macro": "exit", "params": {"who": "tony", "side": "right", "mode": "run"}},
         {"id": "sneak_w1", "at": {"after": "sneak_t3"}, "who": "becky", "do": "bark", "params": {"cycles": 2}, "face": "happy"},
-        {"id": "sneak_lv", "at": {"with": "sneak_w1"}, "who": "world", "do": "set_camera", "params": {"handheld": 0, "dur": 1}},
         {"id": "sneak_w2", "at": {"with": "sneak_w1"}, "who": "doopi", "do": "run", "to": {"near": "becky", "gap": 140}},
         {
           "id": "sneak_w3",
@@ -855,7 +840,7 @@
   },
   "look": {"strength": 0.45},
   "motion": {"followThrough": 1, "squash": 1, "secondary": 1, "breathing": 1, "blur": 0},
-  "pace": {"travel": {"walk": 1.3, "run": 1.1, "sneak": 1.6, "tiptoe": 1.4, "walk_together": 1.25}, "moves": 1, "gap": 0.5, "maxTravel": 4.5, "arrive": 1.6, "leave": 1.2, "shot": [4, 8], "minCut": 2.5, "reactions": false, "glide": 1.2, "establish": 3},
+  "pace": {"travel": {"walk": 1.3, "run": 1.1, "sneak": 1.6, "tiptoe": 1.4, "walk_together": 1.25}, "moves": 1, "gap": 0.5, "maxTravel": 4.5, "arrive": 1.6, "leave": 1.2, "shot": [4, 8], "minCut": 2.5, "reactions": false, "glide": 1.2, "framing": "calm", "establish": 3},
   "layers": [{"id": "tbc_layer", "scene": "horns", "from": 13.3, "in": {"type": "fade", "dur": 1}}],
   "shapes": [{"id": "tbc_black", "type": "rect", "layer": "tbc_layer", "x": 960, "y": 540, "w": 1920, "h": 1080, "fill": "#000000"}],
   "text": [

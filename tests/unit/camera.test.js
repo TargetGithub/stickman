@@ -118,3 +118,16 @@ test("glideCamera eases to the new framing over its duration; a cut snaps and ca
   assert.ok(Math.abs(snapped - from.x) < 1, "the cut lands on the new framing at once");
   assert.equal(c.glide, null);
 });
+
+test("a held key (calm framing) keeps its frame while the subject drifts a little, and glides after a big drift", () => {
+  const c = cam();
+  const a = actor("a", 1200);
+  setCameraKey(c, { mode: "follow", targets: ["a"], hold: true }, 0);
+  const start = settle(c, [a], 2).x;
+  const small = actor("a", 1290); // drifts under the hold band
+  const after = settle(c, [small], 2, 2).x;
+  assert.equal(after, start, "the frame does not move");
+  const far = actor("a", 1900);
+  const moved = settle(c, [far], 3, 4).x;
+  assert.ok(Math.abs(moved - start) > 400, "a big drift reframes");
+});
