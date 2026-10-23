@@ -6,7 +6,8 @@
 //   node tools/shorts.mjs <episode.json> --auto [N]           write the N best candidates (default 3)
 //   node tools/shorts.mjs <episode.json> --scenes a,b         write a Short of those scenes (in that order)
 // Options: --out-dir scripts/shorts (where the Short scripts go), --end "text" (the end card; --no-end: none),
-//   --render (render each Short with tools/record.mjs: --speech tts --fps 30 into out/shorts/, --res sets the size)
+//   --render (render each Short with tools/record.mjs --speech tts into out/shorts/: the final, 4K at 60 fps;
+//   --review renders 720p at 30 fps instead; --res and --fps override)
 // Lengths come from the voices (--speech tts, the default when the script speaks with TTS) or babble timing.
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
@@ -21,9 +22,9 @@ import { shortScript, sceneSpans, shortCandidates } from "./lib/shorts.mjs";
 const args = process.argv.slice(2);
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(scenes|auto|out-dir|end|res|speech)$/));
+const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(scenes|auto|out-dir|end|res|fps|speech)$/));
 if (!file || !(flag("--list") || flag("--auto") || flag("--scenes"))) {
-  console.error("usage: node tools/shorts.mjs <episode.json> (--list | --auto [N] | --scenes a,b) [--out-dir dir] [--end text | --no-end] [--render [--res 1080p]]");
+  console.error("usage: node tools/shorts.mjs <episode.json> (--list | --auto [N] | --scenes a,b) [--out-dir dir] [--end text | --no-end] [--render [--review] [--res 4k] [--fps 60]]");
   process.exit(2);
 }
 const script = JSON.parse(readFileSync(file, "utf8"));
@@ -80,7 +81,10 @@ for (const p of picks) {
   writeFileSync(path, `${JSON.stringify(short, null, 2)}\n`);
   console.log(`wrote ${path}${p.dur ? ` (about ${p.dur.toFixed(0)} s + end card)` : ""}`);
   if (flag("--render")) {
-    const rec = ["tools/record.mjs", path, "--speech", "tts", "--fps", "30", "--res", opt("--res", "1080p"), "--out-dir", "out/shorts", "--slug", name];
+    const review = flag("--review");
+    const res = opt("--res", review ? "720p" : "4k");
+    const fps = opt("--fps", review ? "30" : "60");
+    const rec = ["tools/record.mjs", path, "--speech", "tts", "--fps", fps, "--res", res, "--out-dir", "out/shorts", "--slug", review ? `${name}_review` : name];
     const r = spawnSync(process.execPath, rec, { stdio: ["ignore", "ignore", "inherit"] });
     if (r.status !== 0) failed = true;
     else console.log(`  rendered out/shorts/${name}/final.mp4`);

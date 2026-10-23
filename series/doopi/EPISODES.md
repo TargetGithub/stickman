@@ -2,7 +2,7 @@
 
 Status: **draft for Sridhar's review** (2026-10-18). World, characters and the arc: [BIBLE.md](BIBLE.md). Asset ids in square brackets (`[R1]`, `[T3]`) point to [ASSETS.md](ASSETS.md).
 
-**Scripts:** the version 3 scripts `scripts/series/doopi/epNN_v3.json` are the ones to render (`node tools/record.mjs scripts/series/doopi/epNN_v3.json --speech tts --fps 30`). They were made from the version 2 `epNN.json` with `node tools/upgrade_v3.mjs series/doopi/v3_profile.json ...` (the settings Sridhar approved on episode 1) and then hand-fixed, so edit the `_v3` files from now on; re-running the upgrade would overwrite those fixes.
+**Scripts:** the version 3 scripts `scripts/series/doopi/epNN_v3.json` are the ones to render (final: `node tools/record.mjs scripts/series/doopi/epNN_v3.json --speech tts --res 4k --fps 60`; review: `--res 720p --fps 30`). They were made from the version 2 `epNN.json` with `node tools/upgrade_v3.mjs series/doopi/v3_profile.json ...` (the settings Sridhar approved on episode 1) and then hand-fixed, so edit the `_v3` files from now on; re-running the upgrade would overwrite those fixes.
 
 **Length and YouTube formats (2026-10-23):** every episode runs 5:00-5:45 with the voices (outline beats the first scripts had cut were restored, and episodes 2-24 open with a narrated "Last time..." scene), so three or four make a 20-30 minute compilation: `node tools/compilation.mjs out/series/doopi/ep01_v3_final ... --out out/series/doopi/compilation_01` (`--plan` groups them). Shorts: `node tools/shorts.mjs scripts/series/doopi/epNN_v3.json --list`, then `--auto 3 --render`.
 
