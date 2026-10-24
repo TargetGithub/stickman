@@ -1,4 +1,4 @@
-# Baaaana: series bible
+# Baaaana: channel bible
 
 Status: **draft for Sridhar's review** (2026-10-23). Plan and task list: [PLAN.md](PLAN.md).
 
@@ -6,9 +6,10 @@ Status: **draft for Sridhar's review** (2026-10-23). Plan and task list: [PLAN.m
 
 A meadow full of small, round, green Baaaanas who turn every everyday thing (a picnic, a queue, a photo, a birthday) into happy chaos, and always end up dancing.
 
-- **Channel:** "Baaaana", separate from Doopi & Friends. No crossovers, no shared episodes.
+- **Channel:** "Baaaana", separate from Doopi & Friends. No crossovers, no shared videos.
+- **Not a series:** every video is unique and independent. No running story, no numbering, no seasons; a viewer can start with any video. Only the cast, the world and the format carry over.
 - **Audience:** everyone, from small kids to grandparents. Watchable with the sound off, in any country.
-- **Length:** about 20 minutes per episode (section 7).
+- **Length:** about 20 minutes per video (section 7).
 - **Tone:** warm, silly, kind. Nobody is mean for long, nobody gets hurt, and every mess ends in a giggle.
 
 ## 2. The world
@@ -63,7 +64,7 @@ Places reused from the catalog: city, park, beach, snow mountain, market and the
 ### Zizi (`zizi`): the mischief maker
 - **Look:** tiny and quick (scale 0.7), sea-green, a curly-vine sprout, a mini backpack full of gadgets.
 - **Personality:** cheeky, curious, never still. Builds gadgets from junk (a spoon catapult, a balloon jetpack, a bubble machine) that work brilliantly once and then go wild.
-- **Running gags:** "one small button" that causes the whole episode; peeking out of odd places (a teapot, a hat, a mailbox); a raspberry blown at Bobo's whistle.
+- **Running gags:** "one small button" that causes the whole video; peeking out of odd places (a teapot, a hat, a mailbox); a raspberry blown at Bobo's whistle.
 - **Voice:** pitch 2.0, speed 1.4, squeaky. Babble: "Zizi-zi!", "Ta-daaa!", "Oopsie!"
 
 ### How they work together
@@ -91,11 +92,11 @@ Bobo plans, Zizi breaks the plan, Tutu saves everyone (often by accident, by lif
 - **Escalation through the crowd:** one Baaaana, then ten, then all of them.
 - **The look to camera:** a Baaaana stops and looks at the viewer after something silly.
 - **Sound as a joke:** a squeak, a boing, a single "Baaaana?" in a silent room.
-- **Music timing:** gags land on the beat; every episode ends in a song or dance.
+- **Music timing:** gags land on the beat; every video ends in a song or dance.
 
 **Never:** blood or gore, real injury, cruelty, mocking any person or group, scary villains, rude or toilet jokes beyond a gentle burp, the words "die", "kill" or "dead". A fall ends in a bounce and a giggle. Someone who is upset gets a hug before the segment ends.
 
-## 7. Episode format (about 20 minutes)
+## 7. Video format (about 20 minutes)
 
 | Part | Length | What happens |
 |---|---|---|
@@ -108,10 +109,10 @@ Bobo plans, Zizi breaks the plan, Tutu saves everyone (often by accident, by lif
 | Segment 4 | 4-5 min | a complete mini-story |
 | Closing song | 1-2 min | all four leads and the crowd dance; credits |
 
-- Each episode has a **theme** (for example "Picnic Day", "The Big Wedding", "Snow Day"), and its four segments are variations on that theme, so an episode feels like one day out.
+- Each video has a **theme** (for example "Picnic Day", "The Big Wedding", "Snow Day"), and its four segments are variations on that theme, so an video feels like one day out.
 - Each segment stands alone, so it doubles as a chapter in the long video and as source material for Shorts.
 - Segment shape: a small goal (Bobo's plan), three attempts that escalate (Zizi's gadget, the crowd copying), a big wobble (Tutu holds it together), a happy surprise (Mooka), a giggle and a look to camera.
-- Pace: the calm Doopi pace block (slow glides, few cuts, a steady frame during gags) unless an episode needs something else.
+- Pace: the calm Doopi pace block (slow glides, few cuts, a steady frame during gags) unless an video needs something else.
 - Renders: review at 720p/1080p 30 fps; finals at 4K 60 fps.
 
 ## 8. Speech and sound
@@ -119,12 +120,13 @@ Bobo plans, Zizi breaks the plan, Tutu saves everyone (often by accident, by lif
 - **Bubbles:** one or two babble words, or a picture in a thought bubble (a dumpling, a heart, a lightning bolt). No sentences.
 - **Real words:** about 30 friendly words from many languages, used as a joke or a punchline: hello, thank you, sorry, wow, yummy, goodnight, one-two-three ("namaste", "gracias", "merci", "danke", "arigato", "ciao", "shukriya", "vanakkam", "salaam", "xie xie"...). Kept in one shared list so the four leads stay consistent.
 - **SFX:** giggles (single and crowd), "ooh", a gasp, a raspberry, boing, squeak, pop, slide whistle, a sprout "spring".
-- **Music:** a bouncy main theme, a lullaby version for sleepy scenes, and one new song per episode for the closing dance.
+- **Music:** a bouncy main theme, a lullaby version for sleepy scenes, and one new song per video for the closing dance.
 
 ## 9. Production rules
 
-- Cast ids are fixed for every episode: `bn_mooka`, `bobo`, `tutu`, `zizi`, plus `baaaana_crowd` with a per-episode seed.
+- Cast ids are fixed for every video: `bn_mooka`, `bobo`, `tutu`, `zizi`, plus `baaaana_crowd` with a per-video seed.
+- Nothing in one video may depend on another video (no "last time", no callbacks that need prior viewing).
 - All Baaaana catalog entries carry `"series": "baaaana"`. Never edit Doopi's presets for Baaaana work.
 - New renderer looks (sprout physics, livelier eyes, squash and stretch) are opt-in per character.
-- Files: plan and bible in `series/baaaana/`; scripts in `scripts/series/baaaana/ep01/` (one file per segment); renders in `out/series/baaaana/`.
-- Every episode is checked against section 3's originality rules before its final render.
+- Files: plan and bible in `series/baaaana/`; scripts in `scripts/series/baaaana/<video-slug>/` (one file per segment, for example `picnic_day/`); renders in `out/series/baaaana/<video-slug>/`.
+- Every video is checked against section 3's originality rules before its final render.

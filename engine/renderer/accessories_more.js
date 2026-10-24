@@ -7,6 +7,7 @@
 import { dimsOf } from "../skeleton.js";
 import { drawHats } from "./accessories_hats.js";
 import { drawWindupKey } from "./robot.js";
+import { drawHeadBaaaana, drawHandBaaaana } from "./accessories_baaaana.js";
 
 const INK = "#111111";
 const DEG = Math.PI / 180;
@@ -256,6 +257,7 @@ export function drawHeadMore(ctx, c, r, ax0, acc) {
   if (acc.sprout) { const p = slideAt(c, r, ax0, 98, 0.96); sprout(ctx, p.c, r, p.ax, acc.sprout); }
   if (acc.hair_flower) { const p = slideAt(c, r, ax0, 135, 0.98); hairFlower(ctx, p.c, r, p.ax, acc.hair_flower); }
   for (const ax of masses) drawHats(ctx, c, r, ax, acc); // batch B: chilli_hat, pirate_hat, beard
+  drawHeadBaaaana(ctx, c, r, ax0, acc, slideAt); // Baaaana: sprout kinds, party_hat
 }
 
 // ---- Hand pieces -------------------------------------------------------------------------------
@@ -328,10 +330,11 @@ export function drawLookBehind(ctx, c, look, t = 0) {
 /** Hand pieces in front of the character: the near mitten and the bracelet. */
 export function drawLookFront(ctx, c, look) {
   const acc = look?.accessories;
-  if (!acc || c.quad || (!acc.mittens && !acc.bracelet)) return;
+  if (!acc || c.quad || (!acc.mittens && !acc.bracelet && !acc.clipboard)) return;
   ctx.save();
   ctx.globalAlpha = c.alpha ?? 1;
   if (acc.bracelet) bracelet(ctx, c.j, lineOf(c), acc.bracelet, look.slots);
+  drawHandBaaaana(ctx, c, acc);
   if (acc.mittens) mitten(ctx, c.j.rElbow, c.j.rHand, lineOf(c) * 0.95, acc.mittens);
   ctx.restore();
 }

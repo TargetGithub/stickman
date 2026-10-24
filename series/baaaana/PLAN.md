@@ -2,14 +2,14 @@
 
 Status: **draft for Sridhar's review** (2026-10-23).
 
-A new series for everyone (kids, parents, adults, grandparents): a happy little species called the **Baaaanas**, grown from Mooka of Doopi & Friends. Pure fun, innocent activities, no villains needed. Four leads carry each story; a crowd of extra Baaaanas does the group gags.
+A new channel for everyone (kids, parents, adults, grandparents): a happy little species called the **Baaaanas**, grown from Mooka of Doopi & Friends. Pure fun, innocent activities, no villains needed. Four leads carry each story; a crowd of extra Baaaanas does the group gags.
 
 ## 1. What makes it work for all ages
 
 - **Almost no words.** Baaaanas babble ("Baaaana!", "Ooh!", "Pa-pa-poo!") plus a handful of real words borrowed from many languages ("namaste", "gracias", "bonjour", "arigato"). Jokes land without translation, so the whole world can watch.
 - **Two layers of humour.** Kids get the slapstick (slips, bonks, wobbly towers, food chaos). Adults get the situations: queueing at a bank, a yoga class, a wedding photo, a job interview, assembling flat-pack furniture, a cooking show, a group selfie that never works.
 - **The crowd is a character.** One Baaaana does something; fifty copy it, badly, at once. That escalation is the signature gag.
-- **Music and dance.** Every episode ends with a short song or dance number (reuses the music generator and `dance_together`).
+- **Music and dance.** Every video ends with a short song or dance number (reuses the music generator and `dance_together`).
 - **Gentle always.** No blood, no harm, no "die/kill"; every fall ends in a giggle. Same rules as the Doopi bible.
 
 ## 2. Keep it original (important)
@@ -65,7 +65,7 @@ Each task is one session that ends with green tests and a commit, so we can stop
 | # | Task | Kind | Size | Done when |
 |---|---|---|---|---|
 | 1 | Write `series/baaaana/BIBLE.md`: world, the four leads, rules, tone, humour guide, originality rules | Docs | S | bible reviewed |
-| 2 | Sprout kinds + new accessories (twin leaf, flower bud, curly vine, clipboard, whistle, mini backpack, party hat) | Renderer + catalog | M | sheet in `out/demos/` |
+| 2 | Sprout kinds + new accessories (`leaf_sprout`, `curly_vine`, `flower_bud` / `flower_bloom`, `party_hat`, `whistle`, `clipboard`; Bobo keeps the two-leaf `sprout`, Zizi reuses `backpack`) **done 2026-10-24** | Renderer + catalog | M | sheet `out/demos/baaaana_t2_accessories.png` (`node tools/baaaana_acc_sheet.mjs`) |
 | 3 | Four lead presets (`bn_mooka`, `bobo`, `tutu`, `zizi`, all `"series": "baaaana"`) + cast sheet ★ | Catalog | S | cast sheet approved |
 | 4 | Livelier eyes, big-grin / toothy mouths, belly jiggle ★ | Faces + renderer | M | face sheet approved |
 | 5 | Squash and stretch + sprout physics on `buddy` ★ | Engine + renderer | L | move clips approved |
@@ -74,18 +74,18 @@ Each task is one session that ends with green tests and a commit, so we can stop
 | 8 | Group activities (10 listed above) + their moves | Catalog | L (split 8a/8b) | demo clip each |
 | 9 | Props and the `baaaana_meadow` theme ★ | SVG + catalog | M | place sheet approved |
 | 10 | Babble voice + giggle / ooh / gasp / raspberry SFX + a bouncy music mood | Audio | M | listen test |
-| 11 | Story list: season 1 of 12 episodes, about 20 min each = cold open + 4 segments of about 4.5 min + closing song (`series/baaaana/EPISODES.md`) | Docs | M | list reviewed |
-| 12 | Episode 1 script (cold open + 4 segment scripts + song), review render 720p 30 fps ★ | Script | L (split per segment) | approved |
-| 13 | Episode 1 final at 4K 60 fps, Short, thumbnail, channel art | Render | M | uploaded files ready |
-| 14 | Episodes 2-12, one episode per batch (segment scripts, then review renders) | Script | L each | per episode review |
+| 11 | Idea bank: 12 standalone video ideas, about 20 min each = cold open + 4 segments of about 4.5 min + closing song (`series/baaaana/IDEAS.md`) | Docs | M | list reviewed |
+| 12 | First video script (cold open + 4 segment scripts + song), review render 720p 30 fps ★ | Script | L (split per segment) | approved |
+| 13 | First video final at 4K 60 fps, Short, thumbnail, channel art | Render | M | uploaded files ready |
+| 14 | Each further video on its own, picked from the idea bank (segment scripts, review render, final) | Script | L each | per video review |
 
 Order rationale: the look comes first (tasks 2-6) because everything else is judged by eye; crowd behaviour (7-8) is the one real engine gap; stories come after the assets exist so scripts don't ask for things we can't draw.
 
 ## 7. Decisions (Sridhar, 2026-10-23)
 
 1. **No crossover** with Doopi & Friends. Baaaana is a **separate channel**.
-2. Series and channel title: **"Baaaana"**.
+2. Channel title: **"Baaaana"**.
 3. Mooka's Doopi babble ("Bana-na-na") stays as it is.
-4. Every episode is **about 20 minutes** (structure in BIBLE.md section 7). Season 1 is 12 episodes; more can follow.
+4. Every video is **about 20 minutes** (structure in BIBLE.md section 7). Not a series: every video is unique and independent, with no running story, numbering or seasons. Only the cast and world carry over.
 
 Because the channels are separate, Doopi's `mooka` preset is never changed. The Baaaana leads are new presets (`bn_mooka` starts as a copy), so already-rendered Doopi episodes keep their look. The new renderer features (sprout physics, livelier eyes, squash and stretch) are opt-in per character, so Doopi's cast doesn't change unless we choose to turn them on.

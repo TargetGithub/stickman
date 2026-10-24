@@ -11,6 +11,7 @@ import { boxHeadPath, drawBolts } from "./robot.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
 import { shadeStrokes, shadeHead, shadeTorso } from "./shading.js";
 import { limbLine } from "./limb_curves.js";
+import { drawWhistle } from "./accessories_baaaana.js";
 import { spineLine } from "../spine.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
@@ -199,6 +200,7 @@ export function drawCharacter(ctx, j, style) {
   }
   if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth, ...(bend ? { spineBend: bend, facing: s.facing } : {}) });
   if (acc.bowtie) drawBowtie(ctx, j, headR, acc.bowtie, s.facing);
+  if (acc.whistle) drawWhistle(ctx, j, headR, acc.whistle, s.facing);
   drawHead(ctx, j, headR, lw, s, s.facing);
   strokeGroup(ctx, [[j.rHip || j.hip, j.rKnee, j.rFoot]], s.color, lw, s);
   if (prop && s.prop.data.grip === "rHand") heldProp(ctx, s, prop);
