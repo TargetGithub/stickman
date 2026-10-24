@@ -111,7 +111,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | hide | life | 0.7 | - | - | holds pose | Crouches down to hide and stays there. |
 | push | life | 1.2 | - | - | - | Pushes against something heavy with both hands. |
 | pull | life | 1.2 | - | - | - | Pulls something heavy with both hands. |
-| climb_up | life | 1.4 | - | - | - | Climbs in place (a ladder, a wall): hands and knees take turns. |
+| climb_up | life | 1.4 | cycles=1 | - | loop: cycles | Climbs (a ladder, a wall): hands and knees take turns; loops for `cycles`. With a platform object the character really goes up. |
 | jump_down | life | 0.9 | - | - | - | Jumps down from something and lands. |
 | swing_forehand | life | 0.7 | - | racket | - | A forehand racket swing (tennis). |
 | swing_backhand | life | 0.7 | - | racket | - | A backhand racket swing (tennis). |
@@ -131,6 +131,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | water_plants | life | 1.2 | cycles=2 | - | loop: cycles | Waters the plants with an air watering can, tipping it and swaying along the row; loops for `cycles`. |
 | picnic_munch | life | 1.6 | cycles=2 | - | loop: cycles | Sits on the ground with legs out in front and munches: hand to mouth, chewing; loops for `cycles`. |
 | picnic_giggle | life | 1.2 | cycles=2 | - | loop: cycles | Sits on the ground with legs out in front, hands on the tummy, rocking back with giggles; loops for `cycles`. |
+| climb_down | life | 1.4 | cycles=1 | - | loop: cycles | Climbs down (a ladder, a wall), hands and knees taking turns; loops for `cycles`. With a platform object the character really goes down. |
 | hug | interaction | 1.8 | - | - | paired: partner plays hug_partner, story only | Two characters hug; a short buddy hugs a tall friend round the waist. |
 | high_five | interaction | 1 | - | - | paired: partner plays high_five_partner, story only | Two characters slap a high five. |
 | fist_bump | interaction | 0.9 | - | - | paired: partner plays fist_bump_partner, story only | Two characters bump fists. |

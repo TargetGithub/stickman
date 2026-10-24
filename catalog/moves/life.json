@@ -450,7 +450,9 @@
   },
   {
     "name": "climb_up",
-    "description": "Climbs in place (a ladder, a wall): hands and knees take turns.",
+    "description": "Climbs (a ladder, a wall): hands and knees take turns; loops for `cycles`. With a platform object the character really goes up.",
+    "params": { "cycles": 1 },
+    "flags": { "loop": true },
     "tags": ["life", "travel", "effort"],
     "category": "life",
     "duration": 1.4,
@@ -1201,5 +1203,71 @@
         "pose": { "lean": -8, "head": 0, "lUA": 35, "lFA": 60, "rUA": 40, "rFA": 60, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 }
       }
     ]
+  },
+  {
+    "name": "climb_down",
+    "description": "Climbs down (a ladder, a wall), hands and knees taking turns; loops for `cycles`. With a platform object the character really goes down.",
+    "tags": ["life", "travel", "effort", "baaaana"],
+    "category": "life",
+    "duration": 1.4,
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+      {
+        "t": 0.25,
+        "pose": {
+          "lean": 8,
+          "head": -12,
+          "lUA": 165,
+          "lFA": 20,
+          "rUA": 120,
+          "rFA": 70,
+          "lTH": 14,
+          "lSH": 10,
+          "rTH": 80,
+          "rSH": 95
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "pose": {
+          "lean": 8,
+          "head": -12,
+          "lUA": 120,
+          "lFA": 70,
+          "rUA": 165,
+          "rFA": 20,
+          "lTH": 80,
+          "lSH": 95,
+          "rTH": 14,
+          "rSH": 10
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.75,
+        "pose": {
+          "lean": 8,
+          "head": -12,
+          "lUA": 165,
+          "lFA": 20,
+          "rUA": 120,
+          "rFA": 70,
+          "lTH": 14,
+          "lSH": 10,
+          "rTH": 80,
+          "rSH": 95
+        },
+        "ease": "inOutQuad"
+      },
+      { "t": 1, "pose": "stand" }
+    ],
+    "root": [
+      { "t": 0, "dx": 0, "dy": 0, "ease": "inOutQuad" },
+      { "t": 0.5, "dx": 0, "dy": -40, "ease": "inOutQuad" },
+      { "t": 1, "dx": 0, "dy": 0 }
+    ],
+    "params": { "cycles": 1 },
+    "flags": { "loop": true }
   }
 ]

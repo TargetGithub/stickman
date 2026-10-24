@@ -22,6 +22,7 @@ import { updateActivities, activityMoveEvent } from "./story/activities.js";
 import { updateExits, updateDepth } from "./story/destinations.js";
 import { depthOf, zOf } from "./depth.js";
 import { planExtras, EXTRA_MOVES } from "./story/extras.js";
+import { updateClimbs } from "./story/climb.js";
 import { paceOf } from "./story/pace.js";
 import { FPS, STAGE, LIMITS, LIMITS_V2 } from "./config.js";
 
@@ -200,6 +201,7 @@ export function simulate(script, catalog, opts = {}) {
     while (true) {
       const d = tick(clock);
       stepDirector(director, { world, clock, catalog, storyT: clock.storyT, emit });
+      if (world.objects) updateClimbs(world, clock.storyT); // heights (task 10b): climbers rise and sink, decks hold
       const events = stepWorld(world, d.storyDt);
       if (world.objects) {
         events.push(...stepObjects(world.objects, d.storyDt, clock.storyT));

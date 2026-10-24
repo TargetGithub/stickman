@@ -91,7 +91,7 @@ function objectIssues(scene, si, story, catalog) {
   });
   (scene.beats || []).forEach((b, bi) => {
     const path = `${pre}.beats[${bi}]`;
-    const names = b.who === "world" ? ["remove_object", "set_object"].includes(b.do) : b.do === "ride" || (b.do === "sit" && b.object !== undefined);
+    const names = b.who === "world" ? ["remove_object", "set_object"].includes(b.do) : b.do === "ride" || ((b.do === "sit" || b.do === "climb_up" || b.do === "climb_down") && b.object !== undefined);
     if (!names) return;
     if (!b.object || !known.has(b.object)) {
       out.push(issue("E_OBJECT_UNKNOWN", `${path}.object`, b.object ? `No object '${b.object}' in scene '${scene.id}'.` : `'${b.do}' needs "object".`,
@@ -101,6 +101,7 @@ function objectIssues(scene, si, story, catalog) {
     const kind = known.get(b.object);
     const behavior = objects[kind]?.behavior;
     if (b.do === "ride" && behavior !== "vehicle") out.push(issue("E_OBJECT_STATE", `${path}.object`, `'${b.object}' (${kind}) is not a vehicle.`, "Ride a car or a bike."));
+    if ((b.do === "climb_up" || b.do === "climb_down") && behavior !== "platform") out.push(issue("E_OBJECT_STATE", `${path}.object`, `'${b.object}' (${kind}) is not something to climb.`, "Climb a platform (garden_wall, lookout_tower), or leave out \"object\" to climb in place."));
     if (b.do === "sit" && behavior !== "seat") out.push(issue("E_OBJECT_STATE", `${path}.object`, `'${b.object}' (${kind}) is not a seat.`, `Sit on a bench or a chair, or leave out "object" to sit on the floor.`));
     if (b.do === "set_object") {
       states(kind, b.params?.state, `${path}.params.state`);

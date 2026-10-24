@@ -117,6 +117,8 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | hanging_cage | static | closed/open | A round bird-cage cage hanging from a chain, big enough for a person; closed or open. |
 | rainbow_bridge | static | - | A shimmering rainbow arc rising from the ground up and out of the sky (the friends' glow). |
 | rainbow_shield | static | - | A pulsing dome of rainbow light that protects whoever stands inside it. |
+| garden_wall | platform | - | A brick wall to climb and stand on. |
+| lookout_tower | platform | - | A lookout tower: ladder, deck, roof. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

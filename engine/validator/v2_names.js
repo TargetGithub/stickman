@@ -77,7 +77,7 @@ export const BUNDLE_PINS = {
 };
 
 /** Object behaviors (spec 8) and the initial object kinds (S4.6, catalog). */
-export const OBJECT_BEHAVIORS = ["static", "seat", "holdable", "ball", "floater", "vehicle", "breakable"];
+export const OBJECT_BEHAVIORS = ["static", "seat", "holdable", "ball", "floater", "vehicle", "breakable", "platform"];
 export const OBJECT_KINDS = {
   static: ["tree_big", "bush", "lamppost", "door", "sign", "fountain", "tennis_net", "cage", "table"],
   seat: ["bench", "chair"],

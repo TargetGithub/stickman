@@ -15,6 +15,7 @@ import { startPair } from "./story/pairs.js";
 import { defeatStart } from "./story/defeat.js";
 import { startActivity, stopActivity } from "./story/activities.js";
 import { OBJECT_COMMANDS, walkToSeat } from "./story/scene_beats.js";
+import { CLIMB_MOVES, climbGate } from "./story/climb.js";
 import { TO_MOVES, startTo } from "./story/destinations.js";
 import { zOf } from "./depth.js";
 import { beatViews } from "./turnaround.js";
@@ -250,6 +251,7 @@ function execute(director, beat, ctx) {
   const def = resolveMove(director.moves, actor, beat.do);
   // Walking somewhere first (a seat, a partner, attack range): approachAt marks when the walk began.
   if (beat.do === "sit" && beat.object && walkToSeat(director, beat, actor, ctx, command)) return void (beat.approachAt ??= storyT);
+  if (CLIMB_MOVES.has(beat.do) && climbGate(director, beat, actor, { ...ctx, storyT }, command)) return void (beat.approachAt ??= storyT); // task 10b
   if (def.pair && beat.partner && pairGate({ director, beat, actor, def, ctx, issue, command, isFree })) return void (beat.approachAt ??= storyT);
   // Story scripts re-check after the run (the target may have been knocked or pushed meanwhile): up to 3 runs.
   const again = director.story ? (beat.approaches ?? 0) < 3 : beat.state !== "approached";

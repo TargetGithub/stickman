@@ -401,5 +401,29 @@
   "rock_round": {"description": "A round grey rock that rolls.", "tags": ["ball", "rock", "mountain", "doopi"], "behavior": "ball", "draw": "ball", "r": 28, "bounce": 0.15, "colors": {"fill": "#8a8a94", "seam": "#6a6a74"}},
   "hanging_cage": {"description": "A round bird-cage cage hanging from a chain, big enough for a person; closed or open.", "tags": ["scenery", "villain", "rescue", "cage", "doopi"], "behavior": "static", "draw": "hanging_cage", "w": 240, "h": 300, "states": ["closed", "open"], "colors": {"chain": "#5a5f6a", "bar": "#3b3f47", "base": "#3b3f47"}},
   "rainbow_bridge": {"description": "A shimmering rainbow arc rising from the ground up and out of the sky (the friends' glow).", "tags": ["scenery", "magic", "rainbow", "finale", "doopi"], "behavior": "static", "draw": "rainbow_bridge", "animated": true, "w": 800, "h": 800},
-  "rainbow_shield": {"description": "A pulsing dome of rainbow light that protects whoever stands inside it.", "tags": ["scenery", "magic", "rainbow", "shield", "doopi"], "behavior": "static", "draw": "rainbow_shield", "animated": true, "w": 720, "h": 300}
+  "rainbow_shield": {"description": "A pulsing dome of rainbow light that protects whoever stands inside it.", "tags": ["scenery", "magic", "rainbow", "shield", "doopi"], "behavior": "static", "draw": "rainbow_shield", "animated": true, "w": 720, "h": 300},
+  "garden_wall": {
+    "description": "A brick wall to climb and stand on.",
+    "tags": ["platform", "climb", "garden", "baaaana"],
+    "behavior": "platform",
+    "draw": "garden_wall",
+    "w": 340,
+    "h": 160,
+    "top": 160,
+    "deck": [-150, 150],
+    "climbAt": -195,
+    "colors": { "brick": "#c8714f", "mortar": "#e8d2bd", "cap": "#9c9a94" }
+  },
+  "lookout_tower": {
+    "description": "A lookout tower: ladder, deck, roof.",
+    "tags": ["platform", "climb", "outdoor", "baaaana"],
+    "behavior": "platform",
+    "draw": "lookout_tower",
+    "w": 260,
+    "h": 420,
+    "top": 330,
+    "deck": [-95, 95],
+    "climbAt": -135,
+    "colors": { "wood": "#a8743f", "dark": "#7a5230", "roof": "#d9534f" }
+  }
 }
