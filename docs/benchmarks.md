@@ -60,3 +60,14 @@ Apple M3 Pro, @napi-rs/canvas, libx264 `medium` CRF 16. `node tools/record.mjs s
 | 3840x2160 (`--res 4k`, scale 2) | 106.7 s | 2.8 | 159.4 s |
 
 4K is about 1.5x the time of 1080p, not 4x: most of a v3 frame's cost is per-draw work (paths, lit set pieces, depth sorting) rather than pixel fill, and 4K adds the fill, the larger device-pixel passes and a 4x bigger encode. At these rates a 4:52 episode at 30 fps (8,760 frames) renders in about 35 min at 1080p and about 52 min at 4K, before speech and the audio mix.
+
+## Multi-core rendering (2026-10-23)
+
+`tools/record.mjs` now renders with one worker process per core by default (`--jobs`, `tools/lib/parallel_render.mjs`): the output frames are cut into chunks (about four per worker, at least 60 frames), each worker draws and encodes its chunks, and ffmpeg joins the chunk videos without re-encoding. Frame hashes match the one-process render exactly (`--hash`; `tests/integration/frame_independence.test.js`). Measured on the M3 Pro while another 4K render and a test run shared the machine, so these are lower bounds:
+
+| Sample (1080p, 30 fps, no audio) | 1 process | Workers | Speed-up |
+|---|---|---|---|
+| `s1_scenes` (1,562 frames) | 1.5 frames/s | 4: 6.3 frames/s | 4.2x |
+| `v3_3_lights` (1,162 frames) | 1.4 frames/s | 6: 6.7 frames/s | 4.8x |
+
+Making frames independent needed one engine fix: the lit set pieces' scratch canvases grew to the largest piece seen so far, and Skia filters the sub-pixel band copies slightly differently on canvases of different sizes, so a frame depended on the frames drawn before it. They are now made once at the frame size plus the 40 px pad on each side.
