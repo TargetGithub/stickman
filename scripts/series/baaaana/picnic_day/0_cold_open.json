@@ -1,0 +1,537 @@
+{
+ "version": 3,
+ "meta": {
+  "title": "Baaaana: Picnic Day (cold open)",
+  "format": "landscape",
+  "seed": 3100,
+  "kind": "story",
+  "audience": "general",
+  "autoCamera": "story",
+  "style": "soft",
+  "speakerNames": false
+ },
+ "look": {
+  "strength": 0.45
+ },
+ "motion": {
+  "followThrough": 1,
+  "squash": 1,
+  "secondary": 1,
+  "breathing": 1,
+  "blur": 0
+ },
+ "pace": {
+  "travel": {
+   "walk": 2.0,
+   "run": 1.3,
+   "sneak": 1.8,
+   "tiptoe": 1.6,
+   "walk_together": 1.8
+  },
+  "moves": 1,
+  "gap": 0.4,
+  "maxTravel": 4.5,
+  "arrive": 1.6,
+  "leave": 1.2,
+  "shot": [
+   4,
+   8
+  ],
+  "minCut": 2.5,
+  "reactions": false,
+  "glide": 1.2,
+  "framing": "calm",
+  "establish": 3
+ },
+ "audio": {
+  "musicVolume": 0.3
+ },
+ "locations": [
+  {
+   "id": "meadow",
+   "theme": "baaaana_meadow",
+   "stageWidth": 3600,
+   "set": [
+    {
+     "id": "hut",
+     "object": "mushroom_hut",
+     "x": 700,
+     "z": -260
+    },
+    {
+     "id": "hut2",
+     "object": "mushroom_hut",
+     "x": 2900,
+     "z": -420
+    },
+    {
+     "id": "bench",
+     "object": "bench",
+     "x": 2300,
+     "z": -40
+    }
+   ]
+  }
+ ],
+ "cast": [
+  {
+   "id": "bobo",
+   "name": "Bobo",
+   "body": "baaaana_tall",
+   "scale": 1.0,
+   "color": "#6fd6c8",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "toothy",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "sprout": "#3fae5a",
+     "whistle": "#e63946",
+     "clipboard": "#c98a4b"
+    }
+   },
+   "voice": {
+    "pitch": 1.5,
+    "speed": 1.0,
+    "timbre": "soft"
+   }
+  },
+  {
+   "id": "bn_mooka",
+   "name": "Mooka",
+   "body": "baaaana",
+   "scale": 0.85,
+   "color": "#7fe8c4",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "big_grin",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "leaf_sprout": "#3fae5a"
+    }
+   },
+   "voice": {
+    "pitch": 1.9,
+    "speed": 1.3,
+    "timbre": "squeaky"
+   }
+  },
+  {
+   "id": "tutu",
+   "name": "Tutu",
+   "body": "baaaana_wide",
+   "scale": 0.95,
+   "color": "#a6e88a",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "big_grin",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "flower_bud": "#ff7eb6"
+    }
+   },
+   "voice": {
+    "pitch": 1.3,
+    "speed": 0.9,
+    "timbre": "soft"
+   }
+  },
+  {
+   "id": "zizi",
+   "name": "Zizi",
+   "body": "baaaana",
+   "scale": 0.7,
+   "color": "#5cc9a0",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "toothy",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "curly_vine": "#3fae5a",
+     "backpack": "#ffb347"
+    }
+   },
+   "voice": {
+    "pitch": 2.0,
+    "speed": 1.4,
+    "timbre": "squeaky"
+   }
+  }
+ ],
+ "scenes": [
+  {
+   "id": "lineup",
+   "location": "meadow",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500
+    },
+    {
+     "id": "bn_mooka",
+     "x": 2300
+    }
+   ],
+   "beats": [
+    {
+     "id": "lineup_1",
+     "at": 0,
+     "who": "world",
+     "do": "set_camera",
+     "params": {
+      "move": "slow_push",
+      "dur": 6
+     }
+    },
+    {
+     "id": "lineup_2",
+     "at": 1.0,
+     "who": "bobo",
+     "do": "talk",
+     "say": "Baaaana! Line-up!",
+     "bubble": "shout",
+     "face": "determined",
+     "view": "front"
+    },
+    {
+     "id": "lineup_3",
+     "at": {
+      "after": "lineup_2",
+      "delay": 0.3
+     },
+     "who": "bobo",
+     "do": "point",
+     "face": "smug"
+    },
+    {
+     "id": "lineup_4",
+     "at": {
+      "after": "lineup_3",
+      "delay": 0.4
+     },
+     "who": "bobo",
+     "do": "flex",
+     "face": "happy",
+     "view": "front"
+    },
+    {
+     "id": "lineup_5",
+     "at": {
+      "after": "lineup_4",
+      "delay": 0.3
+     },
+     "who": "bobo",
+     "do": "nod",
+     "face": "happy"
+    },
+    {
+     "id": "lineup_6",
+     "at": {
+      "after": "lineup_5",
+      "delay": 0.3
+     },
+     "who": "bobo",
+     "do": "talk",
+     "say": "Ooh! Perfect!",
+     "face": "love"
+    },
+    {
+     "id": "lineup_7",
+     "at": {
+      "after": "lineup_6",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "bow",
+     "face": "happy"
+    },
+    {
+     "id": "lineup_8",
+     "at": {
+      "after": "lineup_7",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "walk",
+     "to": {
+      "x": 1000
+     },
+     "face": "determined"
+    },
+    {
+     "id": "lineup_9",
+     "at": {
+      "after": "lineup_8",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "nod",
+     "face": "happy",
+     "say": "Good."
+    },
+    {
+     "id": "lineup_10",
+     "at": {
+      "after": "lineup_9",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "walk",
+     "to": {
+      "x": 2000
+     },
+     "face": "determined"
+    },
+    {
+     "id": "lineup_11",
+     "at": {
+      "after": "lineup_10",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "nod",
+     "face": "happy",
+     "say": "Good."
+    },
+    {
+     "id": "lineup_12",
+     "at": {
+      "after": "lineup_11",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "face",
+     "target": "bn_mooka",
+     "face": "surprised"
+    },
+    {
+     "id": "lineup_13",
+     "at": {
+      "after": "lineup_12",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "talk",
+     "say": "Mooka! Line-up!",
+     "bubble": "shout",
+     "face": "angry"
+    },
+    {
+     "id": "lineup_14",
+     "at": {
+      "after": "lineup_13",
+      "delay": 0.0
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "to": {
+      "x": 2150
+     },
+     "face": "happy"
+    },
+    {
+     "id": "lineup_15",
+     "at": {
+      "after": "lineup_14",
+      "delay": 0.0
+     },
+     "who": "bn_mooka",
+     "do": "talk",
+     "say": "Ooh! Okey-dokey!",
+     "face": "laugh",
+     "view": "front"
+    },
+    {
+     "id": "lineup_16",
+     "at": {
+      "after": "lineup_15",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "walk",
+     "to": {
+      "x": 1500
+     },
+     "face": "smug"
+    },
+    {
+     "id": "lineup_17",
+     "at": {
+      "after": "lineup_16",
+      "delay": 0.3
+     },
+     "who": "bn_mooka",
+     "do": "look_around",
+     "face": "neutral"
+    },
+    {
+     "id": "lineup_18",
+     "at": {
+      "after": "lineup_17",
+      "delay": 0.2
+     },
+     "who": "bn_mooka",
+     "do": "gasp",
+     "face": "surprised"
+    },
+    {
+     "id": "lineup_19",
+     "at": {
+      "after": "lineup_18",
+      "delay": 0.1
+     },
+     "who": "bn_mooka",
+     "do": "sneeze",
+     "face": "surprised"
+    },
+    {
+     "id": "lineup_20",
+     "at": {
+      "with": "lineup_19",
+      "delay": 0.7
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "slide_whistle",
+      "volume": 0.8
+     }
+    }
+   ],
+   "extras": [
+    {
+     "count": 24,
+     "behavior": "copy_leader",
+     "leader": "bobo",
+     "crowd": "baaaana_crowd",
+     "from": 700,
+     "to": 2700,
+     "layer": "back"
+    }
+   ]
+  },
+  {
+   "id": "scatter",
+   "location": "meadow",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500
+    },
+    {
+     "id": "bn_mooka",
+     "x": 2300
+    }
+   ],
+   "beats": [
+    {
+     "id": "scatter_1",
+     "at": 0.4,
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "giggle_crowd",
+      "volume": 0.9
+     }
+    },
+    {
+     "id": "scatter_2",
+     "at": 0.6,
+     "who": "bobo",
+     "do": "hold_head",
+     "face": "surprised",
+     "say": "Baaaana?!",
+     "bubble": "shout"
+    },
+    {
+     "id": "scatter_3",
+     "at": {
+      "after": "scatter_2",
+      "delay": 0.3
+     },
+     "who": "bobo",
+     "do": "facepalm",
+     "face": "tired"
+    },
+    {
+     "id": "scatter_4",
+     "at": {
+      "after": "scatter_3",
+      "delay": 0.2
+     },
+     "who": "bn_mooka",
+     "do": "laugh",
+     "face": "laugh",
+     "say": "Hee-hee!"
+    },
+    {
+     "id": "scatter_5",
+     "at": {
+      "after": "scatter_4",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "sigh",
+     "face": "tired",
+     "view": "front"
+    },
+    {
+     "id": "scatter_6",
+     "at": {
+      "after": "scatter_5",
+      "delay": 0.6
+     },
+     "who": "world",
+     "do": "fade",
+     "params": {
+      "to": "black",
+      "dur": 0.8
+     }
+    }
+   ],
+   "extras": [
+    {
+     "count": 24,
+     "behavior": "scatter_giggle",
+     "leader": "bobo",
+     "crowd": "baaaana_crowd",
+     "from": 700,
+     "to": 2700,
+     "at": 0.4,
+     "layer": "back"
+    }
+   ],
+   "transitionIn": {
+    "type": "cut"
+   }
+  }
+ ]
+}

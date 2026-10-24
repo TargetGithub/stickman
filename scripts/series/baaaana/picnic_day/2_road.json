@@ -1,0 +1,3576 @@
+{
+ "version": 3,
+ "meta": {
+  "title": "Baaaana: Picnic Day (the road)",
+  "format": "landscape",
+  "seed": 3102,
+  "kind": "story",
+  "audience": "general",
+  "autoCamera": "story",
+  "style": "soft",
+  "speakerNames": false
+ },
+ "look": {
+  "strength": 0.45
+ },
+ "motion": {
+  "followThrough": 1,
+  "squash": 1,
+  "secondary": 1,
+  "breathing": 1,
+  "blur": 0
+ },
+ "pace": {
+  "travel": {
+   "walk": 2.0,
+   "run": 1.3,
+   "sneak": 1.8,
+   "tiptoe": 1.6,
+   "walk_together": 1.8
+  },
+  "moves": 1,
+  "gap": 0.4,
+  "maxTravel": 4.5,
+  "arrive": 1.6,
+  "leave": 1.2,
+  "shot": [
+   4,
+   8
+  ],
+  "minCut": 2.5,
+  "reactions": false,
+  "glide": 1.2,
+  "framing": "calm",
+  "establish": 3
+ },
+ "audio": {
+  "musicVolume": 0.3
+ },
+ "locations": [
+  {
+   "id": "road",
+   "theme": "baaaana_meadow",
+   "stageWidth": 3600
+  }
+ ],
+ "cast": [
+  {
+   "id": "bobo",
+   "name": "Bobo",
+   "body": "baaaana_tall",
+   "scale": 1.0,
+   "color": "#6fd6c8",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "toothy",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "sprout": "#3fae5a",
+     "whistle": "#e63946",
+     "clipboard": "#c98a4b"
+    }
+   },
+   "voice": {
+    "pitch": 1.5,
+    "speed": 1.0,
+    "timbre": "soft"
+   }
+  },
+  {
+   "id": "bn_mooka",
+   "name": "Mooka",
+   "body": "baaaana",
+   "scale": 0.85,
+   "color": "#7fe8c4",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "big_grin",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "leaf_sprout": "#3fae5a"
+    }
+   },
+   "voice": {
+    "pitch": 1.9,
+    "speed": 1.3,
+    "timbre": "squeaky"
+   }
+  },
+  {
+   "id": "tutu",
+   "name": "Tutu",
+   "body": "baaaana_wide",
+   "scale": 0.95,
+   "color": "#a6e88a",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "big_grin",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "flower_bud": "#ff7eb6"
+    }
+   },
+   "voice": {
+    "pitch": 1.3,
+    "speed": 0.9,
+    "timbre": "soft"
+   }
+  },
+  {
+   "id": "zizi",
+   "name": "Zizi",
+   "body": "baaaana",
+   "scale": 0.7,
+   "color": "#5cc9a0",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "toothy",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "curly_vine": "#3fae5a",
+     "backpack": "#ffb347"
+    }
+   },
+   "voice": {
+    "pitch": 2.0,
+    "speed": 1.4,
+    "timbre": "squeaky"
+   }
+  }
+ ],
+ "scenes": [
+  {
+   "id": "set_off",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "set_off_1",
+     "at": 0.3,
+     "who": "world",
+     "do": "set_camera",
+     "params": {
+      "travel": 9000,
+      "dur": 30,
+      "ease": "linear"
+     }
+    },
+    {
+     "id": "set_off_2",
+     "at": 0.3,
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "determined",
+     "say": "Uno, dos, tres... GO!"
+    },
+    {
+     "id": "set_off_3",
+     "at": {
+      "after": "set_off_2"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_4",
+     "at": {
+      "after": "set_off_3"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_5",
+     "at": {
+      "after": "set_off_4"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_6",
+     "at": {
+      "after": "set_off_5"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "determined",
+     "say": "Left, right, left!"
+    },
+    {
+     "id": "set_off_7",
+     "at": {
+      "after": "set_off_6"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_8",
+     "at": {
+      "after": "set_off_7"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_9",
+     "at": {
+      "after": "set_off_8"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_10",
+     "at": {
+      "after": "set_off_9"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_11",
+     "at": 0.3,
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_12",
+     "at": {
+      "after": "set_off_11"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_13",
+     "at": {
+      "after": "set_off_12"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_14",
+     "at": {
+      "after": "set_off_13"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "surprised",
+     "say": "Ooh! Trees!"
+    },
+    {
+     "id": "set_off_15",
+     "at": {
+      "after": "set_off_14"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_16",
+     "at": {
+      "after": "set_off_15"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_17",
+     "at": {
+      "after": "set_off_16"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_18",
+     "at": {
+      "after": "set_off_17"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Hee-hee!"
+    },
+    {
+     "id": "set_off_19",
+     "at": {
+      "after": "set_off_18"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_20",
+     "at": 0.3,
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_21",
+     "at": {
+      "after": "set_off_20"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "love",
+     "say": "Yum-yum-baaa!"
+    },
+    {
+     "id": "set_off_22",
+     "at": {
+      "after": "set_off_21"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_23",
+     "at": {
+      "after": "set_off_22"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_24",
+     "at": {
+      "after": "set_off_23"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_25",
+     "at": {
+      "after": "set_off_24"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "love",
+     "say": "Basket! Yum!"
+    },
+    {
+     "id": "set_off_26",
+     "at": {
+      "after": "set_off_25"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_27",
+     "at": {
+      "after": "set_off_26"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_28",
+     "at": {
+      "after": "set_off_27"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_29",
+     "at": 0.3,
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_30",
+     "at": {
+      "after": "set_off_29"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_31",
+     "at": {
+      "after": "set_off_30"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Zizi-zi!"
+    },
+    {
+     "id": "set_off_32",
+     "at": {
+      "after": "set_off_31"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_33",
+     "at": {
+      "after": "set_off_32"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_34",
+     "at": {
+      "after": "set_off_33"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_35",
+     "at": {
+      "after": "set_off_34"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Pa-pa-poo!"
+    },
+    {
+     "id": "set_off_36",
+     "at": {
+      "after": "set_off_35"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "set_off_37",
+     "at": {
+      "after": "set_off_36"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "tree_big",
+     "lamppost",
+     "bush"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6
+   },
+   "transitionIn": {
+    "type": "card",
+    "kind": "chapter",
+    "title": "The Road",
+    "dur": 1.6
+   }
+  },
+  {
+   "id": "which_way",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "which_way_1",
+     "at": 0.5,
+     "who": "bobo",
+     "do": "look_around",
+     "face": "surprised",
+     "view": "front"
+    },
+    {
+     "id": "which_way_2",
+     "at": {
+      "after": "which_way_1",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "point",
+     "say": "Hill... that way!",
+     "face": "determined"
+    },
+    {
+     "id": "which_way_3",
+     "at": {
+      "after": "which_way_2",
+      "delay": 0.1
+     },
+     "who": "zizi",
+     "do": "point",
+     "say": "No! That way!",
+     "face": "smug"
+    },
+    {
+     "id": "which_way_4",
+     "at": {
+      "after": "which_way_3",
+      "delay": 0.1
+     },
+     "who": "tutu",
+     "do": "point",
+     "say": "Cake way!",
+     "face": "love"
+    },
+    {
+     "id": "which_way_5",
+     "at": {
+      "after": "which_way_4",
+      "delay": 0.1
+     },
+     "who": "bn_mooka",
+     "do": "point",
+     "say": "Ooh! Butterfly way!",
+     "face": "laugh"
+    },
+    {
+     "id": "which_way_6",
+     "at": {
+      "with": "which_way_5",
+      "delay": 0.5
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "squeak",
+      "volume": 0.7
+     }
+    },
+    {
+     "id": "which_way_7",
+     "at": {
+      "after": "which_way_5",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "hold_head",
+     "face": "dizzy"
+    },
+    {
+     "id": "which_way_8",
+     "at": {
+      "after": "which_way_7",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "talk",
+     "say": "Baaaana... straight!",
+     "bubble": "shout",
+     "face": "determined",
+     "view": "front"
+    },
+    {
+     "id": "which_way_9",
+     "at": {
+      "after": "which_way_8",
+      "delay": 0.1
+     },
+     "who": "tutu",
+     "do": "nod",
+     "face": "happy"
+    },
+    {
+     "id": "which_way_10",
+     "at": {
+      "with": "which_way_9",
+      "delay": 0.2
+     },
+     "who": "zizi",
+     "do": "nod",
+     "face": "happy"
+    },
+    {
+     "id": "which_way_11",
+     "at": {
+      "with": "which_way_9",
+      "delay": 0.3
+     },
+     "who": "bn_mooka",
+     "do": "nod",
+     "face": "happy"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "lamppost"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 9000
+   }
+  },
+  {
+   "id": "puddle",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "puddle_1",
+     "at": 0.5,
+     "who": "zizi",
+     "do": "run",
+     "to": {
+      "x": 1990
+     },
+     "face": "laugh"
+    },
+    {
+     "id": "puddle_2",
+     "at": {
+      "after": "puddle_1",
+      "delay": 0.0
+     },
+     "who": "zizi",
+     "do": "stagger",
+     "face": "surprised"
+    },
+    {
+     "id": "puddle_3",
+     "at": {
+      "with": "puddle_2",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "splash",
+      "volume": 0.8
+     }
+    },
+    {
+     "id": "puddle_4",
+     "at": {
+      "after": "puddle_2",
+      "delay": 0.0
+     },
+     "who": "zizi",
+     "do": "knockdown",
+     "face": "dizzy",
+     "say": "Oopsie!"
+    },
+    {
+     "id": "puddle_5",
+     "at": {
+      "after": "puddle_4",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "boing",
+      "volume": 0.7
+     }
+    },
+    {
+     "id": "puddle_6",
+     "at": {
+      "after": "puddle_5",
+      "delay": 0.2
+     },
+     "who": "tutu",
+     "do": "laugh",
+     "face": "laugh"
+    },
+    {
+     "id": "puddle_7",
+     "at": {
+      "with": "puddle_6",
+      "delay": 0.3
+     },
+     "who": "bn_mooka",
+     "do": "laugh",
+     "face": "laugh"
+    },
+    {
+     "id": "puddle_8",
+     "at": {
+      "after": "puddle_6",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "talk",
+     "say": "Careful! Baaaana!",
+     "face": "scared"
+    },
+    {
+     "id": "puddle_9",
+     "at": {
+      "after": "puddle_8",
+      "delay": 0.2
+     },
+     "who": "zizi",
+     "do": "get_up",
+     "face": "happy"
+    },
+    {
+     "id": "puddle_10",
+     "at": {
+      "after": "puddle_9",
+      "delay": 0.0
+     },
+     "who": "zizi",
+     "do": "shrug",
+     "face": "laugh",
+     "say": "Pthbbbt!"
+    },
+    {
+     "id": "puddle_11",
+     "at": {
+      "with": "puddle_10",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "raspberry",
+      "volume": 0.8
+     }
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "lamppost"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 9000
+   }
+  },
+  {
+   "id": "conga",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "conga_1",
+     "at": 0.3,
+     "who": "world",
+     "do": "set_camera",
+     "params": {
+      "travel": 19000,
+      "dur": 30,
+      "ease": "linear"
+     }
+    },
+    {
+     "id": "conga_2",
+     "at": 0.3,
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_3",
+     "at": {
+      "after": "conga_2"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "surprised",
+     "say": "Baaaana?"
+    },
+    {
+     "id": "conga_4",
+     "at": {
+      "after": "conga_3"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_5",
+     "at": {
+      "after": "conga_4"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_6",
+     "at": {
+      "after": "conga_5"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_7",
+     "at": {
+      "after": "conga_6"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Hee-hee!"
+    },
+    {
+     "id": "conga_8",
+     "at": {
+      "after": "conga_7"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_9",
+     "at": {
+      "after": "conga_8"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_10",
+     "at": {
+      "after": "conga_9"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_11",
+     "at": 0.3,
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Bana-na-na!"
+    },
+    {
+     "id": "conga_12",
+     "at": {
+      "after": "conga_11"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_13",
+     "at": {
+      "after": "conga_12"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_14",
+     "at": {
+      "after": "conga_13"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_15",
+     "at": {
+      "after": "conga_14"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Bana-na-na!"
+    },
+    {
+     "id": "conga_16",
+     "at": {
+      "after": "conga_15"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_17",
+     "at": {
+      "after": "conga_16"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_18",
+     "at": {
+      "after": "conga_17"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_19",
+     "at": {
+      "after": "conga_18"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_20",
+     "at": 0.3,
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_21",
+     "at": {
+      "after": "conga_20"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_22",
+     "at": {
+      "after": "conga_21"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Conga!"
+    },
+    {
+     "id": "conga_23",
+     "at": {
+      "after": "conga_22"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_24",
+     "at": {
+      "after": "conga_23"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_25",
+     "at": {
+      "after": "conga_24"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_26",
+     "at": {
+      "after": "conga_25"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "love",
+     "say": "Yum-yum-baaa!"
+    },
+    {
+     "id": "conga_27",
+     "at": {
+      "after": "conga_26"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_28",
+     "at": {
+      "after": "conga_27"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_29",
+     "at": 0.3,
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_30",
+     "at": {
+      "after": "conga_29"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_31",
+     "at": {
+      "after": "conga_30"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_32",
+     "at": {
+      "after": "conga_31"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Pa-pa-poo!"
+    },
+    {
+     "id": "conga_33",
+     "at": {
+      "after": "conga_32"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_34",
+     "at": {
+      "after": "conga_33"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_35",
+     "at": {
+      "after": "conga_34"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    },
+    {
+     "id": "conga_36",
+     "at": {
+      "after": "conga_35"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "laugh",
+     "say": "Bee-doo!"
+    },
+    {
+     "id": "conga_37",
+     "at": {
+      "after": "conga_36"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "front",
+     "face": "happy"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "tree_big",
+     "lamppost",
+     "bush"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 9000
+   },
+   "extras": [
+    {
+     "count": 12,
+     "behavior": "conga",
+     "leader": "bn_mooka",
+     "crowd": "baaaana_crowd",
+     "from": 300,
+     "to": 1400
+    }
+   ]
+  },
+  {
+   "id": "friends",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "friends_1",
+     "at": 0.5,
+     "who": "bobo",
+     "do": "look_around",
+     "face": "surprised",
+     "view": "front"
+    },
+    {
+     "id": "friends_2",
+     "at": {
+      "after": "friends_1",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "wave",
+     "face": "laugh",
+     "say": "Namaste!",
+     "view": "front"
+    },
+    {
+     "id": "friends_3",
+     "at": {
+      "after": "friends_2",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "giggle_crowd",
+      "volume": 0.8
+     }
+    },
+    {
+     "id": "friends_4",
+     "at": {
+      "after": "friends_3",
+      "delay": 0.2
+     },
+     "who": "tutu",
+     "do": "wave",
+     "face": "laugh",
+     "say": "Hola!"
+    },
+    {
+     "id": "friends_5",
+     "at": {
+      "with": "friends_4",
+      "delay": 0.3
+     },
+     "who": "zizi",
+     "do": "wave",
+     "face": "laugh",
+     "say": "Bonjour!"
+    },
+    {
+     "id": "friends_6",
+     "at": {
+      "with": "friends_4",
+      "delay": 0.6
+     },
+     "who": "bn_mooka",
+     "do": "wave",
+     "face": "laugh",
+     "say": "Baaaana!"
+    },
+    {
+     "id": "friends_7",
+     "at": {
+      "after": "friends_4",
+      "delay": 0.3
+     },
+     "who": "bobo",
+     "do": "bow",
+     "face": "happy"
+    },
+    {
+     "id": "friends_8",
+     "at": {
+      "after": "friends_7",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "talk",
+     "say": "Picnic! Come!",
+     "face": "laugh",
+     "view": "front"
+    },
+    {
+     "id": "friends_9",
+     "at": {
+      "after": "friends_8",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "ooh",
+      "volume": 0.7
+     }
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "lamppost"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 19000
+   },
+   "extras": [
+    {
+     "count": 20,
+     "behavior": "wave",
+     "crowd": "baaaana_crowd",
+     "from": 300,
+     "to": 3300,
+     "at": 1.5,
+     "layer": "back"
+    }
+   ]
+  },
+  {
+   "id": "nap",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "nap_1",
+     "at": 0.5,
+     "who": "tutu",
+     "do": "sit",
+     "face": "tired",
+     "say": "Puff... puff..."
+    },
+    {
+     "id": "nap_2",
+     "at": {
+      "with": "nap_1",
+      "delay": 0.3
+     },
+     "who": "bn_mooka",
+     "do": "lie_down",
+     "face": "tired"
+    },
+    {
+     "id": "nap_3",
+     "at": {
+      "after": "nap_1",
+      "delay": 0.0
+     },
+     "who": "bn_mooka",
+     "do": "sleep",
+     "face": "asleep"
+    },
+    {
+     "id": "nap_4",
+     "at": {
+      "after": "nap_3",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "talk",
+     "say": "Mooka! Up!",
+     "face": "angry"
+    },
+    {
+     "id": "nap_5",
+     "at": {
+      "after": "nap_4",
+      "delay": 0.0
+     },
+     "who": "zizi",
+     "do": "tiptoe",
+     "to": {
+      "x": 1700
+     },
+     "face": "smug"
+    },
+    {
+     "id": "nap_6",
+     "at": {
+      "after": "nap_5",
+      "delay": 0.0
+     },
+     "who": "zizi",
+     "do": "talk",
+     "say": "Bee-doo bee-doo!",
+     "bubble": "shout",
+     "face": "laugh"
+    },
+    {
+     "id": "nap_7",
+     "at": {
+      "with": "nap_6",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "slide_whistle",
+      "volume": 0.8
+     }
+    },
+    {
+     "id": "nap_8",
+     "at": {
+      "after": "nap_6",
+      "delay": 0.0
+     },
+     "who": "bn_mooka",
+     "do": "get_up",
+     "face": "surprised"
+    },
+    {
+     "id": "nap_9",
+     "at": {
+      "after": "nap_8",
+      "delay": 0.0
+     },
+     "who": "bn_mooka",
+     "do": "jump",
+     "face": "surprised",
+     "say": "Ooh!"
+    },
+    {
+     "id": "nap_10",
+     "at": {
+      "after": "nap_9",
+      "delay": 0.2
+     },
+     "who": "tutu",
+     "do": "stand_up",
+     "face": "happy"
+    },
+    {
+     "id": "nap_11",
+     "at": {
+      "after": "nap_10",
+      "delay": 0.1
+     },
+     "who": "bobo",
+     "do": "laugh",
+     "face": "laugh"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "lamppost"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 19000
+   }
+  },
+  {
+   "id": "forgot",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "forgot_1",
+     "at": 0.6,
+     "who": "bobo",
+     "do": "look_around",
+     "face": "surprised",
+     "view": "front"
+    },
+    {
+     "id": "forgot_2",
+     "at": {
+      "after": "forgot_1",
+      "delay": 0.0
+     },
+     "who": "bobo",
+     "do": "talk",
+     "say": "Basket...?",
+     "face": "scared",
+     "view": "front"
+    },
+    {
+     "id": "forgot_3",
+     "at": {
+      "with": "forgot_2",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "shot",
+     "params": {
+      "mode": "close_up",
+      "target": "bobo",
+      "dur": 2.5
+     }
+    },
+    {
+     "id": "forgot_4",
+     "at": {
+      "after": "forgot_2",
+      "delay": 0.2
+     },
+     "who": "tutu",
+     "do": "look_around",
+     "face": "surprised"
+    },
+    {
+     "id": "forgot_5",
+     "at": {
+      "with": "forgot_4",
+      "delay": 0.3
+     },
+     "who": "zizi",
+     "do": "look_around",
+     "face": "surprised"
+    },
+    {
+     "id": "forgot_6",
+     "at": {
+      "after": "forgot_4",
+      "delay": 0.2
+     },
+     "who": "bn_mooka",
+     "do": "shrug",
+     "face": "happy",
+     "say": "Ooh?"
+    },
+    {
+     "id": "forgot_7",
+     "at": {
+      "after": "forgot_6",
+      "delay": 0.1
+     },
+     "who": "tutu",
+     "do": "shrug",
+     "face": "sad",
+     "say": "No basket..."
+    },
+    {
+     "id": "forgot_8",
+     "at": {
+      "after": "forgot_7",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "hold_head",
+     "face": "cry",
+     "say": "BAAAANA!",
+     "bubble": "shout"
+    },
+    {
+     "id": "forgot_9",
+     "at": {
+      "after": "forgot_8",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "slide_whistle",
+      "volume": 0.8
+     }
+    },
+    {
+     "id": "forgot_10",
+     "at": {
+      "after": "forgot_9",
+      "delay": 0.2
+     },
+     "who": "zizi",
+     "do": "laugh",
+     "face": "laugh"
+    },
+    {
+     "id": "forgot_11",
+     "at": {
+      "after": "forgot_10",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "point",
+     "face": "determined",
+     "say": "Back! Back!",
+     "bubble": "shout"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "lamppost"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 19000
+   }
+  },
+  {
+   "id": "back",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "back"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "back"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "back"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "back"
+    }
+   ],
+   "beats": [
+    {
+     "id": "back_1",
+     "at": 0.3,
+     "who": "world",
+     "do": "set_camera",
+     "params": {
+      "travel": 3000,
+      "dur": 28,
+      "ease": "linear"
+     }
+    },
+    {
+     "id": "back_2",
+     "at": 0.3,
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "scared",
+     "say": "Hurry! Hurry!"
+    },
+    {
+     "id": "back_3",
+     "at": {
+      "after": "back_2"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_4",
+     "at": {
+      "after": "back_3"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_5",
+     "at": {
+      "after": "back_4"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_6",
+     "at": {
+      "after": "back_5"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "scared",
+     "say": "Faster!"
+    },
+    {
+     "id": "back_7",
+     "at": {
+      "after": "back_6"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_8",
+     "at": {
+      "after": "back_7"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_9",
+     "at": {
+      "after": "back_8"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_10",
+     "at": 0.3,
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_11",
+     "at": {
+      "after": "back_10"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_12",
+     "at": {
+      "after": "back_11"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_13",
+     "at": {
+      "after": "back_12"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "laugh",
+     "say": "Wheee!"
+    },
+    {
+     "id": "back_14",
+     "at": {
+      "after": "back_13"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_15",
+     "at": {
+      "after": "back_14"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_16",
+     "at": {
+      "after": "back_15"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_17",
+     "at": {
+      "after": "back_16"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_18",
+     "at": 0.3,
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_19",
+     "at": {
+      "after": "back_18"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_20",
+     "at": {
+      "after": "back_19"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "tired",
+     "say": "Puff... puff..."
+    },
+    {
+     "id": "back_21",
+     "at": {
+      "after": "back_20"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_22",
+     "at": {
+      "after": "back_21"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_23",
+     "at": {
+      "after": "back_22"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_24",
+     "at": {
+      "after": "back_23"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_25",
+     "at": {
+      "after": "back_24"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_26",
+     "at": 0.3,
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_27",
+     "at": {
+      "after": "back_26"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "laugh",
+     "say": "Bee-doo bee-doo!"
+    },
+    {
+     "id": "back_28",
+     "at": {
+      "after": "back_27"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_29",
+     "at": {
+      "after": "back_28"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_30",
+     "at": {
+      "after": "back_29"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_31",
+     "at": {
+      "after": "back_30"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_32",
+     "at": {
+      "after": "back_31"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "back_33",
+     "at": {
+      "after": "back_32"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "tree_big",
+     "lamppost",
+     "bush"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 19000
+   }
+  },
+  {
+   "id": "found",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "found_1",
+     "at": 0.3,
+     "who": "world",
+     "do": "spawn_object",
+     "params": {
+      "kind": "basket",
+      "x": 1700
+     }
+    },
+    {
+     "id": "found_2",
+     "at": 0.8,
+     "who": "tutu",
+     "do": "pick_prop",
+     "face": "love"
+    },
+    {
+     "id": "found_3",
+     "at": {
+      "after": "found_2",
+      "delay": 0.0
+     },
+     "who": "tutu",
+     "do": "victory",
+     "face": "laugh",
+     "say": "Yum-yum!",
+     "view": "front"
+    },
+    {
+     "id": "found_4",
+     "at": {
+      "after": "found_3",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "sigh",
+     "face": "tired"
+    },
+    {
+     "id": "found_5",
+     "at": {
+      "after": "found_4",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "laugh",
+     "face": "laugh"
+    },
+    {
+     "id": "found_6",
+     "at": {
+      "after": "found_5",
+      "delay": 0.1
+     },
+     "who": "zizi",
+     "do": "jump_joy",
+     "face": "laugh"
+    },
+    {
+     "id": "found_7",
+     "at": {
+      "with": "found_6",
+      "delay": 0.2
+     },
+     "who": "bn_mooka",
+     "do": "jump_joy",
+     "face": "laugh"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "lamppost"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 3000
+   }
+  },
+  {
+   "id": "bus",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "front"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "front"
+    }
+   ],
+   "beats": [
+    {
+     "id": "bus_1",
+     "at": 0.3,
+     "who": "world",
+     "do": "spawn_object",
+     "params": {
+      "kind": "bus",
+      "id": "bus",
+      "x": 400
+     }
+    },
+    {
+     "id": "bus_2",
+     "at": {
+      "after": "bus_1",
+      "delay": 0.6
+     },
+     "who": "world",
+     "do": "set_object",
+     "object": "bus",
+     "params": {
+      "exit": "right"
+     }
+    },
+    {
+     "id": "bus_3",
+     "at": {
+      "with": "bus_2",
+      "delay": 0.0
+     },
+     "who": "world",
+     "do": "sfx",
+     "params": {
+      "name": "car_pass",
+      "volume": 0.8
+     }
+    },
+    {
+     "id": "bus_4",
+     "at": {
+      "after": "bus_2",
+      "delay": 0.6
+     },
+     "who": "bobo",
+     "do": "wave",
+     "face": "laugh",
+     "say": "Bus! Stop!",
+     "bubble": "shout",
+     "view": "front"
+    },
+    {
+     "id": "bus_5",
+     "at": {
+      "with": "bus_4",
+      "delay": 0.4
+     },
+     "who": "zizi",
+     "do": "jump",
+     "face": "laugh"
+    },
+    {
+     "id": "bus_6",
+     "at": {
+      "after": "bus_4",
+      "delay": 0.3
+     },
+     "who": "tutu",
+     "do": "wave",
+     "face": "surprised",
+     "say": "Baaaana!"
+    },
+    {
+     "id": "bus_7",
+     "at": {
+      "after": "bus_6",
+      "delay": 1.2
+     },
+     "who": "bobo",
+     "do": "shrug",
+     "face": "tired"
+    },
+    {
+     "id": "bus_8",
+     "at": {
+      "after": "bus_7",
+      "delay": 0.2
+     },
+     "who": "bn_mooka",
+     "do": "laugh",
+     "face": "laugh",
+     "say": "Hee-hee! Walk!"
+    },
+    {
+     "id": "bus_9",
+     "at": {
+      "after": "bus_8",
+      "delay": 0.2
+     },
+     "who": "bobo",
+     "do": "laugh",
+     "face": "laugh"
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "lamppost"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 3000
+   }
+  },
+  {
+   "id": "away",
+   "location": "road",
+   "time": "day",
+   "light": "noon",
+   "music": {
+    "mood": "bouncy",
+    "volume": 0.28
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1500,
+     "z": 250,
+     "view": "back"
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1620,
+     "z": 250,
+     "view": "back"
+    },
+    {
+     "id": "tutu",
+     "x": 1760,
+     "z": 250,
+     "view": "back"
+    },
+    {
+     "id": "zizi",
+     "x": 1890,
+     "z": 250,
+     "view": "back"
+    }
+   ],
+   "beats": [
+    {
+     "id": "away_1",
+     "at": 0.3,
+     "who": "world",
+     "do": "set_camera",
+     "params": {
+      "travel": 20000,
+      "dur": 30,
+      "ease": "linear"
+     }
+    },
+    {
+     "id": "away_2",
+     "at": 0.3,
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "laugh",
+     "say": "Picnic! Baaaana!"
+    },
+    {
+     "id": "away_3",
+     "at": {
+      "after": "away_2"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_4",
+     "at": {
+      "after": "away_3"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_5",
+     "at": {
+      "after": "away_4"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_6",
+     "at": {
+      "after": "away_5"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy",
+     "say": "Uno, dos, tres!"
+    },
+    {
+     "id": "away_7",
+     "at": {
+      "after": "away_6"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_8",
+     "at": {
+      "after": "away_7"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_9",
+     "at": {
+      "after": "away_8"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_10",
+     "at": {
+      "after": "away_9"
+     },
+     "who": "bobo",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_11",
+     "at": 0.3,
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_12",
+     "at": {
+      "after": "away_11"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_13",
+     "at": {
+      "after": "away_12"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_14",
+     "at": {
+      "after": "away_13"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "laugh",
+     "say": "Bana-na-na!"
+    },
+    {
+     "id": "away_15",
+     "at": {
+      "after": "away_14"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_16",
+     "at": {
+      "after": "away_15"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_17",
+     "at": {
+      "after": "away_16"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_18",
+     "at": {
+      "after": "away_17"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "surprised",
+     "say": "Ooh!"
+    },
+    {
+     "id": "away_19",
+     "at": {
+      "after": "away_18"
+     },
+     "who": "bn_mooka",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_20",
+     "at": 0.3,
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_21",
+     "at": {
+      "after": "away_20"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "love",
+     "say": "Yum-yum-baaa!"
+    },
+    {
+     "id": "away_22",
+     "at": {
+      "after": "away_21"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_23",
+     "at": {
+      "after": "away_22"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_24",
+     "at": {
+      "after": "away_23"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_25",
+     "at": {
+      "after": "away_24"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy",
+     "say": "Hill!"
+    },
+    {
+     "id": "away_26",
+     "at": {
+      "after": "away_25"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_27",
+     "at": {
+      "after": "away_26"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_28",
+     "at": {
+      "after": "away_27"
+     },
+     "who": "tutu",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_29",
+     "at": 0.3,
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_30",
+     "at": {
+      "after": "away_29"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_31",
+     "at": {
+      "after": "away_30"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "laugh",
+     "say": "Pa-pa-poo!"
+    },
+    {
+     "id": "away_32",
+     "at": {
+      "after": "away_31"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_33",
+     "at": {
+      "after": "away_32"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_34",
+     "at": {
+      "after": "away_33"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_35",
+     "at": {
+      "after": "away_34"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "laugh",
+     "say": "Hill! Hill!"
+    },
+    {
+     "id": "away_36",
+     "at": {
+      "after": "away_35"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_37",
+     "at": {
+      "after": "away_36"
+     },
+     "who": "zizi",
+     "do": "walk",
+     "params": {
+      "stride": 0,
+      "cycles": 7
+     },
+     "view": "back",
+     "face": "happy"
+    },
+    {
+     "id": "away_38",
+     "at": {
+      "after": "away_37",
+      "delay": 0.2
+     },
+     "who": "world",
+     "do": "fade",
+     "params": {
+      "to": "black",
+      "dur": 1
+     }
+    }
+   ],
+   "depth": {
+    "far": -16000,
+    "horizon": 200
+   },
+   "road": {},
+   "roadside": {
+    "objects": [
+     "tree_big",
+     "mushroom_hut",
+     "bush",
+     "tree_big",
+     "lamppost",
+     "bush"
+    ],
+    "every": 700
+   },
+   "lens": {
+    "push": 1.6,
+    "travel": 3000
+   }
+  }
+ ]
+}
