@@ -67,6 +67,7 @@ kids: ko, faint, vanish, captured, flee, petrify; general: ko, faint, vanish, gh
 | boss | Fast, dark and heavy; the final fight against the villain. |
 | triumphant | Big brassy victory; the happy ending. |
 | lullaby | Slow music box; bedtime and sleep. |
+| bouncy | The Baaaana tune: a quick, bouncy oom-pah march with a cheeky reed lead and a music-box sparkle. |
 
 ## Camera (scene `camera` keys, or `shot` world beats)
 
@@ -122,7 +123,7 @@ At a scene boundary the next scene's transitionIn wins, then the previous scene'
 | set_light | preset angle:0-180 strength:0-1 fog:0-1 dur:0-10 | The light rig of a version 3 scene: a preset (noon, dawn, golden, moonlit, indoor, stage, gloom, flat) or overrides (angle, strength, fog), blended over dur. |
 | set_camera | move dur:0-30 ease:linear/inQuad/outQuad/inOutQuad/inCubic/outCubic/inOutCubic/outBack/outElastic/outBounce/snap/holdThenSnap dolly:-1500-1500 truck:-3000-3000 crane:-1000-1000 tilt:-30-30 roll:-45-45 push:0.3-4 handheld:0-1 dof:0-1 focus:id focusZ:-4000-2000 travel:-40000-40000 vignette:0-1 letterbox:0-1 | The lens of a version 3 scene: a named move (push_in, pull_out, crane_up, orbit_sweep, dutch_tilt, level, handheld ...) and/or channels (dolly, truck, crane, tilt, roll, push, handheld, dof, focus, vignette, letterbox) over dur. |
 | shot | mode*:follow/focus/fixed/pan/push/two_shot/close_up/wide/over_shoulder/track target:id targets:[ids <=4] from:id zoom:0.3-4 dur:0.2-30 | A camera shot from a beat (wide, close_up, two_shot, ...); with dur the previous framing comes back. |
-| set_music | mood:happy/playful/calm/sad/tense/mysterious/heroic/battle/boss/triumphant/lullaby intensity:0-1 volume:0-1 fade:0-10 | Changes the music mood, intensity or volume inside a scene. |
+| set_music | mood:happy/playful/calm/sad/tense/mysterious/heroic/battle/boss/triumphant/lullaby/bouncy intensity:0-1 volume:0-1 fade:0-10 | Changes the music mood, intensity or volume inside a scene. |
 | activity | name*:blow_bubbles/tennis_rally/play_catch/kick_ball/eat_together/dance_together/selfie/sleep/comfort/fetch/band_play/group_photo/bubble_party/picnic/garden_planting/conga_line/pillow_fight/sports_day_race/tug_of_war/human_pyramid with*:[ids <=4] reps:1-40 dur:1-120 intensity:low/medium/high ending:win/miss/laugh/interrupted winner:id object | Runs an activity directly (the runtime form of @activity; prefer the macro). |
 
 ## Audience rules

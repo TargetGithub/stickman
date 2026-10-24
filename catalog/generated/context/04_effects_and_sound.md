@@ -69,9 +69,9 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - weapon: slash, sword_clash
 - power: explosion, energy_charge, energy_fire, shockwave
 - fight: ko, bell
-- comic: pop, boing, slip, bonk, pow
-- crowd: crowd_cheer, crowd_gasp
+- comic: pop, boing, slip, bonk, pow, raspberry, slide_whistle, squeak, sprout_spring
+- crowd: crowd_cheer, crowd_gasp, giggle_crowd
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn, pirate_horn
-- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click
+- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding
 - magic: sparkle, magic_sparkle, crystal_chime
-- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep
+- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh

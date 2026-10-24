@@ -3262,6 +3262,7 @@
         "params": { "cycles": 3 },
         "face": "happy",
         "flags": { "loop": true },
+        "events": [{ "t": 0, "sfx": "toot" }, { "t": 0.5, "sfx": "toot" }],
         "keys": [
           {
             "t": 0,
@@ -3288,6 +3289,7 @@
         "params": { "cycles": 4 },
         "face": "happy",
         "flags": { "loop": true },
+        "events": [{ "t": 0.5, "sfx": "ding" }],
         "keys": [
           {
             "t": 0,
@@ -3498,6 +3500,7 @@
         "params": { "cycles": 2 },
         "face": "laugh",
         "flags": { "loop": true },
+        "events": [{ "t": 0.2, "sfx": "giggle" }],
         "keys": [
           {
             "t": 0,
@@ -3598,7 +3601,7 @@
           },
           { "t": 1, "pose": "stand", "propAngle": 20 }
         ],
-        "events": [{ "t": 0.6, "sfx": "pop" }]
+        "events": [{ "t": 0.6, "sfx": "boing" }]
       },
       {
         "name": "hug",
@@ -7562,7 +7565,7 @@
       }
     },
     "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"],
-    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow", "gloom_horn", "sneeze", "crystal_chime", "pirate_horn", "splash", "robot_stomp", "robot_beep", "windup_click"],
+    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow", "gloom_horn", "sneeze", "crystal_chime", "pirate_horn", "splash", "robot_stomp", "robot_beep", "windup_click", "giggle", "giggle_crowd", "ooh", "raspberry", "slide_whistle", "squeak", "sprout_spring", "toot", "ding"],
     "blocklist": ["blood", "bloody", "gore", "gory", "suicide", "kill yourself", "kys"],
     "softWords": [
       { "word": "kill", "alt": "defeat", "audiences": ["kids", "general"] },
@@ -8210,7 +8213,7 @@
         "tags": ["holdable", "music", "band", "baaaana"],
         "behavior": "holdable",
         "draw": "held",
-        "use": { "sfx": "pop" },
+        "use": { "sfx": "toot" },
         "hold": { "kind": "trumpet", "shape": "trumpet", "len": 46, "width": 16, "gripAt": 0.1, "grip": "rHand", "color": "#e6b84a", "trim": "#b8862f", "hitRadius": 10 }
       },
       "triangle": {
@@ -8218,7 +8221,7 @@
         "tags": ["holdable", "music", "band", "baaaana"],
         "behavior": "holdable",
         "draw": "held",
-        "use": { "sfx": "pop" },
+        "use": { "sfx": "ding" },
         "hold": { "kind": "triangle", "shape": "triangle", "len": 24, "width": 14, "gripAt": 0.1, "grip": "lHand", "color": "#cfd6df", "trim": "#8a93a6", "hitRadius": 8 }
       },
       "pillow": {
@@ -9176,6 +9179,27 @@
         "arp": [0, 1, 2, 1, 2, 1],
         "patches": { "lead": "music_box", "bass": "soft_bass", "pad": "soft_pad", "arp": "music_box" },
         "intensity": 0.3
+      },
+      "bouncy": {
+        "description": "The Baaaana tune: a quick, bouncy oom-pah march with a cheeky reed lead and a music-box sparkle.",
+        "tags": ["fun", "march", "baaaana"],
+        "scale": "major",
+        "melodyScale": [0, 2, 4, 5, 7, 9],
+        "roots": [65, 67],
+        "tempo": [132, 146],
+        "meter": 4,
+        "swing": 0.12,
+        "progressions": [[0, 4, 0, 4], [0, 3, 4, 0], [0, 5, 3, 4]],
+        "bass": ["r.5.r.5.", "r.5.r.5r", "o.5.r.5."],
+        "drums": {
+          "low": ["k...s...k...s...", "k.h.s...k.h.s..."],
+          "medium": ["k.hhs.h.k.hhs.hh", "k.h.s.hkk.h.s.h."],
+          "high": ["k.hks.hkk.hks.ho", "khhhshhkkhhhshhk"]
+        },
+        "melody": { "rhythms": ["x.x.xx.x", "x.x.x.x.", "xx.x.x..", "x.xxx.x."], "range": [2, 12], "leap": 0.5 },
+        "arp": [0, 2, 1, 2, 0, 2, 1, 3],
+        "patches": { "lead": "reed", "bass": "bouncy_bass", "pad": "soft_pad", "arp": "music_box" },
+        "intensity": 0.65
       }
     },
     "scales": {
@@ -10217,7 +10241,16 @@
     { "name": "splash", "category": "object", "description": "Something falls into the water: a thump and a spray." },
     { "name": "robot_stomp", "category": "movement", "description": "A giant robot's step: a deep thud with a metal ring." },
     { "name": "robot_beep", "category": "voice", "description": "A robot's two-tone beep, high then low." },
-    { "name": "windup_click", "category": "object", "description": "A wind-up key turning: a ratchet of quick clicks." }
+    { "name": "windup_click", "category": "object", "description": "A wind-up key turning: a ratchet of quick clicks." },
+    { "name": "giggle", "category": "voice", "description": "A little Baaaana giggle: five quick rising hee-hees." },
+    { "name": "giggle_crowd", "category": "crowd", "description": "A crowd of Baaaanas giggling all at once." },
+    { "name": "ooh", "category": "voice", "description": "An impressed ooooh." },
+    { "name": "raspberry", "category": "comic", "description": "A blown raspberry: pthbbbt." },
+    { "name": "slide_whistle", "category": "comic", "description": "A cartoon slide whistle, up then down." },
+    { "name": "squeak", "category": "comic", "description": "A tiny squeak." },
+    { "name": "sprout_spring", "category": "comic", "description": "A sprout springing back: a short twang." },
+    { "name": "toot", "category": "object", "description": "A trumpet toot." },
+    { "name": "ding", "category": "object", "description": "A triangle ding." }
   ],
   "appearance": {
     "eyes": { "dot": "Small dot eyes (the default).", "big": "Big round cute eyes.", "oval": "Tall oval eyes.", "sleepy": "Half-closed sleepy eyes.", "visor": "A sci-fi visor across the eyes.", "glasses": "Round glasses.", "lively": "Big white eyes; pupils dart about, sometimes at the camera." },

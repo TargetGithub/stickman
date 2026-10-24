@@ -26,7 +26,7 @@ export const V2_ENUMS = {
   transition: ["cut", "fade", "dissolve", "wipe", "iris", "card"],
   cardKind: ["title", "chapter", "time", "end"],
   dir: ["left", "right", "up", "down"],
-  mood: ["happy", "playful", "calm", "sad", "tense", "mysterious", "heroic", "battle", "boss", "triumphant", "lullaby"], // catalog
+  mood: ["happy", "playful", "calm", "sad", "tense", "mysterious", "heroic", "battle", "boss", "triumphant", "lullaby", "bouncy"], // catalog (bouncy: Baaaana task 10)
   ambience: ["none", "city_traffic", "park_birds", "rain", "wind", "crowd_murmur", "cave_drip"], // catalog
   bubble: ["speech", "think", "shout", "whisper"],
   extrasBehavior: ["walk_by", "idle_chat", "cheer", "flee", "copy_leader", "conga", "sync_dance", "wave", "pile_on", "scatter_giggle"],

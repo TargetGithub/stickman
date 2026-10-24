@@ -174,10 +174,50 @@ const RECIPES = {
     noise(o, r, { gain: 1, attack: 0.006, decay: 0.16, lp0: 7000, lp1: 2500, hp: 900, start: 0.75 });
     sweepSine(o, { f0: 420, f1: 230, sweep: 0.18, attack: 0.01, decay: 0.2, gain: 0.5, start: 0.77 });
   },
+  // Baaaana sounds (series/baaaana/PLAN.md task 10).
+  giggle: (o, r) => {
+    // Five quick rising "hee"s, getting softer, each with a breath.
+    for (let k = 0; k < 5; k++) {
+      sweepSine(o, { f0: 620 + k * 40, f1: 820 + k * 40, sweep: 0.06, attack: 0.008, decay: 0.07, gain: 0.7 - k * 0.1, start: k * 0.1, vibrato: 0.03, vibratoRate: 30 });
+      noise(o, r, { gain: 0.2, attack: 0.005, decay: 0.05, lp0: 3500, hp: 900, start: k * 0.1, len: 0.08 });
+    }
+  },
+  giggle_crowd: (o, r) => {
+    // A crowd of little giggles at different pitches and times.
+    for (let k = 0; k < 16; k++) {
+      const f = 520 + r() * 520;
+      const t = r() * 1.1;
+      for (let h = 0; h < 3; h++) sweepSine(o, { f0: f, f1: f * 1.25, sweep: 0.05, attack: 0.006, decay: 0.06, gain: 0.25, start: t + h * 0.09, vibrato: 0.03, vibratoRate: 28 });
+    }
+  },
+  ooh: (o) => {
+    // An impressed "ooooh": rising, then sliding down, with a soft second harmonic.
+    sweepSine(o, { f0: 330, f1: 470, sweep: 0.25, attack: 0.05, decay: 0.6, gain: 0.7, vibrato: 0.02, vibratoRate: 6 });
+    sweepSine(o, { f0: 660, f1: 940, sweep: 0.25, attack: 0.05, decay: 0.5, gain: 0.25 });
+  },
+  raspberry: (o, r) => {
+    // "Pthbbbt": a buzzing low tone chopped fast, with spit noise.
+    sweepSine(o, { f0: 95, f1: 80, sweep: 0.6, attack: 0.02, decay: 0.55, gain: 0.6, vibrato: 0.25, vibratoRate: 55 });
+    noise(o, r, { gain: 0.8, attack: 0.02, decay: 0.5, lp0: 1400, hp: 120, am: 0.95, amRate: 48 });
+  },
+  slide_whistle: (o) => {
+    // Up, then down: the classic cartoon slide whistle.
+    sweepSine(o, { f0: 620, f1: 1650, sweep: 0.38, attack: 0.02, decay: 0.42, gain: 0.7, vibrato: 0.01, vibratoRate: 7 });
+    sweepSine(o, { f0: 1650, f1: 700, sweep: 0.36, attack: 0.01, decay: 0.4, gain: 0.7, start: 0.4 });
+  },
+  squeak: (o) => sweepSine(o, { f0: 1400, f1: 2300, sweep: 0.06, attack: 0.004, decay: 0.08, gain: 0.8, vibrato: 0.05, vibratoRate: 40 }),
+  sprout_spring: (o) => sweepSine(o, { f0: 440, f1: 380, sweep: 0.3, attack: 0.002, decay: 0.32, gain: 0.7, vibrato: 0.18, vibratoRate: 24 }),
+  toot: (o, r) => {
+    // A brassy trumpet note: odd and even harmonics, a quick swell and a breath at the start.
+    partials(o, [466, 932, 1398, 1864, 2330], { gain: 0.8, decay: 0.32, attack: 0.025 });
+    noise(o, r, { gain: 0.15, attack: 0.01, decay: 0.05, lp0: 3000, hp: 800 });
+    drive(o, 1.6);
+  },
+  ding: (o) => partials(o, [3135, 5120, 7380], { gain: 0.7, decay: 1.0, attack: 0.002 }),
   crystal_chime: (o) => { [1046.5, 1318.5, 1568, 2093].forEach((f, k) => partials(o, [f, f * 2.76, f * 5.4], { gain: 0.6, decay: 1.1, attack: 0.003, start: k * 0.09 })); },
 };
 
-const LENGTH = { gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 
