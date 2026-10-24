@@ -142,6 +142,10 @@ Walking toward or away from the camera moves the world, not only the walker (Sri
 
 Objects with the new behaviour **`platform`** have a `top` (px a character stands at), a `deck` (the standable span as offsets from the object's x; default the width less 20 px each side) and a `climbAt` offset (where the way up is: a ladder, a wall's end). First platforms: `garden_wall` (top 160) and `lookout_tower` (top 330, a ladder). Beats (`engine/story/climb.js`): **`climb_up`** with `object` walks to the way up, plays the `climb_up` move (now a loop with `cycles`, default 1, so older scripts are unchanged) for as many cycles as the height needs (120 px/s) while the character's own ground line (`actor.groundY`) rises, and steps onto the deck; **`climb_down`** with `object` walks along the deck to the way down and climbs to the floor (`climb_down`, a new move); **`jump_down`** from a height hops off (the ground line drops to the floor, the body is airborne from where it is) and physics lands it, with the usual squash. Up there every move, ground contact and physics work unchanged; walking stays on the deck. Climbing something that is not a platform is `E_OBJECT_STATE`; `climb_up` without an object still climbs in place. Not done here: contact shadows under someone on a platform still sit on the floor.
 
+### 5.12 The camera rises with them (Baaaana task 10c, 2026-10-24)
+
+When everyone in view stands up high (the lowest of their raised ground lines, 5.11; a jump does not count), the stored camera rises by that height (`cam.lift`, through the story framing's y spring, so it eases up and down with a climb) instead of zooming out, and zoom fitting measures heads from the raised floor. If anyone is still on the floor the framing fits them all as before. In a scene with a platform the background shows the climb: each parallax layer drops by the lift times its factor (renderer `layerTransform`), so the floor and near layers fall out of frame while far hills move a little and the sky stays; scenes without platforms draw as before.
+
 ## 6. Standard video-creation features (JSON)
 
 New optional top-level blocks in a v3 script, usable with or without a story:

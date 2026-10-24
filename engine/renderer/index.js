@@ -193,7 +193,7 @@ export function renderScene(r, ctx, n) {
   g.save();
   if (filter) g.filter = filter;
   const grade = gradeState(sv.look, sv.looks, f.videoT);
-  drawBackground(g, background(r, theme), lens ? { ...cam, zoom: lens.lc.bgZoom } : cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1, grade?.time.night ?? 0);
+  drawBackground(g, background(r, theme), lens ? { ...cam, zoom: lens.lc.bgZoom } : cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1, grade?.time.night ?? 0, sv.heights ? cameraLift(r, cam) : 0);
   const ambient = ambientTint(r.frameLight);
   if (ambient) {
     // The key light's colour over the whole background (V3.3): a multiply tint, as the time-of-day grade does.
@@ -252,4 +252,11 @@ export function renderFrame(r, ctx, n) {
   const t = n / FPS;
   const p = postAt(r.motion, t, motionValuesAt(r.motion, t));
   if (postActive(p)) applyPost(ctx, r, p, n); // on the raw canvas, in device px
+}
+
+/** How far the camera stands above its usual ground framing (scenes with platforms, task 10c), world px. */
+function cameraLift(r, cam) {
+  const fmt = r.sim.format;
+  if (!fmt) return 0;
+  return Math.max(0, STAGE.groundY - (fmt.height * fmt.groundScreenRatio - fmt.height / 2) / cam.zoom - cam.y);
 }

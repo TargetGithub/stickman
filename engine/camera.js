@@ -106,11 +106,21 @@ export function bounds(all) {
 /** Zoom that fits a horizontal span plus padding, and keeps the top of the group inside the frame. */
 export function fitZoom(cam, span, top, padding) {
   const byWidth = cam.W / (span + 2 * padding);
-  const above = cam.groundY - top;
+  const above = cam.groundY - (cam.lift || 0) - top; // lift: everyone stands this high (task 10c)
   const byHeight = above > 0 ? (cam.H * (cam.gsr - TOP_MARGIN)) / above : ZOOM_MAX;
   // Narrow frames cap auto zoom lower: a quick dodge would otherwise leave the frame before the camera catches up.
   const max = cam.W < cam.H ? 1.4 : ZOOM_MAX;
   return Math.max(ZOOM_MIN, Math.min(max, byWidth, byHeight));
+}
+
+/**
+ * How high everyone in view stands (task 10b platforms raise a character's own ground line): the lowest
+ * elevation among the visible characters, 0 when anyone is on the floor. Jumps do not count (the ground stays).
+ */
+function liftOf(cam, actors) {
+  const shown = actors.filter((a) => !a.hidden);
+  if (!shown.length) return 0;
+  return Math.max(0, Math.min(...shown.map((a) => cam.groundY - (a.groundY ?? cam.groundY))));
 }
 
 /** Target framing { x, zoom, y? } for the current key. */
@@ -161,6 +171,7 @@ function spring(value, vel, target, dt, omega = CAMERA.omega) {
  * @param {object[]} actors  world actors (joints, scale, launched, vx)
  */
 export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = true } = {}) {
+  cam.lift = liftOf(cam, actors);
   const fast = autoCamera && actors.some((a) => a.launched || Math.abs(a.vx) > 300);
   cam.widen += ((fast ? 1.3 : 1) - cam.widen) * Math.min(1, videoDt * 3);
   const d = steady(cam, desired(cam, actors, videoT), videoT);
@@ -199,11 +210,12 @@ export function stepCamera(cam, videoDt, actors, videoT, fxT, { autoCamera = tru
   const ground = cam.groundY - (cam.H * cam.gsr - cam.H / 2) / zoom;
   let y = d.y ?? ground;
   // Story shots (close-ups) lift the frame off the ground line smoothly; v1 keys never set yOff.
-  if (d.smoothY || cam.yOff) {
-    const want = d.smoothY ? d.y - ground : 0;
+  if (d.smoothY || cam.lift || cam.yOff) {
+    // A raised floor (task 10c): when everyone stands up high, the frame rises with them instead of zooming out.
+    const want = d.smoothY ? d.y - ground : -(cam.lift || 0);
     if (snapped) [cam.yOff, cam.vyOff] = [want, 0];
     else [cam.yOff, cam.vyOff] = spring(cam.yOff ?? 0, cam.vyOff ?? 0, want, videoDt);
-    if (!d.smoothY && Math.abs(cam.yOff) < 0.5) cam.yOff = 0;
+    if (!d.smoothY && !cam.lift && Math.abs(cam.yOff) < 0.5) cam.yOff = 0;
     y = (d.smoothY ? ground : y) + cam.yOff;
   }
 

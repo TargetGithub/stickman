@@ -6,7 +6,8 @@ import { STAGE } from "../config.js";
 export function layerTransform(ctx, view, factor) {
   const { cam, W, H } = view;
   const z = 1 + (cam.zoom - 1) * factor;
-  const groundScreen = H / 2 + (STAGE.groundY - cam.y + cam.shakeY) * cam.zoom;
+  // A camera raised by view.lift (task 10c) sees near layers drop the whole way and far ones (low factor) less.
+  const groundScreen = H / 2 + (STAGE.groundY - cam.y + cam.shakeY) * cam.zoom - (view.lift || 0) * cam.zoom * (1 - factor);
   ctx.setTransform(z, 0, 0, z, W / 2 - (cam.x - cam.shakeX) * factor * z, groundScreen);
   const left = (cam.x - cam.shakeX) * factor - W / (2 * z) - 50;
   const right = (cam.x - cam.shakeX) * factor + W / (2 * z) + 50;

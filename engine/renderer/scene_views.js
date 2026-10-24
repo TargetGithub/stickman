@@ -56,6 +56,7 @@ export function sceneViews(sim, catalog) {
       placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
       depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
       extras: sc.extras || [],
+      heights: (sc.set || []).some((p) => catalog.objects?.[p.object]?.behavior === "platform"), // task 10c: vertical parallax
       reactions: reactionsOf(ev, sc),
       fxLog: sc.fxStart === 0 && sc.fxEnd === sim.fx.log.length ? sim.fx.log : sim.fx.log.slice(sc.fxStart, sc.fxEnd),
       trails: sim.fx.trails.filter((t) => inRange(t.t0)),

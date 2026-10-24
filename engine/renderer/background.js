@@ -246,11 +246,12 @@ export function createBackground(theme, name, seed = 1) {
  * Draw sky, parallax layers, floor and floor layers for a camera state at fx time fxT.
  * night (0..1): the share of night in the time of day (grade.js gradeState); the theme goes dark with lit windows,
  * stars and a moon by its night look (night.js, ADR-037). Leaves the transform reset; the caller sets the world
- * transform afterwards.
+ * transform afterwards. lift (task 10c): how far the camera has risen above its usual ground framing; layers
+ * then drop by lift x their parallax factor (the sky stays, far hills move a little, the floor all the way).
  */
-export function drawBackground(ctx, bg, cam, W, H, fxT = 0, react = 1, night = 0) {
+export function drawBackground(ctx, bg, cam, W, H, fxT = 0, react = 1, night = 0, lift = 0) {
   const t = bg.theme;
-  const view = { cam, W, H, fxT, react }; // react: crowd excitement (story scripts: up after hits, down after a defeat)
+  const view = { cam, W, H, fxT, react, lift }; // lift: px the camera is above its ground framing (task 10c) // react: crowd excitement (story scripts: up after hits, down after a defeat)
   const nl = night > 0.001 ? nightLook(t) : null;
   if (nl) return drawNightBackground(ctx, bg, KINDS, view, night * nl.amount, nl.sky);
   screen(ctx);
