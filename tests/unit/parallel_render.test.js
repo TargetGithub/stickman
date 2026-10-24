@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { defaultJobs, planChunks, usefulJobs } from "../../tools/lib/parallel_render.mjs";
+import { defaultJobs, planChunks, usefulJobs, concatList } from "../../tools/lib/parallel_render.mjs";
+import { resolve } from "node:path";
 
 const GB = 1e9;
 
@@ -38,4 +39,9 @@ test("usefulJobs drops to one process for short renders", () => {
     [1, 18000, 1],
   ];
   for (const [jobs, frames, want] of cases) assert.equal(usefulJobs(jobs, frames), want, `${jobs} jobs, ${frames} frames`);
+});
+
+test("concatList names every chunk by its absolute path (ffmpeg reads relative ones from the list's folder)", () => {
+  const list = concatList(["out/x/parts/part_0000.mp4", "/abs/it's.mp4"]);
+  assert.equal(list, `file '${resolve("out/x/parts/part_0000.mp4")}'\nfile '/abs/it'\\''s.mp4'\n`);
 });

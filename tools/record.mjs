@@ -6,6 +6,7 @@
 //   --from N --to N        render only frames N..M (inclusive; audio is cut to match)
 //   --scene N              render only scene N (0-based index or scene id) of a story script
 //   --frames-only          write frames/00000.png ... instead of a video (debugging)
+//   --reuse-video          keep an existing <slug>/video.mp4 (same script and options) and only mix, mux and finish
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
 //   --no-audio             skip the audio mix
 //   --crf 16 --preset medium   x264 quality settings
@@ -21,7 +22,7 @@
 //   --bundle <dir|zip>     a catalog bundle the script declares (repeatable; imported bundles are found in
 //                          the store without it); credits go into meta.json
 
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from "node:fs";
 import { basename, join } from "node:path";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
@@ -130,7 +131,11 @@ const framesOnly = flag("--frames-only");
 let hashes = [];
 if (framesOnly) mkdirSync(join(dir, "frames"), { recursive: true });
 const encodeOpts = { fps: outFps.fps, crf: Number(opt("--crf", 16)), preset: opt("--preset", "medium") };
-if (jobs > 1) {
+// --reuse-video: a run that rendered every frame but stopped before the audio (a failed join, a crash) finishes
+// from its video.mp4 instead of rendering again.
+const reuse = flag("--reuse-video") && !framesOnly && existsSync(videoPath);
+if (reuse) console.log(`reusing ${videoPath} (--reuse-video)`);
+else if (jobs > 1) {
   hashes = await renderParallel({
     jobs, picks, argv: process.argv.slice(2), script: speech ? speech.script : script, source: script,
     lipSync: speech ? lipTracks(speech.lines) : null, scale, videoPath: framesOnly ? null : videoPath,

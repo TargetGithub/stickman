@@ -8,7 +8,7 @@
 import { fork, spawnSync } from "node:child_process";
 import { availableParallelism, totalmem } from "node:os";
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 
 const WORKER = new URL("./render_worker.mjs", import.meta.url).pathname;
 // Memory one worker needs: Node, the engine and its scratch canvases, plus its x264 encoder (both grow
@@ -120,10 +120,18 @@ export async function renderParallel({ jobs, picks, argv, script, source, lipSyn
   if (partsDir) {
     // Join the chunk videos as they are (same encoder settings, so the streams line up).
     const list = join(partsDir, "list.txt");
-    writeFileSync(list, chunks.map((_, i) => `file '${partPath(i)}'`).join("\n") + "\n");
+    writeFileSync(list, concatList(chunks.map((_, i) => partPath(i))));
     const cat = spawnSync("ffmpeg", ["-y", "-v", "error", "-f", "concat", "-safe", "0", "-i", list, "-c", "copy", "-movflags", "+faststart", videoPath]);
     if (cat.status !== 0) throw new Error(`joining the chunks failed: ${cat.stderr}`);
     rmSync(partsDir, { recursive: true, force: true });
   }
   return hash ? hashes.flat() : [];
+}
+
+/**
+ * An ffmpeg concat list. ffmpeg reads relative entries from the list's own folder, so a relative --out-dir named
+ * every chunk twice (out/x/parts/out/x/parts/part_0000.mp4) and the join failed after the whole render: use absolute paths.
+ */
+export function concatList(paths) {
+  return paths.map((p) => `file '${resolve(p).replace(/'/g, "'\\''")}'`).join("\n") + "\n";
 }
