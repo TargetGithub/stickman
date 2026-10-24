@@ -1,0 +1,448 @@
+{
+ "version": 3,
+ "meta": {
+  "title": "Baaaana task 8a group activities",
+  "format": "landscape",
+  "seed": 8,
+  "kind": "story",
+  "audience": "general",
+  "autoCamera": "story",
+  "style": "soft"
+ },
+ "locations": [
+  {
+   "id": "park",
+   "theme": "city_park",
+   "stageWidth": 3200
+  }
+ ],
+ "cast": [
+  {
+   "id": "bn_mooka",
+   "name": "Mooka",
+   "body": "baaaana",
+   "scale": 0.85,
+   "color": "#7fe8c4",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "big_grin",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "leaf_sprout": "#3fae5a"
+    }
+   },
+   "voice": {
+    "pitch": 1.9,
+    "speed": 1.3,
+    "timbre": "squeaky"
+   }
+  },
+  {
+   "id": "bobo",
+   "name": "Bobo",
+   "body": "baaaana_tall",
+   "scale": 1.0,
+   "color": "#6fd6c8",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "toothy",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "sprout": "#3fae5a",
+     "whistle": "#e63946",
+     "clipboard": "#c98a4b"
+    }
+   },
+   "voice": {
+    "pitch": 1.5,
+    "speed": 1.0,
+    "timbre": "soft"
+   }
+  },
+  {
+   "id": "tutu",
+   "name": "Tutu",
+   "body": "baaaana_wide",
+   "scale": 0.95,
+   "color": "#a6e88a",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "big_grin",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "flower_bud": "#ff7eb6"
+    }
+   },
+   "voice": {
+    "pitch": 1.3,
+    "speed": 0.9,
+    "timbre": "soft"
+   }
+  },
+  {
+   "id": "zizi",
+   "name": "Zizi",
+   "body": "baaaana",
+   "scale": 0.7,
+   "color": "#5cc9a0",
+   "appearance": {
+    "eyes": "lively",
+    "mouthStyle": "toothy",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "mittens": "#ff9f43",
+     "shoes": "#ff9f43",
+     "gloss": "#ffffff",
+     "curly_vine": "#3fae5a",
+     "backpack": "#ffb347"
+    }
+   },
+   "voice": {
+    "pitch": 2.0,
+    "speed": 1.4,
+    "timbre": "squeaky"
+   }
+  }
+ ],
+ "scenes": [
+  {
+   "id": "band",
+   "location": "park",
+   "time": "day",
+   "light": "noon",
+   "transitionIn": {
+    "type": "card",
+    "kind": "chapter",
+    "title": "band play",
+    "dur": 1
+   },
+   "cast": [
+    {
+     "id": "tutu",
+     "x": 1200
+    },
+    {
+     "id": "zizi",
+     "x": 1400
+    },
+    {
+     "id": "bobo",
+     "x": 1600
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1800
+    }
+   ],
+   "extras": [
+    {
+     "count": 12,
+     "behavior": "sync_dance",
+     "crowd": "baaaana_crowd",
+     "from": 700,
+     "to": 2300,
+     "at": 1.5
+    }
+   ],
+   "beats": [
+    {
+     "id": "band_a",
+     "at": 0.5,
+     "macro": "activity",
+     "params": {
+      "name": "band_play",
+      "with": [
+       "tutu",
+       "zizi",
+       "bobo",
+       "bn_mooka"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "photo",
+   "location": "park",
+   "time": "day",
+   "light": "noon",
+   "transitionIn": {
+    "type": "card",
+    "kind": "chapter",
+    "title": "group photo",
+    "dur": 1
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1150
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1500
+    },
+    {
+     "id": "tutu",
+     "x": 1650
+    },
+    {
+     "id": "zizi",
+     "x": 1800
+    }
+   ],
+   "extras": [
+    {
+     "count": 8,
+     "behavior": "copy_leader",
+     "leader": "tutu",
+     "crowd": "baaaana_crowd",
+     "from": 800,
+     "to": 2200
+    }
+   ],
+   "beats": [
+    {
+     "id": "photo_a",
+     "at": 0.5,
+     "macro": "activity",
+     "params": {
+      "name": "group_photo",
+      "with": [
+       "bobo",
+       "bn_mooka",
+       "tutu",
+       "zizi"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "bubbles",
+   "location": "park",
+   "time": "day",
+   "light": "noon",
+   "transitionIn": {
+    "type": "card",
+    "kind": "chapter",
+    "title": "bubble party",
+    "dur": 1
+   },
+   "cast": [
+    {
+     "id": "zizi",
+     "x": 1300
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1500
+    },
+    {
+     "id": "tutu",
+     "x": 1700
+    },
+    {
+     "id": "bobo",
+     "x": 1900
+    }
+   ],
+   "extras": [
+    {
+     "count": 10,
+     "behavior": "scatter_giggle",
+     "leader": "zizi",
+     "crowd": "baaaana_crowd",
+     "from": 900,
+     "to": 2200,
+     "at": 4
+    }
+   ],
+   "beats": [
+    {
+     "id": "bubbles_a",
+     "at": 0.5,
+     "macro": "activity",
+     "params": {
+      "name": "bubble_party",
+      "with": [
+       "zizi",
+       "bn_mooka",
+       "tutu",
+       "bobo"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "picnic",
+   "location": "park",
+   "time": "day",
+   "light": "noon",
+   "transitionIn": {
+    "type": "card",
+    "kind": "chapter",
+    "title": "picnic",
+    "dur": 1
+   },
+   "cast": [
+    {
+     "id": "tutu",
+     "x": 1400
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1550
+    },
+    {
+     "id": "zizi",
+     "x": 1700
+    }
+   ],
+   "extras": [
+    {
+     "count": 8,
+     "behavior": "idle_chat",
+     "crowd": "baaaana_crowd",
+     "from": 800,
+     "to": 2300
+    }
+   ],
+   "beats": [
+    {
+     "id": "picnic_a",
+     "at": 0.5,
+     "macro": "activity",
+     "params": {
+      "name": "picnic",
+      "with": [
+       "tutu",
+       "bn_mooka",
+       "zizi"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "garden",
+   "location": "park",
+   "time": "day",
+   "light": "noon",
+   "transitionIn": {
+    "type": "card",
+    "kind": "chapter",
+    "title": "garden planting",
+    "dur": 1
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1300
+    },
+    {
+     "id": "zizi",
+     "x": 1500
+    },
+    {
+     "id": "tutu",
+     "x": 1700
+    }
+   ],
+   "extras": [
+    {
+     "count": 6,
+     "behavior": "wave",
+     "crowd": "baaaana_crowd",
+     "from": 800,
+     "to": 2300,
+     "at": 3
+    }
+   ],
+   "beats": [
+    {
+     "id": "garden_a",
+     "at": 0.5,
+     "macro": "activity",
+     "params": {
+      "name": "garden_planting",
+      "with": [
+       "bobo",
+       "zizi",
+       "tutu"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "conga",
+   "location": "park",
+   "time": "day",
+   "light": "noon",
+   "transitionIn": {
+    "type": "card",
+    "kind": "chapter",
+    "title": "conga line",
+    "dur": 1
+   },
+   "cast": [
+    {
+     "id": "bobo",
+     "x": 1700
+    },
+    {
+     "id": "bn_mooka",
+     "x": 1600
+    },
+    {
+     "id": "tutu",
+     "x": 1500
+    },
+    {
+     "id": "zizi",
+     "x": 1400
+    }
+   ],
+   "extras": [
+    {
+     "count": 8,
+     "behavior": "copy_leader",
+     "leader": "bobo",
+     "crowd": "baaaana_crowd",
+     "from": 700,
+     "to": 1300
+    }
+   ],
+   "beats": [
+    {
+     "id": "conga_a",
+     "at": 0.5,
+     "macro": "activity",
+     "params": {
+      "name": "conga_line",
+      "with": [
+       "bobo",
+       "bn_mooka",
+       "tutu",
+       "zizi"
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

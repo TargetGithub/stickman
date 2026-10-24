@@ -126,6 +126,91 @@
     "ending": "laugh",
     "roles": [{ "face": "happy" }, { "face": "happy" }],
     "fetch": { "ball": "tennis_ball", "distance": 420, "flight": 0.9 }
+  },
+  "band_play": {
+    "description": "A band: dhol, air trumpet, air triangle, a dancer.",
+    "tags": ["music", "party", "group", "baaaana"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 150,
+    "facing": "right",
+    "reps": 3,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["play_drum"], "face": "laugh", "holds": "dhol" },
+      { "moves": ["play_trumpet"], "face": "happy" },
+      { "moves": ["play_triangle"], "wait": 0.2, "face": "happy" },
+      { "moves": ["dance_a", "dance_b"], "face": "laugh" }
+    ]
+  },
+  "group_photo": {
+    "description": "One snaps photos; the others strike poses.",
+    "tags": ["photo", "happy", "group", "baaaana"],
+    "runner": "loop",
+    "players": [2, 4],
+    "spacing": 120,
+    "facing": "center",
+    "reps": 3,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["use"], "wait": 1.0, "face": "happy", "holds": "phone" },
+      { "moves": ["pose_peace", "flex"], "wait": 0.3, "face": "happy" },
+      { "moves": ["flex", "pose_peace"], "wait": 0.3, "face": "laugh" },
+      { "moves": ["jump_joy", "pose_peace"], "wait": 0.3, "face": "happy" }
+    ]
+  },
+  "bubble_party": {
+    "description": "One blows bubbles; the others jump and pop them.",
+    "tags": ["play", "bubbles", "party", "group", "baaaana"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 140,
+    "facing": "center",
+    "dur": 8,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["blow_wand"], "wait": 0.2, "face": "laugh", "holds": "bubble_wand" },
+      { "moves": ["poke", "jump_joy"], "wait": 0.3, "face": "laugh" }
+    ]
+  },
+  "picnic": {
+    "description": "Sitting on the grass, munching and giggling.",
+    "tags": ["food", "calm", "outdoor", "group", "baaaana"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 110,
+    "facing": "center",
+    "dur": 8,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["picnic_munch"], "wait": 0.4, "face": "happy" },
+      { "moves": ["picnic_giggle", "picnic_munch"], "wait": 0.3, "face": "laugh" }
+    ]
+  },
+  "garden_planting": {
+    "description": "One digs, one plants, one waters.",
+    "tags": ["garden", "work", "outdoor", "group", "baaaana"],
+    "runner": "loop",
+    "players": [1, 4],
+    "spacing": 150,
+    "facing": "right",
+    "dur": 8,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["dig_soil"], "face": "determined" },
+      { "moves": ["plant_seed"], "wait": 0.3, "face": "happy" },
+      { "moves": ["water_plants"], "face": "happy" }
+    ]
+  },
+  "conga_line": {
+    "description": "A conga line in place: step, step, kick.",
+    "tags": ["dance", "party", "group", "baaaana"],
+    "runner": "loop",
+    "players": [2, 4],
+    "spacing": 95,
+    "facing": "right",
+    "reps": 3,
+    "ending": "laugh",
+    "roles": [{ "moves": ["conga_step"], "face": "laugh" }]
   }
 }
-

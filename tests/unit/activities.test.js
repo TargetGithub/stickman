@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { simulate } from "../../engine/sim.js";
 import { catalog } from "../../catalog/index.js";
 
-const PLANS = { kai: "stickman", pip: "buddy", mo: "kid" };
+const PLANS = { kai: "stickman", pip: "buddy", mo: "kid", bn: "baaaana", bo: "baaaana_tall", tu: "baaaana_wide" };
 
 function run(params, { beats = [], set = [], cast = ["kai", "pip"] } = {}) {
   const script = {
@@ -32,6 +32,13 @@ const ALL = [
   ["selfie", ["pip", "kai"], { reps: 1 }],
   ["sleep", ["kai"], { dur: 4 }],
   ["comfort", ["kai", "pip"], { reps: 1 }],
+  // Baaaana group activities (task 8a), on the Baaaana body plans and a stickman
+  ["band_play", ["tu", "bn", "bo", "kai"], { reps: 1 }],
+  ["group_photo", ["bo", "bn", "tu"], { reps: 1 }],
+  ["bubble_party", ["bn", "tu", "kai"], { dur: 4 }],
+  ["picnic", ["tu", "bn"], { dur: 4 }],
+  ["garden_planting", ["bo", "bn", "tu"], { dur: 4 }],
+  ["conga_line", ["bo", "bn", "tu", "kai"], { reps: 1 }],
 ];
 
 for (const [name, players, extra, set = []] of ALL) {

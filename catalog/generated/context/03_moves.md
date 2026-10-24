@@ -121,6 +121,16 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | catch_ball | life | 0.9 | - | - | - | Catches a ball in both hands. |
 | kick_pass | life | 0.8 | - | - | - | Kicks a ball along the floor to a friend. |
 | stretch | life | 1.8 | - | - | - | Stretches both arms up high, waking up. |
+| play_drum | life | 0.6 | cycles=4 | drum | loop: cycles | Beats a drum held on a strap with both hands, left and right in turn; loops for `cycles`. |
+| play_trumpet | life | 1 | cycles=3 | - | loop: cycles | Plays an air trumpet: both hands at the mouth, head tipped back, bobbing to the tune; loops for `cycles`. |
+| play_triangle | life | 0.5 | cycles=4 | - | loop: cycles | Holds up an air triangle in one hand and taps it with the other, very proudly; loops for `cycles`. |
+| pose_peace | life | 1.4 | - | - | - | Strikes a photo pose: one arm up high, the other hand on the hip, head tilted, then relaxes. |
+| conga_step | life | 1 | cycles=4 | - | loop: cycles | Conga dance: hands forward on the shoulders ahead, step, step, kick; loops for `cycles`. |
+| dig_soil | life | 1.2 | cycles=2 | - | loop: cycles | Digs with an air spade: pushes it into the ground with a foot, levers the soil up; loops for `cycles`. |
+| plant_seed | life | 1.8 | - | - | - | Crouches, pokes a seed into the soil, pats it down and stands up again. |
+| water_plants | life | 1.2 | cycles=2 | - | loop: cycles | Waters the plants with an air watering can, tipping it and swaying along the row; loops for `cycles`. |
+| picnic_munch | life | 1.6 | cycles=2 | - | loop: cycles | Sits on the ground with legs out in front and munches: hand to mouth, chewing; loops for `cycles`. |
+| picnic_giggle | life | 1.2 | cycles=2 | - | loop: cycles | Sits on the ground with legs out in front, hands on the tummy, rocking back with giggles; loops for `cycles`. |
 | hug | interaction | 1.8 | - | - | paired: partner plays hug_partner, story only | Two characters hug; a short buddy hugs a tall friend round the waist. |
 | high_five | interaction | 1 | - | - | paired: partner plays high_five_partner, story only | Two characters slap a high five. |
 | fist_bump | interaction | 0.9 | - | - | paired: partner plays fist_bump_partner, story only | Two characters bump fists. |

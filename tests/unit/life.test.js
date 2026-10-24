@@ -9,7 +9,7 @@ import { createEngine } from "../../engine/index.js";
 import { unpackJoints } from "../../engine/skeleton.js";
 import { catalog } from "../../catalog/index.js";
 
-test("there are 28 slice-of-life moves (25 in batch 1, 3 ball moves for activities)", () => assert.equal(life.length, 28));
+test("there are 38 slice-of-life moves (25 in batch 1, 3 ball moves for activities, 10 for the Baaaana group activities)", () => assert.equal(life.length, 38));
 
 for (const m of life) {
   test(`move checks on every body plan: ${m.name}`, () => {

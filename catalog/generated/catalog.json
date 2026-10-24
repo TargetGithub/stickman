@@ -3214,6 +3214,306 @@
         ]
       },
       {
+        "name": "play_drum",
+        "description": "Beats a drum held on a strap with both hands, left and right in turn; loops for `cycles`.",
+        "tags": ["life", "music", "band", "loop", "baaaana"],
+        "category": "life",
+        "duration": 0.6,
+        "params": { "cycles": 4 },
+        "face": "happy",
+        "needsProp": "drum",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 0, "head": 0, "lUA": 40, "lFA": 70, "rUA": 70, "rFA": 70, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inQuad"
+          },
+          {
+            "t": 0.25,
+            "pose": { "lean": 0, "head": 0, "lUA": 40, "lFA": 70, "rUA": 40, "rFA": 25, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "outQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": 0, "head": 0, "lUA": 60, "lFA": 95, "rUA": 60, "rFA": 60, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inQuad"
+          },
+          {
+            "t": 0.75,
+            "pose": { "lean": 0, "head": 0, "lUA": 35, "lFA": 40, "rUA": 60, "rFA": 60, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "outQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 0, "head": 0, "lUA": 40, "lFA": 70, "rUA": 70, "rFA": 70, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
+          }
+        ],
+        "events": [{ "t": 0.25, "use": true }, { "t": 0.75, "use": true }]
+      },
+      {
+        "name": "play_trumpet",
+        "description": "Plays an air trumpet: both hands at the mouth, head tipped back, bobbing to the tune; loops for `cycles`.",
+        "tags": ["life", "music", "band", "loop", "mime", "baaaana"],
+        "category": "life",
+        "duration": 1,
+        "params": { "cycles": 3 },
+        "face": "happy",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": -4, "head": -12, "lUA": 100, "lFA": 105, "rUA": 95, "rFA": 120, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": -10, "head": -20, "lUA": 110, "lFA": 100, "rUA": 105, "rFA": 115, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0, "dy": 4 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": -4, "head": -12, "lUA": 100, "lFA": 105, "rUA": 95, "rFA": 120, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
+          }
+        ]
+      },
+      {
+        "name": "play_triangle",
+        "description": "Holds up an air triangle in one hand and taps it with the other, very proudly; loops for `cycles`.",
+        "tags": ["life", "music", "band", "loop", "mime", "baaaana"],
+        "category": "life",
+        "duration": 0.5,
+        "params": { "cycles": 4 },
+        "face": "happy",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 0, "head": -6, "lUA": 110, "lFA": 30, "rUA": 70, "rFA": 50, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": 0, "head": -4, "lUA": 110, "lFA": 30, "rUA": 80, "rFA": 85, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "outQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 0, "head": -6, "lUA": 110, "lFA": 30, "rUA": 70, "rFA": 50, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
+          }
+        ]
+      },
+      {
+        "name": "pose_peace",
+        "description": "Strikes a photo pose: one arm up high, the other hand on the hip, head tilted, then relaxes.",
+        "tags": ["life", "photo", "happy", "pose", "baaaana"],
+        "category": "life",
+        "duration": 1.4,
+        "face": "happy",
+        "view": "front",
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "outBack" },
+          {
+            "t": 0.2,
+            "pose": { "lean": -4, "head": 8, "lUA": -25, "lFA": 110, "rUA": 165, "rFA": 25, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.8,
+            "pose": { "lean": -5, "head": 10, "lUA": -25, "lFA": 110, "rUA": 168, "rFA": 20, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ]
+      },
+      {
+        "name": "conga_step",
+        "description": "Conga dance: hands forward on the shoulders ahead, step, step, kick; loops for `cycles`.",
+        "tags": ["life", "dance", "party", "loop", "baaaana"],
+        "category": "life",
+        "duration": 1,
+        "params": { "cycles": 4 },
+        "face": "laugh",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 4, "head": 0, "lUA": 80, "lFA": 10, "rUA": 85, "rFA": 5, "lTH": 10, "lSH": 0, "rTH": -10, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.25,
+            "pose": { "lean": 4, "head": 0, "lUA": 80, "lFA": 10, "rUA": 85, "rFA": 5, "lTH": -8, "lSH": 0, "rTH": 12, "rSH": 0, "dy": 3 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": 4, "head": 0, "lUA": 80, "lFA": 10, "rUA": 85, "rFA": 5, "lTH": 10, "lSH": 0, "rTH": -10, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.75,
+            "pose": { "lean": -6, "head": 0, "lUA": 80, "lFA": 10, "rUA": 85, "rFA": 5, "lTH": 4, "lSH": 0, "rTH": 55, "rSH": 5 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 4, "head": 0, "lUA": 80, "lFA": 10, "rUA": 85, "rFA": 5, "lTH": 10, "lSH": 0, "rTH": -10, "rSH": 0 }
+          }
+        ]
+      },
+      {
+        "name": "dig_soil",
+        "description": "Digs with an air spade: pushes it into the ground with a foot, levers the soil up; loops for `cycles`.",
+        "tags": ["life", "garden", "work", "loop", "mime", "baaaana"],
+        "category": "life",
+        "duration": 1.2,
+        "params": { "cycles": 2 },
+        "face": "determined",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 8, "head": 0, "lUA": 55, "lFA": 30, "rUA": 45, "rFA": 40, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.35,
+            "pose": { "lean": 24, "head": 10, "lUA": 35, "lFA": 15, "rUA": 30, "rFA": 20, "lTH": 6, "lSH": 0, "rTH": 30, "rSH": 40, "dy": 6 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.7,
+            "pose": { "lean": -6, "head": -6, "lUA": 85, "lFA": 40, "rUA": 70, "rFA": 55, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 8, "head": 0, "lUA": 55, "lFA": 30, "rUA": 45, "rFA": 40, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
+          }
+        ]
+      },
+      {
+        "name": "plant_seed",
+        "description": "Crouches, pokes a seed into the soil, pats it down and stands up again.",
+        "tags": ["life", "garden", "gentle", "baaaana"],
+        "category": "life",
+        "duration": 1.8,
+        "face": "happy",
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+          {
+            "t": 0.25,
+            "pose": { "lean": 35, "head": 12, "lUA": 40, "lFA": 10, "rUA": 55, "rFA": 15, "lTH": 60, "lSH": 90, "rTH": 55, "rSH": 85, "dy": 22 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.45,
+            "pose": { "lean": 40, "head": 14, "lUA": 40, "lFA": 10, "rUA": 30, "rFA": 5, "lTH": 60, "lSH": 90, "rTH": 55, "rSH": 85, "dy": 24 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.6,
+            "pose": { "lean": 38, "head": 14, "lUA": 40, "lFA": 10, "rUA": 45, "rFA": 20, "lTH": 60, "lSH": 90, "rTH": 55, "rSH": 85, "dy": 24 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.7,
+            "pose": { "lean": 40, "head": 14, "lUA": 40, "lFA": 10, "rUA": 30, "rFA": 5, "lTH": 60, "lSH": 90, "rTH": 55, "rSH": 85, "dy": 24 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ]
+      },
+      {
+        "name": "water_plants",
+        "description": "Waters the plants with an air watering can, tipping it and swaying along the row; loops for `cycles`.",
+        "tags": ["life", "garden", "gentle", "loop", "mime", "baaaana"],
+        "category": "life",
+        "duration": 1.2,
+        "params": { "cycles": 2 },
+        "face": "happy",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 6, "head": 8, "lUA": 20, "lFA": 20, "rUA": 65, "rFA": 15, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": 14, "head": 12, "lUA": 20, "lFA": 20, "rUA": 55, "rFA": -10, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0, "dx": 6 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 6, "head": 8, "lUA": 20, "lFA": 20, "rUA": 65, "rFA": 15, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 }
+          }
+        ]
+      },
+      {
+        "name": "picnic_munch",
+        "description": "Sits on the ground with legs out in front and munches: hand to mouth, chewing; loops for `cycles`.",
+        "tags": ["life", "food", "seat", "picnic", "loop", "baaaana"],
+        "category": "life",
+        "duration": 1.6,
+        "params": { "cycles": 2 },
+        "face": "happy",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": -8, "head": 0, "lUA": 20, "lFA": 30, "rUA": 25, "rFA": 30, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.25,
+            "pose": { "lean": -8, "head": 6, "lUA": 20, "lFA": 30, "rUA": 115, "rFA": 135, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.45,
+            "pose": { "lean": -8, "head": 2, "lUA": 20, "lFA": 30, "rUA": 75, "rFA": 95, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.65,
+            "pose": { "lean": -8, "head": 6, "lUA": 20, "lFA": 30, "rUA": 115, "rFA": 135, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": -8, "head": 0, "lUA": 20, "lFA": 30, "rUA": 25, "rFA": 30, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 }
+          }
+        ]
+      },
+      {
+        "name": "picnic_giggle",
+        "description": "Sits on the ground with legs out in front, hands on the tummy, rocking back with giggles; loops for `cycles`.",
+        "tags": ["life", "happy", "seat", "picnic", "loop", "baaaana"],
+        "category": "life",
+        "duration": 1.2,
+        "params": { "cycles": 2 },
+        "face": "laugh",
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": -8, "head": 0, "lUA": 35, "lFA": 60, "rUA": 40, "rFA": 60, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": -20, "head": -10, "lUA": 35, "lFA": 60, "rUA": 40, "rFA": 60, "lTH": 95, "lSH": 8, "rTH": 92, "rSH": 14 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": -8, "head": 0, "lUA": 35, "lFA": 60, "rUA": 40, "rFA": 60, "lTH": 85, "lSH": 8, "rTH": 80, "rSH": 14 }
+          }
+        ]
+      },
+      {
         "name": "hug",
         "description": "Two characters hug; a short buddy hugs a tall friend round the waist.",
         "tags": ["paired", "kind", "friendly"],
@@ -8293,9 +8593,95 @@
         "ending": "laugh",
         "roles": [{ "face": "happy" }, { "face": "happy" }],
         "fetch": { "ball": "tennis_ball", "distance": 420, "flight": 0.9 }
+      },
+      "band_play": {
+        "description": "A band: dhol, air trumpet, air triangle, a dancer.",
+        "tags": ["music", "party", "group", "baaaana"],
+        "runner": "loop",
+        "players": [1, 4],
+        "spacing": 150,
+        "facing": "right",
+        "reps": 3,
+        "ending": "laugh",
+        "roles": [
+          { "moves": ["play_drum"], "face": "laugh", "holds": "dhol" },
+          { "moves": ["play_trumpet"], "face": "happy" },
+          { "moves": ["play_triangle"], "wait": 0.2, "face": "happy" },
+          { "moves": ["dance_a", "dance_b"], "face": "laugh" }
+        ]
+      },
+      "group_photo": {
+        "description": "One snaps photos; the others strike poses.",
+        "tags": ["photo", "happy", "group", "baaaana"],
+        "runner": "loop",
+        "players": [2, 4],
+        "spacing": 120,
+        "facing": "center",
+        "reps": 3,
+        "ending": "laugh",
+        "roles": [
+          { "moves": ["use"], "wait": 1, "face": "happy", "holds": "phone" },
+          { "moves": ["pose_peace", "flex"], "wait": 0.3, "face": "happy" },
+          { "moves": ["flex", "pose_peace"], "wait": 0.3, "face": "laugh" },
+          { "moves": ["jump_joy", "pose_peace"], "wait": 0.3, "face": "happy" }
+        ]
+      },
+      "bubble_party": {
+        "description": "One blows bubbles; the others jump and pop them.",
+        "tags": ["play", "bubbles", "party", "group", "baaaana"],
+        "runner": "loop",
+        "players": [1, 4],
+        "spacing": 140,
+        "facing": "center",
+        "dur": 8,
+        "ending": "laugh",
+        "roles": [
+          { "moves": ["blow_wand"], "wait": 0.2, "face": "laugh", "holds": "bubble_wand" },
+          { "moves": ["poke", "jump_joy"], "wait": 0.3, "face": "laugh" }
+        ]
+      },
+      "picnic": {
+        "description": "Sitting on the grass, munching and giggling.",
+        "tags": ["food", "calm", "outdoor", "group", "baaaana"],
+        "runner": "loop",
+        "players": [1, 4],
+        "spacing": 110,
+        "facing": "center",
+        "dur": 8,
+        "ending": "laugh",
+        "roles": [
+          { "moves": ["picnic_munch"], "wait": 0.4, "face": "happy" },
+          { "moves": ["picnic_giggle", "picnic_munch"], "wait": 0.3, "face": "laugh" }
+        ]
+      },
+      "garden_planting": {
+        "description": "One digs, one plants, one waters.",
+        "tags": ["garden", "work", "outdoor", "group", "baaaana"],
+        "runner": "loop",
+        "players": [1, 4],
+        "spacing": 150,
+        "facing": "right",
+        "dur": 8,
+        "ending": "laugh",
+        "roles": [
+          { "moves": ["dig_soil"], "face": "determined" },
+          { "moves": ["plant_seed"], "wait": 0.3, "face": "happy" },
+          { "moves": ["water_plants"], "face": "happy" }
+        ]
+      },
+      "conga_line": {
+        "description": "A conga line in place: step, step, kick.",
+        "tags": ["dance", "party", "group", "baaaana"],
+        "runner": "loop",
+        "players": [2, 4],
+        "spacing": 95,
+        "facing": "right",
+        "reps": 3,
+        "ending": "laugh",
+        "roles": [{ "moves": ["conga_step"], "face": "laugh" }]
       }
     },
-    "activityNames": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"],
+    "activityNames": ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch", "band_play", "group_photo", "bubble_party", "picnic", "garden_planting", "conga_line"],
     "macroLines": {
       "rivals": [
         ["You can't beat me!", "We'll see about that!"],
@@ -9569,12 +9955,12 @@
     { "name": "windup_click", "category": "object", "description": "A wind-up key turning: a ratchet of quick clicks." }
   ],
   "appearance": {
-    "eyes": { "dot": "Small dot eyes (the default).", "big": "Big round cute eyes.", "oval": "Tall oval eyes.", "sleepy": "Half-closed sleepy eyes.", "visor": "A sci-fi visor across the eyes.", "glasses": "Round glasses.", "lively": "Big white eyes with pupils that dart between idle glances (sometimes at the camera) and a double blink now and then." },
+    "eyes": { "dot": "Small dot eyes (the default).", "big": "Big round cute eyes.", "oval": "Tall oval eyes.", "sleepy": "Half-closed sleepy eyes.", "visor": "A sci-fi visor across the eyes.", "glasses": "Round glasses.", "lively": "Big white eyes; pupils dart about, sometimes at the camera." },
     "brows": { "none": "No eyebrows.", "thin": "Thin eyebrows.", "thick": "Thick eyebrows." },
-    "mouthStyle": { "line": "A simple line mouth (the default).", "cartoon": "A filled cartoon mouth.", "big_grin": "A wide D-shaped grin with top teeth and a pink tongue for smiles, grins and open mouths.", "toothy": "Smiles and grins with two big front teeth." },
+    "mouthStyle": { "line": "A simple line mouth (the default).", "cartoon": "A filled cartoon mouth.", "big_grin": "A wide D-shaped grin with teeth and tongue.", "toothy": "Smiles with two big front teeth." },
     "hair": { "none": "No hair.", "spiky": "Spiky hero hair.", "bob": "A rounded bob.", "ponytail": "A ponytail.", "cap": "A cap (counts as headwear).", "bun": "A round bun on top with a hairpin." },
     "outfit": { "none": "No outfit lines.", "shirt": "A shirt.", "coat": "A long coat.", "armor": "Armor plates.", "robe": "A long robe." },
-    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch.", "hair_flower": "A five-petal flower clip above the ear.", "sprout": "A two-leaf sprout on top of the head.", "mittens": "Round mitten hands.", "horns": "Two curly ram horns curving back.", "turban": "A wrapped turban with a jewel (headwear; covers the hair).", "moustache": "A big curly handlebar moustache.", "stub_horns": "Two tiny glued-on toy horns (remove for a gag).", "bracelet": "A left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order.", "chilli_hat": "A tall curved red-chilli hat with a green cap (headwear; covers the hair).", "pirate_hat": "A pirate tricorn with a gold trim and a fish emblem (headwear; covers the hair).", "beard": "A round fluffy beard.", "windup_key": "A big brass wind-up key in the back that turns slowly (Iron Ghoom).", "leaf_sprout": "One big leaf on a short stem on top of the head (Baaaana Mooka).", "curly_vine": "A stem that rolls into a spiral curl, with one small leaf (Baaaana Zizi).", "flower_bud": "A closed flower bud with green sepals on top of the head; swap for flower_bloom (Baaaana Tutu).", "flower_bloom": "An open five-petal flower on top of the head, the bud in bloom (Baaaana Tutu, happy).", "party_hat": "A striped cone party hat with a pompom (headwear).", "whistle": "A silver whistle on a cord round the neck; the color is the cord (Baaaana Bobo).", "clipboard": "An upright clipboard with a sheet and a clip, held in the near hand; the color is the board (Baaaana Bobo).", "gloss": "A soft jelly-bean shine on the top-back of the head; the color is the shine (white for most).", "shoes": "Round shoes on both feet, the far one a little darker (Baaaanas)." }
+    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch.", "hair_flower": "A five-petal flower clip above the ear.", "sprout": "A two-leaf sprout on top of the head.", "mittens": "Round mitten hands.", "horns": "Two curly ram horns curving back.", "turban": "A wrapped turban with a jewel (headwear; covers the hair).", "moustache": "A big curly handlebar moustache.", "stub_horns": "Two tiny glued-on toy horns (remove for a gag).", "bracelet": "A left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order.", "chilli_hat": "A tall curved red-chilli hat with a green cap (headwear; covers the hair).", "pirate_hat": "A pirate tricorn with a gold trim and a fish emblem (headwear; covers the hair).", "beard": "A round fluffy beard.", "windup_key": "A big brass wind-up key in the back that turns slowly (Iron Ghoom).", "leaf_sprout": "One big leaf on a stem on top.", "curly_vine": "A curly vine with a small leaf on top.", "flower_bud": "A closed flower bud on top (swap for flower_bloom).", "flower_bloom": "An open flower on top.", "party_hat": "A striped party hat (headwear).", "whistle": "A whistle on a cord (color: the cord).", "clipboard": "A clipboard in the near hand.", "gloss": "A jelly shine on the head (white).", "shoes": "Round shoes on both feet." }
   },
   "voices": [
     { "name": "soft", "description": "A gentle, warm voice (the default)." },

@@ -34,7 +34,8 @@ export const V2_ENUMS = {
   beatMacro: ["dialogue", "activity", "walk_together", "travel", "enter", "exit", "fight", "gauntlet", "brawl", "chase", "defeat", "grief"],
   sceneMacro: ["fight_card", "montage"],
   defeatStyle: ["ko", "faint", "vanish", "ghost", "captured", "flee", "petrify"],
-  activity: ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch"], // catalog (fetch: A1)
+  activity: ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch",
+    "band_play", "group_photo", "bubble_party", "picnic", "garden_planting", "conga_line"], // catalog (fetch: A1; Baaaana task 8a)
   ending: ["win", "miss", "laugh", "interrupted"],
   intensity: ["low", "medium", "high"],
   fightStyle: ["even", "dominant", "comeback", "close"],
