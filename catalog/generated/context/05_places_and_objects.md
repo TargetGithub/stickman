@@ -37,7 +37,7 @@
 | gloom_castle_gate | #4a4060 | bright: light blue, yellow, orange, pink, white | Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind. |
 | grey_moon | #4a4a56 | bright: light blue, yellow, orange, pink, white | Standing on the giant Grey Moon: grey dust and round craters, a black starry sky, and far below a tiny glowing valley with a tree. |
 | banyan_moon | #3a4a34 | bright: light blue, yellow, orange, pink, white | Banyan hill at night under the huge full Grey Moon: the giant banyan, its crystal sockets, a cold grey light. |
-| baaaana_meadow | #6cb35a | strong or dark: red, blue, purple, dark green, black | Baaaana Meadow: hills, mushroom houses, flowers. |
+| baaaana_meadow | #4f8f45 | strong or dark: red, blue, purple, dark green, black | Baaaana Meadow: hills, mushroom houses, flowers. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 

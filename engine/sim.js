@@ -231,7 +231,8 @@ export function simulate(script, catalog, opts = {}) {
       if (fixed !== undefined) {
         if (clock.storyT - t0 >= fixed - 1e-9) break;
       } else {
-        const quiet = directorIdle(director) && world.actors.every(settled) && !timeEffectsActive(clock) && !(world.objects && objectsBusy(world.objects));
+        // A running activity is never quiet: group runners (task 8b) have pauses where nobody moves ("ready, set...").
+        const quiet = directorIdle(director) && !world.activities?.length && world.actors.every(settled) && !timeEffectsActive(clock) && !(world.objects && objectsBusy(world.objects));
         quietFrames = quiet ? quietFrames + 1 : 0;
         if (quietFrames >= tailFrames) break;
       }

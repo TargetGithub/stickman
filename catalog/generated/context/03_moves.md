@@ -132,6 +132,8 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | picnic_munch | life | 1.6 | cycles=2 | - | loop: cycles | Sits on the ground with legs out in front and munches: hand to mouth, chewing; loops for `cycles`. |
 | picnic_giggle | life | 1.2 | cycles=2 | - | loop: cycles | Sits on the ground with legs out in front, hands on the tummy, rocking back with giggles; loops for `cycles`. |
 | climb_down | life | 1.4 | cycles=1 | - | loop: cycles | Climbs down (a ladder, a wall), hands and knees taking turns; loops for `cycles`. With a platform object the character really goes down. |
+| tug_pull | life | 1.2 | cycles=4 | - | loop: cycles | Pulls a rope with both hands: leaning back, front foot braced, heaving in rhythm; loops for `cycles`. |
+| pillow_swing | life | 0.9 | - | pillow | - | Swings a pillow overhead and down in a big soft arc. |
 | hug | interaction | 1.8 | - | - | paired: partner plays hug_partner, story only | Two characters hug; a short buddy hugs a tall friend round the waist. |
 | high_five | interaction | 1 | - | - | paired: partner plays high_five_partner, story only | Two characters slap a high five. |
 | fist_bump | interaction | 0.9 | - | - | paired: partner plays fist_bump_partner, story only | Two characters bump fists. |

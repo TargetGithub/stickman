@@ -14,6 +14,7 @@ import { mulberry32, hash32 } from "../math.js";
 import { rallyStart, rallyStep, rallyContact, rallyRelease } from "./rally.js";
 import { fetchStart, fetchStep, fetchContact, fetchRelease } from "./fetch.js";
 import { isIdleMove } from "../moves.js";
+import { GROUP_RUNNERS } from "./group_runners.js";
 
 const ARRIVE = 12; // px: close enough to a place to settle there
 const MAX_SETUP = 10; // s of walking into place before the activity starts anyway
@@ -109,6 +110,7 @@ function beginRun(world, act, t, events) {
   act.runT0 = t;
   if (act.def.runner === "rally") rallyStart(world, act, t, events);
   if (act.def.runner === "fetch") fetchStart(world, act, t, events);
+  GROUP_RUNNERS[act.def.runner]?.start(world, act, t, events); // race, tug, pyramid (task 8b)
 }
 
 /** One loop-runner step: each free player starts its next move (after its wait), until time or reps run out. */
@@ -200,6 +202,9 @@ export function updateActivities(world, t) {
       if (act.def.runner === "rally" || act.def.runner === "fetch") {
         if (act.def.runner === "rally") rallyStep(world, act, t, events);
         else fetchStep(world, act, t);
+        if (act.endRequest) beginEnding(world, act, t, act.endRequest.loser);
+      } else if (GROUP_RUNNERS[act.def.runner]) {
+        GROUP_RUNNERS[act.def.runner].step(world, act, t, events);
         if (act.endRequest) beginEnding(world, act, t, act.endRequest.loser);
       } else loopStep(world, act, t, events);
     } else if (act.phase === "ending") {

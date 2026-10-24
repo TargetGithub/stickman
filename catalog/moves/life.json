@@ -1269,5 +1269,80 @@
     ],
     "params": { "cycles": 1 },
     "flags": { "loop": true }
+  },
+  {
+    "name": "tug_pull",
+    "description": "Pulls a rope with both hands: leaning back, front foot braced, heaving in rhythm; loops for `cycles`.",
+    "tags": ["life", "play", "effort", "loop", "baaaana"],
+    "category": "life",
+    "duration": 1.2,
+    "params": { "cycles": 4 },
+    "face": "determined",
+    "flags": { "loop": true },
+    "keys": [
+      {
+        "t": 0,
+        "pose": { "lean": -22, "head": 6, "lUA": 82, "lFA": 4, "rUA": 88, "rFA": 2, "lTH": 34, "lSH": 4, "rTH": -14, "rSH": 30 },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 0.5,
+        "pose": {
+          "lean": -32,
+          "head": 10,
+          "lUA": 76,
+          "lFA": 2,
+          "rUA": 82,
+          "rFA": 0,
+          "lTH": 40,
+          "lSH": 2,
+          "rTH": -20,
+          "rSH": 36,
+          "dy": 4
+        },
+        "ease": "inOutQuad"
+      },
+      {
+        "t": 1,
+        "pose": { "lean": -22, "head": 6, "lUA": 82, "lFA": 4, "rUA": 88, "rFA": 2, "lTH": 34, "lSH": 4, "rTH": -14, "rSH": 30 }
+      }
+    ]
+  },
+  {
+    "name": "pillow_swing",
+    "description": "Swings a pillow overhead and down in a big soft arc.",
+    "tags": ["life", "play", "pillow", "baaaana"],
+    "category": "life",
+    "duration": 0.9,
+    "face": "laugh",
+    "needsProp": "pillow",
+    "keys": [
+      { "t": 0, "pose": "stand", "ease": "inOutQuad", "propAngle": 20 },
+      {
+        "t": 0.35,
+        "pose": {
+          "lean": -10,
+          "head": -8,
+          "lUA": 40,
+          "lFA": 40,
+          "rUA": 170,
+          "rFA": 30,
+          "lTH": 6,
+          "lSH": 0,
+          "rTH": -6,
+          "rSH": 0
+        },
+        "ease": "inQuad",
+        "propAngle": 160
+      },
+      {
+        "t": 0.65,
+        "pose": { "lean": 14, "head": 6, "lUA": 20, "lFA": 30, "rUA": 60, "rFA": 10, "lTH": 6, "lSH": 0, "rTH": 10, "rSH": 0 },
+        "ease": "outQuad",
+        "propAngle": 40
+      },
+      { "t": 1, "pose": "stand", "propAngle": 20 }
+    ],
+    "events": [{ "t": 0.6, "sfx": "pop" }]
   }
 ]

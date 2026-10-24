@@ -22,6 +22,7 @@ import { hasMotion, compileMotion, composeAt, postAt, motionValuesAt } from "../
 import { drawMotionLayers, motionAnchor } from "./motion.js";
 import { applyPost, postActive } from "./post.js";
 import { STAGE, FPS } from "../config.js";
+import { drawTugRopes } from "./rope_draw.js";
 import { frameView, storyTimeAt, segmentIndexAt } from "../framestore.js";
 import { charsAt, drawChars, drawLayerChars } from "./draw_chars.js";
 import { subtitlesOn } from "../story/pace.js";
@@ -121,6 +122,7 @@ function drawWorld(ctx, r, n, f, chars, sv) {
     });
   }
   drawChars(ctx, r, n, f, chars, sv, mid);
+  if (sv.tugs?.length) drawTugRopes(ctx, sv.tugs, mid, f.videoT); // task 8b
   drawItems(ctx, r, f.items, true, sv, f.videoT);
   drawTrailsOf(ctx, n, sv, trails, r, charsAt);
   drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
@@ -154,6 +156,7 @@ function drawDepthScene(ctx0, r, n, f, chars, sv, pieces) {
     drawItems(ctx, r, f.items, true, sv, f.videoT);
     drawTrailsOf(ctx, n, sv, trails, r, charsAt);
     const shown = depths ? projectedChars(chars, depths, f.cam, sv.depth) : chars;
+    if (sv.tugs?.length) drawTugRopes(ctx, sv.tugs, shown, f.videoT); // task 8b
     drawParticles(ctx, sv.fxLog, f.fxT, (actorId, joint) => {
       const c = shown.find((x) => x.id === actorId);
       if (!c) return null;

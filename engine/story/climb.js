@@ -61,7 +61,7 @@ export function climbGate(director, beat, actor, ctx, command) {
 }
 
 /** Hop off a height: the ground line drops to the floor and the body falls from where it is. */
-function dropFrom(actor) {
+export function dropFrom(actor) {
   actor.airY -= actor.elev;
   actor.groundY = STAGE.groundY;
   actor.airborne = true;

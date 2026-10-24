@@ -175,7 +175,7 @@ test("the base catalog's own entries pass the bundle schemas once prefixed (4.1,
   each(base.props, "props");
   each(base.objects, "objects");
   each(base.bodies, "bodies");
-  each(base.activities, "activities", (k) => k === "fetch"); // the fetch runner stays built-in
+  each(base.activities, "activities", (k, v) => !["loop", "rally"].includes(v.runner)); // fetch, race, tug and pyramid stay built-in
   each(base.fxPresets, "fx", (k, v) => v.internal);
   const moods = doc("music_moods");
   for (const [k, v] of Object.entries(base.musicMoods)) issues.push(...checkValue(v, moods.properties.moods.additionalProperties, k, { ...opts, root: moods }));

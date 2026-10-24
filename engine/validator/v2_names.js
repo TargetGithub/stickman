@@ -35,7 +35,8 @@ export const V2_ENUMS = {
   sceneMacro: ["fight_card", "montage"],
   defeatStyle: ["ko", "faint", "vanish", "ghost", "captured", "flee", "petrify"],
   activity: ["blow_bubbles", "tennis_rally", "play_catch", "kick_ball", "eat_together", "dance_together", "selfie", "sleep", "comfort", "fetch",
-    "band_play", "group_photo", "bubble_party", "picnic", "garden_planting", "conga_line"], // catalog (fetch: A1; Baaaana task 8a)
+    "band_play", "group_photo", "bubble_party", "picnic", "garden_planting", "conga_line",
+    "pillow_fight", "sports_day_race", "tug_of_war", "human_pyramid"], // catalog (fetch: A1; Baaaana tasks 8a, 8b)
   ending: ["win", "miss", "laugh", "interrupted"],
   intensity: ["low", "medium", "high"],
   fightStyle: ["even", "dominant", "comeback", "close"],

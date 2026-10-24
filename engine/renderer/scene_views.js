@@ -2,6 +2,7 @@
 // frames need (world events, says, objects, depth events, light changes, lens changes), and the lens of a v3
 // frame (ENGINE_V3_SPEC 5.3, ADR-025). Pure functions of the sim result, the catalog and the frame.
 
+import { tugSpans } from "./rope_draw.js";
 import { lightRigOf, scaleRig } from "../lighting.js";
 import { LENS_DEFAULTS, lensChanges, lensAt, autoFocusSpans, autoFocusAt, createHandheld, handheldAt, lensCamera, blurFor, coverScale } from "../camera3.js";
 import { lensMatrix } from "./lens_draw.js";
@@ -56,6 +57,7 @@ export function sceneViews(sim, catalog) {
       placementZ: new Map((sc.characters || []).map((c) => [c.id, c.z ?? 0])),
       depthEvents: groupDepth(ev.filter((e) => e.type === "depth"), sc.storyStart ?? 0),
       extras: sc.extras || [],
+      tugs: tugSpans(ev), // task 8b: tug-of-war ropes
       heights: (sc.set || []).some((p) => catalog.objects?.[p.object]?.behavior === "platform"), // task 10c: vertical parallax
       reactions: reactionsOf(ev, sc),
       fxLog: sc.fxStart === 0 && sc.fxEnd === sim.fx.log.length ? sim.fx.log : sim.fx.log.slice(sc.fxStart, sc.fxEnd),

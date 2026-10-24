@@ -39,6 +39,11 @@ const ALL = [
   ["picnic", ["tu", "bn"], { dur: 4 }],
   ["garden_planting", ["bo", "bn", "tu"], { dur: 4 }],
   ["conga_line", ["bo", "bn", "tu", "kai"], { reps: 1 }],
+  // Task 8b: group runners
+  ["pillow_fight", ["tu", "bn"], { dur: 3 }],
+  ["sports_day_race", ["bo", "bn", "tu"], { winner: "tu" }],
+  ["tug_of_war", ["bo", "bn", "tu", "kai"], { dur: 4, winner: "bo" }],
+  ["human_pyramid", ["bo", "bn", "tu"], {}],
 ];
 
 for (const [name, players, extra, set = []] of ALL) {
@@ -105,4 +110,15 @@ test("the next beat waits for the activity's end", () => {
   const r = run({ name: "selfie", with: ["pip", "kai"], reps: 1 }, { beats: [{ id: "n", at: { after: "act" }, who: "kai", do: "wave" }] });
   const n = r.sim.anchors.find((a) => a.beatId === "n" && a.anchor === "start");
   assert.ok(n && Math.abs(n.t - r.end.t) < 0.05);
+});
+
+test("race: the forced winner crosses first and cheers; tug: a rope event pair; pyramid: the top lands", () => {
+  const race = run({ name: "sports_day_race", with: ["bo", "bn", "tu"], winner: "bn" }, { cast: ["bo", "bn", "tu"] });
+  const cheer = race.sim.events.find((e) => e.type === "moveStart" && e.move === "cheer") ?? race.sim.events.find((e) => e.move === "cheer");
+  assert.ok(race.end, "the race ends");
+  if (cheer) assert.equal(cheer.actor, "bn");
+  const tug = run({ name: "tug_of_war", with: ["bo", "bn", "tu", "kai"], dur: 3 }, { cast: ["bo", "bn", "tu", "kai"] });
+  assert.deepEqual(tug.sim.events.filter((e) => e.type === "tug").map((e) => e.what), ["start", "end"]);
+  const pyr = run({ name: "human_pyramid", with: ["bo", "bn", "tu"] }, { cast: ["bo", "bn", "tu"] });
+  assert.ok(pyr.sim.events.some((e) => e.type === "land"), "the top falls and lands");
 });

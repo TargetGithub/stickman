@@ -212,5 +212,51 @@
     "reps": 3,
     "ending": "laugh",
     "roles": [{ "moves": ["conga_step"], "face": "laugh" }]
+  },
+  "pillow_fight": {
+    "description": "A soft pillow fight; ends in giggles.",
+    "tags": ["play", "pillow", "group", "baaaana"],
+    "runner": "loop",
+    "players": [2, 4],
+    "spacing": 120,
+    "facing": "center",
+    "dur": 6,
+    "ending": "laugh",
+    "roles": [
+      { "moves": ["pillow_swing"], "wait": 0.3, "face": "laugh", "holds": "pillow" },
+      { "moves": ["pillow_swing"], "wait": 0.5, "face": "laugh", "holds": "pillow" }
+    ]
+  },
+  "sports_day_race": {
+    "description": "A race: line up, go, the first across the line wins.",
+    "tags": ["sport", "race", "group", "baaaana"],
+    "runner": "race",
+    "players": [2, 4],
+    "spacing": 90,
+    "facing": "right",
+    "ending": "win",
+    "roles": [{ "face": "determined" }],
+    "race": { "distance": 900 }
+  },
+  "tug_of_war": {
+    "description": "Two teams pull a rope; the losers stumble, the winners fall over laughing.",
+    "tags": ["sport", "rope", "group", "baaaana"],
+    "runner": "tug",
+    "players": [2, 4],
+    "spacing": 110,
+    "facing": "center",
+    "dur": 7,
+    "ending": "win",
+    "roles": [{ "face": "determined" }]
+  },
+  "human_pyramid": {
+    "description": "Two at the bottom, one climbs on their heads; it wobbles and topples.",
+    "tags": ["play", "stack", "group", "baaaana"],
+    "runner": "pyramid",
+    "players": [3, 3],
+    "spacing": 60,
+    "facing": "right",
+    "ending": "laugh",
+    "roles": [{ "face": "happy" }]
   }
 }

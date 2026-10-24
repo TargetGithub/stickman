@@ -143,8 +143,10 @@ export function activityScript(catalog, name, look) {
   const a = catalog.activities[name];
   const players = Math.max(2, a.players[0]);
   const piece = a.objects?.[0];
-  const ids = ["a", "b"].slice(0, players);
-  return stage({ look, partner: players > 1 ? {} : null, partnerX: X + 400,
+  // Extra players for group games (a human pyramid needs three): stickmen beside the partner.
+  const extra = Array.from({ length: Math.max(0, players - 2) }, (_, k) => ({ cast: { id: `p${k + 3}`, name: `P${k + 3}`, body: "stickman", color: PARTNER_COLOR }, place: { id: `p${k + 3}`, x: X + 560 + k * 160, facing: -1 } }));
+  const ids = ["a", "b", ...extra.map((e) => e.cast.id)].slice(0, players);
+  return stage({ look, partner: players > 1 ? {} : null, partnerX: X + 400, extraCast: extra,
     set: piece ? [{ id: "p1", object: piece, x: X + 200 }] : [], duration: 4,
     beats: [{ id: "act", at: 0.3, macro: "activity", params: { name, with: ids, ...(a.runner === "rally" ? { reps: 2 } : { dur: 4 }), ...(piece ? { object: "p1" } : {}) } }],
     camera: [{ at: 0, mode: "follow", targets: ids, zoom: "auto", padding: 260 }] });
