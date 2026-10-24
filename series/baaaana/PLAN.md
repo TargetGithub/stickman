@@ -66,7 +66,7 @@ Each task is one session that ends with green tests and a commit, so we can stop
 |---|---|---|---|---|
 | 1 | Write `series/baaaana/BIBLE.md`: world, the four leads, rules, tone, humour guide, originality rules | Docs | S | bible reviewed |
 | 2 | Sprout kinds + new accessories (`leaf_sprout`, `curly_vine`, `flower_bud` / `flower_bloom`, `party_hat`, `whistle`, `clipboard`; Bobo keeps the two-leaf `sprout`, Zizi reuses `backpack`) **done 2026-10-24** | Renderer + catalog | M | sheet `out/demos/baaaana_t2_accessories.png` (`node tools/baaaana_acc_sheet.mjs`) |
-| 3 | Four lead presets (`bn_mooka`, `bobo`, `tutu`, `zizi`, all `"series": "baaaana"`) + cast sheet ★ | Catalog | S | cast sheet approved |
+| 3 | Four lead presets (`bn_mooka`, `bobo`, `tutu`, `zizi`, all `"series": "baaaana"`) on new chunky body plans `baaaana`, `baaaana_tall`, `baaaana_wide` (thick outlined limbs, `shoes`, `gloss`), at least Becky's drawing level ★ **done 2026-10-24** | Catalog + renderer | M | `out/demos/baaaana_t3_cast.png` (`node tools/baaaana_cast_sheet.mjs`) |
 | 4 | Livelier eyes, big-grin / toothy mouths, belly jiggle ★ | Faces + renderer | M | face sheet approved |
 | 5 | Squash and stretch + sprout physics on `buddy` ★ | Engine + renderer | L | move clips approved |
 | 6 | `baaaana_crowd` preset with seeded variation; crowd sheet of 30 ★ | Catalog + engine | M | crowd sheet approved |

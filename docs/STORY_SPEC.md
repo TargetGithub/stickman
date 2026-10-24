@@ -206,7 +206,7 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | Body plans | `stickman`, `buddy`, `kid`, `bulky`, `slim`, `elder` (all `rig: "humanoid"`; catalog names, checked by `E_BODY_UNKNOWN` since S3) |
 | Rigs and quadruped plans (added 2026-10-18, series/doopi/BATCH_A_PLAN.md) | `rig`: `humanoid`, `quadruped`; body plan `dog_small` (section 6.2) |
 | Added 2026-10-18 for the series assets (signed off; built in packages A1 and A3) | defeat style `petrify` (kids allowed); world commands `set_glow`, `set_grade`; scene field `grade`; activity `fetch`; voice timbre `bark`; codes `E_TARGET_RIG`, `E_MACRO_RIG` |
-| Added 2026-10-24 for Baaaana (series/baaaana/PLAN.md task 2) | accessories `leaf_sprout`, `curly_vine`, `flower_bud`, `flower_bloom`, `party_hat`, `whistle`, `clipboard` (engine/renderer/accessories_baaaana.js) |
+| Added 2026-10-24 for Baaaana (series/baaaana/PLAN.md task 2) | accessories `leaf_sprout`, `curly_vine`, `flower_bud`, `flower_bloom`, `party_hat`, `whistle`, `clipboard`, `gloss`, `shoes` (engine/renderer/accessories_baaaana.js); body plans `baaaana`, `baaaana_tall`, `baaaana_wide` |
 | Faces | `neutral`, `happy`, `laugh`, `sad`, `cry`, `angry`, `furious`, `scared`, `surprised`, `determined`, `smug`, `tired`, `love`, `dizzy`, `hurt`, plus `asleep` (added in S5 for `sleep`) (catalog names: the schema takes a string and the semantic stage checks it, `E_FACE_UNKNOWN`, like moves and themes) |
 | Appearance | `eyes`, `brows`, `mouthStyle`, `cheeks`, `hair`, `hairColor`, `outfit`, `outfitColor`, `accessories` (name → color); option values are catalog strings checked by `E_APPEARANCE` since S3 |
 | Voice | `pitch` 0.5-2, `speed` 0.7-1.4, `timbre`: `soft`, `squeaky`, `deep`, `robot` |

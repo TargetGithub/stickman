@@ -9,7 +9,7 @@ import { drawCharacter } from "../../engine/renderer/character.js";
 import { drawLookFront } from "../../engine/renderer/accessories_more.js";
 import { V2_ENUMS } from "../../engine/validator/v2_names.js";
 
-const NEW = ["leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard"];
+const NEW = ["leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes"];
 
 function fakeCtx() {
   const calls = [];

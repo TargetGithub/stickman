@@ -1,5 +1,6 @@
 // Baaaana pieces (series/baaaana/PLAN.md, task 2): sprout kinds on top of the head (leaf_sprout, curly_vine,
-// flower_bud, flower_bloom), the party_hat, a whistle on a cord, and a clipboard in the near hand.
+// flower_bud, flower_bloom), the party_hat, a jelly gloss on the head, a whistle on a cord, a clipboard in the
+// near hand, and round shoes (the far one behind the body, the near one in front).
 // Head pieces are drawn in face axes like accessories_more.js (angle 0 forward, 90° up, 180° back) and slide
 // toward the middle of a turned head (slideAt). Swap flower_bud for flower_bloom with an appearance change.
 
@@ -164,7 +165,20 @@ function partyHat(ctx, c, r, ax, color) {
   disc(ctx, tip, r * 0.2, "#ffd60a", r * 0.07);
 }
 
-const HEAD = [["leaf_sprout", 96, leafSprout], ["curly_vine", 92, curlyVine], ["flower_bud", 96, flowerBud], ["flower_bloom", 96, flowerBloom], ["party_hat", 90, partyHat]];
+/** A jelly-bean shine: a soft white streak and a dot on the top-back of the head, away from the face. */
+function gloss(ctx, c, r, ax, color) {
+  const p = polar(c, r, ax, 128, 0.62);
+  ctx.save();
+  ctx.globalAlpha *= 0.6;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.ellipse(p.x, p.y, r * 0.24, r * 0.1, dirAng(ax, -0.6, -0.8) + Math.PI / 2, 0, Math.PI * 2);
+  ctx.fill();
+  disc(ctx, polar(c, r, ax, 150, 0.56), r * 0.06, color);
+  ctx.restore();
+}
+
+const HEAD = [["gloss", 90, gloss], ["leaf_sprout", 96, leafSprout], ["curly_vine", 92, curlyVine], ["flower_bud", 96, flowerBud], ["flower_bloom", 96, flowerBloom], ["party_hat", 90, partyHat]];
 
 /**
  * Baaaana head pieces, after the face and the hair. `slide(c, r, ax, phi, dist)` is accessories_more.js's slideAt
@@ -258,6 +272,35 @@ function clipboard(ctx, c, color) {
   ctx.fill();
   ctx.stroke();
   ctx.restore();
+}
+
+/** A round shoe at a foot: a fat oval sole pointing forward, square to the shin. */
+function shoe(ctx, knee, foot, size, facing, color) {
+  const ang = Math.atan2(foot.y - knee.y, foot.x - knee.x) - (Math.PI / 2) * facing;
+  ctx.save();
+  ctx.translate(foot.x, foot.y);
+  ctx.rotate(ang);
+  ctx.beginPath();
+  ctx.ellipse(size * 0.45, facing * size * 0.25, size * 1.25, size * 0.72, 0, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.strokeStyle = INK;
+  ctx.lineWidth = Math.max(1, size * 0.22);
+  ctx.stroke();
+  ctx.restore();
+}
+
+/** Line width of a character in px. */
+const lineOf = (c) => dimsOf(c).lineWidth * c.scale;
+
+/** The far shoe, behind the character. */
+export function drawFeetBehind(ctx, c, acc) {
+  if (acc.shoes) shoe(ctx, c.j.lKnee, c.j.lFoot, lineOf(c) * 0.85, c.facing || 1, tint(acc.shoes, 0.85));
+}
+
+/** The near shoe, in front of the character. */
+export function drawFeetFront(ctx, c, acc) {
+  if (acc.shoes) shoe(ctx, c.j.rKnee, c.j.rFoot, lineOf(c) * 0.85, c.facing || 1, acc.shoes);
 }
 
 /** Baaaana hand pieces in front of the character (before the near mitten). */
