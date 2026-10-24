@@ -6,6 +6,7 @@ import json, os
 OUT = "scripts/series/baaaana/picnic_day"
 LEADS = ["bobo", "bn_mooka", "tutu", "zizi"]
 C = "baaaana_crowd"
+PUSH = 1.4  # lens push for meadow and hill scenes (Sridhar 2026-10-24: leads too small in the review render)
 
 
 def cast():
@@ -21,6 +22,9 @@ class Scene:
     def __init__(self, sid, location, cast, **kw):
         self.id = sid
         self.s = {"id": sid, "location": location, "time": "day", "light": "noon", "music": {"mood": "bouncy", "volume": 0.28}, "cast": cast, "beats": [], **kw}
+        # Meadow and hill scenes: the calm camera fits everyone who moves, crowds included, so push in to keep the leads big.
+        if location in ("meadow", "hill") and "lens" not in kw:
+            self.s["lens"] = {"push": PUSH}
         self.n = 0
         self.last = None
 
