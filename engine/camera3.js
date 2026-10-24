@@ -2,16 +2,17 @@
 // The stored camera (camera.js: x, y, zoom, shake per frame) keeps doing framing. A v3 scene adds a lens on
 // top, evaluated at render time from the event log, so frames stay random access and the frame store is
 // unchanged: channels for dolly, truck, crane, tilt, roll, push (a zoom multiplier), handheld sway, focus and
-// depth of field, vignette and letterbox. Camera keys and `set_camera` beats blend channels over `dur`; named
-// moves (catalog cameraMoves) are keyframe curves added to the channels; close-up shots pull focus by
-// themselves. Pure: no I/O, no clocks; handheld noise comes from a deriveRng stream.
+// depth of field, vignette and letterbox, and travel (road.js: the camera and the characters move through
+// depth). Camera keys and `set_camera` beats blend channels over `dur`; named moves (catalog cameraMoves) are
+// keyframe curves added to the channels; close-up shots pull focus by themselves. Pure: no I/O, no clocks;
+// handheld noise comes from a deriveRng stream.
 
 import { clamp, lerp, easings, valueNoise1D } from "./math.js";
 
 /** Channels and their resting values. */
-export const LENS_DEFAULTS = Object.freeze({ dolly: 0, truck: 0, crane: 0, tilt: 0, roll: 0, push: 1, handheld: 0, dof: 0, focusZ: null, focus: null, vignette: 0.18, letterbox: 0 });
+export const LENS_DEFAULTS = Object.freeze({ dolly: 0, truck: 0, crane: 0, tilt: 0, roll: 0, push: 1, handheld: 0, dof: 0, focusZ: null, focus: null, vignette: 0.18, letterbox: 0, travel: 0 });
 /** Channels a key, a set_camera beat or a move may set (numbers). */
-export const LENS_CHANNELS = ["dolly", "truck", "crane", "tilt", "roll", "push", "handheld", "dof", "vignette", "letterbox"];
+export const LENS_CHANNELS = ["dolly", "truck", "crane", "tilt", "roll", "push", "handheld", "dof", "vignette", "letterbox", "travel"];
 const MOVE_CHANNELS = ["dolly", "truck", "crane", "tilt", "roll", "push", "handheld"];
 const AUTO_FOCUS = { close_up: 0.65, over_shoulder: 0.45, two_shot: 0.3 }; // dof a story shot pulls by itself
 const AUTO_FADE = 0.35; // s in and out

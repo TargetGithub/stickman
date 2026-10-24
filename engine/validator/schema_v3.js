@@ -19,7 +19,7 @@ import { DEPTH } from "../depth.js";
 import { LAYERS_SCHEMA, TEXT_SCHEMA, SHAPES_SCHEMA, TRACKS_SCHEMA, POST_SCHEMA } from "./schema_motion.js";
 import { AUDIO_TRACKS_SCHEMA, MARKERS_SCHEMA, DUCK_SCHEMA } from "./schema_audio.js";
 
-const Z = { type: "number", minimum: -4000, maximum: 2000, description: "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)." };
+const Z = { type: "number", minimum: -40000, maximum: 2000, description: "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)." };
 
 /** The scene depth block. */
 export const DEPTH_SCHEMA = {
@@ -28,7 +28,7 @@ export const DEPTH_SCHEMA = {
   description: `The scene's depth lane (defaults: near ${DEPTH.near}, far ${DEPTH.far}, focal ${DEPTH.focal}, horizon ${DEPTH.horizon}).`,
   properties: {
     near: { type: "number", minimum: 0, maximum: 2000, description: "Nearest z a node may have (toward the camera)." },
-    far: { type: "number", minimum: -4000, maximum: 0, description: "Farthest z a node may have." },
+    far: { type: "number", minimum: -40000, maximum: 0, description: "Farthest z a node may have (a road scene that travels far wants -20000 or so)." },
     focal: { type: "number", minimum: 600, maximum: 8000, description: "Camera focal length: scale = focal / (focal - z)." },
     horizon: { type: "number", minimum: 0, maximum: 800, description: "How far (px) the feet line rises for a node at infinite distance." },
   },
@@ -71,6 +71,7 @@ export const LENS_FIELDS = {
   focusZ: n(-4000, 2000, "Keep this depth in focus."),
   vignette: n(0, 1, "Darkened corners."),
   letterbox: n(0, 1, "Cinema bars: 1 crops to 2.39:1."),
+  travel: n(-40000, 40000, "Travel through depth, px: the camera and the characters move together, + toward the camera (the world recedes behind them), - away from it (the world comes toward them and slides past). Set pieces keep their z."),
 };
 
 /** The scene lens block: the lens a v3 scene starts with. */
@@ -79,10 +80,27 @@ export const LENS_SCHEMA = {
   additionalProperties: false,
   description: "The lens the scene starts with (V3.4); camera keys and set_camera change it. Defaults: vignette 0.18, no depth of field, autoFocus on.",
   properties: {
-    ...Object.fromEntries(["dolly", "truck", "crane", "tilt", "roll", "push", "handheld", "dof", "focus", "focusZ", "vignette", "letterbox"].map((k) => [k, LENS_FIELDS[k]])),
+    ...Object.fromEntries(["dolly", "truck", "crane", "tilt", "roll", "push", "handheld", "dof", "focus", "focusZ", "vignette", "letterbox", "travel"].map((k) => [k, LENS_FIELDS[k]])),
     autoFocus: { type: "boolean", description: "Close-ups, over-the-shoulder shots and two-shots pull focus by themselves (default true)." },
   },
 };
+
+const HEX = { type: "string", pattern: "^#[0-9a-fA-F]{6}$" };
+/** A scene road (task 10a): drawn on the ground in perspective; its dashes stream past as the lens travels. */
+export const ROAD_SCHEMA = { type: "object", additionalProperties: false, description: "A road on the ground running into the distance (with a ground plane from the horizon down). {} takes every default.", properties: {
+  x: { type: "number", description: "World x of the road's centre (default: the middle of the stage)." },
+  width: n(100, 2000, "Road width, px (default 520)."),
+  color: HEX, edge: HEX, ground: { ...HEX, description: "The ground plane's colour (default: the theme's ground)." },
+  line: { oneOf: [HEX, { const: null }], description: "Centre dash colour, or null for none." },
+} };
+/** Set pieces repeated along a travelling scene's road (task 10a). */
+export const ROADSIDE_SCHEMA = { type: "object", additionalProperties: false, required: ["objects"], description: "Set pieces repeated along the road every `every` px of depth, chosen by the seed from `objects`, so a walk can go on as long as the story needs.", properties: {
+  objects: { type: "array", minItems: 1, maxItems: 8, items: { type: "string", pattern: "^[a-z][a-z0-9_]{0,31}$" }, description: "Catalog objects to repeat (trees, lamp posts, bushes, flowers...; E_OBJECT_UNKNOWN)." },
+  every: n(200, 4000, "Depth px between pieces on a side (default 800)."),
+  offset: n(0, 3000, "Distance from the road centre, px (default: half the road width + 160)."),
+  side: { enum: ["both", "left", "right"], description: "Which side of the road (default both)." },
+  reach: n(1000, 40000, "How far down the road pieces are drawn, px of depth (default 9000; farther costs render time)."),
+} };
 
 /** The v3 `to` destination: the v2 forms plus a depth. */
 function destV3(dest) {
@@ -108,6 +126,9 @@ export function withDepth(v2) {
   scene.properties.depth = DEPTH_SCHEMA;
   scene.properties.light = LIGHT_SCHEMA;
   scene.properties.lens = LENS_SCHEMA;
+  // Travelling in depth (task 10a, engine/road.js): a road in perspective and pieces repeated along it.
+  scene.properties.road = ROAD_SCHEMA;
+  scene.properties.roadside = ROADSIDE_SCHEMA;
   // Camera keys (V3.4): follow lag, lens channels and a named move from the catalog.
   const key = scene.properties.camera.items;
   Object.assign(key.properties, LENS_FIELDS, {

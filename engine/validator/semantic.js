@@ -62,7 +62,7 @@ export const WORLD_COMMANDS_V2 = {
   set_camera: {
     move: { cameraMove: true }, dur: { min: 0, max: 30 }, ease: { enum: Object.keys(easings) },
     dolly: { min: -1500, max: 1500 }, truck: { min: -3000, max: 3000 }, crane: { min: -1000, max: 1000 }, tilt: { min: -30, max: 30 }, roll: { min: -45, max: 45 },
-    push: { min: 0.3, max: 4 }, handheld: { min: 0, max: 1 }, dof: { min: 0, max: 1 }, focus: { character: true }, focusZ: { min: -4000, max: 2000 },
+    push: { min: 0.3, max: 4 }, handheld: { min: 0, max: 1 }, dof: { min: 0, max: 1 }, focus: { character: true }, focusZ: { min: -4000, max: 2000 }, travel: { min: -40000, max: 40000 },
     vignette: { min: 0, max: 1 }, letterbox: { min: 0, max: 1 },
   },
   // Story camera shots (S6): a camera key from a beat; with dur, the previous framing comes back after it.

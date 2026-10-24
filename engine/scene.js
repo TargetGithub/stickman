@@ -4,6 +4,7 @@
 // which keeps the v2 order inside it. Pure: the renderer gives it the frame's data and draws the result.
 
 import { depthOrder, depthAt, zOf, LAYER_Z } from "./depth.js";
+import { relativeZ } from "./road.js";
 
 /** Node kinds in the order they draw when they share a z. */
 export const NODE_KINDS = ["piece", "extras", "shadow", "character", "stage"];
@@ -17,11 +18,20 @@ export const NODE_KINDS = ["piece", "extras", "shadow", "character", "stage"];
  * @param {Map<string, number>} o.placementZ  character id → the z it was placed at
  * @param {number} o.storyT  scene story time of the frame
  * @param {object} o.depth  the scene's depth settings (depthOf)
+ * @param {number} [o.travel]  the lens travel (road.js): pieces keep their world z, so they draw at z - travel
  * @returns {Array<{ kind:string, z:number, ref:any }>}  far to near; the "stage" node is the z = 0 group
  */
-export function sceneNodes({ chars, pieces, extras, depthEvents, placementZ, storyT, depth }) {
+export function sceneNodes({ chars, pieces, extras, depthEvents, placementZ, storyT, depth, travel = 0 }) {
   const nodes = [];
-  for (const p of pieces) nodes.push({ kind: "piece", z: zOf(p, depth), ref: p });
+  for (const p of pieces) {
+    if (!travel && !p.generated) {
+      nodes.push({ kind: "piece", z: zOf(p, depth), ref: p });
+      continue;
+    }
+    // Travelling (road.js): world depth less the travel; pieces that have passed the camera are not drawn.
+    const z = relativeZ(typeof p.z === "number" ? p.z : LAYER_Z[p.layer ?? "mid"] ?? 0, travel, depth);
+    if (z !== null) nodes.push({ kind: "piece", z, ref: p });
+  }
   const layers = new Set(extras.map((e) => e.layer ?? "back"));
   for (const layer of ["back", "mid", "front"]) if (layers.has(layer)) nodes.push({ kind: "extras", z: LAYER_Z[layer], ref: layer });
   for (const c of chars) {

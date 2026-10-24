@@ -191,6 +191,9 @@ export function checkStory(story, catalog, moves) {
     if (sceneIds.has(scene.id)) out.push(issue("E_REF_DUPLICATE", `scenes[${si}].id`, `Scene id '${scene.id}' is used twice.`, "Give every scene a unique id."));
     sceneIds.add(scene.id);
     crowdIssues(scene.extras, `scenes[${si}]`, catalog, out, new Set((scene.cast || []).map((c) => c.id)));
+    (scene.roadside?.objects || []).forEach((o, k) => {
+      if (!catalog.objects?.[o]) out.push(issue("E_OBJECT_UNKNOWN", `scenes[${si}].roadside.objects[${k}]`, `Unknown object '${o}'.`, `Use one of: ${Object.keys(catalog.objects || {}).join(", ")}.`));
+    });
     (scene.beats || []).forEach((b, bi) => {
       if (!b.id) return;
       if (beatScene.has(b.id) && beatScene.get(b.id) !== si) {

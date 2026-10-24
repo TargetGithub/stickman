@@ -266,6 +266,8 @@ export function simulate(script, catalog, opts = {}) {
       pace: world.pace, // ADR-038: null without a pace
       light: flat.depth ? (flat.scene.light ?? flat.location?.light ?? null) : null, // V3.3: the scene's light rig choice
       lens: flat.depth ? flat.scene.lens ?? null : null, // V3.4: the lens the scene starts with
+      road: flat.depth ? flat.scene.road ?? null : null, // task 10a (road.js): a road drawn in perspective
+      roadside: flat.depth ? flat.scene.roadside ?? null : null, // and set pieces repeated along it
       extras: story.legacy ? [] : planExtras(flat.scene, flat.location, catalog, meta.seed ?? 1, flat.meta.stageWidth),
     });
   }

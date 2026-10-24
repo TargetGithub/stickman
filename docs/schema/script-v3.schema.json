@@ -591,7 +591,7 @@
                 },
                 "z": {
                   "type": "number",
-                  "minimum": -4000,
+                  "minimum": -40000,
                   "maximum": 2000,
                   "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
                 }
@@ -1097,7 +1097,7 @@
                     },
                     "z": {
                       "type": "number",
-                      "minimum": -4000,
+                      "minimum": -40000,
                       "maximum": 2000,
                       "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
                     },
@@ -1167,7 +1167,7 @@
                     },
                     "z": {
                       "type": "number",
-                      "minimum": -4000,
+                      "minimum": -40000,
                       "maximum": 2000,
                       "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
                     }
@@ -1451,6 +1451,12 @@
                       "maximum": 1,
                       "description": "Cinema bars: 1 crops to 2.39:1."
                     },
+                    "travel": {
+                      "type": "number",
+                      "minimum": -40000,
+                      "maximum": 40000,
+                      "description": "Travel through depth, px: the camera and the characters move together, + toward the camera (the world recedes behind them), - away from it (the world comes toward them and slides past). Set pieces keep their z."
+                    },
                     "lag": {
                       "type": "number",
                       "minimum": 0,
@@ -1660,7 +1666,7 @@
                               "properties": {
                                 "z": {
                                   "type": "number",
-                                  "minimum": -4000,
+                                  "minimum": -40000,
                                   "maximum": 2000,
                                   "description": "Depth in px: 0 the stage line, positive toward the camera, negative away (checked against the scene's depth range: E_DEPTH_RANGE)."
                                 },
@@ -1853,9 +1859,9 @@
                   },
                   "far": {
                     "type": "number",
-                    "minimum": -4000,
+                    "minimum": -40000,
                     "maximum": 0,
-                    "description": "Farthest z a node may have."
+                    "description": "Farthest z a node may have (a road scene that travels far wants -20000 or so)."
                   },
                   "focal": {
                     "type": "number",
@@ -2069,9 +2075,103 @@
                     "maximum": 1,
                     "description": "Cinema bars: 1 crops to 2.39:1."
                   },
+                  "travel": {
+                    "type": "number",
+                    "minimum": -40000,
+                    "maximum": 40000,
+                    "description": "Travel through depth, px: the camera and the characters move together, + toward the camera (the world recedes behind them), - away from it (the world comes toward them and slides past). Set pieces keep their z."
+                  },
                   "autoFocus": {
                     "type": "boolean",
                     "description": "Close-ups, over-the-shoulder shots and two-shots pull focus by themselves (default true)."
+                  }
+                }
+              },
+              "road": {
+                "type": "object",
+                "additionalProperties": false,
+                "description": "A road on the ground running into the distance (with a ground plane from the horizon down). {} takes every default.",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "description": "World x of the road's centre (default: the middle of the stage)."
+                  },
+                  "width": {
+                    "type": "number",
+                    "minimum": 100,
+                    "maximum": 2000,
+                    "description": "Road width, px (default 520)."
+                  },
+                  "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "edge": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "ground": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$",
+                    "description": "The ground plane's colour (default: the theme's ground)."
+                  },
+                  "line": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                      },
+                      {
+                        "const": null
+                      }
+                    ],
+                    "description": "Centre dash colour, or null for none."
+                  }
+                }
+              },
+              "roadside": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "objects"
+                ],
+                "description": "Set pieces repeated along the road every `every` px of depth, chosen by the seed from `objects`, so a walk can go on as long as the story needs.",
+                "properties": {
+                  "objects": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 8,
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]{0,31}$"
+                    },
+                    "description": "Catalog objects to repeat (trees, lamp posts, bushes, flowers...; E_OBJECT_UNKNOWN)."
+                  },
+                  "every": {
+                    "type": "number",
+                    "minimum": 200,
+                    "maximum": 4000,
+                    "description": "Depth px between pieces on a side (default 800)."
+                  },
+                  "offset": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 3000,
+                    "description": "Distance from the road centre, px (default: half the road width + 160)."
+                  },
+                  "side": {
+                    "enum": [
+                      "both",
+                      "left",
+                      "right"
+                    ],
+                    "description": "Which side of the road (default both)."
+                  },
+                  "reach": {
+                    "type": "number",
+                    "minimum": 1000,
+                    "maximum": 40000,
+                    "description": "How far down the road pieces are drawn, px of depth (default 9000; farther costs render time)."
                   }
                 }
               },

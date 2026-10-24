@@ -199,9 +199,10 @@ export function drawCharacter(ctx, j, style) {
       ctx.stroke();
     }
   }
-  if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth, jiggle: jiggleAt(s), ...(bend ? { spineBend: bend, facing: s.facing } : {}) });
+  // From behind (hideFace) the belly patch is on the far side; outfits still show.
+  if (s.look?.outfit && !(s.hideFace && s.look.outfit === "belly")) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth, jiggle: jiggleAt(s), ...(bend ? { spineBend: bend, facing: s.facing } : {}) });
   if (acc.bowtie) drawBowtie(ctx, j, headR, acc.bowtie, s.facing);
-  if (acc.whistle) drawWhistle(ctx, j, headR, acc.whistle, s.facing);
+  if (acc.whistle && !s.hideFace) drawWhistle(ctx, j, headR, acc.whistle, s.facing);
   drawHead(ctx, j, headR, lw, s, s.facing);
   strokeGroup(ctx, [[j.rHip || j.hip, j.rKnee, j.rFoot]], s.color, lw, s);
   if (prop && s.prop.data.grip === "rHand") heldProp(ctx, s, prop);

@@ -16,6 +16,8 @@ import { contactShadow, castShadow, fogAt, fogVeils, rgbText } from "../lighting
 import { blurFor } from "../camera3.js";
 import { blurLayer } from "./lens_draw.js";
 import { STAGE } from "../config.js";
+import { roadOf, roadsidePieces } from "../road.js";
+import { drawRoad } from "./road_draw.js";
 
 /** Draw inside the depth transform of a node whose feet stand at world x. */
 export function withDepth(ctx, z, x, cam, depth, draw) {
@@ -43,7 +45,7 @@ export function drawContactShadow(ctx, c) {
  * @param {object} sv  scene view with depth, depthEvents (Map id → events), placementZ (Map), extras
  */
 export function frameNodes(sv, f, chars, pieces) {
-  return sceneNodes({ chars, pieces, extras: sv.extras, depthEvents: sv.depthEvents, placementZ: sv.placementZ, storyT: f.storyT - (sv.storyStart ?? 0), depth: sv.depth });
+  return sceneNodes({ chars, pieces, extras: sv.extras, depthEvents: sv.depthEvents, placementZ: sv.placementZ, storyT: f.storyT - (sv.storyStart ?? 0), depth: sv.depth, travel: sv.travel ?? 0 });
 }
 
 /**
@@ -64,7 +66,11 @@ export function projectedChars(chars, depths, cam, depth) {
  */
 export function drawDepthWorld(ctx0, r, f, chars, sv, pieces, { stage, character }) {
   const cam = f.cam;
-  const nodes = frameNodes(sv, f, chars, pieces);
+  // Travelling (task 10a, road.js): the road on the ground, and roadside pieces repeated along it.
+  const road = sv.road ? roadOf(sv, sv.stageWidth) : null;
+  if (road) drawRoad(ctx0, road, sv.travel ?? 0, cam, sv.depth, road.ground ?? r.catalog.themes[sv.theme]?.ground?.color);
+  const all = sv.roadside ? [...pieces, ...roadsidePieces(sv.roadside, road, sv.travel ?? 0, sv.depth, r.seed, sv.stageWidth / 2)] : pieces;
+  const nodes = frameNodes(sv, f, chars, all);
   const depths = characterDepths(nodes);
   const rig = r.frameLight;
   // Fog by depth (V3.3): veils between the nodes so everything behind a node is fogged by its depth.

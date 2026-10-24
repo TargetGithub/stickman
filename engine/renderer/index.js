@@ -178,7 +178,7 @@ export function renderScene(r, ctx, n) {
   // A v3 scene draws through its lens (V3.4): a moved camera, tilt and roll on the frame, depth of field.
   const lens = sv0.depth ? frameLens(r, sv0, f0) : null;
   const f = lens ? { ...f0, cam: lens.lc.cam } : f0;
-  const sv = lens ? { ...sv0, depth: lens.lc.depth } : sv0;
+  const sv = lens ? { ...sv0, depth: lens.lc.depth, travel: lens.L.travel } : sv0; // travel: road.js (task 10a)
   const g = lens?.matrix ? framedContext(ctx, lens.matrix) : ctx;
   r.frameDof = lens?.dof ?? null;
   const cam = f.cam;
