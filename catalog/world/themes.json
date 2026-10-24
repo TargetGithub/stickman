@@ -1269,5 +1269,46 @@
       }
     ],
     "characterBg": "#3a4a34"
+  },
+  "baaaana_meadow": {
+    "description": "Baaaana Meadow: hills, mushroom houses, flowers.",
+    "tags": ["story", "outdoor", "village", "day", "baaaana"],
+    "sky": { "top": "#8fd3ff", "bottom": "#eaf8ff" },
+    "ground": { "color": "#8ccf6e", "line": "#64a352" },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.2,
+        "y": 0.16,
+        "r": 72,
+        "color": "#fff6c8",
+        "glow": "rgba(255, 246, 200, 0.45)"
+      },
+      { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.95)", "count": 6, "top": 0.06, "band": 0.2 },
+      { "kind": "hills", "factor": 0.15, "color": "#a7dc8e", "height": 230, "step": 320 },
+      { "kind": "hills", "factor": 0.3, "color": "#8ccf6e", "height": 150, "step": 240 },
+      {
+        "kind": "mushroom_huts",
+        "factor": 0.45,
+        "size": 150,
+        "spacing": 420,
+        "caps": ["#e4573d", "#ff8c42", "#c86bfa", "#ff6fa8"],
+        "stems": ["#f6ead2", "#efe0c4"],
+        "doors": ["#8a5a3c", "#5a7fd6", "#4f9d69"],
+        "spots": "#fff8ec",
+        "window": "#ffe7a3",
+        "y": -40
+      },
+      { "kind": "bushes", "factor": 0.8, "color": "#5aa64e", "spacing": 480, "size": 64 },
+      {
+        "kind": "meadow_flowers",
+        "spacing": 70,
+        "size": 9,
+        "depth": 90,
+        "colors": ["#ff7eb6", "#ffd166", "#ffffff", "#c38bff", "#ff8c42"]
+      }
+    ],
+    "characterBg": "#6cb35a"
   }
 }

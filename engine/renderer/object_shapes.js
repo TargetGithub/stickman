@@ -8,6 +8,7 @@ import { TRAVEL_SHAPES } from "./object_shapes_travel.js";
 import { FORT_SHAPES } from "./object_shapes_fort.js";
 import { SEA_SHAPES } from "./object_shapes_sea.js";
 import { HEIGHT_SHAPES } from "./object_shapes_heights.js";
+import { MEADOW_SHAPES } from "./object_shapes_meadow.js";
 
 export const SHAPES = {
   bench(ctx, c) {
@@ -270,6 +271,7 @@ export const SHAPES = {
   ...FORT_SHAPES,
   ...SEA_SHAPES,
   ...HEIGHT_SHAPES, // task 10b: platforms to climb
+  ...MEADOW_SHAPES, // task 9: Baaaana set pieces
 };
 
 function wheel(ctx, x, y, r, turn, color, spokes = false) {

@@ -37,6 +37,7 @@
 | gloom_castle_gate | #4a4060 | bright: light blue, yellow, orange, pink, white | Gloom Castle on its cliff: dark purple-grey stone, two towers topped with curly horns, a huge round door, a giant grey moon behind. |
 | grey_moon | #4a4a56 | bright: light blue, yellow, orange, pink, white | Standing on the giant Grey Moon: grey dust and round craters, a black starry sky, and far below a tiny glowing valley with a tree. |
 | banyan_moon | #3a4a34 | bright: light blue, yellow, orange, pink, white | Banyan hill at night under the huge full Grey Moon: the giant banyan, its crystal sockets, a cold grey light. |
+| baaaana_meadow | #6cb35a | strong or dark: red, blue, purple, dark green, black | Baaaana Meadow: hills, mushroom houses, flowers. |
 
 Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (scene or location `time`, `weather`).
 
@@ -119,6 +120,15 @@ Time: dawn, day, dusk, night. Weather: clear, cloudy, rain, snow, wind, fog (sce
 | rainbow_shield | static | - | A pulsing dome of rainbow light that protects whoever stands inside it. |
 | garden_wall | platform | - | A brick wall to climb and stand on. |
 | lookout_tower | platform | - | A lookout tower: ladder, deck, roof. |
+| trumpet | holdable | - | A brass trumpet. |
+| triangle | holdable | - | A little triangle. |
+| pillow | holdable | - | A puffy pillow. |
+| watering_can | holdable | - | A watering can. |
+| picnic_blanket | static | - | A picnic blanket. |
+| cake | static | - | A birthday cake. |
+| camera_tripod | static | - | A camera on a tripod. |
+| yoga_mat | static | - | A yoga mat. |
+| mushroom_hut | static | - | A mushroom house. |
 
 Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).
 

@@ -425,5 +425,120 @@
     "deck": [-95, 95],
     "climbAt": -135,
     "colors": { "wood": "#a8743f", "dark": "#7a5230", "roof": "#d9534f" }
+  },
+  "trumpet": {
+    "description": "A brass trumpet.",
+    "tags": ["holdable", "music", "band", "baaaana"],
+    "behavior": "holdable",
+    "draw": "held",
+    "use": { "sfx": "pop" },
+    "hold": {
+      "kind": "trumpet",
+      "shape": "trumpet",
+      "len": 46,
+      "width": 16,
+      "gripAt": 0.1,
+      "grip": "rHand",
+      "color": "#e6b84a",
+      "trim": "#b8862f",
+      "hitRadius": 10
+    }
+  },
+  "triangle": {
+    "description": "A little triangle.",
+    "tags": ["holdable", "music", "band", "baaaana"],
+    "behavior": "holdable",
+    "draw": "held",
+    "use": { "sfx": "pop" },
+    "hold": {
+      "kind": "triangle",
+      "shape": "triangle",
+      "len": 24,
+      "width": 14,
+      "gripAt": 0.1,
+      "grip": "lHand",
+      "color": "#cfd6df",
+      "trim": "#8a93a6",
+      "hitRadius": 8
+    }
+  },
+  "pillow": {
+    "description": "A puffy pillow.",
+    "tags": ["holdable", "play", "soft", "baaaana"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": {
+      "kind": "pillow",
+      "shape": "pillow",
+      "len": 54,
+      "width": 30,
+      "gripAt": 0.08,
+      "grip": "rHand",
+      "color": "#ffd6e8",
+      "trim": "#ff9ac2",
+      "hitRadius": 22
+    }
+  },
+  "watering_can": {
+    "description": "A watering can.",
+    "tags": ["holdable", "garden", "baaaana"],
+    "behavior": "holdable",
+    "draw": "held",
+    "hold": {
+      "kind": "watering_can",
+      "shape": "watering_can",
+      "len": 56,
+      "width": 26,
+      "gripAt": 0.15,
+      "grip": "rHand",
+      "color": "#5aa9e6",
+      "trim": "#3d7fb8",
+      "hitRadius": 14
+    }
+  },
+  "picnic_blanket": {
+    "description": "A picnic blanket.",
+    "tags": ["picnic", "outdoor", "baaaana"],
+    "behavior": "static",
+    "draw": "picnic_blanket",
+    "w": 420,
+    "h": 40,
+    "colors": { "cloth": "#ffffff", "check": "#e45b5b" }
+  },
+  "cake": {
+    "description": "A birthday cake.",
+    "tags": ["food", "party", "baaaana"],
+    "behavior": "static",
+    "draw": "cake",
+    "w": 120,
+    "h": 90,
+    "colors": { "sponge": "#f5d7a1", "icing": "#ff9ac2", "candle": "#7fb8ff" }
+  },
+  "camera_tripod": {
+    "description": "A camera on a tripod.",
+    "tags": ["photo", "baaaana"],
+    "behavior": "static",
+    "draw": "camera_tripod",
+    "w": 110,
+    "h": 190,
+    "colors": { "legs": "#3b3b44", "body": "#2b2f3a", "lens": "#7fd8ff" }
+  },
+  "yoga_mat": {
+    "description": "A yoga mat.",
+    "tags": ["exercise", "calm", "baaaana"],
+    "behavior": "static",
+    "draw": "yoga_mat",
+    "w": 260,
+    "h": 14,
+    "colors": { "mat": "#8fd3c8" }
+  },
+  "mushroom_hut": {
+    "description": "A mushroom house.",
+    "tags": ["building", "village", "baaaana"],
+    "behavior": "static",
+    "draw": "mushroom_hut",
+    "w": 300,
+    "h": 330,
+    "colors": { "cap": "#e4573d", "stem": "#f6ead2", "spots": "#fff8ec", "door": "#8a5a3c", "window": "#ffe7a3" }
   }
 }
