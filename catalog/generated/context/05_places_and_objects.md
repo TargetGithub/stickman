@@ -132,7 +132,7 @@ Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, g
 | blaster | blaster | A toy-style blaster that shoots. |
 
 ## Extras (location or scene `extras`: `[{ "count": 1-12, "behavior", "layer": "back" }]`)
-Behaviors: walk_by, idle_chat, cheer, flee. Layers: back, mid, front.
+Behaviors: walk_by, idle_chat, cheer, flee, copy_leader, conga, sync_dance, wave, pile_on, scatter_giggle. Layers: back, mid, front.
 
 ## World commands for places and objects
 

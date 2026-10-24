@@ -188,12 +188,12 @@ test("@montage: one short scene per clip, cut together", () => {
   for (const sc of sim.scenes) assert.ok(Math.abs(sc.frames / 60 - 2.5) < 0.05, `${sc.id}: ${sc.frames} frames`);
 });
 
-test("extras: seeded plans per scene, at most 12, never in the simulation", () => {
+test("extras: seeded plans per scene, at most 40, never in the simulation", () => {
   const s = story(["stickman", "slim"], [{ at: 0.3, who: "a", do: "wave" }]);
-  s.locations[0].extras = [{ count: 10, behavior: "walk_by" }, { count: 8, behavior: "cheer", layer: "front" }];
+  s.locations[0].extras = [{ count: 30, behavior: "walk_by" }, { count: 20, behavior: "cheer", layer: "front" }];
   const a = run(s);
   const b = run(s);
-  assert.equal(a.scenes[0].extras.length, 12);
+  assert.equal(a.scenes[0].extras.length, 40);
   assert.deepEqual(a.scenes[0].extras, b.scenes[0].extras);
   assert.equal(a.beats.length, b.beats.length);
   assert.deepEqual(run(story(["stickman", "slim"], [{ at: 0.3, who: "a", do: "wave" }])).events.map((e) => e.type), a.events.map((e) => e.type));

@@ -190,7 +190,7 @@ export function checkStory(story, catalog, moves) {
   story.scenes.forEach((scene, si) => {
     if (sceneIds.has(scene.id)) out.push(issue("E_REF_DUPLICATE", `scenes[${si}].id`, `Scene id '${scene.id}' is used twice.`, "Give every scene a unique id."));
     sceneIds.add(scene.id);
-    crowdIssues(scene.extras, `scenes[${si}]`, catalog, out);
+    crowdIssues(scene.extras, `scenes[${si}]`, catalog, out, new Set((scene.cast || []).map((c) => c.id)));
     (scene.beats || []).forEach((b, bi) => {
       if (!b.id) return;
       if (beatScene.has(b.id) && beatScene.get(b.id) !== si) {
@@ -288,9 +288,17 @@ export function checkStory(story, catalog, moves) {
   return out;
 }
 
-/** Extras entries naming an unknown crowd kind (E_CROWD_UNKNOWN). */
-function crowdIssues(extras, path, catalog, out) {
+/**
+ * Extras entries naming an unknown crowd kind (E_CROWD_UNKNOWN), a crowd behaviour without the leader it needs,
+ * or a leader who is not placed in the scene (E_EXTRAS_LEADER; `placed` is null for location extras).
+ */
+function crowdIssues(extras, path, catalog, out, placed = null) {
   (extras || []).forEach((e, k) => {
+    if ((e.behavior === "copy_leader" || e.behavior === "conga") && !e.leader) {
+      out.push(issue("E_EXTRAS_LEADER", `${path}.extras[${k}].leader`, `${e.behavior} needs a leader.`, `Add "leader": "<cast id>" (a character placed in the scene).`));
+    } else if (e.leader && placed && !placed.has(e.leader)) {
+      out.push(issue("E_EXTRAS_LEADER", `${path}.extras[${k}].leader`, `Leader '${e.leader}' is not placed in this scene.`, `Use one of: ${[...placed].join(", ")}.`));
+    }
     if (e.crowd && catalog.crowds && !catalog.crowds[e.crowd]) {
       out.push(issue("E_CROWD_UNKNOWN", `${path}.extras[${k}].crowd`, `Unknown crowd '${e.crowd}'.`, `Use one of: ${(catalog.crowdNames || []).join(", ")}.`));
     }

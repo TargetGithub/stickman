@@ -589,14 +589,20 @@
                 "count": {
                   "type": "integer",
                   "minimum": 1,
-                  "maximum": 12
+                  "maximum": 40
                 },
                 "behavior": {
                   "enum": [
                     "walk_by",
                     "idle_chat",
                     "cheer",
-                    "flee"
+                    "flee",
+                    "copy_leader",
+                    "conga",
+                    "sync_dance",
+                    "wave",
+                    "pile_on",
+                    "scatter_giggle"
                   ]
                 },
                 "layer": {
@@ -617,6 +623,21 @@
                 "crowd": {
                   "type": "string",
                   "description": "A crowd kind (catalog crowds): seeded looks with faces instead of soft grey extras."
+                },
+                "leader": {
+                  "type": "string",
+                  "description": "copy_leader and conga: the cast id they copy or follow; pile_on and scatter_giggle: who they pile on or scatter from."
+                },
+                "at": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Scene seconds when the crowd behaviour starts (scatter_giggle: else the first hit)."
+                },
+                "bpm": {
+                  "type": "number",
+                  "minimum": 60,
+                  "maximum": 200,
+                  "description": "sync_dance: beats per minute (default 120)."
                 }
               }
             }
@@ -994,14 +1015,20 @@
                     "count": {
                       "type": "integer",
                       "minimum": 1,
-                      "maximum": 12
+                      "maximum": 40
                     },
                     "behavior": {
                       "enum": [
                         "walk_by",
                         "idle_chat",
                         "cheer",
-                        "flee"
+                        "flee",
+                        "copy_leader",
+                        "conga",
+                        "sync_dance",
+                        "wave",
+                        "pile_on",
+                        "scatter_giggle"
                       ]
                     },
                     "layer": {
@@ -1022,6 +1049,21 @@
                     "crowd": {
                       "type": "string",
                       "description": "A crowd kind (catalog crowds): seeded looks with faces instead of soft grey extras."
+                    },
+                    "leader": {
+                      "type": "string",
+                      "description": "copy_leader and conga: the cast id they copy or follow; pile_on and scatter_giggle: who they pile on or scatter from."
+                    },
+                    "at": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Scene seconds when the crowd behaviour starts (scatter_giggle: else the first hit)."
+                    },
+                    "bpm": {
+                      "type": "number",
+                      "minimum": 60,
+                      "maximum": 200,
+                      "description": "sync_dance: beats per minute (default 120)."
                     }
                   }
                 }
@@ -1928,7 +1970,13 @@
         "walk_by",
         "idle_chat",
         "cheer",
-        "flee"
+        "flee",
+        "copy_leader",
+        "conga",
+        "sync_dance",
+        "wave",
+        "pile_on",
+        "scatter_giggle"
       ],
       "cameraMode": [
         "follow",

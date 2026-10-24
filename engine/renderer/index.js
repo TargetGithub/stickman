@@ -206,6 +206,7 @@ export function renderScene(r, ctx, n) {
   }
   if (lens?.bgBlur) blurFrame(g, r, lens.bgBlur); // the far background out of focus (V3.4)
   const chars = charsAt(r, n);
+  r.frameN = n; // crowd behaviours read the leader's earlier frames (crowd_moves.js)
   const worldTransform = [cam.zoom, 0, 0, cam.zoom, W / 2 + (cam.shakeX - cam.x) * cam.zoom, H / 2 + (cam.shakeY - cam.y) * cam.zoom];
   const comp = r.motion ? composeAt(r.motion, f.videoT, (p, space) => motionAnchor(r, sv, f, chars, p, space, cam)) : null;
   const motionView = comp && { W, H, worldTransform, styles: r.catalog.textStyles, shapes: new Map((r.sim.story.shapes || []).map((x) => [x.id, x])) };

@@ -29,7 +29,7 @@ export const V2_ENUMS = {
   mood: ["happy", "playful", "calm", "sad", "tense", "mysterious", "heroic", "battle", "boss", "triumphant", "lullaby"], // catalog
   ambience: ["none", "city_traffic", "park_birds", "rain", "wind", "crowd_murmur", "cave_drip"], // catalog
   bubble: ["speech", "think", "shout", "whisper"],
-  extrasBehavior: ["walk_by", "idle_chat", "cheer", "flee"],
+  extrasBehavior: ["walk_by", "idle_chat", "cheer", "flee", "copy_leader", "conga", "sync_dance", "wave", "pile_on", "scatter_giggle"],
   cameraMode: ["follow", "focus", "fixed", "pan", "push", "two_shot", "close_up", "wide", "over_shoulder", "track"],
   beatMacro: ["dialogue", "activity", "walk_together", "travel", "enter", "exit", "fight", "gauntlet", "brawl", "chase", "defeat", "grief"],
   sceneMacro: ["fight_card", "montage"],

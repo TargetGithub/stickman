@@ -19,7 +19,7 @@ export const PACK_FILES = {
   "04_effects_and_sound.md": { tier: "reference", budget: 5000 },
   "05_places_and_objects.md": { tier: "core", budget: 12000 },
   "06_story_tools.md": { tier: "core", budget: 12000 },
-  "07_rules_and_codes.md": { tier: "core", budget: 10000 },
+  "07_rules_and_codes.md": { tier: "core", budget: 10500 }, // 10000 until the Baaaana codes (2026-10-24)
   "08_examples.md": { tier: "reference", budget: 12000 },
 };
 

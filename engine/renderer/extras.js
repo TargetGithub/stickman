@@ -15,6 +15,7 @@ import { blinkAt } from "./face.js";
 import { idleGazeAt } from "./lively.js";
 import { drawLookBehind, drawLookFront } from "./accessories_more.js";
 import { drawFront } from "./accessories.js";
+import { crowdState, copyJoints } from "./crowd_moves.js";
 
 const CROWD_FACE = { cheer: "laugh", gasp: "surprised", talk: "happy", walk: "happy", run: "happy", idle: "happy" };
 
@@ -25,7 +26,7 @@ function drawMember(ctx, r, e, j, s, alpha, f) {
   const look = r.crowdLooks.get(e.id);
   const plan = bodyPlan(r.catalog, e.plan);
   const style = r.catalog.bodies?.[e.plan];
-  const faceName = CROWD_FACE[s.move] || "happy";
+  const faceName = s.face && r.catalog.faces?.[s.face] ? s.face : CROWD_FACE[s.move] || "happy";
   const c = { j, scale: e.scale, facing: s.facing, alpha: 0.95 * alpha, dims: plan.dims };
   drawLookBehind(ctx, c, look);
   drawCharacter(ctx, j, {
@@ -91,13 +92,18 @@ export function drawExtras(ctx, r, sv, f, layer, plain = false) {
   const place = plain ? (ctx2, _layer, _x, draw) => draw(1) : withLayer;
   for (const e of sv.extras) {
     if (e.layer !== layer) continue;
-    const s = extraState(e, t, sv.reactions);
-    const def = s && r.sim.extraMoves?.[s.move];
-    if (!def) continue;
+    const crowd = crowdState(e, t, r, f, sv.reactions);
+    const s = crowd === undefined ? extraState(e, t, sv.reactions) : crowd;
     const plan = bodyPlan(r.catalog, e.plan);
-    const pose = samplePoseKeys(def.keys, Math.max(0, Math.min(1, s.u)));
-    const probe = computeJoints(pose, { x: s.x, y: 0 }, s.facing, e.scale, plan.dims);
-    const j = computeJoints(pose, { x: s.x, y: STAGE.groundY - lowestPoint(probe, e.scale, plan.dims) }, s.facing, e.scale, plan.dims);
+    let j;
+    if (s?.copy) j = copyJoints(s.copy, e, plan.dims, s);
+    else {
+      const def = s && r.sim.extraMoves?.[s.move];
+      if (!def) continue;
+      const pose = samplePoseKeys(def.keys, Math.max(0, Math.min(1, s.u)));
+      const probe = computeJoints(pose, { x: s.x, y: 0 }, s.facing, e.scale, plan.dims);
+      j = computeJoints(pose, { x: s.x, y: STAGE.groundY - (s.lift ?? 0) - lowestPoint(probe, e.scale, plan.dims) }, s.facing, e.scale, plan.dims);
+    }
     const style = r.catalog.bodies?.[e.plan];
     if (e.look) {
       place(ctx, layer, s.x, (alpha) => drawMember(ctx, r, e, j, s, alpha, f));

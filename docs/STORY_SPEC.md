@@ -217,7 +217,7 @@ The full list of names lives in `engine/validator/v2_names.js` and the schema's 
 | Camera modes | v1 (`follow`, `focus`, `fixed`, `pan`, `push`) plus `two_shot`, `close_up`, `wide`, `over_shoulder` (with `from`), `track` |
 | Moods | `happy`, `playful`, `calm`, `sad`, `tense`, `mysterious`, `heroic`, `battle`, `boss`, `triumphant`, `lullaby` |
 | Ambience | `none`, `city_traffic`, `park_birds`, `rain`, `wind`, `crowd_murmur`, `cave_drip` |
-| Extras behaviors | `walk_by`, `idle_chat`, `cheer`, `flee` |
+| Extras behaviors | `walk_by`, `idle_chat`, `cheer`, `flee`, and (2026-10-24) `copy_leader`, `conga`, `sync_dance`, `wave`, `pile_on`, `scatter_giggle` with `leader`, `at`, `bpm` |
 | Beat macros | `dialogue`, `activity`, `walk_together`, `travel`, `enter`, `exit`, `fight`, `gauntlet`, `brawl`, `chase`, `defeat`, `grief` |
 | Scene macros | `fight_card`, `montage` (each expands into several scenes) |
 | Defeat styles | `ko`, `faint`, `vanish`, `ghost` (`general` only), `captured`, `flee`, `petrify` (A3) |
@@ -667,6 +667,7 @@ The engine stays **family friendly and gore free**. Stories may include loss and
   `{ "count": 6, "layer": "back", "behavior": "walk_by" | "idle_chat" | "cheer" | "flee" }`.
   They use seeded colors and body plans and do not need cast entries. They are rendered with reduced detail so they never compete with the leads.
 - **Crowd kinds** (2026-10-24): an extras entry may name `crowd` (a `characters/crowds.json` entry such as `baaaana_crowd`); each member then gets a seeded look (body plan, shade, height, sprout, mouth, belly, maybe one accent) from `deriveRng(seed, "crowd:<scene>:<entry>:<i>")` and is drawn with an outline, accessories and a face that reacts (laugh when cheering, surprised on a gasp).
+- **Crowd behaviours** (2026-10-24, Baaaana task 7, `renderer/crowd_moves.js`): `copy_leader` copies the `leader`'s stored pose a beat late (0.15-0.55 s, seeded per member; about one in seven mirrored), standing in place; `conga` follows the leader's path in a line (member k is (k+1) x 0.3 s behind and (k+1) x 70 px back, scaled); `sync_dance` dances dance_a and dance_b by the bar to `bpm` (default 120; about one in five a little off the beat); `wave` runs a stadium wave across the area (1100 px/s, every 4.5 s, a 0.9 s hop); `pile_on` runs to the leader (or the middle of the area) and lies down in a heap (rows of 4, 3, 2, 1); `scatter_giggle` runs off from the leader (or the middle) for 0.9 s, turns round and laughs. All start at `at` (scene seconds; `scatter_giggle` without `at`: the first hit). Up to 40 extras per scene.
 - **Crowds** (the v1 `crowd` layer kind) gain reactions tied to events: cheering on hits, gasping on a defeat.
 - **As built (S6):** a scene uses its own `extras`, else its location's, up to 12. `from`/`to` set their area (default: the whole stage). Extras are seeded per scene (colour from a soft palette, body plan, place, pace) and posed by the renderer from the scene time: `walk_by` walks across and around again, `idle_chat` stands in pairs taking turns to talk, `cheer` watches and cheers for 1.2 s after each hit and gasps after a defeat, `flee` stands about until the first hit or defeat and then runs off. They have no face or outline, are never simulated, and cost nothing in the frame store. Back-layer characters and extras are drawn at 0.75 scale (75% opacity) before the mid set pieces; front-layer ones at 1.15 after the front set pieces. The `crowd` background layer bobs harder after hits and stops briefly after a defeat (story scripts only).
 
@@ -796,7 +797,7 @@ Other changes:
 |---|---|---|
 | Duration (max) | 180 s | 900 s for every script (v1 fight scripts too: raising the maximum keeps v1 scripts valid) |
 | Duration (minimum for generated videos) | none | stories 300 s, fight-only videos 180 s (decision 5). The validator warns (`W_STORY_SHORT`, `W_FIGHT_SHORT`); the generation pipeline treats it as a failed score |
-| Characters on stage | 6 | 8 named + 12 extras per scene; 16 in the cast |
+| Characters on stage | 6 | 8 named + 40 extras per scene (12 until 2026-10-24); 16 in the cast |
 | Beats | 200 | 4,000 after compilation; 600 authored |
 | Script size | 64 KB | 512 KB |
 | Scenes | 1 | 40; each at most 300 s |
@@ -925,6 +926,7 @@ This is the acceptance script for the story milestones, in the frozen v2 names. 
 | `E_ACTIVITY_OBJECT` | semantic | An activity's `object` is not in the scene, or is a kind the activity can't use |
 | `E_TRANSITION` | semantic | Unknown transition type or bad params |
 | `E_SCENE_EMPTY` | semantic | Scene with no beats and no duration |
+| `E_EXTRAS_LEADER` | semantic | `copy_leader` or `conga` extras without a `leader`, or a `leader` who is not placed in the scene |
 | `E_CROWD_UNKNOWN` | semantic | An extras entry's `crowd` is not a crowd kind in the catalog (`characters/crowds.json`) |
 | `E_THEME_UNKNOWN`, `E_REF_BEAT`, `E_REF_DUPLICATE` (v1 codes) | semantic | Also used for locations (unknown theme), references to a beat in another scene, and ids repeated across scenes; `E_REF_ANCHOR` for `{"on": "<macro>.<anchor>"}` with an anchor the macro does not have; `E_MOVE_PARAM` for `to` on a move that does not walk |
 | `E_DEFEAT_STYLE` | semantic | Defeat style not allowed for `meta.audience` |

@@ -8,6 +8,8 @@
 //   idle_chat  stands in pairs, taking turns to talk
 //   cheer      watches; cheers after hits, gasps after a defeat
 //   flee       stands about until the first hit or defeat, then runs off the nearer edge
+//   copy_leader, conga, sync_dance, wave, pile_on, scatter_giggle: crowd behaviours (renderer/crowd_moves.js),
+//              with `leader` (a cast id), `at` (scene seconds) and `bpm` on the entry
 // A scene uses its own `extras`, else its location's; at most LIMITS_V2.extras per scene.
 
 import { deriveRng } from "../math.js";
@@ -19,7 +21,7 @@ const PLANS = ["stickman", "stickman", "kid", "slim", "bulky", "elder", "buddy"]
 const COLORS = ["#8fa3b8", "#b89a8f", "#9fb89a", "#b5a1c4", "#c4bc95", "#94b5b3", "#c49aa8", "#a7a7a7"];
 
 /** Moves the renderer needs to pose extras. */
-export const EXTRA_MOVES = ["idle", "walk", "run", "talk", "cheer", "gasp"];
+export const EXTRA_MOVES = ["idle", "walk", "run", "talk", "cheer", "gasp", "dance_a", "dance_b", "jump_joy", "laugh", "lie_down"];
 
 /**
  * @param {object} scene  the (compiled) scene; location: its location entry (or null)
@@ -55,6 +57,10 @@ export function planExtras(scene, location, catalog, seed, stageWidth = STAGE.wi
         pair,
         lo,
         hi,
+        rank: i, // place in its entry (conga line, heap slot)
+        ...(e.leader ? { leader: e.leader } : {}),
+        ...(e.at !== undefined ? { at: e.at } : {}),
+        ...(e.bpm ? { bpm: e.bpm } : {}),
       });
     }
   }

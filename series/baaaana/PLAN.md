@@ -70,16 +70,19 @@ Each task is one session that ends with green tests and a commit, so we can stop
 | 4 | Livelier eyes (`lively`: darting pupils, camera glances, double blink), `big_grin` / `toothy` mouths, belly jiggle (plan `jiggle`) ★ **done 2026-10-24** | Faces + renderer | M | `out/demos/baaaana_t4_faces.png` (`node tools/baaaana_face_sheet.mjs`) |
 | 5 | Squash and stretch (jelly wobble on landing and bumps, step squash, air stretch, laugh shake) + sprout physics (trails motion, droops or perks with mood) on squishy plans ★ **done 2026-10-24** | Engine + renderer | L | `out/demos/baaaana_t5_motion.png` (`node tools/baaaana_motion_sheet.mjs`), clip `scripts/series/baaaana/t5_motion.json` |
 | 6 | `baaaana_crowd` crowd kind (`catalog/characters/crowds.json`) with seeded variation; extras take `"crowd": "baaaana_crowd"` and are drawn with faces; crowd sheet of 30 ★ **done 2026-10-24** | Catalog + engine | M | `out/demos/baaaana_t6_crowd.png` (`node tools/baaaana_crowd_sheet.mjs`), clip `scripts/series/baaaana/t6_crowd.json` |
-| 7 | Extras behaviours: `copy_leader`, `sync_dance`, `conga`, `wave`, `pile_on`, `scatter_giggle` | Engine + validator | L | unit tests + demo |
+| 7 | Extras behaviours: `copy_leader`, `sync_dance`, `conga`, `wave`, `pile_on`, `scatter_giggle` (with `leader`, `at`, `bpm`; up to 40 extras per scene; code `E_EXTRAS_LEADER`) **done 2026-10-24** | Engine + validator | L | unit tests + demo `out/demos/baaaana_t7_crowd/final.mp4` (`scripts/series/baaaana/t7_crowd_moves.json`) |
 | 8 | Group activities (10 listed above) + their moves | Catalog | L (split 8a/8b) | demo clip each |
 | 9 | Props and the `baaaana_meadow` theme ★ | SVG + catalog | M | place sheet approved |
 | 10 | Babble voice + giggle / ooh / gasp / raspberry SFX + a bouncy music mood | Audio | M | listen test |
+| 10a | **3D: walking toward and away from the camera.** A ground with perspective (a road or path narrowing to a vanishing point, markings that slide toward the camera), a camera that travels in depth with a walker (the walker keeps its size, the world streams past), and set pieces placed in depth that grow and slide out of frame as they pass. Walking away is the same in reverse | Engine + renderer | L | review clip ★ |
+| 10b | **3D: heights and climbing.** Set pieces with a top a character can stand on (ladder, stairs, tree, wall, rooftop); characters standing at a height; climbing up and down moves that really change height; jumping down | Engine | L | unit tests + demo |
+| 10c | **3D: vertical camera and parallax.** The camera follows a climber up and down; background layers move down as it rises, sky and far hills less than near things (and the reverse coming down) | Renderer | M | review clip ★ |
 | 11 | Idea bank: 12 standalone video ideas, about 20 min each = cold open + 4 segments of about 4.5 min + closing song (`series/baaaana/IDEAS.md`) | Docs | M | list reviewed |
 | 12 | First video script (cold open + 4 segment scripts + song), review render 720p 30 fps ★ | Script | L (split per segment) | approved |
 | 13 | First video final at 4K 60 fps, Short, thumbnail, channel art | Render | M | uploaded files ready |
 | 14 | Each further video on its own, picked from the idea bank (segment scripts, review render, final) | Script | L each | per video review |
 
-Order rationale: the look comes first (tasks 2-6) because everything else is judged by eye; crowd behaviour (7-8) is the one real engine gap; stories come after the assets exist so scripts don't ask for things we can't draw.
+Engine work (tasks 7, 8 and 10a-10c) happens on the `baaaana-engine` branch. Order rationale: the look comes first (tasks 2-6) because everything else is judged by eye; crowd behaviour (7-8) and movement in all three directions (10a-10c, Sridhar 2026-10-24: walking toward and away from the camera and climbing must move the world, not only side-scrolling) are the engine gaps; stories come after the assets exist so scripts don't ask for things we can't draw.
 
 ## 7. Decisions (Sridhar, 2026-10-23)
 

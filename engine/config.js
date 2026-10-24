@@ -70,7 +70,7 @@ export const LIMITS_V2 = {
   scenes: 40,
   cast: 16,
   onStage: 8,
-  extras: 12,
+  extras: 40, // 12 until the Baaaana crowd behaviours (2026-10-24)
   locations: 20,
   beatsAuthored: 600,
   beatsCompiled: 4000,

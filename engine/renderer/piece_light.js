@@ -13,17 +13,19 @@ import { STAGE } from "../config.js";
 
 const realOf = (ctx) => ctx.__real || ctx;
 
-/** Three scratch canvases (the piece, its eroded mask, a band) at least w x h, grown as needed. */
-function scratch(r, w, h) {
-  const s = r.pieceScratch;
-  if (s && s.w >= w && s.h >= h) return s;
-  const W = Math.max(w, s?.w ?? 0, 256);
-  const H = Math.max(h, s?.h ?? 0, 256);
+/**
+ * Three scratch canvases (the piece, its eroded mask, a band), made once at the largest size a piece can take:
+ * the frame grown by the 40 px pad on each side. A fixed size keeps frames independent of the pieces drawn
+ * before them (canvases grown as needed came out at sizes that depended on history, and Skia's filtering of
+ * the sub-pixel band copies varies with the canvas size).
+ */
+function scratch(r, W, H) {
+  if (r.pieceScratch && r.pieceScratch.w === W + 80 && r.pieceScratch.h === H + 80) return r.pieceScratch;
   const make = () => {
-    const canvas = r.createCanvas(W, H);
+    const canvas = r.createCanvas(W + 80, H + 80);
     return { canvas, ctx: canvas.getContext("2d") };
   };
-  r.pieceScratch = { w: W, h: H, piece: make(), mask: make(), band: make() };
+  r.pieceScratch = { w: W + 80, h: H + 80, piece: make(), mask: make(), band: make() };
   return r.pieceScratch;
 }
 
@@ -85,7 +87,7 @@ export function drawLit(ctx, r, tones, box, draw, size) {
   if (!rect) return draw(ctx);
   const w = rect.x1 - rect.x0;
   const h = rect.y1 - rect.y0;
-  const s = scratch(r, w, h);
+  const s = scratch(r, W, H);
   const P = s.piece.ctx;
   reset(P);
   P.clearRect(0, 0, w, h);

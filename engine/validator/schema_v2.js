@@ -124,6 +124,9 @@ const extras = {
       from: { type: "number", description: "Left edge of their area (world px)." },
       to: { type: "number", description: "Right edge of their area (world px)." },
       crowd: { type: "string", description: "A crowd kind (catalog crowds): seeded looks with faces instead of soft grey extras." },
+      leader: { type: "string", description: "copy_leader and conga: the cast id they copy or follow; pile_on and scatter_giggle: who they pile on or scatter from." },
+      at: { type: "number", minimum: 0, description: "Scene seconds when the crowd behaviour starts (scatter_giggle: else the first hit)." },
+      bpm: { type: "number", minimum: 60, maximum: 200, description: "sync_dance: beats per minute (default 120)." },
     },
   },
 };
