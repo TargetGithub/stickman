@@ -12,6 +12,7 @@ import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie
 import { shadeStrokes, shadeHead, shadeTorso } from "./shading.js";
 import { limbLine } from "./limb_curves.js";
 import { drawWhistle } from "./accessories_baaaana.js";
+import { jiggleAt } from "./lively.js";
 import { spineLine } from "../spine.js";
 
 const DEFAULTS = { color: "#222222", outline: true, outlineColor: "#111111", farBrightness: 0.85, mouth: "neutral" };
@@ -98,7 +99,7 @@ function drawHead(ctx, j, r, lw, style, facing) {
     const shift = style.faceShift || 0;
     const fc = shift ? { x: j.head.x - f.x * shift * r, y: j.head.y - f.y * shift * r } : j.head;
     if (acc.mask && !style.hideFace) drawMask(ctx, fc, r, ax, acc.mask);
-    if (!style.hideFace) drawFace(ctx, fc, r, { u, f }, style.face, { ...(style.faceOpts || {}), look });
+    if (!style.hideFace) drawFace(ctx, fc, r, { u, f }, style.face, { ...(style.faceOpts || {}), look, skin: style.color });
     if (look) {
       drawHair(ctx, j.head, r, hairAx, look);
       if (acc.eyepatch && !style.hideFace) drawEyepatch(ctx, j.head, r, ax, acc.eyepatch);
@@ -198,7 +199,7 @@ export function drawCharacter(ctx, j, style) {
       ctx.stroke();
     }
   }
-  if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth, ...(bend ? { spineBend: bend, facing: s.facing } : {}) });
+  if (s.look?.outfit) drawOutfit(ctx, j, { outfit: s.look.outfit, color: s.look.outfitColor || shade(s.color, 0.7), outlineColor: s.outlineColor, lw, scale: s.scale, torsoWidth: s.torsoWidth, jiggle: jiggleAt(s), ...(bend ? { spineBend: bend, facing: s.facing } : {}) });
   if (acc.bowtie) drawBowtie(ctx, j, headR, acc.bowtie, s.facing);
   if (acc.whistle) drawWhistle(ctx, j, headR, acc.whistle, s.facing);
   drawHead(ctx, j, headR, lw, s, s.facing);

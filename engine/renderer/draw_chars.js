@@ -113,6 +113,8 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     // A bent back (ADR-036) shows from the side; turning toward the camera puts the bend in depth (sin of the yaw).
     ...(mo?.spine ? { spineBend: mo.spine * (c.quad ? 1 : Math.abs(Math.sin((yaw * Math.PI) / 180))) } : {}),
     ...(sv.depth ? lineLook(r.sim.story?.look) : {}),
+    // Belly jiggle (lively.js) for plans with a jiggle amount: the face, the time and the hip's last move.
+    ...(!c.quad && r.catalog.bodies?.[c.plan]?.jiggle ? { jiggle: r.catalog.bodies[c.plan].jiggle, time: f.videoT, faceName: c.face, hipDy: c.j.hip.y - (past(1)?.hip?.y ?? c.j.hip.y) } : {}),
     ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) };
   if (c.quad && yaw < 89.5) {
     // A four-legged character cross-fades from its side drawing to its front drawing, squashed mid-turn.

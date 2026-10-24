@@ -4,6 +4,7 @@
 // and the level of detail (a neutral face far away keeps the classic two dots).
 
 import { blinkAt } from "./face.js";
+import { idleGazeAt, doubleBlinkAt } from "./lively.js";
 import { syllables, mouthOpenAt } from "../story/speech.js";
 import { dimsOf } from "../skeleton.js";
 import { visemeTable, audioPlan, textPlan, visemeAt } from "../lipsync.js";
@@ -67,7 +68,7 @@ export function faceStyle(r, c, chars, sv, f) {
   const screenR = dimsOf(c).headR * c.scale * f.cam.zoom;
   return {
     face: data,
-    faceOpts: { blink: blinkAt(r.seed, c.id, t), talking, gaze, t, neutral, detail: screenR >= DETAIL_PX ? "full" : "simple",
+    faceOpts: { blink: blinkAt(r.seed, c.id, t), blink2: doubleBlinkAt(r.seed, c.id, t), idle: idleGazeAt(r.seed, c.id, t), talking, gaze, t, neutral, detail: screenR >= DETAIL_PX ? "full" : "simple",
       ...(lip ? { lip: { ...lip, jaw: !!c.quad } } : {}) },
   };
 }

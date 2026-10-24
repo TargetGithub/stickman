@@ -4,6 +4,7 @@
 
 import { hash32 } from "../math.js";
 import { drawViseme } from "./mouth_shapes.js";
+import { livelyEye, livelyMouth } from "./lively.js";
 
 const INK = "#111111";
 const TEAR = "#2f6fe8"; // darker than most character colors, so tears read on cyan heads too
@@ -56,6 +57,7 @@ function heart(ctx, p, s, color) {
 function eye(ctx, kind, p, r, at, side, o) {
   const w = r * 0.09;
   const e = (df, du) => at.off(p, df, du);
+  if (o.eyeStyle === "lively" && livelyEye(ctx, kind, p, r, at, o)) return null;
   // The character's own eye style (appearance) replaces the plain dot of neutral-type faces.
   if (kind === "dot" && o.eyeStyle === "big") kind = "big";
   else if (kind === "dot" && o.eyeStyle === "oval") kind = "oval";
@@ -246,7 +248,8 @@ export function drawFace(ctx, c, r, axes, face, o = {}) {
   const off = (p, fa, ua) => ({ x: p.x + f.x * fa * r + u.x * ua * r, y: p.y + f.y * fa * r + u.y * ua * r });
   const at = { pt, off, u, f };
   const look = o.look || {};
-  const opts = { blink: !!o.blink, gaze: o.gaze || { f: 0, u: 0 }, t: o.t ?? 0, eyeStyle: look.eyes };
+  const lively = look.eyes === "lively";
+  const opts = { blink: !!o.blink || (lively && !!o.blink2), gaze: o.gaze || { f: 0, u: 0 }, t: o.t ?? 0, eyeStyle: look.eyes, idle: o.idle, skin: o.skin };
   ctx.save();
   ctx.strokeStyle = INK;
   ctx.fillStyle = INK;
@@ -288,11 +291,15 @@ export function drawFace(ctx, c, r, axes, face, o = {}) {
         line(ctx, a, b, r * (look.brows === "thick" ? 0.13 : 0.08));
       }
     }
-    const scale = look.mouthStyle === "cartoon" ? 1.35 : 1;
+    const styled = look.mouthStyle === "big_grin" || look.mouthStyle === "toothy";
+    const scale = look.mouthStyle === "cartoon" || styled ? 1.35 : 1;
     // Lip-sync (ADR-032): a viseme while a line is spoken; "rest" keeps the face's own mouth.
     const lip = o.lip && o.lip.v !== "rest" ? o.lip : null;
-    if (lip) drawViseme(ctx, at, r, lip.shape, { k: lip.k, scale, cartoon: look.mouthStyle === "cartoon", jaw: lip.jaw, mouth: face.mouth, teeth: face.talk === "teeth" });
-    else mouth(ctx, o.talking && !o.lip ? face.talk || "open" : face.mouth, at, r, scale);
+    if (lip) drawViseme(ctx, at, r, lip.shape, { k: lip.k, scale, cartoon: look.mouthStyle === "cartoon" || styled, jaw: lip.jaw, mouth: face.mouth, teeth: face.talk === "teeth" });
+    else {
+      const kind = o.talking && !o.lip ? face.talk || "open" : face.mouth;
+      if (!styled || !livelyMouth(ctx, kind, at, r, look.mouthStyle, scale)) mouth(ctx, kind, at, r, scale);
+    }
     extras(ctx, face.extras, at, r, opts.t);
   }
   ctx.restore();

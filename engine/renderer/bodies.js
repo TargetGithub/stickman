@@ -213,7 +213,10 @@ function drawBelly(ctx, j, o, w, bent = null) {
   ctx.globalAlpha *= 0.95;
   ctx.lineWidth = o.lw * 0.22;
   ctx.beginPath();
-  ctx.ellipse(c.x, c.y, Math.max(w * 0.62, len * 0.36), w * 0.62, Math.atan2(up.y, up.x), 0, Math.PI * 2);
+  // Jiggle (lively.js): the patch squashes and stretches and dips a little, keeping its area about the same.
+  const k = o.jiggle || 0;
+  if (k) c = { x: c.x - up.x * len * 0.08 * k, y: c.y - up.y * len * 0.08 * k };
+  ctx.ellipse(c.x, c.y, Math.max(w * 0.62, len * 0.36) * (1 - k), w * 0.62 * (1 + k), Math.atan2(up.y, up.x), 0, Math.PI * 2);
   ctx.fill();
   ctx.stroke();
   ctx.restore();

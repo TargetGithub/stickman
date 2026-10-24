@@ -501,6 +501,7 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
             "lineWidth": { "type": "number", "minimum": 5, "maximum": 15 }
           }
         },
+        "jiggle": { "type": "number", "minimum": 0, "maximum": 0.3 },
         "posture": {
           "type": "object", "additionalProperties": false, "minProperties": 1,
           "properties": {
@@ -512,9 +513,9 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
         "appearance": {
           "type": "object", "additionalProperties": false,
           "properties": {
-            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
+            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses", "lively"] },
             "brows": { "enum": ["none", "thin", "thick"] },
-            "mouthStyle": { "enum": ["line", "cartoon"] },
+            "mouthStyle": { "enum": ["line", "cartoon", "big_grin", "toothy"] },
             "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap", "bun"] },
             "hairColor": { "$ref": "common.schema.json#/$defs/hex" },
             "outfit": { "enum": ["none", "shirt", "coat", "armor", "robe"] },
@@ -654,9 +655,9 @@ Semantic rules (step 8 and 11): `capsule`/`trapezoid` need `torsoWidth`; a quadr
         "appearance": {
           "type": "object", "additionalProperties": false,
           "properties": {
-            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
+            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses", "lively"] },
             "brows": { "enum": ["none", "thin", "thick"] },
-            "mouthStyle": { "enum": ["line", "cartoon"] },
+            "mouthStyle": { "enum": ["line", "cartoon", "big_grin", "toothy"] },
             "cheeks": { "$ref": "common.schema.json#/$defs/hex" },
             "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap", "bun"] },
             "hairColor": { "$ref": "common.schema.json#/$defs/hex" },

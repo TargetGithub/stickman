@@ -11,9 +11,9 @@ export const V2_ENUMS = {
   style: ["default", "soft", "ink"],
   body: ["stickman", "buddy", "kid", "bulky", "slim", "elder"], // catalog
   face: ["neutral", "happy", "laugh", "sad", "cry", "angry", "furious", "scared", "surprised", "determined", "smug", "tired", "love", "dizzy", "hurt", "asleep"], // catalog (asleep: S5)
-  eyes: ["dot", "big", "oval", "sleepy", "visor", "glasses"],
+  eyes: ["dot", "big", "oval", "sleepy", "visor", "glasses", "lively"],
   brows: ["none", "thin", "thick"],
-  mouthStyle: ["line", "cartoon"],
+  mouthStyle: ["line", "cartoon", "big_grin", "toothy"],
   hair: ["none", "spiky", "bob", "ponytail", "cap", "bun"],
   outfit: ["none", "shirt", "coat", "armor", "robe"],
   accessory: ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch",

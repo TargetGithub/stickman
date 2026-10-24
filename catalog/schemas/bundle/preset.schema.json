@@ -24,9 +24,9 @@
         "appearance": {
           "type": "object", "additionalProperties": false,
           "properties": {
-            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses"] },
+            "eyes": { "enum": ["dot", "big", "oval", "sleepy", "visor", "glasses", "lively"] },
             "brows": { "enum": ["none", "thin", "thick"] },
-            "mouthStyle": { "enum": ["line", "cartoon"] },
+            "mouthStyle": { "enum": ["line", "cartoon", "big_grin", "toothy"] },
             "cheeks": { "$ref": "common.schema.json#/$defs/hex" },
             "hair": { "enum": ["none", "spiky", "bob", "ponytail", "cap", "bun"] },
             "hairColor": { "$ref": "common.schema.json#/$defs/hex" },

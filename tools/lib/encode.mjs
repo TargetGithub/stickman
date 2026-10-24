@@ -7,11 +7,12 @@ import { spawn } from "node:child_process";
 import { mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 
-export function startEncoder(out, width, height, { fps = 60, crf = 18, preset = "medium" } = {}) {
+export function startEncoder(out, width, height, { fps = 60, crf = 18, preset = "medium", threads = 0 } = {}) {
   mkdirSync(dirname(out), { recursive: true });
   const ff = spawn("ffmpeg", [
     "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgba", "-video_size", `${width}x${height}`, "-framerate", String(fps), "-i", "-",
-    "-c:v", "libx264", "-preset", preset, "-crf", String(crf), "-pix_fmt", "yuv420p", "-movflags", "+faststart", out,
+    // threads: x264 threads (0 = ffmpeg picks, one per core); parallel renders give each chunk encoder a few.
+    "-c:v", "libx264", ...(threads ? ["-threads", String(threads)] : []), "-preset", preset, "-crf", String(crf), "-pix_fmt", "yuv420p", "-movflags", "+faststart", out,
   ], { stdio: ["pipe", "inherit", "pipe"] });
   let stderr = "";
   ff.stderr.on("data", (d) => {
