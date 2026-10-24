@@ -103,7 +103,7 @@ function drawHead(ctx, j, r, lw, style, facing) {
     if (look) {
       drawHair(ctx, j.head, r, hairAx, look);
       if (acc.eyepatch && !style.hideFace) drawEyepatch(ctx, j.head, r, ax, acc.eyepatch);
-      drawHeadTop(ctx, j.head, r, { ...ax, wrap, back: !!style.hideFace }, acc);
+      drawHeadTop(ctx, j.head, r, { ...ax, wrap, back: !!style.hideFace, sprout: style.sproutLean || 0 }, acc);
     }
     return;
   }

@@ -180,6 +180,23 @@ function gloss(ctx, c, r, ax, color) {
 
 const HEAD = [["gloss", 90, gloss], ["leaf_sprout", 96, leafSprout], ["curly_vine", 92, curlyVine], ["flower_bud", 96, flowerBud], ["flower_bloom", 96, flowerBloom], ["party_hat", 90, partyHat]];
 
+const SPROUTS = new Set(["leaf_sprout", "curly_vine", "flower_bud", "flower_bloom"]);
+
+/**
+ * Face axes turned by ax.sprout radians toward the back of the head (sprout physics, motion_jelly.js): a sprout
+ * stays rooted on the head outline and leans as a whole. 0 or missing: the axes as they are.
+ */
+export function leanAxes(ax) {
+  const a = ax.sprout || 0;
+  if (!a) return ax;
+  // Turn u toward -f: the screen rotation's sign depends on which way the face points.
+  const s = Math.sign(ax.u.x * -ax.f.y - ax.u.y * -ax.f.x) || 1;
+  const cs = Math.cos(a * s);
+  const sn = Math.sin(a * s);
+  const rot = (v) => ({ x: v.x * cs - v.y * sn, y: v.x * sn + v.y * cs });
+  return { ...ax, u: rot(ax.u), f: rot(ax.f) };
+}
+
 /**
  * Baaaana head pieces, after the face and the hair. `slide(c, r, ax, phi, dist)` is accessories_more.js's slideAt
  * (passed in so the two modules don't import each other).
@@ -187,7 +204,7 @@ const HEAD = [["gloss", 90, gloss], ["leaf_sprout", 96, leafSprout], ["curly_vin
 export function drawHeadBaaaana(ctx, c, r, ax0, acc, slide) {
   for (const [name, phi, draw] of HEAD) {
     if (!acc[name]) continue;
-    const p = slide(c, r, ax0, phi, 0.96);
+    const p = slide(c, r, SPROUTS.has(name) ? leanAxes(ax0) : ax0, phi, 0.96);
     draw(ctx, p.c, r, p.ax, acc[name]);
   }
 }

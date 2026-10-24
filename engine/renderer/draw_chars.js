@@ -9,6 +9,8 @@ import { yawAt, bodyYaw } from "../turnaround.js";
 import { motionFrame } from "./motion_draw.js";
 import { turnedHumanoid, drawQuadFront, quadBlend } from "./turnaround_draw.js";
 import { drawBehind, drawFront, squashAt } from "./accessories.js";
+import { sproutLean } from "../motion_jelly.js";
+import { hash32 } from "../math.js";
 import { drawLookBehind, drawLookFront } from "./accessories_more.js";
 import { propTransform } from "../props.js";
 import { glowAt, drawGlow, petrifyAt, stoneFilter, thawLine } from "./colour.js";
@@ -109,6 +111,8 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ...(r.frameLight ? { light: shadeTones(style.color || c.color, r.frameLight), propLit: (g, t, w, draw) => drawLit(g, r, r.framePieceTones, propBox(t, w), draw, w * 2.2) } : {}),
     ...(turned ? { faceShift: turned.faceShift, hideFace: turned.hideFace, farBrightness: turned.farBrightness, wrap: turned.wrap } : {}),
     ...(mo?.hairTilt ? { hairTilt: mo.hairTilt } : {}),
+    // Sprout physics (motion_jelly.js) for squishy plans: the sprout trails the head, droops or perks with the face.
+    ...(!c.quad && r.catalog.bodies?.[c.plan]?.squishy ? { sproutLean: sproutLean(c.face, mo?.hairTilt || 0, f.videoT, (hash32(c.id) % 1000) / 100) } : {}),
     ...(limbStyle !== "straight" ? { limbStyle } : {}),
     // A bent back (ADR-036) shows from the side; turning toward the camera puts the bend in depth (sin of the yaw).
     ...(mo?.spine ? { spineBend: mo.spine * (c.quad ? 1 : Math.abs(Math.sin((yaw * Math.PI) / 180))) } : {}),

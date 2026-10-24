@@ -502,6 +502,7 @@ Semantic rules on moves (step 11, not expressible in the schema): `keys` sorted 
           }
         },
         "jiggle": { "type": "number", "minimum": 0, "maximum": 0.3 },
+        "squishy": { "type": "number", "minimum": 0, "maximum": 3 },
         "posture": {
           "type": "object", "additionalProperties": false, "minProperties": 1,
           "properties": {

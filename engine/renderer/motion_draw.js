@@ -6,6 +6,7 @@
 import { MOTION_DEFAULTS, WINDOW, followThrough, squashStretch, hairSway, standingStill, breathe, blurGhosts, limbStretch, applyStretch } from "../motion_fx.js";
 import { drawCharacter } from "./character.js";
 import { spineBend } from "../spine.js";
+import { jellySquash } from "../motion_jelly.js";
 import { STAGE } from "../config.js";
 
 /** The script's motion settings (the v3 `motion` block over the defaults), once per renderer. */
@@ -54,7 +55,9 @@ export function motionFrame(ctx, r, sv, f, c, chars, past, ownSquash = false, li
   const bendAmt = spineAmount(cfg, limbStyle);
   const spine = bendAmt > 0 ? spineBend(hist, events, f.videoT, c.facing, bendAmt, !!c.quad) : 0;
   if (!ownSquash && cfg.squash > 0) {
-    const sq = squashStretch(hist, events, f.videoT, STAGE.groundY, cfg.squash);
+    // Squishy plans (Baaaanas) wobble like jelly instead (motion_jelly.js).
+    const squishy = r.catalog.bodies?.[c.plan]?.squishy;
+    const sq = squishy ? jellySquash(hist, events, f.videoT, STAGE.groundY, cfg.squash * squishy, c.face) : squashStretch(hist, events, f.videoT, STAGE.groundY, cfg.squash);
     if (sq) {
       const [a, b, cc, d] = sq.m;
       const { x, y } = sq.pivot;

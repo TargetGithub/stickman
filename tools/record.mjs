@@ -16,6 +16,8 @@
 //                          thumb.png and the contact sheet stay at the frame size
 //   --speech babble|tts    spoken dialogue (SPEECH_SPEC): babble (default, or meta.speech) or offline Piper voices
 //   --voices file.json     per-character TTS voices for --speech tts (cast id → { model, speaker, rate, pitch, off })
+//   --jobs N               worker processes drawing frames at the same time (default: one per core, fewer
+//                          when memory is short; lib/parallel_render.mjs). --jobs 1 renders in this process
 //   --bundle <dir|zip>     a catalog bundle the script declares (repeatable; imported bundles are found in
 //                          the store without it); credits go into meta.json
 
@@ -37,6 +39,7 @@ import { measureLoudness, normalizeLoudness } from "./lib/loudness.mjs";
 import { createSfxLibrary, loadMusic } from "./lib/sfx_library.mjs";
 import { chooseThumbnailFrame, contactSheet } from "./lib/review_images.mjs";
 import { parseOutputFps, outputFrames } from "./lib/output_fps.mjs";
+import { defaultJobs, usefulJobs, renderParallel } from "./lib/parallel_render.mjs";
 import { createEngine, formatIssues, renderScale, ENGINE_VERSION } from "../engine/index.js";
 import { catalog as baseCatalog } from "../catalog/index.js";
 import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_args.mjs";
@@ -44,9 +47,9 @@ import { catalogFromArgs, splitBundleArgs, bundleCredits } from "./lib/bundle_ar
 const { args } = splitBundleArgs(process.argv.slice(2));
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices|fps|scale|res)$/));
+const file = args.find((a, i) => !a.startsWith("--") && !(args[i - 1] || "").match(/^--(out-dir|slug|from|to|crf|preset|scene|speech|voices|fps|scale|res|jobs)$/));
 if (!file) {
-  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--fps 24|25|30|60] [--scale N | --res 4k] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
+  console.error("usage: node tools/record.mjs <script.json> [--out-dir out] [--from N --to N | --scene N] [--fps 24|25|30|60] [--scale N | --res 4k] [--jobs N] [--frames-only] [--hash] [--no-audio] [--bundle <dir|zip>]... [--speech babble|tts] [--voices file.json]");
   process.exit(2);
 }
 
@@ -117,26 +120,42 @@ const ctx = canvas.getContext("2d");
 
 // 1. Video (or PNG frames)
 const videoPath = join(dir, "video.mp4");
-const hashes = [];
-const enc = flag("--frames-only") ? null : startEncoder(videoPath, meta.outputWidth, meta.outputHeight, { fps: outFps.fps, crf: Number(opt("--crf", 16)), preset: opt("--preset", "medium") });
-if (!enc) mkdirSync(join(dir, "frames"), { recursive: true });
-for (let i = 0; i < picks.length; i++) {
-  const n = picks[i];
-  engine.renderFrame(ctx, n);
-  const rgba = backend.readRGBA(canvas);
-  if (flag("--hash")) hashes.push(`${n} ${createHash("sha256").update(rgba).digest("hex")}`);
-  if (enc) await enc.write(rgba);
-  else await backend.savePng(canvas, join(dir, "frames", `${String(n).padStart(5, "0")}.png`));
-  if (i % 300 === 299) process.stdout.write(`  frame ${i + 1}/${picks.length} (${((i + 1) / seconds()).toFixed(0)} fps)\n`);
+const jobsArg = opt("--jobs", null);
+if (jobsArg !== null && !(Number.isInteger(Number(jobsArg)) && Number(jobsArg) >= 1)) {
+  console.error(`--jobs must be a whole number of 1 or more, not "${jobsArg}"`);
+  process.exit(2);
 }
-if (enc) await enc.close();
+const jobs = usefulJobs(jobsArg !== null ? Number(jobsArg) : defaultJobs(meta.outputWidth, meta.outputHeight), picks.length);
+const framesOnly = flag("--frames-only");
+let hashes = [];
+if (framesOnly) mkdirSync(join(dir, "frames"), { recursive: true });
+const encodeOpts = { fps: outFps.fps, crf: Number(opt("--crf", 16)), preset: opt("--preset", "medium") };
+if (jobs > 1) {
+  hashes = await renderParallel({
+    jobs, picks, argv: process.argv.slice(2), script: speech ? speech.script : script, source: script,
+    lipSync: speech ? lipTracks(speech.lines) : null, scale, videoPath: framesOnly ? null : videoPath,
+    framesDir: join(dir, "frames"), hash: flag("--hash"), ...encodeOpts,
+  });
+} else {
+  const enc = framesOnly ? null : startEncoder(videoPath, meta.outputWidth, meta.outputHeight, encodeOpts);
+  for (let i = 0; i < picks.length; i++) {
+    const n = picks[i];
+    engine.renderFrame(ctx, n);
+    const rgba = backend.readRGBA(canvas);
+    if (flag("--hash")) hashes.push(`${n} ${createHash("sha256").update(rgba).digest("hex")}`);
+    if (enc) await enc.write(rgba);
+    else await backend.savePng(canvas, join(dir, "frames", `${String(n).padStart(5, "0")}.png`));
+    if (i % 300 === 299) process.stdout.write(`  frame ${i + 1}/${picks.length} (${((i + 1) / seconds()).toFixed(0)} fps)\n`);
+  }
+  if (enc) await enc.close();
+}
 const renderSeconds = seconds();
 if (flag("--hash")) writeFileSync(join(dir, "hashes.txt"), hashes.join("\n") + "\n");
 
 // 2. Audio mix and mux
 let audio = { skipped: true };
 const finalPath = join(dir, "final.mp4");
-if (enc && !flag("--no-audio")) {
+if (!framesOnly && !flag("--no-audio")) {
   const lib = createSfxLibrary(meta.seed);
   const startT = from / meta.fps;
   const durationSec = (to - from + 1) / meta.fps;
@@ -179,7 +198,7 @@ if (enc && !flag("--no-audio")) {
     ...(mix.loudness ? { lufs: Number(mix.loudness.integrated.toFixed(1)), shortTermMaxLufs: Number(mix.loudness.shortTermMax.toFixed(1)), gainDb: Number(mix.gainDb.toFixed(1)) } : {}) };
   if (lib.missing.size) console.log(`warning: no audio for ${[...lib.missing].join(", ")}`);
   if (!music && script.audio?.music) console.log(`warning: ${note}`);
-} else if (enc) {
+} else if (!framesOnly) {
   spawnSync("mv", [videoPath, finalPath]);
 }
 
@@ -214,11 +233,12 @@ const info = {
   ...(speech ? { speech: { mode: "tts", backend: `${speech.backend.id} ${speech.backend.version}`, lines: speech.lines.length } } : {}),
   warnings: loaded.warnings,
   timeline: loaded.timeline,
+  jobs,
   renderSeconds: Number(renderSeconds.toFixed(2)),
   totalSeconds: Number(seconds().toFixed(2)),
   // Bundles the script uses (CATALOG_BUNDLE_SPEC 7.3, 8): pins and credits; NC bundles mark the video non-commercial.
   ...(script.bundles?.length ? { bundles: bundleCredits(script, bundles), nonCommercial: bundleCredits(script, bundles).some((b) => b.license === "CC-BY-NC-4.0") } : {}),
-  files: [enc ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(speech ? ["speech.json"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
+  files: [!framesOnly ? "final.mp4" : "frames/", "thumb.png", "contact_sheet.png", "script.json", ...(flag("--hash") ? ["hashes.txt"] : []), ...(speech ? ["speech.json"] : []), ...(audio.skipped ? [] : ["audio.wav"])],
 };
 writeFileSync(join(dir, "meta.json"), JSON.stringify(info, null, 2) + "\n");
 console.log(`wrote ${dir}/ (${info.durationSec}s video, ${meta.outputWidth}x${meta.outputHeight}, ${picks.length} frames at ${outFps.fps} fps, rendered at ${(picks.length / renderSeconds).toFixed(1)} frames/s, total ${info.totalSeconds}s)`);

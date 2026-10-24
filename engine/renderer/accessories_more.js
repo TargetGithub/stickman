@@ -7,7 +7,7 @@
 import { dimsOf } from "../skeleton.js";
 import { drawHats } from "./accessories_hats.js";
 import { drawWindupKey } from "./robot.js";
-import { drawHeadBaaaana, drawHandBaaaana, drawFeetBehind, drawFeetFront } from "./accessories_baaaana.js";
+import { drawHeadBaaaana, drawHandBaaaana, drawFeetBehind, drawFeetFront, leanAxes } from "./accessories_baaaana.js";
 
 const INK = "#111111";
 const DEG = Math.PI / 180;
@@ -254,7 +254,7 @@ export function drawHeadMore(ctx, c, r, ax0, acc) {
     if (acc.stub_horns) stubHorns(ctx, c, r, ax, acc.stub_horns);
     if (acc.horns) ramHorn(ctx, c, r, ax, acc.horns, { f: 0, u: 0 });
   }
-  if (acc.sprout) { const p = slideAt(c, r, ax0, 98, 0.96); sprout(ctx, p.c, r, p.ax, acc.sprout); }
+  if (acc.sprout) { const p = slideAt(c, r, leanAxes(ax0), 98, 0.96); sprout(ctx, p.c, r, p.ax, acc.sprout); }
   if (acc.hair_flower) { const p = slideAt(c, r, ax0, 135, 0.98); hairFlower(ctx, p.c, r, p.ax, acc.hair_flower); }
   for (const ax of masses) drawHats(ctx, c, r, ax, acc); // batch B: chilli_hat, pirate_hat, beard
   drawHeadBaaaana(ctx, c, r, ax0, acc, slideAt); // Baaaana: sprout kinds, party_hat
