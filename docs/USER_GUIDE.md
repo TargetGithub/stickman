@@ -404,6 +404,7 @@ Errors (`E_`) stop a render. Warnings (`W_`) don't, but they usually point at so
 | `--scene N` | Render only scene N of a story (index from 0, or the scene id) |
 | `--fps 24\|25\|30\|60` | Output frame rate (default 60). Use 24 or 30 for review renders: about 2-2.5x fewer frames to draw. The story still runs at 60 fps; each output frame shows the nearest simulated one, so `--from`/`--to` and scene numbers stay in 60 fps frames |
 | `--res 4k` or `--scale N` | Output resolution (render scale, ADR-039). `--res 4k` (= `--scale 2`) writes 3840x2160, or 2160x3840 for portrait; presets `720p`, `1080p`, `1440p`, `4k`, or any scale from 0.25 to 4. The story, camera, text and subtitles are the same as at 1080p, only sharper. `thumb.png` and the contact sheet stay 1080p; `meta.json` records the size under `resolution`. Expect roughly 3-4x the render time of 1080p (see `docs/benchmarks.md`); use it for finals, not reviews |
+| `--jobs N` | Worker processes that draw frames at the same time (default: one per CPU core, fewer when memory would run short: about 0.5 GB each at 1080p, 1.25 GB at 4K). The frames are cut into chunks, each worker encodes its chunks, and ffmpeg joins them without re-encoding; the frames are identical to a one-process render. `--jobs 1` renders in one process (renders under 120 frames always do). `meta.json` records `jobs` |
 | `--no-audio` | Skip the sound mix |
 | `--frames-only` | Write PNG frames instead of a video |
 | `--hash` | Write a SHA-256 per frame (determinism checks) |

@@ -17,6 +17,7 @@ export const ENGINE_FILES = [
   "characters/appearance.json",
   "characters/faces.json",
   "characters/visemes.json",
+  "characters/crowds.json",
   "effects/fx.json",
   "effects/sfx.json",
   "world/themes.json",
@@ -70,6 +71,8 @@ export function assembleCatalog(f) {
     visemes: f["characters/visemes.json"], // talking mouth shapes (lip-sync, ADR-032)
     bodies,
     bodyNames: Object.keys(bodies),
+    crowds: f["characters/crowds.json"], // crowd kinds for seeded extras (engine/story/crowd.js)
+    crowdNames: Object.keys(f["characters/crowds.json"]),
     appearance,
     activities,
     activityNames: Object.keys(activities),

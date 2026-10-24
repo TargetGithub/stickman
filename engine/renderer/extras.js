@@ -1,7 +1,8 @@
 // Drawing extras and depth layers (STORY_SPEC 14, S6.5). Milestone: S6.
 // Layers: back (scaled 0.75 at the feet, faded, drawn behind mid set pieces), mid, front (scaled 1.15,
 // drawn last). Extras are posed from the scene time (engine/story/extras.js has their plans) and drawn with
-// less detail than the leads: no face, no outline, soft colours.
+// less detail than the leads: no face, no outline, soft colours. Crowd members (an extras entry with `crowd`)
+// carry their own look and are drawn like small leads: outline, accessories and a face that reacts.
 
 import { computeJoints, lowestPoint } from "../skeleton.js";
 import { samplePoseKeys } from "../pose.js";
@@ -9,6 +10,33 @@ import { bodyPlan } from "../story/bodies.js";
 import { drawCharacter } from "./character.js";
 import { STAGE } from "../config.js";
 import { shadeTones } from "../lighting.js";
+import { lookFor } from "./looks.js";
+import { blinkAt } from "./face.js";
+import { idleGazeAt } from "./lively.js";
+import { drawLookBehind, drawLookFront } from "./accessories_more.js";
+import { drawFront } from "./accessories.js";
+
+const CROWD_FACE = { cheer: "laugh", gasp: "surprised", talk: "happy", walk: "happy", run: "happy", idle: "happy" };
+
+/** A crowd member drawn with its look and a face (lively eyes glance and blink like the leads'). */
+function drawMember(ctx, r, e, j, s, alpha, f) {
+  r.crowdLooks ??= new Map();
+  if (!r.crowdLooks.has(e.id)) r.crowdLooks.set(e.id, lookFor(r.catalog, { body: e.plan, color: e.color, appearance: e.look }));
+  const look = r.crowdLooks.get(e.id);
+  const plan = bodyPlan(r.catalog, e.plan);
+  const style = r.catalog.bodies?.[e.plan];
+  const faceName = CROWD_FACE[s.move] || "happy";
+  const c = { j, scale: e.scale, facing: s.facing, alpha: 0.95 * alpha, dims: plan.dims };
+  drawLookBehind(ctx, c, look);
+  drawCharacter(ctx, j, {
+    color: e.color, scale: e.scale, facing: s.facing, alpha: 0.95 * alpha, outline: true, outlineColor: "#111111",
+    dims: plan.dims, draw: style?.draw, torsoWidth: style?.torsoWidth, look,
+    face: r.catalog.faces?.[faceName], faceOpts: { t: f.videoT, detail: "full", blink: blinkAt(r.seed, e.id, f.videoT), idle: idleGazeAt(r.seed, e.id, f.videoT) },
+    ...(r.frameLight ? { light: shadeTones(e.color, r.frameLight) } : {}),
+  });
+  drawFront(ctx, c, () => null, look.style);
+  drawLookFront(ctx, c, look);
+}
 
 export const LAYER_LOOK = { back: { scale: 0.75, alpha: 0.75 }, mid: { scale: 1, alpha: 1 }, front: { scale: 1.15, alpha: 0.95 } };
 const WRAP = 300; // px past the area a walker turns up again on the other side
@@ -71,6 +99,10 @@ export function drawExtras(ctx, r, sv, f, layer, plain = false) {
     const probe = computeJoints(pose, { x: s.x, y: 0 }, s.facing, e.scale, plan.dims);
     const j = computeJoints(pose, { x: s.x, y: STAGE.groundY - lowestPoint(probe, e.scale, plan.dims) }, s.facing, e.scale, plan.dims);
     const style = r.catalog.bodies?.[e.plan];
+    if (e.look) {
+      place(ctx, layer, s.x, (alpha) => drawMember(ctx, r, e, j, s, alpha, f));
+      continue;
+    }
     place(ctx, layer, s.x, (alpha) => drawCharacter(ctx, j, {
       color: e.color, scale: e.scale, facing: s.facing, alpha: 0.85 * alpha, outline: false,
       dims: plan.dims, draw: style?.draw, torsoWidth: style?.torsoWidth,

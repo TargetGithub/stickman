@@ -49,6 +49,7 @@ Clips: up to 6 characters, 600 beats, 3-900 s. Stories: up to 16 in the cast, 8 
 - E_FACE_UNKNOWN: unknown face → Use a face from 02_characters.md.
 - E_LOCATION_UNKNOWN: a scene location that is neither a location id nor a theme → Use a location id or a theme.
 - E_THEME_UNKNOWN: unknown theme → Use a theme from 05_places_and_objects.md.
+- E_CROWD_UNKNOWN: an extras entry names a crowd kind that is not in the catalog → Use a crowd kind such as baaaana_crowd, or drop crowd for plain extras.
 - E_OBJECT_UNKNOWN: unknown object kind or object id → Use a catalog object, or an id placed in the scene.
 - E_OBJECT_STATE: a state or change the object does not have → Use a state it has and a change that suits it.
 - E_PROP_UNKNOWN: unknown prop → Use a prop from 05_places_and_objects.md.

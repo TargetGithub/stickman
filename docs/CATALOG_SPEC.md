@@ -48,6 +48,7 @@ catalog/
     bodies.json                body plans: dims, draw style, torsoWidth, posture, default appearance, avoid list
     appearance.json            eyes, brows, mouthStyle, hair, outfit, accessories, conflicts
     faces.json                 16 faces: eye/brow/mouth shapes
+    crowds.json                crowd kinds for seeded extras (`crowd` on an extras entry; baaaana_crowd)
     voices.json                timbres, plus descriptions (the ranges are in generated/engine_vocab.json)
     roles.json                 the closed list of preset roles
     presets/                   NEW: ready-made characters, one JSON file per preset (section 4.1); not

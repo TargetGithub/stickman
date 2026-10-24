@@ -1,0 +1,41 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { defaultJobs, planChunks, usefulJobs } from "../../tools/lib/parallel_render.mjs";
+
+const GB = 1e9;
+
+test("defaultJobs takes one worker per core unless memory runs short", () => {
+  const cases = [
+    // [width, height, cpus, memory, expected]
+    [1920, 1080, 12, 18 * GB, 12],
+    [3840, 2160, 12, 18 * GB, 8],
+    [3840, 2160, 48, 192 * GB, 48],
+    [3840, 2160, 12, 1 * GB, 1],
+    [1920, 1080, 1, 64 * GB, 1],
+  ];
+  for (const [w, h, cpus, memory, want] of cases) assert.equal(defaultJobs(w, h, { cpus, memory }), want, `${w}x${h} ${cpus} cpus ${memory / GB} GB`);
+});
+
+test("planChunks keeps every frame once, in order, about four chunks per worker", () => {
+  const picks = Array.from({ length: 9000 }, (_, i) => i * 2);
+  const chunks = planChunks(picks, 8);
+  assert.deepEqual(chunks.flat(), picks);
+  assert.ok(chunks.length >= 30 && chunks.length <= 33, `${chunks.length} chunks`);
+});
+
+test("planChunks never makes chunks shorter than 60 frames (except the last)", () => {
+  const chunks = planChunks(Array.from({ length: 500 }, (_, i) => i), 12);
+  assert.ok(chunks.slice(0, -1).every((c) => c.length === 60));
+  assert.equal(chunks.flat().length, 500);
+});
+
+test("usefulJobs drops to one process for short renders", () => {
+  const cases = [
+    [12, 30, 1],
+    [12, 119, 1],
+    [12, 240, 4],
+    [12, 18000, 12],
+    [1, 18000, 1],
+  ];
+  for (const [jobs, frames, want] of cases) assert.equal(usefulJobs(jobs, frames), want, `${jobs} jobs, ${frames} frames`);
+});

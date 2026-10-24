@@ -123,6 +123,7 @@ const extras = {
       layer: { enum: E.layer },
       from: { type: "number", description: "Left edge of their area (world px)." },
       to: { type: "number", description: "Right edge of their area (world px)." },
+      crowd: { type: "string", description: "A crowd kind (catalog crowds): seeded looks with faces instead of soft grey extras." },
     },
   },
 };

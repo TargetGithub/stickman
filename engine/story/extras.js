@@ -1,5 +1,7 @@
 // Extras (STORY_SPEC 14, S6.5): unnamed background characters from a location's or scene's `extras`
-// entries ({ count, behavior, layer, from, to }). Milestone: S6.
+// entries ({ count, behavior, layer, from, to, crowd }). Milestone: S6.
+// `crowd` names a crowd kind (characters/crowds.json): its members get a seeded look (crowd.js) and are drawn
+// with faces, instead of the soft grey faceless extras.
 // They are not simulated: each extra is a plan (seeded colour, body plan, place, pace), and the renderer works
 // out its pose from the scene time, so extras cost nothing in the frame store and never touch the action.
 //   walk_by    walks across the area and around again
@@ -10,6 +12,7 @@
 
 import { deriveRng } from "../math.js";
 import { LIMITS_V2, STAGE } from "../config.js";
+import { crowdMember } from "./crowd.js";
 
 const PLANS = ["stickman", "stickman", "kid", "slim", "bulky", "elder", "buddy"];
 // Soft, slightly grey colours: extras should never compete with the leads.
@@ -20,25 +23,28 @@ export const EXTRA_MOVES = ["idle", "walk", "run", "talk", "cheer", "gasp"];
 
 /**
  * @param {object} scene  the (compiled) scene; location: its location entry (or null)
- * @returns {object[]} [{ id, plan, color, scale, layer, behavior, x, dir, speed, phase, pair }]
+ * @returns {object[]} [{ id, plan, color, scale, layer, behavior, x, dir, speed, phase, pair, look? }]
  */
 export function planExtras(scene, location, catalog, seed, stageWidth = STAGE.width) {
   const entries = scene.extras ?? location?.extras ?? [];
   if (!entries.length) return [];
   const rng = deriveRng(seed, `extras@${scene.id}`);
   const out = [];
-  for (const e of entries) {
+  for (const [k, e] of entries.entries()) {
+    const kind = e.crowd ? catalog.crowds?.[e.crowd] : null;
     const lo = e.from ?? STAGE.margin;
     const hi = e.to ?? stageWidth - STAGE.margin;
     for (let i = 0; i < e.count && out.length < LIMITS_V2.extras; i++) {
       const plan = PLANS[Math.floor(rng() * PLANS.length)];
       const x = lo + ((i + 0.2 + rng() * 0.6) / e.count) * (hi - lo);
       const pair = e.behavior === "idle_chat" ? i % 2 : 0;
+      const member = kind ? crowdMember(kind, seed, `${scene.id}:${k}`, i) : null;
       out.push({
         id: `extra${out.length + 1}`,
         plan: catalog.bodies?.[plan] ? plan : "stickman",
         color: COLORS[Math.floor(rng() * COLORS.length)],
         scale: 0.85 + rng() * 0.25,
+        ...(member ? { plan: catalog.bodies?.[member.body] ? member.body : "stickman", color: member.color, scale: member.scale, look: member.appearance } : {}),
         layer: e.layer ?? "back",
         behavior: e.behavior,
         // idle_chat partners stand 120 px apart, facing each other

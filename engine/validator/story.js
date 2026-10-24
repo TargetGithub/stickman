@@ -178,6 +178,7 @@ export function checkStory(story, catalog, moves) {
       const near = closestMatch(l.theme, catalog.themeNames);
       out.push(issue("E_THEME_UNKNOWN", `locations[${i}].theme`, `Unknown theme '${l.theme}'.`, `Use one of: ${catalog.themeNames.join(", ")}${near ? ` (closest: ${near})` : ""}.`));
     }
+    crowdIssues(l.extras, `locations[${i}]`, catalog, out);
     (l.set || []).forEach((p, k) => {
       if (!catalog.objects?.[p.object]) out.push(issue("E_OBJECT_UNKNOWN", `locations[${i}].set[${k}].object`, `Unknown object '${p.object}'.`, `Use one of: ${Object.keys(catalog.objects || {}).join(", ")}.`));
     });
@@ -189,6 +190,7 @@ export function checkStory(story, catalog, moves) {
   story.scenes.forEach((scene, si) => {
     if (sceneIds.has(scene.id)) out.push(issue("E_REF_DUPLICATE", `scenes[${si}].id`, `Scene id '${scene.id}' is used twice.`, "Give every scene a unique id."));
     sceneIds.add(scene.id);
+    crowdIssues(scene.extras, `scenes[${si}]`, catalog, out);
     (scene.beats || []).forEach((b, bi) => {
       if (!b.id) return;
       if (beatScene.has(b.id) && beatScene.get(b.id) !== si) {
@@ -284,4 +286,13 @@ export function checkStory(story, catalog, moves) {
     });
   }
   return out;
+}
+
+/** Extras entries naming an unknown crowd kind (E_CROWD_UNKNOWN). */
+function crowdIssues(extras, path, catalog, out) {
+  (extras || []).forEach((e, k) => {
+    if (e.crowd && catalog.crowds && !catalog.crowds[e.crowd]) {
+      out.push(issue("E_CROWD_UNKNOWN", `${path}.extras[${k}].crowd`, `Unknown crowd '${e.crowd}'.`, `Use one of: ${(catalog.crowdNames || []).join(", ")}.`));
+    }
+  });
 }
