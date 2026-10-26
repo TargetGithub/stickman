@@ -16,8 +16,9 @@ const WORKER = new URL("./render_worker.mjs", import.meta.url).pathname;
 // 1.7 GB once its lookahead fills (2026-10-26: nine 4K workers on 18 GB swapped 11 GB and drew 0.5 frames/s).
 const BASE_BYTES = 0.25e9;
 const BYTES_PER_PIXEL = 220;
-// Keep this share of the machine's memory for everything else.
-const MEMORY_SHARE = 0.6;
+// Use at most this share of the machine's memory (the rest is the user's apps: on an 18 GB Mac with Xcode, Teams
+// and Outlook open, five 4K workers still swapped 7 GB and drew 0.1 frames/s; three keep it in memory).
+const MEMORY_SHARE = 0.45;
 // Below this many frames per worker, starting workers costs more than it saves.
 const MIN_CHUNK = 60;
 

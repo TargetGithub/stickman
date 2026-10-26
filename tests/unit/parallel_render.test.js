@@ -8,9 +8,9 @@ const GB = 1e9;
 test("defaultJobs takes one worker per core unless memory runs short", () => {
   const cases = [
     // [width, height, cpus, memory, expected]
-    [1920, 1080, 12, 18 * GB, 12],
-    [3840, 2160, 12, 18 * GB, 5], // a 4K worker and its x264 need about 2 GB
-    [3840, 2160, 48, 192 * GB, 48],
+    [1920, 1080, 12, 18 * GB, 11],
+    [3840, 2160, 12, 18 * GB, 3], // a 4K worker and its x264 need about 2 GB; keep room for other apps
+    [3840, 2160, 48, 192 * GB, 41],
     [3840, 2160, 12, 1 * GB, 1],
     [1920, 1080, 1, 64 * GB, 1],
   ];
