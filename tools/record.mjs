@@ -7,6 +7,7 @@
 //   --scene N              render only scene N (0-based index or scene id) of a story script
 //   --frames-only          write frames/00000.png ... instead of a video (debugging)
 //   --reuse-video          keep an existing <slug>/video.mp4 (same script and options) and only mix, mux and finish
+//   --resume               a stopped multi-core render keeps its finished chunks (<slug>/parts) and draws the rest
 //   --hash                 write hashes.txt (SHA-256 of every frame's RGBA)
 //   --no-audio             skip the audio mix
 //   --crf 16 --preset medium   x264 quality settings
@@ -139,7 +140,7 @@ else if (jobs > 1) {
   hashes = await renderParallel({
     jobs, picks, argv: process.argv.slice(2), script: speech ? speech.script : script, source: script,
     lipSync: speech ? lipTracks(speech.lines) : null, scale, videoPath: framesOnly ? null : videoPath,
-    framesDir: join(dir, "frames"), hash: flag("--hash"), ...encodeOpts,
+    framesDir: join(dir, "frames"), hash: flag("--hash"), resume: flag("--resume"), ...encodeOpts,
   });
 } else {
   const enc = framesOnly ? null : startEncoder(videoPath, meta.outputWidth, meta.outputHeight, encodeOpts);

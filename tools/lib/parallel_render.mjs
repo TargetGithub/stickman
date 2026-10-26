@@ -7,14 +7,15 @@
 
 import { fork, spawnSync } from "node:child_process";
 import { availableParallelism, totalmem } from "node:os";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 
 const WORKER = new URL("./render_worker.mjs", import.meta.url).pathname;
 // Memory one worker needs: Node, the engine and its scratch canvases, plus its x264 encoder (both grow
-// with the frame size). Measured on the M3 Pro: about 0.5 GB at 1080p and 1.25 GB at 4K.
+// with the frame size). Measured on the M3 Pro: about 0.5 GB at 1080p; at 4K a chunk's x264 alone holds about
+// 1.7 GB once its lookahead fills (2026-10-26: nine 4K workers on 18 GB swapped 11 GB and drew 0.5 frames/s).
 const BASE_BYTES = 0.25e9;
-const BYTES_PER_PIXEL = 120;
+const BYTES_PER_PIXEL = 220;
 // Keep this share of the machine's memory for everything else.
 const MEMORY_SHARE = 0.6;
 // Below this many frames per worker, starting workers costs more than it saves.
@@ -36,10 +37,10 @@ export function defaultJobs(width, height, { cpus = availableParallelism(), memo
  * (busy fight scenes draw slower than quiet ones), and never shorter than MIN_CHUNK frames.
  * @param {number[]} picks  engine frame numbers to draw, in output order
  * @param {number} jobs
+ * @param {number} [size]  frames per chunk (a resumed render keeps the size it started with)
  * @returns {number[][]}
  */
-export function planChunks(picks, jobs) {
-  const size = Math.max(MIN_CHUNK, Math.ceil(picks.length / (jobs * 4)));
+export function planChunks(picks, jobs, size = Math.max(MIN_CHUNK, Math.ceil(picks.length / (jobs * 4)))) {
   const chunks = [];
   for (let i = 0; i < picks.length; i += size) chunks.push(picks.slice(i, i + size));
   return chunks;
@@ -54,15 +55,25 @@ export function usefulJobs(jobs, frames) {
  * Render picks with `jobs` workers into videoPath (or framesDir PNGs when videoPath is null).
  * @returns {Promise<string[]>} frame hashes in output order when hash is set, else []
  */
-export async function renderParallel({ jobs, picks, argv, script, source, lipSync, scale, videoPath, framesDir, fps, crf, preset, hash, log = console.log }) {
-  const chunks = planChunks(picks, jobs);
-  const workers = Math.min(jobs, chunks.length);
+export async function renderParallel({ jobs, picks, argv, script, source, lipSync, scale, videoPath, framesDir, fps, crf, preset, hash, resume = false, log = console.log }) {
   const partsDir = videoPath ? join(dirname(videoPath), "parts") : null;
-  if (partsDir) {
+  const planFile = partsDir && join(partsDir, "plan.json");
+  // --resume: a stopped render keeps its finished chunks (same chunk size, every frame there) and draws the rest.
+  const kept = resume && planFile && existsSync(planFile) ? JSON.parse(readFileSync(planFile, "utf8")) : null;
+  if (resume && !kept) log("  --resume: no earlier chunks to keep; rendering everything");
+  if (kept && kept.frames !== picks.length) throw new Error(`--resume: the earlier render had ${kept.frames} frames, this one ${picks.length}; render without --resume`);
+  if (kept && hash) throw new Error("--resume cannot write --hash (the kept chunks were not hashed)");
+  const chunks = planChunks(picks, jobs, kept?.size);
+  const partPath = (i) => join(partsDir, `part_${String(i).padStart(4, "0")}.mp4`);
+  const done = new Set(kept ? chunks.map((c, i) => i).filter((i) => framesIn(partPath(i)) === chunks[i].length) : []);
+  if (partsDir && !kept) {
     rmSync(partsDir, { recursive: true, force: true });
     mkdirSync(partsDir, { recursive: true });
+    writeFileSync(planFile, JSON.stringify({ size: chunks[0]?.length ?? 0, frames: picks.length }));
   }
-  const partPath = (i) => join(partsDir, `part_${String(i).padStart(4, "0")}.mp4`);
+  if (kept) log(`  --resume: keeping ${done.size} of ${chunks.length} chunks`);
+  const todo = chunks.map((c, i) => i).filter((i) => !done.has(i));
+  const workers = Math.min(jobs, todo.length);
   // Each chunk encoder gets an even share of the cores (x264 would otherwise start one thread per core in every worker).
   const threads = Math.max(1, Math.round(availableParallelism() / workers));
   const hashes = new Array(chunks.length);
@@ -70,9 +81,10 @@ export async function renderParallel({ jobs, picks, argv, script, source, lipSyn
   let drawn = 0;
   let nextLog = 300;
   let next = 0;
-  log(`  rendering ${picks.length} frames with ${workers} workers (${chunks.length} chunks)`);
+  const todoFrames = todo.reduce((a, i) => a + chunks[i].length, 0);
+  log(`  rendering ${todoFrames} frames with ${workers} workers (${todo.length} chunks)`);
 
-  await new Promise((resolve, reject) => {
+  if (workers) await new Promise((resolve, reject) => {
     const procs = [];
     let finished = 0;
     let failed = false;
@@ -83,11 +95,11 @@ export async function renderParallel({ jobs, picks, argv, script, source, lipSyn
       reject(err instanceof Error ? err : new Error(err));
     };
     const give = (p) => {
-      if (next >= chunks.length) {
+      if (next >= todo.length) {
         p.send({ exit: true });
         return;
       }
-      const index = next++;
+      const index = todo[next++];
       p.send({ chunk: { index, picks: chunks[index], out: partsDir ? partPath(index) : null, framesDir, fps, crf, preset, threads, hash } });
     };
     for (let w = 0; w < workers; w++) {
@@ -100,7 +112,7 @@ export async function renderParallel({ jobs, picks, argv, script, source, lipSyn
           drawn += m.progress;
           if (drawn >= nextLog) {
             const secs = Number(process.hrtime.bigint() - t0) / 1e9;
-            log(`  frame ${drawn}/${picks.length} (${(drawn / secs).toFixed(0)} fps)`);
+            log(`  frame ${drawn}/${todoFrames} (${(drawn / secs).toFixed(1)} fps)`);
             nextLog += 300;
           }
         } else if (m.done) {
@@ -134,4 +146,11 @@ export async function renderParallel({ jobs, picks, argv, script, source, lipSyn
  */
 export function concatList(paths) {
   return paths.map((p) => `file '${resolve(p).replace(/'/g, "'\\''")}'`).join("\n") + "\n";
+}
+
+/** Frames in a chunk video (0 when it is missing or unreadable, as a chunk cut off mid-encode is). */
+function framesIn(file) {
+  if (!existsSync(file)) return 0;
+  const r = spawnSync("ffprobe", ["-v", "error", "-count_packets", "-select_streams", "v", "-show_entries", "stream=nb_read_packets", "-of", "csv=p=0", file], { encoding: "utf8" });
+  return r.status === 0 ? Number(r.stdout.trim()) || 0 : 0;
 }

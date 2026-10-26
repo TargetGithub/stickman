@@ -9,7 +9,7 @@ test("defaultJobs takes one worker per core unless memory runs short", () => {
   const cases = [
     // [width, height, cpus, memory, expected]
     [1920, 1080, 12, 18 * GB, 12],
-    [3840, 2160, 12, 18 * GB, 8],
+    [3840, 2160, 12, 18 * GB, 5], // a 4K worker and its x264 need about 2 GB
     [3840, 2160, 48, 192 * GB, 48],
     [3840, 2160, 12, 1 * GB, 1],
     [1920, 1080, 1, 64 * GB, 1],
@@ -44,4 +44,11 @@ test("usefulJobs drops to one process for short renders", () => {
 test("concatList names every chunk by its absolute path (ffmpeg reads relative ones from the list's folder)", () => {
   const list = concatList(["out/x/parts/part_0000.mp4", "/abs/it's.mp4"]);
   assert.equal(list, `file '${resolve("out/x/parts/part_0000.mp4")}'\nfile '/abs/it'\\''s.mp4'\n`);
+});
+
+test("planChunks keeps a given chunk size (a resumed render cuts its frames as before)", () => {
+  const picks = Array.from({ length: 2000 }, (_, i) => i);
+  const chunks = planChunks(picks, 3, 572);
+  assert.deepEqual(chunks.map((c) => c.length), [572, 572, 572, 284]);
+  assert.deepEqual(planChunks(picks, 9, 572), chunks, "the worker count no longer matters");
 });
