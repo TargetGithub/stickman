@@ -125,7 +125,12 @@ export function drawLit(ctx, r, tones, box, draw, size) {
   reset(P);
   real.save();
   real.setTransform(1, 0, 0, 1, 0, 0);
-  real.drawImage(s.piece.canvas, 0, 0, w, h, rect.x0, rect.y0, w, h);
+  // Paste through a canvas the piece's own size: a sub-rect of the frame-sized scratch drawn into a clipped
+  // depth-of-field layer took Skia about 5 s on every other frame (Doopi ep08 at 0.1 frames/s, 2026-10-26).
+  // The copies are 1:1 on whole pixels, so the result is the same.
+  const out = r.createCanvas(w, h);
+  out.getContext("2d").drawImage(s.piece.canvas, 0, 0, w, h, 0, 0, w, h);
+  real.drawImage(out, rect.x0, rect.y0);
   real.restore();
 }
 
