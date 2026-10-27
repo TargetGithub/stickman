@@ -62,3 +62,10 @@ test("shortCandidates: 15-60 s with two or more lines, best first, never sharing
   // b (40 s, 12 lines) beats a+b (50 s, 14); a+b then shares b; d+e (21 s, 4) is next; c is too long, a and e too short.
   assert.deepEqual(c.map((x) => x.ids), [["b"], ["d", "e"]]);
 });
+
+test("every scene of an episode makes a valid Short (the end card stands on the plain stage)", () => {
+  for (const s of ep01.scenes.filter((x) => !x.use)) {
+    const r = validate(shortScript(ep01, [s.id]), catalog);
+    assert.ok(r.ok, `${s.id}: ${r.errors.map((e) => `${e.code} ${e.path}`).join(", ")}`);
+  }
+});

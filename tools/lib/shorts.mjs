@@ -41,7 +41,9 @@ export function shortScript(script, ids, o = {}) {
       location: last.location,
       ...(last.time ? { time: last.time } : {}),
       transitionIn: { type: "fade", dur: 0.4 },
-      cast: last.cast ?? [], // behind the card (a scene with nobody in it has no camera target)
+      // One character behind the card (a scene with nobody in it has no camera target), placed on the plain stage:
+      // the scene's own positions can rely on its depth (ep01's sneak had someone at x 3150).
+      cast: [...(last.cast ?? [])].sort((a, b) => !!a.hidden - !!b.hidden).slice(0, 1).map((c) => ({ id: c.id, x: 960, facing: 1 })),
       beats: [
         { at: 0, who: "world", do: "end_card", params: { text: o.end ?? "Watch the full episode!" } },
         // The card holds the story clock, so this fade starts as the card ends: the Short ends dark, not on the scene.
