@@ -15,6 +15,7 @@ import { SHADOW_KINDS } from "./background_shadow.js";
 import { MOON_KINDS } from "./background_moon.js";
 import { MEADOW_KINDS } from "./background_meadow.js";
 import { nightLook, drawNightBackground } from "./night.js";
+import { throughFilter } from "./filter_pass.js";
 
 const SPAN = [-2400, 8000]; // world x range covered by generated geometry (any stage up to 8000 px)
 
@@ -250,11 +251,23 @@ export function createBackground(theme, name, seed = 1) {
  * transform afterwards. lift (task 10c): how far the camera has risen above its usual ground framing; layers
  * then drop by lift x their parallax factor (the sky stays, far hills move a little, the floor all the way).
  */
-export function drawBackground(ctx, bg, cam, W, H, fxT = 0, react = 1, night = 0, lift = 0) {
+export function drawBackground(ctx, bg, cam, W, H, fxT = 0, react = 1, night = 0, lift = 0, scratch = null) {
   const t = bg.theme;
   const view = { cam, W, H, fxT, react, lift }; // lift: px the camera is above its ground framing (task 10c) // react: crowd excitement (story scripts: up after hits, down after a defeat)
   const nl = night > 0.001 ? nightLook(t) : null;
-  if (nl) return drawNightBackground(ctx, bg, KINDS, view, night * nl.amount, nl.sky);
+  if (nl) return drawNightBackground(ctx, bg, KINDS, view, night * nl.amount, nl.sky, scratch);
+  // A graded frame (a filter on ctx): the whole background in one filter pass (filter_pass.js).
+  const filter = ctx.filter;
+  if (scratch && filter && filter !== "none") {
+    throughFilter(ctx, scratch, filter, (g) => dayBackground(g, bg, view));
+    return screen(ctx);
+  }
+  dayBackground(ctx, bg, view);
+}
+
+function dayBackground(ctx, bg, view) {
+  const t = bg.theme;
+  const { W, H } = view;
   screen(ctx);
   const sky = ctx.createLinearGradient(0, 0, 0, H);
   sky.addColorStop(0, t.sky.top);

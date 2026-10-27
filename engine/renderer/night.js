@@ -15,6 +15,7 @@ import { mulberry32, hash32 } from "../math.js";
 import { mixHex } from "../lighting.js";
 import { layerTransform, screen } from "./layer_util.js";
 import { STAGE } from "../config.js";
+import { throughFilter } from "./filter_pass.js";
 
 export const NIGHT_SKY = Object.freeze({ top: "#060a1c", bottom: "#1c2a58" });
 /** The darkening of a theme's layers at night share n: a canvas filter (the grade then tints it moonlit blue). */
@@ -158,7 +159,7 @@ export const NIGHT_LIGHT_KINDS = Object.freeze(Object.keys(LIGHTS));
  * @param {{ cam, W, H, fxT, react }} view
  * @param {boolean} sky  whether the theme shows the night sky (moon and stars)
  */
-export function drawNightBackground(ctx, bg, kinds, view, n, sky) {
+export function drawNightBackground(ctx, bg, kinds, view, n, sky, scratch = null) {
   const t = bg.theme;
   const { W, H } = view;
   const real = ctx.__real || ctx;
@@ -177,26 +178,27 @@ export function drawNightBackground(ctx, bg, kinds, view, n, sky) {
     LIGHTS[layer.kind](ctx, layer, bg.geom[i], view, n);
     ctx.restore();
   };
+  // Each layer in one filter pass (filter_pass.js: per-shape filtering was ~12 s a frame at 4K).
   const draw = (onGround) => t.layers.forEach((layer, i) => {
     const kind = kinds[layer.kind];
     if (!kind || !!kind.onGround !== onGround) return;
-    if (layer.kind === "sun") ctx.globalAlpha = Math.max(0, 1 - n * 1.6);
-    ctx.filter = base + dark;
-    if (ctx.globalAlpha > 0.004) kind.draw(ctx, layer, bg.geom[i], view);
-    ctx.globalAlpha = 1;
+    const alpha = layer.kind === "sun" ? Math.max(0, 1 - n * 1.6) : 1;
+    if (alpha > 0.004) throughFilter(ctx, scratch, base + dark, (g) => kind.draw(g, layer, bg.geom[i], view), alpha);
     lights(layer, i);
   });
   draw(false);
-  ctx.filter = base + dark;
-  const { left, right } = layerTransform(ctx, view, 1);
-  ctx.fillStyle = t.ground.color;
-  ctx.fillRect(left, 0, right - left, 4000);
+  throughFilter(ctx, scratch, base + dark, (g) => {
+    const { left, right } = layerTransform(g, view, 1);
+    g.fillStyle = t.ground.color;
+    g.fillRect(left, 0, right - left, 4000);
+  });
   draw(true);
-  ctx.filter = base + dark;
-  layerTransform(ctx, view, 1);
-  ctx.strokeStyle = t.ground.line;
-  ctx.lineWidth = 4;
-  ctx.beginPath(); ctx.moveTo(left, 0); ctx.lineTo(right, 0); ctx.stroke();
+  throughFilter(ctx, scratch, base + dark, (g) => {
+    const { left, right } = layerTransform(g, view, 1);
+    g.strokeStyle = t.ground.line;
+    g.lineWidth = 4;
+    g.beginPath(); g.moveTo(left, 0); g.lineTo(right, 0); g.stroke();
+  });
   ctx.filter = base || "none";
   // The sky behind everything: the moon, the stars, then the gradient (destination-over draws back to front).
   screen(ctx);

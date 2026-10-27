@@ -71,3 +71,14 @@ Apple M3 Pro, @napi-rs/canvas, libx264 `medium` CRF 16. `node tools/record.mjs s
 | `v3_3_lights` (1,162 frames) | 1.4 frames/s | 6: 6.7 frames/s | 4.8x |
 
 Making frames independent needed one engine fix: the lit set pieces' scratch canvases grew to the largest piece seen so far, and Skia filters the sub-pixel band copies slightly differently on canvases of different sizes, so a frame depended on the frames drawn before it. They are now made once at the frame size plus the 40 px pad on each side.
+
+## 4K slow paths in Doopi ep08 (2026-10-26)
+
+Episode 8 rendered at 4K at 0.1 frames/s, against about 3 for the other episodes. Two renderer paths were slow in Skia (@napi-rs/canvas), both with the same pixels after the fix (golden frames unchanged; a night 4K frame differs from before by PSNR 73 dB, rounding only):
+
+| Path | Before (one 4K frame) | After |
+|---|---|---|
+| Night background: the darkening filter set while every shape of a layer is drawn (the spice kitchen's shelves: hundreds of jars and sacks) | 12-28 s | 0.5 s |
+| Lit props: a sub-rect of the frame-sized scratch canvas pasted into a clipped depth-of-field layer | about 5 s every other frame | under 0.1 s |
+
+The night layers (and a graded background) are now drawn unfiltered into a scratch canvas and composited once with the filter (`renderer/filter_pass.js`); lit pieces paste through a canvas their own size. Memory also matters at 4K: a worker and its x264 encoder need about 2 GB, so the default is 3-4 workers on an 18 GB Mac (`parallel_render.mjs`), and a render that swaps slows down 50x.

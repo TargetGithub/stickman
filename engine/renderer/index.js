@@ -5,6 +5,7 @@ import { lowestPoint } from "../skeleton.js";
 import { drawCharacter } from "./character.js";
 import { drawItems, drawTrails as drawTrailsOf } from "./world_items.js";
 import { createBackground, drawBackground } from "./background.js";
+import { filterScratch } from "./filter_pass.js";
 import { drawParticles } from "./particles.js";
 import { drawPostWorld, drawOverlays } from "./overlays.js";
 import { drawHold } from "./transitions.js";
@@ -196,7 +197,7 @@ export function renderScene(r, ctx, n) {
   g.save();
   if (filter) g.filter = filter;
   const grade = gradeState(sv.look, sv.looks, f.videoT);
-  drawBackground(g, background(r, theme), lens ? { ...cam, zoom: lens.lc.bgZoom } : cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1, grade?.time.night ?? 0, sv.heights ? cameraLift(r, cam) : 0);
+  drawBackground(g, background(r, theme), lens ? { ...cam, zoom: lens.lc.bgZoom } : cam, W, H, f.fxT, r.sim.story?.legacy === false ? crowdReact(sv, f) : 1, grade?.time.night ?? 0, sv.heights ? cameraLift(r, cam) : 0, filterScratch(r, g));
   const ambient = ambientTint(r.frameLight);
   if (ambient) {
     // The key light's colour over the whole background (V3.3): a multiply tint, as the time-of-day grade does.
