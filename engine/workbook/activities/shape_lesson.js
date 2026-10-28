@@ -2,6 +2,7 @@
 // copies to trace, and three things in real life that have the shape. No answers.
 
 import { cornerPoints } from "../shape_facts.js";
+import { atLeast } from "../grades.js";
 
 const RAD = Math.PI / 180;
 const count = (n, one, many) => `${n} ${n === 1 ? one : many}`;
@@ -13,8 +14,8 @@ export function shapeFacts(def, grade) {
   if (def.curved && def.sides === 0) lines.push("No straight sides");
   else lines.push(count(def.sides, "side", "sides"));
   lines.push(count(def.corners, "corner", "corners"));
-  if (def.rightAngles && (grade === "1" || grade === "2")) lines.push(count(def.rightAngles, "square corner", "square corners"));
-  if (grade === "2" && def.symmetry > 0) lines.push(count(def.symmetry, "line of symmetry", "lines of symmetry"));
+  if (def.rightAngles && atLeast(grade, "1")) lines.push(count(def.rightAngles, "square corner", "square corners"));
+  if (atLeast(grade, "2") && def.symmetry > 0) lines.push(count(def.symmetry, "line of symmetry", "lines of symmetry"));
   return lines;
 }
 

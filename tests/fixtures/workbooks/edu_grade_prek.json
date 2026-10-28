@@ -1,0 +1,60 @@
+{
+ "kind": "workbook",
+ "version": 1,
+ "title": "Pre-K Skills Sampler",
+ "seed": 101,
+ "grade": "prek",
+ "style": {
+  "cast": [
+   "doopi"
+  ]
+ },
+ "documents": [
+  {
+   "id": "student",
+   "title": "Pre-K Skills Sampler",
+   "pages": [
+    {
+     "id": "letters",
+     "title": "Find the Letter",
+     "instructions": "Circle the letter.",
+     "blocks": [
+      {
+       "activity": "choose",
+       "set": "letters_prek",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "add",
+     "title": "Put Them Together",
+     "instructions": "Add. Write the answer.",
+     "blocks": [
+      {
+       "activity": "math_facts",
+       "template": "add_within_5",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "story",
+     "title": "The Red Hat",
+     "instructions": "Listen to the story.",
+     "blocks": [
+      {
+       "activity": "read_passage",
+       "passage": "red_hen_hat"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "answers",
+   "answersFor": "student",
+   "title": "Pre-K Skills Sampler: Answers"
+  }
+ ]
+}

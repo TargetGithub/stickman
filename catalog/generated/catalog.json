@@ -10798,7 +10798,10 @@
       "E_WB_FIT": { "meaning": "an activity's pictures, words or dots do not fit in its slot", "fix": "Use fewer items, or a bigger slot (full or halves)." },
       "W_WB_TEXT": { "meaning": "instructions long for the grade", "fix": "One or two short sentences a grown-up can read aloud." },
       "W_WB_DENSE": { "meaning": "more activities on one page than the grade can handle", "fix": "Split them over more pages (pre-K 1, K 2, grade 1 4, grade 2 6)." },
-      "W_WB_REPEAT": { "meaning": "the same activity with the same params twice in a document", "fix": "Change the params so every page is new." }
+      "W_WB_REPEAT": { "meaning": "the same activity with the same params twice in a document", "fix": "Change the params so every page is new." },
+      "E_WB_SOURCE": { "meaning": "an unknown math template, question set, passage or money name, or a block that names a source and also writes its own", "fix": "Use a name listed in 09_workbooks.md, or write the questions in the block instead." },
+      "E_WB_VALUE": { "meaning": "a value an activity cannot use: a clock time, a fraction, a step of 0, an answer index outside the options, an amount the money cannot make", "fix": "Use hours 1-12 and minutes 00-59, fractions like 3/4 (denominators 2-12), and answer 0 for the first option." },
+      "W_WB_LEVEL": { "meaning": "a math template, question set or passage meant for a higher grade than the book", "fix": "Pick one for this grade or lower, or raise the book's grade." }
     },
     "workbook_activities": {
       "shape_lesson": {
@@ -10889,6 +10892,60 @@
         "params": "prompt (up to 80 characters), starter (an art reference)",
         "answers": "none",
         "example": { "activity": "draw_prompt", "prompt": "Draw a hat for Mooka.", "starter": { "preset": "mooka" } }
+      },
+      "math_facts": {
+        "description": "Numbered math problems from a math template (add, subtract, multiply, divide, decimals), across or stacked in columns; long division under a bracket.",
+        "params": "template (a math template), count (1-30, default the template's), form (across, stacked)",
+        "answers": "the answers",
+        "example": { "activity": "math_facts", "template": "add_within_10", "count": 8 }
+      },
+      "number_line": {
+        "description": "Number lines counting on by a step (1s, 2s, 5s, 10s, back, through zero) with some numbers left as boxes to fill in.",
+        "params": "rows [{start, step}] or count + step, length (4-12 ticks, default 8), blanks (default 3)",
+        "answers": "the missing numbers",
+        "example": { "activity": "number_line", "rows": [{ "start": 0, "step": 2 }], "length": 8 }
+      },
+      "place_value": {
+        "description": "Base-ten blocks (hundreds, tens, ones) to count and write as a number, or numbers to write in expanded form.",
+        "params": "numbers or count + max, task (blocks up to 999, expand up to 999,999)",
+        "answers": "the numbers or expanded forms",
+        "example": { "activity": "place_value", "numbers": [14, 23, 31], "task": "blocks" }
+      },
+      "clock": {
+        "description": "Clock faces: read the time and write it, or draw the hands for a printed time.",
+        "params": "times [\"3:30\"] or count + step (60, 30, 15, 5, 1 minutes; default by grade), task (read, draw)",
+        "answers": "the times or the hands",
+        "example": { "activity": "clock", "times": ["3:00", "7:00", "9:00", "12:00"] }
+      },
+      "coins": {
+        "description": "Rows of plain labelled coins and notes (1¢, 5¢, 10¢, 25¢, $1, $5) to count and total.",
+        "params": "totals (cents) or count + max, use (money names; default by grade)",
+        "answers": "the totals",
+        "example": { "activity": "coins", "totals": [4, 7, 9] }
+      },
+      "fractions": {
+        "description": "Shapes cut into equal parts (circle, rect, bar): write the fraction shaded, or shade the fraction printed.",
+        "params": "fractions [\"1/2\", \"3/4\"] (denominators 2-12), shape, task (name, shade)",
+        "answers": "the fractions or the shading",
+        "example": { "activity": "fractions", "fractions": ["1/2", "1/4"], "shape": "circle" }
+      },
+      "choose": {
+        "description": "Numbered multiple-choice questions: circle the answer. Phonics, sight words, grammar, science, social studies, logic and word problems.",
+        "params": "set (a question set) + count, or questions [{q, options (2-4), answer (index), picture}]; shuffle (default true)",
+        "answers": "the right options ringed",
+        "example": { "activity": "choose", "set": "rhyming_k", "count": 4 }
+      },
+      "read_passage": {
+        "description": "A short reading passage in a frame, then questions to circle or answer on lines.",
+        "params": "passage (a catalog passage), or title + text + questions [{q, options, answer} or {q, answer: text, lines}]",
+        "answers": "the answers",
+        "example": { "activity": "read_passage", "passage": "big_dog" }
+      },
+      "write_lines": {
+        "description": "Handwriting or writing practice: a model sentence to copy and/or a prompt, then handwriting lines (ruled lines from grade 3).",
+        "params": "model, prompt, rows, ruled",
+        "answers": "none",
+        "example": { "activity": "write_lines", "model": "I like my cat.", "rows": 3 }
       }
     }
   },
@@ -11300,6 +11357,49 @@
         "examples": ["donut", "bracelet", "swim ring"],
         "note": "It has two round edges: one outside and one around the hole.",
         "geometry": { "kind": "ring", "inner": 0.5 }
+      },
+      "isosceles_triangle": {
+        "label": "isosceles triangle",
+        "description": "A triangle with two sides the same length, tall and pointed like a party hat.",
+        "tags": ["polygon", "triangles"],
+        "grade": "3",
+        "sides": 3,
+        "corners": 3,
+        "rightAngles": 0,
+        "equalSides": "two",
+        "curved": false,
+        "symmetry": 1,
+        "examples": ["party hat", "slice of cake", "roof gable"],
+        "geometry": { "kind": "polygon", "points": [[0, -1], [0.55, 0.9], [-0.55, 0.9]] }
+      },
+      "decagon": {
+        "label": "decagon",
+        "description": "A shape with 10 straight sides and 10 corners.",
+        "tags": ["polygon"],
+        "grade": "3",
+        "sides": 10,
+        "corners": 10,
+        "rightAngles": 0,
+        "equalSides": "all",
+        "curved": false,
+        "symmetry": 10,
+        "examples": ["coin edge", "gazebo roof", "garden tile"],
+        "geometry": { "kind": "regular", "sides": 10 }
+      },
+      "obtuse_triangle": {
+        "label": "obtuse triangle",
+        "description": "A triangle with one wide corner, bigger than a square corner; no two sides are the same length.",
+        "tags": ["polygon", "triangles", "angles"],
+        "grade": "4",
+        "sides": 3,
+        "corners": 3,
+        "rightAngles": 0,
+        "equalSides": "none",
+        "curved": false,
+        "symmetry": 0,
+        "examples": ["clothes hanger", "open book cover", "fan blade"],
+        "note": "Its top corner is wider than a square corner.",
+        "geometry": { "kind": "polygon", "points": [[-1, 0.5], [1, 0.5], [-0.4, -0.3]] }
       }
     },
     "pictures": {
@@ -12053,6 +12153,2975 @@
         "sight_1": {
           "description": "Grade 1 sight words.",
           "words": { "come": "1", "where": "1", "help": "1", "jump": "1", "funny": "1", "little": "1", "make": "1", "away": "1", "find": "1", "three": "1", "down": "1", "yellow": "1" }
+        },
+        "sight_prek": {
+          "description": "Pre-K sight words to read and trace.",
+          "words": { "go": "prek", "me": "prek", "my": "prek", "up": "prek", "in": "prek", "is": "prek", "it": "prek", "we": "prek", "see": "prek", "to": "prek", "no": "prek", "am": "prek" }
+        },
+        "sight_2": {
+          "description": "Grade 2 sight words.",
+          "words": { "always": "2", "around": "2", "because": "2", "been": "2", "before": "2", "best": "2", "both": "2", "buy": "2", "call": "2", "cold": "2", "does": "2", "fast": "2", "first": "2", "found": "2", "gave": "2", "goes": "2", "green": "2", "its": "2", "made": "2", "many": "2", "off": "2", "or": "2", "pull": "2", "read": "2", "right": "2", "sing": "2", "sit": "2", "sleep": "2", "tell": "2", "their": "2", "these": "2", "those": "2", "upon": "2", "us": "2", "use": "2", "very": "2", "wash": "2", "which": "2", "why": "2", "wish": "2", "work": "2", "would": "2", "write": "2", "your": "2" }
+        },
+        "sight_3": {
+          "description": "Grade 3 sight words.",
+          "words": { "about": "3", "better": "3", "bring": "3", "carry": "3", "clean": "3", "cut": "3", "done": "3", "draw": "3", "drink": "3", "eight": "3", "fall": "3", "far": "3", "full": "3", "got": "3", "grow": "3", "hold": "3", "hot": "3", "hurt": "3", "if": "3", "keep": "3", "kind": "3", "laugh": "3", "light": "3", "long": "3", "much": "3", "myself": "3", "never": "3", "only": "3", "own": "3", "pick": "3", "seven": "3", "shall": "3", "show": "3", "six": "3", "small": "3", "start": "3", "ten": "3", "today": "3", "together": "3", "try": "3", "warm": "3" }
+        },
+        "fam_at": {
+          "description": "Word family -at (short a).",
+          "words": { "at": "k", "bat": "k", "cat": "k", "hat": "k", "mat": "k", "pat": "k", "rat": "k", "sat": "k", "fat": "k", "flat": "k" }
+        },
+        "fam_an": {
+          "description": "Word family -an (short a).",
+          "words": { "an": "k", "can": "k", "fan": "k", "man": "k", "pan": "k", "ran": "k", "tan": "k", "van": "k", "plan": "k" }
+        },
+        "fam_ig": {
+          "description": "Word family -ig (short i).",
+          "words": { "big": "k", "dig": "k", "fig": "k", "pig": "k", "wig": "k", "jig": "k", "twig": "k" }
+        },
+        "fam_op": {
+          "description": "Word family -op (short o).",
+          "words": { "hop": "k", "mop": "k", "pop": "k", "top": "k", "shop": "k", "stop": "k", "drop": "k" }
+        },
+        "fam_ug": {
+          "description": "Word family -ug (short u).",
+          "words": { "bug": "k", "dug": "k", "hug": "k", "jug": "k", "mug": "k", "rug": "k", "tug": "k", "plug": "k" }
+        },
+        "fam_et": {
+          "description": "Word family -et (short e).",
+          "words": { "bet": "k", "get": "k", "jet": "k", "let": "k", "met": "k", "net": "k", "pet": "k", "set": "k", "wet": "k", "vet": "k" }
+        },
+        "cvc_words": {
+          "description": "Consonant-vowel-consonant words for blending.",
+          "words": { "sun": "k", "cup": "k", "map": "k", "pin": "k", "hen": "k", "log": "k", "mud": "k", "kid": "k", "fox": "k", "web": "k", "bed": "k", "rug": "k" }
+        },
+        "digraphs": {
+          "description": "Words with sh, ch, th and wh.",
+          "words": { "ship": "1", "shop": "1", "fish": "1", "dish": "1", "chip": "1", "chin": "1", "lunch": "1", "much": "1", "thin": "1", "bath": "1", "math": "1", "moth": "1", "when": "1", "whip": "1", "whale": "1" }
+        },
+        "blends": {
+          "description": "Words that start with a consonant blend.",
+          "words": { "frog": "1", "crab": "1", "drum": "1", "flag": "1", "clap": "1", "sled": "1", "snap": "1", "stop": "1", "swim": "1", "plum": "1", "glad": "1", "brick": "1", "trip": "1", "spin": "1" }
+        },
+        "silent_e": {
+          "description": "Long-vowel words with a silent e.",
+          "words": { "cake": "2", "lake": "2", "name": "2", "game": "2", "bike": "2", "kite": "2", "time": "2", "ride": "2", "bone": "2", "home": "2", "rope": "2", "note": "2", "cube": "2", "mule": "2", "tune": "2" }
+        },
+        "vowel_teams": {
+          "description": "Words with vowel teams (ai, ay, ee, ea, oa, ow).",
+          "words": { "rain": "2", "tail": "2", "day": "2", "play": "2", "tree": "2", "feet": "2", "seat": "2", "read": "2", "boat": "2", "road": "2", "snow": "2", "grow": "2" }
+        },
+        "compound_words": {
+          "description": "Compound words made of two smaller words.",
+          "words": { "sunset": "2", "rainbow": "2", "cupcake": "2", "football": "2", "bedroom": "2", "pancake": "2", "snowman": "2", "doghouse": "2", "starfish": "2", "popcorn": "2" }
+        },
+        "feelings": {
+          "description": "Words for feelings.",
+          "words": { "happy": "k", "sad": "k", "mad": "k", "glad": "k", "calm": "k", "proud": "k", "scared": "k", "silly": "k" }
+        },
+        "weather": {
+          "description": "Weather and seasons words.",
+          "words": { "rain": "1", "snow": "1", "wind": "1", "cloud": "1", "sunny": "1", "storm": "1", "fog": "1", "winter": "1", "spring": "1", "summer": "1", "autumn": "1" }
+        },
+        "plants": {
+          "description": "Plant parts and growing.",
+          "words": { "seed": "2", "root": "2", "stem": "2", "leaf": "2", "flower": "2", "petal": "2", "soil": "2", "water": "2", "sunlight": "2", "sprout": "2", "fruit": "2" }
+        },
+        "habitats": {
+          "description": "Habitats and the animals in them.",
+          "words": { "desert": "2", "ocean": "2", "forest": "2", "pond": "2", "arctic": "2", "jungle": "2", "meadow": "2", "wetland": "2", "reef": "2", "cave": "2" }
+        },
+        "body": {
+          "description": "Body parts and systems.",
+          "words": { "heart": "3", "lungs": "3", "brain": "3", "bones": "3", "muscle": "3", "skin": "3", "stomach": "3", "skeleton": "3", "nerves": "3" }
+        },
+        "matter": {
+          "description": "States of matter and changes.",
+          "words": { "solid": "3", "liquid": "3", "gas": "3", "melt": "3", "freeze": "3", "boil": "3", "steam": "3", "ice": "3", "vapor": "3", "mass": "3" }
+        },
+        "space": {
+          "description": "Space and the solar system.",
+          "words": { "planet": "3", "orbit": "3", "moon": "3", "comet": "3", "star": "3", "galaxy": "3", "rocket": "3", "gravity": "3", "crater": "3", "saturn": "3", "jupiter": "3", "mercury": "3" }
+        },
+        "earth": {
+          "description": "Earth science: rocks, landforms and weathering.",
+          "words": { "erosion": "4", "fossil": "4", "volcano": "4", "mineral": "4", "canyon": "4", "glacier": "4", "island": "4", "valley": "4", "magma": "4", "crust": "4" }
+        },
+        "ecosystems": {
+          "description": "Ecosystems and food chains.",
+          "words": { "producer": "5", "consumer": "5", "predator": "5", "prey": "5", "habitat": "5", "decomposer": "5", "herbivore": "5", "carnivore": "5", "omnivore": "5", "energy": "5" }
+        },
+        "community": {
+          "description": "Community places and helpers.",
+          "words": { "library": "1", "school": "1", "park": "1", "store": "1", "farm": "1", "firefighter": "1", "nurse": "1", "baker": "1", "mayor": "1", "police": "1" }
+        },
+        "maps": {
+          "description": "Map and geography words.",
+          "words": { "map": "2", "globe": "2", "north": "2", "south": "2", "east": "2", "west": "2", "compass": "2", "key": "2", "river": "2", "mountain": "2" }
+        },
+        "government": {
+          "description": "Government and citizenship words.",
+          "words": { "vote": "3", "law": "3", "mayor": "3", "council": "3", "citizen": "3", "rights": "3", "rules": "3", "election": "3", "capital": "3", "governor": "3" }
+        },
+        "economics": {
+          "description": "Economics words.",
+          "words": { "goods": "4", "services": "4", "budget": "4", "save": "4", "spend": "4", "trade": "4", "price": "4", "profit": "4", "income": "4", "market": "4" }
+        },
+        "math_words": {
+          "description": "Math vocabulary.",
+          "words": { "add": "3", "subtract": "3", "multiply": "3", "divide": "3", "sum": "3", "product": "3", "equal": "3", "fraction": "3", "digit": "3", "array": "3", "factor": "3" }
+        },
+        "geometry": {
+          "description": "Geometry vocabulary.",
+          "words": { "angle": "4", "line": "4", "ray": "4", "point": "4", "parallel": "4", "acute": "4", "obtuse": "4", "right": "4", "vertex": "4", "polygon": "4", "symmetry": "4", "perimeter": "4" }
+        },
+        "spelling_3": {
+          "description": "Grade 3 spelling words.",
+          "words": { "because": "3", "friend": "3", "people": "3", "school": "3", "animal": "3", "answer": "3", "kitchen": "3", "pencil": "3", "yellow": "3", "window": "3", "pocket": "3", "rabbit": "3" }
+        },
+        "spelling_4": {
+          "description": "Grade 4 spelling words.",
+          "words": { "beautiful": "4", "favorite": "4", "remember": "4", "different": "4", "important": "4", "surprise": "4", "library": "4", "journey": "4", "question": "4", "village": "4", "weather": "4", "mountain": "4" }
+        },
+        "spelling_5": {
+          "description": "Grade 5 spelling words.",
+          "words": { "adventure": "5", "celebrate": "5", "discovery": "5", "equipment": "5", "government": "5", "knowledge": "5", "necessary": "5", "opposite": "5", "schedule": "5", "temperature": "5", "vegetable": "5", "wonderful": "5" }
+        }
+      }
+    },
+    "math": {
+      "description": "Math templates for math_facts (each makes seeded problems within its ranges and rules) and the coins and notes the coins activity draws (plain labelled shapes, no real coin art). WORKBOOK_SPEC 8.4.",
+      "templates": {
+        "add_within_5": {
+          "description": "Add two small numbers with a sum of 5 or less.",
+          "tags": ["addition", "facts"],
+          "grade": "prek",
+          "op": "+",
+          "a": [0, 5],
+          "b": [0, 5],
+          "max": 5,
+          "count": 6
+        },
+        "add_within_10": {
+          "description": "Add two numbers with a sum of 10 or less.",
+          "tags": ["addition", "facts"],
+          "grade": "k",
+          "op": "+",
+          "a": [0, 10],
+          "b": [0, 10],
+          "max": 10,
+          "count": 10
+        },
+        "sub_within_10": {
+          "description": "Subtract within 10: both numbers 10 or less.",
+          "tags": ["subtraction", "facts"],
+          "grade": "k",
+          "op": "-",
+          "a": [0, 10],
+          "b": [0, 10],
+          "count": 10
+        },
+        "make_ten": {
+          "description": "Find the number that makes 10: 7 + ___ = 10.",
+          "tags": ["addition", "make-ten"],
+          "grade": "k",
+          "op": "+",
+          "a": [0, 10],
+          "b": [0, 10],
+          "min": 10,
+          "max": 10,
+          "missing": "b",
+          "count": 8
+        },
+        "add_within_20": {
+          "description": "Add within 20, with sums from 10 to 20 for fact fluency.",
+          "tags": ["addition", "facts"],
+          "grade": "1",
+          "op": "+",
+          "a": [2, 12],
+          "b": [2, 12],
+          "min": 10,
+          "max": 20,
+          "count": 15
+        },
+        "sub_within_20": {
+          "description": "Subtract within 20: take a small number from a teen number.",
+          "tags": ["subtraction", "facts"],
+          "grade": "1",
+          "op": "-",
+          "a": [11, 20],
+          "b": [2, 10],
+          "count": 15
+        },
+        "missing_addend_20": {
+          "description": "Find the missing part: 8 + ___ = 13.",
+          "tags": ["addition", "missing-part"],
+          "grade": "1",
+          "op": "+",
+          "a": [1, 12],
+          "b": [1, 12],
+          "max": 20,
+          "missing": "b",
+          "count": 10
+        },
+        "add_tens": {
+          "description": "Add multiples of ten: 30 + 40 = ___.",
+          "tags": ["addition", "tens"],
+          "grade": "1",
+          "op": "+",
+          "aSet": [10, 20, 30, 40, 50, 60, 70, 80],
+          "bSet": [10, 20, 30, 40, 50],
+          "max": 100,
+          "count": 10
+        },
+        "add_2digit_1digit": {
+          "description": "Add a one-digit number to a two-digit number without regrouping.",
+          "tags": ["addition", "two-digit"],
+          "grade": "1",
+          "op": "+",
+          "a": [10, 89],
+          "b": [1, 9],
+          "max": 99,
+          "regroup": false,
+          "form": "stacked",
+          "count": 12
+        },
+        "add_2digit_no_regroup": {
+          "description": "Add two two-digit numbers without regrouping, stacked in columns.",
+          "tags": ["addition", "two-digit"],
+          "grade": "2",
+          "op": "+",
+          "a": [10, 89],
+          "b": [10, 89],
+          "max": 99,
+          "regroup": false,
+          "form": "stacked",
+          "count": 12
+        },
+        "add_2digit_regroup": {
+          "description": "Add two two-digit numbers where the ones make a new ten.",
+          "tags": ["addition", "regrouping"],
+          "grade": "2",
+          "op": "+",
+          "a": [11, 89],
+          "b": [11, 89],
+          "max": 99,
+          "regroup": true,
+          "form": "stacked",
+          "count": 12
+        },
+        "sub_2digit_no_borrow": {
+          "description": "Subtract two-digit numbers without regrouping.",
+          "tags": ["subtraction", "two-digit"],
+          "grade": "2",
+          "op": "-",
+          "a": [20, 99],
+          "b": [10, 89],
+          "regroup": false,
+          "form": "stacked",
+          "count": 12
+        },
+        "sub_2digit_borrow": {
+          "description": "Subtract two-digit numbers where a ten is traded for ones.",
+          "tags": ["subtraction", "regrouping"],
+          "grade": "2",
+          "op": "-",
+          "a": [20, 99],
+          "b": [11, 89],
+          "regroup": true,
+          "form": "stacked",
+          "count": 12
+        },
+        "add_3digit_no_regroup": {
+          "description": "Add three-digit numbers without regrouping.",
+          "tags": ["addition", "three-digit"],
+          "grade": "2",
+          "op": "+",
+          "a": [100, 899],
+          "b": [100, 899],
+          "max": 999,
+          "regroup": false,
+          "form": "stacked",
+          "count": 9
+        },
+        "add_3digit_regroup": {
+          "description": "Add three-digit numbers with regrouping in any column.",
+          "tags": ["addition", "regrouping"],
+          "grade": "3",
+          "op": "+",
+          "a": [100, 899],
+          "b": [100, 899],
+          "max": 999,
+          "regroup": true,
+          "form": "stacked",
+          "count": 12
+        },
+        "sub_3digit_borrow": {
+          "description": "Subtract three-digit numbers with regrouping.",
+          "tags": ["subtraction", "regrouping"],
+          "grade": "3",
+          "op": "-",
+          "a": [200, 999],
+          "b": [100, 899],
+          "regroup": true,
+          "form": "stacked",
+          "count": 12
+        },
+        "mul_facts_0_5": {
+          "description": "Multiplication facts with one factor from 0 to 5.",
+          "tags": ["multiplication", "facts"],
+          "grade": "3",
+          "op": "×",
+          "a": [0, 10],
+          "b": [0, 5],
+          "count": 20
+        },
+        "mul_facts_6_10": {
+          "description": "Multiplication facts with one factor from 6 to 10.",
+          "tags": ["multiplication", "facts"],
+          "grade": "3",
+          "op": "×",
+          "a": [1, 10],
+          "b": [6, 10],
+          "count": 20
+        },
+        "mul_facts_mixed": {
+          "description": "Mixed multiplication facts up to 10 x 10.",
+          "tags": ["multiplication", "facts"],
+          "grade": "3",
+          "op": "×",
+          "a": [0, 10],
+          "b": [0, 10],
+          "count": 24
+        },
+        "missing_factor": {
+          "description": "Find the missing factor: 6 x ___ = 42.",
+          "tags": ["multiplication", "missing-part"],
+          "grade": "3",
+          "op": "×",
+          "a": [1, 10],
+          "b": [1, 10],
+          "missing": "b",
+          "count": 12
+        },
+        "div_facts": {
+          "description": "Division facts with no remainder, divisors 1 to 10.",
+          "tags": ["division", "facts"],
+          "grade": "3",
+          "op": "÷",
+          "b": [1, 10],
+          "quotient": [1, 10],
+          "count": 20
+        },
+        "mul_by_tens": {
+          "description": "Multiply a one-digit number by a multiple of ten: 4 x 30.",
+          "tags": ["multiplication", "tens"],
+          "grade": "3",
+          "op": "×",
+          "aSet": [10, 20, 30, 40, 50, 60, 70, 80, 90],
+          "b": [2, 9],
+          "count": 12
+        },
+        "add_4digit": {
+          "description": "Add four-digit numbers with regrouping.",
+          "tags": ["addition", "multi-digit"],
+          "grade": "4",
+          "op": "+",
+          "a": [1000, 8999],
+          "b": [1000, 8999],
+          "max": 9999,
+          "form": "stacked",
+          "count": 9
+        },
+        "sub_4digit": {
+          "description": "Subtract four-digit numbers with regrouping.",
+          "tags": ["subtraction", "multi-digit"],
+          "grade": "4",
+          "op": "-",
+          "a": [2000, 9999],
+          "b": [1000, 8999],
+          "regroup": true,
+          "form": "stacked",
+          "count": 9
+        },
+        "mul_2digit_by_1digit": {
+          "description": "Multiply a two-digit number by a one-digit number.",
+          "tags": ["multiplication", "multi-digit"],
+          "grade": "4",
+          "op": "×",
+          "a": [12, 99],
+          "b": [2, 9],
+          "form": "stacked",
+          "count": 12
+        },
+        "mul_2digit_by_2digit": {
+          "description": "Multiply two two-digit numbers.",
+          "tags": ["multiplication", "multi-digit"],
+          "grade": "4",
+          "op": "×",
+          "a": [12, 99],
+          "b": [11, 99],
+          "form": "stacked",
+          "count": 9
+        },
+        "div_remainder": {
+          "description": "Division with a remainder: 29 ÷ 4 = 7 R1.",
+          "tags": ["division", "remainders"],
+          "grade": "4",
+          "op": "÷",
+          "b": [2, 9],
+          "quotient": [2, 12],
+          "remainder": true,
+          "count": 12
+        },
+        "div_3digit_by_1digit": {
+          "description": "Long division: a two- or three-digit number by a one-digit divisor, no remainder.",
+          "tags": ["division", "long-division"],
+          "grade": "4",
+          "op": "÷",
+          "b": [2, 9],
+          "quotient": [12, 111],
+          "form": "stacked",
+          "count": 6
+        },
+        "add_decimals_tenths": {
+          "description": "Add decimals to tenths: 3.4 + 2.5.",
+          "tags": ["decimals", "addition"],
+          "grade": "4",
+          "op": "+",
+          "a": [1, 99],
+          "b": [1, 99],
+          "decimals": 1,
+          "form": "stacked",
+          "count": 12
+        },
+        "sub_decimals_tenths": {
+          "description": "Subtract decimals to tenths.",
+          "tags": ["decimals", "subtraction"],
+          "grade": "4",
+          "op": "-",
+          "a": [10, 99],
+          "b": [1, 89],
+          "decimals": 1,
+          "form": "stacked",
+          "count": 12
+        },
+        "mul_3digit_by_2digit": {
+          "description": "Multiply a three-digit number by a two-digit number.",
+          "tags": ["multiplication", "multi-digit"],
+          "grade": "5",
+          "op": "×",
+          "a": [100, 999],
+          "b": [11, 99],
+          "form": "stacked",
+          "count": 6
+        },
+        "div_by_2digit": {
+          "description": "Long division with a two-digit divisor, no remainder.",
+          "tags": ["division", "long-division"],
+          "grade": "5",
+          "op": "÷",
+          "b": [11, 25],
+          "quotient": [2, 40],
+          "form": "stacked",
+          "count": 6
+        },
+        "div_4digit_by_1digit": {
+          "description": "Long division: a four-digit number by a one-digit divisor.",
+          "tags": ["division", "long-division"],
+          "grade": "5",
+          "op": "÷",
+          "b": [2, 9],
+          "quotient": [112, 999],
+          "form": "stacked",
+          "count": 6
+        },
+        "add_decimals_hundredths": {
+          "description": "Add decimals to hundredths: money-style sums such as 12.45 + 3.80.",
+          "tags": ["decimals", "addition"],
+          "grade": "5",
+          "op": "+",
+          "a": [100, 9999],
+          "b": [100, 9999],
+          "decimals": 2,
+          "form": "stacked",
+          "count": 9
+        },
+        "sub_decimals_hundredths": {
+          "description": "Subtract decimals to hundredths.",
+          "tags": ["decimals", "subtraction"],
+          "grade": "5",
+          "op": "-",
+          "a": [500, 9999],
+          "b": [100, 4999],
+          "decimals": 2,
+          "form": "stacked",
+          "count": 9
+        },
+        "mul_by_powers_of_ten": {
+          "description": "Multiply by 10, 100 or 1,000.",
+          "tags": ["multiplication", "place-value"],
+          "grade": "5",
+          "op": "×",
+          "a": [2, 99],
+          "bSet": [10, 100, 1000],
+          "count": 12
+        }
+      },
+      "money": {
+        "penny": {
+          "description": "A one-cent coin, drawn as a small plain circle marked 1¢.",
+          "tags": ["coin", "cent"],
+          "value": 1,
+          "label": "1¢",
+          "size": 0.8,
+          "kind": "coin"
+        },
+        "nickel": {
+          "description": "A five-cent coin, drawn as a circle marked 5¢.",
+          "tags": ["coin", "cent"],
+          "value": 5,
+          "label": "5¢",
+          "size": 0.9,
+          "kind": "coin"
+        },
+        "dime": {
+          "description": "A ten-cent coin, drawn as the smallest circle marked 10¢.",
+          "tags": ["coin", "cent"],
+          "value": 10,
+          "label": "10¢",
+          "size": 0.72,
+          "kind": "coin"
+        },
+        "quarter": {
+          "description": "A twenty-five-cent coin, drawn as the biggest circle marked 25¢.",
+          "tags": ["coin", "cent"],
+          "value": 25,
+          "label": "25¢",
+          "size": 1,
+          "kind": "coin"
+        },
+        "dollar": {
+          "description": "A one-dollar note, drawn as a plain rectangle marked $1.",
+          "tags": ["bill", "dollar"],
+          "value": 100,
+          "label": "$1",
+          "kind": "bill"
+        },
+        "five": {
+          "description": "A five-dollar note, drawn as a plain rectangle marked $5.",
+          "tags": ["bill", "dollar"],
+          "value": 500,
+          "label": "$5",
+          "kind": "bill"
+        }
+      }
+    },
+    "questions": {
+      "description": "Question sets for the choose activity (WORKBOOK_SPEC 8.5): original multiple-choice questions by strand and grade. The first option is written right (answer 0); choose shuffles the options.",
+      "sets": {
+        "letters_prek": {
+          "description": "Find a capital letter among letters that look alike.",
+          "tags": ["letters", "visual"],
+          "grade": "prek",
+          "strand": "phonics",
+          "questions": [
+            { "q": "Circle the letter B.", "options": ["B", "D", "P"], "answer": 0 },
+            { "q": "Circle the letter M.", "options": ["M", "N", "W"], "answer": 0 },
+            { "q": "Circle the letter O.", "options": ["O", "Q", "C"], "answer": 0 },
+            { "q": "Circle the letter E.", "options": ["E", "F", "L"], "answer": 0 },
+            { "q": "Circle the letter T.", "options": ["T", "I", "L"], "answer": 0 },
+            { "q": "Circle the letter S.", "options": ["S", "Z", "C"], "answer": 0 }
+          ]
+        },
+        "beginning_sounds_k": {
+          "description": "Pick the word that starts with the same sound as the given word.",
+          "tags": ["sounds", "beginning"],
+          "grade": "k",
+          "strand": "phonics",
+          "questions": [
+            { "q": "Which word starts like ball?", "options": ["bat", "cat", "sun"], "answer": 0 },
+            { "q": "Which word starts like moon?", "options": ["map", "net", "top"], "answer": 0 },
+            { "q": "Which word starts like sock?", "options": ["sun", "fox", "hat"], "answer": 0 },
+            { "q": "Which word starts like dog?", "options": ["duck", "pig", "rug"], "answer": 0 },
+            { "q": "Which word starts like fan?", "options": ["fish", "van", "cup"], "answer": 0 },
+            { "q": "Which word starts like top?", "options": ["ten", "pen", "log"], "answer": 0 },
+            { "q": "Which word starts like lamp?", "options": ["leaf", "rope", "jam"], "answer": 0 },
+            { "q": "Which word starts like nest?", "options": ["nose", "mitt", "bed"], "answer": 0 }
+          ]
+        },
+        "rhyming_k": {
+          "description": "Pick the word that rhymes with the given word.",
+          "tags": ["rhyme", "sounds"],
+          "grade": "k",
+          "strand": "phonics",
+          "questions": [
+            { "q": "Which word rhymes with cat?", "options": ["hat", "dog", "cup"], "answer": 0 },
+            { "q": "Which word rhymes with pig?", "options": ["wig", "pan", "bus"], "answer": 0 },
+            { "q": "Which word rhymes with sun?", "options": ["run", "sit", "map"], "answer": 0 },
+            { "q": "Which word rhymes with bed?", "options": ["red", "box", "hen"], "answer": 0 },
+            { "q": "Which word rhymes with cake?", "options": ["lake", "kite", "coat"], "answer": 0 },
+            { "q": "Which word rhymes with fox?", "options": ["box", "fig", "fun"], "answer": 0 },
+            { "q": "Which word rhymes with bee?", "options": ["tree", "bat", "boat"], "answer": 0 },
+            { "q": "Which word rhymes with car?", "options": ["star", "cup", "corn"], "answer": 0 }
+          ]
+        },
+        "short_vowels_1": {
+          "description": "Pick the short vowel that finishes a word from a clue.",
+          "tags": ["vowels", "short-vowels"],
+          "grade": "1",
+          "strand": "phonics",
+          "questions": [
+            { "q": "p_g: an animal that says oink", "options": ["i", "a", "o"], "answer": 0 },
+            { "q": "c_t: a pet that purrs", "options": ["a", "u", "o"], "answer": 0 },
+            { "q": "b_d: where you sleep", "options": ["e", "a", "u"], "answer": 0 },
+            { "q": "s_n: it shines in the day", "options": ["u", "i", "a"], "answer": 0 },
+            { "q": "t_p: a toy that spins", "options": ["o", "a", "i"], "answer": 0 },
+            { "q": "h_n: a bird on a farm", "options": ["e", "i", "u"], "answer": 0 },
+            { "q": "b_g: you carry things in it", "options": ["a", "u", "e"], "answer": 0 },
+            { "q": "l_g: part of a tree", "options": ["o", "e", "i"], "answer": 0 }
+          ]
+        },
+        "digraphs_1": {
+          "description": "Pick the two letters (sh, ch, th, wh) that start a word from a clue.",
+          "tags": ["digraphs", "sounds"],
+          "grade": "1",
+          "strand": "phonics",
+          "questions": [
+            { "q": "___ip: a big boat", "options": ["sh", "ch", "th"], "answer": 0 },
+            { "q": "___eese: food made from milk", "options": ["ch", "sh", "wh"], "answer": 0 },
+            { "q": "___umb: a short thick finger", "options": ["th", "sh", "ch"], "answer": 0 },
+            { "q": "___ale: a huge sea animal", "options": ["wh", "th", "sh"], "answer": 0 },
+            { "q": "___ell: a sea creature's home", "options": ["sh", "wh", "ch"], "answer": 0 },
+            { "q": "___in: below your mouth", "options": ["ch", "th", "sh"], "answer": 0 }
+          ]
+        },
+        "long_vowels_2": {
+          "description": "Find the word with a long vowel sound (the vowel says its name).",
+          "tags": ["vowels", "long-vowels", "silent-e"],
+          "grade": "2",
+          "strand": "phonics",
+          "questions": [
+            { "q": "Which word has a long a?", "options": ["cake", "cat", "cap"], "answer": 0 },
+            { "q": "Which word has a long i?", "options": ["kite", "kit", "sit"], "answer": 0 },
+            { "q": "Which word has a long o?", "options": ["rope", "rod", "pot"], "answer": 0 },
+            { "q": "Which word has a long u?", "options": ["cube", "cub", "tub"], "answer": 0 },
+            { "q": "Which word has a long e?", "options": ["seed", "set", "bed"], "answer": 0 },
+            { "q": "Add an e: hop becomes ___", "options": ["hope", "hoop", "hip"], "answer": 0 }
+          ]
+        },
+        "vowel_teams_2": {
+          "description": "Pick the vowel team that finishes a word from a clue.",
+          "tags": ["vowels", "vowel-teams"],
+          "grade": "2",
+          "strand": "phonics",
+          "questions": [
+            { "q": "r___n: water from clouds", "options": ["ai", "oa", "ee"], "answer": 0 },
+            { "q": "b___t: it floats on a lake", "options": ["oa", "ai", "ee"], "answer": 0 },
+            { "q": "tr___: it has leaves", "options": ["ee", "oa", "ai"], "answer": 0 },
+            { "q": "s___l: a sea animal that barks", "options": ["ea", "oa", "ai"], "answer": 0 },
+            { "q": "pl___: a game you like to ___", "options": ["ay", "oy", "ee"], "answer": 0 },
+            { "q": "sn___: cold and white", "options": ["ow", "ew", "ai"], "answer": 0 }
+          ]
+        },
+        "prefixes_suffixes_3": {
+          "description": "Use prefixes and suffixes (un-, re-, -ful, -less) to work out what a word means.",
+          "tags": ["prefixes", "suffixes", "word-study"],
+          "grade": "3",
+          "strand": "phonics",
+          "questions": [
+            { "q": "What does unhappy mean?", "options": ["not happy", "very happy", "happy again"], "answer": 0 },
+            { "q": "What does reread mean?", "options": ["read again", "not read", "read badly"], "answer": 0 },
+            { "q": "What does helpful mean?", "options": ["full of help", "without help", "help again"], "answer": 0 },
+            { "q": "What does fearless mean?", "options": ["without fear", "full of fear", "fear again"], "answer": 0 },
+            { "q": "What does preheat mean?", "options": ["heat before", "heat again", "not heat"], "answer": 0 },
+            { "q": "What does careful mean?", "options": ["full of care", "without care", "care again"], "answer": 0 }
+          ]
+        },
+        "word_roots_4": {
+          "description": "Use Greek and Latin roots to work out what a word means.",
+          "tags": ["roots", "word-study"],
+          "grade": "4",
+          "strand": "phonics",
+          "questions": [
+            {
+              "q": "Tele means far. A telescope helps you see things that are ___",
+              "options": ["far away", "very small", "under water"],
+              "answer": 0
+            },
+            { "q": "Bi means two. A bicycle has ___ wheels.", "options": ["two", "one", "three"], "answer": 0 },
+            { "q": "Port means carry. A porter ___ bags.", "options": ["carries", "paints", "counts"], "answer": 0 },
+            { "q": "Aqua means water. An aquarium holds ___", "options": ["water", "books", "plants"], "answer": 0 },
+            {
+              "q": "Graph means write. An autograph is a name you ___",
+              "options": ["write", "hear", "draw"],
+              "answer": 0
+            },
+            {
+              "q": "Micro means small. A microscope makes small things look ___",
+              "options": ["bigger", "smaller", "louder"],
+              "answer": 0
+            }
+          ]
+        },
+        "sight_words_k": {
+          "description": "Fill each sentence with the right kindergarten sight word.",
+          "tags": ["sight-words", "cloze"],
+          "grade": "k",
+          "strand": "sight_words",
+          "questions": [
+            { "q": "I ___ a red ball.", "options": ["see", "the", "and"], "answer": 0 },
+            { "q": "Look at ___ dog.", "options": ["the", "said", "go"], "answer": 0 },
+            { "q": "We ___ play.", "options": ["can", "big", "here"], "answer": 0 },
+            { "q": "Mom ___ Dad are here.", "options": ["and", "look", "red"], "answer": 0 },
+            { "q": "Come ___ with me.", "options": ["play", "the", "see"], "answer": 0 },
+            { "q": "The cat is ___.", "options": ["big", "and", "said"], "answer": 0 }
+          ]
+        },
+        "sight_words_1": {
+          "description": "Fill each sentence with the right first-grade sight word.",
+          "tags": ["sight-words", "cloze"],
+          "grade": "1",
+          "strand": "sight_words",
+          "questions": [
+            { "q": "Can you ___ me?", "options": ["help", "where", "three"], "answer": 0 },
+            { "q": "___ is my hat?", "options": ["Where", "Jump", "Funny"], "answer": 0 },
+            { "q": "The frog can ___ high.", "options": ["jump", "away", "little"], "answer": 0 },
+            { "q": "I have ___ fish.", "options": ["three", "come", "find"], "answer": 0 },
+            { "q": "The bird flew ___.", "options": ["away", "make", "help"], "answer": 0 },
+            { "q": "Please ___ here.", "options": ["come", "funny", "down"], "answer": 0 }
+          ]
+        },
+        "sight_words_2": {
+          "description": "Fill each sentence with the right second-grade sight word.",
+          "tags": ["sight-words", "cloze"],
+          "grade": "2",
+          "strand": "sight_words",
+          "questions": [
+            { "q": "We ___ to the park.", "options": ["went", "very", "which"], "answer": 0 },
+            { "q": "___ shoes are these?", "options": ["Whose", "Because", "Around"], "answer": 0 },
+            { "q": "I wear a coat ___ it is cold.", "options": ["because", "always", "before"], "answer": 0 },
+            { "q": "The dog ran ___ the tree.", "options": ["around", "would", "these"], "answer": 0 },
+            { "q": "Wash your hands ___ you eat.", "options": ["before", "found", "their"], "answer": 0 },
+            { "q": "They ___ say thank you.", "options": ["always", "around", "upon"], "answer": 0 }
+          ]
+        },
+        "opposites_k": {
+          "description": "Pick the word that means the opposite.",
+          "tags": ["opposites", "vocabulary"],
+          "grade": "k",
+          "strand": "grammar",
+          "questions": [
+            { "q": "The opposite of hot is ___", "options": ["cold", "warm", "sunny"], "answer": 0 },
+            { "q": "The opposite of up is ___", "options": ["down", "top", "over"], "answer": 0 },
+            { "q": "The opposite of big is ___", "options": ["small", "tall", "wide"], "answer": 0 },
+            { "q": "The opposite of happy is ___", "options": ["sad", "glad", "silly"], "answer": 0 },
+            { "q": "The opposite of day is ___", "options": ["night", "sun", "noon"], "answer": 0 },
+            { "q": "The opposite of open is ___", "options": ["shut", "door", "wide"], "answer": 0 }
+          ]
+        },
+        "nouns_verbs_1": {
+          "description": "Tell naming words (nouns) from action words (verbs).",
+          "tags": ["nouns", "verbs", "parts-of-speech"],
+          "grade": "1",
+          "strand": "grammar",
+          "questions": [
+            { "q": "Which word is a naming word?", "options": ["dog", "run", "jump"], "answer": 0 },
+            { "q": "Which word is an action word?", "options": ["swim", "fish", "pond"], "answer": 0 },
+            { "q": "Which word is a naming word?", "options": ["school", "read", "sing"], "answer": 0 },
+            { "q": "Which word is an action word?", "options": ["kick", "ball", "goal"], "answer": 0 },
+            { "q": "Which word names a person?", "options": ["teacher", "write", "quick"], "answer": 0 },
+            { "q": "Which word is an action word?", "options": ["eat", "apple", "lunch"], "answer": 0 }
+          ]
+        },
+        "sentences_1": {
+          "description": "Find the sentence with a capital letter at the start and an end mark.",
+          "tags": ["capitals", "punctuation", "sentences"],
+          "grade": "1",
+          "strand": "grammar",
+          "questions": [
+            {
+              "q": "Which one is written correctly?",
+              "options": ["The cat ran.", "the cat ran.", "The cat ran"],
+              "answer": 0
+            },
+            {
+              "q": "Which one is written correctly?",
+              "options": ["We like pie.", "we like pie", "We like pie"],
+              "answer": 0
+            },
+            {
+              "q": "Which one asks a question?",
+              "options": ["Can you swim?", "I can swim.", "Swim fast!"],
+              "answer": 0
+            },
+            {
+              "q": "Which one is written correctly?",
+              "options": ["Is it hot?", "is it hot?", "Is it hot."],
+              "answer": 0
+            },
+            { "q": "Which name needs a capital?", "options": ["Sam", "dog", "cup"], "answer": 0 },
+            {
+              "q": "Which one is written correctly?",
+              "options": ["I see Mia.", "i see Mia.", "I see mia."],
+              "answer": 0
+            }
+          ]
+        },
+        "plurals_2": {
+          "description": "Pick the right plural (more than one) for a noun.",
+          "tags": ["plurals", "nouns"],
+          "grade": "2",
+          "strand": "grammar",
+          "questions": [
+            { "q": "One fox, two ___", "options": ["foxes", "foxs", "fox"], "answer": 0 },
+            { "q": "One child, two ___", "options": ["children", "childs", "childes"], "answer": 0 },
+            { "q": "One mouse, two ___", "options": ["mice", "mouses", "mousies"], "answer": 0 },
+            { "q": "One bus, two ___", "options": ["buses", "buss", "busy"], "answer": 0 },
+            { "q": "One baby, two ___", "options": ["babies", "babys", "babyes"], "answer": 0 },
+            { "q": "One foot, two ___", "options": ["feet", "foots", "feets"], "answer": 0 }
+          ]
+        },
+        "adjectives_2": {
+          "description": "Find the describing word (adjective) in a sentence.",
+          "tags": ["adjectives", "parts-of-speech"],
+          "grade": "2",
+          "strand": "grammar",
+          "questions": [
+            { "q": "The fluffy cat sleeps. Which word describes?", "options": ["fluffy", "cat", "sleeps"], "answer": 0 },
+            { "q": "A tall tree grew. Which word describes?", "options": ["tall", "tree", "grew"], "answer": 0 },
+            { "q": "We ate sweet grapes. Which word describes?", "options": ["sweet", "ate", "grapes"], "answer": 0 },
+            { "q": "The loud drum banged. Which word describes?", "options": ["loud", "drum", "banged"], "answer": 0 },
+            { "q": "She has a shiny coin. Which word describes?", "options": ["shiny", "has", "coin"], "answer": 0 },
+            {
+              "q": "Two green frogs hopped. Which word tells colour?",
+              "options": ["green", "two", "hopped"],
+              "answer": 0
+            }
+          ]
+        },
+        "past_tense_3": {
+          "description": "Pick the right past-tense verb, including irregular verbs.",
+          "tags": ["verbs", "past-tense"],
+          "grade": "3",
+          "strand": "grammar",
+          "questions": [
+            { "q": "Yesterday I ___ a kite.", "options": ["flew", "flied", "fly"], "answer": 0 },
+            { "q": "Last week we ___ a show.", "options": ["saw", "seed", "see"], "answer": 0 },
+            { "q": "He ___ his lunch at noon.", "options": ["ate", "eated", "eats"], "answer": 0 },
+            { "q": "She ___ to the store.", "options": ["went", "goed", "go"], "answer": 0 },
+            { "q": "They ___ a song.", "options": ["sang", "singed", "sing"], "answer": 0 },
+            { "q": "I ___ my bike home.", "options": ["rode", "rided", "ride"], "answer": 0 }
+          ]
+        },
+        "synonyms_antonyms_3": {
+          "description": "Find words that mean the same (synonyms) or the opposite (antonyms).",
+          "tags": ["synonyms", "antonyms", "vocabulary"],
+          "grade": "3",
+          "strand": "grammar",
+          "questions": [
+            { "q": "A synonym for glad is ___", "options": ["happy", "angry", "tired"], "answer": 0 },
+            { "q": "An antonym for brave is ___", "options": ["afraid", "bold", "strong"], "answer": 0 },
+            { "q": "A synonym for quick is ___", "options": ["fast", "slow", "late"], "answer": 0 },
+            { "q": "An antonym for noisy is ___", "options": ["quiet", "loud", "busy"], "answer": 0 },
+            { "q": "A synonym for tiny is ___", "options": ["little", "huge", "wide"], "answer": 0 },
+            { "q": "An antonym for begin is ___", "options": ["finish", "start", "open"], "answer": 0 }
+          ]
+        },
+        "homophones_4": {
+          "description": "Pick the right homophone (words that sound alike but mean different things).",
+          "tags": ["homophones", "spelling"],
+          "grade": "4",
+          "strand": "grammar",
+          "questions": [
+            { "q": "We went to ___ house.", "options": ["their", "there", "they're"], "answer": 0 },
+            { "q": "I ate ___ cookies.", "options": ["two", "to", "too"], "answer": 0 },
+            { "q": "The wind ___ hard.", "options": ["blew", "blue", "bloo"], "answer": 0 },
+            { "q": "Can you ___ the bell?", "options": ["hear", "here", "hair"], "answer": 0 },
+            { "q": "___ going to win?", "options": ["Who's", "Whose", "Whos"], "answer": 0 },
+            { "q": "The ___ is very dark.", "options": ["night", "knight", "nite"], "answer": 0 }
+          ]
+        },
+        "parts_of_speech_4": {
+          "description": "Name the part of speech of the underlined idea: noun, verb, adjective or adverb.",
+          "tags": ["parts-of-speech", "grammar"],
+          "grade": "4",
+          "strand": "grammar",
+          "questions": [
+            { "q": "In 'She sang softly', softly is a ___", "options": ["adverb", "noun", "verb"], "answer": 0 },
+            {
+              "q": "In 'The gentle giant smiled', gentle is an ___",
+              "options": ["adjective", "adverb", "verb"],
+              "answer": 0
+            },
+            { "q": "In 'Birds build nests', build is a ___", "options": ["verb", "noun", "adjective"], "answer": 0 },
+            { "q": "In 'Courage helps us', courage is a ___", "options": ["noun", "verb", "adverb"], "answer": 0 },
+            { "q": "In 'He ran quickly', quickly is an ___", "options": ["adverb", "adjective", "noun"], "answer": 0 },
+            { "q": "In 'Our old car rattles', old is an ___", "options": ["adjective", "noun", "verb"], "answer": 0 }
+          ]
+        },
+        "context_clues_5": {
+          "description": "Use clues in the sentence to work out what a new word means.",
+          "tags": ["vocabulary", "context-clues"],
+          "grade": "5",
+          "strand": "grammar",
+          "questions": [
+            {
+              "q": "The parched plants needed water badly. Parched means ___",
+              "options": ["very dry", "very tall", "very green"],
+              "answer": 0
+            },
+            {
+              "q": "Lena was elated when she won; she jumped for joy. Elated means ___",
+              "options": ["thrilled", "bored", "sleepy"],
+              "answer": 0
+            },
+            {
+              "q": "The trail was so narrow that only one hiker fit. Narrow means ___",
+              "options": ["thin", "long", "steep"],
+              "answer": 0
+            },
+            {
+              "q": "The cat was timid and hid from guests. Timid means ___",
+              "options": ["shy", "loud", "hungry"],
+              "answer": 0
+            },
+            {
+              "q": "He was famished after the long hike and ate two plates. Famished means ___",
+              "options": ["very hungry", "very cold", "very proud"],
+              "answer": 0
+            },
+            {
+              "q": "The ancient bowl was thousands of years old. Ancient means ___",
+              "options": ["very old", "broken", "shiny"],
+              "answer": 0
+            }
+          ]
+        },
+        "figurative_language_5": {
+          "description": "Tell similes, metaphors and idioms apart and say what they mean.",
+          "tags": ["figurative", "similes", "idioms"],
+          "grade": "5",
+          "strand": "grammar",
+          "questions": [
+            {
+              "q": "'Her smile was as bright as the sun' is a ___",
+              "options": ["simile", "metaphor", "fact"],
+              "answer": 0
+            },
+            { "q": "'The classroom was a zoo' is a ___", "options": ["metaphor", "simile", "question"], "answer": 0 },
+            {
+              "q": "'It's raining cats and dogs' means it is ___",
+              "options": ["raining hard", "full of pets", "sunny"],
+              "answer": 0
+            },
+            { "q": "'Break a leg!' means ___", "options": ["good luck", "be careful", "run fast"], "answer": 0 },
+            { "q": "'He ran like the wind' is a ___", "options": ["simile", "metaphor", "rhyme"], "answer": 0 },
+            { "q": "'A piece of cake' means something is ___", "options": ["easy", "sweet", "small"], "answer": 0 }
+          ]
+        },
+        "word_problems_1": {
+          "description": "Short story problems that add or take away within 20.",
+          "tags": ["word-problems", "addition", "subtraction"],
+          "grade": "1",
+          "strand": "numbers",
+          "questions": [
+            { "q": "Ana has 5 shells. She finds 3 more. How many now?", "options": ["8", "2", "7"], "answer": 0 },
+            { "q": "There are 9 ducks. 4 swim away. How many are left?", "options": ["5", "13", "4"], "answer": 0 },
+            { "q": "Leo has 6 red cars and 6 blue cars. How many cars?", "options": ["12", "6", "10"], "answer": 0 },
+            { "q": "Mia had 10 grapes and ate 7. How many are left?", "options": ["3", "17", "4"], "answer": 0 },
+            { "q": "4 birds sit on a wire. 5 more land. How many birds?", "options": ["9", "1", "8"], "answer": 0 },
+            { "q": "There are 15 kids. 5 go home. How many stay?", "options": ["10", "20", "5"], "answer": 0 }
+          ]
+        },
+        "word_problems_3": {
+          "description": "Story problems that multiply, divide, add or subtract (one or two steps).",
+          "tags": ["word-problems", "multiplication", "division"],
+          "grade": "3",
+          "strand": "operations",
+          "questions": [
+            { "q": "There are 4 boxes with 6 pens in each. How many pens?", "options": ["24", "10", "20"], "answer": 0 },
+            { "q": "18 apples are shared by 3 friends. How many each?", "options": ["6", "15", "21"], "answer": 0 },
+            { "q": "A book has 120 pages. Jo read 45. How many are left?", "options": ["75", "165", "85"], "answer": 0 },
+            { "q": "5 rows of 7 chairs. How many chairs?", "options": ["35", "12", "30"], "answer": 0 },
+            { "q": "Tickets cost $3 each. How much for 8 tickets?", "options": ["$24", "$11", "$21"], "answer": 0 },
+            {
+              "q": "Sam has 28 stickers and puts 4 on each page. How many pages?",
+              "options": ["7", "24", "32"],
+              "answer": 0
+            }
+          ]
+        },
+        "word_problems_5": {
+          "description": "Multi-step story problems with decimals, fractions and larger numbers.",
+          "tags": ["word-problems", "decimals", "fractions"],
+          "grade": "5",
+          "strand": "operations",
+          "questions": [
+            {
+              "q": "A pencil costs $0.45. How much do 6 pencils cost?",
+              "options": ["$2.70", "$2.40", "$6.45"],
+              "answer": 0
+            },
+            {
+              "q": "A ribbon is 3/4 m long. Half is cut off. How long is the piece cut?",
+              "options": ["3/8 m", "1/4 m", "3/2 m"],
+              "answer": 0
+            },
+            { "q": "A class of 28 goes in vans that hold 8. How many vans?", "options": ["4", "3", "5"], "answer": 0 },
+            {
+              "q": "Jen ran 2.5 km on Monday and 3.75 km on Tuesday. Total?",
+              "options": ["6.25 km", "5.75 km", "6.5 km"],
+              "answer": 0
+            },
+            {
+              "q": "A farm packs 1,440 eggs in cartons of 12. How many cartons?",
+              "options": ["120", "144", "1,428"],
+              "answer": 0
+            },
+            {
+              "q": "1/2 of the 30 pupils walk. 1/3 of the walkers bring a dog. How many dogs?",
+              "options": ["5", "10", "15"],
+              "answer": 0
+            }
+          ]
+        },
+        "fractions_concepts_3": {
+          "description": "Compare fractions and see fractions as equal parts of a whole.",
+          "tags": ["fractions", "compare"],
+          "grade": "3",
+          "strand": "operations",
+          "questions": [
+            { "q": "Which is bigger?", "options": ["1/2", "1/4", "1/8"], "answer": 0 },
+            { "q": "A pizza cut in 4 equal parts: each part is ___", "options": ["1/4", "1/2", "4/1"], "answer": 0 },
+            { "q": "Which fraction equals one whole?", "options": ["3/3", "1/3", "2/3"], "answer": 0 },
+            { "q": "Which is smaller?", "options": ["1/6", "1/3", "1/2"], "answer": 0 },
+            { "q": "Which fraction equals 1/2?", "options": ["2/4", "2/3", "1/4"], "answer": 0 },
+            { "q": "3 of 8 equal parts are shaded. What part?", "options": ["3/8", "5/8", "3/5"], "answer": 0 }
+          ]
+        },
+        "fractions_operations_5": {
+          "description": "Add, subtract and multiply fractions, and find equivalent fractions.",
+          "tags": ["fractions", "operations"],
+          "grade": "5",
+          "strand": "operations",
+          "questions": [
+            { "q": "1/2 + 1/4 = ___", "options": ["3/4", "2/6", "1/6"], "answer": 0 },
+            { "q": "2/3 - 1/6 = ___", "options": ["1/2", "1/3", "1/6"], "answer": 0 },
+            { "q": "1/2 x 1/3 = ___", "options": ["1/6", "2/5", "1/5"], "answer": 0 },
+            { "q": "Which equals 3/5?", "options": ["6/10", "5/3", "3/10"], "answer": 0 },
+            { "q": "3/4 of 12 = ___", "options": ["9", "4", "3"], "answer": 0 },
+            { "q": "1 1/2 written as an improper fraction is ___", "options": ["3/2", "1/2", "2/3"], "answer": 0 }
+          ]
+        },
+        "measurement_2": {
+          "description": "Pick the right unit or tool to measure length, weight and liquid.",
+          "tags": ["measurement", "units"],
+          "grade": "2",
+          "strand": "measure_shapes",
+          "questions": [
+            { "q": "Which unit fits the length of a pencil?", "options": ["inches", "miles", "pounds"], "answer": 0 },
+            { "q": "Which tool measures how long a table is?", "options": ["ruler", "clock", "scale"], "answer": 0 },
+            { "q": "Which is longer?", "options": ["1 yard", "1 foot", "1 inch"], "answer": 0 },
+            { "q": "Which unit fits a trip to another town?", "options": ["miles", "inches", "cups"], "answer": 0 },
+            { "q": "Which is the heaviest?", "options": ["a bike", "a book", "a feather"], "answer": 0 },
+            { "q": "Which unit fits how much milk is in a jug?", "options": ["gallons", "inches", "feet"], "answer": 0 }
+          ]
+        },
+        "geometry_3": {
+          "description": "Name shapes by their sides and angles, and find area and perimeter of rectangles.",
+          "tags": ["geometry", "area", "perimeter"],
+          "grade": "3",
+          "strand": "measure_shapes",
+          "questions": [
+            {
+              "q": "4 equal sides and 4 square corners: a ___",
+              "options": ["square", "trapezoid", "kite"],
+              "answer": 0
+            },
+            {
+              "q": "A rectangle is 5 by 3 units. Its area is ___",
+              "options": ["15 square units", "8 square units", "16 square units"],
+              "answer": 0
+            },
+            {
+              "q": "A square has sides of 4 cm. Its perimeter is ___",
+              "options": ["16 cm", "8 cm", "4 cm"],
+              "answer": 0
+            },
+            {
+              "q": "A shape with exactly one pair of parallel sides is a ___",
+              "options": ["trapezoid", "square", "triangle"],
+              "answer": 0
+            },
+            { "q": "How many sides does a hexagon have?", "options": ["6", "5", "8"], "answer": 0 },
+            { "q": "A quadrilateral has ___ sides.", "options": ["4", "3", "5"], "answer": 0 }
+          ]
+        },
+        "time_elapsed_3": {
+          "description": "Work out how much time has passed and read time to the minute.",
+          "tags": ["time", "elapsed-time"],
+          "grade": "3",
+          "strand": "measure_shapes",
+          "questions": [
+            {
+              "q": "Class starts at 9:15 and ends at 10:00. How long?",
+              "options": ["45 minutes", "15 minutes", "1 hour"],
+              "answer": 0
+            },
+            { "q": "It is 2:40. What time is it in 30 minutes?", "options": ["3:10", "2:70", "3:40"], "answer": 0 },
+            { "q": "How many minutes are in an hour?", "options": ["60", "100", "30"], "answer": 0 },
+            {
+              "q": "A movie starts at 4:00 and lasts 1 hour 30 minutes. It ends at ___",
+              "options": ["5:30", "5:00", "4:30"],
+              "answer": 0
+            },
+            {
+              "q": "Lunch is at 12:20. It is 11:50. How long until lunch?",
+              "options": ["30 minutes", "70 minutes", "20 minutes"],
+              "answer": 0
+            },
+            { "q": "Which time is in the evening?", "options": ["7:00 p.m.", "7:00 a.m.", "11:00 a.m."], "answer": 0 }
+          ]
+        },
+        "angles_4": {
+          "description": "Classify angles and lines: right, acute, obtuse, parallel and perpendicular.",
+          "tags": ["geometry", "angles", "lines"],
+          "grade": "4",
+          "strand": "measure_shapes",
+          "questions": [
+            {
+              "q": "An angle smaller than a square corner is ___",
+              "options": ["acute", "obtuse", "right"],
+              "answer": 0
+            },
+            { "q": "An angle of exactly 90 degrees is ___", "options": ["right", "acute", "straight"], "answer": 0 },
+            { "q": "Lines that never meet are ___", "options": ["parallel", "perpendicular", "crossing"], "answer": 0 },
+            { "q": "An angle of 120 degrees is ___", "options": ["obtuse", "acute", "right"], "answer": 0 },
+            {
+              "q": "Lines that meet at a square corner are ___",
+              "options": ["perpendicular", "parallel", "curved"],
+              "answer": 0
+            },
+            { "q": "A full turn is ___ degrees.", "options": ["360", "180", "90"], "answer": 0 }
+          ]
+        },
+        "measurement_5": {
+          "description": "Volume of boxes and converting metric and customary units.",
+          "tags": ["measurement", "volume", "conversion"],
+          "grade": "5",
+          "strand": "measure_shapes",
+          "questions": [
+            { "q": "A box 2 x 3 x 4 units holds ___ unit cubes.", "options": ["24", "9", "20"], "answer": 0 },
+            { "q": "1 metre = ___ centimetres", "options": ["100", "10", "1,000"], "answer": 0 },
+            { "q": "1 kilogram = ___ grams", "options": ["1,000", "100", "10"], "answer": 0 },
+            { "q": "3 feet = ___ inches", "options": ["36", "30", "12"], "answer": 0 },
+            { "q": "Which measures volume?", "options": ["cubic cm", "square cm", "cm"], "answer": 0 },
+            { "q": "2 hours = ___ minutes", "options": ["120", "200", "60"], "answer": 0 }
+          ]
+        },
+        "senses_prek": {
+          "description": "Match each body part to the sense it uses.",
+          "tags": ["senses", "body"],
+          "grade": "prek",
+          "strand": "science_social",
+          "questions": [
+            { "q": "What do you use to smell?", "options": ["nose", "ears", "hands"], "answer": 0 },
+            { "q": "What do you use to hear?", "options": ["ears", "eyes", "feet"], "answer": 0 },
+            { "q": "What do you use to see?", "options": ["eyes", "nose", "knees"], "answer": 0 },
+            { "q": "What do you use to taste?", "options": ["tongue", "elbow", "hair"], "answer": 0 },
+            { "q": "What do you use to touch?", "options": ["hands", "ears", "nose"], "answer": 0 }
+          ]
+        },
+        "living_things_k": {
+          "description": "Tell living things from things that are not alive.",
+          "tags": ["living", "nature"],
+          "grade": "k",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Which one is living?", "options": ["tree", "rock", "spoon"], "answer": 0 },
+            { "q": "Which one is living?", "options": ["bird", "kite", "cloud"], "answer": 0 },
+            { "q": "Which one is not living?", "options": ["chair", "cat", "flower"], "answer": 0 },
+            { "q": "Which one grows?", "options": ["puppy", "ball", "shoe"], "answer": 0 },
+            { "q": "Which one needs food?", "options": ["horse", "car", "lamp"], "answer": 0 },
+            { "q": "Which one is not living?", "options": ["bike", "bee", "baby"], "answer": 0 }
+          ]
+        },
+        "community_helpers_k": {
+          "description": "Match community helpers to the work they do.",
+          "tags": ["community", "jobs"],
+          "grade": "k",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Who puts out fires?", "options": ["firefighter", "baker", "pilot"], "answer": 0 },
+            { "q": "Who helps sick animals?", "options": ["vet", "chef", "farmer"], "answer": 0 },
+            { "q": "Who brings letters?", "options": ["mail carrier", "nurse", "painter"], "answer": 0 },
+            { "q": "Who teaches a class?", "options": ["teacher", "dentist", "builder"], "answer": 0 },
+            { "q": "Who grows food?", "options": ["farmer", "librarian", "driver"], "answer": 0 },
+            { "q": "Who checks your teeth?", "options": ["dentist", "baker", "coach"], "answer": 0 }
+          ]
+        },
+        "weather_seasons_1": {
+          "description": "Weather words and what each season is like.",
+          "tags": ["weather", "seasons"],
+          "grade": "1",
+          "strand": "science_social",
+          "questions": [
+            { "q": "When is it coldest?", "options": ["winter", "summer", "spring"], "answer": 0 },
+            { "q": "What falls from clouds when it is very cold?", "options": ["snow", "sand", "leaves"], "answer": 0 },
+            { "q": "When do many leaves fall?", "options": ["fall", "spring", "summer"], "answer": 0 },
+            { "q": "What tool tells how hot it is?", "options": ["thermometer", "ruler", "clock"], "answer": 0 },
+            { "q": "What do you need on a rainy day?", "options": ["umbrella", "sunhat", "sled"], "answer": 0 },
+            { "q": "When do many flowers start to bloom?", "options": ["spring", "winter", "fall"], "answer": 0 }
+          ]
+        },
+        "rules_citizenship_1": {
+          "description": "Why we have rules and how to be a good citizen.",
+          "tags": ["citizenship", "rules"],
+          "grade": "1",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Why do we have rules?", "options": ["to keep us safe", "to be bored", "to get lost"], "answer": 0 },
+            {
+              "q": "What should you do with litter?",
+              "options": ["put it in a bin", "drop it", "hide it"],
+              "answer": 0
+            },
+            {
+              "q": "What is a good way to take turns?",
+              "options": ["wait in line", "push ahead", "grab first"],
+              "answer": 0
+            },
+            { "q": "Who makes rules for a town?", "options": ["leaders", "pets", "babies"], "answer": 0 },
+            {
+              "q": "A friend drops books. You ___",
+              "options": ["help pick them up", "walk away", "laugh"],
+              "answer": 0
+            },
+            { "q": "What does a red light mean?", "options": ["stop", "go", "hurry"], "answer": 0 }
+          ]
+        },
+        "plants_2": {
+          "description": "Plant parts, what plants need and how they grow.",
+          "tags": ["plants", "life-cycle"],
+          "grade": "2",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Which part takes in water from the soil?", "options": ["roots", "petals", "fruit"], "answer": 0 },
+            { "q": "Which part makes food from sunlight?", "options": ["leaves", "roots", "seeds"], "answer": 0 },
+            {
+              "q": "What does a plant need to grow?",
+              "options": ["water and light", "sand and toys", "darkness"],
+              "answer": 0
+            },
+            { "q": "A new plant grows from a ___", "options": ["seed", "rock", "shell"], "answer": 0 },
+            { "q": "Which part holds the plant up?", "options": ["stem", "petal", "pollen"], "answer": 0 },
+            { "q": "Bees carry ___ from flower to flower.", "options": ["pollen", "roots", "bark"], "answer": 0 }
+          ]
+        },
+        "habitats_2": {
+          "description": "Match animals to the habitat where they live.",
+          "tags": ["animals", "habitats"],
+          "grade": "2",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Where does a camel live?", "options": ["desert", "ocean", "arctic"], "answer": 0 },
+            { "q": "Where does a polar bear live?", "options": ["arctic", "jungle", "desert"], "answer": 0 },
+            { "q": "Where does a shark live?", "options": ["ocean", "forest", "desert"], "answer": 0 },
+            { "q": "Where does a monkey live?", "options": ["rainforest", "arctic", "ocean"], "answer": 0 },
+            { "q": "Where does a frog lay its eggs?", "options": ["pond", "sand dune", "glacier"], "answer": 0 },
+            {
+              "q": "Where does an owl rest by day?",
+              "options": ["tree hollow", "coral reef", "cave pool"],
+              "answer": 0
+            }
+          ]
+        },
+        "maps_2": {
+          "description": "Read maps: compass directions, keys and symbols.",
+          "tags": ["maps", "geography"],
+          "grade": "2",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Which direction is the opposite of north?", "options": ["south", "east", "west"], "answer": 0 },
+            { "q": "What explains the symbols on a map?", "options": ["the key", "the title", "the edge"], "answer": 0 },
+            { "q": "On most maps, north is at the ___", "options": ["top", "bottom", "left"], "answer": 0 },
+            {
+              "q": "A map of the whole world in a ball shape is a ___",
+              "options": ["globe", "kite", "graph"],
+              "answer": 0
+            },
+            { "q": "The sun rises in the ___", "options": ["east", "west", "north"], "answer": 0 },
+            { "q": "Blue on a map usually means ___", "options": ["water", "roads", "mountains"], "answer": 0 }
+          ]
+        },
+        "needs_wants_2": {
+          "description": "Needs and wants, goods and services, and saving money.",
+          "tags": ["economics", "needs", "wants"],
+          "grade": "2",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Which is a need?", "options": ["water", "a toy", "a video game"], "answer": 0 },
+            { "q": "Which is a want?", "options": ["a scooter", "food", "shelter"], "answer": 0 },
+            { "q": "A haircut is a ___", "options": ["service", "good", "need"], "answer": 0 },
+            { "q": "An apple you buy is a ___", "options": ["good", "service", "job"], "answer": 0 },
+            { "q": "Putting money away for later is ___", "options": ["saving", "spending", "trading"], "answer": 0 },
+            { "q": "People who buy things are ___", "options": ["consumers", "producers", "workers"], "answer": 0 }
+          ]
+        },
+        "matter_3": {
+          "description": "Solids, liquids and gases, and how heat changes them.",
+          "tags": ["matter", "states"],
+          "grade": "3",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Ice is a ___", "options": ["solid", "liquid", "gas"], "answer": 0 },
+            { "q": "Juice in a cup is a ___", "options": ["liquid", "solid", "gas"], "answer": 0 },
+            { "q": "Steam from a pot is a ___", "options": ["gas", "solid", "liquid"], "answer": 0 },
+            {
+              "q": "Ice melting into water is a change from ___",
+              "options": ["solid to liquid", "liquid to gas", "gas to solid"],
+              "answer": 0
+            },
+            {
+              "q": "Which takes the shape of its container?",
+              "options": ["a liquid", "a rock", "a pencil"],
+              "answer": 0
+            },
+            {
+              "q": "Water turning into vapour is called ___",
+              "options": ["evaporation", "freezing", "melting"],
+              "answer": 0
+            }
+          ]
+        },
+        "communities_3": {
+          "description": "Local government, voting and kinds of communities.",
+          "tags": ["civics", "government", "community"],
+          "grade": "3",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Who leads a city government?", "options": ["the mayor", "the coach", "the chef"], "answer": 0 },
+            { "q": "When people choose a leader, they ___", "options": ["vote", "trade", "travel"], "answer": 0 },
+            { "q": "A big city with tall buildings is ___", "options": ["urban", "rural", "desert"], "answer": 0 },
+            { "q": "Farms and open land are ___", "options": ["rural", "urban", "coastal"], "answer": 0 },
+            { "q": "Taxes help pay for ___", "options": ["parks and roads", "birthday gifts", "toys"], "answer": 0 },
+            { "q": "A law is ___", "options": ["a rule for everyone", "a game", "a song"], "answer": 0 }
+          ]
+        },
+        "earth_space_4": {
+          "description": "Earth's rotation, the solar system, rocks and weathering.",
+          "tags": ["space", "earth", "rocks"],
+          "grade": "4",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Day and night happen because Earth ___", "options": ["spins", "shrinks", "stops"], "answer": 0 },
+            { "q": "Which planet is closest to the Sun?", "options": ["Mercury", "Mars", "Saturn"], "answer": 0 },
+            { "q": "Earth goes around the Sun once a ___", "options": ["year", "day", "week"], "answer": 0 },
+            {
+              "q": "Wind and water slowly break down rock. This is ___",
+              "options": ["weathering", "melting", "growing"],
+              "answer": 0
+            },
+            {
+              "q": "The Moon shines because it ___",
+              "options": ["reflects sunlight", "makes its own light", "is on fire"],
+              "answer": 0
+            },
+            { "q": "Which is a renewable energy source?", "options": ["wind", "coal", "oil"], "answer": 0 }
+          ]
+        },
+        "geography_4": {
+          "description": "Continents, oceans, landforms and regions.",
+          "tags": ["geography", "maps"],
+          "grade": "4",
+          "strand": "science_social",
+          "questions": [
+            { "q": "How many continents are there?", "options": ["7", "5", "10"], "answer": 0 },
+            { "q": "The largest ocean is the ___", "options": ["Pacific", "Atlantic", "Arctic"], "answer": 0 },
+            { "q": "Land with water on three sides is a ___", "options": ["peninsula", "plain", "valley"], "answer": 0 },
+            { "q": "A very high landform is a ___", "options": ["mountain", "lake", "bay"], "answer": 0 },
+            {
+              "q": "Lines that run north to south on a globe are ___",
+              "options": ["longitude", "latitude", "equator"],
+              "answer": 0
+            },
+            {
+              "q": "The equator splits Earth into ___",
+              "options": ["north and south", "east and west", "land and sea"],
+              "answer": 0
+            }
+          ]
+        },
+        "body_systems_5": {
+          "description": "The human body's systems and what they do.",
+          "tags": ["body", "systems", "health"],
+          "grade": "5",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Which organ beats in your chest?", "options": ["heart", "lungs", "stomach"], "answer": 0 },
+            { "q": "Which system helps you breathe?", "options": ["respiratory", "skeletal", "digestive"], "answer": 0 },
+            { "q": "Bones belong to the ___ system.", "options": ["skeletal", "nervous", "muscle"], "answer": 0 },
+            {
+              "q": "The brain is part of the ___ system.",
+              "options": ["nervous", "digestive", "skeletal"],
+              "answer": 0
+            },
+            { "q": "Where does digestion start?", "options": ["the mouth", "the knee", "the lungs"], "answer": 0 },
+            { "q": "Which gas do lungs take in?", "options": ["oxygen", "steam", "smoke"], "answer": 0 }
+          ]
+        },
+        "ecosystems_5": {
+          "description": "Food chains, producers and consumers, and how matter cycles.",
+          "tags": ["ecosystems", "food-chains"],
+          "grade": "5",
+          "strand": "science_social",
+          "questions": [
+            {
+              "q": "Plants are ___ because they make their own food.",
+              "options": ["producers", "consumers", "decomposers"],
+              "answer": 0
+            },
+            {
+              "q": "Mushrooms that break down logs are ___",
+              "options": ["decomposers", "producers", "predators"],
+              "answer": 0
+            },
+            { "q": "In grass, rabbit, fox, the fox is a ___", "options": ["predator", "producer", "prey"], "answer": 0 },
+            { "q": "Plants take in ___ from the air.", "options": ["carbon dioxide", "pollen", "salt"], "answer": 0 },
+            {
+              "q": "The Sun's energy enters a food chain through ___",
+              "options": ["plants", "rocks", "foxes"],
+              "answer": 0
+            },
+            {
+              "q": "An animal that eats only plants is a ___",
+              "options": ["herbivore", "carnivore", "predator"],
+              "answer": 0
+            }
+          ]
+        },
+        "economics_5": {
+          "description": "Supply, demand, budgets and why people trade.",
+          "tags": ["economics", "money"],
+          "grade": "5",
+          "strand": "science_social",
+          "questions": [
+            {
+              "q": "A plan for spending and saving money is a ___",
+              "options": ["budget", "receipt", "loan"],
+              "answer": 0
+            },
+            {
+              "q": "When many people want a toy and few exist, the price often ___",
+              "options": ["goes up", "goes down", "stays at zero"],
+              "answer": 0
+            },
+            { "q": "Swapping goods without money is ___", "options": ["barter", "saving", "interest"], "answer": 0 },
+            { "q": "Money a bank pays you for saving is ___", "options": ["interest", "a tax", "a fine"], "answer": 0 },
+            { "q": "People who make goods are ___", "options": ["producers", "consumers", "voters"], "answer": 0 },
+            {
+              "q": "Choosing one thing means giving up another. That is a ___",
+              "options": ["trade-off", "profit", "budget"],
+              "answer": 0
+            }
+          ]
+        },
+        "odd_one_out_k": {
+          "description": "Find the one that does not belong with the others.",
+          "tags": ["sorting", "categories"],
+          "grade": "k",
+          "strand": "logic",
+          "questions": [
+            { "q": "Which does not belong: apple, pear, car?", "options": ["car", "apple", "pear"], "answer": 0 },
+            { "q": "Which does not belong: cat, dog, spoon?", "options": ["spoon", "cat", "dog"], "answer": 0 },
+            { "q": "Which does not belong: red, blue, ball?", "options": ["ball", "red", "blue"], "answer": 0 },
+            { "q": "Which does not belong: sock, shoe, cake?", "options": ["cake", "sock", "shoe"], "answer": 0 },
+            { "q": "Which does not belong: bus, boat, bed?", "options": ["bed", "bus", "boat"], "answer": 0 },
+            { "q": "Which does not belong: two, five, hat?", "options": ["hat", "two", "five"], "answer": 0 }
+          ]
+        },
+        "sequences_2": {
+          "description": "Find the rule and the next number in a pattern.",
+          "tags": ["patterns", "sequences", "numbers"],
+          "grade": "2",
+          "strand": "logic",
+          "questions": [
+            { "q": "2, 4, 6, 8, ___", "options": ["10", "9", "12"], "answer": 0 },
+            { "q": "5, 10, 15, 20, ___", "options": ["25", "21", "30"], "answer": 0 },
+            { "q": "30, 25, 20, 15, ___", "options": ["10", "5", "14"], "answer": 0 },
+            { "q": "1, 3, 5, 7, ___", "options": ["9", "8", "10"], "answer": 0 },
+            { "q": "10, 20, 30, 40, ___", "options": ["50", "41", "60"], "answer": 0 },
+            { "q": "100, 200, 300, ___", "options": ["400", "301", "500"], "answer": 0 }
+          ]
+        },
+        "riddles_3": {
+          "description": "Short riddles that need careful reading and reasoning.",
+          "tags": ["riddles", "reasoning"],
+          "grade": "3",
+          "strand": "logic",
+          "questions": [
+            {
+              "q": "I have hands but cannot clap. What am I?",
+              "options": ["a clock", "a glove", "a tree"],
+              "answer": 0
+            },
+            {
+              "q": "I get wetter the more I dry. What am I?",
+              "options": ["a towel", "the sun", "a sponge cake"],
+              "answer": 0
+            },
+            { "q": "I have keys but open no doors. What am I?", "options": ["a piano", "a map", "a box"], "answer": 0 },
+            { "q": "What has a neck but no head?", "options": ["a bottle", "a snake", "a giraffe"], "answer": 0 },
+            {
+              "q": "I am an odd number. Take away one letter and I become even. What am I?",
+              "options": ["seven", "five", "nine"],
+              "answer": 0
+            },
+            { "q": "What goes up but never comes down?", "options": ["your age", "a ball", "a kite"], "answer": 0 }
+          ]
+        },
+        "analogies_4": {
+          "description": "Complete word analogies: A is to B as C is to ___.",
+          "tags": ["analogies", "reasoning"],
+          "grade": "4",
+          "strand": "logic",
+          "questions": [
+            { "q": "Hot is to cold as up is to ___", "options": ["down", "top", "over"], "answer": 0 },
+            { "q": "Bird is to nest as bee is to ___", "options": ["hive", "web", "den"], "answer": 0 },
+            { "q": "Glove is to hand as boot is to ___", "options": ["foot", "leg", "arm"], "answer": 0 },
+            { "q": "Author is to book as painter is to ___", "options": ["picture", "brush", "wall"], "answer": 0 },
+            { "q": "Kitten is to cat as puppy is to ___", "options": ["dog", "pet", "bark"], "answer": 0 },
+            { "q": "Ear is to hear as eye is to ___", "options": ["see", "smell", "look"], "answer": 0 }
+          ]
+        },
+        "logic_grid_5": {
+          "description": "Reason from clues: who has what, and true or false statements.",
+          "tags": ["deduction", "reasoning"],
+          "grade": "5",
+          "strand": "logic",
+          "questions": [
+            {
+              "q": "Ava, Ben and Cy own a cat, a dog and a fish. Ava has no pet with fur. Ava has the ___",
+              "options": ["fish", "cat", "dog"],
+              "answer": 0
+            },
+            {
+              "q": "All squares are rectangles. Shape X is a square. So X is ___",
+              "options": ["a rectangle", "a circle", "a triangle"],
+              "answer": 0
+            },
+            {
+              "q": "Tom is taller than Lee. Lee is taller than Max. Who is shortest?",
+              "options": ["Max", "Lee", "Tom"],
+              "answer": 0
+            },
+            {
+              "q": "If it rains, the game is off. The game is on. So ___",
+              "options": ["it did not rain", "it rained", "it snowed"],
+              "answer": 0
+            },
+            { "q": "Which number is even, over 10 and under 14?", "options": ["12", "11", "13"], "answer": 0 },
+            {
+              "q": "A, B and C sit in a row. B is in the middle. A is not on the left. Who is on the left?",
+              "options": ["C", "A", "B"],
+              "answer": 0
+            }
+          ]
+        }
+      }
+    },
+    "passages": {
+      "description": "Original reading passages for read_passage (WORKBOOK_SPEC 8.5), two or so per grade, fiction and nonfiction, each with its questions.",
+      "passages": {
+        "red_hen_hat": {
+          "description": "A three-sentence story for a grown-up to read aloud; the child circles answers.",
+          "tags": ["read-aloud", "story"],
+          "grade": "prek",
+          "strand": "reading",
+          "title": "The Red Hat",
+          "text": "Pip has a red hat. The wind takes the hat. Pip runs and gets it back.",
+          "questions": [
+            { "q": "What colour is the hat?", "options": ["red", "blue", "green"], "answer": 0 },
+            { "q": "What takes the hat?", "options": ["the wind", "a dog", "a bird"], "answer": 0 }
+          ]
+        },
+        "big_dog": {
+          "description": "A very short decodable story about a dog who digs, with two picture-free questions.",
+          "tags": ["story", "decodable"],
+          "grade": "k",
+          "strand": "reading",
+          "title": "The Big Dog",
+          "text": "I see a big dog. The dog can dig. The dog digs a hole. Look! The dog has a bone.",
+          "questions": [
+            { "q": "What can the dog do?", "options": ["dig", "fly", "swim"], "answer": 0 },
+            { "q": "What does the dog find?", "options": ["a bone", "a hat", "a cup"], "answer": 0 }
+          ]
+        },
+        "rain_day": {
+          "description": "A short story about playing inside on a rainy day.",
+          "tags": ["story", "weather"],
+          "grade": "k",
+          "strand": "reading",
+          "title": "Rain, Rain",
+          "text": "It is a wet day. Mom and I stay in. We make a fort with a big sheet. We read in the fort. It is fun!",
+          "questions": [
+            { "q": "What is the day like?", "options": ["wet", "hot", "snowy"], "answer": 0 },
+            { "q": "What do they make?", "options": ["a fort", "a cake", "a kite"], "answer": 0 },
+            { "q": "Where do they read?", "options": ["in the fort", "at the park", "on a bus"], "answer": 0 }
+          ]
+        },
+        "frog_jump": {
+          "description": "A short story about a frog who learns to jump to a lily pad; questions on detail and feeling.",
+          "tags": ["story", "animals"],
+          "grade": "1",
+          "strand": "reading",
+          "title": "Little Frog",
+          "text": "Little Frog sat by the pond. He wanted to jump to the lily pad, but it looked far. His sister said, \"Bend your legs and push!\" Little Frog tried. Splash! He fell in. He tried again and again. At last he landed on the lily pad. He felt proud.",
+          "questions": [
+            { "q": "Where did Little Frog sit?", "options": ["by the pond", "in a tree", "on a rock"], "answer": 0 },
+            { "q": "Who helped him?", "options": ["his sister", "a fish", "his dad"], "answer": 0 },
+            { "q": "How did he feel at the end?", "options": ["proud", "sleepy", "angry"], "answer": 0 },
+            { "q": "What did he do after he fell in?", "answer": "He tried again.", "lines": 1 }
+          ]
+        },
+        "bees_busy": {
+          "description": "A short nonfiction text about honeybees; questions on facts.",
+          "tags": ["nonfiction", "insects"],
+          "grade": "1",
+          "strand": "reading",
+          "title": "Busy Bees",
+          "text": "Bees live in a hive. Many bees live together. Bees fly from flower to flower. They drink nectar. Bees use nectar to make honey. Bees also carry pollen. This helps new plants grow.",
+          "questions": [
+            { "q": "Where do bees live?", "options": ["in a hive", "in a nest", "in a pond"], "answer": 0 },
+            { "q": "What do bees make?", "options": ["honey", "milk", "bread"], "answer": 0 },
+            {
+              "q": "How do bees help plants?",
+              "options": ["they carry pollen", "they eat leaves", "they dig roots"],
+              "answer": 0
+            }
+          ]
+        },
+        "lost_mitten": {
+          "description": "A story about a girl who finds her lost mitten by retracing her steps; sequence and inference.",
+          "tags": ["story", "sequence"],
+          "grade": "2",
+          "strand": "reading",
+          "title": "The Lost Mitten",
+          "text": "After recess, Rosa had only one blue mitten. She looked in her coat pocket. It was empty. Then she thought about her morning. First she had played on the slide. Next she built a snowman with Jay. Rosa ran to the snowman. There was her mitten, stuck on its nose! Jay laughed. \"Our snowman wanted to stay warm,\" he said.",
+          "questions": [
+            { "q": "What did Rosa lose?", "options": ["a blue mitten", "a red hat", "a scarf"], "answer": 0 },
+            {
+              "q": "What did she do first at recess?",
+              "options": ["played on the slide", "built a snowman", "looked in her pocket"],
+              "answer": 0
+            },
+            {
+              "q": "Where was the mitten?",
+              "options": ["on the snowman's nose", "in her desk", "on the slide"],
+              "answer": 0
+            },
+            { "q": "Why did Rosa think about her morning?", "answer": "To remember where she had been.", "lines": 2 }
+          ]
+        },
+        "seeds_travel": {
+          "description": "A nonfiction text about how seeds travel by wind, water and animals.",
+          "tags": ["nonfiction", "plants"],
+          "grade": "2",
+          "strand": "reading",
+          "title": "How Seeds Travel",
+          "text": "Plants cannot walk, but their seeds can travel far. Some seeds are light and fluffy. The wind carries them away. Some seeds float on water to a new shore. Other seeds have tiny hooks. They stick to animal fur and ride along. When a seed lands in good soil, it can grow into a new plant.",
+          "questions": [
+            { "q": "What carries light, fluffy seeds?", "options": ["the wind", "the rain", "a fish"], "answer": 0 },
+            {
+              "q": "How do hooked seeds travel?",
+              "options": ["on animal fur", "under rocks", "in the sun"],
+              "answer": 0
+            },
+            {
+              "q": "What is the main idea?",
+              "options": ["Seeds travel many ways.", "Plants can walk.", "Seeds are fluffy."],
+              "answer": 0
+            }
+          ]
+        },
+        "science_fair": {
+          "description": "A story about a boy whose science fair plan fails and who learns from it; character and theme.",
+          "tags": ["story", "theme"],
+          "grade": "3",
+          "strand": "reading",
+          "title": "The Volcano That Wouldn't",
+          "text": "Omar had practised his model volcano all week. On the day of the science fair, he poured in the vinegar and waited. Nothing happened. Kids began to walk away. Omar's face felt hot. Then he noticed the baking soda box was still full; he had forgotten the main ingredient. Instead of hiding, he explained to the judges what went wrong and why the mix needs both parts. One judge smiled. \"A good scientist learns from mistakes,\" she said. Omar got a ribbon for the best explanation.",
+          "questions": [
+            {
+              "q": "Why didn't the volcano work at first?",
+              "options": ["He forgot baking soda.", "The vinegar was old.", "It was too cold."],
+              "answer": 0
+            },
+            {
+              "q": "How did Omar feel when kids walked away?",
+              "options": ["embarrassed", "proud", "bored"],
+              "answer": 0
+            },
+            {
+              "q": "What is a lesson of the story?",
+              "options": ["Learn from mistakes.", "Never try new things.", "Always win."],
+              "answer": 0
+            },
+            { "q": "What did Omar do instead of hiding?", "answer": "He explained what went wrong.", "lines": 2 }
+          ]
+        },
+        "octopus": {
+          "description": "A nonfiction text about octopuses' clever ways to hide and escape.",
+          "tags": ["nonfiction", "sea", "animals"],
+          "grade": "3",
+          "strand": "reading",
+          "title": "Masters of Disguise",
+          "text": "The octopus is one of the cleverest animals in the sea. It has no bones, so it can squeeze through a gap the size of a coin. Special cells in its skin let it change colour in less than a second. It can look like sand, rock or coral. If a hunter gets too close, an octopus can squirt a cloud of dark ink and jet away. Scientists have even seen octopuses open jars to reach food inside.",
+          "questions": [
+            {
+              "q": "Why can an octopus squeeze through tiny gaps?",
+              "options": ["It has no bones.", "It is very small.", "It holds its breath."],
+              "answer": 0
+            },
+            { "q": "What does the ink help it do?", "options": ["escape", "eat", "sleep"], "answer": 0 },
+            {
+              "q": "What does disguise mean in the title?",
+              "options": ["blending in to hide", "a costume party", "a loud sound"],
+              "answer": 0
+            },
+            { "q": "Name two ways an octopus stays safe.", "answer": "It changes colour and squirts ink.", "lines": 2 }
+          ]
+        },
+        "town_garden": {
+          "description": "A story about neighbours turning an empty lot into a garden; problem, solution and point of view.",
+          "tags": ["story", "community"],
+          "grade": "4",
+          "strand": "reading",
+          "title": "The Empty Lot",
+          "text": "For years, the lot on Maple Street was full of weeds and broken bottles. Nadia passed it every day on her way to school and wondered what it could become. One spring she wrote a letter to the city council asking if the neighbourhood could plant a garden there. The council agreed, but only if people promised to care for it. Nadia knocked on doors. Mr. Lee offered tools, the Garcia family brought seedlings, and the school donated old rain barrels. By summer, rows of tomatoes and sunflowers filled the lot, and neighbours who had never spoken were trading recipes over the fence.",
+          "questions": [
+            {
+              "q": "What problem did Nadia want to solve?",
+              "options": ["The lot was a mess.", "Her school was closing.", "She had no friends."],
+              "answer": 0
+            },
+            {
+              "q": "What did the council ask for?",
+              "options": ["a promise to care for it", "money", "a new road"],
+              "answer": 0
+            },
+            { "q": "Which word best describes Nadia?", "options": ["determined", "lazy", "shy"], "answer": 0 },
+            { "q": "How did the garden change the neighbourhood?", "answer": "Neighbours got to know each other.", "lines": 2 }
+          ]
+        },
+        "monarch": {
+          "description": "A nonfiction text about the monarch butterfly's long migration; cause, effect and text evidence.",
+          "tags": ["nonfiction", "insects", "migration"],
+          "grade": "4",
+          "strand": "reading",
+          "title": "The Long Flight",
+          "text": "Every autumn, millions of monarch butterflies leave Canada and the northern United States. They fly as far as 4,000 kilometres to the mountain forests of central Mexico. No single butterfly makes the round trip. The monarchs that fly south live up to eight months, much longer than summer monarchs, which live only a few weeks. In spring they head north, lay eggs on milkweed plants and die. Their great-grandchildren will make the journey south again, finding the same forests they have never seen. Scientists think monarchs use the position of the Sun and the Earth's magnetism to find their way.",
+          "questions": [
+            {
+              "q": "Why do monarchs fly south?",
+              "options": ["to escape the cold", "to find the ocean", "to visit Canada"],
+              "answer": 0
+            },
+            { "q": "Which plant do monarchs lay eggs on?", "options": ["milkweed", "oak", "cactus"], "answer": 0 },
+            {
+              "q": "How are the autumn monarchs different?",
+              "options": ["They live much longer.", "They are bigger.", "They cannot fly."],
+              "answer": 0
+            },
+            { "q": "How might monarchs find their way?", "answer": "By using the Sun and Earth's magnetism.", "lines": 2 }
+          ]
+        },
+        "inventor_letter": {
+          "description": "A story told in a letter from a young inventor; point of view, theme and word meaning.",
+          "tags": ["story", "first-person", "theme"],
+          "grade": "5",
+          "strand": "reading",
+          "title": "Dear Grandpa",
+          "text": "Dear Grandpa, You always said that every invention starts with an annoyance. Mine started with my little brother's shoelaces, which came undone eleven times on our walk to school. I designed a clip that holds the bow in place. My first model, carved from an eraser, snapped. The second, made from a bottle cap, was too bulky. The third, printed at the library, finally worked, but only on flat laces. I was discouraged until I remembered your workshop and the shelf of failed gadgets you called your teachers. So I am on version four. Ask me next month how many times Leo's laces came undone. Love, Priya",
+          "questions": [
+            {
+              "q": "What problem started Priya's invention?",
+              "options": ["shoelaces coming undone", "a broken bike", "a lost key"],
+              "answer": 0
+            },
+            {
+              "q": "Why did Grandpa call failed gadgets his teachers?",
+              "options": ["He learned from them.", "They were in a school.", "They taught classes."],
+              "answer": 0
+            },
+            {
+              "q": "In this letter, discouraged means ___",
+              "options": ["losing hope", "very excited", "confused"],
+              "answer": 0
+            },
+            { "q": "What is the theme of the letter?", "answer": "Keep trying and learn from failures.", "lines": 2 }
+          ]
+        },
+        "coral_reef": {
+          "description": "A nonfiction text on coral reefs, why they matter and what threatens them; main idea and evidence.",
+          "tags": ["nonfiction", "ocean", "ecosystems"],
+          "grade": "5",
+          "strand": "reading",
+          "title": "Cities Under the Sea",
+          "text": "Coral reefs cover less than one percent of the ocean floor, yet about a quarter of all ocean species depend on them. A reef looks like rock, but it is built by tiny animals called coral polyps. Each polyp makes a hard skeleton, and over thousands of years the skeletons pile into huge structures. Many corals get their colour and much of their food from algae that live inside them. When ocean water gets too warm, the coral pushes the algae out and turns white, which is called bleaching. Bleached coral can recover if the water cools, but long heat waves can kill whole reefs. Scientists are now growing young coral in nurseries and planting it back on damaged reefs.",
+          "questions": [
+            {
+              "q": "What builds a coral reef?",
+              "options": ["tiny coral polyps", "underwater volcanoes", "sand and shells"],
+              "answer": 0
+            },
+            {
+              "q": "What causes bleaching?",
+              "options": ["water that is too warm", "too many fish", "strong waves"],
+              "answer": 0
+            },
+            {
+              "q": "Why are reefs called cities?",
+              "options": ["Home to many creatures.", "People live there.", "They have roads."],
+              "answer": 0
+            },
+            { "q": "What are scientists doing to help reefs?", "answer": "Growing young coral and planting it on reefs.", "lines": 2 }
+          ]
+        }
+      }
+    },
+    "skills": {
+      "description": "The workbook skills map (WORKBOOK_SPEC 8.6): ten strands and, per grade from pre-K to 5, the skills a page can practise, the activities that fit and one example block. Modelled on the kinds of activity in common school workbooks; all content is original.",
+      "strands": {
+        "phonics": {
+          "label": "Phonics and letters",
+          "description": "Letter names and sounds, rhyme, word families, vowels, blends, digraphs and word parts.",
+          "tags": ["reading", "letters"]
+        },
+        "sight_words": {
+          "label": "Sight words",
+          "description": "High-frequency words read on sight, by grade.",
+          "tags": ["reading", "words"]
+        },
+        "reading": {
+          "label": "Reading comprehension",
+          "description": "Listening, reading stories and nonfiction, and answering questions about them.",
+          "tags": ["reading", "comprehension"]
+        },
+        "handwriting": {
+          "label": "Handwriting",
+          "description": "Pre-writing strokes, letters, words, sentences and short paragraphs.",
+          "tags": ["writing", "motor"]
+        },
+        "numbers": {
+          "label": "Numbers, counting, addition and subtraction",
+          "description": "Counting, number order, adding and subtracting, and story problems.",
+          "tags": ["math", "numbers"]
+        },
+        "operations": {
+          "label": "Place value, multiplication, division and fractions",
+          "description": "Tens and ones to millions, times tables, division, fractions and decimals.",
+          "tags": ["math", "operations"]
+        },
+        "measure_shapes": {
+          "label": "Time, money, measurement, shapes and geometry",
+          "description": "Clocks, coins, units, shapes, angles, area and volume.",
+          "tags": ["math", "measurement", "geometry"]
+        },
+        "grammar": {
+          "label": "Grammar and vocabulary",
+          "description": "Parts of speech, sentences, word meanings and figurative language.",
+          "tags": ["language", "grammar"]
+        },
+        "science_social": {
+          "label": "Science and social studies",
+          "description": "Living things, weather, matter, space, maps, communities and money.",
+          "tags": ["science", "social-studies"]
+        },
+        "logic": {
+          "label": "Logic and puzzles",
+          "description": "Patterns, sorting, mazes, dot-to-dot, riddles and reasoning.",
+          "tags": ["logic", "puzzles"]
+        }
+      },
+      "skills": {
+        "capital_letters_prek": {
+          "description": "Recognise and trace capital letters.",
+          "tags": ["letters", "uppercase"],
+          "strand": "phonics",
+          "grade": "prek",
+          "activities": ["trace_letters", "choose"],
+          "example": { "activity": "trace_letters", "text": "ABC" }
+        },
+        "letter_look_alikes_prek": {
+          "description": "Tell apart capital letters that look alike.",
+          "tags": ["letters", "visual"],
+          "strand": "phonics",
+          "grade": "prek",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "letters_prek", "count": 4 }
+        },
+        "first_words_prek": {
+          "description": "Trace a first sight word.",
+          "tags": ["sight-words", "tracing"],
+          "strand": "sight_words",
+          "grade": "prek",
+          "activities": ["trace_letters"],
+          "example": { "activity": "trace_letters", "text": "GO" }
+        },
+        "listening_prek": {
+          "description": "Listen to a three-sentence story and answer questions.",
+          "tags": ["listening", "story"],
+          "strand": "reading",
+          "grade": "prek",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "red_hen_hat" }
+        },
+        "prewriting_strokes_prek": {
+          "description": "Trace lines and simple shapes to build pencil control.",
+          "tags": ["pre-writing", "tracing"],
+          "strand": "handwriting",
+          "grade": "prek",
+          "activities": ["trace_shapes", "maze"],
+          "example": { "activity": "trace_shapes", "shapes": ["circle", "square"] }
+        },
+        "count_to_5_prek": {
+          "description": "Count up to 5 pictures and write the number.",
+          "tags": ["counting"],
+          "strand": "numbers",
+          "grade": "prek",
+          "activities": ["count", "find_shapes"],
+          "example": { "activity": "count", "item": { "shape": "star" }, "groups": [3, 5, 2] }
+        },
+        "number_order_prek": {
+          "description": "Fill in missing numbers 0 to 5.",
+          "tags": ["number-order"],
+          "strand": "numbers",
+          "grade": "prek",
+          "activities": ["number_line"],
+          "example": { "activity": "number_line", "rows": [{ "start": 0, "step": 1 }], "length": 6, "blanks": 2 }
+        },
+        "add_pictures_prek": {
+          "description": "Put two small groups together (sums to 5).",
+          "tags": ["addition"],
+          "strand": "numbers",
+          "grade": "prek",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_within_5", "count": 4 }
+        },
+        "basic_shapes_prek": {
+          "description": "Name the circle, square, triangle and rectangle.",
+          "tags": ["shapes"],
+          "strand": "measure_shapes",
+          "grade": "prek",
+          "activities": ["shape_lesson", "find_shapes", "colour_by_shape"],
+          "example": { "activity": "shape_lesson", "shape": "circle" }
+        },
+        "five_senses_prek": {
+          "description": "Match body parts to the five senses.",
+          "tags": ["senses", "body"],
+          "strand": "science_social",
+          "grade": "prek",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "senses_prek", "count": 4 }
+        },
+        "ab_patterns_prek": {
+          "description": "Continue an AB pattern.",
+          "tags": ["patterns"],
+          "strand": "logic",
+          "grade": "prek",
+          "activities": ["pattern"],
+          "example": { "activity": "pattern", "sequence": [{ "shape": "circle" }, { "shape": "square" }] }
+        },
+        "simple_mazes_prek": {
+          "description": "Find the way through a small maze.",
+          "tags": ["mazes"],
+          "strand": "logic",
+          "grade": "prek",
+          "activities": ["maze"],
+          "example": { "activity": "maze", "size": [4, 4] }
+        },
+        "beginning_sounds_k": {
+          "description": "Hear and match beginning sounds.",
+          "tags": ["sounds", "beginning"],
+          "strand": "phonics",
+          "grade": "k",
+          "activities": ["choose", "match"],
+          "example": { "activity": "choose", "set": "beginning_sounds_k", "count": 4 }
+        },
+        "rhyming_k": {
+          "description": "Find words that rhyme.",
+          "tags": ["rhyme"],
+          "strand": "phonics",
+          "grade": "k",
+          "activities": ["choose", "match"],
+          "example": { "activity": "choose", "set": "rhyming_k", "count": 4 }
+        },
+        "lowercase_letters_k": {
+          "description": "Trace lowercase letters.",
+          "tags": ["letters", "lowercase"],
+          "strand": "phonics",
+          "grade": "k",
+          "activities": ["trace_letters"],
+          "example": { "activity": "trace_letters", "text": "abc" }
+        },
+        "word_families_k": {
+          "description": "Read and find words in a word family.",
+          "tags": ["word-families"],
+          "strand": "phonics",
+          "grade": "k",
+          "activities": ["word_search", "trace_letters"],
+          "example": { "activity": "word_search", "words": ["cat", "hat", "mat", "bat"] }
+        },
+        "sight_words_k": {
+          "description": "Read kindergarten sight words in sentences.",
+          "tags": ["sight-words"],
+          "strand": "sight_words",
+          "grade": "k",
+          "activities": ["choose", "word_search", "trace_letters"],
+          "example": { "activity": "choose", "set": "sight_words_k", "count": 4 }
+        },
+        "decodable_story_k": {
+          "description": "Read a very short decodable story and answer questions.",
+          "tags": ["story", "decodable"],
+          "strand": "reading",
+          "grade": "k",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "big_dog" }
+        },
+        "copy_words_k": {
+          "description": "Trace a short word on handwriting lines.",
+          "tags": ["tracing", "words"],
+          "strand": "handwriting",
+          "grade": "k",
+          "activities": ["trace_letters", "write_lines"],
+          "example": { "activity": "trace_letters", "text": "cat", "rows": 3 }
+        },
+        "count_to_10_k": {
+          "description": "Count up to 10 things.",
+          "tags": ["counting"],
+          "strand": "numbers",
+          "grade": "k",
+          "activities": ["count", "find_shapes"],
+          "example": { "activity": "count", "item": { "shape": "heart" }, "groups": [6, 8, 10] }
+        },
+        "number_line_10_k": {
+          "description": "Fill in missing numbers to 10.",
+          "tags": ["number-order"],
+          "strand": "numbers",
+          "grade": "k",
+          "activities": ["number_line"],
+          "example": {
+            "activity": "number_line",
+            "rows": [{ "start": 0, "step": 1 }, { "start": 3, "step": 1 }],
+            "length": 8,
+            "blanks": 3
+          }
+        },
+        "add_within_10_k": {
+          "description": "Add within 10.",
+          "tags": ["addition"],
+          "strand": "numbers",
+          "grade": "k",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_within_10", "count": 6 }
+        },
+        "sub_within_10_k": {
+          "description": "Subtract within 10.",
+          "tags": ["subtraction"],
+          "strand": "numbers",
+          "grade": "k",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "sub_within_10", "count": 6 }
+        },
+        "make_ten_k": {
+          "description": "Find the partner that makes 10.",
+          "tags": ["make-ten", "addition"],
+          "strand": "operations",
+          "grade": "k",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "make_ten", "count": 6 }
+        },
+        "teen_numbers_k": {
+          "description": "See teen numbers as ten and some ones.",
+          "tags": ["place-value"],
+          "strand": "operations",
+          "grade": "k",
+          "activities": ["place_value"],
+          "example": { "activity": "place_value", "numbers": [12, 15, 18], "task": "blocks" }
+        },
+        "pennies_k": {
+          "description": "Count pennies.",
+          "tags": ["money"],
+          "strand": "measure_shapes",
+          "grade": "k",
+          "activities": ["coins"],
+          "example": { "activity": "coins", "totals": [3, 6, 8] }
+        },
+        "more_shapes_k": {
+          "description": "Learn the hexagon, pentagon and other shapes.",
+          "tags": ["shapes"],
+          "strand": "measure_shapes",
+          "grade": "k",
+          "activities": ["shape_lesson", "find_shapes"],
+          "example": { "activity": "shape_lesson", "shape": "hexagon" }
+        },
+        "opposites_k": {
+          "description": "Know common opposites.",
+          "tags": ["vocabulary", "opposites"],
+          "strand": "grammar",
+          "grade": "k",
+          "activities": ["choose", "match"],
+          "example": { "activity": "choose", "set": "opposites_k", "count": 4 }
+        },
+        "living_things_k": {
+          "description": "Tell living from non-living things.",
+          "tags": ["science", "living"],
+          "strand": "science_social",
+          "grade": "k",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "living_things_k", "count": 4 }
+        },
+        "community_helpers_k": {
+          "description": "Know community helpers and their jobs.",
+          "tags": ["community"],
+          "strand": "science_social",
+          "grade": "k",
+          "activities": ["choose", "match"],
+          "example": { "activity": "choose", "set": "community_helpers_k", "count": 4 }
+        },
+        "odd_one_out_k": {
+          "description": "Sort things and find the one that does not belong.",
+          "tags": ["sorting"],
+          "strand": "logic",
+          "grade": "k",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "odd_one_out_k", "count": 4 }
+        },
+        "dot_to_dot_k": {
+          "description": "Join dots in order to 15.",
+          "tags": ["dot-to-dot", "counting"],
+          "strand": "logic",
+          "grade": "k",
+          "activities": ["dot_to_dot"],
+          "example": { "activity": "dot_to_dot", "subject": { "picture": "fish" } }
+        },
+        "short_vowels_1": {
+          "description": "Hear and spell short vowels in CVC words.",
+          "tags": ["vowels"],
+          "strand": "phonics",
+          "grade": "1",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "short_vowels_1", "count": 6 }
+        },
+        "digraphs_1": {
+          "description": "Read words with sh, ch, th and wh.",
+          "tags": ["digraphs"],
+          "strand": "phonics",
+          "grade": "1",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "digraphs_1", "count": 6 }
+        },
+        "blends_1": {
+          "description": "Find words that start with a blend.",
+          "tags": ["blends"],
+          "strand": "phonics",
+          "grade": "1",
+          "activities": ["word_search"],
+          "example": { "activity": "word_search", "words": ["frog", "crab", "drum", "flag", "sled"] }
+        },
+        "sight_words_1": {
+          "description": "Read first-grade sight words in sentences.",
+          "tags": ["sight-words"],
+          "strand": "sight_words",
+          "grade": "1",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "sight_words_1", "count": 6 }
+        },
+        "story_details_1": {
+          "description": "Recall details and feelings in a short story.",
+          "tags": ["story", "details"],
+          "strand": "reading",
+          "grade": "1",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "frog_jump" }
+        },
+        "nonfiction_facts_1": {
+          "description": "Find facts in a short nonfiction text.",
+          "tags": ["nonfiction"],
+          "strand": "reading",
+          "grade": "1",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "bees_busy" }
+        },
+        "copy_sentence_1": {
+          "description": "Copy a short sentence with spaces between words.",
+          "tags": ["sentences"],
+          "strand": "handwriting",
+          "grade": "1",
+          "activities": ["write_lines"],
+          "example": { "activity": "write_lines", "model": "I can see the sun.", "rows": 3 }
+        },
+        "add_within_20_1": {
+          "description": "Add within 20.",
+          "tags": ["addition", "facts"],
+          "strand": "numbers",
+          "grade": "1",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_within_20", "count": 12 }
+        },
+        "sub_within_20_1": {
+          "description": "Subtract within 20.",
+          "tags": ["subtraction", "facts"],
+          "strand": "numbers",
+          "grade": "1",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "sub_within_20", "count": 12 }
+        },
+        "missing_addend_1": {
+          "description": "Find a missing part in an addition sentence.",
+          "tags": ["addition", "missing-part"],
+          "strand": "numbers",
+          "grade": "1",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "missing_addend_20", "count": 8 }
+        },
+        "word_problems_1": {
+          "description": "Solve add and take-away story problems.",
+          "tags": ["word-problems"],
+          "strand": "numbers",
+          "grade": "1",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "word_problems_1", "count": 5 }
+        },
+        "tens_ones_1": {
+          "description": "Count tens and ones to 99.",
+          "tags": ["place-value"],
+          "strand": "operations",
+          "grade": "1",
+          "activities": ["place_value"],
+          "example": { "activity": "place_value", "task": "blocks", "count": 4 }
+        },
+        "add_tens_1": {
+          "description": "Add multiples of ten.",
+          "tags": ["addition", "tens"],
+          "strand": "operations",
+          "grade": "1",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_tens", "count": 8 }
+        },
+        "halves_quarters_1": {
+          "description": "See halves and quarters of shapes.",
+          "tags": ["fractions"],
+          "strand": "operations",
+          "grade": "1",
+          "activities": ["fractions"],
+          "example": { "activity": "fractions", "fractions": ["1/2", "1/4", "2/4", "1/2"], "shape": "circle" }
+        },
+        "time_half_hour_1": {
+          "description": "Tell time to the hour and half hour.",
+          "tags": ["time"],
+          "strand": "measure_shapes",
+          "grade": "1",
+          "activities": ["clock"],
+          "example": { "activity": "clock", "count": 4, "step": 30 }
+        },
+        "coins_1": {
+          "description": "Count pennies, nickels and dimes.",
+          "tags": ["money"],
+          "strand": "measure_shapes",
+          "grade": "1",
+          "activities": ["coins"],
+          "example": { "activity": "coins", "count": 4 }
+        },
+        "nouns_verbs_1": {
+          "description": "Tell naming words from action words.",
+          "tags": ["nouns", "verbs"],
+          "strand": "grammar",
+          "grade": "1",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "nouns_verbs_1", "count": 6 }
+        },
+        "sentences_1": {
+          "description": "Start sentences with a capital and end with a mark.",
+          "tags": ["capitals", "punctuation"],
+          "strand": "grammar",
+          "grade": "1",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "sentences_1", "count": 6 }
+        },
+        "weather_seasons_1": {
+          "description": "Describe weather and the seasons.",
+          "tags": ["weather", "seasons"],
+          "strand": "science_social",
+          "grade": "1",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "weather_seasons_1", "count": 6 }
+        },
+        "rules_citizenship_1": {
+          "description": "Know why rules matter and how to be a good citizen.",
+          "tags": ["citizenship"],
+          "strand": "science_social",
+          "grade": "1",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "rules_citizenship_1", "count": 6 }
+        },
+        "skip_count_patterns_1": {
+          "description": "Continue number patterns counting by 2s.",
+          "tags": ["patterns", "skip-counting"],
+          "strand": "logic",
+          "grade": "1",
+          "activities": ["number_line", "pattern"],
+          "example": { "activity": "number_line", "step": 2, "count": 3 }
+        },
+        "long_vowels_2": {
+          "description": "Read long vowels with a silent e.",
+          "tags": ["vowels", "silent-e"],
+          "strand": "phonics",
+          "grade": "2",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "long_vowels_2", "count": 6 }
+        },
+        "vowel_teams_2": {
+          "description": "Read vowel teams such as ai, oa and ee.",
+          "tags": ["vowel-teams"],
+          "strand": "phonics",
+          "grade": "2",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "vowel_teams_2", "count": 6 }
+        },
+        "sight_words_2": {
+          "description": "Read second-grade sight words in sentences.",
+          "tags": ["sight-words"],
+          "strand": "sight_words",
+          "grade": "2",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "sight_words_2", "count": 6 }
+        },
+        "sequence_inference_2": {
+          "description": "Put story events in order and explain why a character acts.",
+          "tags": ["story", "sequence"],
+          "strand": "reading",
+          "grade": "2",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "lost_mitten" }
+        },
+        "main_idea_2": {
+          "description": "Find the main idea of a nonfiction text.",
+          "tags": ["nonfiction", "main-idea"],
+          "strand": "reading",
+          "grade": "2",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "seeds_travel" }
+        },
+        "write_sentences_2": {
+          "description": "Write two or three sentences about a prompt.",
+          "tags": ["writing", "sentences"],
+          "strand": "handwriting",
+          "grade": "2",
+          "activities": ["write_lines"],
+          "example": { "activity": "write_lines", "prompt": "Tell about your favourite place to play.", "rows": 4 }
+        },
+        "add_2digit_regroup_2": {
+          "description": "Add two-digit numbers with regrouping.",
+          "tags": ["addition", "regrouping"],
+          "strand": "numbers",
+          "grade": "2",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_2digit_regroup", "count": 8 }
+        },
+        "sub_2digit_borrow_2": {
+          "description": "Subtract two-digit numbers with regrouping.",
+          "tags": ["subtraction", "regrouping"],
+          "strand": "numbers",
+          "grade": "2",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "sub_2digit_borrow", "count": 8 }
+        },
+        "skip_count_2": {
+          "description": "Skip-count by 5s, 10s and 100s.",
+          "tags": ["skip-counting"],
+          "strand": "numbers",
+          "grade": "2",
+          "activities": ["number_line", "choose"],
+          "example": { "activity": "number_line", "step": 5, "count": 3 }
+        },
+        "hundreds_2": {
+          "description": "Read three-digit numbers from blocks and write them in expanded form.",
+          "tags": ["place-value"],
+          "strand": "operations",
+          "grade": "2",
+          "activities": ["place_value"],
+          "example": { "activity": "place_value", "task": "expand", "count": 5 }
+        },
+        "thirds_2": {
+          "description": "Name halves, thirds and quarters.",
+          "tags": ["fractions"],
+          "strand": "operations",
+          "grade": "2",
+          "activities": ["fractions"],
+          "example": { "activity": "fractions", "fractions": ["1/3", "2/3", "1/4", "3/4"], "shape": "rect" }
+        },
+        "time_5_minutes_2": {
+          "description": "Tell time to five minutes.",
+          "tags": ["time"],
+          "strand": "measure_shapes",
+          "grade": "2",
+          "activities": ["clock"],
+          "example": { "activity": "clock", "count": 4 }
+        },
+        "coins_quarters_2": {
+          "description": "Count coins with quarters up to a dollar.",
+          "tags": ["money"],
+          "strand": "measure_shapes",
+          "grade": "2",
+          "activities": ["coins"],
+          "example": { "activity": "coins", "count": 4 }
+        },
+        "units_2": {
+          "description": "Choose units and tools for length, weight and capacity.",
+          "tags": ["measurement"],
+          "strand": "measure_shapes",
+          "grade": "2",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "measurement_2", "count": 6 }
+        },
+        "plurals_2": {
+          "description": "Write regular and irregular plurals.",
+          "tags": ["plurals"],
+          "strand": "grammar",
+          "grade": "2",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "plurals_2", "count": 6 }
+        },
+        "adjectives_2": {
+          "description": "Find describing words.",
+          "tags": ["adjectives"],
+          "strand": "grammar",
+          "grade": "2",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "adjectives_2", "count": 6 }
+        },
+        "plants_2": {
+          "description": "Plant parts and what plants need.",
+          "tags": ["plants"],
+          "strand": "science_social",
+          "grade": "2",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "plants_2", "count": 6 }
+        },
+        "habitats_2": {
+          "description": "Match animals to habitats.",
+          "tags": ["habitats"],
+          "strand": "science_social",
+          "grade": "2",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "habitats_2", "count": 6 }
+        },
+        "maps_2": {
+          "description": "Read a map: directions, key and symbols.",
+          "tags": ["maps"],
+          "strand": "science_social",
+          "grade": "2",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "maps_2", "count": 6 }
+        },
+        "needs_wants_2": {
+          "description": "Needs and wants, goods and services.",
+          "tags": ["economics"],
+          "strand": "science_social",
+          "grade": "2",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "needs_wants_2", "count": 6 }
+        },
+        "number_sequences_2": {
+          "description": "Find the rule in a number sequence.",
+          "tags": ["sequences"],
+          "strand": "logic",
+          "grade": "2",
+          "activities": ["choose", "number_line"],
+          "example": { "activity": "choose", "set": "sequences_2", "count": 6 }
+        },
+        "prefixes_suffixes_3": {
+          "description": "Use prefixes and suffixes to read new words.",
+          "tags": ["prefixes", "suffixes"],
+          "strand": "phonics",
+          "grade": "3",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "prefixes_suffixes_3", "count": 6 }
+        },
+        "spelling_3": {
+          "description": "Find and spell grade 3 words.",
+          "tags": ["spelling"],
+          "strand": "sight_words",
+          "grade": "3",
+          "activities": ["word_search", "write_lines"],
+          "example": {
+            "activity": "word_search",
+            "words": ["because", "friend", "people", "school", "animal", "answer", "kitchen", "pencil"]
+          }
+        },
+        "theme_character_3": {
+          "description": "Describe a character and find a story's lesson.",
+          "tags": ["story", "theme"],
+          "strand": "reading",
+          "grade": "3",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "science_fair" }
+        },
+        "text_evidence_3": {
+          "description": "Answer with facts from a nonfiction text.",
+          "tags": ["nonfiction", "evidence"],
+          "strand": "reading",
+          "grade": "3",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "octopus" }
+        },
+        "paragraph_3": {
+          "description": "Write a short paragraph with a topic sentence.",
+          "tags": ["writing", "paragraph"],
+          "strand": "handwriting",
+          "grade": "3",
+          "activities": ["write_lines"],
+          "example": { "activity": "write_lines", "prompt": "Describe an animal you would like to study. Give two facts.", "rows": 8 }
+        },
+        "add_3digit_3": {
+          "description": "Add three-digit numbers with regrouping.",
+          "tags": ["addition", "regrouping"],
+          "strand": "numbers",
+          "grade": "3",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_3digit_regroup", "count": 9 }
+        },
+        "sub_3digit_3": {
+          "description": "Subtract three-digit numbers with regrouping.",
+          "tags": ["subtraction", "regrouping"],
+          "strand": "numbers",
+          "grade": "3",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "sub_3digit_borrow", "count": 9 }
+        },
+        "times_tables_3": {
+          "description": "Multiplication facts to 10 x 10.",
+          "tags": ["multiplication", "facts"],
+          "strand": "operations",
+          "grade": "3",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "mul_facts_mixed", "count": 20 }
+        },
+        "division_facts_3": {
+          "description": "Division facts within 100.",
+          "tags": ["division", "facts"],
+          "strand": "operations",
+          "grade": "3",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "div_facts", "count": 20 }
+        },
+        "missing_factor_3": {
+          "description": "Find a missing factor.",
+          "tags": ["multiplication", "missing-part"],
+          "strand": "operations",
+          "grade": "3",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "missing_factor", "count": 10 }
+        },
+        "word_problems_3": {
+          "description": "Solve one- and two-step story problems.",
+          "tags": ["word-problems"],
+          "strand": "operations",
+          "grade": "3",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "word_problems_3", "count": 6 }
+        },
+        "fractions_3": {
+          "description": "Understand and compare unit fractions.",
+          "tags": ["fractions"],
+          "strand": "operations",
+          "grade": "3",
+          "activities": ["fractions", "choose"],
+          "example": { "activity": "fractions", "fractions": ["1/6", "3/8", "5/6", "2/3"], "shape": "bar" }
+        },
+        "place_value_4digit_3": {
+          "description": "Write four-digit numbers in expanded form.",
+          "tags": ["place-value"],
+          "strand": "operations",
+          "grade": "3",
+          "activities": ["place_value"],
+          "example": { "activity": "place_value", "task": "expand", "count": 6 }
+        },
+        "time_minute_3": {
+          "description": "Tell time to the minute and work out elapsed time.",
+          "tags": ["time"],
+          "strand": "measure_shapes",
+          "grade": "3",
+          "activities": ["clock", "choose"],
+          "example": { "activity": "clock", "count": 6, "task": "draw" }
+        },
+        "money_dollars_3": {
+          "description": "Count coins and dollar notes.",
+          "tags": ["money"],
+          "strand": "measure_shapes",
+          "grade": "3",
+          "activities": ["coins"],
+          "example": { "activity": "coins", "count": 4 }
+        },
+        "area_perimeter_3": {
+          "description": "Name shapes by attributes; find area and perimeter.",
+          "tags": ["geometry", "area"],
+          "strand": "measure_shapes",
+          "grade": "3",
+          "activities": ["choose", "shape_lesson"],
+          "example": { "activity": "choose", "set": "geometry_3", "count": 6 }
+        },
+        "past_tense_3": {
+          "description": "Use regular and irregular past-tense verbs.",
+          "tags": ["verbs"],
+          "strand": "grammar",
+          "grade": "3",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "past_tense_3", "count": 6 }
+        },
+        "synonyms_antonyms_3": {
+          "description": "Find synonyms and antonyms.",
+          "tags": ["vocabulary"],
+          "strand": "grammar",
+          "grade": "3",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "synonyms_antonyms_3", "count": 6 }
+        },
+        "matter_3": {
+          "description": "Solids, liquids and gases.",
+          "tags": ["matter"],
+          "strand": "science_social",
+          "grade": "3",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "matter_3", "count": 6 }
+        },
+        "communities_3": {
+          "description": "Local government and kinds of communities.",
+          "tags": ["civics"],
+          "strand": "science_social",
+          "grade": "3",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "communities_3", "count": 6 }
+        },
+        "riddles_3": {
+          "description": "Solve riddles by careful reading.",
+          "tags": ["riddles"],
+          "strand": "logic",
+          "grade": "3",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "riddles_3", "count": 6 }
+        },
+        "big_mazes_3": {
+          "description": "Solve a large maze.",
+          "tags": ["mazes"],
+          "strand": "logic",
+          "grade": "3",
+          "activities": ["maze"],
+          "example": { "activity": "maze", "size": [14, 14] }
+        },
+        "word_roots_4": {
+          "description": "Use Greek and Latin roots to work out meanings.",
+          "tags": ["roots"],
+          "strand": "phonics",
+          "grade": "4",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "word_roots_4", "count": 6 }
+        },
+        "spelling_4": {
+          "description": "Find and spell grade 4 words.",
+          "tags": ["spelling"],
+          "strand": "sight_words",
+          "grade": "4",
+          "activities": ["word_search"],
+          "example": {
+            "activity": "word_search",
+            "words": ["beautiful", "favorite", "remember", "different", "important", "surprise", "library", "journey"]
+          }
+        },
+        "problem_solution_4": {
+          "description": "Find the problem and solution and describe a character.",
+          "tags": ["story"],
+          "strand": "reading",
+          "grade": "4",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "town_garden" }
+        },
+        "cause_effect_4": {
+          "description": "Explain causes and effects with text evidence.",
+          "tags": ["nonfiction"],
+          "strand": "reading",
+          "grade": "4",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "monarch" }
+        },
+        "opinion_writing_4": {
+          "description": "Write an opinion with reasons.",
+          "tags": ["writing", "opinion"],
+          "strand": "handwriting",
+          "grade": "4",
+          "activities": ["write_lines"],
+          "example": { "activity": "write_lines", "prompt": "Should every school have a garden? Give your opinion and two reasons.", "rows": 10 }
+        },
+        "add_sub_4digit_4": {
+          "description": "Add and subtract four-digit numbers.",
+          "tags": ["addition", "subtraction"],
+          "strand": "numbers",
+          "grade": "4",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "sub_4digit", "count": 9 }
+        },
+        "multi_digit_mul_4": {
+          "description": "Multiply up to two digits by two digits.",
+          "tags": ["multiplication"],
+          "strand": "operations",
+          "grade": "4",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "mul_2digit_by_1digit", "count": 12 }
+        },
+        "remainders_4": {
+          "description": "Divide with remainders.",
+          "tags": ["division", "remainders"],
+          "strand": "operations",
+          "grade": "4",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "div_remainder", "count": 12 }
+        },
+        "long_division_4": {
+          "description": "Long division by a one-digit divisor.",
+          "tags": ["division", "long-division"],
+          "strand": "operations",
+          "grade": "4",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "div_3digit_by_1digit", "count": 6 }
+        },
+        "decimals_tenths_4": {
+          "description": "Add and subtract decimals to tenths.",
+          "tags": ["decimals"],
+          "strand": "operations",
+          "grade": "4",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_decimals_tenths", "count": 12 }
+        },
+        "equivalent_fractions_4": {
+          "description": "Shade equivalent fractions.",
+          "tags": ["fractions", "equivalent"],
+          "strand": "operations",
+          "grade": "4",
+          "activities": ["fractions"],
+          "example": { "activity": "fractions", "fractions": ["1/2", "2/4", "4/8", "3/6"], "shape": "rect", "task": "shade" }
+        },
+        "place_value_large_4": {
+          "description": "Read and expand numbers to 99,999.",
+          "tags": ["place-value"],
+          "strand": "operations",
+          "grade": "4",
+          "activities": ["place_value"],
+          "example": { "activity": "place_value", "task": "expand", "count": 6 }
+        },
+        "angles_4": {
+          "description": "Classify angles and lines.",
+          "tags": ["geometry", "angles"],
+          "strand": "measure_shapes",
+          "grade": "4",
+          "activities": ["choose", "shape_lesson"],
+          "example": { "activity": "choose", "set": "angles_4", "count": 6 }
+        },
+        "homophones_4": {
+          "description": "Use the right homophone.",
+          "tags": ["homophones"],
+          "strand": "grammar",
+          "grade": "4",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "homophones_4", "count": 6 }
+        },
+        "parts_of_speech_4": {
+          "description": "Name nouns, verbs, adjectives and adverbs.",
+          "tags": ["parts-of-speech"],
+          "strand": "grammar",
+          "grade": "4",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "parts_of_speech_4", "count": 6 }
+        },
+        "earth_space_4": {
+          "description": "Earth's motion, the solar system and weathering.",
+          "tags": ["space", "earth"],
+          "strand": "science_social",
+          "grade": "4",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "earth_space_4", "count": 6 }
+        },
+        "geography_4": {
+          "description": "Continents, oceans and landforms.",
+          "tags": ["geography"],
+          "strand": "science_social",
+          "grade": "4",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "geography_4", "count": 6 }
+        },
+        "analogies_4": {
+          "description": "Complete word analogies.",
+          "tags": ["analogies"],
+          "strand": "logic",
+          "grade": "4",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "analogies_4", "count": 6 }
+        },
+        "context_clues_5": {
+          "description": "Work out new words from context clues.",
+          "tags": ["vocabulary", "context"],
+          "strand": "phonics",
+          "grade": "5",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "context_clues_5", "count": 6 }
+        },
+        "spelling_5": {
+          "description": "Find and spell grade 5 words.",
+          "tags": ["spelling"],
+          "strand": "sight_words",
+          "grade": "5",
+          "activities": ["word_search"],
+          "example": {
+            "activity": "word_search",
+            "words": ["adventure", "celebrate", "discovery", "equipment", "knowledge", "necessary", "opposite", "schedule"]
+          }
+        },
+        "theme_point_of_view_5": {
+          "description": "Find the theme and point of view of a story.",
+          "tags": ["story", "theme"],
+          "strand": "reading",
+          "grade": "5",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "inventor_letter" }
+        },
+        "main_idea_evidence_5": {
+          "description": "Explain the main idea of a nonfiction text with evidence.",
+          "tags": ["nonfiction", "evidence"],
+          "strand": "reading",
+          "grade": "5",
+          "activities": ["read_passage"],
+          "example": { "activity": "read_passage", "passage": "coral_reef" }
+        },
+        "essay_5": {
+          "description": "Plan and write an informative paragraph.",
+          "tags": ["writing", "informative"],
+          "strand": "handwriting",
+          "grade": "5",
+          "activities": ["write_lines"],
+          "example": { "activity": "write_lines", "prompt": "Explain how a plant gets the energy it needs. Use science words.", "rows": 12 }
+        },
+        "word_problems_5": {
+          "description": "Solve multi-step problems with decimals and fractions.",
+          "tags": ["word-problems"],
+          "strand": "numbers",
+          "grade": "5",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "word_problems_5", "count": 6 }
+        },
+        "negative_numbers_5": {
+          "description": "Count back past zero on a number line.",
+          "tags": ["integers"],
+          "strand": "numbers",
+          "grade": "5",
+          "activities": ["number_line"],
+          "example": { "activity": "number_line", "rows": [{ "start": 4, "step": -1 }, { "start": 10, "step": -5 }], "length": 9 }
+        },
+        "multi_digit_mul_5": {
+          "description": "Multiply a three-digit number by a two-digit number.",
+          "tags": ["multiplication"],
+          "strand": "operations",
+          "grade": "5",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "mul_3digit_by_2digit", "count": 6 }
+        },
+        "two_digit_divisors_5": {
+          "description": "Long division with a two-digit divisor.",
+          "tags": ["division", "long-division"],
+          "strand": "operations",
+          "grade": "5",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "div_by_2digit", "count": 6 }
+        },
+        "decimals_hundredths_5": {
+          "description": "Add and subtract decimals to hundredths.",
+          "tags": ["decimals"],
+          "strand": "operations",
+          "grade": "5",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "add_decimals_hundredths", "count": 9 }
+        },
+        "powers_of_ten_5": {
+          "description": "Multiply by 10, 100 and 1,000.",
+          "tags": ["place-value", "multiplication"],
+          "strand": "operations",
+          "grade": "5",
+          "activities": ["math_facts"],
+          "example": { "activity": "math_facts", "template": "mul_by_powers_of_ten", "count": 12 }
+        },
+        "fraction_operations_5": {
+          "description": "Add, subtract and multiply fractions.",
+          "tags": ["fractions"],
+          "strand": "operations",
+          "grade": "5",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "fractions_operations_5", "count": 6 }
+        },
+        "volume_conversion_5": {
+          "description": "Find volume and convert units.",
+          "tags": ["measurement", "volume"],
+          "strand": "measure_shapes",
+          "grade": "5",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "measurement_5", "count": 6 }
+        },
+        "figurative_language_5": {
+          "description": "Explain similes, metaphors and idioms.",
+          "tags": ["figurative"],
+          "strand": "grammar",
+          "grade": "5",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "figurative_language_5", "count": 6 }
+        },
+        "body_systems_5": {
+          "description": "Human body systems.",
+          "tags": ["body"],
+          "strand": "science_social",
+          "grade": "5",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "body_systems_5", "count": 6 }
+        },
+        "ecosystems_5": {
+          "description": "Food chains, producers and consumers.",
+          "tags": ["ecosystems"],
+          "strand": "science_social",
+          "grade": "5",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "ecosystems_5", "count": 6 }
+        },
+        "economics_5": {
+          "description": "Budgets, supply and demand.",
+          "tags": ["economics"],
+          "strand": "science_social",
+          "grade": "5",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "economics_5", "count": 6 }
+        },
+        "deduction_5": {
+          "description": "Reason from clues to a conclusion.",
+          "tags": ["deduction"],
+          "strand": "logic",
+          "grade": "5",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "logic_grid_5", "count": 6 }
+        },
+        "huge_mazes_5": {
+          "description": "Solve a very large maze.",
+          "tags": ["mazes"],
+          "strand": "logic",
+          "grade": "5",
+          "activities": ["maze"],
+          "example": { "activity": "maze", "size": [18, 18] }
         }
       }
     }

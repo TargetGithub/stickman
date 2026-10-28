@@ -2,6 +2,8 @@
 // or circles every target and writes how many. The key circles them in red and writes the count.
 // Placement: seeded rejection sampling of circles (each shape's unit box fits radius 1) with a clear gap.
 
+import { atLeast } from "../grades.js";
+
 const GAP = 10; // pt between shapes
 const TRIES = 400;
 const plural = (w) => (/(s|x|ch|sh)$/.test(w) ? `${w}es` : `${w}s`);
@@ -49,7 +51,7 @@ export const findShapes = {
     const order = list.map((_, i) => i).sort((a, b) => sizes[b] - sizes[a] || a - b); // big ones first place best
     const spots = scatter(order.map((i) => sizes[i] / 2), area, env.rng);
     if (!spots) return { items: [], answers: [], issues: [{ code: "E_WB_FIT", path: "count", message: `${list.length} shapes do not fit in the slot at this grade's size.`, fix: "Use fewer shapes, or a bigger slot." }] };
-    const turn = env.grade === "1" || env.grade === "2";
+    const turn = atLeast(env.grade, "1");
     const items = [];
     const answers = [];
     order.forEach((i, k) => {

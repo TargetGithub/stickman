@@ -44,5 +44,11 @@
   "heptagon": { "label": "heptagon", "description": "A shape with 7 straight sides and 7 corners.", "tags": ["polygon"], "grade": "2",
     "sides": 7, "corners": 7, "rightAngles": 0, "equalSides": "all", "curved": false, "symmetry": 7, "examples": ["some coins", "gazebo roof", "badge"], "geometry": { "kind": "regular", "sides": 7 } },
   "ring": { "label": "ring", "description": "A circle with a round hole in the middle, like a donut.", "tags": ["curved", "fun"], "grade": "2",
-    "sides": 0, "corners": 0, "rightAngles": 0, "equalSides": "none", "curved": true, "symmetry": -1, "examples": ["donut", "bracelet", "swim ring"], "note": "It has two round edges: one outside and one around the hole.", "geometry": { "kind": "ring", "inner": 0.5 } }
+    "sides": 0, "corners": 0, "rightAngles": 0, "equalSides": "none", "curved": true, "symmetry": -1, "examples": ["donut", "bracelet", "swim ring"], "note": "It has two round edges: one outside and one around the hole.", "geometry": { "kind": "ring", "inner": 0.5 } },
+  "isosceles_triangle": { "label": "isosceles triangle", "description": "A triangle with two sides the same length, tall and pointed like a party hat.", "tags": ["polygon", "triangles"], "grade": "3",
+    "sides": 3, "corners": 3, "rightAngles": 0, "equalSides": "two", "curved": false, "symmetry": 1, "examples": ["party hat", "slice of cake", "roof gable"], "geometry": { "kind": "polygon", "points": [[0, -1], [0.55, 0.9], [-0.55, 0.9]] } },
+  "decagon": { "label": "decagon", "description": "A shape with 10 straight sides and 10 corners.", "tags": ["polygon"], "grade": "3",
+    "sides": 10, "corners": 10, "rightAngles": 0, "equalSides": "all", "curved": false, "symmetry": 10, "examples": ["coin edge", "gazebo roof", "garden tile"], "geometry": { "kind": "regular", "sides": 10 } },
+  "obtuse_triangle": { "label": "obtuse triangle", "description": "A triangle with one wide corner, bigger than a square corner; no two sides are the same length.", "tags": ["polygon", "triangles", "angles"], "grade": "4",
+    "sides": 3, "corners": 3, "rightAngles": 0, "equalSides": "none", "curved": false, "symmetry": 0, "examples": ["clothes hanger", "open book cover", "fan blade"], "note": "Its top corner is wider than a square corner.", "geometry": { "kind": "polygon", "points": [[-1, 0.5], [1, 0.5], [-0.4, -0.3]] } }
 }

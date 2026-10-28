@@ -5,7 +5,7 @@
 //             about rivals, rounds and a finale (STORY_SPEC 12, 18)
 //   --story   a story of at least 5 minutes, two-stage (STORY_SPEC 18)
 //   --clip    a short version 1 fight clip written in one go (the M8 pipeline, default 30 s)
-//   --workbook  a printable workbook (WORKBOOK_SPEC 11): --topic "...", --grade prek|k|1|2 (default k),
+//   --workbook  a printable workbook (WORKBOOK_SPEC 11): --topic "...", --grade prek|k|1-5 (default k),
 //             --pages N (default 10), --cast id,id, --size letter|a4; writes out/workbooks/scripts/<slug>.json
 //             and the PDFs in out/workbooks/<slug>/
 // Usage:

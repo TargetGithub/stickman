@@ -1,6 +1,6 @@
 // The workbook activities (WORKBOOK_SPEC 5). Each one: { name, params (schema properties), required,
-// artPaths(block) → [[ref, path]], limits?(block, rules) → [[path, value, max]], check?(block, path, catalog, rules) →
-// issues (names the schema cannot check), generate(block, box, env) }.
+// artPaths(block) → [[ref, path]], limits?(block, rules) → [[path, value, max]], check?(block, path, catalog, rules, grade) →
+// issues (names the schema cannot check), texts?(block) → [[text, path]] (checked like instructions), generate(block, box, env) }.
 // generate returns { items, answers, issues } (display list items, answer items, E_WB_FIT issues).
 
 import { colourPage } from "./colour_page.js";
@@ -16,6 +16,16 @@ import { wordSearch } from "./word_search.js";
 import { match } from "./match.js";
 import { pattern } from "./pattern.js";
 import { dotToDot } from "./dot_to_dot.js";
+import { mathFacts } from "./math_facts.js";
+import { numberLine } from "./number_line.js";
+import { placeValue } from "./place_value.js";
+import { clock } from "./clock.js";
+import { coins } from "./coins.js";
+import { fractions } from "./fractions.js";
+import { choose } from "./choose.js";
+import { readPassage } from "./read_passage.js";
+import { writeLinesActivity } from "./write_lines.js";
 
-export const ACTIVITIES = Object.fromEntries([colourPage, drawPrompt, count, shapeLesson, traceShapes, traceLetters, colourByShape, findShapes, maze, wordSearch, match, pattern, dotToDot].map((a) => [a.name, a]));
+export const ACTIVITIES = Object.fromEntries([colourPage, drawPrompt, count, shapeLesson, traceShapes, traceLetters, colourByShape, findShapes, maze, wordSearch, match, pattern, dotToDot,
+  mathFacts, numberLine, placeValue, clock, coins, fractions, choose, readPassage, writeLinesActivity].map((a) => [a.name, a]));
 export const ACTIVITY_NAMES = Object.keys(ACTIVITIES);

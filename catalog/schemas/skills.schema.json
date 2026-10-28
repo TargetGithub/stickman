@@ -1,0 +1,117 @@
+{
+  "title": "The workbook skills map (education/skills.json, WORKBOOK_SPEC 8.6): strands of learning and, per grade, the skills a workbook page can practise, each with the activities that fit and one example block.",
+  "type": "object",
+  "required": [
+    "description",
+    "strands",
+    "skills"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 300
+    },
+    "strands": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z_]{1,23}$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "label",
+          "description",
+          "tags"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 60
+          },
+          "description": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 200
+          },
+          "tags": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{1,23}$"
+            }
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_]{0,31}$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "description",
+          "tags",
+          "strand",
+          "grade",
+          "activities",
+          "example"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 200
+          },
+          "tags": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{1,23}$"
+            }
+          },
+          "strand": {
+            "type": "string",
+            "pattern": "^[a-z][a-z_]{1,23}$"
+          },
+          "grade": {
+            "enum": [
+              "prek",
+              "k",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          },
+          "activities": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 6,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "example": {
+            "type": "object",
+            "required": [
+              "activity"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

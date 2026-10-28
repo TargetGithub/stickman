@@ -2,7 +2,8 @@
 // print-approved art as compact Markdown. The workbook prompt and the context pack file 09_workbooks.md both use
 // these, so they always agree. Pure: wb is the workbook catalog (engine catalog + presets + education).
 
-import { GRADE_RULES, LAYOUTS, PAGE_SIZES } from "../../engine/workbook/grades.js";
+import { GRADES, GRADE_RULES, LAYOUTS, PAGE_SIZES } from "../../engine/workbook/grades.js";
+import { educationOf } from "../../catalog/index.js";
 
 const cell = (v) => String(v).replace(/\|/g, "/").replace(/\n/g, " ");
 const table = (head, rows) => [`| ${head.join(" | ")} |`, `|${head.map(() => "---").join("|")}|`, ...rows.map((r) => `| ${r.map(cell).join(" | ")} |`)].join("\n");
@@ -16,8 +17,8 @@ export function activityTable(docs) {
 
 export function gradeTable() {
   const g = GRADE_RULES;
-  const row = (label, f) => [label, ...["prek", "k", "1", "2"].map((k) => f(g[k], k))];
-  return table(["rule", "prek", "k", "1", "2"], [
+  const row = (label, f) => [label, ...GRADES.map((k) => f(g[k], k))];
+  return table(["rule", ...GRADES], [
     row("blocks per page (more: warning)", (r) => r.maxBlocks),
     row("instruction length (characters)", (r) => r.instructions),
     row("count / find: most per group", (r) => r.countMax),
@@ -33,7 +34,11 @@ export function shapeTable(ed) {
 
 export function listsMarkdown(wb) {
   const ed = wb.education;
-  const words = Object.entries(ed.words.topics).map(([t, d]) => `- ${t}: ${Object.entries(d.words).map(([w, g]) => `${w} (${g})`).join(", ")}`).join("\n");
+  // One grade per topic when all its words share it (most do), so the list stays short.
+  const words = Object.entries(ed.words.topics).map(([t, d]) => {
+    const grades = [...new Set(Object.values(d.words))];
+    return grades.length === 1 ? `- ${t} (${grades[0]}): ${Object.keys(d.words).join(", ")}` : `- ${t}: ${Object.entries(d.words).map(([w, g]) => `${w} (${g})`).join(", ")}`;
+  }).join("\n");
   const presets = ok(ed.lineArt.presets).map((id) => `${id} (${wb.presets[id]?.cast?.body === "dog_small" ? "dog" : "person"})`);
   const humanPoses = ["stand", "waveA", "victory", "pointPose", "sit", "flexPose", "laughA", "danceA1", "cheer"].filter((p) => wb.poses[p]);
   return [
@@ -43,6 +48,20 @@ export function listsMarkdown(wb) {
     `**Characters** (\`{"preset"}\`, print-approved): ${presets.join(", ")}. Poses for people: ${humanPoses.join(", ")} (default stand); dogs: dog_stand, dog_sit, dog_beg. Faces: ${Object.keys(wb.faces).slice(0, 10).join(", ")} (default happy).`,
     `**Objects** (\`{"object"}\`): ${ok(ed.lineArt.objects).filter((n) => gentle(wb.objects[n])).join(", ")}.`,
     `**Word lists** (word_search and tracing; any family-friendly word works, letters only):\n${words}`,
+    sourcesMarkdown(ed),
+  ].join("\n\n");
+}
+
+/** Math templates, money, question sets, passages and the skills map by grade (names a model may use). */
+export function sourcesMarkdown(ed) {
+  const byGrade = (entries, f) => GRADES.map((g) => [g, entries.filter(([, e]) => e.grade === g)]).filter(([, l]) => l.length).map(([g, l]) => `- ${g}: ${l.map(f).join(", ")}`).join("\n");
+  const t = Object.entries(ed.math.templates);
+  return [
+    `**Math templates** (math_facts \`template\`, by grade; names say what they make, \`missing\` ones ask for a part):\n${byGrade(t, ([n]) => n)}`,
+    `**Money** (coins \`use\`): ${Object.entries(ed.math.money).map(([n, m]) => `${n} ${m.label}`).join(", ")}.`,
+    `**Question sets** (choose \`set\`, by grade):\n${byGrade(Object.entries(ed.questions.sets), ([n, e]) => `${n} (${e.questions.length})`)}`,
+    `**Passages** (read_passage \`passage\`, by grade):\n${byGrade(Object.entries(ed.passages.passages), ([n, e]) => `${n} "${e.title}"`)}`,
+    `**Skills by grade** (strand: skills, from education/skills.json; plan about one page per skill):\n${GRADES.map((g) => `- ${g}: ${Object.keys(ed.skills.strands).map((st) => [st, Object.entries(ed.skills.skills).filter(([, k]) => k.grade === g && k.strand === st)]).filter(([, l]) => l.length).map(([st, l]) => `${st}: ${l.map(([n]) => n).join(", ")}`).join("; ")}`).join("\n")}`,
   ].join("\n\n");
 }
 
@@ -51,7 +70,7 @@ export function formatMarkdown() {
     "```",
     "{",
     '  "kind": "workbook", "version": 1,',
-    '  "title": str<=60, "seed": int, "grade": "prek"|"k"|"1"|"2",',
+    `  "title": str<=60, "seed": int, "grade": ${GRADES.map((g) => `"${g}"`).join("|")},`,
     `  "page": { "size": ${Object.keys(PAGE_SIZES).map((s) => `"${s}"`).join("|")} (default letter), "margin": 27-72, "orientation": "portrait"|"landscape" },`,
     '  "style": { "cast": [preset ids], "nameLine": true, "pageNumbers": true },',
     '  "documents": [',
@@ -107,6 +126,6 @@ export function workbookCatalogOf(src) {
   return {
     ...src.catalog,
     presets: Object.fromEntries(src.presets.map(({ file, ...p }) => [p.id, p])),
-    education: { shapes: f["education/shapes.json"], pictures: f["education/shape_pictures.json"], colours: f["education/colours.json"], lineArt: f["education/line_art.json"], letters: f["education/letters.json"], dotPictures: f["education/dot_pictures.json"], words: f["education/words.json"] },
+    education: educationOf(f),
   };
 }

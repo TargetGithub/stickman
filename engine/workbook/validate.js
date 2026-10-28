@@ -60,7 +60,8 @@ function pageIssues(script, catalog, page, path, rules) {
     textIssues(b.instructions, `${bp}.instructions`, catalog, rules.instructions, out);
     if (b.prompt) textIssues(b.prompt, `${bp}.prompt`, catalog, 0, out);
     for (const [ref, p] of act.artPaths(b)) out.push(...artIssues(ref, `${bp}.${p}`, catalog));
-    out.push(...(act.check?.(b, bp, catalog, rules) || []));
+    for (const [t, p] of act.texts?.(b) || []) textIssues(t, `${bp}.${p}`, catalog, 0, out);
+    out.push(...(act.check?.(b, bp, catalog, rules, script.grade) || []));
     for (const [p, v, max] of act.limits?.(b, rules) || []) {
       out.push({ code: "E_WB_GRADE", path: `${bp}.${p}`, message: `${v} is over the grade ${script.grade} limit.`, fix: `Use at most ${max}, or a higher grade.` });
     }

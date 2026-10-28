@@ -21,7 +21,7 @@
 //   assemble [--render]                 → out/scripts/<slug>.json with its score and length
 //
 // Printable workbooks (WORKBOOK_SPEC 11), one stage:
-//   workbook-prompt --topic "..." [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4]
+//   workbook-prompt --topic "..." [--grade prek|k|1-5] [--pages 10] [--cast doopi,mooka] [--size letter|a4]
 //                                       → workbook_prompt.md
 //   check-workbook <reply | --paste> [--print]   → out/workbooks/scripts/<slug>.json (and the PDFs), or
 //                                                 workbook_fix_prompt.md
@@ -177,7 +177,7 @@ async function workbookCommand() {
   if (cmd === "workbook-prompt") {
     const topic = opt("--topic", null);
     if (!topic) {
-      console.error('usage: node tools/manual.mjs workbook-prompt --topic "shapes with Doopi" [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4] [--copy]');
+      console.error('usage: node tools/manual.mjs workbook-prompt --topic "shapes with Doopi" [--grade prek|k|1-5] [--pages 10] [--cast doopi,mooka] [--size letter|a4] [--copy]');
       process.exit(2);
     }
     const task = { topic, grade: opt("--grade", "k"), pages: Number(opt("--pages", 10)), cast: (opt("--cast", "") || "").split(",").filter(Boolean), seed: randomInt(1, 2 ** 31 - 1), size: opt("--size", "letter") };

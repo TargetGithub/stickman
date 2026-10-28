@@ -1,11 +1,13 @@
 // Word search grids (WORKBOOK_SPEC 5): words placed longest first in the allowed directions (seeded tries),
 // then filler letters; no line of the finished grid may spell a blocked word.
 
+import { atLeast } from "./grades.js";
+
 /** Directions by name: [dx, dy]. */
 export const WORD_DIRS = { right: [1, 0], down: [0, 1], downRight: [1, 1], upRight: [1, -1] };
 
-/** Directions a grade may use. */
-export const gradeDirections = (grade) => (grade === "2" ? ["right", "down", "downRight", "upRight"] : ["right", "down"]);
+/** Directions a grade may use (diagonals from grade 2). */
+export const gradeDirections = (grade) => (atLeast(grade, "2") ? ["right", "down", "downRight", "upRight"] : ["right", "down"]);
 
 const LETTERS = "ABCDEFGHIJKLMNOPRSTUVWY"; // filler: no Q, X or Z, which children read as clues
 const TRIES = 200;

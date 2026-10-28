@@ -11,6 +11,7 @@ import { V2_ENUMS, DEFEAT_STYLES_BY_AUDIENCE, OBJECT_BEHAVIORS } from "../../eng
 import { jsonSchemaV2 } from "../../engine/validator/schema_v2.js";
 import { CATEGORIES } from "../../engine/moves.js";
 import { LIMITS, LIMITS_V2 } from "../../engine/config.js";
+import { educationOf } from "../../catalog/index.js";
 import { formatJson } from "./json_format.mjs";
 import { checkCatalog, goodThemes } from "./catalog_check.mjs";
 import { buildPack, PACK_FILES } from "./context_pack.mjs";
@@ -92,7 +93,7 @@ export function buildCatalog(src, { codes }) {
     examples: exampleFacts(src),
     pack: src.files["examples/index.json"].pack,
     // Workbooks (WORKBOOK_SPEC 8): shapes, shape pictures, colours and print approvals.
-    education: { shapes: src.files["education/shapes.json"], pictures: src.files["education/shape_pictures.json"], colours: src.files["education/colours.json"], lineArt: src.files["education/line_art.json"], letters: src.files["education/letters.json"], dotPictures: src.files["education/dot_pictures.json"], words: src.files["education/words.json"] },
+    education: educationOf(src.files),
   };
   const vocab = formatJson(engineVocab(codes));
   const fullText = formatJson({ _generated: GENERATED_NOTE, ...full });
@@ -114,6 +115,11 @@ export function buildCatalog(src, { codes }) {
       bodies: c.bodyNames.length, activities: c.activityNames.length, moods: Object.keys(c.musicMoods).length, macros: Object.keys(MACRO_PARAMS).length,
       worldCommands: Object.keys(WORLD_COMMANDS_V2).length, codes: codes.size, presets: src.presets.length, examples: full.examples.length,
       shapes: Object.keys(full.education.shapes).length, shapePictures: Object.keys(full.education.pictures).length,
+      dotPictures: Object.keys(full.education.dotPictures).length, wordTopics: Object.keys(full.education.words.topics).length,
+      words: Object.values(full.education.words.topics).reduce((n, t) => n + Object.keys(t.words).length, 0),
+      mathTemplates: Object.keys(full.education.math.templates).length, questionSets: Object.keys(full.education.questions.sets).length,
+      questions: Object.values(full.education.questions.sets).reduce((n, q) => n + q.questions.length, 0), passages: Object.keys(full.education.passages.passages).length,
+      skills: Object.keys(full.education.skills.skills).length, workbookActivities: Object.keys(full.docs.workbook_activities).length,
     },
     authored: src.authored,
     pack: Object.fromEntries(Object.entries(PACK_FILES).map(([f, m]) => [f, { tier: m.tier, budget: m.budget, bytes: sizes[`generated/context/${f}`] }])),

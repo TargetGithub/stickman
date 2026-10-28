@@ -22,7 +22,7 @@ test("the writer prompt names every activity, shape, shape picture, dot picture 
   for (const n of [...ACTIVITY_NAMES, ...Object.keys(ed.shapes), ...Object.keys(ed.pictures), ...Object.keys(ed.dotPictures), ...Object.keys(ed.colours)]) assert.ok(has(system, n), `${n} is missing`);
   for (const code of ["E_KIND", "E_WB_SLOT", "E_WB_ART", "E_WB_FIT", "E_WB_GRADE", "E_WB_WORD", "E_WB_PATTERN", "W_WB_DENSE"]) assert.ok(system.includes(code), code);
   assert.ok(system.startsWith("You write printable activity workbooks"));
-  assert.ok(system.length < 20000, `${system.length} characters`);
+  assert.ok(system.length < 30000, `${system.length} characters`); // 20000 until the PreK-5 education catalog
 });
 
 test("fight gear and unapproved art are not offered", () => {

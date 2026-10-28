@@ -23,7 +23,7 @@ export const PACK_FILES = {
   "06_story_tools.md": { tier: "core", budget: 12000 },
   "07_rules_and_codes.md": { tier: "core", budget: 10500 }, // 10000 until the Baaaana codes (2026-10-24)
   "08_examples.md": { tier: "reference", budget: 12000 },
-  "09_workbooks.md": { tier: "workbook", budget: 16500 }, // printable workbooks (WORKBOOK_SPEC 11), read only for them
+  "09_workbooks.md": { tier: "workbook", budget: 30000 }, // printable workbooks (WORKBOOK_SPEC 11), read only for them; 16500 until the PreK-5 education catalog (2026-10-28)
 };
 
 /** World commands by the pack file that lists them (each in one place); the rest go to 06. */

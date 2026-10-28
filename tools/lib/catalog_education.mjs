@@ -3,6 +3,9 @@
 
 import { cornerPoints, straightSides } from "../../engine/workbook/shape_facts.js";
 import { validate } from "../../engine/index.js";
+import { GRADE_RULES } from "../../engine/workbook/grades.js";
+import { ACTIVITY_NAMES } from "../../engine/workbook/activities/index.js";
+import { checkText } from "../../engine/validator/semantic.js";
 import { workbookCatalogOf } from "./workbook_tables.mjs";
 import { PROMPT_EXAMPLE } from "./workbook_prompts.mjs";
 
@@ -41,9 +44,9 @@ export function educationIssues(src) {
   }
 
   // Dot pictures: the grade's dot limit holds; word lists: no blocked word.
-  const DOTS = { prek: 10, k: 15, 1: 25, 2: 40 };
   for (const [name, p] of Object.entries(src.files["education/dot_pictures.json"])) {
-    if (p.points.length > DOTS[p.grade]) bad("education/dot_pictures.json", `${name}.points`, `${p.points.length} dots is over the grade ${p.grade} limit of ${DOTS[p.grade]}`);
+    const max = GRADE_RULES[p.grade].dotsMax;
+    if (p.points.length > max) bad("education/dot_pictures.json", `${name}.points`, `${p.points.length} dots is over the grade ${p.grade} limit of ${max}`);
   }
   const blocked = new Set((src.catalog.blocklist || []).map((w) => w.toLowerCase()));
   for (const [topic, t] of Object.entries(src.files["education/words.json"].topics)) {
@@ -69,9 +72,67 @@ export function educationIssues(src) {
     const book = { kind: "workbook", version: 1, title: "Example", seed: 1, grade: "k", documents: [{ id: "d", pages: [{ id: "p", blocks: [d.example] }] }] };
     for (const i of issuesOf(book)) bad("docs/workbook_activities.json", name, `example: ${i.code} ${i.message}`);
   }
+  out.push(...sourceIssues(src, wb, issuesOf));
   if (!src.workbooks?.[PROMPT_EXAMPLE]) bad(`examples/workbooks/${PROMPT_EXAMPLE}.json`, "", "the prompt's example workbook is missing");
   for (const [name, script] of Object.entries(src.workbooks || {})) {
     for (const i of issuesOf(script)) bad(`examples/workbooks/${name}.json`, i.path, `${i.code} ${i.message}`);
+  }
+  return out;
+}
+
+/** A one-page book with one full-page block at a grade (for checking catalog sources and examples). */
+const bookOf = (block, grade) => ({ kind: "workbook", version: 1, title: "Check", seed: 1, grade, documents: [{ id: "d", pages: [{ id: "p", blocks: [block] }] }] });
+
+/**
+ * The question, passage, math and skills files (WORKBOOK_SPEC 8.4-8.6): strands are known, answers point at an
+ * option, text is family-friendly and drawable, and every source makes a page at its own grade with no issues.
+ */
+function sourceIssues(src, wb, issuesOf) {
+  const out = [];
+  const bad = (file, path, message) => out.push({ file, path, message });
+  const ed = wb.education;
+  const strands = ed.skills.strands;
+  const blocklist = src.catalog.blocklist || [];
+  const textOk = (file, path, text) => {
+    const found = [];
+    checkText(text.replace(/[\u2013\u2014\u2018\u2019\u201c\u201d\u2026\u00d7\u00f7]/g, "-"), path, blocklist, found);
+    for (const i of found) bad(file, path, `${i.code} ${i.message}`);
+  };
+  const questionsOk = (file, path, qs) => qs.forEach((q, i) => {
+    const qp = `${path}.questions[${i}]`;
+    textOk(file, `${qp}.q`, q.q);
+    (q.options || []).forEach((o, k) => textOk(file, `${qp}.options[${k}]`, o));
+    if (q.options && (typeof q.answer !== "number" || q.answer >= q.options.length)) bad(file, `${qp}.answer`, "the answer is not one of the options");
+    if (q.options && new Set(q.options).size !== q.options.length) bad(file, `${qp}.options`, "two options are the same");
+    if (!q.options && typeof q.answer !== "string") bad(file, `${qp}.answer`, "an open question needs its answer as text");
+  });
+  const strandOk = (file, path, s) => { if (s && !strands[s]) bad(file, `${path}.strand`, `unknown strand "${s}"`); };
+  const pageOk = (file, path, block, grade) => { for (const i of issuesOf(bookOf(block, grade))) bad(file, path, `at grade ${grade}: ${i.code} ${i.message}`); };
+
+  const F = { q: "education/questions.json", p: "education/passages.json", m: "education/math.json", s: "education/skills.json" };
+  for (const [name, set] of Object.entries(ed.questions.sets)) {
+    strandOk(F.q, `sets.${name}`, set.strand);
+    questionsOk(F.q, `sets.${name}`, set.questions);
+    pageOk(F.q, `sets.${name}`, { activity: "choose", set: name, count: Math.min(6, set.questions.length) }, set.grade);
+  }
+  for (const [name, p] of Object.entries(ed.passages.passages)) {
+    strandOk(F.p, `passages.${name}`, p.strand);
+    textOk(F.p, `passages.${name}.text`, p.text);
+    questionsOk(F.p, `passages.${name}`, p.questions);
+    pageOk(F.p, `passages.${name}`, { activity: "read_passage", passage: name }, p.grade);
+  }
+  for (const [name, t] of Object.entries(ed.math.templates)) {
+    strandOk(F.m, `templates.${name}`, t.strand);
+    if (t.op !== "÷" && !t.a && !t.aSet) bad(F.m, `templates.${name}`, "a template needs a or aSet");
+    if (t.op !== "÷" && !t.b && !t.bSet) bad(F.m, `templates.${name}`, "a template needs b or bSet");
+    if (t.op === "÷" && !t.b && !t.bSet) bad(F.m, `templates.${name}`, "a division template needs b (the divisor)");
+    pageOk(F.m, `templates.${name}`, { activity: "math_facts", template: name }, t.grade);
+  }
+  for (const [name, k] of Object.entries(ed.skills.skills)) {
+    strandOk(F.s, `skills.${name}`, k.strand);
+    for (const a of k.activities) if (!ACTIVITY_NAMES.includes(a)) bad(F.s, `skills.${name}.activities`, `unknown activity "${a}"`);
+    if (!k.activities.includes(k.example.activity)) bad(F.s, `skills.${name}.example`, "the example's activity is not in activities");
+    pageOk(F.s, `skills.${name}.example`, k.example, k.grade);
   }
   return out;
 }

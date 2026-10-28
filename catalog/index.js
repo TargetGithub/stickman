@@ -137,16 +137,22 @@ export function loadPresets(read) {
   return isThenable(m) ? m.then(fromManifest) : fromManifest(m);
 }
 
-/** The education files (WORKBOOK_SPEC 8): shapes, shape pictures, colours, print approvals and tracing letters. */
-export const EDUCATION_FILES = { shapes: "education/shapes.json", pictures: "education/shape_pictures.json", colours: "education/colours.json", lineArt: "education/line_art.json", letters: "education/letters.json", dotPictures: "education/dot_pictures.json", words: "education/words.json" };
+/**
+ * The education files (WORKBOOK_SPEC 8): shapes, shape pictures, colours, print approvals, tracing letters, dot
+ * pictures, word lists, math templates and money, question sets, reading passages and the skills map.
+ */
+export const EDUCATION_FILES = { shapes: "education/shapes.json", pictures: "education/shape_pictures.json", colours: "education/colours.json", lineArt: "education/line_art.json", letters: "education/letters.json", dotPictures: "education/dot_pictures.json", words: "education/words.json", math: "education/math.json", questions: "education/questions.json", passages: "education/passages.json", skills: "education/skills.json" };
 
-/** The education catalog: { shapes, pictures, colours, lineArt, letters, dotPictures, words } (a promise when read returns promises). */
+/** The education catalog, one key per EDUCATION_FILES entry (a promise when read returns promises). */
 export function loadEducation(read) {
   const keys = Object.keys(EDUCATION_FILES);
   const got = keys.map((k) => read(EDUCATION_FILES[k]));
   const build = (vals) => Object.fromEntries(keys.map((k, i) => [k, vals[i]]));
   return got.some(isThenable) ? Promise.all(got).then(build) : build(got);
 }
+
+/** The education catalog from a map of authored files (catalog path → parsed JSON). */
+export const educationOf = (files) => Object.fromEntries(Object.entries(EDUCATION_FILES).map(([k, f]) => [k, files[f]]));
 
 /** Node: the workbook catalog (WORKBOOK_SPEC 3): a catalog (default the base one) plus `presets` and `education`. */
 export function workbookCatalogSync(base = catalog, root) {

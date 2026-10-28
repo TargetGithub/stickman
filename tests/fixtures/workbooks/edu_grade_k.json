@@ -1,0 +1,76 @@
+{
+ "kind": "workbook",
+ "version": 1,
+ "title": "Kindergarten Skills Sampler",
+ "seed": 102,
+ "grade": "k",
+ "style": {
+  "cast": [
+   "doopi"
+  ]
+ },
+ "documents": [
+  {
+   "id": "student",
+   "title": "Kindergarten Skills Sampler",
+   "pages": [
+    {
+     "id": "sounds",
+     "title": "Same Sound",
+     "instructions": "Circle the word that starts the same way.",
+     "blocks": [
+      {
+       "activity": "choose",
+       "set": "beginning_sounds_k",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "id": "add",
+     "title": "Add Within 10",
+     "instructions": "Add. Write the answer.",
+     "blocks": [
+      {
+       "activity": "math_facts",
+       "template": "add_within_10",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "id": "teens",
+     "title": "Tens and Ones",
+     "instructions": "Count the blocks. Write the number.",
+     "blocks": [
+      {
+       "activity": "place_value",
+       "numbers": [
+        12,
+        16,
+        19
+       ],
+       "task": "blocks"
+      }
+     ]
+    },
+    {
+     "id": "pennies",
+     "title": "Count the Pennies",
+     "instructions": "How many cents?",
+     "blocks": [
+      {
+       "activity": "coins",
+       "count": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "answers",
+   "answersFor": "student",
+   "title": "Kindergarten Skills Sampler: Answers"
+  }
+ ]
+}

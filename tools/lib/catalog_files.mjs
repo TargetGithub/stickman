@@ -32,6 +32,10 @@ export const EXTRA_FILES = {
   "education/letters.json": "letters",
   "education/dot_pictures.json": "dot_pictures",
   "education/words.json": "words",
+  "education/math.json": "math",
+  "education/questions.json": "questions",
+  "education/passages.json": "passages",
+  "education/skills.json": "skills",
 };
 
 /** The schema (catalog/schemas/<name>.schema.json) for an authored file. */

@@ -1,0 +1,95 @@
+{
+ "kind": "workbook",
+ "version": 1,
+ "title": "Grade 1 Skills Sampler",
+ "seed": 103,
+ "grade": "1",
+ "style": {
+  "cast": [
+   "doopi"
+  ]
+ },
+ "documents": [
+  {
+   "id": "student",
+   "title": "Grade 1 Skills Sampler",
+   "pages": [
+    {
+     "id": "vowels",
+     "title": "Short Vowels",
+     "instructions": "Circle the missing vowel.",
+     "blocks": [
+      {
+       "activity": "choose",
+       "set": "short_vowels_1",
+       "count": 6
+      }
+     ]
+    },
+    {
+     "id": "facts",
+     "title": "Facts to 20",
+     "layout": "halves",
+     "blocks": [
+      {
+       "activity": "math_facts",
+       "template": "add_within_20",
+       "count": 8,
+       "slot": 0
+      },
+      {
+       "activity": "math_facts",
+       "template": "missing_addend_20",
+       "count": 6,
+       "slot": 1
+      }
+     ]
+    },
+    {
+     "id": "time",
+     "title": "Half Past",
+     "instructions": "Write the time.",
+     "blocks": [
+      {
+       "activity": "clock",
+       "count": 4,
+       "step": 30
+      }
+     ]
+    },
+    {
+     "id": "frog",
+     "title": "Little Frog",
+     "instructions": "Read the story. Answer the questions.",
+     "blocks": [
+      {
+       "activity": "read_passage",
+       "passage": "frog_jump"
+      }
+     ]
+    },
+    {
+     "id": "halves",
+     "title": "Halves and Quarters",
+     "instructions": "Write the fraction that is shaded.",
+     "blocks": [
+      {
+       "activity": "fractions",
+       "fractions": [
+        "1/2",
+        "1/4",
+        "3/4",
+        "2/4"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "answers",
+   "answersFor": "student",
+   "title": "Grade 1 Skills Sampler: Answers"
+  }
+ ]
+}

@@ -1,6 +1,6 @@
 # Workbooks: printable PDF activity books from the StickMan catalog
 
-Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2-W4 reviewed; W5 built, waiting for the review of three AI-written workbooks. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
+Status: 0.3 (2026-10-28). W6 built (grades 3-5 and the PreK-5 education catalog), waiting for review. W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2-W4 reviewed; W5 built, waiting for the review of three AI-written workbooks. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
 
 ## 1. Goal and scope
 
@@ -10,8 +10,8 @@ The engine also makes **printable activity workbooks for young children**, in th
 - **Written by an AI from the catalog**, the same way video scripts are: a prompt plus the context pack, then the validator and a fix prompt.
 - **Deterministic.** The same script and catalog give byte-identical PDFs. Every maze, word search and scatter comes from the script's seed.
 
-First release (W0-W5):
-- grades **pre-K, K, 1 and 2** (`grade` "prek", "k", "1", "2"); grades 3-5 come later;
+Grades (W0-W6):
+- **pre-K to 5** (`grade` "prek", "k", "1" ... "5"); W0-W5 covered pre-K to 2, W6 added grades 3-5 and the skills map (section 8.6);
 - **US Letter** by default, A4 as an option; portrait (landscape is allowed for colouring pages);
 - black and white pages for home printers; answer keys may use colour.
 
@@ -113,7 +113,7 @@ tools/print.mjs: PDF per document (@napi-rs/canvas PDFDocument, vector), PNG pre
 | `version` | `1` | required |
 | `title` | string, 1-60 | the book's title (PDF metadata, cover) |
 | `seed` | integer 0-2^31 | required; every generator draws from it (section 7) |
-| `grade` | `prek`, `k`, `1`, `2` | required; sets type sizes, line weights and difficulty limits (section 6) |
+| `grade` | `prek`, `k`, `1` - `5` | required; sets type sizes, line weights and difficulty limits (section 6) |
 | `page` | object | `size` letter (default) or a4; `margin` 27-72 pt (default 36, half an inch); `orientation` portrait (default) or landscape |
 | `style` | object | `cast`: preset ids used as decoration and in default art (print-approved only, section 8.3); `nameLine` (default true): a "Name: ____" line on each page; `pageNumbers` (default true); `font` andika (default) |
 | `documents` | list, 1-6 | each becomes one PDF |
@@ -176,6 +176,15 @@ The activity names are engine-owned (they are behaviors), described in `catalog/
 | `word_search` | `words` (3-12, letters only), `size` (default the grade's grid) | finds the hidden words (right and down; grade 2 adds both diagonals) and ticks them off the list beside or below the grid | a red band over each word |
 | `pattern` | `sequence` (2-3 art refs), `repeat` (AB, AAB, ABB, ABC; default AB, or ABC with three), `length` (4-10, default 8), `blanks` (1-3 at the end, default 2) | draws what comes next in the dashed boxes | the missing pictures |
 | `draw_prompt` | `prompt`, `starter` (optional art ref drawn half), `box` | draws in a framed box (for example "Draw a hat for Mooka") | none |
+| `math_facts` | `template` (8.4), `count` (1-30), `form` (across, stacked) | solves numbered problems: across ("7 + ___ = 12"), stacked in columns, or long division under a bracket; each sits at the top of its cell with room to work | the answers |
+| `number_line` | `rows` [{start, step}] or `count` + `step`, `length` (4-12), `blanks` | writes the missing numbers on number lines that count on or back (through zero); the first two labels always show | the numbers |
+| `place_value` | `numbers` or `count` + `max`, `task` (blocks, expand) | counts base-ten blocks (hundreds, tens, ones; up to 999) or writes a number in expanded form (up to 999,999) | the numbers, the expanded forms |
+| `clock` | `times` ["3:30"] or `count` + `step` (60, 30, 15, 5, 1; default by grade), `task` (read, draw) | writes the time shown, or draws the hands for a printed time | the times, the hands |
+| `coins` | `totals` (cents) or `count` + `max`, `use` (money names, 8.4; default by grade) | totals a row of plain labelled coins and notes (no real coin art) | the totals |
+| `fractions` | `fractions` ["3/4"] (denominators 2-12), `shape` (circle, rect, bar), `task` (name, shade) | writes the fraction shaded grey, or shades the fraction printed | the fractions, the shading |
+| `choose` | `set` (8.5) + `count`, or `questions` [{q, options (2-4), answer, picture}], `shuffle` | circles the answer to numbered multiple-choice questions; options are shuffled by the stream | the right options ringed |
+| `read_passage` | `passage` (8.5), or `title` + `text` + `questions` (multiple choice, or open with `answer` text and `lines`) | reads a framed passage and answers its questions | ringed options, open answers written |
+| `write_lines` | `model`, `prompt`, `rows`, `ruled` | copies a model sentence or writes about a prompt on handwriting lines (ruled lines from grade 3) | none |
 
 Generators are exact about what a child can do:
 - **Mazes** are perfect mazes (one path, no loops) from a seeded depth-first carve; the entrance and exit are on opposite sides; the path length is at least 1.5 x the grid's longer side.
@@ -191,18 +200,21 @@ Line art is what makes the pages printable and colourable:
 - **Tracing** strokes are grey (#888888) dashes `[6, 4]` pt, with a green start dot and a small arrow.
 - **Answers** are drawn in a strong red (#d62828) on answer-key pages, with solution colours from `education/colours.json`.
 
-| Rule | prek | k | 1 | 2 |
-|---|---|---|---|---|
-| Title / body type (pt) | 32 / 22 | 30 / 20 | 26 / 17 | 22 / 15 |
-| Outline weight (pt) | 3.5 | 3 | 2.5 | 2 |
-| Smallest drawn item | 1 in | 0.75 in | 0.6 in | 0.5 in |
-| Blocks per page (max) | 1 | 2 | 4 | 6 |
-| Instructions (characters, warning above) | 50 | 60 | 90 | 120 |
-| Count limit (per group) | 5 | 10 | 20 | 20 |
-| Maze size (max cells) | 5 x 5 | 7 x 7 | 10 x 10 | 14 x 14 |
-| Dot-to-dot points (max) | 10 | 15 | 25 | 40 |
-| Word search grid / directions | none | 6 x 6, right and down | 8 x 8, right and down | 10 x 10, adds diagonals |
-| Letter case for tracing | upper | upper and lower | both | both |
+| Rule | prek | k | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|---|---|
+| Title / body type (pt) | 32 / 22 | 30 / 20 | 26 / 17 | 22 / 15 | 20 / 14 | 19 / 13 | 18 / 13 |
+| Outline weight (pt) | 3.5 | 3 | 2.5 | 2 | 2 | 1.8 | 1.6 |
+| Smallest drawn item | 1 in | 0.75 in | 0.6 in | 0.5 in | 0.44 in | 0.4 in | 0.375 in |
+| Blocks per page (max) | 1 | 2 | 4 | 6 | 6 | 6 | 6 |
+| Instructions (characters, warning above) | 50 | 60 | 90 | 120 | 140 | 160 | 160 |
+| Count limit (per group) | 5 | 10 | 20 | 20 | 20 | 20 | 20 |
+| Maze size (max cells) | 5 x 5 | 7 x 7 | 10 x 10 | 14 x 14 | 16 x 16 | 18 x 18 | 20 x 20 |
+| Dot-to-dot points (max) | 10 | 15 | 25 | 40 | 50 | 60 | 75 |
+| Word search grid / directions | none | 6 x 6, right and down | 8 x 8, right and down | 10 x 10, adds diagonals | 12 x 12 | 13 x 13 | 14 x 14 |
+| Letter case for tracing | upper | upper and lower | both | both | both | both | both |
+| Clock step (drawn times) | hour | hour | half hour | 5 minutes | minute | minute | minute |
+| Money (coins default) | pennies to 5¢ | pennies to 10¢ | + nickels, dimes to 50¢ | + quarters to $1 | + $1 notes to $5 | + $5 notes to $10 | to $20 |
+| Place value (drawn numbers up to) | 10 | 20 | 99 | 999 | 9,999 | 99,999 | 999,999 |
 
 Fonts: **Andika** (SIL OFL, `assets/fonts/Andika-*.ttf`) for all workbook text: a school print face with the single-storey "a" and "g" that children learn to write. Tracing letters do not use the font: they come from stroke letters in the catalog (section 8.2), so the dashes run down the middle of each stroke in the order a child writes it.
 
@@ -221,7 +233,7 @@ A new folder, `catalog/education/`, built and checked by `npm run catalog:build`
 
 Each entry: `name`, `description`, `tags`, `grade` (the first grade it is taught in), `sides`, `corners` (vertices), `rightAngles`, `equalSides` (all, pairs, some, none), `curved`, `symmetry` (lines of symmetry, `-1` for infinite), `examples` (2-4 real things: "pizza slice"), and `geometry` (how to draw it in a unit box): `regular` {sides, rotate}, `polygon` {points}, `ellipse` {rx, ry}, `star` {points, inner}, or `paths` (the object path format, `renderer/paths.js`).
 
-Starter set (22). Curved shapes such as the heart and crescent have points, not corners, and the lesson says so:
+Starter set (22), plus three for grades 3-4 (W6). Curved shapes such as the heart and crescent have points, not corners, and the lesson says so:
 
 | Shape | Sides | Corners | Grade |
 |---|---|---|---|
@@ -247,13 +259,16 @@ Starter set (22). Curved shapes such as the heart and crescent have points, not 
 | cross | 12 | 12 | 2 |
 | heptagon | 7 | 7 | 2 |
 | ring | 0 (curved) | 0 | 2 |
+| isosceles_triangle | 3 | 3 | 3 |
+| decagon | 10 | 10 | 3 |
+| obtuse_triangle | 3 | 3 | 4 |
 
 Shape pictures for `colour_by_shape` (a house of squares and triangles, a rocket, a robot, a fish ...) live in `education/shape_pictures.json`: named lists of shapes with position, size and rotation in a unit box.
 
 ### 8.2 Letters, words and colours
 
 - `education/letters.json`: stroke letters A-Z, a-z and 0-9 as centrelines in an em box (y 0 cap line, 0.5 midline and x-height, 1 baseline, descenders to 1.45), each stroke in writing order (ball-and-stick; strokes use the object path commands). The renderer is `renderer/letters_draw.js`; a dot whose stroke starts where an earlier one did moves along its own stroke so every number shows.
-- `education/words.json`: word lists by topic (shapes, colours, animals, family, school, K and grade 1 sight words), each word with the first grade it suits and checked against `story/blocklist.json`; scripts may use other words, which the validator checks the same way.
+- `education/words.json`: 40 word lists by topic (498 words): shapes, colours, animals, family, school, sight words pre-K to 3, word families (-at, -an, -ig, -op, -ug, -et), CVC words, digraphs, blends, silent e, vowel teams, compound words, feelings, science (weather, plants, habitats, body, matter, space, earth, ecosystems), social studies (community, maps, government, economics), math and geometry words, and spelling lists for grades 3-5, each word with the first grade it suits and checked against `story/blocklist.json`; scripts may use other words, which the validator checks the same way.
 - `education/dot_pictures.json`: dot-to-dot pictures (fish, sailboat, house, rocket, cat): dots in joining order in a unit box, plus details (eyes, waves) drawn as lines; the build checks each against its grade's dot limit.
 - `education/colours.json`: the crayon colours used by keys (red, orange, yellow, green, blue, purple, brown, black, pink, grey) with their hex for answer keys.
 
@@ -270,6 +285,22 @@ Not every catalog drawing reads well as a black outline (the line-art wrapper tu
 ```
 
 `status` is `ok` or `redraw` (needs a line-art version first). An entry that is not listed is not approved, so a new catalog entry appears in workbooks only after review. The build fails on an unknown id or pose; the validator rejects art that is not `ok` (`E_WB_ART`); the context pack lists only `ok` entries.
+
+### 8.4 Math templates and money (`education/math.json`)
+
+`templates`: named problem generators for `math_facts` (36, pre-K to 5). Each has `description`, `tags`, `grade`, `op` (`+`, `-`, `×`, `÷`) and its rules: `a`, `b` ([min, max]) or `aSet`, `bSet` (lists), `max`/`min` (the result), `regroup` (true: every problem carries or borrows; false: none), `missing` (`answer`, `a` or `b`: the blank), for division `quotient` [min, max] and `remainder`, `decimals` (0-2: operands are tenths or hundredths), and defaults for `form` and `count`. Generation (`engine/workbook/math_problems.js`) draws seeded operands and retries until the rules hold, avoiding repeats. The build makes a page from every template at its grade.
+
+`money`: the coins and notes `coins` draws (penny, nickel, dime, quarter, dollar, five): `value` in cents, `label`, relative `size`, `kind` (coin or bill). They are plain labelled circles and rectangles, not pictures of real money.
+
+### 8.5 Question sets and passages (`education/questions.json`, `education/passages.json`)
+
+`sets`: 54 named sets of original multiple-choice questions (329 questions), each with `grade`, `strand` (8.6), `description`, `tags` and 4-16 questions `{ q, options (2-4, up to 24 characters), answer (index) }`. Authors write the right option first; `choose` shuffles. `passages`: 13 original passages (pre-K read-aloud to grade 5, fiction and nonfiction) with `title`, `text` (up to 900 characters) and 1-5 questions, multiple choice or open (`answer` text, `lines`). The build checks answers point at an option, text passes the blocklist and glyph checks, and each set and passage makes a full page at its grade with no issues.
+
+### 8.6 Skills map (`education/skills.json`)
+
+Ten `strands`: phonics and letters; sight words; reading comprehension; handwriting; numbers, counting, addition and subtraction; place value, multiplication, division and fractions; time, money, measurement, shapes and geometry; grammar and vocabulary; science and social studies; logic and puzzles. `skills` (133) are listed per grade: each has `strand`, `grade`, `description`, `tags`, `activities` (the ones that practise it) and one `example` block, which the build validates on a page at the skill's grade. Every strand has skills in every grade from K to 5 (pre-K has 12 skills in 8 strands). The skills map was modelled on the kinds of activity common in school workbooks; all names, words, questions and passages are original. The pack lists skill names by grade and strand, so a model can plan a page per skill.
+
+Grade fit: a block that names a template, set or passage meant for a higher grade than the book gets `W_WB_LEVEL`.
 
 ## 9. Display list (engine to renderer)
 
@@ -309,6 +340,9 @@ Activities that size pictures by their shape (colour pages) get `env.measure(ref
 | `W_WB_TEXT` | instructions over the grade's length |
 | `W_WB_DENSE` | more blocks on a page than the grade allows |
 | `W_WB_REPEAT` | the same activity with the same params twice in a document |
+| `E_WB_SOURCE` | an unknown math template, question set, passage or money name, or a block that names a source and also writes its own |
+| `E_WB_VALUE` | a value an activity cannot use: a clock time, a fraction, a step of 0, an answer index outside the options, an open question in choose, blocks over 999, money that cannot be made |
+| `W_WB_LEVEL` | a template, question set or passage for a higher grade than the book |
 
 Like `W_CONTRAST`, `E_WB_FIT` needs the generator, so the validator runs the generators (they are cheap: under 50 ms for a 32-page book).
 
@@ -318,7 +352,7 @@ Like `W_CONTRAST`, `E_WB_FIT` needs the generator, so the validator runs the gen
 - `tools/lib/canvas.mjs`: `backend.createPdf(meta)` → `{ page(w, h) → ctx, end(), close() → Buffer }` for the napi backend only (skia-canvas, when installed, writes PDF differently; not wired). Andika Regular and Bold are registered as the family `Andika`.
 - **One text for the model.** `tools/lib/workbook_tables.mjs` `workbookBody()` puts together the prose (`catalog/docs/workbook.md`: what a good workbook is, the "Before you answer, check" list), the script format, the activity table (`catalog/docs/workbook_activities.json`: one entry per engine activity, each with an example the build validates), the grade rules, the shapes, the names a model may use (shape and dot pictures, crayon colours, print-approved presets with their poses, objects, word lists), the workbook validator codes and one example workbook. Fight gear (props and objects tagged `fight` or `weapon`) stays printable but is not offered.
 - **Prompts**: `prompts/workbook.md` (the writer role around that body) and `prompts/workbook_repair.md` (the issues to fix), built by `tools/lib/workbook_prompts.mjs`.
-- **Context pack**: `09_workbooks.md` is the same body (tier `workbook`, budget 16.5 KB, outside the 100 KB video pack); `00_start_here.md` and `project_instructions.md` point to it for workbook tasks.
+- **Context pack**: `09_workbooks.md` is the same body (tier `workbook`, budget 30 KB, outside the 100 KB video pack); `00_start_here.md` and `project_instructions.md` point to it for workbook tasks.
 - **Copy-paste**: `node tools/manual.mjs workbook-prompt --topic "..." [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4] [--copy]` writes `out/manual/workbook_prompt.md`; `manual.mjs check-workbook <reply | --paste> [--print]` validates the reply, saves `out/workbooks/scripts/<slug>.json` and prints it, or writes `workbook_fix_prompt.md` for the same chat. A pasted prompt (the clipboard not yet holding the reply) is named as such. The clipboard is read and written as UTF-8 whatever the shell's locale.
 - **Automatic**: `node tools/generate.mjs --workbook --topic "..." [--grade k] [--pages N] [--cast ...] [--count N]` (`--mock` offline; `--print-prompt` shows the system prompt) writes, repairs (up to `maxAttempts`), saves, prints and adds the review queue entry. Local models are never used (project rule).
 - **Examples**: `catalog/examples/workbooks/` (outside `examples/index.json`); the build validates each; `shapes_with_doopi` (`PROMPT_EXAMPLE`) is the example in the prompt and the pack, so a topic never meets a finished book on the same theme.
@@ -334,9 +368,10 @@ Each milestone ends with green tests, docs updated in the same change, and a dem
 | W2 | Education catalog: shapes, shape pictures, colours, line-art approvals; schemas, build checks (facts against drawings), showcase tab; `shapes_draw.js`; the shape_lesson activity | `npm run catalog:build` green; `out/demos/w2_shapes/` (one lesson page per shape) and `out/demos/w2_shape_sheet.pdf` (every shape with its facts, every shape picture) | shape drawings and facts |
 | W3 | Activities 1: trace_shapes, trace_letters (uppercase, digits), colour_by_shape, find_shapes | `out/demos/w3_workbook/` student book and answer key | page look at K |
 | W4 | Activities 2: maze, dot_to_dot, word_search, match, pattern; lowercase letters; `W_WB_*` checks | a 24-page K workbook and answer key, every activity at least twice | puzzles at each grade |
+| W6 | Grades 3-5; activities math_facts, number_line, place_value, clock, coins, fractions, choose, read_passage, write_lines; education files math, questions, passages, skills (8.4-8.6); `E_WB_SOURCE`, `E_WB_VALUE`, `W_WB_LEVEL` | `out/demos/education/` sample books per grade (pre-K to 5) with answer keys | pages at each grade band |
 | W5 | AI: prompts, `09_workbooks.md`, manual and generate commands, mock replies, examples in `catalog/examples/workbooks/` | a workbook written through the copy-paste flow, validated and printed | 3 AI-written workbooks |
 
-Later (not scheduled): grades 3-5 (multiplication grids, fractions with shapes, longer word searches), a companion colouring book from a video script (`print.mjs --from-story`), booklet imposition, stickers and certificates, more languages.
+Later (not scheduled): cursive handwriting, measurement with rulers, picture graphs and bar graphs, a companion colouring book from a video script (`print.mjs --from-story`), booklet imposition, stickers and certificates, more languages.
 
 ## 13. Open questions
 

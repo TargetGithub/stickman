@@ -10,7 +10,7 @@
       "label": { "type": "string", "minLength": 3, "maxLength": 24, "description": "The name as a child reads it." },
       "description": { "type": "string", "minLength": 8, "maxLength": 200 },
       "tags": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,23}$" } },
-      "grade": { "enum": ["prek", "k", "1", "2"] },
+      "grade": { "enum": ["prek", "k", "1", "2", "3", "4", "5"] },
       "also": { "type": "array", "items": { "type": "string" }, "description": "Other names (a diamond is a rhombus)." },
       "sides": { "type": "integer", "minimum": 0, "maximum": 20 },
       "corners": { "type": "integer", "minimum": 0, "maximum": 20 },

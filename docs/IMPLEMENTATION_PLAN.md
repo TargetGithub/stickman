@@ -154,6 +154,7 @@ Printable PDF activity books for pre-K to grade 2 (ADR-040). Each milestone ends
 | W3 | Activities 1: trace_shapes, trace_letters (capitals, digits; `education/letters.json`), colour_by_shape, find_shapes | DONE 2026-10-28, reviewed |
 | W4 | Activities 2: maze, dot_to_dot (shapes and `dot_pictures.json`), word_search, match, pattern; lowercase letters; `words.json` | DONE 2026-10-28, reviewed |
 | W5 | AI: the workbook prompt and `09_workbooks.md`, `manual.mjs workbook-prompt`/`check-workbook`, `generate.mjs --workbook` (mock), example workbooks | DONE 2026-10-28, awaiting review (`out/demos/w5_ai/`) |
+| W6 | Grades 3-5 and the pre-K to 5 education catalog: math_facts, number_line, place_value, clock, coins, fractions, choose, read_passage, write_lines; math templates, question sets, passages, the skills map | DONE 2026-10-28, awaiting review (`out/demos/education/`) |
 
 ## Schedule summary
 
