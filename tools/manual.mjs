@@ -20,6 +20,12 @@
 //   extend N                            → a prompt asking scene N's chat to make it longer
 //   assemble [--render]                 → out/scripts/<slug>.json with its score and length
 //
+// Printable workbooks (WORKBOOK_SPEC 11), one stage:
+//   workbook-prompt --topic "..." [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4]
+//                                       → workbook_prompt.md
+//   check-workbook <reply | --paste> [--print]   → out/workbooks/scripts/<slug>.json (and the PDFs), or
+//                                                 workbook_fix_prompt.md
+//
 // --copy puts the prompt on the clipboard; --paste reads the reply from the clipboard (macOS pbcopy/
 // pbpaste, Windows clip, Linux xclip/wl-copy). Output folder: --out (default out).
 //
@@ -46,7 +52,7 @@ const { args: argv, catalog, bundles } = await catalogFromArgs(process.argv.slic
 const [cmd, ...args] = argv;
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
-const positional = (skip = 0) => args.filter((a, i) => (a === "-" || !a.startsWith("--")) && !/^--(premise|format|length|tone|count|out|slug|audience)$/.test(args[i - 1] || ""))[skip];
+const positional = (skip = 0) => args.filter((a, i) => (a === "-" || !a.startsWith("--")) && !/^--(premise|format|length|tone|count|out|slug|audience|topic|grade|pages|cast|size)$/.test(args[i - 1] || ""))[skip];
 const OUT = opt("--out", "out");
 const DIR = join(OUT, "manual");
 
@@ -149,12 +155,57 @@ if (cmd === "prompt") {
     emit("critique_prompt.md", manualCritiquePrompt(script, loaded.timeline), "critique prompt");
     console.log("Next: attach the image and paste the prompt into a chat that accepts images. Paste its notes into the writing chat and ask it to apply them.");
   }
+} else if (cmd === "workbook-prompt" || cmd === "check-workbook") {
+  await workbookCommand();
 } else {
-  console.error("usage: node tools/manual.mjs <prompt|check|ideas|critique|meta|story-outline|check-outline|story-scene|check-scene|extend|assemble> ...  (see the header of tools/manual.mjs or docs/USER_GUIDE.md)");
+  console.error("usage: node tools/manual.mjs <prompt|check|ideas|critique|meta|story-outline|check-outline|story-scene|check-scene|extend|assemble|workbook-prompt|check-workbook> ...  (see the header of tools/manual.mjs or docs/USER_GUIDE.md)");
   process.exit(2);
 }
 
 /** The story commands (S8.3). State: out/manual/story/{state.json, outline.json, scenes/NN.json}. */
+/** Workbooks (WORKBOOK_SPEC 11): one prompt, one reply, a fix prompt until it validates, then the PDFs. */
+async function workbookCommand() {
+  const { workbookCatalogSync } = await import("../catalog/index.js");
+  const { workbookPrompt } = await import("./lib/workbook_prompts.mjs");
+  const { checkWorkbookReply } = await import("./lib/manual_workbook.mjs");
+  const { printWorkbook, slugOf } = await import("./lib/print_book.mjs");
+  const wb = workbookCatalogSync();
+  if (cmd === "workbook-prompt") {
+    const topic = opt("--topic", null);
+    if (!topic) {
+      console.error('usage: node tools/manual.mjs workbook-prompt --topic "shapes with Doopi" [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4] [--copy]');
+      process.exit(2);
+    }
+    const task = { topic, grade: opt("--grade", "k"), pages: Number(opt("--pages", 10)), cast: (opt("--cast", "") || "").split(",").filter(Boolean), seed: randomInt(1, 2 ** 31 - 1), size: opt("--size", "letter") };
+    emit("workbook_prompt.md", workbookPrompt(wb, task), "workbook prompt");
+    console.log("Next: paste it into a new chat. Save the reply (or copy it) and run:\n  node tools/manual.mjs check-workbook --paste --print      (or: check-workbook reply.txt --print)");
+    return;
+  }
+  const src = flag("--paste") ? null : positional();
+  if (!flag("--paste") && !src) {
+    console.error("usage: node tools/manual.mjs check-workbook <reply.txt | -> [--print]   or   check-workbook --paste [--print]");
+    process.exit(2);
+  }
+  const text = flag("--paste") ? paste() : src === "-" ? readFileSync(0, "utf8") : readFileSync(src, "utf8");
+  const r = checkWorkbookReply(text, wb);
+  console.log(r.ok ? `VALID. ${r.message}` : `NOT VALID YET. ${r.message}`);
+  if (r.result) for (const i of [...r.result.errors, ...r.result.warnings]) console.log(`  ${i.code} at ${i.path || "(root)"}: ${i.message}`);
+  if (!r.ok) {
+    emit("workbook_fix_prompt.md", r.fixPrompt, "fix prompt");
+    console.log("Next: paste the fix prompt into the SAME chat, then check the new reply.");
+    process.exit(1);
+  }
+  const slug = opt("--slug", null) || slugOf(r.script.title);
+  const path = join(OUT, "workbooks", "scripts", `${slug}.json`);
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, JSON.stringify(r.script, null, 2) + "\n");
+  console.log(`saved: ${path}`);
+  if (flag("--print")) {
+    const { files } = await printWorkbook(r.script, wb, { outDir: join(OUT, "workbooks"), slug, sheet: true });
+    for (const f of files) console.log(`printed: ${f.path} (${f.pages} pages)`);
+  } else console.log(`Next: print it: node tools/print.mjs ${path}`);
+}
+
 async function storyCommand() {
   const SDIR = join(DIR, "story");
   const file = (name) => join(SDIR, name);

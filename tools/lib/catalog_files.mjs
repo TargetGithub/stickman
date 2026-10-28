@@ -20,6 +20,7 @@ export const EXTRA_FILES = {
   "docs/camera.json": "camera",
   "docs/transitions.json": "transitions",
   "docs/codes.json": "codes",
+  "docs/workbook_activities.json": "doc_entries",
   "examples/index.json": "examples",
   "bundle_blocklist.json": "bundle_blocklist",
   "bundle_allowlist.json": "bundle_allowlist",
@@ -69,6 +70,8 @@ export function readCatalogDir(root = CATALOG_DIR) {
   for (const rel of [...ENGINE_FILES, ...Object.keys(EXTRA_FILES)]) files[rel] = json(rel);
   const presetFiles = all.filter((f) => f.startsWith("characters/presets/") && f.endsWith(".json"));
   for (const rel of presetFiles) files[rel] = json(rel);
+  const workbooks = {};
+  for (const rel of all.filter((f) => /^examples\/workbooks\/[^/]+\.json$/.test(f))) workbooks[rel.slice("examples/workbooks/".length).replace(/\.json$/, "")] = json(rel);
   const examples = {};
   for (const rel of all.filter((f) => /^examples\/(clips|stories)\/[^/]+\.json$/.test(f))) examples[rel.slice("examples/".length)] = json(rel);
   const schemas = {};
@@ -80,6 +83,7 @@ export function readCatalogDir(root = CATALOG_DIR) {
     files,
     presets: presetFiles.map((rel) => ({ file: rel, ...files[rel] })),
     examples,
+    workbooks, // example workbooks (WORKBOOK_SPEC 11), outside examples/index.json
     schemas,
     formatMd: readFileSync(join(root, "docs/format.md"), "utf8"),
     texts: Object.fromEntries(all.filter((f) => f.startsWith("docs/") && f.endsWith(".md")).map((f) => [f, readFileSync(join(root, f), "utf8")])),
@@ -104,11 +108,11 @@ export function engineCodes() {
 }
 
 let docsCache = null;
-/** catalog/docs/*.json, read once: { world_commands, macros, camera, transitions, codes }. */
+/** catalog/docs/*.json, read once: { world_commands, macros, camera, transitions, codes, workbook_activities }. */
 export function catalogDocs() {
   if (!docsCache) {
     const read = (f) => JSON.parse(readFileSync(join(CATALOG_DIR, "docs", `${f}.json`), "utf8"));
-    docsCache = Object.fromEntries(["world_commands", "macros", "camera", "transitions", "codes"].map((f) => [f, read(f)]));
+    docsCache = Object.fromEntries(["world_commands", "macros", "camera", "transitions", "codes", "workbook_activities"].map((f) => [f, read(f)]));
   }
   return docsCache;
 }

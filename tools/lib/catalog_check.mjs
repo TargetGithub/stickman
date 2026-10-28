@@ -12,6 +12,7 @@ import { OBJECT_SHAPES } from "../../engine/renderer/objects.js";
 import { PROP_SHAPES } from "../../engine/renderer/props.js";
 import { LAYER_KINDS } from "../../engine/renderer/background.js";
 import { MOVE_FILES } from "../../catalog/index.js";
+import { ACTIVITY_NAMES } from "../../engine/workbook/activities/index.js";
 import { educationIssues } from "./catalog_education.mjs";
 import { checkMove } from "./move_check.mjs";
 import { schemaFor } from "./catalog_files.mjs";
@@ -28,6 +29,7 @@ export function engineNames(codes) {
     "docs/codes.json": [...codes].sort(),
     "characters/voices.json timbres": V2_ENUMS.timbre,
     "world/ambience.json beds": V2_ENUMS.ambience,
+    "docs/workbook_activities.json": ACTIVITY_NAMES,
   };
 }
 
@@ -144,6 +146,7 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
     "docs/codes.json": Object.keys(files["docs/codes.json"]).sort(),
     "characters/voices.json timbres": files["characters/voices.json"].timbres.map((v) => v.name),
     "world/ambience.json beds": files["world/ambience.json"].beds.map((v) => v.name),
+    "docs/workbook_activities.json": Object.keys(files["docs/workbook_activities.json"]),
   };
   for (const [where, names] of Object.entries(engineNames(codes))) {
     const have = new Set(docNames[where]);

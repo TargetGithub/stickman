@@ -7,5 +7,6 @@ Rules for every reply:
 - When a task lists validator errors, fix exactly those and return the whole object again.
 - Before answering, run the checklist in 07_rules_and_codes.md.
 - Keep everything family friendly. The audience is kids unless the task says general.
+- For a printable workbook (a task that says workbook, worksheet or activity book), read only 09_workbooks.md: it has the format, every activity and name you can use, the grade rules and its own checklist.
 
-Catalog version 1-3fabef5192.
+Catalog version 1-58506a6dcc.

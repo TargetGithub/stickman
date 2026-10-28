@@ -1,6 +1,6 @@
 # Workbooks: printable PDF activity books from the StickMan catalog
 
-Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2 and W3 reviewed; W4 built, waiting for the puzzles review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
+Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2-W4 reviewed; W5 built, waiting for the review of three AI-written workbooks. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
 
 ## 1. Goal and scope
 
@@ -314,12 +314,14 @@ Like `W_CONTRAST`, `E_WB_FIT` needs the generator, so the validator runs the gen
 
 ## 11. Tools and the AI pipeline
 
-- `tools/print.mjs <workbook.json> [--out DIR] [--doc ID] [--size a4] [--png] [--sheet]`: validates, builds and writes `<out>/<slug>/<slug>-<doc>.pdf` per document; `--png` writes page previews at 150 dpi; `--sheet` writes a contact sheet of every page for review. Default output `out/workbooks/`.
+- `tools/print.mjs <workbook.json> [--out-dir DIR] [--slug S] [--doc ID] [--size a4] [--png] [--sheet]`: validates, builds and writes `<out-dir>/<slug>/<slug>-<doc>.pdf` per document (default `out/workbooks/`); `--png` writes page previews at 150 dpi; `--sheet` writes a contact sheet of every page per document. The printing itself is `tools/lib/print_book.mjs` (`printWorkbook`), shared with the two commands below.
 - `tools/lib/canvas.mjs`: `backend.createPdf(meta)` → `{ page(w, h) → ctx, end(), close() → Buffer }` for the napi backend only (skia-canvas, when installed, writes PDF differently; not wired). Andika Regular and Bold are registered as the family `Andika`.
-- **Prompts**: `prompts/workbook.md` (system: the workbook writer, grade rules, activity table, one worked example) and `prompts/workbook_repair.md`. Built by `tools/lib/workbook_prompts.mjs` from the catalog, so the prompt and the pack agree.
-- **Context pack**: a new file `09_workbooks.md` (tier `workbook`, budget 10 KB): the script format, the activity table with params, the shape table, print-approved characters, props and objects, the grade rules and an example. Video pack files do not grow. `project_instructions.md` gains two lines on when to write a workbook.
-- **Copy-paste**: `node tools/manual.mjs workbook-prompt --topic "shapes" --grade k --pages 10 [--cast doopi,mooka]` and `manual.mjs check-workbook <reply | --paste> [--print]`.
-- **Automatic**: `node tools/generate.mjs --workbook --topic "..." --grade k [--pages N]` (with `--mock` for tests). It writes the script, prints the PDFs and appends the review queue, like the video pipeline. Local models are never used (project rule).
+- **One text for the model.** `tools/lib/workbook_tables.mjs` `workbookBody()` puts together the prose (`catalog/docs/workbook.md`: what a good workbook is, the "Before you answer, check" list), the script format, the activity table (`catalog/docs/workbook_activities.json`: one entry per engine activity, each with an example the build validates), the grade rules, the shapes, the names a model may use (shape and dot pictures, crayon colours, print-approved presets with their poses, objects, word lists), the workbook validator codes and one example workbook. Fight gear (props and objects tagged `fight` or `weapon`) stays printable but is not offered.
+- **Prompts**: `prompts/workbook.md` (the writer role around that body) and `prompts/workbook_repair.md` (the issues to fix), built by `tools/lib/workbook_prompts.mjs`.
+- **Context pack**: `09_workbooks.md` is the same body (tier `workbook`, budget 16.5 KB, outside the 100 KB video pack); `00_start_here.md` and `project_instructions.md` point to it for workbook tasks.
+- **Copy-paste**: `node tools/manual.mjs workbook-prompt --topic "..." [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4] [--copy]` writes `out/manual/workbook_prompt.md`; `manual.mjs check-workbook <reply | --paste> [--print]` validates the reply, saves `out/workbooks/scripts/<slug>.json` and prints it, or writes `workbook_fix_prompt.md` for the same chat.
+- **Automatic**: `node tools/generate.mjs --workbook --topic "..." [--grade k] [--pages N] [--cast ...] [--count N]` (`--mock` offline; `--print-prompt` shows the system prompt) writes, repairs (up to `maxAttempts`), saves, prints and adds the review queue entry. Local models are never used (project rule).
+- **Examples**: `catalog/examples/workbooks/` (outside `examples/index.json`); the build validates each; the first one is the example in the prompt and the pack.
 
 ## 12. Milestones
 

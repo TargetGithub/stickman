@@ -1,0 +1,26 @@
+{
+  "kind": "workbook",
+  "version": 1,
+  "title": "Shapes with Doopi",
+  "seed": 4207,
+  "grade": "k",
+  "style": { "cast": ["doopi", "mooka"] },
+  "documents": [
+    {
+      "id": "student",
+      "title": "Shapes with Doopi",
+      "cover": { "subtitle": "Trace, find and colour", "art": [{ "preset": "doopi", "pose": "waveA" }, { "shape": "triangle" }, { "preset": "mooka", "pose": "victory" }] },
+      "pages": [
+        { "id": "meet_triangle", "title": "Meet the Triangle", "blocks": [{ "activity": "shape_lesson", "shape": "triangle" }] },
+        { "id": "trace_triangles", "title": "Trace the Triangles", "instructions": "Start at the green dot.", "art": { "preset": "doopi", "pose": "pointPose" }, "blocks": [{ "activity": "trace_shapes", "shapes": ["triangle", "triangle", "triangle"] }] },
+        { "id": "find_triangles", "title": "Find the Triangles", "instructions": "Colour every triangle. How many?", "blocks": [{ "activity": "find_shapes", "target": "triangle", "count": 6, "distractors": ["circle", "square"] }] },
+        { "id": "maze_home", "title": "Help Doopi Home", "layout": "halves", "blocks": [
+          { "activity": "maze", "size": [6, 6], "start": { "preset": "doopi" }, "end": { "object": "mushroom_hut" } },
+          { "slot": 1, "activity": "count", "item": { "shape": "triangle" }, "groups": [3, 5] }] },
+        { "id": "colour_house", "title": "Colour by Shape", "blocks": [{ "activity": "colour_by_shape", "picture": "house" }] },
+        { "id": "draw", "title": "Draw with Triangles", "blocks": [{ "activity": "draw_prompt", "prompt": "Draw a tent and a tree using triangles.", "starter": { "preset": "mooka" } }] }
+      ]
+    },
+    { "id": "answers", "answersFor": "student", "title": "Shapes with Doopi", "cover": { "subtitle": "Answer Key" } }
+  ]
+}

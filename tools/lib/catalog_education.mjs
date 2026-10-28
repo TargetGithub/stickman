@@ -2,6 +2,8 @@
 // catalog shapes, print approvals name real presets, props and objects. Pure: src is readCatalogDir().
 
 import { cornerPoints, straightSides } from "../../engine/workbook/shape_facts.js";
+import { validate } from "../../engine/index.js";
+import { workbookCatalogOf } from "./workbook_tables.mjs";
 
 const CURVED_KINDS = ["ellipse", "sector", "crescent", "ring", "path"];
 
@@ -58,6 +60,16 @@ export function educationIssues(src) {
       if (!known[group].has(id)) bad("education/line_art.json", `${group}.${id}`, `no ${group.slice(0, -1)} "${id}" in the catalog`);
       for (const pose of e.poses || []) if (!src.catalog.poses[pose]) bad("education/line_art.json", `${group}.${id}.poses`, `unknown pose "${pose}"`);
     }
+  }
+  // Activity examples (docs/workbook_activities.json) and example workbooks validate with no issues.
+  const wb = workbookCatalogOf(src);
+  const issuesOf = (script) => { const r = validate(script, wb); return [...r.errors, ...r.warnings]; };
+  for (const [name, d] of Object.entries(src.files["docs/workbook_activities.json"])) {
+    const book = { kind: "workbook", version: 1, title: "Example", seed: 1, grade: "k", documents: [{ id: "d", pages: [{ id: "p", blocks: [d.example] }] }] };
+    for (const i of issuesOf(book)) bad("docs/workbook_activities.json", name, `example: ${i.code} ${i.message}`);
+  }
+  for (const [name, script] of Object.entries(src.workbooks || {})) {
+    for (const i of issuesOf(script)) bad(`examples/workbooks/${name}.json`, i.path, `${i.code} ${i.message}`);
   }
   return out;
 }

@@ -170,6 +170,7 @@ Each file is Markdown with compact tables. A model reads them as project knowled
 | `06_story_tools.md` | Macros (params, defaults, anchors, what you get, an example each), activities, defeat styles, music moods, camera shots, transitions and cards, audience rules | 12 KB |
 | `07_rules_and_codes.md` | Validation rules, every validator code with its fix, limits, the "before you answer" checklist | 9 KB |
 | `08_examples.md` | One clip, one story scene of each kind (play, talk, fight, defeat, journey), one outline | 12 KB |
+| `09_workbooks.md` | Printable workbooks (docs/WORKBOOK_SPEC.md 11): format, activities, grade rules, shapes, approved art, word lists, workbook codes, an example; tier `workbook`, read only for workbook tasks | 16.5 KB |
 
 The whole pack stays under about 100 KB (about 25,000 tokens; raised from 80 KB in 2026-10 for the Doopi & Friends assets, the core tier under 62 KB: 60 KB until the Baaaana assets, 2026-10-24), and the build reports each file's size. A test fails when a file exceeds its budget by more than 25%, so the pack stays cheap to attach.
 

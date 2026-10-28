@@ -5,6 +5,9 @@
 //             about rivals, rounds and a finale (STORY_SPEC 12, 18)
 //   --story   a story of at least 5 minutes, two-stage (STORY_SPEC 18)
 //   --clip    a short version 1 fight clip written in one go (the M8 pipeline, default 30 s)
+//   --workbook  a printable workbook (WORKBOOK_SPEC 11): --topic "...", --grade prek|k|1|2 (default k),
+//             --pages N (default 10), --cast id,id, --size letter|a4; writes out/workbooks/scripts/<slug>.json
+//             and the PDFs in out/workbooks/<slug>/
 // Usage:
 //   node tools/generate.mjs [--story | --fight | --clip] [options]
 //     --count N            premises to generate (default 1)
@@ -51,7 +54,14 @@ const { args, catalog } = await catalogFromArgs(process.argv.slice(2), baseCatal
 const opt = (name, dflt) => (args.includes(name) ? args[args.indexOf(name) + 1] : dflt);
 const flag = (name) => args.includes(name);
 
-const mode = flag("--story") ? "story" : flag("--clip") ? "clip" : "fight";
+const mode = flag("--workbook") ? "workbook" : flag("--story") ? "story" : flag("--clip") ? "clip" : "fight";
+const workbookTask = () => ({ topic: opt("--topic", "shapes"), grade: opt("--grade", "k"), pages: Number(opt("--pages", 10)), cast: (opt("--cast", "") || "").split(",").filter(Boolean), seed: randomInt(1, 2 ** 31 - 1), size: opt("--size", "letter") });
+if (flag("--print-prompt") && mode === "workbook") {
+  const { workbookCatalogSync } = await import("../catalog/index.js");
+  const { workbookSystem } = await import("./lib/workbook_prompts.mjs");
+  console.log(workbookSystem(workbookCatalogSync()));
+  process.exit(0);
+}
 if (flag("--print-prompt")) {
   const text = mode === "clip" ? writerSystem(catalog) : `${storyOutlineSystem(catalog, { kind: mode })}\n\n=====\n\n${storySceneSystem(catalog)}`;
   console.log(text);
@@ -86,6 +96,17 @@ try {
 }
 const cfg = { models: provider.models, effort: provider.effort, maxAttempts: Math.max(1, Number(opt("--attempts", config.maxAttempts ?? 3))), minScore: config.minScore ?? 60 };
 const llm = createLlm(provider.adapter, { prices: provider.prices, structured: provider.structured, log });
+if (mode === "workbook") {
+  // Printable workbooks (WORKBOOK_SPEC 11): one writer stage with repairs, then the PDFs; --count makes several.
+  const { workbookCatalogSync } = await import("../catalog/index.js");
+  const { runWorkbook } = await import("./lib/workbook_pipeline.mjs");
+  const ctx = { llm, wb: workbookCatalogSync(), cfg, log };
+  const records = [];
+  for (let i = 0; i < count; i++) records.push(await runWorkbook(ctx, workbookTask(), { outDir: OUT }));
+  for (const r of records.filter((x) => x.status === "accepted")) appendReviewQueue(join(OUT, "review_queue.json"), { kind: "workbook", slug: r.slug, script: r.script, pdfs: r.pdfs, topic: r.task.topic, grade: r.task.grade });
+  log(`${records.filter((r) => r.status === "accepted").length}/${count} workbook(s) valid; estimated cost $${Number(llm.cost().toFixed(4))}${provider.name === "mock" ? " (mock)" : ""}`);
+  process.exit(records.every((r) => r.status === "accepted") ? 0 : 1);
+}
 if (opts.critique && provider.adapter.vision === false) {
   log(`note: provider '${provider.name}' is configured without vision; skipping --critique`);
   opts.critique = false;

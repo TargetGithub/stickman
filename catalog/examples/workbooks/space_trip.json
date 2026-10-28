@@ -1,0 +1,296 @@
+{
+  "kind": "workbook",
+  "version": 1,
+  "title": "Space Trip with Mooka and Kai",
+  "seed": 1808803545,
+  "grade": "1",
+  "style": {
+    "cast": [
+      "mooka",
+      "kai"
+    ]
+  },
+  "documents": [
+    {
+      "id": "student",
+      "title": "Space Trip with Mooka and Kai",
+      "cover": {
+        "subtitle": "Count, find shapes and solve rocket puzzles",
+        "art": [
+          {
+            "preset": "mooka",
+            "pose": "victory"
+          },
+          {
+            "shape": "star"
+          },
+          {
+            "shape": "crescent"
+          },
+          {
+            "preset": "kai",
+            "pose": "pointPose"
+          }
+        ]
+      },
+      "pages": [
+        {
+          "id": "meet_star",
+          "title": "Meet the Star",
+          "art": {
+            "preset": "kai",
+            "pose": "pointPose"
+          },
+          "blocks": [
+            {
+              "activity": "shape_lesson",
+              "shape": "star"
+            }
+          ]
+        },
+        {
+          "id": "meet_crescent",
+          "title": "Meet the Crescent",
+          "art": {
+            "preset": "mooka",
+            "pose": "waveA"
+          },
+          "blocks": [
+            {
+              "activity": "shape_lesson",
+              "shape": "crescent"
+            }
+          ]
+        },
+        {
+          "id": "colour_rocket",
+          "title": "Colour the Rocket",
+          "instructions": "Colour each shape with the colour in the key.",
+          "blocks": [
+            {
+              "activity": "colour_by_shape",
+              "picture": "rocket"
+            }
+          ]
+        },
+        {
+          "id": "count_stars",
+          "title": "Count the Stars",
+          "instructions": "Count the stars in each row and write the number in the box.",
+          "blocks": [
+            {
+              "activity": "count",
+              "item": {
+                "shape": "star"
+              },
+              "groups": [
+                7,
+                12,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "id": "find_stars",
+          "title": "Stars in the Sky",
+          "instructions": "Colour every star. Some are turned! How many stars did you find?",
+          "blocks": [
+            {
+              "activity": "find_shapes",
+              "target": "star",
+              "count": 9,
+              "distractors": [
+                "circle",
+                "crescent",
+                "heart"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "maze_moon",
+          "title": "Fly to the Moon Base",
+          "instructions": "Help Kai fly through the asteroids to the moon base.",
+          "blocks": [
+            {
+              "activity": "maze",
+              "size": [
+                10,
+                10
+              ],
+              "start": {
+                "preset": "kai",
+                "pose": "pointPose"
+              },
+              "end": {
+                "object": "mushroom_hut"
+              }
+            }
+          ]
+        },
+        {
+          "id": "dots",
+          "title": "Join the Dots",
+          "instructions": "Start at 1 and join the dots in order.",
+          "layout": "halves",
+          "blocks": [
+            {
+              "activity": "dot_to_dot",
+              "subject": {
+                "picture": "rocket"
+              }
+            },
+            {
+              "slot": 1,
+              "activity": "dot_to_dot",
+              "subject": {
+                "shape": "star"
+              },
+              "points": 20
+            }
+          ]
+        },
+        {
+          "id": "space_words",
+          "title": "Space Word Search",
+          "instructions": "Find the space words. They go across and down.",
+          "blocks": [
+            {
+              "activity": "word_search",
+              "words": [
+                "moon",
+                "star",
+                "rocket",
+                "planet",
+                "comet",
+                "sun"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "patterns",
+          "title": "Sky Patterns",
+          "instructions": "What comes next? Draw the missing shapes.",
+          "layout": "halves",
+          "blocks": [
+            {
+              "activity": "pattern",
+              "sequence": [
+                {
+                  "shape": "star"
+                },
+                {
+                  "shape": "crescent"
+                }
+              ],
+              "repeat": "AAB",
+              "length": 9,
+              "blanks": 3
+            },
+            {
+              "slot": 1,
+              "activity": "pattern",
+              "sequence": [
+                {
+                  "shape": "circle"
+                },
+                {
+                  "shape": "ring"
+                },
+                {
+                  "shape": "star"
+                }
+              ],
+              "length": 9,
+              "blanks": 3
+            }
+          ]
+        },
+        {
+          "id": "trace_words",
+          "title": "Trace Space Words",
+          "layout": "halves",
+          "blocks": [
+            {
+              "activity": "trace_letters",
+              "text": "moon"
+            },
+            {
+              "slot": 1,
+              "activity": "trace_letters",
+              "text": "star"
+            }
+          ]
+        },
+        {
+          "id": "match_sky",
+          "title": "What Is in the Sky?",
+          "instructions": "Draw a line from each shape to the thing it looks like.",
+          "blocks": [
+            {
+              "activity": "match",
+              "pairs": [
+                [
+                  {
+                    "shape": "crescent"
+                  },
+                  {
+                    "text": "moon"
+                  }
+                ],
+                [
+                  {
+                    "shape": "star"
+                  },
+                  {
+                    "text": "star"
+                  }
+                ],
+                [
+                  {
+                    "shape": "circle"
+                  },
+                  {
+                    "text": "sun"
+                  }
+                ],
+                [
+                  {
+                    "shape": "ring"
+                  },
+                  {
+                    "text": "planet ring"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "draw_moon",
+          "title": "On the Moon",
+          "blocks": [
+            {
+              "activity": "draw_prompt",
+              "prompt": "Draw Mooka and Kai having a picnic on the moon.",
+              "starter": {
+                "preset": "mooka",
+                "pose": "sit"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "answers",
+      "answersFor": "student",
+      "title": "Space Trip with Mooka and Kai",
+      "cover": {
+        "subtitle": "Answer Key"
+      }
+    }
+  ]
+}

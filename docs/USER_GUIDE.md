@@ -689,6 +689,18 @@ Then `check-outline --paste`, `story-scene 1 --copy`, `check-scene 1 --paste` an
 
 `00_start_here.md`, the instructions and every lean prompt carry the catalog version (`npm run catalog:build` prints it). When the catalog changes the version changes: upload the pack again. If a reply mentions an older version, the check commands warn you.
 
+
+### 7.7 Printable workbooks (PDF)
+
+A workbook is a printable activity book for pre-K to grade 2 (docs/WORKBOOK_SPEC.md): shape lessons, tracing, colouring, counting, find-the-shapes, matching, mazes, dot-to-dot, word searches and patterns, drawn with the Stickman characters as line art. One script makes the student book and its answer key.
+
+```
+node tools/manual.mjs workbook-prompt --topic "a day on the farm" --grade k --pages 10 --cast doopi,becky --copy
+# paste into a new chat, copy the reply, then:
+node tools/manual.mjs check-workbook --paste --print
+```
+
+An invalid reply gives `out/manual/workbook_fix_prompt.md` for the same chat. With an API key, `node tools/generate.mjs --workbook --topic "..." --grade 1` does it in one go (`--mock` offline). Print any workbook script with `node tools/print.mjs <file.json> --sheet`; in a chat project with the catalog pack, ask for a workbook and the model reads `09_workbooks.md`.
 ## 8. Sound and music
 
 Sound effects are generated automatically for every hit, whoosh, block and landing. To use your own sounds, drop files into `assets/sfx/` named after the sound key (`punch_heavy.wav`, `whoosh.mp3`). Add `_2`, `_3` for variants that play in rotation (`punch_heavy_2.wav`). The keys are listed at the end of `node tools/catalog.mjs`.

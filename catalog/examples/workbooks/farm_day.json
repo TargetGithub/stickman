@@ -1,0 +1,285 @@
+{
+  "kind": "workbook",
+  "version": 1,
+  "title": "A Day on the Farm",
+  "seed": 517455372,
+  "grade": "k",
+  "style": {
+    "cast": [
+      "doopi",
+      "becky"
+    ]
+  },
+  "documents": [
+    {
+      "id": "student",
+      "title": "A Day on the Farm",
+      "cover": {
+        "subtitle": "With Doopi and Becky the dog",
+        "art": [
+          {
+            "preset": "doopi",
+            "pose": "waveA"
+          },
+          {
+            "object": "haystack"
+          },
+          {
+            "preset": "becky",
+            "pose": "dog_sit"
+          }
+        ]
+      },
+      "pages": [
+        {
+          "id": "good_morning",
+          "title": "Good Morning, Farm!",
+          "instructions": "Colour Doopi, Becky and the haystack.",
+          "blocks": [
+            {
+              "activity": "colour_page",
+              "art": [
+                {
+                  "preset": "doopi",
+                  "pose": "waveA"
+                },
+                {
+                  "preset": "becky",
+                  "pose": "dog_stand"
+                },
+                {
+                  "object": "haystack"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "count_hay",
+          "title": "Count the Haystacks",
+          "instructions": "How many in each row? Write the number.",
+          "art": {
+            "preset": "becky",
+            "pose": "dog_sit"
+          },
+          "blocks": [
+            {
+              "activity": "count",
+              "item": {
+                "object": "haystack"
+              },
+              "groups": [
+                2,
+                4,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "id": "find_doopi",
+          "title": "Help Becky Find Doopi",
+          "instructions": "Draw a line from Becky to Doopi.",
+          "blocks": [
+            {
+              "activity": "maze",
+              "start": {
+                "preset": "becky",
+                "pose": "dog_stand"
+              },
+              "end": {
+                "preset": "doopi",
+                "pose": "waveA"
+              }
+            }
+          ]
+        },
+        {
+          "id": "farm_words",
+          "title": "Farm Animal Words",
+          "instructions": "Find each word. Tick it off.",
+          "blocks": [
+            {
+              "activity": "word_search",
+              "words": [
+                "cow",
+                "pig",
+                "hen",
+                "duck",
+                "dog"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "trace_animals",
+          "title": "Trace the Animals",
+          "layout": "halves",
+          "blocks": [
+            {
+              "activity": "trace_letters",
+              "text": "cow",
+              "rows": 2
+            },
+            {
+              "slot": 1,
+              "activity": "trace_letters",
+              "text": "pig",
+              "rows": 2
+            }
+          ]
+        },
+        {
+          "id": "dots_barn",
+          "title": "Join the Dots",
+          "instructions": "Start at 1. What is it?",
+          "blocks": [
+            {
+              "activity": "dot_to_dot",
+              "subject": {
+                "picture": "house"
+              }
+            }
+          ]
+        },
+        {
+          "id": "patterns",
+          "title": "What Comes Next?",
+          "instructions": "Draw what comes next.",
+          "layout": "halves",
+          "blocks": [
+            {
+              "activity": "pattern",
+              "sequence": [
+                {
+                  "object": "flower"
+                },
+                {
+                  "object": "watering_can"
+                }
+              ],
+              "length": 6
+            },
+            {
+              "slot": 1,
+              "activity": "pattern",
+              "sequence": [
+                {
+                  "shape": "heart"
+                },
+                {
+                  "shape": "star"
+                },
+                {
+                  "shape": "circle"
+                }
+              ],
+              "length": 6,
+              "blanks": 2
+            }
+          ]
+        },
+        {
+          "id": "match_farm",
+          "title": "Match the Words",
+          "instructions": "Draw a line to the word.",
+          "blocks": [
+            {
+              "activity": "match",
+              "pairs": [
+                [
+                  {
+                    "preset": "becky",
+                    "pose": "dog_stand"
+                  },
+                  {
+                    "text": "dog"
+                  }
+                ],
+                [
+                  {
+                    "object": "haystack"
+                  },
+                  {
+                    "text": "hay"
+                  }
+                ],
+                [
+                  {
+                    "object": "cart"
+                  },
+                  {
+                    "text": "cart"
+                  }
+                ],
+                [
+                  {
+                    "object": "flower"
+                  },
+                  {
+                    "text": "flower"
+                  }
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "find_hearts",
+          "title": "Find the Hearts",
+          "instructions": "Colour every heart. How many?",
+          "blocks": [
+            {
+              "activity": "find_shapes",
+              "target": "heart",
+              "count": 6,
+              "distractors": [
+                "circle",
+                "star"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "farmhouse",
+          "title": "Colour the Farmhouse",
+          "instructions": "Colour each shape with its crayon.",
+          "blocks": [
+            {
+              "activity": "colour_by_shape",
+              "picture": "house",
+              "key": {
+                "square": "red",
+                "triangle": "brown",
+                "rectangle": "yellow",
+                "circle": "orange"
+              }
+            }
+          ]
+        },
+        {
+          "id": "draw_pig",
+          "title": "Draw a Farm Friend",
+          "blocks": [
+            {
+              "activity": "draw_prompt",
+              "prompt": "Draw a pig playing in the mud with Becky.",
+              "starter": {
+                "preset": "becky",
+                "pose": "dog_sit"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "answers",
+      "answersFor": "student",
+      "title": "A Day on the Farm",
+      "cover": {
+        "subtitle": "Answer Key"
+      }
+    }
+  ]
+}

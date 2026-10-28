@@ -39,13 +39,13 @@ test("the build is deterministic and marks its files as generated", () => {
   }
 });
 
-test("pack: each file within its budget (+25%), the whole pack under 100 KB, the core tier under 62 KB", () => {
+test("pack: each file within its budget (+25%), the video pack under 100 KB, the core tier under 62 KB", () => {
   let total = 0;
   let core = 0;
   for (const [f, m] of Object.entries(PACK_FILES)) {
     const bytes = Buffer.byteLength(pack(f));
     assert.ok(bytes <= m.budget * 1.25, `${f}: ${bytes} B, budget ${m.budget} B`);
-    total += bytes;
+    if (m.tier !== "workbook") total += bytes; // 09_workbooks.md is read only for workbooks
     if (m.tier === "core") core += bytes;
   }
   assert.ok(total < 100000, `pack ${total} B`);

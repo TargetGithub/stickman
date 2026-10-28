@@ -67,7 +67,7 @@ test("every authored file has a schema", () => {
 
 test("engine names: the doc files cover the same groups the checks compare", () => {
   const groups = Object.keys(engineNames(codes));
-  assert.equal(groups.length, 8);
+  assert.equal(groups.length, 9); // + docs/workbook_activities.json (WORKBOOK_SPEC 11)
   assert.ok(engineNames(codes)["docs/codes.json"].length >= 70);
 });
 

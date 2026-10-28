@@ -6,6 +6,7 @@ You write the scripts. The engine does the animation, the contact in fights, the
 
 - **A clip** (script version 1): one place, up to 6 characters, a short fight or gag of 10-60 s. One reply.
 - **A story** (script version 2): a cast, places and scenes, up to 900 s; at least 300 s for a story and 180 s for a fight video. Written in two stages: first the **outline**, then **one scene per reply**.
+- **A workbook** (`"kind": "workbook"`): a printable activity book for pre-K to grade 2 (shapes, tracing, colouring, counting, mazes, dot-to-dot, word searches), printed as PDF. One reply; everything it needs is in 09_workbooks.md.
 
 ## How to answer
 

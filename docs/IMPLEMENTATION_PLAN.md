@@ -152,8 +152,8 @@ Printable PDF activity books for pre-K to grade 2 (ADR-040). Each milestone ends
 | W1 | Workbook kind: schema, validator, layout, display list, page and line-art drawing, `tools/print.mjs`; colour_page, count, draw_prompt | DONE 2026-10-28, reviewed (7 objects marked redraw) |
 | W2 | Education catalog: shapes, shape pictures, colours, print approvals; shape lessons; showcase tab | DONE 2026-10-28, reviewed |
 | W3 | Activities 1: trace_shapes, trace_letters (capitals, digits; `education/letters.json`), colour_by_shape, find_shapes | DONE 2026-10-28, reviewed |
-| W4 | Activities 2: maze, dot_to_dot (shapes and `dot_pictures.json`), word_search, match, pattern; lowercase letters; `words.json` | DONE 2026-10-28, awaiting review (`out/demos/w4_workbook/`, `out/demos/w4_grades/`) |
-| W5 | AI prompts, context pack file, manual and generate commands | |
+| W4 | Activities 2: maze, dot_to_dot (shapes and `dot_pictures.json`), word_search, match, pattern; lowercase letters; `words.json` | DONE 2026-10-28, reviewed |
+| W5 | AI: the workbook prompt and `09_workbooks.md`, `manual.mjs workbook-prompt`/`check-workbook`, `generate.mjs --workbook` (mock), example workbooks | DONE 2026-10-28, awaiting review (`out/demos/w5_ai/`) |
 
 ## Schedule summary
 

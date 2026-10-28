@@ -10799,6 +10799,97 @@
       "W_WB_TEXT": { "meaning": "instructions long for the grade", "fix": "One or two short sentences a grown-up can read aloud." },
       "W_WB_DENSE": { "meaning": "more activities on one page than the grade can handle", "fix": "Split them over more pages (pre-K 1, K 2, grade 1 4, grade 2 6)." },
       "W_WB_REPEAT": { "meaning": "the same activity with the same params twice in a document", "fix": "Change the params so every page is new." }
+    },
+    "workbook_activities": {
+      "shape_lesson": {
+        "description": "One shape big with its corners dotted, its name and facts, three dashed copies to trace and three things in real life with that shape.",
+        "params": "shape",
+        "answers": "none",
+        "example": { "activity": "shape_lesson", "shape": "triangle" }
+      },
+      "trace_shapes": {
+        "description": "One row per shape: dashed copies that fade across the row, the first with a green start dot.",
+        "params": "shapes (1-6), rows (default one per shape)",
+        "answers": "none",
+        "example": { "activity": "trace_shapes", "shapes": ["circle", "square", "triangle"] }
+      },
+      "trace_letters": {
+        "description": "Letters, digits or a short word on handwriting lines: a model with numbered start dots and arrows, then fading dashed copies, then room to write alone.",
+        "params": "text (letters, digits, spaces; up to 16), rows (default as many as fit)",
+        "answers": "none",
+        "example": { "activity": "trace_letters", "text": "cat", "rows": 3 }
+      },
+      "colour_page": {
+        "description": "One to four big line-art pictures (characters, props, objects, shapes) on a ground line to colour in.",
+        "params": "art (1-4 art references), ground (default true)",
+        "answers": "none",
+        "example": { "activity": "colour_page", "art": [{ "preset": "doopi", "pose": "waveA" }] }
+      },
+      "colour_by_shape": {
+        "description": "A picture made of shapes with a key below (shape = crayon colour); the child colours each shape by the key.",
+        "params": "picture (a shape picture), key {shape: colour} (default one crayon per shape)",
+        "answers": "the picture coloured in",
+        "example": {
+          "activity": "colour_by_shape",
+          "picture": "house",
+          "key": { "square": "red", "triangle": "blue", "rectangle": "brown", "circle": "yellow" }
+        }
+      },
+      "find_shapes": {
+        "description": "A target shape scattered among other shapes; the child colours every target and writes how many.",
+        "params": "target, count (grade limit), distractors (1-5 shapes), others (default count + 2), askCount (default true)",
+        "answers": "targets circled, the count",
+        "example": { "activity": "find_shapes", "target": "star", "count": 5, "distractors": ["circle", "heart"] }
+      },
+      "count": {
+        "description": "Rows of the same picture to count, each with a box for the number.",
+        "params": "item (an art reference), groups (1-6 numbers, grade limit)",
+        "answers": "the numbers",
+        "example": { "activity": "count", "item": { "shape": "heart" }, "groups": [3, 5, 2] }
+      },
+      "match": {
+        "description": "Two columns; the child draws a line from each picture or word on the left to its partner on the right (shuffled).",
+        "params": "pairs (2-6 of [left, right]; each an art reference or {\"text\"})",
+        "answers": "the lines",
+        "example": {
+          "activity": "match",
+          "pairs": [
+            [{ "shape": "circle" }, { "text": "circle" }],
+            [{ "shape": "star" }, { "text": "star" }],
+            [{ "shape": "square" }, { "text": "square" }]
+          ]
+        }
+      },
+      "maze": {
+        "description": "A maze from a picture on the left to a picture on the right, with exactly one path.",
+        "params": "size [columns, rows] (default the grade's largest), start, end (art references)",
+        "answers": "the path",
+        "example": { "activity": "maze", "start": { "preset": "doopi" }, "end": { "object": "mushroom_hut" } }
+      },
+      "dot_to_dot": {
+        "description": "Numbered dots to join in order, round a shape's outline or a dot picture.",
+        "params": "subject {\"shape\"} or {\"picture\"} (a dot picture), points (shapes only, grade limit)",
+        "answers": "the outline",
+        "example": { "activity": "dot_to_dot", "subject": { "picture": "fish" } }
+      },
+      "word_search": {
+        "description": "Hidden words in a letter grid with a tick list (right and down; grade 2 adds diagonals). Not for pre-K.",
+        "params": "words (3-12, letters only), size (default the grade's grid)",
+        "answers": "each word marked",
+        "example": { "activity": "word_search", "words": ["cat", "dog", "pig", "hen"] }
+      },
+      "pattern": {
+        "description": "A repeating row of pictures with empty boxes at the end; the child draws what comes next.",
+        "params": "sequence (2-3 art references), repeat (AB, AAB, ABB, ABC), length (4-10, default 8), blanks (1-3, default 2)",
+        "answers": "the missing pictures",
+        "example": { "activity": "pattern", "sequence": [{ "shape": "circle" }, { "shape": "square" }] }
+      },
+      "draw_prompt": {
+        "description": "A drawing prompt above a framed box, with an optional picture to start from.",
+        "params": "prompt (up to 80 characters), starter (an art reference)",
+        "answers": "none",
+        "example": { "activity": "draw_prompt", "prompt": "Draw a hat for Mooka.", "starter": { "preset": "mooka" } }
+      }
     }
   },
   "examples": [

@@ -88,7 +88,7 @@ export function buildCatalog(src, { codes }) {
     appearance: Object.fromEntries(Object.entries(src.files["characters/appearance.json"]).filter(([k]) => k !== "conflicts").map(([k, list]) => [k, Object.fromEntries(list.map((o) => [o.name, o.description]))])),
     voices: src.files["characters/voices.json"].timbres,
     ambience: src.files["world/ambience.json"].beds,
-    docs: Object.fromEntries(["world_commands", "macros", "camera", "transitions", "codes"].map((d) => [d, src.files[`docs/${d}.json`]])),
+    docs: Object.fromEntries(["world_commands", "macros", "camera", "transitions", "codes", "workbook_activities"].map((d) => [d, src.files[`docs/${d}.json`]])),
     examples: exampleFacts(src),
     pack: src.files["examples/index.json"].pack,
     // Workbooks (WORKBOOK_SPEC 8): shapes, shape pictures, colours and print approvals.

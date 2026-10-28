@@ -9,6 +9,7 @@ import { MACRO_PARAMS, MACRO_ANCHORS } from "../../engine/validator/macro_params
 import { V2_ENUMS, DEFEAT_STYLES_BY_AUDIENCE } from "../../engine/validator/v2_names.js";
 import { LIMITS, LIMITS_V2 } from "../../engine/config.js";
 import { typeOf, worldParamText, colorAdvice, audienceMarkdown, isWorkbookCode } from "./story_tables.mjs";
+import { workbookBody, workbookCatalogOf } from "./workbook_tables.mjs";
 
 /** Pack files, their tier and their size budget in bytes (a test allows 25% over). */
 export const PACK_FILES = {
@@ -21,6 +22,7 @@ export const PACK_FILES = {
   "06_story_tools.md": { tier: "core", budget: 12000 },
   "07_rules_and_codes.md": { tier: "core", budget: 10500 }, // 10000 until the Baaaana codes (2026-10-24)
   "08_examples.md": { tier: "reference", budget: 12000 },
+  "09_workbooks.md": { tier: "workbook", budget: 16500 }, // printable workbooks (WORKBOOK_SPEC 11), read only for them
 };
 
 /** World commands by the pack file that lists them (each in one place); the rest go to 06. */
@@ -218,6 +220,7 @@ export function buildPack(src, version) {
     "06_story_tools.md": storyTools(src),
     "07_rules_and_codes.md": rules(src),
     "08_examples.md": examples(src),
+    "09_workbooks.md": doc("Workbooks (printable PDF activity books)", workbookBody({ wb: workbookCatalogOf(src), docs: src.files["docs/workbook_activities.json"], codes: src.files["docs/codes.json"], prose: src.texts["docs/workbook.md"], example: Object.values(src.workbooks)[0] })),
   };
   files["project_instructions.md"] = `${src.texts["docs/project_instructions.md"].trim()}\n\nCatalog version ${version}.\n`;
   return files;

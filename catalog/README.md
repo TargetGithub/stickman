@@ -47,6 +47,8 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `docs/*.json` | descriptions of engine-owned names: world commands, macros, camera modes, transitions and cards, validator codes |
 | `docs/*.md` | the pack's prose: script format (`format.md`), rules and checklist, start page, project instructions |
 | `examples/` | example clips and stories, indexed by `examples/index.json` (which also picks the pack's examples) |
+| `examples/workbooks/` | example workbooks (WORKBOOK_SPEC 11), outside the index; the build validates each and the first is the prompt's example |
+| `docs/workbook.md`, `docs/workbook_activities.json` | the workbook prose (rules and checklist) and one description per workbook activity, both in `09_workbooks.md` |
 | `bundle_blocklist.json`, `bundle_allowlist.json` | catalog bundles that are blocked, and bundles Sridhar reviewed (by content hash; docs/CATALOG_BUNDLE_SPEC.md section 8) |
 | `base_names.json` | base names as of the last release: bundles refer to them, so the build fails when one disappears. Update it only at a release: `node tools/catalog_build.mjs --release-names` |
 | `schemas/` | JSON Schemas for the authored files, checked by the build with the engine's schema checker; `schemas/bundle/` holds the catalog bundle schemas (docs/CATALOG_BUNDLE_SPEC.md section 4), which the build does not apply to catalog files |

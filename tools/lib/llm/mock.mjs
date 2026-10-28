@@ -7,6 +7,7 @@
 
 import { exampleScripts } from "../prompt_pack.mjs";
 import { exampleStories } from "../story_prompts.mjs";
+import { workbookExamples } from "../workbook_prompts.mjs";
 
 const textOf = (m) => (typeof m.content === "string" ? m.content : m.content.filter((p) => p.type === "text").map((p) => p.text).join("\n"));
 
@@ -18,6 +19,7 @@ export function defaultResponder() {
     const user = textOf(req.messages[req.messages.length - 1]);
     const story = storyStage(req, user);
     if (story) return story;
+    if (req.system.startsWith("You write printable activity workbooks")) return workbookStage(req);
     if (req.system.startsWith("You pitch premises")) {
       const count = Number(/Pitch (\d+)/.exec(user)?.[1] || 1);
       const premises = Array.from({ length: count }, (_, i) => ({
@@ -107,4 +109,22 @@ export function createMockAdapter(responder = defaultResponder()) {
       };
     },
   };
+}
+
+/**
+ * Workbooks (WORKBOOK_SPEC 11): the first example workbook titled after the topic, at the asked grade and seed.
+ * The first draft asks for a maze too big for its grade, so the repair path runs.
+ */
+function workbookStage(req) {
+  const user = textOf(req.messages[0]); // the task (later messages are repairs)
+  const book = structuredClone(Object.values(workbookExamples())[0]);
+  const topic = /about: (.*)/.exec(user)?.[1] ?? "shapes";
+  book.title = `Mock Workbook: ${topic}`.slice(0, 60);
+  book.documents.forEach((d) => (d.title = book.title));
+  book.seed = Number(/"seed": (\d+)/.exec(user)?.[1] || 1);
+  if (req.messages.length === 1) {
+    const maze = book.documents[0].pages.flatMap((p) => p.blocks).find((b) => b.activity === "maze");
+    if (maze) maze.size = [20, 20];
+  }
+  return { text: JSON.stringify(book) };
 }
