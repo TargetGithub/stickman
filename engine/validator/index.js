@@ -19,6 +19,7 @@ import { expandScript } from "../templates.js";
 import { bundleIssues } from "./bundles.js";
 import { BUNDLE_PINS } from "./v2_names.js";
 import { LIMITS, LIMITS_V2 } from "../config.js";
+import { validateWorkbook } from "../workbook/validate.js";
 
 export { jsonSchema, buildJsonSchema, WORLD_COMMANDS, formatIssues };
 
@@ -85,6 +86,11 @@ export function validate(script, catalog) {
 
   if (!script || typeof script !== "object" || Array.isArray(script)) {
     return result("schema", [{ code: "E_SCHEMA_TYPE", path: "", message: "The script must be a JSON object.", fix: "Return one JSON object." }]);
+  }
+  // Workbooks (WORKBOOK_SPEC, ADR-040) are their own kind with their own validator; video scripts have no kind.
+  if (script.kind === "workbook") return validateWorkbook(script, catalog);
+  if ("kind" in script) {
+    return result("schema", [{ code: "E_KIND", path: "kind", message: `Unknown script kind ${JSON.stringify(script.kind)}.`, fix: 'Use "kind": "workbook" for a printable workbook, or leave kind out for a video script.' }]);
   }
   const version = versionIssue(script);
   if (version) return result("schema", [version]);

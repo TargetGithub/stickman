@@ -1,0 +1,26 @@
+{
+  "kind": "workbook",
+  "version": 1,
+  "title": "Doopi's Counting Book",
+  "seed": 4207,
+  "grade": "k",
+  "page": { "size": "letter" },
+  "style": { "cast": ["doopi", "mooka"] },
+  "documents": [
+    {
+      "id": "student",
+      "title": "Doopi's Counting Book",
+      "cover": { "subtitle": "Count, colour and draw", "art": [{ "preset": "doopi", "pose": "waveA" }, { "preset": "mooka", "pose": "victory" }] },
+      "pages": [
+        { "id": "colour_doopi", "title": "Colour Doopi", "instructions": "Colour Doopi and his ball.", "blocks": [{ "activity": "colour_page", "art": [{ "preset": "doopi", "pose": "pointPose" }, { "object": "football" }] }] },
+        { "id": "count_balls", "title": "How Many?", "instructions": "Count the balls. Write the number in the box.", "art": { "preset": "mooka" }, "blocks": [{ "activity": "count", "item": { "object": "football" }, "groups": [3, 5, 2, 4] }] },
+        { "id": "count_and_draw", "title": "Count and Draw", "layout": "halves", "blocks": [
+          { "slot": 0, "activity": "count", "instructions": "Count the flowers.", "item": { "object": "flower" }, "groups": [6, 1] },
+          { "slot": 1, "activity": "draw_prompt", "prompt": "Draw a hat for Mooka.", "starter": { "preset": "mooka" } }
+        ] },
+        { "id": "colour_park", "title": "A Day in the Park", "instructions": "Colour the park.", "blocks": [{ "activity": "colour_page", "art": [{ "object": "tree_big" }, { "object": "bench" }, { "preset": "becky" }] }] }
+      ]
+    },
+    { "id": "answers", "answersFor": "student", "title": "Doopi's Counting Book", "cover": { "subtitle": "Answer Key" } }
+  ]
+}

@@ -26,6 +26,9 @@ function shape(ctx, def, piece) {
   if (draw) draw(ctx, def.colors || {}, piece, def);
 }
 
+/** Draw a catalog object's shape at the current origin (workbook art; piece: state and other shape inputs). */
+export const drawObjectShape = (ctx, def, piece = {}) => shape(ctx, def, piece);
+
 /**
  * Static objects shown at video time t: the scene's set pieces plus spawned static objects, with
  * state changes, removals and breaks from the scene's "object" events (moving ones are frame items).

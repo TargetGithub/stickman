@@ -102,5 +102,16 @@
   "E_AUDIO_TRACK": { "meaning": "an audio track with an unknown mood, bed or SFX key, a missing field, or a duck rule under nothing", "fix": "Use catalog moods, ambience beds and SFX keys; give sfx tracks at times and bus tracks a bus." },
   "E_MARKER_UNKNOWN": { "meaning": "a beat or sfx track starts at a marker that does not exist, or that is in another scene", "fix": "Add the marker to audio.markers with the beat's scene." },
   "E_TEMPLATE_UNKNOWN": { "meaning": "a scene uses a template that is not in the catalog", "fix": "Use a template from catalog/story/templates.json (intro_card, doopi_intro)." },
-  "E_TEMPLATE_PARAM": { "meaning": "a template param is missing, unknown or of the wrong type", "fix": "Give the params the template lists, with their types." }
+  "E_TEMPLATE_PARAM": { "meaning": "a template param is missing, unknown or of the wrong type", "fix": "Give the params the template lists, with their types." },
+  "E_KIND": { "meaning": "a script kind that does not exist", "fix": "\"kind\": \"workbook\" for a printable workbook; no kind for a video script." },
+  "E_WB_ID": { "meaning": "a document or page id used twice", "fix": "Give each document, and each page of a document, its own id." },
+  "E_WB_ANSWERS_FOR": { "meaning": "an answer key for a document that does not exist or has no pages", "fix": "Set answersFor to the id of a document with pages." },
+  "E_WB_SLOT": { "meaning": "a block in a slot the layout does not have, or two blocks in one slot", "fix": "Use the layout's slots (full 1, halves 2, thirds 3, grid2x2 4, grid2x3 6), one block each." },
+  "E_WB_ART": { "meaning": "an unknown or unapproved preset, pose, face, prop or object", "fix": "Use print-approved art from 09_workbooks.md; four-legged presets take dog_ poses." },
+  "E_WB_SHAPE": { "meaning": "an unknown 2D shape", "fix": "Use a shape from 09_workbooks.md." },
+  "E_WB_GRADE": { "meaning": "a number over the grade's limit (count, maze size, dot points)", "fix": "Stay within the grade rules in 09_workbooks.md." },
+  "E_WB_FIT": { "meaning": "an activity's pictures, words or dots do not fit in its slot", "fix": "Use fewer items, or a bigger slot (full or halves)." },
+  "W_WB_TEXT": { "meaning": "instructions long for the grade", "fix": "One or two short sentences a grown-up can read aloud." },
+  "W_WB_DENSE": { "meaning": "more activities on one page than the grade can handle", "fix": "Split them over more pages (pre-K 1, K 2, grade 1 4, grade 2 6)." },
+  "W_WB_REPEAT": { "meaning": "the same activity with the same params twice in a document", "fix": "Change the params so every page is new." }
 }

@@ -16,6 +16,7 @@ import { createMockAdapter } from "../../tools/lib/llm/mock.mjs";
 import { generateOne, evaluate } from "../../tools/lib/pipeline.mjs";
 import { avoidList, historyEntry } from "../../tools/lib/history.mjs";
 import { manualWritePrompt, checkReply } from "../../tools/lib/manual.mjs";
+import { isWorkbookCode } from "../../tools/lib/story_tables.mjs";
 
 const cfg = {
   models: { write: "w-model", flagship: "f-model", repair: "r-model", repairEscalate: "e-model", critique: "c-model", metadata: "m-model" },
@@ -65,7 +66,7 @@ test("the writer prompt documents every validator code, and only real ones", asy
   const src = (dir) => readdirSync(dir).filter((f) => f.endsWith(".js")).map((f) => readFileSync(`${dir}/${f}`, "utf8")).join("\n");
   const engine = src("engine") + src("engine/validator") + src("engine/story");
   const codes = (text) => new Set(text.match(/\b[EW]_[A-Z]+(?:_[A-Z]+)*\b/g));
-  const real = codes(engine);
+  const real = new Set([...codes(engine)].filter((c) => !isWorkbookCode(c))); // workbook codes: the workbook prompt
   const prompt = writerSystem(catalog);
   const mentioned = codes(prompt.replace(/E_SCHEMA_\*|E_REF_\*|E_MOVE_\*|E_WORLD_\*|E_CAMERA_\*|E_TEXT_\*|E_SIM_\*/g, ""));
   for (const c of real) assert.ok(mentioned.has(c), `prompt does not explain ${c}`);

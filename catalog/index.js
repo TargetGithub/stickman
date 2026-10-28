@@ -120,3 +120,24 @@ export function loadCatalogSync(root) {
 export const catalog = inNode
   ? loadCatalogSync()
   : await loadCatalog((p) => fetch(new URL(p, import.meta.url)).then((r) => r.json()));
+
+/**
+ * Character presets by id (CATALOG_SPEC 4.1), from the files the manifest lists. The engine catalog does not
+ * carry them; workbooks draw them (WORKBOOK_SPEC 4.4).
+ * @param {(path: string) => any} read  as loadCatalog's (sync or promises)
+ */
+export function loadPresets(read) {
+  const fromManifest = (m) => {
+    const files = m.authored.filter((p) => p.startsWith("characters/presets/"));
+    const got = files.map((p) => read(p));
+    const build = (vals) => Object.fromEntries(vals.map((p) => [p.id, p]));
+    return got.some(isThenable) ? Promise.all(got).then(build) : build(got);
+  };
+  const m = read("manifest.json");
+  return isThenable(m) ? m.then(fromManifest) : fromManifest(m);
+}
+
+/** Node: the workbook catalog (WORKBOOK_SPEC 3): a catalog (default the base one) plus `presets` from a folder. */
+export function workbookCatalogSync(base = catalog, root) {
+  return { ...base, presets: loadPresets(fileReader(root)) };
+}

@@ -7,7 +7,7 @@ import { validate, buildJsonSchema, WORLD_COMMANDS } from "../../engine/validato
 import { checkSchema, jsonSchema } from "../../engine/validator/schema.js";
 import { closestMatch } from "../../engine/validator/report.js";
 import { movesFor } from "../../engine/sim.js";
-import { catalog } from "../../catalog/index.js";
+import { catalog, workbookCatalogSync } from "../../catalog/index.js";
 
 const dir = (group) => new URL(`../fixtures/${group}/`, import.meta.url);
 const load = (url) => JSON.parse(readFileSync(url, "utf8"));
@@ -21,7 +21,9 @@ for (const group of ["bad", "warn"]) {
       const expect = load(new URL(file.replace(".json", ".expect.json"), dir(group)));
       // Bundle fixtures describe what is loaded (catalog.bundles, catalog.bundleCombos), as mergeBundles records it.
       const cat = expect.catalogBundles || expect.bundleCombos ? { ...catalog, bundles: expect.catalogBundles || [], bundleCombos: expect.bundleCombos || [] } : catalog;
-      const r = validate(load(new URL(file, dir(group))), cat);
+      const script = load(new URL(file, dir(group)));
+      // Workbooks (WORKBOOK_SPEC) draw presets: they validate against the workbook catalog.
+      const r = validate(script, script.kind === "workbook" ? workbookCatalogSync(cat) : cat);
       const codes = [...r.errors, ...r.warnings].map((i) => i.code);
       assert.equal(r.ok, expect.ok, `ok: ${JSON.stringify(r.errors)}`);
       for (const c of expect.codes) assert.ok(codes.includes(c), `expected ${c}, got ${codes.join(", ") || "nothing"}`);

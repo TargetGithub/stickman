@@ -7,6 +7,7 @@
 //   await backend.savePng(canvas, "out/x.png");
 //   const rgba = backend.readRGBA(canvas);        // Uint8Array/Uint8ClampedArray, w*h*4
 //   const img = await backend.loadImage(path);    // drawable with ctx.drawImage
+//   const pdf = backend.createPdf({ title });      // vector PDF (workbooks): pdf.page(w, h) → ctx; pdf.end(); pdf.close() → Buffer
 
 import { writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
@@ -17,12 +18,14 @@ const FONT_DIR = resolve(new URL("../../assets/fonts/", import.meta.url).pathnam
 const FONTS = [
   { family: "Bangers", file: "Bangers-Regular.ttf" },
   { family: "Inter", file: "Inter.ttf" },
+  { family: "Andika", file: "Andika-Regular.ttf" }, // workbooks (WORKBOOK_SPEC 6)
+  { family: "Andika", file: "Andika-Bold.ttf" },
 ];
 
 export async function loadBackend(name = DEFAULT_BACKEND) {
   if (name === "skia") {
     const sk = await import("skia-canvas");
-    for (const f of FONTS) sk.FontLibrary.use(f.family, [`${FONT_DIR}/${f.file}`]);
+    for (const family of new Set(FONTS.map((f) => f.family))) sk.FontLibrary.use(family, FONTS.filter((f) => f.family === family).map((f) => `${FONT_DIR}/${f.file}`));
     return {
       name: "skia-canvas",
       createCanvas(w, h) {
@@ -55,6 +58,10 @@ export async function loadBackend(name = DEFAULT_BACKEND) {
       async savePng(canvas, path) {
         await mkdir(dirname(path), { recursive: true });
         await writeFile(path, await canvas.encode("png"));
+      },
+      createPdf(meta = {}) {
+        const doc = new nr.PDFDocument({ producer: "StickMan", ...meta });
+        return { page: (w, h) => doc.beginPage(w, h), end: () => doc.endPage(), close: () => doc.close() };
       },
     };
   }

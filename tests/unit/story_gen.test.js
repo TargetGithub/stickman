@@ -10,7 +10,7 @@ import { createMockAdapter, defaultResponder } from "../../tools/lib/llm/mock.mj
 import {
   storyOutlineSystem, storySceneSystem, storyIdeationSystem, exampleStories, checkOutline, assembleStory, sceneRequest, MIN_LENGTH,
 } from "../../tools/lib/story_prompts.mjs";
-import { CODE_HELP } from "../../tools/lib/story_tables.mjs";
+import { CODE_HELP, isWorkbookCode } from "../../tools/lib/story_tables.mjs";
 import { generateStory } from "../../tools/lib/story_pipeline.mjs";
 import { scoreStory, storyFeedback } from "../../tools/lib/story_score.mjs";
 import { manualOutlinePrompt, checkOutlineReply, manualScenePrompt, checkSceneReply, assembleManual } from "../../tools/lib/manual_story.mjs";
@@ -28,7 +28,7 @@ test("the story scene prompt explains every validator code, and only real ones",
   const src = (dir) => readdirSync(dir).filter((f) => f.endsWith(".js")).map((f) => readFileSync(`${dir}/${f}`, "utf8")).join("\n");
   const engine = src("engine") + src("engine/validator") + src("engine/story");
   const codes = (text) => new Set(text.match(/\b[EW]_[A-Z]+(?:_[A-Z]+)*\b/g));
-  const real = codes(engine);
+  const real = new Set([...codes(engine)].filter((c) => !isWorkbookCode(c))); // workbook codes: the workbook prompt
   const prompt = storySceneSystem(catalog);
   const mentioned = codes(prompt);
   for (const c of real) assert.ok(mentioned.has(c), `story prompt does not explain ${c}`);

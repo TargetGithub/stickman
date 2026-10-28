@@ -455,6 +455,17 @@ export function busGainAt(plan, bus, t), duckGainAt(plan, stem, t), trackGainAt(
 ### index.js (public)
 See spec 15.1. `createEngine({ catalog })` validates on `load` (including the dry run), then simulates once more with the frame store; everything after that is read-only.
 
+### workbook/ and the page renderer (WORKBOOK_SPEC, ADR-040)
+```
+validateWorkbook(script, catalog) → validate()'s report (validate() sends kind "workbook" here)
+buildWorkbook(script, catalog) → { documents: [{ id, title, answerKey, pages: [{ width, height, items, ref, answerKey }] }], issues }
+drawPage(ctx, page, catalog, opts?)        // any 2D context, sized in points; art through lineArtContext
+drawArt(ctx, catalog, ref, box, wrap?)     // a preset, prop or object fitted into a box
+lineArtContext(ctx, opts?) → ctx           // black outlines on white over any catalog drawing
+boundsContext() → { ctx, bounds() }        // renderer/bounds_ctx.js: measures a drawing without a canvas
+```
+`catalog` is the workbook catalog: the engine catalog plus `presets` (`workbookCatalogSync()` in `catalog/index.js`). Modules: `workbook/grades.js` (page sizes, grade rules, layouts), `schema.js`, `art.js` (art references), `layout.js`, `build.js`, `validate.js`, `activities/*.js`; `renderer/page_draw.js`, `art_draw.js`, `line_art.js`, `bounds_ctx.js`. Tools: `tools/print.mjs` (PDF per document), `tools/line_art_sheet.mjs` (the print-approval review).
+
 ### catalog/index.js (outside /engine; CATALOG_SPEC 5)
 ```js
 export const MOVE_FILES: string[];                         // moves/<file>.json, in catalog order

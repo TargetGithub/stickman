@@ -89,10 +89,10 @@ export function readBundleSchemas(root = CATALOG_DIR) {
   return Object.fromEntries(readdirSync(dir).filter((f) => f.endsWith(".schema.json")).sort().map((f) => [f, JSON.parse(readFileSync(join(dir, f), "utf8"))]));
 }
 
-/** Every validator code the engine can report (scanned from engine/, engine/validator/ and engine/story/). */
+/** Every validator code the engine can report (scanned from engine/, engine/validator/, engine/story/ and engine/workbook/). */
 export function engineCodes() {
   const engine = fileURLToPath(new URL("../../engine/", import.meta.url));
-  const text = ["", "validator", "story"].flatMap((d) => readdirSync(join(engine, d)).filter((f) => f.endsWith(".js")).map((f) => readFileSync(join(engine, d, f), "utf8"))).join("\n");
+  const text = ["", "validator", "story", "workbook", "workbook/activities"].flatMap((d) => readdirSync(join(engine, d)).filter((f) => f.endsWith(".js")).map((f) => readFileSync(join(engine, d, f), "utf8"))).join("\n");
   return new Set(text.match(/\b[EW]_[A-Z]+(?:_[A-Z]+)*\b/g));
 }
 

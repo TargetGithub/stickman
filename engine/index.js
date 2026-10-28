@@ -19,8 +19,16 @@ import { collectAudioTracks, busGainAt, duckGainAt, trackGainAt, trackPanAt } fr
 import { expandScript } from "./templates.js";
 import { FPS, FORMATS, ENGINE_VERSION, RENDER_SCALE } from "./config.js";
 import { deviceSize } from "./renderer/lens_draw.js";
+import { validateWorkbook } from "./workbook/validate.js";
+import { buildWorkbook } from "./workbook/build.js";
+import { workbookSchema } from "./workbook/schema.js";
+import { drawPage } from "./renderer/page_draw.js";
+import { drawArt } from "./renderer/art_draw.js";
+import { lineArtContext } from "./renderer/line_art.js";
 
 export { validate, formatIssues, ENGINE_VERSION, expandScript };
+// Workbooks (WORKBOOK_SPEC 3): the catalog passed here is the workbook catalog (engine catalog plus presets).
+export { validateWorkbook, buildWorkbook, workbookSchema, drawPage, drawArt, lineArtContext };
 /** Audio track mixing helpers for tools (V3.8): gains and pans of a getAudioTracks() plan at a video time. */
 export const audioTrackGains = { busGainAt, duckGainAt, trackGainAt, trackPanAt };
 

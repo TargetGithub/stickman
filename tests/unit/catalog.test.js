@@ -11,6 +11,7 @@ import { crc32, zip } from "../../tools/lib/zip.mjs";
 import { validate } from "../../engine/index.js";
 import { WORLD_COMMANDS_V2 } from "../../engine/validator/semantic.js";
 import { MACRO_PARAMS } from "../../engine/validator/macro_params.js";
+import { isWorkbookCode } from "../../tools/lib/story_tables.mjs";
 
 const SRC = readCatalogDir();
 const codes = engineCodes();
@@ -57,7 +58,7 @@ test("pack: mentions every move, theme, object, prop, face, body, fx, activity, 
   const groups = {
     moves: c.moves.filter((m) => !m.flags?.partner).map((m) => m.name), themes: c.themeNames, objects: Object.keys(c.objects), props: Object.keys(c.props),
     faces: c.faceNames, bodies: c.bodyNames, fx: c.fxNames, activities: c.activityNames, moods: Object.keys(c.musicMoods),
-    macros: Object.keys(MACRO_PARAMS).map((m) => `@${m}`), world: Object.keys(WORLD_COMMANDS_V2), codes: [...codes], presets: SRC.presets.map((p) => p.id),
+    macros: Object.keys(MACRO_PARAMS).map((m) => `@${m}`), world: Object.keys(WORLD_COMMANDS_V2), codes: [...codes].filter((c) => !isWorkbookCode(c)), presets: SRC.presets.map((p) => p.id),
   };
   for (const [g, names] of Object.entries(groups)) for (const n of names) assert.ok(new RegExp(`(^|[^a-z_])${n}([^a-z_]|$)`, "m").test(text), `${g}: ${n} is not in the pack`);
 });

@@ -1,0 +1,45 @@
+{
+  "kind": "workbook",
+  "version": 1,
+  "title": "Test Book",
+  "seed": 7,
+  "grade": "k",
+  "documents": [
+    {
+      "id": "student",
+      "pages": [
+        {
+          "id": "p1",
+          "title": "Count",
+          "blocks": [
+            {
+              "activity": "count",
+              "item": {
+                "object": "football"
+              },
+              "groups": [
+                3,
+                2
+              ]
+            },
+            {
+              "slot": 1,
+              "activity": "draw_prompt",
+              "prompt": "Draw a ball."
+            },
+            {
+              "slot": 2,
+              "activity": "draw_prompt",
+              "prompt": "Draw a hat."
+            }
+          ],
+          "layout": "thirds"
+        }
+      ]
+    },
+    {
+      "id": "answers",
+      "answersFor": "student"
+    }
+  ]
+}

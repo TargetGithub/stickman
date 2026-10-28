@@ -1,6 +1,6 @@
 # Workbooks: printable PDF activity books from the StickMan catalog
 
-Status: draft 0.1 (2026-10-28), W0, waiting for Sridhar's sign-off. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
+Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 built, waiting for the line-art review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
 
 ## 1. Goal and scope
 
@@ -54,7 +54,7 @@ tools/print.mjs: PDF per document (@napi-rs/canvas PDFDocument, vector), PNG pre
 - **Pure core.** `buildWorkbook(script, catalog)` returns plain data: `{ documents: [{ id, title, file, pages: [{ width, height, items }] }], issues }`. Items are a small display list (section 9). No canvas, no fonts, no I/O.
 - **Drawing on any 2D context.** `drawPage(ctx, page, catalog, opts)` draws a page's items with the same Canvas 2D calls the video renderer uses. A PDF page context, a PNG canvas and a browser canvas all work.
 - **Vector PDF without a new dependency.** `@napi-rs/canvas` (already a dev dependency) has `PDFDocument`: `beginPage(w, h)` returns a 2D context that records vectors; fonts are embedded and subset; no creation date is written, so the bytes are deterministic (checked in W0 with a two-page probe). `tools/lib/canvas.mjs` gets `backend.createPdf(meta)` so tools never import a backend directly (ADR-001).
-- **Units are PDF points** (1/72 inch). Letter is 612 x 792, A4 595.28 x 841.89.
+- **Units are PDF points** (1/72 inch). Letter is 612 x 792, A4 595 x 842 (whole points: Skia rounds page sizes).
 - **Text.** The layout never measures text. Text items carry a box, a size and `fit: "shrink"`; the renderer shrinks the font until the text fits (renderer-only, as subtitles do). Grids that hold letters (word search) use fixed cells, so no metrics are needed there either.
 - **Public API** (`engine/index.js`): `validateWorkbook(script, catalog)`, `buildWorkbook(script, catalog)`, `drawPage(ctx, page, catalog, opts)`, `workbookSchema(catalog)`. `validate(script, catalog)` dispatches on `kind`.
 - **Files.** New logic lives in `engine/workbook/` and three renderer files. Each module stays under about 350 lines; each activity is its own file.
@@ -129,7 +129,7 @@ A document is either **authored** (`pages`) or an **answer key** (`answersFor`):
 | `cover` | optional: a cover page with the title, `subtitle` and up to 4 `art` items |
 | `pages` | 1-64 pages (authored documents) |
 | `answersFor` | the id of an authored document: one page per page that has answers, the student page drawn with its answers on top. A page without answers (colouring, drawing) is left out. |
-| `answerStyle` | `overlay` (default: the page with answers in colour) or `compact` (four pages per sheet, half size) |
+| `answerStyle` | `overlay` (the default and, for now, the only one: the student page with its answers in red); `compact` (four pages per sheet) may come later |
 
 ### 4.3 Pages and layouts
 
@@ -140,9 +140,9 @@ A document is either **authored** (`pages`) or an **answer key** (`answersFor`):
 | `instructions` | one or two short sentences read aloud by a grown-up (length limits by grade) |
 | `layout` | `full`, `halves` (top, bottom), `thirds` (three rows), `grid2x2`, `grid2x3` (two columns, three rows); default `full` |
 | `blocks` | 1 block per slot at most; `slot` is the slot index (default 0) or a span `[first, last]` of adjacent slots |
-| `art` | optional decoration: a character in a corner (`{ "preset", "pose", "corner": "br" }`), drawn outside the activity area |
+| `art` | optional decoration: a character beside the title (`{ "preset", "pose", "face" }`), as tall as the header band; the title and instructions keep clear of it |
 
-Each page has a header band (title, instructions, name line) and a footer (page number); the layout divides the rest of the safe area into slots with a gutter of 18 pt. A block's own `instructions` (optional) is drawn at the top of its slot.
+Each page has a header band (name line, title, instructions) and a footer (page number); an answer-key page replaces the name line with an "Answer Key: page N" tag and has no page number; the layout divides the rest of the safe area into slots with a gutter of 18 pt. A block's own `instructions` (optional) is drawn at the top of its slot.
 
 ### 4.4 Art references
 
@@ -159,7 +159,7 @@ Every preset, prop and object must be **print-approved** (section 8.3). Art is a
 
 ## 5. Activities (version 1)
 
-The activity names are engine-owned (they are behaviors), described in `catalog/docs/workbook_activities.json` like the world commands. Every activity is a pure generator: `(block, slotBox, grade, rng, catalog) → { items, answers }`.
+The activity names are engine-owned (they are behaviors), described in `catalog/docs/workbook_activities.json` like the world commands (W5, with the pack). Each activity is one module in `engine/workbook/activities/` with its schema params, the art references it uses (`artPaths`), its grade limits (`limits`) and a pure generator `generate(block, box, env) → { items, answers, issues }`, where `env` is `{ rules, grade, rng, catalog, ink, measure }`.
 
 | Activity | Key params | What the child does | Answer key |
 |---|---|---|---|
@@ -276,31 +276,32 @@ A page is `{ width, height, items }`. Items, drawn in order, all in points:
 
 | Item | Fields |
 |---|---|
-| `text` | `x, y, w, h, text, size, weight, align, fit, colour` |
+| `text` | `x, y, w, h, text, size, weight, align, valign, lines` (most lines; the renderer wraps and shrinks to fit), `colour` |
 | `line` / `poly` | `points, width, dash, colour, closed, fill` |
 | `rect` / `circle` | geometry, `width, dash, colour, fill` |
 | `shape` | `name, x, y, size, rotate, style` (`outline`, `trace`, `filled`, `answer`) |
-| `art` | an art reference plus `x, y, h` (height in pt), `style` (`line`, `trace`, `answer`) |
-| `group` | `items`, `clip` (a box), `tag` (activity and block, for tests) |
+| `art` | `ref` (an art reference) and a box `x, y, w, h`, `align` (`bottom` stands it on the box's floor, `center`); the renderer measures the drawing (`renderer/bounds_ctx.js`) and fits it, always as line art |
+| `group` | `items`, `tag` (`<document>/<page>/<slot>/<activity>`, the block's random stream name) |
 
-Answer items have the same form with `answer: true`; student pages draw items without it, answer pages draw both.
+Answer items have the same form with `answer: true`; student pages leave them out, answer-key pages (`answerKey: true`) draw both.
+
+Activities that size pictures by their shape (colour pages) get `env.measure(ref)`: the art's natural bounds from the same bounds recorder, pure geometry with no canvas.
 
 ## 10. Validation
 
-`validateWorkbook()` returns the same `{ ok, issues }` report as `validate()`: the schema checks (`E_SCHEMA_*`, the existing checker on `workbookSchema(catalog)`), then these. Each code gets a meaning and a fix in `catalog/docs/codes.json`.
+`validateWorkbook()` returns the same report as `validate()` (`ok`, `errors`, `warnings`, `stage`: schema, semantic or build): the schema checks (`E_SCHEMA_*` from the existing checker on `workbookSchema()`; an unknown activity is `E_SCHEMA_ENUM`), then these. Text uses the video checks too: `E_TEXT_BLOCKED` and `E_TEXT_GLYPH` (errors) and `W_TEXT_SOFT` (the kids list). A top-level `kind` other than `workbook` is `E_KIND`. Each code gets a meaning and a fix in `catalog/docs/codes.json`.
 
 | Code | When |
 |---|---|
 | `E_WB_ID` | a duplicate document or page id |
 | `E_WB_ANSWERS_FOR` | `answersFor` names an unknown or answer-key document |
-| `E_WB_SLOT` | a slot outside the layout, two blocks in one slot, or a span that is not adjacent |
-| `E_WB_ACTIVITY` | an unknown activity, or a param it does not take |
+| `E_WB_SLOT` | a slot outside the layout, or two blocks covering one slot (a span covers the rectangle between its two slots) |
 | `E_WB_SHAPE` | an unknown shape (the fix lists the nearest names) |
-| `E_WB_ART` | an unknown preset, pose, prop or object, or one that is not print-approved |
-| `E_WB_WORD` | a blocklisted word, or a word longer than the word search grid |
+| `E_WB_ART` | an unknown preset, pose, face, prop or object, a dog pose on a two-legged preset (or the reverse), or art that is not print-approved (checked once `education/line_art.json` exists, W2) |
+| `E_WB_WORD` | a word search word that is blocklisted or longer than the grid (W4) |
 | `E_WB_FIT` | a generator could not place everything (word search, find-the-shapes, counting) in its slot |
 | `E_WB_GRADE` | a number over the grade limit (count, maze size, dot points) |
-| `W_WB_TEXT` | instructions over the grade's length, or a soft-listed word |
+| `W_WB_TEXT` | instructions over the grade's length |
 | `W_WB_DENSE` | more blocks on a page than the grade allows |
 | `W_WB_REPEAT` | the same activity with the same params twice in a document |
 
@@ -309,7 +310,7 @@ Like `W_CONTRAST`, `E_WB_FIT` needs the generator, so the validator runs the gen
 ## 11. Tools and the AI pipeline
 
 - `tools/print.mjs <workbook.json> [--out DIR] [--doc ID] [--size a4] [--png] [--sheet]`: validates, builds and writes `<out>/<slug>/<slug>-<doc>.pdf` per document; `--png` writes page previews at 150 dpi; `--sheet` writes a contact sheet of every page for review. Default output `out/workbooks/`.
-- `tools/lib/canvas.mjs`: `backend.createPdf(meta)` → `{ page(w, h) → ctx, end(), close() → Buffer }` for the napi backend (skia-canvas has PDF output too, behind the same call).
+- `tools/lib/canvas.mjs`: `backend.createPdf(meta)` → `{ page(w, h) → ctx, end(), close() → Buffer }` for the napi backend only (skia-canvas, when installed, writes PDF differently; not wired). Andika Regular and Bold are registered as the family `Andika`.
 - **Prompts**: `prompts/workbook.md` (system: the workbook writer, grade rules, activity table, one worked example) and `prompts/workbook_repair.md`. Built by `tools/lib/workbook_prompts.mjs` from the catalog, so the prompt and the pack agree.
 - **Context pack**: a new file `09_workbooks.md` (tier `workbook`, budget 10 KB): the script format, the activity table with params, the shape table, print-approved characters, props and objects, the grade rules and an example. Video pack files do not grow. `project_instructions.md` gains two lines on when to write a workbook.
 - **Copy-paste**: `node tools/manual.mjs workbook-prompt --topic "shapes" --grade k --pages 10 [--cast doopi,mooka]` and `manual.mjs check-workbook <reply | --paste> [--print]`.
@@ -322,9 +323,9 @@ Each milestone ends with green tests, docs updated in the same change, and a dem
 | # | Milestone | Done when | Review |
 |---|---|---|---|
 | W0 | This spec, Andika fonts, ADR-040 | signed off | spec sign-off |
-| W1 | `kind` dispatch, workbook schema and validator (structure, ids, slots, art), layout and display list, `page_draw.js`, `line_art.js`, PDF in `canvas.mjs`, `tools/print.mjs` | a 2-document PDF with headers, slots and art; `out/demos/w1_line_art.pdf` shows every preset (3 poses), prop and object as line art | pick what is print-approved (fills `line_art.json`) |
+| W1 | `kind` dispatch, workbook schema and validator (structure, ids, slots, art), layout and display list, `page_draw.js`, `line_art.js`, PDF in `canvas.mjs`, `tools/print.mjs`, `tools/line_art_sheet.mjs`; the first activities (colour_page, count, draw_prompt) to exercise them, with answer keys | a 2-document PDF with headers, slots and art; `out/demos/w1_line_art.pdf` shows every preset (3 poses), prop and object as line art | pick what is print-approved (fills `line_art.json`) |
 | W2 | Education catalog: shapes, shape pictures, colours, line-art approvals; schemas, build checks, showcase tab; `shapes_draw.js` | `npm run catalog:build` green; `out/demos/w2_shapes.pdf`: one lesson page per shape | shape drawings and facts |
-| W3 | Activities 1: shape_lesson, trace_shapes, trace_letters (uppercase, digits), colour_page, colour_by_shape, find_shapes, count, draw_prompt; answer-key documents | `out/demos/w3_workbook/` student book and answer key | page look at K |
+| W3 | Activities 1: shape_lesson, trace_shapes, trace_letters (uppercase, digits), colour_by_shape, find_shapes | `out/demos/w3_workbook/` student book and answer key | page look at K |
 | W4 | Activities 2: maze, dot_to_dot, word_search, match, pattern; lowercase letters; `W_WB_*` checks | a 24-page K workbook and answer key, every activity at least twice | puzzles at each grade |
 | W5 | AI: prompts, `09_workbooks.md`, manual and generate commands, mock replies, examples in `catalog/examples/workbooks/` | a workbook written through the copy-paste flow, validated and printed | 3 AI-written workbooks |
 

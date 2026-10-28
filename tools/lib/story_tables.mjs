@@ -124,7 +124,10 @@ export function sceneCatalogMarkdown(catalog) {
 }
 
 /** Every validator code with what it means: catalog/docs/codes.json (the scene prompt explains all of them; tests keep this complete). */
-export const CODE_HELP = Object.fromEntries(Object.entries(catalogDocs().codes).map(([k, v]) => [k, v.meaning]));
+/** Codes only workbook scripts get (WORKBOOK_SPEC 10): the workbook prompt and pack file explain them, not the video ones. */
+export const isWorkbookCode = (code) => code === "E_KIND" || /^[EW]_WB_/.test(code);
+
+export const CODE_HELP = Object.fromEntries(Object.entries(catalogDocs().codes).filter(([k]) => !isWorkbookCode(k)).map(([k, v]) => [k, v.meaning]));
 
 export const codesMarkdown = () => Object.entries(CODE_HELP).map(([c, m]) => `${c} (${m})`).join("; ");
 

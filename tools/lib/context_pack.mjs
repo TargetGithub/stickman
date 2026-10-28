@@ -8,7 +8,7 @@ import { WORLD_COMMANDS_V2 } from "../../engine/validator/semantic.js";
 import { MACRO_PARAMS, MACRO_ANCHORS } from "../../engine/validator/macro_params.js";
 import { V2_ENUMS, DEFEAT_STYLES_BY_AUDIENCE } from "../../engine/validator/v2_names.js";
 import { LIMITS, LIMITS_V2 } from "../../engine/config.js";
-import { typeOf, worldParamText, colorAdvice, audienceMarkdown } from "./story_tables.mjs";
+import { typeOf, worldParamText, colorAdvice, audienceMarkdown, isWorkbookCode } from "./story_tables.mjs";
 
 /** Pack files, their tier and their size budget in bytes (a test allows 25% over). */
 export const PACK_FILES = {
@@ -176,7 +176,7 @@ function storyTools(src) {
 export const V3_CODES = new Set(["E_DEPTH_RANGE", "E_DEPTH_LAYER", "E_LIGHT_UNKNOWN", "E_CAMERA_MOVE", "E_LAYER_REF", "E_REF_SCENE", "E_TRACK_TARGET", "E_TRACK_KEYS", "E_TRACK_EASE", "E_TEXT_STYLE", "E_VIEW_BODY", "E_AUDIO_TRACK", "E_MARKER_UNKNOWN", "E_TEMPLATE_UNKNOWN", "E_TEMPLATE_PARAM"]);
 
 function rules(src) {
-  const all = Object.entries(src.files["docs/codes.json"]);
+  const all = Object.entries(src.files["docs/codes.json"]).filter(([k]) => !isWorkbookCode(k)); // workbook codes: 09 (W5)
   // v1/v2 codes with their fixes; the version 3 codes on one line (meanings only) to keep the pack small.
   const codes = [...all.filter(([k]) => !V3_CODES.has(k)).map(([k, v]) => `- ${k}: ${v.meaning} → ${v.fix}`),
     `- Version 3 scripts only: ${all.filter(([k]) => V3_CODES.has(k)).map(([k, v]) => `${k} (${v.meaning})`).join("; ")}.`].join("\n");
