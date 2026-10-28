@@ -56,15 +56,19 @@ const positional = (skip = 0) => args.filter((a, i) => (a === "-" || !a.startsWi
 const OUT = opt("--out", "out");
 const DIR = join(OUT, "manual");
 
+// pbcopy and pbpaste convert text with the shell's locale; without a UTF-8 one, dashes, quotes and arrows
+// arrive garbled. Ask for UTF-8 whatever the terminal is set to.
+const CLIP_ENV = { ...process.env, LANG: "en_US.UTF-8", LC_ALL: "en_US.UTF-8" };
+
 function copy(text) {
   const tries = process.platform === "darwin" ? [["pbcopy", []]] : process.platform === "win32" ? [["clip", []]] : [["wl-copy", []], ["xclip", ["-selection", "clipboard"]]];
-  for (const [c, a] of tries) if (spawnSync(c, a, { input: text }).status === 0) return true;
+  for (const [c, a] of tries) if (spawnSync(c, a, { input: text, env: CLIP_ENV }).status === 0) return true;
   return false;
 }
 function paste() {
   const tries = process.platform === "darwin" ? [["pbpaste", []]] : process.platform === "win32" ? [["powershell", ["-command", "Get-Clipboard"]]] : [["wl-paste", []], ["xclip", ["-selection", "clipboard", "-o"]]];
   for (const [c, a] of tries) {
-    const r = spawnSync(c, a, { encoding: "utf8" });
+    const r = spawnSync(c, a, { encoding: "utf8", env: CLIP_ENV });
     if (r.status === 0) return r.stdout;
   }
   throw new Error("could not read the clipboard; save the reply to a file and pass its path");
@@ -188,6 +192,10 @@ async function workbookCommand() {
   }
   const text = flag("--paste") ? paste() : src === "-" ? readFileSync(0, "utf8") : readFileSync(src, "utf8");
   const r = checkWorkbookReply(text, wb);
+  if (r.prompt) {
+    console.log(r.message);
+    process.exit(1);
+  }
   console.log(r.ok ? `VALID. ${r.message}` : `NOT VALID YET. ${r.message}`);
   if (r.result) for (const i of [...r.result.errors, ...r.result.warnings]) console.log(`  ${i.code} at ${i.path || "(root)"}: ${i.message}`);
   if (!r.ok) {

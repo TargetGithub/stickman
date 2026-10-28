@@ -11,6 +11,9 @@ const PROMPTS = fileURLToPath(new URL("../../prompts/", import.meta.url));
 const read = (name) => readFileSync(join(PROMPTS, name), "utf8");
 const fill = (text, vars) => text.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? "");
 
+/** The example workbook the prompt and 09_workbooks.md show (a shapes book, so it never matches a topic too closely). */
+export const PROMPT_EXAMPLE = "shapes_with_doopi";
+
 export const REPLY_RULE = "Reply with only the JSON object in a single ```json code block. No explanation before or after it.";
 
 /** The example workbooks in catalog/examples/workbooks/ (name → script), in name order. */
@@ -23,7 +26,7 @@ export function workbookExamples(root = CATALOG_DIR) {
 export function workbookSystem(wb) {
   const docs = catalogDocs();
   const prose = readFileSync(join(CATALOG_DIR, "docs/workbook.md"), "utf8");
-  const example = Object.values(workbookExamples())[0];
+  const example = workbookExamples()[PROMPT_EXAMPLE];
   return fill(read("workbook.md"), { BODY: workbookBody({ wb, docs: docs.workbook_activities, codes: docs.codes, prose, example }) });
 }
 

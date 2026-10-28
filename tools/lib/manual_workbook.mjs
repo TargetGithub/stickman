@@ -8,8 +8,12 @@ import { workbookRepair, REPLY_RULE } from "./workbook_prompts.mjs";
 /** Pages and documents of a workbook, for messages. */
 export const bookSize = (s) => `${s.documents.length} document(s), ${s.documents.filter((d) => d.pages).reduce((n, d) => n + d.pages.length, 0)} page(s)`;
 
-/** @returns {{ ok: boolean, parsed: boolean, script?, result?, fixPrompt?: string, message: string }} */
+/** @returns {{ ok: boolean, parsed: boolean, prompt?: true, script?, result?, fixPrompt?: string, message: string }} */
 export function checkWorkbookReply(text, wb) {
+  // The prompt itself (still on the clipboard, or saved by mistake) is not a reply.
+  if (text.trimStart().startsWith("You write printable activity workbooks")) {
+    return { ok: false, parsed: false, prompt: true, message: "This is the workbook prompt, not the model's reply (it is still on the clipboard). Paste the prompt into a chat, copy the model's JSON reply, then check again." };
+  }
   let script;
   try {
     script = parseJsonText(text);

@@ -10,6 +10,7 @@ import { V2_ENUMS, DEFEAT_STYLES_BY_AUDIENCE } from "../../engine/validator/v2_n
 import { LIMITS, LIMITS_V2 } from "../../engine/config.js";
 import { typeOf, worldParamText, colorAdvice, audienceMarkdown, isWorkbookCode } from "./story_tables.mjs";
 import { workbookBody, workbookCatalogOf } from "./workbook_tables.mjs";
+import { PROMPT_EXAMPLE } from "./workbook_prompts.mjs";
 
 /** Pack files, their tier and their size budget in bytes (a test allows 25% over). */
 export const PACK_FILES = {
@@ -220,7 +221,7 @@ export function buildPack(src, version) {
     "06_story_tools.md": storyTools(src),
     "07_rules_and_codes.md": rules(src),
     "08_examples.md": examples(src),
-    "09_workbooks.md": doc("Workbooks (printable PDF activity books)", workbookBody({ wb: workbookCatalogOf(src), docs: src.files["docs/workbook_activities.json"], codes: src.files["docs/codes.json"], prose: src.texts["docs/workbook.md"], example: Object.values(src.workbooks)[0] })),
+    "09_workbooks.md": doc("Workbooks (printable PDF activity books)", workbookBody({ wb: workbookCatalogOf(src), docs: src.files["docs/workbook_activities.json"], codes: src.files["docs/codes.json"], prose: src.texts["docs/workbook.md"], example: src.workbooks[PROMPT_EXAMPLE] })),
   };
   files["project_instructions.md"] = `${src.texts["docs/project_instructions.md"].trim()}\n\nCatalog version ${version}.\n`;
   return files;

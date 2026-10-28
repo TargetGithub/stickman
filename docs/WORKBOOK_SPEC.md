@@ -290,7 +290,7 @@ Activities that size pictures by their shape (colour pages) get `env.measure(ref
 
 ## 10. Validation
 
-`validateWorkbook()` returns the same report as `validate()` (`ok`, `errors`, `warnings`, `stage`: schema, semantic or build): the schema checks (`E_SCHEMA_*` from the existing checker on `workbookSchema()`; an unknown activity is `E_SCHEMA_ENUM`), then these. Text uses the video checks too: `E_TEXT_BLOCKED` and `E_TEXT_GLYPH` (errors) and `W_TEXT_SOFT` (the kids list). A top-level `kind` other than `workbook` is `E_KIND`. Each code gets a meaning and a fix in `catalog/docs/codes.json`.
+`validateWorkbook()` returns the same report as `validate()` (`ok`, `errors`, `warnings`, `stage`: schema, semantic or build): the schema checks (`E_SCHEMA_*` from the existing checker on `workbookSchema()`; an unknown activity is `E_SCHEMA_ENUM`), then these. Text uses the video checks too: `E_TEXT_BLOCKED` and `E_TEXT_GLYPH` (errors) and `W_TEXT_SOFT` (the kids list); the glyph check also accepts what Andika draws and the video fonts do not (en and em dashes, curly quotes, the ellipsis, the bullet, × and ÷). A top-level `kind` other than `workbook` is `E_KIND`. Each code gets a meaning and a fix in `catalog/docs/codes.json`.
 
 | Code | When |
 |---|---|
@@ -319,9 +319,9 @@ Like `W_CONTRAST`, `E_WB_FIT` needs the generator, so the validator runs the gen
 - **One text for the model.** `tools/lib/workbook_tables.mjs` `workbookBody()` puts together the prose (`catalog/docs/workbook.md`: what a good workbook is, the "Before you answer, check" list), the script format, the activity table (`catalog/docs/workbook_activities.json`: one entry per engine activity, each with an example the build validates), the grade rules, the shapes, the names a model may use (shape and dot pictures, crayon colours, print-approved presets with their poses, objects, word lists), the workbook validator codes and one example workbook. Fight gear (props and objects tagged `fight` or `weapon`) stays printable but is not offered.
 - **Prompts**: `prompts/workbook.md` (the writer role around that body) and `prompts/workbook_repair.md` (the issues to fix), built by `tools/lib/workbook_prompts.mjs`.
 - **Context pack**: `09_workbooks.md` is the same body (tier `workbook`, budget 16.5 KB, outside the 100 KB video pack); `00_start_here.md` and `project_instructions.md` point to it for workbook tasks.
-- **Copy-paste**: `node tools/manual.mjs workbook-prompt --topic "..." [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4] [--copy]` writes `out/manual/workbook_prompt.md`; `manual.mjs check-workbook <reply | --paste> [--print]` validates the reply, saves `out/workbooks/scripts/<slug>.json` and prints it, or writes `workbook_fix_prompt.md` for the same chat.
+- **Copy-paste**: `node tools/manual.mjs workbook-prompt --topic "..." [--grade prek|k|1|2] [--pages 10] [--cast doopi,mooka] [--size letter|a4] [--copy]` writes `out/manual/workbook_prompt.md`; `manual.mjs check-workbook <reply | --paste> [--print]` validates the reply, saves `out/workbooks/scripts/<slug>.json` and prints it, or writes `workbook_fix_prompt.md` for the same chat. A pasted prompt (the clipboard not yet holding the reply) is named as such. The clipboard is read and written as UTF-8 whatever the shell's locale.
 - **Automatic**: `node tools/generate.mjs --workbook --topic "..." [--grade k] [--pages N] [--cast ...] [--count N]` (`--mock` offline; `--print-prompt` shows the system prompt) writes, repairs (up to `maxAttempts`), saves, prints and adds the review queue entry. Local models are never used (project rule).
-- **Examples**: `catalog/examples/workbooks/` (outside `examples/index.json`); the build validates each; the first one is the example in the prompt and the pack.
+- **Examples**: `catalog/examples/workbooks/` (outside `examples/index.json`); the build validates each; `shapes_with_doopi` (`PROMPT_EXAMPLE`) is the example in the prompt and the pack, so a topic never meets a finished book on the same theme.
 
 ## 12. Milestones
 

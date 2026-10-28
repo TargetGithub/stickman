@@ -9,4 +9,4 @@ Rules for every reply:
 - Keep everything family friendly. The audience is kids unless the task says general.
 - For a printable workbook (a task that says workbook, worksheet or activity book), read only 09_workbooks.md: it has the format, every activity and name you can use, the grade rules and its own checklist.
 
-Catalog version 1-58506a6dcc.
+Catalog version 1-60b2f49c90.

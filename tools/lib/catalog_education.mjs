@@ -4,6 +4,7 @@
 import { cornerPoints, straightSides } from "../../engine/workbook/shape_facts.js";
 import { validate } from "../../engine/index.js";
 import { workbookCatalogOf } from "./workbook_tables.mjs";
+import { PROMPT_EXAMPLE } from "./workbook_prompts.mjs";
 
 const CURVED_KINDS = ["ellipse", "sector", "crescent", "ring", "path"];
 
@@ -68,6 +69,7 @@ export function educationIssues(src) {
     const book = { kind: "workbook", version: 1, title: "Example", seed: 1, grade: "k", documents: [{ id: "d", pages: [{ id: "p", blocks: [d.example] }] }] };
     for (const i of issuesOf(book)) bad("docs/workbook_activities.json", name, `example: ${i.code} ${i.message}`);
   }
+  if (!src.workbooks?.[PROMPT_EXAMPLE]) bad(`examples/workbooks/${PROMPT_EXAMPLE}.json`, "", "the prompt's example workbook is missing");
   for (const [name, script] of Object.entries(src.workbooks || {})) {
     for (const i of issuesOf(script)) bad(`examples/workbooks/${name}.json`, i.path, `${i.code} ${i.message}`);
   }

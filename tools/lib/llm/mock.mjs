@@ -7,7 +7,7 @@
 
 import { exampleScripts } from "../prompt_pack.mjs";
 import { exampleStories } from "../story_prompts.mjs";
-import { workbookExamples } from "../workbook_prompts.mjs";
+import { workbookExamples, PROMPT_EXAMPLE } from "../workbook_prompts.mjs";
 
 const textOf = (m) => (typeof m.content === "string" ? m.content : m.content.filter((p) => p.type === "text").map((p) => p.text).join("\n"));
 
@@ -112,12 +112,12 @@ export function createMockAdapter(responder = defaultResponder()) {
 }
 
 /**
- * Workbooks (WORKBOOK_SPEC 11): the first example workbook titled after the topic, at the asked grade and seed.
+ * Workbooks (WORKBOOK_SPEC 11): the prompt's example workbook titled after the topic, at the asked grade and seed.
  * The first draft asks for a maze too big for its grade, so the repair path runs.
  */
 function workbookStage(req) {
   const user = textOf(req.messages[0]); // the task (later messages are repairs)
-  const book = structuredClone(Object.values(workbookExamples())[0]);
+  const book = structuredClone(workbookExamples()[PROMPT_EXAMPLE]);
   const topic = /about: (.*)/.exec(user)?.[1] ?? "shapes";
   book.title = `Mock Workbook: ${topic}`.slice(0, 60);
   book.documents.forEach((d) => (d.title = book.title));

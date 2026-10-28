@@ -17,10 +17,14 @@ function report(stage, issues) {
   return { ok: !issues.some((i) => !isWarning(i)), errors: issues.filter((i) => !isWarning(i)), warnings: issues.filter(isWarning), timeline: "", durationSec: null, stage };
 }
 
+// Workbook text is set in Andika, which also has these (the video fonts do not): dashes, curly quotes, the
+// ellipsis, the bullet, times and divide.
+const ANDIKA_EXTRA = /[\u2013\u2014\u2018\u2019\u201c\u201d\u2026\u2022\u00d7\u00f7]/g;
+
 /** Text checks: blocked words and glyphs (errors), soft words, and the grade's instruction length. */
 function textIssues(text, path, catalog, maxLen, out) {
   if (typeof text !== "string") return;
-  checkText(text, path, catalog.blocklist || [], out);
+  checkText(text.replace(ANDIKA_EXTRA, "-"), path, catalog.blocklist || [], out);
   out.push(...softWordIssues(text, path, catalog, "kids"));
   if (maxLen && text.length > maxLen) out.push({ code: "W_WB_TEXT", path, message: `${text.length} characters is long for this grade.`, fix: `Keep it under ${maxLen} characters: a grown-up reads it aloud.` });
 }
