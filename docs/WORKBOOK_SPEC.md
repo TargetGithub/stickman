@@ -1,6 +1,6 @@
 # Workbooks: printable PDF activity books from the StickMan catalog
 
-Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2 built, waiting for the shapes review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
+Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2 reviewed; W3 built, waiting for the K page review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
 
 ## 1. Goal and scope
 
@@ -164,11 +164,11 @@ The activity names are engine-owned (they are behaviors), described in `catalog/
 | Activity | Key params | What the child does | Answer key |
 |---|---|---|---|
 | `shape_lesson` | `shape` | sees one shape big with its corners dotted, its name and facts (sides, corners; square corners from grade 1, lines of symmetry in grade 2; the shape's note from K), three dashed copies to trace with a green start dot, and three things in real life that have the shape | none |
-| `trace_shapes` | `shapes` (1-6), `rows` | traces dashed shapes, each row fading from guided (start dot, arrow) to faint | none |
-| `trace_letters` | `text` (letters, digits or a word), `rows`, `case` | traces letters on handwriting lines (top, dashed midline, baseline) with numbered stroke starts and arrows | none |
+| `trace_shapes` | `shapes` (1-6), `rows` (default one per shape) | traces a row of dashed copies of each shape, fading across the row, the first with a green start dot | none |
+| `trace_letters` | `text` (capitals, digits and spaces, up to 16; lowercase in W4), `rows` (default: as many as fit) | traces on handwriting lines (cap line, dashed midline, baseline): each row starts with a solid model with numbered green stroke starts and arrows, then dashed copies that fade, and leaves the last place empty to write alone when the row holds three or more; cap height is the grade's smallest item (K 54 pt) | none |
 | `colour_page` | `art` (1-4 art refs), `ground` | colours a large line-art picture | none |
-| `colour_by_shape` | `picture` (a shape picture), `key` {shape: colour} | colours each shape by the key (colour words with an outlined crayon) | the coloured picture |
-| `find_shapes` | `target` (1-2 shapes), `count`, `distractors`, `askCount` | colours or circles every target among scattered shapes, writes how many | targets marked, the count |
+| `colour_by_shape` | `picture` (a shape picture), `key` {shape: colour} (default: one crayon colour per shape, in order, never black) | colours each shape by the key below the picture (a small shape, "=", the colour word in an outlined crayon) | the coloured picture and crayons |
+| `find_shapes` | `target` (one shape), `count`, `distractors` (1-5 other shapes), `others` (default count + 2), `askCount` (default true) | colours or circles every target among scattered shapes (no turning at pre-K and K; quarter turns from grade 1), writes how many | targets circled in red, the count |
 | `count` | `item` (art ref), `groups` (1-6 numbers) | counts each group and writes the number in a box | the numbers |
 | `match` | `pairs` (2-6): `[left, right]` art refs or words; `mode` line | draws a line from each left item to its partner (right column shuffled) | the lines |
 | `maze` | `size` [cols, rows], `start`, `end` (art refs) | draws a path from start to end | the path |
@@ -252,7 +252,7 @@ Shape pictures for `colour_by_shape` (a house of squares and triangles, a rocket
 
 ### 8.2 Letters, words and colours
 
-- `education/letters.json`: stroke letters A-Z, a-z and 0-9 as centrelines in an em box (cap height, x-height, baseline), each stroke in writing order with its start point. W3 ships uppercase and digits; lowercase follows in W4.
+- `education/letters.json`: stroke letters A-Z, a-z and 0-9 as centrelines in an em box (cap height, x-height, baseline), each stroke in writing order with its start point. W3 ships capitals and digits (ball-and-stick; strokes use the object path commands); lowercase follows in W4. The renderer is `renderer/letters_draw.js`; a dot whose stroke starts where an earlier one did moves along its own stroke so every number shows.
 - `education/words.json`: word lists by topic and grade (shapes, colours, animals, family, school, sight words), each word checked against `story/blocklist.json`; scripts may use other words, which the validator checks the same way.
 - `education/colours.json`: the crayon colours used by keys (red, orange, yellow, green, blue, purple, brown, black, pink, grey) with their hex for answer keys.
 
@@ -296,7 +296,10 @@ Activities that size pictures by their shape (colour pages) get `env.measure(ref
 | `E_WB_ID` | a duplicate document or page id |
 | `E_WB_ANSWERS_FOR` | `answersFor` names an unknown or answer-key document |
 | `E_WB_SLOT` | a slot outside the layout, or two blocks covering one slot (a span covers the rectangle between its two slots) |
-| `E_WB_SHAPE` | an unknown shape (the fix lists the nearest names) |
+| `E_WB_SHAPE` | an unknown shape (the fix lists the nearest names), a colour key shape the picture does not have, or a find-the-shapes target also listed as a distractor |
+| `E_WB_PICTURE` | an unknown shape picture |
+| `E_WB_COLOUR` | a colour that is not in `education/colours.json` |
+| `E_WB_LETTER` | a character with no tracing letter |
 | `E_WB_ART` | an unknown preset, pose, face, prop or object, a dog pose on a two-legged preset (or the reverse), or art that is not print-approved (checked once `education/line_art.json` exists, W2) |
 | `E_WB_WORD` | a word search word that is blocklisted or longer than the grid (W4) |
 | `E_WB_FIT` | a generator could not place everything (word search, find-the-shapes, counting) in its slot |

@@ -1,0 +1,35 @@
+{
+  "kind": "workbook",
+  "version": 1,
+  "title": "Shapes and Letters with Doopi",
+  "seed": 3301,
+  "grade": "k",
+  "style": { "cast": ["doopi", "mooka"] },
+  "documents": [
+    {
+      "id": "student",
+      "title": "Shapes and Letters with Doopi",
+      "cover": { "subtitle": "Trace, find, count and colour", "art": [{ "preset": "doopi", "pose": "waveA" }, { "shape": "star" }, { "preset": "mooka", "pose": "victory" }] },
+      "pages": [
+        { "id": "meet_triangle", "title": "Meet the Triangle", "blocks": [{ "activity": "shape_lesson", "shape": "triangle" }] },
+        { "id": "trace_shapes", "title": "Trace the Shapes", "instructions": "Start at the green dot. Follow the dashes.", "art": { "preset": "doopi", "pose": "pointPose" },
+          "blocks": [{ "activity": "trace_shapes", "shapes": ["circle", "square", "triangle", "star"] }] },
+        { "id": "find_triangles", "title": "Find the Triangles", "instructions": "Colour every triangle. How many are there?",
+          "blocks": [{ "activity": "find_shapes", "target": "triangle", "count": 6, "distractors": ["circle", "square", "star"] }] },
+        { "id": "colour_house", "title": "Colour by Shape", "instructions": "Colour each shape with its crayon.",
+          "blocks": [{ "activity": "colour_by_shape", "picture": "house", "key": { "square": "red", "triangle": "blue", "rectangle": "brown", "circle": "yellow" } }] },
+        { "id": "trace_abc", "title": "Trace A and B", "instructions": "Start at dot 1. Follow the arrow.", "art": { "preset": "mooka" },
+          "blocks": [{ "activity": "trace_letters", "text": "A", "rows": 2 }, { "activity": "trace_letters", "slot": 1, "text": "B", "rows": 2 }], "layout": "halves" },
+        { "id": "trace_name", "title": "Write DOOPI", "blocks": [{ "activity": "trace_letters", "text": "DOOPI" }] },
+        { "id": "numbers", "title": "Trace the Numbers", "blocks": [{ "activity": "trace_letters", "text": "123" }] },
+        { "id": "count_stars", "title": "Count the Stars", "instructions": "Count. Write the number in the box.",
+          "blocks": [{ "activity": "count", "item": { "shape": "star" }, "groups": [4, 2, 5] }] },
+        { "id": "colour_rocket", "title": "Colour the Rocket", "blocks": [{ "activity": "colour_by_shape", "picture": "rocket" }] },
+        { "id": "find_circles", "title": "Find the Circles", "layout": "halves",
+          "blocks": [{ "activity": "find_shapes", "target": "circle", "count": 4, "distractors": ["heart", "oval"], "others": 4 },
+                     { "slot": 1, "activity": "draw_prompt", "prompt": "Draw a circle face. Add eyes and a smile!" }] }
+      ]
+    },
+    { "id": "answers", "answersFor": "student", "title": "Shapes and Letters with Doopi", "cover": { "subtitle": "Answer Key" } }
+  ]
+}

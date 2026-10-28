@@ -1,0 +1,24 @@
+{
+  "title": "Tracing letters (education/letters.json, WORKBOOK_SPEC 8.2): centreline strokes in writing order, in an em box (y 0 cap line, 1 baseline).",
+  "type": "object",
+  "required": ["description", "glyphs"],
+  "additionalProperties": false,
+  "properties": {
+    "description": { "type": "string", "minLength": 8, "maxLength": 300 },
+    "glyphs": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[A-Za-z0-9]$" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["w", "strokes"],
+        "additionalProperties": false,
+        "properties": {
+          "w": { "type": "number", "minimum": 0.2, "maximum": 1.2 },
+          "strokes": { "type": "array", "minItems": 1, "maxItems": 4, "items": {
+            "type": "array", "minItems": 2, "items": { "type": "array", "minItems": 3, "maxItems": 7 }
+          } }
+        }
+      }
+    }
+  }
+}

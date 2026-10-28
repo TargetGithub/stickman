@@ -28,6 +28,7 @@ export const EXTRA_FILES = {
   "education/shape_pictures.json": "shape_pictures",
   "education/colours.json": "colours",
   "education/line_art.json": "line_art",
+  "education/letters.json": "letters",
 };
 
 /** The schema (catalog/schemas/<name>.schema.json) for an authored file. */

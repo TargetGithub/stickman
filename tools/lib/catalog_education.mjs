@@ -25,6 +25,17 @@ export function educationIssues(src) {
       if (!shapes[q.shape]) bad("education/shape_pictures.json", `${name}.parts[${i}].shape`, `unknown shape "${q.shape}"`);
     });
   }
+  // Tracing letters: every capital and digit, each stroke starting with M and staying near the em box.
+  const glyphs = src.files["education/letters.json"].glyphs;
+  for (const ch of "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") if (!glyphs[ch]) bad("education/letters.json", `glyphs.${ch}`, `no tracing letter for "${ch}"`);
+  for (const [ch, g] of Object.entries(glyphs)) {
+    g.strokes.forEach((s, i) => {
+      if (s[0]?.[0] !== "M" || s.length < 2) bad("education/letters.json", `glyphs.${ch}.strokes[${i}]`, "a stroke starts with M and draws at least one segment");
+      const nums = s.flatMap((c) => c.slice(1));
+      if (nums.some((v, k) => (k % 2 ? v < -0.15 || v > 1.15 : v < -0.15 || v > g.w + 0.15))) bad("education/letters.json", `glyphs.${ch}.strokes[${i}]`, "a point lies outside the em box");
+    });
+  }
+
   const known = {
     presets: new Set(src.presets.map((p) => p.id)),
     props: new Set(Object.keys(src.catalog.props)),
