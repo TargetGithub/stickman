@@ -6,3 +6,4 @@ Bundled fonts only (spec 15.2). Planned: a comic display font for text pops and 
 |---|---|---|---|
 | Bangers-Regular.ttf | Bangers | SIL OFL 1.1 (Bangers-OFL.txt) | github.com/google/fonts ofl/bangers |
 | Inter.ttf | Inter (variable, opsz+wght) | SIL OFL 1.1 (Inter-OFL.txt) | github.com/google/fonts ofl/inter |
+| Andika-Regular.ttf, Andika-Bold.ttf | Andika (school print, SIL) | SIL OFL 1.1 (Andika-OFL.txt) | github.com/google/fonts ofl/andika (workbooks, WORKBOOK_SPEC) |

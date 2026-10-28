@@ -6,6 +6,7 @@ Working rules for developing this project.
 - Behavior and script schema: `stickman-engine-spec.md` (v1.1).
 - Catalog layout, the build and the AI context pack: `docs/CATALOG_SPEC.md`; how to add things: `catalog/README.md`.
 - Module interfaces and data shapes: `docs/ARCHITECTURE.md` section 4.
+- Printable workbooks (`kind: "workbook"`, PDF): `docs/WORKBOOK_SPEC.md`.
 - Current milestone and tasks: `docs/IMPLEMENTATION_PLAN.md`.
 - If code and these documents disagree, fix one of them in the same change.
 

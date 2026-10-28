@@ -142,6 +142,19 @@ Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's visua
 | V3.11 | Renderer polish: lit set pieces and props (ADR-035), a bendable spine (ADR-036), night on every theme (ADR-037) | DONE 2026-10-20, awaiting review (`out/demos/v3_polish`) |
 | V3.12 | Pace: preschool-show timing, cutting and subtitles (`pace` block, ADR-038, spec 5.8); ep01_v3 re-timed (6:39 → 4:39) | DONE 2026-10-20, awaiting review (`out/series/doopi/ep01_v3_paced`) |
 
+## Workbooks (docs/WORKBOOK_SPEC.md section 12)
+
+Printable PDF activity books for pre-K to grade 2 (ADR-040). Each milestone ends with green tests, a demo in `out/demos/` and Sridhar's review.
+
+| # | Milestone | Status |
+|---|---|---|
+| W0 | Spec, Andika fonts, ADR-040 | DONE 2026-10-28, awaiting sign-off |
+| W1 | Workbook kind: schema, validator, layout, display list, page and line-art drawing, `tools/print.mjs` | |
+| W2 | Education catalog: shapes, shape pictures, colours, print approvals | |
+| W3 | Activities 1: lessons, tracing, colouring, find-the-shapes, counting, drawing; answer keys | |
+| W4 | Activities 2: maze, dot-to-dot, word search, match, pattern | |
+| W5 | AI prompts, context pack file, manual and generate commands | |
+
 ## Schedule summary
 
 | Milestone | Days | Cumulative |

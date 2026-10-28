@@ -69,3 +69,9 @@ No test framework (uses `node:test`), no bundler, no linter dependency for now.
 | S7 | 2-minute mix through five moods (music quality gate) | 15 min |
 | S8 | 5 generated stories and 3 fight videos | 2 hours |
 | S9 | The reference story, full length | 20 min |
+| W0 | Workbook spec (docs/WORKBOOK_SPEC.md) | sign-off |
+| W1 | Line-art contact sheet: pick print-approved characters, props and objects | 20 min |
+| W2 | Shape lesson pages (drawings and facts) | 15 min |
+| W3 | First K workbook and answer key | 20 min |
+| W4 | Puzzles at each grade (maze, dot-to-dot, word search, match, pattern) | 20 min |
+| W5 | 3 AI-written workbooks | 30 min |
