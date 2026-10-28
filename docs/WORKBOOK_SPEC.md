@@ -1,6 +1,6 @@
 # Workbooks: printable PDF activity books from the StickMan catalog
 
-Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 built, waiting for the line-art review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
+Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2 built, waiting for the shapes review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
 
 ## 1. Goal and scope
 
@@ -163,7 +163,7 @@ The activity names are engine-owned (they are behaviors), described in `catalog/
 
 | Activity | Key params | What the child does | Answer key |
 |---|---|---|---|
-| `shape_lesson` | `shape` | sees one shape big with its name, its facts (sides, corners), a dashed copy to trace and three real-world examples | none |
+| `shape_lesson` | `shape` | sees one shape big with its corners dotted, its name and facts (sides, corners; square corners from grade 1, lines of symmetry in grade 2; the shape's note from K), three dashed copies to trace with a green start dot, and three things in real life that have the shape | none |
 | `trace_shapes` | `shapes` (1-6), `rows` | traces dashed shapes, each row fading from guided (start dot, arrow) to faint | none |
 | `trace_letters` | `text` (letters, digits or a word), `rows`, `case` | traces letters on handwriting lines (top, dashed midline, baseline) with numbered stroke starts and arrows | none |
 | `colour_page` | `art` (1-4 art refs), `ground` | colours a large line-art picture | none |
@@ -268,7 +268,7 @@ Not every catalog drawing reads well as a black outline (the line-art wrapper tu
 }
 ```
 
-`status` is `ok` or `redraw` (needs a line-art version first). The build fails on an unknown id; the validator rejects art that is not `ok` (`E_WB_ART`); the context pack lists only `ok` entries.
+`status` is `ok` or `redraw` (needs a line-art version first). An entry that is not listed is not approved, so a new catalog entry appears in workbooks only after review. The build fails on an unknown id or pose; the validator rejects art that is not `ok` (`E_WB_ART`); the context pack lists only `ok` entries.
 
 ## 9. Display list (engine to renderer)
 
@@ -324,8 +324,8 @@ Each milestone ends with green tests, docs updated in the same change, and a dem
 |---|---|---|---|
 | W0 | This spec, Andika fonts, ADR-040 | signed off | spec sign-off |
 | W1 | `kind` dispatch, workbook schema and validator (structure, ids, slots, art), layout and display list, `page_draw.js`, `line_art.js`, PDF in `canvas.mjs`, `tools/print.mjs`, `tools/line_art_sheet.mjs`; the first activities (colour_page, count, draw_prompt) to exercise them, with answer keys | a 2-document PDF with headers, slots and art; `out/demos/w1_line_art.pdf` shows every preset (3 poses), prop and object as line art | pick what is print-approved (fills `line_art.json`) |
-| W2 | Education catalog: shapes, shape pictures, colours, line-art approvals; schemas, build checks, showcase tab; `shapes_draw.js` | `npm run catalog:build` green; `out/demos/w2_shapes.pdf`: one lesson page per shape | shape drawings and facts |
-| W3 | Activities 1: shape_lesson, trace_shapes, trace_letters (uppercase, digits), colour_by_shape, find_shapes | `out/demos/w3_workbook/` student book and answer key | page look at K |
+| W2 | Education catalog: shapes, shape pictures, colours, line-art approvals; schemas, build checks (facts against drawings), showcase tab; `shapes_draw.js`; the shape_lesson activity | `npm run catalog:build` green; `out/demos/w2_shapes/` (one lesson page per shape) and `out/demos/w2_shape_sheet.pdf` (every shape with its facts, every shape picture) | shape drawings and facts |
+| W3 | Activities 1: trace_shapes, trace_letters (uppercase, digits), colour_by_shape, find_shapes | `out/demos/w3_workbook/` student book and answer key | page look at K |
 | W4 | Activities 2: maze, dot_to_dot, word_search, match, pattern; lowercase letters; `W_WB_*` checks | a 24-page K workbook and answer key, every activity at least twice | puzzles at each grade |
 | W5 | AI: prompts, `09_workbooks.md`, manual and generate commands, mock replies, examples in `catalog/examples/workbooks/` | a workbook written through the copy-paste flow, validated and printed | 3 AI-written workbooks |
 

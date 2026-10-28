@@ -91,6 +91,8 @@ export function buildCatalog(src, { codes }) {
     docs: Object.fromEntries(["world_commands", "macros", "camera", "transitions", "codes"].map((d) => [d, src.files[`docs/${d}.json`]])),
     examples: exampleFacts(src),
     pack: src.files["examples/index.json"].pack,
+    // Workbooks (WORKBOOK_SPEC 8): shapes, shape pictures, colours and print approvals.
+    education: { shapes: src.files["education/shapes.json"], pictures: src.files["education/shape_pictures.json"], colours: src.files["education/colours.json"], lineArt: src.files["education/line_art.json"] },
   };
   const vocab = formatJson(engineVocab(codes));
   const fullText = formatJson({ _generated: GENERATED_NOTE, ...full });
@@ -111,6 +113,7 @@ export function buildCatalog(src, { codes }) {
       themes: c.themeNames.length, objects: Object.keys(c.objects).length, props: Object.keys(c.props).length, faces: c.faceNames.length,
       bodies: c.bodyNames.length, activities: c.activityNames.length, moods: Object.keys(c.musicMoods).length, macros: Object.keys(MACRO_PARAMS).length,
       worldCommands: Object.keys(WORLD_COMMANDS_V2).length, codes: codes.size, presets: src.presets.length, examples: full.examples.length,
+      shapes: Object.keys(full.education.shapes).length, shapePictures: Object.keys(full.education.pictures).length,
     },
     authored: src.authored,
     pack: Object.fromEntries(Object.entries(PACK_FILES).map(([f, m]) => [f, { tier: m.tier, budget: m.budget, bytes: sizes[`generated/context/${f}`] }])),

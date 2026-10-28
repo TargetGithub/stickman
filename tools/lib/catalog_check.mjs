@@ -12,6 +12,7 @@ import { OBJECT_SHAPES } from "../../engine/renderer/objects.js";
 import { PROP_SHAPES } from "../../engine/renderer/props.js";
 import { LAYER_KINDS } from "../../engine/renderer/background.js";
 import { MOVE_FILES } from "../../catalog/index.js";
+import { educationIssues } from "./catalog_education.mjs";
 import { checkMove } from "./move_check.mjs";
 import { schemaFor } from "./catalog_files.mjs";
 import { worldCommandStory, macroStory, cameraStory, transitionStory, presetStory } from "./catalog_harness.mjs";
@@ -198,6 +199,9 @@ export function checkCatalog(src, { codes, moveChecks = true, examples = true })
     const have = new Set(now[kind] || []);
     for (const n of names) if (!have.has(n)) bad("base_names.json", `${kind}.${n}`, `the base name "${n}" is gone: bundles may refer to it. Keep it (or an entry by that name) until the next catalog format version; then run node tools/catalog_build.mjs --release-names`);
   }
+
+  // 10. Education files (WORKBOOK_SPEC 8): shape facts against their drawings, pictures, print approvals.
+  out.push(...educationIssues(src));
 
   const pick = index.pack;
   for (const p of [pick.clip, pick.outline]) if (!listed.has(p)) bad("examples/index.json", "pack", `"${p}" is not an indexed example`);

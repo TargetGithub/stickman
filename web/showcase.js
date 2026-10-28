@@ -141,6 +141,22 @@ function copyText(c) {
   return typeof c.copy === "string" ? c.copy : JSON.stringify(c.copy, null, 2);
 }
 
+/** A still picture (workbook shapes): the card's draw(ctx, w, h) on white, once. */
+function staticCanvas(c) {
+  const canvas = el("canvas");
+  canvas.width = 640;
+  canvas.height = 360;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  try {
+    c.draw(ctx, canvas.width, canvas.height);
+  } catch (e) {
+    console.warn(`${c.id}: ${e.message}`);
+  }
+  return canvas;
+}
+
 function cardNode(section, c) {
   const node = el("article", "card");
   node.id = `${section.id}/${c.id}`;
@@ -148,6 +164,7 @@ function cardNode(section, c) {
   node._section = section.id;
   node._text = `${c.name} ${c.description} ${c.tags.join(" ")} ${c.meta || ""}`.toLowerCase();
   if (c.script) node.append(el("canvas"));
+  if (c.draw) node.append(staticCanvas(c));
   const body = el("div", "body");
   const row = el("div", "row");
   const name = el("a", "", c.name);

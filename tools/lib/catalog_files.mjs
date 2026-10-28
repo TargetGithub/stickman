@@ -24,6 +24,10 @@ export const EXTRA_FILES = {
   "bundle_blocklist.json": "bundle_blocklist",
   "bundle_allowlist.json": "bundle_allowlist",
   "base_names.json": "base_names",
+  "education/shapes.json": "shapes",
+  "education/shape_pictures.json": "shape_pictures",
+  "education/colours.json": "colours",
+  "education/line_art.json": "line_art",
 };
 
 /** The schema (catalog/schemas/<name>.schema.json) for an authored file. */

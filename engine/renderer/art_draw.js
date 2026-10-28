@@ -1,5 +1,6 @@
 // Workbook art (WORKBOOK_SPEC 4.4): a preset, prop or object drawn to fit a box. The drawing is measured once
-// with boundsContext, then drawn scaled into the box (centred, or standing on its bottom edge). Shapes are W2.
+// with boundsContext, then drawn scaled into the box (centred, or standing on its bottom edge). Shapes come from
+// the education catalog (renderer/shapes_draw.js).
 
 import { computeJoints, lowestPoint, withPosture } from "../skeleton.js";
 import { bodyPlan } from "../story/bodies.js";
@@ -11,6 +12,7 @@ import { drawLookBehind, drawLookFront } from "./accessories_more.js";
 import { drawProp } from "./props.js";
 import { drawObjectShape } from "./objects.js";
 import { boundsContext } from "./bounds_ctx.js";
+import { drawShape } from "./shapes_draw.js";
 
 const PAST = () => null;
 
@@ -41,6 +43,7 @@ function drawPreset(ctx, catalog, ref) {
 /** Draw an art reference at its natural size around the origin. */
 export function drawArtRaw(ctx, catalog, ref) {
   if (ref.preset) return drawPreset(ctx, catalog, ref);
+  if (ref.shape) return drawShape(ctx, catalog.education.shapes[ref.shape], { x: 0, y: 0, size: 100, rotate: ref.rotate, style: ref.filled ? "filled" : "outline", fill: ref.filled ? "#444444" : "#ffffff", width: 4 });
   const held = ref.prop ? catalog.props[ref.prop] : ref.object && catalog.objects[ref.object]?.behavior === "holdable" ? holdableData(catalog, ref.object) : null;
   if (held) return drawProp(ctx, held, { butt: { x: 0, y: 0 }, tip: { x: 0, y: -held.len } }, 1.6);
   if (ref.object) {

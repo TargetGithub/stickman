@@ -87,11 +87,14 @@ test("boundsContext records what is drawn, through transforms, with half the str
     [(c) => { c.lineWidth = 4; c.beginPath(); c.moveTo(0, 0); c.lineTo(10, 0); c.stroke(); }, { x0: -2, y0: -2, x1: 12, y1: 2 }],
     [(c) => { c.save(); c.translate(50, 50); c.restore(); c.beginPath(); c.rect(0, 0, 1, 1); c.fill(); }, { x0: 0, y0: 0, x1: 1, y1: 1 }],
     [(c) => { c.beginPath(); c.moveTo(0, 0); c.lineTo(5, 5); }, null],
+    [(c) => { c.beginPath(); c.arc(0, 0, 1, Math.PI, Math.PI * 2); c.fill(); }, { x0: -1, y0: -1, x1: 1, y1: 0 }],
+    [(c) => { c.beginPath(); c.arc(0, 0, 1, Math.PI * 1.5, Math.PI * 2); c.fill(); }, { x0: 0, y0: -1, x1: 1, y1: 0 }],
   ];
   for (const [draw, want] of cases) {
     const b = boundsContext();
     draw(b.ctx);
-    assert.deepEqual(b.bounds(), want);
+    const got = b.bounds();
+    assert.deepEqual(got && Object.fromEntries(Object.entries(got).map(([k, v]) => [k, Math.round(v * 1e9) / 1e9 || 0])), want);
   }
   const b = boundsContext();
   b.ctx.someNewMethod?.(); // unknown calls are no-ops

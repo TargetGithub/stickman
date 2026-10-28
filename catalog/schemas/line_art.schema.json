@@ -1,0 +1,26 @@
+{
+  "title": "Print approval (education/line_art.json, WORKBOOK_SPEC 8.3): which presets, props and objects workbooks may draw.",
+  "type": "object",
+  "required": ["description", "presets", "props", "objects"],
+  "additionalProperties": false,
+  "properties": {
+    "description": { "type": "string", "minLength": 8, "maxLength": 300 },
+    "presets": { "$ref": "#/$defs/list" },
+    "props": { "$ref": "#/$defs/list" },
+    "objects": { "$ref": "#/$defs/list" }
+  },
+  "$defs": {
+    "list": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "additionalProperties": false,
+        "properties": {
+          "status": { "enum": ["ok", "redraw"] },
+          "poses": { "type": "array", "items": { "type": "string" }, "description": "Poses that read well, if only some do." }
+        }
+      }
+    }
+  }
+}

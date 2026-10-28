@@ -6,9 +6,10 @@
 
 import { worldCommandStory, macroStory, cameraStory, transitionStory } from "../../tools/lib/catalog_harness.mjs";
 import { moveScript, fxScript, hitsScript, characterScript, faceScript, placeScript, objectScript, activityScript } from "./showcase_scripts.js";
+import { drawShape } from "../../engine/renderer/shapes_draw.js";
 
 /** The sections in page order (the navigation lists them). */
-export const SECTION_IDS = ["characters", "looks", "faces", "moves", "effects", "sounds", "places", "objects", "activities", "macros", "camera", "music", "examples", "rules"];
+export const SECTION_IDS = ["characters", "looks", "faces", "moves", "effects", "sounds", "places", "objects", "activities", "macros", "camera", "music", "examples", "shapes", "rules"];
 
 const kv = (o) => Object.entries(o || {}).map(([k, v]) => `${k} ${typeof v === "object" ? JSON.stringify(v) : v}`).join(", ");
 const height = (b) => Math.round(b.dims.headR * 2 + b.dims.neck + b.dims.torso + b.dims.thigh + b.dims.shin);
@@ -149,6 +150,25 @@ function examples(full) {
       meta: `${e.kind} · ${e.seconds} s${e.macros.length ? ` · macros: ${e.macros.join(", ")}` : ""}`, copy: e.path, link: `player.html?src=../catalog/examples/${e.path}`, example: e.path })) };
 }
 
+/** Workbook shapes and shape pictures (WORKBOOK_SPEC 8): still drawings, not clips. */
+function shapes(full) {
+  const ed = full.education;
+  const facts = (d) => `${d.sides} sides · ${d.corners} corners${d.rightAngles ? ` · ${d.rightAngles} square corners` : ""} · grade ${d.grade} · e.g. ${d.examples.join(", ")}`;
+  const shapeCards = Object.entries(ed.shapes).map(([n, d]) => card({ id: n, name: d.label, description: d.description, tags: d.tags, group: "Shapes", meta: facts(d),
+    copy: { shape: n }, draw: (ctx, w, h) => drawShape(ctx, d, { x: w / 2, y: h / 2, size: h * 0.7, width: 4 }) }));
+  const colours = Object.values(ed.colours).map((c) => c.hex);
+  const names = Object.keys(ed.shapes);
+  const pictureCards = Object.entries(ed.pictures).map(([n, p]) => card({ id: `picture-${n}`, name: n, description: p.description, tags: p.tags, group: "Shape pictures",
+    meta: `grade ${p.grade} · ${p.parts.length} shapes`, copy: n, draw: (ctx, w, h) => {
+      for (const [k, coloured] of [[0, false], [1, true]]) {
+        const s = h * 0.9;
+        const x0 = w / 2 + (k ? 10 : -10 - s);
+        for (const q of p.parts) drawShape(ctx, ed.shapes[q.shape], { x: x0 + q.x * s, y: h * 0.05 + q.y * s, size: q.size * s, rotate: q.rotate, fill: coloured ? colours[names.indexOf(q.shape) % colours.length] : "#ffffff", width: 2.5 });
+      }
+    } }));
+  return { title: "Workbook shapes", intro: "2D shapes for printable workbooks (catalog/education, docs/WORKBOOK_SPEC.md): art `{ \"shape\": name }` and shape lessons; shape pictures for colour-by-shape.", cards: [...shapeCards, ...pictureCards] };
+}
+
 function rules(full, vocab) {
   const codes = Object.entries(full.docs.codes).map(([code, d]) => card({ id: code, name: code, description: `${d.meaning}. Fix: ${d.fix}`, tags: [code.startsWith("W_") ? "warning" : "error"], group: code.startsWith("W_") ? "Warnings" : "Errors", copy: code }));
   const lim = [["Clips", vocab.limits.v1], ["Stories", vocab.limits.v2]].map(([n, l]) => card({ id: `limits-${n.toLowerCase()}`, name: `${n}: limits`, description: kv(l), tags: ["limits"], group: "Limits", copy: l }));
@@ -157,7 +177,7 @@ function rules(full, vocab) {
   return { title: "Rules", intro: "What the validator checks: every code with its fix, the limits and the audience rules.", cards: [...aud, ...lim, ...codes] };
 }
 
-const BUILDERS = { characters, looks, faces, moves, effects, sounds, places, objects, activities, macros, camera, music, examples, rules };
+const BUILDERS = { characters, looks, faces, moves, effects, sounds, places, objects, activities, macros, camera, music, examples, shapes, rules };
 
 /**
  * @param {object} full   catalog/generated/catalog.json

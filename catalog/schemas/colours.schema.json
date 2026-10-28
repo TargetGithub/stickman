@@ -1,0 +1,14 @@
+{
+  "title": "Crayon colours for workbooks (education/colours.json): the names scripts use and the hex answer keys draw.",
+  "type": "object",
+  "propertyNames": { "pattern": "^[a-z]{3,12}$" },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["hex", "description"],
+    "additionalProperties": false,
+    "properties": {
+      "hex": { "type": "string", "pattern": "^#[0-9a-f]{6}$" },
+      "description": { "type": "string", "minLength": 8, "maxLength": 200 }
+    }
+  }
+}

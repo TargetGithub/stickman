@@ -4,6 +4,7 @@
 
 import { drawArt } from "./art_draw.js";
 import { lineArtContext } from "./line_art.js";
+import { drawShape } from "./shapes_draw.js";
 
 const FONT = "Andika";
 
@@ -80,8 +81,10 @@ function drawItem(ctx, it, catalog, opts) {
       ctx.beginPath();
       ctx.arc(it.x, it.y, it.r, 0, Math.PI * 2);
       if (it.fill) (ctx.fillStyle = it.fill), ctx.fill();
-      ctx.stroke();
+      if (it.width !== 0) ctx.stroke();
       return;
+    case "shape":
+      return drawShape(ctx, catalog.education.shapes[it.name], it);
     case "art":
       return drawArt(ctx, catalog, it.ref, it, (c) => lineArtContext(c, { outline: opts.outline }));
   }

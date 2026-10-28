@@ -149,9 +149,9 @@ Printable PDF activity books for pre-K to grade 2 (ADR-040). Each milestone ends
 | # | Milestone | Status |
 |---|---|---|
 | W0 | Spec, Andika fonts, ADR-040 | DONE 2026-10-28, signed off |
-| W1 | Workbook kind: schema, validator, layout, display list, page and line-art drawing, `tools/print.mjs`; colour_page, count, draw_prompt | DONE 2026-10-28, awaiting the line-art review (`out/demos/w1_line_art.pdf`, `out/demos/w1_workbook/`) |
-| W2 | Education catalog: shapes, shape pictures, colours, print approvals | |
-| W3 | Activities 1: shape lessons, tracing, colour-by-shape, find-the-shapes | |
+| W1 | Workbook kind: schema, validator, layout, display list, page and line-art drawing, `tools/print.mjs`; colour_page, count, draw_prompt | DONE 2026-10-28, reviewed (7 objects marked redraw) |
+| W2 | Education catalog: shapes, shape pictures, colours, print approvals; shape lessons; showcase tab | DONE 2026-10-28, awaiting review (`out/demos/w2_shapes/`, `out/demos/w2_shape_sheet.pdf`) |
+| W3 | Activities 1: tracing, colour-by-shape, find-the-shapes | |
 | W4 | Activities 2: maze, dot-to-dot, word search, match, pattern | |
 | W5 | AI prompts, context pack file, manual and generate commands | |
 

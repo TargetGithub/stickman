@@ -1,6 +1,7 @@
 // A 2D context that draws nothing and records the bounding box of everything drawn (WORKBOOK_SPEC 3).
 // Workbook art is fitted into its box from these bounds, so catalog drawings need no size metadata.
-// Arcs, ellipses and curves add their (conservative) control boxes; strokes add half the line width.
+// Arcs add their end points and the quarter-turn points they sweep; curves add their (conservative) control
+// points; strokes add half the line width.
 
 const NOOP = () => {};
 const IDENTITY = [1, 0, 0, 1, 0, 0];
@@ -32,6 +33,21 @@ export function boundsContext() {
     pt(cx - rx, cy + ry);
     pt(cx + rx, cy + ry);
   };
+  // An arc's end points plus every quarter-turn point it sweeps through (exact for unrotated arcs).
+  const sweep = (cx, cy, rx, ry, a0 = 0, a1 = Math.PI * 2, ccw = false) => {
+    const TAU = Math.PI * 2;
+    let span = ccw ? a0 - a1 : a1 - a0;
+    if (span >= TAU - 1e-9 || span <= -TAU + 1e-9) span = TAU;
+    else span = ((span % TAU) + TAU) % TAU;
+    const at = (a) => pt(cx + rx * Math.cos(a), cy + ry * Math.sin(a));
+    at(a0);
+    at(ccw ? a0 - span : a0 + span);
+    for (let k = -8; k <= 8; k++) {
+      const q = (k * Math.PI) / 2;
+      const u = ccw ? a0 - q : q - a0;
+      if (((u % TAU) + TAU) % TAU <= span + 1e-9) at(q);
+    }
+  };
   const commit = (pad) => {
     for (const [x, y] of path) add(x, y, pad);
   };
@@ -56,8 +72,8 @@ export function boundsContext() {
     quadraticCurveTo: (x1, y1, x, y) => (pt(x1, y1), pt(x, y)),
     bezierCurveTo: (x1, y1, x2, y2, x, y) => (pt(x1, y1), pt(x2, y2), pt(x, y)),
     arcTo: (x1, y1, x2, y2) => (pt(x1, y1), pt(x2, y2)),
-    arc: (x, y, r) => square(x, y, r, r),
-    ellipse: (x, y, rx, ry) => square(x, y, Math.max(rx, ry), Math.max(rx, ry)),
+    arc: (x, y, r, a0, a1, ccw) => sweep(x, y, r, r, a0, a1, ccw),
+    ellipse: (x, y, rx, ry, rot, a0, a1, ccw) => (rot ? square(x, y, Math.max(rx, ry), Math.max(rx, ry)) : sweep(x, y, rx, ry, a0, a1, ccw)),
     rect: (x, y, w, h) => (pt(x, y), pt(x + w, y + h), pt(x + w, y), pt(x, y + h)),
     roundRect: (x, y, w, h) => (pt(x, y), pt(x + w, y + h), pt(x + w, y), pt(x, y + h)),
     fill: () => commit(0),

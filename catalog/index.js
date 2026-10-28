@@ -137,7 +137,19 @@ export function loadPresets(read) {
   return isThenable(m) ? m.then(fromManifest) : fromManifest(m);
 }
 
-/** Node: the workbook catalog (WORKBOOK_SPEC 3): a catalog (default the base one) plus `presets` from a folder. */
+/** The education files (WORKBOOK_SPEC 8): shapes, shape pictures, colours and print approvals. */
+export const EDUCATION_FILES = { shapes: "education/shapes.json", pictures: "education/shape_pictures.json", colours: "education/colours.json", lineArt: "education/line_art.json" };
+
+/** The education catalog: { shapes, pictures, colours, lineArt } (a promise when read returns promises). */
+export function loadEducation(read) {
+  const keys = Object.keys(EDUCATION_FILES);
+  const got = keys.map((k) => read(EDUCATION_FILES[k]));
+  const build = (vals) => Object.fromEntries(keys.map((k, i) => [k, vals[i]]));
+  return got.some(isThenable) ? Promise.all(got).then(build) : build(got);
+}
+
+/** Node: the workbook catalog (WORKBOOK_SPEC 3): a catalog (default the base one) plus `presets` and `education`. */
 export function workbookCatalogSync(base = catalog, root) {
-  return { ...base, presets: loadPresets(fileReader(root)) };
+  const read = fileReader(root);
+  return { ...base, presets: loadPresets(read), education: loadEducation(read) };
 }

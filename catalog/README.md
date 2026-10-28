@@ -50,6 +50,7 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `bundle_blocklist.json`, `bundle_allowlist.json` | catalog bundles that are blocked, and bundles Sridhar reviewed (by content hash; docs/CATALOG_BUNDLE_SPEC.md section 8) |
 | `base_names.json` | base names as of the last release: bundles refer to them, so the build fails when one disappears. Update it only at a release: `node tools/catalog_build.mjs --release-names` |
 | `schemas/` | JSON Schemas for the authored files, checked by the build with the engine's schema checker; `schemas/bundle/` holds the catalog bundle schemas (docs/CATALOG_BUNDLE_SPEC.md section 4), which the build does not apply to catalog files |
+| `education/` | workbooks (docs/WORKBOOK_SPEC.md 8): `shapes.json` (2D shapes: facts for lessons and geometry in a unit box), `shape_pictures.json` (pictures made of shapes), `colours.json` (crayon colours), `line_art.json` (which presets, props and objects are approved for print) |
 | `generated/` | `engine_vocab.json`, `catalog.json`, `context/` (the AI pack) |
 | `manifest.json` | catalog version, authored file list, counts, pack sizes |
 
@@ -73,6 +74,8 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | An activity or mood | `story/*.json` | build |
 | A world command, macro, camera mode, transition or validator code | engine code first (it is a behavior), then its entry in `docs/*.json` with an example | build (fails until the description exists and its example validates) |
 | An example | `examples/clips/` or `examples/stories/` and `examples/index.json` | build (the example must validate) |
+| A workbook shape or shape picture | `education/shapes.json` / `shape_pictures.json` | build (a shape's `corners` and `sides` must match its geometry); review with `node tools/shape_sheet.mjs` |
+| Print approval for a new preset, prop or object | `education/line_art.json` (`ok` or `redraw`) | review it first: `node tools/line_art_sheet.mjs` |
 
 Drafts added with `--write` get the tag `draft` and the description they were drafted from: replace both when you review them.
 
