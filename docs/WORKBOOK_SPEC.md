@@ -1,6 +1,6 @@
 # Workbooks: printable PDF activity books from the StickMan catalog
 
-Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2 reviewed; W3 built, waiting for the K page review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
+Status: 0.2 (2026-10-28). W0 signed off (two PDFs, student book and answer key; black-and-white covers); W1 reviewed (print approvals in `education/line_art.json`); W2 and W3 reviewed; W4 built, waiting for the puzzles review. Owner: Sridhar. Builds on [CATALOG_SPEC.md](CATALOG_SPEC.md) (the catalog and the AI context pack), [ARCHITECTURE.md](ARCHITECTURE.md) (ADR-040) and the engine rules in `CLAUDE.md`.
 
 ## 1. Goal and scope
 
@@ -170,18 +170,18 @@ The activity names are engine-owned (they are behaviors), described in `catalog/
 | `colour_by_shape` | `picture` (a shape picture), `key` {shape: colour} (default: one crayon colour per shape, in order, never black) | colours each shape by the key below the picture (a small shape, "=", the colour word in an outlined crayon) | the coloured picture and crayons |
 | `find_shapes` | `target` (one shape), `count`, `distractors` (1-5 other shapes), `others` (default count + 2), `askCount` (default true) | colours or circles every target among scattered shapes (no turning at pre-K and K; quarter turns from grade 1), writes how many | targets circled in red, the count |
 | `count` | `item` (art ref), `groups` (1-6 numbers) | counts each group and writes the number in a box | the numbers |
-| `match` | `pairs` (2-6): `[left, right]` art refs or words; `mode` line | draws a line from each left item to its partner (right column shuffled) | the lines |
-| `maze` | `size` [cols, rows], `start`, `end` (art refs) | draws a path from start to end | the path |
-| `dot_to_dot` | `subject` (a shape, or a print-approved object), `points` | joins numbered dots to reveal the picture | the finished picture |
-| `word_search` | `words` (3-12), `size`, `directions` | finds and circles hidden words | the words circled |
-| `pattern` | `sequence` (art refs), `repeat` (AB, AAB, ABB, ABC), `blanks` | draws or colours what comes next | the missing items |
+| `match` | `pairs` (2-6): `[left, right]`, each an art reference or `{ "text" }` | draws a line from each dot on the left to its partner; the right column is shuffled so no item stays in its row | the lines |
+| `maze` | `size` [cols, rows] (default the grade's largest), `start`, `end` (art refs, optional) | draws a path from the entrance (left) to the exit (right) | the path |
+| `dot_to_dot` | `subject`: `{ "shape" }` (dots resampled from its outline: `points`, default its corners and at least 8) or `{ "picture" }` (a dot picture, `education/dot_pictures.json`, with details drawn as lines) | joins numbered dots from the green dot 1 | the outline |
+| `word_search` | `words` (3-12, letters only), `size` (default the grade's grid) | finds the hidden words (right and down; grade 2 adds both diagonals) and ticks them off the list beside or below the grid | a red band over each word |
+| `pattern` | `sequence` (2-3 art refs), `repeat` (AB, AAB, ABB, ABC; default AB, or ABC with three), `length` (4-10, default 8), `blanks` (1-3 at the end, default 2) | draws what comes next in the dashed boxes | the missing pictures |
 | `draw_prompt` | `prompt`, `starter` (optional art ref drawn half), `box` | draws in a framed box (for example "Draw a hat for Mooka") | none |
 
 Generators are exact about what a child can do:
 - **Mazes** are perfect mazes (one path, no loops) from a seeded depth-first carve; the entrance and exit are on opposite sides; the path length is at least 1.5 x the grid's longer side.
 - **Find-the-shapes** places shapes by seeded rejection sampling with a clear gap (no overlaps or touching), random rotation and sizes within the grade's minimum size; targets and distractors are counted exactly.
 - **Word searches** place words longest first in the allowed directions, retrying up to 200 seeded attempts per word; filler letters avoid spelling any blocklisted word (checked after filling). A word that does not fit is `E_WB_FIT`.
-- **Dot-to-dot** samples the subject's outline at even arc length, keeps corners, and numbers clockwise from the top; numbers sit outside the outline and never overlap.
+- **Dot-to-dot** samples a shape's outline (straight edges and curves made dense first) at even arc length, keeps every corner, and numbers clockwise from the topmost dot; dot pictures keep their authored order. Numbers sit outside the outline, away from its centre. More dots than the grade allows is `E_WB_GRADE`.
 - **Counting** scatters items per group in its own box; no group is over the grade's count limit.
 
 ## 6. Print style and grade rules
@@ -252,8 +252,9 @@ Shape pictures for `colour_by_shape` (a house of squares and triangles, a rocket
 
 ### 8.2 Letters, words and colours
 
-- `education/letters.json`: stroke letters A-Z, a-z and 0-9 as centrelines in an em box (cap height, x-height, baseline), each stroke in writing order with its start point. W3 ships capitals and digits (ball-and-stick; strokes use the object path commands); lowercase follows in W4. The renderer is `renderer/letters_draw.js`; a dot whose stroke starts where an earlier one did moves along its own stroke so every number shows.
-- `education/words.json`: word lists by topic and grade (shapes, colours, animals, family, school, sight words), each word checked against `story/blocklist.json`; scripts may use other words, which the validator checks the same way.
+- `education/letters.json`: stroke letters A-Z, a-z and 0-9 as centrelines in an em box (y 0 cap line, 0.5 midline and x-height, 1 baseline, descenders to 1.45), each stroke in writing order (ball-and-stick; strokes use the object path commands). The renderer is `renderer/letters_draw.js`; a dot whose stroke starts where an earlier one did moves along its own stroke so every number shows.
+- `education/words.json`: word lists by topic (shapes, colours, animals, family, school, K and grade 1 sight words), each word with the first grade it suits and checked against `story/blocklist.json`; scripts may use other words, which the validator checks the same way.
+- `education/dot_pictures.json`: dot-to-dot pictures (fish, sailboat, house, rocket, cat): dots in joining order in a unit box, plus details (eyes, waves) drawn as lines; the build checks each against its grade's dot limit.
 - `education/colours.json`: the crayon colours used by keys (red, orange, yellow, green, blue, purple, brown, black, pink, grey) with their hex for answer keys.
 
 ### 8.3 Print approval (`education/line_art.json`)
@@ -301,7 +302,8 @@ Activities that size pictures by their shape (colour pages) get `env.measure(ref
 | `E_WB_COLOUR` | a colour that is not in `education/colours.json` |
 | `E_WB_LETTER` | a character with no tracing letter |
 | `E_WB_ART` | an unknown preset, pose, face, prop or object, a dog pose on a two-legged preset (or the reverse), or art that is not print-approved (checked once `education/line_art.json` exists, W2) |
-| `E_WB_WORD` | a word search word that is blocklisted or longer than the grid (W4) |
+| `E_WB_WORD` | a word search word that is not letters only, is blocklisted, or is longer than the grid |
+| `E_WB_PATTERN` | a pattern whose repeat needs a different number of pictures |
 | `E_WB_FIT` | a generator could not place everything (word search, find-the-shapes, counting) in its slot |
 | `E_WB_GRADE` | a number over the grade limit (count, maze size, dot points) |
 | `W_WB_TEXT` | instructions over the grade's length |

@@ -92,7 +92,7 @@ export function buildCatalog(src, { codes }) {
     examples: exampleFacts(src),
     pack: src.files["examples/index.json"].pack,
     // Workbooks (WORKBOOK_SPEC 8): shapes, shape pictures, colours and print approvals.
-    education: { shapes: src.files["education/shapes.json"], pictures: src.files["education/shape_pictures.json"], colours: src.files["education/colours.json"], lineArt: src.files["education/line_art.json"], letters: src.files["education/letters.json"] },
+    education: { shapes: src.files["education/shapes.json"], pictures: src.files["education/shape_pictures.json"], colours: src.files["education/colours.json"], lineArt: src.files["education/line_art.json"], letters: src.files["education/letters.json"], dotPictures: src.files["education/dot_pictures.json"], words: src.files["education/words.json"] },
   };
   const vocab = formatJson(engineVocab(codes));
   const fullText = formatJson({ _generated: GENERATED_NOTE, ...full });

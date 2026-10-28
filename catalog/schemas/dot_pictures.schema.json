@@ -1,0 +1,20 @@
+{
+  "title": "Dot-to-dot pictures (education/dot_pictures.json, WORKBOOK_SPEC 5): dots in joining order in a unit box ([-1, 1], y down), plus details drawn as lines.",
+  "type": "object",
+  "propertyNames": { "pattern": "^[a-z][a-z0-9_]{0,23}$" },
+  "additionalProperties": {
+    "type": "object",
+    "required": ["description", "tags", "grade", "points"],
+    "additionalProperties": false,
+    "properties": {
+      "description": { "type": "string", "minLength": 8, "maxLength": 200 },
+      "tags": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "string", "pattern": "^[a-z][a-z0-9-]{1,23}$" } },
+      "grade": { "enum": ["prek", "k", "1", "2"] },
+      "points": { "$ref": "#/$defs/poly" },
+      "details": { "type": "array", "maxItems": 12, "items": { "$ref": "#/$defs/poly" } }
+    }
+  },
+  "$defs": {
+    "poly": { "type": "array", "minItems": 2, "maxItems": 40, "items": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "number", "minimum": -1, "maximum": 1 } } }
+  }
+}

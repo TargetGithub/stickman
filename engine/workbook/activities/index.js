@@ -1,5 +1,5 @@
 // The workbook activities (WORKBOOK_SPEC 5). Each one: { name, params (schema properties), required,
-// artPaths(block) → [[ref, path]], limits?(block, rules) → [[path, value, max]], check?(block, path, catalog) →
+// artPaths(block) → [[ref, path]], limits?(block, rules) → [[path, value, max]], check?(block, path, catalog, rules) →
 // issues (names the schema cannot check), generate(block, box, env) }.
 // generate returns { items, answers, issues } (display list items, answer items, E_WB_FIT issues).
 
@@ -11,6 +11,11 @@ import { traceShapes } from "./trace_shapes.js";
 import { traceLetters } from "./trace_letters.js";
 import { colourByShape } from "./colour_by_shape.js";
 import { findShapes } from "./find_shapes.js";
+import { maze } from "./maze.js";
+import { wordSearch } from "./word_search.js";
+import { match } from "./match.js";
+import { pattern } from "./pattern.js";
+import { dotToDot } from "./dot_to_dot.js";
 
-export const ACTIVITIES = Object.fromEntries([colourPage, drawPrompt, count, shapeLesson, traceShapes, traceLetters, colourByShape, findShapes].map((a) => [a.name, a]));
+export const ACTIVITIES = Object.fromEntries([colourPage, drawPrompt, count, shapeLesson, traceShapes, traceLetters, colourByShape, findShapes, maze, wordSearch, match, pattern, dotToDot].map((a) => [a.name, a]));
 export const ACTIVITY_NAMES = Object.keys(ACTIVITIES);

@@ -50,7 +50,7 @@ After any change here run `npm run catalog:build`. It checks the whole catalog (
 | `bundle_blocklist.json`, `bundle_allowlist.json` | catalog bundles that are blocked, and bundles Sridhar reviewed (by content hash; docs/CATALOG_BUNDLE_SPEC.md section 8) |
 | `base_names.json` | base names as of the last release: bundles refer to them, so the build fails when one disappears. Update it only at a release: `node tools/catalog_build.mjs --release-names` |
 | `schemas/` | JSON Schemas for the authored files, checked by the build with the engine's schema checker; `schemas/bundle/` holds the catalog bundle schemas (docs/CATALOG_BUNDLE_SPEC.md section 4), which the build does not apply to catalog files |
-| `education/` | workbooks (docs/WORKBOOK_SPEC.md 8): `shapes.json` (2D shapes: facts for lessons and geometry in a unit box), `shape_pictures.json` (pictures made of shapes), `colours.json` (crayon colours), `line_art.json` (which presets, props and objects are approved for print), `letters.json` (tracing letters: centreline strokes in writing order) |
+| `education/` | workbooks (docs/WORKBOOK_SPEC.md 8): `shapes.json` (2D shapes: facts for lessons and geometry in a unit box), `shape_pictures.json` (pictures made of shapes), `colours.json` (crayon colours), `line_art.json` (which presets, props and objects are approved for print), `letters.json` (tracing letters: centreline strokes in writing order), `dot_pictures.json` (dot-to-dot pictures), `words.json` (word lists by topic and grade) |
 | `generated/` | `engine_vocab.json`, `catalog.json`, `context/` (the AI pack) |
 | `manifest.json` | catalog version, authored file list, counts, pack sizes |
 

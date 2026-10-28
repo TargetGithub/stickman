@@ -10792,7 +10792,9 @@
       "E_WB_GRADE": { "meaning": "a number over the grade's limit (count, maze size, dot points)", "fix": "Stay within the grade rules in 09_workbooks.md." },
       "E_WB_PICTURE": { "meaning": "an unknown shape picture", "fix": "Use a shape picture from 09_workbooks.md." },
       "E_WB_COLOUR": { "meaning": "a colour that is not a catalog crayon colour", "fix": "Use red, orange, yellow, green, blue, purple, pink, brown, grey or black." },
-      "E_WB_LETTER": { "meaning": "a character with no tracing letter", "fix": "Trace capital letters A-Z, digits 0-9 and spaces." },
+      "E_WB_LETTER": { "meaning": "a character with no tracing letter", "fix": "Trace letters A-Z and a-z, digits 0-9 and spaces." },
+      "E_WB_PATTERN": { "meaning": "a pattern with the wrong number of pictures for its repeat", "fix": "AB, AAB and ABB take 2 pictures; ABC takes 3." },
+      "E_WB_WORD": { "meaning": "a word search word that is not letters only, is blocked, or is longer than the grid", "fix": "Short family-friendly words, letters only." },
       "E_WB_FIT": { "meaning": "an activity's pictures, words or dots do not fit in its slot", "fix": "Use fewer items, or a bigger slot (full or halves)." },
       "W_WB_TEXT": { "meaning": "instructions long for the grade", "fix": "One or two short sentences a grown-up can read aloud." },
       "W_WB_DENSE": { "meaning": "more activities on one page than the grade can handle", "fix": "Split them over more pages (pre-K 1, K 2, grade 1 4, grade 2 6)." },
@@ -11413,7 +11415,7 @@
       }
     },
     "letters": {
-      "description": "Stroke letters for tracing (WORKBOOK_SPEC 8.2): ball-and-stick capitals and digits as centrelines in an em box (y 0 cap line, 0.5 midline, 1 baseline), each stroke in writing order; a stroke starts with M.",
+      "description": "Stroke letters for tracing (WORKBOOK_SPEC 8.2): ball-and-stick capitals, lowercase and digits as centrelines in an em box (y 0 cap line, 0.5 midline, 1 baseline, descenders to 1.45), each stroke in writing order; a stroke starts with M.",
       "glyphs": {
         "0": {
           "w": 0.66,
@@ -11636,7 +11638,331 @@
         "W": { "w": 1.04, "strokes": [[["M", 0, 0], ["L", 0.26, 1], ["L", 0.52, 0.32], ["L", 0.78, 1], ["L", 1.04, 0]]] },
         "X": { "w": 0.72, "strokes": [[["M", 0, 0], ["L", 0.72, 1]], [["M", 0.72, 0], ["L", 0, 1]]] },
         "Y": { "w": 0.74, "strokes": [[["M", 0, 0], ["L", 0.37, 0.5]], [["M", 0.74, 0], ["L", 0.37, 0.5], ["L", 0.37, 1]]] },
-        "Z": { "w": 0.68, "strokes": [[["M", 0, 0], ["L", 0.68, 0], ["L", 0, 1], ["L", 0.68, 1]]] }
+        "Z": { "w": 0.68, "strokes": [[["M", 0, 0], ["L", 0.68, 0], ["L", 0, 1], ["L", 0.68, 1]]] },
+        "a": {
+          "w": 0.56,
+          "strokes": [
+            [
+              ["M", 0.504, 0.625],
+              ["C", 0.429, 0.505, 0.264, 0.464, 0.135, 0.533],
+              ["C", 0.006, 0.603, -0.038, 0.755, 0.036, 0.875],
+              ["C", 0.111, 0.995, 0.276, 1.036, 0.405, 0.967],
+              ["C", 0.534, 0.897, 0.578, 0.745, 0.504, 0.625]
+            ],
+            [["M", 0.56, 0.5], ["L", 0.56, 1]]
+          ]
+        },
+        "b": {
+          "w": 0.54,
+          "strokes": [
+            [["M", 0, 0], ["L", 0, 1]],
+            [
+              ["M", 0, 0.75],
+              ["C", 0, 0.612, 0.121, 0.5, 0.27, 0.5],
+              ["C", 0.419, 0.5, 0.54, 0.612, 0.54, 0.75],
+              ["C", 0.54, 0.888, 0.419, 1, 0.27, 1],
+              ["C", 0.121, 1, 0, 0.888, 0, 0.75]
+            ]
+          ]
+        },
+        "c": {
+          "w": 0.5,
+          "strokes": [
+            [
+              ["M", 0.477, 0.589],
+              ["C", 0.404, 0.509, 0.284, 0.479, 0.178, 0.515],
+              ["C", 0.071, 0.551, 0, 0.645, 0, 0.75],
+              ["C", 0, 0.855, 0.071, 0.949, 0.178, 0.985],
+              ["C", 0.284, 1.021, 0.404, 0.991, 0.477, 0.911]
+            ]
+          ]
+        },
+        "d": {
+          "w": 0.56,
+          "strokes": [
+            [
+              ["M", 0.504, 0.625],
+              ["C", 0.429, 0.505, 0.264, 0.464, 0.135, 0.533],
+              ["C", 0.006, 0.603, -0.038, 0.755, 0.036, 0.875],
+              ["C", 0.111, 0.995, 0.276, 1.036, 0.405, 0.967],
+              ["C", 0.534, 0.897, 0.578, 0.745, 0.504, 0.625]
+            ],
+            [["M", 0.56, 0], ["L", 0.56, 1]]
+          ]
+        },
+        "e": {
+          "w": 0.54,
+          "strokes": [
+            [
+              ["M", 0.02, 0.75],
+              ["L", 0.54, 0.75],
+              ["C", 0.54, 0.629, 0.446, 0.525, 0.317, 0.504],
+              ["C", 0.188, 0.483, 0.061, 0.55, 0.016, 0.664],
+              ["C", -0.029, 0.779, 0.022, 0.906, 0.135, 0.967],
+              ["C", 0.248, 1.027, 0.393, 1.004, 0.477, 0.911]
+            ]
+          ]
+        },
+        "f": {
+          "w": 0.42,
+          "strokes": [
+            [["M", 0.42, 0.06], ["C", 0.34, -0.03, 0.13, -0.01, 0.13, 0.2], ["L", 0.13, 1]],
+            [["M", 0, 0.5], ["L", 0.38, 0.5]]
+          ]
+        },
+        "g": {
+          "w": 0.56,
+          "strokes": [
+            [
+              ["M", 0.504, 0.625],
+              ["C", 0.429, 0.505, 0.264, 0.464, 0.135, 0.533],
+              ["C", 0.006, 0.603, -0.038, 0.755, 0.036, 0.875],
+              ["C", 0.111, 0.995, 0.276, 1.036, 0.405, 0.967],
+              ["C", 0.534, 0.897, 0.578, 0.745, 0.504, 0.625]
+            ],
+            [["M", 0.56, 0.5], ["L", 0.56, 1.25], ["C", 0.56, 1.5, 0.06, 1.5, 0.02, 1.3]]
+          ]
+        },
+        "h": {
+          "w": 0.5,
+          "strokes": [[["M", 0, 0], ["L", 0, 1]], [["M", 0, 0.72], ["C", 0.04, 0.46, 0.5, 0.42, 0.5, 0.72], ["L", 0.5, 1]]]
+        },
+        "i": { "w": 0.1, "strokes": [[["M", 0.05, 0.5], ["L", 0.05, 1]], [["M", 0.05, 0.24], ["L", 0.05, 0.27]]] },
+        "j": {
+          "w": 0.32,
+          "strokes": [
+            [["M", 0.3, 0.5], ["L", 0.3, 1.25], ["C", 0.3, 1.5, -0.05, 1.48, -0.05, 1.3]],
+            [["M", 0.3, 0.24], ["L", 0.3, 0.27]]
+          ]
+        },
+        "k": {
+          "w": 0.48,
+          "strokes": [[["M", 0, 0], ["L", 0, 1]], [["M", 0.46, 0.5], ["L", 0, 0.8]], [["M", 0.16, 0.7], ["L", 0.48, 1]]]
+        },
+        "l": { "w": 0.1, "strokes": [[["M", 0.05, 0], ["L", 0.05, 1]]] },
+        "m": {
+          "w": 0.78,
+          "strokes": [
+            [["M", 0, 0.5], ["L", 0, 1]],
+            [["M", 0, 0.72], ["C", 0.03, 0.46, 0.39, 0.46, 0.39, 0.72], ["L", 0.39, 1]],
+            [["M", 0.39, 0.72], ["C", 0.42, 0.46, 0.78, 0.46, 0.78, 0.72], ["L", 0.78, 1]]
+          ]
+        },
+        "n": {
+          "w": 0.5,
+          "strokes": [[["M", 0, 0.5], ["L", 0, 1]], [["M", 0, 0.72], ["C", 0.04, 0.46, 0.5, 0.42, 0.5, 0.72], ["L", 0.5, 1]]]
+        },
+        "o": {
+          "w": 0.54,
+          "strokes": [
+            [
+              ["M", 0.27, 0.5],
+              ["C", 0.121, 0.5, 0, 0.612, 0, 0.75],
+              ["C", 0, 0.888, 0.121, 1, 0.27, 1],
+              ["C", 0.419, 1, 0.54, 0.888, 0.54, 0.75],
+              ["C", 0.54, 0.612, 0.419, 0.5, 0.27, 0.5]
+            ]
+          ]
+        },
+        "p": {
+          "w": 0.54,
+          "strokes": [
+            [["M", 0, 0.5], ["L", 0, 1.45]],
+            [
+              ["M", 0, 0.75],
+              ["C", 0, 0.612, 0.121, 0.5, 0.27, 0.5],
+              ["C", 0.419, 0.5, 0.54, 0.612, 0.54, 0.75],
+              ["C", 0.54, 0.888, 0.419, 1, 0.27, 1],
+              ["C", 0.121, 1, 0, 0.888, 0, 0.75]
+            ]
+          ]
+        },
+        "q": {
+          "w": 0.56,
+          "strokes": [
+            [
+              ["M", 0.504, 0.625],
+              ["C", 0.429, 0.505, 0.264, 0.464, 0.135, 0.533],
+              ["C", 0.006, 0.603, -0.038, 0.755, 0.036, 0.875],
+              ["C", 0.111, 0.995, 0.276, 1.036, 0.405, 0.967],
+              ["C", 0.534, 0.897, 0.578, 0.745, 0.504, 0.625]
+            ],
+            [["M", 0.56, 0.5], ["L", 0.56, 1.45]]
+          ]
+        },
+        "r": {
+          "w": 0.44,
+          "strokes": [[["M", 0, 0.5], ["L", 0, 1]], [["M", 0, 0.72], ["C", 0.05, 0.5, 0.28, 0.44, 0.44, 0.55]]]
+        },
+        "s": {
+          "w": 0.46,
+          "strokes": [
+            [
+              ["M", 0.44, 0.58],
+              ["C", 0.36, 0.48, 0.02, 0.47, 0.03, 0.62],
+              ["C", 0.04, 0.76, 0.46, 0.72, 0.46, 0.87],
+              ["C", 0.46, 1.03, 0.08, 1.03, 0, 0.93]
+            ]
+          ]
+        },
+        "t": { "w": 0.42, "strokes": [[["M", 0.2, 0.15], ["L", 0.2, 1]], [["M", 0, 0.5], ["L", 0.42, 0.5]]] },
+        "u": {
+          "w": 0.5,
+          "strokes": [[["M", 0, 0.5], ["L", 0, 0.8], ["C", 0, 1.04, 0.5, 1.04, 0.5, 0.78]], [["M", 0.5, 0.5], ["L", 0.5, 1]]]
+        },
+        "v": { "w": 0.54, "strokes": [[["M", 0, 0.5], ["L", 0.27, 1], ["L", 0.54, 0.5]]] },
+        "w": { "w": 0.74, "strokes": [[["M", 0, 0.5], ["L", 0.18, 1], ["L", 0.37, 0.6], ["L", 0.56, 1], ["L", 0.74, 0.5]]] },
+        "x": { "w": 0.5, "strokes": [[["M", 0, 0.5], ["L", 0.5, 1]], [["M", 0.5, 0.5], ["L", 0, 1]]] },
+        "y": { "w": 0.54, "strokes": [[["M", 0, 0.5], ["L", 0.27, 1]], [["M", 0.54, 0.5], ["L", 0.1, 1.45]]] },
+        "z": { "w": 0.5, "strokes": [[["M", 0, 0.5], ["L", 0.5, 0.5], ["L", 0, 1], ["L", 0.5, 1]]] }
+      }
+    },
+    "dotPictures": {
+      "fish": {
+        "description": "A fish swimming right: join the dots round its body and tail.",
+        "tags": ["animal", "sea"],
+        "grade": "k",
+        "points": [
+          [0.1, -0.55],
+          [0.5, -0.45],
+          [0.85, -0.2],
+          [1, 0],
+          [0.85, 0.2],
+          [0.5, 0.45],
+          [0.1, 0.55],
+          [-0.3, 0.35],
+          [-0.55, 0.1],
+          [-0.95, 0.5],
+          [-0.85, 0],
+          [-0.95, -0.5],
+          [-0.55, -0.1],
+          [-0.3, -0.35]
+        ],
+        "details": [
+          [[0.62, -0.17], [0.68, -0.11], [0.62, -0.05], [0.56, -0.11], [0.62, -0.17]],
+          [[0.3, -0.3], [0.38, 0], [0.3, 0.3]]
+        ]
+      },
+      "sailboat": {
+        "description": "A sailboat: a mast with two sails on a boat.",
+        "tags": ["sea", "travel"],
+        "grade": "k",
+        "points": [
+          [0, -1],
+          [0.55, 0.15],
+          [0.05, 0.15],
+          [0.05, 0.3],
+          [0.9, 0.3],
+          [0.6, 0.65],
+          [-0.6, 0.65],
+          [-0.9, 0.3],
+          [-0.05, 0.3],
+          [-0.05, 0.15],
+          [-0.5, 0.15],
+          [-0.05, -0.6]
+        ],
+        "details": [[[-1, 0.85], [-0.7, 0.75], [-0.4, 0.85], [-0.1, 0.75], [0.2, 0.85], [0.5, 0.75], [0.8, 0.85]]]
+      },
+      "house": {
+        "description": "A house with a pointed roof and a door.",
+        "tags": ["home"],
+        "grade": "k",
+        "points": [
+          [0, -1],
+          [0.9, -0.2],
+          [0.7, -0.2],
+          [0.7, 0.9],
+          [0.2, 0.9],
+          [0.2, 0.4],
+          [-0.2, 0.4],
+          [-0.2, 0.9],
+          [-0.7, 0.9],
+          [-0.7, -0.2],
+          [-0.9, -0.2]
+        ],
+        "details": [
+          [[0.3, -0.05], [0.55, -0.05], [0.55, 0.2], [0.3, 0.2], [0.3, -0.05]],
+          [[-0.55, -0.05], [-0.3, -0.05], [-0.3, 0.2], [-0.55, 0.2], [-0.55, -0.05]]
+        ]
+      },
+      "rocket": {
+        "description": "A rocket with a pointed nose and two fins.",
+        "tags": ["space"],
+        "grade": "k",
+        "points": [
+          [0, -1],
+          [0.3, -0.55],
+          [0.3, 0.4],
+          [0.6, 0.8],
+          [0.3, 0.7],
+          [0.15, 0.95],
+          [-0.15, 0.95],
+          [-0.3, 0.7],
+          [-0.6, 0.8],
+          [-0.3, 0.4],
+          [-0.3, -0.55]
+        ],
+        "details": [[[0, -0.3], [0.13, -0.17], [0, -0.04], [-0.13, -0.17], [0, -0.3]]]
+      },
+      "cat": {
+        "description": "A cat's face with two pointy ears.",
+        "tags": ["animal", "pet"],
+        "grade": "k",
+        "points": [
+          [-0.45, -1],
+          [-0.15, -0.55],
+          [0.15, -0.55],
+          [0.45, -1],
+          [0.65, -0.35],
+          [0.7, 0.1],
+          [0.5, 0.55],
+          [0, 0.75],
+          [-0.5, 0.55],
+          [-0.7, 0.1],
+          [-0.65, -0.35]
+        ],
+        "details": [
+          [[-0.3, -0.15], [-0.2, -0.05], [-0.3, 0.05], [-0.4, -0.05], [-0.3, -0.15]],
+          [[0.3, -0.15], [0.4, -0.05], [0.3, 0.05], [0.2, -0.05], [0.3, -0.15]],
+          [[-0.08, 0.2], [0.08, 0.2], [0, 0.3], [-0.08, 0.2]],
+          [[-0.15, 0.3], [-0.65, 0.2]],
+          [[-0.15, 0.36], [-0.65, 0.42]],
+          [[0.15, 0.3], [0.65, 0.2]],
+          [[0.15, 0.36], [0.65, 0.42]]
+        ]
+      }
+    },
+    "words": {
+      "description": "Word lists for word searches and tracing (WORKBOOK_SPEC 8.2), by topic. Each word has a grade: the first grade it suits. Scripts may use other words; the validator checks them the same way.",
+      "topics": {
+        "shapes": {
+          "description": "Shape names.",
+          "words": { "circle": "k", "square": "k", "star": "prek", "heart": "prek", "oval": "k", "triangle": "1", "diamond": "1", "hexagon": "2", "octagon": "2", "pentagon": "2", "rectangle": "2", "kite": "1" }
+        },
+        "colours": {
+          "description": "Crayon colours.",
+          "words": { "red": "prek", "blue": "prek", "green": "k", "pink": "k", "yellow": "1", "orange": "1", "purple": "1", "brown": "k", "grey": "k", "black": "k" }
+        },
+        "animals": {
+          "description": "Animals children know.",
+          "words": { "cat": "prek", "dog": "prek", "pig": "prek", "cow": "prek", "hen": "k", "fox": "k", "duck": "k", "frog": "k", "fish": "k", "bear": "k", "lion": "1", "goat": "1", "horse": "1", "tiger": "1", "zebra": "2", "monkey": "2", "rabbit": "2", "turtle": "2" }
+        },
+        "family": {
+          "description": "Family words.",
+          "words": { "mom": "prek", "dad": "prek", "baby": "k", "sister": "1", "brother": "1", "grandma": "2", "grandpa": "2", "family": "2" }
+        },
+        "school": {
+          "description": "Things at school.",
+          "words": { "book": "k", "pen": "k", "bag": "k", "desk": "1", "chalk": "1", "crayon": "1", "teacher": "2", "pencil": "1", "paper": "1", "class": "2" }
+        },
+        "sight_k": {
+          "description": "Kindergarten sight words.",
+          "words": { "the": "k", "and": "k", "see": "k", "can": "k", "you": "k", "look": "k", "play": "k", "go": "k", "big": "k", "red": "k", "said": "k", "here": "k" }
+        },
+        "sight_1": {
+          "description": "Grade 1 sight words.",
+          "words": { "come": "1", "where": "1", "help": "1", "jump": "1", "funny": "1", "little": "1", "make": "1", "away": "1", "find": "1", "three": "1", "down": "1", "yellow": "1" }
+        }
       }
     }
   }

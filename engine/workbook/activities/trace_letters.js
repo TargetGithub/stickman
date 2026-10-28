@@ -15,7 +15,7 @@ export function textWidth(glyphs, text) {
 export const traceLetters = {
   name: "trace_letters",
   params: {
-    text: { type: "string", minLength: 1, maxLength: 16, description: "Capital letters, digits and spaces to trace (lowercase comes in W4)." },
+    text: { type: "string", minLength: 1, maxLength: 16, description: "Letters, digits and spaces to trace." },
     rows: { type: "integer", minimum: 1, maximum: 8, description: "How many rows (default: as many as fit)." },
   },
   required: ["text"],
@@ -23,7 +23,7 @@ export const traceLetters = {
   check(block, path, catalog) {
     const glyphs = catalog.education?.letters?.glyphs || {};
     const bad = [...new Set([...block.text].filter((ch) => ch !== " " && !glyphs[ch]))];
-    return bad.length ? [{ code: "E_WB_LETTER", path: `${path}.text`, message: `No tracing letter for ${bad.map((c) => `'${c}'`).join(", ")}.`, fix: "Use capital letters A-Z, digits 0-9 and spaces." }] : [];
+    return bad.length ? [{ code: "E_WB_LETTER", path: `${path}.text`, message: `No tracing letter for ${bad.map((c) => `'${c}'`).join(", ")}.`, fix: "Use letters A-Z and a-z, digits 0-9 and spaces." }] : [];
   },
   generate(block, box, env) {
     const r = env.rules;

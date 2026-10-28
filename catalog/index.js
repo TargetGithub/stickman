@@ -138,9 +138,9 @@ export function loadPresets(read) {
 }
 
 /** The education files (WORKBOOK_SPEC 8): shapes, shape pictures, colours, print approvals and tracing letters. */
-export const EDUCATION_FILES = { shapes: "education/shapes.json", pictures: "education/shape_pictures.json", colours: "education/colours.json", lineArt: "education/line_art.json", letters: "education/letters.json" };
+export const EDUCATION_FILES = { shapes: "education/shapes.json", pictures: "education/shape_pictures.json", colours: "education/colours.json", lineArt: "education/line_art.json", letters: "education/letters.json", dotPictures: "education/dot_pictures.json", words: "education/words.json" };
 
-/** The education catalog: { shapes, pictures, colours, lineArt, letters } (a promise when read returns promises). */
+/** The education catalog: { shapes, pictures, colours, lineArt, letters, dotPictures, words } (a promise when read returns promises). */
 export function loadEducation(read) {
   const keys = Object.keys(EDUCATION_FILES);
   const got = keys.map((k) => read(EDUCATION_FILES[k]));

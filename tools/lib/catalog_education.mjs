@@ -25,15 +25,26 @@ export function educationIssues(src) {
       if (!shapes[q.shape]) bad("education/shape_pictures.json", `${name}.parts[${i}].shape`, `unknown shape "${q.shape}"`);
     });
   }
-  // Tracing letters: every capital and digit, each stroke starting with M and staying near the em box.
+  // Tracing letters: every capital, lowercase letter and digit, each stroke starting with M and staying in the
+  // em box (descenders reach 1.45).
   const glyphs = src.files["education/letters.json"].glyphs;
-  for (const ch of "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") if (!glyphs[ch]) bad("education/letters.json", `glyphs.${ch}`, `no tracing letter for "${ch}"`);
+  for (const ch of "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") if (!glyphs[ch]) bad("education/letters.json", `glyphs.${ch}`, `no tracing letter for "${ch}"`);
   for (const [ch, g] of Object.entries(glyphs)) {
     g.strokes.forEach((s, i) => {
       if (s[0]?.[0] !== "M" || s.length < 2) bad("education/letters.json", `glyphs.${ch}.strokes[${i}]`, "a stroke starts with M and draws at least one segment");
       const nums = s.flatMap((c) => c.slice(1));
-      if (nums.some((v, k) => (k % 2 ? v < -0.15 || v > 1.15 : v < -0.15 || v > g.w + 0.15))) bad("education/letters.json", `glyphs.${ch}.strokes[${i}]`, "a point lies outside the em box");
+      if (nums.some((v, k) => (k % 2 ? v < -0.15 || v > 1.55 : v < -0.15 || v > g.w + 0.15))) bad("education/letters.json", `glyphs.${ch}.strokes[${i}]`, "a point lies outside the em box");
     });
+  }
+
+  // Dot pictures: the grade's dot limit holds; word lists: no blocked word.
+  const DOTS = { prek: 10, k: 15, 1: 25, 2: 40 };
+  for (const [name, p] of Object.entries(src.files["education/dot_pictures.json"])) {
+    if (p.points.length > DOTS[p.grade]) bad("education/dot_pictures.json", `${name}.points`, `${p.points.length} dots is over the grade ${p.grade} limit of ${DOTS[p.grade]}`);
+  }
+  const blocked = new Set((src.catalog.blocklist || []).map((w) => w.toLowerCase()));
+  for (const [topic, t] of Object.entries(src.files["education/words.json"].topics)) {
+    for (const w of Object.keys(t.words)) if (blocked.has(w)) bad("education/words.json", `topics.${topic}.${w}`, "a blocked word");
   }
 
   const known = {

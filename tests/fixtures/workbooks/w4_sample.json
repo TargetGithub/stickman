@@ -1,0 +1,50 @@
+{
+  "kind": "workbook",
+  "version": 1,
+  "title": "Doopi's Big Activity Book",
+  "seed": 2404,
+  "grade": "k",
+  "style": { "cast": ["doopi", "mooka", "becky"] },
+  "documents": [
+    {
+      "id": "student",
+      "title": "Doopi's Big Activity Book",
+      "cover": { "subtitle": "Puzzles, mazes, shapes and letters", "art": [{ "preset": "doopi", "pose": "waveA" }, { "preset": "becky", "pose": "dog_sit" }, { "preset": "mooka", "pose": "victory" }] },
+      "pages": [
+        { "id": "meet_circle", "title": "Meet the Circle", "blocks": [{ "activity": "shape_lesson", "shape": "circle" }] },
+        { "id": "meet_square", "title": "Meet the Square", "blocks": [{ "activity": "shape_lesson", "shape": "square" }] },
+        { "id": "trace_round", "title": "Trace the Shapes", "instructions": "Start at the green dot.", "blocks": [{ "activity": "trace_shapes", "shapes": ["circle", "oval", "heart"] }] },
+        { "id": "trace_points", "title": "Trace More Shapes", "instructions": "Start at the green dot.", "blocks": [{ "activity": "trace_shapes", "shapes": ["triangle", "square", "star", "diamond"] }] },
+        { "id": "maze_home", "title": "Help Doopi Get Home", "instructions": "Draw a line from Doopi to the house.", "blocks": [{ "activity": "maze", "start": { "preset": "doopi" }, "end": { "object": "mushroom_hut" } }] },
+        { "id": "maze_ball", "title": "Find the Ball", "instructions": "Help Becky find her ball.", "blocks": [{ "activity": "maze", "size": [6, 6], "start": { "preset": "becky", "pose": "dog_stand" }, "end": { "object": "football" } }] },
+        { "id": "dots_fish", "title": "Join the Dots", "instructions": "Start at 1. Join the dots in order.", "blocks": [{ "activity": "dot_to_dot", "subject": { "picture": "fish" } }] },
+        { "id": "dots_star", "title": "Dot to Dot Star", "instructions": "Start at 1. What shape is it?", "blocks": [{ "activity": "dot_to_dot", "subject": { "shape": "star" } }] },
+        { "id": "words_animals", "title": "Animal Word Search", "instructions": "Find each word. Tick it off the list.", "blocks": [{ "activity": "word_search", "words": ["cat", "dog", "pig", "cow", "hen"] }] },
+        { "id": "words_colours", "title": "Colour Word Search", "instructions": "Find each colour word.", "blocks": [{ "activity": "word_search", "words": ["red", "blue", "pink", "green"] }] },
+        { "id": "match_shapes", "title": "Match the Shapes", "instructions": "Draw a line to the same shape.", "blocks": [{ "activity": "match", "pairs": [[{ "shape": "circle" }, { "shape": "circle" }], [{ "shape": "star" }, { "shape": "star" }], [{ "shape": "triangle" }, { "shape": "triangle" }], [{ "shape": "heart" }, { "shape": "heart" }]] }] },
+        { "id": "match_names", "title": "Shapes and Names", "instructions": "Draw a line from each shape to its name.", "blocks": [{ "activity": "match", "pairs": [[{ "shape": "square" }, { "text": "square" }], [{ "shape": "circle" }, { "text": "circle" }], [{ "shape": "star" }, { "text": "star" }]] }] },
+        { "id": "patterns", "title": "What Comes Next?", "instructions": "Draw the shapes that come next.", "layout": "halves", "blocks": [
+          { "activity": "pattern", "sequence": [{ "shape": "circle" }, { "shape": "square" }] },
+          { "slot": 1, "activity": "pattern", "sequence": [{ "shape": "star" }, { "shape": "heart" }], "repeat": "AAB", "length": 6, "blanks": 1 }] },
+        { "id": "patterns_friends", "title": "Patterns with Friends", "layout": "halves", "blocks": [
+          { "activity": "pattern", "sequence": [{ "preset": "doopi" }, { "preset": "mooka" }], "length": 6 },
+          { "slot": 1, "activity": "pattern", "sequence": [{ "object": "football" }, { "object": "flower" }, { "shape": "star" }], "length": 6, "blanks": 2 }] },
+        { "id": "find_stars", "title": "Find the Stars", "instructions": "Colour every star. How many?", "blocks": [{ "activity": "find_shapes", "target": "star", "count": 5, "distractors": ["circle", "heart"] }] },
+        { "id": "find_squares", "title": "Find the Squares", "instructions": "Colour every square. How many?", "blocks": [{ "activity": "find_shapes", "target": "square", "count": 4, "distractors": ["triangle", "circle"] }] },
+        { "id": "colour_fish", "title": "Colour the Fish", "blocks": [{ "activity": "colour_by_shape", "picture": "fish" }] },
+        { "id": "colour_robot", "title": "Colour the Robot", "blocks": [{ "activity": "colour_by_shape", "picture": "robot", "key": { "square": "blue", "circle": "yellow", "heart": "red", "rectangle": "green" } }] },
+        { "id": "trace_cat", "title": "Trace the Words", "layout": "halves", "blocks": [
+          { "activity": "trace_letters", "text": "cat", "rows": 2 }, { "slot": 1, "activity": "trace_letters", "text": "dog", "rows": 2 }] },
+        { "id": "trace_names", "title": "Write Our Names", "blocks": [{ "activity": "trace_letters", "text": "Doopi" }] },
+        { "id": "count_balls", "title": "Count the Balls", "instructions": "Write how many in the box.", "blocks": [{ "activity": "count", "item": { "object": "football" }, "groups": [3, 6, 1] }] },
+        { "id": "count_hearts", "title": "Count the Hearts", "instructions": "Write how many in the box.", "blocks": [{ "activity": "count", "item": { "shape": "heart" }, "groups": [2, 5, 4] }] },
+        { "id": "colour_friends", "title": "Colour Doopi and Mooka", "blocks": [{ "activity": "colour_page", "art": [{ "preset": "doopi", "pose": "victory" }, { "preset": "mooka", "pose": "waveA" }] }] },
+        { "id": "draw_and_colour", "title": "Draw and Colour", "layout": "halves", "blocks": [
+          { "activity": "draw_prompt", "prompt": "Draw a hat for Doopi.", "starter": { "preset": "doopi" } },
+          { "slot": 1, "activity": "colour_page", "art": [{ "object": "flower" }, { "object": "tree_big" }] }] },
+        { "id": "draw_house", "title": "Draw Your House", "blocks": [{ "activity": "draw_prompt", "prompt": "Draw your house. Use a square and a triangle!" }] }
+      ]
+    },
+    { "id": "answers", "answersFor": "student", "title": "Doopi's Big Activity Book", "cover": { "subtitle": "Answer Key" } }
+  ]
+}

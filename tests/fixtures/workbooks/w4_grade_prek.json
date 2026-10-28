@@ -1,0 +1,75 @@
+{
+ "kind": "workbook",
+ "version": 1,
+ "title": "Puzzles for Grade Pre-K",
+ "seed": 404,
+ "grade": "prek",
+ "documents": [
+  {
+   "id": "student",
+   "pages": [
+    {
+     "id": "maze",
+     "title": "Maze",
+     "blocks": [
+      {
+       "activity": "maze",
+       "size": [
+        5,
+        5
+       ],
+       "start": {
+        "preset": "doopi"
+       },
+       "end": {
+        "object": "mushroom_hut"
+       }
+      }
+     ]
+    },
+    {
+     "id": "dots",
+     "title": "Join the Dots",
+     "blocks": [
+      {
+       "activity": "dot_to_dot",
+       "subject": {
+        "shape": "triangle"
+       }
+      }
+     ]
+    },
+    {
+     "id": "find",
+     "title": "Find the Hearts",
+     "blocks": [
+      {
+       "activity": "find_shapes",
+       "target": "heart",
+       "count": 3,
+       "distractors": [
+        "circle",
+        "star",
+        "triangle"
+       ]
+      }
+     ]
+    },
+    {
+     "id": "trace",
+     "title": "Trace",
+     "blocks": [
+      {
+       "activity": "trace_letters",
+       "text": "A"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "answers",
+   "answersFor": "student"
+  }
+ ]
+}
