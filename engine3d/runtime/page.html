@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>engine3d</title>
+<script>
+  // three.js only uses Math.random for object UUIDs, but seed it anyway so nothing in the page can vary a frame.
+  (() => {
+    let a = 0x9e3779b9;
+    Math.random = () => {
+      a = (a + 0x6d2b79f5) >>> 0;
+      let t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  })();
+</script>
+<script type="importmap">
+{ "imports": { "three": "/three/build/three.module.js", "three/addons/": "/three/examples/jsm/" } }
+</script>
+<script type="module" src="/engine3d/runtime/player.js"></script>
+</head>
+<body style="margin:0;background:#000"></body>
+</html>

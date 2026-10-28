@@ -1,0 +1,10 @@
+{
+  "description": "Surface styles (MeshPhysicalMaterial settings). The colour comes from colors.json; a style sets how the surface reacts to light.",
+  "materials": {
+    "toy":    { "roughness": 0.38, "metalness": 0, "clearcoat": 0.6, "clearcoatRoughness": 0.25, "description": "Glossy plastic toy (default for blocks and letters).", "tags": ["default", "plastic"] },
+    "matte":  { "roughness": 0.9, "metalness": 0, "description": "Chalky matte (floors, backdrops, felt).", "tags": ["stage"] },
+    "glossy": { "roughness": 0.12, "metalness": 0, "clearcoat": 1, "clearcoatRoughness": 0.05, "description": "Shiny candy coat.", "tags": ["plastic", "shiny"] },
+    "metal":  { "roughness": 0.3, "metalness": 1, "description": "Brushed metal (coins, trophies).", "tags": ["shiny"] },
+    "glow":   { "roughness": 0.5, "metalness": 0, "emissive": 0.6, "description": "Lit from inside (highlights, stars).", "tags": ["highlight"] }
+  }
+}

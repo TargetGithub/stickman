@@ -1,0 +1,10 @@
+{
+  "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale and hidden apply to every kind.",
+  "kinds": {
+    "shape":        { "fields": { "shape": "shapes.json name (required)", "color": "colors.json name", "material": "materials.json name", "size": "number, default 1" }, "description": "A primitive (cube, ball, star...).", "tags": ["maths", "shapes"] },
+    "number_block": { "fields": { "value": "integer 0-99 (required)", "color": "colors.json name", "digitColor": "colors.json name, default white", "size": "number, default 1" }, "description": "A rounded toy block with its number on the front and back faces.", "tags": ["counting", "maths"] },
+    "letter":       { "fields": { "text": "1-12 characters (required)", "color": "colors.json name", "material": "materials.json name", "font": "fonts.json name", "size": "letter height, default 1", "depth": "extrusion depth, default 0.35" }, "description": "Extruded 3D text, centred on x and standing on its baseline (letters, digits, short words).", "tags": ["letters", "numbers", "vowels"] },
+    "character":    { "fields": { "character": "characters.json name (required)", "clip": "starting clip, default the character's idle" }, "description": "A rigged glTF character that plays catalog clips.", "tags": ["host"] },
+    "confetti":     { "fields": { "count": "pieces, default 160", "colors": "list of colors.json names", "area": "[width, depth] of the drop zone, default [8, 4]", "height": "drop height, default 7" }, "description": "Seeded confetti that falls when a burst action fires it.", "tags": ["reward", "celebration"] }
+  }
+}

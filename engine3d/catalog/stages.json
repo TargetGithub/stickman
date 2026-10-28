@@ -1,0 +1,11 @@
+{
+  "description": "Stage presets: background, floor, fog and light rig. A script picks one with stage.preset and may override any field.",
+  "stages": {
+    "playroom": { "background": "sky", "floor": "mint", "rug": "cream", "fog": [18, 45], "lights": "soft_day", "description": "A bright pastel room: sky backdrop, mint floor, a round cream rug in the middle.", "tags": ["default", "indoor", "counting"] },
+    "studio":   { "background": "cream", "floor": "cream", "rug": null, "fog": [14, 40], "lights": "studio", "description": "A plain cream studio sweep for letters and shapes on their own.", "tags": ["plain", "letters"] }
+  },
+  "lights": {
+    "soft_day": { "hemisphere": [0.9, "#ffffff", "#b8d8c0"], "sun": { "intensity": 2.4, "dir": [4, 9, 6], "shadow": true }, "environment": 0.5, "description": "Soft daylight from above-left with gentle shadows.", "tags": ["default"] },
+    "studio":   { "hemisphere": [1.0, "#ffffff", "#e8dcc8"], "sun": { "intensity": 2.0, "dir": [-3, 8, 7], "shadow": true }, "environment": 0.7, "description": "Even studio light, light shadows.", "tags": ["plain"] }
+  }
+}

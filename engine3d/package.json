@@ -1,0 +1,18 @@
+{
+  "name": "stickman-engine3d",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Prototype 3D video engine (Three.js in headless Chromium) for kids' learning videos. Sibling of /engine.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "render": "node tools/render3d.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.49.1",
+    "three": "0.170.0"
+  }
+}
