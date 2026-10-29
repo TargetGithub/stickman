@@ -5,6 +5,8 @@ import assert from "node:assert/strict";
 import { workbookCatalogSync } from "../../catalog/index.js";
 import { validate } from "../../engine/index.js";
 import { printablesSet, FEATURED, seedOf } from "../../tools/lib/printables_set.mjs";
+import { readFileSync } from "node:fs";
+import { inventoryMarkdown } from "../../tools/lib/printables_inventory.mjs";
 import { buildManifest, buildVersion, activitiesOf, gradeTag, CATEGORIES, GRADE_ORDER, TYPE_OF_ACTIVITY, MANIFEST_SCHEMA } from "../../tools/lib/printables_manifest.mjs";
 
 const catalog = workbookCatalogSync();
@@ -123,4 +125,10 @@ test("the featured count caps the featured flags", () => {
   const entries = ["a", "b", "c"].map((x) => fake(`k-${x}`, "math", "k"));
   const m = buildManifest(entries, { featured: ["k-c", "k-b", "k-a", "k-zz"], featuredCount: 2 });
   assert.deepEqual(m.items.filter((it) => it.featured).map((it) => it.id), ["k-c", "k-b"]);
+});
+
+test("the committed inventory lists the current set (run npm run printables:inventory after changing it)", () => {
+  const md = inventoryMarkdown(set, catalog);
+  assert.equal(readFileSync(new URL("../../docs/PRINTABLES_INVENTORY.md", import.meta.url), "utf8"), md);
+  for (const it of set) assert.ok(md.includes(`\`${it.id}\``), it.id);
 });

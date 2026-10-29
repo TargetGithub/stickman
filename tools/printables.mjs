@@ -6,6 +6,7 @@
 //   --out-dir DIR      where the set goes (default out/printables); for the site: <KidsLearningPlatform>/public/assets/printables
 //   --only PREFIX      build only items whose id starts with PREFIX (repeatable); the manifest is not written
 //   --check            validate every item and print the counts; write nothing
+//   --inventory        write docs/PRINTABLES_INVENTORY.md (every item by category and grade) and stop
 //   --thumb-width N    thumbnail width in px (default 240)
 //   --quality N        WebP quality 1-100 (default 72)
 // Exit code 1 when an item does not validate (the issues are printed).
@@ -19,14 +20,18 @@ import { validate, formatIssues, buildWorkbook, drawPage } from "../engine/index
 import { loadBackend } from "./lib/canvas.mjs";
 import { printablesSet, FEATURED } from "./lib/printables_set.mjs";
 import { buildManifest } from "./lib/printables_manifest.mjs";
+import { inventoryMarkdown } from "./lib/printables_inventory.mjs";
+
+export const INVENTORY_PATH = "docs/PRINTABLES_INVENTORY.md";
 
 function parseArgs(argv) {
-  const a = { outDir: "out/printables", only: [], check: false, thumbWidth: 240, quality: 72 };
+  const a = { outDir: "out/printables", only: [], check: false, inventory: false, thumbWidth: 240, quality: 72 };
   for (let i = 0; i < argv.length; i++) {
     const k = argv[i];
     if (k === "--out-dir") a.outDir = argv[++i];
     else if (k === "--only") a.only.push(argv[++i]);
     else if (k === "--check") a.check = true;
+    else if (k === "--inventory") a.inventory = true;
     else if (k === "--thumb-width") a.thumbWidth = Number(argv[++i]);
     else if (k === "--quality") a.quality = Number(argv[++i]);
     else throw new Error(`unknown option ${k}`);
@@ -90,6 +95,11 @@ async function main() {
   if (failed) {
     console.error(`${failed} item(s) do not validate; nothing written`);
     process.exit(1);
+  }
+  if (args.inventory) {
+    writeFileSync(INVENTORY_PATH, inventoryMarkdown(all, catalog));
+    console.log(`${INVENTORY_PATH}: ${all.length} items`);
+    return;
   }
   if (args.check) {
     console.log(`${items.length} items validate`);

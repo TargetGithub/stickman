@@ -224,11 +224,16 @@ node tools/printables.mjs --out-dir ../KidsLearningPlatform/public/assets/printa
 | `--out-dir DIR` | the set's folder (default `out/printables`) |
 | `--only PREFIX` | build only items whose id starts with PREFIX (repeatable, for checking a few); does not write the manifest or remove files |
 | `--check` | validate every item and stop |
+| `--inventory` | write `docs/PRINTABLES_INVENTORY.md` and stop (`npm run printables:inventory`) |
 | `--thumb-width N`, `--quality N` | thumbnail width (240) and WebP quality (72) |
 
 It validates every item first (any error or warning stops it before writing), then for each item builds the workbook (`buildWorkbook`), draws each document into a vector PDF (`backend.createPdf`, @napi-rs/canvas, no creation date) and page 1 into a thumbnail, and finally writes the manifest with `buildManifest()` (`tools/lib/printables_manifest.mjs`, pure, unit-tested in `tests/unit/printables.test.js`). The whole set takes about 5 seconds.
 
 Sizes (307 items): PDFs 25.6 MB (student and keys), thumbnails 1.2 MB, manifest 183 KB; 27 MB in all. The largest files are the letter-tracing packs (300-430 KB, long content streams from the faded, dashed tracing letters). Most worksheets are 15-40 KB.
+
+### 8.1 Adding printables
+
+[PRINTABLES_INVENTORY.md](PRINTABLES_INVENTORY.md) lists every item (id, title, strand, pages, key pages, activities, skills) by category and grade. Check it before adding anything. To add printables: add catalog entries the set already reads (a skill, question set, passage, word list, shape, dot picture) or a new entry or pack in `tools/lib/printables_set.mjs`; run `npm run printables:inventory` (a unit test fails while the inventory is out of date); run `npm test`; then rebuild into the site's folder with `npm run printables -- --out-dir ../KidsLearningPlatform/public/assets/printables`. Keep ids stable: renaming one breaks links and resets its version.
 
 ## 9. Using the set on the site (notes for the KidsLearningPlatform session)
 
