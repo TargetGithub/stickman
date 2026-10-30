@@ -1,0 +1,4130 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Dog must catch the 3:25 train! Learn the minute hand's lap of fives, read times to five minutes, and don't fall for the Sneaky Hour Hand at 7:50.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Five-Minute Clock Race",
+  "episode": "g205",
+  "seed": 205,
+  "music": "bouncy",
+  "musicGain": 0.2,
+  "skills": [
+   "time_5_minutes_2"
+  ],
+  "youtube": {
+   "title": "Telling Time to 5 Minutes! Catch the 3:25 Train | Grade 2 Math | Toy Box Friends",
+   "description": "Dog's train to Grandma's leaves at 3:25, but Robo can't read the minute hand! Watch the minute hand run a lap of fives (5, 10, 15... 60) and learn why the 1 means 5 minutes.\nRead 10:15, 2:40, 6:05 and 3:25, spot the Sneaky Hour Hand at 7:50, and help Dog reach every stop on time.\nTry at home: make a paper-plate clock and read the kitchen clock at breakfast.",
+   "tags": [
+    "telling time",
+    "clock for kids",
+    "5 minute intervals",
+    "analog clock",
+    "minute hand",
+    "hour hand",
+    "grade 2 math",
+    "skip count by 5",
+    "2nd grade time",
+    "learn the clock",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnail": {
+   "scene": "read",
+   "at": 52.48
+  }
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   1.6,
+   7.6
+  ],
+  "lookAt": [
+   0,
+   1.6,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.6,
+    0,
+    1
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    3.7,
+    0,
+    1
+   ],
+   "size": 0.9,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "at": [
+    -7,
+    0,
+    1.8
+   ],
+   "size": 0.85,
+   "hidden": true
+  },
+  {
+   "id": "chick",
+   "kind": "critter",
+   "species": "chick",
+   "at": [
+    4.6,
+    0,
+    2.6
+   ],
+   "size": 0.55,
+   "hidden": true
+  },
+  {
+   "id": "clock",
+   "kind": "clock",
+   "time": "3:05",
+   "size": 3.2,
+   "at": [
+    0,
+    0,
+    -0.4
+   ],
+   "hourColor": "red",
+   "minuteColor": "blue"
+  },
+  {
+   "id": "st0",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    1.025,
+    3.125,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn0",
+   "kind": "letter",
+   "text": "5",
+   "color": "ink",
+   "at": [
+    1.025,
+    3.295,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st1",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    1.775,
+    2.375,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn1",
+   "kind": "letter",
+   "text": "10",
+   "color": "ink",
+   "at": [
+    1.775,
+    2.545,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st2",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    2.05,
+    1.35,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn2",
+   "kind": "letter",
+   "text": "15",
+   "color": "ink",
+   "at": [
+    2.05,
+    1.52,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st3",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    1.775,
+    0.325,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn3",
+   "kind": "letter",
+   "text": "20",
+   "color": "ink",
+   "at": [
+    1.775,
+    0.495,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st4",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    1.025,
+    -0.425,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn4",
+   "kind": "letter",
+   "text": "25",
+   "color": "ink",
+   "at": [
+    1.025,
+    -0.255,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st5",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    0,
+    -0.7,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn5",
+   "kind": "letter",
+   "text": "30",
+   "color": "ink",
+   "at": [
+    0,
+    -0.5299999999999999,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st6",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    -1.025,
+    -0.425,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn6",
+   "kind": "letter",
+   "text": "35",
+   "color": "ink",
+   "at": [
+    -1.025,
+    -0.255,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st7",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    -1.775,
+    0.325,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn7",
+   "kind": "letter",
+   "text": "40",
+   "color": "ink",
+   "at": [
+    -1.775,
+    0.495,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st8",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    -2.05,
+    1.35,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn8",
+   "kind": "letter",
+   "text": "45",
+   "color": "ink",
+   "at": [
+    -2.05,
+    1.52,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st9",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    -1.775,
+    2.375,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn9",
+   "kind": "letter",
+   "text": "50",
+   "color": "ink",
+   "at": [
+    -1.775,
+    2.545,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st10",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    -1.025,
+    3.125,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn10",
+   "kind": "letter",
+   "text": "55",
+   "color": "ink",
+   "at": [
+    -1.025,
+    3.295,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "st11",
+   "kind": "shape",
+   "shape": "star",
+   "color": "gold",
+   "at": [
+    0,
+    3.4,
+    -0.3
+   ],
+   "size": 0.62,
+   "hidden": true
+  },
+  {
+   "id": "sn11",
+   "kind": "letter",
+   "text": "60",
+   "color": "ink",
+   "at": [
+    0,
+    3.57,
+    -0.1
+   ],
+   "size": 0.17,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "why",
+   "kind": "letter",
+   "text": "12 × 5 = 60",
+   "color": "purple",
+   "at": [
+    -3,
+    3.3,
+    -0.4
+   ],
+   "size": 0.3,
+   "hidden": true
+  },
+  {
+   "id": "ticket",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "yellow",
+   "at": [
+    -1.3,
+    1.2,
+    1.6
+   ],
+   "size": 0.55,
+   "material": "paper",
+   "hidden": true
+  },
+  {
+   "id": "ticket_t",
+   "kind": "letter",
+   "text": "3:25",
+   "color": "ink",
+   "at": [
+    -1.3,
+    1.37,
+    1.75
+   ],
+   "size": 0.16,
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "home",
+   "kind": "prop",
+   "model": "house",
+   "at": [
+    -4,
+    0,
+    2.6
+   ],
+   "size": 0.75,
+   "hidden": true
+  },
+  {
+   "id": "market",
+   "kind": "prop",
+   "model": "apple",
+   "at": [
+    -1.4,
+    0,
+    2.9
+   ],
+   "size": 1.4,
+   "hidden": true
+  },
+  {
+   "id": "park",
+   "kind": "prop",
+   "model": "flower",
+   "at": [
+    1.3,
+    0,
+    2.9
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "station",
+   "kind": "shape",
+   "shape": "box",
+   "color": "teal",
+   "at": [
+    3.9,
+    0,
+    2.6
+   ],
+   "size": 0.9,
+   "scale": [
+    1.2,
+    0.9,
+    0.8
+   ],
+   "hidden": true
+  },
+  {
+   "id": "station_sign",
+   "kind": "prop",
+   "model": "signpost",
+   "at": [
+    3,
+    0,
+    2.3000000000000003
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "train",
+   "kind": "prop",
+   "model": "train_engine",
+   "at": [
+    -9,
+    0,
+    2
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "wagon",
+   "kind": "prop",
+   "model": "train_car",
+   "at": [
+    -10.4,
+    0,
+    2
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "party",
+   "kind": "confetti",
+   "count": 220,
+   "area": [
+    10,
+    4
+   ],
+   "height": 7
+  }
+ ],
+ "scenes": [
+  {
+   "id": "train",
+   "title": "The 3:25 train",
+   "beats": [
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Five-Minute Clock Race",
+       "style": "title",
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.6,
+        7.6
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        0
+       ],
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Robo! The train to Grandma's leaves at three twenty-five!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "show",
+       "target": "dog"
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -1.9,
+        0,
+        1.6
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "ticket",
+       "at": 1.8
+      },
+      {
+       "do": "pop",
+       "target": "ticket_t",
+       "at": 1.9,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "3:25",
+       "style": "label",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let me look at the big clock. The long hand is on the 1.",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        70,
+        0
+       ],
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "So it's three... one? I don't know what that means!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "train_whistle",
+       "at": 0.2,
+       "volume": 0.35
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "worried",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then we'd better learn the minute hand. Fast.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "ticket",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "ticket_t",
+       "at": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hands",
+   "title": "Two hands, two jobs",
+   "beats": [
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "A clock has two hands, and each has its own job.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "The short red hand is the hour hand.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "hour hand",
+       "style": "label",
+       "at": 1.2
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:05",
+       "minuteHand": false,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "It shows the hour. It's just past 3.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "clock",
+       "at": 1.2,
+       "deg": 3
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "The long blue hand is the minute hand.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "minute hand",
+       "style": "label",
+       "at": 1.2
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:05",
+       "minuteHand": true,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "It shows how many minutes past the hour.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Remember from grade one? When the long hand is on 12...",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "4:00",
+       "at": 1.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "it's o'clock! Four o'clock.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "o'clock",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "And when the long hand is on 6, it's half past.",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "4:30",
+       "at": 1,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "When I say short hand, you say hours!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Short hand?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hours! Long hand?",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Minutes! Great.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: hands turn this way. We call it clockwise!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "5:00",
+       "at": 1,
+       "dur": 2.4
+      },
+      {
+       "do": "caption",
+       "text": "clockwise",
+       "style": "label",
+       "at": 2.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lap",
+   "title": "The lap of fives",
+   "beats": [
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now the minute hand runs a lap of fives. Count with me!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:00",
+       "at": 0.8,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 10.4,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:05",
+       "at": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st0",
+       "at": 0.7,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn0",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 0.7,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:10",
+       "at": 1.15,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st1",
+       "at": 1.5499999999999998,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn1",
+       "at": 1.65,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 1.5499999999999998,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:15",
+       "at": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st2",
+       "at": 2.4,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn2",
+       "at": 2.5,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "15",
+       "style": "count",
+       "at": 2.4,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:20",
+       "at": 2.8499999999999996,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st3",
+       "at": 3.2499999999999996,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn3",
+       "at": 3.3499999999999996,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "20",
+       "style": "count",
+       "at": 3.2499999999999996,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:25",
+       "at": 3.6999999999999997,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st4",
+       "at": 4.1,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn4",
+       "at": 4.199999999999999,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "25",
+       "style": "count",
+       "at": 4.1,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:30",
+       "at": 4.55,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st5",
+       "at": 4.95,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn5",
+       "at": 5.05,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "30",
+       "style": "count",
+       "at": 4.95,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:35",
+       "at": 5.3999999999999995,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st6",
+       "at": 5.8,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn6",
+       "at": 5.8999999999999995,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "35",
+       "style": "count",
+       "at": 5.8,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:40",
+       "at": 6.25,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st7",
+       "at": 6.65,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn7",
+       "at": 6.75,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "40",
+       "style": "count",
+       "at": 6.65,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:45",
+       "at": 7.1,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st8",
+       "at": 7.5,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn8",
+       "at": 7.6,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "45",
+       "style": "count",
+       "at": 7.5,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:50",
+       "at": 7.949999999999999,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st9",
+       "at": 8.35,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn9",
+       "at": 8.45,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "50",
+       "style": "count",
+       "at": 8.35,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:55",
+       "at": 8.8,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st10",
+       "at": 9.200000000000001,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn10",
+       "at": 9.3,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "55",
+       "style": "count",
+       "at": 9.200000000000001,
+       "dur": 0.75
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "4:00",
+       "at": 9.65,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "st11",
+       "at": 10.05,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "sn11",
+       "at": 10.15,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "60",
+       "style": "count",
+       "at": 10.05,
+       "dur": 0.75
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why does the 1 mean 5? The number says 1.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Great question! There are 60 minutes in one hour.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "But a clock has only 12 numbers.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "st0",
+       "at": 0.8,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st1",
+       "at": 0.92,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st2",
+       "at": 1.04,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st3",
+       "at": 1.16,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st4",
+       "at": 1.28,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st5",
+       "at": 1.4,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st6",
+       "at": 1.52,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st7",
+       "at": 1.64,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st8",
+       "at": 1.76,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st9",
+       "at": 1.88,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st10",
+       "at": 2,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "st11",
+       "at": 2.12,
+       "height": 0.15,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "So 60 minutes are shared by 12 numbers. 5 each!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "why",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "12 times 5 is 60. One whole lap is one hour.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "60 minutes",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's count the fives again, all the way round!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "why",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 10.2,
+     "do": [
+      {
+       "do": "hop",
+       "target": "st0",
+       "at": 0.3,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 0.3,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.3,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st1",
+       "at": 1.1199999999999999,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 1.1199999999999999,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.1199999999999999,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st2",
+       "at": 1.94,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "15",
+       "style": "count",
+       "at": 1.94,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.94,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st3",
+       "at": 2.76,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "20",
+       "style": "count",
+       "at": 2.76,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2.76,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st4",
+       "at": 3.5799999999999996,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "25",
+       "style": "count",
+       "at": 3.5799999999999996,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 3.5799999999999996,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st5",
+       "at": 4.3999999999999995,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "30",
+       "style": "count",
+       "at": 4.3999999999999995,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 4.3999999999999995,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st6",
+       "at": 5.22,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "35",
+       "style": "count",
+       "at": 5.22,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 5.22,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st7",
+       "at": 6.039999999999999,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "40",
+       "style": "count",
+       "at": 6.039999999999999,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 6.039999999999999,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st8",
+       "at": 6.859999999999999,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "45",
+       "style": "count",
+       "at": 6.859999999999999,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 6.859999999999999,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st9",
+       "at": 7.68,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "50",
+       "style": "count",
+       "at": 7.68,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 7.68,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st10",
+       "at": 8.5,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "55",
+       "style": "count",
+       "at": 8.5,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 8.5,
+       "volume": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "st11",
+       "at": 9.32,
+       "height": 0.25,
+       "dur": 0.45
+      },
+      {
+       "do": "caption",
+       "text": "60",
+       "style": "count",
+       "at": 9.32,
+       "dur": 0.75
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 9.32,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "So at the start, the long hand was on 1. That's 5 minutes!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "4:05",
+       "at": 1.4,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "From three oh five to three twenty-five,",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "4:25",
+       "at": 2.2,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "count the jumps: 5, 10, 15, 20.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Twenty minutes until my train! Phew.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "happy",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Robo, read the hour first, then count the fives.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "st0",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn0",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st1",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn1",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st2",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn2",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st3",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn3",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st4",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn4",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st5",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn5",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st6",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn6",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st7",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn7",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st8",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn8",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st9",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn9",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st10",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn10",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "st11",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "sn11",
+       "at": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "read",
+   "title": "Read the minutes",
+   "beats": [
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's read some times. Short hand first.",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "10:15",
+       "at": 0.4,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "The short hand is just past 10.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Long hand on 3. Count by fives!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "5, 10, 15. It's ten fifteen!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "10:15",
+       "style": "label",
+       "at": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next one.",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "2:40",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "The long hand is on 8. How many minutes?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "40! Count 5, 10, 15, 20, 25, 30, 35, 40.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "The hour hand is between 2 and 3, so it's two forty.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "2:40",
+       "style": "label",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's a tricky one.",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "6:05",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Just past 6, and the long hand is on 1.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Six oh five! We write a zero before the 5.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "6:05",
+       "style": "label",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "And now the train time!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:25",
+       "at": 0.4,
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Short hand past 3. Long hand on 5. That's...?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three twenty-five! Dog's train time!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "3:25",
+       "style": "label",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "See? The hour hand is a bit less than halfway to 4.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sneaky",
+   "title": "The Sneaky Hour Hand",
+   "beats": [
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now beware of the Sneaky Hour Hand!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "7:50",
+       "at": 0.6,
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Easy! The short hand is on 8. It's eight fifty!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "clock",
+       "at": 0.1,
+       "deg": 4
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Look closely, Robo. The hour hand is almost at 8.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Almost, but not yet. So it's still 7. Seven fifty!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "7:50",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oh! The hour hand is sneaky. I read it too fast.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why is it so close to 8 if it's still 7?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's watch. The hour hand walks slowly,",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:00",
+       "at": 0.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "while the long hand runs.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's eight o'clock. Now watch one whole hour.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 9.6,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:05",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:10",
+       "at": 0.95,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 0.95,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:15",
+       "at": 1.7,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "15",
+       "style": "count",
+       "at": 1.7,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:20",
+       "at": 2.45,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "20",
+       "style": "count",
+       "at": 2.45,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:25",
+       "at": 3.2,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "25",
+       "style": "count",
+       "at": 3.2,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:30",
+       "at": 3.95,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "30",
+       "style": "count",
+       "at": 3.95,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:35",
+       "at": 4.7,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "35",
+       "style": "count",
+       "at": 4.7,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:40",
+       "at": 5.45,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "40",
+       "style": "count",
+       "at": 5.45,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:45",
+       "at": 6.2,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "45",
+       "style": "count",
+       "at": 6.2,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:50",
+       "at": 6.95,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "50",
+       "style": "count",
+       "at": 6.95,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "8:55",
+       "at": 7.7,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "55",
+       "style": "count",
+       "at": 7.7,
+       "dur": 0.7
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "9:00",
+       "at": 8.45,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "60",
+       "style": "count",
+       "at": 8.45,
+       "dur": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "The long hand went all the way round.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "The short hand only moved from 8 to 9!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact:",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "the hour hand needs a whole hour to reach the next number.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "So at fifty minutes, it's nearly there. Sneaky, but slow.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Tick-Tock Fives chant",
+   "beats": [
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Make a long arm and sweep it round. Chant with me!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.6,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        1,
+        0.8
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Tick, tock, five more minutes,",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "9:20",
+       "at": 0.4,
+       "dur": 3.2,
+       "sound": "tick"
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "round we go, the long hand knows!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "5, 10, 15, 20, 25, 30!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "9:30",
+       "at": 0.2,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Tick, tock, five more minutes,",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "9:50",
+       "at": 0.4,
+       "dur": 3.2,
+       "sound": "tick"
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "round we go, the long hand knows!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "35, 40, 45, 50, 55, 60!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "10:00",
+       "at": 0.2,
+       "dur": 2.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 3.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "journey",
+   "title": "Dog's journey",
+   "beats": [
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "I have stops before the train.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "show",
+       "target": "home"
+      },
+      {
+       "do": "show",
+       "target": "market",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "park",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "station",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "station_sign",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "chick",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -3.1,
+        0,
+        3
+       ],
+       "at": 0.4,
+       "dur": 1.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.6,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        1,
+        0.8
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Can you help me with the times?",
+       "voice": "deep",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Dog leaves home at two forty. Where does the long hand go?",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "2:40",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "On the 8! Two forty.",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "2:40",
+       "at": 0.2,
+       "dur": 2.4
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bye, house! Off I go.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next stop, the market at two fifty-five.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -0.4999999999999999,
+        0,
+        3.3
+       ],
+       "at": 0.3,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.5,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.1,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.9,
+       "height": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "2:55",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Long hand on 11. The hour hand is almost at 3,",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "2:55",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "but it's still 2!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Apples for Grandma!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "market",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then the park at three ten.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        2.2,
+        0,
+        3.3
+       ],
+       "at": 0.3,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.5,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.1,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.9,
+       "height": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "3:10",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Long hand on 2. 5, 10. Three ten!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:10",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check the hour hand too. Just past 3. Good.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Sing while Dog walks! Tick, tock, five more minutes!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then the station at three twenty.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        4.8,
+        0,
+        3
+       ],
+       "at": 0.3,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.5,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.1,
+       "height": 0.25
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.9,
+       "height": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "3:20",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Long hand on 4. Three twenty!",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:20",
+       "at": 0.2,
+       "dur": 1.4
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "I made it to the station! Five minutes to spare.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "From three twenty to three twenty-five is one jump of five.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "home",
+       "at": 2.4
+      },
+      {
+       "do": "hide",
+       "target": "market",
+       "at": 2.4
+      },
+      {
+       "do": "hide",
+       "target": "park",
+       "at": 2.4
+      },
+      {
+       "do": "hide",
+       "target": "station",
+       "at": 2.4
+      },
+      {
+       "do": "hide",
+       "target": "station_sign",
+       "at": 2.4
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -1.9,
+        0,
+        1.6
+       ],
+       "at": 2.4,
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        4.6,
+        0,
+        2.6
+       ],
+       "at": 2.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: beat the train",
+   "beats": [
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge! Four clocks, three seconds each. Ready?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.6,
+        7.6
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three seconds each. Hour first, then count by fives.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "4:35",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 2.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four thirty-five! The long hand is on 7.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "4:35",
+       "style": "label",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "11:10",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 2.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Eleven ten! The long hand is on 2.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "11:10",
+       "style": "label",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "9:45",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 2.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Nine forty-five! The long hand is on 9.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "9:45",
+       "style": "label",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "12:55",
+       "at": 0.1,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 0.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 2.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Twelve fifty-five! The hour hand is almost at 1,",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "12:55",
+       "style": "label",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "but it's still 12.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "You didn't fall for the sneaky hour hand. Nice.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "And here comes the train. What time is it now?",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:25",
+       "at": 0.6,
+       "dur": 2.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.6,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        1,
+        0.8
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "show",
+       "target": "train",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "wagon",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "train",
+       "to": [
+        1.4,
+        0,
+        2
+       ],
+       "at": 0.8,
+       "dur": 3.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "wagon",
+       "to": [
+        0,
+        0,
+        2
+       ],
+       "at": 0.8,
+       "dur": 3.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "turn",
+       "target": "train#wheels",
+       "to": [
+        0,
+        0,
+        -720
+       ],
+       "at": 0.8,
+       "dur": 3.2
+      },
+      {
+       "do": "sound",
+       "sound": "train_whistle",
+       "at": 1,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three twenty-five! Right on time!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "3:25",
+       "style": "label",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! The long hand points at 9. How many minutes?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.6,
+        7.6
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "5:45",
+       "at": 1.2,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "45! 9 jumps of 5.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "The short hand is just past 4,",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "4:10",
+       "at": 1.6,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "the long hand is on 2. What time?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four ten!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "4:10",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why does the 1 on a clock mean 5 minutes?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "60 minutes shared by 12 numbers is 5 each.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last one. Is this eight fifty or seven fifty?",
+       "caption": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "7:50",
+       "at": 0.6,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Seven fifty! The hour hand isn't at 8 yet.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "7:50",
+       "style": "label",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "aboard",
+   "title": "All aboard",
+   "beats": [
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "All aboard! Dog rides to Grandma's.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.6,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        1,
+        0.8
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:25",
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        0,
+        0.3,
+        2
+       ],
+       "at": 0.4,
+       "dur": 1.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.6,
+       "height": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "train_whistle",
+       "at": 1.6,
+       "volume": 0.5
+      },
+      {
+       "do": "burst",
+       "target": "party",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.71,
+     "do": [
+      {
+       "do": "say",
+       "text": "Right on time.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Read a clock at home today, and count by fives. Bye!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "train",
+       "to": [
+        9,
+        0,
+        2
+       ],
+       "at": 1,
+       "dur": 3
+      },
+      {
+       "do": "move",
+       "target": "wagon",
+       "to": [
+        7.6,
+        0,
+        2
+       ],
+       "at": 1,
+       "dur": 3
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        7.6,
+        0.3,
+        2
+       ],
+       "at": 1,
+       "dur": 3
+      },
+      {
+       "do": "turn",
+       "target": "train#wheels",
+       "to": [
+        0,
+        0,
+        -1440
+       ],
+       "at": 1,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

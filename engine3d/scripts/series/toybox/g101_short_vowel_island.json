@@ -1,0 +1,5504 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Robo, Frog and Duck find the missing vowels on Vowel Island! Learn the short sounds of a, e, i, o and u, blend three sounds into words like cat, hen and pig, and watch the Vowel Swap Machine turn bag into beg, big, bog and bug.",
+  "meta": {
+    "title": "Short Vowel Island",
+    "series": "toybox",
+    "episode": "g101",
+    "audience": "grade1",
+    "seed": 201,
+    "voice": "soft",
+    "voiceSpeed": 0.97,
+    "music": "happy",
+    "musicGain": 0.22,
+    "skills": [
+      "short_vowels_1"
+    ],
+    "thumbnail": {
+      "scene": "machine",
+      "at": 80.88
+    },
+    "youtube": {
+      "title": "Short Vowels for Kids! CVC Words on Vowel Island | Toy Box Friends",
+      "description": "Robo, Frog and Duck find the missing vowels on Vowel Island! Learn the short sounds of a, e, i, o and u, blend three sounds into words like cat, hen and pig, and watch the Vowel Swap Machine turn bag into beg, big, bog and bug.\nFor first graders learning to read: short vowels, CVC words and blending. Say the sounds out loud with Robo!",
+      "tags": [
+        "short vowels",
+        "CVC words",
+        "phonics for kids",
+        "grade 1 reading",
+        "first grade phonics",
+        "blending sounds",
+        "vowel sounds",
+        "learn to read",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "beach"
+  },
+  "camera": {
+    "position": [0, 2, 9.6],
+    "lookAt": [0, 1.4, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-4.7, 0, 0.8],
+      "rotation": [0, 30, 0]
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.9,
+      "at": [4.6, 0, 1.2],
+      "rotation": [0, -30, 0]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "size": 0.8,
+      "at": [9, 0, 2.2],
+      "rotation": [0, -90, 0]
+    },
+    {
+      "id": "pig",
+      "kind": "critter",
+      "species": "pig",
+      "size": 0.8,
+      "at": [0.9, 0, -1.3],
+      "rotation": [0, -20, 0],
+      "hidden": true
+    },
+    {
+      "id": "palm_l",
+      "kind": "prop",
+      "model": "palm_tree",
+      "size": 1.3,
+      "at": [-6.6, 0, -3.2]
+    },
+    {
+      "id": "palm_r",
+      "kind": "prop",
+      "model": "palm_tree",
+      "size": 1.2,
+      "at": [6.4, 0, -3.6],
+      "rotation": [0, 150, 0]
+    },
+    {
+      "id": "bush_l",
+      "kind": "prop",
+      "model": "bush",
+      "size": 0.8,
+      "at": [-5.4, 0, -2.6]
+    },
+    {
+      "id": "bush_r",
+      "kind": "prop",
+      "model": "bush",
+      "size": 0.7,
+      "at": [5.2, 0, -2.4]
+    },
+    {
+      "id": "cloud1",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 1.2,
+      "at": [-3, 5.2, -7]
+    },
+    {
+      "id": "cloud2",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 0.9,
+      "at": [3.8, 5.6, -8]
+    },
+    {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "size": 1.1,
+      "at": [6.5, 5.4, -8]
+    },
+    {
+      "id": "hut_a",
+      "kind": "prop",
+      "model": "house",
+      "color": "red",
+      "size": 0.75,
+      "at": [-3.2, 0, -2.4]
+    },
+    {
+      "id": "hut_e",
+      "kind": "prop",
+      "model": "house",
+      "color": "yellow",
+      "size": 0.75,
+      "at": [-1.6, 0, -2.4]
+    },
+    {
+      "id": "hut_i",
+      "kind": "prop",
+      "model": "house",
+      "color": "green",
+      "size": 0.75,
+      "at": [0, 0, -2.4]
+    },
+    {
+      "id": "hut_o",
+      "kind": "prop",
+      "model": "house",
+      "color": "blue",
+      "size": 0.75,
+      "at": [1.6, 0, -2.4]
+    },
+    {
+      "id": "hut_u",
+      "kind": "prop",
+      "model": "house",
+      "color": "purple",
+      "size": 0.75,
+      "at": [3.2, 0, -2.4]
+    },
+    {
+      "id": "h_a",
+      "kind": "letter",
+      "text": "a",
+      "color": "red",
+      "size": 0.9,
+      "at": [-3.2, 1.55, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "h_e",
+      "kind": "letter",
+      "text": "e",
+      "color": "yellow",
+      "size": 0.9,
+      "at": [-1.6, 1.55, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "h_i",
+      "kind": "letter",
+      "text": "i",
+      "color": "green",
+      "size": 0.9,
+      "at": [0, 1.55, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "h_o",
+      "kind": "letter",
+      "text": "o",
+      "color": "blue",
+      "size": 0.9,
+      "at": [1.6, 1.55, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "h_u",
+      "kind": "letter",
+      "text": "u",
+      "color": "purple",
+      "size": 0.9,
+      "at": [3.2, 1.55, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "sign0",
+      "kind": "letter",
+      "text": "V_W_L _SL_ND",
+      "color": "brown",
+      "size": 0.62,
+      "at": [0, 3.371, -3.6]
+    },
+    {
+      "id": "sign1",
+      "kind": "letter",
+      "text": "V_W_L _SLAND",
+      "color": "brown",
+      "size": 0.62,
+      "at": [0, 3.371, -3.6],
+      "hidden": true
+    },
+    {
+      "id": "sign2",
+      "kind": "letter",
+      "text": "V_WEL _SLAND",
+      "color": "brown",
+      "size": 0.62,
+      "at": [0, 3.371, -3.6],
+      "hidden": true
+    },
+    {
+      "id": "sign3",
+      "kind": "letter",
+      "text": "V_WEL ISLAND",
+      "color": "brown",
+      "size": 0.62,
+      "at": [0, 3.371, -3.6],
+      "hidden": true
+    },
+    {
+      "id": "sign4",
+      "kind": "letter",
+      "text": "VOWEL ISLAND",
+      "color": "brown",
+      "size": 0.62,
+      "at": [0, 3.15, -3.6],
+      "hidden": true
+    },
+    {
+      "id": "bottle",
+      "kind": "shape",
+      "shape": "bottle",
+      "color": "teal",
+      "material": "glass",
+      "size": 0.55,
+      "at": [9, 0.2, 2.6],
+      "rotation": [0, 0, 90]
+    },
+    {
+      "id": "note_cat",
+      "kind": "letter",
+      "text": "C_T",
+      "color": "ink",
+      "size": 0.45,
+      "at": [-2.6, 0.66, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "note_hat",
+      "kind": "letter",
+      "text": "H_T",
+      "color": "ink",
+      "size": 0.45,
+      "at": [0, 0.66, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "note_pig",
+      "kind": "letter",
+      "text": "P_G",
+      "color": "ink",
+      "size": 0.45,
+      "at": [2.6, 0.66, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "apple",
+      "kind": "prop",
+      "model": "apple",
+      "size": 1.1,
+      "at": [-3.2, 0, -1.2],
+      "hidden": true
+    },
+    {
+      "id": "egg",
+      "kind": "prop",
+      "model": "egg",
+      "size": 1.1,
+      "at": [-1.6, 0, -1.2],
+      "hidden": true
+    },
+    {
+      "id": "tbox",
+      "kind": "prop",
+      "model": "toy_box",
+      "size": 0.6,
+      "at": [0, 0, -1.2],
+      "hidden": true
+    },
+    {
+      "id": "ball",
+      "kind": "prop",
+      "model": "ball",
+      "color": "green",
+      "size": 0.45,
+      "at": [-0.9, 0, -1.2],
+      "hidden": true
+    },
+    {
+      "id": "block",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sky",
+      "size": 0.55,
+      "at": [1.6, 0, -1.2],
+      "hidden": true
+    },
+    {
+      "id": "ball2",
+      "kind": "prop",
+      "model": "ball",
+      "color": "blue",
+      "size": 0.45,
+      "at": [2.5, 0, -1.2],
+      "hidden": true
+    },
+    {
+      "id": "balloon",
+      "kind": "prop",
+      "model": "balloon",
+      "color": "purple",
+      "size": 0.8,
+      "at": [3.2, 0.2, -1.2],
+      "hidden": true
+    },
+    {
+      "id": "machine",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "teal",
+      "face": true,
+      "size": 1.3,
+      "at": [3, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "btn_a",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "red",
+      "size": 0.2,
+      "at": [2.52, 1.32, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "btn_e",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "yellow",
+      "size": 0.2,
+      "at": [2.76, 1.32, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "btn_i",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "green",
+      "size": 0.2,
+      "at": [3, 1.32, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "btn_o",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "blue",
+      "size": 0.2,
+      "at": [3.24, 1.32, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "btn_u",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "purple",
+      "size": 0.2,
+      "at": [3.48, 1.32, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "bog",
+      "kind": "shape",
+      "shape": "circle",
+      "color": "brown",
+      "material": "matte",
+      "size": 1.4,
+      "at": [2.4, 0.02, 2.8],
+      "rotation": [-90, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "v_a",
+      "kind": "letter",
+      "text": "a",
+      "color": "red",
+      "size": 0.8,
+      "at": [-0.4, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "v_e",
+      "kind": "letter",
+      "text": "e",
+      "color": "yellow",
+      "size": 0.8,
+      "at": [-0.4, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "v_i",
+      "kind": "letter",
+      "text": "i",
+      "color": "green",
+      "size": 0.8,
+      "at": [-0.4, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "v_o",
+      "kind": "letter",
+      "text": "o",
+      "color": "blue",
+      "size": 0.8,
+      "at": [-0.4, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "v_u",
+      "kind": "letter",
+      "text": "u",
+      "color": "purple",
+      "size": 0.8,
+      "at": [-0.4, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_cat_1",
+      "kind": "letter",
+      "text": "c",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-2.6, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_cat_3",
+      "kind": "letter",
+      "text": "t",
+      "color": "ink",
+      "size": 0.8,
+      "at": [1.8, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_hen_1",
+      "kind": "letter",
+      "text": "h",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-2.6, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_hen_3",
+      "kind": "letter",
+      "text": "n",
+      "color": "ink",
+      "size": 0.8,
+      "at": [1.8, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_pig_1",
+      "kind": "letter",
+      "text": "p",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-2.6, 0.378, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_pig_3",
+      "kind": "letter",
+      "text": "g",
+      "color": "ink",
+      "size": 0.8,
+      "at": [1.8, 0.362, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_dog_1",
+      "kind": "letter",
+      "text": "d",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-2.6, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_dog_3",
+      "kind": "letter",
+      "text": "g",
+      "color": "ink",
+      "size": 0.8,
+      "at": [1.8, 0.362, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_bug_1",
+      "kind": "letter",
+      "text": "b",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-2.6, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "k_bug_3",
+      "kind": "letter",
+      "text": "g",
+      "color": "ink",
+      "size": 0.8,
+      "at": [1.8, 0.362, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_c",
+      "kind": "letter",
+      "text": "c",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-1.28, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_t",
+      "kind": "letter",
+      "text": "t",
+      "color": "ink",
+      "size": 0.8,
+      "at": [0.48, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_p",
+      "kind": "letter",
+      "text": "p",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-1.28, 0.378, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_n",
+      "kind": "letter",
+      "text": "n",
+      "color": "ink",
+      "size": 0.8,
+      "at": [0.48, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_h",
+      "kind": "letter",
+      "text": "h",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-1.28, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_t2",
+      "kind": "letter",
+      "text": "t",
+      "color": "ink",
+      "size": 0.8,
+      "at": [0.48, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_p2",
+      "kind": "letter",
+      "text": "p",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-1.28, 0.378, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_g",
+      "kind": "letter",
+      "text": "g",
+      "color": "ink",
+      "size": 0.8,
+      "at": [0.48, 0.362, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_b",
+      "kind": "letter",
+      "text": "b",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-1.28, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "m_g2",
+      "kind": "letter",
+      "text": "g",
+      "color": "ink",
+      "size": 0.8,
+      "at": [0.48, 0.362, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "hunt_map",
+      "kind": "letter",
+      "text": "map",
+      "color": "red",
+      "size": 0.7,
+      "at": [-0.6, 0.33, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "hunt_web",
+      "kind": "letter",
+      "text": "web",
+      "color": "yellow",
+      "size": 0.7,
+      "at": [-0.6, 0, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "hunt_lid",
+      "kind": "letter",
+      "text": "lid",
+      "color": "green",
+      "size": 0.7,
+      "at": [-0.6, 0, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "hunt_mop",
+      "kind": "letter",
+      "text": "mop",
+      "color": "blue",
+      "size": 0.7,
+      "at": [-0.6, 0.33, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "hunt_sun",
+      "kind": "letter",
+      "text": "sun",
+      "color": "purple",
+      "size": 0.7,
+      "at": [-0.6, 0, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "q_sun",
+      "kind": "letter",
+      "text": "sun",
+      "color": "purple",
+      "size": 0.8,
+      "at": [-0.4, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_map",
+      "kind": "letter",
+      "text": "map",
+      "color": "red",
+      "size": 0.8,
+      "at": [-0.4, 0.378, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_mop",
+      "kind": "letter",
+      "text": "mop",
+      "color": "blue",
+      "size": 0.8,
+      "at": [-0.4, 0.378, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_bg",
+      "kind": "letter",
+      "text": "b_g",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-0.4, 0.362, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_bug",
+      "kind": "letter",
+      "text": "bug",
+      "color": "purple",
+      "size": 0.8,
+      "at": [-0.4, 0.362, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_pig",
+      "kind": "letter",
+      "text": "pig",
+      "color": "ink",
+      "size": 0.55,
+      "at": [-2.8, 0.26, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_hen",
+      "kind": "letter",
+      "text": "hen",
+      "color": "ink",
+      "size": 0.55,
+      "at": [-0.4, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_cup",
+      "kind": "letter",
+      "text": "cup",
+      "color": "ink",
+      "size": 0.55,
+      "at": [2, 0.26, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_l",
+      "kind": "letter",
+      "text": "l",
+      "color": "ink",
+      "size": 0.8,
+      "at": [-2.6, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_i",
+      "kind": "letter",
+      "text": "i",
+      "color": "green",
+      "size": 0.8,
+      "at": [-0.4, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "q_d",
+      "kind": "letter",
+      "text": "d",
+      "color": "ink",
+      "size": 0.8,
+      "at": [1.8, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "fog",
+      "kind": "letter",
+      "text": "fog",
+      "color": "blue",
+      "size": 0.8,
+      "at": [-0.4, 0.762, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 220,
+      "area": [11, 4],
+      "height": 7,
+      "colors": [
+        "red",
+        "yellow",
+        "green",
+        "blue",
+        "purple"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "bottle",
+      "title": "Message in a bottle",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 1.2, 10.5],
+              "lookAt": [1.5, 0.8, 0],
+              "dur": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Look! Something is floating to our island.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bottle",
+              "to": [1.6, 0.2, 2.6],
+              "dur": 3,
+              "ease": "cubicOut"
+            },
+            {
+              "do": "wiggle",
+              "target": "bottle",
+              "at": 0.4,
+              "deg": 8,
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bottle",
+              "at": 1.8,
+              "deg": 8,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [3.4, 0, 2.2],
+              "at": 0.6,
+              "dur": 3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.4
+            }
+          ],
+          "dur": 3.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Quack! A bottle with a note inside!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "to": [0, -40, 0]
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "bubble_pop",
+              "at": 0.2
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "at": 0.2,
+              "dur": 1.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The note says: C, gap, T. H, gap, T. P, gap, G.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "note_cat",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "note_hat",
+              "at": 1.6
+            },
+            {
+              "do": "pop",
+              "target": "note_pig",
+              "at": 2.8
+            }
+          ],
+          "dur": 4.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Help! The vowels washed away!",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised"
+            },
+            {
+              "do": "caption",
+              "text": "vowels",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "And look at our island sign. It has gaps too!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 7.5],
+              "lookAt": [0, 2.6, -3.6],
+              "dur": 1.2
+            },
+            {
+              "do": "wiggle",
+              "target": "sign0",
+              "at": 1.2,
+              "deg": 6
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Can you help us find the missing vowels?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "note_cat",
+              "at": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "note_hat",
+              "at": 1.3
+            },
+            {
+              "do": "hide",
+              "target": "note_pig",
+              "at": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "bottle",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Yes! Hop to it!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "sound": "boing"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        }
+      ]
+    },
+    {
+      "id": "huts",
+      "title": "Five vowel huts",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Five little huts, one for each vowel.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.4],
+              "lookAt": [0, 1.4, -2.4],
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "hut_a",
+              "at": 0.5,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "hut_e",
+              "at": 0.8,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "hut_i",
+              "at": 1.1,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "hut_o",
+              "at": 1.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "hut_u",
+              "at": 1.7,
+              "height": 0.3
+            }
+          ],
+          "dur": 2.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The vowels are a, e, i, o and u.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "a e i o u",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The red hut has a!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.4],
+              "lookAt": [0, 1.4, -2.4],
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "hut_a",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "h_a",
+              "at": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.9,
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "a",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_a_short",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "at": 0.1,
+              "height": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "ph_a_short",
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "at": 1.2,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Short a, like in apple. Bite the apple!",
+              "caption": true
+            },
+            {
+              "do": "drop",
+              "target": "apple",
+              "to": [-3.2, 0, -1.2],
+              "height": 3
+            },
+            {
+              "do": "hop",
+              "target": "apple",
+              "at": 1.5,
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "a, apple",
+              "style": "label"
+            }
+          ],
+          "dur": 2
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.8],
+              "lookAt": [0, 2.6, -3.6],
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "sign0",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "sign1",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The yellow hut has e!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.4],
+              "lookAt": [0, 1.4, -2.4],
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "hut_e",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "h_e",
+              "at": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.9,
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "e",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_e_short",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 0.1,
+              "height": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "ph_e_short",
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 1.2,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Short e, like in egg. Crack the egg!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "egg"
+            },
+            {
+              "do": "wiggle",
+              "target": "egg",
+              "at": 1.2,
+              "deg": 15
+            },
+            {
+              "do": "caption",
+              "text": "e, egg",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.8],
+              "lookAt": [0, 2.6, -3.6],
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "sign1",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "sign2",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: e is the most used letter in English!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 0.6,
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "e",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The green hut has i!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.4],
+              "lookAt": [0, 1.4, -2.4],
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "hut_i",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "h_i",
+              "at": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.9,
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "i",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_i_short",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "at": 0.1,
+              "height": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "ph_i_short",
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "at": 1.2,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Short i, like in. The ball goes in!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "tbox"
+            },
+            {
+              "do": "pop",
+              "target": "ball",
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "ball",
+              "to": [0, 0.9, -1.2],
+              "at": 1.4,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "ball",
+              "to": [0, 0.2, -1.2],
+              "at": 1.9,
+              "dur": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "i, in",
+              "style": "label"
+            }
+          ],
+          "dur": 2.4
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.8],
+              "lookAt": [0, 2.6, -3.6],
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "sign2",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "sign3",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The blue hut has o!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.4],
+              "lookAt": [0, 1.4, -2.4],
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "hut_o",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "h_o",
+              "at": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.9,
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "o",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_o_short",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "at": 0.1,
+              "height": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "ph_o_short",
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "at": 1.2,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Short o, like on. The ball sits on!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "block"
+            },
+            {
+              "do": "pop",
+              "target": "ball2",
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "ball2",
+              "to": [1.6, 0.55, -1.2],
+              "at": 1.4,
+              "dur": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "o, on",
+              "style": "label"
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.8],
+              "lookAt": [0, 2.6, -3.6],
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "sign3",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "sign4",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The purple hut has u!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 6.4],
+              "lookAt": [0, 1.4, -2.4],
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "hut_u",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "h_u",
+              "at": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.9,
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "u",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_u_short",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "at": 0.1,
+              "height": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "ph_u_short",
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "at": 1.2,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Short u, like up. The balloon goes up!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "balloon"
+            },
+            {
+              "do": "move",
+              "target": "balloon",
+              "to": [3.2, 1.3, -1.2],
+              "at": 1.2,
+              "dur": 1.6
+            },
+            {
+              "do": "caption",
+              "text": "u, up",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Our sign is fixed! Vowel Island!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 7.2],
+              "lookAt": [0, 2.4, -3.4],
+              "dur": 1
+            },
+            {
+              "do": "wiggle",
+              "target": "sign4",
+              "at": 0.8,
+              "deg": 6
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "at": 1.2,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 1.3499999999999999,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "at": 1.5,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "at": 1.65,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "at": 1.7999999999999998,
+              "height": 0.3
+            }
+          ],
+          "dur": 2.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Say the short sounds with me!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "apple",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "egg",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "tbox",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "ball",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "block",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "ball2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "balloon",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "dur": 4.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_a_short",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ph_e_short",
+              "at": 1.05
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 1.05,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ph_i_short",
+              "at": 1.9
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "at": 1.9,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ph_o_short",
+              "at": 2.75
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "at": 2.75,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ph_u_short",
+              "at": 3.6
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "at": 3.6,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.3,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blend",
+      "title": "Sound it out",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Every short word has a vowel in the middle.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-0.4, 1.7, 7],
+              "lookAt": [-0.4, 1, 0.6],
+              "dur": 1.4
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's sound it out. Tap, tap, tap, then slide.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "sound it out",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "pop",
+              "target": "k_cat_1"
+            },
+            {
+              "do": "pop",
+              "target": "v_a",
+              "at": 0.25
+            },
+            {
+              "do": "pop",
+              "target": "k_cat_3",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_cat_1",
+              "at": 0.1,
+              "sound": "ph_c"
+            },
+            {
+              "do": "hop",
+              "target": "v_a",
+              "at": 1,
+              "sound": "ph_a_short"
+            },
+            {
+              "do": "hop",
+              "target": "k_cat_3",
+              "at": 1.9,
+              "sound": "ph_t"
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_cat_1",
+              "at": 0.1,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "v_a",
+              "at": 0.6,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "k_cat_3",
+              "at": 1.1,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Slide them together. Cat!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "k_cat_1",
+              "to": [-1.28, 0, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "k_cat_3",
+              "to": [0.48, 0, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "k_cat_1",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "v_a",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "k_cat_3",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "caption",
+              "text": "cat",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "k_cat_1"
+            },
+            {
+              "do": "hide",
+              "target": "k_cat_3"
+            },
+            {
+              "do": "hide",
+              "target": "v_a"
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "pop",
+              "target": "k_hen_1"
+            },
+            {
+              "do": "pop",
+              "target": "v_e",
+              "at": 0.25
+            },
+            {
+              "do": "pop",
+              "target": "k_hen_3",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_hen_1",
+              "at": 0.1,
+              "sound": "ph_h"
+            },
+            {
+              "do": "hop",
+              "target": "v_e",
+              "at": 1,
+              "sound": "ph_e_short"
+            },
+            {
+              "do": "hop",
+              "target": "k_hen_3",
+              "at": 1.9,
+              "sound": "ph_n"
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_hen_1",
+              "at": 0.1,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "v_e",
+              "at": 0.6,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "k_hen_3",
+              "at": 1.1,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hen! A hen is a grown-up girl chicken.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "k_hen_1",
+              "to": [-1.28, 0, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "k_hen_3",
+              "to": [0.48, 0, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "k_hen_1",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "v_e",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "k_hen_3",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "caption",
+              "text": "hen",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "k_hen_1"
+            },
+            {
+              "do": "hide",
+              "target": "k_hen_3"
+            },
+            {
+              "do": "hide",
+              "target": "v_e"
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "pop",
+              "target": "k_pig_1"
+            },
+            {
+              "do": "pop",
+              "target": "v_i",
+              "at": 0.25
+            },
+            {
+              "do": "pop",
+              "target": "k_pig_3",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_pig_1",
+              "at": 0.1,
+              "sound": "ph_p"
+            },
+            {
+              "do": "hop",
+              "target": "v_i",
+              "at": 1,
+              "sound": "ph_i_short"
+            },
+            {
+              "do": "hop",
+              "target": "k_pig_3",
+              "at": 1.9,
+              "sound": "ph_g"
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_pig_1",
+              "at": 0.1,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "v_i",
+              "at": 0.6,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "k_pig_3",
+              "at": 1.1,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Pig!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "k_pig_1",
+              "to": [-1.28, 0.378, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "k_pig_3",
+              "to": [0.48, 0.362, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "k_pig_1",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "v_i",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "k_pig_3",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "caption",
+              "text": "pig",
+              "style": "label",
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "pig",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "P, i, g. That's me! I'm a pig!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "pig"
+            },
+            {
+              "do": "nod",
+              "target": "pig",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "k_pig_1"
+            },
+            {
+              "do": "hide",
+              "target": "k_pig_3"
+            },
+            {
+              "do": "hide",
+              "target": "v_i"
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "pop",
+              "target": "k_dog_1"
+            },
+            {
+              "do": "pop",
+              "target": "v_o",
+              "at": 0.25
+            },
+            {
+              "do": "pop",
+              "target": "k_dog_3",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_dog_1",
+              "at": 0.1,
+              "sound": "ph_d"
+            },
+            {
+              "do": "hop",
+              "target": "v_o",
+              "at": 1,
+              "sound": "ph_o_short"
+            },
+            {
+              "do": "hop",
+              "target": "k_dog_3",
+              "at": 1.9,
+              "sound": "ph_g"
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_dog_1",
+              "at": 0.1,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "v_o",
+              "at": 0.6,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "k_dog_3",
+              "at": 1.1,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Dog! The o is in the middle.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "k_dog_1",
+              "to": [-1.28, 0, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "k_dog_3",
+              "to": [0.48, 0.362, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "k_dog_1",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "v_o",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "k_dog_3",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "caption",
+              "text": "dog",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "k_dog_1"
+            },
+            {
+              "do": "hide",
+              "target": "k_dog_3"
+            },
+            {
+              "do": "hide",
+              "target": "v_o"
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "pop",
+              "target": "k_bug_1"
+            },
+            {
+              "do": "pop",
+              "target": "v_u",
+              "at": 0.25
+            },
+            {
+              "do": "pop",
+              "target": "k_bug_3",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_bug_1",
+              "at": 0.1,
+              "sound": "ph_b"
+            },
+            {
+              "do": "hop",
+              "target": "v_u",
+              "at": 1,
+              "sound": "ph_u_short"
+            },
+            {
+              "do": "hop",
+              "target": "k_bug_3",
+              "at": 1.9,
+              "sound": "ph_g"
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "k_bug_1",
+              "at": 0.1,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "v_u",
+              "at": 0.6,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "k_bug_3",
+              "at": 1.1,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bug! The u is in the middle.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "k_bug_1",
+              "to": [-1.28, 0, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "k_bug_3",
+              "to": [0.48, 0.362, 1.2],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "k_bug_1",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "v_u",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "k_bug_3",
+              "at": 0.9,
+              "height": 0.25
+            },
+            {
+              "do": "caption",
+              "text": "bug",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "k_bug_1"
+            },
+            {
+              "do": "hide",
+              "target": "k_bug_3"
+            },
+            {
+              "do": "hide",
+              "target": "v_u"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "machine",
+      "title": "The Vowel Swap Machine",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ta-da! The Vowel Swap Machine!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "machine",
+              "sound": "magic_sparkle"
+            },
+            {
+              "do": "pop",
+              "target": "btn_a",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "btn_e",
+              "at": 0.62
+            },
+            {
+              "do": "pop",
+              "target": "btn_i",
+              "at": 0.74
+            },
+            {
+              "do": "pop",
+              "target": "btn_o",
+              "at": 0.86
+            },
+            {
+              "do": "pop",
+              "target": "btn_u",
+              "at": 0.98
+            },
+            {
+              "do": "camera",
+              "position": [0.3, 1.8, 7.6],
+              "lookAt": [0.3, 1, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1.48
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Change the middle vowel to make a new word. Cat!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m_c"
+            },
+            {
+              "do": "pop",
+              "target": "v_a",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "m_t",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "cat",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_a",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_o",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_o",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_o_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "In goes a, out comes o. Cot!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_c",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_o",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_t",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "cot",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_o",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_o",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_o",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_u",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_u",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_u_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now o becomes u. Cut!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_c",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_u",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_t",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "cut",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 0.7,
+          "do": [
+            {
+              "do": "hide",
+              "target": "m_c"
+            },
+            {
+              "do": "hide",
+              "target": "m_t"
+            },
+            {
+              "do": "hide",
+              "target": "v_u"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Next, pin.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m_p"
+            },
+            {
+              "do": "pop",
+              "target": "v_i",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "m_n",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "pin",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_i",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_i",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_i",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_a",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_a",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_a_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Swap i for a. Pan!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_p",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_a",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_n",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "pan",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_a",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_e",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_e",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_e_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Swap a for e. Pen!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_p",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_e",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_n",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "pen",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 0.7,
+          "do": [
+            {
+              "do": "hide",
+              "target": "m_p"
+            },
+            {
+              "do": "hide",
+              "target": "m_n"
+            },
+            {
+              "do": "hide",
+              "target": "v_e"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now hat. Watch it change three times!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m_h"
+            },
+            {
+              "do": "pop",
+              "target": "v_a",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "m_t2",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "hat",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_a",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_i",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_i",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_i_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hit!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_h",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_i",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_t2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "hit",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_i",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_i",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_i",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_o",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_o",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_o_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hot!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_h",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_o",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_t2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "hot",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_o",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_o",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_o",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_u",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_u",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_u_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hut! Like our vowel huts.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_h",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_u",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_t2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "hut",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 0.7,
+          "do": [
+            {
+              "do": "hide",
+              "target": "m_h"
+            },
+            {
+              "do": "hide",
+              "target": "m_t2"
+            },
+            {
+              "do": "hide",
+              "target": "v_u"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "My turn. I want to make pig.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m_p2"
+            },
+            {
+              "do": "pop",
+              "target": "v_e",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "m_g",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "hop",
+              "target": "m_p2",
+              "at": 0.1,
+              "sound": "ph_p"
+            },
+            {
+              "do": "hop",
+              "target": "v_e",
+              "at": 1,
+              "sound": "ph_e_short"
+            },
+            {
+              "do": "hop",
+              "target": "m_g",
+              "at": 1.9,
+              "sound": "ph_g"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Pig!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes"
+            }
+          ],
+          "dur": 1.6
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "worried",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh no, that says peg! Which vowel do I need?",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_e",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_e",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_e",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_i",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_i",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_i_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Yes, i! Now it says pig!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_p2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_i",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_g",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "pig",
+              "style": "label",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy"
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.6
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 0.7,
+          "do": [
+            {
+              "do": "hide",
+              "target": "m_p2"
+            },
+            {
+              "do": "hide",
+              "target": "m_g"
+            },
+            {
+              "do": "hide",
+              "target": "v_i"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now the big finale. One word, five vowels!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.4, 1.7, 7.2],
+              "lookAt": [0.4, 1, 0.6],
+              "dur": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "m_b"
+            },
+            {
+              "do": "pop",
+              "target": "v_a",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "m_g2",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bag.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "bag",
+              "style": "label"
+            },
+            {
+              "do": "hop",
+              "target": "v_a",
+              "height": 0.3
+            }
+          ],
+          "dur": 2
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_a",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_a",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_e",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_e",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_e_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Beg.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_b",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_e",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_g2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "beg",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_e",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_e",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_e",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_i",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_i",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_i_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Big!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_b",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_i",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_g2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "big",
+              "style": "label",
+              "at": 0.3
+            },
+            {
+              "do": "grow",
+              "target": "v_i",
+              "to": 1.25,
+              "at": 0.5
+            },
+            {
+              "do": "grow",
+              "target": "v_i",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5,
+              "height": 0.9
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_i",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_i",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_i",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_o",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_o",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_o_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bog!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_b",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_o",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_g2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "bog",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A bog! That's a muddy place where frogs live!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 0.9
+            },
+            {
+              "do": "show",
+              "target": "bog",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [2.4, 0, 2.8],
+              "at": 0.2,
+              "dur": 0.45
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "at": 0.8
+            },
+            {
+              "do": "caption",
+              "text": "bog",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: a bog is soft, wet, muddy land.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "frog"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "v_o",
+              "to": [3, 0.6, 0.6],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "v_o",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "v_o",
+              "to": [-0.4, 0, 1.2],
+              "at": 0.8,
+              "dur": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "machine",
+              "at": 0.5,
+              "deg": 10
+            },
+            {
+              "do": "hop",
+              "target": "btn_u",
+              "at": 0.5,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.5,
+              "volume": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "v_u",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ph_u_short",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bug!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "m_b",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "v_u",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "m_g2",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "bug",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bag, beg, big, bog, bug. Five real words!",
+              "caption": true
+            },
+            {
+              "do": "spin",
+              "target": "machine",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "at": 0.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Middle sound, bounce! a, e, i, o, u!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 1.2,
+              "sound": "boing"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [4.6, 0, 1.2],
+              "at": 1.2,
+              "dur": 0.45
+            },
+            {
+              "do": "hide",
+              "target": "bog",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "m_b"
+            },
+            {
+              "do": "hide",
+              "target": "m_g2"
+            },
+            {
+              "do": "hide",
+              "target": "v_u"
+            },
+            {
+              "do": "hide",
+              "target": "machine",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "btn_a",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "btn_e",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "btn_i",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "btn_o",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "btn_u",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunt",
+      "title": "Frog's word hunt",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Frog, let's go on a word hunt!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Okay! But first, can I live in a hut?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The three-letter hut! F, r, o, g!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [1.6, 0, -1],
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Sorry, Frog. Frog has four letters!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "frog",
+              "style": "label"
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "sad",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hmm. Then I'll hunt for words!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "happy"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Listen: map. Which vowel is in map?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "hunt_map"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [-3.2, 0, -1],
+              "dur": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "a! Map has a in the middle.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "hut_a",
+              "to": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "hut_a",
+              "to": 1,
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "a",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "hunt_map"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Listen: web. Which vowel is in web?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "hunt_web"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [-1.6, 0, -1],
+              "dur": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "e! Web has e in the middle.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "hut_e",
+              "to": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "hut_e",
+              "to": 1,
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "e",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "hunt_web"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Listen: lid. Which vowel is in lid?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "hunt_lid"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [0, 0, -1],
+              "dur": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "i! Lid has i in the middle.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "hut_i",
+              "to": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "hut_i",
+              "to": 1,
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "i",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "hunt_lid"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Listen: mop. Which vowel is in mop?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "hunt_mop"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [1.6, 0, -1],
+              "dur": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "o! Mop has o in the middle.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "hut_o",
+              "to": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "hut_o",
+              "to": 1,
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "o",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "hunt_mop"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Listen: sun. Which vowel is in sun?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "hunt_sun"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [3.2, 0, -1],
+              "dur": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "u! Sun has u in the middle.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "hut_u",
+              "to": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "hut_u",
+              "to": 1,
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "u",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "hunt_sun"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Five words, five vowels! I'm a word hunter!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "sound": "boing"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [4.6, 0, 1.2],
+              "at": 0.4,
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.9
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Island quiz",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Island quiz time! Shout your answer after the click.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            },
+            {
+              "do": "caption",
+              "text": "Island Quiz",
+              "style": "title",
+              "dur": 2.5
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question one. Which vowel is in sun?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q_sun"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "u! Sun has u in the middle.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "u",
+              "style": "label"
+            },
+            {
+              "do": "hide",
+              "target": "q_sun",
+              "at": 1.8
+            }
+          ],
+          "dur": 2.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question two. Change the a in map to o.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q_map"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Mop! M, o, p. Mop.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q_map"
+            },
+            {
+              "do": "pop",
+              "target": "q_mop",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "mop",
+              "style": "label"
+            },
+            {
+              "do": "hide",
+              "target": "q_mop",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question three. Which word has a short e?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q_pig"
+            },
+            {
+              "do": "pop",
+              "target": "q_hen",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "q_cup",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Pig, hen or cup?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "q_pig",
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "q_hen",
+              "at": 0.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "q_cup",
+              "at": 0.8,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hen! Hen has a short e.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "q_hen",
+              "to": 1.3
+            },
+            {
+              "do": "hop",
+              "target": "q_hen",
+              "at": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "hide",
+              "target": "q_pig",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "q_cup",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "q_hen"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question four. Bug is b, gap, g. Which vowel fills the gap?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q_bg"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "u! B, u, g. Bug!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q_bg"
+            },
+            {
+              "do": "pop",
+              "target": "q_bug",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "u",
+              "style": "label"
+            },
+            {
+              "do": "hide",
+              "target": "q_bug",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Last one. Blend these sounds. What word?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q_l"
+            },
+            {
+              "do": "pop",
+              "target": "q_i",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "q_d",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "hop",
+              "target": "q_l",
+              "at": 0.1,
+              "sound": "ph_l"
+            },
+            {
+              "do": "hop",
+              "target": "q_i",
+              "at": 1,
+              "sound": "ph_i_short"
+            },
+            {
+              "do": "hop",
+              "target": "q_d",
+              "at": 1.9,
+              "sound": "ph_d"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Lid! Like the lid on a box.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "q_l",
+              "to": [-1, 0, 1.4],
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "q_d",
+              "to": [0.3, 0, 1.4],
+              "dur": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "lid",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Five out of five! You are vowel experts!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q_l"
+            },
+            {
+              "do": "hide",
+              "target": "q_i"
+            },
+            {
+              "do": "hide",
+              "target": "q_d"
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "at": 0.3,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 0.48,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "at": 0.6599999999999999,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "at": 0.8400000000000001,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "at": 1.02,
+              "height": 0.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.4
+            }
+          ],
+          "dur": 1.52
+        }
+      ]
+    },
+    {
+      "id": "finale",
+      "title": "Vowels home, Frog's word",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "All five vowels are home. Vowel Island!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 7.6],
+              "lookAt": [0, 2.2, -3],
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "sign4",
+              "at": 1,
+              "deg": 6
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "And Frog, I found a word for you.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Take the r out of frog. Fog!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "fog"
+            },
+            {
+              "do": "caption",
+              "text": "fog",
+              "style": "label",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "F, o, g. Three letters, with short o!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "fog",
+              "height": 0.3
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "fog",
+              "to": [2.35, 0.362, -1.4],
+              "dur": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "fog",
+              "to": 0.6,
+              "dur": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fog! I'm on the hut! Thank you, Robo!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 1,
+              "sound": "boing"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.8,
+              "height": 1
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Five vowels, and the middle one changes the word.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 0.44999999999999996,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "at": 0.6,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "at": 0.75,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "at": 0.8999999999999999,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Middle sound, bounce! Goodbye, friends!",
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.1
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.3
+            },
+            {
+              "do": "hop",
+              "target": "h_a",
+              "at": 0.6,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_e",
+              "at": 0.75,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_i",
+              "at": 0.8999999999999999,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_o",
+              "at": 1.0499999999999998,
+              "height": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "h_u",
+              "at": 1.2,
+              "height": 0.4
+            }
+          ],
+          "dur": 4.5
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "volume": 0.6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

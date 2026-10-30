@@ -15,13 +15,22 @@ export function parseClock(text) {
 /** "#ffcc00" → [r, g, b] in 0-1 (sRGB, as written in the catalog). */
 export const rgb = (hex) => [0, 2, 4].map((i) => parseInt(hex.slice(1 + i, 3 + i), 16) / 255);
 
-/** The colour name an object is drawn in when the script gives none. */
+/** The colour name an object's main colour is drawn in (after its recolor map, for critters and props). */
 export function mainColor(o, catalog) {
-  if (o.color) return o.color;
-  if (o.kind === "critter") return catalog.critters[o.species]?.color ?? "white";
-  if (o.kind === "prop") return catalog.props[o.model]?.color ?? "white";
-  if (o.kind === "letter") return "blue";
-  return "red";
+  const c = o.color ?? (o.kind === "critter" ? catalog.critters[o.species]?.color ?? "white" : o.kind === "prop" ? catalog.props[o.model]?.color ?? "white" : o.kind === "letter" ? "blue" : "red");
+  return o.recolor?.[c] ?? c;
+}
+
+/** Every colour name a critter or prop is built with (parts, eyes, cheeks, mouth), after its recolor map. */
+export function modelColors(o, catalog) {
+  const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
+  if (!m) return [];
+  const main = o.color ?? m.color;
+  const used = m.parts.map((p) => p.c ?? main);
+  if (m.eyes) used.push(m.eyes.color ?? "ink", "white");
+  if (m.eyes && m.cheeks) used.push(m.cheeks.color ?? "pink");
+  if (m.mouth) used.push(m.mouth.color ?? "ink");
+  return [...new Set(used.map((c) => o.recolor?.[c] ?? c))];
 }
 
 /**
@@ -60,15 +69,29 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
       return d;
     },
 
-    /** Blend an object's main colour to another catalog colour (the parts drawn in its main colour change). */
-    paint(id, { at: t = 0, color, dur = 0.8, ease = "sineInOut" } = {}) {
+    /**
+     * Blend an object's main colour to another catalog colour (the parts drawn in its main colour change).
+     * from: blend the parts drawn in that colour instead (a plant's "leaf" parts), timeline prop "tint:<from>".
+     */
+    paint(id, { at: t = 0, color, dur = 0.8, ease = "sineInOut", from } = {}) {
       const o = obj(id);
       if (!catalog.colors[color]) throw new Error(`unknown color "${color}"`);
-      if (!o.paint) {
-        o.paint = mainColor(o, catalog);
-        tl.base(id, "tint", rgb(catalog.colors[o.paint].hex));
+      if (from != null && !catalog.colors[from]) throw new Error(`unknown color "${from}"`);
+      const main = mainColor(o, catalog);
+      if (from == null || from === main) {
+        if (!o.paint) {
+          o.paint = main;
+          tl.base(id, "tint", rgb(catalog.colors[o.paint].hex));
+        }
+        tl.tween(id, "tint", { start: t, dur, to: rgb(catalog.colors[color].hex), ease });
+        return d;
       }
-      tl.tween(id, "tint", { start: t, dur, to: rgb(catalog.colors[color].hex), ease });
+      o.paintParts ??= [];
+      if (!o.paintParts.includes(from)) {
+        o.paintParts.push(from);
+        tl.base(id, `tint:${from}`, rgb(catalog.colors[from].hex));
+      }
+      tl.tween(id, `tint:${from}`, { start: t, dur, to: rgb(catalog.colors[color].hex), ease });
       return d;
     },
 

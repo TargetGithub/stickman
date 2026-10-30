@@ -9,7 +9,7 @@ import { TTFLoader } from "three/addons/loaders/TTFLoader.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
 import { deriveRng } from "./rng.js";
-import { shapeGeometry } from "./geometry.js";
+import { shadowed, shapeGeometry } from "./geometry.js";
 import { addFace, buildModel } from "./models.js";
 import { bubbleAt, bubblePaths, starField } from "./particles.js";
 import { buildClock, buildLamp, buildWeather } from "./objects_extra.js";
@@ -50,20 +50,22 @@ export function createMaterials(catalog) {
   };
 }
 
-/** Extruded text geometry, centred on x/z, standing on y = 0, cap height ≈ size. */
-function textGeometry(text, font, size, depth) {
-  const g = new TextGeometry(text, { font, size: size * 1.42, depth, curveSegments: 10, bevelEnabled: true, bevelThickness: depth * 0.18, bevelSize: size * 0.025, bevelSegments: 4 });
+/**
+ * Extruded text geometry, centred on x/z. The type is set at 1.42 × size, and TTFLoader scales an em to
+ * 100/72 units, so with Andika the cap height is about 1.41 × size, the x-height 0.98 × size and descenders
+ * reach 0.47 × size below the baseline. baseline: true stands the text on the font baseline (lifted by the
+ * bevel, so flat-bottomed letters touch y = 0 and g, p, y hang below it); otherwise it stands on its lowest point.
+ */
+function textGeometry(text, font, size, depth, { baseline = false } = {}) {
+  const bevel = size * 0.025;
+  const g = new TextGeometry(text, { font, size: size * 1.42, depth, curveSegments: 10, bevelEnabled: true, bevelThickness: depth * 0.18, bevelSize: bevel, bevelSegments: 4 });
   g.computeBoundingBox();
   const b = g.boundingBox;
-  g.translate(-(b.min.x + b.max.x) / 2, -b.min.y, -(b.min.z + b.max.z) / 2);
+  g.translate(-(b.min.x + b.max.x) / 2, baseline ? bevel : -b.min.y, -(b.min.z + b.max.z) / 2);
+  g.computeBoundingBox();
   return g;
 }
 
-const shadowed = (m) => {
-  m.castShadow = true;
-  m.receiveShadow = true;
-  return m;
-};
 
 /**
  * @returns {{ group: THREE.Group, mixer?: THREE.AnimationMixer, actions?: Map, named?: Map, world?: THREE.Object3D[],
@@ -114,7 +116,7 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080 
     }
   } else if (o.kind === "letter") {
     const font = assets.fonts.get(o.font ?? "andika_bold");
-    group.add(shadowed(new THREE.Mesh(textGeometry(o.text, font, size, (o.depth ?? 0.35) * size), material(o.color ?? "blue", o.material ?? "toy"))));
+    group.add(shadowed(new THREE.Mesh(textGeometry(o.text, font, size, (o.depth ?? 0.35) * size, { baseline: true }), material(o.color ?? "blue", o.material ?? "toy"))));
   } else if (o.kind === "character") {
     const ch = catalog.characters[o.character];
     const gltf = assets.characters.get(o.character);

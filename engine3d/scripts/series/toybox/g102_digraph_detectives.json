@@ -1,0 +1,4575 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Robo and Frog become Digraph Detectives! Two letters can hold hands and make one new sound: sh, ch, th and wh. Solve four cases with Sheep and Chick, find clue words like ship, chin, thumb and whale, and learn that wh starts question words.",
+  "meta": {
+    "title": "Digraph Detectives",
+    "series": "toybox",
+    "episode": "g102",
+    "audience": "grade1",
+    "seed": 202,
+    "voice": "soft",
+    "voiceSpeed": 0.97,
+    "music": "playful",
+    "musicGain": 0.22,
+    "skills": [
+      "digraphs_1"
+    ],
+    "thumbnail": {
+      "scene": "fuse",
+      "at": 13.38
+    },
+    "youtube": {
+      "title": "Digraphs sh, ch, th, wh for Kids! Phonics Detectives | Toy Box Friends",
+      "description": "Robo and Frog become Digraph Detectives! Two letters can hold hands and make one new sound: sh, ch, th and wh. Solve four cases with Sheep and Chick, find clue words like ship, chin, thumb and whale, and learn that wh starts question words.\nFor first graders learning to read. Do the hand actions and say each sound with Robo!",
+      "tags": [
+        "digraphs",
+        "sh ch th wh",
+        "phonics for kids",
+        "first grade phonics",
+        "grade 1 reading",
+        "digraph song",
+        "learn to read",
+        "letter sounds",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "studio"
+  },
+  "camera": {
+    "position": [0, 2, 9.6],
+    "lookAt": [0, 1.4, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-4.7, 0, 0.8],
+      "rotation": [0, 30, 0]
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.9,
+      "at": [4.5, 0, 1.2],
+      "rotation": [0, -30, 0]
+    },
+    {
+      "id": "sheep",
+      "kind": "critter",
+      "species": "sheep",
+      "size": 0.9,
+      "at": [2.7, 0, 0.3],
+      "rotation": [0, -25, 0],
+      "hidden": true
+    },
+    {
+      "id": "chick",
+      "kind": "critter",
+      "species": "chick",
+      "size": 0.8,
+      "at": [-3.1, 0, 0.3],
+      "rotation": [0, 25, 0],
+      "hidden": true
+    },
+    {
+      "id": "whale",
+      "kind": "critter",
+      "species": "whale",
+      "size": 1.4,
+      "at": [-9, 0.2, -1.6],
+      "rotation": [0, 90, 0],
+      "hidden": true
+    },
+    {
+      "id": "bubbles",
+      "kind": "bubbles",
+      "count": 30,
+      "area": [6, 2],
+      "height": 4,
+      "size": 0.3
+    },
+    {
+      "id": "board",
+      "kind": "shape",
+      "shape": "rectangle",
+      "color": "cream",
+      "material": "matte",
+      "size": 3.4,
+      "at": [0, 1, -3.4]
+    },
+    {
+      "id": "case_sh",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.45,
+      "at": [-0.75, 2.3, -2.5],
+      "hidden": true
+    },
+    {
+      "id": "case_ch",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.45,
+      "at": [0.75, 2.3, -2.5],
+      "hidden": true
+    },
+    {
+      "id": "case_th",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.45,
+      "at": [-0.75, 1.3, -2.5],
+      "hidden": true
+    },
+    {
+      "id": "case_wh",
+      "kind": "letter",
+      "text": "wh",
+      "color": "purple",
+      "size": 0.45,
+      "at": [0.75, 1.3, -2.5],
+      "hidden": true
+    },
+    {
+      "id": "magnifier",
+      "kind": "prop",
+      "model": "magnifier",
+      "size": 2,
+      "at": [-3, 0, 2],
+      "rotation": [0, 20, 0],
+      "hidden": true
+    },
+    {
+      "id": "sign_shop",
+      "kind": "letter",
+      "text": "SHOP",
+      "color": "ink",
+      "size": 0.8,
+      "at": [0, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "shop_sh",
+      "kind": "letter",
+      "text": "SH",
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.107, 0.019, 1],
+      "hidden": true
+    },
+    {
+      "id": "shop_op",
+      "kind": "letter",
+      "text": "OP",
+      "color": "ink",
+      "size": 0.8,
+      "at": [1.062, 0.019, 1],
+      "hidden": true
+    },
+    {
+      "id": "let_s",
+      "kind": "letter",
+      "text": "s",
+      "color": "ink",
+      "size": 0.9,
+      "at": [-1.8, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "let_h",
+      "kind": "letter",
+      "text": "h",
+      "color": "ink",
+      "size": 0.9,
+      "at": [1.8, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "tile_sh",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.9,
+      "at": [0, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "ch_c",
+      "kind": "letter",
+      "text": "c",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-1.715, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "ch_h",
+      "kind": "letter",
+      "text": "h",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.242, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "ch_in",
+      "kind": "letter",
+      "text": "in",
+      "color": "ink",
+      "size": 0.65,
+      "at": [1.473, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_chin_d",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.65,
+      "at": [-0.59, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_chin_r",
+      "kind": "letter",
+      "text": "in",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.724, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_fish_r",
+      "kind": "letter",
+      "text": "fi",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.717, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_fish_d",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.65,
+      "at": [0.473, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_this",
+      "kind": "letter",
+      "text": "this",
+      "color": "green",
+      "size": 0.55,
+      "at": [-1.603, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_that",
+      "kind": "letter",
+      "text": "that",
+      "color": "green",
+      "size": 0.55,
+      "at": [1.477, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "q_what",
+      "kind": "letter",
+      "text": "what",
+      "color": "purple",
+      "size": 0.5,
+      "at": [-1.604, 1.1, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "q_when",
+      "kind": "letter",
+      "text": "when",
+      "color": "purple",
+      "size": 0.5,
+      "at": [1.567, 1.1, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "q_where",
+      "kind": "letter",
+      "text": "where",
+      "color": "purple",
+      "size": 0.5,
+      "at": [-1.329, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "q_why",
+      "kind": "letter",
+      "text": "why",
+      "color": "purple",
+      "size": 0.5,
+      "at": [1.818, 0.226, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qz_chin",
+      "kind": "letter",
+      "text": "chin",
+      "color": "ink",
+      "size": 0.45,
+      "at": [-2.905, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qz_ship",
+      "kind": "letter",
+      "text": "ship",
+      "color": "ink",
+      "size": 0.45,
+      "at": [-0.497, 0.212, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qz_thumb",
+      "kind": "letter",
+      "text": "thumb",
+      "color": "ink",
+      "size": 0.45,
+      "at": [2.408, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_ship_d",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.65,
+      "at": [-0.598, 0.307, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_ship_r",
+      "kind": "letter",
+      "text": "ip",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.725, 0.307, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_shell_d",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.65,
+      "at": [-0.737, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_shell_r",
+      "kind": "letter",
+      "text": "ell",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.707, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_sheep_d",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.65,
+      "at": [-1.092, 0.307, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_sheep_r",
+      "kind": "letter",
+      "text": "eep",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.707, 0.307, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_wish_r",
+      "kind": "letter",
+      "text": "wi",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.717, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_wish_d",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.65,
+      "at": [0.712, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_chick_d",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.65,
+      "at": [-0.912, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_chick_r",
+      "kind": "letter",
+      "text": "ick",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.724, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_chair_d",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.65,
+      "at": [-0.941, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_chair_r",
+      "kind": "letter",
+      "text": "air",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.709, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_lunch_r",
+      "kind": "letter",
+      "text": "lun",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.706, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_lunch_d",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.65,
+      "at": [0.958, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_bench_r",
+      "kind": "letter",
+      "text": "ben",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.706, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_bench_d",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.65,
+      "at": [1.108, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_thumb_d",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.65,
+      "at": [-1.332, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_thumb_r",
+      "kind": "letter",
+      "text": "umb",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.693, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_three_d",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.65,
+      "at": [-1.016, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_three_r",
+      "kind": "letter",
+      "text": "ree",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.684, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_thin_d",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.65,
+      "at": [-0.59, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_thin_r",
+      "kind": "letter",
+      "text": "in",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.699, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_bath_r",
+      "kind": "letter",
+      "text": "ba",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.651, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_bath_d",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.65,
+      "at": [0.745, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_moth_r",
+      "kind": "letter",
+      "text": "mo",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.653, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_moth_d",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.65,
+      "at": [0.887, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_whale_d",
+      "kind": "letter",
+      "text": "wh",
+      "color": "purple",
+      "size": 0.65,
+      "at": [-0.95, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_whale_r",
+      "kind": "letter",
+      "text": "ale",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.898, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_wheel_d",
+      "kind": "letter",
+      "text": "wh",
+      "color": "purple",
+      "size": 0.65,
+      "at": [-0.884, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_wheel_r",
+      "kind": "letter",
+      "text": "eel",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.895, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_white_d",
+      "kind": "letter",
+      "text": "wh",
+      "color": "purple",
+      "size": 0.65,
+      "at": [-0.834, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "w_white_r",
+      "kind": "letter",
+      "text": "ite",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.912, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa1_r",
+      "kind": "letter",
+      "text": "fi",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.717, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa1_d",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.65,
+      "at": [0.473, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa1_gap",
+      "kind": "letter",
+      "text": "__",
+      "color": "grey",
+      "size": 0.65,
+      "at": [0.473, 0.232, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa1_och",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.6,
+      "at": [-3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "qa1_osh",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.6,
+      "at": [3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "qa2_d",
+      "kind": "letter",
+      "text": "wh",
+      "color": "purple",
+      "size": 0.65,
+      "at": [-0.884, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa2_r",
+      "kind": "letter",
+      "text": "eel",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.895, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa2_gap",
+      "kind": "letter",
+      "text": "__",
+      "color": "grey",
+      "size": 0.65,
+      "at": [-0.884, 0.232, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa2_oth",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.6,
+      "at": [-3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "qa2_owh",
+      "kind": "letter",
+      "text": "wh",
+      "color": "purple",
+      "size": 0.6,
+      "at": [3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "qa3_r",
+      "kind": "letter",
+      "text": "lun",
+      "color": "ink",
+      "size": 0.65,
+      "at": [-0.706, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa3_d",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.65,
+      "at": [0.958, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa3_gap",
+      "kind": "letter",
+      "text": "__",
+      "color": "grey",
+      "size": 0.65,
+      "at": [0.958, 0.232, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa3_och",
+      "kind": "letter",
+      "text": "ch",
+      "color": "orange",
+      "size": 0.6,
+      "at": [-3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "qa3_oth",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.6,
+      "at": [3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "qa4_d",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.65,
+      "at": [-1.332, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa4_r",
+      "kind": "letter",
+      "text": "umb",
+      "color": "ink",
+      "size": 0.65,
+      "at": [0.693, 0.016, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa4_gap",
+      "kind": "letter",
+      "text": "__",
+      "color": "grey",
+      "size": 0.65,
+      "at": [-1.332, 0.232, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "qa4_osh",
+      "kind": "letter",
+      "text": "sh",
+      "color": "blue",
+      "size": 0.6,
+      "at": [-3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "qa4_oth",
+      "kind": "letter",
+      "text": "th",
+      "color": "green",
+      "size": 0.6,
+      "at": [3, 0.9, 0.8],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 220,
+      "area": [11, 4],
+      "height": 7,
+      "colors": [
+        "blue",
+        "orange",
+        "green",
+        "purple",
+        "gold"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "sign",
+      "title": "The case of the strange sign",
+      "music": "mysterious",
+      "musicGain": 0.2,
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Welcome to my new shop! Look at my sign.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "sign_shop",
+              "at": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.2
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.1, 0.6],
+              "at": 0.4,
+              "dur": 1.6
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "S... hop? A hop shop! Hop, hop, hop!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "sound": "boing"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "s hop",
+              "style": "label"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hmm. The sign is right. But it doesn't say s-hop.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "worried"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "drop",
+              "target": "magnifier",
+              "to": [-3, 0, 2],
+              "height": 4,
+              "sound": "land"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.6
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Detectives, we have a case!",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Why do s and h make a new sound?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.4, 6.2],
+              "lookAt": [0, 2.1, -3],
+              "dur": 1.4,
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "sign_shop",
+              "at": 0.4
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Four case cards: s h, c h, t h and w h.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "case_sh",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "case_ch",
+              "at": 1.2999999999999998
+            },
+            {
+              "do": "pop",
+              "target": "case_th",
+              "at": 2
+            },
+            {
+              "do": "pop",
+              "target": "case_wh",
+              "at": 2.6999999999999997
+            }
+          ],
+          "dur": 3.2
+        }
+      ]
+    },
+    {
+      "id": "fuse",
+      "title": "Two letters, one sound",
+      "music": "mysterious",
+      "musicGain": 0.2,
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's look closely at s and h.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.1, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "sign_shop"
+            },
+            {
+              "do": "pop",
+              "target": "let_s",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "let_h",
+              "at": 0.9
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Alone, each letter has its own sound.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "hop",
+              "target": "let_s",
+              "at": 0.1,
+              "sound": "ph_s"
+            },
+            {
+              "do": "hop",
+              "target": "let_h",
+              "at": 1.3,
+              "sound": "ph_h"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "But watch what happens when they hold hands.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "let_s",
+              "to": [-0.44, 0, 1],
+              "at": 1,
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "let_h",
+              "to": [0.48, 0, 1],
+              "at": 1,
+              "dur": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "spin",
+              "target": "let_s",
+              "dur": 0.8
+            },
+            {
+              "do": "spin",
+              "target": "let_h",
+              "dur": 0.8
+            },
+            {
+              "do": "hide",
+              "target": "let_s",
+              "at": 0.8
+            },
+            {
+              "do": "hide",
+              "target": "let_h",
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "tile_sh",
+              "at": 0.9,
+              "sound": "magic_sparkle"
+            },
+            {
+              "do": "sound",
+              "sound": "ph_sh",
+              "at": 1.4
+            },
+            {
+              "do": "grow",
+              "target": "tile_sh",
+              "to": 1.25,
+              "at": 1.3
+            },
+            {
+              "do": "grow",
+              "target": "tile_sh",
+              "to": 1,
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shh! Two letters, one new sound.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "two letters, one sound",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "When two letters make one sound, it's a digraph.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "digraph",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now read my sign again. Shop!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "tile_sh"
+            },
+            {
+              "do": "pop",
+              "target": "shop_sh",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "shop_op",
+              "at": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "shop",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shop! Not hop. Oops!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "wiggle",
+              "target": "frog"
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "surprised"
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "happy",
+              "at": 1.4
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two letters hold hands, one new sound!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "shop_sh",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            },
+            {
+              "do": "hide",
+              "target": "shop_sh"
+            },
+            {
+              "do": "hide",
+              "target": "shop_op"
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.4, 6.2],
+              "lookAt": [0, 2.1, -3],
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's solve all four cases. Case one!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "case_sh",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "case_sh",
+      "title": "Case 1: sh",
+      "beats": [
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "lights",
+              "background": "sky",
+              "floor": "mint",
+              "rug": "cream",
+              "dur": 1.6
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "sheep",
+              "at": 0.8
+            },
+            {
+              "do": "show",
+              "target": "magnifier",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here comes Sheep, the quiet librarian.",
+              "caption": true
+            },
+            {
+              "do": "nod",
+              "target": "sheep",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_sh",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "ph_sh",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shh. Put a finger on your lips. Shh.",
+              "caption": true,
+              "voice": "soft"
+            },
+            {
+              "do": "nod",
+              "target": "sheep"
+            },
+            {
+              "do": "caption",
+              "text": "sh",
+              "style": "label",
+              "color": "blue"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Clue one. Ship! Sh is at the start.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_ship_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_ship_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.598, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_ship_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_ship_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_ship_d",
+              "height": 0.4,
+              "sound": "ph_sh"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_ship_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_ship_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Next clue. Which case does it belong to?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_shell_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_shell_d",
+              "at": 0.15
+            }
+          ],
+          "dur": 0.65
+        },
+        {
+          "dur": 2.5,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shell! Sh is at the start.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.737, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_shell_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_shell_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_shell_d",
+              "height": 0.4,
+              "sound": "ph_sh"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_shell_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_shell_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Sheep! That's you, Sheep!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_sheep_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_sheep_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-1.092, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_sheep_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_sheep_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "sheep",
+              "style": "label",
+              "at": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "sheep",
+              "at": 0.8
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_sheep_d",
+              "height": 0.4,
+              "sound": "ph_sh"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_sheep_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_sheep_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "SHHH!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 0.9
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "sheep",
+              "at": 0.3,
+              "height": 0.7
+            },
+            {
+              "do": "wiggle",
+              "target": "sheep",
+              "at": 0.6
+            },
+            {
+              "do": "turn",
+              "target": "sheep#head",
+              "to": [0, 40, 0],
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "sheep",
+              "feeling": "surprised",
+              "at": 0.3
+            }
+          ],
+          "dur": 2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh! Frog, that was a very loud shh!",
+              "caption": true,
+              "voice": "soft"
+            },
+            {
+              "do": "feel",
+              "target": "sheep",
+              "feeling": "happy",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "turn",
+              "target": "sheep#head",
+              "to": [0, 0, 0]
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Sh can be at the end too. Fish!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_fish_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_fish_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [0.5, 0, 2.2],
+              "at": 0.3
+            },
+            {
+              "do": "grow",
+              "target": "w_fish_d",
+              "to": 1.2,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_fish_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "end",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_fish_r"
+            },
+            {
+              "do": "hide",
+              "target": "w_fish_d"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Wish! Sh is at the end of wish.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_wish_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_wish_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [0.712, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_wish_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_wish_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "end",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_wish_d",
+              "height": 0.4,
+              "sound": "ph_sh"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_wish_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_wish_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Case one solved: s and h say shh!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "case_sh",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two letters hold hands. Finger on lips, shh, ship!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "case_sh",
+              "at": 1,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case_ch",
+      "title": "Case 2: ch",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Case two. Here comes Chick!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "chick",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "sheep",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "case_ch",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ch, ch, choo! C and h say ch!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "wiggle",
+              "target": "chick"
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 0.2,
+              "volume": 0.7
+            },
+            {
+              "do": "nod",
+              "target": "chick",
+              "at": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "ch",
+              "style": "label",
+              "color": "orange"
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_ch",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "ph_ch",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Chug your arms like a little train. Ch, ch!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Walking",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Chick! Ch is at the start.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_chick_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_chick_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.912, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_chick_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_chick_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.8
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_chick_d",
+              "height": 0.4,
+              "sound": "ph_ch"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_chick_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_chick_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "My turn. This clue says c... h... in?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ch_c"
+            },
+            {
+              "do": "pop",
+              "target": "ch_h",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "ch_in",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "worried",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Oops! C and h hold hands. Ch, ch... chin!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "ch_c",
+              "to": [-0.59, 0.016, 1.2],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "ch_c",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "ch_h",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "ch_in",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "w_chin_d",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "w_chin_r",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.7
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy"
+            },
+            {
+              "do": "caption",
+              "text": "chin",
+              "style": "label",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_chin_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_chin_r"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Next clue. Which case does it belong to?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_chair_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_chair_d",
+              "at": 0.15
+            }
+          ],
+          "dur": 0.65
+        },
+        {
+          "dur": 2.5,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Chair! Ch is at the start.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.941, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_chair_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_chair_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_chair_d",
+              "height": 0.4,
+              "sound": "ph_ch"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_chair_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_chair_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Lunch! Here ch is at the end.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_lunch_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_lunch_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [0.958, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_lunch_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_lunch_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "end",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_lunch_d",
+              "height": 0.4,
+              "sound": "ph_ch"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_lunch_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_lunch_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bench! Ch is at the end of bench.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_bench_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_bench_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [1.108, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_bench_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_bench_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "end",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_bench_d",
+              "height": 0.4,
+              "sound": "ph_ch"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_bench_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_bench_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Case two solved: c and h say ch!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "case_ch",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "laugh_small",
+              "at": 1.2,
+              "volume": 0.6
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two letters hold hands. Chug like a train, ch, chick!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "case_ch",
+              "at": 1,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case_th",
+      "title": "Case 3: th",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Case three. T and h say th.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "chick"
+            },
+            {
+              "do": "hop",
+              "target": "case_th",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "th",
+              "style": "label",
+              "color": "green"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_th",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "ph_th",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Do a tongue peek. Tongue between your teeth!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-3.6, 1.8, 3.6],
+              "lookAt": [-4.6, 1.5, 0.8],
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "tongue peek",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now blow gently. Th, th, th!",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Thumb! Hold up your thumb!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_thumb_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_thumb_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-1.332, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_thumb_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_thumb_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "thumb",
+              "style": "label",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_thumb_d",
+              "height": 0.4,
+              "sound": "ph_th"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_thumb_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_thumb_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Next clue. Which case does it belong to?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_three_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_three_d",
+              "at": 0.15
+            }
+          ],
+          "dur": 0.65
+        },
+        {
+          "dur": 2.5,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Three! Th is at the start.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-1.016, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_three_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_three_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_three_d",
+              "height": 0.4,
+              "sound": "ph_th"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_three_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_three_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Thin! A thin stick is not fat.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_thin_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_thin_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.59, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_thin_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_thin_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "thin",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_thin_d",
+              "height": 0.4,
+              "sound": "ph_th"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_thin_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_thin_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bath! Th is at the end.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_bath_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_bath_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [0.745, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_bath_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_bath_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "end",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_bath_d",
+              "height": 0.4,
+              "sound": "ph_th"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_bath_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_bath_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Moth! A moth is like a butterfly that flies at night.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_moth_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_moth_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [0.887, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_moth_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_moth_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "moth",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_moth_d",
+              "height": 0.4,
+              "sound": "ph_th"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_moth_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_moth_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Th can also buzz a little, like this and that.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_this"
+            },
+            {
+              "do": "pop",
+              "target": "w_that",
+              "at": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "this, that",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_th",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "w_this",
+              "at": 1.2,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "ph_th_voiced",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Both are th. Case three solved!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "w_this"
+            },
+            {
+              "do": "hide",
+              "target": "w_that"
+            },
+            {
+              "do": "hop",
+              "target": "case_th",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "laugh_small",
+              "at": 0.6,
+              "volume": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two letters hold hands. Tongue peek, th, thumb!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "case_th",
+              "at": 1,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "case_wh",
+      "title": "Case 4: wh",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Last case! W and h say wh.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "case_wh",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "wh",
+              "style": "label",
+              "color": "purple"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_wh",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "ph_wh",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Blow gently on your hand, like a breeze. Wh!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 4,
+          "do": [
+            {
+              "do": "show",
+              "target": "whale"
+            },
+            {
+              "do": "move",
+              "target": "whale",
+              "to": [-1, 0.2, -1.6],
+              "dur": 3.6,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "wiggle",
+              "target": "whale#tail",
+              "at": 1,
+              "deg": 20,
+              "dur": 1.2
+            },
+            {
+              "do": "burst",
+              "target": "bubbles",
+              "at": 1.4,
+              "dur": 4,
+              "sound": "bubble_blow"
+            },
+            {
+              "do": "sound",
+              "sound": "ooh",
+              "at": 2.4,
+              "volume": 0.6
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Whale! Wh is at the start.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_whale_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_whale_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.95, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_whale_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_whale_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_whale_d",
+              "height": 0.4,
+              "sound": "ph_wh"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_whale_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_whale_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: humpback whales sing long songs under the sea.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "whale#tail",
+              "deg": 20,
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "move",
+              "target": "whale",
+              "to": [9, 0.2, -1.6],
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Next clue. Which case does it belong to?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_wheel_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_wheel_d",
+              "at": 0.15
+            }
+          ],
+          "dur": 0.65
+        },
+        {
+          "dur": 2.5,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Wheel! Wh is at the start.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.884, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_wheel_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_wheel_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_wheel_d",
+              "height": 0.4,
+              "sound": "ph_wh"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_wheel_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_wheel_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "White! Wh is at the start of white.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_white_r"
+            },
+            {
+              "do": "pop",
+              "target": "w_white_d",
+              "at": 0.15
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-0.834, 0, 2.2],
+              "at": 0.3,
+              "dur": 0.7
+            },
+            {
+              "do": "grow",
+              "target": "w_white_d",
+              "to": 1.1,
+              "at": 0.9
+            },
+            {
+              "do": "grow",
+              "target": "w_white_d",
+              "to": 1,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "start",
+              "style": "label",
+              "at": 0.5
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "w_white_d",
+              "height": 0.4,
+              "sound": "ph_wh"
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_white_d"
+            },
+            {
+              "do": "hide",
+              "target": "w_white_r"
+            },
+            {
+              "do": "move",
+              "target": "magnifier",
+              "to": [-3, 0, 2.2],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "And here's a big secret.",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Wh starts lots of question words!",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy"
+            },
+            {
+              "do": "pop",
+              "target": "q_what",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "q_when",
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "q_where",
+              "at": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "q_why",
+              "at": 1.8
+            }
+          ],
+          "dur": 2.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "What? When? Where? Why?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "q_what",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "q_when",
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "q_where",
+              "at": 1.3
+            },
+            {
+              "do": "hop",
+              "target": "q_why",
+              "at": 1.9
+            },
+            {
+              "do": "caption",
+              "text": "what, when, where, why",
+              "style": "label"
+            }
+          ],
+          "dur": 2.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Why do I love hopping? Wh!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "sound": "boing"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Case four solved: w and h say wh!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q_what"
+            },
+            {
+              "do": "hide",
+              "target": "q_when"
+            },
+            {
+              "do": "hide",
+              "target": "q_where"
+            },
+            {
+              "do": "hide",
+              "target": "q_why"
+            },
+            {
+              "do": "hop",
+              "target": "case_wh",
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two letters hold hands. Blow a breeze, wh, whale!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "case_wh",
+              "at": 1,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Case closed quiz",
+      "beats": [
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "lights",
+              "background": "cream",
+              "floor": "cream",
+              "dur": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "magnifier"
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "Detective Quiz",
+              "style": "title",
+              "dur": 1.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Detective quiz! Pick the two letters after the click.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question one. fi, gap. Sh or ch?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "qa1_r"
+            },
+            {
+              "do": "pop",
+              "target": "qa1_gap",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "qa1_och",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa1_osh",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Sh! Fish!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "qa1_osh",
+              "to": [0.473, 0.2, 1.2],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa1_osh",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa1_gap",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa1_d",
+              "at": 0.55,
+              "sound": "ding"
+            },
+            {
+              "do": "hide",
+              "target": "qa1_och",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "fish",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_sh",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "qa1_d"
+            },
+            {
+              "do": "hide",
+              "target": "qa1_r"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question two. Which two letters start wheel?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "qa2_r"
+            },
+            {
+              "do": "pop",
+              "target": "qa2_gap",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "qa2_oth",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa2_owh",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "W and h! Wheel!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "qa2_owh",
+              "to": [-0.884, 0.2, 1.2],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa2_owh",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa2_gap",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa2_d",
+              "at": 0.55,
+              "sound": "ding"
+            },
+            {
+              "do": "hide",
+              "target": "qa2_oth",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "wheel",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_wh",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "qa2_d"
+            },
+            {
+              "do": "hide",
+              "target": "qa2_r"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question three. Lun, gap. Ch or th?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "qa3_r"
+            },
+            {
+              "do": "pop",
+              "target": "qa3_gap",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "qa3_och",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa3_oth",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ch! Lunch!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "qa3_och",
+              "to": [0.958, 0.2, 1.2],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa3_och",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa3_gap",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa3_d",
+              "at": 0.55,
+              "sound": "ding"
+            },
+            {
+              "do": "hide",
+              "target": "qa3_oth",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "lunch",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_ch",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "qa3_d"
+            },
+            {
+              "do": "hide",
+              "target": "qa3_r"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question four. Gap, umb. Th or sh?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "qa4_r"
+            },
+            {
+              "do": "pop",
+              "target": "qa4_gap",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "qa4_osh",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa4_oth",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Th! Thumb!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "qa4_oth",
+              "to": [-1.332, 0.2, 1.2],
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa4_oth",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "qa4_gap",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "qa4_d",
+              "at": 0.55,
+              "sound": "ding"
+            },
+            {
+              "do": "hide",
+              "target": "qa4_osh",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "thumb",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_th",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "qa4_d"
+            },
+            {
+              "do": "hide",
+              "target": "qa4_r"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question five. Which word has sh?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "qz_chin"
+            },
+            {
+              "do": "pop",
+              "target": "qz_ship",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "qz_thumb",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Chin, ship or thumb?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "qz_chin",
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "qz_ship",
+              "at": 0.5,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "qz_thumb",
+              "at": 1,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ship! S and h say shh.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "qz_ship",
+              "to": 1.3
+            },
+            {
+              "do": "hop",
+              "target": "qz_ship",
+              "at": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "hide",
+              "target": "qz_chin",
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "qz_thumb",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 0.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "qz_ship"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finale",
+      "title": "Detective chant",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Case closed! You are super detectives!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.4, 6.2],
+              "lookAt": [0, 2.1, -3],
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "CASE CLOSED",
+              "style": "title",
+              "at": 0.6,
+              "dur": 2.5
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.6,
+              "volume": 0.7
+            },
+            {
+              "do": "spin",
+              "target": "case_sh",
+              "at": 1
+            },
+            {
+              "do": "spin",
+              "target": "case_ch",
+              "at": 1.2
+            },
+            {
+              "do": "spin",
+              "target": "case_th",
+              "at": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "case_wh",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Sh, ch, th, wh. Two letters, one sound!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9.6],
+              "lookAt": [0, 1.4, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "sheep",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "chick",
+              "at": 0.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's chant it all! Two letters hold hands, one new sound.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shh, ship! Ch, chick! Th, thumb! Wh, whale!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "case_sh",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "case_ch",
+              "at": 1.2,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "case_th",
+              "at": 2.1,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "case_wh",
+              "at": 3,
+              "height": 0.3
+            }
+          ],
+          "dur": 3.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Frog, do you want to say the last one?",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "shh...",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "frog"
+            },
+            {
+              "do": "nod",
+              "target": "sheep",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Perfect! That's a lovely quiet shh.",
+              "caption": true,
+              "voice": "soft"
+            },
+            {
+              "do": "hop",
+              "target": "sheep"
+            },
+            {
+              "do": "feel",
+              "target": "sheep",
+              "feeling": "happy"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Great job, detectives! Goodbye!",
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 1
+            },
+            {
+              "do": "spin",
+              "target": "case_sh",
+              "at": 0.5
+            },
+            {
+              "do": "spin",
+              "target": "case_ch",
+              "at": 0.7
+            },
+            {
+              "do": "spin",
+              "target": "case_th",
+              "at": 0.9
+            },
+            {
+              "do": "spin",
+              "target": "case_wh",
+              "at": 1.1
+            }
+          ],
+          "dur": 4.2
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

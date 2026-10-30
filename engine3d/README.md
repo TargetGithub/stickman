@@ -54,8 +54,22 @@ plan for TTS, the audio mix and the length.
 Object kinds: `shape` (add `face: true` for eyes and a smile), `number_block` (0–999), `letter` (up to 24
 characters), `critter` (toy animals that bob, blink and wag), `prop`, `character` (glTF), `confetti`, `bubbles`,
 `stars`, `clock`, `lamp`, `weather` and `group`. Script `meta` also takes `music` (a mood), `musicGain`,
-`voiceSpeed`, `series`, `episode`, `audience` (babies, prek, k, grade1, grade2), `skills`, `thumbnail.t` and
-`youtube`.
+`voiceSpeed`, `series`, `episode`, `audience` (babies, prek, k, grade1, grade2), `skills`, `thumbnail` and
+`youtube`. `thumbnail: { "scene": "<scene id>", "at": 2.5 }` picks the frame 2.5 s into that scene, measured on
+the plan timed with the real TTS clips, so it stays on the right picture when speech changes beat lengths;
+`thumbnail: { "t": 12 }` (absolute seconds) still works.
+
+**Letter size.** A `letter`'s `size` is a type size, not its height: with Andika the cap height is about
+1.41 × `size`, the x-height 0.98 × `size`, and descenders reach 0.47 × `size` below the baseline. A letter
+stands on the font baseline (its `at`), so "dog" and "cat" share one baseline and the g hangs below it.
+
+**Thin things.** Use the `plate` shape (a 1 × 0.04 × 1 rounded slab) for boards, mats, signs, trays and plates:
+scale x and z for its size and stand it up with `rotation: [90, 0, 0]`. `box` and `block` round their corners
+by a share of the unit cube, so they turn to slivers when squashed thinner than about 0.05. The playroom rug
+is 6 mm thick, so anything on the floor thicker than that shows.
+
+**See-through things.** Meshes in a material with opacity under 0.5 (`glass`, bubbles) cast no shadow; `water`
+and `ice` keep theirs.
 
 Critters and props come from `catalog/models.json` plus one file per theme in `catalog/models/` (animals,
 home and school, outdoor and science). `scenes/model_sheet.js` shows them all.
@@ -64,12 +78,13 @@ home and school, outdoor and science). `scenes/model_sheet.js` shows them all.
 
 | Need | How |
 |---|---|
-| Things that move as one (a rocket, a train with letters riding in it, pans on a balance) | Any object can have `parent` (its `at` is then relative to the parent) and `part` (ride on a named part). `kind: "group"` is an empty holder. |
+| Things that move as one (a rocket, a train with letters riding in it, pans on a balance) | Any object can have `parent` (its `at` is then relative to the parent, in metres) and `part` (ride on a named part). `kind: "group"` is an empty holder. |
+| Hats, goggles, a bow on a head | `parent: "cat", part: "head"`: the child follows the head's bob, nods and turns. Its `at` is measured from the part's pivot (the centre of the head, see `head.at` in the model) in the critter's own units, so it and the child's `size` are multiplied by the critter's `size`. A hat on a cat: `at: [0, 0.28, 0]`. An offset of 1.5 or more warns (`W3D_PART_FAR`): that is a world position. |
 | Lids, doors, planks, tails, heads | Named parts are targets: `{ "do": "turn", "target": "box#lid", "to": [-100, 0, 0] }`. `turn`, `move`, `wiggle` and `spin` take parts; mirrored copies move as mirror images. |
 | Turning about a point | `pivot: [x, y, z]` on any object: it turns and grows about that point. |
 | Feelings | `feel` with happy, sad, surprised, angry, worried or sleepy: eyebrows, mouth, eyes and a head tilt on critters and face shapes; Robo uses his face morphs. `feeling` sets the starting one. |
 | Telling time | `kind: "clock"` (numbers, ticks, blue hour hand, red minute hand); `clock` turns the hands forward to a time, the hour hand creeping with the minutes; `minuteHand: false` for hour-only lessons. |
-| Colour changes | `paint` blends an object's main colour to another one. |
+| Colour changes | `paint` blends an object's main colour to another one; `from: "leaf"` blends only the parts drawn in that colour (critters and props). `recolor: { "leaf": "brown", "pink": "yellow" }` on a critter or prop builds the parts drawn in one colour in another (a wilted plant, a blue duck). |
 | Filling a glass, growing a stem | `grow` with `to: [1, 3, 1]` stretches one way (from the base). |
 | Day to night, dim theatre, winter sky | `lights` blends to another rig (`evening`, `dim`, `overcast`, `hot_sun`, ...) and to new background, floor and rug colours. Stages: `beach`, `snow`, `desert`, `town`, `theatre`, `space` as well. |
 | Shadow puppets, torches | `kind: "lamp"`: a spotlight that casts real shadows, with an optional fading `beam`; `aim` points it. |
@@ -77,8 +92,21 @@ home and school, outdoor and science). `scenes/model_sheet.js` shows them all.
 | Routes, tracks, rocket arcs | `path` travels through points at an even speed; `face: true` turns toward the way it goes. |
 | Containers and new shapes | `cup`, `pot`, `bowl`, `tube`, `bottle`, `dome`, `disc`, `wedge`; flat `pentagon`, `hexagon`, `octagon`, `half_circle`, `quarter_circle`, `arrow`, `cross`, `snowflake`, `drop`, `leaf`, `ring`. Materials `water`, `glass`, `ice`, `paper`, `light`. |
 | Sounds | `tick`, `fizz`, `rain`, `twang`, `drum`, `train_whistle`, `cha_ching`, `clink`, `rocket`, `pour`, plus `splash`, `heartbeat`, `gasp`, `sneeze`, `step` and more (`catalog/sounds.json`). |
+| Letter sounds (phonics) | `ph_a_short` … `ph_u_short`, `ph_a_long` … `ph_u_long`, `ph_oo`, consonants `ph_b` … `ph_z` (plus `ph_c`, `ph_qu`, `ph_x`), and `ph_sh`, `ph_ch`, `ph_th`, `ph_th_voiced`, `ph_wh`, `ph_ng`: cue them like any sound. `tools/phonemes.mjs` makes them (see below). |
+| Calmer music in a chapter | A scene takes `music` (a mood, or `false` for none) and `musicGain` (see below). |
 
 `scripts/feature_tour.json` shows all of these in 50 seconds.
+
+**Scene music.** `meta.music` and `meta.musicGain` set the bed for the whole episode. A scene may override
+them with `"music": "calm"` (any mood in `catalog/story/music_moods.json`, or `false` for no music) and/or
+`"musicGain": 0.2` (0–1); a scene without them goes back to the episode's. Changes crossfade over 2 s centred
+on the scene start (`tools/lib/music3d.mjs`); `render3d` rejects unknown moods, and `--music off` silences all
+music.
+
+**Letter sounds.** Piper reads letters by their names, but takes raw IPA inside `[[ ]]`, so
+`node engine3d/tools/phonemes.mjs` renders each `ph_*` entry of `catalog/sounds.json` (its `ipa`, optionally
+cropped to `maxDur`) in the `soft` voice, levelled like speech, into `assets/sfx/generated/` (git-ignored; a
+render makes any missing clip it cues). It prints each clip's length, level and bursts to check by eye.
 
 Beats run one after another; `at` is seconds from the beat start. A beat lasts `dur` or until its last voice
 line ends, whichever is longer, so measured TTS clips stretch beats like 2D speech does. Kinds and their

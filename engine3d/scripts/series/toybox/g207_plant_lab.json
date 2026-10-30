@@ -1,0 +1,3889 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Two mystery plants: one green, one tall and pale. Run a real fair test with pots A, B and C, watch ten days in forty seconds, and learn what plants need.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Plant Lab",
+  "episode": "g207",
+  "seed": 207,
+  "music": "calm",
+  "musicGain": 0.2,
+  "skills": [
+   "plants_2"
+  ],
+  "youtube": {
+   "title": "What Do Plants Need? A Real Plant Experiment for Kids | Light and Water | Toy Box Friends",
+   "description": "Same seeds, same pots, same day, so why is one plant green and the other tall and pale? Robo, Cat and Bunny run a fair test: pot A gets light and water, pot B goes in a dark cupboard, pot C gets no water.\nWatch ten days in forty seconds, compare the results, and learn what roots, stems and leaves do.\nTry at home with a grown-up: cress seeds in three cups. Wash your hands after touching soil and never eat seeds.",
+   "tags": [
+    "plant experiment",
+    "what do plants need",
+    "fair test",
+    "plants for kids",
+    "seed growing",
+    "time lapse plants",
+    "grade 2 science",
+    "2nd grade science",
+    "science experiment for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnail": {
+   "scene": "mystery",
+   "at": 19.51
+  }
+ },
+ "stage": {
+  "preset": "garden"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.3,
+   8.7
+  ],
+  "lookAt": [
+   0,
+   1.4,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.25,
+    0,
+    2.2
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    3.3,
+    0,
+    2.2
+   ],
+   "size": 0.9,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "bunny",
+   "kind": "critter",
+   "species": "bunny",
+   "at": [
+    -2.3,
+    0,
+    2.7
+   ],
+   "size": 0.7,
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "sun",
+   "kind": "prop",
+   "model": "sun",
+   "at": [
+    -2.6,
+    3.6,
+    -1.2
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "table",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "brown",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    6.4,
+    0.8,
+    1.4
+   ],
+   "material": "matte"
+  },
+  {
+   "id": "sign_t",
+   "kind": "letter",
+   "text": "What do plants need?",
+   "color": "green",
+   "at": [
+    -0.6,
+    2.45,
+    -0.6
+   ],
+   "size": 0.2,
+   "depth": 0.05
+  },
+  {
+   "id": "h_green",
+   "kind": "prop",
+   "model": "plant",
+   "at": [
+    -0.9,
+    0.8,
+    0
+   ],
+   "size": 2.2
+  },
+  {
+   "id": "hp",
+   "kind": "prop",
+   "model": "plant",
+   "at": [
+    0.9,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "scale": [
+    0.85,
+    1.45,
+    0.85
+   ]
+  },
+  {
+   "id": "pot_a",
+   "kind": "prop",
+   "model": "seed",
+   "at": [
+    -1.9,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "hidden": true
+  },
+  {
+   "id": "pot_b",
+   "kind": "prop",
+   "model": "seed",
+   "at": [
+    2.2,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "hidden": true
+  },
+  {
+   "id": "pot_c",
+   "kind": "prop",
+   "model": "seed",
+   "at": [
+    0,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "hidden": true
+  },
+  {
+   "id": "a_sprout",
+   "kind": "prop",
+   "model": "sprout",
+   "at": [
+    -1.9,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "hidden": true
+  },
+  {
+   "id": "a_seedling",
+   "kind": "prop",
+   "model": "seedling",
+   "at": [
+    -1.9,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "hidden": true
+  },
+  {
+   "id": "a_plant",
+   "kind": "prop",
+   "model": "plant",
+   "at": [
+    -1.9,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "hidden": true
+  },
+  {
+   "id": "b_sprout",
+   "kind": "prop",
+   "model": "sprout",
+   "at": [
+    2.2,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "recolor": {
+    "leaf": "sand"
+   },
+   "scale": [
+    0.85,
+    1.25,
+    0.85
+   ],
+   "hidden": true
+  },
+  {
+   "id": "b_seedling",
+   "kind": "prop",
+   "model": "seedling",
+   "at": [
+    2.2,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "recolor": {
+    "leaf": "sand"
+   },
+   "scale": [
+    0.85,
+    1.45,
+    0.85
+   ],
+   "hidden": true
+  },
+  {
+   "id": "b_plant",
+   "kind": "prop",
+   "model": "plant",
+   "at": [
+    2.2,
+    0.8,
+    0
+   ],
+   "size": 2.2,
+   "recolor": {
+    "leaf": "sand"
+   },
+   "scale": [
+    0.85,
+    1.45,
+    0.85
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lab_a",
+   "kind": "letter",
+   "text": "A",
+   "color": "ink",
+   "at": [
+    -1.9,
+    0.8500000000000001,
+    0.85
+   ],
+   "size": 0.3,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "lab_b",
+   "kind": "letter",
+   "text": "B",
+   "color": "ink",
+   "at": [
+    2.2,
+    0.8500000000000001,
+    0.85
+   ],
+   "size": 0.3,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "lab_c",
+   "kind": "letter",
+   "text": "C",
+   "color": "ink",
+   "at": [
+    0,
+    0.8500000000000001,
+    0.85
+   ],
+   "size": 0.3,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "seedball0",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "sand",
+   "at": [
+    -1.9,
+    1.427,
+    0
+   ],
+   "size": 0.09,
+   "hidden": true
+  },
+  {
+   "id": "seedball1",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "sand",
+   "at": [
+    -1.9,
+    1.427,
+    0
+   ],
+   "size": 0.09,
+   "hidden": true
+  },
+  {
+   "id": "seedball2",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "sand",
+   "at": [
+    -1.9,
+    1.427,
+    0
+   ],
+   "size": 0.09,
+   "hidden": true
+  },
+  {
+   "id": "cb_back",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "charcoal",
+   "at": [
+    2.2,
+    0.8,
+    -0.6
+   ],
+   "size": 1,
+   "scale": [
+    1.5,
+    2.6,
+    0.08
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "cb_l",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "charcoal",
+   "at": [
+    1.4500000000000002,
+    0.8,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.08,
+    2.6,
+    1.2
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "cb_r",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "charcoal",
+   "at": [
+    2.95,
+    0.8,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.08,
+    2.6,
+    1.2
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "cb_roof",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "charcoal",
+   "at": [
+    2.2,
+    3.4000000000000004,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.58,
+    2,
+    1.2
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "cb_door",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "brown",
+   "at": [
+    2.2,
+    0.8,
+    0.62
+   ],
+   "size": 1,
+   "scale": [
+    1.5,
+    2.6,
+    0.06
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "can",
+   "kind": "prop",
+   "model": "watering_can",
+   "at": [
+    -2.8,
+    2,
+    0.2
+   ],
+   "size": 1.2,
+   "hidden": true
+  },
+  {
+   "id": "rain_a",
+   "kind": "weather",
+   "type": "rain",
+   "count": 70,
+   "area": [
+    0.5,
+    0.4
+   ],
+   "height": 1,
+   "at": [
+    -1.9,
+    1.427,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rain_b",
+   "kind": "weather",
+   "type": "rain",
+   "count": 70,
+   "area": [
+    0.5,
+    0.4
+   ],
+   "height": 1,
+   "at": [
+    2.2,
+    1.427,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "day1",
+   "kind": "number_block",
+   "value": 1,
+   "color": "orange",
+   "at": [
+    -2.9,
+    0.8,
+    0.3
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "day3",
+   "kind": "number_block",
+   "value": 3,
+   "color": "orange",
+   "at": [
+    -2.9,
+    0.8,
+    0.3
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "day5",
+   "kind": "number_block",
+   "value": 5,
+   "color": "orange",
+   "at": [
+    -2.9,
+    0.8,
+    0.3
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "day7",
+   "kind": "number_block",
+   "value": 7,
+   "color": "orange",
+   "at": [
+    -2.9,
+    0.8,
+    0.3
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "day10",
+   "kind": "number_block",
+   "value": 10,
+   "color": "orange",
+   "at": [
+    -2.9,
+    0.8,
+    0.3
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "think_cat",
+   "kind": "prop",
+   "model": "cloud",
+   "at": [
+    3.6,
+    2.4,
+    1.2
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "think_bunny",
+   "kind": "prop",
+   "model": "cloud",
+   "at": [
+    -2.4,
+    2.1,
+    1.6
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "pp_soil",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "brown",
+   "at": [
+    8,
+    0,
+    1.8
+   ],
+   "size": 1,
+   "scale": [
+    2.4,
+    0.9,
+    0.3
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "pp_root0",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "sand",
+   "at": [
+    7.75,
+    0.15,
+    1.97
+   ],
+   "size": 1,
+   "scale": [
+    0.04,
+    0.6,
+    0.04
+   ],
+   "rotation": [
+    0,
+    0,
+    -35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_root1",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "sand",
+   "at": [
+    8,
+    0.15,
+    1.97
+   ],
+   "size": 1,
+   "scale": [
+    0.04,
+    0.6,
+    0.04
+   ],
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_root2",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "sand",
+   "at": [
+    8.25,
+    0.15,
+    1.97
+   ],
+   "size": 1,
+   "scale": [
+    0.04,
+    0.6,
+    0.04
+   ],
+   "rotation": [
+    0,
+    0,
+    35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_root3",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "sand",
+   "at": [
+    7.88,
+    0.15,
+    1.97
+   ],
+   "size": 1,
+   "scale": [
+    0.04,
+    0.6,
+    0.04
+   ],
+   "rotation": [
+    0,
+    0,
+    -60
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_root4",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "sand",
+   "at": [
+    8.12,
+    0.15,
+    1.97
+   ],
+   "size": 1,
+   "scale": [
+    0.04,
+    0.6,
+    0.04
+   ],
+   "rotation": [
+    0,
+    0,
+    60
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_stem",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "green",
+   "at": [
+    8,
+    0.9,
+    1.9
+   ],
+   "size": 1,
+   "scale": [
+    0.08,
+    1.4,
+    0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_leaf0",
+   "kind": "shape",
+   "shape": "leaf",
+   "color": "leaf",
+   "at": [
+    8.35,
+    1.7,
+    1.9
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    0,
+    -30
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_leaf1",
+   "kind": "shape",
+   "shape": "leaf",
+   "color": "leaf",
+   "at": [
+    7.65,
+    1.9,
+    1.9
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    0,
+    210
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_leaf2",
+   "kind": "shape",
+   "shape": "leaf",
+   "color": "leaf",
+   "at": [
+    8.3,
+    2.1,
+    1.9
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    0,
+    -20
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pp_drop",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    8,
+    0.5,
+    2
+   ],
+   "size": 0.14,
+   "material": "water",
+   "hidden": true
+  },
+  {
+   "id": "ppw_roots",
+   "kind": "letter",
+   "text": "roots",
+   "color": "ink",
+   "at": [
+    9.5,
+    0.35,
+    2.3
+   ],
+   "size": 0.24,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "ppw_stem",
+   "kind": "letter",
+   "text": "stem",
+   "color": "ink",
+   "at": [
+    7,
+    1.2,
+    2.3
+   ],
+   "size": 0.24,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "ppw_leaves",
+   "kind": "letter",
+   "text": "leaves",
+   "color": "ink",
+   "at": [
+    9.4,
+    2.2,
+    2.3
+   ],
+   "size": 0.24,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "fair",
+   "kind": "letter",
+   "text": "FAIR",
+   "color": "green",
+   "at": [
+    0,
+    2.05,
+    0.9
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "notfair",
+   "kind": "letter",
+   "text": "NOT FAIR",
+   "color": "red",
+   "at": [
+    0,
+    2.05,
+    0.9
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "bubbles",
+   "kind": "bubbles",
+   "count": 40,
+   "area": [
+    8,
+    3
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "mystery",
+   "title": "Two mystery plants",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Plant Lab",
+       "style": "title",
+       "dur": 2.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.7
+       ],
+       "lookAt": [
+        0,
+        1.4,
+        0
+       ],
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Welcome to the science fair! Look at these two plants.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "hp",
+       "at": 1.6,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "This one is short, green and leafy.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "h_green",
+       "at": 0.6,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "This one is tall, skinny and pale yellow.",
+       "caption": true
+      },
+      {
+       "do": "paint",
+       "target": "hp",
+       "color": "sand",
+       "from": "leaf",
+       "at": 0.4,
+       "dur": 1.6
+      },
+      {
+       "do": "wiggle",
+       "target": "hp",
+       "at": 0.6,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same seeds. Same pots. Same day. So what happened?",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "I want to see the evidence.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        1.9,
+        0,
+        1.4
+       ],
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "cat#head",
+       "to": [
+        -15,
+        0,
+        0
+       ],
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then let's do our own experiment and find out!",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "cat#head",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        3.3,
+        0,
+        2.2
+       ],
+       "at": 0.6,
+       "dur": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "needs",
+   "title": "What do plants need?",
+   "beats": [
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, what do plants need? What do you think?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "h_green",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "hp",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.2,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Light! Plants need light from the sun.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "light",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "sun",
+       "at": 0.4,
+       "height": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water! Plants need water to drink up.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "water",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Air! Plants need air, just like you.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "air",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Space! Room for roots and leaves to grow.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "space",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "And nutrients from the soil. Like vitamins for plants.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "soil",
+       "style": "label",
+       "at": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "sparkle",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Do plants need all of them, or just some?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "All of them, to grow well.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "But seeds are special. You'll see why.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "So which one went missing for the pale plant?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's the mystery! Fun fact first.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Young sunflowers turn their heads,",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "sun",
+       "to": [
+        0,
+        0,
+        20
+       ],
+       "at": 1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "following the sun across the sky!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "I'm the gardener. I'll keep the lab notebook!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bunny",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "setup",
+   "title": "Setting up a fair test",
+   "beats": [
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's our fair test. Three pots: A, B and C.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.7
+       ],
+       "lookAt": [
+        0,
+        1.4,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "drop",
+       "target": "pot_a",
+       "to": [
+        -1.9,
+        0.8,
+        0
+       ],
+       "at": 0.8,
+       "height": 2
+      },
+      {
+       "do": "drop",
+       "target": "pot_b",
+       "to": [
+        2.2,
+        0.8,
+        0
+       ],
+       "at": 1.2,
+       "height": 2
+      },
+      {
+       "do": "drop",
+       "target": "pot_c",
+       "to": [
+        0,
+        0.8,
+        0
+       ],
+       "at": 1.6,
+       "height": 2
+      },
+      {
+       "do": "pop",
+       "target": "lab_a",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "lab_b",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "lab_c",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same seeds, same pots, same soil, same number of seeds.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "seedball0",
+       "to": [
+        -2.02,
+        1.427,
+        0.05
+       ],
+       "at": 0.8,
+       "height": 1.2,
+       "sound": "pop"
+      },
+      {
+       "do": "drop",
+       "target": "seedball1",
+       "to": [
+        -1.9,
+        1.427,
+        0.05
+       ],
+       "at": 1.1,
+       "height": 1.2,
+       "sound": "pop"
+      },
+      {
+       "do": "drop",
+       "target": "seedball2",
+       "to": [
+        -1.7799999999999998,
+        1.427,
+        0.05
+       ],
+       "at": 1.4,
+       "height": 1.2,
+       "sound": "pop"
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pot A gets sunlight and a little water every day.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "seedball0",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "seedball1",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "seedball2",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "pot_a",
+       "at": 1,
+       "height": 0.15
+      },
+      {
+       "do": "caption",
+       "text": "A",
+       "style": "label",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pot A is our control. It gets everything a plant needs.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "control",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now, I have an idea.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pot_c",
+       "to": [
+        1,
+        0.8,
+        0
+       ],
+       "at": 1.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pot C goes in the cupboard with no water!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wait! That changes two things. Light and water.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "cat",
+       "at": 0.2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Then we wouldn't know which change made the difference.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "You're right. That's not fair. We change only one thing!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pot_c",
+       "to": [
+        0,
+        0.8,
+        0
+       ],
+       "at": 1,
+       "dur": 1
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pot B goes in a dark cupboard, but gets water like A.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "cb_back",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "cb_l",
+       "at": 0.7
+      },
+      {
+       "do": "show",
+       "target": "cb_r",
+       "at": 0.7
+      },
+      {
+       "do": "show",
+       "target": "cb_roof",
+       "at": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "So A and B are the same, except for light.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "cb_door",
+       "at": 1
+      },
+      {
+       "do": "sound",
+       "sound": "door_open",
+       "at": 1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pot C stays in the sun, but gets no water at all.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "pot_c",
+       "at": 1,
+       "height": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "So A and C are the same, except for water.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "When I say how many things do we change, you say only one!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "How many things do we change?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.21,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Only one! Great scientists.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Do this with a grown-up.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "with a grown-up",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "They help with windowsills and cupboards.",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "predict",
+   "title": "Predictions",
+   "beats": [
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Scientists make a prediction. That's a smart guess.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "prediction",
+       "style": "label",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "I predict pot A will grow green and strong.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "think_cat",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "I predict pot C won't grow. It's too thirsty!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bunny",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "think_bunny",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "A prediction can be wrong.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's okay. The evidence decides.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "And pot B in the dark? Will it sprout? What do you think?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "I'm writing every prediction in my notebook.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bunny",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "bunny",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's find out! Bunny, water A and B every day. Never C.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "think_cat",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "think_bunny",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Got it. A and B get water. C gets none.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bunny",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "bunny",
+       "to": [
+        -2.8,
+        0,
+        1.4
+       ],
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "can",
+       "at": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "timelapse",
+   "title": "Ten days in 40 seconds",
+   "beats": [
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now, ten days in forty seconds. Watch the day counter!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.7,
+        5.8
+       ],
+       "lookAt": [
+        0,
+        1.2,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Crouch down like a seed, and grow along with pot A!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4,
+     "do": [
+      {
+       "do": "pop",
+       "target": "day1",
+       "at": 0
+      },
+      {
+       "do": "caption",
+       "text": "Day 1",
+       "style": "count",
+       "at": 0,
+       "dur": 3.2
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "at": 0,
+       "dur": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "show",
+       "target": "rain_a",
+       "at": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "can",
+       "to": [
+        0,
+        0,
+        -35
+       ],
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.8,
+       "volume": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "rain_a",
+       "at": 2.4
+      },
+      {
+       "do": "turn",
+       "target": "can",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 2.6
+      },
+      {
+       "do": "caption",
+       "text": "seed",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "day1",
+       "at": 0
+      },
+      {
+       "do": "pop",
+       "target": "day3",
+       "at": 0.1
+      },
+      {
+       "do": "caption",
+       "text": "Day 3",
+       "style": "count",
+       "at": 0.1,
+       "dur": 3.2
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "at": 0.1,
+       "dur": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "pot_a",
+       "at": 1.2,
+       "dur": 0.2
+      },
+      {
+       "do": "show",
+       "target": "a_sprout",
+       "at": 1.3499999999999999
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.3499999999999999,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cb_door",
+       "to": [
+        3.75,
+        0.8,
+        0.62
+       ],
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "pot_b",
+       "at": 1.3,
+       "dur": 0.2
+      },
+      {
+       "do": "show",
+       "target": "b_sprout",
+       "at": 1.45
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cb_door",
+       "to": [
+        2.2,
+        0.8,
+        0.62
+       ],
+       "at": 3.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "sprout",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Day 3. Tiny sprouts in A and B. Nothing in C.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "day3",
+       "at": 0
+      },
+      {
+       "do": "pop",
+       "target": "day5",
+       "at": 0.1
+      },
+      {
+       "do": "caption",
+       "text": "Day 5",
+       "style": "count",
+       "at": 0.1,
+       "dur": 3.2
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "at": 0.1,
+       "dur": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "a_sprout",
+       "at": 1.2,
+       "dur": 0.2
+      },
+      {
+       "do": "show",
+       "target": "a_seedling",
+       "at": 1.3499999999999999
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.3499999999999999,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cb_door",
+       "to": [
+        3.75,
+        0.8,
+        0.62
+       ],
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "b_sprout",
+       "at": 1.2,
+       "dur": 0.2
+      },
+      {
+       "do": "show",
+       "target": "b_seedling",
+       "at": 1.35
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cb_door",
+       "to": [
+        2.2,
+        0.8,
+        0.62
+       ],
+       "at": 3.2,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Day 5. A is short and green. B is taller, thinner and pale.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "day5",
+       "at": 0
+      },
+      {
+       "do": "pop",
+       "target": "day7",
+       "at": 0.1
+      },
+      {
+       "do": "caption",
+       "text": "Day 7",
+       "style": "count",
+       "at": 0.1,
+       "dur": 3.2
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "at": 0.1,
+       "dur": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "a_seedling",
+       "at": 1.2,
+       "dur": 0.2
+      },
+      {
+       "do": "show",
+       "target": "a_plant",
+       "at": 1.3499999999999999
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.3499999999999999,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cb_door",
+       "to": [
+        3.75,
+        0.8,
+        0.62
+       ],
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "b_seedling",
+       "at": 1.2,
+       "dur": 0.2
+      },
+      {
+       "do": "show",
+       "target": "b_plant",
+       "at": 1.35
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.4,
+       "volume": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pot_c",
+       "at": 2,
+       "deg": 4
+      },
+      {
+       "do": "move",
+       "target": "cb_door",
+       "to": [
+        2.2,
+        0.8,
+        0.62
+       ],
+       "at": 3.4,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Day 7. A is bushy. B is tall and floppy. C is still dry.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.41,
+     "do": [
+      {
+       "do": "hide",
+       "target": "day7",
+       "at": 0
+      },
+      {
+       "do": "pop",
+       "target": "day10",
+       "at": 0.1
+      },
+      {
+       "do": "caption",
+       "text": "Day 10",
+       "style": "count",
+       "at": 0.1,
+       "dur": 3.2
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "at": 0.1,
+       "dur": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "a_plant",
+       "to": 1.05,
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "cb_door",
+       "to": [
+        3.75,
+        0.8,
+        0.62
+       ],
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "b_plant",
+       "to": [
+        1,
+        1.12,
+        1
+       ],
+       "at": 1.4,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "wiggle",
+       "target": "bunny",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Day 10! Let's look closely at all three pots.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.7
+       ],
+       "lookAt": [
+        0,
+        1.4,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: some bamboo can grow almost a metre in one day!",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "results",
+   "title": "Results and why",
+   "beats": [
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here are the results. Pot A is green and strong.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "a_plant",
+       "at": 1.2,
+       "deg": 6
+      },
+      {
+       "do": "caption",
+       "text": "A green and strong",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pot C has dry soil and no sprouts.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pot_c",
+       "at": 0.8,
+       "deg": 6
+      },
+      {
+       "do": "caption",
+       "text": "C no sprouts",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Compare A and C. Only water was different.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "a_plant",
+       "at": 0.8,
+       "height": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "pot_c",
+       "at": 1.6,
+       "height": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "So seeds need water to start growing!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "And pot B? It sprouted in the dark, and grew tall and pale.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "b_plant",
+       "at": 2,
+       "deg": 6
+      },
+      {
+       "do": "caption",
+       "text": "B tall and pale",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wait. It grew in the dark? I thought plants need light.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Seeds don't need light to sprout.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "sprout",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "They have food stored inside.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why is the dark one taller?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "The young plant was stretching up, looking for light!",
+       "caption": true
+      },
+      {
+       "do": "grow",
+       "target": "b_plant",
+       "to": [
+        1,
+        1.2,
+        1
+       ],
+       "at": 0.6,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Without light, leaves can't make food. So they stay pale.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "b_plant",
+       "at": 1.2,
+       "deg": 5
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the plant gets weak and floppy.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "b_plant",
+       "at": 0.4,
+       "deg": 12,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "In the dark, stretch up very tall and wobbly, like pot B!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Compare A and B. Only light was different.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Plants need light to grow green and strong!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "So water wakes up the seed, and light keeps the plant green.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's why we needed a fair test. One change, one answer.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "So the mystery plant was kept in the dark. Case solved.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "And it's all in my lab notebook!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bunny",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.4
+      }
+     ]
+    }
+   ],
+   "music": "happy",
+   "musicGain": 0.22
+  },
+  {
+   "id": "parts",
+   "title": "Plant parts at work",
+   "beats": [
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's see how a plant uses water and light.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        8,
+        1.3,
+        6.6
+       ],
+       "lookAt": [
+        8,
+        1.1,
+        1.6
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "show",
+       "target": "pp_soil",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "pp_root0",
+       "at": 0.9
+      },
+      {
+       "do": "show",
+       "target": "pp_root1",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "pp_root2",
+       "at": 1.1
+      },
+      {
+       "do": "show",
+       "target": "pp_root3",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "pp_root4",
+       "at": 1.3
+      },
+      {
+       "do": "show",
+       "target": "pp_stem",
+       "at": 1.4
+      },
+      {
+       "do": "show",
+       "target": "pp_leaf0",
+       "at": 1.6
+      },
+      {
+       "do": "show",
+       "target": "pp_leaf1",
+       "at": 1.75
+      },
+      {
+       "do": "show",
+       "target": "pp_leaf2",
+       "at": 1.9
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "The roots take up water from the soil.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ppw_roots",
+       "at": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pp_root0",
+       "at": 0.8,
+       "deg": 6
+      },
+      {
+       "do": "wiggle",
+       "target": "pp_root1",
+       "at": 0.8,
+       "deg": 6
+      },
+      {
+       "do": "wiggle",
+       "target": "pp_root2",
+       "at": 0.8,
+       "deg": 6
+      },
+      {
+       "do": "wiggle",
+       "target": "pp_root3",
+       "at": 0.8,
+       "deg": 6
+      },
+      {
+       "do": "wiggle",
+       "target": "pp_root4",
+       "at": 0.8,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "Roots also hold the plant tight in the soil.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "The stem carries the water up, like a straw.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ppw_stem",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pp_drop",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pp_drop",
+       "to": [
+        8,
+        2,
+        2
+       ],
+       "at": 0.8,
+       "dur": 2,
+       "ease": "sineInOut"
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "The leaves use sunlight to make food for the plant.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ppw_leaves",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "pp_drop",
+       "at": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "sun",
+       "at": 0.8,
+       "height": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "pp_leaf0",
+       "to": 1.2,
+       "at": 1.2
+      },
+      {
+       "do": "grow",
+       "target": "pp_leaf1",
+       "to": 1.2,
+       "at": 1.3
+      },
+      {
+       "do": "grow",
+       "target": "pp_leaf2",
+       "to": 1.2,
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water goes up, sunlight comes down,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "and the leaves make food.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "That food is a kind of sugar the plant uses to grow.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "So plants make their own food. They don't eat soil?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Right. They take in water and nutrients through their roots.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: plants give off oxygen.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "It's part of the air we breathe!",
+       "caption": true
+      }
+     ]
+    }
+   ],
+   "music": "happy",
+   "musicGain": 0.22
+  },
+  {
+   "id": "chant",
+   "title": "The Grow-Grow chant",
+   "beats": [
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Crouch down like a seed. Now grow with the chant!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.2,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "Light up high, water low,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "sun",
+       "at": 0.4,
+       "height": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "a_plant",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "give me space and watch me grow!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pp_stem",
+       "at": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Roots dig down, stems grow tall,",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "a_plant",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bunny",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "leaves catch sunlight, that's not all!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Light up high, water low, give me space and watch me grow!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "a_plant",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1.4,
+       "height": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 3.4
+      }
+     ]
+    }
+   ],
+   "music": "happy",
+   "musicGain": 0.22
+  },
+  {
+   "id": "fair",
+   "title": "Challenge: fair or not fair?",
+   "beats": [
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge! Is each test fair or not fair?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "pp_soil",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_stem",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ppw_roots",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ppw_stem",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ppw_leaves",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_root0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_root1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_root2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_root3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_root4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_leaf0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_leaf1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pp_leaf2",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        8.7
+       ],
+       "lookAt": [
+        0,
+        1.4,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "One: two pots in the sun. One gets water, one gets none.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fair! Only one thing changes: water.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "fair",
+       "at": 0.2,
+       "sound": "ding"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Two: one pot in the sun with water,",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "fair",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "one in the dark with none.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Not fair! Two things change: light and water.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "notfair",
+       "at": 0.2,
+       "sound": "ding"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three: same pots, but one has 3 seeds and one has 30.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "notfair",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Not fair! The number of seeds changed too.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "notfair",
+       "at": 0.2,
+       "sound": "ding"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four: two pots in the sun. A little water, or a flood.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "notfair",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fair! It tests how much water. Only one thing changes.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "fair",
+       "at": 0.2,
+       "sound": "ding"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Change one thing, keep the rest the same. That's fair.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "fair",
+       "at": 2
+      }
+     ]
+    }
+   ],
+   "music": "happy",
+   "musicGain": 0.22
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! Which pot got no water? What happened?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pot C. Its seeds did not sprout.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "pot_c",
+       "at": 0.4,
+       "height": 0.15
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why did pot B grow tall and pale?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "It stretched for light, and leaves need light to make food.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "What makes a test fair?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Change only one thing!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Name three things plants need.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Light, water, air, space and nutrients from soil. Any three!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    }
+   ],
+   "music": "happy",
+   "musicGain": 0.22
+  },
+  {
+   "id": "home",
+   "title": "Your turn at home",
+   "beats": [
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's our green and strong plant!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bunny",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "bunny",
+       "to": [
+        -1,
+        0,
+        1.3
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "hop",
+       "target": "a_plant",
+       "at": 1,
+       "height": 0.2
+      },
+      {
+       "do": "burst",
+       "target": "bubbles",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.71,
+     "do": [
+      {
+       "do": "say",
+       "text": "Evidence wins.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.3,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try cress seeds in three cups with a grown-up.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "with a grown-up",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Don't eat the seeds!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check your cups every day at the same time,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "and draw what you see.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "And wash your hands after touching soil. Bye!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": []
+    }
+   ],
+   "music": "happy",
+   "musicGain": 0.22
+  }
+ ]
+}

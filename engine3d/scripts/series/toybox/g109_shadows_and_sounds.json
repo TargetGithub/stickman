@@ -1,0 +1,3604 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "A two-act science show! In Act 1, Robo, Bunny and Frog make real shadows with a flashlight: block the light, move closer, move the light, and test a clear cup, wax paper and cardboard. In Act 2, a rubber band guitar hums and rice dances on a drum when sound makes it shake.",
+  "meta": {
+    "title": "Shadow Puppets and Humming Strings",
+    "series": "toybox",
+    "episode": "g109",
+    "audience": "grade1",
+    "seed": 209,
+    "voice": "soft",
+    "voiceSpeed": 0.96,
+    "music": "playful",
+    "musicGain": 0.22,
+    "skills": [
+      "nonfiction_facts_1"
+    ],
+    "thumbnail": {
+      "scene": "lab",
+      "at": 13.65
+    },
+    "youtube": {
+      "title": "Light and Sound for Kids! Shadow Puppets and Dancing Rice | Toy Box Friends",
+      "description": "A two-act science show! In Act 1, Robo, Bunny and Frog make real shadows with a flashlight: block the light, move closer, move the light, and test a clear cup, wax paper and cardboard. In Act 2, a rubber band guitar hums and rice dances on a drum when sound makes it shake.\nFor first graders: light, shadows and vibrations. Try the experiments with a grown-up, never shine a flashlight in anyone's eyes, and keep rubber bands away from faces.",
+      "tags": [
+        "light and sound",
+        "shadows for kids",
+        "sound vibrations",
+        "science experiments for kids",
+        "first grade science",
+        "grade 1 science",
+        "shadow puppets",
+        "dancing rice experiment",
+        "rubber band guitar",
+        "kids learning video",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "theatre"
+  },
+  "camera": {
+    "position": [0, 1.8, 8.2],
+    "lookAt": [0, 1.3, -0.6],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "screen",
+      "kind": "shape",
+      "shape": "rectangle",
+      "color": "white",
+      "material": "matte",
+      "size": 3.2,
+      "scale": [1, 1, 0.08],
+      "at": [0, 0.15, -2.6]
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-4.3, 0, 1],
+      "rotation": [0, 35, 0]
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.8,
+      "at": [3.6, 0, 1.4],
+      "rotation": [0, -30, 0]
+    },
+    {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "size": 0.9,
+      "at": [-1.4, 0, 0.3]
+    },
+    {
+      "id": "dog",
+      "kind": "critter",
+      "species": "dog",
+      "size": 0.85,
+      "at": [-5, 0, 0.3],
+      "rotation": [0, 90, 0]
+    },
+    {
+      "id": "lamp",
+      "kind": "lamp",
+      "at": [-2.6, 0.7, 1.6],
+      "aim": [0.9, 1.3, -2.6],
+      "angle": 30,
+      "intensity": 120,
+      "soft": 0.3
+    },
+    {
+      "id": "torch",
+      "kind": "prop",
+      "model": "flashlight",
+      "size": 1.6,
+      "at": [-2.75, 0.45, 2.6],
+      "rotation": [0, 97, 0],
+      "hidden": true
+    },
+    {
+      "id": "cup",
+      "kind": "shape",
+      "shape": "cup",
+      "material": "glass",
+      "color": "white",
+      "size": 0.5,
+      "at": [0, 0.9, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "wax",
+      "kind": "shape",
+      "shape": "square",
+      "material": "glass",
+      "color": "cream",
+      "size": 0.6,
+      "scale": [1, 1, 0.08],
+      "at": [0, 0.9, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "card",
+      "kind": "shape",
+      "shape": "square",
+      "material": "matte",
+      "color": "brown",
+      "size": 0.6,
+      "scale": [1, 1, 0.12],
+      "at": [0, 0.9, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "sh_wax",
+      "kind": "shape",
+      "shape": "square",
+      "material": "glass",
+      "color": "charcoal",
+      "size": 1.2,
+      "scale": [1, 1, 0.05],
+      "at": [0.6, 0.6, -2.45],
+      "hidden": true
+    },
+    {
+      "id": "curtain_l",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "red",
+      "material": "matte",
+      "size": 1,
+      "scale": [2.8, 3.8, 0.12],
+      "at": [-1.4, 0, 2.3]
+    },
+    {
+      "id": "curtain_r",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "red",
+      "material": "matte",
+      "size": 1,
+      "scale": [2.8, 3.8, 0.12],
+      "at": [1.4, 0, 2.3]
+    },
+    {
+      "id": "guitar",
+      "kind": "prop",
+      "model": "box_guitar",
+      "size": 2,
+      "at": [-1.4, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "drum",
+      "kind": "prop",
+      "model": "drum",
+      "size": 2,
+      "at": [1.5, 0, 0.5],
+      "hidden": true
+    },
+    {
+      "id": "pan",
+      "kind": "shape",
+      "shape": "pot",
+      "color": "grey",
+      "material": "metal",
+      "size": 0.45,
+      "at": [2.9, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "ring0",
+      "kind": "shape",
+      "shape": "torus",
+      "color": "sky",
+      "material": "glow",
+      "size": 0.5,
+      "at": [-1.4, 0.2, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "ring1",
+      "kind": "shape",
+      "shape": "torus",
+      "color": "sky",
+      "material": "glow",
+      "size": 0.5,
+      "at": [-1.4, 0.2, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "ring2",
+      "kind": "shape",
+      "shape": "torus",
+      "color": "sky",
+      "material": "glow",
+      "size": 0.5,
+      "at": [-1.4, 0.2, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "stars",
+      "kind": "confetti",
+      "count": 160,
+      "area": [9, 4],
+      "height": 7,
+      "colors": [
+        "gold",
+        "white",
+        "yellow"
+      ]
+    },
+    {
+      "id": "rice1",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.5, 0.84, 0.5],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice2",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.426, 0.84, 0.568],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice3",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.512, 0.84, 0.359],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice4",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.605, 0.84, 0.637],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice5",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.303, 0.84, 0.465],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice6",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.689, 0.84, 0.38],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice7",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.436, 0.84, 0.737],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice8",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.378, 0.84, 0.265],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice9",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.766, 0.84, 0.597],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice10",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.223, 0.84, 0.614],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice11",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.634, 0.84, 0.214],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice12",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.599, 0.84, 0.816],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice13",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.2, 0.84, 0.326],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    },
+    {
+      "id": "rice14",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "white",
+      "size": 0.06,
+      "at": [1.852, 0.84, 0.423],
+      "rotation": [0, 0, 90],
+      "hidden": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "guess",
+      "title": "Guess the shadow",
+      "music": "mysterious",
+      "musicGain": 0.18,
+      "beats": [
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.3, -0.6],
+              "dur": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh"
+            },
+            {
+              "do": "move",
+              "target": "curtain_l",
+              "to": [-2.2, 0, 2.3],
+              "at": 0.4,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "curtain_r",
+              "to": [2.2, 0, 2.3],
+              "at": 0.4,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Welcome to the show! Look at the screen.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A shadow! Two long ears. Who is it?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.8,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1.6,
+              "height": 0.3
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It's me, Bunny!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-1.2, 0, 3.2],
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 1.4
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here's another one. A wagging tail!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [-1.5, 0, 0.3],
+              "dur": 1.2
+            },
+            {
+              "do": "wiggle",
+              "target": "dog#tail",
+              "at": 1.4,
+              "deg": 30,
+              "dur": 1.4
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            },
+            {
+              "do": "wiggle",
+              "target": "dog#tail",
+              "deg": 30,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Woof! It's me, Dog!",
+              "caption": true,
+              "voice": "bark"
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [1.2, 0, 3.2],
+              "dur": 1
+            },
+            {
+              "do": "turn",
+              "target": "dog",
+              "to": [0, -20, 0],
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "How do shadows happen? And how do sounds happen?",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 2.2
+            }
+          ],
+          "dur": 2.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two shows today! Act 1: Light!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "Act 1: Light",
+              "style": "title",
+              "at": 0.8,
+              "dur": 2
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.8,
+              "volume": 0.6
+            }
+          ],
+          "dur": 1.3
+        }
+      ]
+    },
+    {
+      "id": "shadows",
+      "title": "How shadows happen",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here is my flashlight. It shines light.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "curtain_l",
+              "to": [-4.2, 0, 2.3],
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "curtain_r",
+              "to": [4.2, 0, 2.3],
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-2, 0, 2.6],
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [3.2, 0, 1.6],
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "lamp",
+              "to": [-2.6, 0.7, 2.4],
+              "dur": 0.01
+            },
+            {
+              "do": "aim",
+              "target": "lamp",
+              "to": [0.6, 1.4, -2.6],
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "torch",
+              "at": 0.6
+            },
+            {
+              "do": "camera",
+              "position": [6.4, 2.4, 2.8],
+              "lookAt": [0, 1, -0.4],
+              "dur": 1.4,
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "light",
+              "style": "label",
+              "at": 1.8
+            }
+          ],
+          "dur": 2.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Light travels in straight lines.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: light is so fast!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It could go around the Earth seven times in one second!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bunny, please stand in the light.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-0.84, 0, -0.35],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.3, -0.6],
+              "dur": 1.2,
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "ooh",
+              "at": 0.6,
+              "volume": 0.6
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bunny blocks the light. Behind her, a dark shape forms.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "block",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "That dark shape is a shadow!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "shadow",
+              "style": "label",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now, I turn the light off.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "lamp",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No light?",
+              "caption": true
+            }
+          ],
+          "dur": 1.6
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No shadow! Now the light is back on.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "lamp",
+              "at": 1.4
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Can I try? Watch me jump away from my shadow!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-2, 0, 2.6],
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [-0.84, 0, -0.35],
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 0.9,
+              "dur": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.8,
+              "height": 0.9,
+              "dur": 0.6,
+              "sound": "boing"
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hey! My shadow sticks to my feet!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "surprised"
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "happy",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ha ha! Your shadow goes where you go, Frog.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "laugh_small",
+              "volume": 0.5
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [3.6, 0, 1.4],
+              "dur": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "title": "Shadow lab: bigger and smaller",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shadow lab! Bunny, walk closer to the light.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [6.4, 2.4, 2.8],
+              "lookAt": [0, 1, -0.4],
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-0.84, 0, -0.35],
+              "dur": 1
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Will the shadow get bigger or smaller?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's see!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-1.448, 0, 0.6],
+              "dur": 2
+            },
+            {
+              "do": "sound",
+              "sound": "slide_whistle",
+              "at": 0.2,
+              "volume": 0.6
+            }
+          ],
+          "dur": 2.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bigger! Closer to the light makes a big shadow.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.3, -0.6],
+              "dur": 1.2,
+              "at": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "bigger",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now walk close to the screen.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [0.024, 0, -1.7],
+              "at": 0.6,
+              "dur": 2
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Smaller! Close to the screen makes a small shadow.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "smaller",
+              "style": "label",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'll move the light. Where will the shadow go?",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-0.84, 0, -0.35],
+              "dur": 1
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "lamp",
+              "to": [-1.4, 0.7, 2.6],
+              "dur": 2
+            },
+            {
+              "do": "move",
+              "target": "torch",
+              "to": [-1.55, 0.45, 2.8],
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The light went right, so the shadow moved left!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The shadow always goes the other way.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "the other way",
+              "style": "label",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "lamp",
+              "to": [-2.6, 0.7, 2.4],
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "torch",
+              "to": [-2.75, 0.45, 2.6],
+              "dur": 1.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "seethrough",
+      "title": "See-through test",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you, Bunny! Now a see-through test.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-2, 0, 2.6],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Which one makes the darkest shadow?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A clear cup, wax paper, or cardboard?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "cup",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "cup",
+              "to": [-1.2, 0, 1.6],
+              "dur": 0.01
+            },
+            {
+              "do": "pop",
+              "target": "wax",
+              "at": 1.2
+            },
+            {
+              "do": "move",
+              "target": "wax",
+              "to": [0, 0, 1.6],
+              "dur": 0.01
+            },
+            {
+              "do": "pop",
+              "target": "card",
+              "at": 2.2
+            },
+            {
+              "do": "move",
+              "target": "card",
+              "to": [1.2, 0, 1.6],
+              "dur": 0.01
+            }
+          ],
+          "dur": 2.7
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "First, the clear cup.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "cup",
+              "to": [-0.84, 0.7, -0.35],
+              "dur": 1
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Light goes through! Almost no shadow.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "light goes through",
+              "style": "label",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Next, wax paper.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "cup",
+              "to": [-1.2, 0, 1.6],
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "wax",
+              "to": [-0.84, 0.6, -0.35],
+              "at": 0.4,
+              "dur": 1
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Some light gets through. A faint shadow.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "sh_wax",
+              "dur": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "some light",
+              "style": "label",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Last, cardboard.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "wax",
+              "to": [0, 0, 1.6],
+              "dur": 0.8
+            },
+            {
+              "do": "hide",
+              "target": "sh_wax"
+            },
+            {
+              "do": "move",
+              "target": "card",
+              "to": [-0.84, 0.6, -0.35],
+              "at": 0.4,
+              "dur": 1
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It blocks the light! A dark shadow.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "blocks light",
+              "style": "label",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Cardboard makes the darkest shadow!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Block the light, a shadow grows!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Try shadows at home, with a grown-up.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "with a grown-up",
+              "style": "label",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Never shine a flashlight in anyone's eyes.",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "worried",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 2.4
+            }
+          ],
+          "dur": 2.9
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "hide",
+              "target": "cup"
+            },
+            {
+              "do": "hide",
+              "target": "wax"
+            },
+            {
+              "do": "hide",
+              "target": "card"
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.3,
+              "volume": 0.7
+            },
+            {
+              "do": "move",
+              "target": "curtain_l",
+              "to": [-1.4, 0, 2.3],
+              "at": 0.3,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "curtain_r",
+              "to": [1.4, 0, 2.3],
+              "at": 0.3,
+              "dur": 1.2
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.3, -0.6],
+              "dur": 1.2,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Intermission! Next, Act 2: Sound!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "Act 2: Sound",
+              "style": "title",
+              "at": 1,
+              "dur": 2.2
+            }
+          ],
+          "dur": 1.5
+        }
+      ]
+    },
+    {
+      "id": "strings",
+      "title": "Humming strings",
+      "music": "playful",
+      "musicGain": 0.1,
+      "beats": [
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "hide",
+              "target": "lamp"
+            },
+            {
+              "do": "hide",
+              "target": "torch"
+            },
+            {
+              "do": "hide",
+              "target": "screen"
+            },
+            {
+              "do": "lights",
+              "rig": "soft_day",
+              "background": "sky",
+              "floor": "mint",
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "curtain_l",
+              "to": [-4.2, 0, 2.3],
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "curtain_r",
+              "to": [4.2, 0, 2.3],
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "show",
+              "target": "guitar",
+              "at": 0.8
+            },
+            {
+              "do": "show",
+              "target": "drum",
+              "at": 1
+            },
+            {
+              "do": "camera",
+              "position": [0.2, 2, 5.6],
+              "lookAt": [0.2, 0.7, 0.6],
+              "dur": 1.2,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Welcome to my sound lab! This is a box guitar.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "guitar",
+              "at": 1.8,
+              "height": 0.15
+            }
+          ],
+          "dur": 2.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It's a box with rubber bands. Let's pluck one!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "wiggle",
+              "target": "guitar#band2",
+              "at": 0.2,
+              "deg": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "sound",
+              "sound": "twang",
+              "at": 0.2,
+              "volume": 0.6
+            },
+            {
+              "do": "move",
+              "target": "ring0",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.2,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring0",
+              "at": 0.2,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring0",
+              "to": 2.2,
+              "at": 0.25,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring0",
+              "at": 0.8999999999999999,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "ring1",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.45,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring1",
+              "at": 0.45,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring1",
+              "to": 2.2,
+              "at": 0.5,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring1",
+              "at": 1.15,
+              "dur": 0.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Look! The band shakes very fast. It hums!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "hum",
+              "style": "label",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shaking back and forth is called vibrating.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "vibrate",
+              "style": "label",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now I put my finger on it.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "guitar#band2",
+              "at": 0.2,
+              "deg": 6,
+              "dur": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "twang",
+              "at": 0.2,
+              "volume": 0.6
+            },
+            {
+              "do": "move",
+              "target": "ring0",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.2,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring0",
+              "at": 0.2,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring0",
+              "to": 2.2,
+              "at": 0.25,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring0",
+              "at": 0.8999999999999999,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "ring1",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.45,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring1",
+              "at": 0.45,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring1",
+              "to": 2.2,
+              "at": 0.5,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring1",
+              "at": 1.15,
+              "dur": 0.2
+            }
+          ],
+          "dur": 1.65
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It stops shaking, and the sound stops!",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "guitar#band2",
+              "deg": 0.5,
+              "dur": 0.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A tight band sounds high.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "guitar#band3",
+              "at": 0.4,
+              "deg": 4,
+              "dur": 0.7
+            },
+            {
+              "do": "sound",
+              "sound": "twang",
+              "at": 0.4,
+              "volume": 0.6
+            },
+            {
+              "do": "move",
+              "target": "ring0",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.4,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring0",
+              "at": 0.4,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring0",
+              "to": 2.2,
+              "at": 0.45,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring0",
+              "at": 1.1,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "ring1",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.65,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring1",
+              "at": 0.65,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring1",
+              "to": 2.2,
+              "at": 0.7000000000000001,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring1",
+              "at": 1.35,
+              "dur": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "high",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A loose band sounds low.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "guitar#band1",
+              "at": 0.4,
+              "deg": 10,
+              "dur": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "twang",
+              "at": 0.4,
+              "volume": 0.6
+            },
+            {
+              "do": "move",
+              "target": "ring0",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.4,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring0",
+              "at": 0.4,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring0",
+              "to": 2.2,
+              "at": 0.45,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring0",
+              "at": 1.1,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "ring1",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.65,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring1",
+              "at": 0.65,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring1",
+              "to": 2.2,
+              "at": 0.7000000000000001,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring1",
+              "at": 1.35,
+              "dur": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "low",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now you hum. Put a hand on your throat.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hmmmm. Do you feel it buzz?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: when you talk, your vocal folds shake!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Vocal folds are small parts inside your throat.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hmmm! It tickles!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "wiggle",
+              "target": "frog"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        }
+      ]
+    },
+    {
+      "id": "rice",
+      "title": "Dancing rice",
+      "music": "playful",
+      "musicGain": 0.1,
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now, dancing rice! This drum has rice on top.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.2, 2, 5.6],
+              "lookAt": [0.2, 0.7, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "show",
+              "target": "rice1",
+              "at": 0.8
+            },
+            {
+              "do": "show",
+              "target": "rice2",
+              "at": 0.8300000000000001
+            },
+            {
+              "do": "show",
+              "target": "rice3",
+              "at": 0.8600000000000001
+            },
+            {
+              "do": "show",
+              "target": "rice4",
+              "at": 0.89
+            },
+            {
+              "do": "show",
+              "target": "rice5",
+              "at": 0.92
+            },
+            {
+              "do": "show",
+              "target": "rice6",
+              "at": 0.9500000000000001
+            },
+            {
+              "do": "show",
+              "target": "rice7",
+              "at": 0.98
+            },
+            {
+              "do": "show",
+              "target": "rice8",
+              "at": 1.01
+            },
+            {
+              "do": "show",
+              "target": "rice9",
+              "at": 1.04
+            },
+            {
+              "do": "show",
+              "target": "rice10",
+              "at": 1.07
+            },
+            {
+              "do": "show",
+              "target": "rice11",
+              "at": 1.1
+            },
+            {
+              "do": "show",
+              "target": "rice12",
+              "at": 1.13
+            },
+            {
+              "do": "show",
+              "target": "rice13",
+              "at": 1.1600000000000001
+            },
+            {
+              "do": "show",
+              "target": "rice14",
+              "at": 1.19
+            },
+            {
+              "do": "camera",
+              "position": [1.5, 1.6, 3.4],
+              "lookAt": [1.5, 0.8, 0.5],
+              "at": 1.6,
+              "dur": 1.2
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'll tap a pan nearby. Will the rice jump?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "pan",
+              "at": 0.6
+            },
+            {
+              "do": "camera",
+              "position": [0.2, 2, 5.6],
+              "lookAt": [0.2, 0.7, 0.6],
+              "dur": 1.2,
+              "at": 0.4
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "wiggle",
+              "target": "pan",
+              "deg": 10
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.5
+            },
+            {
+              "do": "wiggle",
+              "target": "drum#skin",
+              "at": 0.1,
+              "deg": 2,
+              "dur": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "rice1",
+              "at": 0.15,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice2",
+              "at": 0.18,
+              "height": 0.143,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice3",
+              "at": 0.21,
+              "height": 0.165,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice4",
+              "at": 0.24,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice5",
+              "at": 0.27,
+              "height": 0.143,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice6",
+              "at": 0.15,
+              "height": 0.165,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice7",
+              "at": 0.18,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice8",
+              "at": 0.21,
+              "height": 0.143,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice9",
+              "at": 0.24,
+              "height": 0.165,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice10",
+              "at": 0.27,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice11",
+              "at": 0.15,
+              "height": 0.143,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice12",
+              "at": 0.18,
+              "height": 0.165,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice13",
+              "at": 0.21,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice14",
+              "at": 0.24,
+              "height": 0.143,
+              "dur": 0.35
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The rice jumped! The sound went through the air.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "giggle",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It made the drum skin shake, and the rice bounced!",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "drum#skin",
+              "deg": 2,
+              "dur": 0.6
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now a louder tap. Bigger jumps or smaller?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "wiggle",
+              "target": "pan",
+              "deg": 18
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.7
+            },
+            {
+              "do": "wiggle",
+              "target": "drum#skin",
+              "at": 0.1,
+              "deg": 3,
+              "dur": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "rice1",
+              "at": 0.15,
+              "height": 0.28,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice2",
+              "at": 0.18,
+              "height": 0.333,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice3",
+              "at": 0.21,
+              "height": 0.385,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice4",
+              "at": 0.24,
+              "height": 0.28,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice5",
+              "at": 0.27,
+              "height": 0.333,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice6",
+              "at": 0.15,
+              "height": 0.385,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice7",
+              "at": 0.18,
+              "height": 0.28,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice8",
+              "at": 0.21,
+              "height": 0.333,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice9",
+              "at": 0.24,
+              "height": 0.385,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice10",
+              "at": 0.27,
+              "height": 0.28,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice11",
+              "at": 0.15,
+              "height": 0.333,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice12",
+              "at": 0.18,
+              "height": 0.385,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice13",
+              "at": 0.21,
+              "height": 0.28,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice14",
+              "at": 0.24,
+              "height": 0.333,
+              "dur": 0.35
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bigger! A louder sound makes bigger jumps.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "loud",
+              "style": "label",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A soft sound makes small jumps.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pan",
+              "at": 0.6,
+              "deg": 6
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.6,
+              "volume": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "rice1",
+              "at": 0.7,
+              "height": 0.064,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice2",
+              "at": 0.73,
+              "height": 0.076,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice3",
+              "at": 0.76,
+              "height": 0.088,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice4",
+              "at": 0.79,
+              "height": 0.064,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice5",
+              "at": 0.82,
+              "height": 0.076,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice6",
+              "at": 0.7,
+              "height": 0.088,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice7",
+              "at": 0.73,
+              "height": 0.064,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice8",
+              "at": 0.76,
+              "height": 0.076,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice9",
+              "at": 0.79,
+              "height": 0.088,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice10",
+              "at": 0.82,
+              "height": 0.064,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice11",
+              "at": 0.7,
+              "height": 0.076,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice12",
+              "at": 0.73,
+              "height": 0.088,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice13",
+              "at": 0.76,
+              "height": 0.064,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice14",
+              "at": 0.79,
+              "height": 0.076,
+              "dur": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "soft",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.32
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Dog, can you help? One short woof!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [3.4, 0, 0.6],
+              "dur": 1
+            },
+            {
+              "do": "turn",
+              "target": "dog",
+              "to": [0, -60, 0],
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Woof!",
+              "caption": true,
+              "voice": "bark"
+            },
+            {
+              "do": "nod",
+              "target": "dog"
+            },
+            {
+              "do": "hop",
+              "target": "rice1",
+              "at": 0.2,
+              "height": 0.096,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice2",
+              "at": 0.23,
+              "height": 0.114,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice3",
+              "at": 0.26,
+              "height": 0.132,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice4",
+              "at": 0.29,
+              "height": 0.096,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice5",
+              "at": 0.32,
+              "height": 0.114,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice6",
+              "at": 0.2,
+              "height": 0.132,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice7",
+              "at": 0.23,
+              "height": 0.096,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice8",
+              "at": 0.26,
+              "height": 0.114,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice9",
+              "at": 0.29,
+              "height": 0.132,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice10",
+              "at": 0.32,
+              "height": 0.096,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice11",
+              "at": 0.2,
+              "height": 0.114,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice12",
+              "at": 0.23,
+              "height": 0.132,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice13",
+              "at": 0.26,
+              "height": 0.096,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice14",
+              "at": 0.29,
+              "height": 0.114,
+              "dur": 0.35
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Even a woof made the rice wiggle!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "giggle",
+              "volume": 0.5
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: space has no air to carry sound. Space is silent!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shake, shake, hear it hum!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "guitar#band2",
+              "at": 0.6,
+              "deg": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "sound",
+              "sound": "twang",
+              "at": 0.6,
+              "volume": 0.6
+            },
+            {
+              "do": "move",
+              "target": "ring0",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.6,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring0",
+              "at": 0.6,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring0",
+              "to": 2.2,
+              "at": 0.65,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring0",
+              "at": 1.2999999999999998,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "ring1",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.85,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring1",
+              "at": 0.85,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring1",
+              "to": 2.2,
+              "at": 0.9,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring1",
+              "at": 1.5499999999999998,
+              "dur": 0.2
+            }
+          ],
+          "dur": 2.05
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Try the sound lab at home, with a grown-up.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            },
+            {
+              "do": "caption",
+              "text": "with a grown-up",
+              "style": "label",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Keep rubber bands away from faces. Rice stays on the drum!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Science quiz",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Science quiz! Think, then say the answer.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.3, -0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "Science Quiz",
+              "style": "title",
+              "dur": 2.4
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question one. What makes a shadow?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Something blocking the light!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "hop",
+              "target": "bunny"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question two. Bunny moves closer to the flashlight.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Does her shadow get bigger or smaller?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bigger!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "grow",
+              "target": "bunny",
+              "to": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "bunny",
+              "to": 1,
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question three. Which makes the darkest shadow?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "cup",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "wax",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "card",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A clear cup, wax paper or cardboard?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Cardboard!",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "card",
+              "to": 1.3
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question four. What is the rubber band doing when it hums?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "cup"
+            },
+            {
+              "do": "hide",
+              "target": "wax"
+            },
+            {
+              "do": "hide",
+              "target": "card"
+            },
+            {
+              "do": "camera",
+              "position": [0.2, 2, 5.6],
+              "lookAt": [0.2, 0.7, 0.6],
+              "dur": 1.2,
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shaking! It vibrates.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "guitar#band2",
+              "at": 0.2,
+              "deg": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "sound",
+              "sound": "twang",
+              "at": 0.2,
+              "volume": 0.6
+            },
+            {
+              "do": "move",
+              "target": "ring0",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.2,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring0",
+              "at": 0.2,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring0",
+              "to": 2.2,
+              "at": 0.25,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring0",
+              "at": 0.8999999999999999,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "ring1",
+              "to": [-1.4, 0.45, 1.25],
+              "at": 0.45,
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "ring1",
+              "at": 0.45,
+              "dur": 0.1
+            },
+            {
+              "do": "grow",
+              "target": "ring1",
+              "to": 2.2,
+              "at": 0.5,
+              "dur": 0.7,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hide",
+              "target": "ring1",
+              "at": 1.15,
+              "dur": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.65
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Last one. Why did the rice jump?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [1.5, 1.6, 3.4],
+              "lookAt": [1.5, 0.8, 0.5],
+              "dur": 1
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The sound made the drum skin shake!",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pan",
+              "deg": 10
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "rice1",
+              "at": 0.2,
+              "height": 0.16,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice2",
+              "at": 0.23,
+              "height": 0.19,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice3",
+              "at": 0.26,
+              "height": 0.22,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice4",
+              "at": 0.29,
+              "height": 0.16,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice5",
+              "at": 0.32,
+              "height": 0.19,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice6",
+              "at": 0.2,
+              "height": 0.22,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice7",
+              "at": 0.23,
+              "height": 0.16,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice8",
+              "at": 0.26,
+              "height": 0.19,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice9",
+              "at": 0.29,
+              "height": 0.22,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice10",
+              "at": 0.32,
+              "height": 0.16,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice11",
+              "at": 0.2,
+              "height": 0.19,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice12",
+              "at": 0.23,
+              "height": 0.22,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice13",
+              "at": 0.26,
+              "height": 0.16,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rice14",
+              "at": 0.29,
+              "height": 0.19,
+              "dur": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "title": "Shadow bow",
+      "beats": [
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "guitar"
+            },
+            {
+              "do": "hide",
+              "target": "drum"
+            },
+            {
+              "do": "hide",
+              "target": "pan"
+            },
+            {
+              "do": "hide",
+              "target": "rice1"
+            },
+            {
+              "do": "hide",
+              "target": "rice2"
+            },
+            {
+              "do": "hide",
+              "target": "rice3"
+            },
+            {
+              "do": "hide",
+              "target": "rice4"
+            },
+            {
+              "do": "hide",
+              "target": "rice5"
+            },
+            {
+              "do": "hide",
+              "target": "rice6"
+            },
+            {
+              "do": "hide",
+              "target": "rice7"
+            },
+            {
+              "do": "hide",
+              "target": "rice8"
+            },
+            {
+              "do": "hide",
+              "target": "rice9"
+            },
+            {
+              "do": "hide",
+              "target": "rice10"
+            },
+            {
+              "do": "hide",
+              "target": "rice11"
+            },
+            {
+              "do": "hide",
+              "target": "rice12"
+            },
+            {
+              "do": "hide",
+              "target": "rice13"
+            },
+            {
+              "do": "hide",
+              "target": "rice14"
+            },
+            {
+              "do": "lights",
+              "rig": "dim",
+              "background": "charcoal",
+              "floor": "brown",
+              "dur": 1.4
+            },
+            {
+              "do": "show",
+              "target": "screen",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "lamp",
+              "at": 1
+            },
+            {
+              "do": "show",
+              "target": "torch",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [-1.7, 0, 0.3],
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-0.7, 0, -0.4],
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [0.2, 0, -0.9],
+              "dur": 1.4
+            },
+            {
+              "do": "turn",
+              "target": "dog",
+              "to": [0, 0, 0],
+              "at": 1.4
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [1, 0, -1.4],
+              "dur": 1.4
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.8, 8.2],
+              "lookAt": [0, 1.3, -0.6],
+              "dur": 1.2,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Curtain call! Everyone, take a bow.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 0.7
+            },
+            {
+              "do": "nod",
+              "target": "dog",
+              "at": 0.8
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "at": 0.9
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Look! Our shadows bow too.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 0.5
+            },
+            {
+              "do": "nod",
+              "target": "dog",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Watch this! I'll step out of the light.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [3.4, 0, 1.4],
+              "at": 0.8,
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "My shadow is gone! I did it!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No light, no shadow! Well done, Frog.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Block the light and you make a shadow.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shake something and you make a sound!",
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "stars",
+              "at": 0.4,
+              "sound": "magic_sparkle"
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.4,
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "curtain_l",
+              "to": [-1.4, 0, 2.3],
+              "dur": 1.6
+            },
+            {
+              "do": "move",
+              "target": "curtain_r",
+              "to": [1.4, 0, 2.3],
+              "dur": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you for coming to our show! Bye-bye!",
+              "caption": true
+            }
+          ],
+          "dur": 3
+        }
+      ]
+    }
+  ]
+}

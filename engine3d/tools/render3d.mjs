@@ -21,6 +21,7 @@ import { buildPlan } from "../runtime/plan.js";
 import { startServer, REPO } from "./lib/server.mjs";
 import { launchBrowser, openPlayer } from "./lib/browser.mjs";
 import { speakPlan, mixPlan } from "./lib/audio3d.mjs";
+import { checkSceneMusic } from "./lib/music3d.mjs";
 import { startEncoder } from "./lib/encode3d.mjs";
 import { sampleMemory } from "./lib/memory.mjs";
 
@@ -60,6 +61,8 @@ async function main() {
   if (script) {
     const v = validateScript(script, catalog);
     for (const w of v.warnings) log(`warning ${w.code} ${w.path}: ${w.message}`);
+    v.errors.push(...checkSceneMusic(script, catalog.musicMoods)); // scene music is checked here, not in runtime/
+    v.ok = !v.errors.length;
     if (!v.ok) {
       for (const e of v.errors) console.error(`error ${e.code} ${e.path}: ${e.message}`);
       process.exit(1);
@@ -206,7 +209,7 @@ async function main() {
     const audioArgs = [];
     if (from === 0 && to === total) {
       const wav = join(tmp, "mix.wav");
-      const mix = mixPlan(plan, speech, wav, { ...(o.music ? { music: o.music === "off" ? null : o.music } : {}), log });
+      const mix = mixPlan(plan, speech, wav, { ...(o.music ? { music: o.music === "off" ? null : o.music } : {}), scenes: script?.scenes ?? [], log });
       stats.lufs = mix.lufs;
       audioArgs.push("-i", wav, "-map", "0:v", "-map", "1:a", "-c:a", "aac", "-b:a", "192k");
     }

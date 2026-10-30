@@ -13704,6 +13704,92 @@
             { "q": "Ear is to hear as eye is to ___", "options": ["see", "smell", "look"], "answer": 0 }
           ]
         },
+        "sink_float_prek": {
+          "description": "Predict and test whether things sink or float.",
+          "tags": ["science", "sink-float", "predict"],
+          "grade": "prek",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Does a rock sink or float?", "options": ["sink", "float"], "answer": 0 },
+            { "q": "Does a leaf sink or float?", "options": ["float", "sink"], "answer": 0 },
+            { "q": "Does a key sink or float?", "options": ["sink", "float"], "answer": 0 },
+            { "q": "Does a cork sink or float?", "options": ["float", "sink"], "answer": 0 }
+          ]
+        },
+        "magnets_prek": {
+          "description": "Find which things a magnet pulls.",
+          "tags": ["science", "magnets"],
+          "grade": "prek",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Will a magnet pull a nail?", "options": ["yes", "no"], "answer": 0 },
+            { "q": "Will a magnet pull a crayon?", "options": ["no", "yes"], "answer": 0 },
+            { "q": "Will a magnet pull a paper clip?", "options": ["yes", "no"], "answer": 0 },
+            { "q": "Will a magnet pull a sock?", "options": ["no", "yes"], "answer": 0 }
+          ]
+        },
+        "size_words_prek": {
+          "description": "Compare sizes: big, bigger, biggest, tall and short.",
+          "tags": ["size", "compare", "measurement"],
+          "grade": "prek",
+          "strand": "measure_shapes",
+          "questions": [
+            { "q": "Which is bigger?", "options": ["an elephant", "a mouse"], "answer": 0 },
+            { "q": "Which is taller?", "options": ["a giraffe", "a duck"], "answer": 0 },
+            { "q": "Which is the biggest?", "options": ["a whale", "a cat", "a bug"], "answer": 0 },
+            { "q": "Which is shorter?", "options": ["a puppy", "a tree"], "answer": 0 }
+          ]
+        },
+        "position_words_prek": {
+          "description": "Use position words: on, under, beside, behind and in.",
+          "tags": ["position", "space-words"],
+          "grade": "prek",
+          "strand": "measure_shapes",
+          "questions": [
+            { "q": "The cat sleeps ___ the bed.", "options": ["on", "in"], "answer": 0 },
+            { "q": "The ball rolled ___ the table.", "options": ["under", "on"], "answer": 0 },
+            { "q": "The fish swims ___ the bowl.", "options": ["in", "on"], "answer": 0 },
+            { "q": "The duck hides ___ the tree.", "options": ["behind", "on"], "answer": 0 }
+          ]
+        },
+        "feelings_prek": {
+          "description": "Name feelings and choose a way to calm down.",
+          "tags": ["feelings", "social-emotional"],
+          "grade": "prek",
+          "strand": "science_social",
+          "questions": [
+            { "q": "You get a gift. How do you feel?", "options": ["happy", "sad"], "answer": 0 },
+            { "q": "Your tower falls down. How might you feel?", "options": ["sad", "sleepy"], "answer": 0 },
+            { "q": "You feel mad. What can you do?", "options": ["take deep breaths", "yell"], "answer": 0 },
+            { "q": "A friend is sad. What can you do?", "options": ["give a hug", "walk away"], "answer": 0 }
+          ]
+        },
+        "healthy_habits_prek": {
+          "description": "Healthy habits: washing hands, brushing teeth and sleep.",
+          "tags": ["health", "habits"],
+          "grade": "prek",
+          "strand": "science_social",
+          "questions": [
+            { "q": "When do you wash your hands?", "options": ["before you eat", "never"], "answer": 0 },
+            { "q": "What helps keep teeth clean?", "options": ["brushing", "candy"], "answer": 0 },
+            { "q": "What does your body need at night?", "options": ["sleep", "a snack"], "answer": 0 },
+            { "q": "Which is a healthy snack?", "options": ["an apple", "a cookie"], "answer": 0 }
+          ]
+        },
+        "states_of_matter_2": {
+          "description": "Solids, liquids and gases, and how melting and freezing change them.",
+          "tags": ["matter", "states", "melting"],
+          "grade": "2",
+          "strand": "science_social",
+          "questions": [
+            { "q": "Ice is a ___", "options": ["solid", "liquid", "gas"], "answer": 0 },
+            { "q": "Milk in a glass is a ___", "options": ["liquid", "solid", "gas"], "answer": 0 },
+            { "q": "The air in a balloon is a ___", "options": ["gas", "solid", "liquid"], "answer": 0 },
+            { "q": "Ice cream left in the sun will ___", "options": ["melt", "freeze", "grow"], "answer": 0 },
+            { "q": "Water in the freezer will ___", "options": ["freeze", "melt", "boil"], "answer": 0 },
+            { "q": "Which keeps its own shape?", "options": ["a block", "juice", "steam"], "answer": 0 }
+          ]
+        },
         "logic_grid_5": {
           "description": "Reason from clues: who has what, and true or false statements.",
           "tags": ["deduction", "reasoning"],
@@ -14150,6 +14236,54 @@
           "grade": "prek",
           "activities": ["maze"],
           "example": { "activity": "maze", "size": [4, 4] }
+        },
+        "sink_float_prek": {
+          "description": "Predict and test whether things sink or float.",
+          "tags": ["science", "sink-float", "predict"],
+          "strand": "science_social",
+          "grade": "prek",
+          "activities": ["choose", "draw_prompt"],
+          "example": { "activity": "choose", "set": "sink_float_prek", "count": 4 }
+        },
+        "magnets_prek": {
+          "description": "Find which things a magnet pulls.",
+          "tags": ["science", "magnets"],
+          "strand": "science_social",
+          "grade": "prek",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "magnets_prek", "count": 4 }
+        },
+        "size_words_prek": {
+          "description": "Compare sizes: big, bigger, biggest, tall and short.",
+          "tags": ["size", "compare", "measurement"],
+          "strand": "measure_shapes",
+          "grade": "prek",
+          "activities": ["choose", "count"],
+          "example": { "activity": "choose", "set": "size_words_prek", "count": 4 }
+        },
+        "position_words_prek": {
+          "description": "Use position words: on, under, beside, behind and in.",
+          "tags": ["position", "space-words"],
+          "strand": "measure_shapes",
+          "grade": "prek",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "position_words_prek", "count": 4 }
+        },
+        "feelings_prek": {
+          "description": "Name feelings and choose a way to calm down.",
+          "tags": ["feelings", "social-emotional"],
+          "strand": "science_social",
+          "grade": "prek",
+          "activities": ["choose", "draw_prompt"],
+          "example": { "activity": "choose", "set": "feelings_prek", "count": 4 }
+        },
+        "healthy_habits_prek": {
+          "description": "Healthy habits: washing hands, brushing teeth and sleep.",
+          "tags": ["health", "habits"],
+          "strand": "science_social",
+          "grade": "prek",
+          "activities": ["choose"],
+          "example": { "activity": "choose", "set": "healthy_habits_prek", "count": 4 }
         },
         "beginning_sounds_k": {
           "description": "Hear and match beginning sounds.",
@@ -14651,6 +14785,14 @@
           "grade": "2",
           "activities": ["choose", "number_line"],
           "example": { "activity": "choose", "set": "sequences_2", "count": 6 }
+        },
+        "states_of_matter_2": {
+          "description": "Solids, liquids and gases, and how melting and freezing change them.",
+          "tags": ["matter", "states", "melting"],
+          "strand": "science_social",
+          "grade": "2",
+          "activities": ["choose", "word_search"],
+          "example": { "activity": "choose", "set": "states_of_matter_2", "count": 6 }
         },
         "prefixes_suffixes_3": {
           "description": "Use prefixes and suffixes to read new words.",

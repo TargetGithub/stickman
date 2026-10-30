@@ -1,0 +1,4577 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "A paper plane brings a treasure map! Fly up for a bird's-eye view, read a map key and a compass rose, find squares on a grid, and follow a route to the treasure.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Treasure Map Quest",
+  "episode": "g209",
+  "seed": 209,
+  "music": "playful",
+  "musicGain": 0.22,
+  "skills": [
+   "maps_2"
+  ],
+  "youtube": {
+   "title": "Treasure Map Quest! Map Skills for Kids: Key, Compass and Grid | Grade 2 | Toy Box Friends",
+   "description": "A paper plane lands with a map scrap: 3 east, 3 north. Robo, Cat, Dog and Pig fly up for a bird's-eye view, turn the playroom into map symbols, read the map key, learn north, east, south and west, and find squares like B4 on a grid.\nFollow the route to the treasure, see why Cat's shortcut hits a tree, and solve the second clue.\nTry at home: draw a map of your bedroom from above and hide a toy.",
+   "tags": [
+    "map skills for kids",
+    "map key",
+    "compass rose",
+    "north south east west",
+    "cardinal directions",
+    "grid map",
+    "treasure map",
+    "grade 2 social studies",
+    "geography for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnail": {
+   "scene": "grid",
+   "at": 20.54
+  }
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   2,
+   10.5
+  ],
+  "lookAt": [
+   0,
+   0.6,
+   0.6
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -1.6,
+    0,
+    4.1
+   ],
+   "rotation": [
+    0,
+    10,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    1.4,
+    0,
+    4.2
+   ],
+   "size": 0.85,
+   "rotation": [
+    0,
+    -15,
+    0
+   ]
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "at": [
+    0.1,
+    0,
+    4.4
+   ],
+   "size": 0.7
+  },
+  {
+   "id": "pig",
+   "kind": "critter",
+   "species": "pig",
+   "at": [
+    5,
+    0,
+    2.5
+   ],
+   "size": 0.8,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "house",
+   "kind": "prop",
+   "model": "house",
+   "at": [
+    -2.4,
+    0,
+    2.4
+   ],
+   "size": 0.55
+  },
+  {
+   "id": "tree",
+   "kind": "prop",
+   "model": "tree",
+   "at": [
+    -1.2,
+    0,
+    -1.2
+   ],
+   "size": 0.7
+  },
+  {
+   "id": "bush",
+   "kind": "prop",
+   "model": "bush",
+   "at": [
+    0,
+    0,
+    1.2
+   ],
+   "size": 0.75
+  },
+  {
+   "id": "pond",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "blue",
+   "at": [
+    2.4,
+    0.01,
+    1.2
+   ],
+   "size": 1,
+   "material": "water",
+   "scale": [
+    1,
+    0.3,
+    0.75
+   ]
+  },
+  {
+   "id": "flower",
+   "kind": "prop",
+   "model": "flower",
+   "at": [
+    1.2,
+    0,
+    -2.4
+   ],
+   "size": 0.8
+  },
+  {
+   "id": "gift",
+   "kind": "prop",
+   "model": "gift",
+   "at": [
+    1.2,
+    0,
+    -1.2
+   ],
+   "size": 0.7,
+   "hidden": true
+  },
+  {
+   "id": "ball",
+   "kind": "prop",
+   "model": "ball",
+   "at": [
+    0,
+    0,
+    1.2
+   ],
+   "size": 0.6,
+   "color": "red",
+   "hidden": true
+  },
+  {
+   "id": "sym_house",
+   "kind": "shape",
+   "shape": "square",
+   "color": "red",
+   "at": [
+    -2.4,
+    0.05,
+    2.74
+   ],
+   "size": 0.75,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sym_tree",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "green",
+   "at": [
+    -1.2,
+    0.05,
+    -0.84
+   ],
+   "size": 0.8,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sym_bush",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "leaf",
+   "at": [
+    0,
+    0.05,
+    1.54
+   ],
+   "size": 0.75,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sym_pond",
+   "kind": "shape",
+   "shape": "oval",
+   "color": "blue",
+   "at": [
+    2.4,
+    0.05,
+    1.54
+   ],
+   "size": 0.75,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sym_flower",
+   "kind": "shape",
+   "shape": "star",
+   "color": "pink",
+   "at": [
+    1.2,
+    0.05,
+    -2.06
+   ],
+   "size": 0.75,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sym_x",
+   "kind": "shape",
+   "shape": "cross",
+   "color": "red",
+   "at": [
+    1.2,
+    0.05,
+    -0.89
+   ],
+   "size": 0.7,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gz0",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    0,
+    0.03,
+    -3
+   ],
+   "size": 1,
+   "scale": [
+    6,
+    0.5,
+    0.05
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gz1",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    0,
+    0.03,
+    -1.8
+   ],
+   "size": 1,
+   "scale": [
+    6,
+    0.5,
+    0.05
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gz2",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    0,
+    0.03,
+    -0.6
+   ],
+   "size": 1,
+   "scale": [
+    6,
+    0.5,
+    0.05
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gz3",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    0,
+    0.03,
+    0.6
+   ],
+   "size": 1,
+   "scale": [
+    6,
+    0.5,
+    0.05
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gz4",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    0,
+    0.03,
+    1.8
+   ],
+   "size": 1,
+   "scale": [
+    6,
+    0.5,
+    0.05
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gz5",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    0,
+    0.03,
+    3
+   ],
+   "size": 1,
+   "scale": [
+    6,
+    0.5,
+    0.05
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gx0",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    -3,
+    0.03,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.05,
+    0.5,
+    6
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gx1",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    -1.8,
+    0.03,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.05,
+    0.5,
+    6
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gx2",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    -0.6,
+    0.03,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.05,
+    0.5,
+    6
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gx3",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    0.6,
+    0.03,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.05,
+    0.5,
+    6
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gx4",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    1.8,
+    0.03,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.05,
+    0.5,
+    6
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gx5",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    3,
+    0.03,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    0.05,
+    0.5,
+    6
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "cl_a",
+   "kind": "letter",
+   "text": "A",
+   "color": "blue",
+   "at": [
+    -2.4,
+    0.03,
+    3.45
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "cl_b",
+   "kind": "letter",
+   "text": "B",
+   "color": "blue",
+   "at": [
+    -1.2,
+    0.03,
+    3.45
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "cl_c",
+   "kind": "letter",
+   "text": "C",
+   "color": "blue",
+   "at": [
+    0,
+    0.03,
+    3.45
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "cl_d",
+   "kind": "letter",
+   "text": "D",
+   "color": "blue",
+   "at": [
+    1.2,
+    0.03,
+    3.45
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "cl_e",
+   "kind": "letter",
+   "text": "E",
+   "color": "blue",
+   "at": [
+    2.4,
+    0.03,
+    3.45
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "rl_1",
+   "kind": "letter",
+   "text": "1",
+   "color": "orange",
+   "at": [
+    -3.45,
+    0.03,
+    2.6
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "rl_2",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "at": [
+    -3.45,
+    0.03,
+    1.4
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "rl_3",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "at": [
+    -3.45,
+    0.03,
+    0.2
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "rl_4",
+   "kind": "letter",
+   "text": "4",
+   "color": "orange",
+   "at": [
+    -3.45,
+    0.03,
+    -1
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "rl_5",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    -3.45,
+    0.03,
+    -2.1999999999999997
+   ],
+   "size": 0.42,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "hl",
+   "kind": "shape",
+   "shape": "square",
+   "color": "yellow",
+   "at": [
+    -1.2,
+    0.04,
+    -0.75
+   ],
+   "size": 1,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "material": "glow",
+   "hidden": true
+  },
+  {
+   "id": "rose",
+   "kind": "prop",
+   "model": "compass_rose",
+   "at": [
+    -5,
+    0.02,
+    0
+   ],
+   "size": 1.6,
+   "hidden": true
+  },
+  {
+   "id": "d_n",
+   "kind": "letter",
+   "text": "N",
+   "color": "red",
+   "at": [
+    -5,
+    0.03,
+    -1.45
+   ],
+   "size": 0.4,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "d_e",
+   "kind": "letter",
+   "text": "E",
+   "color": "ink",
+   "at": [
+    -3.75,
+    0.03,
+    0.2
+   ],
+   "size": 0.4,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "d_s",
+   "kind": "letter",
+   "text": "S",
+   "color": "ink",
+   "at": [
+    -5,
+    0.03,
+    1.75
+   ],
+   "size": 0.4,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "d_w",
+   "kind": "letter",
+   "text": "W",
+   "color": "ink",
+   "at": [
+    -6.25,
+    0.03,
+    0.2
+   ],
+   "size": 0.4,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "k_house",
+   "kind": "shape",
+   "shape": "square",
+   "color": "red",
+   "at": [
+    4.2,
+    0.05,
+    -1.6
+   ],
+   "size": 0.36,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kw_house",
+   "kind": "letter",
+   "text": "house",
+   "color": "ink",
+   "at": [
+    5.4,
+    0.05,
+    -1.48
+   ],
+   "size": 0.26,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "k_tree",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "green",
+   "at": [
+    4.2,
+    0.05,
+    -1.1
+   ],
+   "size": 0.36,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kw_tree",
+   "kind": "letter",
+   "text": "tree",
+   "color": "ink",
+   "at": [
+    5.4,
+    0.05,
+    -0.98
+   ],
+   "size": 0.26,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "k_bush",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "leaf",
+   "at": [
+    4.2,
+    0.05,
+    -0.6
+   ],
+   "size": 0.36,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kw_bush",
+   "kind": "letter",
+   "text": "bush",
+   "color": "ink",
+   "at": [
+    5.4,
+    0.05,
+    -0.48
+   ],
+   "size": 0.26,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "k_pond",
+   "kind": "shape",
+   "shape": "oval",
+   "color": "blue",
+   "at": [
+    4.2,
+    0.05,
+    -0.1
+   ],
+   "size": 0.36,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kw_pond",
+   "kind": "letter",
+   "text": "pond",
+   "color": "ink",
+   "at": [
+    5.4,
+    0.05,
+    0.02
+   ],
+   "size": 0.26,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "k_flower",
+   "kind": "shape",
+   "shape": "star",
+   "color": "pink",
+   "at": [
+    4.2,
+    0.05,
+    0.4
+   ],
+   "size": 0.36,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kw_flower",
+   "kind": "letter",
+   "text": "flower",
+   "color": "ink",
+   "at": [
+    5.4,
+    0.05,
+    0.52
+   ],
+   "size": 0.26,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "k_treasure",
+   "kind": "shape",
+   "shape": "cross",
+   "color": "red",
+   "at": [
+    4.2,
+    0.05,
+    0.9
+   ],
+   "size": 0.36,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "kw_treasure",
+   "kind": "letter",
+   "text": "treasure",
+   "color": "ink",
+   "at": [
+    5.4,
+    0.05,
+    1.02
+   ],
+   "size": 0.26,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "plane",
+   "kind": "prop",
+   "model": "paper_plane",
+   "at": [
+    -7,
+    3.5,
+    2
+   ],
+   "size": 1.2,
+   "hidden": true
+  },
+  {
+   "id": "scrap",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "cream",
+   "at": [
+    0.1,
+    1,
+    5.2
+   ],
+   "size": 1,
+   "material": "paper",
+   "hidden": true
+  },
+  {
+   "id": "scrap_t",
+   "kind": "letter",
+   "text": "3 east, 3 north",
+   "color": "ink",
+   "at": [
+    0.1,
+    1.45,
+    5.5
+   ],
+   "size": 0.14,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "scrap_tree",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "green",
+   "at": [
+    -0.3,
+    1.1,
+    5.5
+   ],
+   "size": 0.22,
+   "hidden": true
+  },
+  {
+   "id": "scrap_pond",
+   "kind": "shape",
+   "shape": "oval",
+   "color": "blue",
+   "at": [
+    0.1,
+    1.1,
+    5.5
+   ],
+   "size": 0.22,
+   "hidden": true
+  },
+  {
+   "id": "scrap_x",
+   "kind": "shape",
+   "shape": "cross",
+   "color": "red",
+   "at": [
+    0.5,
+    1.1,
+    5.5
+   ],
+   "size": 0.22,
+   "hidden": true
+  },
+  {
+   "id": "party",
+   "kind": "confetti",
+   "count": 220,
+   "area": [
+    8,
+    6
+   ],
+   "height": 7
+  }
+ ],
+ "scenes": [
+  {
+   "id": "plane",
+   "title": "A paper plane lands",
+   "beats": [
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Treasure Map Quest",
+       "style": "title",
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.6
+       ],
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "plane",
+       "at": 0.1
+      },
+      {
+       "do": "path",
+       "target": "plane",
+       "points": [
+        [
+         -7,
+         3.5,
+         2
+        ],
+        [
+         -3,
+         2.6,
+         3
+        ],
+        [
+         -0.6,
+         1.4,
+         3.8
+        ],
+        [
+         0.4,
+         0.05,
+         3.4
+        ]
+       ],
+       "at": 0.1,
+       "dur": 2.3,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 2.3
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "A paper plane! It flew in through the window.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "There's something written on it.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "plane",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "scrap",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "scrap_t",
+       "at": 1.8,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "scrap_tree",
+       "at": 2,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "scrap_pond",
+       "at": 2.2,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "scrap_x",
+       "at": 2.4,
+       "sound": false
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.1,
+        1.4,
+        7.6
+       ],
+       "lookAt": [
+        0.1,
+        1,
+        4.4
+       ],
+       "at": 1.2,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A tree, a blue oval, and a big X. And the words...",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "3 east, 3 north.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "scrap_t",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "Sniff, sniff. Treasure?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.3
+      },
+      {
+       "do": "wiggle",
+       "target": "dog#tail",
+       "at": 0.6,
+       "deg": 30
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Only if we can read the map.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "birdseye",
+   "title": "Bird's-eye view",
+   "beats": [
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "A map shows a place as if you're a bird, high above.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "scrap",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "scrap_t",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "scrap_tree",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "scrap_pond",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "scrap_x",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.6
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's fly up and see our playroom like a bird does!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "bird's-eye view",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        7,
+        6
+       ],
+       "lookAt": [
+        0,
+        0,
+        0.5
+       ],
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        14,
+        0.05
+       ],
+       "lookAt": [
+        0,
+        0,
+        0
+       ],
+       "at": 2.4,
+       "dur": 2.4,
+       "fov": 40
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wow! From up here, things look flat. We only see their tops.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "And I can see the whole playroom at once.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "A map shows where things are,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "and how to get from place to place.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "On a map, we draw each thing as a simple symbol.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "symbol",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "The house becomes a red square.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "house",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "sym_house",
+       "at": 0.8,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "The tree becomes a green triangle.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "tree",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "sym_tree",
+       "at": 0.8,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "The bush is a green circle. The pond is a blue oval.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "bush",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "sym_bush",
+       "at": 0.6,
+       "sound": "sparkle"
+      },
+      {
+       "do": "hide",
+       "target": "pond",
+       "at": 1.8
+      },
+      {
+       "do": "pop",
+       "target": "sym_pond",
+       "at": 2,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the flower is a pink star.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "flower",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "sym_flower",
+       "at": 0.8,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why draw symbols? Why not little pictures?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Symbols are quick to draw and easy to read.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: some of the oldest maps were carved in clay,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "long, long ago.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "And astronauts used maps of the Moon to plan where to land!",
+       "caption": true
+      }
+     ]
+    }
+   ],
+   "musicGain": 0.3
+  },
+  {
+   "id": "key",
+   "title": "The map key",
+   "beats": [
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "But how do we know what each symbol means? We need a key!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        2.2,
+        14,
+        0.05
+       ],
+       "lookAt": [
+        2.2,
+        0,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "map key",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oink! I'm the keeper of the map key.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "A red square means house.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "k_house",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "kw_house",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "A green triangle means tree.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "k_tree",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "kw_tree",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "A green circle means bush.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "k_bush",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "kw_bush",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "What does the blue oval mean?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "k_pond",
+       "at": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "sym_pond",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "A pond!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "kw_pond",
+       "at": 0.1,
+       "sound": "ding"
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "A pink star means flower.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "k_flower",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "kw_flower",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "And a red X marks the treasure!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "k_treasure",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "kw_treasure",
+       "at": 0.6,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sym_x",
+       "at": 1.4,
+       "sound": "magic_sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "What does the green triangle mean? Look at the key!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "k_tree",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "A tree! Point to the tree on the map.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "sym_tree",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "A map key is sometimes called a legend.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "legend",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "So the key is like a dictionary for the map.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "House, tree, bush, pond, flower, treasure. All in my key!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Exactly! Without a key, a map is just shapes.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "compass",
+   "title": "The compass rose",
+   "beats": [
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now, which way is east? We need a compass rose.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2,
+        14,
+        0.05
+       ],
+       "lookAt": [
+        -2,
+        0,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "rose",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.11,
+     "do": [
+      {
+       "do": "say",
+       "text": "North!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d_n",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "East!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d_e",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.11,
+     "do": [
+      {
+       "do": "say",
+       "text": "South!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d_s",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "West!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d_w",
+       "at": 0.1
+      },
+      {
+       "do": "spin",
+       "target": "rose",
+       "at": 0.8,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "On most maps, north is at the top. East is to the right.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "d_n",
+       "at": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "d_e",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "They go round clockwise: north, east, south, west.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "d_n",
+       "at": 1.2,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "d_e",
+       "at": 1.6,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "d_s",
+       "at": 2,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "d_w",
+       "at": 2.4,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "So when north is up, west is on the left.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why is north at the top?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Map makers agreed to put it there, so every map matches.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: a compass needle points north.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's because the Earth acts like a giant magnet!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let me try. I face north, and turn east!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.6
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        180,
+        0
+       ],
+       "at": 1,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        270,
+        0
+       ],
+       "at": 2.4,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Robo, that's west!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "East is on your right when you face north.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oops! Right hand. East!",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        10,
+        0
+       ],
+       "at": 1.8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Stand up and face the screen.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's north. Point to the right. East!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Point behind you. South! Point to the left. West!",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "grid",
+   "title": "Grid squares",
+   "beats": [
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Our map has a grid, like a game board.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        14,
+        0.05
+       ],
+       "lookAt": [
+        0,
+        0,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "gz0",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "gx0",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "gz1",
+       "at": 0.88
+      },
+      {
+       "do": "show",
+       "target": "gx1",
+       "at": 0.88
+      },
+      {
+       "do": "show",
+       "target": "gz2",
+       "at": 0.96
+      },
+      {
+       "do": "show",
+       "target": "gx2",
+       "at": 0.96
+      },
+      {
+       "do": "show",
+       "target": "gz3",
+       "at": 1.04
+      },
+      {
+       "do": "show",
+       "target": "gx3",
+       "at": 1.04
+      },
+      {
+       "do": "show",
+       "target": "gz4",
+       "at": 1.12
+      },
+      {
+       "do": "show",
+       "target": "gx4",
+       "at": 1.12
+      },
+      {
+       "do": "show",
+       "target": "gz5",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "gx5",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "cl_a",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "cl_b",
+       "at": 1.5
+      },
+      {
+       "do": "pop",
+       "target": "cl_c",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "cl_d",
+       "at": 1.7
+      },
+      {
+       "do": "pop",
+       "target": "cl_e",
+       "at": 1.8
+      },
+      {
+       "do": "pop",
+       "target": "rl_1",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "rl_2",
+       "at": 1.5
+      },
+      {
+       "do": "pop",
+       "target": "rl_3",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "rl_4",
+       "at": 1.7
+      },
+      {
+       "do": "pop",
+       "target": "rl_5",
+       "at": 1.8
+      },
+      {
+       "do": "caption",
+       "text": "grid",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Letters go across: A, B, C, D, E.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cl_a",
+       "at": 0.8,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "cl_b",
+       "at": 1.1,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "cl_c",
+       "at": 1.4,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "cl_d",
+       "at": 1.7,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "cl_e",
+       "at": 2,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Numbers go up: 1, 2, 3, 4, 5.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "rl_1",
+       "at": 0.8,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "rl_2",
+       "at": 1.1,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "rl_3",
+       "at": 1.4,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "rl_4",
+       "at": 1.7,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "rl_5",
+       "at": 2,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "To find a square, read the letter first, then the number.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which square is the tree in?",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "sym_tree",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "B4! Column B, row 4.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "hl",
+       "at": 0.2,
+       "sound": "ding"
+      },
+      {
+       "do": "caption",
+       "text": "B4",
+       "style": "label",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now find the pond.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        2.4,
+        0.04,
+        1.65
+       ],
+       "at": 0.6,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "E2! Column E, row 2.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "E2",
+       "style": "label",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the X? Where is the treasure?",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        1.2,
+        0.04,
+        -0.75
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "D4! The treasure is in square D4.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "D4",
+       "style": "label",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which square has the flower?",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        1.2,
+        0.04,
+        -1.95
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "D5! Right above the treasure.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "D5",
+       "style": "label",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the house, where we start?",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        -2.4,
+        0.04,
+        2.85
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "A1! The corner square.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "A1",
+       "style": "label",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "hl",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Letter first, then number. Like an address for a square.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Compass chant",
+   "beats": [
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Turn with me! A quarter turn on every line.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.6
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "North to the top,",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "to": [
+        0,
+        180,
+        0
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "east to the right,",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "south to the bottom,",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "west takes flight!",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "to": [
+        0,
+        -90,
+        0
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's our own memory sentence: Now Every Snail Waves!",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "cat",
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "North, East, South, West. Waving snails. I like it.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "North to the top, east to the right,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.6,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "south to the bottom, west takes flight!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 0.85
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "route",
+   "title": "Follow the route",
+   "beats": [
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Dog, start at the house, square A1.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        14,
+        0.05
+       ],
+       "lookAt": [
+        0,
+        0,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -2.4,
+        0,
+        2.4
+       ],
+       "at": 0.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "The map says 3 east. Count the steps out loud with Dog!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "path",
+       "target": "dog",
+       "points": [
+        [
+         -2.4,
+         0,
+         2.4
+        ],
+        [
+         -1.2,
+         0,
+         2.4
+        ],
+        [
+         0,
+         0,
+         2.4
+        ],
+        [
+         1.2,
+         0,
+         2.4
+        ]
+       ],
+       "at": 0.2,
+       "dur": 2.7,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0.6000000000000001,
+       "dur": 0.9
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.3,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1.9
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 1.5,
+       "dur": 0.9
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 2.2,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 2.8000000000000003
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 2.4,
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "1, 2, 3 east. Now Dog is at D1. Then 3 north!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "path",
+       "target": "dog",
+       "points": [
+        [
+         1.2,
+         0,
+         2.4
+        ],
+        [
+         1.2,
+         0,
+         1.2
+        ],
+        [
+         1.2,
+         0,
+         0
+        ],
+        [
+         1.2,
+         0,
+         -1.2
+        ]
+       ],
+       "at": 0.2,
+       "dur": 2.7,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0.6000000000000001,
+       "dur": 0.9
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.3,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1.9
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 1.5,
+       "dur": 0.9
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 2.2,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 2.8000000000000003
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 2.4,
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "1, 2, 3 north. Dog is at D4!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "show",
+       "target": "gift",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "gift",
+       "at": 0.6,
+       "height": 0.5
+      },
+      {
+       "do": "burst",
+       "target": "party",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4,
+       "height": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Treasure! A present!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "dog#tail",
+       "at": 0.4,
+       "deg": 30
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "3 east, then 3 north. The route worked!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "I had a shortcut. Watch: 3 north first, then east.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        -2.4,
+        0,
+        2.4
+       ],
+       "at": 1,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "path",
+       "target": "cat",
+       "points": [
+        [
+         -2.4,
+         0,
+         2.4
+        ],
+        [
+         -2.4,
+         0,
+         1.2
+        ],
+        [
+         -2.4,
+         0,
+         0
+        ],
+        [
+         -2.4,
+         0,
+         -1.2
+        ]
+       ],
+       "at": 0.2,
+       "dur": 2.7,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1.3,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1.9
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 2.2,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 2.8000000000000003
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        -1.8,
+        0,
+        -1.2
+       ],
+       "at": 0.1,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "sym_tree",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        -2.4,
+        0,
+        -1.2
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "surprised",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oops. The tree at B4 is in the way!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "A route is a plan. Go around: up to A5, then east.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "cat",
+       "points": [
+        [
+         -2.4,
+         0,
+         -1.2
+        ],
+        [
+         -2.4,
+         0,
+         -2.4
+        ],
+        [
+         -1.2,
+         0,
+         -2.4
+        ],
+        [
+         0,
+         0,
+         -2.4
+        ],
+        [
+         0,
+         0,
+         -1.2
+        ],
+        [
+         1.2,
+         0,
+         -1.2
+        ]
+       ],
+       "at": 0.2,
+       "dur": 4.25,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 0.9500000000000001
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1.25,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1.7999999999999998
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 2.1,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 2.65
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 2.95,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 3.5
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 3.8000000000000003,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 4.3500000000000005
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Maps help you choose a route that works. Lesson learned.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "And counting squares keeps you from getting lost.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "second",
+   "title": "Challenge: the second treasure",
+   "beats": [
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge! Pig found a second clue.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        1.4,
+        0,
+        4.2
+       ],
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        0.1,
+        0,
+        4.4
+       ],
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "gift",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "The second treasure is 2 squares west of the pond.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "sym_pond",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hidden under a bush!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "deg": 10,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "West means toward the left of the map, away from the pond.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Start at the pond, E2. Go 2 west. Which square?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "hl",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        2.4,
+        0.04,
+        1.65
+       ],
+       "at": 0.1,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "E2, D2, C2! The bush!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        1.2,
+        0.04,
+        1.65
+       ],
+       "at": 0.4,
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        0,
+        0.04,
+        1.65
+       ],
+       "at": 1,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check the key. A green circle means bush. Yes!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "sym_bush",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Dog, go dig!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        0.6,
+        0,
+        1.2
+       ],
+       "at": 0.4,
+       "dur": 1.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.6
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "hl",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "bush",
+       "at": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "sym_bush",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "wiggle",
+       "target": "bush",
+       "at": 0.1,
+       "deg": 16
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "ball",
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "ball",
+       "to": [
+        0,
+        0,
+        2
+       ],
+       "at": 1.3,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 1.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "A ball! Best treasure ever!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "The map-key keeper says: well done, explorers!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Your turn to read a clue. Start at A1, go 4 east, 1 north.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        14,
+        0.05
+       ],
+       "lookAt": [
+        0,
+        0,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "A1, B1, C1, D1, E1, then up to E2. The pond!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "hl",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        -2.4,
+        0.04,
+        2.85
+       ],
+       "at": 0.2,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        -1.2,
+        0.04,
+        2.85
+       ],
+       "at": 0.7,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        0,
+        0.04,
+        2.85
+       ],
+       "at": 1.2,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        1.2,
+        0.04,
+        2.85
+       ],
+       "at": 1.7,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        2.4,
+        0.04,
+        2.85
+       ],
+       "at": 2.2,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        2.4,
+        0.04,
+        1.65
+       ],
+       "at": 2.7,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 3.2
+      },
+      {
+       "do": "hide",
+       "target": "hl",
+       "at": 3.8
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Make up your own clues at home.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "It's fun to be the map maker.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! What does a map key tell you?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        14,
+        0.05
+       ],
+       "lookAt": [
+        0,
+        0,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "What the symbols mean!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "On most maps, which way is at the top?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.11,
+     "do": [
+      {
+       "do": "say",
+       "text": "North!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Start at A1. Go 2 squares east. Where are you?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "C1!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "hl",
+       "at": 0.1,
+       "sound": "ding"
+      },
+      {
+       "do": "move",
+       "target": "hl",
+       "to": [
+        0,
+        0.04,
+        2.85
+       ],
+       "at": 0.1,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why didn't Cat's shortcut work?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "hl",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "The tree at B4 was in the way!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "sym_tree",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four for four! You're map experts.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bye",
+   "title": "Make your own map",
+   "beats": [
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Look what we found!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        10.5
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.6
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "gift",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "gift",
+       "to": [
+        0.9,
+        0,
+        3.8
+       ],
+       "at": 0.4,
+       "dur": 0.1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Navigator approved.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Draw a map of your bedroom,",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "from above, with a key and a compass.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hide toys only in safe, open places. No climbing! Bye!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

@@ -167,6 +167,9 @@ function make(name) {
     case "cube": return new THREE.BoxGeometry(1, 1, 1);
     case "block": return new RoundedBoxGeometry(1, 1, 1, 5, 0.12);
     case "box": return new RoundedBoxGeometry(1, 1, 1, 3, 0.08);
+    // A thin slab built at its true thickness (1 × 0.04 × 1), so boards, mats, signs and plates stay solid
+    // when scaled: box and block round their corners by a share of the unit cube and turn to slivers below ~0.05.
+    case "plate": return new RoundedBoxGeometry(1, 0.04, 1, 2, 0.012);
     case "sphere": return new THREE.SphereGeometry(0.5, 48, 32);
     case "cylinder": return new THREE.CylinderGeometry(0.5, 0.5, 1, 48);
     case "cone": return new THREE.ConeGeometry(0.5, 1, 48);
@@ -210,6 +213,16 @@ function make(name) {
     }
     default: throw new Error(`unknown shape "${name}"`);
   }
+}
+
+/**
+ * Let a mesh cast and receive shadows, except a see-through one (opacity under 0.5: glass), which casts none,
+ * so a clear cup leaves no black shadow. Water and ice (0.6 and more) keep theirs.
+ */
+export function shadowed(m) {
+  m.castShadow = !(m.material?.transparent && m.material.opacity < 0.5);
+  m.receiveShadow = true;
+  return m;
 }
 
 /** Shared unit geometry for a shape name (do not dispose: it is cached). */

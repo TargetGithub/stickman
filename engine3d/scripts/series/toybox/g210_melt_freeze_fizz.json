@@ -1,0 +1,5755 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Who took Robo's ice pop? Detective Cat finds the culprit: heat! Learn solid, liquid and gas, run a melt race, freeze juice, and fizz a balloon with baking soda and vinegar.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Melt, Freeze, Fizz!",
+  "episode": "g210",
+  "seed": 210,
+  "music": "playful",
+  "musicGain": 0.2,
+  "skills": [
+   "states_of_matter_2"
+  ],
+  "youtube": {
+   "title": "Melt, Freeze, Fizz! Solids, Liquids and Gases for Kids | Easy Science Experiment | Toy Box Friends",
+   "description": "Robo's ice pop is gone: only a stick and an orange puddle are left! Detective Cat takes the case.\nMeet the particles in a solid, a liquid and a gas, run a melt race (sun, shade, freezer), freeze juice into a new ice pop, watch a puddle evaporate, and blow up a balloon with baking soda and vinegar.\nDo the experiments with a grown-up and wear goggles. Never cap the bottle and don't taste the mixture.",
+   "tags": [
+    "states of matter",
+    "solid liquid gas",
+    "melting and freezing",
+    "baking soda and vinegar",
+    "science experiment for kids",
+    "grade 2 science",
+    "reversible changes",
+    "ice experiment",
+    "2nd grade science",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnail": {
+   "scene": "fizz",
+   "at": 45.16
+  }
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   1.9,
+   8
+  ],
+  "lookAt": [
+   0,
+   1.1,
+   -0.4
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.7,
+    0,
+    1.4
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    3.7,
+    0,
+    1.4
+   ],
+   "size": 0.9,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "duck",
+   "kind": "critter",
+   "species": "duck",
+   "at": [
+    1.75,
+    0,
+    0.6
+   ],
+   "size": 0.75,
+   "rotation": [
+    0,
+    -15,
+    0
+   ]
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "at": [
+    -1.9,
+    0,
+    1.7
+   ],
+   "size": 0.7,
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "hat",
+   "kind": "shape",
+   "shape": "cone",
+   "color": "brown",
+   "at": [
+    0,
+    0.28,
+    0
+   ],
+   "size": 0.37,
+   "parent": "cat",
+   "part": "head",
+   "hidden": true
+  },
+  {
+   "id": "gog_duck",
+   "kind": "prop",
+   "model": "goggles",
+   "at": [
+    0,
+    0.07,
+    0.25
+   ],
+   "size": 0.8,
+   "parent": "duck",
+   "part": "head",
+   "hidden": true
+  },
+  {
+   "id": "gog_robo",
+   "kind": "prop",
+   "model": "goggles",
+   "at": [
+    -3.7,
+    1.12,
+    1.72
+   ],
+   "size": 0.9,
+   "rotation": [
+    0,
+    30,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sill",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "white",
+   "at": [
+    -3,
+    0,
+    -0.6
+   ],
+   "size": 1,
+   "scale": [
+    1.6,
+    1,
+    0.8
+   ],
+   "material": "matte"
+  },
+  {
+   "id": "sun",
+   "kind": "prop",
+   "model": "sun",
+   "at": [
+    -3,
+    3,
+    -1.2
+   ],
+   "size": 0.8
+  },
+  {
+   "id": "table",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "sand",
+   "at": [
+    0,
+    0,
+    -0.4
+   ],
+   "size": 1,
+   "scale": [
+    2.6,
+    0.9,
+    1
+   ],
+   "material": "matte"
+  },
+  {
+   "id": "fz_back",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "sky",
+   "at": [
+    2.7,
+    0,
+    -1.15
+   ],
+   "size": 1,
+   "scale": [
+    1.3,
+    2.2,
+    0.08
+   ],
+   "material": "matte"
+  },
+  {
+   "id": "fz_l",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "white",
+   "at": [
+    2.0500000000000003,
+    0,
+    -0.7
+   ],
+   "size": 1,
+   "scale": [
+    0.08,
+    2.2,
+    0.9
+   ]
+  },
+  {
+   "id": "fz_r",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "white",
+   "at": [
+    3.35,
+    0,
+    -0.7
+   ],
+   "size": 1,
+   "scale": [
+    0.08,
+    2.2,
+    0.9
+   ]
+  },
+  {
+   "id": "fz_top",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "at": [
+    2.7,
+    2.2,
+    -0.7
+   ],
+   "size": 1,
+   "scale": [
+    1.38,
+    2,
+    0.9
+   ]
+  },
+  {
+   "id": "fz_shelf",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "white",
+   "at": [
+    2.7,
+    1,
+    -0.7
+   ],
+   "size": 1,
+   "scale": [
+    1.22,
+    1.25,
+    0.85
+   ]
+  },
+  {
+   "id": "fz_word",
+   "kind": "letter",
+   "text": "freezer",
+   "color": "blue",
+   "at": [
+    2.7,
+    2.36,
+    -0.39999999999999997
+   ],
+   "size": 0.2,
+   "depth": 0.05
+  },
+  {
+   "id": "frost",
+   "kind": "weather",
+   "type": "snow",
+   "count": 30,
+   "area": [
+    1.1,
+    0.6
+   ],
+   "height": 1.1,
+   "at": [
+    2.7,
+    1.05,
+    -0.7
+   ],
+   "hidden": true
+  },
+  {
+   "id": "stick",
+   "kind": "shape",
+   "shape": "capsule",
+   "color": "sand",
+   "at": [
+    -2.9,
+    1.02,
+    -0.4
+   ],
+   "size": 0.3,
+   "scale": [
+    0.25,
+    0.9,
+    0.25
+   ],
+   "rotation": [
+    0,
+    0,
+    80
+   ]
+  },
+  {
+   "id": "pop_puddle",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "orange",
+   "at": [
+    -3,
+    1,
+    -0.4
+   ],
+   "size": 0.75,
+   "material": "water",
+   "scale": [
+    1,
+    0.2,
+    0.8
+   ]
+  },
+  {
+   "id": "plate0",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "white",
+   "at": [
+    -3,
+    1,
+    -0.5
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "pud0",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "blue",
+   "at": [
+    -3,
+    1.02,
+    -0.5
+   ],
+   "size": 0.5,
+   "material": "water",
+   "scale": [
+    0.3,
+    0.2,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ice0",
+   "kind": "prop",
+   "model": "ice_cube",
+   "at": [
+    -3,
+    1.06,
+    -0.5
+   ],
+   "size": 2,
+   "hidden": true
+  },
+  {
+   "id": "il0",
+   "kind": "letter",
+   "text": "1",
+   "color": "ink",
+   "at": [
+    -3,
+    1.5,
+    -0.15000000000000002
+   ],
+   "size": 0.18,
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "plate1",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "white",
+   "at": [
+    -0.6,
+    0.9,
+    -0.3
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "pud1",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "blue",
+   "at": [
+    -0.6,
+    0.92,
+    -0.3
+   ],
+   "size": 0.5,
+   "material": "water",
+   "scale": [
+    0.3,
+    0.2,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ice1",
+   "kind": "prop",
+   "model": "ice_cube",
+   "at": [
+    -0.6,
+    0.96,
+    -0.3
+   ],
+   "size": 2,
+   "hidden": true
+  },
+  {
+   "id": "il1",
+   "kind": "letter",
+   "text": "2",
+   "color": "ink",
+   "at": [
+    -0.6,
+    1.4,
+    0.04999999999999999
+   ],
+   "size": 0.18,
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "plate2",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "white",
+   "at": [
+    2.7,
+    1.03,
+    -0.7
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "pud2",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "blue",
+   "at": [
+    2.7,
+    1.05,
+    -0.7
+   ],
+   "size": 0.5,
+   "material": "water",
+   "scale": [
+    0.3,
+    0.2,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ice2",
+   "kind": "prop",
+   "model": "ice_cube",
+   "at": [
+    2.7,
+    1.09,
+    -0.7
+   ],
+   "size": 2,
+   "hidden": true
+  },
+  {
+   "id": "il2",
+   "kind": "letter",
+   "text": "3",
+   "color": "ink",
+   "at": [
+    2.7,
+    1.53,
+    -0.35
+   ],
+   "size": 0.18,
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "jcup",
+   "kind": "shape",
+   "shape": "cup",
+   "color": "white",
+   "at": [
+    0.6,
+    0.9,
+    -0.3
+   ],
+   "size": 0.4,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "juice",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "orange",
+   "at": [
+    0.6,
+    0.92,
+    -0.3
+   ],
+   "size": 0.36,
+   "material": "water",
+   "scale": [
+    1,
+    0.8,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "mould",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "teal",
+   "at": [
+    -0.4,
+    0.9,
+    -0.3
+   ],
+   "size": 1,
+   "scale": [
+    0.3,
+    0.42,
+    0.22
+   ],
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "mjuice",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "orange",
+   "at": [
+    -0.4,
+    0.93,
+    -0.3
+   ],
+   "size": 1,
+   "scale": [
+    0.24,
+    0.5,
+    0.18
+   ],
+   "material": "water",
+   "hidden": true
+  },
+  {
+   "id": "moon",
+   "kind": "prop",
+   "model": "moon",
+   "at": [
+    0.6,
+    3.1,
+    -1.4
+   ],
+   "size": 0.7,
+   "hidden": true
+  },
+  {
+   "id": "newpop",
+   "kind": "prop",
+   "model": "ice_pop",
+   "at": [
+    -0.4,
+    0.9,
+    -0.3
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "bubble_bg",
+   "kind": "shape",
+   "shape": "circle",
+   "color": "cream",
+   "at": [
+    9,
+    0,
+    -0.6
+   ],
+   "size": 4.6,
+   "material": "matte"
+  },
+  {
+   "id": "pcup",
+   "kind": "shape",
+   "shape": "cup",
+   "color": "white",
+   "at": [
+    9,
+    0,
+    0.3
+   ],
+   "size": 1.4,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "pt0",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    8.58,
+    0.9,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt1",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    9,
+    0.9,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt2",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    9.42,
+    0.9,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt3",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    8.58,
+    1.32,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt4",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    9,
+    1.32,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt5",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    9.42,
+    1.32,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt6",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    8.58,
+    1.74,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt7",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    9,
+    1.74,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "pt8",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    9.42,
+    1.74,
+    0.3
+   ],
+   "size": 0.36,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "w_solid",
+   "kind": "letter",
+   "text": "solid",
+   "color": "blue",
+   "at": [
+    9,
+    2.55,
+    0.3
+   ],
+   "size": 0.38,
+   "hidden": true
+  },
+  {
+   "id": "w_liquid",
+   "kind": "letter",
+   "text": "liquid",
+   "color": "teal",
+   "at": [
+    9,
+    2.55,
+    0.3
+   ],
+   "size": 0.38,
+   "hidden": true
+  },
+  {
+   "id": "w_gas",
+   "kind": "letter",
+   "text": "gas",
+   "color": "purple",
+   "at": [
+    9,
+    2.55,
+    0.3
+   ],
+   "size": 0.38,
+   "hidden": true
+  },
+  {
+   "id": "p_block",
+   "kind": "prop",
+   "model": "toy_box",
+   "at": [
+    6.8,
+    0,
+    0.6
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "plate_dry",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "white",
+   "at": [
+    0,
+    0.9,
+    -0.2
+   ],
+   "size": 0.9,
+   "hidden": true
+  },
+  {
+   "id": "pud_dry",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "blue",
+   "at": [
+    0,
+    0.92,
+    -0.2
+   ],
+   "size": 0.75,
+   "material": "water",
+   "scale": [
+    1,
+    0.2,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "vap0",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "white",
+   "at": [
+    -0.3,
+    1,
+    -0.2
+   ],
+   "size": 0.08,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "vap1",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "white",
+   "at": [
+    -0.15,
+    1,
+    -0.2
+   ],
+   "size": 0.08,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "vap2",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "white",
+   "at": [
+    0,
+    1,
+    -0.2
+   ],
+   "size": 0.08,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "vap3",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "white",
+   "at": [
+    0.14999999999999997,
+    1,
+    -0.2
+   ],
+   "size": 0.08,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "vap4",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "white",
+   "at": [
+    0.3,
+    1,
+    -0.2
+   ],
+   "size": 0.08,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "tray",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "grey",
+   "at": [
+    0,
+    0.9,
+    -0.3
+   ],
+   "size": 1,
+   "scale": [
+    1.4,
+    1,
+    0.7
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "bottle",
+   "kind": "shape",
+   "shape": "bottle",
+   "color": "white",
+   "at": [
+    0,
+    0.9400000000000001,
+    -0.3
+   ],
+   "size": 0.55,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "vinegar",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "cream",
+   "at": [
+    0,
+    0.96,
+    -0.3
+   ],
+   "size": 0.42,
+   "material": "water",
+   "scale": [
+    1,
+    0.45,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fballoon",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "red",
+   "at": [
+    0.55,
+    0.9,
+    -0.3
+   ],
+   "size": 0.22,
+   "material": "glossy",
+   "scale": [
+    1,
+    1.2,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "soda",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "white",
+   "at": [
+    0.55,
+    0.96,
+    -0.3
+   ],
+   "size": 0.18,
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "foam",
+   "kind": "bubbles",
+   "count": 24,
+   "area": [
+    0.3,
+    0.3
+   ],
+   "height": 1.4,
+   "size": 0.12,
+   "at": [
+    0,
+    1.4500000000000002,
+    -0.3
+   ]
+  },
+  {
+   "id": "undo",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "red",
+   "at": [
+    0.7,
+    0.9,
+    0.1
+   ],
+   "size": 0.5,
+   "scale": [
+    1,
+    0.25,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "undo_w",
+   "kind": "letter",
+   "text": "UNDO",
+   "color": "white",
+   "at": [
+    0.7,
+    1.1,
+    0.38
+   ],
+   "size": 0.1,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "col_solid",
+   "kind": "letter",
+   "text": "SOLID",
+   "color": "blue",
+   "at": [
+    -2.5,
+    2.1,
+    1.6
+   ],
+   "size": 0.27,
+   "hidden": true
+  },
+  {
+   "id": "col_liquid",
+   "kind": "letter",
+   "text": "LIQUID",
+   "color": "teal",
+   "at": [
+    0,
+    2.1,
+    1.6
+   ],
+   "size": 0.27,
+   "hidden": true
+  },
+  {
+   "id": "col_gas",
+   "kind": "letter",
+   "text": "GAS",
+   "color": "purple",
+   "at": [
+    2.5,
+    2.1,
+    1.6
+   ],
+   "size": 0.27,
+   "hidden": true
+  },
+  {
+   "id": "c_rock",
+   "kind": "prop",
+   "model": "rock",
+   "at": [
+    0,
+    1.1,
+    1.4
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "c_milk",
+   "kind": "shape",
+   "shape": "bottle",
+   "color": "white",
+   "at": [
+    0,
+    1,
+    1.4
+   ],
+   "size": 0.5,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "c_ball",
+   "kind": "prop",
+   "model": "ball",
+   "at": [
+    0,
+    1,
+    1.4
+   ],
+   "size": 1,
+   "color": "purple",
+   "hidden": true
+  },
+  {
+   "id": "c_spoon",
+   "kind": "shape",
+   "shape": "capsule",
+   "color": "grey",
+   "at": [
+    0,
+    1.1,
+    1.4
+   ],
+   "size": 0.4,
+   "material": "metal",
+   "rotation": [
+    0,
+    0,
+    70
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_rain",
+   "kind": "prop",
+   "model": "rain_cloud",
+   "at": [
+    0,
+    1.6,
+    1.4
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "c_vapour",
+   "kind": "prop",
+   "model": "cloud",
+   "at": [
+    0,
+    1.6,
+    1.4
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "c_honey",
+   "kind": "shape",
+   "shape": "cup",
+   "color": "gold",
+   "at": [
+    0,
+    1,
+    1.4
+   ],
+   "size": 0.4,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "c_ice",
+   "kind": "prop",
+   "model": "ice_cube",
+   "at": [
+    0,
+    1.1,
+    1.4
+   ],
+   "size": 2,
+   "hidden": true
+  },
+  {
+   "id": "party",
+   "kind": "confetti",
+   "count": 220,
+   "area": [
+    10,
+    4
+   ],
+   "height": 7
+  }
+ ],
+ "scenes": [
+  {
+   "id": "case",
+   "title": "The case of the missing ice pop",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Melt, Freeze, Fizz!",
+       "style": "title",
+       "dur": 2.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.9,
+        8
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.4
+       ],
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "My orange ice pop! I left it right here on the windowsill.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2.4,
+        2.5,
+        1.7
+       ],
+       "lookAt": [
+        -2.8,
+        1,
+        -0.45
+       ],
+       "at": 1.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now there's only a stick, and an orange puddle!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ooh",
+       "at": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "pop_puddle",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Someone took my ice pop! Was it you, Dog?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.9,
+        8
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.4
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        60,
+        0
+       ],
+       "at": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "worried",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Not me! I was napping all day.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "No one took it. But something changed it.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "hat",
+       "at": 0.4,
+       "sound": "boing"
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 1.2
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        0
+       ]
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Detective Cat is on the case. Let's find out what.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "states",
+   "title": "Solid, liquid, gas",
+   "beats": [
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, a secret.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        9,
+        1.6,
+        6.4
+       ],
+       "lookAt": [
+        9,
+        1.3,
+        0
+       ],
+       "dur": 1.6
+      },
+      {
+       "do": "show",
+       "target": "pt0",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "pt1",
+       "at": 1.25
+      },
+      {
+       "do": "show",
+       "target": "pt2",
+       "at": 1.3
+      },
+      {
+       "do": "show",
+       "target": "pt3",
+       "at": 1.35
+      },
+      {
+       "do": "show",
+       "target": "pt4",
+       "at": 1.4
+      },
+      {
+       "do": "show",
+       "target": "pt5",
+       "at": 1.45
+      },
+      {
+       "do": "show",
+       "target": "pt6",
+       "at": 1.5
+      },
+      {
+       "do": "show",
+       "target": "pt7",
+       "at": 1.55
+      },
+      {
+       "do": "show",
+       "target": "pt8",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Everything is made of tiny bits called particles.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "They're much too small to see, so here are giant toy ones.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pt0",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt1",
+       "at": 0.7,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt2",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt3",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt4",
+       "at": 0.7,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt5",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt6",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt7",
+       "at": 0.7,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt8",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "In a solid, the particles are packed tight.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_solid",
+       "at": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "pt0",
+       "at": 1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt1",
+       "at": 1.1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt2",
+       "at": 1.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt3",
+       "at": 1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt4",
+       "at": 1.1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt5",
+       "at": 1.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt6",
+       "at": 1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt7",
+       "at": 1.1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt8",
+       "at": 1.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt0",
+       "at": 2.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt1",
+       "at": 2.3,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt2",
+       "at": 2.4,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt3",
+       "at": 2.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt4",
+       "at": 2.3,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt5",
+       "at": 2.4,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt6",
+       "at": 2.2,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt7",
+       "at": 2.3,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt8",
+       "at": 2.4,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "solid",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "They just wiggle in place.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "So a solid keeps its shape. An ice cube, a block, an apple.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "p_block",
+       "at": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "pt0",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt1",
+       "at": 0.9,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt2",
+       "at": 1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt3",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt4",
+       "at": 0.9,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt5",
+       "at": 1,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt6",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt7",
+       "at": 0.9,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt8",
+       "at": 1,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "In a liquid, the particles slide past each other.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "w_solid",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "w_liquid",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pcup",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "pt0",
+       "to": [
+        8.53,
+        0.23,
+        0.3
+       ],
+       "at": 0.8,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt1",
+       "to": [
+        8.9,
+        0.17,
+        0.3
+       ],
+       "at": 0.86,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt2",
+       "to": [
+        9.33,
+        0.25,
+        0.3
+       ],
+       "at": 0.92,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt3",
+       "to": [
+        9.52,
+        0.55,
+        0.3
+       ],
+       "at": 0.98,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt4",
+       "to": [
+        8.67,
+        0.6,
+        0.3
+       ],
+       "at": 1.04,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt5",
+       "to": [
+        9.1,
+        0.55,
+        0.3
+       ],
+       "at": 1.1,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt6",
+       "to": [
+        8.43,
+        0.9,
+        0.3
+       ],
+       "at": 1.16,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt7",
+       "to": [
+        9.24,
+        0.9,
+        0.3
+       ],
+       "at": 1.22,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt8",
+       "to": [
+        9.57,
+        1,
+        0.3
+       ],
+       "at": 1.28,
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "caption",
+       "text": "liquid",
+       "style": "label",
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "p_block",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "A liquid takes the shape of its cup. Water, milk, juice.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pcup",
+       "at": 1,
+       "deg": 4
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "In a gas, the particles zoom far apart and fill the space!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "w_liquid",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "w_gas",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pcup",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pt0",
+       "to": [
+        6.4,
+        2.6,
+        0.3
+       ],
+       "at": 0.8,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt1",
+       "to": [
+        8.6,
+        3.1,
+        0
+       ],
+       "at": 0.86,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt2",
+       "to": [
+        11.4,
+        2.8,
+        -0.3
+       ],
+       "at": 0.92,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt3",
+       "to": [
+        6.8,
+        1.1,
+        0.3
+       ],
+       "at": 0.98,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt4",
+       "to": [
+        9.9,
+        1.9,
+        0
+       ],
+       "at": 1.04,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt5",
+       "to": [
+        11.8,
+        0.9,
+        -0.3
+       ],
+       "at": 1.1,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt6",
+       "to": [
+        7.9,
+        0.3,
+        0.3
+       ],
+       "at": 1.16,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt7",
+       "to": [
+        10.4,
+        0.4,
+        0
+       ],
+       "at": 1.22,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt8",
+       "to": [
+        9.1,
+        2.3,
+        -0.3
+       ],
+       "at": 1.28,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "gas",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Like the air inside a balloon, or inside a bubble.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pt0",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt1",
+       "at": 0.7,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt2",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt3",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt4",
+       "at": 0.7,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt5",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt6",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt7",
+       "at": 0.7,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt8",
+       "at": 0.8,
+       "deg": 8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why do they move so differently?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "It's all about heat. Warmer particles move more.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pt0",
+       "to": [
+        8.58,
+        0.9,
+        0.3
+       ],
+       "at": 2,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt1",
+       "to": [
+        9,
+        0.9,
+        0.3
+       ],
+       "at": 2.06,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt2",
+       "to": [
+        9.42,
+        0.9,
+        0.3
+       ],
+       "at": 2.12,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt3",
+       "to": [
+        8.58,
+        1.32,
+        0.3
+       ],
+       "at": 2.18,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt4",
+       "to": [
+        9,
+        1.32,
+        0.3
+       ],
+       "at": 2.24,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt5",
+       "to": [
+        9.42,
+        1.32,
+        0.3
+       ],
+       "at": 2.3,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt6",
+       "to": [
+        8.58,
+        1.74,
+        0.3
+       ],
+       "at": 2.36,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt7",
+       "to": [
+        9,
+        1.74,
+        0.3
+       ],
+       "at": 2.42,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt8",
+       "to": [
+        9.42,
+        1.74,
+        0.3
+       ],
+       "at": 2.48,
+       "dur": 1.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "w_gas",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Colder ones move less.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Keeps its shape? Solid! Takes the cup's shape? Liquid!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pt0",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt1",
+       "at": 0.5,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt2",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt3",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt4",
+       "at": 0.5,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt5",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt6",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt7",
+       "at": 0.5,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "pt8",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "pt0",
+       "to": [
+        8.53,
+        0.23,
+        0.3
+       ],
+       "at": 2.2,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt1",
+       "to": [
+        8.9,
+        0.17,
+        0.3
+       ],
+       "at": 2.26,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt2",
+       "to": [
+        9.33,
+        0.25,
+        0.3
+       ],
+       "at": 2.32,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt3",
+       "to": [
+        9.52,
+        0.55,
+        0.3
+       ],
+       "at": 2.38,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt4",
+       "to": [
+        8.67,
+        0.6,
+        0.3
+       ],
+       "at": 2.44,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt5",
+       "to": [
+        9.1,
+        0.55,
+        0.3
+       ],
+       "at": 2.5,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt6",
+       "to": [
+        8.43,
+        0.9,
+        0.3
+       ],
+       "at": 2.56,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt7",
+       "to": [
+        9.24,
+        0.9,
+        0.3
+       ],
+       "at": 2.62,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt8",
+       "to": [
+        9.57,
+        1,
+        0.3
+       ],
+       "at": 2.68,
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "show",
+       "target": "pcup",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Spreads out everywhere? Gas!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pt0",
+       "to": [
+        6.4,
+        2.6,
+        0.3
+       ],
+       "at": 0.4,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt1",
+       "to": [
+        8.6,
+        3.1,
+        0
+       ],
+       "at": 0.46,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt2",
+       "to": [
+        11.4,
+        2.8,
+        -0.3
+       ],
+       "at": 0.52,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt3",
+       "to": [
+        6.8,
+        1.1,
+        0.3
+       ],
+       "at": 0.58,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt4",
+       "to": [
+        9.9,
+        1.9,
+        0
+       ],
+       "at": 0.64,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt5",
+       "to": [
+        11.8,
+        0.9,
+        -0.3
+       ],
+       "at": 0.7,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt6",
+       "to": [
+        7.9,
+        0.3,
+        0.3
+       ],
+       "at": 0.76,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt7",
+       "to": [
+        10.4,
+        0.4,
+        0
+       ],
+       "at": 0.82,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "move",
+       "target": "pt8",
+       "to": [
+        9.1,
+        2.3,
+        -0.3
+       ],
+       "at": 0.88,
+       "dur": 1,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "hide",
+       "target": "pcup",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "So ice is a solid, but melted ice is a liquid?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! The same water can be a solid, a liquid or a gas.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Solid, liquid, gas. Got it. Now, back to the case.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "melt",
+   "title": "The melt race",
+   "beats": [
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Detectives test their ideas. Let's have a melt race!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.9,
+        8
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.4
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "pt0",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt1",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt2",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt3",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt4",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt5",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt6",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt7",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "pt8",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "stick",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "pop_puddle",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three ice cubes, three plates.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "plate0",
+       "at": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "ice0",
+       "to": [
+        -3,
+        1.06,
+        -0.5
+       ],
+       "at": 0.6,
+       "height": 1,
+       "sound": "crystal_chime"
+      },
+      {
+       "do": "show",
+       "target": "plate1",
+       "at": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "ice1",
+       "to": [
+        -0.6,
+        0.96,
+        -0.3
+       ],
+       "at": 0.9,
+       "height": 1,
+       "sound": "crystal_chime"
+      },
+      {
+       "do": "show",
+       "target": "plate2",
+       "at": 1
+      },
+      {
+       "do": "drop",
+       "target": "ice2",
+       "to": [
+        2.7,
+        1.09,
+        -0.7
+       ],
+       "at": 1.2,
+       "height": 1,
+       "sound": "crystal_chime"
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cube 1 on the sunny windowsill.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "il0",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "sun",
+       "at": 1.2,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cube 2 on the shady table.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "il1",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cube 3 in the freezer.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "il2",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "frost",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which ice cube will melt first? What do you think?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "I'll guard them. Nobody touches the ice!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -1,
+        0,
+        1.2
+       ],
+       "dur": 1
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's fast-forward fifteen minutes.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.9,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.4
+       ],
+       "dur": 6
+      }
+     ]
+    },
+    {
+     "dur": 6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "15 minutes",
+       "style": "label",
+       "at": 0.2,
+       "dur": 5.6
+      },
+      {
+       "do": "grow",
+       "target": "ice0",
+       "to": 0.2,
+       "at": 0.4,
+       "dur": 5,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "grow",
+       "target": "pud0",
+       "to": [
+        4.2,
+        1,
+        4.2
+       ],
+       "at": 0.4,
+       "dur": 5,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "grow",
+       "target": "ice1",
+       "to": 0.6,
+       "at": 0.4,
+       "dur": 5,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "grow",
+       "target": "pud1",
+       "to": [
+        2.6,
+        1,
+        2.6
+       ],
+       "at": 0.4,
+       "dur": 5,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "show",
+       "target": "pud0",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "pud1",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 3
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 5
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cube 1 in the sun is mostly a puddle!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pud0",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Cube 2 in the shade is half melted.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "ice1",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "And cube 3 in the freezer is still a solid cube.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "ice2",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "crystal_chime",
+       "at": 1.2,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why did it melt there, and not in the freezer?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Heat from the sun warmed the ice above zero degrees.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Zero degrees Celsius. That's thirty-two Fahrenheit.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "0 °C (32 °F)",
+       "style": "label",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Warm ice melts. The solid turns into a liquid!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "melt",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "And where was the ice pop? On the sunny windowsill.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Dog didn't take it. The culprit is heat!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "dog",
+       "feeling": "happy",
+       "at": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Sorry, Dog! You're cleared.",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "At home, wipe up the water after, so nobody slips.",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "freeze",
+   "title": "Freeze it back",
+   "beats": [
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Can we make a new ice pop? Let's freeze juice!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "frost",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ice0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pud0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "plate0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "il0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ice1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pud1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "plate1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "il1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ice2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pud2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "plate2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "il2",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.6,
+        4.6
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.3
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Pour orange juice into a plastic ice pop mould.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "jcup",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "juice",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "mould",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "mjuice",
+       "at": 0.4
+      },
+      {
+       "do": "grow",
+       "target": "mjuice",
+       "to": [
+        1,
+        15,
+        1
+       ],
+       "at": 1.4,
+       "dur": 1.6
+      },
+      {
+       "do": "grow",
+       "target": "juice",
+       "to": [
+        1,
+        0.3,
+        1
+       ],
+       "at": 1.4,
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "pour",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Leave a little space at the top.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water grows when it freezes!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Use plastic, not glass, in the freezer.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Add a stick, and into the freezer it goes.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "mould",
+       "to": [
+        2.7,
+        1.05,
+        -0.7
+       ],
+       "at": 1.2,
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "mjuice",
+       "to": [
+        2.7,
+        1.08,
+        -0.7
+       ],
+       "at": 1.2,
+       "dur": 1.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.9,
+        8
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.4
+       ],
+       "at": 0.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.2,
+     "do": [
+      {
+       "do": "lights",
+       "rig": "evening",
+       "dur": 1
+      },
+      {
+       "do": "lights",
+       "rig": "moonlight",
+       "at": 1,
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "moon",
+       "at": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "sun",
+       "at": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "overnight",
+       "style": "label",
+       "at": 0.8,
+       "dur": 2.4
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 3,
+       "dur": 1
+      },
+      {
+       "do": "hide",
+       "target": "moon",
+       "at": 3
+      },
+      {
+       "do": "show",
+       "target": "sun",
+       "at": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Good morning! Let's open the freezer.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "mould",
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "mjuice",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "newpop",
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "newpop",
+       "to": [
+        2.7,
+        1.05,
+        -0.7
+       ],
+       "at": 1,
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.71,
+     "do": [
+      {
+       "do": "say",
+       "text": "A new ice pop!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "newpop",
+       "to": [
+        -3.6,
+        0.8,
+        1.6
+       ],
+       "at": 0.6,
+       "dur": 1.4
+      },
+      {
+       "do": "sound",
+       "sound": "crystal_chime",
+       "at": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "The cold turned the liquid juice into a solid.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "freeze",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's freezing!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water freezes at zero degrees Celsius.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: water gets a little bigger when it freezes.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "That's why ice cubes float in a drink!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Can I have a lick? It's real juice!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! Juice is real food. It's the only thing we eat today.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "So melting goes one way, and freezing goes back.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ],
+   "music": "calm",
+   "musicGain": 0.16
+  },
+  {
+   "id": "puddle",
+   "title": "Where did the puddle go?",
+   "beats": [
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now a puddle mystery. Here's a little puddle of water.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.6,
+        4.6
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.3
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "plate_dry",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "pud_dry",
+       "at": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "newpop",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's leave it for a whole day.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "1 day",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3.4
+      },
+      {
+       "do": "grow",
+       "target": "pud_dry",
+       "to": [
+        0.1,
+        1,
+        0.1
+       ],
+       "at": 0.8,
+       "dur": 3.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "show",
+       "target": "vap0",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "vap0",
+       "to": [
+        -0.3,
+        2.6,
+        -0.2
+       ],
+       "at": 0.8,
+       "dur": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "vap0",
+       "at": 2.8
+      },
+      {
+       "do": "show",
+       "target": "vap1",
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "vap1",
+       "to": [
+        -0.15,
+        2.6,
+        -0.2
+       ],
+       "at": 1.2,
+       "dur": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "vap1",
+       "at": 3.2
+      },
+      {
+       "do": "show",
+       "target": "vap2",
+       "at": 1.6
+      },
+      {
+       "do": "move",
+       "target": "vap2",
+       "to": [
+        0,
+        2.6,
+        -0.2
+       ],
+       "at": 1.6,
+       "dur": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "vap2",
+       "at": 3.6
+      },
+      {
+       "do": "show",
+       "target": "vap3",
+       "at": 2
+      },
+      {
+       "do": "move",
+       "target": "vap3",
+       "to": [
+        0.14999999999999997,
+        2.6,
+        -0.2
+       ],
+       "at": 2,
+       "dur": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "vap3",
+       "at": 4
+      },
+      {
+       "do": "show",
+       "target": "vap4",
+       "at": 2.4
+      },
+      {
+       "do": "move",
+       "target": "vap4",
+       "to": [
+        0.3,
+        2.6,
+        -0.2
+       ],
+       "at": 2.4,
+       "dur": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "vap4",
+       "at": 4.4
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "pud_dry",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "ooh",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Gone! Where did it go?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "The water turned into water vapour, a gas we can't see.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "water vapour",
+       "style": "label",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "It floated into the air. That's called evaporating.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "evaporate",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: water is easy to find in all three states.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ice is solid, water is liquid, and water vapour is a gas.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "plate_dry",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "So the puddle didn't vanish. It just turned into a gas.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Solid-Liquid-Gas chant",
+   "beats": [
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Stand up! Do the moves with the chant.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        9.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Solid stands still,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.2,
+       "height": 0.2
+      },
+      {
+       "do": "turn",
+       "target": "duck",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "liquid likes to flow,",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 0.2,
+       "deg": 20
+      },
+      {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 0.4,
+       "deg": 20
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "gas spreads out wherever it can go!",
+       "caption": true
+      },
+      {
+       "do": "spin",
+       "target": "duck",
+       "at": 0.2
+      },
+      {
+       "do": "spin",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Stand stiff for solid. Sway for liquid. Tiptoe wide for gas!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1.8,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ice is solid, juice can flow,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.8
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 2,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "air in a balloon has room to go!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Solid stands still, liquid likes to flow,",
+       "caption": true
+      },
+      {
+       "do": "spin",
+       "target": "duck",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "gas spreads out wherever it can go!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 0.68
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fizz",
+   "title": "The fizz lab",
+   "beats": [
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Time for the fizz lab!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -2,
+        0,
+        0.6
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.6,
+        4.6
+       ],
+       "lookAt": [
+        0,
+        1.1,
+        -0.3
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "With a grown-up, wear goggles",
+       "style": "label",
+       "at": 0.6,
+       "dur": 58
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Do this with a grown-up, and wear goggles.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Goggles on!",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "gog_duck",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "gog_robo",
+       "at": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "duck",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quack! Ready, lab partner!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "duck",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "First, put a tray down.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "tray",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "bottle",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "vinegar",
+       "at": 1.6
+      },
+      {
+       "do": "grow",
+       "target": "vinegar",
+       "to": [
+        1,
+        2,
+        1
+       ],
+       "at": 2,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "pour",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "A grown-up pours vinegar into a plastic bottle.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next, put two spoons of baking soda into a balloon.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "soda",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "fballoon",
+       "at": 1.6
+      },
+      {
+       "do": "hide",
+       "target": "soda",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Stretch the balloon over the neck.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "fballoon",
+       "to": [
+        0,
+        1.46,
+        -0.3
+       ],
+       "at": 0.8,
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "fballoon",
+       "to": [
+        0,
+        0,
+        70
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Don't let the powder fall in yet!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Do it outdoors or on a tray,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "so the foam is easy to clean up.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Will the balloon get bigger? What do you think?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Lift the balloon, and let the powder drop in!",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "fballoon",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "fizz",
+       "at": 0.1
+      },
+      {
+       "do": "burst",
+       "target": "foam",
+       "at": 0.1,
+       "dur": 4,
+       "sound": "bubble_pop"
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_blow",
+       "at": 0.8,
+       "volume": 0.6
+      },
+      {
+       "do": "grow",
+       "target": "fballoon",
+       "to": 2.4,
+       "at": 0.6,
+       "dur": 3.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "surprised",
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "surprised",
+       "at": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "bottle",
+       "at": 0.4,
+       "deg": 4
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fizz! Bubbles foam up, and the balloon blows up!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "happy",
+       "at": 1
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "But what's inside the balloon? It isn't just air.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "The baking soda and vinegar make a new gas: carbon dioxide.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "The gas needs space, so it fills up the balloon.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: carbon dioxide also makes fizzy drinks fizzy!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "With a grown-up, wear goggles",
+       "style": "label",
+       "at": 0.2,
+       "dur": 30
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "Safety rules: never put a cap on the bottle,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "and don't taste the mixture.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Vinegar stings eyes. If it splashes, rinse with water.",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "undo",
+   "title": "The undo button",
+   "beats": [
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last test. Can we press undo, and change things back?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "undo",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "undo_w",
+       "at": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "The melted ice pop? We froze the juice,",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "undo",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "newpop",
+       "at": 1
+      },
+      {
+       "do": "move",
+       "target": "newpop",
+       "to": [
+        -0.5,
+        0.9,
+        0
+       ],
+       "at": 1,
+       "dur": 0.1
+      },
+      {
+       "do": "spin",
+       "target": "newpop",
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "and got an ice pop back!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Melting and freezing can be undone!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the fizz? Can we get the baking soda and vinegar back?",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "undo",
+       "at": 1
+      },
+      {
+       "do": "wiggle",
+       "target": "bottle",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! Something new was made, a gas. We can't undo the fizz.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "fballoon",
+       "at": 0.6,
+       "deg": 6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "So heating and cooling can be undone for water.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "The fizz can't.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Melt, freeze, melt, freeze. Water can go back and forth.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Some changes go back. Some changes stay changed!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: Solid, Liquid or Gas?",
+   "beats": [
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge! Solid, liquid or gas? Shout it out!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "fz_word",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.7,
+        0,
+        1.4
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        3.7,
+        0,
+        1.4
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1.2,
+        1.2
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "gog_duck",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "gog_robo",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "tray",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "bottle",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "vinegar",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "fballoon",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "undo",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "undo_w",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "newpop",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "col_solid",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "col_liquid",
+       "at": 1.3
+      },
+      {
+       "do": "pop",
+       "target": "col_gas",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "A rock!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_rock",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.11,
+     "do": [
+      {
+       "do": "say",
+       "text": "Solid!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_rock",
+       "to": [
+        -3.1,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_rock",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Milk!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_milk",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Liquid!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_milk",
+       "to": [
+        -0.6,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_milk",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "The air inside a ball!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_ball",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "Gas!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_ball",
+       "to": [
+        1.9,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_ball",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "A spoon!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_spoon",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.11,
+     "do": [
+      {
+       "do": "say",
+       "text": "Solid!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_spoon",
+       "to": [
+        -2.5,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_spoon",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Rain!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_rain",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Liquid!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_rain",
+       "to": [
+        0,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_rain",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water vapour in the air!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_vapour",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "Gas!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_vapour",
+       "to": [
+        2.5,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_vapour",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.11,
+     "do": [
+      {
+       "do": "say",
+       "text": "Honey!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_honey",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Liquid, a slow one!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_honey",
+       "to": [
+        0.6,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_honey",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "An ice cube!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c_ice",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.11,
+     "do": [
+      {
+       "do": "say",
+       "text": "Solid!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "c_ice",
+       "to": [
+        -1.9,
+        0.6,
+        1.8
+       ],
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "grow",
+       "target": "c_ice",
+       "to": 0.75,
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Eight out of eight, detectives.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! Is juice a solid, a liquid or a gas?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "c_rock",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "c_milk",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "c_ball",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "c_spoon",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "c_rain",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "c_vapour",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "c_honey",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "c_ice",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "col_solid",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "col_liquid",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "col_gas",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "A liquid!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "What made the ice pop melt?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Heat from the sun!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "sun",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Can we undo melting? Can we undo the fizz?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Melting, yes, by freezing. The fizz, no. A new gas was made.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "What filled the balloon?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "A gas called carbon dioxide!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four for four! Super scientists.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "closed",
+   "title": "Case closed",
+   "beats": [
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "My new ice pop! Case closed!",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "newpop",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "newpop",
+       "to": [
+        -3.6,
+        0.8,
+        1.6
+       ],
+       "at": 0.2,
+       "dur": 0.1
+      },
+      {
+       "do": "burst",
+       "target": "party",
+       "at": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.5,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Case closed. The culprit was heat.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Freeze some juice at home, and enjoy your own ice pop!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try the melt race at home with a grown-up. Bye!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

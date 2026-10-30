@@ -59,8 +59,9 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     scene.add(floor);
   }
   if (preset.rug) {
-    rug = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4.6, 0.04, 128), material(preset.rug, "matte").clone());
-    rug.position.y = 0.02;
+    // A thin rug (6 mm): everything stands on y = 0, so a thicker rug would swallow mats and boards on the floor.
+    rug = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4.6, 0.006, 128), material(preset.rug, "matte").clone());
+    rug.position.y = 0.003;
     rug.receiveShadow = true;
     scene.add(rug);
   }
@@ -72,6 +73,8 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     const h = buildObject(o, { catalog, assets, material, seed: plan.seed, height });
     if (o.pivot) for (const c of h.group.children) c.position.sub(new THREE.Vector3(...o.pivot));
     if (o.paint) h.tinted = paintable(h.group, catalog.colors[o.paint].hex);
+    // paint with from: one material list per colour, driven by the timeline prop "tint:<colour>".
+    h.tints = (o.paintParts ?? []).map((c) => [`tint:${c}`, paintable(h.group, catalog.colors[c].hex)]);
     // A child rides on its parent (or on one of the parent's named parts): its at is relative to it.
     const parent = o.parent ? handles.get(o.parent) : null;
     (parent ? parent.named?.get(o.part) ?? parent.group : scene).add(h.group);
@@ -102,6 +105,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
         h.mixer.update(0);
       }
       if (h.tinted && s.tint) for (const m of h.tinted) m.color.setRGB(...s.tint, THREE.SRGBColorSpace);
+      for (const [prop, mats] of h.tints) if (s[prop]) for (const m of mats) m.color.setRGB(...s[prop], THREE.SRGBColorSpace);
       h.update?.(t, s, state);
     }
     const st = state.stage;

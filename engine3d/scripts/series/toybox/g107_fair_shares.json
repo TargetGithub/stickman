@@ -1,0 +1,3973 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "One last sandwich and two hungry friends! Robo's magic cutting line and the Unfair Cut Alarm teach fair shares: equal parts, halves and quarters (fourths), two ways to cut a square, a round pizza in quarters, and why a half is bigger than a quarter.",
+  "meta": {
+    "title": "Fair Shares",
+    "series": "toybox",
+    "episode": "g107",
+    "audience": "grade1",
+    "seed": 207,
+    "voice": "soft",
+    "voiceSpeed": 0.97,
+    "music": "happy",
+    "musicGain": 0.2,
+    "skills": [
+      "halves_quarters_1"
+    ],
+    "thumbnail": {
+      "scene": "quarters",
+      "at": 17.98
+    },
+    "youtube": {
+      "title": "Halves and Quarters for Kids! Fair Shares Picnic | Toy Box Friends",
+      "description": "One last sandwich and two hungry friends! Robo's magic cutting line and the Unfair Cut Alarm teach fair shares: equal parts, halves and quarters (fourths), two ways to cut a square, a round pizza in quarters, and why a half is bigger than a quarter.\nFor first graders learning equal parts. Fold paper squares into halves and quarters at home; grown-ups do any cutting.",
+      "tags": [
+        "halves and quarters",
+        "fractions for kids",
+        "equal parts",
+        "fourths",
+        "first grade math",
+        "grade 1 math",
+        "sharing fairly",
+        "fair shares",
+        "math for kids",
+        "kids learning video",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "garden"
+  },
+  "camera": {
+    "position": [0, 2.2, 9.2],
+    "lookAt": [0, 1.1, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "blanket",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "cream",
+      "material": "matte",
+      "size": 1,
+      "scale": [7, 1, 3.6],
+      "at": [0, 0, 0.6]
+    },
+    {
+      "id": "tree",
+      "kind": "prop",
+      "model": "tree",
+      "size": 1.6,
+      "at": [-3.6, 0, -3.4]
+    },
+    {
+      "id": "bush1",
+      "kind": "prop",
+      "model": "bush",
+      "size": 0.9,
+      "at": [3.4, 0, -2.8]
+    },
+    {
+      "id": "bush2",
+      "kind": "prop",
+      "model": "bush",
+      "size": 0.7,
+      "at": [-5.6, 0, -2.2]
+    },
+    {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "size": 1,
+      "at": [4.8, 5, -6]
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-4.5, 0, 0.6],
+      "rotation": [0, 30, 0]
+    },
+    {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "size": 0.9,
+      "at": [-2.4, 0, 1.6],
+      "rotation": [0, 30, 0]
+    },
+    {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 1,
+      "at": [2.4, 0, 1.6],
+      "rotation": [0, -30, 0]
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.8,
+      "at": [3.9, 0, 0.4],
+      "rotation": [0, -30, 0]
+    },
+    {
+      "id": "battery",
+      "kind": "prop",
+      "model": "battery_meter",
+      "size": 0.45,
+      "at": [-3.7, 0, 1.4],
+      "rotation": [0, 20, 0]
+    },
+    {
+      "id": "h1",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.8, 1.6, 0.22],
+      "at": [-0.4, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "h2",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.8, 1.6, 0.22],
+      "at": [0.4, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "ub",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [1.067, 1.6, 0.22],
+      "at": [-0.267, 0.12, 0.6],
+      "hidden": true,
+      "face": true
+    },
+    {
+      "id": "us",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.533, 1.6, 0.22],
+      "at": [0.533, 0.12, 0.6],
+      "hidden": true,
+      "face": true
+    },
+    {
+      "id": "t1",
+      "kind": "shape",
+      "shape": "wedge",
+      "color": "sand",
+      "size": 1,
+      "scale": [1.6, 1.6, 0.22],
+      "rotation": [0, 0, 0],
+      "at": [0, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "t2",
+      "kind": "shape",
+      "shape": "wedge",
+      "color": "sand",
+      "size": 1,
+      "scale": [1.6, 1.6, 0.22],
+      "rotation": [0, 0, 180],
+      "at": [0, 1.72, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "q1",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.8, 0.8, 0.22],
+      "at": [-0.4, 0.92, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "q2",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.8, 0.8, 0.22],
+      "at": [0.4, 0.92, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "q3",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.8, 0.8, 0.22],
+      "at": [-0.4, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "q4",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.8, 0.8, 0.22],
+      "at": [0.4, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "tq1",
+      "kind": "shape",
+      "shape": "wedge",
+      "color": "sand",
+      "size": 1,
+      "scale": [1.131, 1.131, 0.22],
+      "rotation": [0, 0, -135],
+      "at": [-0.4, 0.52, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "tq2",
+      "kind": "shape",
+      "shape": "wedge",
+      "color": "sand",
+      "size": 1,
+      "scale": [1.131, 1.131, 0.22],
+      "rotation": [0, 0, -45],
+      "at": [0.4, 0.52, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "tq3",
+      "kind": "shape",
+      "shape": "wedge",
+      "color": "sand",
+      "size": 1,
+      "scale": [1.131, 1.131, 0.22],
+      "rotation": [0, 0, 45],
+      "at": [0.4, 1.32, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "tq4",
+      "kind": "shape",
+      "shape": "wedge",
+      "color": "sand",
+      "size": 1,
+      "scale": [1.131, 1.131, 0.22],
+      "rotation": [0, 0, 135],
+      "at": [-0.4, 1.32, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "pz1",
+      "kind": "shape",
+      "shape": "quarter_circle",
+      "color": "orange",
+      "size": 1.7,
+      "scale": [1, 1, 0.35],
+      "rotation": [0, 0, 0],
+      "at": [0.425, 0.784, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "pz2",
+      "kind": "shape",
+      "shape": "quarter_circle",
+      "color": "orange",
+      "size": 1.7,
+      "scale": [1, 1, 0.35],
+      "rotation": [0, 0, 90],
+      "at": [0.136, 1.345, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "pz3",
+      "kind": "shape",
+      "shape": "quarter_circle",
+      "color": "orange",
+      "size": 1.7,
+      "scale": [1, 1, 0.35],
+      "rotation": [0, 0, 180],
+      "at": [-0.425, 1.056, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "pz4",
+      "kind": "shape",
+      "shape": "quarter_circle",
+      "color": "orange",
+      "size": 1.7,
+      "scale": [1, 1, 0.35],
+      "rotation": [0, 0, 270],
+      "at": [-0.136, 0.495, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "pzl_v",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "brown",
+      "size": 1,
+      "scale": [0.04, 1.8, 0.05],
+      "at": [0, 0.02, 0.72],
+      "hidden": true
+    },
+    {
+      "id": "pzl_h",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "brown",
+      "size": 1,
+      "scale": [0.04, 1.8, 0.05],
+      "rotation": [0, 0, 90],
+      "at": [0.9, 0.92, 0.72],
+      "hidden": true
+    },
+    {
+      "id": "c1",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "pink",
+      "size": 1,
+      "scale": [1.05, 1.05, 0.22],
+      "at": [-0.525, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "c2",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "pink",
+      "size": 1,
+      "scale": [1.05, 1.05, 0.22],
+      "at": [0.525, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "k1",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "pink",
+      "size": 1,
+      "scale": [1.05, 1.05, 0.22],
+      "at": [-0.525, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "k2",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "pink",
+      "size": 1,
+      "scale": [0.63, 1.05, 0.22],
+      "at": [0.315, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "k3",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "pink",
+      "size": 1,
+      "scale": [0.42, 1.05, 0.22],
+      "at": [0.84, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "lh1",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.65, 1.3, 0.22],
+      "at": [-1.325, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "lh2",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.65, 1.3, 0.22],
+      "at": [-0.675, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "rq1",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.65, 0.65, 0.22],
+      "at": [0.675, 0.77, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "rq2",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.65, 0.65, 0.22],
+      "at": [1.325, 0.77, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "rq3",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.65, 0.65, 0.22],
+      "at": [0.675, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "rq4",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "sand",
+      "size": 1,
+      "scale": [0.65, 0.65, 0.22],
+      "at": [1.325, 0.12, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "cut_v",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "gold",
+      "material": "glow",
+      "size": 1,
+      "scale": [0.05, 2, 0.3],
+      "rotation": [0, 0, 0],
+      "at": [0, -0.08, 0.7],
+      "hidden": true
+    },
+    {
+      "id": "cut_v3",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "gold",
+      "material": "glow",
+      "size": 1,
+      "scale": [0.05, 2, 0.3],
+      "rotation": [0, 0, 0],
+      "at": [0.267, -0.08, 0.7],
+      "hidden": true
+    },
+    {
+      "id": "cut_h",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "gold",
+      "material": "glow",
+      "size": 1,
+      "scale": [0.05, 2, 0.3],
+      "rotation": [0, 0, 90],
+      "at": [1, 0.92, 0.7],
+      "hidden": true
+    },
+    {
+      "id": "cut_d1",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "gold",
+      "material": "glow",
+      "size": 1,
+      "scale": [0.05, 2.562, 0.3],
+      "rotation": [0, 0, -45],
+      "at": [-0.906, 0.014, 0.7],
+      "hidden": true
+    },
+    {
+      "id": "cut_d2",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "gold",
+      "material": "glow",
+      "size": 1,
+      "scale": [0.05, 2.562, 0.3],
+      "rotation": [0, 0, 45],
+      "at": [0.906, 0.014, 0.7],
+      "hidden": true
+    },
+    {
+      "id": "cut_bar",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "gold",
+      "material": "glow",
+      "size": 1,
+      "scale": [0.05, 1.45, 0.3],
+      "rotation": [0, 0, 0],
+      "at": [0, -0.08, 0.7],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [10, 4],
+      "height": 7,
+      "colors": [
+        "sand",
+        "pink",
+        "orange",
+        "green",
+        "gold"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "sandwich",
+      "title": "The last sandwich",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A sunny picnic! And one last sandwich.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 9.2],
+              "lookAt": [0, 1.1, 0],
+              "dur": 0.1
+            },
+            {
+              "do": "show",
+              "target": "h1",
+              "at": 0.6,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "h2",
+              "at": 0.6,
+              "dur": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.3
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Mine!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-1.6, 0, 1.6],
+              "dur": 0.5
+            },
+            {
+              "do": "turn",
+              "target": "bunny#head",
+              "to": [0, 30, 0],
+              "at": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "bunny",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "bunny",
+              "feeling": "angry"
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No, mine!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [1.6, 0, 1.6],
+              "dur": 0.5
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [0, -30, 0],
+              "at": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "bear",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "angry"
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Wait! One sandwich and two friends. How can we make it fair?",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "worried"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Easy! Give it all to me!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "sound": "boing"
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ha ha! Nice try, Frog.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "laugh_small",
+              "volume": 0.6
+            },
+            {
+              "do": "feel",
+              "target": "bunny",
+              "feeling": "happy"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy"
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Our mission: share fairly. I'm not hungry. I ate a battery sandwich!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "battery",
+              "at": 1.6,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 1.8
+            }
+          ],
+          "dur": 2.3
+        }
+      ]
+    },
+    {
+      "id": "fair",
+      "title": "What makes it fair?",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fair shares are equal parts. Equal means the same size.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.5, 6.9],
+              "lookAt": [0, 1, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "equal",
+              "style": "label",
+              "at": 2
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [-2.4, 0, 1.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [2.4, 0, 1.6],
+              "dur": 0.6
+            },
+            {
+              "do": "turn",
+              "target": "bunny#head",
+              "to": [0, 0, 0]
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [0, 0, 0]
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here is my magic cutting line. No knives!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "h1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "h2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "ub",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "us",
+              "at": 0.1,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.6
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_v3",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_v3",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_v3",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "move",
+              "target": "ub",
+              "to": [-0.387, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "us",
+              "to": [0.653, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "ub",
+              "at": 0.5,
+              "deg": 15
+            },
+            {
+              "do": "wiggle",
+              "target": "us",
+              "at": 0.9,
+              "deg": 15
+            },
+            {
+              "do": "hop",
+              "target": "us",
+              "at": 1.2,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'm bigger!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "ub",
+              "feeling": "angry"
+            },
+            {
+              "do": "wiggle",
+              "target": "ub",
+              "deg": 12
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'm smaller!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "us",
+              "feeling": "sad"
+            },
+            {
+              "do": "hop",
+              "target": "us",
+              "height": 0.2
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Uh-oh. The Unfair Cut Alarm! The parts are not equal.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "not equal",
+              "style": "label",
+              "at": 2
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "volume": 0.6
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "How can I fix it? Where should I cut?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Right through the middle!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "ub",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "us",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "h1",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "h2",
+              "at": 0.1,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.6
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_v",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_v",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_v",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "h1",
+              "to": [-0.5, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "h2",
+              "to": [0.5, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ding! The two parts are the same size. Fair!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "fair",
+              "style": "label",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two equal parts are called halves.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "halves",
+              "style": "label",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "h1",
+              "at": 1.2,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "h2",
+              "at": 1.4,
+              "height": 0.15
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Same and same is fair, fair, fair!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            },
+            {
+              "do": "move",
+              "target": "h1",
+              "to": [-0.4, 0.12, 0.6],
+              "dur": 0.4
+            },
+            {
+              "do": "move",
+              "target": "h2",
+              "to": [0.4, 0.12, 0.6],
+              "dur": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "halves",
+      "title": "Halves two ways",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Halves two ways! First, cut straight down.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.5, 6.9],
+              "lookAt": [0, 1, 0.6],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_v",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_v",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_v",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "h1",
+              "to": [-0.5, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "h2",
+              "to": [0.5, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two rectangles. Two halves!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now another way. Corner to corner!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "h1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "h2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "t1",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "t2",
+              "at": 0.1,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.6
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_d1",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_d1",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_d1",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "t1",
+              "to": [-0.08, 0.04, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "t2",
+              "to": [0.08, 1.8, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two triangles. They are halves too!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "halves",
+              "style": "label",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Both ways are fair!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now the long cake bar. Cut it in half.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "t1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "t2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "c1",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "c2",
+              "at": 0.1,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.6
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_bar",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_bar",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_bar",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "c1",
+              "to": [-0.625, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "c2",
+              "to": [0.625, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two squares. Each one is half the cake.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "halves",
+              "style": "label",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here's a real trick for sharing with a friend.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 9.2],
+              "lookAt": [0, 1.1, 0],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "One friend cuts. The other friend chooses first.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'll cut! I'll make it very fair.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "bunny"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "c1",
+              "to": [-0.525, 0.12, 0.6],
+              "dur": 0.4
+            },
+            {
+              "do": "move",
+              "target": "c2",
+              "to": [0.525, 0.12, 0.6],
+              "dur": 0.4
+            },
+            {
+              "do": "show",
+              "target": "cut_bar",
+              "at": 0.4,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "cut_bar",
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I choose this one. That's fair!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear"
+            },
+            {
+              "do": "move",
+              "target": "c2",
+              "to": [1.125, 0.12, 0.6],
+              "dur": 0.6,
+              "at": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: one cuts, one chooses is a very old trick.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "hide",
+              "target": "c1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "c2",
+              "at": 0,
+              "dur": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quarters",
+      "title": "Quarters for four friends",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now four friends share one sandwich.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 9.2],
+              "lookAt": [0, 1.1, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "show",
+              "target": "h1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "h2",
+              "at": 0.2,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Robo, Frog, Bunny and Bear. 1, 2, 3, 4!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 1.4
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Cut in half. Then in half again!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.5, 6.9],
+              "lookAt": [0, 1, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "h1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "h2",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q2",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q3",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q4",
+              "at": 0.2,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_v",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_v",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_v",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_h",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_h",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_h",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "q1",
+              "to": [-0.52, 1.04, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "q2",
+              "to": [0.52, 1.04, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "q3",
+              "to": [-0.52, 0, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "q4",
+              "to": [0.52, 0, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.3,
+              "volume": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.44999999999999996,
+              "volume": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.6,
+              "volume": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pop",
+              "at": 0.75,
+              "volume": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "1!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "q1",
+              "height": 0.15
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count"
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "2!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "q2",
+              "height": 0.15
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count"
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "3!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "q3",
+              "height": 0.15
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count"
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "4!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "q4",
+              "height": 0.15
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count"
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Four equal parts are called quarters.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "quarters",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Quarters are also called fourths.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "fourths",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: quarter and fourth mean the same thing!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Another way. Corner to corner, two times!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "q2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "q3",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "q4",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "tq1",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "tq2",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "tq3",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "tq4",
+              "at": 0.1,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.6
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_d1",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_d1",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_d1",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_d2",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_d2",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_d2",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "tq1",
+              "to": [-0.4, 0.38, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "tq2",
+              "to": [0.54, 0.52, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "tq3",
+              "to": [0.4, 1.46, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "tq4",
+              "to": [-0.54, 1.32, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Four triangles. Four quarters!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "quarters",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "And the round pizza.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "tq1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "tq2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "tq3",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "tq4",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz1",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz2",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz3",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz4",
+              "at": 0.1,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.6
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "show",
+              "target": "pzl_v",
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh"
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "One cut makes halves.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "halves",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "show",
+              "target": "pzl_h",
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh"
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two cuts make quarters!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "pzl_v",
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "pzl_h",
+              "at": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pz1",
+              "to": [0.625, 0.984, 0.6],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "move",
+              "target": "pz2",
+              "to": [-0.064, 1.545, 0.6],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "move",
+              "target": "pz3",
+              "to": [-0.625, 0.856, 0.6],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "move",
+              "target": "pz4",
+              "to": [0.064, 0.295, 0.6],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "quarters",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "spin",
+              "target": "pz1",
+              "dur": 1
+            },
+            {
+              "do": "spin",
+              "target": "pz2",
+              "dur": 1
+            },
+            {
+              "do": "spin",
+              "target": "pz3",
+              "dur": 1
+            },
+            {
+              "do": "spin",
+              "target": "pz4",
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Four the same, that's quarters! Same and same is fair!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 9.2],
+              "lookAt": [0, 1.1, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            },
+            {
+              "do": "hide",
+              "target": "pz1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz3",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz4",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "pz1",
+              "to": [0.425, 0.784, 0.6],
+              "dur": 0.4,
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "pz2",
+              "to": [0.136, 1.345, 0.6],
+              "dur": 0.4,
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "pz3",
+              "to": [-0.425, 1.056, 0.6],
+              "dur": 0.4,
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "pz4",
+              "to": [-0.136, 0.495, 0.6],
+              "dur": 0.4,
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alarm",
+      "title": "Unfair Cut Alarm",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's test the Unfair Cut Alarm. Fair or not fair?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.5, 6.9],
+              "lookAt": [0, 1, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "fair or not fair",
+              "style": "label",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Thumbs up for fair. Wobble your hands for not fair!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Cut one.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "ub",
+              "at": 0.1,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "us",
+              "at": 0.1,
+              "dur": 0.3
+            }
+          ],
+          "dur": 1.6
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "cut_v3",
+              "dur": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "cut_v3",
+              "at": 0.2,
+              "deg": 4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cut_v3",
+              "at": 1,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "ub",
+              "to": [-0.367, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "us",
+              "to": [0.633, 0.12, 0.6],
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Not fair! One part is bigger.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            },
+            {
+              "do": "wiggle",
+              "target": "ub",
+              "deg": 15
+            },
+            {
+              "do": "wiggle",
+              "target": "us",
+              "deg": 15,
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "ub",
+              "feeling": "angry"
+            },
+            {
+              "do": "feel",
+              "target": "us",
+              "feeling": "sad"
+            },
+            {
+              "do": "caption",
+              "text": "not fair",
+              "style": "label"
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Cut two. The pizza in four parts.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "ub",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "us",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz2",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz3",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz4",
+              "at": 0.2,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "pzl_v",
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pzl_h",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fair! Four equal parts. Quarters!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime"
+            },
+            {
+              "do": "hide",
+              "target": "pzl_v"
+            },
+            {
+              "do": "hide",
+              "target": "pzl_h"
+            },
+            {
+              "do": "move",
+              "target": "pz1",
+              "to": [0.625, 0.984, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pz2",
+              "to": [-0.064, 1.545, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pz3",
+              "to": [-0.625, 0.856, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pz4",
+              "to": [0.064, 0.295, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "fair",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Cut three. The cake bar in three parts.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "pz1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz3",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz4",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "k1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "k2",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "k3",
+              "at": 0.2,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "k1",
+              "to": [-0.645, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "k3",
+              "to": [0.96, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Not fair! Three parts, and they are not equal.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            },
+            {
+              "do": "wiggle",
+              "target": "k1",
+              "deg": 12
+            },
+            {
+              "do": "wiggle",
+              "target": "k2",
+              "deg": 12,
+              "at": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "k3",
+              "deg": 12,
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "not equal",
+              "style": "label",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Not halves, not quarters. Great checking!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "hide",
+              "target": "k1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k3",
+              "at": 0,
+              "dur": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bigger",
+      "title": "Half or quarter: which is bigger?",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Robo, can I please have the bigger half?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 9.2],
+              "lookAt": [0, 1.1, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "frog"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's look. Two equal sandwiches.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.5, 6.9],
+              "lookAt": [0, 1, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "show",
+              "target": "lh1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "lh2",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "rq1",
+              "at": 0.4,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "rq2",
+              "at": 0.4,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "rq3",
+              "at": 0.4,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "rq4",
+              "at": 0.4,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "lh1",
+              "to": [-1.385, 0.12, 0.6],
+              "dur": 0.6,
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "lh2",
+              "to": [-0.615, 0.12, 0.6],
+              "dur": 0.6,
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "rq1",
+              "to": [0.615, 0.83, 0.6],
+              "dur": 0.6,
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "rq2",
+              "to": [1.385, 0.83, 0.6],
+              "dur": 0.6,
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "rq3",
+              "to": [0.615, 0.06, 0.6],
+              "dur": 0.6,
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "rq4",
+              "to": [1.385, 0.06, 0.6],
+              "dur": 0.6,
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "This one is in halves. That one is in quarters.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "lh1",
+              "at": 0.6,
+              "height": 0.12
+            },
+            {
+              "do": "hop",
+              "target": "lh2",
+              "at": 0.6,
+              "height": 0.12
+            },
+            {
+              "do": "hop",
+              "target": "rq1",
+              "at": 2,
+              "height": 0.12
+            },
+            {
+              "do": "hop",
+              "target": "rq2",
+              "at": 2,
+              "height": 0.12
+            },
+            {
+              "do": "hop",
+              "target": "rq3",
+              "at": 2,
+              "height": 0.12
+            },
+            {
+              "do": "hop",
+              "target": "rq4",
+              "at": 2,
+              "height": 0.12
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Which is bigger, a half or a quarter?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "lh2",
+              "to": [0.615, 0.06, 0.9],
+              "dur": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "One half covers two quarters exactly!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ooh",
+              "volume": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "one half covers two quarters",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "More parts means smaller parts. A half is bigger.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "a half is bigger",
+              "style": "label",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "move",
+              "target": "lh2",
+              "to": [-0.675, 0.12, 0.6],
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "And look at our two halves, Frog.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "lh1",
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "lh2",
+              "at": 0.4,
+              "height": 0.15
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Wait... they're the same! There's no bigger half!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "turn",
+              "target": "frog#head",
+              "to": [0, 30, 0]
+            },
+            {
+              "do": "turn",
+              "target": "frog#head",
+              "to": [0, -30, 0],
+              "at": 0.8
+            },
+            {
+              "do": "turn",
+              "target": "frog#head",
+              "to": [0, 0, 0],
+              "at": 1.6
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "surprised"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 2
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "happy",
+              "at": 2.2
+            }
+          ],
+          "dur": 2.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "That's right! When it's fair, halves are the same.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "hide",
+              "target": "lh1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "lh2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "rq1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "rq2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "rq3",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "rq4",
+              "at": 0,
+              "dur": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Fair shares quiz",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fair shares quiz! Think, then shout.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 9.2],
+              "lookAt": [0, 1.1, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "Fair Shares Quiz",
+              "style": "title",
+              "dur": 2.5
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question one. One big part and one small part. Halves?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.5, 6.9],
+              "lookAt": [0, 1, 0.6],
+              "dur": 1.2
+            },
+            {
+              "do": "show",
+              "target": "ub",
+              "at": 0.4,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "us",
+              "at": 0.4,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "ub",
+              "to": [-0.367, 0.12, 0.6],
+              "dur": 0.6,
+              "at": 0.8
+            },
+            {
+              "do": "move",
+              "target": "us",
+              "to": [0.633, 0.12, 0.6],
+              "dur": 0.6,
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No! The parts are not equal. Not halves.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            },
+            {
+              "do": "wiggle",
+              "target": "ub"
+            },
+            {
+              "do": "wiggle",
+              "target": "us",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question two. How many quarters make one whole?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "ub",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "us",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q1",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q2",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q3",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q4",
+              "at": 0.3,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "4 quarters! 1, 2, 3, 4.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "q1",
+              "at": 1.4,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "q2",
+              "at": 1.7999999999999998,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "q3",
+              "at": 2.2,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "q4",
+              "at": 2.6,
+              "height": 0.15
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count"
+            }
+          ],
+          "dur": 3.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question three. Which is bigger, a half or a quarter?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "q2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "q3",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "q4",
+              "at": 0,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A half! A half is two quarters.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question four. Bunny and Bear share one cake bar.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "c1",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "c2",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "c1",
+              "to": [-0.525, 0.12, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "c2",
+              "to": [0.525, 0.12, 0.6],
+              "dur": 0.01
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "How many equal parts? What are they called?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "2 equal parts, called halves!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "c1",
+              "to": [-0.625, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "c2",
+              "to": [0.625, 0.12, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "halves",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Last one. A circle in 4 equal parts. What is each part?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "c1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "c2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz1",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz2",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz3",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pz4",
+              "at": 0.3,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "pz1",
+              "to": [0.425, 0.784, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "pz2",
+              "to": [0.136, 1.345, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "pz3",
+              "to": [-0.425, 1.056, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "pz4",
+              "to": [-0.136, 0.495, 0.6],
+              "dur": 0.01
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A quarter! Also called a fourth.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "pz1",
+              "to": [0.625, 0.984, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pz2",
+              "to": [-0.064, 1.545, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pz3",
+              "to": [-0.625, 0.856, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pz4",
+              "to": [0.064, 0.295, 0.6],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "quarter, fourth",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Five out of five!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 9.2],
+              "lookAt": [0, 1.1, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "bunny"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "hide",
+              "target": "pz1",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz2",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz3",
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pz4",
+              "at": 0,
+              "dur": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "picnic",
+      "title": "Picnic time",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Picnic time! One sandwich, four fair quarters.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "q1",
+              "to": [-0.4, 0.92, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "q2",
+              "to": [0.4, 0.92, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "q3",
+              "to": [-0.4, 0.12, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "q4",
+              "to": [0.4, 0.12, 0.6],
+              "dur": 0.01
+            },
+            {
+              "do": "show",
+              "target": "q1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q2",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q3",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "q4",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "q1",
+              "to": [-0.52, 1.04, 0.6],
+              "dur": 0.6,
+              "at": 0.8
+            },
+            {
+              "do": "move",
+              "target": "q2",
+              "to": [0.52, 1.04, 0.6],
+              "dur": 0.6,
+              "at": 0.8
+            },
+            {
+              "do": "move",
+              "target": "q3",
+              "to": [-0.52, 0, 0.6],
+              "dur": 0.6,
+              "at": 0.8
+            },
+            {
+              "do": "move",
+              "target": "q4",
+              "to": [0.52, 0, 0.6],
+              "dur": 0.6,
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "q1",
+              "to": [-3.7, 0.6, 1.5],
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "q2",
+              "to": [3.3, 0.5, 0.8],
+              "dur": 1.2,
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "q3",
+              "to": [-2, 0.5, 2.1],
+              "dur": 1.2,
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "q4",
+              "to": [2, 0.5, 2.1],
+              "dur": 1.2,
+              "at": 0.6
+            },
+            {
+              "do": "grow",
+              "target": "q1",
+              "to": 0.5,
+              "at": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "q2",
+              "to": 0.5,
+              "at": 1.4
+            },
+            {
+              "do": "grow",
+              "target": "q3",
+              "to": 0.5,
+              "at": 1.6
+            },
+            {
+              "do": "grow",
+              "target": "q4",
+              "to": 0.5,
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Yum! Beep beep! A battery sandwich quarter.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep"
+            },
+            {
+              "do": "hop",
+              "target": "battery",
+              "height": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Try it at home! Fold a paper square in half.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Do the edges match? Then fold it in half again.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Open it up. Four quarters! Grown-ups do any cutting.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Equal parts are fair. Two equal parts are halves.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Four equal parts are quarters!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Same, same, fair game! Bye, friends!",
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.5,
+              "volume": 0.6
+            }
+          ],
+          "dur": 3.8
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

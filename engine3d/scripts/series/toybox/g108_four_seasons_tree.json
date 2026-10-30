@@ -1,0 +1,3027 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "One tree, one camera spot, a whole year! Robo's fast-forward button takes Frog, Bear and Chick through spring, summer, autumn and winter: the weather, the light, the falling leaves and snow, and Bear's long winter sleep. And Robo's forecasts are always wrong!",
+  "meta": {
+    "title": "Four Seasons Tree",
+    "series": "toybox",
+    "episode": "g108",
+    "audience": "grade1",
+    "seed": 208,
+    "voice": "soft",
+    "voiceSpeed": 0.96,
+    "music": "calm",
+    "musicGain": 0.2,
+    "skills": [
+      "weather_seasons_1"
+    ],
+    "thumbnail": {
+      "scene": "autumn",
+      "at": 20
+    },
+    "youtube": {
+      "title": "Four Seasons for Kids! Spring, Summer, Autumn, Winter | Toy Box Friends",
+      "description": "One tree, one camera spot, a whole year! Robo's fast-forward button takes Frog, Bear and Chick through spring, summer, autumn and winter: the weather, the light, the falling leaves and snow, and Bear's long winter sleep. And Robo's forecasts are always wrong!\nFor first graders learning about weather and seasons. Keep a weather chart for a week, and never look straight at the sun!",
+      "tags": [
+        "four seasons",
+        "seasons for kids",
+        "spring summer fall winter",
+        "weather for kids",
+        "first grade science",
+        "grade 1 science",
+        "leaves changing",
+        "hibernation",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "garden"
+  },
+  "camera": {
+    "position": [0.6, 2.3, 9.8],
+    "lookAt": [0.6, 1.7, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "tree",
+      "kind": "prop",
+      "model": "tree",
+      "color": "leaf",
+      "size": 2.2,
+      "at": [0.4, 0, -1.2]
+    },
+    {
+      "id": "den",
+      "kind": "prop",
+      "model": "den",
+      "size": 1.1,
+      "at": [3.7, 0, -1.6]
+    },
+    {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 0.95,
+      "at": [3.7, 0, -0.9],
+      "feeling": "sleepy"
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-4.4, 0, 0.6],
+      "rotation": [0, 35, 0]
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.8,
+      "at": [-2.4, 0, 1.6],
+      "rotation": [0, 20, 0]
+    },
+    {
+      "id": "btn_base",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "grey",
+      "size": 0.45,
+      "at": [-3.3, 0, 1.6]
+    },
+    {
+      "id": "btn",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "red",
+      "size": 0.32,
+      "at": [-3.3, 0.45, 1.6]
+    },
+    {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "size": 1.1,
+      "at": [-5, 3.6, -5]
+    },
+    {
+      "id": "moon",
+      "kind": "prop",
+      "model": "moon",
+      "size": 0.9,
+      "at": [4.6, 4.2, -5],
+      "hidden": true
+    },
+    {
+      "id": "cloud1",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 1.2,
+      "at": [-2.5, 5, -6]
+    },
+    {
+      "id": "cloud2",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 1,
+      "at": [4, 5.4, -7]
+    },
+    {
+      "id": "cloud3",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 1.3,
+      "color": "grey",
+      "at": [1, 5.6, -6.5],
+      "hidden": true
+    },
+    {
+      "id": "bush1",
+      "kind": "prop",
+      "model": "bush",
+      "size": 0.8,
+      "at": [-1.8, 0, -2.4]
+    },
+    {
+      "id": "bush2",
+      "kind": "prop",
+      "model": "bush",
+      "size": 0.7,
+      "at": [5.6, 0, -2.6]
+    },
+    {
+      "id": "egg",
+      "kind": "prop",
+      "model": "egg",
+      "size": 0.6,
+      "at": [1.8, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "chick",
+      "kind": "critter",
+      "species": "chick",
+      "size": 0.55,
+      "at": [1.8, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "flower1",
+      "kind": "prop",
+      "model": "flower",
+      "color": "pink",
+      "size": 0.5,
+      "at": [-1, 0, 1.9],
+      "hidden": true
+    },
+    {
+      "id": "flower2",
+      "kind": "prop",
+      "model": "flower",
+      "color": "yellow",
+      "size": 0.5,
+      "at": [-0.2, 0, 2.3],
+      "hidden": true
+    },
+    {
+      "id": "flower3",
+      "kind": "prop",
+      "model": "flower",
+      "color": "purple",
+      "size": 0.5,
+      "at": [0.9, 0, 2.1],
+      "hidden": true
+    },
+    {
+      "id": "flower4",
+      "kind": "prop",
+      "model": "flower",
+      "color": "red",
+      "size": 0.5,
+      "at": [2.5, 0, 1.9],
+      "hidden": true
+    },
+    {
+      "id": "flower5",
+      "kind": "prop",
+      "model": "flower",
+      "color": "orange",
+      "size": 0.5,
+      "at": [-1.6, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "apple1",
+      "kind": "prop",
+      "model": "apple",
+      "size": 0.4,
+      "at": [2.6, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "apple2",
+      "kind": "prop",
+      "model": "apple",
+      "size": 0.4,
+      "at": [3, 0, 1],
+      "hidden": true
+    },
+    {
+      "id": "apple3",
+      "kind": "prop",
+      "model": "apple",
+      "size": 0.4,
+      "at": [2.3, 0, 1.2],
+      "hidden": true
+    },
+    {
+      "id": "rain",
+      "kind": "weather",
+      "type": "rain",
+      "count": 260,
+      "speed": 0.8,
+      "hidden": true
+    },
+    {
+      "id": "leaves",
+      "kind": "weather",
+      "type": "leaves",
+      "colors": [
+        "orange",
+        "red",
+        "yellow"
+      ],
+      "count": 60,
+      "area": [6, 4],
+      "height": 5,
+      "hidden": true
+    },
+    {
+      "id": "snow",
+      "kind": "weather",
+      "type": "snow",
+      "hidden": true
+    },
+    {
+      "id": "fc0",
+      "kind": "letter",
+      "text": "HOT AND SUNNY!",
+      "color": "red",
+      "size": 0.2,
+      "at": [-3.5, 2.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "fc1",
+      "kind": "letter",
+      "text": "SNOW!",
+      "color": "red",
+      "size": 0.2,
+      "at": [-3.5, 2.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "fc2",
+      "kind": "letter",
+      "text": "BEACH DAY!",
+      "color": "red",
+      "size": 0.2,
+      "at": [-3.5, 2.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "fc3",
+      "kind": "letter",
+      "text": "FLOWERS!",
+      "color": "red",
+      "size": 0.2,
+      "at": [-3.5, 2.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "fc4",
+      "kind": "letter",
+      "text": "MILD AND RAINY!",
+      "color": "green",
+      "size": 0.2,
+      "at": [-3.5, 2.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "ring",
+      "kind": "group",
+      "at": [0.6, 0, 2],
+      "hidden": true
+    },
+    {
+      "id": "rt_spring",
+      "kind": "prop",
+      "model": "tree",
+      "color": "leaf",
+      "size": 0.55,
+      "parent": "ring",
+      "at": [0, 0, 1.3]
+    },
+    {
+      "id": "rl_spring",
+      "kind": "letter",
+      "text": "spring",
+      "color": "ink",
+      "size": 0.16,
+      "parent": "ring",
+      "at": [0, 0.076, 1.72]
+    },
+    {
+      "id": "rt_summer",
+      "kind": "prop",
+      "model": "tree",
+      "color": "grass",
+      "size": 0.55,
+      "parent": "ring",
+      "at": [1.3, 0, 0]
+    },
+    {
+      "id": "rl_summer",
+      "kind": "letter",
+      "text": "summer",
+      "color": "ink",
+      "size": 0.16,
+      "parent": "ring",
+      "at": [1.3, 0, 0.42]
+    },
+    {
+      "id": "rt_autumn",
+      "kind": "prop",
+      "model": "tree",
+      "color": "orange",
+      "size": 0.55,
+      "parent": "ring",
+      "at": [0, 0, -1.3]
+    },
+    {
+      "id": "rl_autumn",
+      "kind": "letter",
+      "text": "autumn",
+      "color": "ink",
+      "size": 0.16,
+      "parent": "ring",
+      "at": [0, 0, -0.88]
+    },
+    {
+      "id": "rt_winter",
+      "kind": "prop",
+      "model": "tree",
+      "color": "white",
+      "size": 0.55,
+      "parent": "ring",
+      "at": [-1.3, 0, 0]
+    },
+    {
+      "id": "rl_winter",
+      "kind": "letter",
+      "text": "winter",
+      "color": "ink",
+      "size": 0.16,
+      "parent": "ring",
+      "at": [-1.3, 0, 0.42]
+    },
+    {
+      "id": "s_ball",
+      "kind": "prop",
+      "model": "ball",
+      "color": "orange",
+      "size": 0.6,
+      "at": [-2.4, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "s_snowman",
+      "kind": "prop",
+      "model": "snowman",
+      "size": 0.8,
+      "at": [-0.8, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "s_leaf",
+      "kind": "shape",
+      "shape": "leaf",
+      "color": "orange",
+      "size": 0.6,
+      "at": [0.8, 0.2, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "s_flower",
+      "kind": "prop",
+      "model": "flower",
+      "color": "pink",
+      "size": 0.7,
+      "at": [2.4, 0, 1.4],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [10, 4],
+      "height": 7,
+      "colors": [
+        "leaf",
+        "orange",
+        "white",
+        "pink",
+        "yellow"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "button",
+      "title": "The fast-forward button",
+      "beats": [
+        {
+          "dur": 1,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 0.1
+            },
+            {
+              "do": "sleep",
+              "target": "bear",
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "One tree on a hill. And my big red button!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "btn",
+              "at": 1.6,
+              "height": 0.2
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It's a fast-forward button. It zooms through a whole year!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Press it! Press it!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5
+            }
+          ],
+          "dur": 1
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click"
+            },
+            {
+              "do": "wiggle",
+              "target": "btn",
+              "deg": 20
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "cloud1",
+              "to": [4.5, 5, -6],
+              "at": 0.3,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "cloud2",
+              "to": [-5, 5.4, -7],
+              "at": 0.3,
+              "dur": 1.4
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "orange",
+              "at": 0.4,
+              "dur": 0.6
+            },
+            {
+              "do": "show",
+              "target": "leaves",
+              "at": 0.7
+            },
+            {
+              "do": "hide",
+              "target": "leaves",
+              "at": 2
+            },
+            {
+              "do": "wiggle",
+              "target": "btn",
+              "at": 1.6,
+              "deg": 20
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.6
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "leaf",
+              "at": 2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "cloud1",
+              "to": [-2.5, 5, -6],
+              "at": 2,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "cloud2",
+              "to": [4, 5.4, -7],
+              "at": 2,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Whoa! Stop! What just happened to our tree?",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised"
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's go slowly. One season at a time.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "season",
+              "style": "label",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring, summer, autumn, winter. Four seasons!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "spring, summer, autumn, winter",
+              "style": "label",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        }
+      ]
+    },
+    {
+      "id": "spring",
+      "title": "Spring",
+      "beats": [
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "btn",
+              "deg": 15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring! The weather gets warmer.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "spring",
+              "style": "title",
+              "dur": 1.6
+            },
+            {
+              "do": "lights",
+              "rig": "soft_day",
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "warm",
+              "style": "label",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "There are gentle, rainy showers.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "rain"
+            },
+            {
+              "do": "sound",
+              "sound": "rain",
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "rainy",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "rain",
+              "volume": 0.35
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The rain helps flowers grow. Pop, pop, pop!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "rain",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "flower1",
+              "at": 1.15,
+              "sound": "sprout_spring"
+            },
+            {
+              "do": "pop",
+              "target": "flower2",
+              "at": 1.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "flower3",
+              "at": 1.8499999999999999,
+              "sound": "sprout_spring"
+            },
+            {
+              "do": "pop",
+              "target": "flower4",
+              "at": 2.2,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "flower5",
+              "at": 2.55,
+              "sound": "sprout_spring"
+            }
+          ],
+          "dur": 3.05
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "New green leaves grow on the tree.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "tree",
+              "to": 1.08,
+              "at": 0.4,
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring is when many baby animals are born. Look!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "egg",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "wiggle",
+              "target": "egg",
+              "deg": 15
+            },
+            {
+              "do": "wiggle",
+              "target": "egg",
+              "at": 0.9,
+              "deg": 18
+            },
+            {
+              "do": "hide",
+              "target": "egg",
+              "at": 1.7,
+              "dur": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "chick",
+              "at": 1.8,
+              "sound": "squeak"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Peep! Hello, spring!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "chick"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "And who is waking up in the den?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [2.6, 1.6, 5.6],
+              "lookAt": [3.4, 0.8, -0.8],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "wake",
+              "target": "bear"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [3, 0, 0],
+              "at": 0.8,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Good morning! I'm so hungry after my long sleep.",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "bear"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here's my forecast. Hot and sunny all day!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-3.2, 1.8, 5.2],
+              "lookAt": [-3.8, 1.3, 0.8],
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "fc0",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No? Not quite?",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            },
+            {
+              "do": "hide",
+              "target": "fc0",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised",
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Right. Spring is mild, with rain showers.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4,
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring: sprout up from a crouch! Round and round, the seasons go.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        }
+      ]
+    },
+    {
+      "id": "summer",
+      "title": "Summer",
+      "music": "happy",
+      "musicGain": 0.24,
+      "beats": [
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "btn",
+              "deg": 15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Summer! The weather is hot and sunny.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "summer",
+              "style": "title",
+              "dur": 1.6
+            },
+            {
+              "do": "lights",
+              "rig": "hot_sun",
+              "dur": 1.6
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "grass",
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "sun",
+              "to": [-3.4, 6, -5],
+              "dur": 2
+            },
+            {
+              "do": "grow",
+              "target": "sun",
+              "to": 1.25,
+              "dur": 2
+            },
+            {
+              "do": "caption",
+              "text": "hot",
+              "style": "label",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The tree is big, full and green.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "tree",
+              "to": 1.15,
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The sun sits high in the sky.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.4, 2, 9.6],
+              "lookAt": [0, 3.6, -3],
+              "dur": 1.4
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Summer days are long. It can still be light at bedtime!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4,
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 4,
+          "do": [
+            {
+              "do": "path",
+              "target": "sun",
+              "points": [
+                [-3.4, 6, -5],
+                [-1.6, 6.6, -5],
+                [2.6, 6.6, -5],
+                [5, 5, -5]
+              ],
+              "dur": 3.6
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: summer has more hours of daylight than winter.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "daylight",
+              "style": "label",
+              "at": 1.6
+            },
+            {
+              "do": "move",
+              "target": "sun",
+              "to": [-3.4, 6, -5],
+              "dur": 1.2
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It's so hot! Fan yourself with me!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "deg": 18
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "at": 0.8,
+              "deg": 18
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Peep! I'm growing up!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "grow",
+              "target": "chick",
+              "to": 1.3
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Today's summer forecast: snow!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-3.2, 1.8, 5.2],
+              "lookAt": [-3.8, 1.3, 0.8],
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "fc1",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No! No snow in summer!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            },
+            {
+              "do": "hide",
+              "target": "fc1",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised",
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Oops! Summer is hot and sunny.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4,
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Summer: fan yourself! Round and round, the seasons go.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "autumn",
+      "title": "Autumn (fall)",
+      "music": "happy",
+      "musicGain": 0.24,
+      "beats": [
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "btn",
+              "deg": 15
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Autumn, also called fall. The weather gets cooler.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "autumn (fall)",
+              "style": "title",
+              "dur": 2
+            },
+            {
+              "do": "lights",
+              "rig": "soft_day",
+              "dur": 1.6
+            },
+            {
+              "do": "move",
+              "target": "sun",
+              "to": [-3.5, 4.4, -5],
+              "dur": 1.6
+            },
+            {
+              "do": "grow",
+              "target": "sun",
+              "to": 1,
+              "dur": 1.6
+            },
+            {
+              "do": "grow",
+              "target": "tree",
+              "to": 1.08,
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "cool",
+              "style": "label",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "It is often windy too.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.7
+            },
+            {
+              "do": "wiggle",
+              "target": "tree",
+              "deg": 5,
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bush1",
+              "deg": 8,
+              "at": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "windy",
+              "style": "label",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "What will happen to the leaves?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "They turn yellow, orange and red!",
+              "caption": true
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "orange",
+              "dur": 2
+            }
+          ],
+          "dur": 2.6
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "show",
+              "target": "leaves"
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 0.6,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 1.6,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Then the leaves fall. Twirl like a falling leaf!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: the green fades away in autumn.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Then the yellow and orange that were there all along show!",
+              "caption": true
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "yellow",
+              "dur": 1
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "orange",
+              "at": 1.6,
+              "dur": 1
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Autumn means I eat lots. I'm getting ready for winter!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "camera",
+              "position": [2.6, 1.6, 5.6],
+              "lookAt": [3.4, 0.8, -0.8],
+              "dur": 1.2,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "apple1",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "apple2",
+              "at": 0.7
+            },
+            {
+              "do": "pop",
+              "target": "apple3",
+              "at": 0.9000000000000001
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "apple1",
+              "to": [3, 0.4, 0.4],
+              "at": 0,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "apple2",
+              "to": [3, 0.4, 0.4],
+              "at": 0.6,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "apple3",
+              "to": [3, 0.4, 0.4],
+              "at": 1.2,
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "apple1",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "apple2",
+              "at": 1.1
+            },
+            {
+              "do": "hide",
+              "target": "apple3",
+              "at": 1.7
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 0.5
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 1.1
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 1.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Autumn forecast: beach day!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-3.2, 1.8, 5.2],
+              "lookAt": [-3.8, 1.3, 0.8],
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "fc2",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No? Too cool for the beach?",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            },
+            {
+              "do": "hide",
+              "target": "fc2",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised",
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "You're right. Autumn is cool and windy.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4,
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Autumn: twirl like a leaf! Round and round, the seasons go.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "winter",
+      "title": "Winter",
+      "beats": [
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "btn",
+              "deg": 15
+            },
+            {
+              "do": "hide",
+              "target": "leaves"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Winter! The weather is cold and snowy.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "winter",
+              "style": "title",
+              "dur": 1.6
+            },
+            {
+              "do": "caption",
+              "text": "cold",
+              "style": "label",
+              "at": 1.4,
+              "dur": 1
+            },
+            {
+              "do": "lights",
+              "rig": "overcast",
+              "background": "grey",
+              "floor": "white",
+              "dur": 2
+            },
+            {
+              "do": "show",
+              "target": "cloud3",
+              "at": 0.6
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "white",
+              "dur": 2
+            },
+            {
+              "do": "show",
+              "target": "snow",
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 1.2,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "snowy",
+              "style": "label",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "In many places, snow covers the ground. Brrr!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "flower1",
+              "at": 0.30000000000000004
+            },
+            {
+              "do": "hide",
+              "target": "flower2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "flower3",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "flower4",
+              "at": 0.6000000000000001
+            },
+            {
+              "do": "hide",
+              "target": "flower5",
+              "at": 0.7
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Shiver and hug yourself!",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "deg": 14
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "at": 0.6,
+              "deg": 14
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: snowflakes usually have six sides or six arms.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'm sleepy. Good night!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "camera",
+              "position": [2.6, 1.6, 5.6],
+              "lookAt": [3.4, 0.8, -0.8],
+              "dur": 1.2
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "sleepy"
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [3.7, 0, -0.9],
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sleep",
+              "target": "bear",
+              "dur": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "laugh_small",
+              "at": 1.4,
+              "volume": 0.35
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Many bears sleep through much of winter in a den.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "den",
+              "style": "label",
+              "at": 2.4
+            }
+          ],
+          "dur": 2.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Many frogs rest too! In mud, or under leaves, until spring.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 0.3
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Winter days are short. It gets dark early.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "path",
+              "target": "sun",
+              "points": [
+                [-3.5, 4.4, -5],
+                [-4.5, 2.6, -5],
+                [-5.5, 0.4, -5]
+              ],
+              "dur": 2.4
+            },
+            {
+              "do": "lights",
+              "rig": "moonlight",
+              "background": "midnight",
+              "floor": "white",
+              "at": 1.4,
+              "dur": 1.6
+            },
+            {
+              "do": "show",
+              "target": "moon",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Night comes early in winter. Then morning comes again.",
+              "caption": true
+            },
+            {
+              "do": "lights",
+              "rig": "overcast",
+              "background": "grey",
+              "floor": "white",
+              "at": 1.8,
+              "dur": 1.6
+            },
+            {
+              "do": "hide",
+              "target": "moon",
+              "at": 1.8
+            },
+            {
+              "do": "move",
+              "target": "sun",
+              "to": [-3.5, 4.4, -5],
+              "at": 1.8,
+              "dur": 1.4
+            }
+          ],
+          "dur": 2.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Winter forecast: flowers everywhere!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-3.2, 1.8, 5.2],
+              "lookAt": [-3.8, 1.3, 0.8],
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "fc3",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No! No flowers in the snow!",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "boing"
+            },
+            {
+              "do": "hide",
+              "target": "fc3",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "surprised",
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Oops! Winter is cold and maybe snowy. Wear a warm coat!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4,
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Winter: shiver and hug! Round and round, the seasons go.",
+              "caption": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "round",
+      "title": "Round and round",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "What comes after winter? Let's see the whole year.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "snow"
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 3.4, 7.8],
+              "lookAt": [0.6, 0.5, 2],
+              "dur": 1.4
+            },
+            {
+              "do": "show",
+              "target": "ring",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 4,
+          "do": [
+            {
+              "do": "spin",
+              "target": "ring",
+              "turns": 1,
+              "dur": 3.6
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring, summer, autumn, winter...",
+              "caption": true
+            },
+            {
+              "do": "spin",
+              "target": "ring",
+              "turns": 0.25,
+              "dur": 3.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "...and then spring again! The seasons go round.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "rt_spring",
+              "at": 1.4,
+              "height": 0.2
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "leaf",
+              "at": 1,
+              "dur": 1.2
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Days get longer, then shorter, then longer again.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now a season sort! Which season is it?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "ring"
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4
+            },
+            {
+              "do": "lights",
+              "rig": "soft_day",
+              "background": "sky",
+              "floor": "grass",
+              "dur": 1.4
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A sunny beach day with a beach ball!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_ball"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Summer!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "s_ball"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "summer",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "A snowman!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_snowman"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Winter!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "s_snowman"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "winter",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Falling orange leaves!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_leaf"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Autumn, or fall!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "s_leaf"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "autumn, fall",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Flowers popping up!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_flower"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "s_flower"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "spring",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "hide",
+              "target": "s_ball"
+            },
+            {
+              "do": "hide",
+              "target": "s_snowman"
+            },
+            {
+              "do": "hide",
+              "target": "s_leaf"
+            },
+            {
+              "do": "hide",
+              "target": "s_flower"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Seasons quiz",
+      "music": "bouncy",
+      "musicGain": 0.24,
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Seasons quiz! Think, then shout your answer.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4
+            },
+            {
+              "do": "caption",
+              "text": "Seasons Quiz",
+              "style": "title",
+              "dur": 2.4
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "white",
+              "dur": 0.8
+            },
+            {
+              "do": "lights",
+              "rig": "overcast",
+              "background": "grey",
+              "floor": "white",
+              "dur": 1
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question one. Which season comes after winter?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring!",
+              "caption": true
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "leaf"
+            },
+            {
+              "do": "lights",
+              "rig": "soft_day",
+              "background": "sky",
+              "floor": "grass",
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question two. When do many trees lose their leaves?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Autumn, or fall!",
+              "caption": true
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "orange"
+            },
+            {
+              "do": "show",
+              "target": "leaves"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question three. Snowy and cold. Which season?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "leaves"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Winter!",
+              "caption": true
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "white"
+            },
+            {
+              "do": "show",
+              "target": "snow"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question four. Which season has the longest days?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "snow"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Summer!",
+              "caption": true
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "grass"
+            },
+            {
+              "do": "lights",
+              "rig": "hot_sun",
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Last one. What does Bear do in winter?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [2.6, 1.6, 5.6],
+              "lookAt": [3.4, 0.8, -0.8],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "He sleeps in his den!",
+              "caption": true
+            },
+            {
+              "do": "nod",
+              "target": "bear"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Five out of five! Great job, weather watchers!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "again",
+      "title": "Spring again",
+      "beats": [
+        {
+          "dur": 4.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click"
+            },
+            {
+              "do": "wiggle",
+              "target": "btn",
+              "deg": 15
+            },
+            {
+              "do": "lights",
+              "rig": "soft_day",
+              "background": "sky",
+              "floor": "grass",
+              "dur": 1
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "orange",
+              "at": 0.2,
+              "dur": 0.8
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "white",
+              "at": 1.2,
+              "dur": 0.8
+            },
+            {
+              "do": "paint",
+              "target": "tree",
+              "color": "leaf",
+              "at": 2.2,
+              "dur": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring again! Wake up, Bear!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "flower1",
+              "at": 0.4,
+              "sound": "sprout_spring"
+            },
+            {
+              "do": "pop",
+              "target": "flower2",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "flower3",
+              "at": 0.8,
+              "sound": "sprout_spring"
+            },
+            {
+              "do": "pop",
+              "target": "flower4",
+              "at": 1,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "flower5",
+              "at": 1.2,
+              "sound": "sprout_spring"
+            },
+            {
+              "do": "caption",
+              "text": "spring",
+              "style": "title",
+              "dur": 1.6
+            },
+            {
+              "do": "camera",
+              "position": [2.6, 1.6, 5.6],
+              "lookAt": [3.4, 0.8, -0.8],
+              "dur": 1.2,
+              "at": 0.3
+            }
+          ],
+          "dur": 1.7
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "wake",
+              "target": "bear"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [3, 0, 0],
+              "at": 0.6,
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'm awake! And hungry again!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "wiggle",
+              "target": "bear"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "My forecast for spring: mild and rainy!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-3.2, 1.8, 5.2],
+              "lookAt": [-3.8, 1.3, 0.8],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "fc4",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "rain",
+              "at": 1.4
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Robo, that's right!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 0.7
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hooray! I got it right!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "fc4",
+              "at": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "rain",
+              "at": 1.4
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Spring, summer, autumn, winter, and round again!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0.6, 2.3, 9.8],
+              "lookAt": [0.6, 1.7, 0],
+              "dur": 1.4
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 1
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 1.2
+            }
+          ],
+          "dur": 4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bye, friends! See you next season!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            }
+          ],
+          "dur": 2.6
+        }
+      ]
+    }
+  ]
+}

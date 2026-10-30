@@ -3,7 +3,7 @@
 // Returns { ok, errors, warnings }; each issue is { code, path, message }.
 
 import { EASE_NAMES } from "./ease.js";
-import { FEELINGS, parseClock } from "./director_extras.js";
+import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
 const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot"]);
@@ -13,8 +13,8 @@ const FIELDS = {
   letter: ["text", "color", "material", "font", "size", "depth"],
   character: ["character", "clip", "feeling"],
   confetti: ["count", "colors", "area", "height"],
-  critter: ["species", "color", "size", "feeling"],
-  prop: ["model", "color", "size"],
+  critter: ["species", "color", "size", "feeling", "recolor"],
+  prop: ["model", "color", "size", "recolor"],
   bubbles: ["count", "area", "height", "size"],
   stars: ["count", "color", "width"],
   clock: ["time", "size", "color", "face", "numberColor", "hourColor", "minuteColor", "ticks", "numbers", "minuteHand", "font"],
@@ -61,7 +61,7 @@ export function validateScript(script, catalog) {
   if (meta.musicGain != null && !isNum(meta.musicGain, 0, 1)) err("E3D_RANGE", "meta.musicGain", "musicGain must be 0-1");
   if (meta.music != null && meta.music !== false && catalog.musicMoods?.length && !catalog.musicMoods.includes(meta.music)) err("E3D_MUSIC", "meta.music", `unknown music mood "${meta.music}" (known: ${catalog.musicMoods.join(", ")})`);
   if (meta.audience != null && !AUDIENCES.includes(meta.audience)) err("E3D_AUDIENCE", "meta.audience", `audience must be one of ${AUDIENCES.join(", ")}`);
-  if (meta.thumbnail != null && !isNum(meta.thumbnail?.t, 0, 3600)) err("E3D_RANGE", "meta.thumbnail.t", "thumbnail.t must be a time in seconds");
+  if (meta.thumbnail != null) checkThumbnail(meta.thumbnail);
   if (meta.voice != null && !catalog.voices.includes(meta.voice)) err("E3D_VOICE", "meta.voice", `unknown voice "${meta.voice}" (known: ${catalog.voices.join(", ")})`);
   if (script.stage?.preset != null) name(catalog.stages, script.stage.preset, "E3D_STAGE", "stage.preset", "stage");
   for (const k of ["position", "lookAt"]) if (script.camera?.[k] != null && !isVec(script.camera[k])) err("E3D_VEC", `camera.${k}`, "must be [x, y, z]");
@@ -77,6 +77,9 @@ export function validateScript(script, catalog) {
       const par = ids.get(o.parent);
       if (!par) err("E3D_PARENT", `${p}.parent`, `parent "${o.parent}" must be an object listed before "${o.id}"`);
       else if (o.part != null && !partNames(par).includes(o.part)) err("E3D_PART", `${p}.part`, `"${o.parent}" has no named part "${o.part}" (known: ${partNames(par).join(", ") || "none"})`);
+      // On a part, at is measured from the part's pivot (a head's centre) in the parent's own units (times its
+      // size): a toy is about 1.1 units tall, so an offset of 1.5 or more is almost always a world position.
+      else if (o.part != null && isVec(o.at) && Math.hypot(...o.at) >= 1.5) warn("W3D_PART_FAR", `${p}.at`, `at is relative to "${o.parent}#${o.part}" (its pivot, in "${o.parent}"'s units), not a world position`);
     } else if (o.part != null) err("E3D_PART", `${p}.part`, "part needs a parent");
     if (o.pivot != null && !isVec(o.pivot)) err("E3D_VEC", `${p}.pivot`, "must be [x, y, z]");
     ids.set(o.id, o);
@@ -111,6 +114,7 @@ export function validateScript(script, catalog) {
     }
     if (o.kind === "critter" && !catalog.critters[o.species]) err("E3D_SPECIES", `${p}.species`, `unknown species "${o.species}" (known: ${Object.keys(catalog.critters).join(", ")})`);
     if (o.kind === "prop" && !catalog.props[o.model]) err("E3D_MODEL", `${p}.model`, `unknown prop "${o.model}" (known: ${Object.keys(catalog.props).join(", ")})`);
+    if (o.recolor != null) checkRecolor(o, p);
     if (o.kind === "shape" && o.face != null && typeof o.face !== "boolean") err("E3D_FACE", `${p}.face`, "face must be true or false");
     if (o.kind === "confetti") {
       for (const [j, c] of (o.colors ?? []).entries()) name(catalog.colors, c, "E3D_COLOR", `${p}.colors[${j}]`, "color");
@@ -182,6 +186,11 @@ export function validateScript(script, catalog) {
     if (a.do === "feel" && !FEELINGS.includes(a.feeling)) err("E3D_FEELING", `${p}.feeling`, `feeling must be one of ${FEELINGS.join(", ")}`);
     if (a.do === "feel" && o.kind === "shape" && !o.face) err("E3D_TARGET_KIND", `${p}.target`, `feel needs a face: "${a.target}" is a shape without face: true`);
     if (a.do === "paint" && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `paint needs a known color, got "${a.color}"`);
+    if (a.do === "paint" && a.from != null) {
+      if (o.kind !== "critter" && o.kind !== "prop") err("E3D_TARGET_KIND", `${p}.from`, `paint from needs a critter or prop, "${a.target}" is a ${o.kind}`);
+      else if (!catalog.colors[a.from]) err("E3D_COLOR", `${p}.from`, `unknown color "${a.from}"`);
+      else if (!modelColors(o, catalog).includes(a.from)) err("E3D_PAINT_FROM", `${p}.from`, `"${a.target}" has no parts coloured "${a.from}" (it uses ${modelColors(o, catalog).join(", ")})`);
+    }
     if (a.do === "clock" && a.to == null && a.minuteHand == null) err("E3D_REQUIRED", p, "clock needs to (a time) or minuteHand");
     if (a.do === "clock" && a.to != null && !clockOk(a.to)) err("E3D_TIME", `${p}.to`, 'to must look like "3:25" (hours 1-12)');
     if (a.do === "aim" && !isVec(a.to)) err("E3D_VEC", `${p}.to`, "aim needs to: [x, y, z]");
@@ -197,6 +206,28 @@ export function validateScript(script, catalog) {
   }
 
   return { ok: errors.length === 0, errors, warnings };
+
+  /** recolor: { "<colour a part uses>": "<new colour>" }, both catalog colour names. */
+  function checkRecolor(o, p) {
+    if (o.kind !== "critter" && o.kind !== "prop") return;
+    if (typeof o.recolor !== "object" || Array.isArray(o.recolor)) return err("E3D_RECOLOR", `${p}.recolor`, 'recolor must map colour names to colour names, e.g. { "leaf": "brown" }');
+    const used = modelColors({ ...o, recolor: undefined }, catalog);
+    for (const [from, to] of Object.entries(o.recolor)) {
+      name(catalog.colors, from, "E3D_COLOR", `${p}.recolor`, "color");
+      name(catalog.colors, to, "E3D_COLOR", `${p}.recolor.${from}`, "color");
+      if (catalog.colors[from] && !used.includes(from)) warn("W3D_RECOLOR_UNUSED", `${p}.recolor.${from}`, `"${o.id}" has no parts coloured "${from}" (it uses ${used.join(", ")})`);
+    }
+  }
+
+  /** thumbnail: { t: seconds } or { scene: "<scene id>", at: seconds into that scene }. */
+  function checkThumbnail(th) {
+    if (th?.scene != null) {
+      const scenes = Array.isArray(script.scenes) ? script.scenes : [];
+      if (!scenes.some((s) => s?.id === th.scene)) err("E3D_THUMBNAIL", "meta.thumbnail.scene", `no scene "${th.scene}"`);
+      if (th.at != null && !isNum(th.at, 0, 3600)) err("E3D_RANGE", "meta.thumbnail.at", "thumbnail.at must be seconds into the scene");
+      if (th.t != null) warn("W3D_THUMBNAIL", "meta.thumbnail.t", "thumbnail has both scene and t: scene wins");
+    } else if (!isNum(th?.t, 0, 3600)) err("E3D_RANGE", "meta.thumbnail.t", "thumbnail needs t (seconds) or scene (a scene id) with at");
+  }
 
   function partNames(o) {
     const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;

@@ -1,0 +1,6862 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Crack Bear's 3-digit vault! Build numbers with hundreds flats, tens rods and ones cubes, meet the Zero Hero, swap digits and ride the skip-count elevator.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Hundreds Tower",
+  "episode": "g204",
+  "seed": 204,
+  "music": "playful",
+  "musicGain": 0.22,
+  "skills": [
+   "hundreds_2",
+   "skip_count_2"
+  ],
+  "youtube": {
+   "title": "Hundreds Tower! Place Value to 999 | Hundreds, Tens and Ones | Grade 2 Math | Toy Box Friends",
+   "description": "Bear's vault has a 3-digit lock. To crack it, we learn place value: 10 ones make a ten, 10 tens make a hundred.\nBuild 345 and write it in expanded form, meet the Zero Hero (305 is not 35), swap the digits 4, 7 and 2 into six numbers, skip count by 5s, 10s and 100s, and compare numbers with greater than and less than.\nTry at home: make a place value mat and build your house number.",
+   "tags": [
+    "place value",
+    "hundreds tens ones",
+    "3 digit numbers",
+    "expanded form",
+    "skip counting",
+    "grade 2 math",
+    "comparing numbers",
+    "base ten blocks",
+    "2nd grade math",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnail": {
+   "scene": "build",
+   "at": 30.98
+  }
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   4.2,
+   1.6,
+   8.8
+  ],
+  "lookAt": [
+   4.2,
+   1.1,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    3.1,
+    0,
+    0.2
+   ],
+   "rotation": [
+    0,
+    -20,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    4.1,
+    0,
+    1.3
+   ],
+   "size": 0.85,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "bear",
+   "kind": "critter",
+   "species": "bear",
+   "at": [
+    -6.4,
+    0,
+    0.8
+   ],
+   "size": 1,
+   "rotation": [
+    0,
+    35,
+    0
+   ]
+  },
+  {
+   "id": "chick",
+   "kind": "critter",
+   "species": "chick",
+   "at": [
+    -5,
+    0,
+    0.6
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "vault",
+   "kind": "prop",
+   "model": "gift",
+   "at": [
+    5.7,
+    0,
+    -0.6
+   ],
+   "size": 1.8
+  },
+  {
+   "id": "lock",
+   "kind": "letter",
+   "text": "? ? ?",
+   "color": "white",
+   "at": [
+    5.7,
+    0.52,
+    0.3
+   ],
+   "size": 0.32,
+   "depth": 0.1
+  },
+  {
+   "id": "lock_code",
+   "kind": "letter",
+   "text": "528",
+   "color": "gold",
+   "at": [
+    5.7,
+    0.52,
+    0.33
+   ],
+   "size": 0.36,
+   "depth": 0.1,
+   "material": "glow",
+   "hidden": true
+  },
+  {
+   "id": "note",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "cream",
+   "at": [
+    4.4,
+    2,
+    -0.6
+   ],
+   "size": 0.9,
+   "material": "paper",
+   "hidden": true
+  },
+  {
+   "id": "lock_try",
+   "kind": "letter",
+   "text": "123",
+   "color": "red",
+   "at": [
+    5.7,
+    1.4,
+    0.4
+   ],
+   "size": 0.4,
+   "hidden": true
+  },
+  {
+   "id": "lab_h",
+   "kind": "letter",
+   "text": "hundreds",
+   "color": "orange",
+   "at": [
+    -4.1,
+    0.02,
+    1.1
+   ],
+   "size": 0.24,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "lab_t",
+   "kind": "letter",
+   "text": "tens",
+   "color": "blue",
+   "at": [
+    0.35,
+    0.02,
+    1.1
+   ],
+   "size": 0.24,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "lab_o",
+   "kind": "letter",
+   "text": "ones",
+   "color": "gold",
+   "at": [
+    1.95,
+    0.02,
+    1.1
+   ],
+   "size": 0.24,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "f0",
+   "kind": "prop",
+   "model": "ten_flat",
+   "at": [
+    -4.9,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "f1",
+   "kind": "prop",
+   "model": "ten_flat",
+   "at": [
+    -4.9,
+    1.5,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "f2",
+   "kind": "prop",
+   "model": "ten_flat",
+   "at": [
+    -3.3,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "f3",
+   "kind": "prop",
+   "model": "ten_flat",
+   "at": [
+    -3.3,
+    1.5,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "f4",
+   "kind": "prop",
+   "model": "ten_flat",
+   "at": [
+    -1.7,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t0",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -0.6,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t1",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -0.39,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t2",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -0.18,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t3",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    0.03,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t4",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    0.24,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t5",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    0.45,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t6",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    0.66,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t7",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    0.87,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t8",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    1.08,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "t9",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    1.29,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c0",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    1.85,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c1",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    1.85,
+    0.15,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c2",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    1.85,
+    0.3,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c3",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    1.85,
+    0.45,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c4",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    1.85,
+    0.6,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c5",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    2.05,
+    0,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c6",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    2.05,
+    0.15,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c7",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    2.05,
+    0.3,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c8",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    2.05,
+    0.45,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "c9",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    2.05,
+    0.6,
+    0
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "d345_h",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "at": [
+    -4.1,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d345_t",
+   "kind": "letter",
+   "text": "4",
+   "color": "blue",
+   "at": [
+    0.35,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d345_o",
+   "kind": "letter",
+   "text": "5",
+   "color": "gold",
+   "at": [
+    1.95,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d305_h",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "at": [
+    -4.1,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d305_t",
+   "kind": "letter",
+   "text": "0",
+   "color": "blue",
+   "at": [
+    0.35,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d305_o",
+   "kind": "letter",
+   "text": "5",
+   "color": "gold",
+   "at": [
+    1.95,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d528_h",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    -4.1,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d528_t",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    0.35,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "d528_o",
+   "kind": "letter",
+   "text": "8",
+   "color": "gold",
+   "at": [
+    1.95,
+    3.55,
+    0
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "x345",
+   "kind": "letter",
+   "text": "300 + 40 + 5",
+   "color": "ink",
+   "at": [
+    -0.8,
+    0.2,
+    2.4
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "x305",
+   "kind": "letter",
+   "text": "300 + 0 + 5",
+   "color": "ink",
+   "at": [
+    -0.8,
+    0.2,
+    2.4
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "x528",
+   "kind": "letter",
+   "text": "500 + 20 + 8",
+   "color": "ink",
+   "at": [
+    -0.8,
+    0.2,
+    2.4
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "n35",
+   "kind": "letter",
+   "text": "35",
+   "color": "blue",
+   "at": [
+    -0.8,
+    0.2,
+    2.4
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "n350",
+   "kind": "letter",
+   "text": "350",
+   "color": "blue",
+   "at": [
+    -0.8,
+    0.2,
+    2.4
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "s4",
+   "kind": "letter",
+   "text": "4",
+   "color": "red",
+   "at": [
+    -2.3,
+    1.2,
+    0.5
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "s7",
+   "kind": "letter",
+   "text": "7",
+   "color": "blue",
+   "at": [
+    -0.95,
+    1.2,
+    0.5
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "s2",
+   "kind": "letter",
+   "text": "2",
+   "color": "green",
+   "at": [
+    0.4,
+    1.2,
+    0.5
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "pole",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "grey",
+   "at": [
+    -1.2,
+    0,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.12,
+    3.4,
+    0.12
+   ],
+   "material": "metal",
+   "hidden": true
+  },
+  {
+   "id": "floor0",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    0,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor1",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    0.32,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor2",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    0.64,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor3",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    0.96,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor4",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    1.28,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor5",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    1.6,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor6",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    1.92,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor7",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    2.24,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor8",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    2.56,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "floor9",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "teal",
+   "at": [
+    -1.2,
+    2.88,
+    -0.2
+   ],
+   "size": 1,
+   "scale": [
+    0.9,
+    1.25,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cmp1",
+   "kind": "letter",
+   "text": "472 > 427",
+   "color": "ink",
+   "at": [
+    -0.4,
+    1,
+    0.8
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "cmp2",
+   "kind": "letter",
+   "text": "609 < 690",
+   "color": "ink",
+   "at": [
+    -0.4,
+    1,
+    0.8
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "cmp3",
+   "kind": "letter",
+   "text": "350 = 300 + 50",
+   "color": "ink",
+   "at": [
+    -0.4,
+    1,
+    0.8
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1",
+   "kind": "letter",
+   "text": "600 + 40 + 2",
+   "color": "ink",
+   "at": [
+    -0.4,
+    1,
+    0.8
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1a",
+   "kind": "letter",
+   "text": "642",
+   "color": "orange",
+   "at": [
+    -0.4,
+    2.1,
+    0.8
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "q2",
+   "kind": "letter",
+   "text": "285",
+   "color": "ink",
+   "at": [
+    -0.4,
+    1,
+    0.8
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "q3",
+   "kind": "letter",
+   "text": "309   390",
+   "color": "ink",
+   "at": [
+    -0.4,
+    1,
+    0.8
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "q4",
+   "kind": "letter",
+   "text": "200, 300, ...",
+   "color": "ink",
+   "at": [
+    -0.4,
+    1,
+    0.8
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "party",
+   "kind": "confetti",
+   "count": 220,
+   "area": [
+    10,
+    4
+   ],
+   "height": 7
+  }
+ ],
+ "scenes": [
+  {
+   "id": "vault",
+   "title": "The locked vault",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Hundreds Tower",
+       "style": "title",
+       "dur": 2.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        4.2,
+        1.6,
+        8.8
+       ],
+       "lookAt": [
+        4.2,
+        1.1,
+        0
+       ],
+       "dur": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "vault",
+       "at": 0.6,
+       "deg": 5
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "I built this vault. It has a three-digit lock!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "A note! The code is a 3-digit number. Build it to open me.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "note",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Easy! One, two, three!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "note",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "lock_try",
+       "at": 1
+      },
+      {
+       "do": "sound",
+       "sound": "robot_beep",
+       "at": 1.8
+      },
+      {
+       "do": "wiggle",
+       "target": "vault",
+       "at": 1.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "We need clues. And we need to know what each digit means.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "lock_try",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blocks",
+   "title": "Cubes, rods and flats",
+   "beats": [
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here are our building blocks. A little cube is one.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "lab_h",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "lab_t",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "lab_o",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.2,
+        1,
+        4.4
+       ],
+       "lookAt": [
+        1.6,
+        0.55,
+        0
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "drop",
+       "target": "c0",
+       "to": [
+        1.85,
+        0,
+        0
+       ],
+       "at": 1.8,
+       "height": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 2.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's stack ten ones.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "c1",
+       "to": [
+        1.85,
+        0.15,
+        0
+       ],
+       "at": 0.6,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c2",
+       "to": [
+        1.85,
+        0.3,
+        0
+       ],
+       "at": 0.85,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c3",
+       "to": [
+        1.85,
+        0.45,
+        0
+       ],
+       "at": 1.1,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c4",
+       "to": [
+        1.85,
+        0.6,
+        0
+       ],
+       "at": 1.35,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c5",
+       "to": [
+        2.05,
+        0,
+        0
+       ],
+       "at": 1.6,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c6",
+       "to": [
+        2.05,
+        0.15,
+        0
+       ],
+       "at": 1.85,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c7",
+       "to": [
+        2.05,
+        0.3,
+        0
+       ],
+       "at": 2.1,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c8",
+       "to": [
+        2.05,
+        0.45,
+        0
+       ],
+       "at": 2.35,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c9",
+       "to": [
+        2.05,
+        0.6,
+        0
+       ],
+       "at": 2.6,
+       "height": 1.5,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 4,
+     "do": [
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c0",
+       "at": 0,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 0.38,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c1",
+       "at": 0.38,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 0.76,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c2",
+       "at": 0.76,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 1.1400000000000001,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c3",
+       "at": 1.1400000000000001,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 1.52,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c4",
+       "at": 1.52,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "6",
+       "style": "count",
+       "at": 1.9,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c5",
+       "at": 1.9,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "7",
+       "style": "count",
+       "at": 2.2800000000000002,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c6",
+       "at": 2.2800000000000002,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "8",
+       "style": "count",
+       "at": 2.66,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c7",
+       "at": 2.66,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "9",
+       "style": "count",
+       "at": 3.04,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c8",
+       "at": 3.04,
+       "height": 0.1,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 3.42,
+       "dur": 0.38
+      },
+      {
+       "do": "hop",
+       "target": "c9",
+       "at": 3.42,
+       "height": 0.1,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "10 ones make 1 ten. A ten is a rod.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.6,
+        1.4,
+        6
+       ],
+       "lookAt": [
+        0.6,
+        0.8,
+        0
+       ],
+       "at": 0.8,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "c0",
+       "at": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "c1",
+       "at": 1.25
+      },
+      {
+       "do": "hide",
+       "target": "c2",
+       "at": 1.3
+      },
+      {
+       "do": "hide",
+       "target": "c3",
+       "at": 1.35
+      },
+      {
+       "do": "hide",
+       "target": "c4",
+       "at": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "c5",
+       "at": 1.45
+      },
+      {
+       "do": "hide",
+       "target": "c6",
+       "at": 1.5
+      },
+      {
+       "do": "hide",
+       "target": "c7",
+       "at": 1.55
+      },
+      {
+       "do": "hide",
+       "target": "c8",
+       "at": 1.6
+      },
+      {
+       "do": "hide",
+       "target": "c9",
+       "at": 1.65
+      },
+      {
+       "do": "drop",
+       "target": "t0",
+       "to": [
+        -0.6,
+        0,
+        0
+       ],
+       "at": 1.8,
+       "height": 1.5
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same amount, just one piece. Clever.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ten ones, one ten. Say it with me! Ten ones, one ten!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Building with tens is much faster than with ones.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now let's line up ten rods.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.9,
+        2,
+        10.6
+       ],
+       "lookAt": [
+        -0.9,
+        1.8,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "drop",
+       "target": "t1",
+       "to": [
+        -0.39,
+        0,
+        0
+       ],
+       "at": 0.5,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t2",
+       "to": [
+        -0.18,
+        0,
+        0
+       ],
+       "at": 0.7,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t3",
+       "to": [
+        0.03,
+        0,
+        0
+       ],
+       "at": 0.9,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t4",
+       "to": [
+        0.24,
+        0,
+        0
+       ],
+       "at": 1.1,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t5",
+       "to": [
+        0.45,
+        0,
+        0
+       ],
+       "at": 1.3,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t6",
+       "to": [
+        0.66,
+        0,
+        0
+       ],
+       "at": 1.5,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t7",
+       "to": [
+        0.87,
+        0,
+        0
+       ],
+       "at": 1.7,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t8",
+       "to": [
+        1.08,
+        0,
+        0
+       ],
+       "at": 1.9,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t9",
+       "to": [
+        1.29,
+        0,
+        0
+       ],
+       "at": 2.1,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Count by tens! 10, 20, 30, 40, 50, 60, 70, 80, 90, 100!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "t0",
+       "at": 0.9,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t1",
+       "at": 1.26,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t2",
+       "at": 1.62,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t3",
+       "at": 1.98,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t4",
+       "at": 2.34,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t5",
+       "at": 2.7,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t6",
+       "at": 3.06,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t7",
+       "at": 3.42,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t8",
+       "at": 3.78,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t9",
+       "at": 4.14,
+       "height": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "When I say ten tens make, you say one hundred!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ten tens make...?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.21,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "One hundred! A hundred is a flat.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "t0",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "t1",
+       "at": 0.45
+      },
+      {
+       "do": "hide",
+       "target": "t2",
+       "at": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "t3",
+       "at": 0.55
+      },
+      {
+       "do": "hide",
+       "target": "t4",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "t5",
+       "at": 0.65
+      },
+      {
+       "do": "hide",
+       "target": "t6",
+       "at": 0.7
+      },
+      {
+       "do": "hide",
+       "target": "t7",
+       "at": 0.75
+      },
+      {
+       "do": "hide",
+       "target": "t8",
+       "at": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "t9",
+       "at": 0.85
+      },
+      {
+       "do": "drop",
+       "target": "f0",
+       "to": [
+        -4.9,
+        0,
+        0
+       ],
+       "at": 1,
+       "height": 2
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "A flat has 100 little squares: 10 rows of 10.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Count the rows by tens: 10, 20, 30... all the way to 100!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "f0",
+       "at": 1.6,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: Ancient Egyptians wrote 100 as a coiled rope!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "And their sign for 1,000 was a lotus flower.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why do we need flats at all?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "A flat is quicker than counting 100 cubes, one by one!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "f0",
+       "at": 2.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "build",
+   "title": "Build 345",
+   "beats": [
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's build 345. Bear, please bring 3 hundreds.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "f0",
+       "to": [
+        -4.9,
+        0,
+        0
+       ],
+       "at": 1.6,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 2.2
+      },
+      {
+       "do": "drop",
+       "target": "f1",
+       "to": [
+        -4.9,
+        1.5,
+        0
+       ],
+       "at": 2.2,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 2.8
+      },
+      {
+       "do": "drop",
+       "target": "f2",
+       "to": [
+        -3.3,
+        0,
+        0
+       ],
+       "at": 2.8,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 3.4
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "One hundred, two hundred, three hundred!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "f0",
+       "at": 0.4,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "f1",
+       "at": 1.2,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "f2",
+       "at": 2,
+       "height": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 1.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now 4 tens.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "t0",
+       "to": [
+        -0.6,
+        0,
+        0
+       ],
+       "at": 0.4,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t1",
+       "to": [
+        -0.39,
+        0,
+        0
+       ],
+       "at": 0.7,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t2",
+       "to": [
+        -0.18,
+        0,
+        0
+       ],
+       "at": 1,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t3",
+       "to": [
+        0.03,
+        0,
+        0
+       ],
+       "at": 1.3,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.71,
+     "do": [
+      {
+       "do": "say",
+       "text": "And 5 ones.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        1.2,
+        1,
+        4.4
+       ],
+       "lookAt": [
+        1.6,
+        0.45,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "drop",
+       "target": "c0",
+       "to": [
+        1.85,
+        0,
+        0
+       ],
+       "at": 0.6,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c1",
+       "to": [
+        1.85,
+        0.15,
+        0
+       ],
+       "at": 0.85,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c2",
+       "to": [
+        1.85,
+        0.3,
+        0
+       ],
+       "at": 1.1,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c3",
+       "to": [
+        1.85,
+        0.45,
+        0
+       ],
+       "at": 1.35,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c4",
+       "to": [
+        1.85,
+        0.6,
+        0
+       ],
+       "at": 1.6,
+       "height": 1.5,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's check. How many hundreds?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.9,
+        2,
+        10.6
+       ],
+       "lookAt": [
+        -0.9,
+        1.8,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "wiggle",
+       "target": "f2",
+       "at": 0.6,
+       "deg": 5
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "3 hundreds! How many tens?",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "4 tens! And how many ones?",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "5 ones!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's read it. 3 hundreds, 4 tens, 5 ones.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d345_h",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "d345_t",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "d345_o",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three hundred forty-five!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "345",
+       "style": "label",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "We can also write it in expanded form.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "expanded form",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "300 plus 40 plus 5.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "x345",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Expanded form shows what each digit is really worth.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "What is the 4 worth in 345?",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "d345_t",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "40! The 4 is in the tens place, so it means 4 tens.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "t0",
+       "at": 1.2,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t1",
+       "at": 1.4,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t2",
+       "at": 1.6,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "t3",
+       "at": 1.8,
+       "height": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the 3 is worth 300,",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "f0",
+       "at": 1.5,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "f1",
+       "at": 1.7,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "f2",
+       "at": 1.9,
+       "height": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "because it sits in the hundreds place.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Make a mat at home: hundreds, tens and ones on paper.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Where a digit sits tells its worth. That's place value!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "place value",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "zero",
+   "title": "The Zero Hero",
+   "beats": [
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now watch. I take away all the tens.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "x345",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t0",
+       "at": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "t1",
+       "at": 1.5
+      },
+      {
+       "do": "hide",
+       "target": "t2",
+       "at": 1.6
+      },
+      {
+       "do": "hide",
+       "target": "t3",
+       "at": 1.7
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "3 hundreds, no tens, 5 ones.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "d345_h",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "d345_t",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "d345_o",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "d305_h",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "d305_o",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Zero tens. So we write a zero in the tens place!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d305_t",
+       "at": 1.6
+      },
+      {
+       "do": "paint",
+       "target": "d305_t",
+       "color": "gold",
+       "at": 1.8
+      },
+      {
+       "do": "grow",
+       "target": "d305_t",
+       "to": 1.35,
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Thirty-five!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "No, Robo! That's three hundred five.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Read it with me: three hundred five.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oops! You're right. Three hundred five.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "305",
+       "style": "label",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why does the 0 matter if it's nothing?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "The zero holds the place! Without it, we'd write 35.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "n35",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "And 35 is only 3 tens and 5 ones. Much smaller!",
+       "caption": true
+      },
+      {
+       "do": "grow",
+       "target": "n35",
+       "to": 1.2,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Move the zero to the end, and it's 350!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "n35",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "n350",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "In 350, there are zero ones. The zero holds that place too.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "So zero is a hero. It keeps every digit in its place.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "n350",
+       "at": 2.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "swap",
+   "title": "The Digit Swap trick",
+   "beats": [
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's a trick. Three digit cards: 4, 7 and 2.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "lab_h",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "lab_t",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "lab_o",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t6",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c6",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t7",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c7",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t8",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c8",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t9",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c9",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "d305_h",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "d305_t",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "d305_o",
+       "at": 0.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.6,
+        1.6,
+        8.4
+       ],
+       "lookAt": [
+        0.6,
+        1.2,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "s4",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "s7",
+       "at": 2.2
+      },
+      {
+       "do": "pop",
+       "target": "s2",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same three digits. How many numbers can they make?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "472.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "472",
+       "style": "label",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "427.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "427",
+       "style": "label",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "247.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "247",
+       "style": "label",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "274.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "274",
+       "style": "label",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "724.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "724",
+       "style": "label",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "742.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "742",
+       "style": "label",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Six different numbers from the same three digits!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which is the biggest?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "742! The biggest digit goes in the hundreds place.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "s7",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the smallest?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "247! The smallest digit goes first.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "s2",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "In 742, the 7 is worth 700. In 472, it's worth 70.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0.2,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0.2,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0.2,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 2.8,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 2.8,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 2.8,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 2.8,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 2.8,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 2.8,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 2.8,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "And in 247, it's worth just 7!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0.2,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0.2,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0.2,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.2,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Say all six with me, smallest to biggest!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "247, 274, 427, 472, 724, 742!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 0.9,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 0.9,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 0.9,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.9,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 1.8,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 1.8,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 1.8,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 1.8,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 1.8,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 1.8,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.8,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 2.7,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 2.7,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 2.7,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 2.7,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 2.7,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 2.7,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 2.7,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 3.6,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 3.6,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 3.6,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 3.6,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 3.6,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 3.6,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 3.6,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "s7",
+       "to": [
+        -2.3,
+        1.2,
+        0.5
+       ],
+       "at": 4.5,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s7",
+       "at": 4.5,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s4",
+       "to": [
+        -0.95,
+        1.2,
+        0.5
+       ],
+       "at": 4.5,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s4",
+       "at": 4.5,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s2",
+       "to": [
+        0.4,
+        1.2,
+        0.5
+       ],
+       "at": 4.5,
+       "dur": 0.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "spin",
+       "target": "s2",
+       "at": 4.5,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 4.5,
+       "volume": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "elevator",
+   "title": "Skip-count elevator",
+   "beats": [
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Chick, ride the skip-count elevator!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "s4"
+      },
+      {
+       "do": "hide",
+       "target": "s7"
+      },
+      {
+       "do": "hide",
+       "target": "s2"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        1.6,
+        8.6
+       ],
+       "lookAt": [
+        0.5,
+        1.6,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "pole",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "floor0",
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "floor1",
+       "at": 0.55
+      },
+      {
+       "do": "show",
+       "target": "floor2",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "floor3",
+       "at": 0.65
+      },
+      {
+       "do": "show",
+       "target": "floor4",
+       "at": 0.7
+      },
+      {
+       "do": "show",
+       "target": "floor5",
+       "at": 0.75
+      },
+      {
+       "do": "show",
+       "target": "floor6",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "floor7",
+       "at": 0.85
+      },
+      {
+       "do": "show",
+       "target": "floor8",
+       "at": 0.9
+      },
+      {
+       "do": "show",
+       "target": "floor9",
+       "at": 0.95
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.05,
+        -0.2
+       ],
+       "at": 0.6,
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "chick",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Jump on every floor! First, count by fives.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 8.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.05,
+        -0.2
+       ],
+       "at": 0,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 0,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.37,
+        -0.2
+       ],
+       "at": 0.85,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.85,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 0.85,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0.85,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.69,
+        -0.2
+       ],
+       "at": 1.7,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.7,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "15",
+       "style": "count",
+       "at": 1.7,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.7,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.01,
+        -0.2
+       ],
+       "at": 2.55,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 2.55,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "20",
+       "style": "count",
+       "at": 2.55,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 2.55,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.33,
+        -0.2
+       ],
+       "at": 3.4,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 3.4,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "25",
+       "style": "count",
+       "at": 3.4,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 3.4,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.65,
+        -0.2
+       ],
+       "at": 4.25,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 4.25,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "30",
+       "style": "count",
+       "at": 4.25,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 4.25,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.97,
+        -0.2
+       ],
+       "at": 5.1,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 5.1,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "35",
+       "style": "count",
+       "at": 5.1,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 5.1,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.29,
+        -0.2
+       ],
+       "at": 5.95,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 5.95,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "40",
+       "style": "count",
+       "at": 5.95,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 5.95,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.61,
+        -0.2
+       ],
+       "at": 6.8,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 6.8,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "45",
+       "style": "count",
+       "at": 6.8,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 6.8,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.93,
+        -0.2
+       ],
+       "at": 7.6499999999999995,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 7.6499999999999995,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "50",
+       "style": "count",
+       "at": 7.6499999999999995,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 7.6499999999999995,
+       "volume": 0.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        2.4,
+        8.6
+       ],
+       "lookAt": [
+        0.5,
+        2.6,
+        0
+       ],
+       "dur": 8
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "5, 10, 15, 20, 25, 30, 35, 40, 45, 50!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Back down! Now count by tens, starting at 120.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.05,
+        -0.2
+       ],
+       "at": 0.4,
+       "dur": 1.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        1.6,
+        8.6
+       ],
+       "lookAt": [
+        0.5,
+        1.6,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 7,
+     "do": [
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.37,
+        -0.2
+       ],
+       "at": 0,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "130",
+       "style": "count",
+       "at": 0,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.69,
+        -0.2
+       ],
+       "at": 0.85,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.85,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "140",
+       "style": "count",
+       "at": 0.85,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0.85,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.01,
+        -0.2
+       ],
+       "at": 1.7,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.7,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "150",
+       "style": "count",
+       "at": 1.7,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.7,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.33,
+        -0.2
+       ],
+       "at": 2.55,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 2.55,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "160",
+       "style": "count",
+       "at": 2.55,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 2.55,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.65,
+        -0.2
+       ],
+       "at": 3.4,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 3.4,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "170",
+       "style": "count",
+       "at": 3.4,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 3.4,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.97,
+        -0.2
+       ],
+       "at": 4.25,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 4.25,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "180",
+       "style": "count",
+       "at": 4.25,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 4.25,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.29,
+        -0.2
+       ],
+       "at": 5.1,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 5.1,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "190",
+       "style": "count",
+       "at": 5.1,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 5.1,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.61,
+        -0.2
+       ],
+       "at": 5.95,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 5.95,
+       "height": 0.25,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "200",
+       "style": "count",
+       "at": 5.95,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 5.95,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "130, 140, 150, 160, 170, 180, 190, 200!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now by hundreds! Jump with your arms up!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.05,
+        -0.2
+       ],
+       "at": 0.4,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 8,
+     "do": [
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.37,
+        -0.2
+       ],
+       "at": 0,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "100",
+       "style": "count",
+       "at": 0,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        0.69,
+        -0.2
+       ],
+       "at": 0.85,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.85,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "200",
+       "style": "count",
+       "at": 0.85,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0.85,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.01,
+        -0.2
+       ],
+       "at": 1.7,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.7,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "300",
+       "style": "count",
+       "at": 1.7,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 1.7,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.33,
+        -0.2
+       ],
+       "at": 2.55,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 2.55,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "400",
+       "style": "count",
+       "at": 2.55,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 2.55,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.65,
+        -0.2
+       ],
+       "at": 3.4,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 3.4,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "500",
+       "style": "count",
+       "at": 3.4,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 3.4,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        1.97,
+        -0.2
+       ],
+       "at": 4.25,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 4.25,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "600",
+       "style": "count",
+       "at": 4.25,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 4.25,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.29,
+        -0.2
+       ],
+       "at": 5.1,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 5.1,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "700",
+       "style": "count",
+       "at": 5.1,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 5.1,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.61,
+        -0.2
+       ],
+       "at": 5.95,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 5.95,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "800",
+       "style": "count",
+       "at": 5.95,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 5.95,
+       "volume": 0.5
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1.2,
+        2.93,
+        -0.2
+       ],
+       "at": 6.8,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 6.8,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "900",
+       "style": "count",
+       "at": 6.8,
+       "dur": 0.85
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 6.8,
+       "volume": 0.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        2.4,
+        8.6
+       ],
+       "lookAt": [
+        0.5,
+        2.6,
+        0
+       ],
+       "dur": 7
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "100, 200, 300, 400, 500, 600, 700, 800, 900!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "And one more than 999 is 1,000. A whole new place!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.2,
+       "height": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Tower chant",
+   "beats": [
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Stomp, stomp, clap! Chant with me!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "chick",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pole",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor5",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor6",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor7",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor8",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "floor9",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.9,
+        2,
+        10.6
+       ],
+       "lookAt": [
+        -0.9,
+        1.8,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones go here, tens go there,",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "lab_h",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "lab_t",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "lab_o",
+       "at": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "c0",
+       "to": [
+        1.85,
+        0,
+        0
+       ],
+       "at": 0.2,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c1",
+       "to": [
+        1.85,
+        0.15,
+        0
+       ],
+       "at": 0.35,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c2",
+       "to": [
+        1.85,
+        0.3,
+        0
+       ],
+       "at": 0.5,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "t0",
+       "to": [
+        -0.6,
+        0,
+        0
+       ],
+       "at": 1,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t1",
+       "to": [
+        -0.39,
+        0,
+        0
+       ],
+       "at": 1.2,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "hundreds stand tall in the big chair!",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "f0",
+       "to": [
+        -4.9,
+        0,
+        0
+       ],
+       "at": 0.2,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 0.8
+      },
+      {
+       "do": "drop",
+       "target": "f1",
+       "to": [
+        -4.9,
+        1.5,
+        0
+       ],
+       "at": 0.6,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 1.2
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "One hundred, two hundred, three hundred, more!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.5,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Seven hundred, eight hundred, nine hundred, more!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones go here, tens go there,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.5,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "hundreds stand tall in the big chair!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 0.85
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "crack",
+   "title": "Challenge: crack the vault",
+   "beats": [
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge! Let's crack Bear's vault. Clue one.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "f0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "f4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t6",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c6",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t7",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c7",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t8",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c8",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "t9",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c9",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "I have 5 hundreds.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "f0",
+       "to": [
+        -4.9,
+        0,
+        0
+       ],
+       "at": 0.8,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 1.4
+      },
+      {
+       "do": "drop",
+       "target": "f1",
+       "to": [
+        -4.9,
+        1.5,
+        0
+       ],
+       "at": 1.2,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 1.8
+      },
+      {
+       "do": "drop",
+       "target": "f2",
+       "to": [
+        -3.3,
+        0,
+        0
+       ],
+       "at": 1.6,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 2.2
+      },
+      {
+       "do": "drop",
+       "target": "f3",
+       "to": [
+        -3.3,
+        1.5,
+        0
+       ],
+       "at": 2,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 2.6
+      },
+      {
+       "do": "drop",
+       "target": "f4",
+       "to": [
+        -1.7,
+        0,
+        0
+       ],
+       "at": 2.4,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "My tens digit is 2.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "t0",
+       "to": [
+        -0.6,
+        0,
+        0
+       ],
+       "at": 0.6,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "t1",
+       "to": [
+        -0.39,
+        0,
+        0
+       ],
+       "at": 0.9,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "I have 8 ones.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "drop",
+       "target": "c0",
+       "to": [
+        1.85,
+        0,
+        0
+       ],
+       "at": 0.6,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c1",
+       "to": [
+        1.85,
+        0.15,
+        0
+       ],
+       "at": 0.8,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c2",
+       "to": [
+        1.85,
+        0.3,
+        0
+       ],
+       "at": 1,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c3",
+       "to": [
+        1.85,
+        0.45,
+        0
+       ],
+       "at": 1.2,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c4",
+       "to": [
+        1.85,
+        0.6,
+        0
+       ],
+       "at": 1.4,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c5",
+       "to": [
+        2.05,
+        0,
+        0
+       ],
+       "at": 1.6,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c6",
+       "to": [
+        2.05,
+        0.15,
+        0
+       ],
+       "at": 1.8,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "c7",
+       "to": [
+        2.05,
+        0.3,
+        0
+       ],
+       "at": 2,
+       "height": 1.5,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Clues are like a recipe for a number. Hundreds, tens, ones.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "What number did we build?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "528! Five hundred twenty-eight.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d528_h",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "d528_t",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "d528_o",
+       "at": 1
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bonus check clue: I am 10 more than 518.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "x528",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "518 plus 10 is 528. The clues agree!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Before we try the lock, a compare round.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "lab_h",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "lab_t",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "lab_o",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "x528",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "d528_h",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "d528_t",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "d528_o",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "f0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "f1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "f2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "f3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "f4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t5",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c5",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t6",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c6",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t7",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c7",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t8",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c8",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "t9",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c9",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        1.4,
+        8.4
+       ],
+       "lookAt": [
+        0.5,
+        1.1,
+        0
+       ],
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "472 or 427? Which is greater?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "cmp1",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "The hundreds are the same, 4.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "cmp1",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "So check the tens. 7 is more than 2.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "472 is greater than 427.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "greater than",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "609 or 690?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "cmp1",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "cmp2",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same hundreds. Tens: 9 is more than 0.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "So 609 is less than 690!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "less than",
+       "style": "label",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "And 350 is equal to 300 plus 50.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "cmp2",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "cmp3",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now type the code: 5, 2, 8!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "cmp3",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        4.2,
+        1.6,
+        8.8
+       ],
+       "lookAt": [
+        4.2,
+        1.1,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "lock",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "lock_code",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "vault",
+       "at": 0.3,
+       "deg": 8
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "surprised",
+       "at": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz first, then the vault! What is 600 plus 40 plus 2?",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.5,
+        1.4,
+        8.4
+       ],
+       "lookAt": [
+        0.5,
+        1.1,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "q1",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "642!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "q1a",
+       "at": 0.1,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "What is the 8 worth in 285?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q1"
+      },
+      {
+       "do": "hide",
+       "target": "q1a"
+      },
+      {
+       "do": "pop",
+       "target": "q2",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "80! The 8 is in the tens place.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which is bigger, 309 or 390?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q2"
+      },
+      {
+       "do": "pop",
+       "target": "q3",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "390! Same hundreds, and 9 tens beat 0 tens.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Count by hundreds: 200, 300, and then...?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q3"
+      },
+      {
+       "do": "pop",
+       "target": "q4",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "400!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q4",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four out of four? You're a place value builder!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "open",
+   "title": "The vault opens",
+   "beats": [
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Code cracked! The vault opens!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        4.2,
+        1.6,
+        8.8
+       ],
+       "lookAt": [
+        4.2,
+        1.1,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "hop",
+       "target": "vault",
+       "at": 0.6,
+       "height": 0.4
+      },
+      {
+       "do": "burst",
+       "target": "party",
+       "at": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.8,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Thank you, builders! My vault is open.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Code cracked. Place value wins.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Build your house number at home! Bye!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

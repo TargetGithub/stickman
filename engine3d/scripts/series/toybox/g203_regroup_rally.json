@@ -1,0 +1,7530 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Robo's race car needs fuel: add 27 + 15! Trade 10 ones for 1 ten at Pig's Trade Booth, fix Robo's 312 crash, and subtract with regrouping on the reverse lap.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Regroup Rally",
+  "episode": "g203",
+  "seed": 203,
+  "music": "bouncy",
+  "musicGain": 0.22,
+  "skills": [
+   "add_2digit_regroup_2",
+   "sub_2digit_borrow_2"
+  ],
+  "youtube": {
+   "title": "Regroup Rally! 2-Digit Addition and Subtraction with Regrouping | Grade 2 Math | Toy Box Friends",
+   "description": "Robo's race car will only start if we add 27 + 15. At Pig's Trade Booth, 10 ones go in and 1 ten comes out: that's regrouping!\nWe fix Robo's 312 crash by estimating, race through 38 + 46 and 59 + 23, then subtract with trading on the reverse lap (52 - 17, 63 - 28) and check by adding back.\nTry at home: 46 + 18 and 50 - 23 with pasta or blocks.",
+   "tags": [
+    "regrouping",
+    "two digit addition",
+    "carrying",
+    "borrowing",
+    "two digit subtraction",
+    "grade 2 math",
+    "2nd grade math",
+    "place value",
+    "math for kids",
+    "Toy Box Friends",
+    "3D cartoon for kids"
+   ]
+  },
+  "thumbnail": {
+   "scene": "booth",
+   "at": 35.28
+  }
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   4.2,
+   9.2
+  ],
+  "lookAt": [
+   0,
+   0.4,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.75,
+    0,
+    0.6
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    4.2,
+    0,
+    0.6
+   ],
+   "size": 0.85,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "at": [
+    -2.4,
+    0,
+    2.6
+   ],
+   "size": 0.75,
+   "rotation": [
+    0,
+    20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pig",
+   "kind": "critter",
+   "species": "pig",
+   "at": [
+    0.35,
+    0,
+    -1.75
+   ],
+   "size": 0.85
+  },
+  {
+   "id": "booth",
+   "kind": "shape",
+   "shape": "box",
+   "color": "teal",
+   "at": [
+    0.35,
+    0,
+    -0.9
+   ],
+   "size": 1,
+   "scale": [
+    1.1,
+    1,
+    0.7
+   ]
+  },
+  {
+   "id": "booth_word",
+   "kind": "letter",
+   "text": "TRADE",
+   "color": "white",
+   "at": [
+    0.35,
+    0.45,
+    -0.52
+   ],
+   "size": 0.14,
+   "depth": 0.06
+  },
+  {
+   "id": "car_r",
+   "kind": "prop",
+   "model": "car",
+   "at": [
+    -1.4,
+    0,
+    2.6
+   ],
+   "size": 1.1,
+   "color": "red"
+  },
+  {
+   "id": "car_d",
+   "kind": "prop",
+   "model": "car",
+   "at": [
+    -1.4,
+    0,
+    3.5
+   ],
+   "size": 1.1,
+   "color": "blue",
+   "hidden": true
+  },
+  {
+   "id": "cd3",
+   "kind": "number_block",
+   "value": 3,
+   "color": "orange",
+   "at": [
+    0.6,
+    0,
+    2.6
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "cd2",
+   "kind": "number_block",
+   "value": 2,
+   "color": "orange",
+   "at": [
+    0.6,
+    0,
+    2.6
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "cd1",
+   "kind": "number_block",
+   "value": 1,
+   "color": "green",
+   "at": [
+    0.6,
+    0,
+    2.6
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "tm5",
+   "kind": "number_block",
+   "value": 5,
+   "color": "red",
+   "at": [
+    3.9,
+    0,
+    -0.6
+   ],
+   "size": 0.55,
+   "hidden": true
+  },
+  {
+   "id": "tm4",
+   "kind": "number_block",
+   "value": 4,
+   "color": "red",
+   "at": [
+    3.9,
+    0,
+    -0.6
+   ],
+   "size": 0.55,
+   "hidden": true
+  },
+  {
+   "id": "tm3",
+   "kind": "number_block",
+   "value": 3,
+   "color": "red",
+   "at": [
+    3.9,
+    0,
+    -0.6
+   ],
+   "size": 0.55,
+   "hidden": true
+  },
+  {
+   "id": "tm2",
+   "kind": "number_block",
+   "value": 2,
+   "color": "red",
+   "at": [
+    3.9,
+    0,
+    -0.6
+   ],
+   "size": 0.55,
+   "hidden": true
+  },
+  {
+   "id": "tm1",
+   "kind": "number_block",
+   "value": 1,
+   "color": "red",
+   "at": [
+    3.9,
+    0,
+    -0.6
+   ],
+   "size": 0.55,
+   "hidden": true
+  },
+  {
+   "id": "r0",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -2.95,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "r1",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -2.65,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "r2",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -2.35,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "r3",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -2.05,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "r4",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -1.75,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "r5",
+   "kind": "prop",
+   "model": "ten_rod",
+   "at": [
+    -1.45,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u0",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u1",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    0.15,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u2",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    0.3,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u3",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    0.45,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u4",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    0.6,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u5",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    0.75,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u6",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    0.9,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u7",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    1.05,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u8",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    1.2,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u9",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -1,
+    1.35,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u10",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -0.7,
+    0,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "u11",
+   "kind": "prop",
+   "model": "ten_unit",
+   "at": [
+    -0.7,
+    0.15,
+    0.3
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "lab_t",
+   "kind": "letter",
+   "text": "tens",
+   "color": "blue",
+   "at": [
+    -2.45,
+    1.75,
+    0.3
+   ],
+   "size": 0.3,
+   "depth": 0.1
+  },
+  {
+   "id": "lab_o",
+   "kind": "letter",
+   "text": "ones",
+   "color": "orange",
+   "at": [
+    -0.85,
+    1.75,
+    0.3
+   ],
+   "size": 0.3,
+   "depth": 0.1
+  },
+  {
+   "id": "step1",
+   "kind": "shape",
+   "shape": "box",
+   "color": "gold",
+   "at": [
+    0,
+    0,
+    -0.4
+   ],
+   "size": 1,
+   "scale": [
+    1.1,
+    0.9,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step2",
+   "kind": "shape",
+   "shape": "box",
+   "color": "grey",
+   "at": [
+    -1.2,
+    0,
+    -0.4
+   ],
+   "size": 1,
+   "scale": [
+    1.1,
+    0.6,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "step3",
+   "kind": "shape",
+   "shape": "box",
+   "color": "orange",
+   "at": [
+    1.2,
+    0,
+    -0.4
+   ],
+   "size": 1,
+   "scale": [
+    1.1,
+    0.4,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "party",
+   "kind": "confetti",
+   "count": 220,
+   "area": [
+    10,
+    4
+   ],
+   "height": 7
+  },
+  {
+   "id": "p1_a1",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p1_a0",
+   "kind": "letter",
+   "text": "4",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p1_op",
+   "kind": "letter",
+   "text": "+",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p1_b1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p1_b0",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p1_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p1_s1",
+   "kind": "letter",
+   "text": "5",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p1_s0",
+   "kind": "letter",
+   "text": "9",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_a1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_a0",
+   "kind": "letter",
+   "text": "7",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_op",
+   "kind": "letter",
+   "text": "+",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_b1",
+   "kind": "letter",
+   "text": "1",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_b0",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p2_s1",
+   "kind": "letter",
+   "text": "4",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_s0",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p2_c",
+   "kind": "letter",
+   "text": "1",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p3_a1",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p3_a0",
+   "kind": "letter",
+   "text": "8",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p3_op",
+   "kind": "letter",
+   "text": "+",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p3_b1",
+   "kind": "letter",
+   "text": "4",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p3_b0",
+   "kind": "letter",
+   "text": "6",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p3_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p3_s1",
+   "kind": "letter",
+   "text": "8",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p3_s0",
+   "kind": "letter",
+   "text": "4",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p3_c",
+   "kind": "letter",
+   "text": "1",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p4_a1",
+   "kind": "letter",
+   "text": "5",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p4_a0",
+   "kind": "letter",
+   "text": "9",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p4_op",
+   "kind": "letter",
+   "text": "+",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p4_b1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p4_b0",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p4_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p4_s1",
+   "kind": "letter",
+   "text": "8",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p4_s0",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p4_c",
+   "kind": "letter",
+   "text": "1",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p5_a1",
+   "kind": "letter",
+   "text": "6",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p5_a0",
+   "kind": "letter",
+   "text": "8",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p5_op",
+   "kind": "letter",
+   "text": "+",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p5_b1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p5_b0",
+   "kind": "letter",
+   "text": "7",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p5_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p5_s1",
+   "kind": "letter",
+   "text": "9",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p5_s0",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p5_c",
+   "kind": "letter",
+   "text": "1",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p6_a1",
+   "kind": "letter",
+   "text": "5",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p6_a0",
+   "kind": "letter",
+   "text": "2",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p6_op",
+   "kind": "letter",
+   "text": "−",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p6_b1",
+   "kind": "letter",
+   "text": "1",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p6_b0",
+   "kind": "letter",
+   "text": "7",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p6_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p6_s1",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p6_s0",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p6_n1",
+   "kind": "letter",
+   "text": "4",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p6_n0",
+   "kind": "letter",
+   "text": "12",
+   "color": "red",
+   "at": [
+    3.1,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p7_a1",
+   "kind": "letter",
+   "text": "6",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p7_a0",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p7_op",
+   "kind": "letter",
+   "text": "−",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p7_b1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p7_b0",
+   "kind": "letter",
+   "text": "8",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p7_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p7_s1",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p7_s0",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p7_n1",
+   "kind": "letter",
+   "text": "5",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p7_n0",
+   "kind": "letter",
+   "text": "13",
+   "color": "red",
+   "at": [
+    3.1,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p8_a1",
+   "kind": "letter",
+   "text": "7",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p8_a0",
+   "kind": "letter",
+   "text": "1",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p8_op",
+   "kind": "letter",
+   "text": "−",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p8_b1",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p8_b0",
+   "kind": "letter",
+   "text": "4",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p8_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p8_s1",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p8_s0",
+   "kind": "letter",
+   "text": "7",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p8_n1",
+   "kind": "letter",
+   "text": "6",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p8_n0",
+   "kind": "letter",
+   "text": "11",
+   "color": "red",
+   "at": [
+    3.1,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p9_a1",
+   "kind": "letter",
+   "text": "4",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p9_a0",
+   "kind": "letter",
+   "text": "0",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p9_op",
+   "kind": "letter",
+   "text": "−",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p9_b1",
+   "kind": "letter",
+   "text": "1",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p9_b0",
+   "kind": "letter",
+   "text": "6",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p9_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p9_s1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p9_s0",
+   "kind": "letter",
+   "text": "4",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "p9_n1",
+   "kind": "letter",
+   "text": "3",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "p9_n0",
+   "kind": "letter",
+   "text": "10",
+   "color": "red",
+   "at": [
+    3.1,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "q1_a1",
+   "kind": "letter",
+   "text": "4",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1_a0",
+   "kind": "letter",
+   "text": "6",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1_op",
+   "kind": "letter",
+   "text": "+",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1_b1",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1_b0",
+   "kind": "letter",
+   "text": "7",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q1_s1",
+   "kind": "letter",
+   "text": "8",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1_s0",
+   "kind": "letter",
+   "text": "3",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q1_c",
+   "kind": "letter",
+   "text": "1",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "q2_a1",
+   "kind": "letter",
+   "text": "5",
+   "color": "blue",
+   "at": [
+    2.45,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q2_a0",
+   "kind": "letter",
+   "text": "4",
+   "color": "orange",
+   "at": [
+    3.1,
+    2.05,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q2_op",
+   "kind": "letter",
+   "text": "−",
+   "color": "ink",
+   "at": [
+    1.85,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q2_b1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q2_b0",
+   "kind": "letter",
+   "text": "9",
+   "color": "orange",
+   "at": [
+    3.1,
+    1.3,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q2_line",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "ink",
+   "at": [
+    2.5,
+    1.15,
+    0
+   ],
+   "size": 1,
+   "scale": [
+    1.75,
+    1.25,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "q2_s1",
+   "kind": "letter",
+   "text": "2",
+   "color": "blue",
+   "at": [
+    2.45,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q2_s0",
+   "kind": "letter",
+   "text": "5",
+   "color": "orange",
+   "at": [
+    3.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "q2_n1",
+   "kind": "letter",
+   "text": "4",
+   "color": "red",
+   "at": [
+    2.45,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "q2_n0",
+   "kind": "letter",
+   "text": "14",
+   "color": "red",
+   "at": [
+    3.1,
+    2.8,
+    0
+   ],
+   "size": 0.28,
+   "hidden": true
+  },
+  {
+   "id": "crash12",
+   "kind": "letter",
+   "text": "12",
+   "color": "orange",
+   "at": [
+    3.35,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  },
+  {
+   "id": "crash3",
+   "kind": "letter",
+   "text": "3",
+   "color": "blue",
+   "at": [
+    2.1,
+    0.35,
+    0
+   ],
+   "size": 0.45,
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "start",
+   "title": "Start your engines",
+   "beats": [
+    {
+     "dur": 0.3,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.2,
+        9.2
+       ],
+       "lookAt": [
+        0,
+        0.4,
+        0
+       ],
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Regroup Rally",
+       "style": "title",
+       "dur": 2.4
+      },
+      {
+       "do": "sound",
+       "sound": "windup_click"
+      },
+      {
+       "do": "sound",
+       "sound": "toot",
+       "at": 0.8,
+       "volume": 0.6
+      },
+      {
+       "do": "show",
+       "target": "car_d",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "dog",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Welcome to the Regroup Rally! My remote car is ready.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Woof! My blue car is ready too.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "car_d",
+       "at": 0.8,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.3,
+     "do": [
+      {
+       "do": "pop",
+       "target": "cd3",
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "cd3",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "cd2",
+       "at": 1.1
+      },
+      {
+       "do": "hide",
+       "target": "cd2",
+       "at": 2
+      },
+      {
+       "do": "pop",
+       "target": "cd1",
+       "at": 2.1
+      },
+      {
+       "do": "hide",
+       "target": "cd1",
+       "at": 3
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 0.1,
+       "dur": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 1.1,
+       "dur": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 2.1,
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three, two, one... go!",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "car_d",
+       "points": [
+        [
+         -1.4,
+         0,
+         3.5
+        ],
+        [
+         2.8,
+         0,
+         2.8
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -2,
+         0,
+         -2.6
+        ]
+       ],
+       "at": 1.4,
+       "dur": 3,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.4
+      },
+      {
+       "do": "wiggle",
+       "target": "car_r",
+       "at": 1.5,
+       "deg": 6
+      },
+      {
+       "do": "wiggle",
+       "target": "car_r",
+       "at": 2.4,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oh no! My car won't start. The screen says...",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.2,
+        1.4,
+        7.6
+       ],
+       "lookAt": [
+        0.2,
+        1.05,
+        0
+       ],
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Add 27 plus 15 to unlock the fuel!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p2_a1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p2_a0",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "p2_op",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p2_b1",
+       "at": 1.1
+      },
+      {
+       "do": "pop",
+       "target": "p2_b0",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "p2_line",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "The other car is already moving. Quick, let's think!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1.5
+      },
+      {
+       "do": "move",
+       "target": "car_r",
+       "to": [
+        -3.2,
+        0,
+        -2.2
+       ],
+       "at": 0.2,
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        1.7,
+        0,
+        -1.6
+       ],
+       "at": 0.2,
+       "dur": 1.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "warmup",
+   "title": "Warm-up lap: no trade",
+   "beats": [
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's warm up with an easier one first. 34 plus 25.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p2_a1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_a0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_op",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_b1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_b0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_line",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_s1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_s0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p2_c",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "p1_a1",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "p1_a0",
+       "at": 1.5
+      },
+      {
+       "do": "pop",
+       "target": "p1_op",
+       "at": 1.8
+      },
+      {
+       "do": "pop",
+       "target": "p1_b1",
+       "at": 1.9
+      },
+      {
+       "do": "pop",
+       "target": "p1_b0",
+       "at": 2
+      },
+      {
+       "do": "show",
+       "target": "p1_line",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Rule one of the rally: always start with the ones.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "ones",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here are 34 and 25 as blocks.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "r0",
+       "to": [
+        -2.95,
+        0,
+        0.3
+       ],
+       "at": 0.4,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r1",
+       "to": [
+        -2.65,
+        0,
+        0.3
+       ],
+       "at": 0.7,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r2",
+       "to": [
+        -2.35,
+        0,
+        0.3
+       ],
+       "at": 1,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "u0",
+       "to": [
+        -1,
+        0,
+        0.3
+       ],
+       "at": 1.4,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u1",
+       "to": [
+        -1,
+        0.15,
+        0.3
+       ],
+       "at": 1.65,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u2",
+       "to": [
+        -1,
+        0.3,
+        0.3
+       ],
+       "at": 1.9,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u3",
+       "to": [
+        -1,
+        0.45,
+        0.3
+       ],
+       "at": 2.15,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "drop",
+       "target": "r3",
+       "to": [
+        -2.05,
+        0,
+        0.3
+       ],
+       "at": 0,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r4",
+       "to": [
+        -1.75,
+        0,
+        0.3
+       ],
+       "at": 0.3,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "u4",
+       "to": [
+        -1,
+        0.6,
+        0.3
+       ],
+       "at": 0.6,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u5",
+       "to": [
+        -1,
+        0.75,
+        0.3
+       ],
+       "at": 0.85,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u6",
+       "to": [
+        -1,
+        0.9,
+        0.3
+       ],
+       "at": 1.1,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u7",
+       "to": [
+        -1,
+        1.05,
+        0.3
+       ],
+       "at": 1.35,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u8",
+       "to": [
+        -1,
+        1.2,
+        0.3
+       ],
+       "at": 1.6,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Tens are tall rods. Ones are little cubes.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "r0",
+       "at": 0.5,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "u0",
+       "at": 1.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones first. 4 plus 5 is 9.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "p1_a0",
+       "at": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "p1_b0",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "p1_s0",
+       "at": 2.2,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Nine cubes. That's fine, nine fits in the ones place.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why start with the ones and not the tens?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "If the ones make ten or more, the tens get a new ten!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now the tens. 3 tens plus 2 tens is 5 tens.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p1_s1",
+       "at": 2.6,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "34 plus 25 is 59. No trade needed!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "59",
+       "style": "label",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Easy. Now for the real fuel puzzle.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "booth",
+   "title": "Checkpoint 1: the Trade Booth",
+   "beats": [
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Back to 27 plus 15.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p1_a1"
+      },
+      {
+       "do": "hide",
+       "target": "p1_a0"
+      },
+      {
+       "do": "hide",
+       "target": "p1_op"
+      },
+      {
+       "do": "hide",
+       "target": "p1_b1"
+      },
+      {
+       "do": "hide",
+       "target": "p1_b0"
+      },
+      {
+       "do": "hide",
+       "target": "p1_line"
+      },
+      {
+       "do": "hide",
+       "target": "p1_s1"
+      },
+      {
+       "do": "hide",
+       "target": "p1_s0"
+      },
+      {
+       "do": "hide",
+       "target": "r0"
+      },
+      {
+       "do": "hide",
+       "target": "r1"
+      },
+      {
+       "do": "hide",
+       "target": "r2"
+      },
+      {
+       "do": "hide",
+       "target": "r3"
+      },
+      {
+       "do": "hide",
+       "target": "r4"
+      },
+      {
+       "do": "hide",
+       "target": "r5"
+      },
+      {
+       "do": "hide",
+       "target": "u0"
+      },
+      {
+       "do": "hide",
+       "target": "u1"
+      },
+      {
+       "do": "hide",
+       "target": "u2"
+      },
+      {
+       "do": "hide",
+       "target": "u3"
+      },
+      {
+       "do": "hide",
+       "target": "u4"
+      },
+      {
+       "do": "hide",
+       "target": "u5"
+      },
+      {
+       "do": "hide",
+       "target": "u6"
+      },
+      {
+       "do": "hide",
+       "target": "u7"
+      },
+      {
+       "do": "hide",
+       "target": "u8"
+      },
+      {
+       "do": "hide",
+       "target": "u9"
+      },
+      {
+       "do": "hide",
+       "target": "u10"
+      },
+      {
+       "do": "hide",
+       "target": "u11"
+      },
+      {
+       "do": "pop",
+       "target": "p2_a1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p2_a0",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "p2_op",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p2_b1",
+       "at": 1.1
+      },
+      {
+       "do": "pop",
+       "target": "p2_b0",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "p2_line",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "27 is 2 tens and 7 ones.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "r0",
+       "to": [
+        -2.95,
+        0,
+        0.3
+       ],
+       "at": 0.3,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r1",
+       "to": [
+        -2.65,
+        0,
+        0.3
+       ],
+       "at": 0.6,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "u0",
+       "to": [
+        -1,
+        0,
+        0.3
+       ],
+       "at": 0.9,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u1",
+       "to": [
+        -1,
+        0.15,
+        0.3
+       ],
+       "at": 1.1,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u2",
+       "to": [
+        -1,
+        0.3,
+        0.3
+       ],
+       "at": 1.3,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u3",
+       "to": [
+        -1,
+        0.45,
+        0.3
+       ],
+       "at": 1.5,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u4",
+       "to": [
+        -1,
+        0.6,
+        0.3
+       ],
+       "at": 1.7,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u5",
+       "to": [
+        -1,
+        0.75,
+        0.3
+       ],
+       "at": 1.9,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u6",
+       "to": [
+        -1,
+        0.9,
+        0.3
+       ],
+       "at": 2.1,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "15 is 1 ten and 5 ones.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "r2",
+       "to": [
+        -2.35,
+        0,
+        0.3
+       ],
+       "at": 0.3,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "u7",
+       "to": [
+        -1,
+        1.05,
+        0.3
+       ],
+       "at": 0.9,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u8",
+       "to": [
+        -1,
+        1.2,
+        0.3
+       ],
+       "at": 1.1,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u9",
+       "to": [
+        -1,
+        1.35,
+        0.3
+       ],
+       "at": 1.3,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u10",
+       "to": [
+        -0.7,
+        0,
+        0.3
+       ],
+       "at": 1.5,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u11",
+       "to": [
+        -0.7,
+        0.15,
+        0.3
+       ],
+       "at": 1.7,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones first. 7 plus 5 is...?",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "p2_a0",
+       "at": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "p2_b0",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "12! Count the cubes with me.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.41,
+     "do": [
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u0",
+       "at": 0,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 0.36,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u1",
+       "at": 0.36,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 0.72,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u2",
+       "at": 0.72,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 1.08,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u3",
+       "at": 1.08,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 1.44,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u4",
+       "at": 1.44,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "6",
+       "style": "count",
+       "at": 1.7999999999999998,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u5",
+       "at": 1.7999999999999998,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "7",
+       "style": "count",
+       "at": 2.16,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u6",
+       "at": 2.16,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "8",
+       "style": "count",
+       "at": 2.52,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u7",
+       "at": 2.52,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "9",
+       "style": "count",
+       "at": 2.88,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u8",
+       "at": 2.88,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 3.2399999999999998,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u9",
+       "at": 3.2399999999999998,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "11",
+       "style": "count",
+       "at": 3.5999999999999996,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u10",
+       "at": 3.5999999999999996,
+       "height": 0.15,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "12",
+       "style": "count",
+       "at": 3.96,
+       "dur": 0.36
+      },
+      {
+       "do": "hop",
+       "target": "u11",
+       "at": 3.96,
+       "height": 0.15,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "But 12 can't fit in the ones place. It's two digits!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Right! Only 0 to 9 fit in a place.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "0 to 9",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "So when we have 10 ones, we go to the Trade Booth!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.6,
+        2,
+        6.8
+       ],
+       "lookAt": [
+        -0.6,
+        0.7,
+        -0.4
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "wiggle",
+       "target": "booth",
+       "at": 1.8,
+       "deg": 5
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oink! Ten ones in, one ten out!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.3,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 4,
+     "do": [
+      {
+       "do": "move",
+       "target": "u0",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u0",
+       "at": 0.5,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u1",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.12,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u1",
+       "at": 0.62,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u2",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.24,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u2",
+       "at": 0.74,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u3",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.36,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u3",
+       "at": 0.86,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u4",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.48,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u4",
+       "at": 0.98,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u5",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.6,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u5",
+       "at": 1.1,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u6",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.72,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u6",
+       "at": 1.22,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u7",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.84,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u7",
+       "at": 1.3399999999999999,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u8",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 0.96,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u8",
+       "at": 1.46,
+       "dur": 0.2
+      },
+      {
+       "do": "move",
+       "target": "u9",
+       "to": [
+        0.35,
+        0.6,
+        -0.9
+       ],
+       "at": 1.08,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u9",
+       "at": 1.58,
+       "dur": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.9
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 1.8
+      },
+      {
+       "do": "drop",
+       "target": "r3",
+       "to": [
+        0.35,
+        0,
+        -0.1
+       ],
+       "at": 2,
+       "height": 1.2,
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "r3",
+       "to": [
+        -2.05,
+        0,
+        0.3
+       ],
+       "at": 2.7,
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "u10",
+       "to": [
+        -1,
+        0,
+        0.3
+       ],
+       "at": 2.6,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "u11",
+       "to": [
+        -1,
+        0.15,
+        0.3
+       ],
+       "at": 2.7,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "When I say ten ones, you say trade for a ten!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ten ones!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "Trade for a ten! Great!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "We traded 10 ones for 1 ten. That's called regrouping.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "regroup",
+       "style": "label",
+       "at": 2.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.2,
+        1.4,
+        7.6
+       ],
+       "lookAt": [
+        0.2,
+        1.05,
+        0
+       ],
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "2 ones stay in the ones place. Write 2.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p2_s0",
+       "at": 1.4,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "The new ten rides up to the tens. We carry the 1.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p2_c",
+       "at": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now the tens. 2 plus 1, plus the carried 1, makes 4.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "p2_c",
+       "at": 2.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "pop",
+       "target": "p2_s1",
+       "at": 0.1,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "4 tens and 2 ones. 27 plus 15 is 42!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "r0",
+       "at": 0.4,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "r3",
+       "at": 0.6,
+       "height": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "42",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why do we carry the 1? Why not keep 12 ones?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Because 10 ones is the same as 1 ten.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same amount, new shape.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: we use only ten digits,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "0 to 9. So we trade at ten!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.71,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fuel unlocked!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.3
+      }
+     ]
+    }
+   ],
+   "musicGain": 0.14
+  },
+  {
+   "id": "crash",
+   "title": "Robo's crash",
+   "beats": [
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wait, let me write it my way first. 7 plus 5 is 12.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p2_a1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_a0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_op",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_b1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_b0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_line",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_s1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_s0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_c",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "r0"
+      },
+      {
+       "do": "hide",
+       "target": "r1"
+      },
+      {
+       "do": "hide",
+       "target": "r2"
+      },
+      {
+       "do": "hide",
+       "target": "r3"
+      },
+      {
+       "do": "hide",
+       "target": "r4"
+      },
+      {
+       "do": "hide",
+       "target": "r5"
+      },
+      {
+       "do": "hide",
+       "target": "u0"
+      },
+      {
+       "do": "hide",
+       "target": "u1"
+      },
+      {
+       "do": "hide",
+       "target": "u2"
+      },
+      {
+       "do": "hide",
+       "target": "u3"
+      },
+      {
+       "do": "hide",
+       "target": "u4"
+      },
+      {
+       "do": "hide",
+       "target": "u5"
+      },
+      {
+       "do": "hide",
+       "target": "u6"
+      },
+      {
+       "do": "hide",
+       "target": "u7"
+      },
+      {
+       "do": "hide",
+       "target": "u8"
+      },
+      {
+       "do": "hide",
+       "target": "u9"
+      },
+      {
+       "do": "hide",
+       "target": "u10"
+      },
+      {
+       "do": "hide",
+       "target": "u11"
+      },
+      {
+       "do": "pop",
+       "target": "p2_a1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p2_a0",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "p2_op",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p2_b1",
+       "at": 1.1
+      },
+      {
+       "do": "pop",
+       "target": "p2_b0",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "p2_line",
+       "at": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "p2_c",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "I write 12 under the ones, then 3 for the tens.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "crash12",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "crash3",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "So the answer is 312!",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "car_r",
+       "points": [
+        [
+         -3.2,
+         0,
+         -2.2
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -3.2,
+         0,
+         -2.2
+        ]
+       ],
+       "at": 1,
+       "dur": 2.2,
+       "face": true
+      },
+      {
+       "do": "spin",
+       "target": "car_r",
+       "at": 1.4,
+       "turns": 2,
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.1
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Too big! 27 is less than 30, and 15 is less than 20.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "So the answer must be less than 50. 312 is way too big.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "You're right. I put the whole 12 in the ones place.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "crash3",
+       "at": 1.4
+      },
+      {
+       "do": "wiggle",
+       "target": "crash12",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Only the 2 stays. The 10 goes to the tens as 1 ten.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "crash12",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p2_s0",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p2_c",
+       "at": 2.4
+      },
+      {
+       "do": "pop",
+       "target": "p2_s1",
+       "at": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Estimate first. About 30 plus 15 is 45. 42 is close. Good.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    }
+   ],
+   "musicGain": 0.14
+  },
+  {
+   "id": "checkpoints",
+   "title": "Checkpoints 2 and 3",
+   "beats": [
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hands on your wheels, everyone! Steer to checkpoint 2!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.2,
+        9.2
+       ],
+       "lookAt": [
+        0,
+        0.4,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "path",
+       "target": "car_r",
+       "points": [
+        [
+         -3.2,
+         0,
+         -2.2
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -3.2,
+         0,
+         -2.2
+        ]
+       ],
+       "at": 1.2,
+       "dur": 3,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "Checkpoint 2! 38 plus 46.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.2,
+        1.4,
+        7.6
+       ],
+       "lookAt": [
+        0.2,
+        1.05,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "hide",
+       "target": "p2_a1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_a0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_op",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_b1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_b0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_line",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_s1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_s0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p2_c",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "p3_a1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p3_a0",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "p3_op",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p3_b1",
+       "at": 1.1
+      },
+      {
+       "do": "pop",
+       "target": "p3_b0",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "p3_line",
+       "at": 1.4
+      },
+      {
+       "do": "path",
+       "target": "car_r",
+       "points": [
+        [
+         -3.2,
+         0,
+         -2.2
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -3.2,
+         0,
+         -2.2
+        ]
+       ],
+       "at": 0.4,
+       "dur": 2.6,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones first. 8 plus 6 is...?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "14! Do we need a trade?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! 14 is 10 ones and 4 more. Write 4, carry 1 ten.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p3_s0",
+       "at": 2.2,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "p3_c",
+       "at": 3
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 3
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hold on. Why do we carry a 1, and not a 10?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "The 1 sits in the tens place, so it means 1 ten. That's 10!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "p3_c",
+       "at": 1.6,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Tens: 3 plus 4 plus the carried 1 is 8.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p3_s1",
+       "at": 2.6,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "38 plus 46 is 84!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "84",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check: about 40 plus 45 is 85. 84 is close. Yes.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "Checkpoint 3! 59 plus 23.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p3_a1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_a0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_op",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_b1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_b0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_line",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_s1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_s0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p3_c",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "p4_a1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p4_a0",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "p4_op",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p4_b1",
+       "at": 1.1
+      },
+      {
+       "do": "pop",
+       "target": "p4_b0",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "p4_line",
+       "at": 1.4
+      },
+      {
+       "do": "path",
+       "target": "car_r",
+       "points": [
+        [
+         -3.2,
+         0,
+         -2.2
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -3.2,
+         0,
+         -2.2
+        ]
+       ],
+       "at": 0.4,
+       "dur": 2.6,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Can I do the ones? 9 plus 3 is...?",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "12! Ten ones go to the Trade Booth. Write 2, carry 1.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p4_s0",
+       "at": 2.6,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "p4_c",
+       "at": 3.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 3.2
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Tens: 5 plus 2 plus 1 is 8.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p4_s1",
+       "at": 2,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "59 plus 23 is 82!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "82",
+       "style": "label",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check: about 60 plus 20 is 80. 82 is close. Good driving.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three checkpoints done. Remember:",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p4_a1",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_a0",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_op",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_b1",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_b0",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_line",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_s1",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_s0",
+       "at": 2.6
+      },
+      {
+       "do": "hide",
+       "target": "p4_c",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "start with the ones every time!",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Trade Booth chant",
+   "beats": [
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Drive with your hands on the wheel and chant with me!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p4_a1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_a0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_op",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_b1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_b0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_line",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_s1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_s0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p4_c",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.2,
+        9.2
+       ],
+       "lookAt": [
+        0,
+        0.4,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Vroom! Ten in the ones? Pit stop, swap!",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "car_r",
+       "points": [
+        [
+         -3.2,
+         0,
+         -2.2
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -3.2,
+         0,
+         -2.2
+        ]
+       ],
+       "at": 0.2,
+       "dur": 3.2,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.6,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "One ten up to the top!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Vroom! Ten in the ones? Pit stop, swap!",
+       "caption": true
+      },
+      {
+       "do": "path",
+       "target": "car_d",
+       "points": [
+        [
+         -2,
+         0,
+         -2.6
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -2,
+         0,
+         -2.6
+        ]
+       ],
+       "at": 0.2,
+       "dur": 3.2,
+       "face": true
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 1.6,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "One ten up to the top!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones go first, tens go next. Carry the ten, you're the best!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "pig",
+       "at": 2.2,
+       "height": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 3.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reverse",
+   "title": "Reverse lap: subtracting",
+   "beats": [
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now the reverse lap! We give fuel away. 52 take away 17.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.56,
+     "do": [
+      {
+       "do": "say",
+       "text": "52 is 5 tens and 2 ones.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.2,
+        1.4,
+        7.6
+       ],
+       "lookAt": [
+        0.2,
+        1.05,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "p6_a1",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "p6_a0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "p6_op",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "p6_b1",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "p6_b0",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "p6_line",
+       "at": 1.2
+      },
+      {
+       "do": "drop",
+       "target": "r0",
+       "to": [
+        -2.95,
+        0,
+        0.3
+       ],
+       "at": 1,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r1",
+       "to": [
+        -2.65,
+        0,
+        0.3
+       ],
+       "at": 1.2,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r2",
+       "to": [
+        -2.35,
+        0,
+        0.3
+       ],
+       "at": 1.4,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r3",
+       "to": [
+        -2.05,
+        0,
+        0.3
+       ],
+       "at": 1.6,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "r4",
+       "to": [
+        -1.75,
+        0,
+        0.3
+       ],
+       "at": 1.8,
+       "height": 2.5,
+       "dur": 0.7
+      },
+      {
+       "do": "drop",
+       "target": "u0",
+       "to": [
+        -1,
+        0,
+        0.3
+       ],
+       "at": 2.2,
+       "height": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "drop",
+       "target": "u1",
+       "to": [
+        -1,
+        0.15,
+        0.3
+       ],
+       "at": 2.45,
+       "height": 2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones first. 2 take away 7?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "You can't take 7 cubes from 2 cubes.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "There are not enough ones here, so we trade.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Open one ten into 10 ones at the Trade Booth!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "r4",
+       "to": [
+        0.35,
+        0,
+        -0.6000000000000001
+       ],
+       "at": 1,
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "r4",
+       "at": 1.8
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 1.8
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.9
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "drop",
+       "target": "u2",
+       "to": [
+        -1,
+        0.3,
+        0.3
+       ],
+       "at": 0,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u3",
+       "to": [
+        -1,
+        0.45,
+        0.3
+       ],
+       "at": 0.25,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u4",
+       "to": [
+        -1,
+        0.6,
+        0.3
+       ],
+       "at": 0.5,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u5",
+       "to": [
+        -1,
+        0.75,
+        0.3
+       ],
+       "at": 0.75,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u6",
+       "to": [
+        -1,
+        0.9,
+        0.3
+       ],
+       "at": 1,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u7",
+       "to": [
+        -1,
+        1.05,
+        0.3
+       ],
+       "at": 1.25,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u8",
+       "to": [
+        -1,
+        1.2,
+        0.3
+       ],
+       "at": 1.5,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u9",
+       "to": [
+        -1,
+        1.35,
+        0.3
+       ],
+       "at": 1.75,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u10",
+       "to": [
+        -0.7,
+        0,
+        0.3
+       ],
+       "at": 2,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u11",
+       "to": [
+        -0.7,
+        0.15,
+        0.3
+       ],
+       "at": 2.25,
+       "height": 1.5,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "p6_n1",
+       "at": 2.6
+      },
+      {
+       "do": "pop",
+       "target": "p6_n0",
+       "at": 2.8
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "It's still 52. Just a new shape: 4 tens and 12 ones.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "This trade is regrouping too. Some people call it borrowing.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "regroup",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now 12 take away 7 is 5. Write 5.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "u5",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 0.8,
+       "dur": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "u5",
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "u6",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 0.95,
+       "dur": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "u6",
+       "at": 1.35
+      },
+      {
+       "do": "move",
+       "target": "u7",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 1.1,
+       "dur": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "u7",
+       "at": 1.5
+      },
+      {
+       "do": "move",
+       "target": "u8",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 1.25,
+       "dur": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "u8",
+       "at": 1.65
+      },
+      {
+       "do": "move",
+       "target": "u9",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 1.4,
+       "dur": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "u9",
+       "at": 1.8
+      },
+      {
+       "do": "move",
+       "target": "u10",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 1.55,
+       "dur": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "u10",
+       "at": 1.95
+      },
+      {
+       "do": "move",
+       "target": "u11",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 1.7,
+       "dur": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "u11",
+       "at": 2.1
+      },
+      {
+       "do": "pop",
+       "target": "p6_s0",
+       "at": 2.8,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Tens: 4 take away 1 is 3. Write 3.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "r3",
+       "to": [
+        1.3,
+        0.3,
+        1.2
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "r3",
+       "at": 1.3
+      },
+      {
+       "do": "pop",
+       "target": "p6_s1",
+       "at": 2.4,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "52 take away 17 is 35!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "35",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: you can always check a take-away by adding back.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "35 plus 17. 5 plus 7 is 12, carry 1. 3 plus 1 plus 1 is 5.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "52! It matches, so 35 is right!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Your turn. 63 take away 28.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p6_a1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_a0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_op",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_b1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_b0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_line",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_s1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_s0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_n1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p6_n0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "r0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "r1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "r2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "r3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "r4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "r5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u6",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u7",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u8",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u9",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u10",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "u11",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "p7_a1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p7_a0",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "p7_op",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p7_b1",
+       "at": 1.1
+      },
+      {
+       "do": "pop",
+       "target": "p7_b0",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "p7_line",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ones first. 3 take away 8. Do we trade?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! 6 tens become 5 tens and 13 ones.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p7_n1",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "p7_n0",
+       "at": 1.4
+      },
+      {
+       "do": "nod",
+       "target": "pig",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "13 take away 8 is 5. Then 5 take away 2 is 3.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p7_s0",
+       "at": 1.6,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "p7_s1",
+       "at": 3.4,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "63 take away 28 is 35.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "35",
+       "style": "label",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check: 35 plus 28 is 63. Yes!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Look! Both answers were 35. Different problems, same answer!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "When there are not enough ones, we trade a ten. Got it!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 2.4
+      }
+     ]
+    }
+   ],
+   "musicGain": 0.14
+  },
+  {
+   "id": "final",
+   "title": "Challenge: the final lap",
+   "beats": [
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "Final lap! Three problems against the clock.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p7_a1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_a0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_op",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_b1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_b0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_line",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_s1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_s0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_n1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p7_n0",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.3,
+        1.4,
+        7.8
+       ],
+       "lookAt": [
+        0.3,
+        1.05,
+        0
+       ],
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "You get five seconds to think each time. Ready?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "First: 68 plus 27. Ones first!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p5_a1",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "p5_a0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "p5_op",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "p5_b1",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "p5_b0",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "p5_line",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 5.2,
+     "do": [
+      {
+       "do": "pop",
+       "target": "tm5",
+       "at": 0,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm5",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "tm4",
+       "at": 1,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm4",
+       "at": 1.9
+      },
+      {
+       "do": "pop",
+       "target": "tm3",
+       "at": 2,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm3",
+       "at": 2.9
+      },
+      {
+       "do": "pop",
+       "target": "tm2",
+       "at": 3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm2",
+       "at": 3.9
+      },
+      {
+       "do": "pop",
+       "target": "tm1",
+       "at": 4,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm1",
+       "at": 4.9
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "8 plus 7 is 15. Write 5, carry 1.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p5_s0",
+       "at": 1.4,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "p5_c",
+       "at": 2.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "6 plus 2 plus 1 is 9. 95!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p5_s1",
+       "at": 1.4,
+       "sound": "ding"
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "About 70 plus 25 is 95. Spot on.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "Next: 71 take away 34.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p5_a1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_a0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_op",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_b1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_b0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_line",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_s1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_s0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p5_c",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "p8_a1",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "p8_a0",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p8_op",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "p8_b1",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p8_b0",
+       "at": 1.1
+      },
+      {
+       "do": "show",
+       "target": "p8_line",
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 5.2,
+     "do": [
+      {
+       "do": "pop",
+       "target": "tm5",
+       "at": 0,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm5",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "tm4",
+       "at": 1,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm4",
+       "at": 1.9
+      },
+      {
+       "do": "pop",
+       "target": "tm3",
+       "at": 2,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm3",
+       "at": 2.9
+      },
+      {
+       "do": "pop",
+       "target": "tm2",
+       "at": 3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm2",
+       "at": 3.9
+      },
+      {
+       "do": "pop",
+       "target": "tm1",
+       "at": 4,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm1",
+       "at": 4.9
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "1 take away 4? Trade! 11 take away 4 is 7.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p8_n1",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p8_n0",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "p8_s0",
+       "at": 2.6,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "6 take away 3 is 3. The answer is 37.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p8_s1",
+       "at": 1.4,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check: 37 plus 34 is 71. Yes.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Last one: 40 take away 16.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p8_a1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_a0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_op",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_b1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_b0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_line",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_s1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_s0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_n1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "p8_n0",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "p9_a1",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "p9_a0",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "p9_op",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "p9_b1",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p9_b0",
+       "at": 1.1
+      },
+      {
+       "do": "show",
+       "target": "p9_line",
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 5.2,
+     "do": [
+      {
+       "do": "pop",
+       "target": "tm5",
+       "at": 0,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm5",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "tm4",
+       "at": 1,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm4",
+       "at": 1.9
+      },
+      {
+       "do": "pop",
+       "target": "tm3",
+       "at": 2,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm3",
+       "at": 2.9
+      },
+      {
+       "do": "pop",
+       "target": "tm2",
+       "at": 3,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm2",
+       "at": 3.9
+      },
+      {
+       "do": "pop",
+       "target": "tm1",
+       "at": 4,
+       "sound": "tick"
+      },
+      {
+       "do": "hide",
+       "target": "tm1",
+       "at": 4.9
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "0 take away 6? Trade! 10 take away 6 is 4.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p9_n1",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "p9_n0",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "p9_s0",
+       "at": 2.6,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "3 take away 1 is 2. The answer is 24!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p9_s1",
+       "at": 1.4,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Check: 24 plus 16 is 40. We did it!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Finish line!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p9_a1",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_a0",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_op",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_b1",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_b0",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_line",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_s1",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_s0",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_n1",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "p9_n0",
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.2,
+        9.2
+       ],
+       "lookAt": [
+        0,
+        0.4,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "path",
+       "target": "car_r",
+       "points": [
+        [
+         -3.2,
+         0,
+         -2.2
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -3.2,
+         0,
+         -2.2
+        ]
+       ],
+       "at": 0.3,
+       "dur": 2.8,
+       "face": true
+      },
+      {
+       "do": "path",
+       "target": "car_d",
+       "points": [
+        [
+         -2,
+         0,
+         -2.6
+        ],
+        [
+         -4.2,
+         0,
+         0.4
+        ],
+        [
+         -2.8,
+         0,
+         2.6
+        ],
+        [
+         2.8,
+         0,
+         2.6
+        ],
+        [
+         4.4,
+         0,
+         0.4
+        ],
+        [
+         2.6,
+         0,
+         -2.4
+        ],
+        [
+         -2,
+         0,
+         -2.6
+        ]
+       ],
+       "at": 0.6,
+       "dur": 2.8,
+       "face": true
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "podium",
+   "title": "Podium and quiz",
+   "beats": [
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "To the podium! Then a quick quiz.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "lab_t"
+      },
+      {
+       "do": "hide",
+       "target": "lab_o"
+      },
+      {
+       "do": "drop",
+       "target": "step2",
+       "to": [
+        -1.2,
+        0,
+        -0.4
+       ],
+       "at": 0.3,
+       "height": 2
+      },
+      {
+       "do": "drop",
+       "target": "step1",
+       "to": [
+        0,
+        0,
+        -0.4
+       ],
+       "at": 0.6,
+       "height": 2
+      },
+      {
+       "do": "drop",
+       "target": "step3",
+       "to": [
+        1.2,
+        0,
+        -0.4
+       ],
+       "at": 0.9,
+       "height": 2
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -1.2,
+        0.6,
+        -0.4
+       ],
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "cat",
+       "to": [
+        1.2,
+        0.4,
+        -0.4
+       ],
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        0,
+        0.9,
+        -0.4
+       ],
+       "at": 1.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.6,
+        7.2
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "46 plus 37 is...?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "q1_a1",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "q1_a0",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "q1_op",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "q1_b1",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "q1_b0",
+       "at": 0.9
+      },
+      {
+       "do": "show",
+       "target": "q1_line",
+       "at": 1.1
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "83! 6 plus 7 is 13. Write 3, carry 1. 4 plus 3 plus 1 is 8.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "q1_s0",
+       "at": 1.2,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "q1_c",
+       "at": 2.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2.4
+      },
+      {
+       "do": "pop",
+       "target": "q1_s1",
+       "at": 3.6,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "54 take away 29 is...?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q1_a1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_a0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_op",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_b1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_b0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_line",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_s1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_s0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "q1_c",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "q2_a1",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "q2_a0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "q2_op",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "q2_b1",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "q2_b0",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "q2_line",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "25! 14 take away 9 is 5. 4 take away 2 is 2.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "q2_n1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "q2_n0",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "q2_s0",
+       "at": 1.6,
+       "sound": "ding"
+      },
+      {
+       "do": "pop",
+       "target": "q2_s1",
+       "at": 3,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why do we trade 10 ones?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "q2_a1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_a0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_op",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_b1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_b0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_line",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_s1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_s0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_n1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "q2_n0",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "10 ones make 1 ten, and only 0 to 9 fit in the ones place.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is 35 plus 17 a good check for 52 take away 17?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! Adding back gives 52.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "victory",
+   "title": "Victory lap",
+   "beats": [
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Everyone wins the Regroup Rally!",
+       "caption": true
+      },
+      {
+       "do": "burst",
+       "target": "party",
+       "at": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.3,
+       "volume": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Try 46 plus 18 at home with pasta pieces. Bye!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

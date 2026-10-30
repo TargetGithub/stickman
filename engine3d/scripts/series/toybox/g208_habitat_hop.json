@@ -1,0 +1,3903 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Frog wakes up in the desert! Hop through the desert, the Arctic, a forest and the ocean to find Frog's pond, and learn the four things every habitat gives.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Habitat Hop",
+  "episode": "g208",
+  "seed": 208,
+  "music": "playful",
+  "musicGain": 0.22,
+  "skills": [
+   "habitats_2"
+  ],
+  "youtube": {
+   "title": "Habitat Hop! Animal Homes for Kids: Desert, Arctic, Forest, Ocean, Pond | Toy Box Friends",
+   "description": "Frog wakes up on hot sand: this isn't home! Ride the Habitat Hopper through the desert, the Arctic, a forest and the ocean, and find out why each one is wrong for Frog.\nMeet a desert hare with big ears, a polar bear and its brown bear cousin, fish with gills, and finally Frog's pond. Every habitat gives food, water, shelter and space.\nTry at home: make a habitat in a shoebox.",
+   "tags": [
+    "habitats for kids",
+    "animal habitats",
+    "desert animals",
+    "arctic animals",
+    "forest animals",
+    "ocean animals",
+    "pond life",
+    "grade 2 science",
+    "animal adaptations",
+    "2nd grade science",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnail": {
+   "scene": "lost",
+   "at": 1.3
+  }
+ },
+ "stage": {
+  "preset": "desert"
+ },
+ "camera": {
+  "position": [
+   0,
+   1.8,
+   8.4
+  ],
+  "lookAt": [
+   0,
+   1,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.6,
+    0,
+    1.6
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    3.7,
+    0,
+    1.6
+   ],
+   "size": 0.9,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "frog",
+   "kind": "critter",
+   "species": "frog",
+   "at": [
+    0,
+    0,
+    1.9
+   ],
+   "size": 0.75,
+   "feeling": "sleepy"
+  },
+  {
+   "id": "hopper",
+   "kind": "shape",
+   "shape": "torus",
+   "color": "gold",
+   "at": [
+    1.6,
+    0.02,
+    1.8
+   ],
+   "size": 1.2,
+   "material": "glow",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sun",
+   "kind": "prop",
+   "model": "sun",
+   "at": [
+    -3,
+    3.8,
+    -2.5
+   ],
+   "size": 0.9
+  },
+  {
+   "id": "cactus1",
+   "kind": "prop",
+   "model": "cactus",
+   "at": [
+    -2.2,
+    0,
+    -1.6
+   ],
+   "size": 1.3
+  },
+  {
+   "id": "cactus2",
+   "kind": "prop",
+   "model": "cactus",
+   "at": [
+    2.6,
+    0,
+    -2.2
+   ],
+   "size": 1
+  },
+  {
+   "id": "rock1",
+   "kind": "prop",
+   "model": "rock",
+   "at": [
+    0.6,
+    0,
+    -1.2
+   ],
+   "size": 1.4
+  },
+  {
+   "id": "camel",
+   "kind": "critter",
+   "species": "camel",
+   "at": [
+    -0.6,
+    0,
+    -2.6
+   ],
+   "size": 1.3,
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "hare",
+   "kind": "critter",
+   "species": "bunny",
+   "at": [
+    2.1,
+    0,
+    -0.6
+   ],
+   "size": 0.8,
+   "color": "sand"
+  },
+  {
+   "id": "ice1",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "white",
+   "at": [
+    -2.4,
+    0,
+    -1.6
+   ],
+   "size": 0.9,
+   "material": "ice",
+   "hidden": true
+  },
+  {
+   "id": "ice2",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "white",
+   "at": [
+    2.8,
+    0,
+    -2
+   ],
+   "size": 0.7,
+   "material": "ice",
+   "hidden": true
+  },
+  {
+   "id": "snowden",
+   "kind": "shape",
+   "shape": "dome",
+   "color": "white",
+   "at": [
+    -0.4,
+    0,
+    -2.4
+   ],
+   "size": 2.4,
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "pbear",
+   "kind": "critter",
+   "species": "bear",
+   "at": [
+    1.2,
+    0,
+    -0.9
+   ],
+   "size": 1.2,
+   "color": "white",
+   "hidden": true
+  },
+  {
+   "id": "tree1",
+   "kind": "prop",
+   "model": "tree",
+   "at": [
+    -2.6,
+    0,
+    -2.2
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "tree2",
+   "kind": "prop",
+   "model": "tree",
+   "at": [
+    2.8,
+    0,
+    -2.6
+   ],
+   "size": 1.7,
+   "hidden": true
+  },
+  {
+   "id": "bush1",
+   "kind": "prop",
+   "model": "bush",
+   "at": [
+    -0.8,
+    0,
+    -2.4
+   ],
+   "size": 1.2,
+   "hidden": true
+  },
+  {
+   "id": "log1",
+   "kind": "prop",
+   "model": "log",
+   "at": [
+    2.2,
+    0,
+    -0.8
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "bbear",
+   "kind": "critter",
+   "species": "bear",
+   "at": [
+    0.9,
+    0,
+    -1.2
+   ],
+   "size": 1.2,
+   "hidden": true
+  },
+  {
+   "id": "squirrel",
+   "kind": "critter",
+   "species": "squirrel",
+   "at": [
+    -2,
+    0,
+    -0.6
+   ],
+   "size": 0.7,
+   "hidden": true
+  },
+  {
+   "id": "berry0",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "purple",
+   "at": [
+    -0.9,
+    0.9,
+    -1.9
+   ],
+   "size": 0.14,
+   "hidden": true
+  },
+  {
+   "id": "berry1",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "purple",
+   "at": [
+    -0.7,
+    0.9,
+    -1.9
+   ],
+   "size": 0.14,
+   "hidden": true
+  },
+  {
+   "id": "berry2",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "purple",
+   "at": [
+    -0.5,
+    0.9,
+    -1.9
+   ],
+   "size": 0.14,
+   "hidden": true
+  },
+  {
+   "id": "wave1",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    -2.6,
+    -0.2,
+    -1.8
+   ],
+   "size": 1.2,
+   "material": "water",
+   "scale": [
+    2,
+    0.4,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "wave2",
+   "kind": "shape",
+   "shape": "sphere",
+   "color": "blue",
+   "at": [
+    2.4,
+    -0.2,
+    -2.2
+   ],
+   "size": 1.2,
+   "material": "water",
+   "scale": [
+    2.4,
+    0.4,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fish1",
+   "kind": "critter",
+   "species": "fish",
+   "at": [
+    -1.2,
+    0.5,
+    -1
+   ],
+   "size": 0.7,
+   "hidden": true
+  },
+  {
+   "id": "fish2",
+   "kind": "critter",
+   "species": "fish",
+   "at": [
+    0.9,
+    0.8,
+    -1.4
+   ],
+   "size": 0.6,
+   "color": "yellow",
+   "hidden": true
+  },
+  {
+   "id": "whale",
+   "kind": "critter",
+   "species": "whale",
+   "at": [
+    0.2,
+    0,
+    -3.4
+   ],
+   "size": 1.6,
+   "hidden": true
+  },
+  {
+   "id": "pond",
+   "kind": "shape",
+   "shape": "disc",
+   "color": "blue",
+   "at": [
+    0.6,
+    0,
+    -0.6
+   ],
+   "size": 3.4,
+   "material": "water",
+   "scale": [
+    1.3,
+    0.4,
+    0.8
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pad1",
+   "kind": "prop",
+   "model": "lily_pad",
+   "at": [
+    -0.2,
+    0.06,
+    -0.4
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "pad2",
+   "kind": "prop",
+   "model": "lily_pad",
+   "at": [
+    1.4,
+    0.06,
+    -0.9
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "reeds",
+   "kind": "prop",
+   "model": "bush",
+   "at": [
+    -2.6,
+    0,
+    -1.6
+   ],
+   "size": 1.2,
+   "color": "leaf",
+   "hidden": true
+  },
+  {
+   "id": "duck",
+   "kind": "critter",
+   "species": "duck",
+   "at": [
+    2.4,
+    0,
+    -0.2
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "pflower",
+   "kind": "prop",
+   "model": "flower",
+   "at": [
+    3,
+    0,
+    -1.8
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "snow",
+   "kind": "weather",
+   "type": "snow",
+   "count": 200,
+   "hidden": true
+  },
+  {
+   "id": "leaves",
+   "kind": "weather",
+   "type": "leaves",
+   "count": 40,
+   "hidden": true
+  },
+  {
+   "id": "need_food",
+   "kind": "letter",
+   "text": "food",
+   "color": "orange",
+   "at": [
+    -3.42,
+    2.6,
+    0.4
+   ],
+   "size": 0.3,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "need_water",
+   "kind": "letter",
+   "text": "water",
+   "color": "blue",
+   "at": [
+    -1.45,
+    2.6,
+    0.4
+   ],
+   "size": 0.3,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "need_shelter",
+   "kind": "letter",
+   "text": "shelter",
+   "color": "brown",
+   "at": [
+    0.91,
+    2.6,
+    0.4
+   ],
+   "size": 0.3,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "need_space",
+   "kind": "letter",
+   "text": "space",
+   "color": "purple",
+   "at": [
+    3.24,
+    2.6,
+    0.4
+   ],
+   "size": 0.3,
+   "depth": 0.08,
+   "hidden": true
+  },
+  {
+   "id": "sign_0",
+   "kind": "letter",
+   "text": "desert",
+   "color": "ink",
+   "at": [
+    0,
+    3.3,
+    -1
+   ],
+   "size": 0.34,
+   "depth": 0.1,
+   "hidden": true
+  },
+  {
+   "id": "sign_1",
+   "kind": "letter",
+   "text": "polar home",
+   "color": "ink",
+   "at": [
+    0,
+    3.3,
+    -1
+   ],
+   "size": 0.34,
+   "depth": 0.1,
+   "hidden": true
+  },
+  {
+   "id": "sign_2",
+   "kind": "letter",
+   "text": "forest",
+   "color": "ink",
+   "at": [
+    0,
+    3.3,
+    -1
+   ],
+   "size": 0.34,
+   "depth": 0.1,
+   "hidden": true
+  },
+  {
+   "id": "sign_3",
+   "kind": "letter",
+   "text": "ocean",
+   "color": "ink",
+   "at": [
+    0,
+    3.3,
+    -1
+   ],
+   "size": 0.34,
+   "depth": 0.1,
+   "hidden": true
+  },
+  {
+   "id": "sign_4",
+   "kind": "letter",
+   "text": "pond",
+   "color": "ink",
+   "at": [
+    0,
+    3.3,
+    -1
+   ],
+   "size": 0.34,
+   "depth": 0.1,
+   "hidden": true
+  },
+  {
+   "id": "bubbles",
+   "kind": "bubbles",
+   "count": 36,
+   "area": [
+    6,
+    3
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "lost",
+   "title": "Frog in the desert",
+   "beats": [
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 0.1
+      },
+      {
+       "do": "lights",
+       "rig": "hot_sun",
+       "dur": 0.1,
+       "background": "sky",
+       "floor": "sand"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Habitat Hop",
+       "style": "title",
+       "dur": 2.6
+      },
+      {
+       "do": "wake",
+       "target": "frog",
+       "at": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "surprised",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "turn",
+       "target": "frog#head",
+       "to": [
+        0,
+        45,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "frog#head",
+       "to": [
+        0,
+        -45,
+        0
+       ],
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "turn",
+       "target": "frog#head",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.6,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "squeak",
+       "at": 0.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hot sand? No pond? This isn't my home!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "worried",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "sign_0",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hold on, Frog! The Habitat Hopper will find your way back.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "hopper",
+       "to": [
+        1.6,
+        0.02,
+        1.8
+       ],
+       "at": 0.8,
+       "height": 3,
+       "sound": "magic_sparkle"
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 1.6
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "And we'll find out why the desert is wrong for you.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Thank you, friends. I'm not hurt, just very puzzled!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "at": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "habitat",
+   "title": "What is a habitat?",
+   "beats": [
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "A habitat is an animal's home.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "sign_0",
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "habitat",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "A habitat can be huge, like an ocean, or small, like a pond.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "Every habitat gives an animal four things.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food to eat.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "need_food",
+       "at": 0.2,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water to drink.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "need_water",
+       "at": 0.2,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Shelter, a safe place to rest and hide.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "need_shelter",
+       "at": 0.2,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "And space to move around and find food.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "need_space",
+       "at": 0.2,
+       "sound": "sparkle"
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "When I say every home needs,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "you say food, water, shelter, space!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Every home needs...?",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "need_food",
+       "at": 0.8,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "need_water",
+       "at": 1.1,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "need_shelter",
+       "at": 1.4,
+       "height": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "need_space",
+       "at": 1.7,
+       "height": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food, water, shelter, space! Great.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "And animals have bodies that fit their homes. Let's check.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "At every stop, I'll tick the four needs on my checklist.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "And you can help. Is each place a good home for Frog?",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "desert",
+   "title": "Hop 1: the desert",
+   "beats": [
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "We're in the desert. It's hot and dry.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "sign_0",
+       "at": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "need_food",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "need_water",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "need_shelter",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "need_space",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.1,
+        1.6,
+        8.2
+       ],
+       "lookAt": [
+        0.1,
+        0.9,
+        -0.6
+       ],
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fan yourself! Phew, it's hot.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.4,
+       "deg": 8
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Desert plants and seeds are food.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "cactus1",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water is very hard to find.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "A cactus stores water in its thick stem.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "cactus2",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Animals rest in burrows and in the shade, out of the sun.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "rock1",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Meet a desert hare. Look at those big ears!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "hare",
+       "at": 0.6
+      },
+      {
+       "do": "nod",
+       "target": "hare",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Big ears let heat out of its body. That keeps it cool.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "hare",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the camel stores fat in its humps for long trips.",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "camel",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is the desert a good home for Frog? What do you think?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why can't Frog live here?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: frogs don't drink with their mouths.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "They soak up water through their skin!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "In the dry desert, Frog's skin would dry out.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "And there's no pond.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "I need water! Next stop, please.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "polar",
+   "title": "Hop 2: the polar home",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "hopper",
+       "at": 0
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 0,
+       "turns": 2,
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "cactus1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "cactus2",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "rock1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "camel",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "hare",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "sign_0",
+       "at": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "overcast",
+       "at": 0.6,
+       "background": "white",
+       "floor": "white",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "ice1",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "ice2",
+       "at": 1.28
+      },
+      {
+       "do": "show",
+       "target": "snowden",
+       "at": 1.3599999999999999
+      },
+      {
+       "do": "show",
+       "target": "pbear",
+       "at": 1.44
+      },
+      {
+       "do": "pop",
+       "target": "sign_1",
+       "at": 1.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.4,
+        1.9,
+        8.8
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 1,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "hopper",
+       "at": 2.2
+      },
+      {
+       "do": "show",
+       "target": "snow",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Brrr! The Arctic, far in the north. Ice and snow everywhere.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.4,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.9,
+       "deg": 6,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "Shiver with Frog! Brrr!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.2,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.7,
+       "deg": 6,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "cat",
+       "at": 0.4,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here lives the polar bear. A cousin of the brown bear.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pbear",
+       "to": [
+        0.9,
+        0,
+        -0.5
+       ],
+       "at": 0.6,
+       "dur": 1.4
+      },
+      {
+       "do": "nod",
+       "target": "pbear",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "My thick fur and a layer of fat keep me warm.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pbear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "pbear",
+       "at": 1,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "My big paws help me walk on snow and ice.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "pbear",
+       "deg": 10,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Polar bears eat fish and seals. They rest in snow dens.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pbear",
+       "to": [
+        -0.4,
+        0,
+        -1.4
+       ],
+       "at": 1,
+       "dur": 1.2
+      },
+      {
+       "do": "sleep",
+       "target": "pbear",
+       "at": 2.4,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: under that white fur, polar bear skin is black!",
+       "caption": true
+      },
+      {
+       "do": "wake",
+       "target": "pbear",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Dark skin helps soak up the sun's warmth.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "pbear",
+       "to": [
+        0.9,
+        0,
+        -0.5
+       ],
+       "at": 0.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is the polar home a good home for Frog?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "And penguins? Do they live here too?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! Penguins live far in the south.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "They never meet polar bears.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "It's much too cold for me. Frogs can't stay active here!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "sad",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forest",
+   "title": "Hop 3: the forest",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "hopper",
+       "at": 0
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 0,
+       "turns": 2,
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "ice1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "ice2",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "snowden",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "pbear",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "sign_1",
+       "at": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.6,
+       "background": "sky",
+       "floor": "leaf",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "tree1",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "tree2",
+       "at": 1.28
+      },
+      {
+       "do": "show",
+       "target": "bush1",
+       "at": 1.3599999999999999
+      },
+      {
+       "do": "show",
+       "target": "log1",
+       "at": 1.44
+      },
+      {
+       "do": "show",
+       "target": "bbear",
+       "at": 1.52
+      },
+      {
+       "do": "show",
+       "target": "squirrel",
+       "at": 1.6
+      },
+      {
+       "do": "show",
+       "target": "berry0",
+       "at": 1.68
+      },
+      {
+       "do": "show",
+       "target": "berry1",
+       "at": 1.76
+      },
+      {
+       "do": "show",
+       "target": "berry2",
+       "at": 1.8399999999999999
+      },
+      {
+       "do": "pop",
+       "target": "sign_2",
+       "at": 1.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.4,
+        1.9,
+        8.8
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 1,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "hopper",
+       "at": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "snow",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "leaves",
+       "at": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "The forest! Lots of trees for shelter.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "tree1",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's the polar bear's cousin, the brown bear.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "bbear",
+       "at": 0.6
+      },
+      {
+       "do": "nod",
+       "target": "bbear",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "I eat berries, nuts, and fish from the stream!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bbear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "berry0",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "berry1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "berry2",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "bbear",
+       "to": [
+        -0.4,
+        0,
+        -1.5
+       ],
+       "at": 1.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "My strong claws help me dig and climb.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bbear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "bbear",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same kind of animal, different bodies for different homes.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "different bodies",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "The squirrel hides nuts and sleeps in a tree.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "squirrel",
+       "at": 0.6
+      },
+      {
+       "do": "wiggle",
+       "target": "squirrel#tail",
+       "at": 1.2,
+       "deg": 25
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is the forest a good home for Frog?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Checklist. Food: berries and nuts. Water: streams.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Shelter: trees and caves. Space:",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "lots. Good home, for the bear.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "Close! But I need my own pond.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ocean",
+   "title": "Hop 4: oops, the ocean",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "hopper",
+       "at": 0
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 0,
+       "turns": 2,
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "tree1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "tree2",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "bush1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "log1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "bbear",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "squirrel",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "berry0",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "berry1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "berry2",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "sign_2",
+       "at": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.6,
+       "background": "sky",
+       "floor": "teal",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "wave1",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "wave2",
+       "at": 1.28
+      },
+      {
+       "do": "show",
+       "target": "fish1",
+       "at": 1.3599999999999999
+      },
+      {
+       "do": "show",
+       "target": "fish2",
+       "at": 1.44
+      },
+      {
+       "do": "show",
+       "target": "whale",
+       "at": 1.52
+      },
+      {
+       "do": "pop",
+       "target": "sign_3",
+       "at": 1.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.4,
+        1.9,
+        8.8
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 1,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "hopper",
+       "at": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "leaves",
+       "at": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_blow",
+       "at": 1.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Oops! I steered us into the ocean.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Swim with your arms! The ocean is the biggest home of all.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "fish1",
+       "to": [
+        1.4,
+        0.6,
+        -1
+       ],
+       "at": 0.4,
+       "dur": 2.4
+      },
+      {
+       "do": "move",
+       "target": "fish2",
+       "to": [
+        -1.6,
+        0.9,
+        -1.4
+       ],
+       "at": 0.4,
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 4.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fish breathe underwater with gills, and swim with fins.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "fish1#tail",
+       "at": 0.6,
+       "deg": 30
+      },
+      {
+       "do": "wiggle",
+       "target": "fish1#fin",
+       "at": 1.2,
+       "deg": 30
+      },
+      {
+       "do": "caption",
+       "text": "gills",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "The whale is a big friend who comes up to breathe air.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "whale#tail",
+       "at": 0.8,
+       "deg": 20
+      },
+      {
+       "do": "hop",
+       "target": "whale",
+       "at": 1.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is the ocean a good home for Frog?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food: fish and sea plants. Water:",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "yes, but it's salty sea water.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "But ocean water is salty.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fish can't live out of water,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "and frogs can't live in the salty sea.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "Salty water is wrong for frogs! Let's go!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "worried",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pond",
+   "title": "Home: the pond",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "show",
+       "target": "hopper",
+       "at": 0
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 0,
+       "turns": 2,
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.4,
+       "height": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "wave1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "wave2",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "fish1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "fish2",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "whale",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "sign_3",
+       "at": 0.6
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.6,
+       "background": "sky",
+       "floor": "grass",
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "pond",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "pad1",
+       "at": 1.28
+      },
+      {
+       "do": "show",
+       "target": "pad2",
+       "at": 1.3599999999999999
+      },
+      {
+       "do": "show",
+       "target": "reeds",
+       "at": 1.44
+      },
+      {
+       "do": "show",
+       "target": "duck",
+       "at": 1.52
+      },
+      {
+       "do": "show",
+       "target": "pflower",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "sign_4",
+       "at": 1.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.4,
+        1.9,
+        8.8
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 0,
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "at": 1,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "hopper",
+       "at": 2.2
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.6,
+       "background": "sky",
+       "floor": "grass"
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "My pond! I'm home!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -0.2,
+        0.08,
+        -0.4
+       ],
+       "at": 0.4,
+       "dur": 1
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.4,
+       "height": 0.9,
+       "dur": 1
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy",
+       "at": 0.6
+      },
+      {
+       "do": "burst",
+       "target": "bubbles",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Is the pond a good home for Frog?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! Fresh water, not salty. Bugs and worms to eat.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Lily pads and reeds for shelter.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "reeds",
+       "at": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "pad2",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Water and a muddy bank for space.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Frog's wet skin, strong legs and webbed feet fit the pond.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.4,
+       "height": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Welcome home, neighbour! Quack!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "duck",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "duck",
+       "at": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food, water, shelter, space.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "All four. This is Frog's habitat.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 5.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "The pond also has a safe place for frogs to lay their eggs.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "pad1",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "And that's why I can't live in the desert!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      }
+     ]
+    }
+   ],
+   "music": "calm",
+   "musicGain": 0.18
+  },
+  {
+   "id": "chant",
+   "title": "The Home Sweet Habitat chant",
+   "beats": [
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Leap like a frog! Chant with us!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2,
+        9.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hop, hop, where's your home?",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.2,
+       "height": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "duck",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food and water, a place to roam!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hot and dry for the desert hare,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 0.6,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "ice and snow for the polar bear!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Trees and berries for the bear,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.2,
+       "height": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "a pond for frogs, with fresh water there!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hop, hop, where's your home?",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.3,
+       "height": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.2,
+       "height": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food and water, a place to roam!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 0.85
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rescue",
+   "title": "Challenge: Wrong Home Rescue",
+   "beats": [
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge! Three animals are in the wrong homes.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Shout where each one should go,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "and the Hopper will beam it home.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "A polar bear in the desert! What's wrong?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "pond",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pad1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pad2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "reeds",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "duck",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "pflower",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "sign_4",
+       "at": 0.2
+      },
+      {
+       "do": "lights",
+       "rig": "hot_sun",
+       "at": 0.4,
+       "background": "sky",
+       "floor": "sand",
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "cactus1",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "rock1",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "pbear",
+       "at": 1
+      },
+      {
+       "do": "feel",
+       "target": "pbear",
+       "feeling": "worried",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Too hot for thick fur! Send it home to the polar home.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "hopper",
+       "at": 0.6
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 0.6,
+       "turns": 2,
+       "dur": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "pbear",
+       "at": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "A duck on the ice! What's wrong?",
+       "caption": true
+      },
+      {
+       "do": "lights",
+       "rig": "overcast",
+       "at": 0.2,
+       "background": "white",
+       "floor": "white",
+       "dur": 1
+      },
+      {
+       "do": "hide",
+       "target": "cactus1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "rock1",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "ice1",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "ice2",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "duck",
+       "at": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "worried",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "No open water to swim, and too cold! Send it to the pond.",
+       "caption": true
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 0.6,
+       "turns": 2,
+       "dur": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "duck",
+       "at": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "A desert hare in the ocean! What's wrong?",
+       "caption": true
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.2,
+       "background": "sky",
+       "floor": "teal",
+       "dur": 1
+      },
+      {
+       "do": "hide",
+       "target": "ice1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ice2",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "wave1",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "wave2",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "hare",
+       "at": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "hare",
+       "feeling": "worried",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "It can't swim far, and there are no plants to eat.",
+       "caption": true
+      },
+      {
+       "do": "spin",
+       "target": "hopper",
+       "at": 0.6,
+       "turns": 2,
+       "dur": 1.4
+      },
+      {
+       "do": "hide",
+       "target": "hare",
+       "at": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "Back to the desert!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Three rescues. Every animal is back where it fits.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "A farm is not a wild habitat.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Farm animals live with people who care for them.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "And remember: cows,",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "hopper",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "pigs and sheep live with people on farms.",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! What four things does every habitat give?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "need_food",
+       "at": 3.4,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "need_water",
+       "at": 3.5,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "need_shelter",
+       "at": 3.6,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "need_space",
+       "at": 3.7,
+       "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "wave1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wave2",
+       "at": 0.2
+      },
+      {
+       "do": "lights",
+       "rig": "soft_day",
+       "at": 0.2,
+       "background": "sky",
+       "floor": "grass",
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "pond",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "pad1",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "pad2",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "reeds",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "duck",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "pflower",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Food, water, shelter and space!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why does a polar bear have thick fur?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "need_food",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "need_water",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "need_shelter",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "need_space",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "To stay warm in the icy cold!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "Where does Frog live?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "In a pond, with fresh water!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which home is hot and dry?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "The desert!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Four for four! You're habitat experts.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bye",
+   "title": "Goodbye from the pond",
+   "beats": [
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "burst",
+       "target": "bubbles",
+       "at": 0.1
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.4,
+       "height": 0.7
+      },
+      {
+       "do": "nod",
+       "target": "duck",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.4,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "Thank you for bringing me home!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Mission complete.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "cat"
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Make a habitat in a box at home. Bye from the pond!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "at": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "duck",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.5,
+     "do": []
+    }
+   ],
+   "music": "calm",
+   "musicGain": 0.18
+  }
+ ]
+}

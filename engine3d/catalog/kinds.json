@@ -1,9 +1,9 @@
 {
-  "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale, hidden, parent (ride on another object: at becomes relative to it), part (with parent: ride on one of its named parts, e.g. a balance pan on the beam) and pivot ([x, y, z]: the point the object turns and grows about) apply to every kind.",
+  "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale, hidden, parent (ride on another object: at becomes relative to it), part (with parent: ride on one of its named parts, e.g. a balance pan on the beam or a hat on \"<critter>#head\"; then at is measured from that part's pivot, the centre of a head, in the parent's own units, so it and the child's size are multiplied by the parent's size, while a child without part is placed in metres) and pivot ([x, y, z]: the point the object turns and grows about) apply to every kind.",
   "kinds": {
     "shape": {
       "fields": {
-        "shape": "shapes.json name (required)",
+        "shape": "shapes.json name (required); for thin boards, mats, signs and plates use plate (a 1 x 0.04 x 1 slab)",
         "color": "colors.json name",
         "material": "materials.json name",
         "size": "number, default 1",
@@ -35,10 +35,10 @@
         "color": "colors.json name",
         "material": "materials.json name",
         "font": "fonts.json name",
-        "size": "letter height, default 1",
+        "size": "type size, default 1: the cap height is about 1.41 x size, the x-height 0.98 x size, and descenders (g, j, p, q, y) reach 0.47 x size below the baseline (Andika; other fonts differ a little)",
         "depth": "extrusion depth, default 0.35"
       },
-      "description": "Extruded 3D text, centred on x and standing on its baseline (letters, digits, short words).",
+      "description": "Extruded 3D text, centred on x and standing on the font baseline: at is the baseline, so flat-bottomed letters touch it and g, j, p, q and y hang below it (letters, digits, short words).",
       "tags": [
         "letters",
         "numbers",
@@ -74,7 +74,8 @@
         "species": "models.json critters name (required)",
         "color": "colors.json name, overrides the body colour",
         "size": "number, default 1 (about 1.1 m tall)",
-        "feeling": "starting feeling: happy (default), sad, surprised, angry, worried, sleepy"
+        "feeling": "starting feeling: happy (default), sad, surprised, angry, worried, sleepy",
+        "recolor": "{ \"<colour a part uses>\": \"<new colour>\" } (colors.json names): rebuilds the parts drawn in one colour in another, e.g. { \"leaf\": \"brown\", \"pink\": \"yellow\" } for a wilted plant; the main colour too"
       },
       "description": "A toy animal that bobs, blinks and wags; targets <id>#head and named parts (tail) take rotation tweens; its eyes prop closes its eyes (sleep).",
       "tags": [
@@ -87,7 +88,8 @@
       "fields": {
         "model": "models.json props name (required)",
         "color": "colors.json name, overrides the main colour",
-        "size": "number, default 1"
+        "size": "number, default 1",
+        "recolor": "{ \"<colour a part uses>\": \"<new colour>\" } (colors.json names): rebuilds the parts drawn in one colour in another, e.g. { \"leaf\": \"brown\", \"pink\": \"yellow\" } for a wilted plant; the main colour too"
       },
       "description": "A toy object built from parts (catalog/models.json and catalog/models/*.json). Named parts (a lid, a door, a plank) are targets <id>#<part> for turn, move, wiggle and spin.",
       "tags": [

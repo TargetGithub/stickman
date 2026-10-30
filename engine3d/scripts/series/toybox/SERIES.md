@@ -48,6 +48,12 @@ every video **Made for kids**.
 - Babies: at least 8 s per idea, nothing faster than a gentle hop, chimes at volume ≤ 0.6, no confetti.
 - Pre-K: teach, repeat, quiz with a 2–3 s thinking pause (`windup_click`), then praise.
 - Words in captions are the ones the voice says. Colour-word captions use their own colour (`caption.color`).
+- Calmer chapters: put `"music": "calm"` (or `"lullaby"`, or `false` for none) and/or `"musicGain": 0.2` on the
+  scene; it crossfades over 2 s at the scene start, and later scenes go back to `meta.music`.
+- Phonics: say a letter's sound with a sound cue, not with `say` (the voice reads letter names):
+  `{ "do": "sound", "sound": "ph_a_short" }`, then say the example word ("a... apple"). Names: `ph_<letter>`,
+  `ph_<vowel>_short` / `_long`, `ph_oo`, `ph_sh`, `ph_ch`, `ph_th`, `ph_th_voiced`, `ph_wh`, `ph_ng`, `ph_qu`, `ph_x`
+  (`engine3d/catalog/sounds.json`). Clips last 0.3–0.9 s; leave about 1 s before the next line.
 - An object resting on another moves with it (hop the blocks above too); `hop` adds to position, so moving
   objects can hop.
 

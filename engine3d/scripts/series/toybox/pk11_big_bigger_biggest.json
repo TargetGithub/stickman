@@ -1,0 +1,2937 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "The Big Balloon Contest! Robo, Duck and Chick compare by eye: big, bigger, biggest; small, smaller, smallest; tall, taller, tallest. Line them up at the bottom, and find out that big depends on who you stand next to.",
+  "meta": {
+    "title": "Big, Bigger, Biggest",
+    "series": "toybox",
+    "episode": "pk11",
+    "audience": "prek",
+    "seed": 111,
+    "voice": "soft",
+    "voiceSpeed": 0.93,
+    "music": "happy",
+    "musicGain": 0.25,
+    "skills": [
+      "size_words_prek"
+    ],
+    "thumbnail": {
+      "scene": "contest",
+      "at": 17.8
+    },
+    "youtube": {
+      "title": "Big, Bigger, Biggest! 🎈 Size Words for Kids | Toy Box Friends",
+      "description": "Welcome to the Big Balloon Contest! Robo, Duck and Chick learn to compare by eye: big, bigger, biggest; small, smaller, smallest; and tall, taller, tallest. Line things up at the bottom to compare fairly. Then a twist: Duck is big next to Chick, and small next to Cow. Big is a comparing word!\n\nTry it at home with a grown-up: put 3 plastic cups in order from smallest to biggest, line up 3 shoes, and build two towers side by side. Please don't use real balloons with little ones: they are a choking risk.\n\nMade for kids. Toy Box Friends: 3D learning videos for preschool.",
+      "tags": [
+        "big bigger biggest",
+        "size words for kids",
+        "compare sizes",
+        "tall and short",
+        "preschool math",
+        "comparing for kids",
+        "kindergarten math",
+        "toddler learning",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "playroom"
+  },
+  "camera": {
+    "position": [
+      0,
+      1.6,
+      7.6
+    ],
+    "lookAt": [
+      0,
+      1.25,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "line",
+      "kind": "shape",
+      "shape": "plate",
+      "at": [
+        0,
+        0,
+        0.3
+      ],
+      "color": "white",
+      "scale": [
+        7,
+        1,
+        0.14
+      ]
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -2.6,
+        0,
+        0.5
+      ],
+      "rotation": [
+        0,
+        15,
+        0
+      ]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+        -0.5,
+        0,
+        0.6
+      ],
+      "size": 0.9
+    },
+    {
+      "id": "chick",
+      "kind": "critter",
+      "species": "chick",
+      "at": [
+        1.4,
+        0,
+        0.6
+      ],
+      "size": 0.6
+    },
+    {
+      "id": "cow",
+      "kind": "critter",
+      "species": "cow",
+      "at": [
+        7,
+        0,
+        0.4
+      ],
+      "size": 2,
+      "rotation": [
+        0,
+        -50,
+        0
+      ]
+    },
+    {
+      "id": "bal_robo",
+      "kind": "prop",
+      "model": "balloon",
+      "at": [
+        0.6,
+        1,
+        0.2
+      ],
+      "parent": "robo",
+      "color": "blue",
+      "size": 0.7
+    },
+    {
+      "id": "bal_duck",
+      "kind": "prop",
+      "model": "balloon",
+      "at": [
+        0.45,
+        0.42,
+        0.12
+      ],
+      "parent": "duck",
+      "part": "body",
+      "color": "red",
+      "size": 0.7
+    },
+    {
+      "id": "bal_chick",
+      "kind": "prop",
+      "model": "balloon",
+      "at": [
+        0.45,
+        0.42,
+        0.12
+      ],
+      "parent": "chick",
+      "part": "body",
+      "color": "yellow",
+      "size": 0.7
+    },
+    {
+      "id": "ball_a",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -1.6,
+        0,
+        0.6
+      ],
+      "color": "green",
+      "size": 1.4,
+      "hidden": true
+    },
+    {
+      "id": "ball_b",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.2,
+        0,
+        0.6
+      ],
+      "color": "green",
+      "size": 0.9,
+      "hidden": true
+    },
+    {
+      "id": "ball_c",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        1.4,
+        0,
+        0.6
+      ],
+      "color": "green",
+      "size": 0.4,
+      "hidden": true
+    },
+    {
+      "id": "egg_big",
+      "kind": "prop",
+      "model": "egg",
+      "at": [
+        -0.6,
+        0,
+        0.8
+      ],
+      "size": 1.3,
+      "hidden": true
+    },
+    {
+      "id": "egg_tiny",
+      "kind": "prop",
+      "model": "egg",
+      "at": [
+        0.6,
+        0,
+        0.8
+      ],
+      "size": 0.14,
+      "hidden": true
+    },
+    {
+      "id": "t1",
+      "kind": "group",
+      "at": [
+        -1.2,
+        0,
+        0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "t1_1",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "parent": "t1",
+      "color": "red",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t1_2",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        0.5,
+        0
+      ],
+      "parent": "t1",
+      "color": "red",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t2",
+      "kind": "group",
+      "at": [
+        0.2,
+        0,
+        0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "t2_1",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "parent": "t2",
+      "color": "yellow",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t2_2",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        0.5,
+        0
+      ],
+      "parent": "t2",
+      "color": "yellow",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t2_3",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        1,
+        0
+      ],
+      "parent": "t2",
+      "color": "yellow",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t3",
+      "kind": "group",
+      "at": [
+        1.6,
+        0,
+        0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "t3_1",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "parent": "t3",
+      "color": "blue",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t3_2",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        0.5,
+        0
+      ],
+      "parent": "t3",
+      "color": "blue",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t3_3",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        1,
+        0
+      ],
+      "parent": "t3",
+      "color": "blue",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t3_4",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        1.5,
+        0
+      ],
+      "parent": "t3",
+      "color": "blue",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "stool",
+      "kind": "shape",
+      "shape": "box",
+      "at": [
+        0.2,
+        0,
+        0.3
+      ],
+      "color": "purple",
+      "scale": [
+        0.8,
+        0.9,
+        0.8
+      ],
+      "hidden": true
+    },
+    {
+      "id": "gift_l",
+      "kind": "prop",
+      "model": "gift",
+      "at": [
+        -1.4,
+        0,
+        0.6
+      ],
+      "size": 1.4,
+      "hidden": true
+    },
+    {
+      "id": "gift_s",
+      "kind": "prop",
+      "model": "gift",
+      "at": [
+        0.2,
+        0,
+        0.6
+      ],
+      "size": 0.55,
+      "hidden": true
+    },
+    {
+      "id": "gift_m",
+      "kind": "prop",
+      "model": "gift",
+      "at": [
+        1.6,
+        0,
+        0.6
+      ],
+      "size": 0.95,
+      "hidden": true
+    },
+    {
+      "id": "prize1",
+      "kind": "shape",
+      "shape": "star",
+      "at": [
+        -2,
+        3.75,
+        0.5
+      ],
+      "color": "gold",
+      "material": "glow",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "prize2",
+      "kind": "shape",
+      "shape": "star",
+      "at": [
+        -0.05,
+        2.75,
+        0.6
+      ],
+      "color": "gold",
+      "material": "glow",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "prize3",
+      "kind": "shape",
+      "shape": "star",
+      "at": [
+        1.85,
+        1.85,
+        0.6
+      ],
+      "color": "gold",
+      "material": "glow",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [
+        10,
+        4
+      ],
+      "height": 7
+    }
+  ],
+  "scenes": [
+    {
+      "id": "contest",
+      "title": "The Big Balloon Contest",
+      "beats": [
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "The Big Balloon Contest!",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "The Big Balloon Contest!",
+              "style": "title",
+              "at": 0.1,
+              "dur": 3.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.6,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.8,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three balloons. Let's pump them up!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "bal_robo",
+              "at": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "bal_duck",
+              "at": 0.9
+            },
+            {
+              "do": "wiggle",
+              "target": "bal_chick",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Pump, pump! Chick's balloon grows.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.2,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.7,
+              "volume": 0.5
+            },
+            {
+              "do": "grow",
+              "target": "bal_chick",
+              "to": 1.2,
+              "at": 0.3,
+              "dur": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 1.4,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Pump, pump! Duck's balloon grows more.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.2,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.7,
+              "volume": 0.5
+            },
+            {
+              "do": "grow",
+              "target": "bal_duck",
+              "to": 1.6,
+              "at": 0.3,
+              "dur": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 1.4,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "Pump, pump, pump! Robo's balloon grows and grows!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.2,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.7,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.2,
+              "volume": 0.5
+            },
+            {
+              "do": "grow",
+              "target": "bal_robo",
+              "to": 2.2,
+              "at": 0.3,
+              "dur": 2
+            },
+            {
+              "do": "move",
+              "target": "bal_robo",
+              "to": [
+                0.6,
+                1.15,
+                0.2
+              ],
+              "at": 1.5,
+              "dur": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "at": 1.5,
+              "height": 0.15,
+              "dur": 0.9
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                8.6
+              ],
+              "lookAt": [
+                0,
+                1.6,
+                0
+              ],
+              "at": 0.4,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Whoa! Robo is on his tiptoes!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "at": 0.2,
+              "height": 0.12,
+              "dur": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "at": 1.2,
+              "height": 0.12,
+              "dur": 0.8
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "surprised",
+              "at": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "giggle",
+              "at": 0.6,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who wins? Let's find out what big means!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "bal_robo",
+              "to": [
+                0.6,
+                1,
+                0.2
+              ],
+              "at": 0.6,
+              "dur": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "big",
+      "title": "Big, bigger, biggest",
+      "beats": [
+        {
+          "dur": 2.48,
+          "do": [
+            {
+              "do": "say",
+              "text": "Chick's balloon is big.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "bal_chick",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "big",
+              "style": "label",
+              "at": 1.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck's balloon is bigger.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "bal_duck",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "bigger",
+              "style": "label",
+              "at": 1.5,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Robo's balloon is the biggest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "bal_robo",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "biggest",
+              "style": "label",
+              "at": 1.6,
+              "dur": 1.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.68,
+          "do": [
+            {
+              "do": "say",
+              "text": "Say it with me. Arms out a little. Big!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.48,
+          "do": [
+            {
+              "do": "say",
+              "text": "Arms out wider. Bigger!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.85,
+          "do": [
+            {
+              "do": "say",
+              "text": "As wide as you can. Biggest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.8,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "Big, bigger, biggest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "bal_chick",
+              "at": 0.2,
+              "height": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "bal_duck",
+              "at": 0.7,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "bal_robo",
+              "at": 1.2,
+              "height": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "big, bigger, biggest",
+              "style": "label",
+              "at": 0.1,
+              "dur": 2.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "small",
+      "title": "Small, smaller, smallest",
+      "beats": [
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now let's go the other way!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.6,
+                7.6
+              ],
+              "lookAt": [
+                0,
+                1.25,
+                0
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "bal_robo",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "bal_duck",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "bal_chick",
+              "at": 0.6
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                2.9,
+                0,
+                1.8
+              ],
+              "at": 0.4,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "chick",
+              "to": [
+                3.5,
+                0,
+                1
+              ],
+              "at": 0.4,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three green balls.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ball_a",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "ball_b",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "ball_c",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "This ball is small.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "small",
+              "style": "label",
+              "at": 1.4,
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "ball_a",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "This ball is smaller.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "smaller",
+              "style": "label",
+              "at": 1.4,
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "ball_b",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "And this tiny ball is the smallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "smallest",
+              "style": "label",
+              "at": 1.9,
+              "dur": 1.6
+            },
+            {
+              "do": "wiggle",
+              "target": "ball_c",
+              "at": 0.4
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.8,
+                1,
+                4.2
+              ],
+              "lookAt": [
+                1,
+                0.4,
+                0.6
+              ],
+              "at": 0.4,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Biggest is wide. Smallest is tiny!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "ball_a",
+              "at": 0.4,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "ball_c",
+              "at": 1.6,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Crouch down. Small. Smaller. Smallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.4,
+              "height": 0.15
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.6,
+                7.6
+              ],
+              "lookAt": [
+                0,
+                1.25,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 3.53,
+          "do": [
+            {
+              "do": "say",
+              "text": "An ostrich lays the biggest bird egg.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "ball_a",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "ball_b",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "ball_c",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "egg_big",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "biggest",
+              "style": "label",
+              "at": 1.9,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 4.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "A hummingbird egg is tiny, like a jelly bean!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "egg_tiny",
+              "at": 0.6
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.9,
+                3.6
+              ],
+              "lookAt": [
+                0.1,
+                0.4,
+                0.8
+              ],
+              "at": 1,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Small, smaller, smallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.6,
+                7.6
+              ],
+              "lookAt": [
+                0,
+                1.25,
+                0
+              ],
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "caption",
+              "text": "small, smaller, smallest",
+              "style": "label",
+              "at": 0.1,
+              "dur": 2.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tall",
+      "title": "Tall, taller, tallest",
+      "beats": [
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck is building towers!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "egg_big",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "egg_tiny",
+              "at": 0.1
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                2.8,
+                0,
+                1.4
+              ],
+              "at": 0.3,
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.58,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two blocks.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "t1",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "t1_1",
+              "at": 0.4,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "t1_2",
+              "at": 0.8500000000000001,
+              "sound": "block"
+            }
+          ]
+        },
+        {
+          "dur": 1.73,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three blocks.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "t2",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "t2_1",
+              "at": 0.4,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "t2_2",
+              "at": 0.8,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "t2_3",
+              "at": 1.2000000000000002,
+              "sound": "block"
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four blocks!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "t3",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "t3_1",
+              "at": 0.4,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "t3_2",
+              "at": 0.75,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "t3_3",
+              "at": 1.1,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "t3_4",
+              "at": 1.4499999999999997,
+              "sound": "block"
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "This tower is tall.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "t1",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "tall",
+              "style": "label",
+              "at": 1.4,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "This tower is taller.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "t2",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "taller",
+              "style": "label",
+              "at": 1.4,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "This tower is the tallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "t3",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "tallest",
+              "style": "label",
+              "at": 1.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Wait! I can make this one the tallest.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "pop",
+              "target": "stool",
+              "at": 0.1,
+              "sound": "pop"
+            },
+            {
+              "do": "move",
+              "target": "t2",
+              "to": [
+                0.2,
+                0.9,
+                0.3
+              ],
+              "at": 0.6,
+              "dur": 1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.6,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Look! The yellow tower is the tallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.88,
+          "do": [
+            {
+              "do": "say",
+              "text": "Not fair, Robo!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.4,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Oops! It is standing on a box.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "slide_whistle",
+              "at": 0.4,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "We line them up at the bottom.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "t2",
+              "to": [
+                0.2,
+                0,
+                0.3
+              ],
+              "at": 0.4,
+              "dur": 1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "hide",
+              "target": "stool",
+              "at": 1.5
+            },
+            {
+              "do": "caption",
+              "text": "line them up",
+              "style": "label",
+              "at": 0.4,
+              "dur": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now which tower is the tallest?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "The blue one! Four blocks. Tallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "t3",
+              "at": 0.4,
+              "height": 0.2,
+              "sound": "ding"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "Giraffes are the tallest animals in the world!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.68,
+          "do": [
+            {
+              "do": "say",
+              "text": "Stand on tiptoe. Tall, taller, tallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 1.2,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lineup",
+      "title": "Line them up",
+      "beats": [
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three gifts, all mixed up.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "t1",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "t2",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "t3",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "gift_l",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "gift_s",
+              "at": 0.7
+            },
+            {
+              "do": "pop",
+              "target": "gift_m",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's line them up. Smallest first.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "line them up",
+              "style": "label",
+              "at": 0.5,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Which gift is the smallest?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "This one!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "gift_s",
+              "to": [
+                -1.6,
+                0,
+                1.4
+              ],
+              "at": 0.1,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "Which gift comes next? Smaller or bigger?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.88,
+          "do": [
+            {
+              "do": "say",
+              "text": "The middle one!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "gift_m",
+              "to": [
+                -0.3,
+                0,
+                1.4
+              ],
+              "at": 0.1,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "And last, the biggest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "gift_l",
+              "to": [
+                1.4,
+                0,
+                1.4
+              ],
+              "at": 0.1,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 3.23,
+          "do": [
+            {
+              "do": "say",
+              "text": "Small, bigger, biggest. In order!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "gift_s",
+              "at": 0.2,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "gift_m",
+              "at": 0.7,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "gift_l",
+              "at": 1.3,
+              "height": 0.15
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "who",
+      "title": "Who is big?",
+      "beats": [
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck, stand next to Chick.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "gift_s",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "gift_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "gift_l",
+              "at": 0.1
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                -0.3,
+                0,
+                0.6
+              ],
+              "at": 0.3,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "chick",
+              "to": [
+                0.7,
+                0,
+                0.6
+              ],
+              "at": 0.3,
+              "dur": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1,
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Next to Chick, Duck is big!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "big",
+              "style": "label",
+              "at": 1.8,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.6,
+              "height": 0.25
+            },
+            {
+              "do": "nod",
+              "target": "chick",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "I am big! Quack!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.8,
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh! Who is coming?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                10.5
+              ],
+              "lookAt": [
+                0,
+                1.6,
+                0
+              ],
+              "at": 0,
+              "dur": 2
+            },
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [
+                2.2,
+                0,
+                0.1
+              ],
+              "at": 0.4,
+              "dur": 3.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 0.8,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 1.8,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 2.8,
+              "volume": 0.5
+            },
+            {
+              "do": "turn",
+              "target": "cow",
+              "to": [
+                0,
+                -15,
+                0
+              ],
+              "at": 3.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "chick",
+              "to": [
+                3.4,
+                0,
+                1.4
+              ],
+              "at": 0.4,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "Hello. I am Cow.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Next to Cow, Duck is small!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "small",
+              "style": "label",
+              "at": 1.8,
+              "dur": 1.4
+            },
+            {
+              "do": "turn",
+              "target": "duck#head",
+              "to": [
+                -20,
+                30,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.6
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "surprised",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "But I did not change!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.53,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck is the same. Her friend changed.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "duck#head",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.5
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 4.72,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck is big next to Chick. Duck is small next to Cow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1,
+              "height": 0.2
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "Big is a comparing word. We compare!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "And even I am small next to a blue whale!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "The blue whale is the biggest animal ever!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.6,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Size quiz",
+      "beats": [
+        {
+          "dur": 4.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "Size quiz! One. Which balloon is the biggest?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.6,
+                7.6
+              ],
+              "lookAt": [
+                0,
+                1.25,
+                0
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2
+            },
+            {
+              "do": "show",
+              "target": "bal_robo",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "bal_duck",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "bal_chick",
+              "at": 0.5
+            },
+            {
+              "do": "grow",
+              "target": "bal_robo",
+              "to": 2.2,
+              "at": 0.8,
+              "dur": 0.6
+            },
+            {
+              "do": "grow",
+              "target": "bal_duck",
+              "to": 1.6,
+              "at": 0.9,
+              "dur": 0.6
+            },
+            {
+              "do": "grow",
+              "target": "bal_chick",
+              "to": 1.2,
+              "at": 1,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [
+                3.6,
+                0,
+                -0.4
+              ],
+              "at": 0.3,
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "chick",
+              "to": [
+                2.2,
+                0,
+                1.8
+              ],
+              "at": 0.3,
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                -0.6,
+                0,
+                1.8
+              ],
+              "at": 0.3,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "Robo's blue balloon!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "bal_robo",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two. Which ball is the smallest?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2
+            },
+            {
+              "do": "move",
+              "target": "ball_a",
+              "to": [
+                -1.3,
+                0,
+                1.4
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "ball_b",
+              "to": [
+                0.3,
+                0,
+                1.4
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "ball_c",
+              "to": [
+                1.4,
+                0,
+                1.4
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "ball_a",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "ball_b",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "ball_c",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.73,
+          "do": [
+            {
+              "do": "say",
+              "text": "The tiny one!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "ball_c",
+              "at": 0.2,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 4.57,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three. All on the line. Which tower is the tallest?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2
+            },
+            {
+              "do": "hide",
+              "target": "ball_a",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "ball_b",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "ball_c",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "t1",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "t2",
+              "at": 0.5
+            },
+            {
+              "do": "show",
+              "target": "t3",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "The blue one, with four blocks!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "t3",
+              "at": 0.2,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four. Next to Cow, is Duck big or small?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2
+            },
+            {
+              "do": "hide",
+              "target": "t1",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "t2",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "t3",
+              "at": 0.1
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                2.1,
+                0,
+                0.9
+              ],
+              "at": 0.3,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "Small!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.2,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wins",
+      "title": "Everybody wins",
+      "beats": [
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Time for prizes! Everybody wins!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                9.2
+              ],
+              "lookAt": [
+                0.2,
+                1.4,
+                0
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                -0.5,
+                0,
+                0.6
+              ],
+              "at": 0.2,
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "chick",
+              "to": [
+                1.4,
+                0,
+                0.6
+              ],
+              "at": 0.2,
+              "dur": 1
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.2,
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "The biggest balloon. The best colour. The bounciest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "prize1",
+              "at": 0.4,
+              "sound": "magic_sparkle"
+            },
+            {
+              "do": "pop",
+              "target": "prize2",
+              "at": 1.8,
+              "sound": "magic_sparkle"
+            },
+            {
+              "do": "pop",
+              "target": "prize3",
+              "at": 3.2,
+              "sound": "magic_sparkle"
+            },
+            {
+              "do": "hop",
+              "target": "bal_chick",
+              "at": 3.4,
+              "height": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.27,
+          "do": [
+            {
+              "do": "say",
+              "text": "Big, bigger, biggest! Small, smaller, smallest!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 1.2,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Everybody is a winner!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.5,
+              "height": 0.3
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 0.7
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "Line them up and look! Bye-bye!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.6
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 0.8
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 2,
+              "volume": 0.6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

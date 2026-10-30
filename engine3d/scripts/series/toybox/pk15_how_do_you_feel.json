@@ -1,0 +1,3073 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "At Bear's birthday party, Robo, Duck, Bear and Bunny meet five feelings: happy, surprised, sad, angry and worried. A calm-down toolbox helps: flower breathing, a hug, counting to five, and telling a grown-up.",
+  "meta": {
+    "title": "How Do You Feel?",
+    "series": "toybox",
+    "episode": "pk15",
+    "audience": "prek",
+    "seed": 115,
+    "voice": "soft",
+    "voiceSpeed": 0.92,
+    "music": "happy",
+    "musicGain": 0.22,
+    "skills": [
+      "feelings_prek",
+      "listening_prek"
+    ],
+    "thumbnail": {
+      "scene": "surprised",
+      "at": 7.8
+    },
+    "youtube": {
+      "title": "How Do You Feel? 😊😢 Feelings and Emotions for Kids | Toy Box Friends",
+      "description": "It's Bear's birthday party! Robo, Duck, Bear and Bunny meet five feelings in one day: happy, surprised, sad, angry and worried. All feelings are OK. Name the feeling, then pick a tool from Robo's calm-down toolbox: flower and bubble breathing, a hug, counting to five slowly, or telling a grown-up.\n\nTry it at home with a grown-up: make feeling faces in a mirror, and practise flower and bubble breathing together (smell the flower, blow the bubble, three times, slowly).\n\nA note for parents: if your child often feels very sad or worried, talk with someone you trust, like your child's doctor or teacher.\n\nMade for kids. Toy Box Friends: 3D learning videos for preschool.",
+      "tags": [
+        "feelings for kids",
+        "emotions for preschoolers",
+        "how do you feel",
+        "social emotional learning",
+        "calm down for kids",
+        "breathing for kids",
+        "happy sad angry",
+        "toddler learning",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "playroom"
+  },
+  "camera": {
+    "position": [
+      0,
+      1.75,
+      7.8
+    ],
+    "lookAt": [
+      0,
+      1,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "bal1",
+      "kind": "prop",
+      "model": "balloon",
+      "at": [
+        -4.2,
+        1.4,
+        -2.6
+      ],
+      "color": "pink",
+      "size": 0.9
+    },
+    {
+      "id": "bal2",
+      "kind": "prop",
+      "model": "balloon",
+      "at": [
+        -3.4,
+        1.7,
+        -2.8
+      ],
+      "color": "yellow",
+      "size": 0.9
+    },
+    {
+      "id": "bal3",
+      "kind": "prop",
+      "model": "balloon",
+      "at": [
+        3.4,
+        1.5,
+        -2.6
+      ],
+      "color": "blue",
+      "size": 0.9
+    },
+    {
+      "id": "bal4",
+      "kind": "prop",
+      "model": "balloon",
+      "at": [
+        4.2,
+        1.8,
+        -2.8
+      ],
+      "color": "green",
+      "size": 0.9
+    },
+    {
+      "id": "table",
+      "kind": "prop",
+      "model": "table",
+      "at": [
+        -0.2,
+        0,
+        -2
+      ],
+      "size": 1.1
+    },
+    {
+      "id": "cake",
+      "kind": "prop",
+      "model": "birthday_cake",
+      "at": [
+        -0.2,
+        0.88,
+        -2
+      ],
+      "size": 0.9
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -3.3,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "id": "toolbox",
+      "kind": "prop",
+      "model": "toy_box",
+      "at": [
+        -2.3,
+        0,
+        0.3
+      ],
+      "size": 0.85,
+      "color": "teal"
+    },
+    {
+      "id": "toolheart",
+      "kind": "shape",
+      "shape": "heart",
+      "at": [
+        -2.3,
+        0.3,
+        0.72
+      ],
+      "color": "red",
+      "size": 0.32
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+        -1.1,
+        0,
+        1.5
+      ],
+      "size": 0.8
+    },
+    {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "at": [
+        7,
+        0,
+        0.6
+      ],
+      "size": 1.1,
+      "rotation": [
+        0,
+        -50,
+        0
+      ]
+    },
+    {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+        7,
+        0,
+        1.3
+      ],
+      "size": 0.85,
+      "rotation": [
+        0,
+        -50,
+        0
+      ]
+    },
+    {
+      "id": "invite",
+      "kind": "prop",
+      "model": "gift",
+      "at": [
+        0.2,
+        0,
+        1.6
+      ],
+      "size": 0.6,
+      "hidden": true
+    },
+    {
+      "id": "card",
+      "kind": "shape",
+      "shape": "plate",
+      "at": [
+        0.2,
+        0.82,
+        1.6
+      ],
+      "color": "white",
+      "scale": [
+        0.62,
+        1,
+        0.42
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "card_txt",
+      "kind": "letter",
+      "text": "Party!",
+      "at": [
+        0.2,
+        0.74,
+        1.64
+      ],
+      "color": "pink",
+      "size": 0.12,
+      "hidden": true
+    },
+    {
+      "id": "bday_gift",
+      "kind": "prop",
+      "model": "gift",
+      "at": [
+        1.6,
+        0,
+        1.4
+      ],
+      "size": 0.7,
+      "hidden": true
+    },
+    {
+      "id": "popup",
+      "kind": "shape",
+      "shape": "star",
+      "at": [
+        1.6,
+        0.4,
+        1.4
+      ],
+      "color": "gold",
+      "size": 0.45,
+      "hidden": true
+    },
+    {
+      "id": "b1",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        1.9,
+        0,
+        -0.2
+      ],
+      "color": "red",
+      "size": 0.42,
+      "hidden": true
+    },
+    {
+      "id": "b2",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        1.9,
+        0.42,
+        -0.2
+      ],
+      "color": "yellow",
+      "size": 0.42,
+      "hidden": true
+    },
+    {
+      "id": "b3",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        1.9,
+        0.84,
+        -0.2
+      ],
+      "color": "blue",
+      "size": 0.42,
+      "hidden": true
+    },
+    {
+      "id": "b4",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        1.9,
+        1.26,
+        -0.2
+      ],
+      "color": "green",
+      "size": 0.42,
+      "hidden": true
+    },
+    {
+      "id": "red_ball",
+      "kind": "prop",
+      "model": "ball",
+      "at": [
+        2.6,
+        0,
+        1.5
+      ],
+      "size": 0.45,
+      "color": "red",
+      "hidden": true
+    },
+    {
+      "id": "t_flower",
+      "kind": "prop",
+      "model": "flower",
+      "at": [
+        -2.3,
+        0.4,
+        0.3
+      ],
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "t_heart",
+      "kind": "shape",
+      "shape": "heart",
+      "at": [
+        -2.3,
+        0.4,
+        0.3
+      ],
+      "color": "pink",
+      "size": 0.4,
+      "hidden": true
+    },
+    {
+      "id": "t_five",
+      "kind": "number_block",
+      "value": 5,
+      "color": "orange",
+      "size": 0.4,
+      "at": [
+        -2.3,
+        0.4,
+        0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "t_house",
+      "kind": "prop",
+      "model": "house",
+      "at": [
+        -2.3,
+        0.4,
+        0.3
+      ],
+      "size": 0.3,
+      "hidden": true
+    },
+    {
+      "id": "breath",
+      "kind": "bubbles",
+      "count": 16,
+      "area": [
+        1.5,
+        0.8
+      ],
+      "height": 3,
+      "size": 0.25
+    },
+    {
+      "id": "party",
+      "kind": "bubbles",
+      "count": 50,
+      "area": [
+        9,
+        3
+      ],
+      "height": 4.5
+    }
+  ],
+  "scenes": [
+    {
+      "id": "invite",
+      "title": "You're invited!",
+      "beats": [
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "invite",
+              "to": [
+                0.2,
+                0,
+                1.6
+              ],
+              "at": 0.2,
+              "height": 2,
+              "sound": "land"
+            },
+            {
+              "do": "pop",
+              "target": "card",
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "card_txt",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "How Do You Feel?",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "How Do You Feel?",
+              "style": "title",
+              "at": 0.1,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "dur": 4.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "A card! You are invited to Bear's birthday party!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.4
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.4,
+                5.2
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                1
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "A party! Quack, quack!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.2,
+              "height": 0.35
+            },
+            {
+              "do": "spin",
+              "target": "duck",
+              "at": 0.8,
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.8,
+              "height": 0.35
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.23,
+          "do": [
+            {
+              "do": "say",
+              "text": "Look at Duck! How does Duck feel?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.75,
+                7.8
+              ],
+              "lookAt": [
+                0,
+                1,
+                0
+              ],
+              "at": 0,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.6,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Happy! Let's go to the party.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "happy",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.4,
+              "color": "yellow"
+            },
+            {
+              "do": "hide",
+              "target": "invite",
+              "at": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "card",
+              "at": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "card_txt",
+              "at": 1.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "happy",
+      "title": "Happy",
+      "beats": [
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Happy birthday, Bear!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [
+                0.6,
+                0,
+                0.6
+              ],
+              "at": 0,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [
+                2.4,
+                0,
+                1.3
+              ],
+              "at": 0.3,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "bear",
+              "to": [
+                0,
+                -10,
+                0
+              ],
+              "at": 1.8,
+              "dur": 0.4
+            },
+            {
+              "do": "turn",
+              "target": "bunny",
+              "to": [
+                0,
+                -20,
+                0
+              ],
+              "at": 2,
+              "dur": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "bunny",
+              "feeling": "happy",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you! I am so happy!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.3,
+              "height": 0.25
+            },
+            {
+              "do": "wiggle",
+              "target": "bear",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Everyone feels happy. How can we tell?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bunny",
+              "at": 0.7
+            },
+            {
+              "do": "wiggle",
+              "target": "bear",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "Bouncing! Wiggling! Big smiles!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.5,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.8,
+              "height": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 1.2
+            },
+            {
+              "do": "wiggle",
+              "target": "bunny",
+              "at": 1.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Smiling uses muscles in your face!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Show me happy! Bounce, bounce!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "happy",
+              "style": "label",
+              "at": 0.8,
+              "dur": 1.6,
+              "color": "yellow"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.4,
+              "height": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "surprised",
+      "title": "Surprised",
+      "beats": [
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Bear, here is a gift for you!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "bday_gift",
+              "at": 0.4
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.4,
+                1.3,
+                4.6
+              ],
+              "lookAt": [
+                0.7,
+                0.8,
+                0.4
+              ],
+              "at": 0,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "Ooh. What is inside?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "wiggle",
+              "target": "bday_gift",
+              "at": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "bday_gift",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "wiggle",
+              "target": "bday_gift",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "popup",
+              "at": 0.6
+            },
+            {
+              "do": "move",
+              "target": "popup",
+              "to": [
+                1.6,
+                1.3,
+                1.4
+              ],
+              "at": 0.6,
+              "dur": 0.3,
+              "ease": "backOut"
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 0.6,
+              "volume": 0.5
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "surprised",
+              "at": 0.7
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [
+                0.2,
+                0,
+                0.5
+              ],
+              "at": 0.8,
+              "dur": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.8,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh! A pop-up star!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "wiggle",
+              "target": "popup",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "How does Bear feel?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Surprised! He jumped back and said oh!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "surprised",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.8,
+              "color": "orange"
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "Ha ha! I like surprises!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.3
+            },
+            {
+              "do": "wiggle",
+              "target": "bear",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 5.77,
+          "do": [
+            {
+              "do": "say",
+              "text": "When you feel excited, your heart beats faster. Hand on your heart!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 1.4,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Show me surprised! Hands up. Oh!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.75,
+                7.8
+              ],
+              "lookAt": [
+                0,
+                1,
+                0
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.4,
+              "height": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "surprised",
+              "at": 1.4
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 2.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sad",
+      "title": "Sad",
+      "music": "calm",
+      "musicGain": 0.18,
+      "beats": [
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Bear built a tall block tower.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "popup",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "bday_gift",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [
+                1.1,
+                0,
+                0.4
+              ],
+              "at": 0.2,
+              "dur": 1
+            },
+            {
+              "do": "pop",
+              "target": "b1",
+              "at": 0.8999999999999999,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b2",
+              "at": 1.2,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 1.5,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 1.7999999999999998,
+              "sound": "block"
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.2,
+                1.4,
+                5
+              ],
+              "lookAt": [
+                1.4,
+                0.8,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "wiggle",
+              "target": "b4",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "b4",
+              "to": [
+                2.6,
+                0,
+                0.1
+              ],
+              "at": 0.6,
+              "dur": 0.6,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 1.2,
+              "volume": 0.4
+            },
+            {
+              "do": "move",
+              "target": "b3",
+              "to": [
+                2.2,
+                0,
+                0.5
+              ],
+              "at": 1.2,
+              "dur": 0.6,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 1.8,
+              "volume": 0.4
+            },
+            {
+              "do": "move",
+              "target": "b2",
+              "to": [
+                1.5,
+                0,
+                0.6
+              ],
+              "at": 1.8,
+              "dur": 0.6,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 2.4,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh no. The tower fell down.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "sad",
+              "at": 0.4
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [
+                25,
+                0,
+                0
+              ],
+              "at": 0.6,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "How does Bear feel?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sad. How do we know?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "sad",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.6,
+              "color": "blue"
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "His head is down. He moves slowly.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "to": [
+                1,
+                0,
+                0.6
+              ],
+              "at": 0.4,
+              "dur": 2,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "dur": 4.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "It is OK to feel sad. Let's open the toolbox.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.75,
+                7.8
+              ],
+              "lookAt": [
+                0,
+                1,
+                0
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                -100,
+                0,
+                0
+              ],
+              "at": 1.6,
+              "dur": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "t_heart",
+              "at": 2.2,
+              "sound": "sparkle"
+            },
+            {
+              "do": "move",
+              "target": "t_heart",
+              "to": [
+                -2.3,
+                1.25,
+                0.5
+              ],
+              "at": 2.2,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "A heart. A hug can help. Bear, would you like a hug?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "t_heart",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Yes, please.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                0.4,
+                0,
+                1.1
+              ],
+              "at": 0,
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [
+                1.7,
+                0,
+                1
+              ],
+              "at": 0,
+              "dur": 1
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 1.2,
+              "deg": 6
+            },
+            {
+              "do": "wiggle",
+              "target": "bunny",
+              "at": 1.2,
+              "deg": 6
+            },
+            {
+              "do": "wiggle",
+              "target": "bear",
+              "at": 1.2,
+              "deg": 6
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 1.2,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "Friends help. Let's build it again!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "b2",
+              "to": [
+                1.9,
+                0.42,
+                -0.2
+              ],
+              "at": 0.6,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "b3",
+              "to": [
+                1.9,
+                0.84,
+                -0.2
+              ],
+              "at": 1.1,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "b4",
+              "to": [
+                1.9,
+                1.26,
+                -0.2
+              ],
+              "at": 1.6,
+              "dur": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 1.1,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 1.6,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 2.1,
+              "volume": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 2.2
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 2.2,
+              "dur": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "t_heart",
+              "at": 2.4
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 2.6,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "I feel sad. That's OK. A hug can help.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 3.2,
+              "volume": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "angry",
+      "title": "Angry",
+      "beats": [
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "Bunny is playing with the red ball.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "red_ball",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [
+                2.4,
+                0,
+                1.3
+              ],
+              "at": 0,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "red_ball",
+              "to": [
+                2.4,
+                0.7,
+                1.7
+              ],
+              "at": 0.6,
+              "dur": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1.2,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "red_ball",
+              "at": 1.2,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "I want the red ball! Now!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "angry",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                -0.6,
+                0,
+                1.5
+              ],
+              "at": 0,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.1,
+              "height": 0.08,
+              "dur": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 0.2,
+              "volume": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.5,
+              "height": 0.08,
+              "dur": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 0.6,
+              "volume": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.9,
+              "height": 0.08,
+              "dur": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 1,
+              "volume": 0.5
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "to": [
+                0,
+                -120,
+                0
+              ],
+              "at": 1.4,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "How does Duck feel?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                -0.4,
+                1.3,
+                4.6
+              ],
+              "lookAt": [
+                -0.6,
+                0.7,
+                1.5
+              ],
+              "at": 0,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Angry! She is stomping her feet.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "angry",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.6,
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "dur": 3.98,
+          "do": [
+            {
+              "do": "say",
+              "text": "It's OK to feel angry. It's not OK to hurt.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.48,
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's open the toolbox.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.75,
+                7.8
+              ],
+              "lookAt": [
+                0,
+                1,
+                0
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                -100,
+                0,
+                0
+              ],
+              "at": 0.6,
+              "dur": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "t_five",
+              "at": 1.2,
+              "sound": "sparkle"
+            },
+            {
+              "do": "move",
+              "target": "t_five",
+              "to": [
+                -2.3,
+                1.25,
+                0.5
+              ],
+              "at": 1.2,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "Number five! Let's count to five, slowly.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "t_five",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "One...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.1,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Five.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "5",
+              "style": "count",
+              "at": 0.1,
+              "dur": 1
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "I feel calmer. Can I have a turn, please?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Yes! Let's take turns.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "red_ball",
+              "to": [
+                -0.1,
+                0,
+                1.7
+              ],
+              "at": 0.4,
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "red_ball",
+              "at": 0.4,
+              "height": 0.4,
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.4,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.03,
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you, Bunny!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "t_five",
+              "at": 0.8
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "I feel angry. That's OK. I count to five.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 3.2,
+              "volume": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "worried",
+      "title": "Worried",
+      "music": "calm",
+      "musicGain": 0.18,
+      "beats": [
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now we sing a cheer for Bear!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "red_ball",
+              "at": 0.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh. I don't want to sing in front of everyone.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "bunny",
+              "feeling": "worried",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [
+                -2.9,
+                0,
+                0.1
+              ],
+              "at": 0.8,
+              "dur": 2
+            },
+            {
+              "do": "camera",
+              "position": [
+                -2,
+                1.4,
+                4.8
+              ],
+              "lookAt": [
+                -2.8,
+                0.9,
+                0.4
+              ],
+              "at": 0.6,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 4.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "Bunny is hiding behind Robo. How does Bunny feel?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "bunny#head",
+              "to": [
+                0,
+                30,
+                0
+              ],
+              "at": 0.6,
+              "dur": 0.6
+            },
+            {
+              "do": "turn",
+              "target": "bunny#head",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1.8,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Worried. Let's open the toolbox.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "worried",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.6,
+              "color": "purple"
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                -100,
+                0,
+                0
+              ],
+              "at": 1.6,
+              "dur": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "t_house",
+              "at": 2.2,
+              "sound": "sparkle"
+            },
+            {
+              "do": "move",
+              "target": "t_house",
+              "to": [
+                -2.3,
+                1.25,
+                0.5
+              ],
+              "at": 2.2,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "A house. Tell a grown-up how you feel.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "t_house",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "Robo, I feel worried.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "bunny",
+              "to": [
+                0,
+                60,
+                0
+              ],
+              "at": 0.2,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.27,
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you for telling me. We can sing together!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "bunny",
+              "feeling": "happy",
+              "at": 1.6
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [
+                -1.8,
+                0,
+                1
+              ],
+              "at": 1.6,
+              "dur": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "t_house",
+              "at": 1
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1.2,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "I feel worried. That's OK. I tell a grown-up.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 3.2,
+              "volume": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "toolbox",
+      "title": "The calm-down toolbox",
+      "music": "calm",
+      "musicGain": 0.18,
+      "beats": [
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Here is our calm-down toolbox.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                -1.6,
+                1.5,
+                4.6
+              ],
+              "lookAt": [
+                -2.2,
+                0.9,
+                0.3
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                -100,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 4.05,
+          "do": [
+            {
+              "do": "say",
+              "text": "A hug. Counting to five. Telling a grown-up.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_heart",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "t_heart",
+              "to": [
+                -2.9,
+                1.3,
+                0.6
+              ],
+              "at": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "t_five",
+              "at": 1.2
+            },
+            {
+              "do": "move",
+              "target": "t_five",
+              "to": [
+                -2.3,
+                1.3,
+                0.6
+              ],
+              "at": 1.2,
+              "dur": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "t_house",
+              "at": 2.6
+            },
+            {
+              "do": "move",
+              "target": "t_house",
+              "to": [
+                -1.7,
+                1.2,
+                0.6
+              ],
+              "at": 2.6,
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "And a flower, for flower and bubble breathing!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_flower",
+              "at": 0.6
+            },
+            {
+              "do": "move",
+              "target": "t_flower",
+              "to": [
+                -2.3,
+                1.75,
+                0.6
+              ],
+              "at": 0.6,
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Smell the flower. Breathe in slowly.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.75,
+                7.8
+              ],
+              "lookAt": [
+                0,
+                1,
+                0
+              ],
+              "at": 0,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Blow a bubble. Breathe out slowly.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "breath",
+              "at": 0.8,
+              "sound": "bubble_blow",
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Again. Smell the flower...",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "And blow the bubble.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "breath",
+              "at": 0.6,
+              "sound": "bubble_blow",
+              "dur": 4
+            }
+          ]
+        },
+        {
+          "dur": 4.05,
+          "do": [
+            {
+              "do": "say",
+              "text": "Slow, deep breaths help your body feel calm.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "calm",
+              "style": "label",
+              "at": 2.6,
+              "dur": 1.4,
+              "color": "teal"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "sleepy",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Name it, then pick a tool.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "t_heart",
+              "at": 1.6
+            },
+            {
+              "do": "hide",
+              "target": "t_five",
+              "at": 1.6
+            },
+            {
+              "do": "hide",
+              "target": "t_house",
+              "at": 1.6
+            },
+            {
+              "do": "hide",
+              "target": "t_flower",
+              "at": 1.6
+            },
+            {
+              "do": "turn",
+              "target": "toolbox#lid",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1.8,
+              "dur": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Feelings quiz",
+      "beats": [
+        {
+          "dur": 5.92,
+          "do": [
+            {
+              "do": "say",
+              "text": "Feelings quiz! One. Duck is bouncing and wiggling. How does she feel?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.8,
+              "height": 0.3
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 2.6
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 3.4,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "Happy!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "happy",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2,
+              "color": "yellow"
+            }
+          ]
+        },
+        {
+          "dur": 5.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two. Bear's head is down. He moves slowly. How does he feel?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "sad",
+              "at": 1
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [
+                25,
+                0,
+                0
+              ],
+              "at": 1,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sad!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "sad",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2,
+              "color": "blue"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.8
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.8,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three. Duck is stomping her feet. How does she feel?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "angry",
+              "at": 1
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.6,
+              "height": 0.08,
+              "dur": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 2,
+              "height": 0.08,
+              "dur": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 2.4,
+              "height": 0.08,
+              "dur": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "Angry!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "angry",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2,
+              "color": "red"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 3.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four. What can you do when you feel angry?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.87,
+          "do": [
+            {
+              "do": "say",
+              "text": "Count to five, or take slow breaths. Any tool can help!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "birthday",
+      "title": "Happy birthday, Bear!",
+      "beats": [
+        {
+          "dur": 3.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you, friends. You helped me so much!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.3,
+              "height": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "Clap, clap, stomp! Hooray for Bear!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.3,
+              "sound": "bubble_blow"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.2,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 1.6,
+              "height": 0.25
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "You are great feelings helpers!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "All feelings are OK. Bye-bye!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 1.4
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 1.6
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 1.8
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 2
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2,
+                9.2
+              ],
+              "lookAt": [
+                0,
+                1.1,
+                0
+              ],
+              "at": 0.4,
+              "dur": 3
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 2.6,
+              "volume": 0.6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

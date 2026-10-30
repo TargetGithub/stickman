@@ -1,0 +1,3389 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "The Letter Train lost its letters! Robo, Duck and Pig find G, H, I, J, K and L, each hiding by a word that starts with it, and check out three look-alike letters that want a ride.",
+  "meta": {
+    "title": "Letters G to L",
+    "series": "toybox",
+    "episode": "pk12",
+    "audience": "prek",
+    "seed": 112,
+    "voice": "soft",
+    "voiceSpeed": 0.92,
+    "music": "bouncy",
+    "musicGain": 0.24,
+    "skills": [
+      "capital_letters_prek",
+      "letter_look_alikes_prek",
+      "beginning_sounds_k"
+    ],
+    "thumbnail": {
+      "scene": "aboard",
+      "at": 6.2
+    },
+    "youtube": {
+      "title": "Letters G H I J K L! 🚂 Alphabet Train for Kids | Toy Box Friends",
+      "description": "Toot toot! The Letter Train lost six letters on the bumpy track. Help Robo, Duck and Pig the driver find G, H, I, J, K and L: G by the gift, H by the house, I by the igloo, J up high, K by the kite and L with the lamb. Three look-alike letters try to sneak on board: can you spot them?\n\nTry it at home with a grown-up: make each letter with your body (gallop, hop, stand tall, jump, kick gently, make an L with your hand), then hunt for one thing at home for each letter.\n\nMade for kids. Toy Box Friends: 3D learning videos for preschool.",
+      "tags": [
+        "alphabet for kids",
+        "letters G to L",
+        "learn letters",
+        "ABC for toddlers",
+        "phonics for preschool",
+        "letter sounds",
+        "capital letters",
+        "alphabet train",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "studio"
+  },
+  "camera": {
+    "position": [
+      0,
+      1.9,
+      7.4
+    ],
+    "lookAt": [
+      0,
+      0.8,
+      -0.6
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "rail1",
+      "kind": "shape",
+      "shape": "plate",
+      "at": [
+        0,
+        0,
+        -1.58
+      ],
+      "color": "brown",
+      "scale": [
+        16,
+        1,
+        0.07
+      ]
+    },
+    {
+      "id": "rail2",
+      "kind": "shape",
+      "shape": "plate",
+      "at": [
+        0,
+        0,
+        -1.02
+      ],
+      "color": "brown",
+      "scale": [
+        16,
+        1,
+        0.07
+      ]
+    },
+    {
+      "id": "train",
+      "kind": "group",
+      "at": [
+        9,
+        0,
+        -1.3
+      ]
+    },
+    {
+      "id": "engine",
+      "kind": "prop",
+      "model": "train_engine",
+      "at": [
+        -3.2,
+        0,
+        0
+      ],
+      "parent": "train",
+      "rotation": [
+        0,
+        180,
+        0
+      ]
+    },
+    {
+      "id": "car0",
+      "kind": "prop",
+      "model": "train_car",
+      "at": [
+        -2.2,
+        0,
+        0
+      ],
+      "parent": "train"
+    },
+    {
+      "id": "car1",
+      "kind": "prop",
+      "model": "train_car",
+      "at": [
+        -1.2500000000000002,
+        0,
+        0
+      ],
+      "parent": "train"
+    },
+    {
+      "id": "car2",
+      "kind": "prop",
+      "model": "train_car",
+      "at": [
+        -0.30000000000000027,
+        0,
+        0
+      ],
+      "parent": "train"
+    },
+    {
+      "id": "car3",
+      "kind": "prop",
+      "model": "train_car",
+      "at": [
+        0.6499999999999995,
+        0,
+        0
+      ],
+      "parent": "train"
+    },
+    {
+      "id": "car4",
+      "kind": "prop",
+      "model": "train_car",
+      "at": [
+        1.5999999999999996,
+        0,
+        0
+      ],
+      "parent": "train"
+    },
+    {
+      "id": "car5",
+      "kind": "prop",
+      "model": "train_car",
+      "at": [
+        2.55,
+        0,
+        0
+      ],
+      "parent": "train"
+    },
+    {
+      "id": "pig",
+      "kind": "critter",
+      "species": "pig",
+      "at": [
+        -2.95,
+        0.55,
+        0
+      ],
+      "parent": "train",
+      "size": 0.5,
+      "rotation": [
+        0,
+        -20,
+        0
+      ]
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        3.7,
+        0,
+        0.3
+      ],
+      "rotation": [
+        0,
+        -35,
+        0
+      ]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+        2.8,
+        0,
+        1
+      ],
+      "size": 0.75,
+      "rotation": [
+        0,
+        -20,
+        0
+      ]
+    },
+    {
+      "id": "sheep",
+      "kind": "critter",
+      "species": "sheep",
+      "at": [
+        7.5,
+        0,
+        1.3
+      ],
+      "size": 0.85,
+      "rotation": [
+        0,
+        -70,
+        0
+      ]
+    },
+    {
+      "id": "gift",
+      "kind": "prop",
+      "model": "gift",
+      "at": [
+        -2.6,
+        0,
+        0.9
+      ],
+      "size": 0.8
+    },
+    {
+      "id": "house",
+      "kind": "prop",
+      "model": "house",
+      "at": [
+        -1.25,
+        0,
+        0.5
+      ],
+      "size": 0.7
+    },
+    {
+      "id": "igloo",
+      "kind": "prop",
+      "model": "igloo",
+      "at": [
+        0.1,
+        0,
+        0.7
+      ],
+      "size": 0.6
+    },
+    {
+      "id": "shelf_post",
+      "kind": "shape",
+      "shape": "cylinder",
+      "at": [
+        1.35,
+        0,
+        0.7
+      ],
+      "color": "brown",
+      "scale": [
+        0.18,
+        1.5,
+        0.18
+      ]
+    },
+    {
+      "id": "shelf",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        1.35,
+        1.5,
+        0.7
+      ],
+      "color": "cream",
+      "scale": [
+        0.8,
+        0.12,
+        0.5
+      ]
+    },
+    {
+      "id": "kite",
+      "kind": "prop",
+      "model": "kite",
+      "at": [
+        2.55,
+        0,
+        0.9
+      ],
+      "size": 0.8
+    },
+    {
+      "id": "fl1",
+      "kind": "prop",
+      "model": "flower",
+      "at": [
+        3.9,
+        0,
+        0.2
+      ],
+      "size": 0.5
+    },
+    {
+      "id": "fl2",
+      "kind": "prop",
+      "model": "flower",
+      "at": [
+        4.3,
+        0,
+        0.6
+      ],
+      "size": 0.45
+    },
+    {
+      "id": "l0",
+      "kind": "letter",
+      "text": "G",
+      "at": [
+        -0.3999999999999999,
+        0,
+        1.9
+      ],
+      "parent": "car0",
+      "color": "green",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "l1",
+      "kind": "letter",
+      "text": "H",
+      "at": [
+        2.220446049250313e-16,
+        0,
+        1.4000000000000001
+      ],
+      "parent": "car1",
+      "color": "orange",
+      "size": 0.5
+    },
+    {
+      "id": "l2",
+      "kind": "letter",
+      "text": "I",
+      "at": [
+        1.0500000000000003,
+        0,
+        2.2
+      ],
+      "parent": "car2",
+      "color": "teal",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "l3",
+      "kind": "letter",
+      "text": "J",
+      "at": [
+        0.7000000000000006,
+        1.56,
+        2
+      ],
+      "parent": "car3",
+      "color": "purple",
+      "size": 0.5,
+      "rotation": [
+        0,
+        180,
+        0
+      ]
+    },
+    {
+      "id": "l4",
+      "kind": "letter",
+      "text": "K",
+      "at": [
+        0.9500000000000002,
+        0.8,
+        2.3
+      ],
+      "parent": "car4",
+      "color": "pink",
+      "size": 0.4,
+      "hidden": true
+    },
+    {
+      "id": "l5",
+      "kind": "letter",
+      "text": "L",
+      "at": [
+        4.95,
+        0.95,
+        2.6
+      ],
+      "parent": "car5",
+      "color": "blue",
+      "size": 0.35
+    },
+    {
+      "id": "imp_c",
+      "kind": "letter",
+      "text": "C",
+      "at": [
+        -1.9,
+        0,
+        2.4
+      ],
+      "color": "green",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "imp_i",
+      "kind": "letter",
+      "text": "I",
+      "at": [
+        3.2,
+        0,
+        1
+      ],
+      "color": "blue",
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [
+        10,
+        4
+      ],
+      "height": 7
+    }
+  ],
+  "scenes": [
+    {
+      "id": "train",
+      "title": "The Letter Train",
+      "beats": [
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "train",
+              "to": [
+                0,
+                0,
+                -1.3
+              ],
+              "at": 0,
+              "dur": 3,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "engine#wheels",
+              "to": [
+                0,
+                0,
+                720
+              ],
+              "at": 0,
+              "dur": 3,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 0.4,
+              "volume": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "train_whistle",
+              "at": 2.6,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "Letters G to L",
+              "style": "title",
+              "at": 0.4,
+              "dur": 5
+            }
+          ]
+        },
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Toot toot! Letters G to L!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh no. My letters fell off on the bumpy track!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "pig",
+              "feeling": "sad",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Six empty cars. We will find them!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "car0",
+              "at": 0.4,
+              "height": 0.08
+            },
+            {
+              "do": "hop",
+              "target": "car1",
+              "at": 0.65,
+              "height": 0.08
+            },
+            {
+              "do": "hop",
+              "target": "car2",
+              "at": 0.9,
+              "height": 0.08
+            },
+            {
+              "do": "hop",
+              "target": "car3",
+              "at": 1.15,
+              "height": 0.08
+            },
+            {
+              "do": "hop",
+              "target": "car4",
+              "at": 1.4,
+              "height": 0.08
+            },
+            {
+              "do": "hop",
+              "target": "car5",
+              "at": 1.65,
+              "height": 0.08
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.85,
+          "do": [
+            {
+              "do": "say",
+              "text": "We know A to F. Now, G to L!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "I will look! Quack!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "pig",
+              "feeling": "happy",
+              "at": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g",
+      "title": "G is by the gift",
+      "beats": [
+        {
+          "dur": 2.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Wait! Who is this?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                -1.87,
+                1.5,
+                5.4
+              ],
+              "lookAt": [
+                -2.2,
+                0.7,
+                0.1
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "show",
+              "target": "imp_c",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "imp_c",
+              "at": 0.6,
+              "height": 0.3
+            },
+            {
+              "do": "move",
+              "target": "imp_c",
+              "to": [
+                -2,
+                0,
+                1.9
+              ],
+              "at": 0.6,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "I am G! Can I ride?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "imp_c",
+              "at": 0.3,
+              "height": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "imp_c",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "Is this G? Yes or no?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "No! This is C. G has a little shelf.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 0.3,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.85,
+          "do": [
+            {
+              "do": "say",
+              "text": "Not you! Maybe next time, C.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "Not you!",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "imp_c",
+              "to": [
+                -4.6,
+                0,
+                2.6
+              ],
+              "at": 1.2,
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "imp_c",
+              "at": 1.2,
+              "height": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "imp_c",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck, look by the gift!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                -1.3,
+                0,
+                1.6
+              ],
+              "at": 0.3,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1,
+              "height": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "imp_c",
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "Found it! Quack!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "gift",
+              "at": 0.2,
+              "height": 0.25
+            },
+            {
+              "do": "pop",
+              "target": "l0",
+              "at": 0.6,
+              "sound": "ding"
+            },
+            {
+              "do": "move",
+              "target": "l0",
+              "to": [
+                -0.5499999999999998,
+                0,
+                2.6
+              ],
+              "at": 0.6,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "What letter is this?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "It is G! G has a little shelf.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "G",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "l0",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "G is for gift. G says...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 1.2,
+              "height": 0.12
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_g",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "l0",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "G... gift. G... gallop!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 1.6,
+              "height": 0.15
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 2.8,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "All aboard, G!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "l0",
+              "to": [
+                0,
+                0.45,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "l0",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 1.6,
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "car0",
+              "at": 1.6,
+              "height": 0.08
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Chug-a, chug-a, toot toot! G!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 2.3,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h",
+      "title": "H is by the house",
+      "beats": [
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "Next, the house!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                -1.0625,
+                1.5,
+                5.4
+              ],
+              "lookAt": [
+                -1.25,
+                0.7,
+                0.1
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                -0.4,
+                0,
+                1.6
+              ],
+              "at": 0.3,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Peek! Who is behind the house?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "l1",
+              "to": [
+                0.7500000000000002,
+                0,
+                1.4000000000000001
+              ],
+              "at": 0.8,
+              "dur": 0.8,
+              "ease": "quadOut"
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "What letter is this?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 3.53,
+          "do": [
+            {
+              "do": "say",
+              "text": "It is H! Two tall lines and a bridge.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "l1",
+              "to": [
+                0.8500000000000002,
+                0,
+                2.3
+              ],
+              "at": 0.2,
+              "dur": 0.8
+            },
+            {
+              "do": "caption",
+              "text": "H",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "l1",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "H is for house. H says...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 1.2,
+              "height": 0.12
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_h",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "l1",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "H... house. H... hop!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 1.8,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 2.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 3,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 2.4,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "All aboard, H!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "l1",
+              "to": [
+                0,
+                0.45,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "l1",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 1.6,
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "car1",
+              "at": 1.6,
+              "height": 0.08
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Chug-a, chug-a, toot toot! G, H!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 2.3,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 2.8,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "i",
+      "title": "I is by the igloo",
+      "beats": [
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "Next, the igloo!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.255,
+                1.5,
+                5.4
+              ],
+              "lookAt": [
+                0.3,
+                0.7,
+                0.1
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                -0.6,
+                0,
+                1.6
+              ],
+              "at": 0.3,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "An igloo is a snow house.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 1.4,
+              "sound": "ding"
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "What letter is this?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "It is I! I stands tall and straight.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "I",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "grow",
+              "target": "l2",
+              "to": 1.25,
+              "at": 1.4,
+              "dur": 0.6
+            },
+            {
+              "do": "grow",
+              "target": "l2",
+              "to": 1,
+              "at": 2.4,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "I is for igloo. I says...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 1.2,
+              "height": 0.12
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_i_short",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "l2",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.58,
+          "do": [
+            {
+              "do": "say",
+              "text": "I... igloo.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "l2",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "Stand up tall like an I!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "duck",
+              "to": 0.95,
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.4,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "dur": 4.57,
+          "do": [
+            {
+              "do": "say",
+              "text": "Some Inuit people built igloos from blocks of snow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "nod",
+              "target": "pig",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "All aboard, I!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "grow",
+              "target": "duck",
+              "to": 0.75,
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "l2",
+              "to": [
+                0,
+                0.45,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "l2",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 1.6,
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "car2",
+              "at": 1.6,
+              "height": 0.08
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Chug-a, chug-a, toot toot! G, H, I!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 2.3,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 2.8,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 3.3,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "j",
+      "title": "J is up high",
+      "beats": [
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Where is the next letter?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.1475,
+                1.5,
+                5.4
+              ],
+              "lookAt": [
+                1.35,
+                0.7,
+                0.1
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                0.6,
+                0,
+                1.7
+              ],
+              "at": 0.3,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Up high! On the shelf!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.2,
+                1.6,
+                4.4
+              ],
+              "lookAt": [
+                1.35,
+                1.2,
+                0.4
+              ],
+              "at": 0,
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 0.6,
+              "height": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "I will jump!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "l3",
+              "to": [
+                0.7000000000000006,
+                0,
+                2.4000000000000004
+              ],
+              "at": 0.3,
+              "dur": 0.7,
+              "ease": "bounceOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.7,
+              "volume": 0.5
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.1475,
+                1.5,
+                5.4
+              ],
+              "lookAt": [
+                1.35,
+                0.7,
+                0.1
+              ],
+              "at": 0,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "Hmm. Is this J? It looks funny.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "l3",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "It is facing the wrong way!",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.88,
+          "do": [
+            {
+              "do": "say",
+              "text": "J, turn around!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "l3",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.6,
+              "dur": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now it is J! A line with a hook.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "J",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "J is for jump. J says...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 1.2,
+              "height": 0.12
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_j",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "l3",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "J... jump!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 1.6,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.8,
+              "height": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "All aboard, J!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "l3",
+              "to": [
+                0,
+                0.45,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "l3",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 1.6,
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "car3",
+              "at": 1.6,
+              "height": 0.08
+            }
+          ]
+        },
+        {
+          "dur": 4.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Chug-a, chug-a, toot toot! G, H, I, J!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 2.3,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 2.8,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 3.3,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 3.8,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "k",
+      "title": "K is by the kite",
+      "beats": [
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Whoosh! Look at the kite.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                2.1675,
+                1.5,
+                5.4
+              ],
+              "lookAt": [
+                2.55,
+                0.7,
+                0.1
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.3,
+              "volume": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "kite",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                1.3,
+                0,
+                1.9
+              ],
+              "at": 0.3,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Something is on the string!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 0.6,
+              "sound": "ding"
+            },
+            {
+              "do": "wiggle",
+              "target": "l4",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "What letter is this?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "It is K! One tall line and two arms.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "l4",
+              "to": [
+                0.6500000000000004,
+                0,
+                2.7
+              ],
+              "at": 0.2,
+              "dur": 1.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "caption",
+              "text": "K",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "grow",
+              "target": "l4",
+              "to": 1.25,
+              "at": 0.6,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "K is for kite. K says...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "at": 1.2,
+              "height": 0.12
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_k",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "l4",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "K... kite. K... kick!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "at": 2.2,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 2.8,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 5.02,
+          "do": [
+            {
+              "do": "say",
+              "text": "People have flown kites for more than two thousand years!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "kite",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "kite",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "All aboard, K!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "l4",
+              "to": [
+                0,
+                0.45,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "l4",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 1.6,
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "car4",
+              "at": 1.6,
+              "height": 0.08
+            }
+          ]
+        },
+        {
+          "dur": 4.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Chug-a, chug-a, toot toot! G, H, I, J, K!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 2.3,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 2.8,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 3.3,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 3.8,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "at": 4.3,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l",
+      "title": "L is with the lamb",
+      "beats": [
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Hello! I am L! Can I ride?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Walking",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                4.5,
+                0,
+                -0.5
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle",
+              "at": 1.4
+            },
+            {
+              "do": "show",
+              "target": "imp_i",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "imp_i",
+              "to": [
+                1.5,
+                0,
+                1.4
+              ],
+              "at": 0,
+              "dur": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "imp_i",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.9,
+                1.5,
+                5.9
+              ],
+              "lookAt": [
+                2.1,
+                0.7,
+                0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "Is this L? Yes or no?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "sheep",
+              "to": [
+                2.6,
+                0,
+                1.6
+              ],
+              "at": 0,
+              "dur": 1.6
+            },
+            {
+              "do": "turn",
+              "target": "sheep",
+              "to": [
+                0,
+                -30,
+                0
+              ],
+              "at": 1.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "l5",
+              "to": [
+                0.050000000000000266,
+                0.95,
+                2.9000000000000004
+              ],
+              "at": 0,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Baa! L has a foot. This is I.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "nod",
+              "target": "sheep",
+              "at": 0.3
+            },
+            {
+              "do": "wiggle",
+              "target": "sheep",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.85,
+          "do": [
+            {
+              "do": "say",
+              "text": "Not you! Maybe next time, I.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "Not you!",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "imp_i",
+              "to": [
+                5.5,
+                0,
+                2.2
+              ],
+              "at": 1.2,
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "imp_i",
+              "at": 1.2,
+              "height": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 0.3,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Look! L is riding on Sheep!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "at": 0.6,
+              "height": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "imp_i",
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "A baby sheep is called a lamb.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "soft"
+            },
+            {
+              "do": "nod",
+              "target": "sheep",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "What letter is this?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "It is L! A tall line and a foot.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "l5",
+              "to": [
+                -0.6499999999999999,
+                0,
+                3.3
+              ],
+              "at": 0.2,
+              "dur": 0.8
+            },
+            {
+              "do": "grow",
+              "target": "l5",
+              "to": 1.4,
+              "at": 0.4,
+              "dur": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "L",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "text": "L is for lamb. L says...",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "at": 1.2,
+              "height": 0.12
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "ph_l",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "l5",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "L... lamb.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "sheep",
+              "at": 1
+            },
+            {
+              "do": "wiggle",
+              "target": "l5",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3.53,
+          "do": [
+            {
+              "do": "say",
+              "text": "Make an L with your thumb and finger!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "All aboard, L!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.8,
+                -0.6
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "l5",
+              "to": [
+                0,
+                0.45,
+                0
+              ],
+              "at": 0.4,
+              "dur": 1.1,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "l5",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 1.6,
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "car5",
+              "at": 1.6,
+              "height": 0.08
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aboard",
+      "title": "All aboard!",
+      "beats": [
+        {
+          "dur": 3.23,
+          "do": [
+            {
+              "do": "say",
+              "text": "All six letters are on the train!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Walking",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                3.7,
+                0,
+                0.3
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle",
+              "at": 1.2
+            },
+            {
+              "do": "feel",
+              "target": "pig",
+              "feeling": "happy",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.4,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 5.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Chug-a, chug-a, toot toot! G, H, I, J, K, L!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "train",
+              "to": [
+                -0.8,
+                0,
+                -1.3
+              ],
+              "at": 0.2,
+              "dur": 2.5,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "move",
+              "target": "train",
+              "to": [
+                0,
+                0,
+                -1.3
+              ],
+              "at": 3.2,
+              "dur": 2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "toot",
+              "at": 0.2,
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 2.3,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 2.8,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 3.3,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 3.8,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "at": 4.3,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "at": 4.8,
+              "height": 0.25
+            },
+            {
+              "do": "caption",
+              "text": "G H I J K L",
+              "style": "label",
+              "at": 2.2,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "dur": 4.27,
+          "do": [
+            {
+              "do": "say",
+              "text": "Gallop, hop, stand tall, jump, kick, make an L!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.1,
+              "height": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 1.6
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 2.2,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "sheep",
+              "at": 2.8,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Ticket check quiz",
+      "beats": [
+        {
+          "dur": 5.17,
+          "do": [
+            {
+              "do": "say",
+              "text": "Ticket check! One. Which letter has a little shelf, G or C?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "move",
+              "target": "imp_c",
+              "to": [
+                -2.2,
+                0,
+                1.4
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "show",
+              "target": "imp_c",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "G! Click!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "imp_c",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two. Which letter is for house?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "H! Click!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.68,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three. Which letter has a foot, I or L?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "L! Click!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four. What comes after J?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 1,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "K! Click! Super ticket checkers!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "l0",
+              "at": 1.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 1.5999999999999999,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 1.7999999999999998,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 2,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "at": 2.2,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "at": 2.4,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "title": "Toot-toot, goodbye",
+      "beats": [
+        {
+          "dur": 4.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Toot toot! Bye-bye, G to L!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "train_whistle",
+              "at": 0.2,
+              "volume": 0.5
+            },
+            {
+              "do": "move",
+              "target": "train",
+              "to": [
+                -11,
+                0,
+                -1.3
+              ],
+              "at": 1.2,
+              "dur": 4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "turn",
+              "target": "engine#wheels",
+              "to": [
+                0,
+                0,
+                2160
+              ],
+              "at": 1.2,
+              "dur": 4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.2
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 0.8
+            },
+            {
+              "do": "nod",
+              "target": "sheep",
+              "at": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

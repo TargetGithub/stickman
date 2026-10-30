@@ -1,0 +1,3887 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Robo's battery is low! Robo charges with a plug, and kids charge with healthy habits: wash your hands, brush your teeth, and get lots of sleep. With muddy Pig, sleepy Cat, and a pepper and soap trick.",
+  "meta": {
+    "title": "Healthy Habits: Wash, Brush, Sleep",
+    "series": "toybox",
+    "episode": "pk16",
+    "audience": "prek",
+    "seed": 116,
+    "voice": "soft",
+    "voiceSpeed": 0.93,
+    "music": "bouncy",
+    "musicGain": 0.22,
+    "skills": [
+      "healthy_habits_prek"
+    ],
+    "thumbnail": {
+      "scene": "wash",
+      "at": 15.5
+    },
+    "youtube": {
+      "title": "Healthy Habits for Kids! 🧼🪥 Wash, Brush, Sleep with Robo | Toy Box Friends",
+      "description": "Uh-oh, Robo's battery is low! Robo charges with a plug, but how do kids charge? With healthy habits! Wash your hands with Pig (wet, soap, scrub for 20 seconds, rinse, dry), see the pepper and soap trick, brush your teeth two times a day with a pea-sized bit of toothpaste, and follow Cat's calm bedtime routine. Lots of sleep charges your body!\n\nTry the pepper trick with a grown-up: water on a plate, a little ground pepper on top, then touch the middle with a soapy finger. Keep pepper away from eyes and noses, and wash your hands after.\n\nMade for kids. Toy Box Friends: 3D learning videos for preschool.",
+      "tags": [
+        "healthy habits for kids",
+        "hand washing for kids",
+        "brushing teeth for kids",
+        "bedtime routine",
+        "pepper soap experiment",
+        "preschool health",
+        "good habits",
+        "toddler learning",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "playroom"
+  },
+  "camera": {
+    "position": [
+      0,
+      1.9,
+      8.2
+    ],
+    "lookAt": [
+      0,
+      1.2,
+      -0.4
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -0.6,
+        0,
+        0.8
+      ],
+      "rotation": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "id": "meter",
+      "kind": "prop",
+      "model": "battery_meter",
+      "at": [
+        -0.6,
+        2.35,
+        0.8
+      ],
+      "size": 1,
+      "hidden": true
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+        1.2,
+        0,
+        1.4
+      ],
+      "size": 0.8,
+      "rotation": [
+        0,
+        -20,
+        0
+      ]
+    },
+    {
+      "id": "ball",
+      "kind": "prop",
+      "model": "ball",
+      "at": [
+        0.4,
+        0,
+        1.6
+      ],
+      "size": 0.4,
+      "color": "red"
+    },
+    {
+      "id": "pig",
+      "kind": "critter",
+      "species": "pig",
+      "at": [
+        -7,
+        0,
+        1.2
+      ],
+      "size": 0.85,
+      "rotation": [
+        0,
+        50,
+        0
+      ]
+    },
+    {
+      "id": "mud1",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -7.2,
+        0.04,
+        1.45
+      ],
+      "color": "brown",
+      "material": "matte",
+      "size": 0.13
+    },
+    {
+      "id": "mud2",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -6.8,
+        0.04,
+        1.45
+      ],
+      "color": "brown",
+      "material": "matte",
+      "size": 0.13
+    },
+    {
+      "id": "mud3",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -7.25,
+        0.04,
+        1.15
+      ],
+      "color": "brown",
+      "material": "matte",
+      "size": 0.13
+    },
+    {
+      "id": "mud4",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -6.75,
+        0.04,
+        1.15
+      ],
+      "color": "brown",
+      "material": "matte",
+      "size": 0.13
+    },
+    {
+      "id": "germ1",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -2.9,
+        0.4,
+        -0.4
+      ],
+      "color": "green",
+      "material": "glow",
+      "size": 0.06,
+      "hidden": true
+    },
+    {
+      "id": "germ2",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -2.3000000000000003,
+        0.5,
+        -0.4
+      ],
+      "color": "green",
+      "material": "glow",
+      "size": 0.06,
+      "hidden": true
+    },
+    {
+      "id": "germ3",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -2.7,
+        0.6499999999999999,
+        -0.4
+      ],
+      "color": "green",
+      "material": "glow",
+      "size": 0.06,
+      "hidden": true
+    },
+    {
+      "id": "germ4",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -2.35,
+        0.35,
+        -0.4
+      ],
+      "color": "green",
+      "material": "glow",
+      "size": 0.06,
+      "hidden": true
+    },
+    {
+      "id": "germ5",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -2.5500000000000003,
+        0.55,
+        -0.4
+      ],
+      "color": "green",
+      "material": "glow",
+      "size": 0.06,
+      "hidden": true
+    },
+    {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "at": [
+        7,
+        0,
+        0.6
+      ],
+      "size": 0.85,
+      "rotation": [
+        0,
+        -50,
+        0
+      ]
+    },
+    {
+      "id": "sink",
+      "kind": "prop",
+      "model": "sink",
+      "at": [
+        -2.4,
+        0,
+        -1.2
+      ],
+      "size": 1.1
+    },
+    {
+      "id": "soap",
+      "kind": "prop",
+      "model": "soap",
+      "at": [
+        -1.75,
+        0.8,
+        -1.1
+      ],
+      "size": 1.2
+    },
+    {
+      "id": "towel",
+      "kind": "shape",
+      "shape": "plate",
+      "at": [
+        -3.3,
+        0.6,
+        -1
+      ],
+      "color": "teal",
+      "material": "matte",
+      "scale": [
+        0.5,
+        2,
+        0.7
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "suds",
+      "kind": "bubbles",
+      "count": 16,
+      "at": [
+        -1.6,
+        0.6,
+        -0.7
+      ],
+      "area": [
+        1.2,
+        0.6
+      ],
+      "height": 2.2,
+      "size": 0.2
+    },
+    {
+      "id": "bed",
+      "kind": "prop",
+      "model": "bed",
+      "at": [
+        2.6,
+        0,
+        -1.4
+      ],
+      "size": 1.1
+    },
+    {
+      "id": "book",
+      "kind": "prop",
+      "model": "book",
+      "at": [
+        1.4,
+        0,
+        -0.9
+      ],
+      "size": 0.8,
+      "hidden": true
+    },
+    {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+        2.2,
+        3.6,
+        -3.6
+      ],
+      "size": 0.8
+    },
+    {
+      "id": "moon",
+      "kind": "prop",
+      "model": "moon",
+      "at": [
+        2.2,
+        3.6,
+        -3.6
+      ],
+      "size": 0.8,
+      "hidden": true
+    },
+    {
+      "id": "plug",
+      "kind": "shape",
+      "shape": "cube",
+      "at": [
+        -2,
+        0,
+        0.2
+      ],
+      "color": "grey",
+      "size": 0.22,
+      "hidden": true
+    },
+    {
+      "id": "cord",
+      "kind": "shape",
+      "shape": "cylinder",
+      "at": [
+        -2,
+        0.04,
+        -0.3
+      ],
+      "color": "charcoal",
+      "scale": [
+        0.05,
+        0.8,
+        0.05
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "ptable",
+      "kind": "prop",
+      "model": "table",
+      "at": [
+        0,
+        0,
+        1.2
+      ],
+      "size": 0.85,
+      "hidden": true
+    },
+    {
+      "id": "plate",
+      "kind": "shape",
+      "shape": "disc",
+      "at": [
+        0,
+        0.75,
+        1.2
+      ],
+      "color": "white",
+      "size": 0.75,
+      "hidden": true
+    },
+    {
+      "id": "pwater",
+      "kind": "shape",
+      "shape": "cylinder",
+      "at": [
+        0,
+        0.8,
+        1.2
+      ],
+      "color": "teal",
+      "material": "water",
+      "scale": [
+        0.62,
+        0.03,
+        0.62
+      ],
+      "hidden": true
+    },
+    {
+      "id": "pep1",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.07642691913004848,
+        0.84,
+        1.2236416165329072
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep2",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.09514197915800778,
+        0.84,
+        1.302703475120841
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep3",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.044348047652491146,
+        0.84,
+        1.395021154415136
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep4",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -0.03250722273274735,
+        0.84,
+        1.3050870138038166
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep5",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -0.1247113626467355,
+        0.84,
+        1.315529546120438
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep6",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -0.07800846176605446,
+        0.84,
+        1.2177392190609964
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep7",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -0.13374710847758486,
+        0.84,
+        1.1586271710674125
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep8",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -0.13591711308286822,
+        0.84,
+        1.05328074982737
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep9",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        -0.02439142620887019,
+        0.84,
+        1.092738365071675
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep10",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.050238435132427664,
+        0.84,
+        1.037592796848647
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep11",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.05868770006905202,
+        0.84,
+        1.1456331547668526
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "pep12",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.1365148080905953,
+        0.84,
+        1.168956366643256
+      ],
+      "color": "ink",
+      "size": 0.05,
+      "hidden": true
+    },
+    {
+      "id": "finger",
+      "kind": "shape",
+      "shape": "capsule",
+      "at": [
+        0,
+        1.6,
+        1.2
+      ],
+      "color": "cream",
+      "scale": [
+        0.07,
+        0.3,
+        0.07
+      ],
+      "hidden": true
+    },
+    {
+      "id": "soapdrop",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0,
+        1.45,
+        1.2
+      ],
+      "color": "pink",
+      "material": "glossy",
+      "size": 0.08,
+      "hidden": true
+    },
+    {
+      "id": "gums",
+      "kind": "shape",
+      "shape": "box",
+      "at": [
+        0.2,
+        0.8,
+        1.06
+      ],
+      "color": "rose",
+      "scale": [
+        1.1,
+        0.18,
+        0.32
+      ],
+      "hidden": true
+    },
+    {
+      "id": "tooth1",
+      "kind": "shape",
+      "shape": "cube",
+      "at": [
+        -0.2,
+        0.95,
+        1.08
+      ],
+      "color": "white",
+      "size": 0.14,
+      "hidden": true
+    },
+    {
+      "id": "tooth2",
+      "kind": "shape",
+      "shape": "cube",
+      "at": [
+        -0.04000000000000001,
+        0.95,
+        1.08
+      ],
+      "color": "white",
+      "size": 0.14,
+      "hidden": true
+    },
+    {
+      "id": "tooth3",
+      "kind": "shape",
+      "shape": "cube",
+      "at": [
+        0.12,
+        0.95,
+        1.08
+      ],
+      "color": "white",
+      "size": 0.14,
+      "hidden": true
+    },
+    {
+      "id": "tooth4",
+      "kind": "shape",
+      "shape": "cube",
+      "at": [
+        0.27999999999999997,
+        0.95,
+        1.08
+      ],
+      "color": "white",
+      "size": 0.14,
+      "hidden": true
+    },
+    {
+      "id": "tooth5",
+      "kind": "shape",
+      "shape": "cube",
+      "at": [
+        0.44,
+        0.95,
+        1.08
+      ],
+      "color": "white",
+      "size": 0.14,
+      "hidden": true
+    },
+    {
+      "id": "tooth6",
+      "kind": "shape",
+      "shape": "cube",
+      "at": [
+        0.6000000000000001,
+        0.95,
+        1.08
+      ],
+      "color": "white",
+      "size": 0.14,
+      "hidden": true
+    },
+    {
+      "id": "brush",
+      "kind": "prop",
+      "model": "toothbrush",
+      "at": [
+        0.95,
+        1.3,
+        1.1
+      ],
+      "size": 1.3,
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "paste",
+      "kind": "prop",
+      "model": "toothpaste",
+      "at": [
+        1.3,
+        0.8,
+        1.2
+      ],
+      "size": 1,
+      "hidden": true
+    },
+    {
+      "id": "pea",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0.68,
+        1.37,
+        1.1
+      ],
+      "color": "white",
+      "size": 0.07,
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [
+        10,
+        4
+      ],
+      "height": 7
+    }
+  ],
+  "scenes": [
+    {
+      "id": "battery",
+      "title": "Uh-oh, low battery",
+      "beats": [
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "Wash, Brush, Sleep!",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "Wash, Brush, Sleep",
+              "style": "title",
+              "at": 0.1,
+              "dur": 3
+            },
+            {
+              "do": "hop",
+              "target": "ball",
+              "at": 0.4,
+              "height": 0.6,
+              "sound": "ball_bounce"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Catch, Robo!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "ball",
+              "to": [
+                -0.3,
+                0,
+                1.2
+              ],
+              "at": 0.2,
+              "dur": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "ball",
+              "at": 0.2,
+              "height": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "I feel so slow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Walking",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                -0.4,
+                0,
+                0.9
+              ],
+              "at": 0,
+              "dur": 2,
+              "ease": "linear"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle",
+              "at": 2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "sleepy",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Beep. Beep. My battery is low!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "meter",
+              "at": 0.1
+            },
+            {
+              "do": "move",
+              "target": "meter#bar5",
+              "to": [
+                0,
+                0,
+                -0.15
+              ],
+              "at": 0.8,
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 0.8,
+              "volume": 0.35
+            },
+            {
+              "do": "move",
+              "target": "meter#bar4",
+              "to": [
+                0,
+                0,
+                -0.15
+              ],
+              "at": 1.4,
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 1.4,
+              "volume": 0.35
+            },
+            {
+              "do": "move",
+              "target": "meter#bar3",
+              "to": [
+                0,
+                0,
+                -0.15
+              ],
+              "at": 2,
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 2,
+              "volume": 0.35
+            },
+            {
+              "do": "move",
+              "target": "meter#bar2",
+              "to": [
+                0,
+                0,
+                -0.15
+              ],
+              "at": 2.6,
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 2.6,
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "low battery",
+              "style": "label",
+              "at": 3,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Sitting",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 0.4,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "Only one bar left. I need to charge.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 1.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "title": "How do kids charge?",
+      "beats": [
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "I charge with a plug.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "plug",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "cord",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.2,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "text": "I don't have a battery! How do I charge?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.25
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "worried",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Kids charge with healthy habits!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Standing",
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "Wash your hands. Brush your teeth. Sleep.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "wash",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1
+            },
+            {
+              "do": "caption",
+              "text": "brush",
+              "style": "label",
+              "at": 1.7,
+              "dur": 1
+            },
+            {
+              "do": "caption",
+              "text": "sleep",
+              "style": "label",
+              "at": 2.7,
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's find out how!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pig",
+      "title": "Muddy Pig",
+      "beats": [
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Here comes Pig! Snack time!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "pig",
+              "to": [
+                -2.4,
+                0,
+                1.6
+              ],
+              "at": 0.2,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "mud1",
+              "to": [
+                -2.6,
+                0.04,
+                1.85
+              ],
+              "at": 0.2,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "mud2",
+              "to": [
+                -2.1999999999999997,
+                0.04,
+                1.85
+              ],
+              "at": 0.2,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "mud3",
+              "to": [
+                -2.65,
+                0.04,
+                1.55
+              ],
+              "at": 0.2,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "mud4",
+              "to": [
+                -2.15,
+                0.04,
+                1.55
+              ],
+              "at": 0.2,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.1,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.8,
+              "height": 0.2
+            },
+            {
+              "do": "turn",
+              "target": "pig",
+              "to": [
+                0,
+                20,
+                0
+              ],
+              "at": 2,
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "I played in the mud! I love mud!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "pig",
+              "feeling": "happy",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 4.8,
+          "do": [
+            {
+              "do": "say",
+              "text": "Pigs roll in mud to keep cool. They cannot sweat much.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                -2.6,
+                1.2,
+                4.9
+              ],
+              "lookAt": [
+                -2.4,
+                0.5,
+                1.4
+              ],
+              "at": 0.2,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "But look. Germs!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "germ1",
+              "at": 0.55,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "germ2",
+              "at": 0.7,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "germ3",
+              "at": 0.85,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "germ4",
+              "at": 1,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "germ5",
+              "at": 1.15,
+              "sound": "pop"
+            },
+            {
+              "do": "move",
+              "target": "germ1",
+              "to": [
+                -2.6999999999999997,
+                0.35,
+                1.9
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "germ2",
+              "to": [
+                -2.1,
+                0.45,
+                1.9
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "germ3",
+              "to": [
+                -2.5,
+                0.6,
+                1.9
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "germ4",
+              "to": [
+                -2.15,
+                0.3,
+                1.9
+              ],
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "germ5",
+              "to": [
+                -2.35,
+                0.5,
+                1.9
+              ],
+              "at": 0,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.23,
+          "do": [
+            {
+              "do": "say",
+              "text": "Germs are tiny. Too small to see!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "germs",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Washing helps keep germs off our food.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                8.2
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                -0.4
+              ],
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.98,
+          "do": [
+            {
+              "do": "say",
+              "text": "We wash before we eat, and after the potty!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wash",
+      "title": "Wash, wash, wash",
+      "beats": [
+        {
+          "dur": 2.03,
+          "do": [
+            {
+              "do": "say",
+              "text": "To the sink, Pig!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "pig",
+              "to": [
+                -1.6,
+                0,
+                -0.8
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "mud1",
+              "to": [
+                -1.8,
+                0.04,
+                -0.55
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "mud2",
+              "to": [
+                -1.4000000000000001,
+                0.04,
+                -0.55
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "mud3",
+              "to": [
+                -1.85,
+                0.04,
+                -0.8500000000000001
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "mud4",
+              "to": [
+                -1.35,
+                0.04,
+                -0.8500000000000001
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "germ1",
+              "to": [
+                -1.9000000000000001,
+                0.35,
+                -0.5
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "germ2",
+              "to": [
+                -1.3,
+                0.45,
+                -0.5
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "germ3",
+              "to": [
+                -1.7000000000000002,
+                0.6,
+                -0.5
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "germ4",
+              "to": [
+                -1.35,
+                0.3,
+                -0.5
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "germ5",
+              "to": [
+                -1.55,
+                0.5,
+                -0.5
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "turn",
+              "target": "pig",
+              "to": [
+                0,
+                -25,
+                0
+              ],
+              "at": 1.2,
+              "dur": 0.5
+            },
+            {
+              "do": "camera",
+              "position": [
+                -2.3,
+                1.4,
+                3
+              ],
+              "lookAt": [
+                -2.1,
+                0.8,
+                -0.9
+              ],
+              "at": 0.4,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "One. Wet your hands.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "wet",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "at": 0.6,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two. Soap!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "soap",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "soap",
+              "at": 0.6,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "dur": 5.17,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three. Scrub for twenty seconds! Say it with me, two times.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "scrub",
+              "style": "label",
+              "at": 0.4,
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "20 seconds",
+              "style": "label",
+              "at": 1.8,
+              "dur": 1.8
+            },
+            {
+              "do": "burst",
+              "target": "suds",
+              "at": 0.4,
+              "sound": "bubble_blow",
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "dur": 6.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "Scrub the fronts. Scrub the backs. In between. The thumbs. Bubbles, bubbles, done!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 1.8
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 3.2
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 4.6
+            },
+            {
+              "do": "burst",
+              "target": "suds",
+              "at": 2.4,
+              "sound": "bubble_blow",
+              "dur": 5
+            }
+          ]
+        },
+        {
+          "dur": 6.9,
+          "do": [
+            {
+              "do": "say",
+              "text": "Scrub the fronts. Scrub the backs. In between. The thumbs. Bubbles, bubbles, done!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 1.8
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 3.2
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 4.6
+            },
+            {
+              "do": "burst",
+              "target": "suds",
+              "at": 2.4,
+              "sound": "bubble_blow",
+              "dur": 5
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four. Rinse the bubbles away.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "rinse",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "at": 0.6,
+              "volume": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "mud1",
+              "at": 1.15
+            },
+            {
+              "do": "hide",
+              "target": "mud2",
+              "at": 1.3
+            },
+            {
+              "do": "hide",
+              "target": "mud3",
+              "at": 1.45
+            },
+            {
+              "do": "hide",
+              "target": "mud4",
+              "at": 1.6
+            },
+            {
+              "do": "hide",
+              "target": "germ1",
+              "at": 1.12
+            },
+            {
+              "do": "hide",
+              "target": "germ2",
+              "at": 1.24
+            },
+            {
+              "do": "hide",
+              "target": "germ3",
+              "at": 1.3599999999999999
+            },
+            {
+              "do": "hide",
+              "target": "germ4",
+              "at": 1.48
+            },
+            {
+              "do": "hide",
+              "target": "germ5",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.48,
+          "do": [
+            {
+              "do": "say",
+              "text": "Five. Dry with a towel.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "dry",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            },
+            {
+              "do": "wiggle",
+              "target": "towel",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "All clean! Snack time!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "turn",
+              "target": "pig",
+              "to": [
+                0,
+                20,
+                0
+              ],
+              "at": 0.2,
+              "dur": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.6,
+              "height": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 0.6,
+              "volume": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pepper",
+      "title": "The pepper trick",
+      "beats": [
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's try a trick. Water on a plate.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                2.3,
+                0,
+                0.4
+              ],
+              "at": 0,
+              "dur": 1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Walking",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                -1.3,
+                0,
+                0.3
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "meter",
+              "to": [
+                -1.3,
+                2.35,
+                0.3
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle",
+              "at": 1.2
+            },
+            {
+              "do": "move",
+              "target": "ball",
+              "to": [
+                3.4,
+                0,
+                1
+              ],
+              "at": 0,
+              "dur": 1
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.3,
+                3.4
+              ],
+              "lookAt": [
+                0,
+                0.75,
+                1.1
+              ],
+              "at": 0,
+              "dur": 1.6
+            },
+            {
+              "do": "pop",
+              "target": "ptable",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "plate",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "pwater",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 5.32,
+          "do": [
+            {
+              "do": "say",
+              "text": "A grown-up shakes pepper on top. Pretend the pepper is germs.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "pep1",
+              "at": 0.6,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "pep2",
+              "at": 0.6799999999999999
+            },
+            {
+              "do": "pop",
+              "target": "pep3",
+              "at": 0.76
+            },
+            {
+              "do": "pop",
+              "target": "pep4",
+              "at": 0.84
+            },
+            {
+              "do": "pop",
+              "target": "pep5",
+              "at": 0.9199999999999999,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "pep6",
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "pep7",
+              "at": 1.08
+            },
+            {
+              "do": "pop",
+              "target": "pep8",
+              "at": 1.1600000000000001
+            },
+            {
+              "do": "pop",
+              "target": "pep9",
+              "at": 1.24,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "pep10",
+              "at": 1.3199999999999998
+            },
+            {
+              "do": "pop",
+              "target": "pep11",
+              "at": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "pep12",
+              "at": 1.48
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "text": "First, a plain finger. Touch the middle.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "finger",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "finger",
+              "to": [
+                0,
+                0.95,
+                1.2
+              ],
+              "at": 1.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "finger",
+              "to": [
+                0,
+                1.6,
+                1.2
+              ],
+              "at": 2.4,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "Nothing happens.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pep1",
+              "at": 0.3,
+              "deg": 4
+            }
+          ]
+        },
+        {
+          "dur": 4.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now put soap on the finger. What will the pepper do?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "soapdrop",
+              "at": 0.6
+            },
+            {
+              "do": "move",
+              "target": "soapdrop",
+              "to": [
+                0,
+                1.45,
+                1.2
+              ],
+              "at": 0.6,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "finger",
+              "to": [
+                0,
+                0.95,
+                1.2
+              ],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "soapdrop",
+              "to": [
+                0,
+                0.82,
+                1.2
+              ],
+              "at": 0.2,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "pep1",
+              "to": [
+                0.28660094673768177,
+                0.84,
+                1.2886560619984018
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep2",
+              "to": [
+                0.20387566962430237,
+                0.84,
+                1.420078875258945
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep3",
+              "to": [
+                0.06652207147873672,
+                0.84,
+                1.4925317316227042
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep4",
+              "to": [
+                -0.08865606199840186,
+                0.84,
+                1.4866009467376817
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep5",
+              "to": [
+                -0.220078875258945,
+                0.84,
+                1.4038756696243024
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep6",
+              "to": [
+                -0.2925317316227042,
+                0.84,
+                1.2665220714787366
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep7",
+              "to": [
+                -0.2866009467376818,
+                0.84,
+                1.1113439380015981
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep8",
+              "to": [
+                -0.20387566962430234,
+                0.84,
+                0.9799211247410549
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep9",
+              "to": [
+                -0.06652207147873687,
+                0.84,
+                0.9074682683772958
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep10",
+              "to": [
+                0.08865606199840176,
+                0.84,
+                0.9133990532623182
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep11",
+              "to": [
+                0.22007887525894507,
+                0.84,
+                0.9961243303756976
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "move",
+              "target": "pep12",
+              "to": [
+                0.2925317316227042,
+                0.84,
+                1.133477928521263
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.8,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "ooh",
+              "at": 1.3,
+              "volume": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 4.05,
+          "do": [
+            {
+              "do": "say",
+              "text": "Whoosh! The pepper zooms away from the soap!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "finger",
+              "to": [
+                0,
+                1.6,
+                1.2
+              ],
+              "at": 0.6,
+              "dur": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "soapdrop",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "Soap helps wash germs off our hands.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.57,
+          "do": [
+            {
+              "do": "say",
+              "text": "Try it with a grown-up. Keep pepper away from eyes!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                8.2
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                -0.4
+              ],
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brush",
+      "title": "Brush, brush, brush",
+      "beats": [
+        {
+          "dur": 2.48,
+          "do": [
+            {
+              "do": "say",
+              "text": "Next, brush your teeth!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Walking",
+              "at": 0
+            },
+            {
+              "do": "turn",
+              "target": "robo",
+              "to": [
+                0,
+                -80,
+                0
+              ],
+              "at": 0,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                -2.5,
+                0,
+                0.7
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "meter",
+              "to": [
+                -2.5,
+                2.35,
+                0.7
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "robo",
+              "to": [
+                0,
+                30,
+                0
+              ],
+              "at": 1.1,
+              "dur": 0.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle",
+              "at": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "ptable",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "plate",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pwater",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "finger",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep5",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep6",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep7",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep8",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep9",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep10",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep11",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pep12",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "gums",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "tooth1",
+              "at": 0.7799999999999999
+            },
+            {
+              "do": "pop",
+              "target": "tooth2",
+              "at": 0.86
+            },
+            {
+              "do": "pop",
+              "target": "tooth3",
+              "at": 0.94
+            },
+            {
+              "do": "pop",
+              "target": "tooth4",
+              "at": 1.02
+            },
+            {
+              "do": "pop",
+              "target": "tooth5",
+              "at": 1.1
+            },
+            {
+              "do": "pop",
+              "target": "tooth6",
+              "at": 1.18
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.25,
+                1.3,
+                3.3
+              ],
+              "lookAt": [
+                0.2,
+                0.98,
+                1
+              ],
+              "at": 0.4,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                2.7,
+                0,
+                -0.3
+              ],
+              "at": 0.2,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 4.35,
+          "do": [
+            {
+              "do": "say",
+              "text": "A toothbrush. And a pea-sized bit of toothpaste.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "brush",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "paste",
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "pea",
+              "at": 2.6,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "pea-sized",
+              "style": "label",
+              "at": 2.4,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Not a big blob. A little pea!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "pea",
+              "at": 0.6,
+              "height": 0.05
+            }
+          ]
+        },
+        {
+          "dur": 4.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "Brush in little circles. Front, back and top.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "path",
+              "target": "brush",
+              "points": [
+                [
+                  0.95,
+                  1.3,
+                  1.1
+                ],
+                [
+                  0.3,
+                  1.1,
+                  1.18
+                ],
+                [
+                  0.45,
+                  1,
+                  1.18
+                ],
+                [
+                  0.3,
+                  0.92,
+                  1.18
+                ],
+                [
+                  0.15,
+                  1,
+                  1.18
+                ],
+                [
+                  0.3,
+                  1.1,
+                  1.18
+                ],
+                [
+                  0,
+                  1,
+                  1.18
+                ],
+                [
+                  -0.15,
+                  0.92,
+                  1.18
+                ],
+                [
+                  -0.3,
+                  1,
+                  1.18
+                ],
+                [
+                  -0.15,
+                  1.1,
+                  1.18
+                ]
+              ],
+              "at": 0.3,
+              "dur": 3.4
+            },
+            {
+              "do": "path",
+              "target": "pea",
+              "points": [
+                [
+                  0.68,
+                  1.37,
+                  1.1
+                ],
+                [
+                  0.03,
+                  1.17,
+                  1.18
+                ],
+                [
+                  0.18,
+                  1.07,
+                  1.18
+                ],
+                [
+                  0.03,
+                  0.99,
+                  1.18
+                ],
+                [
+                  -0.12,
+                  1.07,
+                  1.18
+                ],
+                [
+                  0.03,
+                  1.17,
+                  1.18
+                ],
+                [
+                  -0.27,
+                  1.07,
+                  1.18
+                ],
+                [
+                  -0.42,
+                  0.99,
+                  1.18
+                ],
+                [
+                  -0.57,
+                  1.07,
+                  1.18
+                ],
+                [
+                  -0.42,
+                  1.17,
+                  1.18
+                ]
+              ],
+              "at": 0.3,
+              "dur": 3.4
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 0.6,
+              "volume": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 1.6,
+              "volume": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 2.6,
+              "volume": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 4.27,
+          "do": [
+            {
+              "do": "say",
+              "text": "Brush for two minutes, with a grown-up helping.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "pea",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "When do we brush? Morning and night!",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 4.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "Brush your air teeth with me! Little circles.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                8.2
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                -0.4
+              ],
+              "at": 0,
+              "dur": 1.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Where is my toothbrush? Quack?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                1,
+                0,
+                1.4
+              ],
+              "at": 0.2,
+              "dur": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.4,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck, ducks have no teeth!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "surprised",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 5.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "No teeth? Oh! My bill has little ridges for grabbing food.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 1.4
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "So I clean my feathers instead!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "turn",
+              "target": "duck#head",
+              "to": [
+                0,
+                70,
+                0
+              ],
+              "at": 0.3,
+              "dur": 0.5
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 0.8
+            },
+            {
+              "do": "turn",
+              "target": "duck#head",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1.8,
+              "dur": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sleep",
+      "title": "Sleepy time",
+      "music": "lullaby",
+      "musicGain": 0.18,
+      "beats": [
+        {
+          "dur": 2.85,
+          "do": [
+            {
+              "do": "say",
+              "text": "Look. The sun is going down.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "gums",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "brush",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "paste",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tooth1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tooth2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tooth3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tooth4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tooth5",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tooth6",
+              "at": 0.2
+            },
+            {
+              "do": "lights",
+              "at": 0.4,
+              "rig": "evening",
+              "background": "orange",
+              "dur": 3
+            },
+            {
+              "do": "hide",
+              "target": "sun",
+              "at": 2.4,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 3.23,
+          "do": [
+            {
+              "do": "say",
+              "text": "Here comes Cat, our sleep expert.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "cat",
+              "to": [
+                1.4,
+                0,
+                0.6
+              ],
+              "at": 0.2,
+              "dur": 2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "feel",
+              "target": "cat",
+              "feeling": "sleepy",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Yawn. Stretch. I am sleepy.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "cat",
+              "at": 0.4,
+              "deg": 8,
+              "dur": 1.4
+            },
+            {
+              "do": "grow",
+              "target": "cat",
+              "to": [
+                1.1,
+                0.9,
+                1
+              ],
+              "at": 1.4,
+              "dur": 0.6
+            },
+            {
+              "do": "grow",
+              "target": "cat",
+              "to": 1,
+              "at": 2.2,
+              "dur": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "The moon comes up.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "lights",
+              "at": 0.2,
+              "rig": "moonlight",
+              "background": "night",
+              "dur": 3
+            },
+            {
+              "do": "show",
+              "target": "moon",
+              "at": 1,
+              "dur": 2
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 1.2,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Cat's bedtime steps. One. Pyjamas.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.8,
+                2,
+                4.4
+              ],
+              "lookAt": [
+                2.5,
+                0.7,
+                -1.2
+              ],
+              "at": 0.2,
+              "dur": 1.6
+            },
+            {
+              "do": "caption",
+              "text": "pyjamas",
+              "style": "label",
+              "at": 2.4,
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "cat",
+              "at": 2,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.03,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two. Brush teeth.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "brush",
+              "style": "label",
+              "at": 0.4,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "What comes next?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.88,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three. A story.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "book",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "story",
+              "style": "label",
+              "at": 0.4,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.03,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four. Lights off.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "lights off",
+              "style": "label",
+              "at": 0.4,
+              "dur": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "book",
+              "at": 1.2
+            },
+            {
+              "do": "move",
+              "target": "cat",
+              "to": [
+                2.3000000000000003,
+                0.55,
+                -1.4
+              ],
+              "at": 1,
+              "dur": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "cat",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1,
+              "dur": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Kids need lots of sleep. All night, and maybe a nap.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                3,
+                0.55,
+                -1.2999999999999998
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "move",
+              "target": "pig",
+              "to": [
+                3.5,
+                0,
+                -0.4999999999999999
+              ],
+              "at": 0.2,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 4.57,
+          "do": [
+            {
+              "do": "say",
+              "text": "Good night, Cat. Good night, Duck. Good night, Pig.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sleep",
+              "target": "cat",
+              "at": 0.6
+            },
+            {
+              "do": "sleep",
+              "target": "duck",
+              "at": 1.8
+            },
+            {
+              "do": "sleep",
+              "target": "pig",
+              "at": 3
+            }
+          ]
+        },
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "And I charge with my plug.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.9,
+                8.2
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                -0.4
+              ],
+              "at": 0.2,
+              "dur": 2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Walking",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                -1.45,
+                0,
+                0.5
+              ],
+              "at": 0.2,
+              "dur": 1.6
+            },
+            {
+              "do": "move",
+              "target": "meter",
+              "to": [
+                -1.45,
+                2.35,
+                0.5
+              ],
+              "at": 0.2,
+              "dur": 1.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Sitting",
+              "at": 1.8
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 2.2,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sleep charges you up. Shh.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "meter#bar2",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.6,
+              "dur": 2.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 1.7999999999999998,
+              "volume": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Habit quiz",
+      "music": "lullaby",
+      "musicGain": 0.18,
+      "beats": [
+        {
+          "dur": 3.53,
+          "do": [
+            {
+              "do": "say",
+              "text": "A quiet quiz. Help charge my battery!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "feeling": "happy",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 4.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "One. What do we use with water to wash our hands?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "Soap!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "meter#bar3",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.4,
+              "volume": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "soap",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 4.35,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two. How many times a day do we brush our teeth?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two times. Morning and night!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "meter#bar4",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.4,
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 4.95,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three. How much toothpaste? A big blob, or a little pea?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.73,
+          "do": [
+            {
+              "do": "say",
+              "text": "A little pea!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "meter#bar5",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.4,
+              "volume": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "pea-sized",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 5.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four. Robo charges with a plug. How do you charge your body?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sleep! And good food too.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "at": 0.3,
+              "volume": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "meter",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "morning",
+      "title": "Good morning!",
+      "music": "happy",
+      "musicGain": 0.22,
+      "beats": [
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Good morning!",
+              "at": 0.1
+            },
+            {
+              "do": "lights",
+              "at": 0,
+              "rig": "soft_day",
+              "background": "sky",
+              "dur": 2.5
+            },
+            {
+              "do": "hide",
+              "target": "moon",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "sun",
+              "at": 1,
+              "dur": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.4,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "Good morning!",
+              "style": "title",
+              "at": 0.4,
+              "dur": 2
+            },
+            {
+              "do": "wake",
+              "target": "cat",
+              "at": 1.2
+            },
+            {
+              "do": "wake",
+              "target": "duck",
+              "at": 1.4
+            },
+            {
+              "do": "wake",
+              "target": "pig",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.93,
+          "do": [
+            {
+              "do": "say",
+              "text": "I am full! You charged me up!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Standing",
+              "at": 0
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 1.2
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.6,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 1.8,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "cat",
+              "at": 2,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.68,
+          "do": [
+            {
+              "do": "say",
+              "text": "Wash, brush, sleep, every day! Bye-bye!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 1.6
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                9.4
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                -0.4
+              ],
+              "at": 0.4,
+              "dur": 3
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 2.8,
+              "volume": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

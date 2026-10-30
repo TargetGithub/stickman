@@ -15,3 +15,17 @@ export async function buildPlan({ script, sceneUrl, catalog, speech = {} }) {
   await mod.default(d);
   return { ...d.plan(), meta: mod.meta ?? {} };
 }
+
+/**
+ * The thumbnail frame's time: meta.thumbnail { t } (absolute seconds), or { scene, at } (seconds into that
+ * scene, from the plan's scene starts, so it stays on the right picture when real TTS clips change beat
+ * lengths). Default 1 s.
+ * @param {{ scenes?: Array<{ id:string, start:number }>, duration:number }} plan
+ * @param {{ t?: number, scene?: string, at?: number }} [thumb]
+ */
+export function thumbnailTime(plan, thumb) {
+  if (thumb?.scene == null) return thumb?.t ?? 1;
+  const scene = (plan.scenes ?? []).find((s) => s.id === thumb.scene);
+  if (!scene) throw new Error(`thumbnail: no scene "${thumb.scene}"`);
+  return Math.min(scene.start + (thumb.at ?? 0), Math.max(0, plan.duration - 1 / 60));
+}

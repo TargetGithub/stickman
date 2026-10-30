@@ -45,13 +45,17 @@ export function buildClock(o, group, { material, font, textGeometry }) {
   face.add(ticks);
 
   if (o.numbers !== false) {
+    // Two-digit numbers get smaller type, and every number is pulled in until its box clears the same inner
+    // circle, so 10, 11 and 12 keep the gaps between them that the single digits have.
     const numMat = material(o.numberColor ?? "ink", "toy");
-    const size = R * 0.13;
     for (let n = 1; n <= 12; n++) {
       const a = Math.PI / 2 - (n * 2 * Math.PI) / 12;
-      const g = textGeometry(String(n), font, size, depth * 0.25);
+      const g = textGeometry(String(n), font, R * (n < 10 ? 0.13 : 0.108), depth * 0.25);
+      const b = g.boundingBox;
+      const [hw, hh] = [(b.max.x - b.min.x) / 2, (b.max.y - b.min.y) / 2];
+      const d = R * 0.72 - (Math.abs(Math.cos(a)) * hw + Math.abs(Math.sin(a)) * hh);
       const mesh = new THREE.Mesh(g, numMat);
-      mesh.position.set(Math.cos(a) * R * 0.62, Math.sin(a) * R * 0.62 - size * 0.5, front);
+      mesh.position.set(Math.cos(a) * d, Math.sin(a) * d - hh, front);
       face.add(mesh);
     }
   }

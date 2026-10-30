@@ -9,7 +9,8 @@ import { mkdirSync, readFileSync, renameSync, rmSync, writeFileSync, existsSync 
 import { basename, join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
 import { loadCatalog3d } from "../catalog/index.mjs";
-import { buildPlan } from "../runtime/plan.js";
+import { buildPlan, thumbnailTime } from "../runtime/plan.js";
+import { speakPlan } from "./lib/audio3d.mjs";
 import { REPO } from "./lib/server.mjs";
 
 const args = process.argv.slice(2);
@@ -37,8 +38,13 @@ for (const [res, fps, file] of videos) {
   renameSync(join(dir, file.replace(/\.mp4$/, ".json")), join(dir, file.replace(/\.mp4$/, "_stats.json")));
 }
 
-// Thumbnail: the frame at meta.thumbnail.t (default 1 s), drawn at 4K and scaled to YouTube's 1280x720.
-const tt = meta.thumbnail?.t ?? 1;
+// The plan timed with the real TTS clips (cached by the renders above), as the videos are: thumbnail
+// { scene, at } and the chapter stamps come from its scene starts.
+const catalog = loadCatalog3d();
+const plan = await buildPlan({ script, catalog, speech: speakPlan(await buildPlan({ script, catalog })) });
+
+// Thumbnail: the frame at meta.thumbnail ({ t } or { scene, at }; default 1 s), drawn at 4K and scaled to 1280x720.
+const tt = thumbnailTime(plan, meta.thumbnail);
 render(["--res", "4k", "--fps", "60", "--speech", "tts", "--stills", String(tt), "--out", join(dir, "thumb.mp4")]);
 const stillDir = join(dir, `${id}_stills`);
 const png = join(stillDir, `${id}_4k_t${tt.toFixed(2)}.png`);
@@ -53,8 +59,6 @@ if (existsSync(video)) {
 }
 
 // youtube.txt: title, description with chapters, tags. Upload is left to Sridhar.
-const catalog = loadCatalog3d();
-const plan = await buildPlan({ script, catalog });
 const stamp = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 // YouTube chapters must be 10 s or longer: a short one merges into the next (the last into the one before).
 const chapters = (plan.scenes ?? []).filter((s) => s.title).map((c) => ({ ...c }));

@@ -126,10 +126,18 @@
       ]
     },
     "box": {
-      "description": "A box with slightly rounded edges (model parts).",
+      "description": "A box with slightly rounded edges (model parts). Thinner than about 0.05 its corners turn to slivers: use plate for thin slabs.",
       "tags": [
         "solid",
         "parts"
+      ]
+    },
+    "plate": {
+      "description": "A thin rounded slab, 1 x 0.04 x 1, built at its true thickness so it stays solid: boards, mats, signs, trays and plates. Scale x and z for its size (scale y to make it thicker or thinner); stand it up with rotation [90, 0, 0].",
+      "tags": [
+        "solid",
+        "parts",
+        "flat"
       ]
     },
     "pentagon": {

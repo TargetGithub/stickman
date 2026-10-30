@@ -9,10 +9,11 @@ import { cleanText, resolveVoice, narratorVoice } from "../../../tools/lib/tts/l
 import { loadVoiceTable } from "../../../tools/lib/tts/index.mjs";
 import { mixdownStory, SR } from "../../../tools/lib/mixer.mjs";
 import { measureLoudness, normalizeLoudness } from "../../../tools/lib/loudness.mjs";
-import { renderMusic } from "../../../tools/lib/music_gen.mjs";
 import { readWav, writeWav } from "../../../tools/lib/wav.mjs";
 import { loadCatalogSync } from "../../../catalog/index.js";
 import { REPO } from "./server.mjs";
+import { musicTimeline, renderMusicBed } from "./music3d.mjs";
+import { ensurePhonemes } from "../phonemes.mjs";
 
 /**
  * Render (or reuse) a clip for every spoken line of a plan.
@@ -44,9 +45,12 @@ function speechDuck(spans) {
 
 /**
  * Mix the plan's sounds, speech and an optional music bed to a 48 kHz stereo WAV levelled for YouTube.
+ * `scenes` are the script's scenes: their `music` / `musicGain` override the episode's per scene (music3d.mjs).
+ * music null turns all music off, scene music included.
  * @returns {{ file:string, lufs:number }}
  */
-export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy", musicGain = plan.meta?.musicGain ?? 0.32, log = () => {} } = {}) {
+export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy", musicGain = plan.meta?.musicGain ?? 0.32, scenes = [], log = () => {} } = {}) {
+  ensurePhonemes(plan, { log }); // letter sounds are made on first use, like speech clips
   const sfxDir = join(REPO, "assets/sfx/generated");
   const tts = clipSampler();
   const sfx = new Map();
@@ -63,10 +67,10 @@ export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy
   };
   const spans = plan.lines.map((l) => [l.t, l.t + (speech[l.id]?.dur ?? l.dur)]);
   let bed = null;
-  if (music) {
-    bed = renderMusic({ mood: music, catalog: loadCatalogSync(), seed: plan.seed, seconds: plan.duration }).samples;
-    for (let i = 0; i < bed.length; i++) bed[i] *= musicGain;
-    log(`  music: ${music}`);
+  if (music !== null) {
+    const segs = musicTimeline(plan.scenes, scenes, { music: music || null, musicGain, duration: plan.duration });
+    bed = renderMusicBed(segs, { catalog: loadCatalogSync(), seed: plan.seed, duration: plan.duration });
+    log(`  music: ${segs.map((s) => `${s.mood ?? "none"}${s.gain !== musicGain && s.mood ? ` x${s.gain}` : ""}@${s.start.toFixed(1)}`).join(" -> ")}`);
   }
   const duck = speechDuck(spans);
   // mixdownStory asks storyDuck twice per step: (t, duck, []) for speech, (t, [], dips) for sad dips (none here).

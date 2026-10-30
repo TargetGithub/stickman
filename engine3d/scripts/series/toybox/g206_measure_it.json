@@ -1,0 +1,7103 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "4 bear-steps or 12 chick-steps? Learn why we use centimetres, metres, kilograms and litres, read a ruler from zero, and see a small apple beat a big balloon.",
+ "meta": {
+  "series": "toybox",
+  "audience": "grade2",
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "title": "Measure It!",
+  "episode": "g206",
+  "seed": 206,
+  "music": "playful",
+  "musicGain": 0.22,
+  "skills": [
+   "units_2"
+  ],
+  "youtube": {
+   "title": "Measure It! Length, Weight and Capacity for Kids | cm, kg, L | Grade 2 Math | Toy Box Friends",
+   "description": "Bear says the rug is 4 bear-steps. Chick says 12 chick-steps. Who is right? Both! That's why we use units everyone shares.\nMeasure with a ruler that starts at zero (and fix Robo's mistake), compare a big balloon and a small apple on a balance, and pour water to find out that a short, wide bowl holds more than a tall glass.\nTry at home: measure a table with hand-spans, then with a ruler.",
+   "tags": [
+    "measurement for kids",
+    "length",
+    "weight",
+    "capacity",
+    "centimeters",
+    "kilograms",
+    "liters",
+    "how to use a ruler",
+    "grade 2 math",
+    "estimate and measure",
+    "Toy Box Friends",
+    "3D cartoon for kids"
+   ]
+  },
+  "thumbnail": {
+   "scene": "weight",
+   "at": 29.67
+  }
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   1.8,
+   7.8
+  ],
+  "lookAt": [
+   0,
+   0.6,
+   0.8
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.6,
+    0,
+    1
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    3.7,
+    0,
+    1
+   ],
+   "size": 0.9,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "bear",
+   "kind": "critter",
+   "species": "bear",
+   "at": [
+    -1,
+    0,
+    1.05
+   ],
+   "size": 0.75,
+   "rotation": [
+    0,
+    90,
+    0
+   ]
+  },
+  {
+   "id": "chick",
+   "kind": "critter",
+   "species": "chick",
+   "at": [
+    -1,
+    0,
+    2
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    90,
+    0
+   ]
+  },
+  {
+   "id": "rug",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "at": [
+    0,
+    0.04,
+    1.5
+   ],
+   "size": 1,
+   "scale": [
+    2,
+    1.5,
+    1.4
+   ],
+   "material": "matte"
+  },
+  {
+   "id": "u0",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "green",
+   "at": [
+    -0.9,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u1",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "blue",
+   "at": [
+    -0.7,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u2",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "green",
+   "at": [
+    -0.5,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u3",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "blue",
+   "at": [
+    -0.29999999999999993,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u4",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "green",
+   "at": [
+    -0.09999999999999998,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u5",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "blue",
+   "at": [
+    0.09999999999999998,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u6",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "green",
+   "at": [
+    0.30000000000000016,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u7",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "blue",
+   "at": [
+    0.5000000000000001,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u8",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "green",
+   "at": [
+    0.7000000000000001,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "u9",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "blue",
+   "at": [
+    0.9,
+    0.03,
+    1.5
+   ],
+   "size": 0.19,
+   "hidden": true
+  },
+  {
+   "id": "mstick1",
+   "kind": "prop",
+   "model": "ruler",
+   "at": [
+    -0.5,
+    0.03,
+    1.7
+   ],
+   "size": 0.833,
+   "hidden": true
+  },
+  {
+   "id": "mstick2",
+   "kind": "prop",
+   "model": "ruler",
+   "at": [
+    0.5,
+    0.03,
+    1.7
+   ],
+   "size": 0.833,
+   "hidden": true
+  },
+  {
+   "id": "gruler",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "yellow",
+   "at": [
+    0,
+    0,
+    0.42
+   ],
+   "size": 1,
+   "scale": [
+    3.2,
+    0.2,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt0",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -1.5,
+    0.1,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.02,
+    0.1,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn0",
+   "kind": "letter",
+   "text": "0",
+   "color": "ink",
+   "at": [
+    -1.5,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt1",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -1.4,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn1",
+   "kind": "letter",
+   "text": "1",
+   "color": "ink",
+   "at": [
+    -1.4,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt2",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -1.3,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn2",
+   "kind": "letter",
+   "text": "2",
+   "color": "ink",
+   "at": [
+    -1.3,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt3",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -1.2,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn3",
+   "kind": "letter",
+   "text": "3",
+   "color": "ink",
+   "at": [
+    -1.2,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt4",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -1.1,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn4",
+   "kind": "letter",
+   "text": "4",
+   "color": "ink",
+   "at": [
+    -1.1,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt5",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -1,
+    0.1,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.02,
+    0.1,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn5",
+   "kind": "letter",
+   "text": "5",
+   "color": "ink",
+   "at": [
+    -1,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt6",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.9,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn6",
+   "kind": "letter",
+   "text": "6",
+   "color": "ink",
+   "at": [
+    -0.9,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt7",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.8,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn7",
+   "kind": "letter",
+   "text": "7",
+   "color": "ink",
+   "at": [
+    -0.8,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt8",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.7,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn8",
+   "kind": "letter",
+   "text": "8",
+   "color": "ink",
+   "at": [
+    -0.7,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt9",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.6,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn9",
+   "kind": "letter",
+   "text": "9",
+   "color": "ink",
+   "at": [
+    -0.6,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt10",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.5,
+    0.1,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.02,
+    0.1,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn10",
+   "kind": "letter",
+   "text": "10",
+   "color": "ink",
+   "at": [
+    -0.5,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt11",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.4,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn11",
+   "kind": "letter",
+   "text": "11",
+   "color": "ink",
+   "at": [
+    -0.4,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt12",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.3,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn12",
+   "kind": "letter",
+   "text": "12",
+   "color": "ink",
+   "at": [
+    -0.3,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt13",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.2,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn13",
+   "kind": "letter",
+   "text": "13",
+   "color": "ink",
+   "at": [
+    -0.2,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt14",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    -0.1,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn14",
+   "kind": "letter",
+   "text": "14",
+   "color": "ink",
+   "at": [
+    -0.1,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt15",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0,
+    0.1,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.02,
+    0.1,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn15",
+   "kind": "letter",
+   "text": "15",
+   "color": "ink",
+   "at": [
+    0,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt16",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.1,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn16",
+   "kind": "letter",
+   "text": "16",
+   "color": "ink",
+   "at": [
+    0.1,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt17",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.2,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn17",
+   "kind": "letter",
+   "text": "17",
+   "color": "ink",
+   "at": [
+    0.2,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt18",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.3,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn18",
+   "kind": "letter",
+   "text": "18",
+   "color": "ink",
+   "at": [
+    0.3,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt19",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.4,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn19",
+   "kind": "letter",
+   "text": "19",
+   "color": "ink",
+   "at": [
+    0.4,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt20",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.5,
+    0.1,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.02,
+    0.1,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn20",
+   "kind": "letter",
+   "text": "20",
+   "color": "ink",
+   "at": [
+    0.5,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt21",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.6,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn21",
+   "kind": "letter",
+   "text": "21",
+   "color": "ink",
+   "at": [
+    0.6,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt22",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.7,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn22",
+   "kind": "letter",
+   "text": "22",
+   "color": "ink",
+   "at": [
+    0.7,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt23",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.8,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn23",
+   "kind": "letter",
+   "text": "23",
+   "color": "ink",
+   "at": [
+    0.8,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt24",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    0.9,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn24",
+   "kind": "letter",
+   "text": "24",
+   "color": "ink",
+   "at": [
+    0.9,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt25",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    1,
+    0.1,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.02,
+    0.1,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn25",
+   "kind": "letter",
+   "text": "25",
+   "color": "ink",
+   "at": [
+    1,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt26",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    1.1,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn26",
+   "kind": "letter",
+   "text": "26",
+   "color": "ink",
+   "at": [
+    1.1,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt27",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    1.2,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn27",
+   "kind": "letter",
+   "text": "27",
+   "color": "ink",
+   "at": [
+    1.2,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt28",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    1.3,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn28",
+   "kind": "letter",
+   "text": "28",
+   "color": "ink",
+   "at": [
+    1.3,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt29",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    1.4,
+    0.14,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.012,
+    0.06,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn29",
+   "kind": "letter",
+   "text": "29",
+   "color": "ink",
+   "at": [
+    1.4,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gt30",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "ink",
+   "at": [
+    1.5,
+    0.1,
+    0.575
+   ],
+   "size": 1,
+   "scale": [
+    0.02,
+    0.1,
+    0.01
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "gn30",
+   "kind": "letter",
+   "text": "30",
+   "color": "ink",
+   "at": [
+    1.5,
+    0.205,
+    0.5
+   ],
+   "size": 0.05,
+   "depth": 0.01,
+   "scale": 0.72,
+   "rotation": [
+    -60,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "crayon",
+   "kind": "prop",
+   "model": "crayon",
+   "at": [
+    -1.196,
+    0.2,
+    0.42
+   ],
+   "size": 1.85,
+   "color": "purple",
+   "hidden": true
+  },
+  {
+   "id": "cmm",
+   "kind": "letter",
+   "text": "100 cm = 1 m",
+   "color": "purple",
+   "at": [
+    0,
+    1.4,
+    0.4
+   ],
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "pencil",
+   "kind": "prop",
+   "model": "pencil",
+   "at": [
+    -0.774,
+    0.2,
+    0.35
+   ],
+   "size": 3.3,
+   "hidden": true
+  },
+  {
+   "id": "book",
+   "kind": "shape",
+   "shape": "plate",
+   "color": "red",
+   "at": [
+    -0.25,
+    0.15,
+    -0.45
+   ],
+   "size": 1,
+   "scale": [
+    2.5,
+    1.25,
+    1.6
+   ],
+   "material": "matte",
+   "hidden": true
+  },
+  {
+   "id": "book_pages",
+   "kind": "shape",
+   "shape": "cube",
+   "color": "cream",
+   "at": [
+    -0.25,
+    0,
+    -0.45
+   ],
+   "size": 1,
+   "scale": [
+    2.42,
+    0.15,
+    1.54
+   ],
+   "material": "paper",
+   "hidden": true
+  },
+  {
+   "id": "l15",
+   "kind": "letter",
+   "text": "15 cm",
+   "color": "red",
+   "at": [
+    -0.75,
+    0.45,
+    0.4
+   ],
+   "size": 0.09,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "l25",
+   "kind": "letter",
+   "text": "25 cm",
+   "color": "ink",
+   "at": [
+    -0.25,
+    0.21,
+    -0.2
+   ],
+   "size": 0.14,
+   "depth": 0.03,
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "scale",
+   "kind": "prop",
+   "model": "balance_scale",
+   "at": [
+    0,
+    0,
+    -0.2
+   ],
+   "size": 2.2,
+   "hidden": true
+  },
+  {
+   "id": "apple",
+   "kind": "prop",
+   "model": "apple",
+   "at": [
+    -0.45,
+    -0.31,
+    0
+   ],
+   "size": 0.32,
+   "parent": "scale",
+   "part": "head",
+   "hidden": true
+  },
+  {
+   "id": "balloon",
+   "kind": "prop",
+   "model": "balloon",
+   "at": [
+    0.45,
+    -0.31,
+    0
+   ],
+   "size": 0.55,
+   "parent": "scale",
+   "part": "head",
+   "color": "blue",
+   "hidden": true
+  },
+  {
+   "id": "kgbottle",
+   "kind": "shape",
+   "shape": "bottle",
+   "color": "white",
+   "at": [
+    2.4,
+    0,
+    0.6
+   ],
+   "size": 0.55,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "kgwater",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "blue",
+   "at": [
+    2.4,
+    0.02,
+    0.6
+   ],
+   "size": 0.4,
+   "material": "water",
+   "scale": [
+    1,
+    1.2,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "glass",
+   "kind": "shape",
+   "shape": "cup",
+   "color": "white",
+   "at": [
+    -1.9,
+    0,
+    0.6
+   ],
+   "size": 1,
+   "material": "glass",
+   "scale": [
+    0.42,
+    1.1,
+    0.42
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gwater",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "blue",
+   "at": [
+    -1.9,
+    0.03,
+    0.6
+   ],
+   "size": 1,
+   "material": "water",
+   "scale": [
+    0.38,
+    1,
+    0.38
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bowl",
+   "kind": "shape",
+   "shape": "bowl",
+   "color": "white",
+   "at": [
+    0,
+    0,
+    0.6
+   ],
+   "size": 1.5,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "bwater",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "blue",
+   "at": [
+    0,
+    0.03,
+    0.6
+   ],
+   "size": 1,
+   "material": "water",
+   "scale": [
+    1.2,
+    0.62,
+    1.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jug",
+   "kind": "shape",
+   "shape": "cup",
+   "color": "white",
+   "at": [
+    2,
+    0,
+    0.6
+   ],
+   "size": 1,
+   "material": "glass",
+   "hidden": true
+  },
+  {
+   "id": "jwater",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "blue",
+   "at": [
+    2,
+    0.03,
+    0.6
+   ],
+   "size": 1,
+   "material": "water",
+   "scale": [
+    0.94,
+    0.02,
+    0.94
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jline",
+   "kind": "shape",
+   "shape": "box",
+   "color": "red",
+   "at": [
+    2,
+    0.17,
+    1.1
+   ],
+   "size": 1,
+   "scale": [
+    0.3,
+    0.025,
+    0.02
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jlab",
+   "kind": "letter",
+   "text": "1 L",
+   "color": "ink",
+   "at": [
+    2,
+    1.1,
+    0.6
+   ],
+   "size": 0.25,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "t_ruler",
+   "kind": "prop",
+   "model": "ruler",
+   "at": [
+    -3,
+    0,
+    -0.8
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "tl_cm",
+   "kind": "letter",
+   "text": "cm",
+   "color": "ink",
+   "at": [
+    -3,
+    0.5,
+    -0.8
+   ],
+   "size": 0.22,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "tl_kg",
+   "kind": "letter",
+   "text": "kg",
+   "color": "ink",
+   "at": [
+    0,
+    2.35,
+    -0.2
+   ],
+   "size": 0.24,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "tl_l",
+   "kind": "letter",
+   "text": "L",
+   "color": "ink",
+   "at": [
+    2,
+    1.1,
+    0.6
+   ],
+   "size": 0.25,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "tl_m",
+   "kind": "letter",
+   "text": "m",
+   "color": "ink",
+   "at": [
+    -1.5,
+    0.5,
+    -0.8
+   ],
+   "size": 0.24,
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "t_stick",
+   "kind": "prop",
+   "model": "ruler",
+   "at": [
+    -1.5,
+    0,
+    -0.8
+   ],
+   "size": 1,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "i_crayon",
+   "kind": "prop",
+   "model": "crayon",
+   "at": [
+    0.2,
+    1.4,
+    1.6
+   ],
+   "size": 2,
+   "color": "green",
+   "hidden": true
+  },
+  {
+   "id": "i_pumpkin",
+   "kind": "prop",
+   "model": "pumpkin",
+   "at": [
+    0.2,
+    1.2,
+    1.6
+   ],
+   "size": 1.3,
+   "hidden": true
+  },
+  {
+   "id": "i_milk",
+   "kind": "shape",
+   "shape": "bottle",
+   "color": "white",
+   "at": [
+    0.2,
+    1.1,
+    1.6
+   ],
+   "size": 0.5,
+   "material": "glossy",
+   "hidden": true
+  },
+  {
+   "id": "i_slide",
+   "kind": "prop",
+   "model": "slide",
+   "at": [
+    0.2,
+    0.6,
+    1.6
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "i_feather",
+   "kind": "shape",
+   "shape": "leaf",
+   "color": "white",
+   "at": [
+    0.2,
+    1.3,
+    1.6
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    30
+   ],
+   "hidden": true
+  },
+  {
+   "id": "party",
+   "kind": "confetti",
+   "count": 220,
+   "area": [
+    10,
+    4
+   ],
+   "height": 7
+  }
+ ],
+ "scenes": [
+  {
+   "id": "argue",
+   "title": "4 or 12?",
+   "beats": [
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Measure It!",
+       "style": "title",
+       "dur": 2.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        7.8
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.8
+       ],
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "I measured the rug with my steps. Watch!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        -0.5,
+        0,
+        1.05
+       ],
+       "at": 0,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0,
+       "height": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0,
+       "dur": 0.7
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        0,
+        0,
+        1.05
+       ],
+       "at": 0.7,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.7,
+       "height": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 0.7,
+       "dur": 0.7
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        0.5,
+        0,
+        1.05
+       ],
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1.4,
+       "height": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 1.9
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.7
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        1,
+        0,
+        1.05
+       ],
+       "at": 2.0999999999999996,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 2.0999999999999996,
+       "height": 0.3,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "footstep_soft",
+       "at": 2.5999999999999996
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 2.0999999999999996,
+       "dur": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "4 bear-steps!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "bear#head",
+       "to": [
+        0,
+        -60,
+        0
+       ],
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "I measured it too!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1,
+        0,
+        2
+       ],
+       "dur": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4,
+     "do": [
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -0.833,
+        0,
+        2
+       ],
+       "at": 0,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -0.667,
+        0,
+        2
+       ],
+       "at": 0.32,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.32,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 0.32,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -0.5,
+        0,
+        2
+       ],
+       "at": 0.64,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.64,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 0.64,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -0.333,
+        0,
+        2
+       ],
+       "at": 0.96,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.96,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 0.96,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -0.167,
+        0,
+        2
+       ],
+       "at": 1.28,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.28,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 1.28,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        0,
+        0,
+        2
+       ],
+       "at": 1.6,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.6,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "6",
+       "style": "count",
+       "at": 1.6,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        0.167,
+        0,
+        2
+       ],
+       "at": 1.92,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.92,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "7",
+       "style": "count",
+       "at": 1.92,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        0.333,
+        0,
+        2
+       ],
+       "at": 2.24,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 2.24,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "8",
+       "style": "count",
+       "at": 2.24,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        0.5,
+        0,
+        2
+       ],
+       "at": 2.56,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 2.56,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "9",
+       "style": "count",
+       "at": 2.56,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        0.667,
+        0,
+        2
+       ],
+       "at": 2.88,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 2.88,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 2.88,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        0.833,
+        0,
+        2
+       ],
+       "at": 3.2,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 3.2,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "11",
+       "style": "count",
+       "at": 3.2,
+       "dur": 0.32
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        1,
+        0,
+        2
+       ],
+       "at": 3.52,
+       "dur": 0.28
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 3.52,
+       "height": 0.15,
+       "dur": 0.28
+      },
+      {
+       "do": "caption",
+       "text": "12",
+       "style": "count",
+       "at": 3.52,
+       "dur": 0.32
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "12 chick-steps!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "chick#head",
+       "to": [
+        0,
+        60,
+        0
+       ],
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "chick",
+       "feeling": "angry",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "bear",
+       "feeling": "angry",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "4 or 12? You can't both be right... can you?",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Maybe you both are. But why are the numbers different?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "chick",
+       "feeling": "happy"
+      },
+      {
+       "do": "feel",
+       "target": "bear",
+       "feeling": "happy"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "units",
+   "title": "Why we need units",
+   "beats": [
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Look at their steps. A bear-step is big.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        -1,
+        0,
+        1.05
+       ],
+       "dur": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "bear#head",
+       "to": [
+        0,
+        0,
+        0
+       ]
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "A chick-step is small. So Chick needs more steps.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        -1,
+        0,
+        2
+       ],
+       "dur": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "chick#head",
+       "to": [
+        0,
+        0,
+        0
+       ]
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.8,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.2,
+       "height": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bigger steps, fewer steps. Smaller steps, more steps.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "bear-steps",
+       "style": "label",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.73,
+     "do": [
+      {
+       "do": "say",
+       "text": "So they're both right in their own steps.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "But that's confusing.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Exactly. If we all use the same size,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "we all get the same answer!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's try the same little block for everyone.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "u0",
+       "to": [
+        -0.9,
+        0.03,
+        1.5
+       ],
+       "at": 1,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u1",
+       "to": [
+        -0.7,
+        0.03,
+        1.5
+       ],
+       "at": 1.2,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u2",
+       "to": [
+        -0.5,
+        0.03,
+        1.5
+       ],
+       "at": 1.4,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u3",
+       "to": [
+        -0.29999999999999993,
+        0.03,
+        1.5
+       ],
+       "at": 1.6,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u4",
+       "to": [
+        -0.09999999999999998,
+        0.03,
+        1.5
+       ],
+       "at": 1.8,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u5",
+       "to": [
+        0.09999999999999998,
+        0.03,
+        1.5
+       ],
+       "at": 2,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u6",
+       "to": [
+        0.30000000000000016,
+        0.03,
+        1.5
+       ],
+       "at": 2.2,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u7",
+       "to": [
+        0.5000000000000001,
+        0.03,
+        1.5
+       ],
+       "at": 2.4,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u8",
+       "to": [
+        0.7000000000000001,
+        0.03,
+        1.5
+       ],
+       "at": 2.6,
+       "height": 2,
+       "dur": 0.5
+      },
+      {
+       "do": "drop",
+       "target": "u9",
+       "to": [
+        0.9,
+        0.03,
+        1.5
+       ],
+       "at": 2.8,
+       "height": 2,
+       "dur": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u0",
+       "at": 0,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 0.34,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u1",
+       "at": 0.34,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 0.68,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u2",
+       "at": 0.68,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 1.02,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u3",
+       "at": 1.02,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 1.36,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u4",
+       "at": 1.36,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "6",
+       "style": "count",
+       "at": 1.7000000000000002,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u5",
+       "at": 1.7000000000000002,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "7",
+       "style": "count",
+       "at": 2.04,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u6",
+       "at": 2.04,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "8",
+       "style": "count",
+       "at": 2.3800000000000003,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u7",
+       "at": 2.3800000000000003,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "9",
+       "style": "count",
+       "at": 2.72,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u8",
+       "at": 2.72,
+       "height": 0.12,
+       "dur": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 3.06,
+       "dur": 0.34
+      },
+      {
+       "do": "hop",
+       "target": "u9",
+       "at": 3.06,
+       "height": 0.12,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "10 blocks. Bear gets 10, Chick gets 10. Everyone agrees!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Grown-ups use the same units all over the world.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "units",
+       "style": "label",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "Like centimetres and metres?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "Yes! Let's meet them.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "u0",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u1",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u2",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u3",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u4",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u5",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u6",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u7",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u8",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "u9",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cm",
+   "title": "Centimetres and metres",
+   "beats": [
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here is a ruler. Each number is one centimetre.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -5.8,
+        0,
+        0.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        -4.6,
+        0,
+        -0.4
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        4.7,
+        0,
+        -0.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "rug",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.95,
+        0.95,
+        2.1
+       ],
+       "lookAt": [
+        -0.95,
+        0.2,
+        0.42
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "show",
+       "target": "gruler",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "gt0",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn0",
+       "at": 1.1
+      },
+      {
+       "do": "show",
+       "target": "gt1",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn1",
+       "at": 1.12
+      },
+      {
+       "do": "show",
+       "target": "gt2",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn2",
+       "at": 1.14
+      },
+      {
+       "do": "show",
+       "target": "gt3",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn3",
+       "at": 1.16
+      },
+      {
+       "do": "show",
+       "target": "gt4",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn4",
+       "at": 1.18
+      },
+      {
+       "do": "show",
+       "target": "gt5",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn5",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "gt6",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn6",
+       "at": 1.22
+      },
+      {
+       "do": "show",
+       "target": "gt7",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn7",
+       "at": 1.24
+      },
+      {
+       "do": "show",
+       "target": "gt8",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn8",
+       "at": 1.26
+      },
+      {
+       "do": "show",
+       "target": "gt9",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn9",
+       "at": 1.28
+      },
+      {
+       "do": "show",
+       "target": "gt10",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn10",
+       "at": 1.3
+      },
+      {
+       "do": "show",
+       "target": "gt11",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn11",
+       "at": 1.32
+      },
+      {
+       "do": "show",
+       "target": "gt12",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn12",
+       "at": 1.34
+      },
+      {
+       "do": "show",
+       "target": "gt13",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn13",
+       "at": 1.36
+      },
+      {
+       "do": "show",
+       "target": "gt14",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn14",
+       "at": 1.38
+      },
+      {
+       "do": "show",
+       "target": "gt15",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn15",
+       "at": 1.4
+      },
+      {
+       "do": "show",
+       "target": "gt16",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn16",
+       "at": 1.42
+      },
+      {
+       "do": "show",
+       "target": "gt17",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn17",
+       "at": 1.44
+      },
+      {
+       "do": "show",
+       "target": "gt18",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn18",
+       "at": 1.46
+      },
+      {
+       "do": "show",
+       "target": "gt19",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn19",
+       "at": 1.48
+      },
+      {
+       "do": "show",
+       "target": "gt20",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn20",
+       "at": 1.5
+      },
+      {
+       "do": "show",
+       "target": "gt21",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn21",
+       "at": 1.52
+      },
+      {
+       "do": "show",
+       "target": "gt22",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn22",
+       "at": 1.54
+      },
+      {
+       "do": "show",
+       "target": "gt23",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn23",
+       "at": 1.56
+      },
+      {
+       "do": "show",
+       "target": "gt24",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn24",
+       "at": 1.58
+      },
+      {
+       "do": "show",
+       "target": "gt25",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn25",
+       "at": 1.6
+      },
+      {
+       "do": "show",
+       "target": "gt26",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn26",
+       "at": 1.62
+      },
+      {
+       "do": "show",
+       "target": "gt27",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn27",
+       "at": 1.64
+      },
+      {
+       "do": "show",
+       "target": "gt28",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn28",
+       "at": 1.66
+      },
+      {
+       "do": "show",
+       "target": "gt29",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn29",
+       "at": 1.68
+      },
+      {
+       "do": "show",
+       "target": "gt30",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gn30",
+       "at": 1.7
+      },
+      {
+       "do": "caption",
+       "text": "centimetre",
+       "style": "label",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hold up a fingertip. It's about 1 centimetre wide!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "The tall marks have numbers.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "The spaces between are centimetres.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let me measure this crayon.",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "crayon",
+       "to": [
+        -1.196,
+        0.2,
+        0.42
+       ],
+       "at": 0.4,
+       "height": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "It ends at 6. So it's 6 centimetres!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "gn6",
+       "at": 0.4,
+       "height": 0.08,
+       "dur": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wait. Where does the crayon start?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "cat",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "Um... at the 1?",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "gn1",
+       "at": 0.4,
+       "height": 0.08,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "Count the spaces, not the marks. From 1 to 6 is 5 spaces.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "gn2",
+       "at": 1.6,
+       "height": 0.06,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "gn3",
+       "at": 1.95,
+       "height": 0.06,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "gn4",
+       "at": 2.3,
+       "height": 0.06,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "gn5",
+       "at": 2.65,
+       "height": 0.06,
+       "dur": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "gn6",
+       "at": 3,
+       "height": 0.06,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "6 take away 1 is 5. It's 5 centimetres!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Put your finger on zero,",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "then count the jumps. That's the trick.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's slide it to start at zero.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "crayon",
+       "to": [
+        -1.296,
+        0.2,
+        0.42
+       ],
+       "at": 0.6,
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "It ends at 5. 5 centimetres! You were right.",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "gn5",
+       "at": 0.4,
+       "height": 0.08,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "text": "When I say where does the ruler start, you say zero!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.68,
+     "do": [
+      {
+       "do": "say",
+       "text": "Where does the ruler start?",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "gn0",
+       "at": 0.6,
+       "height": 0.08,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "At zero! Great.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "100 centimetres make 1 metre.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        1
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "crayon",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gruler",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn5",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt6",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn6",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt7",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn7",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt8",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn8",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt9",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn9",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt10",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn10",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt11",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn11",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt12",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn12",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt13",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn13",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt14",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn14",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt15",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn15",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt16",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn16",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt17",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn17",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt18",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn18",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt19",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn19",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt20",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn20",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt21",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn21",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt22",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn22",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt23",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn23",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt24",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn24",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt25",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn25",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt26",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn26",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt27",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn27",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt28",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn28",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt29",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn29",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gt30",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gn30",
+       "at": 0.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        7.8
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.8
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "cmm",
+       "at": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "metre",
+       "style": "label",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "Stretch your arms out wide. That's about 1 metre!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "A door is about 2 metres tall.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "cmm",
+       "at": 1.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guess",
+   "title": "Guess, then measure",
+   "beats": [
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Guess first, then measure. Here's a pencil.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -5.8,
+        0,
+        0.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.9,
+        3.9
+       ],
+       "lookAt": [
+        0,
+        0.15,
+        0.1
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "show",
+       "target": "gruler",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "gt0",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn0",
+       "at": 0.7
+      },
+      {
+       "do": "show",
+       "target": "gt1",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn1",
+       "at": 0.72
+      },
+      {
+       "do": "show",
+       "target": "gt2",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn2",
+       "at": 0.74
+      },
+      {
+       "do": "show",
+       "target": "gt3",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn3",
+       "at": 0.76
+      },
+      {
+       "do": "show",
+       "target": "gt4",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn4",
+       "at": 0.78
+      },
+      {
+       "do": "show",
+       "target": "gt5",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn5",
+       "at": 0.8
+      },
+      {
+       "do": "show",
+       "target": "gt6",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn6",
+       "at": 0.82
+      },
+      {
+       "do": "show",
+       "target": "gt7",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn7",
+       "at": 0.84
+      },
+      {
+       "do": "show",
+       "target": "gt8",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn8",
+       "at": 0.86
+      },
+      {
+       "do": "show",
+       "target": "gt9",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn9",
+       "at": 0.88
+      },
+      {
+       "do": "show",
+       "target": "gt10",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn10",
+       "at": 0.9
+      },
+      {
+       "do": "show",
+       "target": "gt11",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn11",
+       "at": 0.92
+      },
+      {
+       "do": "show",
+       "target": "gt12",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn12",
+       "at": 0.94
+      },
+      {
+       "do": "show",
+       "target": "gt13",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn13",
+       "at": 0.96
+      },
+      {
+       "do": "show",
+       "target": "gt14",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn14",
+       "at": 0.98
+      },
+      {
+       "do": "show",
+       "target": "gt15",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn15",
+       "at": 1
+      },
+      {
+       "do": "show",
+       "target": "gt16",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn16",
+       "at": 1.02
+      },
+      {
+       "do": "show",
+       "target": "gt17",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn17",
+       "at": 1.04
+      },
+      {
+       "do": "show",
+       "target": "gt18",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn18",
+       "at": 1.06
+      },
+      {
+       "do": "show",
+       "target": "gt19",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn19",
+       "at": 1.08
+      },
+      {
+       "do": "show",
+       "target": "gt20",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn20",
+       "at": 1.1
+      },
+      {
+       "do": "show",
+       "target": "gt21",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn21",
+       "at": 1.12
+      },
+      {
+       "do": "show",
+       "target": "gt22",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn22",
+       "at": 1.14
+      },
+      {
+       "do": "show",
+       "target": "gt23",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn23",
+       "at": 1.16
+      },
+      {
+       "do": "show",
+       "target": "gt24",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn24",
+       "at": 1.18
+      },
+      {
+       "do": "show",
+       "target": "gt25",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn25",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "gt26",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn26",
+       "at": 1.22
+      },
+      {
+       "do": "show",
+       "target": "gt27",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn27",
+       "at": 1.24
+      },
+      {
+       "do": "show",
+       "target": "gt28",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn28",
+       "at": 1.26
+      },
+      {
+       "do": "show",
+       "target": "gt29",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn29",
+       "at": 1.28
+      },
+      {
+       "do": "show",
+       "target": "gt30",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gn30",
+       "at": 1.3
+      },
+      {
+       "do": "drop",
+       "target": "pencil",
+       "to": [
+        -0.774,
+        0.2,
+        0.35
+       ],
+       "at": 1.6,
+       "height": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Guess how long it is in centimetres.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "It starts at zero and ends at 15. 15 centimetres!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "l15",
+       "at": 2.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now a book. Guess first!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "pencil",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "l15",
+       "at": 0.2
+      },
+      {
+       "do": "drop",
+       "target": "book",
+       "to": [
+        -0.25,
+        0.15,
+        -0.45
+       ],
+       "at": 0.6,
+       "height": 1
+      },
+      {
+       "do": "drop",
+       "target": "book_pages",
+       "to": [
+        -0.25,
+        0,
+        -0.45
+       ],
+       "at": 0.6,
+       "height": 1,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.78,
+     "do": [
+      {
+       "do": "say",
+       "text": "25 centimetres!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "l25",
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "How much longer is the book? 25 take away 15.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.3,
+     "do": [
+      {
+       "do": "say",
+       "text": "10 centimetres longer.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "And the rug? Let's use metre sticks.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "pencil",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "book",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "book_pages",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "l15",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "l25",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gruler",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt5",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn5",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt6",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn6",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt7",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn7",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt8",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn8",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt9",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn9",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt10",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn10",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt11",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn11",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt12",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn12",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt13",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn13",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt14",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn14",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt15",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn15",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt16",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn16",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt17",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn17",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt18",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn18",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt19",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn19",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt20",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn20",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt21",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn21",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt22",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn22",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt23",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn23",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt24",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn24",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt25",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn25",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt26",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn26",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt27",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn27",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt28",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn28",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt29",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn29",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gt30",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gn30",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "rug",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        5.6
+       ],
+       "lookAt": [
+        0,
+        0.2,
+        1.5
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "drop",
+       "target": "mstick1",
+       "to": [
+        -0.5,
+        0.03,
+        1.7
+       ],
+       "at": 1.2,
+       "height": 1
+      },
+      {
+       "do": "drop",
+       "target": "mstick2",
+       "to": [
+        0.5,
+        0.03,
+        1.7
+       ],
+       "at": 1.6,
+       "height": 1
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "One metre, two metres. The rug is 2 metres long!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "mstick1",
+       "at": 0.6,
+       "height": 0.15
+      },
+      {
+       "do": "hop",
+       "target": "mstick2",
+       "at": 1.6,
+       "height": 0.15
+      },
+      {
+       "do": "caption",
+       "text": "2 m",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "A bear-step is about 50 centimetres.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "4 of them make 2 metres.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.48,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: you are a tiny bit taller in the morning!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Your back squashes a little during the day,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.08,
+     "do": [
+      {
+       "do": "say",
+       "text": "about 1 centimetre.",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "weight",
+   "title": "Heavy or light?",
+   "beats": [
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Now, how heavy is something? We use a balance.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        1
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "mstick1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "mstick2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "rug",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        1.2,
+        0
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "drop",
+       "target": "scale",
+       "to": [
+        0,
+        0,
+        -0.2
+       ],
+       "at": 0.8,
+       "height": 2,
+       "sound": "land"
+      },
+      {
+       "do": "caption",
+       "text": "weight",
+       "style": "label",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "The heavier side goes down. The lighter side goes up.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "I brought a big balloon!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        1.3,
+        0,
+        0.9
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "show",
+       "target": "balloon",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "text": "And here's a small apple.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "apple",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Hold out your hands like a balance.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "Apple in one, balloon in the other.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which side will go down?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "The big balloon, or the small apple?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.21,
+     "do": [
+      {
+       "do": "turn",
+       "target": "scale#head",
+       "to": [
+        0,
+        0,
+        14
+       ],
+       "at": 0.2,
+       "dur": 1.4,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "chick",
+       "feeling": "surprised",
+       "at": 1
+      },
+      {
+       "do": "sound",
+       "sound": "ooh",
+       "at": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "chick",
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "The apple goes down! The small apple is heavier.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why? The balloon is so much bigger.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "A balloon is mostly air inside thin rubber.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "balloon",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "My balloon is so light, it almost floats away!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "balloon",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "An apple is packed full inside.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "chick",
+       "feeling": "happy",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bigger is not always heavier!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "We measure weight in kilograms.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "kilogram",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: a 1 litre bottle of water weighs about 1 kilogram.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "kgbottle",
+       "at": 1.2
+      },
+      {
+       "do": "show",
+       "target": "kgwater",
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 4.85,
+     "do": [
+      {
+       "do": "say",
+       "text": "And tiny things use grams. A paper clip is about 1 gram.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "text": "My turn! I'm a heavy lifter.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        -2.3,
+        0,
+        0.8
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bear is much heavier than Chick. Kilograms tell us how much.",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "capacity",
+   "title": "How much does it hold?",
+   "beats": [
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "How much a container holds is called capacity.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "kgbottle",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "kgwater",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "apple",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "balloon",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "scale",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0.1,
+        1.7,
+        7.8
+       ],
+       "lookAt": [
+        0.1,
+        0.7,
+        0.5
+       ],
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "capacity",
+       "style": "label",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "We measure it in litres. This jug holds 1 litre.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "jug",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "jwater",
+       "at": 0.7
+      },
+      {
+       "do": "pop",
+       "target": "jlab",
+       "at": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "litre",
+       "style": "label",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "text": "Here's a tall, thin glass full of water.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "glass",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "gwater",
+       "at": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "And a short, wide bowl full of water.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "bowl",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "bwater",
+       "at": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "Which one holds more? Tall, or wide?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 4.18,
+     "do": [
+      {
+       "do": "say",
+       "text": "To be fair, we pour each one into the same jug.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.03,
+     "do": [
+      {
+       "do": "say",
+       "text": "Let's test! Pour the tall glass into the jug.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "glass",
+       "to": [
+        1.35,
+        1.3,
+        0.6
+       ],
+       "at": 1.2,
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "gwater",
+       "to": [
+        1.35,
+        1.33,
+        0.6
+       ],
+       "at": 1.2,
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "glass",
+       "to": [
+        0,
+        0,
+        -70
+       ],
+       "at": 2.2,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "gwater",
+       "to": [
+        0,
+        0,
+        -70
+       ],
+       "at": 2.2,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "grow",
+       "target": "gwater",
+       "to": [
+        1,
+        0.02,
+        1
+       ],
+       "dur": 1.6
+      },
+      {
+       "do": "grow",
+       "target": "jwater",
+       "to": [
+        1,
+        8,
+        1
+       ],
+       "dur": 1.8,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "pour",
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 1.2,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 3.43,
+     "do": [
+      {
+       "do": "say",
+       "text": "Only up to here. Let's mark the line.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "jline",
+       "at": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "glass",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "glass",
+       "to": [
+        -1.9,
+        0,
+        0.6
+       ],
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "gwater",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Empty the jug. Now pour the wide bowl.",
+       "caption": true
+      },
+      {
+       "do": "grow",
+       "target": "jwater",
+       "to": [
+        1,
+        1,
+        1
+       ],
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "bowl",
+       "to": [
+        1.25,
+        1.3,
+        0.6
+       ],
+       "at": 1.4,
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "bwater",
+       "to": [
+        1.25,
+        1.33,
+        0.6
+       ],
+       "at": 1.4,
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "bowl",
+       "to": [
+        0,
+        0,
+        -60
+       ],
+       "at": 2.4,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "bwater",
+       "to": [
+        0,
+        0,
+        -60
+       ],
+       "at": 2.4,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "grow",
+       "target": "bwater",
+       "to": [
+        1,
+        0.02,
+        1
+       ],
+       "dur": 1.8
+      },
+      {
+       "do": "grow",
+       "target": "jwater",
+       "to": [
+        1,
+        34,
+        1
+       ],
+       "dur": 2.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "pour",
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 1.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "Wow! Much higher! The short, wide bowl holds more.",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "bowl",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "bowl",
+       "to": [
+        0,
+        0,
+        0.6
+       ],
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "bwater",
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "surprised",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.9,
+     "do": [
+      {
+       "do": "say",
+       "text": "But why? The glass was taller.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "The bowl is much wider, so there's more space inside.",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Tall is not always more!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 5.15,
+     "do": [
+      {
+       "do": "say",
+       "text": "Fun fact: a teaspoon holds about 5 millilitres. A tiny unit!",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Measure Mixer chant",
+   "beats": [
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "March with me! Measure Mixer chant!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.8,
+        7.8
+       ],
+       "lookAt": [
+        0,
+        0.6,
+        0.8
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "glass",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "bowl",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "jug",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "jwater",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "jline",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "jlab",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ruler for long, scale for heavy,",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "t_ruler",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "scale",
+       "at": 1.2
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "jug for how much, measure-it ready!",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "jug",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "jwater",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.6,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3.58,
+     "do": [
+      {
+       "do": "say",
+       "text": "Centimetres, metres, kilograms, litres!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.4
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 1.2,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.83,
+     "do": [
+      {
+       "do": "say",
+       "text": "Same for you and same for me,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.98,
+     "do": [
+      {
+       "do": "say",
+       "text": "that's how measuring should be!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "text": "Ruler for long, scale for heavy,",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "cat",
+       "at": 1,
+       "height": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 3.28,
+     "do": [
+      {
+       "do": "say",
+       "text": "jug for how much, measure-it ready!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 0.55
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tools",
+   "title": "Challenge: pick the tool",
+   "beats": [
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Challenge! Pick the tool and the unit.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "jug",
+       "to": [
+        2,
+        0,
+        0.6
+       ],
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "t_stick",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "tl_cm",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "tl_kg",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "tl_l",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "tl_m",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        -4.6,
+        0,
+        1.6
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        3.2,
+        0,
+        1.8
+       ],
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.4,
+     "do": [
+      {
+       "do": "say",
+       "text": "We have a ruler, a scale, a jug and a metre stick.",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "t_ruler",
+       "at": 0.8
+      },
+      {
+       "do": "wiggle",
+       "target": "scale",
+       "at": 1.4
+      },
+      {
+       "do": "wiggle",
+       "target": "jug",
+       "at": 2
+      },
+      {
+       "do": "wiggle",
+       "target": "t_stick",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "How long is a crayon?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "i_crayon",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "A ruler, in centimetres!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "i_crayon",
+       "to": [
+        -3,
+        0.3,
+        -0.5
+       ],
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "How heavy is a pumpkin?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "i_pumpkin",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.8,
+     "do": [
+      {
+       "do": "say",
+       "text": "A scale, in kilograms! A pumpkin is heavy.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "i_pumpkin",
+       "to": [
+        0,
+        2.6,
+        -0.2
+       ],
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "How much milk is in a big bottle?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "i_milk",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.93,
+     "do": [
+      {
+       "do": "say",
+       "text": "A jug, in litres!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "i_milk",
+       "to": [
+        2.9,
+        0,
+        0.6
+       ],
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "Long things get a ruler.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Heavy things get a scale. Easy so far.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "text": "How far is it across the playground?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "i_slide",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "A metre stick or measuring tape, in metres!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "i_slide",
+       "to": [
+        -1.5,
+        0.2,
+        -0.3
+       ],
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.38,
+     "do": [
+      {
+       "do": "say",
+       "text": "How heavy is a feather?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "i_feather",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "text": "A scale, in grams. Tiny!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "i_feather",
+       "to": [
+        1,
+        2.6,
+        -0.2
+       ],
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "Five for five. You picked every tool right.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "say",
+       "text": "In some countries,",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.88,
+     "do": [
+      {
+       "do": "say",
+       "text": "people also use inches and feet. Same idea!",
+       "caption": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "say",
+       "text": "Quiz time! Which tool measures how heavy something is?",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "i_crayon",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "i_pumpkin",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "i_milk",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "i_slide",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "i_feather",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.23,
+     "do": [
+      {
+       "do": "say",
+       "text": "A scale or a balance!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "scale",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "A crayon goes from 0 to 8 on a ruler. How long is it?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.71,
+     "do": [
+      {
+       "do": "say",
+       "text": "8 centimetres!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "text": "Why do we use centimetres instead of bear-steps?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "say",
+       "text": "Steps are different sizes.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Centimetres are the same for everyone.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Does a bigger thing always weigh more?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 4.63,
+     "do": [
+      {
+       "do": "say",
+       "text": "No! The big balloon was lighter than the small apple.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "friends",
+   "title": "Friends again",
+   "beats": [
+    {
+     "dur": 3.13,
+     "do": [
+      {
+       "do": "say",
+       "text": "Bear, Chick, how long is the rug?",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "rug"
+      },
+      {
+       "do": "move",
+       "target": "bear",
+       "to": [
+        -0.6,
+        0,
+        1.5
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "chick",
+       "to": [
+        0.6,
+        0,
+        1.5
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "turn",
+       "target": "bear",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "at": 0.2
+      },
+      {
+       "do": "turn",
+       "target": "chick",
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "hop",
+       "target": "bear",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "chick",
+       "at": 0.2,
+       "height": 0.5
+      },
+      {
+       "do": "burst",
+       "target": "party",
+       "at": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.5,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.33,
+     "do": [
+      {
+       "do": "say",
+       "text": "2 metres!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "bear",
+       "deg": 10,
+       "dur": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "chick",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 4.1,
+     "do": [
+      {
+       "do": "say",
+       "text": "Friends again. And everyone measured the same.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "cat",
+       "deg": 8,
+       "dur": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.95,
+     "do": [
+      {
+       "do": "say",
+       "text": "Measure something at home with a ruler. Bye!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

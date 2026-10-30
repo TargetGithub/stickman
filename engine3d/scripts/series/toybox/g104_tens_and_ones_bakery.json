@@ -1,0 +1,7085 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Cow orders 47 cookies! Robo, Bear and Frog pack them in bakery boxes of ten. Learn tens and ones, count by tens, compare numbers like 35 and 53, and add ten more, at the Tens and Ones Bakery.",
+  "meta": {
+    "title": "Tens and Ones Bakery",
+    "series": "toybox",
+    "episode": "g104",
+    "audience": "grade1",
+    "seed": 204,
+    "voice": "soft",
+    "voiceSpeed": 0.97,
+    "music": "bouncy",
+    "musicGain": 0.22,
+    "skills": [
+      "tens_ones_1",
+      "add_tens_1"
+    ],
+    "thumbnail": {
+      "scene": "frog",
+      "at": 37.13
+    },
+    "youtube": {
+      "title": "Tens and Ones for Kids! Place Value at the Bakery | Toy Box Friends",
+      "description": "Cow orders 47 cookies! Robo, Bear and Frog pack them in bakery boxes of ten. Learn tens and ones, count by tens, compare numbers like 35 and 53, and add ten more, at the Tens and Ones Bakery.\nFor first graders learning place value. Bundle crayons into tens at home and count along!",
+      "tags": [
+        "tens and ones",
+        "place value",
+        "first grade math",
+        "grade 1 math",
+        "counting by tens",
+        "two digit numbers",
+        "ten more",
+        "comparing numbers",
+        "math for kids",
+        "kids learning video",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "playroom"
+  },
+  "camera": {
+    "position": [0, 3, 9],
+    "lookAt": [0, 0.7, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-4.5, 0, -0.4],
+      "rotation": [0, 35, 0]
+    },
+    {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 1,
+      "at": [4.2, 0, -0.6],
+      "rotation": [0, -35, 0]
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.8,
+      "at": [-3.3, 0, 1.4],
+      "rotation": [0, 25, 0]
+    },
+    {
+      "id": "cow",
+      "kind": "critter",
+      "species": "cow",
+      "size": 1,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -90, 0]
+    },
+    {
+      "id": "oven",
+      "kind": "prop",
+      "model": "oven",
+      "size": 1,
+      "at": [3.6, 0, -2.6],
+      "rotation": [0, -15, 0]
+    },
+    {
+      "id": "phone",
+      "kind": "prop",
+      "model": "phone",
+      "size": 1,
+      "at": [2.6, 0, -1.6],
+      "rotation": [0, -20, 0]
+    },
+    {
+      "id": "rule_board",
+      "kind": "shape",
+      "shape": "rectangle",
+      "color": "cream",
+      "material": "matte",
+      "size": 2.6,
+      "scale": [1, 1, 0.15],
+      "at": [-0.6, 1, -3.6],
+      "hidden": true
+    },
+    {
+      "id": "rule1",
+      "kind": "letter",
+      "text": "NEVER MORE THAN",
+      "color": "ink",
+      "size": 0.18,
+      "at": [-0.6, 2.55, -3.45],
+      "hidden": true
+    },
+    {
+      "id": "rule2",
+      "kind": "letter",
+      "text": "9 LOOSE!",
+      "color": "red",
+      "size": 0.4,
+      "at": [-0.6, 1.45, -3.45],
+      "hidden": true
+    },
+    {
+      "id": "mat_tens",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "blue",
+      "material": "matte",
+      "size": 1,
+      "scale": [2.75, 1, 1.65],
+      "at": [-1.45, 0, 0.22],
+      "hidden": true
+    },
+    {
+      "id": "mat_ones",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "orange",
+      "material": "matte",
+      "size": 1,
+      "scale": [2.75, 1, 1.65],
+      "at": [1.45, 0, 0.22],
+      "hidden": true
+    },
+    {
+      "id": "lab_tens",
+      "kind": "letter",
+      "text": "TENS",
+      "color": "blue",
+      "size": 0.3,
+      "at": [-1.45, 0, 1.5],
+      "hidden": true
+    },
+    {
+      "id": "lab_ones",
+      "kind": "letter",
+      "text": "ONES",
+      "color": "orange",
+      "size": 0.3,
+      "at": [1.45, 0, 1.5],
+      "hidden": true
+    },
+    {
+      "id": "dt0",
+      "kind": "number_block",
+      "value": 0,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt1",
+      "kind": "number_block",
+      "value": 1,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt2",
+      "kind": "number_block",
+      "value": 2,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt3",
+      "kind": "number_block",
+      "value": 3,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt4",
+      "kind": "number_block",
+      "value": 4,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt5",
+      "kind": "number_block",
+      "value": 5,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt6",
+      "kind": "number_block",
+      "value": 6,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt7",
+      "kind": "number_block",
+      "value": 7,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt8",
+      "kind": "number_block",
+      "value": 8,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "dt9",
+      "kind": "number_block",
+      "value": 9,
+      "color": "blue",
+      "size": 0.8,
+      "at": [-1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do0",
+      "kind": "number_block",
+      "value": 0,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do1",
+      "kind": "number_block",
+      "value": 1,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do2",
+      "kind": "number_block",
+      "value": 2,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do3",
+      "kind": "number_block",
+      "value": 3,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do4",
+      "kind": "number_block",
+      "value": 4,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do5",
+      "kind": "number_block",
+      "value": 5,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do6",
+      "kind": "number_block",
+      "value": 6,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do7",
+      "kind": "number_block",
+      "value": 7,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do8",
+      "kind": "number_block",
+      "value": 8,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "do9",
+      "kind": "number_block",
+      "value": 9,
+      "color": "orange",
+      "size": 0.8,
+      "at": [1.45, 0, -2.1],
+      "hidden": true
+    },
+    {
+      "id": "b1",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-2.55, 0, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "b2",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-2, 0, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "b3",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-1.45, 0, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "b4",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-0.9, 0, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "b5",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-0.35, 0, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "b6",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-2.55, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "b7",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-2, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "b8",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-1.45, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "b9",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.55,
+      "at": [-0.9, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "l1",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.75, 0.02, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "l2",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [1.23, 0.02, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "l3",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [1.71, 0.02, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "l4",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [2.19, 0.02, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "l5",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [2.67, 0.02, -0.1],
+      "hidden": true
+    },
+    {
+      "id": "l6",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.75, 0.02, 0.5],
+      "hidden": true
+    },
+    {
+      "id": "l7",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [1.23, 0.02, 0.5],
+      "hidden": true
+    },
+    {
+      "id": "l8",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [1.71, 0.02, 0.5],
+      "hidden": true
+    },
+    {
+      "id": "l9",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [2.19, 0.02, 0.5],
+      "hidden": true
+    },
+    {
+      "id": "fb",
+      "kind": "prop",
+      "model": "toy_box",
+      "color": "cream",
+      "size": 0.75,
+      "at": [0, 0, 1.6],
+      "hidden": true
+    },
+    {
+      "id": "fc1",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-2.2, 0.02, 2.2],
+      "hidden": true
+    },
+    {
+      "id": "fc2",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-1.7, 0.02, 2.2],
+      "hidden": true
+    },
+    {
+      "id": "fc3",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-1.2, 0.02, 2.2],
+      "hidden": true
+    },
+    {
+      "id": "fc4",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.7, 0.02, 2.2],
+      "hidden": true
+    },
+    {
+      "id": "fc5",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.2, 0.02, 2.2],
+      "hidden": true
+    },
+    {
+      "id": "fc6",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.3, 0.02, 2.2],
+      "hidden": true
+    },
+    {
+      "id": "fc7",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.8, 0.02, 2.2],
+      "hidden": true
+    },
+    {
+      "id": "fc8",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-2.2, 0.02, 2.8],
+      "hidden": true
+    },
+    {
+      "id": "fc9",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-1.7, 0.02, 2.8],
+      "hidden": true
+    },
+    {
+      "id": "fc10",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-1.2, 0.02, 2.8],
+      "hidden": true
+    },
+    {
+      "id": "fc11",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.7, 0.02, 2.8],
+      "hidden": true
+    },
+    {
+      "id": "fc12",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.2, 0.02, 2.8],
+      "hidden": true
+    },
+    {
+      "id": "fc13",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.3, 0.02, 2.8],
+      "hidden": true
+    },
+    {
+      "id": "fc14",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.8, 0.02, 2.8],
+      "hidden": true
+    },
+    {
+      "id": "pk1",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0, 0.02, 0.4],
+      "rotation": [0, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk2",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.118, 0.02, 0.476],
+      "rotation": [0, 37, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk3",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.02, 0.02, 0.242],
+      "rotation": [0, 74, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk4",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.169, 0.02, 0.554],
+      "rotation": [0, 111, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk5",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.315, 0.02, 0.361],
+      "rotation": [0, 148, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk6",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.302, 0.02, 0.266],
+      "rotation": [0, 185, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk7",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.102, 0.02, 0.665],
+      "rotation": [0, 222, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk8",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.195, 0.02, 0.137],
+      "rotation": [0, 259, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk9",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.425, 0.02, 0.509],
+      "rotation": [0, 296, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk10",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.444, 0.02, 0.528],
+      "rotation": [0, 333, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk11",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.214, 0.02, 0.079],
+      "rotation": [0, 10, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk12",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.159, 0.02, 0.754],
+      "rotation": [0, 47, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk13",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.48, 0.02, 0.205],
+      "rotation": [0, 84, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk14",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.563, 0.02, 0.313],
+      "rotation": [0, 121, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk15",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.344, 0.02, 0.743],
+      "rotation": [0, 158, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk16",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.08, 0.02, -0.03],
+      "rotation": [0, 195, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk17",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.489, 0.02, 0.689],
+      "rotation": [0, 232, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk18",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.659, 0.02, 0.419],
+      "rotation": [0, 269, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk19",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.481, 0.02, 0.065],
+      "rotation": [0, 306, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk20",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.032, 0.02, 0.888],
+      "rotation": [0, 343, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk21",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.458, 0.02, 0.015],
+      "rotation": [0, 20, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk22",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.727, 0.02, 0.468],
+      "rotation": [0, 57, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk23",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.616, 0.02, 0.7],
+      "rotation": [0, 94, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk24",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.168, 0.02, -0.124],
+      "rotation": [0, 131, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk25",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.39, 0.02, 0.876],
+      "rotation": [0, 168, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk26",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.762, 0.02, 0.23],
+      "rotation": [0, 205, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk27",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.741, 0.02, 0.16],
+      "rotation": [0, 242, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk28",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.321, 0.02, 0.937],
+      "rotation": [0, 279, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk29",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.287, 0.02, -0.158],
+      "rotation": [0, 316, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk30",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.763, 0.02, 0.681],
+      "rotation": [0, 353, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk31",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.847, 0.02, 0.556],
+      "rotation": [0, 30, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk32",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.482, 0.08, -0.125],
+      "rotation": [0, 67, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk33",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.153, 0.08, 1.024],
+      "rotation": [0, 104, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk34",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.727, 0.08, 0.006],
+      "rotation": [0, 141, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk35",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.93, 0.08, 0.346],
+      "rotation": [0, 178, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk36",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.643, 0.08, 0.886],
+      "rotation": [0, 215, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk37",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.005, 0.08, -0.272],
+      "rotation": [0, 252, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk38",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.654, 0.08, 0.905],
+      "rotation": [0, 289, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk39",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.982, 0.08, 0.336],
+      "rotation": [0, 326, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk40",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.796, 0.08, -0.023],
+      "rotation": [0, 3, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk41",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.181, 0.08, 1.097],
+      "rotation": [0, 40, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk42",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.546, 0.08, -0.207],
+      "rotation": [0, 77, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk43",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [1, 0.08, 0.592],
+      "rotation": [0, 114, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk44",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.933, 0.08, 0.735],
+      "rotation": [0, 151, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk45",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.369, 0.08, -0.297],
+      "rotation": [0, 188, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk46",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [0.405, 0.08, 1.096],
+      "rotation": [0, 225, 0],
+      "hidden": true
+    },
+    {
+      "id": "pk47",
+      "kind": "prop",
+      "model": "cookie",
+      "size": 2.2,
+      "at": [-0.981, 0.08, 0.075],
+      "rotation": [0, 262, 0],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [10, 4],
+      "height": 7,
+      "colors": [
+        "brown",
+        "cream",
+        "orange",
+        "pink",
+        "gold"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "order",
+      "title": "The big order",
+      "beats": [
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 3, 9],
+              "lookAt": [0, 0.7, 0],
+              "dur": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep"
+            },
+            {
+              "do": "wiggle",
+              "target": "phone",
+              "deg": 10
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 0.7
+            },
+            {
+              "do": "wiggle",
+              "target": "phone",
+              "at": 0.7,
+              "deg": 10
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [0, -30, 0],
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hello, Bear's Bakery!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "move",
+              "target": "phone#handset",
+              "to": [0, 0.25, 0],
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Hi Bear, it's Cow! I need 47 cookies for my party.",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "caption",
+              "text": "47",
+              "style": "count",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Can you bring them by lunch?",
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Sure! Bye, Cow!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "move",
+              "target": "phone#handset",
+              "to": [0, 0, 0],
+              "at": 0.8,
+              "dur": 0.3
+            },
+            {
+              "do": "turn",
+              "target": "bear#head",
+              "to": [0, 0, 0],
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "drop",
+              "target": "pk1",
+              "to": [0, 0.02, 0.4],
+              "at": 0,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk2",
+              "to": [-0.118, 0.02, 0.476],
+              "at": 0.05,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk3",
+              "to": [0.02, 0.02, 0.242],
+              "at": 0.1,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk4",
+              "to": [0.169, 0.02, 0.554],
+              "at": 0.15000000000000002,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk5",
+              "to": [-0.315, 0.02, 0.361],
+              "at": 0.2,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk6",
+              "to": [0.302, 0.02, 0.266],
+              "at": 0.25,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk7",
+              "to": [-0.102, 0.02, 0.665],
+              "at": 0.30000000000000004,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk8",
+              "to": [-0.195, 0.02, 0.137],
+              "at": 0.35000000000000003,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk9",
+              "to": [0.425, 0.02, 0.509],
+              "at": 0.4,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk10",
+              "to": [-0.444, 0.02, 0.528],
+              "at": 0.45,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk11",
+              "to": [0.214, 0.02, 0.079],
+              "at": 0.5,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk12",
+              "to": [0.159, 0.02, 0.754],
+              "at": 0.55,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk13",
+              "to": [-0.48, 0.02, 0.205],
+              "at": 0.6000000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk14",
+              "to": [0.563, 0.02, 0.313],
+              "at": 0.65,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk15",
+              "to": [-0.344, 0.02, 0.743],
+              "at": 0.7000000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk16",
+              "to": [-0.08, 0.02, -0.03],
+              "at": 0.75,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk17",
+              "to": [0.489, 0.02, 0.689],
+              "at": 0.8,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk18",
+              "to": [-0.659, 0.02, 0.419],
+              "at": 0.8500000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk19",
+              "to": [0.481, 0.02, 0.065],
+              "at": 0.9,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk20",
+              "to": [-0.032, 0.02, 0.888],
+              "at": 0.9500000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk21",
+              "to": [-0.458, 0.02, 0.015],
+              "at": 1,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk22",
+              "to": [0.727, 0.02, 0.468],
+              "at": 1.05,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk23",
+              "to": [-0.616, 0.02, 0.7],
+              "at": 1.1,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk24",
+              "to": [0.168, 0.02, -0.124],
+              "at": 1.1500000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk25",
+              "to": [0.39, 0.02, 0.876],
+              "at": 1.2000000000000002,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk26",
+              "to": [-0.762, 0.02, 0.23],
+              "at": 1.25,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk27",
+              "to": [0.741, 0.02, 0.16],
+              "at": 1.3,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk28",
+              "to": [-0.321, 0.02, 0.937],
+              "at": 1.35,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk29",
+              "to": [-0.287, 0.02, -0.158],
+              "at": 1.4000000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk30",
+              "to": [0.763, 0.02, 0.681],
+              "at": 1.4500000000000002,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk31",
+              "to": [-0.847, 0.02, 0.556],
+              "at": 1.5,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk32",
+              "to": [0.482, 0.08, -0.125],
+              "at": 1.55,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk33",
+              "to": [0.153, 0.08, 1.024],
+              "at": 1.6,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk34",
+              "to": [-0.727, 0.08, 0.006],
+              "at": 1.6500000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk35",
+              "to": [0.93, 0.08, 0.346],
+              "at": 1.7000000000000002,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk36",
+              "to": [-0.643, 0.08, 0.886],
+              "at": 1.75,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk37",
+              "to": [0.005, 0.08, -0.272],
+              "at": 1.8,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk38",
+              "to": [0.654, 0.08, 0.905],
+              "at": 1.85,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk39",
+              "to": [-0.982, 0.08, 0.336],
+              "at": 1.9000000000000001,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk40",
+              "to": [0.796, 0.08, -0.023],
+              "at": 1.9500000000000002,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk41",
+              "to": [-0.181, 0.08, 1.097],
+              "at": 2,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk42",
+              "to": [-0.546, 0.08, -0.207],
+              "at": 2.0500000000000003,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk43",
+              "to": [1, 0.08, 0.592],
+              "at": 2.1,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": "block"
+            },
+            {
+              "do": "drop",
+              "target": "pk44",
+              "to": [-0.933, 0.08, 0.735],
+              "at": 2.15,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk45",
+              "to": [0.369, 0.08, -0.297],
+              "at": 2.2,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk46",
+              "to": [0.405, 0.08, 1.096],
+              "at": 2.25,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            },
+            {
+              "do": "drop",
+              "target": "pk47",
+              "to": [-0.981, 0.08, 0.075],
+              "at": 2.3000000000000003,
+              "height": 2.5,
+              "dur": 0.5,
+              "sound": false
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Forty-seven? How will we ever count them?",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "worried"
+            },
+            {
+              "do": "sound",
+              "sound": "gasp",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Don't worry, Bear. Bakery boxes!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 1.2
+            }
+          ],
+          "dur": 1.7
+        }
+      ]
+    },
+    {
+      "id": "rule",
+      "title": "The ten-box rule",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Every bakery box holds exactly ten cookies.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 5.8],
+              "lookAt": [0, 0.5, 1.2],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "fb"
+            },
+            {
+              "do": "turn",
+              "target": "fb#lid",
+              "to": [-100, 0, 0],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "pk1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk5",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk6",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk7",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk8",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk9",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk10",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk11",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk12",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk13",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk14",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk15",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk16",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk17",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk18",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk19",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk20",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk21",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk22",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk23",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk24",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk25",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk26",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk27",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk28",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk29",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk30",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk31",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk32",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk33",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk34",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk35",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk36",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk37",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk38",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk39",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk40",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk41",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk42",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk43",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk44",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk45",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk46",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk47",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "fc1",
+              "at": 0.6,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc2",
+              "at": 0.6599999999999999,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc3",
+              "at": 0.72,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc4",
+              "at": 0.78,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc5",
+              "at": 0.84,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc6",
+              "at": 0.8999999999999999,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc7",
+              "at": 0.96,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc8",
+              "at": 1.02,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc9",
+              "at": 1.08,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc10",
+              "at": 1.1400000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc11",
+              "at": 1.2,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc12",
+              "at": 1.2599999999999998,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc13",
+              "at": 1.3199999999999998,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc14",
+              "at": 1.38,
+              "sound": false
+            }
+          ],
+          "dur": 1.88
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's fill one. Count with me!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "bear"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "1!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc1",
+              "to": [0, 0.12, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "2!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc2",
+              "to": [0, 0.15, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "3!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc3",
+              "to": [0, 0.18, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "4!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc4",
+              "to": [0, 0.21, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "5!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc5",
+              "to": [0, 0.24, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "5",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "6!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc6",
+              "to": [0, 0.27, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "6",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "7!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc7",
+              "to": [0, 0.3, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "7",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "8!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc8",
+              "to": [0, 0.33, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "8",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "9!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc9",
+              "to": [0, 0.36, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "9",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "10!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fc10",
+              "to": [0, 0.39, 1.6],
+              "dur": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "10",
+              "style": "count"
+            },
+            {
+              "do": "turn",
+              "target": "fb#lid",
+              "to": [0, 0, 0],
+              "at": 0.35,
+              "dur": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 0.55
+            },
+            {
+              "do": "hop",
+              "target": "fb",
+              "at": 0.55,
+              "height": 0.2
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Snap! The tenth cookie closes the lid.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "10",
+              "style": "count"
+            },
+            {
+              "do": "hide",
+              "target": "fc1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc4",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc5",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc6",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc7",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc8",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc9",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fc10",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Snap your hands shut like a lid!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here's our bakery rule.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [-0.6, 2.2, 3.4],
+              "lookAt": [-0.6, 2.1, -3.4],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "rule_board",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "rule1",
+              "at": 0.7
+            },
+            {
+              "do": "pop",
+              "target": "rule2",
+              "at": 0.9
+            }
+          ],
+          "dur": 1.4
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Never more than 9 loose!",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "rule2",
+              "deg": 8
+            },
+            {
+              "do": "caption",
+              "text": "9 loose",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ten or more loose cookies must go in a box.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 5.8],
+              "lookAt": [0, 0.5, 1.2],
+              "dur": 1.2
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here are 14 loose cookies.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fb",
+              "to": [0, 0, 3.6],
+              "dur": 0.01
+            },
+            {
+              "do": "hide",
+              "target": "fb",
+              "dur": 0.01
+            },
+            {
+              "do": "pop",
+              "target": "fc1",
+              "at": 0.2,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc2",
+              "at": 0.25,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc3",
+              "at": 0.30000000000000004,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc4",
+              "at": 0.35000000000000003,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc5",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc6",
+              "at": 0.45,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc7",
+              "at": 0.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc8",
+              "at": 0.55,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc9",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc10",
+              "at": 0.65,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc11",
+              "at": 0.7,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc12",
+              "at": 0.75,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc13",
+              "at": 0.8,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "fc14",
+              "at": 0.8500000000000001,
+              "sound": false
+            },
+            {
+              "do": "caption",
+              "text": "14",
+              "style": "count",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.35
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ten go in a box. Snap!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "fb",
+              "to": [0, 0, 1.6],
+              "dur": 0.01
+            },
+            {
+              "do": "pop",
+              "target": "fb",
+              "at": 0.05
+            },
+            {
+              "do": "turn",
+              "target": "fb#lid",
+              "to": [-100, 0, 0],
+              "at": 0.1,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "fc1",
+              "to": [0, 0.12, 1.6],
+              "at": 0.4,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc2",
+              "to": [0, 0.15, 1.6],
+              "at": 0.52,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc3",
+              "to": [0, 0.18, 1.6],
+              "at": 0.64,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc4",
+              "to": [0, 0.21, 1.6],
+              "at": 0.76,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc5",
+              "to": [0, 0.24, 1.6],
+              "at": 0.88,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc6",
+              "to": [0, 0.27, 1.6],
+              "at": 1,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc7",
+              "to": [0, 0.3, 1.6],
+              "at": 1.12,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc8",
+              "to": [0, 0.33, 1.6],
+              "at": 1.24,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc9",
+              "to": [0, 0.36, 1.6],
+              "at": 1.3599999999999999,
+              "dur": 0.3
+            },
+            {
+              "do": "move",
+              "target": "fc10",
+              "to": [0, 0.39, 1.6],
+              "at": 1.48,
+              "dur": 0.3
+            },
+            {
+              "do": "turn",
+              "target": "fb#lid",
+              "to": [0, 0, 0],
+              "at": 1.8,
+              "dur": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Four stay loose. 14 is 1 ten and 4 ones.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "fc1"
+            },
+            {
+              "do": "hide",
+              "target": "fc2"
+            },
+            {
+              "do": "hide",
+              "target": "fc3"
+            },
+            {
+              "do": "hide",
+              "target": "fc4"
+            },
+            {
+              "do": "hide",
+              "target": "fc5"
+            },
+            {
+              "do": "hide",
+              "target": "fc6"
+            },
+            {
+              "do": "hide",
+              "target": "fc7"
+            },
+            {
+              "do": "hide",
+              "target": "fc8"
+            },
+            {
+              "do": "hide",
+              "target": "fc9"
+            },
+            {
+              "do": "hide",
+              "target": "fc10"
+            },
+            {
+              "do": "caption",
+              "text": "1 ten, 4 ones",
+              "style": "label",
+              "at": 0.8
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Box it up! Ten in a box, and the rest are ones!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "fb",
+              "at": 0.6,
+              "height": 0.3
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Idle"
+            },
+            {
+              "do": "hide",
+              "target": "fb"
+            },
+            {
+              "do": "hide",
+              "target": "fc11"
+            },
+            {
+              "do": "hide",
+              "target": "fc12"
+            },
+            {
+              "do": "hide",
+              "target": "fc13"
+            },
+            {
+              "do": "hide",
+              "target": "fc14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frog",
+      "title": "Frog counts by ones",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'll count the big pile. By ones!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "camera",
+              "position": [0, 3, 9],
+              "lookAt": [0, 0.7, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "frog"
+            },
+            {
+              "do": "show",
+              "target": "pk1",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk2",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk3",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk4",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk5",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk6",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk7",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk8",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk9",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk10",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk11",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk12",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk13",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk14",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk15",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk16",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk17",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk18",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk19",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk20",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk21",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk22",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk23",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk24",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk25",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk26",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk27",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk28",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk29",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk30",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk31",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk32",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk33",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk34",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk35",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk36",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk37",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk38",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk39",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk40",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk41",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk42",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk43",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk44",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk45",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk46",
+              "at": 0.2,
+              "dur": 0.3
+            },
+            {
+              "do": "show",
+              "target": "pk47",
+              "at": 0.2,
+              "dur": 0.3
+            }
+          ],
+          "dur": 0.7
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10...",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "at": 0.4
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "at": 1.6
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "at": 2.8
+            }
+          ],
+          "dur": 3.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "11... 12... 13... 14... 15...",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "at": 0.4,
+              "dur": 0.9
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "at": 1.8,
+              "dur": 0.9
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "sleepy",
+              "at": 1
+            }
+          ],
+          "dur": 2.3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "16...... 17...... 18...... 19......",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "dur": 1.2
+            }
+          ],
+          "dur": 3.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "20... zzz.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "sleep",
+              "target": "frog",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "laugh_small",
+              "at": 1.4,
+              "volume": 0.5
+            }
+          ],
+          "dur": 2.6
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Oh dear. Frog fell asleep! Let's count with boxes.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "laugh_small",
+              "volume": 0.5
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Four boxes of ten, and seven loose.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 4.6, 5.6],
+              "lookAt": [0, 0.2, -0.2],
+              "dur": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "pk1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk5",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk6",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk7",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk8",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk9",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk10",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk11",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk12",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk13",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk14",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk15",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk16",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk17",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk18",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk19",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk20",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk21",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk22",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk23",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk24",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk25",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk26",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk27",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk28",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk29",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk30",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk31",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk32",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk33",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk34",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk35",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk36",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk37",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk38",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk39",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk40",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk41",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk42",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk43",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk44",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk45",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk46",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pk47",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "mat_tens",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "mat_ones",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "b1",
+              "at": 0.8,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l1",
+              "at": 1.1,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b2",
+              "at": 0.92,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 1.2000000000000002,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 1.04,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l3",
+              "at": 1.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 1.1600000000000001,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 1.4000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l5",
+              "at": 1.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l6",
+              "at": 1.6,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l7",
+              "at": 1.7000000000000002,
+              "sound": false
+            }
+          ],
+          "dur": 2.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Count the boxes by tens. Then the ones.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "10!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "b1",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "10",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "20!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "b2",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "20",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "30!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "b3",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "30",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "40!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "b4",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "40",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "41!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "41",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "42!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "42",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "43!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "43",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "44!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "44",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "45!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "45",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "46!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l6",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "46",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "47!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l7",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "47",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "47 cookies! Ten, twenty, thirty, forty, and the ones!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "47",
+              "style": "count"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Box it up! Clap for each ten: 10, 20, 30, 40!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "b1",
+              "at": 1.6,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b2",
+              "at": 2.1,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b3",
+              "at": 2.6,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b4",
+              "at": 3.1,
+              "height": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.6
+            }
+          ],
+          "dur": 3.6
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "And tap the ones: 41, 42, 43, 44, 45, 46, 47!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 1.2,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 1.5499999999999998,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 1.9,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "at": 2.25,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "at": 2.5999999999999996,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l6",
+              "at": 2.95,
+              "height": 0.25
+            },
+            {
+              "do": "hop",
+              "target": "l7",
+              "at": 3.3,
+              "height": 0.25
+            }
+          ],
+          "dur": 3.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Huh? Done already?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "wake",
+              "target": "frog"
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "surprised"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Yes! Counting by tens is fast.",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "frog",
+              "feeling": "happy"
+            }
+          ],
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "read",
+      "title": "Reading tens and ones",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's read tens and ones on our mat.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 4.6, 5.6],
+              "lookAt": [0, 0.2, -0.2],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "lab_tens"
+            },
+            {
+              "do": "pop",
+              "target": "lab_ones",
+              "at": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "tens, ones",
+              "style": "label",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Boxes go on tens. Loose cookies go on ones.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Here's 23.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l7",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "dt2",
+              "at": 0.55
+            },
+            {
+              "do": "pop",
+              "target": "do3",
+              "at": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "23",
+              "style": "count"
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "2 boxes is 2 tens. 3 loose is 3 ones.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "b1",
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b2",
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "dt2",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "at": 1.8
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "at": 1.8
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "at": 1.8
+            },
+            {
+              "do": "hop",
+              "target": "do3",
+              "at": 2.4
+            }
+          ],
+          "dur": 2.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The tens digit is 2. The ones digit is 3.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "digit",
+              "style": "label",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 1,
+          "do": []
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now 47. How many boxes?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 0.12,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l5",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l6",
+              "at": 0.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l7",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "dt2",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "dt4",
+              "at": 0.55
+            },
+            {
+              "do": "hide",
+              "target": "do3",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "do7",
+              "at": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "47",
+              "style": "count"
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "4 boxes and 7 loose. 4 tens, 7 ones.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "dt4",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "do7",
+              "at": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 1.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now 60. Six boxes, and... no loose cookies!",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "l1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l4",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "l5",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "b6",
+              "at": 0.12,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "l6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l7",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt4",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "dt6",
+              "at": 0.55
+            },
+            {
+              "do": "hide",
+              "target": "do7",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "do0",
+              "at": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "60",
+              "style": "count"
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "The zero says: no loose cookies.",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "do0",
+              "deg": 15
+            },
+            {
+              "do": "caption",
+              "text": "0",
+              "style": "count"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Let me count. 1, 2, 3, 4, 5, 6. Six cookies!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "b1",
+              "at": 0.8,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "b2",
+              "at": 1.25,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "b3",
+              "at": 1.7000000000000002,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "b4",
+              "at": 2.1500000000000004,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "b5",
+              "at": 2.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "b6",
+              "at": 3.05,
+              "height": 0.2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 3.4
+            }
+          ],
+          "dur": 3.9
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "surprised"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "No, Robo! One box is ten, not one!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear"
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Oops! You're right. 10, 20, 30, 40, 50, 60!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "b1",
+              "at": 1.4,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b2",
+              "at": 1.8499999999999999,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b3",
+              "at": 2.3,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b4",
+              "at": 2.75,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b5",
+              "at": 3.2,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "b6",
+              "at": 3.65,
+              "height": 0.3
+            }
+          ],
+          "dur": 4.15
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "How many in a box?",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            }
+          ],
+          "dur": 1.6
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ten! Always ten.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: we write every number with just ten digits.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 3, 9],
+              "lookAt": [0, 0.7, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "b1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "do0",
+              "at": 0
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Zero, one, two, three, four, five, six, seven, eight and nine!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "do0",
+              "at": 0.2,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do1",
+              "at": 0.55,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do2",
+              "at": 0.8999999999999999,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do3",
+              "at": 1.2499999999999998,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do4",
+              "at": 1.5999999999999999,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do5",
+              "at": 1.95,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do6",
+              "at": 2.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do7",
+              "at": 2.65,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do8",
+              "at": 3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "do9",
+              "at": 3.35,
+              "sound": false
+            },
+            {
+              "do": "move",
+              "target": "do0",
+              "to": [-3.6, 0, -1.9],
+              "at": 0.2,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do1",
+              "to": [-2.8, 0, -1.9],
+              "at": 0.55,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do2",
+              "to": [-2, 0, -1.9],
+              "at": 0.8999999999999999,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do3",
+              "to": [-1.2, 0, -1.9],
+              "at": 1.2499999999999998,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do4",
+              "to": [-0.4, 0, -1.9],
+              "at": 1.5999999999999999,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do5",
+              "to": [0.4, 0, -1.9],
+              "at": 1.95,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do6",
+              "to": [1.2, 0, -1.9],
+              "at": 2.3,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do7",
+              "to": [2, 0, -1.9],
+              "at": 2.65,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do8",
+              "to": [2.8, 0, -1.9],
+              "at": 3,
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do9",
+              "to": [3.6, 0, -1.9],
+              "at": 3.35,
+              "dur": 0.01
+            }
+          ],
+          "dur": 4.6
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Digit also means a finger or toe. Wiggle your digits!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 1.4
+            },
+            {
+              "do": "camera",
+              "position": [0, 4.6, 5.6],
+              "lookAt": [0, 0.2, -0.2],
+              "dur": 1.2,
+              "at": 2
+            }
+          ],
+          "dur": 2.5
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "do0"
+            },
+            {
+              "do": "hide",
+              "target": "do1"
+            },
+            {
+              "do": "hide",
+              "target": "do2"
+            },
+            {
+              "do": "hide",
+              "target": "do3"
+            },
+            {
+              "do": "hide",
+              "target": "do4"
+            },
+            {
+              "do": "hide",
+              "target": "do5"
+            },
+            {
+              "do": "hide",
+              "target": "do6"
+            },
+            {
+              "do": "hide",
+              "target": "do7"
+            },
+            {
+              "do": "hide",
+              "target": "do8"
+            },
+            {
+              "do": "hide",
+              "target": "do9"
+            }
+          ]
+        },
+        {
+          "dur": 0.3,
+          "do": [
+            {
+              "do": "move",
+              "target": "do0",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do1",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do2",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do3",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do4",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do5",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do6",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do7",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do8",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do9",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swap",
+      "title": "The swap trick",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Two new orders: 35 and 53.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 4.6, 5.6],
+              "lookAt": [0, 0.2, -0.2],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "b1",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l1",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b2",
+              "at": 0.12,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 0.24,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l3",
+              "at": 0.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l5",
+              "at": 0.7,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "dt3",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "pop",
+              "target": "do5",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "35",
+              "style": "count"
+            }
+          ],
+          "dur": 1.2
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "35 is 3 boxes and 5 loose.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "dt3"
+            },
+            {
+              "do": "hop",
+              "target": "do5",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now swap the digits. 53!",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "dt3",
+              "to": [1.45, 0, -2.1],
+              "at": 0.4,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "do5",
+              "to": [-1.45, 0, -2.1],
+              "at": 0.4,
+              "dur": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "dt3",
+              "at": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "do5",
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "dt5",
+              "at": 1.3499999999999999
+            },
+            {
+              "do": "pop",
+              "target": "do3",
+              "at": 1.5
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 1.3,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "l4",
+              "at": 1.3
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 1.42,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "l5",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "53",
+              "style": "count",
+              "at": 1.2
+            }
+          ],
+          "dur": 2.8
+        },
+        {
+          "dur": 0.3,
+          "do": [
+            {
+              "do": "move",
+              "target": "dt3",
+              "to": [-1.45, 0, -2.1],
+              "dur": 0.01
+            },
+            {
+              "do": "move",
+              "target": "do5",
+              "to": [1.45, 0, -2.1],
+              "dur": 0.01
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "53 is 5 boxes and 3 loose.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "dt5"
+            },
+            {
+              "do": "hop",
+              "target": "do3",
+              "at": 0.4
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Which order is bigger, 35 or 53?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "53! More boxes wins. Look at the tens first.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ooh",
+              "volume": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "dt5",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "53",
+              "style": "count"
+            }
+          ],
+          "dur": 0.9
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now 29 and 41. Which is more?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "l5",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l6",
+              "at": 0.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l7",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l8",
+              "at": 0.7,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l9",
+              "at": 0.8,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "dt5",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "dt2",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "hide",
+              "target": "do3",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "do9",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "29",
+              "style": "count"
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "l3",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 0.12,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "l4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l7",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l8",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l9",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt2",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "dt4",
+              "at": 0.25
+            },
+            {
+              "do": "hide",
+              "target": "do9",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "do1",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "41",
+              "style": "count"
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "41! 4 tens beats 2 tens.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "dt4"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            },
+            {
+              "do": "caption",
+              "text": "41",
+              "style": "count"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Remember: look at the tens digit first.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "dt4",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "If the tens are the same, then look at the ones.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "do1",
+              "at": 1
+            }
+          ],
+          "dur": 1.5
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "title": "Ten more, please!",
+      "beats": [
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "robot_beep"
+            },
+            {
+              "do": "wiggle",
+              "target": "phone",
+              "deg": 10
+            },
+            {
+              "do": "sound",
+              "sound": "robot_beep",
+              "at": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "phone",
+              "at": 0.6,
+              "deg": 10
+            },
+            {
+              "do": "camera",
+              "position": [0, 3, 9],
+              "lookAt": [0, 0.7, 0],
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Bear, it's Cow again. Ten more cookies, please!",
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ten more? That's one more box!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "bear"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "We have 47. Add one box.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 4.6, 5.6],
+              "lookAt": [0, 0.2, -0.2],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l3",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 0.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l5",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l6",
+              "at": 0.7,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l7",
+              "at": 0.8,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "do1",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "do7",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "47",
+              "style": "count"
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b5",
+              "to": [-0.35, 0, -0.1],
+              "height": 3,
+              "sound": "whoosh"
+            },
+            {
+              "do": "hide",
+              "target": "dt4",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "dt5",
+              "at": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "57",
+              "style": "count",
+              "at": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "57! 47 plus 10 is 57.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "47 + 10 = 57",
+              "style": "label"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Only the tens digit changed. The ones digit stays 7.",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "dt5"
+            },
+            {
+              "do": "nod",
+              "target": "do7",
+              "at": 1.6
+            }
+          ],
+          "dur": 2.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Try 23 plus 10.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l7",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt5",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "dt2",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "hide",
+              "target": "do7",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "do3",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "23",
+              "style": "count"
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "One more box. 33!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "dt2",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "dt3",
+              "at": 0.25
+            },
+            {
+              "do": "caption",
+              "text": "33",
+              "style": "count"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.75
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Now add whole tens. 30 plus 20.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "l1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "do3",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "do0",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "30 + 20",
+              "style": "label"
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "3 boxes and 2 boxes. 5 boxes is 50!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 0.6,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 0.72,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "dt3",
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "dt5",
+              "at": 1.15
+            },
+            {
+              "do": "caption",
+              "text": "50",
+              "style": "count",
+              "at": 1
+            }
+          ],
+          "dur": 1.65
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "40 plus 30?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt5",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "dt4",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "caption",
+              "text": "40 + 30",
+              "style": "label"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "4 boxes and 3 boxes. 70!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 0.2,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b6",
+              "at": 0.32,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b7",
+              "at": 0.44,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "dt4",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "dt7",
+              "at": 0.75
+            },
+            {
+              "do": "caption",
+              "text": "70",
+              "style": "count",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 1.25
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Ten more than 70? Just add one box.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "70 + 10",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "80! Eight boxes, zero ones.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b8",
+              "at": 0.1,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "dt7",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "dt8",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "caption",
+              "text": "80",
+              "style": "count"
+            },
+            {
+              "do": "sound",
+              "sound": "ding"
+            }
+          ],
+          "dur": 0.95
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Order up quiz",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Order up! Quiz time.",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 3, 9],
+              "lookAt": [0, 0.7, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "Order Up Quiz",
+              "style": "title",
+              "dur": 2.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question one. 5 boxes and 2 loose. How many?",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 4.6, 5.6],
+              "lookAt": [0, 0.2, -0.2],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "l1",
+              "at": 0.8999999999999999,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 0.9999999999999999,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "b6",
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "b7",
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "b8",
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "dt8",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "do0",
+              "at": 0
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "52 cookies!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "dt5",
+              "at": 0.15
+            },
+            {
+              "do": "pop",
+              "target": "do2",
+              "at": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "52",
+              "style": "count"
+            },
+            {
+              "do": "wiggle",
+              "target": "oven",
+              "deg": 8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.8
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question two. 68 is how many tens and ones?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "b1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "do2",
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "68",
+              "style": "count"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "6 tens and 8 ones!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b1",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l1",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b2",
+              "at": 0.12,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 0.24,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l3",
+              "at": 0.5,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 0.36,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 0.48,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l5",
+              "at": 0.7,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b6",
+              "at": 0.6,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l6",
+              "at": 0.8,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l7",
+              "at": 0.9000000000000001,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l8",
+              "at": 1,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "dt6",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "pop",
+              "target": "do8",
+              "at": 0.6
+            },
+            {
+              "do": "wiggle",
+              "target": "oven",
+              "deg": 8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.6
+            }
+          ],
+          "dur": 1.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question three. Which is more, 29 or 92?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "b1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l7",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l8",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "do8",
+              "at": 0
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "92! 9 tens beats 2 tens.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b1",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l1",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b2",
+              "at": 0.12,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "at": 0.24,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 0.36,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 0.48,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b6",
+              "at": 0.6,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b7",
+              "at": 0.72,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b8",
+              "at": 0.84,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b9",
+              "at": 0.96,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "dt9",
+              "at": 0.55
+            },
+            {
+              "do": "pop",
+              "target": "do2",
+              "at": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "92",
+              "style": "count"
+            },
+            {
+              "do": "wiggle",
+              "target": "oven",
+              "deg": 8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.6
+            }
+          ],
+          "dur": 1.46
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Question four. 40 plus 20?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "l1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b7",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b8",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b9",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dt9",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "do2",
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "40 + 20",
+              "style": "label"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "60! 4 boxes and 2 boxes.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "b6",
+              "at": 0.12,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "dt6",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "pop",
+              "target": "do0",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "60",
+              "style": "count"
+            },
+            {
+              "do": "wiggle",
+              "target": "oven",
+              "deg": 8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Last one. 36 plus 10?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "l1",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "l3",
+              "at": 0.5,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "l4",
+              "at": 0.6000000000000001,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "l5",
+              "at": 0.7,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "b6",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "l6",
+              "at": 0.8,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "dt6",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "dt3",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "hide",
+              "target": "do0",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "do6",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "36 + 10",
+              "style": "label"
+            }
+          ],
+          "dur": 1.3
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "46! Just one more box.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "hide",
+              "target": "dt3",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "dt4",
+              "at": 0.44999999999999996
+            },
+            {
+              "do": "caption",
+              "text": "46",
+              "style": "count"
+            },
+            {
+              "do": "wiggle",
+              "target": "oven",
+              "deg": 8
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Five out of five. Great baking!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "bear"
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.3
+            }
+          ],
+          "dur": 0.8
+        }
+      ]
+    },
+    {
+      "id": "delivery",
+      "title": "Delivery",
+      "beats": [
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Time to deliver Cow's 57 cookies!",
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 3, 9],
+              "lookAt": [0, 0.7, 0],
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "at": 0,
+              "sound": "block"
+            },
+            {
+              "do": "pop",
+              "target": "l7",
+              "at": 0.3,
+              "sound": false
+            },
+            {
+              "do": "hide",
+              "target": "dt4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "do6",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [2.6, 0, 1.8],
+              "dur": 2
+            },
+            {
+              "do": "turn",
+              "target": "cow",
+              "to": [0, -40, 0],
+              "at": 2
+            }
+          ],
+          "dur": 3
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "I'll count. By tens this time!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "10!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "b1",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "10",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "20!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "b2",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "20",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "30!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "b3",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "30",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "40!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "b4",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "40",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "50!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "b5",
+              "height": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "volume": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "50",
+              "style": "count"
+            }
+          ],
+          "dur": 0.95
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "51!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "l1",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "51",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "52!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "l2",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "52",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "53!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "l3",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "53",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "54!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "l4",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "54",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "55!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "l5",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "55",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "56!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "l6",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "56",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "57!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "l7",
+              "height": 0.3
+            },
+            {
+              "do": "caption",
+              "text": "57",
+              "style": "count"
+            }
+          ],
+          "dur": 0.85
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "57! And I stayed awake!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "height": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.6
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you, Bear! Moo!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "cow"
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 0.6
+            }
+          ],
+          "dur": 1.1
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Fun fact: a baker's dozen is 13, not 12!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "bear"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Boxes are tens, loose ones are ones. Count the boxes first!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp"
+            }
+          ],
+          "dur": 0.5
+        },
+        {
+          "do": [
+            {
+              "do": "say",
+              "text": "Box it up! Bye, friends!",
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "cow",
+              "at": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 1.2
+            }
+          ],
+          "dur": 3.8
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

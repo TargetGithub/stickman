@@ -5,18 +5,12 @@
 // the object's "eyes" prop (1 open, 0 shut) closes the eyes for sleepy scenes. Browser only.
 
 import * as THREE from "three";
-import { shapeGeometry } from "./geometry.js";
+import { shadowed, shapeGeometry } from "./geometry.js";
 import { hash32 } from "./rng.js";
 import { createFaceRig } from "./faces.js";
 
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
-
-function shadowed(m) {
-  m.castShadow = true;
-  m.receiveShadow = true;
-  return m;
-}
 
 /** One part (or its mirror / its repeats) as meshes under `parent`. */
 function addPart(parent, p, material, fallbackColor) {
@@ -104,9 +98,12 @@ export function buildModel(o, model, material) {
   // Every node a part name moves: mirrored copies and other parts with the same name (a tail and its tip).
   const groups = new Map([["head", [head]], ["body", [body]]]);
   const idlers = [];
+  // recolor maps the colour names the model's parts use to new ones ({ "leaf": "brown" }), main colour included.
+  const rc = (c) => o.recolor?.[c] ?? c;
+  const paint = (c, style) => material(rc(c), style);
   const color = o.color ?? model.color;
   for (const p of model.parts) {
-    const made = addPart(p.on === "head" ? head : body, p, material, color);
+    const made = addPart(p.on === "head" ? head : body, p, paint, color);
     if (p.name) {
       if (!named.has(p.name)) named.set(p.name, made[0]);
       groups.set(p.name, [...(groups.get(p.name) ?? []), ...made]);
@@ -115,10 +112,10 @@ export function buildModel(o, model, material) {
   }
   let eyes = [];
   if (model.eyes) {
-    eyes = addEyes(head, model.eyes, material);
+    eyes = addEyes(head, model.eyes, paint);
     if (model.cheeks) {
       for (const side of [1, -1]) {
-        const c = new THREE.Mesh(shapeGeometry("sphere"), material(model.cheeks.color ?? "pink", "matte"));
+        const c = new THREE.Mesh(shapeGeometry("sphere"), paint(model.cheeks.color ?? "pink", "matte"));
         c.scale.set(model.cheeks.size, model.cheeks.size * 0.6, model.cheeks.size * 0.35);
         c.position.set(side * model.cheeks.at[0], model.cheeks.at[1], model.cheeks.at[2]);
         head.add(c);
@@ -127,7 +124,7 @@ export function buildModel(o, model, material) {
   }
   let mouth;
   if (model.mouth) {
-    mouth = new THREE.Mesh(shapeGeometry("smile"), material(model.mouth.color ?? "ink", "matte"));
+    mouth = new THREE.Mesh(shapeGeometry("smile"), paint(model.mouth.color ?? "ink", "matte"));
     mouth.scale.set(model.mouth.size, model.mouth.size * 0.8, model.mouth.size * 0.6);
     mouth.position.set(...model.mouth.at);
     head.add(mouth);

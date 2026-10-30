@@ -1,0 +1,3736 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "The Great Robo-dini does a magic trick, but Duck finds the secret: it is a magnet! What sticks to a magnet? Paper clips do. Wood, plastic, paper and even a shiny foil ball do not.",
+  "meta": {
+    "title": "Magnet Magic: What Sticks?",
+    "series": "toybox",
+    "episode": "pk09",
+    "audience": "prek",
+    "seed": 109,
+    "voice": "soft",
+    "voiceSpeed": 0.92,
+    "music": "playful",
+    "musicGain": 0.24,
+    "skills": [
+      "magnets_prek"
+    ],
+    "thumbnail": {
+      "scene": "show",
+      "at": 18.9
+    },
+    "youtube": {
+      "title": "Magnet Magic! 🧲 What Sticks to a Magnet? Science for Kids | Toy Box Friends",
+      "description": "The Great Robo-dini waves his magic wand and the paper clips jump! Is it magic? Duck finds the secret: it is a magnet. We test what sticks (paper clips and a jar lid) and what does not (wood, plastic, a crayon, paper and even a shiny foil ball). Magnets pull iron and steel, not every metal. Then the paper clips dance on a paper plate!\n\nTry it at home with a grown-up: one big magnet only, a few paper clips, a paper plate, a wooden spoon, a plastic toy and a foil ball. Never use tiny magnets or magnet balls, and never put a magnet in your mouth. A grown-up counts the paper clips back into the box.\n\nMade for kids. Toy Box Friends: 3D learning videos for preschool.",
+      "tags": [
+        "magnets for kids",
+        "what sticks to a magnet",
+        "magnet experiment",
+        "preschool science",
+        "science magic trick",
+        "easy experiments for kids",
+        "kids learning video",
+        "toddler learning",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "studio"
+  },
+  "camera": {
+    "position": [
+      0,
+      1.55,
+      5.1
+    ],
+    "lookAt": [
+      0,
+      1.2,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "curtain",
+      "kind": "shape",
+      "shape": "rectangle",
+      "at": [
+        0,
+        -0.6,
+        -2.6
+      ],
+      "color": "red",
+      "material": "matte",
+      "size": 6.5,
+      "scale": [
+        1,
+        0.8,
+        1
+      ]
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -2.25,
+        0,
+        0.15
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+        2.1,
+        0,
+        0.5
+      ],
+      "size": 0.9,
+      "rotation": [
+        0,
+        -30,
+        0
+      ]
+    },
+    {
+      "id": "table",
+      "kind": "prop",
+      "model": "table",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "size": 1.4
+    },
+    {
+      "id": "hat",
+      "kind": "group",
+      "at": [
+        0.75,
+        1.12,
+        -0.25
+      ]
+    },
+    {
+      "id": "hat_top",
+      "kind": "shape",
+      "shape": "cylinder",
+      "at": [
+        0,
+        0.04,
+        0
+      ],
+      "parent": "hat",
+      "color": "black",
+      "material": "glossy",
+      "scale": [
+        0.36,
+        0.4,
+        0.36
+      ]
+    },
+    {
+      "id": "hat_brim",
+      "kind": "shape",
+      "shape": "cylinder",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "parent": "hat",
+      "color": "black",
+      "material": "glossy",
+      "scale": [
+        0.56,
+        0.04,
+        0.56
+      ]
+    },
+    {
+      "id": "hat_band",
+      "kind": "shape",
+      "shape": "cylinder",
+      "at": [
+        0,
+        0.08,
+        0
+      ],
+      "parent": "hat",
+      "color": "red",
+      "scale": [
+        0.37,
+        0.07,
+        0.37
+      ]
+    },
+    {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+        0.75,
+        0.8200000000000001,
+        -0.25
+      ],
+      "size": 0.45,
+      "hidden": true
+    },
+    {
+      "id": "magnet",
+      "kind": "prop",
+      "model": "magnet",
+      "at": [
+        -1.25,
+        1.12,
+        0.25
+      ],
+      "size": 1
+    },
+    {
+      "id": "clip1",
+      "kind": "prop",
+      "model": "paper_clip",
+      "at": [
+        -0.25,
+        1.12,
+        0.3
+      ],
+      "size": 1
+    },
+    {
+      "id": "clip2",
+      "kind": "prop",
+      "model": "paper_clip",
+      "at": [
+        0,
+        1.12,
+        0.3
+      ],
+      "size": 1
+    },
+    {
+      "id": "clip3",
+      "kind": "prop",
+      "model": "paper_clip",
+      "at": [
+        0.25,
+        1.12,
+        0.3
+      ],
+      "size": 1
+    },
+    {
+      "id": "t_clip",
+      "kind": "prop",
+      "model": "paper_clip",
+      "at": [
+        0,
+        1.12,
+        0.25
+      ],
+      "size": 1.3,
+      "hidden": true
+    },
+    {
+      "id": "t_lid",
+      "kind": "shape",
+      "shape": "disc",
+      "at": [
+        0,
+        1.12,
+        0.25
+      ],
+      "material": "metal",
+      "color": "grey",
+      "size": 0.32,
+      "rotation": [
+        70,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "t_wood",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0,
+        1.12,
+        0.25
+      ],
+      "color": "brown",
+      "material": "matte",
+      "size": 0.22,
+      "hidden": true
+    },
+    {
+      "id": "t_ball",
+      "kind": "prop",
+      "model": "ball",
+      "at": [
+        0,
+        1.12,
+        0.25
+      ],
+      "size": 0.26,
+      "color": "green",
+      "hidden": true
+    },
+    {
+      "id": "t_crayon",
+      "kind": "prop",
+      "model": "crayon",
+      "at": [
+        0,
+        1.12,
+        0.25
+      ],
+      "size": 1,
+      "color": "blue",
+      "hidden": true
+    },
+    {
+      "id": "t_paper",
+      "kind": "shape",
+      "shape": "rectangle",
+      "at": [
+        0,
+        1.12,
+        0.25
+      ],
+      "material": "paper",
+      "color": "white",
+      "size": 0.24,
+      "hidden": true
+    },
+    {
+      "id": "t_foil",
+      "kind": "shape",
+      "shape": "sphere",
+      "at": [
+        0,
+        1.12,
+        0.25
+      ],
+      "material": "metal",
+      "color": "grey",
+      "size": 0.24,
+      "scale": [
+        1.1,
+        0.9,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "id": "w_yes",
+      "kind": "letter",
+      "text": "sticks",
+      "at": [
+        -0.55,
+        0.8500000000000001,
+        0.62
+      ],
+      "color": "white",
+      "size": 0.12,
+      "hidden": true
+    },
+    {
+      "id": "w_no",
+      "kind": "letter",
+      "text": "no stick",
+      "at": [
+        0.55,
+        0.8500000000000001,
+        0.62
+      ],
+      "color": "white",
+      "size": 0.12,
+      "hidden": true
+    },
+    {
+      "id": "plate",
+      "kind": "shape",
+      "shape": "disc",
+      "at": [
+        0,
+        1.42,
+        0.2
+      ],
+      "material": "paper",
+      "color": "white",
+      "size": 0.9,
+      "hidden": true
+    },
+    {
+      "id": "prop_l",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        -0.38,
+        1.12,
+        0.2
+      ],
+      "color": "gold",
+      "size": 0.3,
+      "hidden": true
+    },
+    {
+      "id": "prop_r",
+      "kind": "shape",
+      "shape": "block",
+      "at": [
+        0.38,
+        1.12,
+        0.2
+      ],
+      "color": "gold",
+      "size": 0.3,
+      "hidden": true
+    },
+    {
+      "id": "pclip1",
+      "kind": "prop",
+      "model": "paper_clip",
+      "at": [
+        -0.12,
+        1.55,
+        0.2
+      ],
+      "size": 0.9,
+      "rotation": [
+        -80,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "pclip2",
+      "kind": "prop",
+      "model": "paper_clip",
+      "at": [
+        0.12,
+        1.55,
+        0.25
+      ],
+      "size": 0.9,
+      "rotation": [
+        -80,
+        30,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "pclip3",
+      "kind": "prop",
+      "model": "paper_clip",
+      "at": [
+        0,
+        1.55,
+        0.05
+      ],
+      "size": 0.9,
+      "rotation": [
+        -80,
+        -20,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "compass",
+      "kind": "shape",
+      "shape": "circle",
+      "at": [
+        -1,
+        1.12,
+        0.35
+      ],
+      "color": "white",
+      "size": 0.42,
+      "hidden": true
+    },
+    {
+      "id": "needle",
+      "kind": "shape",
+      "shape": "diamond",
+      "at": [
+        -1,
+        1.2000000000000002,
+        0.4
+      ],
+      "color": "red",
+      "size": 0.22,
+      "scale": [
+        0.4,
+        1,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [
+        10,
+        4
+      ],
+      "height": 7
+    }
+  ],
+  "scenes": [
+    {
+      "id": "show",
+      "title": "The Great Robo-dini",
+      "beats": [
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "lights",
+              "at": 0,
+              "rig": "studio_bright",
+              "dur": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.2,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.6,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1,
+              "volume": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.4,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Magnet Magic! The Great Robo-dini!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "Magnet Magic!",
+              "style": "title",
+              "at": 0.1,
+              "dur": 2.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "at": 0.2,
+              "volume": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.25,
+          "do": [
+            {
+              "do": "say",
+              "text": "First, my magic hat!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "hat",
+              "at": 0.6,
+              "height": 0.2
+            },
+            {
+              "do": "wiggle",
+              "target": "hat",
+              "at": 1.1
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "at": 0.6,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "bunny",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [
+                0.75,
+                1.1700000000000002,
+                -0.25
+              ],
+              "at": 0.2,
+              "dur": 0.5,
+              "ease": "backOut"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.3,
+              "height": 0.4,
+              "sound": "boing"
+            },
+            {
+              "do": "wiggle",
+              "target": "bunny",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.48,
+          "do": [
+            {
+              "do": "say",
+              "text": "Hello! I am the helper.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.3,
+              "height": 0.2
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now, three paper clips and my magic wand.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "clip1",
+              "at": 0.8,
+              "height": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "clip2",
+              "at": 1,
+              "height": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "clip3",
+              "at": 1.2,
+              "height": 0.1
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 1.8,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 1.8,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Abracadabra!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.6,
+                3.3
+              ],
+              "lookAt": [
+                0,
+                1.4,
+                0
+              ],
+              "at": 0,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.95,
+                0.1
+              ],
+              "at": 0.1,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.08,
+                1.62,
+                0.15
+              ],
+              "at": 0.6,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.8
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                0,
+                1.62,
+                0.15
+              ],
+              "at": 0.9,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 1.1
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                0.08,
+                1.62,
+                0.15
+              ],
+              "at": 1.2,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.6,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.58,
+          "do": [
+            {
+              "do": "say",
+              "text": "Ooh! Magic?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "magic?",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "again",
+      "title": "Again! Again!",
+      "beats": [
+        {
+          "dur": 1.73,
+          "do": [
+            {
+              "do": "say",
+              "text": "Again! Again!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.2,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8,
+              "height": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Say the magic word with me!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.55,
+                5.1
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                0
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.25,
+                1.12,
+                0.3
+              ],
+              "at": 0.6,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                0,
+                1.12,
+                0.3
+              ],
+              "at": 0.7,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                0.25,
+                1.12,
+                0.3
+              ],
+              "at": 0.8,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 0.6,
+              "dur": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 1.1,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Abracadabra!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.95,
+                0.1
+              ],
+              "at": 0.1,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.08,
+                1.62,
+                0.15
+              ],
+              "at": 0.6,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                0,
+                1.62,
+                0.15
+              ],
+              "at": 0.7,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                0.08,
+                1.62,
+                0.15
+              ],
+              "at": 0.8,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 2.7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Clap, clap! One more time!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.3,
+              "height": 0.25
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.25,
+                1.12,
+                0.3
+              ],
+              "at": 1,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                0,
+                1.12,
+                0.3
+              ],
+              "at": 1.1,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                0.25,
+                1.12,
+                0.3
+              ],
+              "at": 1.2,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 1,
+              "dur": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 1.5,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Abracadabra!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.95,
+                0.1
+              ],
+              "at": 0.1,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.08,
+                1.62,
+                0.15
+              ],
+              "at": 0.6,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                0,
+                1.62,
+                0.15
+              ],
+              "at": 0.7,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                0.08,
+                1.62,
+                0.15
+              ],
+              "at": 0.8,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.33,
+          "do": [
+            {
+              "do": "say",
+              "text": "Thank you! Thank you!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.2,
+              "volume": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "secret",
+      "title": "Duck's discovery",
+      "beats": [
+        {
+          "dur": 2.18,
+          "do": [
+            {
+              "do": "say",
+              "text": "Can I try the wand?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                1.35,
+                0,
+                1
+              ],
+              "at": 0.3,
+              "dur": 1
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.8,
+              "height": 0.2
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.25,
+                1.12,
+                0.3
+              ],
+              "at": 0.4,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                0,
+                1.12,
+                0.3
+              ],
+              "at": 0.5,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                0.25,
+                1.12,
+                0.3
+              ],
+              "at": 0.6,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 1,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Here you go, Duck.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0.5,
+                2.15,
+                0.2
+              ],
+              "at": 0.5,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "My magic word is... Banana!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.2,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.95,
+                0.1
+              ],
+              "at": 0.1,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.08,
+                1.62,
+                0.15
+              ],
+              "at": 0.6,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                0,
+                1.62,
+                0.15
+              ],
+              "at": 0.7,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                0.08,
+                1.62,
+                0.15
+              ],
+              "at": 0.8,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.9
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "surprised",
+              "at": 1.1
+            }
+          ]
+        },
+        {
+          "dur": 3.53,
+          "do": [
+            {
+              "do": "say",
+              "text": "Banana works too! So it is not magic!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "You found my secret. It is a magnet!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "magnet",
+              "style": "title",
+              "at": 2,
+              "dur": 2
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.6
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 0.5
+            },
+            {
+              "do": "sound",
+              "sound": "sparkle",
+              "at": 2,
+              "volume": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 4.05,
+          "do": [
+            {
+              "do": "say",
+              "text": "A magnet can pull. It pulls the paper clips.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "magnet",
+              "at": 1.2
+            },
+            {
+              "do": "caption",
+              "text": "pull",
+              "style": "label",
+              "at": 1.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Be a magnet! Pull, pull, pull!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.8,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "title": "What sticks?",
+      "beats": [
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "What sticks to a magnet? Let's test!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.55,
+                5.1
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                0
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "lights",
+              "at": 0,
+              "rig": "studio",
+              "dur": 1.5
+            },
+            {
+              "do": "move",
+              "target": "clip1",
+              "to": [
+                -0.9,
+                1.12,
+                -0.2
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "move",
+              "target": "clip2",
+              "to": [
+                -0.9,
+                1.12,
+                -0.05
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "move",
+              "target": "clip3",
+              "to": [
+                -0.9,
+                1.12,
+                0.1
+              ],
+              "at": 0.4,
+              "dur": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "clip1",
+              "at": 1
+            },
+            {
+              "do": "hide",
+              "target": "clip2",
+              "at": 1
+            },
+            {
+              "do": "hide",
+              "target": "clip3",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 0.4,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 0.4,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [
+                1.15,
+                0,
+                0.6
+              ],
+              "at": 0.6,
+              "dur": 0.8
+            },
+            {
+              "do": "grow",
+              "target": "bunny",
+              "to": 1.7,
+              "at": 0.6,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [
+                2.1,
+                0,
+                0.5
+              ],
+              "at": 0.6,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "hat",
+              "to": [
+                -1.05,
+                0,
+                -0.7
+              ],
+              "at": 0.6,
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sticks goes here. No stick goes there.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "w_yes",
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "w_no",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "A paper clip. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_clip",
+              "at": 0.2,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.1,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.95,
+                0.1
+              ],
+              "at": 0,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "t_clip",
+              "to": [
+                0,
+                1.62,
+                0.15
+              ],
+              "at": 0.5,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.7
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -0.75,
+                1.95,
+                0.1
+              ],
+              "at": 1.2,
+              "dur": 0.9,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "move",
+              "target": "t_clip",
+              "to": [
+                -0.75,
+                1.62,
+                0.15
+              ],
+              "at": 1.2,
+              "dur": 0.9,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "move",
+              "target": "t_clip",
+              "to": [
+                -0.75,
+                1.12,
+                0.05
+              ],
+              "at": 2.3,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 2.6,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.73,
+          "do": [
+            {
+              "do": "say",
+              "text": "Stick, click!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.2
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 0.4,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 0.4,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 4.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "Paper clips are made of steel. Magnets pull steel!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "steel",
+              "style": "label",
+              "at": 1.8,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "A jar lid. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_lid",
+              "at": 0.2,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.1,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.95,
+                0.1
+              ],
+              "at": 0,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "t_lid",
+              "to": [
+                0,
+                1.62,
+                0.15
+              ],
+              "at": 0.5,
+              "dur": 0.2,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.7
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -0.5700000000000001,
+                1.95,
+                0.1
+              ],
+              "at": 1.2,
+              "dur": 0.9,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "move",
+              "target": "t_lid",
+              "to": [
+                -0.5700000000000001,
+                1.62,
+                0.15
+              ],
+              "at": 1.2,
+              "dur": 0.9,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "move",
+              "target": "t_lid",
+              "to": [
+                -0.5700000000000001,
+                1.12,
+                0.05
+              ],
+              "at": 2.3,
+              "dur": 0.4,
+              "ease": "quadIn"
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 2.6,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.73,
+          "do": [
+            {
+              "do": "say",
+              "text": "Stick, click!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.2
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 0.4,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 0.4,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "A wooden block. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_wood",
+              "at": 0.2,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.1,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 1.4,
+              "volume": 0.4
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 1.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 1.6,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "t_wood",
+              "to": [
+                0.45,
+                1.12,
+                0.05
+              ],
+              "at": 2.2,
+              "dur": 0.7,
+              "ease": "quadInOut"
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "No-go, slow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "A plastic ball. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_ball",
+              "at": 0.2,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.1,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 1.4,
+              "volume": 0.4
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 1.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 1.6,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "t_ball",
+              "to": [
+                0.65,
+                1.12,
+                0.05
+              ],
+              "at": 2.2,
+              "dur": 0.7,
+              "ease": "quadInOut"
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "No-go, slow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "A crayon. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_crayon",
+              "at": 0.2,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.1,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 1.4,
+              "volume": 0.4
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 1.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 1.6,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "t_crayon",
+              "to": [
+                0.8500000000000001,
+                1.12,
+                0.05
+              ],
+              "at": 2.2,
+              "dur": 0.7,
+              "ease": "quadInOut"
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "No-go, slow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "A piece of paper. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_paper",
+              "at": 0.2,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.1,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0,
+              "dur": 0.5
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0.35,
+                1.95,
+                0.1
+              ],
+              "at": 0.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "at": 1.4,
+              "volume": 0.4
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                2.15,
+                0.1
+              ],
+              "at": 1.6,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                180
+              ],
+              "at": 1.6,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "t_paper",
+              "to": [
+                1.05,
+                1.12,
+                0.05
+              ],
+              "at": 2.2,
+              "dur": 0.7,
+              "ease": "quadInOut"
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "No-go, slow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.85,
+          "do": [
+            {
+              "do": "say",
+              "text": "Magnets pull iron and steel.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "foil",
+      "title": "The shiny surprise",
+      "beats": [
+        {
+          "dur": 3.45,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now, a shiny foil ball. It is metal!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_foil",
+              "at": 0.3,
+              "sound": "sparkle"
+            },
+            {
+              "do": "spin",
+              "target": "t_foil",
+              "at": 1,
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.2,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 3.3,
+          "do": [
+            {
+              "do": "say",
+              "text": "Metal. Shiny. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.6,
+                3.3
+              ],
+              "lookAt": [
+                0,
+                1.4,
+                0
+              ],
+              "at": 0.2,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sticks! It is metal! Quack!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.85,
+                0.1
+              ],
+              "at": 0.1,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.75,
+                0.1
+              ],
+              "at": 0.9,
+              "dur": 0.6
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.95,
+                0.1
+              ],
+              "at": 1.8,
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "slide_whistle",
+              "at": 2,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.88,
+          "do": [
+            {
+              "do": "say",
+              "text": "Whoa! No stick!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "feel",
+              "target": "bunny",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "no stick",
+              "style": "label",
+              "at": 0.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 4.13,
+          "do": [
+            {
+              "do": "say",
+              "text": "Magnets pull iron and steel. Not every metal!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "feeling": "happy",
+              "at": 1
+            },
+            {
+              "do": "feel",
+              "target": "bunny",
+              "feeling": "happy",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "t_foil",
+              "to": [
+                1.25,
+                1.12,
+                0.05
+              ],
+              "at": 2,
+              "dur": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "No-go, slow.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.1
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.55,
+                5.1
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                0
+              ],
+              "at": 0,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -1.25,
+                1.12,
+                0.25
+              ],
+              "at": 0.4,
+              "dur": 0.8,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.4,
+              "dur": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plate",
+      "title": "Magic through paper",
+      "beats": [
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "text": "One more trick. A paper plate.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "w_yes",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_no",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "t_clip",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_lid",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_wood",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_ball",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_crayon",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_paper",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_foil",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "prop_l",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "prop_r",
+              "at": 0.7
+            },
+            {
+              "do": "show",
+              "target": "plate",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                0,
+                1.12,
+                0.2
+              ],
+              "at": 0.8,
+              "dur": 0.8
+            },
+            {
+              "do": "turn",
+              "target": "magnet",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 0.8,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.63,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three paper clips on top.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "pclip1",
+              "at": 0.3,
+              "sound": "clink"
+            },
+            {
+              "do": "pop",
+              "target": "pclip2",
+              "at": 0.6,
+              "sound": "clink"
+            },
+            {
+              "do": "pop",
+              "target": "pclip3",
+              "at": 0.9,
+              "sound": "clink"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.3,
+                3.6
+              ],
+              "lookAt": [
+                0,
+                1.4,
+                0.2
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "The magnet goes under the plate.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "magnet",
+              "at": 0.6,
+              "height": 0.05
+            }
+          ]
+        },
+        {
+          "dur": 2.78,
+          "do": [
+            {
+              "do": "say",
+              "text": "Will the clips move? Watch!",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.6,
+          "do": [
+            {
+              "do": "path",
+              "target": "magnet",
+              "points": [
+                [
+                  0,
+                  1.12,
+                  0.2
+                ],
+                [
+                  0.25,
+                  1.12,
+                  0.35
+                ],
+                [
+                  0,
+                  1.12,
+                  0.5
+                ],
+                [
+                  -0.25,
+                  1.12,
+                  0.35
+                ],
+                [
+                  0,
+                  1.12,
+                  0.2
+                ],
+                [
+                  0.25,
+                  1.12,
+                  0.05
+                ],
+                [
+                  0,
+                  1.12,
+                  0.2
+                ]
+              ],
+              "at": 0.1,
+              "dur": 4
+            },
+            {
+              "do": "path",
+              "target": "pclip1",
+              "points": [
+                [
+                  -0.12,
+                  1.55,
+                  0.2
+                ],
+                [
+                  0.13,
+                  1.55,
+                  0.35
+                ],
+                [
+                  -0.12,
+                  1.55,
+                  0.5
+                ],
+                [
+                  -0.37,
+                  1.55,
+                  0.35
+                ],
+                [
+                  -0.12,
+                  1.55,
+                  0.2
+                ],
+                [
+                  0.13,
+                  1.55,
+                  0.05
+                ],
+                [
+                  -0.12,
+                  1.55,
+                  0.2
+                ]
+              ],
+              "at": 0.35,
+              "dur": 4
+            },
+            {
+              "do": "path",
+              "target": "pclip2",
+              "points": [
+                [
+                  0.12,
+                  1.55,
+                  0.25
+                ],
+                [
+                  0.37,
+                  1.55,
+                  0.4
+                ],
+                [
+                  0.12,
+                  1.55,
+                  0.55
+                ],
+                [
+                  -0.13,
+                  1.55,
+                  0.4
+                ],
+                [
+                  0.12,
+                  1.55,
+                  0.25
+                ],
+                [
+                  0.37,
+                  1.55,
+                  0.1
+                ],
+                [
+                  0.12,
+                  1.55,
+                  0.25
+                ]
+              ],
+              "at": 0.45,
+              "dur": 4
+            },
+            {
+              "do": "path",
+              "target": "pclip3",
+              "points": [
+                [
+                  0,
+                  1.55,
+                  0.05
+                ],
+                [
+                  0.25,
+                  1.55,
+                  0.2
+                ],
+                [
+                  0,
+                  1.55,
+                  0.35
+                ],
+                [
+                  -0.25,
+                  1.55,
+                  0.2
+                ],
+                [
+                  0,
+                  1.55,
+                  0.05
+                ],
+                [
+                  0.25,
+                  1.55,
+                  -0.1
+                ],
+                [
+                  0,
+                  1.55,
+                  0.05
+                ]
+              ],
+              "at": 0.55,
+              "dur": 4
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "at": 0.4,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 4.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "The clips dance! A magnet can pull through paper.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pclip1",
+              "at": 0.3
+            },
+            {
+              "do": "wiggle",
+              "target": "pclip2",
+              "at": 0.5
+            },
+            {
+              "do": "wiggle",
+              "target": "pclip3",
+              "at": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "pull",
+              "style": "label",
+              "at": 2.6,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.08,
+          "do": [
+            {
+              "do": "say",
+              "text": "Do it at home, with a grown-up!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.55,
+                5.1
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                0
+              ],
+              "at": 0.2,
+              "dur": 1.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 4.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Use one big magnet. Never put magnets in your mouth.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "No",
+              "at": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Magnet quiz",
+      "beats": [
+        {
+          "dur": 4.65,
+          "do": [
+            {
+              "do": "say",
+              "text": "Magnet quiz! One. A paper clip. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "hide",
+              "target": "plate",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pclip1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pclip2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "pclip3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "prop_l",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "prop_r",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "magnet",
+              "to": [
+                -1.25,
+                1.12,
+                0.25
+              ],
+              "at": 0.4,
+              "dur": 0.8
+            },
+            {
+              "do": "move",
+              "target": "t_clip",
+              "to": [
+                0,
+                1.12,
+                0.25
+              ],
+              "at": 0.3,
+              "dur": 0.1
+            },
+            {
+              "do": "show",
+              "target": "t_clip",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.27,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sticks!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "sticks",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "t_clip",
+              "at": 0.2,
+              "height": 0.15
+            }
+          ]
+        },
+        {
+          "dur": 3.83,
+          "do": [
+            {
+              "do": "say",
+              "text": "Two. A wooden block. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "hide",
+              "target": "t_clip",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "t_wood",
+              "to": [
+                0,
+                1.12,
+                0.25
+              ],
+              "at": 0.3,
+              "dur": 0.1
+            },
+            {
+              "do": "show",
+              "target": "t_wood",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.42,
+          "do": [
+            {
+              "do": "say",
+              "text": "No stick!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "no stick",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 4.35,
+          "do": [
+            {
+              "do": "say",
+              "text": "Three. The shiny foil ball. Sticks, or no stick?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "hide",
+              "target": "t_wood",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "t_foil",
+              "to": [
+                0,
+                1.12,
+                0.25
+              ],
+              "at": 0.3,
+              "dur": 0.1
+            },
+            {
+              "do": "show",
+              "target": "t_foil",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.23,
+          "do": [
+            {
+              "do": "say",
+              "text": "No stick! Not every metal sticks.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.1
+            },
+            {
+              "do": "caption",
+              "text": "no stick",
+              "style": "label",
+              "at": 0.1,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Four. Can a magnet pull through paper?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.1,
+              "dur": 2.4
+            },
+            {
+              "do": "hide",
+              "target": "t_foil",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 3.38,
+          "do": [
+            {
+              "do": "say",
+              "text": "Yes! The clips danced on the plate.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.1
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "title": "The final bow",
+      "beats": [
+        {
+          "dur": 4.05,
+          "do": [
+            {
+              "do": "say",
+              "text": "My last secret. A compass has a tiny magnet.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "compass",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "needle",
+              "at": 0.9,
+              "sound": "sparkle"
+            }
+          ]
+        },
+        {
+          "dur": 2.48,
+          "do": [
+            {
+              "do": "say",
+              "text": "It always points north!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "needle",
+              "to": [
+                0,
+                0,
+                40
+              ],
+              "at": 0.3,
+              "dur": 0.5
+            },
+            {
+              "do": "turn",
+              "target": "needle",
+              "to": [
+                0,
+                0,
+                -30
+              ],
+              "at": 0.8,
+              "dur": 0.6
+            },
+            {
+              "do": "turn",
+              "target": "needle",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "at": 1.4,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "text": "Duck, you are the scientist now!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "hat",
+              "to": [
+                2.1,
+                1,
+                0.5
+              ],
+              "at": 0.6,
+              "dur": 1.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "at": 1.6,
+              "volume": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 1.9,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "hat",
+              "to": [
+                2.1,
+                0.92,
+                0.5
+              ],
+              "at": 0,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 4.87,
+          "do": [
+            {
+              "do": "say",
+              "text": "Stick, click! No-go, slow! Magnets pull iron and steel!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.3,
+              "volume": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.8,
+              "height": 0.3
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Take a bow! Bye-bye!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.2
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 0.4
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 0.5
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.7,
+                6.6
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                0
+              ],
+              "at": 0.6,
+              "dur": 2.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 1.6
+            },
+            {
+              "do": "lights",
+              "at": 1,
+              "rig": "studio",
+              "dur": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
