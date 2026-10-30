@@ -51,6 +51,11 @@ every video **Made for kids**.
 - An object resting on another moves with it (hop the blocks above too); `hop` adds to position, so moving
   objects can hop.
 
+## Batch 2 specs
+
+Specs for 30 more videos (pre-K, grade 1, grade 2) are in [specs/README.md](specs/README.md): the topic
+allocation, the spec template and one detailed spec per video. Write the scripts from those.
+
 ## Next batches (ideas)
 
 - Pre-K: count to 20, add within 5 (`add_pictures_prek`), big and small, opposites (up/down, in/out), letters
