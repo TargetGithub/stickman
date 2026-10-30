@@ -15,7 +15,7 @@ cd engine3d && npm install && npx playwright install chromium
 
 | Path | What |
 |---|---|
-| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `compile.js`, `validate.js`, `plan.js`. Page only (three.js): `stage.js`, `objects.js`, `models.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`. |
+| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `director_extras.js`, `compile.js`, `validate.js`, `plan.js`. Page only (three.js): `stage.js`, `objects.js`, `objects_extra.js`, `models.js`, `faces.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`. |
 | `catalog/` | JSON catalog: colours, materials, shapes (solids and flat 2D shapes), fonts, characters (glTF), models (toy animals and props built from parts), stages and lights, sounds, object kinds, actions. `index.mjs` loads it in Node. |
 | `assets/characters/` | glTF characters (CC0), with `LICENSES.md`. |
 | `scripts/` | JSON scripts (`count_to_five.json`); series in `scripts/series/<name>/` (Toy Box Friends: `scripts/series/toybox/SERIES.md`). |
@@ -51,10 +51,34 @@ plan for TTS, the audio mix and the length.
 }
 ```
 
-Object kinds: `shape` (add `face: true` for eyes and a smile), `number_block`, `letter`, `critter` (toy
-animals that bob, blink and wag; `<id>#head` takes rotation tweens), `prop`, `character` (glTF), `confetti`,
-`bubbles`, `stars`. Script `meta` also takes `music` (a mood), `musicGain`, `voiceSpeed`, `series`,
-`episode`, `audience`, `skills`, `thumbnail.t` and `youtube`.
+Object kinds: `shape` (add `face: true` for eyes and a smile), `number_block` (0–999), `letter` (up to 24
+characters), `critter` (toy animals that bob, blink and wag), `prop`, `character` (glTF), `confetti`, `bubbles`,
+`stars`, `clock`, `lamp`, `weather` and `group`. Script `meta` also takes `music` (a mood), `musicGain`,
+`voiceSpeed`, `series`, `episode`, `audience` (babies, prek, k, grade1, grade2), `skills`, `thumbnail.t` and
+`youtube`.
+
+Critters and props come from `catalog/models.json` plus one file per theme in `catalog/models/` (animals,
+home and school, outdoor and science). `scenes/model_sheet.js` shows them all.
+
+### Building blocks for the batch 2 specs
+
+| Need | How |
+|---|---|
+| Things that move as one (a rocket, a train with letters riding in it, pans on a balance) | Any object can have `parent` (its `at` is then relative to the parent) and `part` (ride on a named part). `kind: "group"` is an empty holder. |
+| Lids, doors, planks, tails, heads | Named parts are targets: `{ "do": "turn", "target": "box#lid", "to": [-100, 0, 0] }`. `turn`, `move`, `wiggle` and `spin` take parts; mirrored copies move as mirror images. |
+| Turning about a point | `pivot: [x, y, z]` on any object: it turns and grows about that point. |
+| Feelings | `feel` with happy, sad, surprised, angry, worried or sleepy: eyebrows, mouth, eyes and a head tilt on critters and face shapes; Robo uses his face morphs. `feeling` sets the starting one. |
+| Telling time | `kind: "clock"` (numbers, ticks, blue hour hand, red minute hand); `clock` turns the hands forward to a time, the hour hand creeping with the minutes; `minuteHand: false` for hour-only lessons. |
+| Colour changes | `paint` blends an object's main colour to another one. |
+| Filling a glass, growing a stem | `grow` with `to: [1, 3, 1]` stretches one way (from the base). |
+| Day to night, dim theatre, winter sky | `lights` blends to another rig (`evening`, `dim`, `overcast`, `hot_sun`, ...) and to new background, floor and rug colours. Stages: `beach`, `snow`, `desert`, `town`, `theatre`, `space` as well. |
+| Shadow puppets, torches | `kind: "lamp"`: a spotlight that casts real shadows, with an optional fading `beam`; `aim` points it. |
+| Rain, snow, falling leaves | `kind: "weather"` (`rain`, `snow`, `leaves`, `petals`): falls while shown. |
+| Routes, tracks, rocket arcs | `path` travels through points at an even speed; `face: true` turns toward the way it goes. |
+| Containers and new shapes | `cup`, `pot`, `bowl`, `tube`, `bottle`, `dome`, `disc`, `wedge`; flat `pentagon`, `hexagon`, `octagon`, `half_circle`, `quarter_circle`, `arrow`, `cross`, `snowflake`, `drop`, `leaf`, `ring`. Materials `water`, `glass`, `ice`, `paper`, `light`. |
+| Sounds | `tick`, `fizz`, `rain`, `twang`, `drum`, `train_whistle`, `cha_ching`, `clink`, `rocket`, `pour`, plus `splash`, `heartbeat`, `gasp`, `sneeze`, `step` and more (`catalog/sounds.json`). |
+
+`scripts/feature_tour.json` shows all of these in 50 seconds.
 
 Beats run one after another; `at` is seconds from the beat start. A beat lasts `dur` or until its last voice
 line ends, whichever is longer, so measured TTS clips stretch beats like 2D speech does. Kinds and their

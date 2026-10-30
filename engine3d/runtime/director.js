@@ -6,6 +6,7 @@
 import { createTimeline } from "./timeline.js";
 import { deriveRng } from "./rng.js";
 import { bubblePaths } from "./particles.js";
+import { installExtras, parseClock } from "./director_extras.js";
 
 const V = (v, d) => (Array.isArray(v) ? [...v] : typeof v === "number" ? [v, v, v] : [...d]);
 const LOOPING = new Set(["Idle", "Dance", "Walking", "Running"]);
@@ -30,7 +31,10 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   let endAt = 0;
   let lineNo = 0;
 
+  // Named parts of critters and props ("box#lid") are sub-targets: they take rotation and position offsets.
+  const parts = new Set();
   const obj = (id) => {
+    if (parts.has(id)) return objects.get(id.split("#")[0]);
     const o = objects.get(id);
     if (!o) throw new Error(`unknown object "${id}"`);
     return o;
@@ -55,8 +59,9 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     /** Place an object. Fields per kind: catalog/kinds.json. */
     add(spec) {
-      if (!spec?.id || objects.has(spec.id) || spec.id === "camera") throw new Error(`object id "${spec?.id}" is missing or taken`);
+      if (!spec?.id || objects.has(spec.id) || spec.id === "camera" || spec.id === "stage") throw new Error(`object id "${spec?.id}" is missing or taken`);
       if (!catalog.kinds[spec.kind]) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
+      if (spec.parent != null && !objects.has(spec.parent)) throw new Error(`object "${spec.id}": parent "${spec.parent}" must be added first`);
       const o = { ...spec, at: V(spec.at, [0, 0, 0]), rotation: V(spec.rotation, [0, 0, 0]), scale: V(spec.scale, [1, 1, 1]) };
       objects.set(o.id, o);
       tl.base(o.id, "position", o.at);
@@ -66,13 +71,31 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       tl.base(o.id, "hop", 0); // a lift added on top of position, so hops combine with moves
       if (o.kind === "confetti" || o.kind === "bubbles") tl.base(o.id, "burst", -1);
       if (o.kind === "critter" || (o.kind === "shape" && o.face)) tl.base(o.id, "eyes", 1);
-      if (o.kind === "critter") tl.base(`${o.id}#head`, "rotation", [0, 0, 0]);
+      if (o.kind === "critter" || o.kind === "prop") {
+        const m = o.kind === "critter" ? catalog.critters[o.species] : catalog.props[o.model];
+        const names = ["head", "body", ...(m?.parts ?? []).filter((p) => p.name).map((p) => p.name)];
+        for (const n of names) {
+          parts.add(`${o.id}#${n}`);
+          tl.base(`${o.id}#${n}`, "rotation", [0, 0, 0]);
+          tl.base(`${o.id}#${n}`, "position", [0, 0, 0]);
+        }
+      }
+      if (o.kind === "critter" || (o.kind === "shape" && o.face) || o.kind === "character") {
+        tl.base(o.id, "feeling", o.feeling ?? "happy");
+        tl.base(o.id, "feelingFrom", o.feeling ?? "happy");
+        tl.base(o.id, "feelAt", -1);
+      }
+      if (o.kind === "clock") {
+        tl.base(o.id, "minutes", parseClock(o.time ?? "12:00"));
+        tl.base(o.id, "minuteHand", o.minuteHand === false ? 0 : 1);
+      }
+      if (o.kind === "lamp") tl.base(o.id, "aim", V(o.aim, [o.at[0], 0, o.at[2] - 2]));
       if (o.kind === "character") tl.clip(o.id, o.clip ?? catalog.characters[o.character].idle, { start: 0, loop: true, fade: 0 });
       return d;
     },
 
     tween(id, prop, to, { at: start = 0, dur = 1, ease = "quadInOut", from } = {}) {
-      if (id !== "camera") obj(id);
+      if (id !== "camera" && id !== "stage") obj(id);
       tl.tween(id, prop, { start, dur, to, from, ease });
       return d;
     },
@@ -134,9 +157,10 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       sound(s, t);
       return d;
     },
-    grow(id, { at: t = 0, to = 1.3, dur = 0.4 } = {}) {
+    /** Scale by `to` (a number, or [x, y, z] to stretch one way: a water level rising from the base). */
+    grow(id, { at: t = 0, to = 1.3, dur = 0.4, ease = "backOut" } = {}) {
       const o = obj(id);
-      return d.tween(id, "scale", o.scale.map((x) => x * to), { at: t, dur, ease: "backOut" });
+      return d.tween(id, "scale", o.scale.map((x, i) => x * (Array.isArray(to) ? to[i] : to)), { at: t, dur, ease });
     },
     clip(id, name, { at: t = 0, loop = LOOPING.has(name), then, fade = 0.25 } = {}) {
       const o = obj(id);
@@ -227,11 +251,11 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       return d;
     },
 
-    /** Everything the stage, the audio mix and the recorder need. */
     plan() {
       const duration = Math.max(endAt, tl.end(), ...captions.map((c) => c.start + c.dur)) + 0.5;
       return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration };
     },
   };
+  installExtras(d, { catalog, tl, obj, now, sound, getStage: () => stage, V });
   return d;
 }

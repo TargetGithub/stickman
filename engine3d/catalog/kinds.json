@@ -1,5 +1,5 @@
 {
-  "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale and hidden apply to every kind.",
+  "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale, hidden, parent (ride on another object: at becomes relative to it), part (with parent: ride on one of its named parts, e.g. a balance pan on the beam) and pivot ([x, y, z]: the point the object turns and grows about) apply to every kind.",
   "kinds": {
     "shape": {
       "fields": {
@@ -7,7 +7,8 @@
         "color": "colors.json name",
         "material": "materials.json name",
         "size": "number, default 1",
-        "face": "true for eyes, rosy cheeks and a smile on the front"
+        "face": "true for eyes, rosy cheeks and a smile on the front",
+        "feeling": "starting feeling for a face (face: true)"
       },
       "description": "A primitive (cube, ball, star...).",
       "tags": [
@@ -17,7 +18,7 @@
     },
     "number_block": {
       "fields": {
-        "value": "integer 0-99 (required)",
+        "value": "integer 0-999 (required)",
         "color": "colors.json name",
         "digitColor": "colors.json name, default white",
         "size": "number, default 1"
@@ -30,7 +31,7 @@
     },
     "letter": {
       "fields": {
-        "text": "1-12 characters (required)",
+        "text": "1-24 characters (required)",
         "color": "colors.json name",
         "material": "materials.json name",
         "font": "fonts.json name",
@@ -47,7 +48,8 @@
     "character": {
       "fields": {
         "character": "characters.json name (required)",
-        "clip": "starting clip, default the character's idle"
+        "clip": "starting clip, default the character's idle",
+        "feeling": "starting feeling (Robo shows it with his face)"
       },
       "description": "A rigged glTF character that plays catalog clips.",
       "tags": [
@@ -71,7 +73,8 @@
       "fields": {
         "species": "models.json critters name (required)",
         "color": "colors.json name, overrides the body colour",
-        "size": "number, default 1 (about 1.1 m tall)"
+        "size": "number, default 1 (about 1.1 m tall)",
+        "feeling": "starting feeling: happy (default), sad, surprised, angry, worried, sleepy"
       },
       "description": "A toy animal that bobs, blinks and wags; targets <id>#head and named parts (tail) take rotation tweens; its eyes prop closes its eyes (sleep).",
       "tags": [
@@ -86,7 +89,7 @@
         "color": "colors.json name, overrides the main colour",
         "size": "number, default 1"
       },
-      "description": "A toy object built from parts (apple, ball, tree, bush, cloud, sun, moon, flower, house, balloon, gift, egg).",
+      "description": "A toy object built from parts (catalog/models.json and catalog/models/*.json). Named parts (a lid, a door, a plank) are targets <id>#<part> for turn, move, wiggle and spin.",
       "tags": [
         "scenery",
         "letters"
@@ -115,6 +118,69 @@
       "tags": [
         "night",
         "lullaby"
+      ]
+    },
+    "clock": {
+      "fields": {
+        "time": "starting time, \"3:00\" (default 12:00)",
+        "size": "face diameter, default 2",
+        "color": "rim colour, default red",
+        "face": "face colour, default white",
+        "numberColor": "default ink",
+        "hourColor": "short hand, default blue",
+        "minuteColor": "long hand, default red",
+        "ticks": "tick colour, default ink",
+        "numbers": "false hides 1-12",
+        "minuteHand": "false starts with the long hand hidden",
+        "font": "fonts.json name for the numbers"
+      },
+      "description": "A teaching clock that stands on its rim and faces the camera; the clock move turns its hands to a time (the hour hand moves with the minutes).",
+      "tags": [
+        "time",
+        "maths",
+        "grade1",
+        "grade2"
+      ]
+    },
+    "lamp": {
+      "fields": {
+        "color": "light colour, default warm white",
+        "intensity": "default 60",
+        "distance": "reach in metres, default 30",
+        "angle": "cone half-angle in degrees, default 24",
+        "soft": "edge softness 0-1, default 0.35",
+        "aim": "[x, y, z] the spot it points at (world)",
+        "beam": "true draws a faint cone of light",
+        "shadow": "false turns its shadows off"
+      },
+      "description": "A spotlight that casts real shadows (shadow puppets, a torch in the dark). Place it with at; point it with aim; show and hide fade it.",
+      "tags": [
+        "light",
+        "science",
+        "shadows"
+      ]
+    },
+    "weather": {
+      "fields": {
+        "type": "rain (default), snow, leaves or petals",
+        "count": "pieces (rain 420, snow 260, leaves 70, petals 90)",
+        "area": "[width, depth] it falls over, default [14, 6]",
+        "height": "top of the fall, default 7",
+        "speed": "multiplier, default 1",
+        "colors": "list of colors.json names"
+      },
+      "description": "Rain, snow, falling leaves or petals that keep falling while the object is shown (show to start, hide to stop).",
+      "tags": [
+        "weather",
+        "seasons",
+        "science"
+      ]
+    },
+    "group": {
+      "fields": {},
+      "description": "An empty holder: give other objects parent: <this id> and move, turn or grow them all as one (a rocket made of parts, a tray of cookies).",
+      "tags": [
+        "layout"
       ]
     }
   }

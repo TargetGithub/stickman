@@ -6,11 +6,12 @@
 
 import { ease } from "./ease.js";
 
-/** @typedef {number | boolean | number[]} Value */
+/** @typedef {number | boolean | string | number[]} Value */
 /** @typedef {{ start:number, dur:number, from?:Value, to:Value, ease?:string }} Segment */
 
 const lerp = (a, b, k) => {
-  if (typeof a === "boolean" || typeof b === "boolean") return k >= 1 ? b : a;
+  // Booleans and names (a feeling, a clip) switch at the end of their segment; they do not blend.
+  if (typeof a !== "number" && !Array.isArray(a)) return k >= 1 ? b : a;
   if (Array.isArray(a)) return a.map((x, i) => x + (b[i] - x) * k);
   return a + (b - a) * k;
 };

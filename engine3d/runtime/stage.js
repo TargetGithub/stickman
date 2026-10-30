@@ -35,7 +35,8 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   scene.environmentIntensity = rig.environment;
 
   const [hi, sky, ground] = rig.hemisphere;
-  scene.add(new THREE.HemisphereLight(sky, ground, hi));
+  const hemi = new THREE.HemisphereLight(sky, ground, hi);
+  scene.add(hemi);
   const sun = new THREE.DirectionalLight(0xffffff, rig.sun.intensity);
   sun.position.set(...rig.sun.dir);
   if (rig.sun.shadow) {
@@ -49,14 +50,16 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   scene.add(sun, sun.target);
 
   const material = createMaterials(catalog);
+  let floor = null;
+  let rug = null;
   if (preset.floor) {
-    const floor = new THREE.Mesh(new THREE.CircleGeometry(60, 96), material(preset.floor, "matte"));
+    floor = new THREE.Mesh(new THREE.CircleGeometry(60, 96), material(preset.floor, "matte"));
     floor.rotation.x = -Math.PI / 2;
     floor.receiveShadow = true;
     scene.add(floor);
   }
   if (preset.rug) {
-    const rug = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4.6, 0.04, 128), material(preset.rug, "matte"));
+    rug = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4.6, 0.04, 128), material(preset.rug, "matte").clone());
     rug.position.y = 0.02;
     rug.receiveShadow = true;
     scene.add(rug);
@@ -66,8 +69,13 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   const look = new THREE.Vector3();
   const handles = new Map();
   for (const o of plan.objects) {
-    const h = buildObject(o, { catalog, assets, material, seed: plan.seed });
-    scene.add(h.group);
+    const h = buildObject(o, { catalog, assets, material, seed: plan.seed, height });
+    if (o.pivot) for (const c of h.group.children) c.position.sub(new THREE.Vector3(...o.pivot));
+    if (o.paint) h.tinted = paintable(h.group, catalog.colors[o.paint].hex);
+    // A child rides on its parent (or on one of the parent's named parts): its at is relative to it.
+    const parent = o.parent ? handles.get(o.parent) : null;
+    (parent ? parent.named?.get(o.part) ?? parent.group : scene).add(h.group);
+    for (const w of h.world ?? []) scene.add(w);
     handles.set(o.id, h);
   }
   const clipLen = (id) => (name) => handles.get(id).actions.get(name)?.getClip().duration ?? 1;
@@ -93,7 +101,20 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
         }
         h.mixer.update(0);
       }
+      if (h.tinted && s.tint) for (const m of h.tinted) m.color.setRGB(...s.tint, THREE.SRGBColorSpace);
       h.update?.(t, s, state);
+    }
+    const st = state.stage;
+    if (st) {
+      scene.background.setRGB(...st.background, THREE.SRGBColorSpace);
+      scene.fog?.color.copy(scene.background);
+      if (floor && st.floor) floor.material.color.setRGB(...st.floor, THREE.SRGBColorSpace);
+      if (rug && st.rug) rug.material.color.setRGB(...st.rug, THREE.SRGBColorSpace);
+      sun.intensity = st.sun;
+      hemi.intensity = st.hemi;
+      hemi.color.setRGB(...st.sky, THREE.SRGBColorSpace);
+      hemi.groundColor.setRGB(...st.ground, THREE.SRGBColorSpace);
+      scene.environmentIntensity = st.environment;
     }
     const cam = state.camera;
     camera.position.set(...cam.position);
@@ -102,6 +123,18 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     camera.lookAt(look.set(...cam.lookAt));
     for (const fn of plan.hooks) fn(t, { scene, camera, objects: handles, THREE });
     overlay.update(t);
+  }
+
+  /** Give an object its own copies of the materials drawn in its main colour, so "paint" can change them. */
+  function paintable(group, hex) {
+    const want = new THREE.Color(hex).getHexString();
+    const copies = new Map();
+    group.traverse((m) => {
+      if (!m.isMesh || m.material.color?.getHexString() !== want) return;
+      if (!copies.has(m.material)) copies.set(m.material, m.material.clone());
+      m.material = copies.get(m.material);
+    });
+    return [...copies.values()];
   }
 
   return {

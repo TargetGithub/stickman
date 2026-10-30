@@ -4,6 +4,7 @@
 
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 
 const cache = new Map();
 
@@ -69,6 +70,91 @@ function crescent() {
   return s;
 }
 
+/** A regular polygon with soft corners, point up (pentagon, hexagon, octagon). */
+function regular(n, r = 0.5, start = Math.PI / 2) {
+  const pts = [];
+  for (let i = 0; i < n; i++) pts.push([r * Math.cos(start + (i * 2 * Math.PI) / n), r * Math.sin(start + (i * 2 * Math.PI) / n)]);
+  return rounded(pts, 0.07);
+}
+
+/** A pie slice of a circle (half or quarter), as a polygon so it triangulates cleanly: for fair-share lessons. */
+function slice(angle, n = 32) {
+  const pts = [[0, 0]];
+  for (let i = 0; i <= n; i++) pts.push([0.5 * Math.cos((i * angle) / n), 0.5 * Math.sin((i * angle) / n)]);
+  return polygon(angle < Math.PI ? pts : pts.slice(1));
+}
+
+/** A water drop: round at the bottom, pointed at the top. */
+function drop() {
+  const s = new THREE.Shape();
+  s.moveTo(0, 0.5);
+  s.bezierCurveTo(0.12, 0.3, 0.36, 0.08, 0.36, -0.14);
+  s.absarc(0, -0.14, 0.36, 0, Math.PI, true);
+  s.bezierCurveTo(-0.36, 0.08, -0.12, 0.3, 0, 0.5);
+  return s;
+}
+
+/** A leaf: two arcs meeting in a point at each end. */
+function leaf() {
+  const s = new THREE.Shape();
+  s.moveTo(-0.5, 0);
+  s.quadraticCurveTo(0, 0.42, 0.5, 0);
+  s.quadraticCurveTo(0, -0.42, -0.5, 0);
+  return s;
+}
+
+/** A ring cut-out (a flat doughnut): the hole is centred, so it triangulates cleanly. */
+function ring() {
+  const s = new THREE.Shape();
+  s.absarc(0, 0, 0.5, 0, Math.PI * 2, false);
+  const h = new THREE.Path();
+  h.absarc(0, 0, 0.28, 0, Math.PI * 2, true);
+  s.holes.push(h);
+  return s;
+}
+
+/** A body of revolution from a profile [[radius, y], ...] going up the outside and back down the inside, centred. */
+function lathe(profile, segments = 56) {
+  return new THREE.LatheGeometry(profile.map(([x, y]) => new THREE.Vector2(x, y)), segments).center();
+}
+
+/**
+ * Profile points on a quarter circle of radius r, from the side up to the top (dir 2), from the bottom out to
+ * the side (dir -1, a bowl's outside) or from the side back to the middle (dir 1, a bowl's inside), lifted by y0.
+ */
+function arc(r, y0, n, dir) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const a = ((dir === 1 ? n - i : i) * Math.PI) / (2 * n);
+    if (dir === 2) pts.push([r * Math.cos(a), r * Math.sin(a)]);
+    else pts.push([r * Math.sin(a), y0 + 0.5 - r * Math.cos(a)]);
+  }
+  return pts;
+}
+
+/** Puffy bars merged into one geometry (snowflake arms, an X mark). */
+function bars(list) {
+  const parts = list.map(([w, h, deg, x = 0, y = 0]) => {
+    const g = puffy(rounded([[-w / 2, -h / 2], [w / 2, -h / 2], [w / 2, h / 2], [-w / 2, h / 2]], Math.min(w, h) * 0.45), 0.12, 0.05);
+    return g.rotateZ((deg * Math.PI) / 180).translate(x, y, 0);
+  });
+  return mergeGeometries(parts.map((g) => (g.index ? g.toNonIndexed() : g)));
+}
+
+function snowflake() {
+  const list = [];
+  for (const a of [90, 150, 210, 270, 330, 30]) {
+    const r = (a * Math.PI) / 180;
+    list.push([0.5, 0.09, a, Math.cos(r) * 0.25, Math.sin(r) * 0.25]);
+    // A little V near the tip of each arm.
+    for (const side of [-1, 1]) {
+      const b = r + side * 0.5;
+      list.push([0.16, 0.07, a + side * 50, Math.cos(r) * 0.36 + Math.cos(b) * 0.05, Math.sin(r) * 0.36 + Math.sin(b) * 0.05]);
+    }
+  }
+  return bars(list);
+}
+
 function ellipse(rx, ry) {
   const s = new THREE.Shape();
   s.absellipse(0, 0, rx, ry, 0, Math.PI * 2, false, 0);
@@ -99,6 +185,29 @@ function make(name) {
     case "rectangle": return puffy(rounded([[-0.7, -0.38], [0.7, -0.38], [0.7, 0.38], [-0.7, 0.38]], 0.08));
     case "triangle": return puffy(rounded([[-0.55, -0.45], [0.55, -0.45], [0, 0.5]], 0.1));
     case "diamond": return puffy(rounded([[0, -0.6], [0.42, 0], [0, 0.6], [-0.42, 0]], 0.07));
+    case "pentagon": return puffy(regular(5));
+    case "hexagon": return puffy(regular(6, 0.5, 0));
+    case "octagon": return puffy(regular(8, 0.52, Math.PI / 8));
+    case "half_circle": return puffy(slice(Math.PI));
+    case "quarter_circle": return puffy(slice(Math.PI / 2));
+    case "arrow": return puffy(rounded([[-0.5, -0.13], [0.12, -0.13], [0.12, -0.3], [0.5, 0], [0.12, 0.3], [0.12, 0.13], [-0.5, 0.13]], 0.04));
+    case "cross": return bars([[1, 0.24, 45], [1, 0.24, -45]]);
+    case "snowflake": return snowflake();
+    case "drop": return puffy(drop());
+    case "leaf": return puffy(leaf(), 0.08, 0.04);
+    case "ring": return puffy(ring());
+    // Open containers and round solids (lathed), 1 m tall unless noted.
+    case "cup": return lathe([[0, 0], [0.5, 0], [0.5, 1], [0.45, 1], [0.45, 0.07], [0, 0.07]]);
+    case "pot": return lathe([[0, 0], [0.36, 0], [0.46, 0.82], [0.52, 0.84], [0.52, 1], [0.44, 1], [0.41, 0.84], [0.32, 0.08], [0, 0.08]]);
+    case "bowl": return lathe([...arc(0.5, 0, 12, -1), ...arc(0.45, 0, 12, 1)]); // 0.5 tall, 1 wide
+    case "tube": return lathe([[0.5, 0], [0.5, 1], [0.44, 1], [0.44, 0], [0.5, 0]]);
+    case "bottle": return lathe([[0, 0], [0.4, 0], [0.42, 0.04], [0.42, 0.6], [0.36, 0.72], [0.16, 0.82], [0.16, 1], [0.12, 1], [0.12, 0.84], [0, 0.84]]);
+    case "dome": return lathe([[0, 0], ...arc(0.5, 0, 16, 2)]); // half a ball, 0.5 tall (igloos, dens)
+    case "disc": return lathe([[0, 0], [0.47, 0], [0.5, 0.03], [0.5, 0.09], [0.47, 0.12], [0.4, 0.12], [0.4, 0.105], [0, 0.105]], 64); // a coin, 0.12 thick
+    case "wedge": {
+      const g = new THREE.ExtrudeGeometry(polygon([[-0.5, -0.5], [0.5, -0.5], [-0.5, 0.5]]), { depth: 1, bevelEnabled: false });
+      return g.translate(0, 0, -0.5);
+    }
     default: throw new Error(`unknown shape "${name}"`);
   }
 }

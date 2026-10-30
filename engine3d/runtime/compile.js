@@ -64,6 +64,12 @@ function run(d, a, start) {
     case "nod": return d.nod(a.target, o);
     case "sleep": return d.sleep(a.target, o);
     case "wake": return d.wake(a.target, o);
+    case "feel": return d.feel(a.target, o);
+    case "paint": return d.paint(a.target, o);
+    case "clock": return d.clock(a.target, o);
+    case "aim": return d.aim(a.target, o);
+    case "path": return d.path(a.target, o);
+    case "lights": return d.lights(o);
     case "camera": return d.camera(o);
     case "sound": return d.sound(a.sound, o);
     default: throw new Error(`unknown action "${a.do}"`);

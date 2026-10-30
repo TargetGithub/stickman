@@ -1,0 +1,690 @@
+{
+  "description": "Home, health, food, school and maths props for Toy Box Friends (pre-K to grade 2): furniture, bathroom, coins, school tools, kitchen and shop, food, base-ten pieces. Same part format as ../models.json.",
+  "critters": {},
+  "props": {
+    "table": {
+      "color": "sand",
+      "description": "A toy kitchen table, 0.8 m high, with a sandy top and four round brown legs.",
+      "tags": ["home", "furniture", "kitchen"],
+      "parts": [
+        {"p": "box", "at": [0, 0.76, 0], "s": [1.4, 0.08, 0.8]},
+        {"p": "cylinder", "at": [0.6, 0.36, 0.3], "s": [0.09, 0.72, 0.09], "c": "brown", "mirror": true},
+        {"p": "cylinder", "at": [0.6, 0.36, -0.3], "s": [0.09, 0.72, 0.09], "c": "brown", "mirror": true}
+      ]
+    },
+    "chair": {
+      "color": "red",
+      "description": "A toy chair to match the table: seat 0.45 m high, back at -z, so it faces +z.",
+      "tags": ["home", "furniture", "school"],
+      "parts": [
+        {"p": "box", "at": [0, 0.45, 0], "s": [0.5, 0.07, 0.48]},
+        {"p": "cylinder", "at": [0.2, 0.21, 0.19], "s": [0.06, 0.42, 0.06], "c": "brown", "mirror": true},
+        {"p": "cylinder", "at": [0.2, 0.21, -0.19], "s": [0.06, 0.42, 0.06], "c": "brown", "mirror": true},
+        {"p": "cylinder", "at": [0.2, 0.62, -0.21], "s": [0.05, 0.3, 0.05], "c": "brown", "mirror": true},
+        {"p": "box", "at": [0, 0.8, -0.21], "s": [0.5, 0.18, 0.06]}
+      ]
+    },
+    "bed": {
+      "color": "blue",
+      "description": "A toy bed 2 m long along x: brown frame, white mattress and pillow (pillow end at -x), a blue blanket.",
+      "tags": ["home", "furniture", "bedtime", "sleep"],
+      "parts": [
+        {"p": "box", "at": [0, 0.24, 0], "s": [1.96, 0.16, 1.0], "c": "brown"},
+        {"p": "cylinder", "at": [0.92, 0.08, 0.42], "s": [0.1, 0.16, 0.1], "c": "brown", "mirror": true},
+        {"p": "cylinder", "at": [0.92, 0.08, -0.42], "s": [0.1, 0.16, 0.1], "c": "brown", "mirror": true},
+        {"p": "box", "at": [0, 0.39, 0], "s": [1.9, 0.14, 0.94], "c": "white"},
+        {"p": "box", "at": [0.28, 0.42, 0], "s": [1.32, 0.15, 0.98]},
+        {"p": "box", "at": [0.28, 0.5, 0.0], "s": [1.33, 0.02, 0.99], "c": "sky"},
+        {"p": "sphere", "at": [-0.66, 0.52, 0], "s": [0.42, 0.14, 0.72], "c": "white", "m": "matte"},
+        {"p": "box", "at": [-1.0, 0.55, 0], "s": [0.1, 0.9, 1.04], "c": "brown"},
+        {"p": "sphere", "at": [-1.0, 1.0, 0], "s": [0.1, 0.12, 1.04], "c": "brown"},
+        {"p": "box", "at": [1.0, 0.42, 0], "s": [0.1, 0.56, 1.04], "c": "brown"},
+        {"p": "star", "at": [-0.94, 0.68, 0], "s": [0.24, 0.24, 0.12], "c": "gold", "r": [0, 90, 0]}
+      ]
+    },
+    "toy_box": {
+      "color": "blue",
+      "description": "An open-topped toy chest (hollow inside) with a star on the front. Named part \"lid\" is hinged at its back edge: turn <id>#lid to about [-100, 0, 0] to open it.",
+      "tags": ["home", "toy", "storage", "container"],
+      "parts": [
+        {"p": "box", "at": [0, 0.06, 0], "s": [0.94, 0.08, 0.64], "c": "gold"},
+        {"p": "box", "at": [0, 0.32, 0.275], "s": [0.9, 0.5, 0.05]},
+        {"p": "box", "at": [0, 0.32, -0.275], "s": [0.9, 0.5, 0.05]},
+        {"p": "box", "at": [0.425, 0.32, 0], "s": [0.05, 0.5, 0.6], "mirror": true},
+        {"p": "box", "at": [0, 0.11, 0], "s": [0.82, 0.03, 0.52], "c": "night", "m": "matte"},
+        {"p": "star", "at": [0, 0.31, 0.31], "s": [0.26, 0.26, 0.12], "c": "yellow"},
+        {"p": "box", "at": [0, 0.61, -0.31], "s": [0.94, 0.1, 0.64], "c": "red", "hang": [0, 0, 0.32], "name": "lid"}
+      ]
+    },
+    "bathtub": {
+      "color": "white",
+      "description": "An open white bathtub on gold feet, 1.6 m long, half full of water (part \"water\"), with a tap at +x. A camera above the rim sees into it.",
+      "tags": ["home", "bathroom", "water", "health"],
+      "parts": [
+        {"p": "cup", "at": [0, 0.43, 0], "s": [1.6, 0.62, 0.9], "m": "glossy"},
+        {"p": "cylinder", "at": [0, 0.5, 0], "s": [1.36, 0.06, 0.74], "c": "blue", "m": "water", "name": "water"},
+        {"p": "sphere", "at": [0.6, 0.07, 0.28], "s": 0.14, "c": "gold", "m": "metal", "mirror": true},
+        {"p": "sphere", "at": [0.6, 0.07, -0.28], "s": 0.14, "c": "gold", "m": "metal", "mirror": true},
+        {"p": "cylinder", "at": [0.84, 0.84, 0], "s": [0.06, 0.24, 0.06], "c": "grey", "m": "metal"},
+        {"p": "capsule", "at": [0.76, 0.95, 0], "s": [0.06, 0.2, 0.06], "c": "grey", "m": "metal", "r": [0, 0, 90]},
+        {"p": "sphere", "at": [0.84, 0.8, 0.14], "s": 0.08, "c": "red"},
+        {"p": "sphere", "at": [0.84, 0.8, -0.14], "s": 0.08, "c": "blue"}
+      ]
+    },
+    "sink": {
+      "color": "white",
+      "description": "A white pedestal sink with a round basin, a metal tap and red and blue knobs.",
+      "tags": ["home", "bathroom", "water", "health"],
+      "parts": [
+        {"p": "cylinder", "at": [0, 0.32, 0], "s": [0.22, 0.64, 0.22]},
+        {"p": "cylinder", "at": [0, 0.03, 0], "s": [0.36, 0.06, 0.32]},
+        {"p": "bowl", "at": [0, 0.74, 0], "s": [0.72, 0.4, 0.56], "m": "glossy"},
+        {"p": "box", "at": [0, 0.88, -0.32], "s": [0.72, 0.16, 0.08]},
+        {"p": "cylinder", "at": [0, 0.99, -0.27], "s": [0.05, 0.14, 0.05], "c": "grey", "m": "metal"},
+        {"p": "capsule", "at": [0, 1.05, -0.2], "s": [0.05, 0.18, 0.05], "c": "grey", "m": "metal", "r": [90, 0, 0]},
+        {"p": "sphere", "at": [0.14, 0.99, -0.27], "s": 0.07, "c": "red"},
+        {"p": "sphere", "at": [-0.14, 0.99, -0.27], "s": 0.07, "c": "blue"}
+      ]
+    },
+    "toothbrush": {
+      "color": "teal",
+      "description": "A toothbrush lying along x with white bristles up at +x.",
+      "tags": ["home", "bathroom", "health", "small"],
+      "parts": [
+        {"p": "capsule", "at": [-0.02, 0.025, 0], "s": [0.04, 0.24, 0.035], "r": [0, 0, 90]},
+        {"p": "box", "at": [0.1, 0.03, 0], "s": [0.07, 0.028, 0.036]},
+        {"p": "box", "at": [0.1, 0.062, 0], "s": [0.064, 0.04, 0.03], "c": "white", "m": "matte"},
+        {"p": "box", "at": [0.1, 0.084, 0], "s": [0.066, 0.012, 0.032], "c": "sky", "m": "matte"}
+      ]
+    },
+    "toothpaste": {
+      "color": "white",
+      "description": "A toothpaste tube lying along x with a red cap at +x and a blue stripe.",
+      "tags": ["home", "bathroom", "health", "small"],
+      "parts": [
+        {"p": "capsule", "at": [0, 0.035, 0], "s": [0.07, 0.22, 0.06], "r": [0, 0, 90]},
+        {"p": "box", "at": [-0.112, 0.035, 0], "s": [0.035, 0.014, 0.07]},
+        {"p": "cylinder", "at": [0.0, 0.035, 0], "s": [0.074, 0.05, 0.064], "c": "blue", "r": [0, 0, 90]},
+        {"p": "cylinder", "at": [0.122, 0.035, 0], "s": [0.045, 0.04, 0.045], "c": "red", "r": [0, 0, 90]}
+      ]
+    },
+    "soap": {
+      "color": "pink",
+      "description": "A pink bar of soap with three shiny bubbles on top.",
+      "tags": ["home", "bathroom", "health", "small"],
+      "parts": [
+        {"p": "block", "at": [0, 0.03, 0], "s": [0.14, 0.06, 0.09]},
+        {"p": "sphere", "at": [-0.02, 0.08, 0], "s": 0.04, "c": "sky", "m": "glass"},
+        {"p": "sphere", "at": [0.03, 0.09, 0.01], "s": 0.03, "c": "sky", "m": "glass"},
+        {"p": "sphere", "at": [0.01, 0.12, -0.01], "s": 0.025, "c": "sky", "m": "glass"}
+      ]
+    },
+    "piggy_bank": {
+      "color": "pig",
+      "description": "A shiny pink piggy bank facing +z with blinking eyes, a snout and a coin slot on top.",
+      "tags": ["money", "maths", "home", "animal"],
+      "eyes": {"at": [0.09, 0.36, 0.215], "size": 0.045},
+      "parts": [
+        {"p": "sphere", "at": [0, 0.27, 0], "s": [0.48, 0.4, 0.52], "m": "glossy"},
+        {"p": "cylinder", "at": [0, 0.25, 0.27], "s": [0.15, 0.07, 0.12], "c": "rose", "r": [90, 0, 0]},
+        {"p": "sphere", "at": [0.03, 0.25, 0.305], "s": 0.025, "c": "ink", "mirror": true},
+        {"p": "cone", "at": [0.12, 0.47, 0.06], "s": [0.1, 0.1, 0.06], "c": "rose", "r": [0, 0, -20], "mirror": true},
+        {"p": "cylinder", "at": [0.13, 0.05, 0.12], "s": [0.09, 0.1, 0.09], "c": "rose", "mirror": true},
+        {"p": "cylinder", "at": [0.13, 0.05, -0.12], "s": [0.09, 0.1, 0.09], "c": "rose", "mirror": true},
+        {"p": "box", "at": [0, 0.465, -0.03], "s": [0.12, 0.02, 0.025], "c": "ink"},
+        {"p": "torus", "at": [0, 0.3, -0.27], "s": 0.07, "c": "rose", "r": [0, 90, 0]}
+      ]
+    },
+    "dime": {
+      "color": "white",
+      "description": "A silver dime (10 cents), 1.79 cm across at real scale x10; stands on its edge facing +z (turn [-90, 0, 0] to lay it flat). No text: add the value label in the script.",
+      "tags": ["money", "maths", "coin", "small"],
+      "parts": [
+        {"p": "disc", "at": [0, 0.0895, 0], "s": [0.179, 0.179, 0.179], "m": "metal", "r": [90, 0, 0]}
+      ]
+    },
+    "penny": {
+      "color": "orange",
+      "description": "A copper penny (1 cent), 1.91 cm across at real scale x10; stands on its edge facing +z (turn [-90, 0, 0] to lay it flat). No text: add the value label in the script.",
+      "tags": ["money", "maths", "coin", "small"],
+      "parts": [
+        {"p": "disc", "at": [0, 0.0953, 0], "s": [0.1905, 0.1905, 0.1905], "m": "metal", "r": [90, 0, 0]}
+      ]
+    },
+    "nickel": {
+      "color": "white",
+      "description": "A silver nickel (5 cents), 2.12 cm across at real scale x10; stands on its edge facing +z (turn [-90, 0, 0] to lay it flat). No text: add the value label in the script.",
+      "tags": ["money", "maths", "coin", "small"],
+      "parts": [
+        {"p": "disc", "at": [0, 0.106, 0], "s": [0.212, 0.212, 0.212], "m": "metal", "r": [90, 0, 0]}
+      ]
+    },
+    "quarter": {
+      "color": "white",
+      "description": "A silver quarter (25 cents), 2.43 cm across at real scale x10; stands on its edge facing +z (turn [-90, 0, 0] to lay it flat). No text: add the value label in the script.",
+      "tags": ["money", "maths", "coin", "small"],
+      "parts": [
+        {"p": "disc", "at": [0, 0.1215, 0], "s": [0.243, 0.243, 0.243], "m": "metal", "r": [90, 0, 0]}
+      ]
+    },
+    "cash_register": {
+      "color": "teal",
+      "description": "A toy cash register: teal body, a yellow money drawer at the front (named part \"drawer\"), a 3x3 button pad and a glowing mint display at the back.",
+      "tags": ["money", "shop", "maths", "pretend_play"],
+      "parts": [
+        {"p": "box", "at": [0, 0.08, -0.02], "s": [0.72, 0.16, 0.5]},
+        {"p": "box", "at": [0, 0.085, 0.03], "s": [0.6, 0.11, 0.46], "c": "yellow", "name": "drawer"},
+        {"p": "box", "at": [0, 0.27, -0.04], "s": [0.72, 0.22, 0.46]},
+        {"p": "box", "at": [0, 0.4, 0.1], "s": [0.5, 0.05, 0.22], "c": "white", "r": [20, 0, 0]},
+        {"p": "box", "at": [0, 0.5, -0.16], "s": [0.34, 0.16, 0.08], "c": "ink"},
+        {"p": "box", "at": [0, 0.5, -0.115], "s": [0.28, 0.1, 0.02], "c": "mint", "m": "light"},
+        {"p": "cylinder", "at": [0, 0.405, -0.16], "s": [0.08, 0.04, 0.06], "c": "ink"},
+        {"p": "sphere", "at": [-0.12, 0.4455, 0.044], "s": [0.07, 0.04, 0.05], "c": "red", "m": "glossy"},
+        {"p": "sphere", "at": [0.0, 0.4455, 0.044], "s": [0.07, 0.04, 0.05], "c": "blue", "m": "glossy"},
+        {"p": "sphere", "at": [0.12, 0.4455, 0.044], "s": [0.07, 0.04, 0.05], "c": "green", "m": "glossy"},
+        {"p": "sphere", "at": [-0.12, 0.425, 0.1], "s": [0.07, 0.04, 0.05], "c": "orange", "m": "glossy"},
+        {"p": "sphere", "at": [0.0, 0.425, 0.1], "s": [0.07, 0.04, 0.05], "c": "purple", "m": "glossy"},
+        {"p": "sphere", "at": [0.12, 0.425, 0.1], "s": [0.07, 0.04, 0.05], "c": "pink", "m": "glossy"},
+        {"p": "sphere", "at": [-0.12, 0.4045, 0.156], "s": [0.07, 0.04, 0.05], "c": "yellow", "m": "glossy"},
+        {"p": "sphere", "at": [0.0, 0.4045, 0.156], "s": [0.07, 0.04, 0.05], "c": "teal", "m": "glossy"},
+        {"p": "sphere", "at": [0.12, 0.4045, 0.156], "s": [0.07, 0.04, 0.05], "c": "gold", "m": "glossy"}
+      ]
+    },
+    "book": {
+      "color": "red",
+      "description": "A closed picture book standing upright, cover facing +z, spine at -x, cream pages and a gold star on the cover.",
+      "tags": ["school", "reading", "small"],
+      "parts": [
+        {"p": "box", "at": [0, 0.17, 0.026], "s": [0.26, 0.34, 0.014]},
+        {"p": "box", "at": [0, 0.17, -0.026], "s": [0.26, 0.34, 0.014]},
+        {"p": "box", "at": [-0.125, 0.17, 0], "s": [0.02, 0.34, 0.066]},
+        {"p": "box", "at": [0.005, 0.17, 0], "s": [0.24, 0.32, 0.042], "c": "cream", "m": "paper"},
+        {"p": "star", "at": [0.01, 0.2, 0.036], "s": [0.13, 0.13, 0.05], "c": "gold"}
+      ]
+    },
+    "pencil": {
+      "color": "yellow",
+      "description": "A yellow pencil lying along x: sharpened wood tip at +x, pink eraser at -x.",
+      "tags": ["school", "writing", "small"],
+      "parts": [
+        {"p": "cylinder", "at": [0, 0.025, 0], "s": [0.05, 0.3, 0.05], "r": [0, 0, 90]},
+        {"p": "cone", "at": [0.19, 0.025, 0], "s": [0.05, 0.08, 0.05], "c": "sand", "r": [0, 0, -90]},
+        {"p": "sphere", "at": [0.225, 0.025, 0], "s": 0.016, "c": "ink"},
+        {"p": "cylinder", "at": [-0.165, 0.025, 0], "s": [0.054, 0.03, 0.054], "c": "grey", "m": "metal", "r": [0, 0, 90]},
+        {"p": "capsule", "at": [-0.19, 0.025, 0], "s": [0.05, 0.06, 0.05], "c": "pink", "r": [0, 0, 90]}
+      ]
+    },
+    "crayon": {
+      "color": "red",
+      "description": "A chunky crayon lying along x, tip at +x, with a paper wrapper and two dark bands. Recolour with color.",
+      "tags": ["school", "art", "colour", "small"],
+      "parts": [
+        {"p": "cylinder", "at": [0, 0.03, 0], "s": [0.06, 0.2, 0.06], "r": [0, 0, 90]},
+        {"p": "cylinder", "at": [-0.01, 0.03, 0], "s": [0.064, 0.14, 0.064], "m": "paper", "r": [0, 0, 90]},
+        {"p": "cylinder", "at": [0.05, 0.03, 0], "s": [0.066, 0.012, 0.066], "c": "ink", "r": [0, 0, 90]},
+        {"p": "cylinder", "at": [-0.07, 0.03, 0], "s": [0.066, 0.012, 0.066], "c": "ink", "r": [0, 0, 90]},
+        {"p": "cone", "at": [0.13, 0.03, 0], "s": [0.06, 0.06, 0.06], "r": [0, 0, -90]},
+        {"p": "sphere", "at": [-0.1, 0.03, 0], "s": [0.02, 0.06, 0.06]}
+      ]
+    },
+    "ruler": {
+      "color": "yellow",
+      "description": "A 1.2 m yellow ruler standing on its long edge facing +z: thin ticks every 2 cm, tall ticks every 10 cm (13 tall ticks, 0 to 120 cm, no numbers). Turn [-90, 0, 0] to lay it flat, ticks up.",
+      "tags": ["school", "maths", "measurement"],
+      "parts": [
+        {"p": "box", "at": [0, 0.07, 0], "s": [1.24, 0.14, 0.02]},
+        {"p": "box", "at": [-0.6, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.58, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.56, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.54, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.52, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.5, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.48, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.46, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.44, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.42, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.4, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.38, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.36, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.34, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.32, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.3, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.28, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.26, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.24, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.22, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.2, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.18, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.16, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.14, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.12, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.1, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.08, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.06, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.04, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.02, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.0, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.02, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.04, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.06, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.08, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.1, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.12, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.14, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.16, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.18, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.2, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.22, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.24, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.26, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.28, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.3, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.32, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.34, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.36, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.38, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.4, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.42, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.44, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.46, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.48, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.5, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.52, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.54, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.56, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.58, 0.121, 0.011], "s": [0.005, 0.03, 0.004], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [0.6, 0.101, 0.011], "s": [0.008, 0.07, 0.004], "c": "ink", "m": "matte"}
+      ]
+    },
+    "balance_scale": {
+      "color": "purple",
+      "description": "A pan balance: a purple base, a gold post, and a beam (named \"beam\") with two gold pans hanging from its ends. The beam and pans sit on the head group at the pivot, so turn <id>#head about z (for example [0, 0, 12]) to tilt beam and pans together; <id>#beam turns only the bar.",
+      "tags": ["school", "maths", "measurement", "science", "weight"],
+      "head": {"at": [0, 0.8, 0]},
+      "parts": [
+        {"p": "cylinder", "at": [0, 0.04, 0], "s": [0.44, 0.08, 0.36]},
+        {"p": "cylinder", "at": [0, 0.42, 0], "s": [0.06, 0.72, 0.06], "c": "gold", "m": "metal"},
+        {"p": "box", "at": [0, 0, 0], "s": [1.0, 0.05, 0.05], "c": "purple", "on": "head", "name": "beam"},
+        {"p": "sphere", "at": [0, 0, 0], "s": 0.1, "c": "gold", "m": "metal", "on": "head"},
+        {"p": "cone", "at": [0, 0.1, 0], "s": [0.04, 0.14, 0.04], "c": "red", "on": "head"},
+        {"p": "cylinder", "at": [0.375, -0.15, 0], "s": [0.012, 0.3354, 0.012], "c": "ink", "r": [0, 0, -26.5651], "on": "head", "mirror": true},
+        {"p": "cylinder", "at": [0.525, -0.15, 0], "s": [0.012, 0.3354, 0.012], "c": "ink", "r": [0, 0, 26.5651], "on": "head", "mirror": true},
+        {"p": "bowl", "at": [0.45, -0.34, 0], "s": [0.36, 0.18, 0.36], "c": "gold", "m": "metal", "on": "head", "mirror": true}
+      ]
+    },
+    "magnifier": {
+      "color": "red",
+      "description": "A magnifying glass standing on its handle: a red ring, a clear glass lens (glass material) facing +z, and a brown handle.",
+      "tags": ["school", "science", "senses", "detective"],
+      "parts": [
+        {"p": "tube", "at": [0, 0.42, 0], "s": [0.32, 0.06, 0.32], "r": [90, 0, 0]},
+        {"p": "cylinder", "at": [0, 0.42, 0], "s": [0.29, 0.02, 0.29], "c": "sky", "m": "glass", "r": [90, 0, 0]},
+        {"p": "cylinder", "at": [0, 0.245, 0], "s": [0.05, 0.05, 0.05], "c": "grey", "m": "metal"},
+        {"p": "capsule", "at": [0, 0.12, 0], "s": [0.07, 0.24, 0.07], "c": "brown"}
+      ]
+    },
+    "phone": {
+      "color": "red",
+      "description": "A red toy telephone with a white dial on the front and a handset on top (named part \"handset\").",
+      "tags": ["shop", "home", "pretend_play", "toy"],
+      "parts": [
+        {"p": "box", "at": [0, 0.065, 0], "s": [0.3, 0.13, 0.24]},
+        {"p": "ring", "at": [0, 0.07, 0.125], "s": [0.13, 0.13, 0.08], "c": "white"},
+        {"p": "sphere", "at": [0, 0.07, 0.125], "s": 0.035, "c": "yellow"},
+        {"p": "box", "at": [0.11, 0.145, 0], "s": [0.05, 0.04, 0.08], "mirror": true},
+        {"p": "capsule", "at": [0, 0.2, 0], "s": [0.07, 0.36, 0.07], "r": [0, 0, 90], "name": "handset"},
+        {"p": "cylinder", "at": [0.15, 0.175, 0], "s": [0.09, 0.05, 0.09], "mirror": true},
+        {"p": "sphere", "at": [0.0, 0.112, 0.135], "s": 0.018, "c": "ink"},
+        {"p": "sphere", "at": [-0.0364, 0.091, 0.135], "s": 0.018, "c": "ink"},
+        {"p": "sphere", "at": [-0.0364, 0.049, 0.135], "s": 0.018, "c": "ink"},
+        {"p": "sphere", "at": [-0.0, 0.028, 0.135], "s": 0.018, "c": "ink"},
+        {"p": "sphere", "at": [0.0364, 0.049, 0.135], "s": 0.018, "c": "ink"},
+        {"p": "sphere", "at": [0.0364, 0.091, 0.135], "s": 0.018, "c": "ink"}
+      ]
+    },
+    "oven": {
+      "color": "cream",
+      "description": "A toy kitchen oven with a stovetop (four dark burners, no flames), three knobs and a hollow inside with a rack. Named part \"door\" is hinged at its bottom edge: turn <id>#door to about [85, 0, 0] to open it.",
+      "tags": ["kitchen", "home", "bakery", "pretend_play"],
+      "parts": [
+        {"p": "box", "at": [0.33, 0.4, 0], "s": [0.06, 0.8, 0.62], "mirror": true},
+        {"p": "box", "at": [0, 0.71, 0], "s": [0.72, 0.18, 0.62]},
+        {"p": "box", "at": [0, 0.04, 0], "s": [0.72, 0.08, 0.62]},
+        {"p": "box", "at": [0, 0.35, -0.29], "s": [0.62, 0.56, 0.04], "c": "charcoal", "m": "matte"},
+        {"p": "box", "at": [0, 0.3, 0.0], "s": [0.6, 0.02, 0.5], "c": "grey", "m": "metal"},
+        {"p": "box", "at": [0, 0.08, 0.3], "s": [0.62, 0.52, 0.04], "c": "red", "hang": [0, 0.26, 0.0], "name": "door"},
+        {"p": "cylinder", "at": [0.18, 0.81, 0.06], "s": [0.18, 0.03, 0.18], "c": "charcoal", "mirror": true},
+        {"p": "cylinder", "at": [0.18, 0.81, -0.18], "s": [0.14, 0.03, 0.14], "c": "charcoal", "mirror": true},
+        {"p": "cylinder", "at": [-0.2, 0.71, 0.32], "s": [0.07, 0.04, 0.07], "c": "yellow", "r": [90, 0, 0]},
+        {"p": "cylinder", "at": [0, 0.71, 0.32], "s": [0.07, 0.04, 0.07], "c": "green", "r": [90, 0, 0]},
+        {"p": "cylinder", "at": [0.2, 0.71, 0.32], "s": [0.07, 0.04, 0.07], "c": "blue", "r": [90, 0, 0]}
+      ]
+    },
+    "shopping_bag": {
+      "color": "teal",
+      "description": "A teal shopping bag with two white rope handles and a heart on the front.",
+      "tags": ["shop", "money", "pretend_play"],
+      "parts": [
+        {"p": "box", "at": [0, 0.21, 0], "s": [0.36, 0.42, 0.2]},
+        {"p": "torus", "at": [0, 0.42, 0.06], "s": [0.17, 0.22, 0.08], "c": "white", "m": "matte"},
+        {"p": "torus", "at": [0, 0.42, -0.06], "s": [0.17, 0.22, 0.08], "c": "white", "m": "matte"},
+        {"p": "heart", "at": [0, 0.22, 0.105], "s": [0.14, 0.14, 0.06], "c": "pink"}
+      ]
+    },
+    "basket": {
+      "color": "brown",
+      "description": "A brown woven basket, open at the top, with sandy bands and an arched handle across x.",
+      "tags": ["shop", "picnic", "food", "container"],
+      "parts": [
+        {"p": "cup", "at": [0, 0.15, 0], "s": [0.46, 0.3, 0.34]},
+        {"p": "smile", "at": [0, 0.2, 0], "s": [0.42, 0.42, 0.42], "r": [0, 0, 180]},
+        {"p": "tube", "at": [0, 0.06, 0], "s": [0.475, 0.035, 0.355], "c": "sand"},
+        {"p": "tube", "at": [0, 0.15, 0], "s": [0.475, 0.035, 0.355], "c": "sand"},
+        {"p": "tube", "at": [0, 0.24, 0], "s": [0.475, 0.035, 0.355], "c": "sand"}
+      ]
+    },
+    "cupcake": {
+      "color": "pink",
+      "description": "A cupcake: a pink wrapper, white frosting swirl, sprinkles and a red cherry on top.",
+      "tags": ["food", "party", "bakery", "small"],
+      "parts": [
+        {"p": "pot", "at": [0, 0.05, 0], "s": [0.15, 0.1, 0.15]},
+        {"p": "sphere", "at": [0, 0.11, 0], "s": [0.17, 0.08, 0.17], "c": "sand"},
+        {"p": "sphere", "at": [0, 0.13, 0], "s": [0.17, 0.09, 0.17], "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [0, 0.17, 0], "s": [0.11, 0.07, 0.11], "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [0, 0.215, 0], "s": 0.05, "c": "red", "m": "glossy"},
+        {"p": "capsule", "at": [0.05, 0.15, 0.05], "s": [0.012, 0.03, 0.012], "c": "blue", "r": [0, 0, 60]},
+        {"p": "capsule", "at": [-0.05, 0.155, 0.04], "s": [0.012, 0.03, 0.012], "c": "yellow", "r": [0, 0, -50]},
+        {"p": "capsule", "at": [0.0, 0.16, 0.065], "s": [0.012, 0.03, 0.012], "c": "green", "r": [0, 0, 10]},
+        {"p": "capsule", "at": [0.04, 0.19, -0.02], "s": [0.012, 0.03, 0.012], "c": "purple", "r": [0, 0, -30]}
+      ]
+    },
+    "birthday_cake": {
+      "color": "pink",
+      "description": "A two-layer birthday cake on a plate: pink bottom layer with coloured dots, cream top layer, white frosting and a cherry. No candles.",
+      "tags": ["food", "party", "birthday", "bakery"],
+      "parts": [
+        {"p": "cylinder", "at": [0, 0.015, 0], "s": [0.66, 0.03, 0.66], "c": "white", "m": "glossy"},
+        {"p": "cylinder", "at": [0, 0.13, 0], "s": [0.52, 0.2, 0.52]},
+        {"p": "cylinder", "at": [0, 0.235, 0], "s": [0.54, 0.03, 0.54], "c": "white", "m": "glossy"},
+        {"p": "cylinder", "at": [0, 0.33, 0], "s": [0.34, 0.16, 0.34], "c": "cream"},
+        {"p": "cylinder", "at": [0, 0.415, 0], "s": [0.36, 0.025, 0.36], "c": "pink", "m": "glossy"},
+        {"p": "sphere", "at": [0, 0.46, 0], "s": 0.08, "c": "red", "m": "glossy"},
+        {"p": "sphere", "at": [0.0686, 0.13, 0.256], "s": 0.05, "c": "yellow", "m": "glossy"},
+        {"p": "sphere", "at": [0.1874, 0.13, 0.1874], "s": 0.05, "c": "blue", "m": "glossy"},
+        {"p": "sphere", "at": [0.256, 0.13, 0.0686], "s": 0.05, "c": "green", "m": "glossy"},
+        {"p": "sphere", "at": [0.256, 0.13, -0.0686], "s": 0.05, "c": "purple", "m": "glossy"},
+        {"p": "sphere", "at": [0.1874, 0.13, -0.1874], "s": 0.05, "c": "yellow", "m": "glossy"},
+        {"p": "sphere", "at": [0.0686, 0.13, -0.256], "s": 0.05, "c": "blue", "m": "glossy"},
+        {"p": "sphere", "at": [-0.0686, 0.13, -0.256], "s": 0.05, "c": "green", "m": "glossy"},
+        {"p": "sphere", "at": [-0.1874, 0.13, -0.1874], "s": 0.05, "c": "purple", "m": "glossy"},
+        {"p": "sphere", "at": [-0.256, 0.13, -0.0686], "s": 0.05, "c": "yellow", "m": "glossy"},
+        {"p": "sphere", "at": [-0.256, 0.13, 0.0686], "s": 0.05, "c": "blue", "m": "glossy"},
+        {"p": "sphere", "at": [-0.1874, 0.13, 0.1874], "s": 0.05, "c": "green", "m": "glossy"},
+        {"p": "sphere", "at": [-0.0686, 0.13, 0.256], "s": 0.05, "c": "purple", "m": "glossy"},
+        {"p": "sphere", "at": [0.0, 0.42, 0.175], "s": 0.04, "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [0.1237, 0.42, 0.1237], "s": 0.04, "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [0.175, 0.42, 0.0], "s": 0.04, "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [0.1237, 0.42, -0.1237], "s": 0.04, "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [0.0, 0.42, -0.175], "s": 0.04, "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [-0.1237, 0.42, -0.1237], "s": 0.04, "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [-0.175, 0.42, -0.0], "s": 0.04, "c": "white", "m": "glossy"},
+        {"p": "sphere", "at": [-0.1237, 0.42, 0.1237], "s": 0.04, "c": "white", "m": "glossy"}
+      ]
+    },
+    "cookie": {
+      "color": "sand",
+      "description": "A round chocolate-chip cookie lying flat (chips on top).",
+      "tags": ["food", "bakery", "small"],
+      "parts": [
+        {"p": "sphere", "at": [0, 0.022, 0], "s": [0.16, 0.045, 0.16]},
+        {"p": "sphere", "at": [0.03, 0.04, 0.02], "s": [0.022, 0.014, 0.022], "c": "brown", "m": "matte"},
+        {"p": "sphere", "at": [-0.035, 0.04, 0.03], "s": [0.022, 0.014, 0.022], "c": "brown", "m": "matte"},
+        {"p": "sphere", "at": [0.0, 0.04, -0.04], "s": [0.022, 0.014, 0.022], "c": "brown", "m": "matte"},
+        {"p": "sphere", "at": [-0.04, 0.04, -0.02], "s": [0.022, 0.014, 0.022], "c": "brown", "m": "matte"},
+        {"p": "sphere", "at": [0.045, 0.04, -0.03], "s": [0.022, 0.014, 0.022], "c": "brown", "m": "matte"},
+        {"p": "sphere", "at": [0.0, 0.04, 0.055], "s": [0.022, 0.014, 0.022], "c": "brown", "m": "matte"}
+      ]
+    },
+    "sandwich": {
+      "color": "sand",
+      "description": "A square sandwich lying flat: two slices of bread with lettuce, cheese and ham between, visible from the side.",
+      "tags": ["food", "lunch", "picnic", "small"],
+      "parts": [
+        {"p": "box", "at": [0, 0.018, 0], "s": [0.2, 0.036, 0.2]},
+        {"p": "box", "at": [0, 0.042, 0], "s": [0.212, 0.012, 0.212], "c": "pink", "m": "matte"},
+        {"p": "box", "at": [0, 0.053, 0], "s": [0.205, 0.01, 0.205], "c": "yellow"},
+        {"p": "box", "at": [0, 0.064, 0], "s": [0.22, 0.012, 0.22], "c": "leaf", "m": "matte"},
+        {"p": "box", "at": [0, 0.088, 0], "s": [0.2, 0.036, 0.2]}
+      ]
+    },
+    "pizza": {
+      "color": "red",
+      "description": "A round pizza lying flat: sandy crust, tomato, cheese, pepperoni and green pepper bits.",
+      "tags": ["food", "fractions", "maths", "lunch"],
+      "parts": [
+        {"p": "cylinder", "at": [0, 0.02, 0], "s": [0.42, 0.04, 0.42], "c": "sand"},
+        {"p": "cylinder", "at": [0, 0.042, 0], "s": [0.37, 0.008, 0.37], "c": "red"},
+        {"p": "cylinder", "at": [0, 0.047, 0], "s": [0.35, 0.008, 0.35], "c": "yellow"},
+        {"p": "cylinder", "at": [0.08, 0.053, 0.06], "s": [0.055, 0.008, 0.055], "c": "red", "m": "glossy"},
+        {"p": "cylinder", "at": [-0.09, 0.053, 0.05], "s": [0.055, 0.008, 0.055], "c": "red", "m": "glossy"},
+        {"p": "cylinder", "at": [0.02, 0.053, -0.1], "s": [0.055, 0.008, 0.055], "c": "red", "m": "glossy"},
+        {"p": "cylinder", "at": [-0.06, 0.053, -0.06], "s": [0.055, 0.008, 0.055], "c": "red", "m": "glossy"},
+        {"p": "cylinder", "at": [0.1, 0.053, -0.04], "s": [0.055, 0.008, 0.055], "c": "red", "m": "glossy"},
+        {"p": "cylinder", "at": [-0.01, 0.053, 0.12], "s": [0.055, 0.008, 0.055], "c": "red", "m": "glossy"},
+        {"p": "cylinder", "at": [0.0, 0.053, 0.0], "s": [0.055, 0.008, 0.055], "c": "red", "m": "glossy"},
+        {"p": "sphere", "at": [0.04, 0.054, 0.0], "s": [0.03, 0.012, 0.02], "c": "leaf"},
+        {"p": "sphere", "at": [-0.04, 0.054, 0.1], "s": [0.03, 0.012, 0.02], "c": "leaf"},
+        {"p": "sphere", "at": [0.12, 0.054, 0.05], "s": [0.03, 0.012, 0.02], "c": "leaf"},
+        {"p": "sphere", "at": [-0.11, 0.054, -0.01], "s": [0.03, 0.012, 0.02], "c": "leaf"},
+        {"p": "sphere", "at": [0.05, 0.054, -0.12], "s": [0.03, 0.012, 0.02], "c": "leaf"}
+      ]
+    },
+    "orange": {
+      "color": "orange",
+      "description": "A round orange with a stem and a leaf.",
+      "tags": ["food", "fruit", "small"],
+      "parts": [
+        {"p": "sphere", "at": [0, 0.09, 0], "s": [0.18, 0.17, 0.18], "c": "orange"},
+        {"p": "cylinder", "at": [0, 0.18, 0], "s": [0.015, 0.02, 0.015], "c": "brown"},
+        {"p": "sphere", "at": [0.03, 0.185, 0], "s": [0.06, 0.012, 0.03], "c": "leaf", "r": [0, 0, 20]}
+      ]
+    },
+    "banana": {
+      "color": "yellow",
+      "description": "A curved yellow banana lying on its back, curve facing the camera, brown tips.",
+      "tags": ["food", "fruit", "small"],
+      "parts": [
+        {"p": "capsule", "at": [-0.1474, 0.1068, 0], "s": [0.0303, 0.0303, 0.0303], "r": [0, 0, -145.0]},
+        {"p": "capsule", "at": [-0.1369, 0.0931, 0], "s": [0.035, 0.04, 0.035], "r": [0, 0, -139.5]},
+        {"p": "capsule", "at": [-0.125, 0.0805, 0], "s": [0.0392, 0.04, 0.0392], "r": [0, 0, -134.0]},
+        {"p": "capsule", "at": [-0.1121, 0.0691, 0], "s": [0.0429, 0.04, 0.0429], "r": [0, 0, -128.5]},
+        {"p": "capsule", "at": [-0.098, 0.059, 0], "s": [0.0461, 0.04, 0.0461], "r": [0, 0, -123.0]},
+        {"p": "capsule", "at": [-0.0831, 0.0503, 0], "s": [0.0488, 0.04, 0.0488], "r": [0, 0, -117.5]},
+        {"p": "capsule", "at": [-0.0674, 0.0431, 0], "s": [0.051, 0.04, 0.051], "r": [0, 0, -112.0]},
+        {"p": "capsule", "at": [-0.0511, 0.0374, 0], "s": [0.0528, 0.04, 0.0528], "r": [0, 0, -106.5]},
+        {"p": "capsule", "at": [-0.0343, 0.0333, 0], "s": [0.054, 0.04, 0.054], "r": [0, 0, -101.0]},
+        {"p": "capsule", "at": [-0.0173, 0.0308, 0], "s": [0.0548, 0.04, 0.0548], "r": [0, 0, -95.5]},
+        {"p": "capsule", "at": [0.0, 0.03, 0], "s": [0.055, 0.04, 0.055], "r": [0, 0, -90.0]},
+        {"p": "capsule", "at": [0.0173, 0.0308, 0], "s": [0.0548, 0.04, 0.0548], "r": [0, 0, -84.5]},
+        {"p": "capsule", "at": [0.0343, 0.0333, 0], "s": [0.054, 0.04, 0.054], "r": [0, 0, -79.0]},
+        {"p": "capsule", "at": [0.0511, 0.0374, 0], "s": [0.0528, 0.04, 0.0528], "r": [0, 0, -73.5]},
+        {"p": "capsule", "at": [0.0674, 0.0431, 0], "s": [0.051, 0.04, 0.051], "r": [0, 0, -68.0]},
+        {"p": "capsule", "at": [0.0831, 0.0503, 0], "s": [0.0488, 0.04, 0.0488], "r": [0, 0, -62.5]},
+        {"p": "capsule", "at": [0.098, 0.059, 0], "s": [0.0461, 0.04, 0.0461], "r": [0, 0, -57.0]},
+        {"p": "capsule", "at": [0.1121, 0.0691, 0], "s": [0.0429, 0.04, 0.0429], "r": [0, 0, -51.5]},
+        {"p": "capsule", "at": [0.125, 0.0805, 0], "s": [0.0392, 0.04, 0.0392], "r": [0, 0, -46.0]},
+        {"p": "capsule", "at": [0.1369, 0.0931, 0], "s": [0.035, 0.04, 0.035], "r": [0, 0, -40.5]},
+        {"p": "capsule", "at": [0.1474, 0.1068, 0], "s": [0.0303, 0.0303, 0.0303], "r": [0, 0, -35.0]},
+        {"p": "sphere", "at": [0.1589, 0.1255, 0], "s": [0.025, 0.02, 0.02], "c": "brown", "r": [0, 0, 62.0]},
+        {"p": "sphere", "at": [-0.1589, 0.1255, 0], "s": [0.025, 0.02, 0.02], "c": "brown", "r": [0, 0, -62.0]}
+      ]
+    },
+    "strawberry": {
+      "color": "red",
+      "description": "A red strawberry, point down, with green leaves on top and yellow seeds on the front.",
+      "tags": ["food", "fruit", "small"],
+      "parts": [
+        {"p": "cone", "at": [0, 0.065, 0], "s": [0.12, 0.13, 0.12], "r": [180, 0, 0]},
+        {"p": "sphere", "at": [0, 0.125, 0], "s": [0.122, 0.07, 0.122]},
+        {"p": "star", "at": [0, 0.158, 0], "s": [0.1, 0.1, 0.035], "c": "leaf", "r": [-90, 0, 0]},
+        {"p": "cylinder", "at": [0, 0.175, 0], "s": [0.012, 0.03, 0.012], "c": "leaf"},
+        {"p": "sphere", "at": [-0.03, 0.12, 0.0509], "s": [0.012, 0.016, 0.008], "c": "yellow"},
+        {"p": "sphere", "at": [0.03, 0.12, 0.0509], "s": [0.012, 0.016, 0.008], "c": "yellow"},
+        {"p": "sphere", "at": [0.0, 0.09, 0.048], "s": [0.012, 0.016, 0.008], "c": "yellow"},
+        {"p": "sphere", "at": [-0.02, 0.06, 0.0453], "s": [0.012, 0.016, 0.008], "c": "yellow"},
+        {"p": "sphere", "at": [0.02, 0.06, 0.0453], "s": [0.012, 0.016, 0.008], "c": "yellow"},
+        {"p": "sphere", "at": [0.0, 0.135, 0.0588], "s": [0.012, 0.016, 0.008], "c": "yellow"}
+      ]
+    },
+    "ten_unit": {
+      "color": "yellow",
+      "description": "A base-ten unit cube (one), 0.1 m.",
+      "tags": ["maths", "place_value", "base_ten", "small"],
+      "parts": [
+        {"p": "block", "at": [0, 0.05, 0], "s": 0.097}
+      ]
+    },
+    "ten_rod": {
+      "color": "blue",
+      "description": "A base-ten rod (ten): 10 unit cubes in a column, 1 m tall standing up, facing +z. Turn [0, 0, 90] to lay it along x.",
+      "tags": ["maths", "place_value", "base_ten"],
+      "parts": [
+        {"p": "block", "at": [0, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [0, 0.95, 0], "s": 0.097}
+      ]
+    },
+    "ten_flat": {
+      "color": "orange",
+      "description": "A base-ten flat (hundred): 10 x 10 unit cubes, 1 m square, standing upright facing +z. Turn [-90, 0, 0] to lay it flat.",
+      "tags": ["maths", "place_value", "base_ten"],
+      "parts": [
+        {"p": "block", "at": [-0.45, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [-0.45, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [-0.35, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [-0.25, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [-0.15, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [-0.05, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [0.05, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [0.15, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [0.25, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [0.35, 0.95, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.05, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.15, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.25, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.35, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.45, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.55, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.65, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.75, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.85, 0], "s": 0.097},
+        {"p": "block", "at": [0.45, 0.95, 0], "s": 0.097}
+      ]
+    },
+    "battery_meter": {
+      "color": "white",
+      "description": "A battery charge meter: a white battery frame (terminal at +x) with five green bars, left to right \"bar1\" to \"bar5\". To empty a bar, move <id>#barN by [0, 0, -0.15]: it slides behind the dark back panel and vanishes from the front.",
+      "tags": ["energy", "science", "maths", "game", "health"],
+      "parts": [
+        {"p": "box", "at": [0, 0.025, 0], "s": [0.8, 0.05, 0.12]},
+        {"p": "box", "at": [0, 0.375, 0], "s": [0.8, 0.05, 0.12]},
+        {"p": "box", "at": [0.375, 0.2, 0], "s": [0.05, 0.4, 0.12], "mirror": true},
+        {"p": "box", "at": [0.425, 0.2, 0], "s": [0.06, 0.15, 0.09]},
+        {"p": "box", "at": [0, 0.2, -0.04], "s": [0.72, 0.32, 0.03], "c": "ink", "m": "matte"},
+        {"p": "box", "at": [-0.27, 0.2, 0.0], "s": [0.11, 0.27, 0.06], "c": "green", "m": "glossy", "name": "bar1"},
+        {"p": "box", "at": [-0.135, 0.2, 0.0], "s": [0.11, 0.27, 0.06], "c": "green", "m": "glossy", "name": "bar2"},
+        {"p": "box", "at": [0.0, 0.2, 0.0], "s": [0.11, 0.27, 0.06], "c": "green", "m": "glossy", "name": "bar3"},
+        {"p": "box", "at": [0.135, 0.2, 0.0], "s": [0.11, 0.27, 0.06], "c": "green", "m": "glossy", "name": "bar4"},
+        {"p": "box", "at": [0.27, 0.2, 0.0], "s": [0.11, 0.27, 0.06], "c": "green", "m": "glossy", "name": "bar5"}
+      ]
+    }
+  }
+}

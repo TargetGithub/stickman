@@ -7,6 +7,7 @@
 import * as THREE from "three";
 import { shapeGeometry } from "./geometry.js";
 import { hash32 } from "./rng.js";
+import { createFaceRig } from "./faces.js";
 
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
@@ -36,7 +37,7 @@ function addPart(parent, p, material, fallbackColor) {
     const mesh = shadowed(new THREE.Mesh(shapeGeometry(p.p), material(p.c ?? fallbackColor, p.m ?? "toy")));
     mesh.scale.set(...vec(p.s, 0.2));
     // A part can hang from its pivot (ears, tails, wings): offset the mesh inside the pivot.
-    if (p.hang) mesh.position.set(...p.hang);
+    if (p.hang) mesh.position.set(c.mirrored ? -p.hang[0] : p.hang[0], p.hang[1], p.hang[2]);
     pivot.add(mesh);
     pivot.userData = { rest: pivot.rotation.clone(), idle: p.idle, mirrored: !!c.mirrored };
     parent.add(pivot);
@@ -63,7 +64,7 @@ function addEyes(parent, { at, size = 0.1, color = "ink" }, material) {
   return eyes;
 }
 
-/** Eyes, cheeks and a smile on the front of anything (critters, and shapes with face: true). */
+/** Eyes, cheeks and a smile on the front of anything (shapes with face: true); returns the face's feeling rig. */
 export function addFace(parent, { center, size, eyes, cheeks, mouth }, material) {
   const [cx, cy, cz] = center;
   const e = addEyes(parent, { at: [cx + (eyes?.gap ?? size * 0.26), cy + (eyes?.y ?? size * 0.08), cz], size: eyes?.size ?? size * 0.17 }, material);
@@ -75,13 +76,14 @@ export function addFace(parent, { center, size, eyes, cheeks, mouth }, material)
       parent.add(c);
     }
   }
+  let m;
   if (mouth !== false) {
-    const m = new THREE.Mesh(shapeGeometry("smile"), material(mouth?.color ?? "ink", "matte"));
+    m = new THREE.Mesh(shapeGeometry("smile"), material(mouth?.color ?? "ink", "matte"));
     m.scale.set(size * (mouth?.size ?? 0.3), size * (mouth?.size ?? 0.3) * 0.9, size * 0.3);
     m.position.set(cx, cy - size * 0.12 + (mouth?.y ?? 0), cz);
     parent.add(m);
   }
-  return e;
+  return createFaceRig({ parent, eyes: e, eyeSize: eyes?.size ?? size * 0.17, mouth: m, material });
 }
 
 /**
@@ -99,11 +101,16 @@ export function buildModel(o, model, material) {
   head.position.set(...(model.head?.at ?? [0, 0, 0]));
   body.add(head);
   const named = new Map([["head", head], ["body", body]]);
+  // Every node a part name moves: mirrored copies and other parts with the same name (a tail and its tip).
+  const groups = new Map([["head", [head]], ["body", [body]]]);
   const idlers = [];
   const color = o.color ?? model.color;
   for (const p of model.parts) {
     const made = addPart(p.on === "head" ? head : body, p, material, color);
-    if (p.name) named.set(p.name, made[0]);
+    if (p.name) {
+      if (!named.has(p.name)) named.set(p.name, made[0]);
+      groups.set(p.name, [...(groups.get(p.name) ?? []), ...made]);
+    }
     for (const m of made) if (m.userData.idle) idlers.push(m);
   }
   let eyes = [];
@@ -118,24 +125,27 @@ export function buildModel(o, model, material) {
       }
     }
   }
+  let mouth;
   if (model.mouth) {
-    const m = new THREE.Mesh(shapeGeometry("smile"), material(model.mouth.color ?? "ink", "matte"));
-    m.scale.set(model.mouth.size, model.mouth.size * 0.8, model.mouth.size * 0.6);
-    m.position.set(...model.mouth.at);
-    head.add(m);
+    mouth = new THREE.Mesh(shapeGeometry("smile"), material(model.mouth.color ?? "ink", "matte"));
+    mouth.scale.set(model.mouth.size, model.mouth.size * 0.8, model.mouth.size * 0.6);
+    mouth.position.set(...model.mouth.at);
+    head.add(mouth);
   }
+  const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material }) : null;
   // Each critter blinks on its own beat (from its id), every ~3.6 s for 0.14 s.
   const phase = (hash32(o.id) % 3600) / 1000;
   const bob = model.bob ?? 0;
-  const headRest = head.position.clone();
   // Every frame starts from the rest pose, so a frame never depends on the frames drawn before it.
-  const rests = [...named.values()].map((n) => [n, n.userData.rest ?? n.rotation.clone()]);
+  const rests = [...new Set([...groups.values()].flat())].map((n) => [n, n.userData.rest ?? n.rotation.clone(), n.position.clone()]);
   return {
     group,
     named,
     update(t, s, state) {
-      for (const [n, r] of rests) n.rotation.copy(r);
-      head.position.copy(headRest);
+      for (const [n, r, p] of rests) {
+        n.rotation.copy(r);
+        n.position.copy(p);
+      }
       body.position.y = bob * (0.5 + 0.5 * Math.sin(t * Math.PI * 1.1 + phase));
       head.rotation.z += (model.bob ? 2.5 : 0) * DEG * Math.sin(t * 0.9 + phase);
       for (const m of idlers) {
@@ -145,16 +155,24 @@ export function buildModel(o, model, material) {
         const sgn = mirrored ? -1 : 1;
         m.rotation.set(rest.x + r[0] * DEG * k, rest.y + sgn * r[1] * DEG * k, rest.z + sgn * r[2] * DEG * k);
       }
-      // Timeline offsets for sub-targets: <id>#head, <id>#tail, ...
-      for (const [name, node] of named) {
+      // Timeline offsets for sub-targets: <id>#head, <id>#lid, ... (rotation in degrees, position in metres).
+      // A mirrored copy takes the mirror image of the offset, so both wings flap together.
+      for (const [name, nodes] of groups) {
         const sub = state[`${o.id}#${name}`];
         if (!sub) continue;
-        if (sub.rotation) node.rotation.set(node.rotation.x + sub.rotation[0] * DEG, node.rotation.y + sub.rotation[1] * DEG, node.rotation.z + sub.rotation[2] * DEG);
-        if (sub.position && name === "head") node.position.set(headRest.x + sub.position[0], headRest.y + sub.position[1], headRest.z + sub.position[2]);
+        for (const node of nodes) {
+          const m = node.userData.mirrored ? -1 : 1;
+          if (sub.rotation) node.rotation.set(node.rotation.x + sub.rotation[0] * DEG, node.rotation.y + m * sub.rotation[1] * DEG, node.rotation.z + m * sub.rotation[2] * DEG);
+          if (sub.position) node.position.set(node.position.x + m * sub.position[0], node.position.y + sub.position[1], node.position.z + sub.position[2]);
+        }
       }
       const blink = ((t + phase) % 3.6) < 0.14 ? 0.12 : 1;
-      const open = Math.max(0.08, Math.min(1, s.eyes ?? 1)) * blink;
-      for (const e of eyes) e.scale.y = Math.max(0.08, open);
+      if (face) {
+        // A feeling also tilts the head: down when sad or sleepy, back when surprised.
+        const [pitch, roll] = face(t, s, blink);
+        head.rotation.x += pitch * DEG;
+        head.rotation.z += roll * DEG;
+      }
     },
   };
 }

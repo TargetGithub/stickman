@@ -12,6 +12,8 @@ import { deriveRng } from "./rng.js";
 import { shapeGeometry } from "./geometry.js";
 import { addFace, buildModel } from "./models.js";
 import { bubbleAt, bubblePaths, starField } from "./particles.js";
+import { buildClock, buildLamp, buildWeather } from "./objects_extra.js";
+import { morphFeeling } from "./faces.js";
 
 /** Load the fonts and characters a plan uses. @returns {Promise<{ fonts: Map, characters: Map }>} */
 export async function loadAssets(plan, catalog, base) {
@@ -19,6 +21,7 @@ export async function loadAssets(plan, catalog, base) {
   const characters = new Map();
   const fontNames = new Set(["andika_bold"]);
   for (const o of plan.objects) if (o.kind === "letter" && o.font) fontNames.add(o.font);
+  for (const o of plan.objects) if (o.kind === "clock" && o.font) fontNames.add(o.font);
   const ttf = new TTFLoader();
   for (const name of [...fontNames].sort()) fonts.set(name, new Font(await ttf.loadAsync(base + catalog.fonts[name].file)));
   const gltf = new GLTFLoader();
@@ -38,6 +41,9 @@ export function createMaterials(catalog) {
       cache.set(key, new THREE.MeshPhysicalMaterial({
         color: c, roughness: s.roughness, metalness: s.metalness, clearcoat: s.clearcoat ?? 0, clearcoatRoughness: s.clearcoatRoughness ?? 0,
         emissive: s.emissive ? c : new THREE.Color(0), emissiveIntensity: s.emissive ?? 0,
+        // See-through styles (water, glass, ice): drawn after solids, and thin ones skip the depth buffer so
+        // what is inside a glass still shows.
+        ...(s.opacity != null ? { transparent: true, opacity: s.opacity, depthWrite: s.opacity > 0.5 } : {}),
       }));
     }
     return cache.get(key);
@@ -60,9 +66,10 @@ const shadowed = (m) => {
 };
 
 /**
- * @returns {{ group: THREE.Group, mixer?: THREE.AnimationMixer, actions?: Map, named?: Map, update?: (t:number, s:object, state:object) => void }}
+ * @returns {{ group: THREE.Group, mixer?: THREE.AnimationMixer, actions?: Map, named?: Map, world?: THREE.Object3D[],
+ *   update?: (t:number, s:object, state:object) => void }}  world: helpers the stage adds to the scene itself
  */
-export function buildObject(o, { catalog, assets, material, seed }) {
+export function buildObject(o, { catalog, assets, material, seed, height = 1080 }) {
   const group = new THREE.Group();
   group.name = o.id;
   const size = o.size ?? 1;
@@ -76,8 +83,8 @@ export function buildObject(o, { catalog, assets, material, seed }) {
     if (o.face) {
       const h = (box.max.y - box.min.y) * size;
       const w = (box.max.x - box.min.x) * size;
-      const eyes = addFace(group, { center: [0, h * 0.5 + h * 0.06, box.max.z * size + 0.01 * size], size: Math.min(w, h) * 0.95 }, material);
-      return { group, update: (t, s) => blinkEyes(eyes, o.id, t, s) };
+      const face = addFace(group, { center: [0, h * 0.5 + h * 0.06, box.max.z * size + 0.01 * size], size: Math.min(w, h) * 0.95 }, material);
+      return { group, update: (t, s) => face(t, s, blink(o.id, t)) };
     }
   } else if (o.kind === "critter" || o.kind === "prop") {
     const m = o.kind === "critter" ? catalog.critters[o.species] : catalog.props[o.model];
@@ -93,10 +100,11 @@ export function buildObject(o, { catalog, assets, material, seed }) {
     box.scale.setScalar(size);
     box.position.y = size / 2;
     group.add(box);
-    // Two digits get smaller type so "10" still fits the face.
-    const two = String(o.value).length > 1;
-    const digits = textGeometry(String(o.value), assets.fonts.get("andika_bold"), size * (two ? 0.4 : 0.52), size * 0.06);
-    digits.translate(0, size * (two ? 0.28 : 0.21), 0);
+    // Two and three digits get smaller type so "10" and "345" still fit the face.
+    const n = String(o.value).length;
+    const type = [0.52, 0.4, 0.29][n - 1];
+    const digits = textGeometry(String(o.value), assets.fonts.get("andika_bold"), size * type, size * 0.06);
+    digits.translate(0, size * (0.5 - type * 0.55), 0);
     const mat = material(o.digitColor ?? "white", "glossy");
     for (const side of [1, -1]) {
       const d = shadowed(new THREE.Mesh(digits, mat));
@@ -122,7 +130,16 @@ export function buildObject(o, { catalog, assets, material, seed }) {
       a.setEffectiveWeight(0);
       actions.set(clip.name, a);
     }
-    return { group, mixer, actions };
+    const faces = [];
+    model.traverse((m) => m.isMesh && m.morphTargetDictionary && faces.push(m));
+    return { group, mixer, actions, update: (t, s) => morphFeeling(faces, t, s) };
+  } else if (o.kind === "clock") {
+    return { group, update: buildClock(o, group, { material, font: assets.fonts.get(o.font ?? "andika_bold"), textGeometry }) };
+  } else if (o.kind === "lamp") {
+    const lamp = buildLamp(o, group, { catalog, height });
+    return { group, world: lamp.world, update: lamp.update };
+  } else if (o.kind === "weather") {
+    return { group, update: buildWeather(o, group, { catalog, seed }) };
   } else if (o.kind === "confetti") {
     const confetti = buildConfetti(o, group, catalog, seed);
     return { group, update: (t, s) => confetti.update(s.burst >= 0 ? t - s.burst : -1) };
@@ -171,13 +188,11 @@ function buildConfetti(o, group, catalog, seed) {
   };
 }
 
-/** Shape faces blink like critters (every ~3.6 s, on a beat from the object's id). */
-function blinkEyes(eyes, id, t, s) {
+/** Shape faces blink like critters (every ~3.6 s, on a beat from the object's id): 0.12 while shut, else 1. */
+function blink(id, t) {
   let h = 0;
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) % 3600;
-  const shut = ((t + h / 1000) % 3.6) < 0.14;
-  const open = Math.max(0.08, Math.min(1, s.eyes ?? 1)) * (shut ? 0.12 : 1);
-  for (const e of eyes) e.scale.y = Math.max(0.08, open);
+  return ((t + h / 1000) % 3.6) < 0.14 ? 0.12 : 1;
 }
 
 /** Soap bubbles: an instanced sphere with an iridescent, mostly clear coat. */

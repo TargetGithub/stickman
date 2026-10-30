@@ -75,6 +75,98 @@
         "babies",
         "contrast"
       ]
+    },
+    "beach": {
+      "background": "sky",
+      "floor": "sand",
+      "rug": null,
+      "fog": [
+        22,
+        55
+      ],
+      "lights": "soft_day",
+      "description": "A sunny beach: sand floor and sky. Add palm trees, a boat and water discs.",
+      "tags": [
+        "outdoor",
+        "water",
+        "phonics"
+      ]
+    },
+    "snow": {
+      "background": "sky",
+      "floor": "white",
+      "rug": null,
+      "fog": [
+        16,
+        45
+      ],
+      "lights": "overcast",
+      "description": "A snowy field under a pale winter sky. Add snow (weather), a snowman or an igloo.",
+      "tags": [
+        "outdoor",
+        "winter",
+        "seasons",
+        "habitats"
+      ]
+    },
+    "desert": {
+      "background": "sky",
+      "floor": "sand",
+      "rug": null,
+      "fog": [
+        24,
+        60
+      ],
+      "lights": "hot_sun",
+      "description": "A hot, bright desert: sand and a strong sun. Add cacti, rocks and a camel.",
+      "tags": [
+        "outdoor",
+        "habitats"
+      ]
+    },
+    "town": {
+      "background": "sky",
+      "floor": "grey",
+      "rug": null,
+      "fog": [
+        22,
+        55
+      ],
+      "lights": "soft_day",
+      "description": "A town square on grey paving. Add houses, a traffic light, signs, benches and bins.",
+      "tags": [
+        "outdoor",
+        "community",
+        "rules"
+      ]
+    },
+    "theatre": {
+      "background": "charcoal",
+      "floor": "brown",
+      "rug": null,
+      "fog": [
+        14,
+        40
+      ],
+      "lights": "dim",
+      "description": "A dim little theatre with a dark backdrop, for shadow puppets and lamp light.",
+      "tags": [
+        "indoor",
+        "light",
+        "shows"
+      ]
+    },
+    "space": {
+      "background": "midnight",
+      "floor": null,
+      "rug": null,
+      "fog": null,
+      "lights": "studio",
+      "description": "Outer space: a deep blue-black sky with no floor. Add stars, the moon and a rocket.",
+      "tags": [
+        "space",
+        "rockets"
+      ]
     }
   },
   "lights": {
@@ -160,6 +252,94 @@
       "description": "Bright even light with no shadows (on black, shadows would only add murk).",
       "tags": [
         "contrast"
+      ]
+    },
+    "evening": {
+      "hemisphere": [
+        0.7,
+        "#ffd9b0",
+        "#4b3a5c"
+      ],
+      "sun": {
+        "intensity": 1.6,
+        "dir": [
+          -7,
+          4,
+          5
+        ],
+        "shadow": true
+      },
+      "environment": 0.35,
+      "description": "Warm low evening light (bedtime routines, sunsets).",
+      "tags": [
+        "evening",
+        "time"
+      ]
+    },
+    "dim": {
+      "hemisphere": [
+        0.25,
+        "#c8c8e0",
+        "#202028"
+      ],
+      "sun": {
+        "intensity": 0.35,
+        "dir": [
+          -3,
+          8,
+          7
+        ],
+        "shadow": false
+      },
+      "environment": 0.15,
+      "description": "A dim room, so a lamp's light and shadows stand out.",
+      "tags": [
+        "theatre",
+        "light"
+      ]
+    },
+    "overcast": {
+      "hemisphere": [
+        1.1,
+        "#eef2f8",
+        "#c8ccd4"
+      ],
+      "sun": {
+        "intensity": 1.1,
+        "dir": [
+          2,
+          10,
+          4
+        ],
+        "shadow": true
+      },
+      "environment": 0.6,
+      "description": "Soft grey winter light with faint shadows.",
+      "tags": [
+        "winter",
+        "seasons"
+      ]
+    },
+    "hot_sun": {
+      "hemisphere": [
+        1,
+        "#fff4dc",
+        "#e8c890"
+      ],
+      "sun": {
+        "intensity": 3.2,
+        "dir": [
+          3,
+          10,
+          4
+        ],
+        "shadow": true
+      },
+      "environment": 0.6,
+      "description": "A strong high sun with crisp shadows (deserts, summer).",
+      "tags": [
+        "summer",
+        "habitats"
       ]
     }
   }

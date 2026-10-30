@@ -152,19 +152,27 @@ is a flat gold cylinder with a number on it) and list the gap only where that wo
 - No flashing faster than 3 Hz. Pre-K has no loud sudden sounds.
 - Mark every video **Made for kids**. Upload stays manual.
 
-## Gaps that come up in many specs (for a later engine or catalog task)
+## Gaps that come up in many specs: now built
 
-Each spec lists its own gaps with a stand-in, so none of these blocks writing a script. These ones come up
-in more than one spec and are worth building first:
+Every gap listed under "Catalog gaps" in the specs has an engine feature or a model now (see the
+"Building blocks" table in `engine3d/README.md` and `catalog/models/`). Script writers should use these
+instead of the stand-ins the specs describe:
 
-| Gap | Needed by | Stand-in used in the specs |
-|---|---|---|
-| A new `audience` value for grade 1 and grade 2 (the series test accepts only `babies` and `prek`) | All G1 and G2 | Add `grade1` and `grade2` to the test and validator |
-| A pivot point for turning objects (clock hands turning about one end) | G1-05, G2-05 | A hand made of two parts, or a capsule offset inside a rotating parent |
-| Group objects (move many parts as one: a rocket, a car, a tray of cookies) | G1-03, G1-04, G2-03 | Move every part with the same timing |
-| Face expressions for Robo and the animals (the robot model has face morphs, but no action uses them) | PK-15 and every feelings moment | Body language: hop, wiggle, a lowered head, sleep and wake |
-| Changing the light or stage in the middle of an episode | PK-16, G1-08, G2-08 | Swap the sun and moon props, or use patches on the floor |
-| A colour-change action, and growing along one axis only (a rising water level) | G2-06, G2-10, G1-08 | A hide and show crossfade between two objects |
-| Props: clock face, coins, magnet, water tub, ruler, scale, map grid, compass, ice, toothbrush and bed | Per spec | Shapes with number or letter labels |
-| Text: check that the caption font has ¢, :, − and _ | G1-05, G1-06, G1-01 | Write out the words ("cents") |
-| Skill ids that do not exist yet: `states_of_matter_2`, a magnets and floating skill for pre-K, a feelings skill and a health skill | G2-10, PK-08, PK-09, PK-15, PK-16 | Leave `skills` to the nearest real id until the skill is added |
+| Gap | Now |
+|---|---|
+| `audience` for grade 1 and 2 | `meta.audience`: `k`, `grade1`, `grade2` (plus `babies`, `prek`) |
+| Clock hands that pivot | `kind: "clock"` and the `clock` move; `pivot` on any object |
+| Group objects (a rocket, a car, a tray of cookies) | `parent` / `part` on any object, `kind: "group"`, and `path` for travel |
+| Face expressions | the `feel` move (happy, sad, surprised, angry, worried, sleepy), also on Robo |
+| Light or stage changes mid-episode | the `lights` move, plus stages `beach`, `snow`, `desert`, `town`, `theatre`, `space` |
+| Colour change, a rising water level | `paint`; `grow` with `[x, y, z]` factors |
+| A movable light that casts shadows | `kind: "lamp"` with `aim` and an optional `beam` |
+| Rain, snow, falling leaves | `kind: "weather"` |
+| Wedges, snowflake, hexagon, open containers | new shapes (`half_circle`, `quarter_circle`, `snowflake`, `hexagon`, `cup`, `pot`, `bowl`, `dome`, `disc`, ...) and materials (`water`, `glass`, `ice`) |
+| Three-digit numbers, longer words | `number_block` 0–999, `letter` text up to 24 characters; the font has ¢ : − < > + = |
+| Props (coins, magnet, clock, tub, ruler, scale, map pieces, plants, vehicles, food, furniture...) | `catalog/models/home_school.json`, `outdoor_science.json` |
+| Animals (fish, whale, fox, owl, penguin, camel, turtle, butterfly, mouse, squirrel, lion, monkey) | `catalog/models/animals.json` |
+| Sounds (tick, fizz, rain, twang, drum, train whistle, till, clink, rocket, pour) | `catalog/sounds.json` |
+
+Still open: skill ids that do not exist yet in `catalog/education/skills.json` (`states_of_matter_2`, magnets
+and floating for pre-K, feelings, health). Until they are added, list the nearest real skill.

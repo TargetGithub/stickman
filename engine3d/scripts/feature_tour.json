@@ -1,0 +1,810 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "A tour of the engine3d features added for the batch 2 specs: feelings, clocks, paint, stretch, parents, paths, part moves, stage lights, lamps and weather.",
+ "meta": {
+  "title": "engine3d feature tour",
+  "seed": 21,
+  "voice": "soft",
+  "music": false
+ },
+ "stage": {
+  "preset": "playroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.2,
+   10
+  ],
+  "lookAt": [
+   0,
+   1,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.4,
+    0,
+    0.6
+   ],
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "duck",
+   "kind": "critter",
+   "species": "duck",
+   "at": [
+    -1.2,
+    0,
+    1.2
+   ],
+   "size": 1.2
+  },
+  {
+   "id": "cat",
+   "kind": "critter",
+   "species": "cat",
+   "at": [
+    0.6,
+    0,
+    1.2
+   ],
+   "size": 1.2
+  },
+  {
+   "id": "sun_face",
+   "kind": "shape",
+   "shape": "circle",
+   "face": true,
+   "color": "gold",
+   "size": 1.3,
+   "at": [
+    2.6,
+    0.3,
+    1
+   ]
+  },
+  {
+   "id": "clock",
+   "kind": "clock",
+   "time": "3:00",
+   "minuteHand": false,
+   "size": 2.6,
+   "at": [
+    0,
+    0,
+    -3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "glass",
+   "kind": "shape",
+   "shape": "cup",
+   "material": "glass",
+   "color": "white",
+   "size": 1.2,
+   "at": [
+    3.6,
+    0,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "water",
+   "kind": "shape",
+   "shape": "cylinder",
+   "material": "water",
+   "color": "blue",
+   "size": 1.0,
+   "scale": [
+    1,
+    0.15,
+    1
+   ],
+   "at": [
+    3.6,
+    0.04,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "word",
+   "kind": "letter",
+   "text": "BIG",
+   "color": "red",
+   "size": 0.9,
+   "at": [
+    -3.6,
+    0.5,
+    -1.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rocket",
+   "kind": "group",
+   "at": [
+    -6,
+    0,
+    -2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "r_body",
+   "kind": "shape",
+   "shape": "cylinder",
+   "color": "white",
+   "size": 0.6,
+   "scale": [
+    1,
+    2.2,
+    1
+   ],
+   "parent": "rocket"
+  },
+  {
+   "id": "r_nose",
+   "kind": "shape",
+   "shape": "cone",
+   "color": "red",
+   "size": 0.6,
+   "parent": "rocket",
+   "at": [
+    0,
+    1.3,
+    0
+   ]
+  },
+  {
+   "id": "r_fin",
+   "kind": "shape",
+   "shape": "triangle",
+   "color": "red",
+   "size": 0.5,
+   "parent": "rocket",
+   "at": [
+    0,
+    0,
+    0.3
+   ]
+  },
+  {
+   "id": "screen",
+   "kind": "shape",
+   "shape": "rectangle",
+   "color": "white",
+   "material": "matte",
+   "size": 4,
+   "at": [
+    0,
+    0.2,
+    -4.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "lamp",
+   "kind": "lamp",
+   "at": [
+    0,
+    2.2,
+    5
+   ],
+   "aim": [
+    0,
+    1.6,
+    -4.5
+   ],
+   "angle": 20,
+   "intensity": 90,
+   "beam": true,
+   "hidden": true
+  },
+  {
+   "id": "snow",
+   "kind": "weather",
+   "type": "snow",
+   "hidden": true
+  },
+  {
+   "id": "leaves",
+   "kind": "weather",
+   "type": "leaves",
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "feelings",
+   "title": "Feelings",
+   "beats": [
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "Faces can show feelings.",
+       "at": 0,
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "sad"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "sad"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "sad"
+      },
+      {
+       "do": "feel",
+       "target": "sun_face",
+       "feeling": "sad"
+      },
+      {
+       "do": "caption",
+       "text": "sad",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "surprised"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "surprised"
+      },
+      {
+       "do": "feel",
+       "target": "sun_face",
+       "feeling": "surprised"
+      },
+      {
+       "do": "caption",
+       "text": "surprised",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "angry"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "angry"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "angry"
+      },
+      {
+       "do": "feel",
+       "target": "sun_face",
+       "feeling": "angry"
+      },
+      {
+       "do": "caption",
+       "text": "angry",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "worried"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "worried"
+      },
+      {
+       "do": "feel",
+       "target": "sun_face",
+       "feeling": "worried"
+      },
+      {
+       "do": "caption",
+       "text": "worried",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "sleepy"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "sleepy"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "sleepy"
+      },
+      {
+       "do": "feel",
+       "target": "sun_face",
+       "feeling": "sleepy"
+      },
+      {
+       "do": "caption",
+       "text": "sleepy",
+       "style": "label"
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "happy"
+      },
+      {
+       "do": "feel",
+       "target": "cat",
+       "feeling": "happy"
+      },
+      {
+       "do": "feel",
+       "target": "sun_face",
+       "feeling": "happy"
+      },
+      {
+       "do": "caption",
+       "text": "happy",
+       "style": "label"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "clock",
+   "title": "A clock that moves like a real one",
+   "beats": [
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "duck"
+      },
+      {
+       "do": "hide",
+       "target": "cat"
+      },
+      {
+       "do": "hide",
+       "target": "sun_face"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        0.6
+       ]
+      },
+      {
+       "do": "show",
+       "target": "clock",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.2,
+        8
+       ],
+       "lookAt": [
+        0,
+        1.5,
+        -2
+       ],
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "say",
+       "text": "The short hand says three.",
+       "at": 0,
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "minuteHand": true
+      },
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "3:30",
+       "dur": 2,
+       "at": 0.5,
+       "sound": "windup_click"
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "clock",
+       "target": "clock",
+       "to": "7:50",
+       "dur": 2.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "paint",
+   "title": "Paint, fill and ride",
+   "beats": [
+    {
+     "dur": 1.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "clock"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.4,
+        10
+       ],
+       "lookAt": [
+        0,
+        1,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "duck",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "glass",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "water",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "word",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "rocket",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "paint",
+       "target": "duck",
+       "color": "blue",
+       "dur": 1.5
+      },
+      {
+       "do": "paint",
+       "target": "word",
+       "color": "gold",
+       "dur": 1.5
+      },
+      {
+       "do": "grow",
+       "target": "water",
+       "to": [
+        1,
+        4.5,
+        1
+       ],
+       "dur": 2.5,
+       "ease": "sineInOut"
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "path",
+       "target": "rocket",
+       "points": [
+        [
+         -4,
+         2.5,
+         -2
+        ],
+        [
+         -1,
+         4,
+         -2
+        ],
+        [
+         2,
+         4.5,
+         -2
+        ],
+        [
+         5,
+         3,
+         -2
+        ]
+       ],
+       "dur": 3.2
+      },
+      {
+       "do": "turn",
+       "target": "rocket",
+       "to": [
+        0,
+        0,
+        -50
+       ],
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2,
+     "do": [
+      {
+       "do": "turn",
+       "target": "duck#head",
+       "to": [
+        0,
+        40,
+        0
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "duck#head",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6,
+       "at": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "night",
+   "title": "Lights and weather",
+   "beats": [
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "hide",
+       "target": "glass"
+      },
+      {
+       "do": "hide",
+       "target": "water"
+      },
+      {
+       "do": "hide",
+       "target": "word"
+      },
+      {
+       "do": "hide",
+       "target": "rocket"
+      },
+      {
+       "do": "lights",
+       "rig": "evening",
+       "background": "orange",
+       "dur": 2.5
+      },
+      {
+       "do": "show",
+       "target": "leaves"
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "hide",
+       "target": "leaves"
+      },
+      {
+       "do": "lights",
+       "rig": "dim",
+       "background": "charcoal",
+       "floor": "night",
+       "dur": 2
+      },
+      {
+       "do": "show",
+       "target": "screen",
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "lamp",
+       "at": 1.2
+      },
+      {
+       "do": "move",
+       "target": "duck",
+       "to": [
+        0,
+        0,
+        0.5
+       ]
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "surprised",
+       "at": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 3,
+     "do": [
+      {
+       "do": "aim",
+       "target": "lamp",
+       "to": [
+        1.5,
+        1.6,
+        -4.5
+       ],
+       "dur": 2.5
+      },
+      {
+       "do": "move",
+       "target": "lamp",
+       "to": [
+        -1.5,
+        2.2,
+        5
+       ],
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 3.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "lamp"
+      },
+      {
+       "do": "hide",
+       "target": "screen"
+      },
+      {
+       "do": "lights",
+       "rig": "overcast",
+       "background": "grey",
+       "floor": "white",
+       "dur": 2
+      },
+      {
+       "do": "show",
+       "target": "snow",
+       "at": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "duck",
+       "feeling": "happy"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

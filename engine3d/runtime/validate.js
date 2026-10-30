@@ -3,23 +3,35 @@
 // Returns { ok, errors, warnings }; each issue is { code, path, message }.
 
 import { EASE_NAMES } from "./ease.js";
+import { FEELINGS, parseClock } from "./director_extras.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
-const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description"]);
+const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot"]);
 const FIELDS = {
-  shape: ["shape", "color", "material", "size", "face"],
+  shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
   letter: ["text", "color", "material", "font", "size", "depth"],
-  character: ["character", "clip"],
+  character: ["character", "clip", "feeling"],
   confetti: ["count", "colors", "area", "height"],
-  critter: ["species", "color", "size"],
+  critter: ["species", "color", "size", "feeling"],
   prop: ["model", "color", "size"],
   bubbles: ["count", "area", "height", "size"],
   stars: ["count", "color", "width"],
+  clock: ["time", "size", "color", "face", "numberColor", "hourColor", "minuteColor", "ticks", "numbers", "minuteHand", "font"],
+  lamp: ["color", "intensity", "distance", "angle", "soft", "aim", "beam", "shadow"],
+  weather: ["type", "count", "area", "height", "speed", "colors"],
+  group: [],
 };
-const TARGETS = { clip: ["character"], burst: ["confetti", "bubbles"], sleep: ["critter", "shape"], wake: ["critter", "shape"] };
+const TARGETS = {
+  clip: ["character"], burst: ["confetti", "bubbles"], sleep: ["critter", "shape"], wake: ["critter", "shape"],
+  feel: ["critter", "shape", "character"], paint: ["shape", "letter", "number_block", "critter", "prop"], clock: ["clock"], aim: ["lamp"],
+};
+// Moves that can target a named part of a critter or prop ("box#lid", "dog#head").
+const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
 const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "youtube", "description"]);
-const NO_TARGET = new Set(["camera", "say", "caption", "sound"]);
+const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2"];
+const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights"]);
+const WEATHER = ["rain", "snow", "leaves", "petals"];
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
 const isNum = (v, lo = -Infinity, hi = Infinity) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
@@ -48,7 +60,7 @@ export function validateScript(script, catalog) {
   if (meta.voiceSpeed != null && !isNum(meta.voiceSpeed, 0.75, 1.3)) err("E3D_RANGE", "meta.voiceSpeed", "voiceSpeed must be 0.75-1.3");
   if (meta.musicGain != null && !isNum(meta.musicGain, 0, 1)) err("E3D_RANGE", "meta.musicGain", "musicGain must be 0-1");
   if (meta.music != null && meta.music !== false && catalog.musicMoods?.length && !catalog.musicMoods.includes(meta.music)) err("E3D_MUSIC", "meta.music", `unknown music mood "${meta.music}" (known: ${catalog.musicMoods.join(", ")})`);
-  if (meta.audience != null && !["babies", "prek"].includes(meta.audience)) err("E3D_AUDIENCE", "meta.audience", 'audience must be "babies" or "prek"');
+  if (meta.audience != null && !AUDIENCES.includes(meta.audience)) err("E3D_AUDIENCE", "meta.audience", `audience must be one of ${AUDIENCES.join(", ")}`);
   if (meta.thumbnail != null && !isNum(meta.thumbnail?.t, 0, 3600)) err("E3D_RANGE", "meta.thumbnail.t", "thumbnail.t must be a time in seconds");
   if (meta.voice != null && !catalog.voices.includes(meta.voice)) err("E3D_VOICE", "meta.voice", `unknown voice "${meta.voice}" (known: ${catalog.voices.join(", ")})`);
   if (script.stage?.preset != null) name(catalog.stages, script.stage.preset, "E3D_STAGE", "stage.preset", "stage");
@@ -60,7 +72,13 @@ export function validateScript(script, catalog) {
   (Array.isArray(script.objects) ? script.objects : []).forEach((o, i) => {
     const p = `objects[${i}]`;
     if (typeof o?.id !== "string" || !/^[a-z][a-z0-9_]*$/.test(o.id)) return err("E3D_ID", `${p}.id`, "id must be lower_snake_case");
-    if (ids.has(o.id) || o.id === "camera") err("E3D_DUP_ID", `${p}.id`, `id "${o.id}" is used twice or reserved`);
+    if (ids.has(o.id) || o.id === "camera" || o.id === "stage") err("E3D_DUP_ID", `${p}.id`, `id "${o.id}" is used twice or reserved`);
+    if (o.parent != null) {
+      const par = ids.get(o.parent);
+      if (!par) err("E3D_PARENT", `${p}.parent`, `parent "${o.parent}" must be an object listed before "${o.id}"`);
+      else if (o.part != null && !partNames(par).includes(o.part)) err("E3D_PART", `${p}.part`, `"${o.parent}" has no named part "${o.part}" (known: ${partNames(par).join(", ") || "none"})`);
+    } else if (o.part != null) err("E3D_PART", `${p}.part`, "part needs a parent");
+    if (o.pivot != null && !isVec(o.pivot)) err("E3D_VEC", `${p}.pivot`, "must be [x, y, z]");
     ids.set(o.id, o);
     if (!catalog.kinds[o.kind]) return err("E3D_OBJ_KIND", `${p}.kind`, `unknown kind "${o.kind}" (known: ${Object.keys(catalog.kinds).join(", ")})`);
     for (const k of Object.keys(o)) if (!COMMON.has(k) && !FIELDS[o.kind].includes(k)) warn("W3D_UNKNOWN_FIELD", `${p}.${k}`, `${o.kind} has no field "${k}"`);
@@ -74,9 +92,17 @@ export function validateScript(script, catalog) {
       if (o.shape == null) err("E3D_REQUIRED", `${p}.shape`, "shape is required");
       name(catalog.shapes, o.shape, "E3D_SHAPE", `${p}.shape`, "shape");
     }
-    if (o.kind === "number_block" && !(Number.isInteger(o.value) && o.value >= 0 && o.value <= 99)) err("E3D_RANGE", `${p}.value`, "value must be an integer 0-99");
+    if (o.kind === "number_block" && !(Number.isInteger(o.value) && o.value >= 0 && o.value <= 999)) err("E3D_RANGE", `${p}.value`, "value must be an integer 0-999");
+    if (o.feeling != null && !FEELINGS.includes(o.feeling)) err("E3D_FEELING", `${p}.feeling`, `feeling must be one of ${FEELINGS.join(", ")}`);
+    if (o.kind === "clock" && o.time != null && !clockOk(o.time)) err("E3D_TIME", `${p}.time`, 'time must look like "3:25" (hours 1-12)');
+    for (const k of ["face", "numberColor", "hourColor", "minuteColor", "ticks"]) if (o.kind === "clock") name(catalog.colors, o[k], "E3D_COLOR", `${p}.${k}`, "color");
+    if (o.kind === "lamp" && o.aim != null && !isVec(o.aim)) err("E3D_VEC", `${p}.aim`, "must be [x, y, z]");
+    if (o.kind === "weather") {
+      if (o.type != null && !WEATHER.includes(o.type)) err("E3D_WEATHER", `${p}.type`, `type must be one of ${WEATHER.join(", ")}`);
+      for (const [j, c] of (o.colors ?? []).entries()) name(catalog.colors, c, "E3D_COLOR", `${p}.colors[${j}]`, "color");
+    }
     if (o.kind === "letter") {
-      if (typeof o.text !== "string" || o.text.length < 1 || o.text.length > 12) err("E3D_TEXT", `${p}.text`, "text must be 1-12 characters");
+      if (typeof o.text !== "string" || o.text.length < 1 || o.text.length > 24) err("E3D_TEXT", `${p}.text`, "text must be 1-24 characters");
       name(catalog.fonts, o.font, "E3D_FONT", `${p}.font`, "font");
     }
     if (o.kind === "character") {
@@ -115,7 +141,11 @@ export function validateScript(script, catalog) {
     if (a.at != null && beat.dur != null && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
-    for (const k of ["to", "position", "lookAt"]) if (a[k] != null && !(a.do === "grow" ? isNum(a[k], 0.01, 100) : isVec(a[k]))) err("E3D_VEC", `${p}.${k}`, a.do === "grow" ? "to must be a scale number" : "must be [x, y, z]");
+    for (const k of ["to", "position", "lookAt"]) {
+      if (a[k] == null || a.do === "clock") continue;
+      const ok = a.do === "grow" ? isNum(a[k], 0.01, 100) || (isVec(a[k]) && a[k].every((x) => x >= 0.001)) : isVec(a[k]);
+      if (!ok) err("E3D_VEC", `${p}.${k}`, a.do === "grow" ? "to must be a scale number or [x, y, z] factors" : "must be [x, y, z]");
+    }
     if (a.sound != null && a.sound !== false && !catalog.sounds[a.sound]) err("E3D_SOUND", `${p}.sound`, `unknown sound "${a.sound}"`);
     if (NO_TARGET.has(a.do)) {
       if (a.do === "say" || a.do === "caption") {
@@ -130,11 +160,32 @@ export function validateScript(script, catalog) {
       if (a.do === "sound" && a.sound == null) err("E3D_REQUIRED", `${p}.sound`, "sound is required");
       if (a.do === "camera" && a.position == null && a.lookAt == null && a.fov == null) err("E3D_REQUIRED", p, "camera needs position, lookAt or fov");
       if (a.do === "caption" && a.color != null && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
+      if (a.do === "lights") {
+        name(catalog.lights, a.rig, "E3D_LIGHTS", `${p}.rig`, "light rig");
+        for (const k of ["background", "floor", "rug"]) name(catalog.colors, a[k], "E3D_COLOR", `${p}.${k}`, "color");
+        if (a.rig == null && a.background == null && a.floor == null && a.rug == null) err("E3D_REQUIRED", p, "lights needs rig, background, floor or rug");
+      }
       if (a.do === "caption" && a.style != null && !["title", "count", "subtitle", "label"].includes(a.style)) err("E3D_STYLE", `${p}.style`, "style must be title, count, label or subtitle");
+      return;
+    }
+    if (typeof a.target === "string" && a.target.includes("#")) {
+      const [base, part] = a.target.split("#");
+      const owner = ids.get(base);
+      if (!owner) return err("E3D_TARGET", `${p}.target`, `no object "${base}"`);
+      if (!PART_MOVES.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES].join(", ")})`);
+      if (!partNames(owner).includes(part)) return err("E3D_PART", `${p}.target`, `"${base}" has no named part "${part}" (known: ${partNames(owner).join(", ") || "none"})`);
+      if (a.do === "move" && a.to == null) err("E3D_REQUIRED", `${p}.to`, "move needs to: [x, y, z]");
       return;
     }
     const o = ids.get(a.target);
     if (!o) return err("E3D_TARGET", `${p}.target`, `no object "${a.target}"`);
+    if (a.do === "feel" && !FEELINGS.includes(a.feeling)) err("E3D_FEELING", `${p}.feeling`, `feeling must be one of ${FEELINGS.join(", ")}`);
+    if (a.do === "feel" && o.kind === "shape" && !o.face) err("E3D_TARGET_KIND", `${p}.target`, `feel needs a face: "${a.target}" is a shape without face: true`);
+    if (a.do === "paint" && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `paint needs a known color, got "${a.color}"`);
+    if (a.do === "clock" && a.to == null && a.minuteHand == null) err("E3D_REQUIRED", p, "clock needs to (a time) or minuteHand");
+    if (a.do === "clock" && a.to != null && !clockOk(a.to)) err("E3D_TIME", `${p}.to`, 'to must look like "3:25" (hours 1-12)');
+    if (a.do === "aim" && !isVec(a.to)) err("E3D_VEC", `${p}.to`, "aim needs to: [x, y, z]");
+    if (a.do === "path" && !(Array.isArray(a.points) && a.points.length && a.points.every(isVec))) err("E3D_VEC", `${p}.points`, "path needs points: a list of [x, y, z]");
     if ((a.do === "sleep" || a.do === "wake") && o.kind === "shape" && !o.face) err("E3D_TARGET_KIND", `${p}.target`, `${a.do} needs eyes: "${a.target}" is a shape without face: true`);
     if (TARGETS[a.do] && !TARGETS[a.do].includes(o.kind)) err("E3D_TARGET_KIND", `${p}.target`, `${a.do} needs a ${TARGETS[a.do].join(" or ")}, "${a.target}" is a ${o.kind}`);
     if (a.do === "clip") {
@@ -146,4 +197,18 @@ export function validateScript(script, catalog) {
   }
 
   return { ok: errors.length === 0, errors, warnings };
+
+  function partNames(o) {
+    const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
+    return m ? ["head", "body", ...m.parts.filter((x) => x.name).map((x) => x.name)] : [];
+  }
+}
+
+function clockOk(text) {
+  try {
+    parseClock(text);
+    return true;
+  } catch {
+    return false;
+  }
 }

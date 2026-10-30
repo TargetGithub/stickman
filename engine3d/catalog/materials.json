@@ -1,10 +1,109 @@
 {
   "description": "Surface styles (MeshPhysicalMaterial settings). The colour comes from colors.json; a style sets how the surface reacts to light.",
   "materials": {
-    "toy":    { "roughness": 0.38, "metalness": 0, "clearcoat": 0.6, "clearcoatRoughness": 0.25, "description": "Glossy plastic toy (default for blocks and letters).", "tags": ["default", "plastic"] },
-    "matte":  { "roughness": 0.9, "metalness": 0, "description": "Chalky matte (floors, backdrops, felt).", "tags": ["stage"] },
-    "glossy": { "roughness": 0.12, "metalness": 0, "clearcoat": 1, "clearcoatRoughness": 0.05, "description": "Shiny candy coat.", "tags": ["plastic", "shiny"] },
-    "metal":  { "roughness": 0.3, "metalness": 1, "description": "Brushed metal (coins, trophies).", "tags": ["shiny"] },
-    "glow":   { "roughness": 0.5, "metalness": 0, "emissive": 0.6, "description": "Lit from inside (highlights, stars).", "tags": ["highlight"] }
+    "toy": {
+      "roughness": 0.38,
+      "metalness": 0,
+      "clearcoat": 0.6,
+      "clearcoatRoughness": 0.25,
+      "description": "Glossy plastic toy (default for blocks and letters).",
+      "tags": [
+        "default",
+        "plastic"
+      ]
+    },
+    "matte": {
+      "roughness": 0.9,
+      "metalness": 0,
+      "description": "Chalky matte (floors, backdrops, felt).",
+      "tags": [
+        "stage"
+      ]
+    },
+    "glossy": {
+      "roughness": 0.12,
+      "metalness": 0,
+      "clearcoat": 1,
+      "clearcoatRoughness": 0.05,
+      "description": "Shiny candy coat.",
+      "tags": [
+        "plastic",
+        "shiny"
+      ]
+    },
+    "metal": {
+      "roughness": 0.3,
+      "metalness": 1,
+      "description": "Brushed metal (coins, trophies).",
+      "tags": [
+        "shiny"
+      ]
+    },
+    "glow": {
+      "roughness": 0.5,
+      "metalness": 0,
+      "emissive": 0.6,
+      "description": "Lit from inside (highlights, stars).",
+      "tags": [
+        "highlight"
+      ]
+    },
+    "water": {
+      "roughness": 0.05,
+      "metalness": 0,
+      "clearcoat": 1,
+      "clearcoatRoughness": 0.02,
+      "opacity": 0.6,
+      "description": "See-through water or juice (use with blue, teal or orange).",
+      "tags": [
+        "science",
+        "water",
+        "transparent"
+      ]
+    },
+    "glass": {
+      "roughness": 0.04,
+      "metalness": 0,
+      "clearcoat": 1,
+      "clearcoatRoughness": 0.02,
+      "opacity": 0.28,
+      "description": "Clear glass (jars, cups, windows): you can see what is inside.",
+      "tags": [
+        "science",
+        "transparent"
+      ]
+    },
+    "ice": {
+      "roughness": 0.12,
+      "metalness": 0,
+      "clearcoat": 1,
+      "clearcoatRoughness": 0.1,
+      "opacity": 0.78,
+      "description": "Frosty ice (ice cubes, icebergs): shiny and a little see-through.",
+      "tags": [
+        "science",
+        "winter",
+        "transparent"
+      ]
+    },
+    "paper": {
+      "roughness": 0.95,
+      "metalness": 0,
+      "description": "Flat paper or card (maps, signs, tickets).",
+      "tags": [
+        "flat",
+        "school"
+      ]
+    },
+    "light": {
+      "roughness": 0.4,
+      "metalness": 0,
+      "emissive": 1.4,
+      "description": "A light that is on (traffic lights, lamps, screens): glows brightly.",
+      "tags": [
+        "highlight",
+        "signs"
+      ]
+    }
   }
 }

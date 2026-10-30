@@ -215,9 +215,36 @@ const RECIPES = {
   },
   ding: (o) => partials(o, [3135, 5120, 7380], { gain: 0.7, decay: 1.0, attack: 0.002 }),
   crystal_chime: (o) => { [1046.5, 1318.5, 1568, 2093].forEach((f, k) => partials(o, [f, f * 2.76, f * 5.4], { gain: 0.6, decay: 1.1, attack: 0.003, start: k * 0.09 })); },
+  // Toy Box Friends batch 2 (engine3d): clocks, science kit, shop, music and vehicles.
+  tick: (o) => { partials(o, [2600, 3900], { gain: 0.6, decay: 0.02, attack: 0.001 }); partials(o, [1900, 2850], { gain: 0.5, decay: 0.025, attack: 0.001, start: 0.5 }); },
+  fizz: (o, r) => {
+    // A bubbly hiss that fades, with tiny pops scattered through it.
+    noise(o, r, { gain: 0.7, attack: 0.04, decay: 1.1, lp0: 9000, lp1: 5000, hp: 2500, am: 0.6, amRate: 37 });
+    for (let k = 0; k < 18; k++) sweepSine(o, { f0: 1500 + r() * 2500, f1: 3000 + r() * 2000, sweep: 0.01, decay: 0.015, gain: 0.2, start: r() * 1.2 });
+  },
+  rain: (o, r) => {
+    noise(o, r, { gain: 0.6, attack: 0.4, decay: 1.6, lp0: 5000, hp: 700, am: 0.25, amRate: 13 });
+    for (let k = 0; k < 24; k++) sweepSine(o, { f0: 900 + r() * 1600, f1: 600 + r() * 900, sweep: 0.012, decay: 0.02, gain: 0.25, start: r() * 1.9 });
+  },
+  twang: (o) => { sweepSine(o, { f0: 206, f1: 196, sweep: 0.05, attack: 0.002, decay: 0.9, gain: 0.8, vibrato: 0.012, vibratoRate: 6 }); partials(o, [392, 588, 784], { gain: 0.35, decay: 0.5, attack: 0.002 }); },
+  drum: (o, r) => { sweepSine(o, { f0: 180, f1: 92, sweep: 0.12, attack: 0.002, decay: 0.35 }); noise(o, r, { gain: 0.35, decay: 0.05, lp0: 1800 }); },
+  train_whistle: (o, r) => {
+    // Two breathy chords: whoo-whoo.
+    for (const [start, decay] of [[0, 0.4], [0.5, 0.7]]) partials(o, [523, 659, 784, 1046], { gain: 0.5, attack: 0.06, decay, start });
+    noise(o, r, { gain: 0.15, attack: 0.05, decay: 1.1, lp0: 2500, hp: 600 });
+  },
+  cha_ching: (o, r) => { noise(o, r, { gain: 0.45, decay: 0.05, lp0: 1500 }); partials(o, [2093, 3136, 4186], { gain: 0.55, decay: 0.5, start: 0.08 }); partials(o, [2637, 3951, 5274], { gain: 0.5, decay: 0.7, start: 0.22 }); },
+  clink: (o) => partials(o, [3200, 4730, 6110], { gain: 0.6, decay: 0.15, attack: 0.001 }),
+  rocket: (o, r) => {
+    // A toy rocket: a rising rumble and whoosh, soft enough for little ears.
+    noise(o, r, { gain: 0.9, attack: 0.35, decay: 1.5, lp0: 500, lp1: 2600, hp: 80 });
+    sweepSine(o, { f0: 60, f1: 190, sweep: 1.6, attack: 0.3, decay: 1.3, gain: 0.45 });
+    drive(o, 1.4);
+  },
+  pour: (o, r) => noise(o, r, { gain: 0.7, attack: 0.15, decay: 1.1, lp0: 1300, lp1: 2400, hp: 350, am: 0.35, amRate: 21 }),
 };
 
-const LENGTH = { giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { tick: 0.7, fizz: 1.4, rain: 2.2, twang: 1.2, drum: 0.6, train_whistle: 1.4, cha_ching: 1.1, clink: 0.4, rocket: 2.2, pour: 1.5, giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

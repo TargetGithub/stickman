@@ -49,7 +49,7 @@
     },
     "move": {
       "params": {
-        "target": "object id",
+        "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",
         "to": "[x, y, z]",
         "dur": "default 1",
         "ease": "ease name"
@@ -61,7 +61,7 @@
     },
     "turn": {
       "params": {
-        "target": "object id",
+        "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",
         "to": "[x, y, z] degrees",
         "dur": "default 0.8",
         "ease": "ease name"
@@ -73,7 +73,7 @@
     },
     "spin": {
       "params": {
-        "target": "object id",
+        "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",
         "turns": "default 1",
         "dur": "default 1"
       },
@@ -99,8 +99,9 @@
     "grow": {
       "params": {
         "target": "object id",
-        "to": "scale (number), default 1.3",
-        "dur": "default 0.4"
+        "to": "scale factor (number, default 1.3), or [x, y, z] factors to stretch one way (a water level rising: [1, 2, 1])",
+        "dur": "default 0.4",
+        "ease": "ease name, default backOut"
       },
       "description": "Scale to a new size and stay.",
       "tags": [
@@ -180,7 +181,7 @@
     },
     "wiggle": {
       "params": {
-        "target": "object id",
+        "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",
         "deg": "swing in degrees, default 12",
         "dur": "default 0.8"
       },
@@ -220,6 +221,88 @@
       "description": "Open the eyes.",
       "tags": [
         "night"
+      ]
+    },
+    "feel": {
+      "params": {
+        "target": "critter, character or shape with face: true",
+        "feeling": "happy, sad, surprised, angry, worried or sleepy",
+        "dur": "blend time, default 0.35",
+        "sound": "optional sound"
+      },
+      "description": "Show a feeling: eyebrows, mouth and eyes change and the head tilts (Robo uses his face). Stays until the next feel.",
+      "tags": [
+        "feelings",
+        "social"
+      ]
+    },
+    "paint": {
+      "params": {
+        "target": "object id",
+        "color": "colors.json name (required)",
+        "dur": "default 0.8",
+        "ease": "ease name"
+      },
+      "description": "Blend the object's main colour to another colour (a leaf turning orange, a describing word changing a balloon).",
+      "tags": [
+        "colour",
+        "magic"
+      ]
+    },
+    "lights": {
+      "params": {
+        "rig": "lights name (soft_day, studio, moonlight, evening, dim, overcast...)",
+        "background": "colors.json name",
+        "floor": "colors.json name",
+        "rug": "colors.json name",
+        "dur": "default 2",
+        "ease": "ease name"
+      },
+      "description": "Change the stage's light and colours over time: day to night, a dim theatre, a grey winter sky, sand to snow.",
+      "tags": [
+        "stage",
+        "time",
+        "seasons"
+      ]
+    },
+    "clock": {
+      "params": {
+        "target": "clock id",
+        "to": "time like \"3:30\"; the hands always go forward",
+        "dur": "default 1.5",
+        "ease": "ease name",
+        "minuteHand": "false hides the long hand, true shows it",
+        "sound": "optional sound (windup_click, tick)"
+      },
+      "description": "Turn a clock's hands to a time, the way a real clock moves.",
+      "tags": [
+        "time",
+        "maths"
+      ]
+    },
+    "aim": {
+      "params": {
+        "target": "lamp id",
+        "to": "[x, y, z] the spot to light",
+        "dur": "default 1",
+        "ease": "ease name"
+      },
+      "description": "Point a lamp at a new spot (a torch sweeping across a wall).",
+      "tags": [
+        "light"
+      ]
+    },
+    "path": {
+      "params": {
+        "target": "object id",
+        "points": "list of [x, y, z] to travel through",
+        "dur": "default 3",
+        "face": "true turns it toward where it is going"
+      },
+      "description": "Travel through points at an even speed (a train along its track, a route on a map, a rocket's arc).",
+      "tags": [
+        "move",
+        "maps"
       ]
     }
   }
