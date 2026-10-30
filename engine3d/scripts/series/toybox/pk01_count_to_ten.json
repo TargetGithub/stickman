@@ -1,0 +1,1307 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Count from 1 to 10 with Robo! Colourful number blocks drop and build two rows of five, then we count them again and count back down to blast off.",
+  "meta": {
+    "title": "Count to 10 with Robo",
+    "series": "toybox",
+    "episode": "pk01",
+    "audience": "prek",
+    "seed": 101,
+    "voice": "soft",
+    "voiceSpeed": 0.95,
+    "music": "bouncy",
+    "musicGain": 0.28,
+    "skills": [
+      "count_to_5_prek",
+      "number_order_prek",
+      "count_to_10_k"
+    ],
+    "thumbnail": {
+      "t": 30.61
+    },
+    "youtube": {
+      "title": "Count to 10 with Blocks! 🔢 Numbers for Toddlers | Toy Box Friends",
+      "description": "Count from 1 to 10 with Robo! Colourful number blocks drop and build two rows of five, then we count them again and count back down to blast off.\nGreat for toddlers and preschoolers learning numbers 1-10. Count out loud together!",
+      "tags": [
+        "count to 10",
+        "counting for kids",
+        "numbers 1 to 10",
+        "learn numbers",
+        "number blocks",
+        "toddler learning",
+        "preschool",
+        "kids learning video",
+        "learning for toddlers",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "playroom"
+  },
+  "camera": {
+    "position": [0, 1.5, 8.4],
+    "lookAt": [0, 0.8, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-3.6, 0, 0.6],
+      "rotation": [0, 30, 0]
+    },
+    {
+      "id": "b1",
+      "kind": "number_block",
+      "value": 1,
+      "color": "red",
+      "size": 0.78,
+      "at": [-1.6400000000000001, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "b2",
+      "kind": "number_block",
+      "value": 2,
+      "color": "orange",
+      "size": 0.78,
+      "at": [-0.8200000000000001, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "b3",
+      "kind": "number_block",
+      "value": 3,
+      "color": "yellow",
+      "size": 0.78,
+      "at": [0, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "b4",
+      "kind": "number_block",
+      "value": 4,
+      "color": "green",
+      "size": 0.78,
+      "at": [0.8200000000000001, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "b5",
+      "kind": "number_block",
+      "value": 5,
+      "color": "blue",
+      "size": 0.78,
+      "at": [1.6400000000000001, 0, 0],
+      "hidden": true
+    },
+    {
+      "id": "b6",
+      "kind": "number_block",
+      "value": 6,
+      "color": "purple",
+      "size": 0.78,
+      "at": [-1.6400000000000001, 0.78, 0],
+      "hidden": true
+    },
+    {
+      "id": "b7",
+      "kind": "number_block",
+      "value": 7,
+      "color": "pink",
+      "size": 0.78,
+      "at": [-0.8200000000000001, 0.78, 0],
+      "hidden": true
+    },
+    {
+      "id": "b8",
+      "kind": "number_block",
+      "value": 8,
+      "color": "teal",
+      "size": 0.78,
+      "at": [0, 0.78, 0],
+      "hidden": true
+    },
+    {
+      "id": "b9",
+      "kind": "number_block",
+      "value": 9,
+      "color": "red",
+      "size": 0.78,
+      "at": [0.8200000000000001, 0.78, 0],
+      "hidden": true
+    },
+    {
+      "id": "b10",
+      "kind": "number_block",
+      "value": 10,
+      "color": "orange",
+      "size": 0.78,
+      "at": [1.6400000000000001, 0.78, 0],
+      "hidden": true
+    },
+    {
+      "id": "d1",
+      "kind": "letter",
+      "text": "1",
+      "color": "red",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d2",
+      "kind": "letter",
+      "text": "2",
+      "color": "orange",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d3",
+      "kind": "letter",
+      "text": "3",
+      "color": "yellow",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d4",
+      "kind": "letter",
+      "text": "4",
+      "color": "green",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d5",
+      "kind": "letter",
+      "text": "5",
+      "color": "blue",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d6",
+      "kind": "letter",
+      "text": "6",
+      "color": "purple",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d7",
+      "kind": "letter",
+      "text": "7",
+      "color": "pink",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d8",
+      "kind": "letter",
+      "text": "8",
+      "color": "teal",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d9",
+      "kind": "letter",
+      "text": "9",
+      "color": "red",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "d10",
+      "kind": "letter",
+      "text": "10",
+      "color": "orange",
+      "size": 1.1,
+      "at": [4.1, 0.3, 0.5],
+      "rotation": [0, -22, 0],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 260,
+      "area": [10, 5],
+      "height": 7.5
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "title": "Hello!",
+      "beats": [
+        {
+          "id": "hello",
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "bell"
+            },
+            {
+              "do": "caption",
+              "text": "Count to 10!",
+              "at": 0.1,
+              "style": "title",
+              "dur": 3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.3
+            },
+            {
+              "do": "say",
+              "text": "Hi friends! I'm Robo. Let's count to ten with blocks!",
+              "at": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "count",
+      "title": "Counting 1 to 10",
+      "beats": [
+        {
+          "id": "count1",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b1",
+              "to": [-1.6400000000000001, 0, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "pop",
+              "target": "d1",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "One!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count2",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b2",
+              "to": [-0.8200000000000001, 0, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d1",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d2",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Two!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count3",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b3",
+              "to": [0, 0, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d2",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d3",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Three!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count4",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b4",
+              "to": [0.8200000000000001, 0, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d3",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d4",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Four!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count5",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b5",
+              "to": [1.6400000000000001, 0, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d4",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d5",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Five! Five blocks make one row!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count6",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b6",
+              "to": [-1.6400000000000001, 0.78, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d5",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d6",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Six!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.6
+            },
+            {
+              "do": "camera",
+              "position": [0, 2, 9],
+              "lookAt": [0, 1.1, 0],
+              "dur": 1.5
+            }
+          ]
+        },
+        {
+          "id": "count7",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b7",
+              "to": [-0.8200000000000001, 0.78, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d6",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d7",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Seven!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count8",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b8",
+              "to": [0, 0.78, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d7",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d8",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Eight!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count9",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b9",
+              "to": [0.8200000000000001, 0.78, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d8",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d9",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Nine!",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "id": "count10",
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "drop",
+              "target": "b10",
+              "to": [1.6400000000000001, 0.78, 0],
+              "height": 6,
+              "dur": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "d9",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "d10",
+              "at": 0.45
+            },
+            {
+              "do": "say",
+              "text": "Ten! Ten blocks! Two rows of five.",
+              "at": 0.5
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "again",
+      "title": "Count them again",
+      "beats": [
+        {
+          "id": "ready",
+          "dur": 1.5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "d10"
+            },
+            {
+              "do": "say",
+              "text": "Let's count them all again!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "again1",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b1",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b6",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "One!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again2",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b2",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b7",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Two!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again3",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b3",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b8",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Three!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again4",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b4",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b9",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Four!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again5",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b5",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b10",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "5",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Five!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again6",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b6",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "6",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Six!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again7",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b7",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "7",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Seven!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again8",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b8",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "8",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Eight!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again9",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b9",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "9",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Nine!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "again10",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b10",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "10",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Ten!",
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "down",
+      "title": "Count down to blast off",
+      "beats": [
+        {
+          "id": "ready_down",
+          "dur": 1.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "Now let's count back down. Ready?",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "id": "down10",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b10",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "10",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Ten!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down9",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b9",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "9",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Nine!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down8",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b8",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "8",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Eight!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down7",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b7",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "7",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Seven!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down6",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b6",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "6",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Six!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down5",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b5",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b10",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "5",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Five!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down4",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b4",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b9",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Four!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down3",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b3",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b8",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Three!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down2",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b2",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b7",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "Two!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "down1",
+          "dur": 0.9,
+          "do": [
+            {
+              "do": "hop",
+              "target": "b1",
+              "height": 0.3,
+              "dur": 0.38,
+              "sound": "pop"
+            },
+            {
+              "do": "hop",
+              "target": "b6",
+              "height": 0.3,
+              "dur": 0.38
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "at": 0,
+              "style": "count",
+              "dur": 0.85
+            },
+            {
+              "do": "say",
+              "text": "One!",
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "id": "blastoff",
+          "dur": 4,
+          "do": [
+            {
+              "do": "burst",
+              "target": "party",
+              "dur": 4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Jump",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "text": "Blast off! Great counting!",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.2,
+              "volume": 0.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 1.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "title": "Bye bye!",
+      "beats": [
+        {
+          "id": "bye",
+          "dur": 3.5,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            },
+            {
+              "do": "say",
+              "text": "See you next time. Bye bye!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 2.8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

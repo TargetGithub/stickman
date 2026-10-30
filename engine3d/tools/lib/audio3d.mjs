@@ -23,7 +23,7 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   const table = loadVoiceTable();
   const lines = plan.lines.map((l) => ({
     id: l.id, who: l.voice, text: l.text, spoken: cleanText(l.text), bubble: "speech",
-    voice: l.voice === "narrator" ? narratorVoice({}, table) : resolveVoice({ timbre: l.voice, pitch: 1.1, speed: 0.95 }, table),
+    voice: l.voice === "narrator" ? narratorVoice({}, table) : resolveVoice({ timbre: l.voice, pitch: 1.1, speed: plan.meta?.voiceSpeed ?? 0.95 }, table),
   }));
   const out = {};
   for (const l of synthesizeLines(lines, createPiperBackend(), { log })) out[l.id] = { dur: l.dur, key: l.key, file: l.file };
@@ -46,7 +46,7 @@ function speechDuck(spans) {
  * Mix the plan's sounds, speech and an optional music bed to a 48 kHz stereo WAV levelled for YouTube.
  * @returns {{ file:string, lufs:number }}
  */
-export function mixPlan(plan, speech, out, { music = "bouncy", log = () => {} } = {}) {
+export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy", musicGain = plan.meta?.musicGain ?? 0.32, log = () => {} } = {}) {
   const sfxDir = join(REPO, "assets/sfx/generated");
   const tts = clipSampler();
   const sfx = new Map();
@@ -65,7 +65,7 @@ export function mixPlan(plan, speech, out, { music = "bouncy", log = () => {} } 
   let bed = null;
   if (music) {
     bed = renderMusic({ mood: music, catalog: loadCatalogSync(), seed: plan.seed, seconds: plan.duration }).samples;
-    for (let i = 0; i < bed.length; i++) bed[i] *= 0.32;
+    for (let i = 0; i < bed.length; i++) bed[i] *= musicGain;
     log(`  music: ${music}`);
   }
   const duck = speechDuck(spans);

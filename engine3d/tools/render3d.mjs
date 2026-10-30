@@ -29,7 +29,7 @@ const WC_BITRATE = (w, fps) => (w >= 3840 ? (fps > 30 ? 60e6 : 45e6) : w >= 1920
 const RES = { "720p": [1280, 720], "1080p": [1920, 1080], "4k": [3840, 2160] };
 
 function parseArgs(argv) {
-  const o = { res: "1080p", fps: 30, gl: "gpu", jobs: 1, encoder: "webcodecs", speech: "tts", music: "bouncy", inflight: 4 };
+  const o = { res: "1080p", fps: 30, gl: "gpu", jobs: 1, encoder: "webcodecs", speech: "tts", inflight: 4 };
   const rest = [];
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -206,7 +206,7 @@ async function main() {
     const audioArgs = [];
     if (from === 0 && to === total) {
       const wav = join(tmp, "mix.wav");
-      const mix = mixPlan(plan, speech, wav, { music: o.music === "off" ? null : o.music, log });
+      const mix = mixPlan(plan, speech, wav, { ...(o.music ? { music: o.music === "off" ? null : o.music } : {}), log });
       stats.lufs = mix.lufs;
       audioArgs.push("-i", wav, "-map", "0:v", "-map", "1:a", "-c:a", "aac", "-b:a", "192k");
     }

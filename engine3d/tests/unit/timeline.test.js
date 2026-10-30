@@ -7,7 +7,7 @@ import { deriveRng } from "../../runtime/rng.js";
 test("eases start at 0 and end at their end value", () => {
   for (const n of EASE_NAMES) {
     assert.ok(Math.abs(ease(n, 0)) < 1e-9, n);
-    assert.ok(Math.abs(ease(n, 1) - (n === "hop" ? 0 : 1)) < 1e-9, n);
+    assert.ok(Math.abs(ease(n, 1) - (n === "hop" || n === "wiggle" ? 0 : 1)) < 1e-9, n);
   }
 });
 

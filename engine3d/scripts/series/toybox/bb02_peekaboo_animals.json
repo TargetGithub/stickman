@@ -1,0 +1,673 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Who is hiding behind the bush? Peekaboo! Six gentle animal friends pop out to say hello: duck, bunny, pig, cat, puppy and cow, each with its sound.",
+  "meta": {
+    "title": "Peekaboo Animals",
+    "series": "toybox",
+    "episode": "bb02",
+    "audience": "babies",
+    "seed": 202,
+    "voice": "soft",
+    "voiceSpeed": 0.82,
+    "music": "calm",
+    "musicGain": 0.28,
+    "skills": [
+      "listening_prek"
+    ],
+    "thumbnail": {
+      "t": 9.5
+    },
+    "youtube": {
+      "title": "Peekaboo Animals for Babies 🙈 Duck, Bunny, Pig & More | Toy Box Friends",
+      "description": "Who is hiding behind the bush? Peekaboo! Six gentle animal friends pop out to say hello: duck, bunny, pig, cat, puppy and cow, each with its sound.\nA slow, happy game for babies: say peekaboo together!",
+      "tags": [
+        "peekaboo",
+        "peekaboo for babies",
+        "baby video",
+        "animals for babies",
+        "baby games",
+        "toddler learning",
+        "preschool",
+        "kids learning video",
+        "learning for toddlers",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "garden"
+  },
+  "camera": {
+    "position": [0, 1.4, 7.6],
+    "lookAt": [0, 0.8, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "bush0",
+      "kind": "prop",
+      "model": "bush",
+      "size": 1.45,
+      "at": [-2.6, 0, 0.4]
+    },
+    {
+      "id": "bush1",
+      "kind": "prop",
+      "model": "bush",
+      "size": 1.45,
+      "at": [0, 0, 0.4]
+    },
+    {
+      "id": "bush2",
+      "kind": "prop",
+      "model": "bush",
+      "size": 1.45,
+      "at": [2.6, 0, 0.4]
+    },
+    {
+      "id": "tree",
+      "kind": "prop",
+      "model": "tree",
+      "size": 1.4,
+      "at": [-5.6, 0, -4.5]
+    },
+    {
+      "id": "tree2",
+      "kind": "prop",
+      "model": "tree",
+      "size": 1.1,
+      "at": [5.4, 0, -5]
+    },
+    {
+      "id": "cloud",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 1.3,
+      "at": [-1.5, 5.4, -8]
+    },
+    {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "size": 1.1,
+      "at": [4.2, 5.6, -9]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "size": 1.05,
+      "at": [-2.6, -1.3, -0.35]
+    },
+    {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "size": 1.05,
+      "at": [0, -1.3, -0.35]
+    },
+    {
+      "id": "pig",
+      "kind": "critter",
+      "species": "pig",
+      "size": 1.05,
+      "at": [2.6, -1.3, -0.35]
+    },
+    {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 1.05,
+      "at": [-2.6, -1.3, -0.35]
+    },
+    {
+      "id": "dog",
+      "kind": "critter",
+      "species": "dog",
+      "size": 1.05,
+      "at": [0, -1.3, -0.35]
+    },
+    {
+      "id": "cow",
+      "kind": "critter",
+      "species": "cow",
+      "size": 1.05,
+      "at": [2.6, -1.3, -0.35]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hello",
+      "title": "Hello!",
+      "beats": [
+        {
+          "id": "hello",
+          "dur": 4.5,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Peekaboo!",
+              "at": 0.4,
+              "style": "title",
+              "dur": 3.5
+            },
+            {
+              "do": "say",
+              "text": "Hello, baby! Let's play peekaboo!",
+              "at": 1.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "peek",
+      "title": "Who is hiding?",
+      "beats": [
+        {
+          "id": "peek_duck",
+          "dur": 12,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who is hiding?",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bush0",
+              "at": 1.6,
+              "deg": 6,
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 1.7,
+              "volume": 0.5
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [-2.6, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 3.6,
+              "ease": "backOut"
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 3.6,
+              "volume": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Peekaboo!",
+              "at": 3.7,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 4.5
+            },
+            {
+              "do": "say",
+              "text": "It's the duck!",
+              "at": 5.4
+            },
+            {
+              "do": "say",
+              "text": "Quack quack!",
+              "at": 7.2,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 7.3
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [-2.6, -1.3, -0.35],
+              "dur": 0.9,
+              "at": 10.2,
+              "ease": "quadIn"
+            }
+          ]
+        },
+        {
+          "id": "peek_bunny",
+          "dur": 12,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who is hiding?",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bush1",
+              "at": 1.6,
+              "deg": 6,
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 1.7,
+              "volume": 0.5
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [0, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 3.6,
+              "ease": "backOut"
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 3.6,
+              "volume": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Peekaboo!",
+              "at": 3.7,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "bunny",
+              "at": 4.5
+            },
+            {
+              "do": "say",
+              "text": "It's the bunny!",
+              "at": 5.4
+            },
+            {
+              "do": "say",
+              "text": "Hop hop!",
+              "at": 7.2,
+              "voice": "soft"
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 7.3
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "to": [0, -1.3, -0.35],
+              "dur": 0.9,
+              "at": 10.2,
+              "ease": "quadIn"
+            }
+          ]
+        },
+        {
+          "id": "peek_pig",
+          "dur": 12,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who is hiding?",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bush2",
+              "at": 1.6,
+              "deg": 6,
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 1.7,
+              "volume": 0.5
+            },
+            {
+              "do": "move",
+              "target": "pig",
+              "to": [2.6, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 3.6,
+              "ease": "backOut"
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 3.6,
+              "volume": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Peekaboo!",
+              "at": 3.7,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 4.5
+            },
+            {
+              "do": "say",
+              "text": "It's the pig!",
+              "at": 5.4
+            },
+            {
+              "do": "say",
+              "text": "Oink oink!",
+              "at": 7.2,
+              "voice": "soft"
+            },
+            {
+              "do": "nod",
+              "target": "pig",
+              "at": 7.3
+            },
+            {
+              "do": "move",
+              "target": "pig",
+              "to": [2.6, -1.3, -0.35],
+              "dur": 0.9,
+              "at": 10.2,
+              "ease": "quadIn"
+            }
+          ]
+        },
+        {
+          "id": "peek_cat",
+          "dur": 12,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who is hiding?",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bush0",
+              "at": 1.6,
+              "deg": 6,
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 1.7,
+              "volume": 0.5
+            },
+            {
+              "do": "move",
+              "target": "cat",
+              "to": [-2.6, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 3.6,
+              "ease": "backOut"
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 3.6,
+              "volume": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Peekaboo!",
+              "at": 3.7,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "cat",
+              "at": 4.5
+            },
+            {
+              "do": "say",
+              "text": "It's the cat!",
+              "at": 5.4
+            },
+            {
+              "do": "say",
+              "text": "Meow!",
+              "at": 7.2,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "cat",
+              "at": 7.3
+            },
+            {
+              "do": "move",
+              "target": "cat",
+              "to": [-2.6, -1.3, -0.35],
+              "dur": 0.9,
+              "at": 10.2,
+              "ease": "quadIn"
+            }
+          ]
+        },
+        {
+          "id": "peek_dog",
+          "dur": 12,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who is hiding?",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bush1",
+              "at": 1.6,
+              "deg": 6,
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 1.7,
+              "volume": 0.5
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [0, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 3.6,
+              "ease": "backOut"
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 3.6,
+              "volume": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Peekaboo!",
+              "at": 3.7,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "dog",
+              "at": 4.5
+            },
+            {
+              "do": "say",
+              "text": "It's the puppy!",
+              "at": 5.4
+            },
+            {
+              "do": "say",
+              "text": "Woof woof!",
+              "at": 7.2,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "dog",
+              "at": 7.3
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [0, -1.3, -0.35],
+              "dur": 0.9,
+              "at": 10.2,
+              "ease": "quadIn"
+            }
+          ]
+        },
+        {
+          "id": "peek_cow",
+          "dur": 12,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who is hiding?",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "bush2",
+              "at": 1.6,
+              "deg": 6,
+              "dur": 1
+            },
+            {
+              "do": "sound",
+              "sound": "squeak",
+              "at": 1.7,
+              "volume": 0.5
+            },
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [2.6, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 3.6,
+              "ease": "backOut"
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 3.6,
+              "volume": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Peekaboo!",
+              "at": 3.7,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "cow",
+              "at": 4.5
+            },
+            {
+              "do": "say",
+              "text": "It's the cow!",
+              "at": 5.4
+            },
+            {
+              "do": "say",
+              "text": "Moo!",
+              "at": 7.2,
+              "voice": "deep"
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 7.3
+            },
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [2.6, -1.3, -0.35],
+              "dur": 0.9,
+              "at": 10.2,
+              "ease": "quadIn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "title": "Bye bye!",
+      "beats": [
+        {
+          "id": "bye",
+          "dur": 6,
+          "do": [
+            {
+              "do": "move",
+              "target": "cat",
+              "to": [-2.6, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 0.3,
+              "ease": "backOut"
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [0, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 0.6,
+              "ease": "backOut"
+            },
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [2.6, 0.72, -0.35],
+              "dur": 0.7,
+              "at": 0.8999999999999999,
+              "ease": "backOut"
+            },
+            {
+              "do": "say",
+              "text": "Bye bye, friends!",
+              "at": 1.6,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "cat",
+              "at": 2
+            },
+            {
+              "do": "wiggle",
+              "target": "dog",
+              "at": 2.2
+            },
+            {
+              "do": "wiggle",
+              "target": "cow",
+              "at": 2.4
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 4.2,
+              "volume": 0.6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -23,8 +23,11 @@ export function loadCatalog3d() {
     stages: stages.stages,
     lights: stages.lights,
     sounds: read("sounds").sounds,
+    critters: read("models").critters,
+    props: read("models").props,
     kinds: read("kinds").kinds,
     actions: read("actions").actions,
     voices: [...Object.keys(voices.timbres), "narrator"],
+    musicMoods: Object.keys(JSON.parse(readFileSync(new URL("../../catalog/story/music_moods.json", import.meta.url), "utf8")).moods ?? {}),
   };
 }

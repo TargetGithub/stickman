@@ -30,6 +30,8 @@ export const EASES = {
   bounceOut,
   // A hop: 0 → 1 → 0 (for "up and back" moves such as a block's hop or a squash).
   hop: (u) => (u >= 1 ? 0 : Math.sin(Math.PI * u)),
+  // A wiggle: three swings that die away, ending where it began.
+  wiggle: (u) => (u >= 1 ? 0 : Math.sin(u * Math.PI * 6) * (1 - u)),
 };
 
 export const EASE_NAMES = Object.keys(EASES);

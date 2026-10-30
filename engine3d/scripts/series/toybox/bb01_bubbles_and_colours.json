@@ -1,0 +1,679 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "A calm, gentle video for babies and young toddlers: soft bubbles float up while coloured balls bounce, one at a time. Red, yellow, blue, green, orange and pink, with slow, clear words and soft music.",
+  "meta": {
+    "title": "Bubbles and Colours",
+    "series": "toybox",
+    "episode": "bb01",
+    "audience": "babies",
+    "seed": 201,
+    "voice": "soft",
+    "voiceSpeed": 0.8,
+    "music": "lullaby",
+    "musicGain": 0.3,
+    "skills": [],
+    "thumbnail": {
+      "t": 8
+    },
+    "youtube": {
+      "title": "Bubbles and Colours for Babies 🫧 Calm Bouncing Balls | Toy Box Friends",
+      "description": "A calm, gentle video for babies and young toddlers: soft bubbles float up while coloured balls bounce, one at a time. Red, yellow, blue, green, orange and pink, with slow, clear words and soft music.\nBest watched together: point at the colours and say them with your baby.",
+      "tags": [
+        "baby video",
+        "baby sensory",
+        "bubbles for babies",
+        "colours for babies",
+        "calm video for babies",
+        "toddler learning",
+        "preschool",
+        "kids learning video",
+        "learning for toddlers",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "garden"
+  },
+  "camera": {
+    "position": [0, 1.3, 6.4],
+    "lookAt": [0, 0.95, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "tree",
+      "kind": "prop",
+      "model": "tree",
+      "size": 1.3,
+      "at": [-5, 0, -4]
+    },
+    {
+      "id": "flower1",
+      "kind": "prop",
+      "model": "flower",
+      "at": [3.6, 0, -1.2]
+    },
+    {
+      "id": "flower2",
+      "kind": "prop",
+      "model": "flower",
+      "color": "purple",
+      "size": 0.8,
+      "at": [4.3, 0, -0.6]
+    },
+    {
+      "id": "cloud",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 1.4,
+      "at": [2.5, 4.2, -9]
+    },
+    {
+      "id": "bubbles0",
+      "kind": "bubbles",
+      "count": 26,
+      "area": [7, 2.5],
+      "height": 4.2,
+      "size": 0.38
+    },
+    {
+      "id": "bubbles1",
+      "kind": "bubbles",
+      "count": 26,
+      "area": [7, 2.5],
+      "height": 4.2,
+      "size": 0.38
+    },
+    {
+      "id": "bubbles2",
+      "kind": "bubbles",
+      "count": 26,
+      "area": [7, 2.5],
+      "height": 4.2,
+      "size": 0.38
+    },
+    {
+      "id": "bubbles3",
+      "kind": "bubbles",
+      "count": 26,
+      "area": [7, 2.5],
+      "height": 4.2,
+      "size": 0.38
+    },
+    {
+      "id": "bubbles4",
+      "kind": "bubbles",
+      "count": 26,
+      "area": [7, 2.5],
+      "height": 4.2,
+      "size": 0.38
+    },
+    {
+      "id": "ball_red",
+      "kind": "prop",
+      "model": "ball",
+      "color": "red",
+      "size": 1.25,
+      "at": [0, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "ball_yellow",
+      "kind": "prop",
+      "model": "ball",
+      "color": "yellow",
+      "size": 1.25,
+      "at": [0, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "ball_blue",
+      "kind": "prop",
+      "model": "ball",
+      "color": "blue",
+      "size": 1.25,
+      "at": [0, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "ball_green",
+      "kind": "prop",
+      "model": "ball",
+      "color": "green",
+      "size": 1.25,
+      "at": [0, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "ball_orange",
+      "kind": "prop",
+      "model": "ball",
+      "color": "orange",
+      "size": 1.25,
+      "at": [0, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "ball_pink",
+      "kind": "prop",
+      "model": "ball",
+      "color": "pink",
+      "size": 1.25,
+      "at": [0, 0, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [-2.6, 0, 0.8],
+      "rotation": [0, 25, 0]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hello",
+      "title": "Hello, baby!",
+      "beats": [
+        {
+          "id": "hello",
+          "dur": 5,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Bubbles!",
+              "at": 0.4,
+              "style": "title",
+              "dur": 3.5
+            },
+            {
+              "do": "burst",
+              "target": "bubbles4",
+              "at": 0.2,
+              "dur": 10
+            },
+            {
+              "do": "say",
+              "text": "Hello! Look... bubbles!",
+              "at": 1.2
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "balls",
+      "title": "Bouncy balls",
+      "beats": [
+        {
+          "id": "ball_red",
+          "dur": 11,
+          "do": [
+            {
+              "do": "drop",
+              "target": "ball_red",
+              "to": [0, 0, 0.6],
+              "height": 3,
+              "dur": 1.4,
+              "sound": "boing",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Red ball.",
+              "at": 1.8
+            },
+            {
+              "do": "caption",
+              "text": "red",
+              "at": 1.8,
+              "style": "label",
+              "dur": 3,
+              "color": "red"
+            },
+            {
+              "do": "hop",
+              "target": "ball_red",
+              "at": 4.5,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 4.6
+            },
+            {
+              "do": "hop",
+              "target": "ball_red",
+              "at": 6.3,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 6.4
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 7.5
+            },
+            {
+              "do": "say",
+              "text": "Red ball.",
+              "at": 8.4
+            },
+            {
+              "do": "burst",
+              "target": "bubbles0",
+              "at": 3,
+              "dur": 9
+            }
+          ]
+        },
+        {
+          "id": "ball_yellow",
+          "dur": 11,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ball_red",
+              "dur": 0.6
+            },
+            {
+              "do": "drop",
+              "target": "ball_yellow",
+              "to": [0, 0, 0.6],
+              "height": 3,
+              "dur": 1.4,
+              "sound": "boing",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Yellow ball.",
+              "at": 1.8
+            },
+            {
+              "do": "caption",
+              "text": "yellow",
+              "at": 1.8,
+              "style": "label",
+              "dur": 3,
+              "color": "yellow"
+            },
+            {
+              "do": "hop",
+              "target": "ball_yellow",
+              "at": 4.5,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 4.6
+            },
+            {
+              "do": "hop",
+              "target": "ball_yellow",
+              "at": 6.3,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 6.4
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 7.5
+            },
+            {
+              "do": "say",
+              "text": "Yellow ball.",
+              "at": 8.4
+            }
+          ]
+        },
+        {
+          "id": "ball_blue",
+          "dur": 11,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ball_yellow",
+              "dur": 0.6
+            },
+            {
+              "do": "drop",
+              "target": "ball_blue",
+              "to": [0, 0, 0.6],
+              "height": 3,
+              "dur": 1.4,
+              "sound": "boing",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Blue ball.",
+              "at": 1.8
+            },
+            {
+              "do": "caption",
+              "text": "blue",
+              "at": 1.8,
+              "style": "label",
+              "dur": 3,
+              "color": "blue"
+            },
+            {
+              "do": "hop",
+              "target": "ball_blue",
+              "at": 4.5,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 4.6
+            },
+            {
+              "do": "hop",
+              "target": "ball_blue",
+              "at": 6.3,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 6.4
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 7.5
+            },
+            {
+              "do": "say",
+              "text": "Blue ball.",
+              "at": 8.4
+            },
+            {
+              "do": "burst",
+              "target": "bubbles1",
+              "at": 3,
+              "dur": 9
+            }
+          ]
+        },
+        {
+          "id": "ball_green",
+          "dur": 11,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ball_blue",
+              "dur": 0.6
+            },
+            {
+              "do": "drop",
+              "target": "ball_green",
+              "to": [0, 0, 0.6],
+              "height": 3,
+              "dur": 1.4,
+              "sound": "boing",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Green ball.",
+              "at": 1.8
+            },
+            {
+              "do": "caption",
+              "text": "green",
+              "at": 1.8,
+              "style": "label",
+              "dur": 3,
+              "color": "green"
+            },
+            {
+              "do": "hop",
+              "target": "ball_green",
+              "at": 4.5,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 4.6
+            },
+            {
+              "do": "hop",
+              "target": "ball_green",
+              "at": 6.3,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 6.4
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 7.5
+            },
+            {
+              "do": "say",
+              "text": "Green ball.",
+              "at": 8.4
+            }
+          ]
+        },
+        {
+          "id": "ball_orange",
+          "dur": 11,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ball_green",
+              "dur": 0.6
+            },
+            {
+              "do": "drop",
+              "target": "ball_orange",
+              "to": [0, 0, 0.6],
+              "height": 3,
+              "dur": 1.4,
+              "sound": "boing",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Orange ball.",
+              "at": 1.8
+            },
+            {
+              "do": "caption",
+              "text": "orange",
+              "at": 1.8,
+              "style": "label",
+              "dur": 3,
+              "color": "orange"
+            },
+            {
+              "do": "hop",
+              "target": "ball_orange",
+              "at": 4.5,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 4.6
+            },
+            {
+              "do": "hop",
+              "target": "ball_orange",
+              "at": 6.3,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 6.4
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 7.5
+            },
+            {
+              "do": "say",
+              "text": "Orange ball.",
+              "at": 8.4
+            },
+            {
+              "do": "burst",
+              "target": "bubbles2",
+              "at": 3,
+              "dur": 9
+            }
+          ]
+        },
+        {
+          "id": "ball_pink",
+          "dur": 11,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ball_orange",
+              "dur": 0.6
+            },
+            {
+              "do": "drop",
+              "target": "ball_pink",
+              "to": [0, 0, 0.6],
+              "height": 3,
+              "dur": 1.4,
+              "sound": "boing",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Pink ball.",
+              "at": 1.8
+            },
+            {
+              "do": "caption",
+              "text": "pink",
+              "at": 1.8,
+              "style": "label",
+              "dur": 3,
+              "color": "pink"
+            },
+            {
+              "do": "hop",
+              "target": "ball_pink",
+              "at": 4.5,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 4.6
+            },
+            {
+              "do": "hop",
+              "target": "ball_pink",
+              "at": 6.3,
+              "height": 0.7,
+              "dur": 0.8,
+              "sound": "boing"
+            },
+            {
+              "do": "say",
+              "text": "Bounce!",
+              "at": 6.4
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 7.5
+            },
+            {
+              "do": "say",
+              "text": "Pink ball.",
+              "at": 8.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "title": "Bye bye!",
+      "beats": [
+        {
+          "id": "bye",
+          "dur": 5,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ball_pink",
+              "dur": 0.8
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Bye bye, bubbles. Bye bye!",
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 3.6,
+              "volume": 0.6
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

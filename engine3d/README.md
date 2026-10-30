@@ -15,12 +15,12 @@ cd engine3d && npm install && npx playwright install chromium
 
 | Path | What |
 |---|---|
-| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `director.js`, `compile.js`, `validate.js`, `plan.js`. Page only (three.js): `stage.js`, `objects.js`, `overlay.js`, `player.js`, `page.html`. |
-| `catalog/` | JSON catalog: colours, materials, shapes, fonts, characters, stages and lights, sounds, object kinds, actions. `index.mjs` loads it in Node. |
+| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `compile.js`, `validate.js`, `plan.js`. Page only (three.js): `stage.js`, `objects.js`, `models.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`. |
+| `catalog/` | JSON catalog: colours, materials, shapes (solids and flat 2D shapes), fonts, characters (glTF), models (toy animals and props built from parts), stages and lights, sounds, object kinds, actions. `index.mjs` loads it in Node. |
 | `assets/characters/` | glTF characters (CC0), with `LICENSES.md`. |
-| `scripts/` | JSON scripts (`count_to_five.json`). |
-| `scenes/` | JS scene modules (`vowels.js`). |
-| `tools/` | `render3d.mjs` (render, stills, hashes, benchmarks), `determinism.sh`, `lib/` (server, WebSocket, browser, encoder, audio, memory). |
+| `scripts/` | JSON scripts (`count_to_five.json`); series in `scripts/series/<name>/` (Toy Box Friends: `scripts/series/toybox/SERIES.md`). |
+| `scenes/` | JS scene modules (`vowels.js`, `model_sheet.js` for checking the catalog by eye). |
+| `tools/` | `render3d.mjs` (render, stills, hashes, benchmarks), `episode3d.mjs` (an episode's YouTube kit), `compile3d.mjs` (join episodes), `determinism.sh`, `lib/` (server, WebSocket, browser, encoder, audio, memory). |
 | `tests/` | `node --test`: timeline, validator fixtures, plan determinism, no-clock rule. |
 
 ## One timeline, two ways in
@@ -51,6 +51,11 @@ plan for TTS, the audio mix and the length.
 }
 ```
 
+Object kinds: `shape` (add `face: true` for eyes and a smile), `number_block`, `letter`, `critter` (toy
+animals that bob, blink and wag; `<id>#head` takes rotation tweens), `prop`, `character` (glTF), `confetti`,
+`bubbles`, `stars`. Script `meta` also takes `music` (a mood), `musicGain`, `voiceSpeed`, `series`,
+`episode`, `audience`, `skills`, `thumbnail.t` and `youtube`.
+
 Beats run one after another; `at` is seconds from the beat start. A beat lasts `dur` or until its last voice
 line ends, whichever is longer, so measured TTS clips stretch beats like 2D speech does. Kinds and their
 fields: `catalog/kinds.json`. Actions and their parameters: `catalog/actions.json`.
@@ -76,6 +81,8 @@ node engine3d/tools/render3d.mjs engine3d/scenes/vowels.js --stills 2,6,12      
 node engine3d/tools/render3d.mjs <input> --bench 150 --frames 300:450              # draw / readback / upload fps
 node engine3d/tools/render3d.mjs <input> --hash out/x.json                         # sha256 per raw frame
 engine3d/tools/determinism.sh                                                      # GPU x2, 3 pages, SwiftShader x2
+node engine3d/tools/episode3d.mjs engine3d/scripts/series/toybox/pk01_count_to_ten.json --review --final
+node engine3d/tools/compile3d.mjs --name prek_mix_1 --title "..." pk01_count_to_ten pk02_shapes   # from finals
 ```
 
 Options: `--jobs N` (pages rendering contiguous chunks in parallel), `--gl gpu|swiftshader`,

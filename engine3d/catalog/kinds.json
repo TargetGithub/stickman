@@ -1,10 +1,121 @@
 {
   "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale and hidden apply to every kind.",
   "kinds": {
-    "shape":        { "fields": { "shape": "shapes.json name (required)", "color": "colors.json name", "material": "materials.json name", "size": "number, default 1" }, "description": "A primitive (cube, ball, star...).", "tags": ["maths", "shapes"] },
-    "number_block": { "fields": { "value": "integer 0-99 (required)", "color": "colors.json name", "digitColor": "colors.json name, default white", "size": "number, default 1" }, "description": "A rounded toy block with its number on the front and back faces.", "tags": ["counting", "maths"] },
-    "letter":       { "fields": { "text": "1-12 characters (required)", "color": "colors.json name", "material": "materials.json name", "font": "fonts.json name", "size": "letter height, default 1", "depth": "extrusion depth, default 0.35" }, "description": "Extruded 3D text, centred on x and standing on its baseline (letters, digits, short words).", "tags": ["letters", "numbers", "vowels"] },
-    "character":    { "fields": { "character": "characters.json name (required)", "clip": "starting clip, default the character's idle" }, "description": "A rigged glTF character that plays catalog clips.", "tags": ["host"] },
-    "confetti":     { "fields": { "count": "pieces, default 160", "colors": "list of colors.json names", "area": "[width, depth] of the drop zone, default [8, 4]", "height": "drop height, default 7" }, "description": "Seeded confetti that falls when a burst action fires it.", "tags": ["reward", "celebration"] }
+    "shape": {
+      "fields": {
+        "shape": "shapes.json name (required)",
+        "color": "colors.json name",
+        "material": "materials.json name",
+        "size": "number, default 1",
+        "face": "true for eyes, rosy cheeks and a smile on the front"
+      },
+      "description": "A primitive (cube, ball, star...).",
+      "tags": [
+        "maths",
+        "shapes"
+      ]
+    },
+    "number_block": {
+      "fields": {
+        "value": "integer 0-99 (required)",
+        "color": "colors.json name",
+        "digitColor": "colors.json name, default white",
+        "size": "number, default 1"
+      },
+      "description": "A rounded toy block with its number on the front and back faces.",
+      "tags": [
+        "counting",
+        "maths"
+      ]
+    },
+    "letter": {
+      "fields": {
+        "text": "1-12 characters (required)",
+        "color": "colors.json name",
+        "material": "materials.json name",
+        "font": "fonts.json name",
+        "size": "letter height, default 1",
+        "depth": "extrusion depth, default 0.35"
+      },
+      "description": "Extruded 3D text, centred on x and standing on its baseline (letters, digits, short words).",
+      "tags": [
+        "letters",
+        "numbers",
+        "vowels"
+      ]
+    },
+    "character": {
+      "fields": {
+        "character": "characters.json name (required)",
+        "clip": "starting clip, default the character's idle"
+      },
+      "description": "A rigged glTF character that plays catalog clips.",
+      "tags": [
+        "host"
+      ]
+    },
+    "confetti": {
+      "fields": {
+        "count": "pieces, default 160",
+        "colors": "list of colors.json names",
+        "area": "[width, depth] of the drop zone, default [8, 4]",
+        "height": "drop height, default 7"
+      },
+      "description": "Seeded confetti that falls when a burst action fires it.",
+      "tags": [
+        "reward",
+        "celebration"
+      ]
+    },
+    "critter": {
+      "fields": {
+        "species": "models.json critters name (required)",
+        "color": "colors.json name, overrides the body colour",
+        "size": "number, default 1 (about 1.1 m tall)"
+      },
+      "description": "A toy animal that bobs, blinks and wags; targets <id>#head and named parts (tail) take rotation tweens; its eyes prop closes its eyes (sleep).",
+      "tags": [
+        "animals",
+        "babies",
+        "prek"
+      ]
+    },
+    "prop": {
+      "fields": {
+        "model": "models.json props name (required)",
+        "color": "colors.json name, overrides the main colour",
+        "size": "number, default 1"
+      },
+      "description": "A toy object built from parts (apple, ball, tree, bush, cloud, sun, moon, flower, house, balloon, gift, egg).",
+      "tags": [
+        "scenery",
+        "letters"
+      ]
+    },
+    "bubbles": {
+      "fields": {
+        "count": "bubbles, default 40",
+        "area": "[width, depth] they rise from, default [8, 3]",
+        "height": "highest pop height, default 4.5",
+        "size": "bubble diameter, default 0.35"
+      },
+      "description": "Soap bubbles that float up and pop (with soft pop sounds) when a burst action fires them.",
+      "tags": [
+        "babies",
+        "calm"
+      ]
+    },
+    "stars": {
+      "fields": {
+        "count": "default 120",
+        "color": "default gold",
+        "width": "backdrop width, default 70"
+      },
+      "description": "A backdrop of slowly twinkling stars (no flashing) for night scenes.",
+      "tags": [
+        "night",
+        "lullaby"
+      ]
+    }
   }
 }

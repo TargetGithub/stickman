@@ -1,14 +1,136 @@
 {
-  "description": "Primitive shapes for kind \"shape\". Sizes are in metres; a shape sits on its base (y = 0 is the floor contact).",
+  "description": "Shapes for kind \"shape\" (and model parts). Solids fit a 1 m box; flat shapes are puffy cut-outs facing the camera, for 2D shape names. Every shape stands on y = 0. Add face: true for eyes and a smile.",
   "shapes": {
-    "cube":     { "description": "A sharp-edged cube, size 1.", "tags": ["solid", "maths"] },
-    "block":    { "description": "A toy block: a cube with rounded edges, size 1.", "tags": ["solid", "toy", "maths"] },
-    "sphere":   { "description": "A ball, diameter 1.", "tags": ["solid", "round"] },
-    "cylinder": { "description": "A drum, diameter 1, height 1.", "tags": ["solid", "round"] },
-    "cone":     { "description": "A party hat cone, diameter 1, height 1.", "tags": ["solid", "pointy"] },
-    "pyramid":  { "description": "A square pyramid, base 1, height 1.", "tags": ["solid", "pointy", "maths"] },
-    "torus":    { "description": "A ring (doughnut), outer diameter 1.", "tags": ["round"] },
-    "star":     { "description": "A puffy five-point star, width 1.", "tags": ["reward", "pointy"] },
-    "heart":    { "description": "A puffy heart, width 1.", "tags": ["reward", "round"] }
+    "cube": {
+      "description": "A sharp-edged cube, size 1.",
+      "tags": [
+        "solid",
+        "maths"
+      ]
+    },
+    "block": {
+      "description": "A toy block: a cube with rounded edges, size 1.",
+      "tags": [
+        "solid",
+        "toy",
+        "maths"
+      ]
+    },
+    "sphere": {
+      "description": "A ball, diameter 1.",
+      "tags": [
+        "solid",
+        "round"
+      ]
+    },
+    "cylinder": {
+      "description": "A drum, diameter 1, height 1.",
+      "tags": [
+        "solid",
+        "round"
+      ]
+    },
+    "cone": {
+      "description": "A party hat cone, diameter 1, height 1.",
+      "tags": [
+        "solid",
+        "pointy"
+      ]
+    },
+    "pyramid": {
+      "description": "A square pyramid, base 1, height 1.",
+      "tags": [
+        "solid",
+        "pointy",
+        "maths"
+      ]
+    },
+    "torus": {
+      "description": "A ring (doughnut), outer diameter 1.",
+      "tags": [
+        "round"
+      ]
+    },
+    "star": {
+      "description": "A puffy five-point star, width 1.",
+      "tags": [
+        "reward",
+        "pointy"
+      ]
+    },
+    "heart": {
+      "description": "A puffy heart, width 1.",
+      "tags": [
+        "reward",
+        "round"
+      ]
+    },
+    "circle": {
+      "description": "A flat puffy circle (round, no corners), width 1.",
+      "tags": [
+        "flat",
+        "shape_lesson",
+        "prek"
+      ]
+    },
+    "square": {
+      "description": "A flat puffy square: four equal sides, four corners.",
+      "tags": [
+        "flat",
+        "shape_lesson",
+        "prek"
+      ]
+    },
+    "triangle": {
+      "description": "A flat puffy triangle: three sides, three corners.",
+      "tags": [
+        "flat",
+        "shape_lesson",
+        "prek"
+      ]
+    },
+    "rectangle": {
+      "description": "A flat puffy rectangle: two long sides, two short sides, width 1.4.",
+      "tags": [
+        "flat",
+        "shape_lesson",
+        "prek"
+      ]
+    },
+    "oval": {
+      "description": "A flat puffy oval (a stretched circle, like an egg lying down), width 1.24.",
+      "tags": [
+        "flat",
+        "shape_lesson"
+      ]
+    },
+    "diamond": {
+      "description": "A flat puffy diamond, height 1.2.",
+      "tags": [
+        "flat",
+        "shape_lesson"
+      ]
+    },
+    "crescent": {
+      "description": "A flat puffy crescent moon.",
+      "tags": [
+        "flat",
+        "night"
+      ]
+    },
+    "capsule": {
+      "description": "A pill shape (model parts: tails, ears).",
+      "tags": [
+        "solid",
+        "parts"
+      ]
+    },
+    "box": {
+      "description": "A box with slightly rounded edges (model parts).",
+      "tags": [
+        "solid",
+        "parts"
+      ]
+    }
   }
 }

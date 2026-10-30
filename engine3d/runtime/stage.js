@@ -49,10 +49,12 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   scene.add(sun, sun.target);
 
   const material = createMaterials(catalog);
-  const floor = new THREE.Mesh(new THREE.CircleGeometry(60, 96), material(preset.floor, "matte"));
-  floor.rotation.x = -Math.PI / 2;
-  floor.receiveShadow = true;
-  scene.add(floor);
+  if (preset.floor) {
+    const floor = new THREE.Mesh(new THREE.CircleGeometry(60, 96), material(preset.floor, "matte"));
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+  }
   if (preset.rug) {
     const rug = new THREE.Mesh(new THREE.CylinderGeometry(4.6, 4.6, 0.04, 128), material(preset.rug, "matte"));
     rug.position.y = 0.02;
@@ -77,7 +79,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
     for (const [id, h] of handles) {
       const s = state[id];
       const g = h.group;
-      g.position.set(...s.position);
+      g.position.set(s.position[0], s.position[1] + (s.hop ?? 0), s.position[2]);
       g.rotation.set(s.rotation[0] * DEG, s.rotation[1] * DEG, s.rotation[2] * DEG);
       g.scale.set(...s.scale.map((x) => Math.max(1e-4, x)));
       g.visible = s.visible && s.scale.some((x) => x > 1e-3);
@@ -91,7 +93,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
         }
         h.mixer.update(0);
       }
-      if (h.confetti) h.confetti.update(s.burst >= 0 ? t - s.burst : -1);
+      h.update?.(t, s, state);
     }
     const cam = state.camera;
     camera.position.set(...cam.position);

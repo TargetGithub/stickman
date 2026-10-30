@@ -1,0 +1,846 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Meet eight friendly shapes with smiley faces: circle, square, triangle, rectangle, star, heart, oval and diamond. Robo tells us how many sides and corners each one has, then we play find the shape!",
+  "meta": {
+    "title": "Shapes with Faces",
+    "series": "toybox",
+    "episode": "pk02",
+    "audience": "prek",
+    "seed": 102,
+    "voice": "soft",
+    "voiceSpeed": 0.95,
+    "music": "playful",
+    "musicGain": 0.26,
+    "skills": [
+      "basic_shapes_prek",
+      "more_shapes_k"
+    ],
+    "thumbnail": {
+      "t": 33.83
+    },
+    "youtube": {
+      "title": "Learn Shapes for Toddlers! ⭐ Circle, Square, Triangle & More | Toy Box Friends",
+      "description": "Meet eight friendly shapes with smiley faces: circle, square, triangle, rectangle, star, heart, oval and diamond. Robo tells us how many sides and corners each one has, then we play find the shape!\nFor toddlers and preschoolers learning shape names.",
+      "tags": [
+        "shapes for kids",
+        "learn shapes",
+        "circle square triangle",
+        "2D shapes",
+        "shape names",
+        "toddler learning",
+        "preschool",
+        "kids learning video",
+        "learning for toddlers",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "studio"
+  },
+  "camera": {
+    "position": [0, 2, 9.4],
+    "lookAt": [0, 1.5, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-3.6, 0, 0.6],
+      "rotation": [0, 30, 0]
+    },
+    {
+      "id": "circle",
+      "kind": "shape",
+      "shape": "circle",
+      "color": "red",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "square",
+      "kind": "shape",
+      "shape": "square",
+      "color": "blue",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "triangle",
+      "kind": "shape",
+      "shape": "triangle",
+      "color": "yellow",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "rectangle",
+      "kind": "shape",
+      "shape": "rectangle",
+      "color": "green",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "star",
+      "kind": "shape",
+      "shape": "star",
+      "color": "gold",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "heart",
+      "kind": "shape",
+      "shape": "heart",
+      "color": "pink",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "oval",
+      "kind": "shape",
+      "shape": "oval",
+      "color": "orange",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "diamond",
+      "kind": "shape",
+      "shape": "diamond",
+      "color": "purple",
+      "face": true,
+      "size": 1.6,
+      "at": [0.4, 0.35, 0.6],
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [10, 4],
+      "height": 7
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "title": "Hello!",
+      "beats": [
+        {
+          "id": "hello",
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "bell"
+            },
+            {
+              "do": "caption",
+              "text": "Shapes!",
+              "at": 0.1,
+              "style": "title",
+              "dur": 3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.3
+            },
+            {
+              "do": "say",
+              "text": "Hi friends! Let's meet some shapes. They have happy faces!",
+              "at": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meet",
+      "title": "Meet the shapes",
+      "beats": [
+        {
+          "id": "meet_circle",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "circle"
+            },
+            {
+              "do": "wiggle",
+              "target": "circle",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is a circle.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "circle",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "A circle is round. It has no corners.",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "circle",
+              "to": [-4.0249999999999995, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "circle",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        },
+        {
+          "id": "meet_square",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "square"
+            },
+            {
+              "do": "wiggle",
+              "target": "square",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is a square.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "square",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "A square has four sides, all the same size.",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "square",
+              "to": [-2.875, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "square",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        },
+        {
+          "id": "meet_triangle",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "triangle"
+            },
+            {
+              "do": "wiggle",
+              "target": "triangle",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is a triangle.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "triangle",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "A triangle has three sides and three corners.",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "triangle",
+              "to": [-1.7249999999999999, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "triangle",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        },
+        {
+          "id": "meet_rectangle",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "rectangle"
+            },
+            {
+              "do": "wiggle",
+              "target": "rectangle",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is a rectangle.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "rectangle",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "A rectangle has four sides. Two are long, and two are short.",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "rectangle",
+              "to": [-0.575, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "rectangle",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        },
+        {
+          "id": "meet_star",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "star"
+            },
+            {
+              "do": "wiggle",
+              "target": "star",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is a star.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "star",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "A star has five points. Twinkle, twinkle!",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "star",
+              "to": [0.575, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "star",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        },
+        {
+          "id": "meet_heart",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "heart"
+            },
+            {
+              "do": "wiggle",
+              "target": "heart",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is a heart.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "heart",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "A heart means love!",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "heart",
+              "to": [1.7249999999999999, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "heart",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        },
+        {
+          "id": "meet_oval",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "oval"
+            },
+            {
+              "do": "wiggle",
+              "target": "oval",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is an oval.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "oval",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "An oval is like a stretched circle, like an egg.",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "oval",
+              "to": [2.875, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "oval",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        },
+        {
+          "id": "meet_diamond",
+          "dur": 6.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "diamond"
+            },
+            {
+              "do": "wiggle",
+              "target": "diamond",
+              "at": 0.6
+            },
+            {
+              "do": "say",
+              "text": "This is a diamond.",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "diamond",
+              "at": 0.4,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "A diamond has four sides, like a kite.",
+              "at": 2.4,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 1
+            },
+            {
+              "do": "move",
+              "target": "diamond",
+              "to": [4.0249999999999995, 2.55, -0.8],
+              "dur": 1,
+              "at": 5.6,
+              "ease": "cubicInOut"
+            },
+            {
+              "do": "grow",
+              "target": "diamond",
+              "to": 0.45,
+              "dur": 1,
+              "at": 5.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Find the shape",
+      "beats": [
+        {
+          "id": "all",
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "camera",
+              "position": [0, 2.4, 8.6],
+              "lookAt": [0, 2.2, 0],
+              "dur": 1.5
+            },
+            {
+              "do": "say",
+              "text": "Look at all our shapes! Let's play a game.",
+              "at": 0.1,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "id": "find_triangle",
+          "dur": 4.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Can you find the triangle?",
+              "at": 0,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 2.2,
+              "volume": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "triangle",
+              "at": 3,
+              "height": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "wiggle",
+              "target": "triangle",
+              "at": 3.5
+            },
+            {
+              "do": "say",
+              "text": "There it is! The triangle!",
+              "at": 3.1
+            }
+          ]
+        },
+        {
+          "id": "find_circle",
+          "dur": 4.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Can you find the circle?",
+              "at": 0,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 2.2,
+              "volume": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "circle",
+              "at": 3,
+              "height": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "wiggle",
+              "target": "circle",
+              "at": 3.5
+            },
+            {
+              "do": "say",
+              "text": "There it is! The circle!",
+              "at": 3.1
+            }
+          ]
+        },
+        {
+          "id": "find_heart",
+          "dur": 4.6,
+          "do": [
+            {
+              "do": "say",
+              "text": "Can you find the heart?",
+              "at": 0,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 2.2,
+              "volume": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "heart",
+              "at": 3,
+              "height": 0.5,
+              "sound": "ding"
+            },
+            {
+              "do": "wiggle",
+              "target": "heart",
+              "at": 3.5
+            },
+            {
+              "do": "say",
+              "text": "There it is! The heart!",
+              "at": 3.1
+            }
+          ]
+        },
+        {
+          "id": "yay",
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "burst",
+              "target": "party",
+              "dur": 3.5
+            },
+            {
+              "do": "hop",
+              "target": "circle",
+              "at": 0.2,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "square",
+              "at": 0.32,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "triangle",
+              "at": 0.44,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "rectangle",
+              "at": 0.56,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "star",
+              "at": 0.6799999999999999,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "heart",
+              "at": 0.8,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "oval",
+              "at": 0.9199999999999999,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "diamond",
+              "at": 1.04,
+              "height": 0.35
+            },
+            {
+              "do": "say",
+              "text": "You found them all. Hooray!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "title": "Bye bye!",
+      "beats": [
+        {
+          "id": "bye",
+          "dur": 3.5,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            },
+            {
+              "do": "say",
+              "text": "Bye bye, shapes. See you soon!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 2.8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -8,10 +8,10 @@ import { createDirector } from "./director.js";
  * @param {{ script?: object, sceneUrl?: string, catalog: object, speech?: object }} o
  */
 export async function buildPlan({ script, sceneUrl, catalog, speech = {} }) {
-  if (script) return compileScript(script, { catalog, speech });
+  if (script) return { ...compileScript(script, { catalog, speech }), meta: script.meta ?? {} };
   const mod = await import(sceneUrl);
   const d = createDirector({ catalog, seed: mod.meta?.seed ?? 1, speech, voice: mod.meta?.voice ?? "soft" });
   if (mod.meta?.stage) d.stage(mod.meta.stage);
   await mod.default(d);
-  return d.plan();
+  return { ...d.plan(), meta: mod.meta ?? {} };
 }

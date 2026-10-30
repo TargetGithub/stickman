@@ -5,6 +5,7 @@
 
 import { createTimeline } from "./timeline.js";
 import { deriveRng } from "./rng.js";
+import { bubblePaths } from "./particles.js";
 
 const V = (v, d) => (Array.isArray(v) ? [...v] : typeof v === "number" ? [v, v, v] : [...d]);
 const LOOPING = new Set(["Idle", "Dance", "Walking", "Running"]);
@@ -62,7 +63,10 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       tl.base(o.id, "rotation", o.rotation);
       tl.base(o.id, "scale", o.hidden ? [0, 0, 0] : o.scale);
       tl.base(o.id, "visible", !o.hidden);
-      if (o.kind === "confetti") tl.base(o.id, "burst", -1);
+      tl.base(o.id, "hop", 0); // a lift added on top of position, so hops combine with moves
+      if (o.kind === "confetti" || o.kind === "bubbles") tl.base(o.id, "burst", -1);
+      if (o.kind === "critter" || (o.kind === "shape" && o.face)) tl.base(o.id, "eyes", 1);
+      if (o.kind === "critter") tl.base(`${o.id}#head`, "rotation", [0, 0, 0]);
       if (o.kind === "character") tl.clip(o.id, o.clip ?? catalog.characters[o.character].idle, { start: 0, loop: true, fade: 0 });
       return d;
     },
@@ -125,8 +129,8 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       return d;
     },
     hop(id, { at: t = 0, height = 0.6, dur = 0.45, sound: s } = {}) {
-      const p = now(id, "position", t);
-      tl.tween(id, "position", { start: t, dur, from: p, to: [p[0], p[1] + height, p[2]], ease: "hop" });
+      obj(id);
+      tl.tween(id, "hop", { start: t, dur, from: 0, to: height, ease: "hop" });
       sound(s, t);
       return d;
     },
@@ -142,13 +146,47 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       if (!loop && len) tl.clip(id, then ?? ch.idle, { start: t + len - fade, loop: true, fade });
       return d;
     },
-    burst(id, { at: t = 0, dur = 3.5, sound: s = "magic_sparkle" } = {}) {
-      obj(id);
+    burst(id, { at: t = 0, dur, sound: s } = {}) {
+      const o = obj(id);
       tl.set(id, "visible", true, t);
       tl.set(id, "burst", t, t);
-      tl.set(id, "visible", false, t + dur);
-      sound(s, t);
-      endAt = Math.max(endAt, t + dur);
+      if (o.kind === "bubbles") {
+        // Bubbles: every third pop is heard, softly, so a stream of bubbles never turns into noise.
+        const paths = bubblePaths(seed, o.id, { ...o, dur: dur ?? 8 });
+        const last = Math.max(...paths.map((b) => b.popAt)) + 0.2;
+        paths.forEach((b, i) => i % 3 === 0 && sound(s ?? "bubble_pop", t + b.popAt, { volume: 0.35, pan: Math.max(-1, Math.min(1, b.x / 5)) }));
+        tl.set(id, "visible", false, t + last);
+        endAt = Math.max(endAt, t + last);
+        return d;
+      }
+      const len = dur ?? 3.5;
+      tl.set(id, "visible", false, t + len);
+      sound(s ?? "magic_sparkle", t);
+      endAt = Math.max(endAt, t + len);
+      return d;
+    },
+    wiggle(id, { at: t = 0, deg = 12, dur = 0.8 } = {}) {
+      const r = now(id, "rotation", t) ?? [0, 0, 0];
+      tl.tween(id, "rotation", { start: t, dur, from: r, to: [r[0], r[1], r[2] + deg], ease: "wiggle" });
+      return d;
+    },
+    nod(id, { at: t = 0, deg = 18, dur = 0.5 } = {}) {
+      const o = obj(id);
+      if (o.kind === "critter") tl.tween(`${id}#head`, "rotation", { start: t, dur, from: [0, 0, 0], to: [deg, 0, 0], ease: "hop" });
+      else {
+        const r = now(id, "rotation", t) ?? [0, 0, 0];
+        tl.tween(id, "rotation", { start: t, dur, from: r, to: [r[0] + deg, r[1], r[2]], ease: "hop" });
+      }
+      return d;
+    },
+    sleep(id, { at: t = 0, dur = 1.2 } = {}) {
+      obj(id);
+      tl.tween(id, "eyes", { start: t, dur, to: 0, ease: "sineInOut" });
+      return d;
+    },
+    wake(id, { at: t = 0, dur = 0.6 } = {}) {
+      obj(id);
+      tl.tween(id, "eyes", { start: t, dur, to: 1, ease: "quadOut" });
       return d;
     },
     camera({ at: t = 0, dur = 1.5, ease = "sineInOut", position, lookAt, fov } = {}) {
@@ -160,8 +198,8 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     // --- text and sound ---
 
-    caption(text, { at: t = 0, dur = 2, style = "subtitle" } = {}) {
-      captions.push({ text: String(text), start: t, dur, style });
+    caption(text, { at: t = 0, dur = 2, style = "subtitle", color } = {}) {
+      captions.push({ text: String(text), start: t, dur, style, ...(color ? { fill: catalog.colors[color].hex } : {}) });
       endAt = Math.max(endAt, t + dur);
       return d;
     },

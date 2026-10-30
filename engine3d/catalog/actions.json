@@ -1,20 +1,226 @@
 {
   "description": "What a beat can do (beats[].do[].do). at is seconds from the beat's start (default 0). target names an object id; \"camera\" moves the camera.",
   "actions": {
-    "show":    { "params": { "target": "object id", "dur": "fade/scale-in seconds, default 0.4" }, "description": "Make a hidden object appear (scales up from nothing).", "tags": ["appear"] },
-    "hide":    { "params": { "target": "object id", "dur": "default 0.3" }, "description": "Shrink an object away and hide it.", "tags": ["disappear"] },
-    "pop":     { "params": { "target": "object id", "dur": "default 0.5", "sound": "default pop" }, "description": "Pop an object in with an overshoot and a sound (numbers, letters).", "tags": ["appear", "counting"] },
-    "drop":    { "params": { "target": "object id", "to": "[x, y, z] landing spot (the object's base)", "height": "start height above it, default 6", "dur": "fall time, default 0.9", "sound": "landing sound, default block" }, "description": "Drop an object from above; it bounces and squashes as it lands.", "tags": ["counting", "move"] },
-    "move":    { "params": { "target": "object id", "to": "[x, y, z]", "dur": "default 1", "ease": "ease name" }, "description": "Glide to a position.", "tags": ["move"] },
-    "turn":    { "params": { "target": "object id", "to": "[x, y, z] degrees", "dur": "default 0.8", "ease": "ease name" }, "description": "Rotate to an orientation.", "tags": ["move"] },
-    "spin":    { "params": { "target": "object id", "turns": "default 1", "dur": "default 1" }, "description": "Spin around the vertical axis and stop where it began.", "tags": ["move", "fun"] },
-    "hop":     { "params": { "target": "object id", "height": "default 0.6", "dur": "default 0.45", "sound": "optional" }, "description": "A quick hop up and back down (highlight while counting).", "tags": ["counting", "highlight"] },
-    "grow":    { "params": { "target": "object id", "to": "scale (number), default 1.3", "dur": "default 0.4" }, "description": "Scale to a new size and stay.", "tags": ["highlight"] },
-    "clip":    { "params": { "target": "character id", "clip": "clip name from characters.json", "loop": "default true for Idle/Dance/Walking/Running, else false", "then": "clip to return to afterwards, default the idle" }, "description": "Play a character animation clip.", "tags": ["host"] },
-    "camera":  { "params": { "position": "[x, y, z]", "lookAt": "[x, y, z]", "fov": "degrees", "dur": "default 1.5", "ease": "default sineInOut" }, "description": "Move the camera (any of position, lookAt, fov).", "tags": ["camera"] },
-    "say":     { "params": { "text": "spoken words (required)", "voice": "a timbre from catalog/story/tts_voices.json or \"narrator\", default meta.voice", "caption": "true to also show the words as a caption" }, "description": "Speak a line with Piper TTS; the beat lasts at least as long as the voice.", "tags": ["voice"] },
-    "caption": { "params": { "text": "short text (required)", "dur": "default the rest of the beat", "style": "title (centre), count (big numeral, right third), subtitle (bottom), default subtitle" }, "description": "Show text over the picture.", "tags": ["text"] },
-    "sound":   { "params": { "sound": "sounds.json name (required)", "volume": "default 1", "pan": "-1..1" }, "description": "Play a sound effect.", "tags": ["audio"] },
-    "burst":   { "params": { "target": "confetti id", "dur": "fall time, default 3.5", "sound": "default magic_sparkle" }, "description": "Fire a confetti object.", "tags": ["reward", "celebration"] }
+    "show": {
+      "params": {
+        "target": "object id",
+        "dur": "fade/scale-in seconds, default 0.4"
+      },
+      "description": "Make a hidden object appear (scales up from nothing).",
+      "tags": [
+        "appear"
+      ]
+    },
+    "hide": {
+      "params": {
+        "target": "object id",
+        "dur": "default 0.3"
+      },
+      "description": "Shrink an object away and hide it.",
+      "tags": [
+        "disappear"
+      ]
+    },
+    "pop": {
+      "params": {
+        "target": "object id",
+        "dur": "default 0.5",
+        "sound": "default pop"
+      },
+      "description": "Pop an object in with an overshoot and a sound (numbers, letters).",
+      "tags": [
+        "appear",
+        "counting"
+      ]
+    },
+    "drop": {
+      "params": {
+        "target": "object id",
+        "to": "[x, y, z] landing spot (the object's base)",
+        "height": "start height above it, default 6",
+        "dur": "fall time, default 0.9",
+        "sound": "landing sound, default block"
+      },
+      "description": "Drop an object from above; it bounces and squashes as it lands.",
+      "tags": [
+        "counting",
+        "move"
+      ]
+    },
+    "move": {
+      "params": {
+        "target": "object id",
+        "to": "[x, y, z]",
+        "dur": "default 1",
+        "ease": "ease name"
+      },
+      "description": "Glide to a position.",
+      "tags": [
+        "move"
+      ]
+    },
+    "turn": {
+      "params": {
+        "target": "object id",
+        "to": "[x, y, z] degrees",
+        "dur": "default 0.8",
+        "ease": "ease name"
+      },
+      "description": "Rotate to an orientation.",
+      "tags": [
+        "move"
+      ]
+    },
+    "spin": {
+      "params": {
+        "target": "object id",
+        "turns": "default 1",
+        "dur": "default 1"
+      },
+      "description": "Spin around the vertical axis and stop where it began.",
+      "tags": [
+        "move",
+        "fun"
+      ]
+    },
+    "hop": {
+      "params": {
+        "target": "object id",
+        "height": "default 0.6",
+        "dur": "default 0.45",
+        "sound": "optional"
+      },
+      "description": "A quick hop up and back down; it adds to position, so a hopping object can also move.",
+      "tags": [
+        "counting",
+        "highlight"
+      ]
+    },
+    "grow": {
+      "params": {
+        "target": "object id",
+        "to": "scale (number), default 1.3",
+        "dur": "default 0.4"
+      },
+      "description": "Scale to a new size and stay.",
+      "tags": [
+        "highlight"
+      ]
+    },
+    "clip": {
+      "params": {
+        "target": "character id",
+        "clip": "clip name from characters.json",
+        "loop": "default true for Idle/Dance/Walking/Running, else false",
+        "then": "clip to return to afterwards, default the idle"
+      },
+      "description": "Play a character animation clip.",
+      "tags": [
+        "host"
+      ]
+    },
+    "camera": {
+      "params": {
+        "position": "[x, y, z]",
+        "lookAt": "[x, y, z]",
+        "fov": "degrees",
+        "dur": "default 1.5",
+        "ease": "default sineInOut"
+      },
+      "description": "Move the camera (any of position, lookAt, fov).",
+      "tags": [
+        "camera"
+      ]
+    },
+    "say": {
+      "params": {
+        "text": "spoken words (required)",
+        "voice": "a timbre from catalog/story/tts_voices.json or \"narrator\", default meta.voice",
+        "caption": "true to also show the words as a caption"
+      },
+      "description": "Speak a line with Piper TTS; the beat lasts at least as long as the voice.",
+      "tags": [
+        "voice"
+      ]
+    },
+    "caption": {
+      "params": {
+        "text": "short text (required)",
+        "dur": "default the rest of the beat",
+        "style": "title (centre), label (a naming word above the subtitles), count (big numeral, right third), subtitle (bottom, wraps), default subtitle",
+        "color": "colors.json name for the text (colour lessons), default the style's"
+      },
+      "description": "Show text over the picture.",
+      "tags": [
+        "text"
+      ]
+    },
+    "sound": {
+      "params": {
+        "sound": "sounds.json name (required)",
+        "volume": "default 1",
+        "pan": "-1..1"
+      },
+      "description": "Play a sound effect.",
+      "tags": [
+        "audio"
+      ]
+    },
+    "burst": {
+      "params": {
+        "target": "confetti or bubbles id",
+        "dur": "fall time, default 3.5",
+        "sound": "default magic_sparkle"
+      },
+      "description": "Fire a confetti or bubbles object (bubbles rise for dur seconds, default 8).",
+      "tags": [
+        "reward",
+        "celebration"
+      ]
+    },
+    "wiggle": {
+      "params": {
+        "target": "object id",
+        "deg": "swing in degrees, default 12",
+        "dur": "default 0.8"
+      },
+      "description": "A happy side-to-side wiggle that settles back.",
+      "tags": [
+        "fun",
+        "animals"
+      ]
+    },
+    "nod": {
+      "params": {
+        "target": "critter id (its head nods) or any object",
+        "deg": "default 18",
+        "dur": "default 0.5"
+      },
+      "description": "Nod the head once (yes, hello).",
+      "tags": [
+        "animals"
+      ]
+    },
+    "sleep": {
+      "params": {
+        "target": "critter or face shape id",
+        "dur": "default 1.2"
+      },
+      "description": "Close the eyes slowly and stay asleep.",
+      "tags": [
+        "night",
+        "lullaby"
+      ]
+    },
+    "wake": {
+      "params": {
+        "target": "critter or face shape id",
+        "dur": "default 0.6"
+      },
+      "description": "Open the eyes.",
+      "tags": [
+        "night"
+      ]
+    }
   }
 }

@@ -1,0 +1,1194 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Meet the farm friends and the sounds they make: cow, pig, duck, sheep, puppy, cat, chick and frog. Then play who says that? with Robo.",
+  "meta": {
+    "title": "Farm Animal Sounds",
+    "series": "toybox",
+    "episode": "pk04",
+    "audience": "prek",
+    "seed": 104,
+    "voice": "soft",
+    "voiceSpeed": 0.95,
+    "music": "bouncy",
+    "musicGain": 0.24,
+    "skills": [
+      "listening_prek"
+    ],
+    "thumbnail": {
+      "t": 7.04
+    },
+    "youtube": {
+      "title": "Animal Sounds for Toddlers! 🐮 Moo, Oink, Quack | Toy Box Friends",
+      "description": "Meet the farm friends and the sounds they make: cow, pig, duck, sheep, puppy, cat, chick and frog. Then play who says that? with Robo.\nMake the animal sounds together with your little one!",
+      "tags": [
+        "animal sounds",
+        "farm animals for kids",
+        "animal sounds for toddlers",
+        "old macdonald animals",
+        "learn animals",
+        "toddler learning",
+        "preschool",
+        "kids learning video",
+        "learning for toddlers",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "garden"
+  },
+  "camera": {
+    "position": [0, 1.9, 8.8],
+    "lookAt": [0, 0.9, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [-4.2, 0, 1],
+      "rotation": [0, 30, 0]
+    },
+    {
+      "id": "barn",
+      "kind": "prop",
+      "model": "house",
+      "size": 1.8,
+      "at": [4.8, 0, -5]
+    },
+    {
+      "id": "tree",
+      "kind": "prop",
+      "model": "tree",
+      "size": 1.3,
+      "at": [-5.6, 0, -5]
+    },
+    {
+      "id": "cloud",
+      "kind": "prop",
+      "model": "cloud",
+      "size": 1.4,
+      "at": [0.5, 5.6, -9]
+    },
+    {
+      "id": "cow",
+      "kind": "critter",
+      "species": "cow",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "pig",
+      "kind": "critter",
+      "species": "pig",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "sheep",
+      "kind": "critter",
+      "species": "sheep",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "dog",
+      "kind": "critter",
+      "species": "dog",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "chick",
+      "kind": "critter",
+      "species": "chick",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 1.3,
+      "at": [8, 0, 0.6],
+      "rotation": [0, -40, 0]
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 200,
+      "area": [10, 4],
+      "height": 7
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "title": "Hello!",
+      "beats": [
+        {
+          "id": "hello",
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "bell"
+            },
+            {
+              "do": "caption",
+              "text": "Animal Sounds!",
+              "at": 0.1,
+              "style": "title",
+              "dur": 3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.3
+            },
+            {
+              "do": "say",
+              "text": "Hi friends! Let's meet the farm animals. Can you make their sounds?",
+              "at": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meet",
+      "title": "Meet the animals",
+      "beats": [
+        {
+          "id": "meet_cow",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "cow",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "cow",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "cow",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "cow",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a cow.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "cow",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The cow says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Moo! Moo!",
+              "at": 5,
+              "voice": "deep",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "cow",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "cow",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "cow",
+              "to": [-2.5249999999999995, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "cow",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        },
+        {
+          "id": "meet_pig",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "pig",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "pig",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a pig.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "pig",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The pig says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Oink, oink!",
+              "at": 5,
+              "voice": "soft",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "pig",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "pig",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "pig",
+              "to": [-1.575, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "pig",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        },
+        {
+          "id": "meet_duck",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a duck.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "duck",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The duck says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Quack, quack!",
+              "at": 5,
+              "voice": "squeaky",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "to": [-0.6249999999999998, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "duck",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        },
+        {
+          "id": "meet_sheep",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "sheep",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "sheep",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "sheep",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "sheep",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "sheep",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a sheep.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "sheep",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The sheep says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Baa! Baa!",
+              "at": 5,
+              "voice": "soft",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "sheep",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "sheep",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "sheep",
+              "to": [0.32500000000000007, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "sheep",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        },
+        {
+          "id": "meet_dog",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "dog",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a puppy.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "puppy",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The puppy says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Woof! Woof!",
+              "at": 5,
+              "voice": "deep",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "dog",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "dog",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "dog",
+              "to": [1.275, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "dog",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        },
+        {
+          "id": "meet_cat",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "cat",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "cat",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "cat",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "cat",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "cat",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a cat.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "cat",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The cat says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Meow!",
+              "at": 5,
+              "voice": "squeaky",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "cat",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "cat",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "cat",
+              "to": [2.2249999999999996, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "cat",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        },
+        {
+          "id": "meet_chick",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "chick",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "chick",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a little chick.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "chick",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The chick says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Cheep, cheep!",
+              "at": 5,
+              "voice": "squeaky",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "chick",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "chick",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "chick",
+              "to": [3.175, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "chick",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        },
+        {
+          "id": "meet_frog",
+          "dur": 8.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [0.6, 0, 0.6],
+              "dur": 1.2,
+              "ease": "quadOut"
+            },
+            {
+              "do": "turn",
+              "target": "frog",
+              "to": [0, 0, 0],
+              "dur": 0.6,
+              "at": 0.7
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.1,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 0.9,
+              "height": 0.25,
+              "dur": 0.35,
+              "sound": "footstep_soft"
+            },
+            {
+              "do": "say",
+              "text": "This is a frog.",
+              "at": 1.3
+            },
+            {
+              "do": "caption",
+              "text": "frog",
+              "at": 1.3,
+              "style": "label",
+              "dur": 1.8
+            },
+            {
+              "do": "say",
+              "text": "The frog says...",
+              "at": 3.3
+            },
+            {
+              "do": "say",
+              "text": "Ribbit, ribbit!",
+              "at": 5,
+              "voice": "deep",
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "frog",
+              "at": 5
+            },
+            {
+              "do": "nod",
+              "target": "frog",
+              "at": 5.6
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 5.4
+            },
+            {
+              "do": "move",
+              "target": "frog",
+              "to": [4.125, 0, -2.2],
+              "dur": 1.1,
+              "at": 7.2,
+              "ease": "quadInOut"
+            },
+            {
+              "do": "grow",
+              "target": "frog",
+              "to": 0.62,
+              "dur": 1.1,
+              "at": 7.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Who says that?",
+      "beats": [
+        {
+          "id": "game",
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "say",
+              "text": "Let's play a game!",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "id": "who_duck",
+          "dur": 4.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who says quack?",
+              "at": 0,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 2,
+              "volume": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 2.8,
+              "height": 0.45,
+              "sound": "ding"
+            },
+            {
+              "do": "wiggle",
+              "target": "duck",
+              "at": 3.2
+            },
+            {
+              "do": "say",
+              "text": "The duck!",
+              "at": 2.9
+            }
+          ]
+        },
+        {
+          "id": "who_cow",
+          "dur": 4.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who says moo?",
+              "at": 0,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 2,
+              "volume": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "cow",
+              "at": 2.8,
+              "height": 0.45,
+              "sound": "ding"
+            },
+            {
+              "do": "wiggle",
+              "target": "cow",
+              "at": 3.2
+            },
+            {
+              "do": "say",
+              "text": "The cow!",
+              "at": 2.9
+            }
+          ]
+        },
+        {
+          "id": "who_cat",
+          "dur": 4.4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Who says meow?",
+              "at": 0,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 2,
+              "volume": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "cat",
+              "at": 2.8,
+              "height": 0.45,
+              "sound": "ding"
+            },
+            {
+              "do": "wiggle",
+              "target": "cat",
+              "at": 3.2
+            },
+            {
+              "do": "say",
+              "text": "The cat!",
+              "at": 2.9
+            }
+          ]
+        },
+        {
+          "id": "yay",
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "burst",
+              "target": "party",
+              "dur": 3.5
+            },
+            {
+              "do": "hop",
+              "target": "cow",
+              "at": 0.2,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "pig",
+              "at": 0.32,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.44,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "sheep",
+              "at": 0.56,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.6799999999999999,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "cat",
+              "at": 0.8,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.9199999999999999,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "frog",
+              "at": 1.04,
+              "height": 0.35
+            },
+            {
+              "do": "say",
+              "text": "Great listening, friends!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Dance",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "title": "Bye bye!",
+      "beats": [
+        {
+          "id": "bye",
+          "dur": 3.5,
+          "do": [
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave"
+            },
+            {
+              "do": "say",
+              "text": "Bye bye, animals!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "bell",
+              "at": 2.8
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

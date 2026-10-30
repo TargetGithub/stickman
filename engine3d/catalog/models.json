@@ -1,0 +1,1103 @@
+{
+ "description": "Toy animals (critters) and props built from primitive parts: original designs. A part is { p: shape, at, s: size, c: colour, m: material, r: rotation, on: \"head\", mirror, hang, idle: { r, hz }, repeat: { n, radius }, name }. Critters face +z, stand on y = 0, about 1.1 m tall at size 1.",
+ "critters": {
+  "duck": {
+   "color": "yellow",
+   "sound": "Quack quack!",
+   "description": "A round yellow duck with an orange beak and flapping wings.",
+   "tags": ["farm",
+    "bird",
+    "water"],
+   "head": {
+    "at": [0, 0.92, 0.14]
+   },
+   "eyes": {
+    "at": [0.12, 0.06, 0.25],
+    "size": 0.085
+   },
+   "cheeks": {
+    "at": [0.2, -0.04, 0.21],
+    "size": 0.1
+   },
+   "bob": 0.03,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.42, 0],
+     "s": [0.78, 0.68, 0.86]
+    },
+    {
+     "p": "cone",
+     "at": [0, 0.56, -0.42],
+     "s": [0.18, 0.3, 0.18],
+     "r": [-120, 0, 0]
+    },
+    {
+     "p": "sphere",
+     "at": [0.38, 0.48, -0.02],
+     "s": [0.14, 0.36, 0.5],
+     "r": [0, 0, -12],
+     "mirror": true,
+     "idle": {
+      "r": [0, 0, 10],
+      "hz": 0.8
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [0.16, 0.03, 0.18],
+     "s": [0.2, 0.06, 0.3],
+     "c": "orange",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": 0.56,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.06, 0.3],
+     "s": [0.3, 0.1, 0.26],
+     "on": "head",
+     "c": "orange"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.3, 0],
+     "s": [0.1, 0.14, 0.1],
+     "on": "head"
+    }]
+  },
+  "chick": {
+   "color": "yellow",
+   "sound": "Cheep cheep!",
+   "description": "A fluffy little chick, round as a ball, with a tiny beak and a tuft.",
+   "tags": ["farm",
+    "bird",
+    "baby"],
+   "head": {
+    "at": [0, 0.4, 0]
+   },
+   "eyes": {
+    "at": [0.13, 0.1, 0.33],
+    "size": 0.08
+   },
+   "cheeks": {
+    "at": [0.22, 0, 0.29],
+    "size": 0.09
+   },
+   "bob": 0.03,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.4, 0],
+     "s": [0.74, 0.72, 0.72]
+    },
+    {
+     "p": "cone",
+     "at": [0, 0.02, 0.38],
+     "s": [0.12, 0.16, 0.12],
+     "on": "head",
+     "r": [90, 0, 0],
+     "c": "orange"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.37, 0],
+     "s": 0.09,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [0.06, 0.35, 0.02],
+     "s": 0.07,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [-0.06, 0.35, 0.02],
+     "s": 0.07,
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [0.35, 0.38, 0],
+     "s": [0.1, 0.28, 0.32],
+     "mirror": true,
+     "idle": {
+      "r": [0, 0, 14],
+      "hz": 1.4
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [0.13, 0.03, 0.15],
+     "s": [0.16, 0.05, 0.22],
+     "c": "orange",
+     "mirror": true
+    }]
+  },
+  "cat": {
+   "color": "orange",
+   "sound": "Meow!",
+   "description": "A cuddly orange cat with pointy ears and a curling tail.",
+   "tags": ["pet",
+    "home"],
+   "head": {
+    "at": [0, 0.88, 0.04]
+   },
+   "eyes": {
+    "at": [0.13, 0.04, 0.24],
+    "size": 0.085
+   },
+   "cheeks": {
+    "at": [0.2, -0.07, 0.2],
+    "size": 0.09
+   },
+   "mouth": {
+    "at": [0, -0.1, 0.265],
+    "size": 0.1
+   },
+   "bob": 0.02,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.36, 0],
+     "s": [0.6, 0.62, 0.58]
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.32, 0.18],
+     "s": [0.38, 0.42, 0.3],
+     "c": "cream"
+    },
+    {
+     "p": "sphere",
+     "at": [0.14, 0.05, 0.16],
+     "s": [0.16, 0.1, 0.2],
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [0.16, 0.25, -0.24],
+     "s": [0.09, 0.55, 0.09],
+     "r": [-35, 0, -25],
+     "hang": [0, 0.24, 0],
+     "idle": {
+      "r": [0, 0, 18],
+      "hz": 0.7
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.62, 0.56, 0.54],
+     "on": "head"
+    },
+    {
+     "p": "cone",
+     "at": [0.19, 0.25, -0.02],
+     "s": [0.18, 0.24, 0.12],
+     "on": "head",
+     "r": [0, 0, -22],
+     "mirror": true
+    },
+    {
+     "p": "cone",
+     "at": [0.19, 0.24, 0.03],
+     "s": [0.1, 0.14, 0.06],
+     "on": "head",
+     "r": [0, 0, -22],
+     "c": "pink",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.04, 0.27],
+     "s": [0.07, 0.05, 0.05],
+     "on": "head",
+     "c": "pink"
+    }]
+  },
+  "dog": {
+   "color": "sand",
+   "sound": "Woof woof!",
+   "description": "A happy puppy with floppy brown ears and a wagging tail.",
+   "tags": ["pet",
+    "home"],
+   "head": {
+    "at": [0, 0.9, 0.05]
+   },
+   "eyes": {
+    "at": [0.13, 0.07, 0.24],
+    "size": 0.085
+   },
+   "mouth": {
+    "at": [0, -0.16, 0.3],
+    "size": 0.08
+   },
+   "bob": 0.025,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.38, 0],
+     "s": [0.62, 0.64, 0.62]
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.33, 0.18],
+     "s": [0.38, 0.42, 0.3],
+     "c": "cream"
+    },
+    {
+     "p": "sphere",
+     "at": [0.15, 0.05, 0.16],
+     "s": [0.17, 0.1, 0.22],
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [0, 0.4, -0.3],
+     "s": [0.09, 0.35, 0.09],
+     "r": [-40, 0, 0],
+     "hang": [0, 0.15, 0],
+     "idle": {
+      "r": [0, 0, 25],
+      "hz": 2.2
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.6, 0.54, 0.54],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.08, 0.22],
+     "s": [0.3, 0.2, 0.22],
+     "on": "head",
+     "c": "cream"
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.02, 0.33],
+     "s": [0.1, 0.07, 0.07],
+     "on": "head",
+     "c": "ink",
+     "m": "glossy"
+    },
+    {
+     "p": "sphere",
+     "at": [0.28, 0.08, -0.02],
+     "s": [0.14, 0.34, 0.2],
+     "on": "head",
+     "r": [0, 0, 18],
+     "hang": [0, -0.12, 0],
+     "c": "brown",
+     "mirror": true,
+     "idle": {
+      "r": [0, 0, 6],
+      "hz": 0.6
+     }
+    }]
+  },
+  "bunny": {
+   "color": "white",
+   "sound": "Hop hop!",
+   "description": "A soft white bunny with long pink-lined ears and a fluffy tail.",
+   "tags": ["pet",
+    "garden"],
+   "head": {
+    "at": [0, 0.86, 0.04]
+   },
+   "eyes": {
+    "at": [0.12, 0.05, 0.23],
+    "size": 0.08
+   },
+   "cheeks": {
+    "at": [0.19, -0.06, 0.2],
+    "size": 0.09
+   },
+   "mouth": {
+    "at": [0, -0.1, 0.25],
+    "size": 0.09
+   },
+   "bob": 0.02,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.36, 0],
+     "s": [0.6, 0.62, 0.58]
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.3, -0.3],
+     "s": 0.2
+    },
+    {
+     "p": "sphere",
+     "at": [0.15, 0.04, 0.18],
+     "s": [0.16, 0.08, 0.28],
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.58, 0.52, 0.52],
+     "on": "head"
+    },
+    {
+     "p": "capsule",
+     "at": [0.11, 0.25, -0.03],
+     "s": [0.15, 0.55, 0.08],
+     "on": "head",
+     "r": [0, 0, -8],
+     "hang": [0, 0.24, 0],
+     "mirror": true,
+     "idle": {
+      "r": [0, 0, 6],
+      "hz": 0.5
+     }
+    },
+    {
+     "p": "capsule",
+     "at": [0.11, 0.25, 0.005],
+     "s": [0.08, 0.42, 0.04],
+     "on": "head",
+     "r": [0, 0, -8],
+     "hang": [0, 0.24, 0],
+     "c": "pink",
+     "mirror": true,
+     "idle": {
+      "r": [0, 0, 6],
+      "hz": 0.5
+     }
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.04, 0.25],
+     "s": [0.07, 0.05, 0.05],
+     "on": "head",
+     "c": "pink"
+    }]
+  },
+  "bear": {
+   "color": "brown",
+   "sound": "Grrr!",
+   "description": "A cuddly brown teddy bear with round ears and a sandy tummy.",
+   "tags": ["toy",
+    "forest"],
+   "head": {
+    "at": [0, 0.92, 0.04]
+   },
+   "eyes": {
+    "at": [0.13, 0.06, 0.25],
+    "size": 0.08
+   },
+   "mouth": {
+    "at": [0, -0.14, 0.3],
+    "size": 0.07
+   },
+   "bob": 0.02,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.38, 0],
+     "s": [0.7, 0.68, 0.62]
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.34, 0.2],
+     "s": [0.42, 0.44, 0.3],
+     "c": "sand"
+    },
+    {
+     "p": "sphere",
+     "at": [0.17, 0.05, 0.16],
+     "s": [0.2, 0.1, 0.24],
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.64, 0.58, 0.56],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [0.22, 0.24, -0.02],
+     "s": [0.2, 0.2, 0.1],
+     "on": "head",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0.22, 0.24, 0.02],
+     "s": [0.11, 0.11, 0.05],
+     "on": "head",
+     "c": "sand",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.08, 0.24],
+     "s": [0.26, 0.18, 0.18],
+     "on": "head",
+     "c": "sand"
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.03, 0.33],
+     "s": [0.09, 0.06, 0.06],
+     "on": "head",
+     "c": "ink",
+     "m": "glossy"
+    }]
+  },
+  "pig": {
+   "color": "pig",
+   "sound": "Oink oink!",
+   "description": "A pink piglet with a round snout and a curly tail.",
+   "tags": ["farm"],
+   "head": {
+    "at": [0, 0.86, 0.12]
+   },
+   "eyes": {
+    "at": [0.13, 0.08, 0.23],
+    "size": 0.075
+   },
+   "cheeks": {
+    "at": [0.21, -0.04, 0.19],
+    "size": 0.09,
+    "color": "rose"
+   },
+   "mouth": {
+    "at": [0, -0.17, 0.24],
+    "size": 0.08
+   },
+   "bob": 0.02,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.38, 0],
+     "s": [0.78, 0.64, 0.7]
+    },
+    {
+     "p": "sphere",
+     "at": [0.18, 0.05, 0.18],
+     "s": [0.16, 0.1, 0.2],
+     "mirror": true
+    },
+    {
+     "p": "torus",
+     "at": [0, 0.44, -0.36],
+     "s": 0.14,
+     "r": [0, 90, 0],
+     "c": "rose",
+     "idle": {
+      "r": [0, 0, 20],
+      "hz": 1
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.6, 0.54, 0.54],
+     "on": "head"
+    },
+    {
+     "p": "cylinder",
+     "at": [0, -0.06, 0.27],
+     "s": [0.22, 0.1, 0.16],
+     "on": "head",
+     "r": [90, 0, 0],
+     "c": "rose"
+    },
+    {
+     "p": "sphere",
+     "at": [0.045, -0.06, 0.33],
+     "s": [0.035, 0.045, 0.02],
+     "on": "head",
+     "c": "ink",
+     "mirror": true
+    },
+    {
+     "p": "cone",
+     "at": [0.18, 0.25, 0],
+     "s": [0.16, 0.18, 0.08],
+     "on": "head",
+     "r": [-25, 0, -30],
+     "mirror": true
+    }]
+  },
+  "cow": {
+   "color": "white",
+   "sound": "Moo!",
+   "description": "A gentle black-and-white cow with little horns and a pink snout.",
+   "tags": ["farm"],
+   "head": {
+    "at": [0, 0.96, 0.12]
+   },
+   "eyes": {
+    "at": [0.13, 0.08, 0.23],
+    "size": 0.08
+   },
+   "bob": 0.015,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.42, 0],
+     "s": [0.86, 0.7, 0.72]
+    },
+    {
+     "p": "sphere",
+     "at": [0.2, 0.56, 0.3],
+     "s": [0.2, 0.17, 0.09],
+     "r": [0, 30, 0],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [-0.22, 0.34, 0.29],
+     "s": [0.18, 0.2, 0.09],
+     "r": [0, -30, 0],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.3, 0.52, 0.1],
+     "s": [0.12, 0.2, 0.22],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [-0.3, 0.38, -0.08],
+     "s": [0.12, 0.22, 0.24],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.05, 0.7, -0.18],
+     "s": [0.26, 0.1, 0.24],
+     "c": "ink",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.2, 0.05, 0.18],
+     "s": [0.16, 0.1, 0.18],
+     "c": "ink",
+     "mirror": true
+    },
+    {
+     "p": "capsule",
+     "at": [0, 0.5, -0.36],
+     "s": [0.06, 0.4, 0.06],
+     "r": [-20, 0, 0],
+     "hang": [0, -0.16, 0],
+     "idle": {
+      "r": [0, 0, 12],
+      "hz": 0.6
+     },
+     "name": "tail"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.6, 0.54, 0.52],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [0, -0.1, 0.24],
+     "s": [0.38, 0.22, 0.2],
+     "on": "head",
+     "c": "pig"
+    },
+    {
+     "p": "sphere",
+     "at": [0.07, -0.1, 0.33],
+     "s": [0.04, 0.05, 0.02],
+     "on": "head",
+     "c": "rose",
+     "mirror": true
+    },
+    {
+     "p": "cone",
+     "at": [0.16, 0.27, -0.02],
+     "s": [0.07, 0.16, 0.07],
+     "on": "head",
+     "r": [0, 0, -25],
+     "c": "cream",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0.32, 0.08, -0.02],
+     "s": [0.2, 0.08, 0.12],
+     "on": "head",
+     "r": [0, 0, -20],
+     "mirror": true,
+     "idle": {
+      "r": [0, 0, 8],
+      "hz": 0.5
+     }
+    }]
+  },
+  "frog": {
+   "color": "green",
+   "sound": "Ribbit!",
+   "description": "A bouncy green frog with big eyes on top and a wide smile.",
+   "tags": ["pond",
+    "garden"],
+   "head": {
+    "at": [0, 0.56, 0.08]
+   },
+   "eyes": {
+    "at": [0.18, 0.22, 0.17],
+    "size": 0.12
+   },
+   "cheeks": {
+    "at": [0.27, -0.04, 0.22],
+    "size": 0.09
+   },
+   "mouth": {
+    "at": [0, -0.06, 0.3],
+    "size": 0.22
+   },
+   "bob": 0.03,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.28, 0],
+     "s": [0.86, 0.52, 0.72]
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.24, 0.2],
+     "s": [0.54, 0.34, 0.34],
+     "c": "mint"
+    },
+    {
+     "p": "sphere",
+     "at": [0.24, 0.03, 0.22],
+     "s": [0.28, 0.06, 0.3],
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.72, 0.44, 0.6],
+     "on": "head"
+    },
+    {
+     "p": "sphere",
+     "at": [0.18, 0.2, 0.05],
+     "s": [0.26, 0.26, 0.24],
+     "on": "head",
+     "mirror": true
+    }]
+  },
+  "sheep": {
+   "color": "white",
+   "sound": "Baa!",
+   "description": "A woolly sheep made of fluffy clouds, with a dark little face.",
+   "tags": ["farm"],
+   "head": {
+    "at": [0, 0.86, 0.32]
+   },
+   "eyes": {
+    "at": [0.08, 0.06, 0.15],
+    "size": 0.07,
+    "color": "cream"
+   },
+   "cheeks": {
+    "at": [0.12, -0.06, 0.14],
+    "size": 0.06
+   },
+   "bob": 0.015,
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.48, 0],
+     "s": [0.8, 0.62, 0.7],
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.25, 0.62, 0.1],
+     "s": 0.36,
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.7, -0.15],
+     "s": 0.42,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.3, 0.42, -0.2],
+     "s": 0.36,
+     "m": "matte",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.52, 0.28],
+     "s": 0.36,
+     "m": "matte"
+    },
+    {
+     "p": "cylinder",
+     "at": [0.18, 0.12, 0.15],
+     "s": [0.1, 0.26, 0.1],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "cylinder",
+     "at": [0.18, 0.12, -0.15],
+     "s": [0.1, 0.26, 0.1],
+     "c": "charcoal",
+     "mirror": true
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [0.36, 0.42, 0.36],
+     "on": "head",
+     "c": "charcoal"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.22, -0.02],
+     "s": [0.32, 0.18, 0.28],
+     "on": "head",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.2, 0.08, -0.02],
+     "s": [0.18, 0.07, 0.1],
+     "on": "head",
+     "r": [0, 0, -20],
+     "c": "charcoal",
+     "mirror": true,
+     "idle": {
+      "r": [0, 0, 10],
+      "hz": 0.4
+     }
+    }]
+  }
+ },
+ "props": {
+  "apple": {
+   "color": "red",
+   "description": "A shiny red apple with a leaf.",
+   "tags": ["food",
+    "letter_a"],
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.42, 0],
+     "s": [0.86, 0.8, 0.86],
+     "m": "glossy"
+    },
+    {
+     "p": "cylinder",
+     "at": [0, 0.86, 0],
+     "s": [0.06, 0.2, 0.06],
+     "r": [0, 0, 10],
+     "c": "brown"
+    },
+    {
+     "p": "sphere",
+     "at": [0.13, 0.9, 0],
+     "s": [0.26, 0.06, 0.13],
+     "r": [0, 0, 25],
+     "c": "leaf"
+    }]
+  },
+  "ball": {
+   "color": "red",
+   "description": "A bouncy ball with a white stripe.",
+   "tags": ["toy",
+    "letter_b"],
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.4, 0],
+     "s": 0.8,
+     "m": "glossy"
+    },
+    {
+     "p": "torus",
+     "at": [0, 0.4, 0],
+     "s": [0.86, 0.86, 0.35],
+     "r": [90, 0, 0],
+     "c": "white",
+     "m": "glossy"
+    }]
+  },
+  "egg": {
+   "color": "cream",
+   "description": "A smooth egg standing on its end.",
+   "tags": ["food",
+    "farm",
+    "letter_e"],
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.42, 0],
+     "s": [0.62, 0.84, 0.62],
+     "m": "glossy"
+    }]
+  },
+  "tree": {
+   "color": "leaf",
+   "description": "A round, friendly tree.",
+   "tags": ["garden",
+    "scenery"],
+   "parts": [{
+     "p": "cylinder",
+     "at": [0, 0.55, 0],
+     "s": [0.28, 1.1, 0.28],
+     "c": "brown",
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 1.45, 0],
+     "s": 1.1,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.38, 1.2, 0.1],
+     "s": 0.7,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [-0.38, 1.25, 0.05],
+     "s": 0.72,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 1.88, 0],
+     "s": 0.7,
+     "m": "matte"
+    }]
+  },
+  "bush": {
+   "color": "leaf",
+   "description": "A leafy bush, big enough for a little animal to hide behind.",
+   "tags": ["garden",
+    "peekaboo"],
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0.38, 0],
+     "s": [1.2, 0.82, 0.8],
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.48, 0.3, 0.1],
+     "s": 0.7,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [-0.48, 0.3, 0.1],
+     "s": 0.7,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.05, 0.66, 0.02],
+     "s": 0.68,
+     "m": "matte"
+    }]
+  },
+  "cloud": {
+   "color": "white",
+   "description": "A puffy cloud (floats: its origin is its middle).",
+   "tags": ["sky",
+    "scenery"],
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": [1.2, 0.7, 0.6],
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.5, 0.1, 0],
+     "s": 0.7,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [-0.5, 0.05, 0],
+     "s": 0.62,
+     "m": "matte"
+    },
+    {
+     "p": "sphere",
+     "at": [0.12, 0.32, 0],
+     "s": 0.7,
+     "m": "matte"
+    }]
+  },
+  "sun": {
+   "color": "gold",
+   "description": "A glowing sun with rays (floats).",
+   "tags": ["sky",
+    "day"],
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 0, 0],
+     "s": 1,
+     "m": "glow"
+    },
+    {
+     "p": "cone",
+     "at": [0, 0, 0],
+     "s": [0.16, 0.3, 0.1],
+     "m": "glow",
+     "repeat": {
+      "n": 10,
+      "radius": 0.78
+     }
+    }]
+  },
+  "moon": {
+   "color": "cream",
+   "description": "A glowing crescent moon (floats).",
+   "tags": ["sky",
+    "night"],
+   "parts": [{
+     "p": "crescent",
+     "at": [0, 0, 0],
+     "s": 1,
+     "m": "glow"
+    }]
+  },
+  "flower": {
+   "color": "pink",
+   "description": "A flower with six petals on a green stem.",
+   "tags": ["garden"],
+   "parts": [{
+     "p": "cylinder",
+     "at": [0, 0.35, 0],
+     "s": [0.06, 0.7, 0.06],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [0.1, 0.3, 0],
+     "s": [0.2, 0.06, 0.1],
+     "r": [0, 0, 30],
+     "c": "leaf"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.75, 0.03],
+     "s": [0.16, 0.16, 0.1],
+     "c": "yellow"
+    },
+    {
+     "p": "sphere",
+     "at": [0, 0.75, 0],
+     "s": [0.16, 0.22, 0.06],
+     "repeat": {
+      "n": 6,
+      "radius": 0.15
+     }
+    }]
+  },
+  "house": {
+   "color": "cream",
+   "description": "A little house with a red roof, a door and two windows.",
+   "tags": ["home",
+    "scenery"],
+   "parts": [{
+     "p": "box",
+     "at": [0, 0.45, 0],
+     "s": [1, 0.9, 0.9]
+    },
+    {
+     "p": "pyramid",
+     "at": [0, 1.2, 0],
+     "s": [1.25, 0.6, 1.15],
+     "c": "red"
+    },
+    {
+     "p": "box",
+     "at": [0, 0.25, 0.46],
+     "s": [0.26, 0.46, 0.04],
+     "c": "brown"
+    },
+    {
+     "p": "box",
+     "at": [0.28, 0.6, 0.46],
+     "s": [0.2, 0.2, 0.04],
+     "c": "sky",
+     "mirror": true
+    }]
+  },
+  "balloon": {
+   "color": "red",
+   "description": "A balloon on a string (its origin is the string's end).",
+   "tags": ["party",
+    "toy"],
+   "parts": [{
+     "p": "sphere",
+     "at": [0, 1.4, 0],
+     "s": [0.6, 0.72, 0.6],
+     "m": "glossy"
+    },
+    {
+     "p": "cone",
+     "at": [0, 1.03, 0],
+     "s": [0.08, 0.08, 0.08],
+     "r": [180, 0, 0]
+    },
+    {
+     "p": "cylinder",
+     "at": [0, 0.5, 0],
+     "s": [0.012, 1, 0.012],
+     "c": "white"
+    }]
+  },
+  "gift": {
+   "color": "red",
+   "description": "A present with a gold ribbon and bow.",
+   "tags": ["party"],
+   "parts": [{
+     "p": "block",
+     "at": [0, 0.35, 0],
+     "s": 0.7
+    },
+    {
+     "p": "box",
+     "at": [0, 0.35, 0],
+     "s": [0.73, 0.73, 0.14],
+     "c": "gold"
+    },
+    {
+     "p": "box",
+     "at": [0, 0.35, 0],
+     "s": [0.14, 0.73, 0.73],
+     "c": "gold"
+    },
+    {
+     "p": "sphere",
+     "at": [0.1, 0.76, 0],
+     "s": [0.2, 0.12, 0.1],
+     "c": "gold",
+     "mirror": true
+    }]
+  }
+ }
+}

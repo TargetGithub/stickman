@@ -7,13 +7,18 @@ import { EASE_NAMES } from "./ease.js";
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
 const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description"]);
 const FIELDS = {
-  shape: ["shape", "color", "material", "size"],
+  shape: ["shape", "color", "material", "size", "face"],
   number_block: ["value", "color", "digitColor", "size"],
   letter: ["text", "color", "material", "font", "size", "depth"],
   character: ["character", "clip"],
   confetti: ["count", "colors", "area", "height"],
+  critter: ["species", "color", "size"],
+  prop: ["model", "color", "size"],
+  bubbles: ["count", "area", "height", "size"],
+  stars: ["count", "color", "width"],
 };
-const TARGETS = { clip: ["character"], burst: ["confetti"] };
+const TARGETS = { clip: ["character"], burst: ["confetti", "bubbles"], sleep: ["critter", "shape"], wake: ["critter", "shape"] };
+const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "youtube", "description"]);
 const NO_TARGET = new Set(["camera", "say", "caption", "sound"]);
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
@@ -39,6 +44,12 @@ export function validateScript(script, catalog) {
 
   const meta = script.meta ?? {};
   if (meta.seed != null && !Number.isInteger(meta.seed)) err("E3D_SEED", "meta.seed", "seed must be an integer");
+  for (const k of Object.keys(meta)) if (!META.has(k)) warn("W3D_UNKNOWN_FIELD", `meta.${k}`, `unknown meta field "${k}"`);
+  if (meta.voiceSpeed != null && !isNum(meta.voiceSpeed, 0.75, 1.3)) err("E3D_RANGE", "meta.voiceSpeed", "voiceSpeed must be 0.75-1.3");
+  if (meta.musicGain != null && !isNum(meta.musicGain, 0, 1)) err("E3D_RANGE", "meta.musicGain", "musicGain must be 0-1");
+  if (meta.music != null && meta.music !== false && catalog.musicMoods?.length && !catalog.musicMoods.includes(meta.music)) err("E3D_MUSIC", "meta.music", `unknown music mood "${meta.music}" (known: ${catalog.musicMoods.join(", ")})`);
+  if (meta.audience != null && !["babies", "prek"].includes(meta.audience)) err("E3D_AUDIENCE", "meta.audience", 'audience must be "babies" or "prek"');
+  if (meta.thumbnail != null && !isNum(meta.thumbnail?.t, 0, 3600)) err("E3D_RANGE", "meta.thumbnail.t", "thumbnail.t must be a time in seconds");
   if (meta.voice != null && !catalog.voices.includes(meta.voice)) err("E3D_VOICE", "meta.voice", `unknown voice "${meta.voice}" (known: ${catalog.voices.join(", ")})`);
   if (script.stage?.preset != null) name(catalog.stages, script.stage.preset, "E3D_STAGE", "stage.preset", "stage");
   for (const k of ["position", "lookAt"]) if (script.camera?.[k] != null && !isVec(script.camera[k])) err("E3D_VEC", `camera.${k}`, "must be [x, y, z]");
@@ -72,6 +83,9 @@ export function validateScript(script, catalog) {
       if (!catalog.characters[o.character]) err("E3D_CHARACTER", `${p}.character`, `unknown character "${o.character}"`);
       else if (o.clip != null && !catalog.characters[o.character].clips[o.clip]) err("E3D_CLIP", `${p}.clip`, `${o.character} has no clip "${o.clip}"`);
     }
+    if (o.kind === "critter" && !catalog.critters[o.species]) err("E3D_SPECIES", `${p}.species`, `unknown species "${o.species}" (known: ${Object.keys(catalog.critters).join(", ")})`);
+    if (o.kind === "prop" && !catalog.props[o.model]) err("E3D_MODEL", `${p}.model`, `unknown prop "${o.model}" (known: ${Object.keys(catalog.props).join(", ")})`);
+    if (o.kind === "shape" && o.face != null && typeof o.face !== "boolean") err("E3D_FACE", `${p}.face`, "face must be true or false");
     if (o.kind === "confetti") {
       for (const [j, c] of (o.colors ?? []).entries()) name(catalog.colors, c, "E3D_COLOR", `${p}.colors[${j}]`, "color");
       if (o.count != null && !(Number.isInteger(o.count) && o.count >= 1 && o.count <= 2000)) err("E3D_RANGE", `${p}.count`, "count must be 1-2000");
@@ -115,11 +129,13 @@ export function validateScript(script, catalog) {
       }
       if (a.do === "sound" && a.sound == null) err("E3D_REQUIRED", `${p}.sound`, "sound is required");
       if (a.do === "camera" && a.position == null && a.lookAt == null && a.fov == null) err("E3D_REQUIRED", p, "camera needs position, lookAt or fov");
-      if (a.do === "caption" && a.style != null && !["title", "count", "subtitle"].includes(a.style)) err("E3D_STYLE", `${p}.style`, "style must be title, count or subtitle");
+      if (a.do === "caption" && a.color != null && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
+      if (a.do === "caption" && a.style != null && !["title", "count", "subtitle", "label"].includes(a.style)) err("E3D_STYLE", `${p}.style`, "style must be title, count, label or subtitle");
       return;
     }
     const o = ids.get(a.target);
     if (!o) return err("E3D_TARGET", `${p}.target`, `no object "${a.target}"`);
+    if ((a.do === "sleep" || a.do === "wake") && o.kind === "shape" && !o.face) err("E3D_TARGET_KIND", `${p}.target`, `${a.do} needs eyes: "${a.target}" is a shape without face: true`);
     if (TARGETS[a.do] && !TARGETS[a.do].includes(o.kind)) err("E3D_TARGET_KIND", `${p}.target`, `${a.do} needs a ${TARGETS[a.do].join(" or ")}, "${a.target}" is a ${o.kind}`);
     if (a.do === "clip") {
       const ch = catalog.characters[o.character];

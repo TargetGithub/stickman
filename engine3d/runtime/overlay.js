@@ -10,6 +10,8 @@ const STYLES = {
   subtitle: { size: 0.062, x: 0.5, y: 0.1, fill: "#2b2d42", box: "rgba(255,255,255,0.92)", stroke: null },
   count: { size: 0.2, x: 0.76, y: 0.62, fill: "#ffffff", box: null, stroke: "#2b2d42" },
   title: { size: 0.12, x: 0.5, y: 0.62, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
+  // A word naming what is on screen (shape, colour, animal), above the subtitle line.
+  label: { size: 0.1, x: 0.5, y: 0.22, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
 };
 const FONT = "Andika3D";
 
@@ -26,34 +28,45 @@ export function createOverlay(width, height, captions) {
   const sprites = new Map();
 
   function sprite(c) {
-    const key = `${c.style}|${c.text}`;
+    const key = `${c.style}|${c.fill ?? ""}|${c.text}`;
     if (sprites.has(key)) return sprites.get(key);
     const st = STYLES[c.style] ?? STYLES.subtitle;
     const px = Math.round(height * st.size);
     const cv = document.createElement("canvas");
     const g = cv.getContext("2d");
     g.font = `bold ${px}px ${FONT}`;
-    const tw = Math.ceil(g.measureText(c.text).width);
+    // Wrap onto more lines when a caption would be wider than 86% of the frame.
+    const lines = [];
+    for (const word of c.text.split(" ")) {
+      const last = lines[lines.length - 1];
+      if (last && g.measureText(`${last} ${word}`).width <= width * 0.86) lines[lines.length - 1] = `${last} ${word}`;
+      else lines.push(word);
+    }
+    const tw = Math.ceil(Math.max(...lines.map((l) => g.measureText(l).width)));
     const pad = Math.round(px * 0.45);
+    const lh = px * 1.22;
     cv.width = tw + pad * 2;
-    cv.height = Math.round(px * 1.6);
+    cv.height = Math.round(px * 0.38 + lh * lines.length);
     g.font = `bold ${px}px ${FONT}`;
     g.textAlign = "center";
     g.textBaseline = "middle";
     if (st.box) {
       g.fillStyle = st.box;
       g.beginPath();
-      g.roundRect(0, 0, cv.width, cv.height, cv.height / 2);
+      g.roundRect(0, 0, cv.width, cv.height, Math.min(cv.height / 2, px * 0.8));
       g.fill();
     }
-    if (st.stroke) {
-      g.lineJoin = "round";
-      g.lineWidth = px * 0.16;
-      g.strokeStyle = st.stroke;
-      g.strokeText(c.text, cv.width / 2, cv.height / 2 + px * 0.05);
-    }
-    g.fillStyle = st.fill;
-    g.fillText(c.text, cv.width / 2, cv.height / 2 + px * 0.05);
+    lines.forEach((l, i) => {
+      const y = cv.height / 2 + (i - (lines.length - 1) / 2) * lh + px * 0.05;
+      if (st.stroke) {
+        g.lineJoin = "round";
+        g.lineWidth = px * 0.16;
+        g.strokeStyle = st.stroke;
+        g.strokeText(l, cv.width / 2, y);
+      }
+      g.fillStyle = c.fill ?? st.fill;
+      g.fillText(l, cv.width / 2, y);
+    });
     const tex = new THREE.CanvasTexture(cv);
     tex.colorSpace = THREE.SRGBColorSpace;
     const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, toneMapped: false, depthTest: false });

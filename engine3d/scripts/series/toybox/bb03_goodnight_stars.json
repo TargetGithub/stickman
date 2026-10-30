@@ -1,0 +1,398 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "A sleepy, calm bedtime video: the stars twinkle, the moon glows, and we say Twinkle, Twinkle, Little Star softly before saying goodnight to bunny, teddy, duck and cat.",
+  "meta": {
+    "title": "Goodnight, Little Star",
+    "series": "toybox",
+    "episode": "bb03",
+    "audience": "babies",
+    "seed": 203,
+    "voice": "soft",
+    "voiceSpeed": 0.78,
+    "music": "lullaby",
+    "musicGain": 0.38,
+    "skills": [],
+    "thumbnail": {
+      "t": 10
+    },
+    "youtube": {
+      "title": "Twinkle Twinkle Little Star 🌙 Goodnight Lullaby for Babies | Toy Box Friends",
+      "description": "A sleepy, calm bedtime video: the stars twinkle, the moon glows, and we say Twinkle, Twinkle, Little Star softly before saying goodnight to bunny, teddy, duck and cat.\nSlow and gentle, with no loud sounds: made for winding down at bedtime.",
+      "tags": [
+        "lullaby",
+        "bedtime for babies",
+        "twinkle twinkle little star",
+        "sleep music for babies",
+        "goodnight video",
+        "toddler learning",
+        "preschool",
+        "kids learning video",
+        "learning for toddlers",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    }
+  },
+  "stage": {
+    "preset": "night"
+  },
+  "camera": {
+    "position": [0, 1.4, 7.2],
+    "lookAt": [0, 0.9, 0],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "sky",
+      "kind": "stars",
+      "count": 160
+    },
+    {
+      "id": "moon",
+      "kind": "prop",
+      "model": "moon",
+      "size": 1.5,
+      "at": [3.2, 3.9, -6],
+      "rotation": [0, 0, 20]
+    },
+    {
+      "id": "tree",
+      "kind": "prop",
+      "model": "tree",
+      "size": 1.3,
+      "at": [-5.4, 0, -4]
+    },
+    {
+      "id": "house",
+      "kind": "prop",
+      "model": "house",
+      "size": 1.4,
+      "at": [5.6, 0, -5]
+    },
+    {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "size": 0.95,
+      "at": [-2.4, 0, 0.6]
+    },
+    {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 0.95,
+      "at": [-0.8, 0, 0.6]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "size": 0.95,
+      "at": [0.8, 0, 0.6]
+    },
+    {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 0.95,
+      "at": [2.4, 0, 0.6]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "night",
+      "title": "Night time",
+      "beats": [
+        {
+          "id": "hello",
+          "dur": 6,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Goodnight!",
+              "at": 0.6,
+              "style": "title",
+              "dur": 4
+            },
+            {
+              "do": "say",
+              "text": "Look... it's night time. The stars are out.",
+              "at": 1.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "twinkle",
+      "title": "Twinkle, twinkle",
+      "beats": [
+        {
+          "id": "rhyme0",
+          "dur": 6.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Twinkle, twinkle, little star,",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.1,
+              "volume": 0.25
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.2, 8.4],
+              "lookAt": [0, 2.6, 0],
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "id": "rhyme1",
+          "dur": 4,
+          "do": [
+            {
+              "do": "say",
+              "text": "how I wonder what you are.",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.1,
+              "volume": 0.25
+            }
+          ]
+        },
+        {
+          "id": "rhyme2",
+          "dur": 4,
+          "do": [
+            {
+              "do": "say",
+              "text": "Up above the world so high,",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.1,
+              "volume": 0.25
+            }
+          ]
+        },
+        {
+          "id": "rhyme3",
+          "dur": 4,
+          "do": [
+            {
+              "do": "say",
+              "text": "like a diamond in the sky.",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.1,
+              "volume": 0.25
+            },
+            {
+              "do": "grow",
+              "target": "moon",
+              "to": 1.12,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "id": "rhyme4",
+          "dur": 6.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Twinkle, twinkle, little star,",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.1,
+              "volume": 0.25
+            },
+            {
+              "do": "camera",
+              "position": [0, 1.4, 7.2],
+              "lookAt": [0, 0.9, 0],
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "id": "rhyme5",
+          "dur": 4,
+          "do": [
+            {
+              "do": "say",
+              "text": "how I wonder what you are.",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 0.1,
+              "volume": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goodnight",
+      "title": "Goodnight, friends",
+      "beats": [
+        {
+          "id": "night_bunny",
+          "dur": 4.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "Goodnight, bunny.",
+              "at": 0.3
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 0.8,
+              "deg": 14,
+              "dur": 0.8
+            },
+            {
+              "do": "sleep",
+              "target": "bunny",
+              "at": 1.8,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "id": "night_bear",
+          "dur": 4.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "Goodnight, teddy.",
+              "at": 0.3
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 0.8,
+              "deg": 14,
+              "dur": 0.8
+            },
+            {
+              "do": "sleep",
+              "target": "bear",
+              "at": 1.8,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "id": "night_duck",
+          "dur": 4.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "Goodnight, duck.",
+              "at": 0.3
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 0.8,
+              "deg": 14,
+              "dur": 0.8
+            },
+            {
+              "do": "sleep",
+              "target": "duck",
+              "at": 1.8,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "id": "night_cat",
+          "dur": 4.5,
+          "do": [
+            {
+              "do": "say",
+              "text": "Goodnight, cat.",
+              "at": 0.3
+            },
+            {
+              "do": "nod",
+              "target": "cat",
+              "at": 0.8,
+              "deg": 14,
+              "dur": 0.8
+            },
+            {
+              "do": "sleep",
+              "target": "cat",
+              "at": 1.8,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "id": "moon",
+          "dur": 6.1,
+          "do": [
+            {
+              "do": "say",
+              "text": "Goodnight, moon. Goodnight, stars.",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [0, 2.6, 10.5],
+              "lookAt": [0, 2, 0],
+              "dur": 6
+            }
+          ]
+        },
+        {
+          "id": "dreams",
+          "dur": 7,
+          "do": [
+            {
+              "do": "say",
+              "text": "Sweet dreams.",
+              "at": 0.6,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "at": 3.4,
+              "volume": 0.25
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
