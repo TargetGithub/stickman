@@ -26,6 +26,9 @@ export function speakPlan(plan, { log = () => {} } = {}) {
     id: l.id, who: l.voice, text: l.text, spoken: cleanText(l.text), bubble: "speech",
     voice: l.voice === "narrator" ? narratorVoice({}, table) : resolveVoice({ timbre: l.voice, pitch: 1.1, speed: plan.meta?.voiceSpeed ?? 0.95 }, table),
   }));
+  // A timbre that is off in the table (bark keeps 2D babble woofs) has no TTS model, so a 3D line cannot use it.
+  const mute = lines.find((l) => !l.voice);
+  if (mute) throw new Error(`line ${mute.id} uses voice "${mute.who}", which has no TTS voice (use soft, squeaky, deep or robot)`);
   const out = {};
   for (const l of synthesizeLines(lines, createPiperBackend(), { log })) out[l.id] = { dur: l.dur, key: l.key, file: l.file };
   return out;
