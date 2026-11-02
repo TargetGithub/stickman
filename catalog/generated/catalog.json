@@ -9897,7 +9897,8 @@
           "location": { "type": "string", "default": "tokyo_village", "description": "A location id or theme for the backdrop." },
           "hero": { "type": "string", "default": "doopi", "description": "The hero who waves." },
           "dog": { "type": "string", "default": "becky", "description": "The dog who runs in." },
-          "mood": { "type": "string", "default": "happy", "description": "The music mood." }
+          "mood": { "type": "string", "default": "happy", "description": "The music mood." },
+          "season": { "type": "string", "default": "", "maxLength": 16, "description": "Text before the episode line, e.g. \"Season 2 - \" (empty for season 1)." }
         },
         "fragment": {
           "scenes": [
@@ -9961,7 +9962,7 @@
             },
             {
               "id": "${id}_ep",
-              "text": "Episode ${episode}: ${title}",
+              "text": "${season}Episode ${episode}: ${title}",
               "style": "subtitle",
               "layer": "${id}_titles",
               "x": 960,

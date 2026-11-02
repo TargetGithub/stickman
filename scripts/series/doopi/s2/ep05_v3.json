@@ -1,0 +1,1878 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E05: Mooka and the Last Jalebi",
+    "format": "landscape",
+    "seed": 3005,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "prop": "jalebi",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "road",
+      "theme": "whispering_forest",
+      "stageWidth": 4000
+    },
+    {
+      "id": "camp",
+      "theme": "whispering_forest",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "fire",
+          "object": "campfire",
+          "x": 1600,
+          "state": "lit",
+          "z": -50
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 5,
+          "title": "Mooka and the Last Jalebi",
+          "location": "whispering_forest",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "road",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1350,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1150,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "becky",
+          "x": 1650,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Bansuri Baba told the story of the Banyan Flute, and the Hush that crept inside it."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Now the Hush is heading home to the Echo Cave, to grow into a storm."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "So the friends set off to follow it. And Nani trusted Peepa with one job: look after them."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "peepa",
+          "do": "nod",
+          "face": "determined"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "walk",
+      "location": "road",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1350,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1200,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 900,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "ghoom",
+          "x": 700,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1650,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "walk_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "They walked all morning. Up hills, down hills, over a wobbly bridge, and up another hill."
+          }
+        },
+        {
+          "id": "walk_2",
+          "at": {
+            "after": "walk_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Are we nearly there?",
+                "tired"
+              ],
+              [
+                "doomi",
+                "Dony, we left two hours ago.",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Are we nearly there NOW?",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "walk_3",
+          "at": {
+            "after": "walk_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "My tummy is making whale noises.",
+                "sad"
+              ],
+              [
+                "ghoom",
+                "SNACK... BAG... STATUS... CHECKING.",
+                "happy"
+              ],
+              [
+                "ghoom",
+                "SNACK BAG... EMPTY.",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "EMPTY? All five bags?",
+                "cry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "walk_4",
+          "at": {
+            "after": "walk_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Mooka, you ate them all yesterday.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "I was STRESSED. It was a big day.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "walk_5",
+          "at": {
+            "after": "walk_4"
+          },
+          "who": "mooka",
+          "do": "look_around",
+          "face": "surprised"
+        },
+        {
+          "id": "walk_6",
+          "at": {
+            "after": "walk_5"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But at the very bottom of Mooka's pocket... there was one jalebi. The last jalebi."
+          }
+        },
+        {
+          "id": "walk_7",
+          "at": {
+            "after": "walk_6"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "say": "Ohhh. Hello, little jalebi.",
+          "face": "love"
+        },
+        {
+          "id": "walk_8",
+          "at": {
+            "after": "walk_7"
+          },
+          "who": "peepa",
+          "do": "sigh",
+          "face": "tired"
+        },
+        {
+          "id": "walk_9",
+          "at": {
+            "after": "walk_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "I haven't eaten since yesterday either.",
+                "tired"
+              ],
+              [
+                "peepa",
+                "I gave my breakfast to Becky.",
+                "tired"
+              ],
+              [
+                "dony",
+                "Becky ate TWO breakfasts?",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "walk_10",
+          "at": {
+            "after": "walk_9"
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "location": "road",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1200,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1000,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "dony",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1550,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 850,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1700,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "bridge_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "On the way, Doopi did what Doopi always does."
+          }
+        },
+        {
+          "id": "bridge_2",
+          "at": {
+            "after": "bridge_1"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1500
+          }
+        },
+        {
+          "id": "bridge_3",
+          "at": {
+            "after": "bridge_2"
+          },
+          "who": "doopi",
+          "do": "knockdown",
+          "face": "dizzy"
+        },
+        {
+          "id": "bridge_4",
+          "at": {
+            "with": "bridge_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "slide_whistle",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "bridge_5",
+          "at": {
+            "after": "bridge_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Doopi! You tripped over NOTHING!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "There was a very sneaky leaf.",
+                "dizzy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "bridge_6",
+          "at": {
+            "after": "bridge_5"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "near": "doopi",
+            "gap": 140
+          }
+        },
+        {
+          "id": "bridge_7",
+          "at": {
+            "after": "bridge_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Here. Take my hand.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Hey! That's MY line!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "I'm borrowing it. My hand will just stay here. In case.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "bridge_8",
+          "at": {
+            "after": "bridge_7"
+          },
+          "who": "doopi",
+          "do": "get_up",
+          "face": "laugh"
+        },
+        {
+          "id": "bridge_9",
+          "at": {
+            "after": "bridge_8"
+          },
+          "who": "doopi",
+          "do": "high_five",
+          "face": "laugh",
+          "partner": "peepa"
+        },
+        {
+          "id": "bridge_10",
+          "at": {
+            "after": "bridge_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Look at that. Another small step.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Two small steps. And one trip.",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "hide",
+      "location": "road",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1423,
+          "facing": 1,
+          "face": "love"
+        },
+        {
+          "id": "peepa",
+          "x": 1635,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "doopi",
+          "x": 1846,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1973,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1212,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 2100,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "hush",
+          "x": 1000,
+          "facing": 1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "hide_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Mooka always shared. Always. Mooka was the sharing-est friend in the whole valley."
+          }
+        },
+        {
+          "id": "hide_2",
+          "at": {
+            "after": "hide_1"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "hide_3",
+          "at": {
+            "with": "hide_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "hide_4",
+          "at": {
+            "after": "hide_3"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Hushhh... it's the very last one...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "hide_5",
+          "at": {
+            "after": "hide_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "hush",
+                "Why should HE have it? Hide it, little jelly...",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hide_6",
+          "at": {
+            "with": "hide_5",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mooka",
+            "size": 0.35,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hide_7",
+          "at": {
+            "after": "hide_6"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "hide_8",
+          "at": {
+            "after": "hide_7"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        },
+        {
+          "id": "hide_9",
+          "at": {
+            "after": "hide_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Mooka? Could I... maybe have a little bite?",
+                "tired"
+              ],
+              [
+                "mooka",
+                "No! It's mine. I found it.",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hide_10",
+          "at": {
+            "after": "hide_9"
+          },
+          "who": "mooka",
+          "do": "hide",
+          "face": "angry"
+        },
+        {
+          "id": "hide_11",
+          "at": {
+            "after": "hide_10"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mooka",
+            "size": 0.6,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hide_12",
+          "at": {
+            "after": "hide_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Mooka has a cloud?!",
+                "surprised"
+              ],
+              [
+                "dony",
+                "MOOKA has a cloud? Mooka, who shares his jalebis with ANTS?",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Anyone can have a grumpy day. Even the sweetest friend.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hide_13",
+          "at": {
+            "after": "hide_12"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Go away. All of you. I'm not grumpy!",
+                "angry"
+              ],
+              [
+                "dony",
+                "You're raining on your own head, Mooka.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "I LIKE rain!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hide_14",
+          "at": {
+            "after": "hide_13"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mooka",
+            "size": 0.8,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hide_15",
+          "at": {
+            "with": "hide_14"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.4
+          }
+        },
+        {
+          "id": "hide_16",
+          "at": {
+            "after": "hide_15"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "What do we do? I can't Jalebi Spin a jalebi cloud!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "We could ask him what's wrong.",
+                "happy"
+              ],
+              [
+                "dony",
+                "We TRIED. He said go away.",
+                "sad"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "lunch",
+      "location": "road",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1432,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "peepa",
+          "x": 1677,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "doopi",
+          "x": 1881,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 2003,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "dony",
+          "x": 1229,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 2125,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 1025,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "lunch_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then Peepa did something nobody expected."
+          }
+        },
+        {
+          "id": "lunch_2",
+          "at": {
+            "after": "lunch_1"
+          },
+          "who": "peepa",
+          "do": "look_around",
+          "face": "tired"
+        },
+        {
+          "id": "lunch_3",
+          "at": {
+            "after": "lunch_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Ghoomu. Do you still have my lunch? The one Nani packed?",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "ONE... ROTI... ONE... BANANA. FOUND.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lunch_4",
+          "at": {
+            "after": "lunch_3"
+          },
+          "who": "ghoom",
+          "do": "walk",
+          "to": {
+            "near": "peepa",
+            "gap": 180
+          }
+        },
+        {
+          "id": "lunch_5",
+          "at": {
+            "after": "lunch_4"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "near": "mooka",
+            "gap": 140
+          }
+        },
+        {
+          "id": "lunch_6",
+          "at": {
+            "after": "lunch_5"
+          },
+          "who": "peepa",
+          "do": "kneel",
+          "face": "happy"
+        },
+        {
+          "id": "lunch_7",
+          "at": {
+            "after": "lunch_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Here, Mooka. You have my lunch first.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "...But you're hungry too.",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "So are you. Everybody's grumpy when they're hungry. I should know.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lunch_8",
+          "at": {
+            "after": "lunch_7"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mooka",
+            "size": 0.5,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "lunch_9",
+          "at": {
+            "after": "lunch_8"
+          },
+          "who": "mooka",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "lunch_10",
+          "at": {
+            "after": "lunch_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "I'm sorry, Peepa. It was the last one, and I got scared.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Scared there would never be another jalebi. Ever.",
+                "cry"
+              ],
+              [
+                "peepa",
+                "That's a big feeling for a little sweet.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lunch_11",
+          "at": {
+            "after": "lunch_10"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mooka",
+            "size": 0.25,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "lunch_12",
+          "at": {
+            "after": "lunch_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "What's the feeling called, Mooka?",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Greedy? No... scared. And grumpy. Scared-grumpy.",
+                "sad"
+              ],
+              [
+                "dony",
+                "Scrumpy!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "I was scrumpy.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lunch_13",
+          "at": {
+            "after": "lunch_12"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then Mooka did what Mooka always did. He shared."
+          }
+        },
+        {
+          "id": "lunch_14",
+          "at": {
+            "after": "lunch_13"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "say": "Seven friends. Seven pieces!",
+          "face": "laugh"
+        },
+        {
+          "id": "lunch_15",
+          "at": {
+            "after": "lunch_14"
+          },
+          "who": "mooka",
+          "do": "eat",
+          "face": "love"
+        },
+        {
+          "id": "lunch_16",
+          "at": {
+            "after": "lunch_15"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mooka",
+            "pop": true
+          }
+        },
+        {
+          "id": "lunch_17",
+          "at": {
+            "with": "lunch_16"
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy"
+        },
+        {
+          "id": "lunch_18",
+          "at": {
+            "after": "lunch_17"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "A tiny piece of jalebi for each of us!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "It's the best tiny piece of jalebi I've ever had!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "I... DO... NOT... EAT. BUT... THANK... YOU.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Then Becky gets yours!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lunch_19",
+          "at": {
+            "after": "lunch_18"
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "game",
+      "location": "road",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "game_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "With full-ish tummies, they walked on, and Mooka taught Peepa a game."
+          }
+        },
+        {
+          "id": "game_2",
+          "at": {
+            "after": "game_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "I spy, with my little eye, something beginning with... T!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Tree.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Yes! Your turn!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "game_3",
+          "at": {
+            "after": "game_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "I spy, with my little eye, something beginning with... J.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Jalebi?! Where?! WHERE?!",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "Joke. It was a joke.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "game_4",
+          "at": {
+            "after": "game_3"
+          },
+          "who": "dony",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "game_5",
+          "at": {
+            "with": "game_4"
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "game_6",
+          "at": {
+            "after": "game_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Peepa made a JOKE!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "A real, actual joke! Write it down!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Don't make it a big thing.",
+                "smug"
+              ],
+              [
+                "doopi",
+                "It's a small thing. A small, funny thing.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "game_7",
+          "at": {
+            "after": "game_6"
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "evening",
+      "location": "camp",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1288,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1425,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1746,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1883,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 2021,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 2250,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "evening_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "That evening, they made camp at the edge of the Whispering Forest."
+          }
+        },
+        {
+          "id": "evening_2",
+          "at": {
+            "after": "evening_1"
+          },
+          "who": "mooka",
+          "do": "sit"
+        },
+        {
+          "id": "evening_3",
+          "at": {
+            "with": "evening_2"
+          },
+          "who": "peepa",
+          "do": "sit"
+        },
+        {
+          "id": "evening_4",
+          "at": {
+            "with": "evening_3"
+          },
+          "who": "doopi",
+          "do": "sit"
+        },
+        {
+          "id": "evening_5",
+          "at": {
+            "after": "evening_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Peepa? Why did you give me your lunch?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "Because once, when I was small, nobody gave me anything.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "And I remember how grumpy that made me. For about twenty years.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "evening_6",
+          "at": {
+            "after": "evening_5"
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "evening_7",
+          "at": {
+            "after": "evening_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Twenty YEARS of grumpy? That's a lot of rain.",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "A whole monsoon, little jelly. A whole monsoon.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Then tomorrow I'll share my breakfast with you. Every single crumb.",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "evening_8",
+          "at": {
+            "after": "evening_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "That's how the Hush works. It finds a feeling, and makes it bigger.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "And sharing makes it smaller!",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Sharing makes EVERYTHING smaller. Except friends.",
+                "love"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "evening_9",
+          "at": {
+            "after": "evening_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Hey, where's the forest path tomorrow? Through there?",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Right through the middle. It gets very dark in there.",
+                "determined"
+              ],
+              [
+                "dony",
+                "...Very dark?",
+                "scared"
+              ],
+              [
+                "doomi",
+                "Very, very dark.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "evening_10",
+          "at": {
+            "after": "evening_9"
+          },
+          "who": "dony",
+          "do": "gasp",
+          "face": "scared"
+        },
+        {
+          "id": "evening_11",
+          "at": {
+            "after": "evening_10"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.4
+          }
+        },
+        {
+          "id": "evening_12",
+          "at": {
+            "after": "evening_11"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "evening_13",
+          "at": {
+            "after": "evening_12"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}
