@@ -1,0 +1,2267 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E19: The Door of True Words",
+    "format": "landscape",
+    "seed": 3019,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "prop": "glass_jar",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "tiffin"
+    },
+    {
+      "id": "tinku",
+      "name": "Tinku",
+      "body": "robot",
+      "scale": 0.7,
+      "color": "#9fd8e8",
+      "appearance": {
+        "eyes": "visor",
+        "accessories": {
+          "antenna": "#ff9f1c"
+        }
+      },
+      "voice": {
+        "pitch": 1.8,
+        "speed": 1.1,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "cloud_radar"
+    },
+    {
+      "id": "bijli",
+      "name": "Bijli",
+      "body": "kid",
+      "scale": 0.68,
+      "color": "#ffd23f",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "hair": "bun",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "baba",
+      "name": "Bansuri Baba",
+      "body": "elder",
+      "color": "#e8b48a",
+      "prop": "bansuri",
+      "appearance": {
+        "eyes": "oval",
+        "outfit": "robe",
+        "outfitColor": "#f2f0e6",
+        "accessories": {
+          "beard": "#f4f4f4",
+          "turban": "#ff9933",
+          "scarf": "#ff9933"
+        }
+      },
+      "voice": {
+        "pitch": 0.85,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "littlep",
+      "name": "Little Peepa",
+      "body": "kid",
+      "scale": 0.75,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "big",
+        "accessories": {
+          "stub_horns": "#e6b84a"
+        }
+      },
+      "voice": {
+        "pitch": 1.6,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 7,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "peak",
+      "theme": "grey_peak",
+      "stageWidth": 3600
+    },
+    {
+      "id": "door",
+      "theme": "mountain_cave",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "sdoor",
+          "object": "stone_door",
+          "x": 1600,
+          "state": "closed",
+          "z": -250
+        }
+      ],
+      "light": "indoor"
+    },
+    {
+      "id": "cave",
+      "theme": "crystal_cave",
+      "stageWidth": 3600,
+      "light": "indoor"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 19,
+          "title": "The Door of True Words",
+          "location": "grey_peak",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "peak",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1450,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "baba",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1250,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... the friends trapped the Hush in a jar. But in the night, it talked Mooka into opening the lid."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Mooka hid what he did, until a guilty cloud grew over his head. When he owned up, nobody was cross."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And Bansuri Baba told them: the Echo Cave's door only opens for true words."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "peepa",
+          "do": "sigh",
+          "face": "sad"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "path",
+      "location": "peak",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1100,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1450,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1600,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1750,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1900,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "path_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The last part of the path was steep and narrow. And Peepa walked slower and slower."
+          }
+        },
+        {
+          "id": "path_2",
+          "at": {
+            "after": "path_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Peepa? You're walking like Mooka before lunch.",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "Hey!",
+                "angry"
+              ],
+              [
+                "peepa",
+                "I've been to the Echo Cave before. Long ago.",
+                "sad"
+              ],
+              [
+                "zippy",
+                "Really? When?",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "path_3",
+          "at": {
+            "after": "path_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "When I was angry. When the Hush was whispering every day.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "I stomped up this path, and I shouted terrible things at that door.",
+                "sad"
+              ],
+              [
+                "bijli",
+                "Louder than me?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "Much louder.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "path_4",
+          "at": {
+            "after": "path_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "That was the old Peepa. You're the getting-better Peepa now.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Doors don't know that.",
+                "sad"
+              ],
+              [
+                "ghoom",
+                "THEN... WE... WILL... TELL... THE... DOOR.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "path_5",
+          "at": {
+            "after": "path_4"
+          },
+          "who": "becky",
+          "do": "lick",
+          "partner": "peepa"
+        },
+        {
+          "id": "path_6",
+          "at": {
+            "after": "path_5"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "Ugh. Fine. Let's go.",
+          "face": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "arrive",
+      "location": "door",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1250,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "doomi",
+          "x": 1100,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "dony",
+          "x": 950,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "mooka",
+          "x": 800,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "baba",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 650,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 500,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "arrive_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "High on the mountain, set into the rock, stood a great stone door, carved with a spiral of glowing runes."
+          }
+        },
+        {
+          "id": "arrive_2",
+          "at": {
+            "after": "arrive_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "It's huge. And there's no handle.",
+                "surprised"
+              ],
+              [
+                "tinku",
+                "BEEP! NO LOCK! NO KEYHOLE! NO BUTTON!",
+                "surprised"
+              ],
+              [
+                "baba",
+                "It has never needed one. Say a true feeling, out loud, and it will open for you.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_3",
+          "at": {
+            "after": "arrive_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Anything true?",
+                "surprised"
+              ],
+              [
+                "baba",
+                "Not anything. A feeling. The truest one you have right now.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "I'm hungry!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_4",
+          "at": {
+            "after": "arrive_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clang",
+            "volume": 0.3
+          }
+        },
+        {
+          "id": "arrive_5",
+          "at": {
+            "after": "arrive_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "...It didn't open.",
+                "sad"
+              ],
+              [
+                "baba",
+                "Hungry is true, little one. But it isn't the truest.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_6",
+          "at": {
+            "after": "arrive_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Okay. I'll go first.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "...Good luck, little hero.",
+                "sad"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "words",
+      "location": "door",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1250,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doomi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 800,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 650,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "words_1",
+          "at": 0.4,
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "words_2",
+          "at": {
+            "after": "words_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Sometimes I'm scared I'm not a good enough hero.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "words_3",
+          "at": {
+            "after": "words_2"
+          },
+          "who": "doopi",
+          "do": "listen"
+        },
+        {
+          "id": "words_4",
+          "at": {
+            "after": "words_3"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "words_5",
+          "at": {
+            "with": "words_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "crystal_chime",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "words_6",
+          "at": {
+            "after": "words_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "It opened! It actually opened!",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "See you inside!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "words_7",
+          "at": {
+            "after": "words_6"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "words_8",
+          "at": {
+            "after": "words_7"
+          },
+          "who": "doopi",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "words_9",
+          "at": {
+            "after": "words_8"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "closed"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "words_10",
+          "at": {
+            "after": "words_9"
+          },
+          "who": "doomi",
+          "do": "walk",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "words_11",
+          "at": {
+            "after": "words_10"
+          },
+          "who": "doomi",
+          "do": "talk",
+          "say": "I'm afraid of letting my friends down.",
+          "face": "sad",
+          "echo": 1
+        },
+        {
+          "id": "words_12",
+          "at": {
+            "after": "words_11"
+          },
+          "who": "doomi",
+          "do": "listen"
+        },
+        {
+          "id": "words_13",
+          "at": {
+            "after": "words_12"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "words_14",
+          "at": {
+            "with": "words_13"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "crystal_chime",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "words_15",
+          "at": {
+            "after": "words_14"
+          },
+          "who": "doomi",
+          "do": "walk",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "words_16",
+          "at": {
+            "after": "words_15"
+          },
+          "who": "doomi",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "words_17",
+          "at": {
+            "after": "words_16"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "closed"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "words_18",
+          "at": {
+            "after": "words_17"
+          },
+          "who": "dony",
+          "do": "walk",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "words_19",
+          "at": {
+            "after": "words_18"
+          },
+          "who": "dony",
+          "do": "talk",
+          "say": "I'm still scared of the dark. A little.",
+          "face": "sad",
+          "echo": 1
+        },
+        {
+          "id": "words_20",
+          "at": {
+            "after": "words_19"
+          },
+          "who": "dony",
+          "do": "listen"
+        },
+        {
+          "id": "words_21",
+          "at": {
+            "after": "words_20"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "words_22",
+          "at": {
+            "with": "words_21"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "crystal_chime",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "words_23",
+          "at": {
+            "after": "words_22"
+          },
+          "who": "dony",
+          "do": "walk",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "words_24",
+          "at": {
+            "after": "words_23"
+          },
+          "who": "dony",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "words_25",
+          "at": {
+            "after": "words_24"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "closed"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "words_26",
+          "at": {
+            "after": "words_25"
+          },
+          "who": "mooka",
+          "do": "walk",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "words_27",
+          "at": {
+            "after": "words_26"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "say": "I miss home. I miss Nani's kitchen.",
+          "face": "sad",
+          "echo": 1
+        },
+        {
+          "id": "words_28",
+          "at": {
+            "after": "words_27"
+          },
+          "who": "mooka",
+          "do": "listen"
+        },
+        {
+          "id": "words_29",
+          "at": {
+            "after": "words_28"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "words_30",
+          "at": {
+            "with": "words_29"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "crystal_chime",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "words_31",
+          "at": {
+            "after": "words_30"
+          },
+          "who": "mooka",
+          "do": "walk",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "words_32",
+          "at": {
+            "after": "words_31"
+          },
+          "who": "mooka",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "words_33",
+          "at": {
+            "with": "words_32"
+          },
+          "who": "becky",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "words_34",
+          "at": {
+            "after": "words_33"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "closed"
+          },
+          "object": "sdoor"
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "location": "door",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "zippy",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 750,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 600,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "baba",
+          "x": 1450,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "more_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "One by one, the others stepped up to the door."
+          }
+        },
+        {
+          "id": "more_2",
+          "at": {
+            "after": "more_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "I'm always rushing. Because stopping feels lonely.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "more_3",
+          "at": {
+            "after": "more_2"
+          },
+          "who": "baba",
+          "do": "listen"
+        },
+        {
+          "id": "more_4",
+          "at": {
+            "after": "more_3"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "more_5",
+          "at": {
+            "after": "more_4"
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "more_6",
+          "at": {
+            "after": "more_5"
+          },
+          "who": "zippy",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "more_7",
+          "at": {
+            "after": "more_6"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "closed"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "more_8",
+          "at": {
+            "after": "more_7"
+          },
+          "who": "bijli",
+          "do": "talk",
+          "say": "I shout because I feel small inside.",
+          "face": "sad",
+          "echo": 1
+        },
+        {
+          "id": "more_9",
+          "at": {
+            "after": "more_8"
+          },
+          "who": "baba",
+          "do": "nod"
+        },
+        {
+          "id": "more_10",
+          "at": {
+            "after": "more_9"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "more_11",
+          "at": {
+            "after": "more_10"
+          },
+          "who": "bijli",
+          "do": "walk",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "more_12",
+          "at": {
+            "after": "more_11"
+          },
+          "who": "bijli",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "more_13",
+          "at": {
+            "after": "more_12"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "closed"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "more_14",
+          "at": {
+            "after": "more_13"
+          },
+          "who": "tinku",
+          "do": "talk",
+          "say": "BEEP. I worry I'm not a real robot.",
+          "face": "sad",
+          "echo": 1
+        },
+        {
+          "id": "more_15",
+          "at": {
+            "after": "more_14"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "AND... I... STILL... FEEL... SLOW. BUT... LOVED.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "more_16",
+          "at": {
+            "after": "more_15"
+          },
+          "who": "baba",
+          "do": "listen"
+        },
+        {
+          "id": "more_17",
+          "at": {
+            "after": "more_16"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "more_18",
+          "at": {
+            "after": "more_17"
+          },
+          "who": "tinku",
+          "do": "walk",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "more_19",
+          "at": {
+            "with": "more_18"
+          },
+          "who": "ghoom",
+          "do": "walk",
+          "to": {
+            "x": 1500
+          }
+        },
+        {
+          "id": "more_20",
+          "at": {
+            "after": "more_19"
+          },
+          "who": "tinku",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "more_21",
+          "at": {
+            "with": "more_20"
+          },
+          "who": "ghoom",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "more_22",
+          "at": {
+            "after": "more_21"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "closed"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "more_23",
+          "at": {
+            "after": "more_22"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Until only one was left outside."
+          }
+        },
+        {
+          "id": "more_24",
+          "at": {
+            "after": "more_23"
+          },
+          "who": "peepa",
+          "do": "look_around",
+          "face": "scared"
+        }
+      ]
+    },
+    {
+      "id": "peepa",
+      "location": "door",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1200,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "baba",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "peepa_1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "baba",
+                "Your turn, young man.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "...I know.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "peepa_2",
+          "at": {
+            "after": "peepa_1"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "peepa_3",
+          "at": {
+            "after": "peepa_2"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "I'm scared. I'm scared of this cave.",
+          "face": "scared",
+          "echo": 2
+        },
+        {
+          "id": "peepa_4",
+          "at": {
+            "after": "peepa_3"
+          },
+          "who": "peepa",
+          "do": "listen"
+        },
+        {
+          "id": "peepa_5",
+          "at": {
+            "after": "peepa_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clang",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "peepa_6",
+          "at": {
+            "with": "peepa_5"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "small"
+          }
+        },
+        {
+          "id": "peepa_7",
+          "at": {
+            "after": "peepa_6"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The door stayed shut. The cave remembered the boy who had come here long ago, angry, with a horn on his back."
+          }
+        },
+        {
+          "id": "peepa_8",
+          "at": {
+            "after": "peepa_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "It won't open. It knows who I was.",
+                "cry"
+              ],
+              [
+                "baba",
+                "What did that boy never say? To anyone?",
+                "sad"
+              ],
+              [
+                "peepa",
+                "...He never said sorry.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "peepa_9",
+          "at": {
+            "after": "peepa_8"
+          },
+          "who": "peepa",
+          "do": "hold_head",
+          "face": "cry"
+        },
+        {
+          "id": "peepa_10",
+          "at": {
+            "after": "peepa_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "baba",
+                "Then say it now. Not to the door. To everyone you hurt.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "There are so many.",
+                "cry"
+              ],
+              [
+                "baba",
+                "Then start with one word.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "peepa_11",
+          "at": {
+            "after": "peepa_10"
+          },
+          "who": "peepa",
+          "do": "kneel",
+          "face": "cry"
+        },
+        {
+          "id": "peepa_12",
+          "at": {
+            "after": "peepa_11"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "I'm sorry.",
+          "face": "cry",
+          "echo": 2
+        },
+        {
+          "id": "peepa_13",
+          "at": {
+            "after": "peepa_12"
+          },
+          "who": "peepa",
+          "do": "listen"
+        },
+        {
+          "id": "peepa_14",
+          "at": {
+            "after": "peepa_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "For the grey. For the crystals. For Becky turned to stone.",
+                "cry"
+              ],
+              [
+                "peepa",
+                "For every child I scared, and every colour I stole.",
+                "cry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "peepa_15",
+          "at": {
+            "after": "peepa_14"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "I'm sorry. I'm really, truly sorry.",
+          "face": "cry",
+          "echo": 3
+        },
+        {
+          "id": "peepa_16",
+          "at": {
+            "after": "peepa_15"
+          },
+          "who": "peepa",
+          "do": "listen"
+        },
+        {
+          "id": "peepa_17",
+          "at": {
+            "after": "peepa_16"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "crystal_chime",
+            "volume": 0.8
+          }
+        },
+        {
+          "id": "peepa_18",
+          "at": {
+            "with": "peepa_17"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "small"
+          }
+        },
+        {
+          "id": "peepa_19",
+          "at": {
+            "after": "peepa_18"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "open"
+          },
+          "object": "sdoor"
+        },
+        {
+          "id": "peepa_20",
+          "at": {
+            "after": "peepa_19"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And very slowly, with a long, low creak, the door opened."
+          }
+        },
+        {
+          "id": "peepa_21",
+          "at": {
+            "after": "peepa_20"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "baba",
+                "Being honest is the hardest door of all. Go on. They're waiting for you.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Aren't you coming?",
+                "surprised"
+              ],
+              [
+                "baba",
+                "I'll wait here, and play you home.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "peepa_22",
+          "at": {
+            "after": "peepa_21"
+          },
+          "who": "peepa",
+          "do": "stand_up",
+          "face": "determined"
+        },
+        {
+          "id": "peepa_23",
+          "at": {
+            "after": "peepa_22"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "x": 1600
+          }
+        },
+        {
+          "id": "peepa_24",
+          "at": {
+            "after": "peepa_23"
+          },
+          "who": "peepa",
+          "do": "despawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "peepa_25",
+          "at": {
+            "after": "peepa_24"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "flute_tune",
+            "volume": 0.6
+          }
+        }
+      ]
+    },
+    {
+      "id": "inside",
+      "location": "cave",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1481,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1623,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1730,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1836,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1943,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1375,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 2049,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "littlep",
+          "x": 2475,
+          "facing": -1,
+          "face": "sad",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "inside_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Inside, the Echo Cave glowed with crystals. And all his friends were there, waiting."
+          }
+        },
+        {
+          "id": "inside_2",
+          "at": {
+            "after": "inside_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Peepa! You made it!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "We heard you. Through the door. All of it.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "...All of it?",
+                "surprised"
+              ],
+              [
+                "dony",
+                "The cave echoes, remember?",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "inside_3",
+          "at": {
+            "after": "inside_2"
+          },
+          "who": "doopi",
+          "do": "hug",
+          "face": "love",
+          "partner": "peepa"
+        },
+        {
+          "id": "inside_4",
+          "at": {
+            "after": "inside_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "That was the hardest thing I've ever done.",
+                "tired"
+              ],
+              [
+                "doomi",
+                "Harder than being a giant?",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Much harder. Being a giant is easy. You just stomp.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "inside_5",
+          "at": {
+            "after": "inside_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Look at all these crystals! They're like little stars.",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "They glow brighter when somebody says something true.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "My tummy is rumbling. That's true!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "...That one got a bit brighter!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "inside_6",
+          "at": {
+            "after": "inside_5"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "found"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "inside_7",
+          "at": {
+            "after": "inside_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP! THE PURPLE SIGNAL! DEEPER IN THE CAVE! AND IT'S... BIG.",
+                "scared"
+              ],
+              [
+                "mooka",
+                "How big?",
+                "scared"
+              ],
+              [
+                "tinku",
+                "VERY, VERY BIG.",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "inside_8",
+          "at": {
+            "after": "inside_7"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "inside_9",
+          "at": {
+            "after": "inside_8"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And in the crystal walls, something flickered. A picture of a little boy, all alone."
+          }
+        },
+        {
+          "id": "inside_10",
+          "at": {
+            "after": "inside_9"
+          },
+          "who": "littlep",
+          "do": "spawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "inside_11",
+          "at": {
+            "after": "inside_10"
+          },
+          "who": "peepa",
+          "do": "gasp",
+          "face": "scared"
+        },
+        {
+          "id": "inside_12",
+          "at": {
+            "after": "inside_11"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "...That's me.",
+          "face": "scared"
+        },
+        {
+          "id": "inside_13",
+          "at": {
+            "after": "inside_12"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

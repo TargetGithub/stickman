@@ -1,0 +1,2054 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E15: Echo Mountain",
+    "format": "landscape",
+    "seed": 3015,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "tiffin"
+    },
+    {
+      "id": "tinku",
+      "name": "Tinku",
+      "body": "robot",
+      "scale": 0.7,
+      "color": "#9fd8e8",
+      "appearance": {
+        "eyes": "visor",
+        "accessories": {
+          "antenna": "#ff9f1c"
+        }
+      },
+      "voice": {
+        "pitch": 1.8,
+        "speed": 1.1,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "cloud_radar"
+    },
+    {
+      "id": "bijli",
+      "name": "Bijli",
+      "body": "kid",
+      "scale": 0.68,
+      "color": "#ffd23f",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "hair": "bun",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "peak",
+      "theme": "grey_peak",
+      "stageWidth": 3600
+    },
+    {
+      "id": "shelter",
+      "theme": "mountain_cave",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "fire",
+          "object": "campfire",
+          "x": 1500,
+          "state": "lit",
+          "z": -50
+        }
+      ],
+      "light": "indoor"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 15,
+          "title": "Echo Mountain",
+          "location": "grey_peak",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "peak",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1600,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... in Khel Arena, the Hush turned every game into a sulk."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Peepa stood at the back, waiting to be picked last, like when he was little. And Doopi picked him first."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Now Tinku's radar pointed north, up toward the snowy peaks. Toward Echo Mountain."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "peepa",
+          "do": "nod",
+          "face": "happy"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "climb",
+      "location": "peak",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1550,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "tinku",
+          "x": 1700,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1800,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1950,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "climb_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Up and up they climbed, on a rocky path above the clouds."
+          }
+        },
+        {
+          "id": "climb_2",
+          "at": {
+            "after": "climb_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "My legs are tired. My feet are tired. My tummy is tired.",
+                "tired"
+              ],
+              [
+                "dony",
+                "How is your TUMMY tired?",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "It's been empty for so long, it fell asleep.",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "climb_3",
+          "at": {
+            "after": "climb_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP! ECHO MOUNTAIN! WHATEVER YOU SHOUT COMES BACK!",
+                "happy"
+              ],
+              [
+                "dony",
+                "Really? Let me try!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "climb_4",
+          "at": {
+            "after": "climb_3"
+          },
+          "who": "dony",
+          "do": "wave",
+          "say": "HELLOOO!",
+          "face": "laugh",
+          "bubble": "shout",
+          "echo": 3
+        },
+        {
+          "id": "climb_5",
+          "at": {
+            "after": "climb_4"
+          },
+          "who": "dony",
+          "do": "listen"
+        },
+        {
+          "id": "climb_6",
+          "at": {
+            "after": "climb_5"
+          },
+          "who": "dony",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "climb_7",
+          "at": {
+            "after": "climb_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "MY TURN! I'M THE LOUDEST!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "Oh no. Cover your ears, everybody!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "climb_8",
+          "at": {
+            "after": "climb_7"
+          },
+          "who": "bijli",
+          "do": "flex",
+          "say": "BIJLI IS HERE!",
+          "face": "laugh",
+          "bubble": "shout",
+          "echo": 3
+        },
+        {
+          "id": "climb_9",
+          "at": {
+            "after": "climb_8"
+          },
+          "who": "bijli",
+          "do": "listen"
+        },
+        {
+          "id": "climb_10",
+          "at": {
+            "with": "climb_9"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "small"
+          }
+        },
+        {
+          "id": "climb_11",
+          "at": {
+            "after": "climb_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "THE... MOUNTAIN... IS... SHAKING.",
+                "surprised"
+              ],
+              [
+                "bijli",
+                "That's how loud I am!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Bijli, maybe a little quieter. There's snow up there.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "climb_12",
+          "at": {
+            "after": "climb_11"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "say": "Jalebis!",
+          "face": "laugh",
+          "echo": 2
+        },
+        {
+          "id": "climb_13",
+          "at": {
+            "after": "climb_12"
+          },
+          "who": "mooka",
+          "do": "listen"
+        },
+        {
+          "id": "climb_14",
+          "at": {
+            "after": "climb_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Even the mountain wants jalebis!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Ha! This is the best mountain ever!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "climb_15",
+          "at": {
+            "after": "climb_14"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Watch this one. Doopi is the GREATEST!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Doopi...",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "climb_16",
+          "at": {
+            "after": "climb_15"
+          },
+          "who": "doopi",
+          "do": "victory",
+          "say": "Doopi is the GREATEST!",
+          "face": "laugh",
+          "bubble": "shout",
+          "echo": 3
+        },
+        {
+          "id": "climb_17",
+          "at": {
+            "after": "climb_16"
+          },
+          "who": "doomi",
+          "do": "listen"
+        },
+        {
+          "id": "climb_18",
+          "at": {
+            "after": "climb_17"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Ha! The mountain agrees with you!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "THE... MOUNTAIN... AGREES... WITH... EVERYBODY.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "climb_19",
+          "at": {
+            "after": "climb_18"
+          },
+          "who": "becky",
+          "do": "bark",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "mean",
+      "location": "peak",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1442,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1319,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1605,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1197,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1075,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1727,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "hush",
+          "x": 2175,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "mean_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But high on the cliffs, someone was listening to the echoes. Someone small, and purple."
+          }
+        },
+        {
+          "id": "mean_2",
+          "at": {
+            "after": "mean_1"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "mean_3",
+          "at": {
+            "with": "mean_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "mean_4",
+          "at": {
+            "after": "mean_3"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "mean_5",
+          "at": {
+            "after": "mean_4"
+          },
+          "who": "doopi",
+          "do": "victory",
+          "say": "I'm Doopi, hero of Tokyo!",
+          "face": "laugh",
+          "bubble": "shout"
+        },
+        {
+          "id": "mean_6",
+          "at": {
+            "after": "mean_5"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Clumsy... clumsy Doopi...",
+          "face": "smug",
+          "bubble": "whisper",
+          "echo": 3
+        },
+        {
+          "id": "mean_7",
+          "at": {
+            "after": "mean_6"
+          },
+          "who": "hush",
+          "do": "listen"
+        },
+        {
+          "id": "mean_8",
+          "at": {
+            "with": "mean_7"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.4,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "mean_9",
+          "at": {
+            "after": "mean_8"
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "sad"
+        },
+        {
+          "id": "mean_10",
+          "at": {
+            "after": "mean_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "That's not what I said!",
+                "sad"
+              ],
+              [
+                "dony",
+                "The echo changed it!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "mean_11",
+          "at": {
+            "after": "mean_10"
+          },
+          "who": "bijli",
+          "do": "flex",
+          "say": "I'M BIJLI!",
+          "face": "angry",
+          "bubble": "shout"
+        },
+        {
+          "id": "mean_12",
+          "at": {
+            "after": "mean_11"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Too small... too small...",
+          "face": "smug",
+          "bubble": "whisper",
+          "echo": 3
+        },
+        {
+          "id": "mean_13",
+          "at": {
+            "after": "mean_12"
+          },
+          "who": "hush",
+          "do": "listen"
+        },
+        {
+          "id": "mean_14",
+          "at": {
+            "with": "mean_13"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "bijli",
+            "size": 0.45,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "mean_15",
+          "at": {
+            "after": "mean_14"
+          },
+          "who": "bijli",
+          "do": "cry",
+          "face": "cry"
+        },
+        {
+          "id": "mean_16",
+          "at": {
+            "after": "mean_15"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "I'm NOT too small! I'm... I'm...",
+                "cry"
+              ],
+              [
+                "doomi",
+                "Bijli, it's not true. It's the Hush.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "mean_17",
+          "at": {
+            "after": "mean_16"
+          },
+          "who": "peepa",
+          "do": "look_around",
+          "face": "scared"
+        },
+        {
+          "id": "mean_18",
+          "at": {
+            "after": "mean_17"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Horn-head... nobody likes horn-head...",
+          "face": "smug",
+          "bubble": "whisper",
+          "echo": 3
+        },
+        {
+          "id": "mean_19",
+          "at": {
+            "after": "mean_18"
+          },
+          "who": "hush",
+          "do": "listen"
+        },
+        {
+          "id": "mean_20",
+          "at": {
+            "with": "mean_19"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "peepa",
+            "size": 0.6,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "mean_21",
+          "at": {
+            "after": "mean_20"
+          },
+          "who": "peepa",
+          "do": "hold_head",
+          "face": "sad"
+        },
+        {
+          "id": "mean_22",
+          "at": {
+            "after": "mean_21"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "It's the voice from when I was little. Those are the things I used to tell myself.",
+                "sad"
+              ],
+              [
+                "dony",
+                "The echoes are saying the mean things inside our heads!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "mean_23",
+          "at": {
+            "after": "mean_22"
+          },
+          "who": "doopi",
+          "do": "clench_fist",
+          "say": "Leave my friends alone!",
+          "face": "angry",
+          "bubble": "shout"
+        },
+        {
+          "id": "mean_24",
+          "at": {
+            "after": "mean_23"
+          },
+          "who": "hush",
+          "do": "laugh",
+          "say": "Clumsy... clumsy... clumsy...",
+          "face": "laugh",
+          "bubble": "whisper",
+          "echo": 2
+        },
+        {
+          "id": "mean_25",
+          "at": {
+            "with": "mean_24"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.7,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "mean_26",
+          "at": {
+            "after": "mean_25"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kind",
+      "location": "peak",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "bijli",
+          "x": 1250,
+          "facing": 1,
+          "face": "cry"
+        },
+        {
+          "id": "peepa",
+          "x": 1650,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 1950,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "kind_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi sat down on a cold rock, under his cloud. And then he had an idea."
+          }
+        },
+        {
+          "id": "kind_2",
+          "at": {
+            "after": "kind_1"
+          },
+          "who": "doopi",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "kind_3",
+          "at": {
+            "after": "kind_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "If a friend fell over, would you call them clumsy?",
+                "sad"
+              ],
+              [
+                "dony",
+                "Never! I'd say, are you okay?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "Then why do we say mean things to OURSELVES?",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Talk to yourself the way you'd talk to a friend.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kind_4",
+          "at": {
+            "after": "kind_3"
+          },
+          "who": "doopi",
+          "do": "stand_up",
+          "face": "determined"
+        },
+        {
+          "id": "kind_5",
+          "at": {
+            "after": "kind_4"
+          },
+          "who": "doopi",
+          "do": "victory",
+          "say": "I trip a lot. But I always get up!",
+          "face": "determined",
+          "bubble": "shout",
+          "echo": 3
+        },
+        {
+          "id": "kind_6",
+          "at": {
+            "after": "kind_5"
+          },
+          "who": "doopi",
+          "do": "listen"
+        },
+        {
+          "id": "kind_7",
+          "at": {
+            "after": "kind_6"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.3,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "kind_8",
+          "at": {
+            "after": "kind_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "It worked! The echo said it back!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "And louder!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kind_9",
+          "at": {
+            "after": "kind_8"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "pop": true
+          }
+        },
+        {
+          "id": "kind_10",
+          "at": {
+            "after": "kind_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Bijli? Your turn. Something kind. About you.",
+                "happy"
+              ],
+              [
+                "bijli",
+                "Something kind... about me...",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kind_11",
+          "at": {
+            "after": "kind_10"
+          },
+          "who": "bijli",
+          "do": "flex",
+          "say": "I'm small. But I'm STRONG!",
+          "face": "determined",
+          "bubble": "shout",
+          "echo": 3
+        },
+        {
+          "id": "kind_12",
+          "at": {
+            "after": "kind_11"
+          },
+          "who": "bijli",
+          "do": "listen"
+        },
+        {
+          "id": "kind_13",
+          "at": {
+            "after": "kind_12"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "bijli",
+            "pop": true
+          }
+        },
+        {
+          "id": "kind_14",
+          "at": {
+            "with": "kind_13"
+          },
+          "who": "bijli",
+          "do": "jump_joy",
+          "face": "laugh"
+        },
+        {
+          "id": "kind_15",
+          "at": {
+            "after": "kind_14"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP! KIND ECHOES! MY RADAR LIKES THEM!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "I'm scared of the dark, but I'm brave anyway!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "I'm round, and I'm GREAT at sharing!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kind_16",
+          "at": {
+            "after": "kind_15"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then everyone looked at Peepa. And Peepa looked at his feet."
+          }
+        },
+        {
+          "id": "kind_17",
+          "at": {
+            "after": "kind_16"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "I don't have any kind things. Only the old ones.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Just try one. A little one is fine.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kind_18",
+          "at": {
+            "after": "kind_17"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "x": 1850
+          }
+        },
+        {
+          "id": "kind_19",
+          "at": {
+            "after": "kind_18"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "I'm...",
+          "face": "sad",
+          "bubble": "shout"
+        },
+        {
+          "id": "kind_20",
+          "at": {
+            "after": "kind_19"
+          },
+          "who": "peepa",
+          "do": "listen"
+        },
+        {
+          "id": "kind_21",
+          "at": {
+            "after": "kind_20"
+          },
+          "who": "peepa",
+          "do": "clench_fist",
+          "say": "I'm... getting better!",
+          "face": "determined",
+          "bubble": "shout",
+          "echo": 3
+        },
+        {
+          "id": "kind_22",
+          "at": {
+            "after": "kind_21"
+          },
+          "who": "peepa",
+          "do": "listen"
+        },
+        {
+          "id": "kind_23",
+          "at": {
+            "after": "kind_22"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "peepa",
+            "pop": true
+          }
+        },
+        {
+          "id": "kind_24",
+          "at": {
+            "with": "kind_23"
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy"
+        },
+        {
+          "id": "kind_25",
+          "at": {
+            "after": "kind_24"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "You ARE getting better!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "...The mountain said it three times. So it must be true.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kind_26",
+          "at": {
+            "after": "kind_25"
+          },
+          "who": "doopi",
+          "do": "hug",
+          "face": "love",
+          "partner": "peepa"
+        }
+      ]
+    },
+    {
+      "id": "down",
+      "location": "peak",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "zippy",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 1050,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "mooka",
+          "x": 1650,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1800,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 2100,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "down_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "On the way down to find a shelter for the night, Zippy caught up with them."
+          }
+        },
+        {
+          "id": "down_2",
+          "at": {
+            "after": "down_1"
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 1450
+          }
+        },
+        {
+          "id": "down_3",
+          "at": {
+            "after": "down_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Skates on rocks. Not my best idea.",
+                "tired"
+              ],
+              [
+                "tinku",
+                "BEEP! I CAN FIX YOUR WHEEL! ONE SECOND!",
+                "happy"
+              ],
+              [
+                "zippy",
+                "You can fix wheels too?",
+                "surprised"
+              ],
+              [
+                "tinku",
+                "I CAN FIX EVERYTHING! BEEP BOOP!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "down_4",
+          "at": {
+            "after": "down_3"
+          },
+          "who": "tinku",
+          "do": "poke"
+        },
+        {
+          "id": "down_5",
+          "at": {
+            "with": "down_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "windup_click",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "down_6",
+          "at": {
+            "after": "down_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "It spins like new! Thanks, Tinku!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "Tinku is so clever!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Tinku fixed Zippy's wheel, Tinku found the trail, Tinku can climb walls...",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "down_7",
+          "at": {
+            "after": "down_6"
+          },
+          "who": "ghoom",
+          "do": "look_around",
+          "face": "sad"
+        },
+        {
+          "id": "down_8",
+          "at": {
+            "after": "down_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "GHOOMU... CARRIED... THE... BAGS.",
+                "happy"
+              ],
+              [
+                "dony",
+                "Oh. Yes. Thanks, Ghoomu.",
+                "happy"
+              ],
+              [
+                "tinku",
+                "BIG BROTHER IS THE BEST BAG CARRIER!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "...BAGS. YES.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "down_9",
+          "at": {
+            "after": "down_8"
+          },
+          "who": "doomi",
+          "do": "look_around",
+          "face": "surprised"
+        },
+        {
+          "id": "down_10",
+          "at": {
+            "after": "down_9"
+          },
+          "who": "doomi",
+          "do": "talk",
+          "say": "Is Ghoomu walking slower than usual?",
+          "face": "surprised"
+        },
+        {
+          "id": "down_11",
+          "at": {
+            "after": "down_10"
+          },
+          "who": "becky",
+          "do": "whimper",
+          "face": "sad"
+        }
+      ]
+    },
+    {
+      "id": "night",
+      "location": "shelter",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 1950,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "doomi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "night_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "That night they sheltered in a little cave, warm around the fire."
+          }
+        },
+        {
+          "id": "night_2",
+          "at": {
+            "after": "night_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "I missed all the shouting. I was fixing my skate.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "You can shout tomorrow. Shout something kind!",
+                "laugh"
+              ],
+              [
+                "zippy",
+                "Zippy is the fastest and the nicest!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "night_3",
+          "at": {
+            "after": "night_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP! RADAR UPDATE! THE PURPLE SIGNAL IS CROSSING THE FROZEN RIVER!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Tinku, you're amazing!",
+                "laugh"
+              ],
+              [
+                "tinku",
+                "I CAN SEE THROUGH SNOW! AND CLIMB WALLS! AND COUNT TO A MILLION!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "night_4",
+          "at": {
+            "after": "night_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Today the mountain said I'm getting better.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Because YOU said it first.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Hmm. I might say it again tomorrow. Quietly.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Say it every day. Like brushing your teeth.",
+                "laugh"
+              ],
+              [
+                "zippy",
+                "Kind words and clean teeth. Got it!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "night_5",
+          "at": {
+            "after": "night_4"
+          },
+          "who": "ghoom",
+          "do": "sigh",
+          "face": "tired"
+        },
+        {
+          "id": "night_6",
+          "at": {
+            "after": "night_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "I... CAN... ONLY... CARRY... BAGS.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Ghoomu? Are you okay?",
+                "surprised"
+              ],
+              [
+                "ghoom",
+                "I... AM... FINE. JUST... SLOW.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "night_7",
+          "at": {
+            "after": "night_6"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.4
+          }
+        },
+        {
+          "id": "night_8",
+          "at": {
+            "after": "night_7"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "night_9",
+          "at": {
+            "after": "night_8"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

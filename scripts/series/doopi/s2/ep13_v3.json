@@ -1,0 +1,2098 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E13: Where Is Peepa?",
+    "format": "landscape",
+    "seed": 3013,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "rope"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tinku",
+      "name": "Tinku",
+      "body": "robot",
+      "scale": 0.7,
+      "color": "#9fd8e8",
+      "appearance": {
+        "eyes": "visor",
+        "accessories": {
+          "antenna": "#ff9f1c"
+        }
+      },
+      "voice": {
+        "pitch": 1.8,
+        "speed": 1.1,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "cloud_radar"
+    },
+    {
+      "id": "bijli",
+      "name": "Bijli",
+      "body": "kid",
+      "scale": 0.68,
+      "color": "#ffd23f",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "hair": "bun",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "dcamp",
+      "theme": "desert_noon",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "fire",
+          "object": "campfire",
+          "x": 1600,
+          "state": "lit",
+          "z": -50
+        }
+      ]
+    },
+    {
+      "id": "sands",
+      "theme": "desert_noon",
+      "stageWidth": 4000
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 13,
+          "title": "Where Is Peepa?",
+          "location": "desert_noon",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "dcamp",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1550,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1250,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... around the campfire, every friend said one fear out loud to the stars."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Peepa's fear was the hardest: that nobody would ever really like him."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "That night, the Hush rose out of a sandstorm and whispered only to Peepa. And in the morning, Peepa was gone."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "becky",
+          "do": "whimper",
+          "face": "sad"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "blame",
+      "location": "dcamp",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 1550,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1700,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "bijli",
+          "x": 1400,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "zippy",
+          "x": 1850,
+          "facing": -1,
+          "face": "surprised"
+        },
+        {
+          "id": "ghoom",
+          "x": 2050,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "tinku",
+          "x": 950,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "blame_1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "I knew it. I KNEW it. He tricked us.",
+                "angry"
+              ],
+              [
+                "doopi",
+                "Dony, don't say that.",
+                "sad"
+              ],
+              [
+                "dony",
+                "He went off with the Hush in the middle of the night! What else could it be?",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "blame_2",
+          "at": {
+            "after": "blame_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "He took the rope too. Doomi's rope.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "And... he didn't eat the breakfast I saved him.",
+                "cry"
+              ],
+              [
+                "dony",
+                "See? He's gone to get the Horn. To be big again.",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "blame_3",
+          "at": {
+            "after": "blame_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "You don't know that. Nobody asked him!",
+                "angry"
+              ],
+              [
+                "dony",
+                "How can we ask him? He's GONE!",
+                "angry"
+              ],
+              [
+                "doopi",
+                "Then we find him, and THEN we ask!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "blame_4",
+          "at": {
+            "with": "blame_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.3
+          }
+        },
+        {
+          "id": "blame_5",
+          "at": {
+            "after": "blame_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "Hey! HEY! Stop yelling! That's MY job!",
+                "angry"
+              ],
+              [
+                "zippy",
+                "Everybody's scared. That's all this is. Scared.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "blame_6",
+          "at": {
+            "after": "blame_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Doopi wants to search. Dony wants to go home. Is that right?",
+                "determined"
+              ],
+              [
+                "dony",
+                "...I don't want to go home. I just feel silly for trusting him.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "I don't feel silly. I still trust him.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "blame_7",
+          "at": {
+            "after": "blame_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Then we split up for an hour. Doopi, Becky, Bijli and Tinku go north.",
+                "determined"
+              ],
+              [
+                "doomi",
+                "The rest of us look south. And everybody comes back here. Okay?",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "SPLITTING... UP. NOT... MY... FAVOURITE... THING.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "blame_8",
+          "at": {
+            "after": "blame_7"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "doopi",
+            "side": "right"
+          }
+        },
+        {
+          "id": "blame_9",
+          "at": {
+            "with": "blame_8"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "bijli",
+            "side": "right",
+            "mode": "run"
+          }
+        },
+        {
+          "id": "blame_10",
+          "at": {
+            "with": "blame_9"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "tinku",
+            "side": "right"
+          }
+        }
+      ]
+    },
+    {
+      "id": "signals",
+      "location": "sands",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "bijli",
+          "x": 1550,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1700,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "signals_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi's group trudged north, over dune after dune."
+          }
+        },
+        {
+          "id": "signals_2",
+          "at": {
+            "after": "signals_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "PEEPA! KNOT MAAAN!",
+                "angry"
+              ],
+              [
+                "doopi",
+                "Bijli, I think they heard that in Tokyo.",
+                "laugh"
+              ],
+              [
+                "bijli",
+                "Good. Then he heard it too.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "signals_3",
+          "at": {
+            "after": "signals_2"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "scan"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "signals_4",
+          "at": {
+            "after": "signals_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Tinku, anything on your radar?",
+                "surprised"
+              ],
+              [
+                "tinku",
+                "BEEP. Scanning... scanning...",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "signals_5",
+          "at": {
+            "after": "signals_4"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "found"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "signals_6",
+          "at": {
+            "with": "signals_5"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "signals_7",
+          "at": {
+            "after": "signals_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "TWO signals! One purple. Very sneaky.",
+                "surprised"
+              ],
+              [
+                "tinku",
+                "And one tall and grumpy. Right behind it!",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "Behind it? Peepa's not WITH the Hush.",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "He's CHASING it!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "signals_8",
+          "at": {
+            "after": "signals_7"
+          },
+          "who": "becky",
+          "do": "bark",
+          "face": "happy"
+        },
+        {
+          "id": "signals_9",
+          "at": {
+            "after": "signals_8"
+          },
+          "who": "becky",
+          "do": "run",
+          "to": {
+            "x": 3800
+          }
+        },
+        {
+          "id": "signals_10",
+          "at": {
+            "with": "signals_9",
+            "delay": 0.3
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 3700
+          }
+        },
+        {
+          "id": "signals_11",
+          "at": {
+            "with": "signals_10",
+            "delay": 0.3
+          },
+          "who": "bijli",
+          "do": "run",
+          "to": {
+            "x": 3600
+          }
+        }
+      ]
+    },
+    {
+      "id": "south",
+      "location": "sands",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "zippy",
+          "x": 1550,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 950,
+          "facing": 1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "south_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Meanwhile, the other group searched the dunes to the south."
+          }
+        },
+        {
+          "id": "south_2",
+          "at": {
+            "after": "south_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "We're wasting our time. He's halfway to the Echo Cave by now.",
+                "angry"
+              ],
+              [
+                "zippy",
+                "You're very sure for somebody who doesn't know.",
+                "surprised"
+              ],
+              [
+                "dony",
+                "I'm sure because he did it before! Lots of times!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "south_3",
+          "at": {
+            "after": "south_2"
+          },
+          "who": "doomi",
+          "do": "walk",
+          "to": {
+            "near": "dony",
+            "gap": 140
+          }
+        },
+        {
+          "id": "south_4",
+          "at": {
+            "after": "south_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Dony. What are you feeling? Really?",
+                "happy"
+              ],
+              [
+                "dony",
+                "Angry.",
+                "angry"
+              ],
+              [
+                "doomi",
+                "And under the angry?",
+                "happy"
+              ],
+              [
+                "dony",
+                "...Hurt. I started to like him. And then he just left.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "south_5",
+          "at": {
+            "after": "south_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "I miss him. He always held my plate.",
+                "sad"
+              ],
+              [
+                "ghoom",
+                "HE... CARRIED... THE... HEAVY... THINGS. EVERY... DAY.",
+                "sad"
+              ],
+              [
+                "zippy",
+                "That doesn't sound like somebody planning a trick.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "south_6",
+          "at": {
+            "after": "south_5"
+          },
+          "who": "mooka",
+          "do": "point",
+          "face": "surprised"
+        },
+        {
+          "id": "south_7",
+          "at": {
+            "after": "south_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Look! A rope, tied round that rock!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "A triple knot.",
+                "surprised"
+              ],
+              [
+                "zippy",
+                "Only one person ties triple knots.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "He was tying the tent! He did it to keep it safe for us!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "south_8",
+          "at": {
+            "after": "south_7"
+          },
+          "who": "dony",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "south_9",
+          "at": {
+            "after": "south_8"
+          },
+          "who": "dony",
+          "do": "talk",
+          "say": "...Maybe I was wrong.",
+          "face": "sad"
+        }
+      ]
+    },
+    {
+      "id": "chase",
+      "location": "sands",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1300,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "hush",
+          "x": 1900,
+          "facing": -1,
+          "face": "smug"
+        }
+      ],
+      "beats": [
+        {
+          "id": "chase_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Over the next dune, Peepa was chasing a little purple puff, all on his own."
+          }
+        },
+        {
+          "id": "chase_2",
+          "at": {
+            "after": "chase_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Come here, you sneaky whisper!",
+                "angry"
+              ],
+              [
+                "hush",
+                "Hushhh... you can't catch me alone...",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "chase_3",
+          "at": {
+            "after": "chase_2"
+          },
+          "who": "peepa",
+          "do": "toss",
+          "face": "angry"
+        },
+        {
+          "id": "chase_4",
+          "at": {
+            "with": "chase_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whoosh",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "chase_5",
+          "at": {
+            "after": "chase_4"
+          },
+          "who": "hush",
+          "do": "dodge_back"
+        },
+        {
+          "id": "chase_6",
+          "at": {
+            "after": "chase_5"
+          },
+          "who": "hush",
+          "do": "laugh",
+          "say": "Missed! Hee hee hee...",
+          "face": "laugh"
+        },
+        {
+          "id": "chase_7",
+          "at": {
+            "after": "chase_6"
+          },
+          "who": "peepa",
+          "do": "run",
+          "to": {
+            "x": 1700
+          }
+        },
+        {
+          "id": "chase_8",
+          "at": {
+            "after": "chase_7"
+          },
+          "who": "peepa",
+          "do": "knockdown",
+          "face": "hurt"
+        },
+        {
+          "id": "chase_9",
+          "at": {
+            "after": "chase_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "hush",
+                "Give up, Peepa. Come with me. Be big again.",
+                "smug"
+              ],
+              [
+                "peepa",
+                "Never. I'll catch you myself. It's MY mess.",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "chase_10",
+          "at": {
+            "after": "chase_9"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "peepa",
+            "size": 0.6,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "chase_11",
+          "at": {
+            "after": "chase_10"
+          },
+          "who": "hush",
+          "do": "run",
+          "to": {
+            "x": 2500
+          },
+          "fx": [
+            "hush_zip"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "found",
+      "location": "sands",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "bijli",
+          "x": 950,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "becky",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "tinku",
+          "x": 800,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "found_1",
+          "at": 0.4,
+          "who": "peepa",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "found_2",
+          "at": {
+            "after": "found_1"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "becky",
+            "side": "left",
+            "to": {
+              "x": 1300
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "found_3",
+          "at": {
+            "with": "found_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "bark",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "found_4",
+          "at": {
+            "after": "found_3"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doopi",
+            "side": "left",
+            "to": {
+              "x": 1150
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "found_5",
+          "at": {
+            "with": "found_4",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "bijli",
+            "side": "left",
+            "to": {
+              "x": 1000
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "found_6",
+          "at": {
+            "with": "found_5",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tinku",
+            "side": "left",
+            "to": {
+              "x": 850
+            }
+          }
+        },
+        {
+          "id": "found_7",
+          "at": {
+            "after": "found_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Peepa! We found you!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Go back to camp, little hero.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Not until you tell me what happened. I'm asking. What happened?",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_8",
+          "at": {
+            "after": "found_7"
+          },
+          "who": "becky",
+          "do": "lick",
+          "face": "happy",
+          "partner": "peepa"
+        },
+        {
+          "id": "found_9",
+          "at": {
+            "after": "found_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Last night, the Hush whispered to me. It said: take the Horn, be big again.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "And part of me... wanted to. A small, old part.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "But a bigger part wanted to catch it. Before it hurt any of you.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_10",
+          "at": {
+            "after": "found_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "So you went after it. All by yourself.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "It's my mess. I wanted to fix it by myself.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Ha. I tried that once. In Jhilmil City.",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "It doesn't work.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_11",
+          "at": {
+            "after": "found_10"
+          },
+          "who": "peepa",
+          "do": "laugh",
+          "face": "smug"
+        },
+        {
+          "id": "found_12",
+          "at": {
+            "after": "found_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "How do you feel, Peepa? Under that cloud?",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Ashamed. Like I'll never stop being the villain.",
+                "sad"
+              ],
+              [
+                "bijli",
+                "Villains don't run after the bad guy, Knot Man.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_13",
+          "at": {
+            "after": "found_12"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "peepa",
+            "size": 0.3,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "found_14",
+          "at": {
+            "after": "found_13"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "...Ashamed. That's the feeling.",
+          "face": "sad"
+        },
+        {
+          "id": "found_15",
+          "at": {
+            "after": "found_14"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "peepa",
+            "pop": true
+          }
+        },
+        {
+          "id": "found_16",
+          "at": {
+            "with": "found_15"
+          },
+          "who": "tinku",
+          "do": "jump_joy",
+          "face": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "sorry",
+      "location": "sands",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1575,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1418,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1889,
+          "facing": -1,
+          "face": "sad",
+          "hidden": true
+        },
+        {
+          "id": "mooka",
+          "x": 2007,
+          "facing": -1,
+          "face": "sad",
+          "hidden": true
+        },
+        {
+          "id": "doomi",
+          "x": 2125,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "zippy",
+          "x": 2243,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "ghoom",
+          "x": 2400,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "tinku",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "sorry_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "By sunset, the whole team was back together."
+          }
+        },
+        {
+          "id": "sorry_2",
+          "at": {
+            "after": "sorry_1"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doomi",
+            "side": "right",
+            "to": {
+              "x": 1811
+            }
+          }
+        },
+        {
+          "id": "sorry_3",
+          "at": {
+            "with": "sorry_2",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "dony",
+            "side": "right",
+            "to": {
+              "x": 1693
+            }
+          }
+        },
+        {
+          "id": "sorry_4",
+          "at": {
+            "with": "sorry_3",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "mooka",
+            "side": "right",
+            "to": {
+              "x": 1929
+            }
+          }
+        },
+        {
+          "id": "sorry_5",
+          "at": {
+            "with": "sorry_4",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "zippy",
+            "side": "right",
+            "to": {
+              "x": 2046
+            }
+          }
+        },
+        {
+          "id": "sorry_6",
+          "at": {
+            "with": "sorry_5",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "ghoom",
+            "side": "right",
+            "to": {
+              "x": 2204
+            }
+          }
+        },
+        {
+          "id": "sorry_7",
+          "at": {
+            "after": "sorry_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Peepa! You're safe!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Tinku sent a signal. Peepa was chasing the Hush the whole time.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sorry_8",
+          "at": {
+            "after": "sorry_7"
+          },
+          "who": "dony",
+          "do": "walk",
+          "to": {
+            "near": "peepa",
+            "gap": 150
+          },
+          "face": "sad"
+        },
+        {
+          "id": "sorry_9",
+          "at": {
+            "after": "sorry_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Peepa... I'm sorry.",
+                "sad"
+              ],
+              [
+                "dony",
+                "I said you tricked us. I blamed you, and I never even asked you.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "You had good reasons. I tricked you lots of times before.",
+                "sad"
+              ],
+              [
+                "dony",
+                "Before. Not now. I should have asked first.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sorry_10",
+          "at": {
+            "after": "sorry_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "...Apology accepted, banana boy.",
+                "happy"
+              ],
+              [
+                "dony",
+                "Hey! Only Bijli calls me that!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sorry_11",
+          "at": {
+            "after": "sorry_10"
+          },
+          "who": "dony",
+          "do": "hug",
+          "face": "love",
+          "partner": "peepa"
+        },
+        {
+          "id": "sorry_12",
+          "at": {
+            "after": "sorry_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "I saved you breakfast. It's dinner now. It's a bit sandy.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Sandy breakfast for dinner. Perfect.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sorry_13",
+          "at": {
+            "after": "sorry_12"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "found"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "sorry_14",
+          "at": {
+            "with": "sorry_13"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "sorry_15",
+          "at": {
+            "after": "sorry_14"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Where's the Hush now?",
+                "determined"
+              ],
+              [
+                "peepa",
+                "East. Toward a town where they play games all day. Khel Arena.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Games! I love games!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Not the way the Hush will play them.",
+                "sad"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "fire",
+      "location": "dcamp",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "fire_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "That night, by the fire, everybody slept close together. Very close."
+          }
+        },
+        {
+          "id": "fire_2",
+          "at": {
+            "after": "fire_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "Knot Man. Next time, take somebody with you.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Next time, I'll wake you up first.",
+                "happy"
+              ],
+              [
+                "bijli",
+                "Not ME. I'll yell. Wake up the banana boy.",
+                "laugh"
+              ],
+              [
+                "dony",
+                "I'm RIGHT HERE.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "fire_3",
+          "at": {
+            "after": "fire_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Together, okay? From now on, we catch it together.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "Together.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "fire_4",
+          "at": {
+            "after": "fire_3"
+          },
+          "who": "becky",
+          "do": "sleep_dog"
+        },
+        {
+          "id": "fire_5",
+          "at": {
+            "after": "fire_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.4
+          }
+        },
+        {
+          "id": "fire_6",
+          "at": {
+            "after": "fire_5"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

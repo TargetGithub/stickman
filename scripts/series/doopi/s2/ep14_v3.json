@@ -1,0 +1,2165 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E14: Pick Me Last",
+    "format": "landscape",
+    "seed": 3014,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tinku",
+      "name": "Tinku",
+      "body": "robot",
+      "scale": 0.7,
+      "color": "#9fd8e8",
+      "appearance": {
+        "eyes": "visor",
+        "accessories": {
+          "antenna": "#ff9f1c"
+        }
+      },
+      "voice": {
+        "pitch": 1.8,
+        "speed": 1.1,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "cloud_radar"
+    },
+    {
+      "id": "bijli",
+      "name": "Bijli",
+      "body": "kid",
+      "scale": 0.68,
+      "color": "#ffd23f",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "hair": "bun",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "thunda",
+      "name": "Thunda",
+      "body": "bulky",
+      "scale": 1.5,
+      "color": "#ff9f80",
+      "appearance": {
+        "outfit": "armor",
+        "outfitColor": "#7a7a86",
+        "accessories": {
+          "moustache": "#2a1a14"
+        }
+      },
+      "voice": {
+        "pitch": 0.6,
+        "speed": 0.85,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -7,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "kanta",
+      "name": "Captain Kanta",
+      "body": "stickman",
+      "color": "#9ad1d4",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "outfit": "coat",
+        "outfitColor": "#1d3557",
+        "accessories": {
+          "pirate_hat": "#1d3557",
+          "eyepatch": "#111111",
+          "moustache": "#2a1a14"
+        }
+      },
+      "voice": {
+        "pitch": 0.85,
+        "speed": 1.05,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -2,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mirchi",
+      "name": "Madam Mirchi",
+      "body": "slim",
+      "color": "#ffb08a",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "mouthStyle": "cartoon",
+        "outfit": "robe",
+        "outfitColor": "#e63946",
+        "accessories": {
+          "chilli_hat": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.25,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 3,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "arena",
+      "theme": "khel_arena",
+      "stageWidth": 3600
+    },
+    {
+      "id": "sands",
+      "theme": "desert_noon",
+      "stageWidth": 4000
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 14,
+          "title": "Pick Me Last",
+          "location": "khel_arena",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "sands",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Peepa went missing, and Dony was sure he had tricked them all."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But Tinku's radar found two signals. Peepa wasn't running away. He was chasing the Hush, all alone."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Dony said sorry for blaming him without asking. And the Hush's trail led east, to Khel Arena."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "dony",
+          "do": "high_five",
+          "face": "laugh",
+          "partner": "peepa"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "arrive",
+      "location": "arena",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 5,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1305,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "doomi",
+          "x": 1162,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "bijli",
+          "x": 1497,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "thunda",
+          "x": 1975,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "mooka",
+          "x": 1018,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "peepa",
+          "x": 875,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "tinku",
+          "x": 1640,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1784,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "arrive_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Khel Arena! The town where everybody plays games, all day, every day."
+          }
+        },
+        {
+          "id": "arrive_2",
+          "at": {
+            "after": "arrive_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Running! Jumping! Ball games! Is there an eating game?",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Wait. Look at the players. Nobody's smiling.",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_3",
+          "at": {
+            "after": "arrive_2"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "found"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "arrive_4",
+          "at": {
+            "with": "arrive_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "arrive_5",
+          "at": {
+            "after": "arrive_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP BEEP BEEP! Clouds! Little clouds everywhere!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Over every single loser!",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_6",
+          "at": {
+            "after": "arrive_5"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "thunda",
+            "size": 0.4,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "arrive_7",
+          "at": {
+            "after": "arrive_6"
+          },
+          "who": "bijli",
+          "do": "point",
+          "face": "surprised"
+        },
+        {
+          "id": "arrive_8",
+          "at": {
+            "after": "arrive_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "THUNDA?! What are YOU doing here?",
+                "angry"
+              ],
+              [
+                "thunda",
+                "Bijli? Little sister?",
+                "surprised"
+              ],
+              [
+                "bijli",
+                "Small brother!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_9",
+          "at": {
+            "with": "arrive_8"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "small"
+          }
+        },
+        {
+          "id": "arrive_10",
+          "at": {
+            "after": "arrive_9"
+          },
+          "who": "thunda",
+          "do": "hug",
+          "face": "love",
+          "partner": "bijli"
+        },
+        {
+          "id": "arrive_11",
+          "at": {
+            "after": "arrive_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "thunda",
+                "I came for the arm-wrestling cup. And I lost. To a GRANDMA.",
+                "sad"
+              ],
+              [
+                "thunda",
+                "Now I don't want to play anything ever again.",
+                "sad"
+              ],
+              [
+                "bijli",
+                "You're sulking. You always sulk when you lose!",
+                "angry"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sulk",
+      "location": "arena",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 5,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "kanta",
+          "x": 1392,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mirchi",
+          "x": 1592,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1225,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "dony",
+          "x": 1125,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "zippy",
+          "x": 1758,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1025,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "hush",
+          "x": 2125,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "sulk_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Over at the running track, two old friends were lining up for a race."
+          }
+        },
+        {
+          "id": "sulk_2",
+          "at": {
+            "after": "sulk_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kanta",
+                "Ahoy, Mirchi! Ready to lose?",
+                "laugh"
+              ],
+              [
+                "mirchi",
+                "Ha! My legs are hotter than my chillies!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sulk_3",
+          "at": {
+            "after": "sulk_2"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "sports_day_race",
+            "with": [
+              "kanta",
+              "mirchi",
+              "zippy"
+            ]
+          }
+        },
+        {
+          "id": "sulk_4",
+          "at": {
+            "after": "sulk_3"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "sulk_5",
+          "at": {
+            "with": "sulk_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "sulk_6",
+          "at": {
+            "after": "sulk_5"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Hushhh... losing means you're no good...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "sulk_7",
+          "at": {
+            "with": "sulk_6",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "kanta",
+            "size": 0.5,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "sulk_8",
+          "at": {
+            "with": "sulk_7"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mirchi",
+            "size": 0.45,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "sulk_9",
+          "at": {
+            "after": "sulk_8"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "sulk_10",
+          "at": {
+            "after": "sulk_9"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        },
+        {
+          "id": "sulk_11",
+          "at": {
+            "after": "sulk_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kanta",
+                "Zippy won? The courier? That race was unfair!",
+                "angry"
+              ],
+              [
+                "mirchi",
+                "My shoes were too spicy! I demand a rematch!",
+                "angry"
+              ],
+              [
+                "zippy",
+                "Um... good race, everybody?",
+                "surprised"
+              ],
+              [
+                "kanta",
+                "Hmph! I'm never racing again!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sulk_12",
+          "at": {
+            "after": "sulk_11"
+          },
+          "who": "kanta",
+          "do": "sit",
+          "face": "angry"
+        },
+        {
+          "id": "sulk_13",
+          "at": {
+            "with": "sulk_12"
+          },
+          "who": "mirchi",
+          "do": "sit",
+          "face": "angry"
+        },
+        {
+          "id": "sulk_14",
+          "at": {
+            "after": "sulk_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Every game ends in a sulk.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "The Hush is making everybody a sore loser.",
+                "determined"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "captains",
+      "location": "arena",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 5,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1321,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "thunda",
+          "x": 1673,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "peepa",
+          "x": 2025,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1189,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1497,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1057,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1849,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 925,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "captains_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "So Doomi had an idea. One last game, for the whole arena. The big tug-of-war."
+          }
+        },
+        {
+          "id": "captains_2",
+          "at": {
+            "after": "captains_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Two captains pick their teams. Doopi, and... Thunda!",
+                "happy"
+              ],
+              [
+                "thunda",
+                "I don't want to play.",
+                "sad"
+              ],
+              [
+                "bijli",
+                "THUNDA. YOU ARE PLAYING.",
+                "angry"
+              ],
+              [
+                "thunda",
+                "...Okay.",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "captains_3",
+          "at": {
+            "after": "captains_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Everybody lined up. Except Peepa. Peepa walked to the very back, where nobody would see him."
+          }
+        },
+        {
+          "id": "captains_4",
+          "at": {
+            "after": "captains_3"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "x": 2289
+          },
+          "face": "sad"
+        },
+        {
+          "id": "captains_5",
+          "at": {
+            "after": "captains_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "When I was little, I was always picked last. Every game.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "After a while, I just stopped standing in the line.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "captains_6",
+          "at": {
+            "after": "captains_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "thunda",
+                "I pick... Bijli! Loud is strong!",
+                "happy"
+              ],
+              [
+                "bijli",
+                "Correct!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "captains_7",
+          "at": {
+            "after": "captains_6"
+          },
+          "who": "doopi",
+          "do": "point",
+          "say": "And I pick... Peepa!",
+          "face": "laugh"
+        },
+        {
+          "id": "captains_8",
+          "at": {
+            "after": "captains_7"
+          },
+          "who": "peepa",
+          "do": "gasp",
+          "face": "surprised"
+        },
+        {
+          "id": "captains_9",
+          "at": {
+            "after": "captains_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Me? First? But... why?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "Because you're tall. And you tie amazing knots. And you're my friend.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "...Nobody ever picked me first before.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "captains_10",
+          "at": {
+            "after": "captains_9"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "near": "doopi",
+            "gap": 140
+          },
+          "face": "happy"
+        },
+        {
+          "id": "captains_11",
+          "at": {
+            "after": "captains_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Okay, now pick ME!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "No, me! I'm very heavy after lunch!",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "huddle",
+      "location": "arena",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 5,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1350,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1500,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1200,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "huddle_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Before the big pull, Doopi's team huddled together."
+          }
+        },
+        {
+          "id": "huddle_2",
+          "at": {
+            "after": "huddle_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Okay, team. Plan. We pull. Very hard.",
+                "determined"
+              ],
+              [
+                "dony",
+                "That's the whole plan?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "It's a tug-of-war, Dony. There's not much else.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "huddle_3",
+          "at": {
+            "after": "huddle_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Feet wide. Lean back. Hold the rope low, not high.",
+                "determined"
+              ],
+              [
+                "zippy",
+                "Whoa. You've done this before?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "I read about it. Alone. In my castle. For fun.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "That's the saddest fun I've ever heard.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "huddle_4",
+          "at": {
+            "after": "huddle_3"
+          },
+          "who": "dony",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "huddle_5",
+          "at": {
+            "after": "huddle_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "SHOULD... I... PULL... TOO?",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Ghoomu, if you pull, you'll pull the whole arena over!",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "THEN... I... WILL... CHEER. VERY... LOUDLY.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "huddle_6",
+          "at": {
+            "after": "huddle_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "And what if we lose?",
+                "scared"
+              ],
+              [
+                "peepa",
+                "Then we lose. And we shake hands. And nobody sulks.",
+                "happy"
+              ],
+              [
+                "dony",
+                "Did Peepa just give a good-sport speech?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "Don't make it a big thing.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "huddle_7",
+          "at": {
+            "after": "huddle_6"
+          },
+          "who": "becky",
+          "do": "bark",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "tug",
+      "location": "arena",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.7,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 5,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1338,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "peepa",
+          "x": 1212,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "thunda",
+          "x": 1719,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "bijli",
+          "x": 1846,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "doomi",
+          "x": 2100,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1973,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "tug_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The rope was ready. The crowd went quiet. And then..."
+          }
+        },
+        {
+          "id": "tug_2",
+          "at": {
+            "after": "tug_1"
+          },
+          "who": "doomi",
+          "do": "point",
+          "say": "Ready... steady... PULL!",
+          "face": "laugh"
+        },
+        {
+          "id": "tug_3",
+          "at": {
+            "after": "tug_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "bell",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "tug_4",
+          "at": {
+            "after": "tug_3"
+          },
+          "macro": "activity",
+          "params": {
+            "name": "tug_of_war",
+            "with": [
+              "doopi",
+              "peepa",
+              "thunda",
+              "bijli"
+            ]
+          }
+        },
+        {
+          "id": "tug_5",
+          "at": {
+            "after": "tug_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Pull, Doopi! Pull, Peepa!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "I am pulling! Thunda is a MOUNTAIN!",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tug_6",
+          "at": {
+            "after": "tug_5"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi and Peepa pulled their very hardest. But Thunda really was a mountain."
+          }
+        },
+        {
+          "id": "tug_7",
+          "at": {
+            "after": "tug_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "WE WON! WE WON! Small brother, we WON!",
+                "laugh"
+              ],
+              [
+                "thunda",
+                "We won?",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tug_8",
+          "at": {
+            "after": "tug_7"
+          },
+          "who": "doopi",
+          "do": "get_up",
+          "face": "laugh"
+        },
+        {
+          "id": "tug_9",
+          "at": {
+            "with": "tug_8"
+          },
+          "who": "peepa",
+          "do": "get_up",
+          "face": "laugh"
+        },
+        {
+          "id": "tug_10",
+          "at": {
+            "after": "tug_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "We lost.",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "We lost! And it was SO much fun!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "...It was, wasn't it?",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "hands",
+      "location": "arena",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 5,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1312,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1168,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "thunda",
+          "x": 1695,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1838,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "kanta",
+          "x": 1982,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "mirchi",
+          "x": 2125,
+          "facing": -1,
+          "face": "angry"
+        },
+        {
+          "id": "doomi",
+          "x": 1025,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1455,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "hands_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then the losing team did something nobody in Khel Arena had done in days."
+          }
+        },
+        {
+          "id": "hands_2",
+          "at": {
+            "after": "hands_1"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "near": "thunda",
+            "gap": 140
+          }
+        },
+        {
+          "id": "hands_3",
+          "at": {
+            "after": "hands_2"
+          },
+          "who": "doopi",
+          "do": "handshake",
+          "face": "happy",
+          "partner": "thunda"
+        },
+        {
+          "id": "hands_4",
+          "at": {
+            "after": "hands_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Good game, Thunda. You're super strong.",
+                "happy"
+              ],
+              [
+                "thunda",
+                "You... you're not sulking?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "Nope. Winning is fun. Playing is MORE fun.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_5",
+          "at": {
+            "after": "hands_4"
+          },
+          "who": "peepa",
+          "do": "handshake",
+          "face": "happy",
+          "partner": "bijli"
+        },
+        {
+          "id": "hands_6",
+          "at": {
+            "after": "hands_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "thunda",
+                "I sulked all week. Because I lost to a grandma.",
+                "sad"
+              ],
+              [
+                "thunda",
+                "I felt... embarrassed. Like a big strong loser.",
+                "sad"
+              ],
+              [
+                "bijli",
+                "You're my big strong brother. Loser or not.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_7",
+          "at": {
+            "after": "hands_6"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "thunda",
+            "pop": true
+          }
+        },
+        {
+          "id": "hands_8",
+          "at": {
+            "after": "hands_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kanta",
+                "Well, shiver my timbers. Good race, Mirchi.",
+                "happy"
+              ],
+              [
+                "mirchi",
+                "Good race, Captain. Your legs were very spicy too.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_9",
+          "at": {
+            "after": "hands_8"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "kanta",
+            "pop": true
+          }
+        },
+        {
+          "id": "hands_10",
+          "at": {
+            "with": "hands_9",
+            "delay": 0.6
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mirchi",
+            "pop": true
+          }
+        },
+        {
+          "id": "hands_11",
+          "at": {
+            "after": "hands_10"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And all around the arena, the little grey clouds popped, one by one, into music notes."
+          }
+        },
+        {
+          "id": "hands_12",
+          "at": {
+            "after": "hands_11"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "crowd_cheer",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "hands_13",
+          "at": {
+            "after": "hands_12"
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "location": "arena",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "bijli",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 2050,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1600,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "next_1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Doopi. Thank you. For picking me first.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "I'll pick you first every time.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "next_2",
+          "at": {
+            "after": "next_1"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "found"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "next_3",
+          "at": {
+            "with": "next_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "next_4",
+          "at": {
+            "after": "next_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP! The purple signal is leaving! Going up! Up into the mountains!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Echo Mountain. The Echo Cave is on the other side.",
+                "determined"
+              ],
+              [
+                "bijli",
+                "I'm coming. Somebody has to be loud on a mountain.",
+                "laugh"
+              ],
+              [
+                "ghoom",
+                "MOUNTAINS. COLD. I... WILL... CARRY... THE... BLANKETS.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "next_5",
+          "at": {
+            "after": "next_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "next_6",
+          "at": {
+            "after": "next_5"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "next_7",
+          "at": {
+            "after": "next_6"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

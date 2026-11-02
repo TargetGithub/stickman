@@ -6,6 +6,8 @@ Status: **draft for Sridhar's review** (2026-10-18). World, characters and the a
 
 **Length and YouTube formats (2026-10-23):** every episode runs 5:00-5:45 with the voices (outline beats the first scripts had cut were restored, and episodes 2-24 open with a narrated "Last time..." scene), so three or four make a 20-30 minute compilation: `node tools/compilation.mjs out/series/doopi/ep01_v3_final ... --out out/series/doopi/compilation_01` (`--plan` groups them). Shorts: `node tools/shorts.mjs scripts/series/doopi/epNN_v3.json --list`, then `--auto 3 --render`.
 
+**Season 2 ("The Whispering Horn", 2026-11-01):** the 24 season 2 episodes are listed in `S2_EPISODES.md` (scripts in `scripts/series/doopi/s2/`), with the render plan in `S2_RENDER_PLAN.md`.
+
 Each outline gives: the logline, the beats (scene by scene, with rough seconds; each episode adds up to 300-330 s of story time plus cards), the cliffhanger, the intensity (1-10), the lesson, and the assets it needs beyond today's catalog. Every episode from 2 on opens with a "Last time..." narration and the title card, and closes with "To be continued..." (left out of the beat lists).
 
 ---

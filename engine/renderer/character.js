@@ -145,7 +145,9 @@ function headAxes(j, facing) {
 /** A held prop; under a light rig (v3, ADR-035) style.propLit draws it with the light's tones. */
 function heldProp(ctx, s, t) {
   const draw = (g) => drawProp(g, s.prop.data, t, s.scale, s.outlineColor);
-  if (s.propLit) s.propLit(ctx, t, s.prop.data.width * s.scale, draw);
+  // A kite flies far from the hand on its string: its lit box has to reach that far (the box pads by width).
+  const reach = s.prop.data.shape === "kite" ? s.prop.data.len * 0.45 : s.prop.data.width;
+  if (s.propLit) s.propLit(ctx, t, reach * s.scale, draw);
   else draw(ctx);
 }
 

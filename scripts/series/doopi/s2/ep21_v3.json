@@ -1,0 +1,2277 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E21: The Hush Storm",
+    "format": "landscape",
+    "seed": 3021,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "bijli",
+      "name": "Bijli",
+      "body": "kid",
+      "scale": 0.68,
+      "color": "#ffd23f",
+      "appearance": {
+        "eyes": "big",
+        "brows": "thick",
+        "hair": "bun",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#e63946"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "nani",
+      "name": "Nani Nimbu",
+      "body": "elder",
+      "scale": 0.9,
+      "color": "#e8a87c",
+      "prop": "cane",
+      "appearance": {
+        "eyes": "glasses",
+        "hair": "bun",
+        "hairColor": "#f2f2f2",
+        "outfit": "robe",
+        "outfitColor": "#8e5bd6"
+      },
+      "voice": {
+        "pitch": 1.1,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": -2,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "motumal",
+      "name": "Mayor Motumal",
+      "body": "bulky",
+      "color": "#ffb347",
+      "appearance": {
+        "outfit": "coat",
+        "outfitColor": "#ff9f1c",
+        "accessories": {
+          "moustache": "#2a1a14",
+          "turban": "#f6c445"
+        }
+      },
+      "voice": {
+        "pitch": 0.75,
+        "speed": 0.9,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -4,
+          "rate": 0.9
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "chintu",
+      "name": "Chintu",
+      "body": "kid",
+      "color": "#f4a261",
+      "appearance": {
+        "hair": "spiky",
+        "hairColor": "#2a1a14"
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.15,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 6,
+          "rate": 1.1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "kony",
+      "name": "Kony",
+      "body": "kid",
+      "scale": 0.8,
+      "color": "#c8c8d6",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#3a6fd8",
+        "accessories": {
+          "stub_horns": "#7a6a99"
+        }
+      },
+      "voice": {
+        "pitch": 1.7,
+        "speed": 1.1,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mallu",
+      "name": "Mallu Uncle",
+      "body": "elder",
+      "color": "#ffc2a0",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#f4f1de",
+        "outfit": "shirt",
+        "outfitColor": "#2a8f7c",
+        "accessories": {
+          "beard": "#f4f1de"
+        }
+      },
+      "voice": {
+        "pitch": 0.9,
+        "speed": 0.9,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.88
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "storm",
+      "name": "The Hush Storm",
+      "body": "wisp",
+      "scale": 3.2,
+      "color": "#3e3258",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 0.6,
+        "speed": 0.8,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.8,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "gloom_horn"
+    }
+  ],
+  "locations": [
+    {
+      "id": "square",
+      "theme": "tokyo_village",
+      "stageWidth": 3400,
+      "set": [
+        {
+          "id": "lan1",
+          "object": "lantern_string",
+          "x": 1100,
+          "z": -300
+        },
+        {
+          "id": "lan2",
+          "object": "lantern_string",
+          "x": 2500,
+          "z": -300
+        }
+      ]
+    },
+    {
+      "id": "peak",
+      "theme": "grey_peak",
+      "stageWidth": 3600
+    },
+    {
+      "id": "hill",
+      "theme": "banyan_hill",
+      "stageWidth": 3600,
+      "set": [
+        {
+          "id": "crack",
+          "object": "banyan_crack",
+          "x": 1800,
+          "state": "cracked",
+          "z": 0
+        }
+      ]
+    },
+    {
+      "id": "hut",
+      "theme": "home_interior",
+      "stageWidth": 2800,
+      "set": [
+        {
+          "id": "tbl",
+          "object": "table",
+          "x": 1500,
+          "z": -150
+        },
+        {
+          "id": "ch1",
+          "object": "chair",
+          "x": 1250,
+          "z": -100
+        }
+      ],
+      "light": "indoor"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 21,
+          "title": "The Hush Storm",
+          "location": "tokyo_village",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "peak",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "peepa",
+          "x": 1400,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 1600,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "becky",
+          "x": 1200,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... deep in the Echo Cave, Peepa met an echo of himself as a lonely little boy."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "He told the little boy what nobody told him back then: you can play with us."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But the Hush, fat on every feeling it had gathered, grabbed the Gloom Horn and blew away as a giant storm. Straight toward Tokyo."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "doopi",
+          "do": "clench_fist",
+          "face": "determined"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "race",
+      "location": "peak",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "heroic",
+        "intensity": 0.7,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "ghoom",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "zippy",
+          "x": 1550,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "bijli",
+          "x": 1450,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "doopi",
+          "x": 1150,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doomi",
+          "x": 1000,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "dony",
+          "x": 850,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "mooka",
+          "x": 700,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "peepa",
+          "x": 1700,
+          "facing": 1,
+          "face": "determined"
+        }
+      ],
+      "beats": [
+        {
+          "id": "race_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Down the mountain they raced. Zippy led the way, and Ghoomu carried whoever got tired."
+          }
+        },
+        {
+          "id": "race_2",
+          "at": {
+            "after": "race_1"
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 2600
+          }
+        },
+        {
+          "id": "race_3",
+          "at": {
+            "with": "race_2"
+          },
+          "who": "ghoom",
+          "do": "run",
+          "to": {
+            "x": 2300
+          }
+        },
+        {
+          "id": "race_4",
+          "at": {
+            "with": "race_3"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 2150
+          }
+        },
+        {
+          "id": "race_5",
+          "at": {
+            "with": "race_4"
+          },
+          "who": "peepa",
+          "do": "run",
+          "to": {
+            "x": 2450
+          }
+        },
+        {
+          "id": "race_6",
+          "at": {
+            "after": "race_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "My legs... are made of... jelly...",
+                "tired"
+              ],
+              [
+                "mooka",
+                "MY legs are made of jelly! I'm a JELLY BEAN!",
+                "tired"
+              ],
+              [
+                "ghoom",
+                "JELLY... BEAN... CLIMB... ON.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "race_7",
+          "at": {
+            "after": "race_6"
+          },
+          "who": "mooka",
+          "do": "walk",
+          "to": {
+            "near": "ghoom",
+            "gap": 120
+          }
+        },
+        {
+          "id": "race_8",
+          "at": {
+            "after": "race_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "FASTER, EVERYBODY! THE STORM IS GETTING AWAY!",
+                "angry"
+              ],
+              [
+                "doomi",
+                "Bijli, you're so small. How are you so fast?",
+                "surprised"
+              ],
+              [
+                "bijli",
+                "I'M SMALL! THAT MEANS LESS OF ME TO CARRY!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "race_9",
+          "at": {
+            "after": "race_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Tinku's radar says the storm is over the valley now!",
+                "scared"
+              ],
+              [
+                "peepa",
+                "Over Nani's hut. Over Kony. Over everyone.",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Hold on, Tokyo. We're coming.",
+                "determined"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sight",
+      "location": "hill",
+      "time": "dusk",
+      "weather": "wind",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "grade": {
+        "saturation": 0.5,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "doomi",
+          "x": 1150,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "peepa",
+          "x": 1450,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "zippy",
+          "x": 1600,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "bijli",
+          "x": 1000,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "ghoom",
+          "x": 850,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "mooka",
+          "x": 700,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "dony",
+          "x": 550,
+          "facing": 1,
+          "face": "tired"
+        }
+      ],
+      "beats": [
+        {
+          "id": "sight_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "By evening they reached Banyan hill. And from the top, they could see their village."
+          }
+        },
+        {
+          "id": "sight_2",
+          "at": {
+            "after": "sight_1"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "sight_3",
+          "at": {
+            "after": "sight_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Is that Tokyo? Under all that grey?",
+                "scared"
+              ],
+              [
+                "doomi",
+                "The whole sky is one big cloud.",
+                "scared"
+              ],
+              [
+                "peepa",
+                "And look at the Banyan. The crack is wider.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sight_4",
+          "at": {
+            "after": "sight_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Ghoomu, put me down. I want to see.",
+                "tired"
+              ],
+              [
+                "ghoom",
+                "SETTING... DOWN... JELLY... BEAN.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "...Oh no. Even the jalebi stall is grey.",
+                "cry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sight_5",
+          "at": {
+            "after": "sight_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "bijli",
+                "I'VE NEVER SEEN YOUR VILLAGE. IS IT USUALLY GREY?",
+                "surprised"
+              ],
+              [
+                "dony",
+                "No! It's the most colourful place in the valley!",
+                "sad"
+              ],
+              [
+                "dony",
+                "Huts painted every colour. Bunting everywhere. Music all day.",
+                "sad"
+              ],
+              [
+                "bijli",
+                "THEN LET'S GO GET THE COLOURS BACK!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sight_6",
+          "at": {
+            "after": "sight_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Ghoomu, Zippy, Bijli. Thank you for coming all this way.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "Friends don't deliver halfway, famous hero.",
+                "happy"
+              ],
+              [
+                "ghoom",
+                "GHOOMU... CARRIES... ALL... THE... WAY.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "sight_7",
+          "at": {
+            "after": "sight_6"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 2600
+          }
+        },
+        {
+          "id": "sight_8",
+          "at": {
+            "with": "sight_7",
+            "delay": 0.3
+          },
+          "who": "peepa",
+          "do": "run",
+          "to": {
+            "x": 2700
+          }
+        }
+      ]
+    },
+    {
+      "id": "hush",
+      "location": "square",
+      "time": "day",
+      "weather": "rain",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.3,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "motumal",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "chintu",
+          "x": 1300,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "kony",
+          "x": 1700,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "mallu",
+          "x": 1900,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "nani",
+          "x": 1100,
+          "facing": 1,
+          "face": "tired"
+        }
+      ],
+      "beats": [
+        {
+          "id": "hush_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "In Tokyo, the storm sat over the whole village. And everyone had a little grey cloud of their own."
+          }
+        },
+        {
+          "id": "hush_2",
+          "at": {
+            "with": "hush_1"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "motumal",
+            "size": 0.6,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hush_3",
+          "at": {
+            "with": "hush_2"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "chintu",
+            "size": 0.5,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hush_4",
+          "at": {
+            "with": "hush_3"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "kony",
+            "size": 0.5,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hush_5",
+          "at": {
+            "with": "hush_4"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "mallu",
+            "size": 0.6,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hush_6",
+          "at": {
+            "after": "hush_5"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "hush_7",
+          "at": {
+            "after": "hush_6"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Nobody talked. Nobody played. Nobody even said hello."
+          }
+        },
+        {
+          "id": "hush_8",
+          "at": {
+            "after": "hush_7"
+          },
+          "who": "chintu",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "hush_9",
+          "at": {
+            "with": "hush_8"
+          },
+          "who": "kony",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "hush_10",
+          "at": {
+            "after": "hush_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "motumal",
+                "People of Tokyo... in the year... of the...",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hush_11",
+          "at": {
+            "after": "hush_10"
+          },
+          "who": "motumal",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "hush_12",
+          "at": {
+            "after": "hush_11"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Even Mayor Motumal couldn't get a single word out."
+          }
+        },
+        {
+          "id": "hush_13",
+          "at": {
+            "after": "hush_12"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "Chintu, dear. Won't you fly your kite?",
+                "tired"
+              ],
+              [
+                "chintu",
+                "What's the point.",
+                "sad"
+              ],
+              [
+                "nani",
+                "Kony? Mallu?",
+                "tired"
+              ],
+              [
+                "mallu",
+                "Leave us alone, Nani.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hush_14",
+          "at": {
+            "after": "hush_13"
+          },
+          "who": "nani",
+          "do": "sigh",
+          "face": "sad"
+        }
+      ]
+    },
+    {
+      "id": "kony",
+      "location": "hut",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.3,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "nani",
+          "x": 1300,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "kony",
+          "x": 1600,
+          "facing": -1,
+          "face": "sad"
+        }
+      ],
+      "beats": [
+        {
+          "id": "kony_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "In Nani's hut, Kony sat by the window, holding something very carefully."
+          }
+        },
+        {
+          "id": "kony_2",
+          "at": {
+            "with": "kony_1"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "kony",
+            "size": 0.5,
+            "dur": 0.1
+          }
+        },
+        {
+          "id": "kony_3",
+          "at": {
+            "after": "kony_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "What have you got there, Kony?",
+                "happy"
+              ],
+              [
+                "kony",
+                "A leaf whistle. I made it for Peepa.",
+                "sad"
+              ],
+              [
+                "kony",
+                "I'm keeping it safe for later. But later isn't coming.",
+                "sad"
+              ],
+              [
+                "nani",
+                "Later always comes, Kony. That's what later means.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kony_4",
+          "at": {
+            "after": "kony_3"
+          },
+          "who": "kony",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "kony_5",
+          "at": {
+            "after": "kony_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "kony",
+                "I miss him, Nani. Is that a silly thing to miss?",
+                "sad"
+              ],
+              [
+                "nani",
+                "Missing a friend is never silly.",
+                "happy"
+              ],
+              [
+                "nani",
+                "I miss him too. Grumpy old Peepa, breaking my pots.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "kony_6",
+          "at": {
+            "after": "kony_5"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "kony",
+            "size": 0.3,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "kony_7",
+          "at": {
+            "after": "kony_6"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "location": "square",
+      "time": "day",
+      "weather": "rain",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "grade": {
+        "saturation": 0.3,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "nani",
+          "x": 1569,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "kony",
+          "x": 1475,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 2386,
+          "facing": -1,
+          "face": "determined",
+          "hidden": true
+        },
+        {
+          "id": "doomi",
+          "x": 2449,
+          "facing": -1,
+          "face": "determined",
+          "hidden": true
+        },
+        {
+          "id": "peepa",
+          "x": 2512,
+          "facing": -1,
+          "face": "determined",
+          "hidden": true
+        },
+        {
+          "id": "dony",
+          "x": 2575,
+          "facing": -1,
+          "face": "tired",
+          "hidden": true
+        },
+        {
+          "id": "becky",
+          "x": 2324,
+          "facing": -1,
+          "face": "angry",
+          "hidden": true
+        },
+        {
+          "id": "storm",
+          "x": 2135,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "home_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "That's when the friends came running into the square."
+          }
+        },
+        {
+          "id": "home_2",
+          "at": {
+            "after": "home_1"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "becky",
+            "side": "right",
+            "to": {
+              "x": 1946
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "home_3",
+          "at": {
+            "with": "home_2",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doopi",
+            "side": "right",
+            "to": {
+              "x": 1789
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "home_4",
+          "at": {
+            "with": "home_3",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "peepa",
+            "side": "right",
+            "to": {
+              "x": 1884
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "home_5",
+          "at": {
+            "with": "home_4",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doomi",
+            "side": "right",
+            "to": {
+              "x": 2009
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "home_6",
+          "at": {
+            "with": "home_5",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "dony",
+            "side": "right",
+            "to": {
+              "x": 2072
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "home_7",
+          "at": {
+            "after": "home_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Nani! Everyone! We're home!",
+                "happy"
+              ],
+              [
+                "nani",
+                "Doopi! Oh, thank goodness.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Kony? Kony, it's me.",
+                "sad"
+              ],
+              [
+                "kony",
+                "...Hi, Peepa.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "home_8",
+          "at": {
+            "after": "home_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Everybody looks so sad. Even the chickens look sad.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "It's the storm. It's making every feeling bigger. All at once.",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "home_9",
+          "at": {
+            "after": "home_8"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.8
+          }
+        },
+        {
+          "id": "home_10",
+          "at": {
+            "with": "home_9"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "med"
+          }
+        },
+        {
+          "id": "home_11",
+          "at": {
+            "after": "home_10"
+          },
+          "who": "storm",
+          "do": "spawn",
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "home_12",
+          "at": {
+            "after": "home_11"
+          },
+          "who": "becky",
+          "do": "bark",
+          "face": "angry"
+        },
+        {
+          "id": "home_13",
+          "at": {
+            "after": "home_12"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "storm",
+                "Hushhh... so many feelings. So much nobody hears.",
+                "smug"
+              ],
+              [
+                "storm",
+                "Your little village is MINE, hero.",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "punch",
+      "location": "square",
+      "time": "day",
+      "weather": "rain",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.3,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.8,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1409,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "storm",
+          "x": 2025,
+          "facing": -1,
+          "face": "smug"
+        },
+        {
+          "id": "nani",
+          "x": 1189,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "peepa",
+          "x": 1277,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "doomi",
+          "x": 1057,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "becky",
+          "x": 1541,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "dony",
+          "x": 925,
+          "facing": 1,
+          "face": "scared"
+        }
+      ],
+      "beats": [
+        {
+          "id": "punch_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And in all the panic, Doopi forgot everything he had learned."
+          }
+        },
+        {
+          "id": "punch_2",
+          "at": {
+            "after": "punch_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "You took everybody's smiles! Give them BACK!",
+                "angry"
+              ],
+              [
+                "peepa",
+                "Doopi, wait!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "punch_3",
+          "at": {
+            "after": "punch_2"
+          },
+          "who": "doopi",
+          "do": "haymaker",
+          "fx": [
+            "colour_return"
+          ],
+          "say": "RAINBOW PUNCH!",
+          "bubble": "shout",
+          "target": "storm",
+          "outcome": "hit",
+          "approach": "run"
+        },
+        {
+          "id": "punch_4",
+          "at": {
+            "with": "punch_3"
+          },
+          "who": "world",
+          "do": "shake",
+          "params": {
+            "preset": "big"
+          }
+        },
+        {
+          "id": "punch_5",
+          "at": {
+            "after": "punch_4"
+          },
+          "who": "storm",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "punch_6",
+          "at": {
+            "after": "punch_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "storm",
+                "Ha! Yesss! More! Fight me! Every punch makes me BIGGER!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "It's growing! Doopi, it's growing!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "punch_7",
+          "at": {
+            "after": "punch_6"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.6,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "punch_8",
+          "at": {
+            "with": "punch_7"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.8
+          }
+        },
+        {
+          "id": "punch_9",
+          "at": {
+            "after": "punch_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "I have to stop it! I'm the hero!",
+                "angry"
+              ],
+              [
+                "storm",
+                "And now you have a cloud too, little hero.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "punch_10",
+          "at": {
+            "after": "punch_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Doopi! Remember the kites! Remember Chintu!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "There's no time to remember! Look at it!",
+                "angry"
+              ],
+              [
+                "doomi",
+                "Doopi, please. You're not listening.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "I don't NEED to listen. I need to WIN!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "punch_11",
+          "at": {
+            "after": "punch_10"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.8,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "punch_12",
+          "at": {
+            "after": "punch_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Doopi's cloud is as big as Ghadi Dada's was!",
+                "scared"
+              ],
+              [
+                "storm",
+                "Hushhh... delicious.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "punch_13",
+          "at": {
+            "after": "punch_12"
+          },
+          "who": "doopi",
+          "do": "clench_fist",
+          "face": "angry"
+        }
+      ]
+    },
+    {
+      "id": "hands",
+      "location": "square",
+      "time": "day",
+      "weather": "rain",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.3,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "nani",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1150,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1000,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "hands_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then Nani did something very small. She walked over and held Doopi's hands."
+          }
+        },
+        {
+          "id": "hands_2",
+          "at": {
+            "after": "hands_1"
+          },
+          "who": "nani",
+          "do": "walk",
+          "to": {
+            "near": "doopi",
+            "gap": 130
+          }
+        },
+        {
+          "id": "hands_3",
+          "at": {
+            "after": "hands_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "Doopi. Look at me. Breathe.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "But the storm, Nani! It's too BIG!",
+                "cry"
+              ],
+              [
+                "nani",
+                "When things feel too big, we slow down.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_4",
+          "at": {
+            "after": "hands_3"
+          },
+          "who": "doopi",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "hands_5",
+          "at": {
+            "after": "hands_4"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.35,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "hands_6",
+          "at": {
+            "after": "hands_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "Now. Think. All the way from here to the Echo Cave...",
+                "happy"
+              ],
+              [
+                "nani",
+                "What worked? Every single time?",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_7",
+          "at": {
+            "after": "hands_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Chintu's kite... Mooka's jalebi... Ghadi Dada's clock...",
+                "sad"
+              ],
+              [
+                "doomi",
+                "We asked. We listened.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "And somebody said the feeling out loud.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_8",
+          "at": {
+            "after": "hands_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "My feeling is... scared. I was scared I couldn't save everybody.",
+                "sad"
+              ],
+              [
+                "nani",
+                "Nobody saves everybody alone, little one.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_9",
+          "at": {
+            "after": "hands_8"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "pop": true
+          }
+        },
+        {
+          "id": "hands_10",
+          "at": {
+            "after": "hands_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "We can't punch a storm. But we can talk to one person at a time.",
+                "determined"
+              ],
+              [
+                "doomi",
+                "House by house. Cloud by cloud.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "Then let's start knocking on doors.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_11",
+          "at": {
+            "after": "hands_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "nani",
+                "And Doopi? Start with the ones closest to you.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Kony. And Chintu. And the Mayor.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "Kony first. He's my friend.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "hands_12",
+          "at": {
+            "after": "hands_11"
+          },
+          "who": "becky",
+          "do": "bark",
+          "face": "happy"
+        },
+        {
+          "id": "hands_13",
+          "at": {
+            "after": "hands_12"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "hands_14",
+          "at": {
+            "after": "hands_13"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The storm rumbled over the rooftops. And the friends got ready to knock on every single door."
+          }
+        },
+        {
+          "id": "hands_15",
+          "at": {
+            "after": "hands_14"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}
