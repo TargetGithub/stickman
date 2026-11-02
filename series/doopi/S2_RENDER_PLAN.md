@@ -76,3 +76,6 @@ caffeinate -is -w $!
   - Each episode has its own log, `out/logs/s2_render_epNN_4k60.log` (frame count and fps).
 - **Restarting:** run the same command again. Finished episodes, compilations and Shorts are skipped, and a stopped episode picks up its finished chunks (`--resume`). If the drive was unplugged in between, that episode starts over on whichever disk is present.
 - **One range only:** `zsh series/doopi/s2/render_queue.sh 9 12`.
+- **Pausing:** `node tools/render_pause.mjs` stops the queue first, so it can't start the next episode. It then stops the render with its workers and encoders, and the caffeinate. Finished episodes stay done, and the stopped episode keeps its finished chunks.
+  - `--status` shows what is running.
+  - `--resume [queue.sh] [first last]` starts the queue again, detached and kept awake.
