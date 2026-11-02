@@ -1,0 +1,1921 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E06: Dony and the Dark",
+    "format": "landscape",
+    "seed": 3006,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "tara",
+      "name": "Tara Treetop",
+      "body": "kid",
+      "color": "#ffa45c",
+      "appearance": {
+        "eyes": "big",
+        "hair": "ponytail",
+        "hairColor": "#3a2414",
+        "accessories": {
+          "scarf": "#3fae5a"
+        }
+      },
+      "voice": {
+        "pitch": 1.45,
+        "speed": 1.1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "road",
+      "theme": "whispering_forest",
+      "stageWidth": 4000
+    },
+    {
+      "id": "camp",
+      "theme": "whispering_forest",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "fire",
+          "object": "campfire",
+          "x": 1600,
+          "state": "lit",
+          "z": -50
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 6,
+          "title": "Dony and the Dark",
+          "location": "whispering_forest",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "camp",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "mooka",
+          "x": 1450,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... sweet Mooka got a grumpy cloud over the very last jalebi."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Peepa shared his own lunch first, and Mooka broke the jalebi into seven tiny pieces."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Now the friends were camping at the edge of the Whispering Forest. And somebody wasn't telling a secret."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "dony",
+          "do": "look_around",
+          "face": "scared"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "tara",
+      "location": "camp",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1572,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1657,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1488,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1826,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1911,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "becky",
+          "x": 1996,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 1375,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 2475,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "tara_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Just before dark, someone came swinging down from the trees."
+          }
+        },
+        {
+          "id": "tara_2",
+          "at": {
+            "after": "tara_1"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tara",
+            "side": "right",
+            "to": {
+              "x": 2137
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "tara_3",
+          "at": {
+            "after": "tara_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Doopi! Doomi! I heard you were in MY forest!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "Tara Treetop!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Who's the tall grumpy one?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "The tall grumpy one can hear you.",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tara_4",
+          "at": {
+            "after": "tara_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Tara, this is Peepa. He's helping us now.",
+                "happy"
+              ],
+              [
+                "tara",
+                "Peepa? THE Peepa? The one who turned my forest grey?",
+                "angry"
+              ],
+              [
+                "peepa",
+                "...That was me. I'm sorry about your trees.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tara_5",
+          "at": {
+            "after": "tara_4"
+          },
+          "who": "tara",
+          "do": "shrug",
+          "face": "surprised"
+        },
+        {
+          "id": "tara_6",
+          "at": {
+            "after": "tara_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Hmm. Okay. The trees got better. Maybe you can too.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "That's what Nani says.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tara_7",
+          "at": {
+            "after": "tara_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Tara! Do you want to hear my joke?",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Is it about a banana?",
+                "surprised"
+              ],
+              [
+                "dony",
+                "It's always about a banana!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tara_8",
+          "at": {
+            "after": "tara_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Why did the banana go to the doctor?",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Why?",
+                "happy"
+              ],
+              [
+                "dony",
+                "Because it wasn't PEELING well!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tara_9",
+          "at": {
+            "after": "tara_8"
+          },
+          "who": "mooka",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "tara_10",
+          "at": {
+            "with": "tara_9"
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "tara_11",
+          "at": {
+            "after": "tara_10"
+          },
+          "who": "peepa",
+          "do": "facepalm",
+          "face": "smug"
+        },
+        {
+          "id": "tara_12",
+          "at": {
+            "after": "tara_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "HA... HA... HA. PEELING. I... UNDERSTAND... THE JOKE.",
+                "happy"
+              ],
+              [
+                "tara",
+                "Whoa, a giant robot! Is he friendly?",
+                "surprised"
+              ],
+              [
+                "ghoom",
+                "VERY... FRIENDLY. I... CARRY... BAGS.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "Empty bags, these days.",
+                "sad"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "wood",
+      "location": "camp",
+      "time": "night",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1350,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1200,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1550,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1950,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 2100,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 2250,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "wood_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "When the sun went down, the campfire glowed, and the forest went very, very dark."
+          }
+        },
+        {
+          "id": "wood_2",
+          "at": {
+            "after": "wood_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "We need more wood for the fire. Who's coming?",
+                "happy"
+              ],
+              [
+                "doopi",
+                "Me!",
+                "laugh"
+              ],
+              [
+                "tara",
+                "Dony?",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wood_3",
+          "at": {
+            "after": "wood_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Um. I'd love to. But I have to... count the stars.",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "All of them?",
+                "surprised"
+              ],
+              [
+                "dony",
+                "It's a very important job.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wood_4",
+          "at": {
+            "after": "wood_3"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "tara",
+            "side": "right"
+          }
+        },
+        {
+          "id": "wood_5",
+          "at": {
+            "with": "wood_4"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "doopi",
+            "side": "right"
+          }
+        },
+        {
+          "id": "wood_6",
+          "at": {
+            "after": "wood_5"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Later, Mooka needed water from the stream."
+          }
+        },
+        {
+          "id": "wood_7",
+          "at": {
+            "after": "wood_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Dony, come with me to the stream?",
+                "happy"
+              ],
+              [
+                "dony",
+                "I can't. I have to... guard the marshmallows.",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "We don't HAVE marshmallows.",
+                "surprised"
+              ],
+              [
+                "dony",
+                "That's how well I'm guarding them!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wood_8",
+          "at": {
+            "after": "wood_7"
+          },
+          "who": "mooka",
+          "do": "shrug",
+          "face": "surprised"
+        },
+        {
+          "id": "wood_9",
+          "at": {
+            "after": "wood_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Dony's been making a lot of excuses.",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "Every time somebody walks away from the fire.",
+                "sad"
+              ]
+            ]
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "secret",
+      "location": "camp",
+      "time": "night",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1533,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "peepa",
+          "x": 1797,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1357,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "mooka",
+          "x": 1225,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "becky",
+          "x": 1665,
+          "facing": 1,
+          "face": "angry"
+        },
+        {
+          "id": "hush",
+          "x": 2325,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "secret_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And the Hush, hiding in the dark leaves, found Dony's secret."
+          }
+        },
+        {
+          "id": "secret_2",
+          "at": {
+            "after": "secret_1"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "secret_3",
+          "at": {
+            "with": "secret_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "secret_4",
+          "at": {
+            "after": "secret_3"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Hushhh... the dark is full of things...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "secret_5",
+          "at": {
+            "after": "secret_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "hush",
+                "Don't tell them. They'll laugh at the joker...",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "secret_6",
+          "at": {
+            "with": "secret_5",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "dony",
+            "size": 0.4,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "secret_7",
+          "at": {
+            "after": "secret_6"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "secret_8",
+          "at": {
+            "after": "secret_7"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "dony",
+            "size": 0.8,
+            "dur": 2
+          }
+        },
+        {
+          "id": "secret_9",
+          "at": {
+            "with": "secret_8"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.4
+          }
+        },
+        {
+          "id": "secret_10",
+          "at": {
+            "after": "secret_9"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Dony's cloud grew so big, it rained right onto the campfire."
+          }
+        },
+        {
+          "id": "secret_11",
+          "at": {
+            "after": "secret_10"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "out"
+          },
+          "object": "fire"
+        },
+        {
+          "id": "secret_12",
+          "at": {
+            "with": "secret_11"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "splash",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "secret_13",
+          "at": {
+            "after": "secret_12"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        },
+        {
+          "id": "secret_14",
+          "at": {
+            "after": "secret_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "The fire! It went out!",
+                "scared"
+              ],
+              [
+                "doomi",
+                "Everybody stay calm. Stay together.",
+                "determined"
+              ],
+              [
+                "dony",
+                "I'm calm! I'm SO calm! I'm the calmest!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "secret_15",
+          "at": {
+            "after": "secret_14"
+          },
+          "who": "dony",
+          "do": "cower",
+          "face": "scared"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "dark",
+      "location": "camp",
+      "time": "night",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1659,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "doopi",
+          "x": 2371,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "tara",
+          "x": 2500,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "peepa",
+          "x": 1885,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 1497,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "mooka",
+          "x": 1400,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "becky",
+          "x": 1788,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "dark_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi and Tara came running back with their arms full of sticks."
+          }
+        },
+        {
+          "id": "dark_2",
+          "at": {
+            "after": "dark_1"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doopi",
+            "side": "right",
+            "to": {
+              "x": 2047
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "dark_3",
+          "at": {
+            "with": "dark_2"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "tara",
+            "side": "right",
+            "to": {
+              "x": 2176
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "dark_4",
+          "at": {
+            "after": "dark_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Who turned off the fire?",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "Dony's cloud did!",
+                "scared"
+              ],
+              [
+                "tara",
+                "Dony has a CLOUD? Dony, the joker?",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dark_5",
+          "at": {
+            "after": "dark_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Don't worry, Dony! I'll punch that cloud right...",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dark_6",
+          "at": {
+            "after": "dark_5"
+          },
+          "who": "peepa",
+          "do": "talk",
+          "say": "Doopi. Remember the kites.",
+          "face": "sad"
+        },
+        {
+          "id": "dark_7",
+          "at": {
+            "after": "dark_6"
+          },
+          "who": "doopi",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "dark_8",
+          "at": {
+            "after": "dark_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "...Right. No punching.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Dony? What's wrong? You can tell me. I'm your best friend.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dark_9",
+          "at": {
+            "after": "dark_8"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "near": "dony",
+            "gap": 130
+          }
+        },
+        {
+          "id": "dark_10",
+          "at": {
+            "after": "dark_9"
+          },
+          "who": "dony",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "dark_11",
+          "at": {
+            "after": "dark_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "You'll laugh.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "I won't. I promise. Banana promise.",
+                "happy"
+              ],
+              [
+                "dony",
+                "...I'm scared of the dark.",
+                "cry"
+              ],
+              [
+                "dony",
+                "I've always been scared. I make jokes so nobody notices.",
+                "cry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dark_12",
+          "at": {
+            "after": "dark_11"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "dony",
+            "size": 0.6,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "dark_13",
+          "at": {
+            "after": "dark_12"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Nobody laughed. Not one bit."
+          }
+        },
+        {
+          "id": "dark_14",
+          "at": {
+            "after": "dark_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Dony. I'm scared of LOTS of things. Spiders. Deep water. Madam Mirchi.",
+                "happy"
+              ],
+              [
+                "mooka",
+                "I'm scared of empty snack bags.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "I'm scared of... being alone.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Being brave doesn't mean you're not scared.",
+                "happy"
+              ],
+              [
+                "doomi",
+                "It means you're scared, and you hold a hand.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dark_15",
+          "at": {
+            "after": "dark_14"
+          },
+          "who": "doopi",
+          "do": "walk_together",
+          "to": {
+            "x": 1788
+          },
+          "partner": "dony"
+        },
+        {
+          "id": "dark_16",
+          "at": {
+            "after": "dark_15"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "dony",
+            "size": 0.3,
+            "dur": 1.5
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "glow",
+      "location": "camp",
+      "time": "night",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1450,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "doopi",
+          "x": 1600,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 2050,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "glow_1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Dony. Want to see a forest secret?",
+                "happy"
+              ],
+              [
+                "dony",
+                "Is it a scary secret?",
+                "scared"
+              ],
+              [
+                "tara",
+                "It's the best secret. But you have to wait in the dark for it.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "glow_2",
+          "at": {
+            "after": "glow_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "Close your eyes. Count to ten with me. Then open them slowly.",
+                "happy"
+              ],
+              [
+                "dony",
+                "One... two... three...",
+                "scared"
+              ],
+              [
+                "doopi",
+                "...four, five, six...",
+                "happy"
+              ],
+              [
+                "mooka",
+                "...seven, eight, nine...",
+                "happy"
+              ],
+              [
+                "dony",
+                "...ten.",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "glow_3",
+          "at": {
+            "after": "glow_2"
+          },
+          "who": "tara",
+          "do": "point",
+          "fx": [
+            "fireflies"
+          ]
+        },
+        {
+          "id": "glow_4",
+          "at": {
+            "with": "glow_3",
+            "delay": 1
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy",
+          "fx": [
+            "fireflies"
+          ]
+        },
+        {
+          "id": "glow_5",
+          "at": {
+            "after": "glow_4"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "When their eyes got used to the dark, the whole forest was glowing. Fireflies. Hundreds and hundreds of them."
+          }
+        },
+        {
+          "id": "glow_6",
+          "at": {
+            "with": "glow_5"
+          },
+          "who": "dony",
+          "do": "point",
+          "face": "surprised",
+          "fx": [
+            "fireflies"
+          ]
+        },
+        {
+          "id": "glow_7",
+          "at": {
+            "after": "glow_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Whoaaa. The dark is... sparkly.",
+                "surprised"
+              ],
+              [
+                "tara",
+                "The dark is just the day with its eyes closed.",
+                "happy"
+              ],
+              [
+                "dony",
+                "I'm still a little bit scared.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "That's okay. I'm still holding your hand.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "glow_8",
+          "at": {
+            "after": "glow_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "My feeling is called scared. And that's okay.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "glow_9",
+          "at": {
+            "after": "glow_8"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "dony",
+            "pop": true
+          }
+        },
+        {
+          "id": "glow_10",
+          "at": {
+            "with": "glow_9"
+          },
+          "who": "dony",
+          "do": "laugh",
+          "face": "laugh",
+          "fx": [
+            "fireflies"
+          ]
+        },
+        {
+          "id": "glow_11",
+          "at": {
+            "after": "glow_10"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "lit"
+          },
+          "object": "fire"
+        },
+        {
+          "id": "glow_12",
+          "at": {
+            "after": "glow_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Dony. Was that the bravest thing you've ever done?",
+                "happy"
+              ],
+              [
+                "dony",
+                "No. The bravest thing was telling you all.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "glow_13",
+          "at": {
+            "after": "glow_12"
+          },
+          "who": "mooka",
+          "do": "hug",
+          "face": "love",
+          "partner": "dony"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "leaves",
+      "location": "road",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1300,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tara",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1850,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "leaves_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "In the morning, Tara walked them to the end of the forest."
+          }
+        },
+        {
+          "id": "leaves_2",
+          "at": {
+            "after": "leaves_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tara",
+                "The purple puff went that way. Toward the big city.",
+                "determined"
+              ],
+              [
+                "doomi",
+                "Jhilmil City. The busiest city in the whole valley.",
+                "determined"
+              ],
+              [
+                "dony",
+                "Lots of people. Lots of big feelings.",
+                "scared"
+              ],
+              [
+                "doopi",
+                "And lots of lights. No dark at all!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Ha! I might even miss the fireflies.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "leaves_3",
+          "at": {
+            "after": "leaves_2"
+          },
+          "who": "tara",
+          "do": "wave_goodbye",
+          "face": "happy"
+        },
+        {
+          "id": "leaves_4",
+          "at": {
+            "after": "leaves_3"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "leaves_5",
+          "at": {
+            "after": "leaves_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "leaves_6",
+          "at": {
+            "after": "leaves_5"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

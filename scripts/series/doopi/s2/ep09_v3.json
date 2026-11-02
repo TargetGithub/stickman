@@ -1,0 +1,1988 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E09: The Clock That Stopped",
+    "format": "landscape",
+    "seed": 3009,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "tiffin"
+    },
+    {
+      "id": "ghadi",
+      "name": "Ghadi Dada",
+      "body": "elder",
+      "scale": 0.95,
+      "color": "#d9a77c",
+      "appearance": {
+        "eyes": "glasses",
+        "hair": "none",
+        "outfit": "coat",
+        "outfitColor": "#7a5236",
+        "accessories": {
+          "moustache": "#c8c8c8"
+        }
+      },
+      "voice": {
+        "pitch": 0.8,
+        "speed": 0.8,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -5,
+          "rate": 0.82
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "roofs",
+      "theme": "rooftop_city",
+      "stageWidth": 4400,
+      "set": [
+        {
+          "id": "tiffins",
+          "object": "tiffin_stack",
+          "x": 700,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "id": "street",
+      "theme": "city_street",
+      "stageWidth": 4000,
+      "set": [
+        {
+          "id": "lamp1",
+          "object": "lamppost",
+          "x": 900,
+          "z": -200
+        },
+        {
+          "id": "lamp2",
+          "object": "lamppost",
+          "x": 2700,
+          "z": -200
+        }
+      ]
+    },
+    {
+      "id": "tower_still",
+      "theme": "clock_tower_still",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "clock",
+          "object": "tower_clock",
+          "x": 2300,
+          "state": "stopped",
+          "z": -200
+        },
+        {
+          "id": "carrom",
+          "object": "carrom_board",
+          "x": 1450,
+          "z": 0
+        }
+      ],
+      "light": "indoor"
+    },
+    {
+      "id": "tower",
+      "theme": "clock_tower",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "clock",
+          "object": "tower_clock",
+          "x": 2300,
+          "state": "ticking",
+          "z": -200
+        },
+        {
+          "id": "carrom",
+          "object": "carrom_board",
+          "x": 1450,
+          "z": 0
+        }
+      ],
+      "light": "indoor"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 9,
+          "title": "The Clock That Stopped",
+          "location": "city_street",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "roofs",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Doopi wanted to win so much that he broke the rules, and got a cloud of his own."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "He owned up, shared his lunch with a hungry worker, and Zippy decided she liked this hero."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But at midnight, the great clock of Jhilmil City stopped."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clock_tick_big",
+            "volume": 0.6
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "frozen",
+      "location": "street",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.25,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 6,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1400,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "doomi",
+          "x": 1550,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "dony",
+          "x": 1250,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "mooka",
+          "x": 1100,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "zippy",
+          "x": 1750,
+          "facing": -1,
+          "face": "scared"
+        },
+        {
+          "id": "peepa",
+          "x": 1900,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "ghoom",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1650,
+          "facing": -1,
+          "face": "angry"
+        }
+      ],
+      "beats": [
+        {
+          "id": "frozen_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "In the morning, the whole city had gone grey and quiet. Nobody hurried. Nobody honked."
+          }
+        },
+        {
+          "id": "frozen_2",
+          "at": {
+            "after": "frozen_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Something's wrong. My customers are just... sitting there.",
+                "scared"
+              ],
+              [
+                "zippy",
+                "Nobody wants their tiffins. Nobody wants ANYTHING.",
+                "scared"
+              ],
+              [
+                "dony",
+                "Nobody wants lunch? Now I'M scared.",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "frozen_3",
+          "at": {
+            "after": "frozen_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "It's not just one cloud. It's a hush. Over the whole city.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "When the clock stopped, the whole city forgot what time it was.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Even snack time?",
+                "cry"
+              ],
+              [
+                "peepa",
+                "Even snack time.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "frozen_4",
+          "at": {
+            "after": "frozen_3"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "frozen_5",
+          "at": {
+            "after": "frozen_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Then we fix the clock! Where's the clock tower?",
+                "determined"
+              ],
+              [
+                "zippy",
+                "Right there. The tallest tower in the city.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "Three hundred and sixty-five steps. One for every day of the year.",
+                "surprised"
+              ],
+              [
+                "dony",
+                "Three hundred and... sixty-FIVE?",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "frozen_6",
+          "at": {
+            "after": "frozen_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "GHOOMU... TOO... BIG... FOR... STAIRS.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Then you guard the door, Ghoomu.",
+                "happy"
+              ],
+              [
+                "ghoom",
+                "GUARDING... THE... DOOR.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "frozen_7",
+          "at": {
+            "after": "frozen_6"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 3900
+          }
+        },
+        {
+          "id": "frozen_8",
+          "at": {
+            "with": "frozen_7",
+            "delay": 0.4
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 3900
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "stairs",
+      "location": "tower_still",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "grade": {
+        "saturation": 0.25,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 700,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "zippy",
+          "x": 550,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "doomi",
+          "x": 400,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "dony",
+          "x": 300,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "mooka",
+          "x": 200,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "peepa",
+          "x": 850,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "becky",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "stairs_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Three hundred and sixty-five steps later..."
+          }
+        },
+        {
+          "id": "stairs_2",
+          "at": {
+            "after": "stairs_1"
+          },
+          "who": "becky",
+          "do": "walk",
+          "to": {
+            "x": 1300
+          }
+        },
+        {
+          "id": "stairs_3",
+          "at": {
+            "with": "stairs_2"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "x": 1150
+          }
+        },
+        {
+          "id": "stairs_4",
+          "at": {
+            "with": "stairs_3"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1000
+          }
+        },
+        {
+          "id": "stairs_5",
+          "at": {
+            "after": "stairs_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Three hundred and sixty... four...",
+                "tired"
+              ],
+              [
+                "mooka",
+                "Three hundred... and... I need a snack...",
+                "tired"
+              ],
+              [
+                "doopi",
+                "Three hundred and sixty-FIVE! We made it!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "stairs_6",
+          "at": {
+            "after": "stairs_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Becky got here first. Of course.",
+                "tired"
+              ],
+              [
+                "zippy",
+                "I usually take the stairs on skates. Bump, bump, bump.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "That sounds like a very bumpy day.",
+                "tired"
+              ],
+              [
+                "doomi",
+                "Shh. Listen. No ticking. Not a single tick.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "stairs_7",
+          "at": {
+            "after": "stairs_6"
+          },
+          "who": "dony",
+          "do": "lie_down",
+          "face": "tired"
+        },
+        {
+          "id": "stairs_8",
+          "at": {
+            "after": "stairs_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "I'm going to live here now. On this floor. Forever.",
+                "tired"
+              ],
+              [
+                "zippy",
+                "Look. Up there, by the big clock.",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "stairs_9",
+          "at": {
+            "after": "stairs_8"
+          },
+          "who": "dony",
+          "do": "stand_up"
+        }
+      ]
+    },
+    {
+      "id": "dada",
+      "location": "tower_still",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "grade": {
+        "saturation": 0.25,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "ghadi",
+          "x": 1433,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 1140,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "doomi",
+          "x": 1030,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "zippy",
+          "x": 920,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "peepa",
+          "x": 810,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "mooka",
+          "x": 700,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "becky",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "hush",
+          "x": 1800,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "dada_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Under the stopped clock sat an old man, with the biggest grey cloud anybody had ever seen."
+          }
+        },
+        {
+          "id": "dada_2",
+          "at": {
+            "after": "dada_1"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "ghadi",
+            "size": 1,
+            "dur": 0.1
+          }
+        },
+        {
+          "id": "dada_3",
+          "at": {
+            "after": "dada_2"
+          },
+          "who": "ghadi",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "dada_4",
+          "at": {
+            "after": "dada_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Ghadi Dada? The clock keeper?",
+                "surprised"
+              ],
+              [
+                "ghadi",
+                "Go away. Nobody comes up here. Nobody needs an old clock keeper.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "But the clock stopped! The whole city is grey!",
+                "surprised"
+              ],
+              [
+                "ghadi",
+                "Then let it be grey. Who cares about the time?",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dada_5",
+          "at": {
+            "after": "dada_4"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1727
+          }
+        },
+        {
+          "id": "dada_6",
+          "at": {
+            "after": "dada_5"
+          },
+          "who": "doopi",
+          "do": "push",
+          "face": "determined"
+        },
+        {
+          "id": "dada_7",
+          "at": {
+            "with": "dada_6"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clang",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "dada_8",
+          "at": {
+            "after": "dada_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "It won't move! The hands are stuck!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "It's not the clock that's stuck, Doopi.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dada_9",
+          "at": {
+            "after": "dada_8"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "dada_10",
+          "at": {
+            "with": "dada_9"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "dada_11",
+          "at": {
+            "after": "dada_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "hush",
+                "Hushhh... nobody visits... nobody remembers...",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dada_12",
+          "at": {
+            "after": "dada_11"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "dada_13",
+          "at": {
+            "after": "dada_12"
+          },
+          "who": "doopi",
+          "do": "clench_fist",
+          "face": "angry"
+        },
+        {
+          "id": "dada_14",
+          "at": {
+            "after": "dada_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Don't, Doopi. Don't fight it. Not here.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Then what do we DO?",
+                "sad"
+              ],
+              [
+                "peepa",
+                "We stay.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dada_15",
+          "at": {
+            "after": "dada_14"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stay",
+      "location": "tower_still",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "grade": {
+        "saturation": 0.25,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "ghadi",
+          "x": 1500,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 950,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1750,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "mooka",
+          "x": 800,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1350,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "stay_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "So they stayed. Nobody fought, and nobody hurried. They just sat down."
+          }
+        },
+        {
+          "id": "stay_2",
+          "at": {
+            "after": "stay_1"
+          },
+          "who": "doomi",
+          "do": "sit"
+        },
+        {
+          "id": "stay_3",
+          "at": {
+            "with": "stay_2"
+          },
+          "who": "doopi",
+          "do": "sit"
+        },
+        {
+          "id": "stay_4",
+          "at": {
+            "with": "stay_3"
+          },
+          "who": "zippy",
+          "do": "sit"
+        },
+        {
+          "id": "stay_5",
+          "at": {
+            "with": "stay_4"
+          },
+          "who": "peepa",
+          "do": "sit"
+        },
+        {
+          "id": "stay_6",
+          "at": {
+            "after": "stay_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Ghadi Dada? How long have you looked after the clock?",
+                "happy"
+              ],
+              [
+                "ghadi",
+                "Fifty-two years. Since I was a young man.",
+                "sad"
+              ],
+              [
+                "ghadi",
+                "In those days, children waved to me from the street. I waved back from the clock face.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "And now?",
+                "sad"
+              ],
+              [
+                "ghadi",
+                "Now nobody looks up.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "stay_7",
+          "at": {
+            "after": "stay_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "I know that feeling. Nobody looking.",
+                "sad"
+              ],
+              [
+                "ghadi",
+                "You do, young man?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "I lived on a dark mountain for years. Nobody visited me either.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "Mind you, I wasn't very nice to visit.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "stay_8",
+          "at": {
+            "after": "stay_7"
+          },
+          "who": "ghadi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "stay_9",
+          "at": {
+            "after": "stay_8"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "ghadi",
+            "size": 0.75,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "stay_10",
+          "at": {
+            "after": "stay_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghadi",
+                "Tell me. Do young people still play carrom?",
+                "surprised"
+              ],
+              [
+                "zippy",
+                "I'm the carrom champion of Tulsi Street!",
+                "laugh"
+              ],
+              [
+                "ghadi",
+                "Ha! Then let's see, little champion.",
+                "laugh"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "carrom",
+      "location": "tower_still",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "grade": {
+        "saturation": 0.25,
+        "keepCast": true
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "ghadi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1600,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1450,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "carrom_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "They played carrom all afternoon. And Ghadi Dada told stories between every shot."
+          }
+        },
+        {
+          "id": "carrom_2",
+          "at": {
+            "after": "carrom_1"
+          },
+          "who": "ghadi",
+          "do": "kneel"
+        },
+        {
+          "id": "carrom_3",
+          "at": {
+            "with": "carrom_2"
+          },
+          "who": "zippy",
+          "do": "kneel"
+        },
+        {
+          "id": "carrom_4",
+          "at": {
+            "after": "carrom_3"
+          },
+          "who": "ghadi",
+          "do": "poke",
+          "face": "happy"
+        },
+        {
+          "id": "carrom_5",
+          "at": {
+            "with": "carrom_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clink",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "carrom_6",
+          "at": {
+            "after": "carrom_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghadi",
+                "Once, the monkeys from the park climbed the tower and stole my spectacles.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "What did you do?",
+                "surprised"
+              ],
+              [
+                "ghadi",
+                "I told the time by smell for a whole week!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "What does lunchtime smell like?",
+                "surprised"
+              ],
+              [
+                "ghadi",
+                "Pickle!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "carrom_7",
+          "at": {
+            "after": "carrom_6"
+          },
+          "who": "zippy",
+          "do": "poke",
+          "face": "determined"
+        },
+        {
+          "id": "carrom_8",
+          "at": {
+            "with": "carrom_7"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clink",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "carrom_9",
+          "at": {
+            "after": "carrom_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Queen! I got the queen!",
+                "laugh"
+              ],
+              [
+                "ghadi",
+                "Beginner's luck!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "carrom_10",
+          "at": {
+            "after": "carrom_9"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "ghadi",
+            "size": 0.4,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "carrom_11",
+          "at": {
+            "after": "carrom_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Ghadi Dada? Before we came, how did you feel?",
+                "happy"
+              ],
+              [
+                "ghadi",
+                "Hmm. How did I feel...",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "carrom_12",
+          "at": {
+            "after": "carrom_11"
+          },
+          "who": "ghadi",
+          "do": "stand_up"
+        },
+        {
+          "id": "carrom_13",
+          "at": {
+            "after": "carrom_12"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghadi",
+                "Lonely. I felt lonely. So lonely, I stopped winding the clock.",
+                "sad"
+              ],
+              [
+                "ghadi",
+                "What's the use of time, when nobody spends it with you?",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "carrom_14",
+          "at": {
+            "after": "carrom_13"
+          },
+          "who": "peepa",
+          "do": "walk",
+          "to": {
+            "near": "ghadi",
+            "gap": 130
+          }
+        },
+        {
+          "id": "carrom_15",
+          "at": {
+            "after": "carrom_14"
+          },
+          "who": "peepa",
+          "do": "comfort",
+          "partner": "ghadi"
+        },
+        {
+          "id": "carrom_16",
+          "at": {
+            "after": "carrom_15"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "ghadi",
+            "pop": true
+          }
+        },
+        {
+          "id": "carrom_17",
+          "at": {
+            "with": "carrom_16"
+          },
+          "who": "world",
+          "do": "set_grade",
+          "params": {
+            "saturation": 1,
+            "dur": 3,
+            "from": "ghadi",
+            "keepCast": false
+          }
+        },
+        {
+          "id": "carrom_18",
+          "at": {
+            "after": "carrom_17"
+          },
+          "who": "world",
+          "do": "set_theme",
+          "params": {
+            "theme": "clock_tower"
+          }
+        },
+        {
+          "id": "carrom_19",
+          "at": {
+            "with": "carrom_18"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "ticking"
+          },
+          "object": "clock"
+        },
+        {
+          "id": "carrom_20",
+          "at": {
+            "with": "carrom_19"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clock_tick_big",
+            "volume": 0.8
+          }
+        },
+        {
+          "id": "carrom_21",
+          "at": {
+            "after": "carrom_20"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "It's ticking! The clock is ticking!",
+                "laugh"
+              ],
+              [
+                "ghadi",
+                "Because I have something to count the minutes for again.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "carrom_22",
+          "at": {
+            "after": "carrom_21"
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "wake",
+      "location": "street",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 6,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "ghadi",
+          "x": 1496,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1679,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1313,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1175,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 1863,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1038,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 2000,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "wake_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Down in the street, the colour came back, the horns honked, and everybody hurried again."
+          }
+        },
+        {
+          "id": "wake_2",
+          "at": {
+            "after": "wake_1"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "car_pass",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "wake_3",
+          "at": {
+            "after": "wake_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "THE... CITY... IS... AWAKE.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "Ghadi Dada, I'll bring you a tiffin every day. Free!",
+                "laugh"
+              ],
+              [
+                "ghadi",
+                "Only if you stay for one game of carrom.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "Deal!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wake_4",
+          "at": {
+            "after": "wake_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "There must be more little clouds in this city. We need a way to find them before they get big.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Like a cloud detector?",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "A cloud RADAR. And I know just how to build one.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wake_5",
+          "at": {
+            "after": "wake_4"
+          },
+          "who": "doomi",
+          "do": "point",
+          "face": "determined"
+        },
+        {
+          "id": "wake_6",
+          "at": {
+            "after": "wake_5"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And Doomi's eyes lit up, the way they always did before a very big idea."
+          }
+        },
+        {
+          "id": "wake_7",
+          "at": {
+            "after": "wake_6"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

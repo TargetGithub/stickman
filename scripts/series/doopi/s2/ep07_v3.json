@@ -1,0 +1,1808 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E07: Jhilmil City",
+    "format": "landscape",
+    "seed": 3007,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "tiffin"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "road",
+      "theme": "whispering_forest",
+      "stageWidth": 4000
+    },
+    {
+      "id": "street",
+      "theme": "city_street",
+      "stageWidth": 4000,
+      "set": [
+        {
+          "id": "lamp1",
+          "object": "lamppost",
+          "x": 900,
+          "z": -200
+        },
+        {
+          "id": "lamp2",
+          "object": "lamppost",
+          "x": 2700,
+          "z": -200
+        }
+      ]
+    },
+    {
+      "id": "alley",
+      "theme": "alley_night",
+      "stageWidth": 3200
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 7,
+          "title": "Jhilmil City",
+          "location": "city_street",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "road",
+      "time": "dawn",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... in the Whispering Forest, the Hush found Dony's secret. He was scared of the dark."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Nobody laughed. Doopi held his hand, and the dark turned out to be full of fireflies."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Now the purple puff's trail led out of the forest... toward the biggest city in the valley."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "dony",
+          "do": "high_five",
+          "face": "laugh",
+          "partner": "doopi"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "arrive",
+      "location": "street",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 6,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "doomi",
+          "x": 1350,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "dony",
+          "x": 1650,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "mooka",
+          "x": 1200,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "peepa",
+          "x": 1050,
+          "facing": 1,
+          "face": "tired"
+        },
+        {
+          "id": "ghoom",
+          "x": 850,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1800,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "arrive_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Jhilmil City! Tall buildings, busy streets, and a thousand people, all in a hurry."
+          }
+        },
+        {
+          "id": "arrive_2",
+          "at": {
+            "after": "arrive_1"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "car_pass",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "arrive_3",
+          "at": {
+            "with": "arrive_2",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "car_pass",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "arrive_4",
+          "at": {
+            "after": "arrive_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "SO... MANY... BUILDINGS. I... FEEL... SMALL.",
+                "surprised"
+              ],
+              [
+                "dony",
+                "Ghoomu, you're as tall as a house!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_5",
+          "at": {
+            "after": "arrive_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "So many people! And so much honking!",
+                "surprised"
+              ],
+              [
+                "mooka",
+                "Hello! Hello! Good morning! Hello!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "...Nobody said hello back.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_6",
+          "at": {
+            "after": "arrive_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "In big cities, everyone is too busy to say hello.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "Too busy for HELLO? That's the shortest word there is!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Everybody stay together. It's easy to get lost here.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_7",
+          "at": {
+            "after": "arrive_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Lost? Me? I'm Doopi, hero of Tokyo. Heroes don't get lost!",
+                "smug"
+              ],
+              [
+                "dony",
+                "You got lost in your own bedroom last week.",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "That was a VERY big bedroom.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_8",
+          "at": {
+            "after": "arrive_7"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "arrive_9",
+          "at": {
+            "after": "arrive_8"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "arrive_10",
+          "at": {
+            "after": "arrive_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "There! A purple puff! By that lamp post!",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "Doopi, wait!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "I'll be right back!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "arrive_11",
+          "at": {
+            "after": "arrive_10"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 3900
+          }
+        },
+        {
+          "id": "arrive_12",
+          "at": {
+            "after": "arrive_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Doopi! DOOPI!",
+                "scared"
+              ],
+              [
+                "mooka",
+                "He's gone into the crowd!",
+                "scared"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "lost",
+      "location": "street",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 6,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "surprised"
+        },
+        {
+          "id": "hush",
+          "x": 2600,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "lost_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi ran, and ran, and turned a corner. And another corner. And the purple puff was gone."
+          }
+        },
+        {
+          "id": "lost_2",
+          "at": {
+            "after": "lost_1"
+          },
+          "who": "doopi",
+          "do": "look_around",
+          "face": "surprised"
+        },
+        {
+          "id": "lost_3",
+          "at": {
+            "after": "lost_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Okay. The fountain was... left. No. Right.",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "Every street looks the same!",
+                "scared"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lost_4",
+          "at": {
+            "after": "lost_3"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 1000
+          }
+        },
+        {
+          "id": "lost_5",
+          "at": {
+            "after": "lost_4"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 2000
+          }
+        },
+        {
+          "id": "lost_6",
+          "at": {
+            "after": "lost_5"
+          },
+          "who": "doopi",
+          "do": "hold_head",
+          "face": "scared"
+        },
+        {
+          "id": "lost_7",
+          "at": {
+            "after": "lost_6"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "lost_8",
+          "at": {
+            "after": "lost_7"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Hushhh... a hero doesn't ask for help...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "lost_9",
+          "at": {
+            "after": "lost_8"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "They'll laugh. The great Doopi, lost...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "lost_10",
+          "at": {
+            "with": "lost_9",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.3,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "lost_11",
+          "at": {
+            "after": "lost_10"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        },
+        {
+          "id": "lost_12",
+          "at": {
+            "after": "lost_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "I don't need help. I'll find them myself.",
+                "angry"
+              ],
+              [
+                "doopi",
+                "Easy. Heroes are good at... finding things.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lost_13",
+          "at": {
+            "after": "lost_12"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "x": 900
+          }
+        },
+        {
+          "id": "lost_14",
+          "at": {
+            "after": "lost_13"
+          },
+          "who": "doopi",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "lost_15",
+          "at": {
+            "after": "lost_14"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Excuse me, sir? Could you... No. Never mind.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "He's busy. Everyone's busy. And I'm FINE.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "Just a hero. Walking. In circles.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "lost_16",
+          "at": {
+            "after": "lost_15"
+          },
+          "who": "doopi",
+          "do": "talk",
+          "say": "I'm not lost. I'm... exploring.",
+          "face": "sad"
+        }
+      ]
+    },
+    {
+      "id": "search",
+      "location": "street",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "extras": [
+        {
+          "count": 6,
+          "behavior": "idle_chat",
+          "layer": "back"
+        }
+      ],
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1400,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "dony",
+          "x": 1550,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "mooka",
+          "x": 1250,
+          "facing": 1,
+          "face": "scared"
+        },
+        {
+          "id": "peepa",
+          "x": 1700,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "ghoom",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "search_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "On the other side of the city, the friends were searching everywhere."
+          }
+        },
+        {
+          "id": "search_2",
+          "at": {
+            "after": "search_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "He's not by the fountain. He's not by the fruit stall.",
+                "scared"
+              ],
+              [
+                "dony",
+                "He's not in the bin. I checked.",
+                "sad"
+              ],
+              [
+                "mooka",
+                "Why would he be in the BIN?",
+                "surprised"
+              ],
+              [
+                "dony",
+                "It's Doopi!",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "search_3",
+          "at": {
+            "after": "search_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "SCANNING... CROWD. TOO... MANY... HEADS.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "He's too proud to ask anybody. I know that feeling.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "You do?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "I never asked anyone for anything. Not once. Not for years.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "search_4",
+          "at": {
+            "after": "search_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Becky. You know Doopi's smell better than anyone.",
+                "determined"
+              ],
+              [
+                "peepa",
+                "His headband. Find the headband.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "search_5",
+          "at": {
+            "after": "search_4"
+          },
+          "who": "becky",
+          "do": "sniff",
+          "face": "happy",
+          "params": {
+            "distance": 300
+          }
+        },
+        {
+          "id": "search_6",
+          "at": {
+            "after": "search_5"
+          },
+          "who": "becky",
+          "do": "bark",
+          "face": "happy"
+        },
+        {
+          "id": "search_7",
+          "at": {
+            "after": "search_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "She's got it!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Follow Becky! Everybody!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "search_8",
+          "at": {
+            "after": "search_7"
+          },
+          "who": "becky",
+          "do": "run",
+          "to": {
+            "x": 3900
+          }
+        },
+        {
+          "id": "search_9",
+          "at": {
+            "with": "search_8",
+            "delay": 0.5
+          },
+          "who": "doomi",
+          "do": "run",
+          "to": {
+            "x": 3800
+          }
+        },
+        {
+          "id": "search_10",
+          "at": {
+            "with": "search_9",
+            "delay": 0.5
+          },
+          "who": "dony",
+          "do": "run",
+          "to": {
+            "x": 3700
+          }
+        },
+        {
+          "id": "search_11",
+          "at": {
+            "after": "search_10"
+          },
+          "who": "mooka",
+          "do": "talk",
+          "say": "Wait for meee!",
+          "face": "scared"
+        }
+      ]
+    },
+    {
+      "id": "zippy",
+      "location": "alley",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1450,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "zippy",
+          "x": 350,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "zippy_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "By the evening, Doopi was tired, hungry and very, very lost. Then..."
+          }
+        },
+        {
+          "id": "zippy_2",
+          "at": {
+            "after": "zippy_1"
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 1221
+          }
+        },
+        {
+          "id": "zippy_3",
+          "at": {
+            "with": "zippy_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whoosh",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "zippy_4",
+          "at": {
+            "after": "zippy_3"
+          },
+          "who": "doopi",
+          "do": "gasp",
+          "face": "surprised"
+        },
+        {
+          "id": "zippy_5",
+          "at": {
+            "after": "zippy_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Whoa! Sorry! Coming through! Tiffin delivery!",
+                "laugh"
+              ],
+              [
+                "zippy",
+                "Hey. You look lost. Are you lost? You're lost.",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "I'm not lost! I'm exploring.",
+                "smug"
+              ],
+              [
+                "zippy",
+                "You've explored past this lamp post nine times.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "zippy_6",
+          "at": {
+            "after": "zippy_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "I'm Zippy! Fastest tiffin courier in Jhilmil City!",
+                "laugh"
+              ],
+              [
+                "zippy",
+                "Forty tiffins a day. I know every street. Every corner. Every pothole.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "zippy_7",
+          "at": {
+            "after": "zippy_6"
+          },
+          "who": "doopi",
+          "do": "sigh",
+          "face": "sad"
+        },
+        {
+          "id": "zippy_8",
+          "at": {
+            "after": "zippy_7"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.45,
+            "dur": 1
+          }
+        },
+        {
+          "id": "zippy_9",
+          "at": {
+            "after": "zippy_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Heroes are supposed to know the way.",
+                "sad"
+              ],
+              [
+                "zippy",
+                "Says who?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "...A little purple voice.",
+                "sad"
+              ],
+              [
+                "zippy",
+                "Little voices say a lot of silly things.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "zippy_10",
+          "at": {
+            "after": "zippy_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Asking for help isn't silly. It's smart.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "I ask for directions all the time. That's how I know every street!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "zippy_11",
+          "at": {
+            "after": "zippy_10"
+          },
+          "who": "doopi",
+          "do": "look_around",
+          "face": "sad"
+        },
+        {
+          "id": "zippy_12",
+          "at": {
+            "after": "zippy_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Okay. Zippy... I'm lost. Can you please help me?",
+                "sad"
+              ],
+              [
+                "zippy",
+                "YES! Easy! What do your friends look like?",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "A girl in pink, a boy in green, a jelly bean, a giant robot, a dog and a tall purple grump.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "Oh! Them! They're running around the whole city shouting your name!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "zippy_13",
+          "at": {
+            "after": "zippy_12"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "pop": true
+          }
+        },
+        {
+          "id": "zippy_14",
+          "at": {
+            "after": "zippy_13"
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 2275
+          }
+        },
+        {
+          "id": "zippy_15",
+          "at": {
+            "after": "zippy_14"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 2092
+          }
+        }
+      ]
+    },
+    {
+      "id": "found",
+      "location": "alley",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1655,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1875,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1479,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "doomi",
+          "x": 1347,
+          "facing": 1,
+          "face": "scared",
+          "hidden": true
+        },
+        {
+          "id": "dony",
+          "x": 1215,
+          "facing": 1,
+          "face": "scared",
+          "hidden": true
+        },
+        {
+          "id": "mooka",
+          "x": 1083,
+          "facing": 1,
+          "face": "scared",
+          "hidden": true
+        },
+        {
+          "id": "peepa",
+          "x": 951,
+          "facing": 1,
+          "face": "sad",
+          "hidden": true
+        },
+        {
+          "id": "ghoom",
+          "x": 775,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "found_1",
+          "at": 0.4,
+          "macro": "enter",
+          "params": {
+            "who": "becky",
+            "side": "left",
+            "to": {
+              "x": 1479
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "found_2",
+          "at": {
+            "with": "found_1"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "bark",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "found_3",
+          "at": {
+            "after": "found_2"
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy"
+        },
+        {
+          "id": "found_4",
+          "at": {
+            "with": "found_3"
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "found_5",
+          "at": {
+            "after": "found_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Becky! You found me!",
+                "laugh"
+              ],
+              [
+                "zippy",
+                "Wow. That dog's got a better nose than my map.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_6",
+          "at": {
+            "after": "found_5"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "doomi",
+            "side": "left",
+            "to": {
+              "x": 1347
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "found_7",
+          "at": {
+            "with": "found_6",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "dony",
+            "side": "left",
+            "to": {
+              "x": 1215
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "found_8",
+          "at": {
+            "with": "found_7",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "mooka",
+            "side": "left",
+            "to": {
+              "x": 1083
+            },
+            "mode": "run"
+          }
+        },
+        {
+          "id": "found_9",
+          "at": {
+            "with": "found_8",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "peepa",
+            "side": "left",
+            "to": {
+              "x": 951
+            }
+          }
+        },
+        {
+          "id": "found_10",
+          "at": {
+            "with": "found_9",
+            "delay": 0.3
+          },
+          "macro": "enter",
+          "params": {
+            "who": "ghoom",
+            "side": "left",
+            "to": {
+              "x": 775
+            }
+          }
+        },
+        {
+          "id": "found_11",
+          "at": {
+            "after": "found_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Doopi! Where WERE you?",
+                "angry"
+              ],
+              [
+                "doopi",
+                "I was lost. Really, really lost.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "I was too proud to ask anybody. Then Zippy asked ME.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_12",
+          "at": {
+            "after": "found_11"
+          },
+          "who": "dony",
+          "do": "hug",
+          "face": "love",
+          "partner": "doopi"
+        },
+        {
+          "id": "found_13",
+          "at": {
+            "after": "found_12"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Asking for help. That's a hard one.",
+                "happy"
+              ],
+              [
+                "doopi",
+                "It was harder NOT asking.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "Wait. Doopi? THE Doopi? The famous hero of Tokyo?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "...The lost one, yes.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_14",
+          "at": {
+            "after": "found_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Then I challenge you! Tomorrow! A rooftop tiffin race!",
+                "laugh"
+              ],
+              [
+                "zippy",
+                "Hero against courier. Fastest delivery wins!",
+                "smug"
+              ],
+              [
+                "doopi",
+                "You're on!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "found_15",
+          "at": {
+            "after": "found_14"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "found_16",
+          "at": {
+            "after": "found_15"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "found_17",
+          "at": {
+            "after": "found_16"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

@@ -1,0 +1,1881 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E08: The Rooftop Race",
+    "format": "landscape",
+    "seed": 3008,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "tiffin"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "tiffin"
+    },
+    {
+      "id": "raju",
+      "name": "Raju",
+      "body": "stickman",
+      "color": "#d9a066",
+      "appearance": {
+        "eyes": "big",
+        "outfit": "shirt",
+        "outfitColor": "#2f7de1",
+        "accessories": {
+          "hat": "#ffd23f",
+          "moustache": "#2a1a14"
+        }
+      },
+      "voice": {
+        "pitch": 0.85,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -2,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "roofs",
+      "theme": "rooftop_city",
+      "stageWidth": 4400,
+      "set": [
+        {
+          "id": "tiffins",
+          "object": "tiffin_stack",
+          "x": 700,
+          "z": 0
+        }
+      ]
+    },
+    {
+      "id": "street",
+      "theme": "city_street",
+      "stageWidth": 4000,
+      "set": [
+        {
+          "id": "lamp1",
+          "object": "lamppost",
+          "x": 900,
+          "z": -200
+        },
+        {
+          "id": "lamp2",
+          "object": "lamppost",
+          "x": 2700,
+          "z": -200
+        }
+      ]
+    },
+    {
+      "id": "alley",
+      "theme": "alley_night",
+      "stageWidth": 3200
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 8,
+          "title": "The Rooftop Race",
+          "location": "city_street",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "alley",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Doopi got lost in Jhilmil City, and was too proud to ask for help."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Then Zippy the tiffin courier asked him. And Doopi found out that asking is smart, not silly."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But Zippy had a challenge for the famous hero. A rooftop race!"
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "zippy",
+          "do": "point",
+          "face": "smug"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "rules",
+      "location": "roofs",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "zippy",
+          "x": 1332,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1495,
+          "facing": -1,
+          "face": "determined"
+        },
+        {
+          "id": "ghoom",
+          "x": 1699,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1169,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1047,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 925,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1903,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "becky",
+          "x": 2025,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "rules_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The next evening, up on the rooftops of Jhilmil City..."
+          }
+        },
+        {
+          "id": "rules_2",
+          "at": {
+            "after": "rules_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Okay, famous hero. Here are the rules.",
+                "smug"
+              ],
+              [
+                "zippy",
+                "One tiffin each. Deliver it to the worker by the clock tower.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "Fastest delivery wins. But! No jumping the Big Gap. It's too dangerous.",
+                "determined"
+              ],
+              [
+                "zippy",
+                "You go round, over the plank bridge. Everybody goes round.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "rules_3",
+          "at": {
+            "after": "rules_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "No jumping the Big Gap. Got it.",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "I... AM... THE... REFEREE. RULES... ARE... RULES.",
+                "determined"
+              ],
+              [
+                "mooka",
+                "And I'm the snack referee!",
+                "laugh"
+              ],
+              [
+                "dony",
+                "There's no such thing as a snack referee.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "There is NOW.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "rules_4",
+          "at": {
+            "after": "rules_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Go, Doopi! Beat the roller skates!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Play fair, both of you!",
+                "happy"
+              ],
+              [
+                "peepa",
+                "And try not to trip, little hero.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "rules_5",
+          "at": {
+            "after": "rules_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "READY...",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "STEADY...",
+                "determined"
+              ],
+              [
+                "ghoom",
+                "GOOOO!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "rules_6",
+          "at": {
+            "after": "rules_5"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "bell",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "rules_7",
+          "at": {
+            "after": "rules_6"
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 4200
+          }
+        },
+        {
+          "id": "rules_8",
+          "at": {
+            "with": "rules_7",
+            "delay": 0.2
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 3614
+          }
+        },
+        {
+          "id": "rules_9",
+          "at": {
+            "after": "rules_8"
+          },
+          "who": "mooka",
+          "do": "cheer",
+          "face": "laugh"
+        }
+      ]
+    },
+    {
+      "id": "race",
+      "location": "roofs",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "battle",
+        "intensity": 0.7,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "zippy",
+          "x": 2000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "hush",
+          "x": 2600,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "race_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Zippy was fast. Very fast. Doopi ran as hard as he could, but she was always ahead."
+          }
+        },
+        {
+          "id": "race_2",
+          "at": {
+            "after": "race_1"
+          },
+          "who": "zippy",
+          "do": "skate",
+          "to": {
+            "x": 2700
+          }
+        },
+        {
+          "id": "race_3",
+          "at": {
+            "with": "race_2"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 2200
+          }
+        },
+        {
+          "id": "race_4",
+          "at": {
+            "after": "race_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Plank bridge, here I come!",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "She's so far ahead!",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "race_5",
+          "at": {
+            "after": "race_4"
+          },
+          "macro": "exit",
+          "params": {
+            "who": "zippy",
+            "side": "right"
+          }
+        },
+        {
+          "id": "race_6",
+          "at": {
+            "after": "race_5"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "race_7",
+          "at": {
+            "with": "race_6"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "race_8",
+          "at": {
+            "after": "race_7"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Hushhh... heroes always win...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "race_9",
+          "at": {
+            "after": "race_8"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Jump the gap. Nobody's looking...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "race_10",
+          "at": {
+            "with": "race_9",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.35,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "race_11",
+          "at": {
+            "after": "race_10"
+          },
+          "who": "doopi",
+          "do": "look_around",
+          "face": "surprised"
+        },
+        {
+          "id": "race_12",
+          "at": {
+            "after": "race_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "The Big Gap. It's much quicker.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "Everybody expects the hero to win. I HAVE to win.",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "race_13",
+          "at": {
+            "after": "race_12"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        },
+        {
+          "id": "race_14",
+          "at": {
+            "after": "race_13"
+          },
+          "who": "doopi",
+          "do": "jump",
+          "face": "determined"
+        },
+        {
+          "id": "race_15",
+          "at": {
+            "with": "race_14"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whoosh",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "race_16",
+          "at": {
+            "after": "race_15"
+          },
+          "who": "doopi",
+          "do": "land_roll"
+        },
+        {
+          "id": "race_17",
+          "at": {
+            "after": "race_16"
+          },
+          "who": "doopi",
+          "do": "drop_prop",
+          "face": "scared"
+        },
+        {
+          "id": "race_18",
+          "at": {
+            "with": "race_17"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clang",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "race_19",
+          "at": {
+            "after": "race_18"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Oh no. The tiffin! It fell off the roof!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "...Never mind. I'll say it fell by itself.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "race_20",
+          "at": {
+            "after": "race_19"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.55,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "race_21",
+          "at": {
+            "after": "race_20"
+          },
+          "who": "doopi",
+          "do": "run",
+          "to": {
+            "x": 4100
+          }
+        }
+      ]
+    },
+    {
+      "id": "wait",
+      "location": "roofs",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "dony",
+          "x": 1400,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1550,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "ghoom",
+          "x": 1900,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1100,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "wait_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Meanwhile, the friends hurried across to the finish line by the clock tower."
+          }
+        },
+        {
+          "id": "wait_2",
+          "at": {
+            "after": "wait_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "I bet Doopi wins! Heroes always win!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Do they?",
+                "sad"
+              ],
+              [
+                "dony",
+                "Well... in stories they do.",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "I was the villain in a lot of stories. The hero always won. It didn't make me like heroes.",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wait_3",
+          "at": {
+            "after": "wait_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "I bet Zippy wins. She's got WHEELS.",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "I just hope they both play fair.",
+                "happy"
+              ],
+              [
+                "ghoom",
+                "THE... REFEREE... AGREES.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wait_4",
+          "at": {
+            "after": "wait_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Peepa, who do YOU want to win?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "...Doopi. But don't tell him.",
+                "smug"
+              ],
+              [
+                "mooka",
+                "I'm telling him!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "MOOKA!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "wait_5",
+          "at": {
+            "after": "wait_4"
+          },
+          "who": "becky",
+          "do": "jump",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "location": "roofs",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doopi",
+          "x": 1500,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "ghoom",
+          "x": 1683,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1775,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1867,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1958,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 2050,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1592,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 950,
+          "facing": 1,
+          "face": "happy",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "finish_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doopi reached the clock tower first."
+          }
+        },
+        {
+          "id": "finish_2",
+          "at": {
+            "after": "finish_1"
+          },
+          "who": "doopi",
+          "do": "victory",
+          "say": "I won! I WON! I'm the fastest!",
+          "face": "laugh"
+        },
+        {
+          "id": "finish_3",
+          "at": {
+            "after": "finish_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "But nobody cheered. And the cloud over his head grew darker."
+          }
+        },
+        {
+          "id": "finish_4",
+          "at": {
+            "after": "finish_3"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.75,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "finish_5",
+          "at": {
+            "after": "finish_4"
+          },
+          "macro": "enter",
+          "params": {
+            "who": "zippy",
+            "side": "left",
+            "to": {
+              "x": 1347
+            }
+          }
+        },
+        {
+          "id": "finish_6",
+          "at": {
+            "after": "finish_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Doopi. I saw you jump the Big Gap.",
+                "sad"
+              ],
+              [
+                "ghoom",
+                "THE... RULES... WERE... CLEAR.",
+                "sad"
+              ],
+              [
+                "dony",
+                "Doopi... did you really?",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "finish_7",
+          "at": {
+            "after": "finish_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "I... I wanted to win. Everybody thinks heroes always win.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "Who told you that?",
+                "sad"
+              ],
+              [
+                "doopi",
+                "A little purple voice.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "Hmm. It used to tell me the same thing.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "finish_8",
+          "at": {
+            "after": "finish_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "And where's your tiffin?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "It... fell. When I jumped.",
+                "sad"
+              ],
+              [
+                "zippy",
+                "Then somebody down there didn't get their lunch.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "finish_9",
+          "at": {
+            "after": "finish_8"
+          },
+          "who": "doopi",
+          "do": "hold_head",
+          "face": "sad"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "worker",
+      "location": "street",
+      "time": "night",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "sad",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "raju",
+          "x": 1500,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "doopi",
+          "x": 2000,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "zippy",
+          "x": 2200,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "doomi",
+          "x": 2400,
+          "facing": -1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "worker_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Down in the street, a worker sat by a broken tiffin, with his lunch all over the road."
+          }
+        },
+        {
+          "id": "worker_2",
+          "at": {
+            "after": "worker_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "raju",
+                "My whole lunch. Rice, dal, and my wife's special pickle.",
+                "sad"
+              ],
+              [
+                "raju",
+                "I've been building walls since sunrise. I'm so hungry.",
+                "tired"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "worker_3",
+          "at": {
+            "after": "worker_2"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.95,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "worker_4",
+          "at": {
+            "with": "worker_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.4
+          }
+        },
+        {
+          "id": "worker_5",
+          "at": {
+            "after": "worker_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Doopi. Your cloud is getting huge.",
+                "scared"
+              ],
+              [
+                "doopi",
+                "I know. I can feel it. Heavy, and cold.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "worker_6",
+          "at": {
+            "after": "worker_5"
+          },
+          "who": "doopi",
+          "do": "walk",
+          "to": {
+            "near": "raju",
+            "gap": 140
+          }
+        },
+        {
+          "id": "worker_7",
+          "at": {
+            "after": "worker_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "Sir? That was your tiffin. And it was my fault.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "I broke the rules, because I wanted to win. And I'm sorry.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "worker_8",
+          "at": {
+            "after": "worker_7"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "size": 0.5,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "worker_9",
+          "at": {
+            "after": "worker_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "raju",
+                "You came all the way down here to tell me?",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "And to share my lunch. Mooka packed it. It's a roti and a banana.",
+                "happy"
+              ],
+              [
+                "raju",
+                "A roti and a banana! The best dinner in the city!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "worker_10",
+          "at": {
+            "after": "worker_9"
+          },
+          "who": "raju",
+          "do": "eat",
+          "face": "love"
+        },
+        {
+          "id": "worker_11",
+          "at": {
+            "after": "worker_10"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "raju",
+                "Mmm! But tell your friend Mooka...",
+                "happy"
+              ],
+              [
+                "raju",
+                "...next time, more pickle.",
+                "laugh"
+              ],
+              [
+                "doopi",
+                "I'll tell him. He'll bring a whole jar.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "worker_12",
+          "at": {
+            "after": "worker_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doopi",
+                "My feeling was... wanting to win. Too much.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "worker_13",
+          "at": {
+            "after": "worker_12"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doopi",
+            "pop": true
+          }
+        },
+        {
+          "id": "worker_14",
+          "at": {
+            "with": "worker_13"
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "happy"
+        },
+        {
+          "id": "worker_15",
+          "at": {
+            "after": "worker_14"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "You know what, famous hero?",
+                "happy"
+              ],
+              [
+                "doopi",
+                "That I lost?",
+                "sad"
+              ],
+              [
+                "zippy",
+                "That you're the first racer who ever came back for a spilled tiffin.",
+                "happy"
+              ],
+              [
+                "zippy",
+                "I like this hero. Not the winning one. This one.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "worker_16",
+          "at": {
+            "after": "worker_15"
+          },
+          "who": "doopi",
+          "do": "laugh",
+          "face": "laugh"
+        },
+        {
+          "id": "worker_17",
+          "at": {
+            "after": "worker_16"
+          },
+          "who": "zippy",
+          "do": "high_five",
+          "face": "laugh",
+          "partner": "doopi"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "tower",
+      "location": "alley",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "mysterious",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "zippy",
+          "x": 1500,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 2000,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "tower_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Later, under the city lights, Zippy told them something strange."
+          }
+        },
+        {
+          "id": "tower_2",
+          "at": {
+            "after": "tower_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "There've been grey clouds all over the city lately. Little ones.",
+                "surprised"
+              ],
+              [
+                "zippy",
+                "And the big clock tower... it's been ticking slower and slower.",
+                "scared"
+              ],
+              [
+                "doomi",
+                "Who looks after the clock tower?",
+                "surprised"
+              ],
+              [
+                "zippy",
+                "Old Ghadi Dada. Nobody's seen him in years.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tower_3",
+          "at": {
+            "after": "tower_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Nobody's seen him... in years?",
+                "sad"
+              ],
+              [
+                "zippy",
+                "He just lives up there. Alone. With the clock.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tower_4",
+          "at": {
+            "after": "tower_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clock_tick_big",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "tower_5",
+          "at": {
+            "with": "tower_4",
+            "delay": 1.2
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clock_tick_big",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "tower_6",
+          "at": {
+            "after": "tower_5"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And at midnight, the great clock went tick... and tock... and then... nothing at all."
+          }
+        },
+        {
+          "id": "tower_7",
+          "at": {
+            "after": "tower_6"
+          },
+          "who": "world",
+          "do": "set_grade",
+          "params": {
+            "saturation": 0.3,
+            "dur": 2
+          }
+        },
+        {
+          "id": "tower_8",
+          "at": {
+            "after": "tower_7"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "tower_9",
+          "at": {
+            "after": "tower_8"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}

@@ -1,0 +1,2023 @@
+{
+  "version": 3,
+  "meta": {
+    "title": "Doopi & Friends S2E10: Doomi's Robot",
+    "format": "landscape",
+    "seed": 3010,
+    "kind": "story",
+    "audience": "kids",
+    "speakerNames": true,
+    "autoCamera": "story",
+    "style": "soft",
+    "speech": "tts",
+    "lipSync": true,
+    "narrator": {
+      "model": "en_GB-cori-medium",
+      "rate": 0.8,
+      "pitch": 0
+    }
+  },
+  "cast": [
+    {
+      "id": "doopi",
+      "name": "Doopi",
+      "body": "stickman",
+      "color": "#5ec8ff",
+      "appearance": {
+        "eyes": "big",
+        "hair": "spiky",
+        "hairColor": "#2a1a14",
+        "mouthStyle": "cartoon",
+        "accessories": {
+          "headband": "#ff3b5c",
+          "bracelet": "#e6b84a"
+        },
+        "slots": 6
+      },
+      "voice": {
+        "pitch": 1,
+        "speed": 1.05,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 3,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "doomi",
+      "name": "Doomi",
+      "body": "stickman",
+      "color": "#ff9ccc",
+      "prop": "rope",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "hair": "ponytail",
+        "hairColor": "#5a3a2c",
+        "cheeks": "#ff9db8",
+        "outfit": "shirt",
+        "outfitColor": "#ffd1e3",
+        "accessories": {
+          "hair_flower": "#ffffff"
+        }
+      },
+      "voice": {
+        "pitch": 1.35,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 3,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "dony",
+      "name": "Dony",
+      "body": "kid",
+      "scale": 1.1,
+      "color": "#4cd964",
+      "appearance": {
+        "hair": "cap",
+        "hairColor": "#ffcc00",
+        "accessories": {
+          "scarf": "#ff3b5c"
+        }
+      },
+      "voice": {
+        "pitch": 1.15,
+        "speed": 1,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 5,
+          "rate": 1
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "mooka",
+      "name": "Mooka",
+      "body": "buddy",
+      "scale": 0.85,
+      "color": "#7fe8c4",
+      "appearance": {
+        "eyes": "big",
+        "mouthStyle": "cartoon",
+        "cheeks": "#ffb3c7",
+        "belly": "#c9b6ff",
+        "accessories": {
+          "sprout": "#3fae5a",
+          "mittens": "#ff9f43"
+        }
+      },
+      "voice": {
+        "pitch": 1.9,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_GB-cori-medium",
+          "pitch": 7,
+          "rate": 1.15
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "becky",
+      "name": "Becky",
+      "body": "dog_small",
+      "color": "#f3e3c3",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.4,
+        "timbre": "bark",
+        "tts": {
+          "off": true
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "peepa",
+      "name": "Peepa",
+      "body": "slim",
+      "scale": 1.15,
+      "color": "#c9a6ff",
+      "appearance": {
+        "eyes": "oval",
+        "brows": "thick",
+        "accessories": {
+          "horns": "#e6b84a",
+          "cape": "#2a1b3d"
+        }
+      },
+      "voice": {
+        "pitch": 0.7,
+        "speed": 0.95,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -6,
+          "rate": 0.95
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "ghoom",
+      "name": "Ghoomu",
+      "body": "robot",
+      "scale": 2.4,
+      "color": "#c8ccd8",
+      "appearance": {
+        "eyes": "visor"
+      },
+      "voice": {
+        "pitch": 0.5,
+        "speed": 0.8,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -3,
+          "rate": 0.85
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "body": "kid",
+      "color": "#ffa07a",
+      "appearance": {
+        "eyes": "big",
+        "hair": "cap",
+        "hairColor": "#d62828",
+        "accessories": {
+          "backpack": "#2a9d8f",
+          "skates": "#d62828"
+        }
+      },
+      "voice": {
+        "pitch": 1.5,
+        "speed": 1.3,
+        "timbre": "squeaky",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 5,
+          "rate": 1.25
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "tiffin"
+    },
+    {
+      "id": "tinku",
+      "name": "Tinku",
+      "body": "robot",
+      "scale": 0.7,
+      "color": "#9fd8e8",
+      "appearance": {
+        "eyes": "visor",
+        "accessories": {
+          "antenna": "#ff9f1c"
+        }
+      },
+      "voice": {
+        "pitch": 1.8,
+        "speed": 1.1,
+        "timbre": "robot",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": 6,
+          "rate": 1.05
+        }
+      },
+      "limbStyle": "bendy",
+      "prop": "cloud_radar"
+    },
+    {
+      "id": "ghadi",
+      "name": "Ghadi Dada",
+      "body": "elder",
+      "scale": 0.95,
+      "color": "#d9a77c",
+      "appearance": {
+        "eyes": "glasses",
+        "hair": "none",
+        "outfit": "coat",
+        "outfitColor": "#7a5236",
+        "accessories": {
+          "moustache": "#c8c8c8"
+        }
+      },
+      "voice": {
+        "pitch": 0.8,
+        "speed": 0.8,
+        "timbre": "deep",
+        "tts": {
+          "model": "en_US-john-medium",
+          "pitch": -5,
+          "rate": 0.82
+        }
+      },
+      "limbStyle": "bendy"
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "body": "wisp",
+      "scale": 0.8,
+      "color": "#c4a3ff",
+      "appearance": {
+        "eyes": "big"
+      },
+      "voice": {
+        "pitch": 1.3,
+        "speed": 0.85,
+        "timbre": "soft",
+        "tts": {
+          "model": "en_US-kristin-medium",
+          "pitch": 2,
+          "rate": 0.85,
+          "filter": "whisper"
+        }
+      },
+      "limbStyle": "bendy"
+    }
+  ],
+  "locations": [
+    {
+      "id": "street",
+      "theme": "city_street",
+      "stageWidth": 4000,
+      "set": [
+        {
+          "id": "lamp1",
+          "object": "lamppost",
+          "x": 900,
+          "z": -200
+        },
+        {
+          "id": "lamp2",
+          "object": "lamppost",
+          "x": 2700,
+          "z": -200
+        }
+      ]
+    },
+    {
+      "id": "tower",
+      "theme": "clock_tower",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "clock",
+          "object": "tower_clock",
+          "x": 2300,
+          "state": "ticking",
+          "z": -200
+        },
+        {
+          "id": "carrom",
+          "object": "carrom_board",
+          "x": 1450,
+          "z": 0
+        }
+      ],
+      "light": "indoor"
+    },
+    {
+      "id": "yard",
+      "theme": "alley_night",
+      "stageWidth": 3200,
+      "set": [
+        {
+          "id": "cr1",
+          "object": "crate",
+          "x": 1250,
+          "z": -150
+        },
+        {
+          "id": "cr2",
+          "object": "crate",
+          "x": 2100,
+          "z": -150
+        },
+        {
+          "id": "bx1",
+          "object": "box",
+          "x": 1900,
+          "z": 0
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "use": {
+        "template": "doopi_intro",
+        "params": {
+          "episode": 10,
+          "title": "Doomi's Robot",
+          "location": "city_street",
+          "season": "Season 2 - "
+        }
+      }
+    },
+    {
+      "id": "recap",
+      "location": "tower",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "pace": {
+        "establish": 20,
+        "maxTravel": 20
+      },
+      "cast": [
+        {
+          "id": "zippy",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 1500,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "peepa",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "recap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Last time... Jhilmil City went grey, because the lonely clock keeper stopped winding the clock."
+          }
+        },
+        {
+          "id": "recap_2",
+          "at": {
+            "after": "recap_1"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "The friends didn't fight. They stayed, listened, and played carrom, and the clock ticked again."
+          }
+        },
+        {
+          "id": "recap_3",
+          "at": {
+            "after": "recap_2"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "And Doomi had a very big idea. A cloud radar."
+          }
+        },
+        {
+          "id": "recap_4",
+          "at": {
+            "after": "recap_3"
+          },
+          "who": "doomi",
+          "do": "clench_fist",
+          "face": "determined"
+        }
+      ],
+      "lens": {
+        "vignette": 0.25
+      }
+    },
+    {
+      "id": "scrap",
+      "location": "yard",
+      "time": "day",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "left"
+      },
+      "music": {
+        "mood": "playful",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1500,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "doopi",
+          "x": 1300,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1150,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1700,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1850,
+          "facing": -1,
+          "face": "tired"
+        },
+        {
+          "id": "becky",
+          "x": 2000,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "scrap_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "In the scrapyard behind Tulsi Street, Doomi collected everything she could find."
+          }
+        },
+        {
+          "id": "scrap_2",
+          "at": {
+            "after": "scrap_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Springs, bolts, a bicycle bell, three old tiffin lids...",
+                "determined"
+              ],
+              [
+                "zippy",
+                "And a broken alarm clock from Ghadi Dada!",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "And a spoon. It's my second-best spoon.",
+                "happy"
+              ],
+              [
+                "doomi",
+                "Perfect, Mooka. Every robot needs a spoon.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "scrap_3",
+          "at": {
+            "after": "scrap_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "What are you building?",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "A little robot. With a radar that beeps whenever a grey cloud starts to grow.",
+                "determined"
+              ],
+              [
+                "doopi",
+                "So we can help people BEFORE their clouds get big!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "Exactly.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "scrap_4",
+          "at": {
+            "after": "scrap_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "I used to build machines too. Big, angry ones.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Want to help?",
+                "happy"
+              ],
+              [
+                "peepa",
+                "Me? Build something... nice?",
+                "surprised"
+              ],
+              [
+                "doomi",
+                "There's a first time for everything.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "scrap_5",
+          "at": {
+            "after": "scrap_4"
+          },
+          "who": "peepa",
+          "do": "shrug",
+          "face": "smug"
+        },
+        {
+          "id": "scrap_6",
+          "at": {
+            "after": "scrap_5"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "They screwed and bolted and hammered all morning."
+          }
+        },
+        {
+          "id": "scrap_7",
+          "at": {
+            "after": "scrap_6"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clang",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "scrap_8",
+          "at": {
+            "with": "scrap_7",
+            "delay": 0.5
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "windup_click",
+            "volume": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "plans",
+      "location": "yard",
+      "time": "day",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1400,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "peepa",
+          "x": 1650,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1200,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1850,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "plans_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Peepa watched Doomi work. And then, very quietly, he started to help."
+          }
+        },
+        {
+          "id": "plans_2",
+          "at": {
+            "after": "plans_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "peepa",
+                "Your wires are crossed. Red goes to red.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Oh! Thanks, Peepa.",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "And the bolts go in clockwise. Righty tighty.",
+                "smug"
+              ],
+              [
+                "dony",
+                "Lefty loosey!",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "plans_3",
+          "at": {
+            "after": "plans_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "How do you know so much about robots?",
+                "surprised"
+              ],
+              [
+                "peepa",
+                "I spent years in a workshop. Alone. Building things to make people sad.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "This is the first time I've built something to make people happy.",
+                "happy"
+              ],
+              [
+                "doomi",
+                "How does it feel?",
+                "happy"
+              ],
+              [
+                "peepa",
+                "...Strange. Good strange.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "plans_4",
+          "at": {
+            "after": "plans_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "What should we call him?",
+                "happy"
+              ],
+              [
+                "dony",
+                "Bolty!",
+                "laugh"
+              ],
+              [
+                "peepa",
+                "Lord Clank the Magnificent.",
+                "smug"
+              ],
+              [
+                "doomi",
+                "Tinku. Small, and bright, like a little bell.",
+                "happy"
+              ],
+              [
+                "dony",
+                "...Okay, Tinku is better.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "plans_5",
+          "at": {
+            "after": "plans_4"
+          },
+          "who": "becky",
+          "do": "bark",
+          "face": "happy"
+        }
+      ]
+    },
+    {
+      "id": "tries",
+      "location": "yard",
+      "time": "day",
+      "transitionIn": {
+        "type": "cut"
+      },
+      "music": {
+        "mood": "tense",
+        "intensity": 0.5,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1367,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tinku",
+          "x": 1587,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "dony",
+          "x": 1220,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "mooka",
+          "x": 1110,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1770,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "hush",
+          "x": 2100,
+          "facing": -1,
+          "face": "smug",
+          "hidden": true
+        }
+      ],
+      "beats": [
+        {
+          "id": "tries_1",
+          "at": 0.4,
+          "who": "doomi",
+          "do": "point",
+          "say": "Try number one! Switching on!",
+          "face": "determined"
+        },
+        {
+          "id": "tries_2",
+          "at": {
+            "after": "tries_1"
+          },
+          "who": "tinku",
+          "do": "spawn",
+          "fx": [
+            "spark"
+          ]
+        },
+        {
+          "id": "tries_3",
+          "at": {
+            "after": "tries_2"
+          },
+          "who": "tinku",
+          "do": "knockdown",
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "tries_4",
+          "at": {
+            "with": "tries_3"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "boing",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "tries_5",
+          "at": {
+            "after": "tries_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Try number one: it fell over.",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "The legs are too short. Again!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tries_6",
+          "at": {
+            "after": "tries_5"
+          },
+          "who": "tinku",
+          "do": "get_up"
+        },
+        {
+          "id": "tries_7",
+          "at": {
+            "after": "tries_6"
+          },
+          "who": "tinku",
+          "do": "dizzy",
+          "fx": [
+            "stars_dizzy"
+          ]
+        },
+        {
+          "id": "tries_8",
+          "at": {
+            "after": "tries_7"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "dony",
+                "Try number four: it's dizzy.",
+                "laugh"
+              ],
+              [
+                "mooka",
+                "Try number six: it beeped the wrong song.",
+                "laugh"
+              ],
+              [
+                "dony",
+                "Try number nine: it sneezed a bolt at me.",
+                "surprised"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tries_9",
+          "at": {
+            "after": "tries_8"
+          },
+          "who": "tinku",
+          "do": "sneeze"
+        },
+        {
+          "id": "tries_10",
+          "at": {
+            "with": "tries_9"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "boing",
+            "volume": 0.5
+          }
+        },
+        {
+          "id": "tries_11",
+          "at": {
+            "after": "tries_10"
+          },
+          "who": "tinku",
+          "do": "despawn",
+          "fx": [
+            "smoke"
+          ]
+        },
+        {
+          "id": "tries_12",
+          "at": {
+            "after": "tries_11"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Ten tries! TEN! And it still doesn't work!",
+                "angry"
+              ],
+              [
+                "doopi",
+                "That's okay, Doomi. You'll get it.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tries_13",
+          "at": {
+            "after": "tries_12"
+          },
+          "who": "hush",
+          "do": "spawn"
+        },
+        {
+          "id": "tries_14",
+          "at": {
+            "with": "tries_13"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "whisper",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "tries_15",
+          "at": {
+            "after": "tries_14"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "hush",
+                "Hushhh... clever girls don't make mistakes...",
+                "smug"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tries_16",
+          "at": {
+            "after": "tries_15"
+          },
+          "who": "hush",
+          "do": "talk",
+          "say": "Ten mistakes. Not so clever now...",
+          "face": "smug",
+          "bubble": "whisper"
+        },
+        {
+          "id": "tries_17",
+          "at": {
+            "with": "tries_16",
+            "delay": 1
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doomi",
+            "size": 0.5,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "tries_18",
+          "at": {
+            "after": "tries_17"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        },
+        {
+          "id": "tries_19",
+          "at": {
+            "after": "tries_18"
+          },
+          "who": "hush",
+          "do": "despawn",
+          "fx": [
+            "hush_zip"
+          ]
+        },
+        {
+          "id": "tries_20",
+          "at": {
+            "after": "tries_19"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "I'm supposed to be the clever one! The planner!",
+                "angry"
+              ],
+              [
+                "doomi",
+                "Planners don't make TEN mistakes!",
+                "angry"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tries_21",
+          "at": {
+            "after": "tries_20"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doomi",
+            "size": 0.8,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "tries_22",
+          "at": {
+            "with": "tries_21"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "thunder",
+            "volume": 0.4
+          }
+        },
+        {
+          "id": "tries_23",
+          "at": {
+            "after": "tries_22"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Doomi has a cloud! Our Doomi!",
+                "scared"
+              ],
+              [
+                "doopi",
+                "Even the cleverest friend can have a big feeling.",
+                "sad"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "tries_24",
+          "at": {
+            "after": "tries_23"
+          },
+          "who": "doomi",
+          "do": "hold_head",
+          "face": "cry"
+        }
+      ]
+    },
+    {
+      "id": "dents",
+      "location": "yard",
+      "time": "dusk",
+      "transitionIn": {
+        "type": "dissolve",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.3,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1400,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "ghoom",
+          "x": 1800,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 2050,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1150,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "mooka",
+          "x": 1000,
+          "facing": 1,
+          "face": "sad"
+        },
+        {
+          "id": "becky",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "dents_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Doomi sat on a crate, under her rain cloud. Then the ground shook, very gently."
+          }
+        },
+        {
+          "id": "dents_2",
+          "at": {
+            "after": "dents_1"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_stomp",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "dents_3",
+          "at": {
+            "after": "dents_2"
+          },
+          "who": "doomi",
+          "do": "sit",
+          "face": "sad"
+        },
+        {
+          "id": "dents_4",
+          "at": {
+            "after": "dents_3"
+          },
+          "who": "ghoom",
+          "do": "kneel",
+          "face": "happy"
+        },
+        {
+          "id": "dents_5",
+          "at": {
+            "after": "dents_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "DOOMI. LOOK. AT... MY... ARM.",
+                "happy"
+              ],
+              [
+                "doomi",
+                "It's all dented.",
+                "sad"
+              ],
+              [
+                "ghoom",
+                "AND... MY... LEG. AND... MY... HEAD. DENTS. EVERYWHERE.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dents_6",
+          "at": {
+            "after": "dents_5"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "ONCE... I... WAS... A... MISTAKE.",
+                "sad"
+              ],
+              [
+                "ghoom",
+                "I... FELL... DOWN. I... WALKED... BACKWARDS. I... SAT... ON... A... COW.",
+                "sad"
+              ],
+              [
+                "peepa",
+                "That was my fault. I built him wrong a hundred times.",
+                "smug"
+              ],
+              [
+                "ghoom",
+                "A... HUNDRED... AND... THREE.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dents_7",
+          "at": {
+            "after": "dents_6"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghoom",
+                "EVERY... DENT... TAUGHT... ME... SOMETHING.",
+                "happy"
+              ],
+              [
+                "ghoom",
+                "MISTAKES... ARE... HOW... WE... LEARN.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dents_8",
+          "at": {
+            "after": "dents_7"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doomi",
+            "size": 0.5,
+            "dur": 1.5
+          }
+        },
+        {
+          "id": "dents_9",
+          "at": {
+            "after": "dents_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "mooka",
+                "Doomi, what's the feeling? Under the cloud?",
+                "sad"
+              ],
+              [
+                "doomi",
+                "I think... I felt embarrassed. And frustrated.",
+                "sad"
+              ],
+              [
+                "doomi",
+                "Like everybody was watching me be wrong.",
+                "sad"
+              ],
+              [
+                "doopi",
+                "We were watching you be BRAVE. Ten tries is brave.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dents_10",
+          "at": {
+            "after": "dents_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Embarrassed. And it's okay to get it wrong.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "dents_11",
+          "at": {
+            "after": "dents_10"
+          },
+          "who": "world",
+          "do": "set_cloud",
+          "params": {
+            "who": "doomi",
+            "pop": true,
+            "note": "#ff9ccc"
+          }
+        },
+        {
+          "id": "dents_12",
+          "at": {
+            "with": "dents_11"
+          },
+          "who": "becky",
+          "do": "wag",
+          "face": "happy"
+        },
+        {
+          "id": "dents_13",
+          "at": {
+            "after": "dents_12"
+          },
+          "who": "doomi",
+          "do": "stand_up",
+          "face": "determined"
+        },
+        {
+          "id": "dents_14",
+          "at": {
+            "after": "dents_13"
+          },
+          "who": "doomi",
+          "do": "clench_fist",
+          "say": "Okay. Try number ELEVEN.",
+          "face": "determined"
+        }
+      ]
+    },
+    {
+      "id": "eleven",
+      "location": "yard",
+      "time": "night",
+      "transitionIn": {
+        "type": "wipe",
+        "dur": 0.5,
+        "dir": "right"
+      },
+      "music": {
+        "mood": "happy",
+        "intensity": 0.6,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "doomi",
+          "x": 1354,
+          "facing": 1,
+          "face": "determined"
+        },
+        {
+          "id": "tinku",
+          "x": 1589,
+          "facing": -1,
+          "face": "happy",
+          "hidden": true
+        },
+        {
+          "id": "ghoom",
+          "x": 1904,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1236,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "dony",
+          "x": 1118,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 1000,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 2100,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "becky",
+          "x": 1471,
+          "facing": 1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "eleven_1",
+          "at": 0.4,
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Longer legs. A spring for balance. And Mooka's spoon. Switching on!",
+                "determined"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "eleven_2",
+          "at": {
+            "after": "eleven_1"
+          },
+          "who": "tinku",
+          "do": "spawn",
+          "fx": [
+            "sparkle"
+          ]
+        },
+        {
+          "id": "eleven_3",
+          "at": {
+            "after": "eleven_2"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "eleven_4",
+          "at": {
+            "with": "eleven_3",
+            "delay": 0.4
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "eleven_5",
+          "at": {
+            "after": "eleven_4"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP BOOP! TINKU! ONLINE!",
+                "laugh"
+              ],
+              [
+                "doomi",
+                "It works! He WORKS!",
+                "laugh"
+              ],
+              [
+                "tinku",
+                "BEEP. HELLO, MAKER!",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "eleven_6",
+          "at": {
+            "after": "eleven_5"
+          },
+          "who": "doomi",
+          "do": "jump_joy",
+          "face": "laugh"
+        },
+        {
+          "id": "eleven_7",
+          "at": {
+            "with": "eleven_6"
+          },
+          "who": "dony",
+          "do": "cheer",
+          "face": "laugh"
+        },
+        {
+          "id": "eleven_8",
+          "at": {
+            "after": "eleven_7"
+          },
+          "who": "tinku",
+          "do": "look_around",
+          "face": "surprised"
+        },
+        {
+          "id": "eleven_9",
+          "at": {
+            "after": "eleven_8"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "WHOA! BIG ROBOT! BIG, BIG ROBOT!",
+                "surprised"
+              ],
+              [
+                "ghoom",
+                "HELLO... LITTLE... ONE.",
+                "happy"
+              ],
+              [
+                "tinku",
+                "You're so TALL! You're so STRONG! Are you my big brother?",
+                "love"
+              ],
+              [
+                "ghoom",
+                "I... GUESS... I... AM.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "eleven_10",
+          "at": {
+            "after": "eleven_9"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "doomi",
+                "Tinku, switch on your radar!",
+                "determined"
+              ],
+              [
+                "tinku",
+                "RADAR! BEEP BEEP! SCANNING!",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "eleven_11",
+          "at": {
+            "after": "eleven_10"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "scan"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "eleven_12",
+          "at": {
+            "after": "eleven_11"
+          },
+          "who": "world",
+          "do": "set_object",
+          "params": {
+            "state": "found"
+          },
+          "object": "tinku"
+        },
+        {
+          "id": "eleven_13",
+          "at": {
+            "with": "eleven_12"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "robot_beep",
+            "volume": 0.7
+          }
+        },
+        {
+          "id": "eleven_14",
+          "at": {
+            "after": "eleven_13"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "PURPLE SIGNAL! VERY SNEAKY! MOVING SOUTH!",
+                "surprised"
+              ],
+              [
+                "zippy",
+                "South of the city is the Hot Sands. The desert!",
+                "surprised"
+              ],
+              [
+                "doopi",
+                "Then that's where we're going.",
+                "determined"
+              ],
+              [
+                "zippy",
+                "Not without me, you're not. Somebody has to know the roads.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "eleven_15",
+          "at": {
+            "after": "eleven_14"
+          },
+          "who": "becky",
+          "do": "growl",
+          "face": "angry"
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    },
+    {
+      "id": "goodbye",
+      "location": "tower",
+      "time": "night",
+      "transitionIn": {
+        "type": "fade",
+        "dur": 0.6
+      },
+      "music": {
+        "mood": "calm",
+        "intensity": 0.4,
+        "volume": 0.3
+      },
+      "cast": [
+        {
+          "id": "ghadi",
+          "x": 1500,
+          "facing": -1,
+          "face": "happy"
+        },
+        {
+          "id": "zippy",
+          "x": 1250,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "tinku",
+          "x": 1050,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doomi",
+          "x": 900,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "doopi",
+          "x": 750,
+          "facing": 1,
+          "face": "happy"
+        },
+        {
+          "id": "peepa",
+          "x": 1750,
+          "facing": -1,
+          "face": "happy"
+        }
+      ],
+      "beats": [
+        {
+          "id": "goodbye_1",
+          "at": 0.4,
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "Before they left, they climbed the three hundred and sixty-five steps one more time."
+          }
+        },
+        {
+          "id": "goodbye_2",
+          "at": {
+            "after": "goodbye_1"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "zippy",
+                "Ghadi Dada, I'm going on a trip. A real adventure!",
+                "laugh"
+              ],
+              [
+                "ghadi",
+                "Then who will play carrom with me?",
+                "sad"
+              ],
+              [
+                "zippy",
+                "My little brother. He's terrible. You'll win every game!",
+                "laugh"
+              ],
+              [
+                "ghadi",
+                "Ha! Then send him tomorrow.",
+                "laugh"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "goodbye_3",
+          "at": {
+            "after": "goodbye_2"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "tinku",
+                "BEEP! TICK TOCK! I like your clock!",
+                "laugh"
+              ],
+              [
+                "ghadi",
+                "And I like your tune, little robot.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "goodbye_4",
+          "at": {
+            "after": "goodbye_3"
+          },
+          "macro": "dialogue",
+          "params": {
+            "lines": [
+              [
+                "ghadi",
+                "Peepa. Thank you for telling me about your dark mountain.",
+                "happy"
+              ],
+              [
+                "peepa",
+                "...You're welcome. Nobody ever thanked me before.",
+                "surprised"
+              ],
+              [
+                "ghadi",
+                "Then I'm the first. Come back and visit.",
+                "happy"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "goodbye_5",
+          "at": {
+            "after": "goodbye_4"
+          },
+          "who": "world",
+          "do": "sfx",
+          "params": {
+            "name": "clock_tick_big",
+            "volume": 0.6
+          }
+        },
+        {
+          "id": "goodbye_6",
+          "at": {
+            "after": "goodbye_5"
+          },
+          "who": "world",
+          "do": "narrate",
+          "params": {
+            "text": "So the team grew by two: a courier on skates, and a little robot with a radar that beeped in tunes."
+          }
+        },
+        {
+          "id": "goodbye_7",
+          "at": {
+            "after": "goodbye_6"
+          },
+          "who": "world",
+          "do": "end_card",
+          "params": {
+            "text": "To be continued..."
+          }
+        }
+      ],
+      "lens": {
+        "vignette": 0.35
+      }
+    }
+  ],
+  "audio": {
+    "musicVolume": 0.3,
+    "duck": [
+      {
+        "duck": "music",
+        "under": "voice",
+        "db": -8,
+        "attack": 0.15,
+        "release": 0.6
+      },
+      {
+        "duck": "ambience",
+        "under": "voice",
+        "db": -6,
+        "attack": 0.2,
+        "release": 0.8
+      }
+    ],
+    "tracks": [
+      {
+        "id": "voices",
+        "kind": "bus",
+        "bus": "voice",
+        "volume": 1.1
+      }
+    ]
+  },
+  "look": {
+    "strength": 0.45
+  },
+  "motion": {
+    "followThrough": 1,
+    "squash": 1,
+    "secondary": 1,
+    "breathing": 1,
+    "blur": 0
+  },
+  "pace": {
+    "travel": {
+      "walk": 1.3,
+      "run": 1.1,
+      "sneak": 1.6,
+      "tiptoe": 1.4,
+      "walk_together": 1.25
+    },
+    "moves": 1,
+    "gap": 0.5,
+    "maxTravel": 4.5,
+    "arrive": 1.6,
+    "leave": 1.2,
+    "shot": [
+      4,
+      8
+    ],
+    "minCut": 2.5,
+    "reactions": false,
+    "glide": 1.2,
+    "establish": 3,
+    "framing": "calm"
+  }
+}
