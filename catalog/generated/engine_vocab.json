@@ -11,7 +11,7 @@
     "mouthStyle": ["line", "cartoon", "big_grin", "toothy"],
     "hair": ["none", "spiky", "bob", "ponytail", "cap", "bun"],
     "outfit": ["none", "shirt", "coat", "armor", "robe"],
-    "accessory": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key", "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes"],
+    "accessory": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key", "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes", "skates"],
     "timbre": ["soft", "squeaky", "deep", "robot", "bark"],
     "time": ["dawn", "day", "dusk", "night"],
     "weather": ["clear", "cloudy", "rain", "snow", "wind", "fog"],
@@ -168,7 +168,7 @@
       "params": {
         "who": { "character": true, "required": true },
         "accessory": {
-          "enum": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key", "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes"]
+          "enum": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key", "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes", "skates"]
         },
         "color": { "type": "color" },
         "remove": { "enum": [true, false] },
@@ -190,6 +190,17 @@
         "who": { "character": true, "required": true },
         "color": { "glowColor": true },
         "level": { "min": 0, "max": 1, "required": true },
+        "dur": { "min": 0, "max": 10 }
+      }
+    },
+    "set_cloud": {
+      "v1": false,
+      "params": {
+        "who": { "character": true, "required": true },
+        "size": { "min": 0, "max": 1 },
+        "pop": { "enum": [true, false] },
+        "rain": { "enum": [true, false] },
+        "note": { "type": "color" },
         "dur": { "min": 0, "max": 10 }
       }
     },

@@ -1,7 +1,7 @@
 // Pace (ADR-038): the snappy preschool-show timing for version 3 stories, opt-in with a `pace` block on the
 // script (and per scene: an object over the script's, or false to turn it off). Without a block nothing
 // here applies, so v1/v2 scripts and v3 scripts without one simulate exactly as before.
-//   travel     speed multipliers for walk, run, sneak, tiptoe, walk_together and swim: the cycle plays faster
+//   travel     speed multipliers for walk, run, sneak, tiptoe, walk_together, swim and skate: the cycle plays faster
 //              (f^0.45) and each step reaches further (f^0.55), so feet still plant
 //   moves      playback speed of other one-shot moves started by beats (not attacks, defeats, paired moves,
 //              timed holds or a beat that speaks: its length is the line's)
@@ -25,7 +25,7 @@
 //   bubble     bubble and text scale (times look.bubble)
 
 export const PACE_DEFAULTS = Object.freeze({
-  travel: Object.freeze({ walk: 1.7, run: 1.25, sneak: 2.5, tiptoe: 2, walk_together: 1.6, swim: 1.3 }),
+  travel: Object.freeze({ walk: 1.7, run: 1.25, sneak: 2.5, tiptoe: 2, walk_together: 1.6, swim: 1.3, skate: 1.2 }),
   moves: 1.25,
   gap: 0.2,
   maxTravel: 3,

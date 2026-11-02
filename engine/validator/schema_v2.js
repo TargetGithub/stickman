@@ -65,6 +65,7 @@ const ttsVoice = {
     rate: { type: "number", minimum: 0.5, maximum: 2 },
     pitch: { type: "number", minimum: -12, maximum: 12, description: "Semitones, applied after synthesis." },
     off: { type: "boolean", description: "Keep babble for this voice even in tts renders." },
+    filter: { enum: ["robot", "whisper"], description: "A voice effect after synthesis: robot (ring-modulated) or whisper (breathy, soft echo)." },
   },
 };
 
@@ -243,6 +244,7 @@ const actionBeat = {
     say: { type: "string", minLength: 1, maxLength: 40 },
     sayDur: { type: "number", minimum: 0.2, maximum: 10 },
     bubble: { enum: E.bubble, description: "How 'say' is drawn (default speech)." },
+    echo: { type: "integer", minimum: 1, maximum: 3, description: "The line echoes back this many times, fainter each time (mountains, caves)." },
     face: { type: "string", description: "Emotion from this beat on: a face from the catalog (E_FACE_UNKNOWN)." },
     partner: { ...idRef, description: "The other character in a paired move." },
     object: { ...idRef, description: "The object (set piece or spawned object id) the beat acts on." },

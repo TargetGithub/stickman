@@ -39,6 +39,10 @@
 | grow_giant | body | A purple flash and swirling purple sparkles all around someone growing huge. |
 | giant_blast | body | A huge purple-grey blast with a shockwave ring (Giant Peepa's Gloom Blast). |
 | beam_clash | body, lingers | Two energy beams meeting: a bright core with sparks flying out in every direction for about 2 s. |
+| note_burst | head | A feeling cloud pops: a soft gold glow and gold and white sparkles bursting out above the head. |
+| hush_zip | body, lingers | The Hush zips away: a violet streak of little puffs and sparkles trailing behind it for about 1 s. |
+| fireflies | body, lingers | Fireflies: slow drifting yellow-green glows that rise and wander around a spot for about 3 s (repeat for longer). |
+| sandstorm | feet, lingers | A band of blowing sand streaming sideways across the stage for about 3 s, low and dusty (repeat for longer). |
 
 Hit effects come by themselves from hits, explosions and props; do not list them: impact_small, impact_med, impact_big, block_spark, spark, explosion, smoke, bolt, prop_break, energy_ball, bubble_pop, camera_flash.
 
@@ -72,9 +76,9 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - comic: pop, boing, slip, bonk, pow, raspberry, slide_whistle, squeak, sprout_spring
 - crowd: crowd_cheer, crowd_gasp, giggle_crowd
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn, pirate_horn
-- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding, tick, fizz, cha_ching, clink, pour
-- magic: sparkle, magic_sparkle, crystal_chime
+- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding, tick, clock_tick_big, fizz, cha_ching, clink, pour
+- magic: sparkle, magic_sparkle, crystal_chime, cloud_pop, whisper
 - voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh
-- weather: rain
-- music: twang, drum
+- music: flute_tune, leaf_tune, twang, drum
+- weather: thunder, rain
 - vehicle: train_whistle, rocket

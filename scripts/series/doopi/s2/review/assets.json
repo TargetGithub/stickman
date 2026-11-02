@@ -1,0 +1,860 @@
+{
+ "version": 3,
+ "meta": {
+  "title": "S2 review: places, props and people",
+  "format": "landscape",
+  "seed": 9002,
+  "kind": "story",
+  "audience": "kids",
+  "speakerNames": true,
+  "autoCamera": "story",
+  "style": "soft",
+  "speech": "babble",
+  "lipSync": true,
+  "narrator": {
+   "model": "en_GB-cori-medium",
+   "rate": 0.8,
+   "pitch": 0
+  }
+ },
+ "cast": [
+  {
+   "id": "ghadi",
+   "name": "Ghadi Dada",
+   "body": "elder",
+   "scale": 0.95,
+   "color": "#d9a77c",
+   "prop": "cane",
+   "appearance": {
+    "eyes": "glasses",
+    "hair": "none",
+    "outfit": "coat",
+    "outfitColor": "#7a5236",
+    "accessories": {
+     "moustache": "#c8c8c8"
+    }
+   },
+   "voice": {
+    "pitch": 0.8,
+    "speed": 0.8,
+    "timbre": "deep",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": -5,
+     "rate": 0.82
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "tinku",
+   "name": "Tinku",
+   "body": "robot",
+   "scale": 0.7,
+   "color": "#9fd8e8",
+   "appearance": {
+    "eyes": "visor",
+    "accessories": {
+     "antenna": "#ff9f1c"
+    }
+   },
+   "voice": {
+    "pitch": 1.8,
+    "speed": 1.1,
+    "timbre": "robot",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": 6,
+     "rate": 1.05
+    }
+   },
+   "limbStyle": "bendy",
+   "prop": "cloud_radar"
+  },
+  {
+   "id": "zippy",
+   "name": "Zippy",
+   "body": "kid",
+   "color": "#ff7a5c",
+   "appearance": {
+    "eyes": "big",
+    "hair": "cap",
+    "hairColor": "#d62828",
+    "accessories": {
+     "backpack": "#2a9d8f",
+     "skates": "#d62828"
+    }
+   },
+   "voice": {
+    "pitch": 1.5,
+    "speed": 1.3,
+    "timbre": "squeaky",
+    "tts": {
+     "model": "en_US-kristin-medium",
+     "pitch": 5,
+     "rate": 1.25
+    }
+   },
+   "limbStyle": "bendy",
+   "prop": "tiffin"
+  },
+  {
+   "id": "bijli",
+   "name": "Bijli",
+   "body": "kid",
+   "scale": 0.68,
+   "color": "#ffd23f",
+   "appearance": {
+    "eyes": "big",
+    "brows": "thick",
+    "hair": "bun",
+    "hairColor": "#3a2414",
+    "accessories": {
+     "scarf": "#e63946"
+    }
+   },
+   "voice": {
+    "pitch": 1.7,
+    "speed": 1.15,
+    "timbre": "squeaky",
+    "tts": {
+     "model": "en_GB-cori-medium",
+     "pitch": 7,
+     "rate": 1.1
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "thunda",
+   "name": "Thunda",
+   "body": "bulky",
+   "scale": 1.5,
+   "color": "#ff9f80",
+   "appearance": {
+    "outfit": "armor",
+    "outfitColor": "#7a7a86",
+    "accessories": {
+     "moustache": "#2a1a14"
+    }
+   },
+   "voice": {
+    "pitch": 0.6,
+    "speed": 0.85,
+    "timbre": "deep",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": -7,
+     "rate": 0.88
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "ghoom",
+   "name": "Ghoomu",
+   "body": "robot",
+   "scale": 2.4,
+   "color": "#c8ccd8",
+   "appearance": {
+    "eyes": "visor"
+   },
+   "voice": {
+    "pitch": 0.5,
+    "speed": 0.8,
+    "timbre": "robot",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": -3,
+     "rate": 0.85
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "doopi",
+   "name": "Doopi",
+   "body": "stickman",
+   "color": "#5ec8ff",
+   "appearance": {
+    "eyes": "big",
+    "hair": "spiky",
+    "hairColor": "#2a1a14",
+    "mouthStyle": "cartoon",
+    "accessories": {
+     "headband": "#ff3b5c",
+     "bracelet": "#e6b84a"
+    },
+    "slots": 6
+   },
+   "voice": {
+    "pitch": 1,
+    "speed": 1.05,
+    "timbre": "soft",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": 3,
+     "rate": 1.05
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "mooka",
+   "name": "Mooka",
+   "body": "buddy",
+   "scale": 0.85,
+   "color": "#7fe8c4",
+   "prop": "glass_jar",
+   "appearance": {
+    "eyes": "big",
+    "mouthStyle": "cartoon",
+    "cheeks": "#ffb3c7",
+    "belly": "#c9b6ff",
+    "accessories": {
+     "sprout": "#3fae5a",
+     "mittens": "#ff9f43"
+    }
+   },
+   "voice": {
+    "pitch": 1.9,
+    "speed": 1.3,
+    "timbre": "squeaky",
+    "tts": {
+     "model": "en_GB-cori-medium",
+     "pitch": 7,
+     "rate": 1.15
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "peepa",
+   "name": "Peepa",
+   "body": "slim",
+   "scale": 1.15,
+   "color": "#c9a6ff",
+   "appearance": {
+    "eyes": "oval",
+    "brows": "thick",
+    "accessories": {
+     "horns": "#e6b84a",
+     "cape": "#2a1b3d"
+    }
+   },
+   "voice": {
+    "pitch": 0.7,
+    "speed": 0.95,
+    "timbre": "deep",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": -6,
+     "rate": 0.95
+    }
+   },
+   "limbStyle": "bendy",
+   "prop": "bansuri"
+  },
+  {
+   "id": "hush",
+   "name": "The Hush",
+   "body": "wisp",
+   "scale": 0.8,
+   "color": "#c4a3ff",
+   "appearance": {
+    "eyes": "big"
+   },
+   "voice": {
+    "pitch": 1.3,
+    "speed": 0.85,
+    "timbre": "soft",
+    "tts": {
+     "model": "en_US-kristin-medium",
+     "pitch": 2,
+     "rate": 0.85,
+     "filter": "whisper"
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "storm",
+   "name": "The Hush Storm",
+   "body": "wisp",
+   "scale": 3.2,
+   "color": "#7a6a9a",
+   "appearance": {
+    "eyes": "big"
+   },
+   "voice": {
+    "pitch": 0.6,
+    "speed": 0.8,
+    "timbre": "deep",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": -6,
+     "rate": 0.8,
+     "filter": "whisper"
+    }
+   },
+   "limbStyle": "bendy"
+  }
+ ],
+ "locations": [
+  {
+   "id": "tower",
+   "theme": "clock_tower",
+   "stageWidth": 3200,
+   "set": [
+    {
+     "id": "clock1",
+     "object": "tower_clock",
+     "x": 2200,
+     "z": -200
+    },
+    {
+     "id": "car1",
+     "object": "carrom_board",
+     "x": 1550,
+     "z": 0
+    }
+   ]
+  },
+  {
+   "id": "still",
+   "theme": "clock_tower_still",
+   "stageWidth": 3200,
+   "set": [
+    {
+     "id": "clock2",
+     "object": "tower_clock",
+     "x": 2200,
+     "z": -200,
+     "state": "stopped"
+    }
+   ]
+  },
+  {
+   "id": "arena",
+   "theme": "khel_arena",
+   "stageWidth": 3200,
+   "set": [
+    {
+     "id": "ts1",
+     "object": "tiffin_stack",
+     "x": 2100,
+     "z": 0
+    }
+   ]
+  },
+  {
+   "id": "river",
+   "theme": "frozen_river",
+   "stageWidth": 3600
+  },
+  {
+   "id": "desert",
+   "theme": "desert_noon",
+   "stageWidth": 3200,
+   "set": [
+    {
+     "id": "well1",
+     "object": "desert_well",
+     "x": 2100,
+     "z": -100,
+     "state": "broken"
+    }
+   ]
+  },
+  {
+   "id": "cave",
+   "theme": "mountain_cave",
+   "stageWidth": 3200,
+   "set": [
+    {
+     "id": "door1",
+     "object": "stone_door",
+     "x": 1750,
+     "z": -250,
+     "state": "closed"
+    }
+   ]
+  },
+  {
+   "id": "hill",
+   "theme": "banyan_hill",
+   "stageWidth": 3600,
+   "set": [
+    {
+     "id": "crack1",
+     "object": "banyan_crack",
+     "x": 1800,
+     "z": 0,
+     "state": "cracked"
+    },
+    {
+     "id": "boat1",
+     "object": "paper_boat",
+     "x": 2700,
+     "z": 100
+    }
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "tower",
+   "location": "tower",
+   "time": "day",
+   "cast": [
+    {
+     "id": "ghadi",
+     "x": 1300,
+     "facing": 1,
+     "face": "sad"
+    },
+    {
+     "id": "tinku",
+     "x": 1700,
+     "facing": -1,
+     "face": "happy"
+    },
+    {
+     "id": "zippy",
+     "x": 300,
+     "facing": 1,
+     "face": "happy"
+    }
+   ],
+   "beats": [
+    {
+     "id": "z1",
+     "at": 0.3,
+     "who": "zippy",
+     "do": "skate",
+     "to": {
+      "x": 1100
+     }
+    },
+    {
+     "id": "g1",
+     "at": {
+      "after": "z1"
+     },
+     "who": "ghadi",
+     "do": "talk",
+     "say": "Nobody visits an old clock keeper."
+    },
+    {
+     "id": "t1",
+     "at": {
+      "after": "g1"
+     },
+     "who": "world",
+     "do": "set_object",
+     "object": "tinku",
+     "params": {
+      "state": "scan"
+     }
+    },
+    {
+     "id": "t2",
+     "at": {
+      "after": "t1"
+     },
+     "who": "tinku",
+     "do": "talk",
+     "say": "Beep boop! Scanning for clouds!"
+    },
+    {
+     "id": "t3",
+     "at": {
+      "after": "t2"
+     },
+     "who": "world",
+     "do": "set_object",
+     "object": "tinku",
+     "params": {
+      "state": "found"
+     }
+    },
+    {
+     "id": "w1",
+     "at": {
+      "after": "t3"
+     },
+     "who": "tinku",
+     "do": "wait",
+     "params": {
+      "seconds": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "still",
+   "location": "still",
+   "time": "day",
+   "cast": [
+    {
+     "id": "ghadi",
+     "x": 1500,
+     "facing": 1,
+     "face": "sad"
+    }
+   ],
+   "beats": [
+    {
+     "id": "c1",
+     "at": 0.3,
+     "who": "world",
+     "do": "set_cloud",
+     "params": {
+      "who": "ghadi",
+      "size": 1,
+      "dur": 1
+     }
+    },
+    {
+     "id": "w2",
+     "at": {
+      "after": "c1"
+     },
+     "who": "ghadi",
+     "do": "wait",
+     "params": {
+      "seconds": 2.5
+     }
+    }
+   ]
+  },
+  {
+   "id": "arena",
+   "location": "arena",
+   "time": "day",
+   "cast": [
+    {
+     "id": "bijli",
+     "x": 1300,
+     "facing": 1,
+     "face": "angry"
+    },
+    {
+     "id": "thunda",
+     "x": 1700,
+     "facing": -1,
+     "face": "surprised"
+    }
+   ],
+   "beats": [
+    {
+     "id": "b1",
+     "at": 0.3,
+     "who": "bijli",
+     "do": "talk",
+     "say": "THUNDA? He's the SMALL one!",
+     "bubble": "shout"
+    },
+    {
+     "id": "b2",
+     "at": {
+      "after": "b1"
+     },
+     "who": "thunda",
+     "do": "tug_pull"
+    },
+    {
+     "id": "w3",
+     "at": {
+      "after": "b2"
+     },
+     "who": "bijli",
+     "do": "wait",
+     "params": {
+      "seconds": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "river",
+   "location": "river",
+   "time": "day",
+   "cast": [
+    {
+     "id": "ghoom",
+     "x": 900,
+     "facing": 1,
+     "face": "happy"
+    },
+    {
+     "id": "tinku",
+     "x": 1100,
+     "facing": 1,
+     "face": "happy"
+    },
+    {
+     "id": "doopi",
+     "x": 700,
+     "facing": 1,
+     "face": "happy"
+    }
+   ],
+   "beats": [
+    {
+     "id": "r1",
+     "at": 0.3,
+     "who": "ghoom",
+     "do": "walk",
+     "to": {
+      "x": 2600
+     }
+    },
+    {
+     "id": "r2",
+     "at": {
+      "with": "r1"
+     },
+     "who": "tinku",
+     "do": "walk",
+     "to": {
+      "x": 2800
+     }
+    },
+    {
+     "id": "w4",
+     "at": {
+      "after": "r1"
+     },
+     "who": "doopi",
+     "do": "wait",
+     "params": {
+      "seconds": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "well",
+   "location": "desert",
+   "time": "dusk",
+   "cast": [
+    {
+     "id": "bijli",
+     "x": 1700,
+     "facing": -1,
+     "face": "angry"
+    },
+    {
+     "id": "mooka",
+     "x": 1300,
+     "facing": 1,
+     "face": "sad"
+    }
+   ],
+   "beats": [
+    {
+     "id": "d1",
+     "at": 0.3,
+     "who": "bijli",
+     "do": "point",
+     "say": "The rope is broken."
+    },
+    {
+     "id": "d2",
+     "at": {
+      "after": "d1"
+     },
+     "who": "world",
+     "do": "set_object",
+     "object": "well1",
+     "params": {
+      "state": "fixed"
+     }
+    },
+    {
+     "id": "d3",
+     "at": {
+      "with": "d2"
+     },
+     "who": "mooka",
+     "do": "jump_joy",
+     "face": "laugh"
+    },
+    {
+     "id": "w5",
+     "at": {
+      "after": "d3"
+     },
+     "who": "bijli",
+     "do": "wait",
+     "params": {
+      "seconds": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "door",
+   "location": "cave",
+   "time": "day",
+   "cast": [
+    {
+     "id": "peepa",
+     "x": 1200,
+     "facing": 1,
+     "face": "sad"
+    },
+    {
+     "id": "doopi",
+     "x": 900,
+     "facing": 1,
+     "face": "happy"
+    }
+   ],
+   "beats": [
+    {
+     "id": "e1",
+     "at": 0.3,
+     "who": "peepa",
+     "do": "talk",
+     "say": "I'm sorry.",
+     "echo": 3
+    },
+    {
+     "id": "e2",
+     "at": {
+      "after": "e1",
+      "delay": 1
+     },
+     "who": "world",
+     "do": "set_object",
+     "object": "door1",
+     "params": {
+      "state": "open"
+     }
+    },
+    {
+     "id": "w6",
+     "at": {
+      "after": "e2"
+     },
+     "who": "peepa",
+     "do": "wait",
+     "params": {
+      "seconds": 3
+     }
+    }
+   ]
+  },
+  {
+   "id": "hill",
+   "location": "hill",
+   "time": "dusk",
+   "cast": [
+    {
+     "id": "peepa",
+     "x": 1500,
+     "facing": 1,
+     "face": "happy"
+    },
+    {
+     "id": "mooka",
+     "x": 2100,
+     "facing": -1,
+     "face": "surprised"
+    },
+    {
+     "id": "hush",
+     "x": 2300,
+     "facing": -1,
+     "face": "smug"
+    },
+    {
+     "id": "storm",
+     "x": 3000,
+     "facing": -1,
+     "face": "angry"
+    }
+   ],
+   "beats": [
+    {
+     "id": "h1",
+     "at": 0.3,
+     "who": "world",
+     "do": "set_object",
+     "object": "mooka",
+     "params": {
+      "state": "hush"
+     }
+    },
+    {
+     "id": "h2",
+     "at": 0.5,
+     "who": "peepa",
+     "do": "play_flute",
+     "params": {
+      "cycles": 3
+     }
+    },
+    {
+     "id": "h3",
+     "at": {
+      "with": "h2",
+      "delay": 2
+     },
+     "who": "world",
+     "do": "set_object",
+     "object": "crack1",
+     "params": {
+      "state": "healed"
+     }
+    },
+    {
+     "id": "h4",
+     "at": {
+      "with": "h3"
+     },
+     "who": "world",
+     "do": "set_object",
+     "object": "mooka",
+     "params": {
+      "state": "open"
+     }
+    },
+    {
+     "id": "h5",
+     "at": {
+      "after": "h2"
+     },
+     "who": "storm",
+     "do": "talk",
+     "say": "Be big again...",
+     "bubble": "whisper"
+    },
+    {
+     "id": "h6",
+     "at": {
+      "after": "h5"
+     },
+     "who": "hush",
+     "do": "wave",
+     "fx": [
+      "fireflies"
+     ]
+    },
+    {
+     "id": "w7",
+     "at": {
+      "after": "h6"
+     },
+     "who": "peepa",
+     "do": "wait",
+     "params": {
+      "seconds": 2
+     }
+    }
+   ]
+  }
+ ]
+}

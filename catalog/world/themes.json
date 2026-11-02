@@ -1310,5 +1310,293 @@
       }
     ],
     "characterBg": "#4f8f45"
+  },
+  "clock_tower": {
+    "description": "Inside the Jhilmil City clock tower: old brick walls, big brass gears turning slowly and the round clock face seen from behind.",
+    "tags": [
+      "story",
+      "indoor",
+      "city",
+      "clock",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5a4436",
+      "bottom": "#7a5c46"
+    },
+    "ground": {
+      "color": "#8a6444",
+      "line": "#5e4230"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.4,
+        "color": "#8c5a40",
+        "mortar": "#6a4230",
+        "top": -1400
+      },
+      {
+        "kind": "clock_window",
+        "factor": 0.45,
+        "at": [
+          720
+        ],
+        "y": -500,
+        "r": 300,
+        "frame": "#5a4a3c",
+        "glassTop": "#cfe8f4",
+        "glassBottom": "#8fc0dc",
+        "ticks": "#3a3046",
+        "hands": "#2a2230",
+        "speed": 1
+      },
+      {
+        "kind": "gears_bg",
+        "factor": 0.6,
+        "spacing": 900,
+        "size": 190,
+        "y": -230,
+        "color": "#c79a3e",
+        "hub": "#8a6a2a",
+        "rock": "#6e4c34",
+        "speed": 0.15
+      },
+      {
+        "kind": "planks",
+        "color": "#74523a",
+        "spacing": 170
+      }
+    ],
+    "characterBg": "#7a5c46"
+  },
+  "khel_arena": {
+    "description": "Khel Arena, a sunny sports ground: green grass with white lane lines, stands full of cheering fans with pennants, and a scoreboard.",
+    "tags": [
+      "story",
+      "outdoor",
+      "sport",
+      "crowd",
+      "day",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5cb8f0",
+      "bottom": "#d4efff"
+    },
+    "ground": {
+      "color": "#6cbf54",
+      "line": "#4f9a3c"
+    },
+    "layers": [
+      {
+        "kind": "sun",
+        "factor": 0.03,
+        "x": 0.82,
+        "y": 0.13,
+        "r": 60,
+        "color": "#fff4c0",
+        "glow": "rgba(255, 240, 190, 0.5)"
+      },
+      {
+        "kind": "clouds",
+        "factor": 0.05,
+        "color": "rgba(255, 255, 255, 0.9)",
+        "count": 5,
+        "top": 0.05,
+        "band": 0.15
+      },
+      {
+        "kind": "hills",
+        "factor": 0.12,
+        "color": "#8cc6a0",
+        "height": 200,
+        "step": 320
+      },
+      {
+        "kind": "stands",
+        "factor": 0.45,
+        "y": -40,
+        "rows": 4,
+        "step": 64,
+        "tiers": [
+          "#e9e4d4",
+          "#d8d2c0"
+        ],
+        "roof": "#d0453a",
+        "fans": [
+          "#e63946",
+          "#2f7de1",
+          "#f4c430",
+          "#2bb39a",
+          "#8e5bd8",
+          "#ff7eb6"
+        ],
+        "skin": "#e0a77a",
+        "pennants": [
+          "#e63946",
+          "#ffd23f",
+          "#2f7de1",
+          "#2bb39a"
+        ],
+        "poleSpacing": 560
+      },
+      {
+        "kind": "scoreboard",
+        "factor": 0.5,
+        "x": 1600,
+        "y": -470,
+        "w": 420,
+        "color": "#2c2c38",
+        "trim": "#ffd23f",
+        "home": "#e63946",
+        "away": "#2f7de1",
+        "light": "#ffe66b"
+      },
+      {
+        "kind": "floorStripes",
+        "color": "#ffffff",
+        "at": [
+          60,
+          200,
+          360
+        ],
+        "width": 8
+      }
+    ],
+    "characterBg": "#5aa648"
+  },
+  "frozen_river": {
+    "description": "A snowy mountain valley with a frozen river crossing the floor between two snowy banks, and snowy pine trees.",
+    "tags": [
+      "story",
+      "outdoor",
+      "snow",
+      "river",
+      "mountain",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#a9cdee",
+      "bottom": "#eef6ff"
+    },
+    "ground": {
+      "color": "#f4f8fc",
+      "line": "#c9d8e8"
+    },
+    "layers": [
+      {
+        "kind": "mountains",
+        "factor": 0.1,
+        "color": "#b4cae2",
+        "height": 460,
+        "step": 300,
+        "rough": 0.6,
+        "caps": "#ffffff"
+      },
+      {
+        "kind": "mountains",
+        "factor": 0.25,
+        "color": "#94b0cc",
+        "height": 300,
+        "step": 240,
+        "rough": 0.6,
+        "caps": "#eef4fa"
+      },
+      {
+        "kind": "pines",
+        "factor": 0.45,
+        "spacing": 260,
+        "height": 300,
+        "color": "#3f6e5c",
+        "snow": "#f4f8fc",
+        "trunk": "#5a4232"
+      },
+      {
+        "kind": "pines",
+        "factor": 0.7,
+        "spacing": 520,
+        "height": 420,
+        "color": "#2f5e4c",
+        "snow": "#ffffff",
+        "trunk": "#4a3428"
+      },
+      {
+        "kind": "ice_river",
+        "x0": 1350,
+        "x1": 2250,
+        "far": 0.3,
+        "ice": "#bfe2f2",
+        "shine": "#ffffff",
+        "crack": "#8ab4cc",
+        "bank": "#f4f8fc"
+      },
+      {
+        "kind": "snowfall",
+        "count": 90,
+        "color": "rgba(255, 255, 255, 0.9)",
+        "speed": 70
+      }
+    ],
+    "characterBg": "#c7d9ee"
+  },
+  "clock_tower_still": {
+    "description": "The clock tower with every gear and hand stopped (the frozen city): the same room, perfectly still.",
+    "tags": [
+      "story",
+      "indoor",
+      "city",
+      "clock",
+      "doopi"
+    ],
+    "sky": {
+      "top": "#5a4436",
+      "bottom": "#7a5c46"
+    },
+    "ground": {
+      "color": "#8a6444",
+      "line": "#5e4230"
+    },
+    "layers": [
+      {
+        "kind": "bricks",
+        "factor": 0.4,
+        "color": "#8c5a40",
+        "mortar": "#6a4230",
+        "top": -1400
+      },
+      {
+        "kind": "clock_window",
+        "factor": 0.45,
+        "at": [
+          720
+        ],
+        "y": -500,
+        "r": 300,
+        "frame": "#5a4a3c",
+        "glassTop": "#cfe8f4",
+        "glassBottom": "#8fc0dc",
+        "ticks": "#3a3046",
+        "hands": "#2a2230",
+        "speed": 0
+      },
+      {
+        "kind": "gears_bg",
+        "factor": 0.6,
+        "spacing": 900,
+        "size": 190,
+        "y": -230,
+        "color": "#c79a3e",
+        "hub": "#8a6a2a",
+        "rock": "#6e4c34",
+        "speed": 0
+      },
+      {
+        "kind": "planks",
+        "color": "#74523a",
+        "spacing": 170
+      }
+    ],
+    "characterBg": "#7a5c46"
   }
 }

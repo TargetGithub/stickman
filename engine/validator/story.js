@@ -69,6 +69,7 @@ function objectIssues(scene, si, story, catalog) {
   const objects = catalog.objects || {};
   const location = (story.locations || []).find((l) => l.id === scene.location);
   const known = new Map(); // id → kind
+  const held = new Set(); // character ids standing for the prop they hold
   const states = (kind, state, path) => {
     const def = objects[kind];
     if (state !== undefined && def && !(def.states || []).includes(state)) {
@@ -79,6 +80,11 @@ function objectIssues(scene, si, story, catalog) {
     known.set(p.id, p.object);
     states(p.object, p.state, `${path}.state`);
   });
+  // A character holding a holdable with states can be named by set_object (its held prop changes state).
+  for (const c of scene.cast || []) {
+    const prop = (story.cast || []).find((x) => x.id === c.id)?.prop;
+    if (objects[prop]?.behavior === "holdable" && objects[prop].states) { known.set(c.id, prop); held.add(c.id); }
+  }
   (scene.beats || []).forEach((b, bi) => {
     if (b.who === "world" && b.do === "spawn_object") {
       const kind = b.params?.kind;
@@ -99,6 +105,10 @@ function objectIssues(scene, si, story, catalog) {
       return;
     }
     const kind = known.get(b.object);
+    if (held.has(b.object) && b.do !== "set_object") {
+      out.push(issue("E_OBJECT_UNKNOWN", `${path}.object`, `'${b.object}' is a character; only set_object can name it (for the ${kind} it holds).`, `Use a set piece or spawned object id.`));
+      return;
+    }
     const behavior = objects[kind]?.behavior;
     if (b.do === "ride" && behavior !== "vehicle") out.push(issue("E_OBJECT_STATE", `${path}.object`, `'${b.object}' (${kind}) is not a vehicle.`, "Ride a car or a bike."));
     if ((b.do === "climb_up" || b.do === "climb_down") && behavior !== "platform") out.push(issue("E_OBJECT_STATE", `${path}.object`, `'${b.object}' (${kind}) is not something to climb.`, "Climb a platform (garden_wall, lookout_tower), or leave out \"object\" to climb in place."));

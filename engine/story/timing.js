@@ -36,5 +36,6 @@ export const WORLD_DURATION = {
   shot: (p) => p.dur ?? 0,
   sfx: () => 0,
   set_glow: (p) => p.dur ?? 0,
+  set_cloud: (p) => (p.pop ? 1.8 : p.dur ?? 0),
   set_grade: (p) => p.dur ?? 0,
 };

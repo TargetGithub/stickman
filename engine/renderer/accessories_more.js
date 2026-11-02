@@ -5,6 +5,7 @@
 // joints: the far mitten goes behind the character, the near mitten and the bracelet in front.
 
 import { dimsOf } from "../skeleton.js";
+import { drawSkatesBehind, drawSkatesFront } from "./accessories_s2.js";
 import { drawHats } from "./accessories_hats.js";
 import { drawWindupKey } from "./robot.js";
 import { drawHeadBaaaana, drawHandBaaaana, drawFeetBehind, drawFeetFront, leanAxes } from "./accessories_baaaana.js";
@@ -320,10 +321,11 @@ const lineOf = (c) => dimsOf(c).lineWidth * c.scale;
 export function drawLookBehind(ctx, c, look, t = 0) {
   const acc = look?.accessories;
   if (acc?.windup_key && !c.quad) drawWindupKey(ctx, c, acc.windup_key, t); // batch C: Iron Ghoom's key
-  if (!acc || c.quad || (!acc.mittens && !acc.shoes)) return;
+  if (!acc || c.quad || (!acc.mittens && !acc.shoes && !acc.skates)) return;
   ctx.save();
   ctx.globalAlpha = c.alpha ?? 1;
   drawFeetBehind(ctx, c, acc);
+  drawSkatesBehind(ctx, c, acc);
   if (acc.mittens) mitten(ctx, c.j.lElbow, c.j.lHand, lineOf(c) * 0.95, tint(acc.mittens, 0.85));
   ctx.restore();
 }
@@ -331,11 +333,12 @@ export function drawLookBehind(ctx, c, look, t = 0) {
 /** Hand pieces in front of the character: the near mitten and the bracelet. */
 export function drawLookFront(ctx, c, look) {
   const acc = look?.accessories;
-  if (!acc || c.quad || (!acc.mittens && !acc.bracelet && !acc.clipboard && !acc.shoes)) return;
+  if (!acc || c.quad || (!acc.mittens && !acc.bracelet && !acc.clipboard && !acc.shoes && !acc.skates)) return;
   ctx.save();
   ctx.globalAlpha = c.alpha ?? 1;
   if (acc.bracelet) bracelet(ctx, c.j, lineOf(c), acc.bracelet, look.slots);
   drawFeetFront(ctx, c, acc);
+  drawSkatesFront(ctx, c, acc);
   drawHandBaaaana(ctx, c, acc);
   if (acc.mittens) mitten(ctx, c.j.rElbow, c.j.rHand, lineOf(c) * 0.95, acc.mittens);
   ctx.restore();

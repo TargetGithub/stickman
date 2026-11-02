@@ -52,7 +52,7 @@ export function resolveVoice(voice, table, override = {}) {
     speaker: override.speaker ?? tts.speaker ?? t.speaker ?? 0,
     rate: round2(override.rate ?? tts.rate ?? v.speed * (t.rateScale ?? 1)),
     pitch,
-    filter: override.filter ?? t.filter ?? null,
+    filter: override.filter ?? tts.filter ?? t.filter ?? null,
   };
 }
 
@@ -115,7 +115,7 @@ export function collectLines(compiled, table, overrides = {}) {
       const spoken = cleanText(parts.map((p) => p.text).join(" "));
       if (!voice || !spoken) return;
       out.push({ id: b.id, kind: narrate ? "narrate" : "say", scene: si, beat: bi, who: narrate ? "narrator" : b.who, text: parts.map((p) => p.text).join(" "), spoken,
-        bubble: narrate ? null : b.bubble ?? "speech", voice, tone: narrate ? null : moodTone(face, table, overrides.moods !== false), ...(parts.length > 1 ? { parts } : {}) });
+        bubble: narrate ? null : b.bubble ?? "speech", voice, tone: narrate ? null : moodTone(face, table, overrides.moods !== false), ...(parts.length > 1 ? { parts } : {}), ...(b.echo ? { echo: b.echo } : {}) });
     });
   });
   return out;

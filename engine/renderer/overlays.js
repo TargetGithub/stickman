@@ -8,6 +8,7 @@ import { STAGE } from "../config.js";
 import { drawCard, drawNarration } from "./cards.js";
 import { BUBBLE_KINDS, nameTag } from "./bubbles.js";
 import { drawSubtitles, sentences } from "./subtitles.js";
+import { drawEchoes } from "./echo_text.js";
 import { CARD_COMMANDS, cardDuration, cardKind, narrateDuration } from "../story/timing.js";
 
 const SAFE = { landscape: { top: 0.06, bottom: 0.06 }, portrait: { top: 0.12, bottom: 0.2 } };
@@ -137,6 +138,7 @@ export function drawOverlays(ctx, view) {
     const rect = draw ? draw(ctx, s.text, head, W, H, scale, safe) : bubble(ctx, s.text, head, W, H, scale, safe);
     if (view.names?.has(s.actor)) nameTag(ctx, view.names.get(s.actor), rect, scale, c.color);
   }
+  drawEchoes(ctx, says, view); // echoing lines (season 2)
   if (view.hpBars) hpBars(ctx, chars, W, H, safe);
 
   for (const e of activeAt(worldEvents.filter((w) => w.do === "text_pop"), t, () => 1.0)) {

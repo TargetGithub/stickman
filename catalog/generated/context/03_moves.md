@@ -19,6 +19,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | side_step | movement | 0.4 | travel=70 | - | evasive | A short sidestep out of the line of an attack. |
 | swim | movement | 1 | stride=200 | - | loop: distance/cycles/to | Swims along face-down, arms reaching in turn and legs kicking, floating above the floor; loops until `distance` px or `cycles`. |
 | sink | movement | 3 | - | - | holds pose | Sinks slowly from high up to the floor, limp, arms floating up (underwater, a dream fall); holds at the end. |
+| skate | movement | 1.1 | stride=190 | - | loop: distance/cycles/to | Roller-skates forward: long gliding pushes from one foot then the other, arms swinging; loops like walk. |
 | jab | attack | 0.36 | damage=5 travel=10 | - | - | A fast, light lead-hand punch; good for opening an exchange. |
 | cross | attack | 0.5 | damage=9 travel=22 | - | - | A straight rear-hand punch with the hips turned in. |
 | front_kick | attack | 0.7 | damage=10 travel=30 | - | - | A straight push kick to the middle. |
@@ -83,6 +84,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | look_around | emote | 1.8 | - | - | - | Looks left and right, searching or unsure. |
 | talk | emote | 0.8 | cycles=3 | - | loop: cycles | Small hand gestures while speaking; loops for `cycles`. |
 | sneeze | emote | 1.6 | - | - | - | A big comic sneeze: head back for ah... ah..., then a sharp nod forward on CHOO, with funny tears. |
+| listen | emote | 1.8 | - | - | - | Listens closely: tilts the head and cups a hand behind the ear, then lowers it. |
 | use | utility | 1 | - | - | - | Uses the held object: a wand blows bubbles, a phone takes a photo. |
 | ride | utility | 0.6 | - | - | holds pose | Gets on a vehicle (the beat's object) and rides it until dismount. |
 | dismount | utility | 0.5 | - | - | - | Gets off the vehicle being ridden. |
@@ -134,6 +136,7 @@ A character beat's `do`. Override any param in the beat's `params`. Anchors: att
 | climb_down | life | 1.4 | cycles=1 | - | loop: cycles | Climbs down (a ladder, a wall), hands and knees taking turns; loops for `cycles`. With a platform object the character really goes down. |
 | tug_pull | life | 1.2 | cycles=4 | - | loop: cycles | Pulls a rope with both hands: leaning back, front foot braced, heaving in rhythm; loops for `cycles`. |
 | pillow_swing | life | 0.9 | - | pillow | - | Swings a pillow overhead and down in a big soft arc. |
+| play_flute | life | 1.2 | cycles=3 | - | loop: cycles | Plays a flute held sideways at the lips, swaying gently to the tune; loops for `cycles` (the bansuri when held). |
 | hug | interaction | 1.8 | - | - | paired: partner plays hug_partner, story only | Two characters hug; a short buddy hugs a tall friend round the waist. |
 | high_five | interaction | 1 | - | - | paired: partner plays high_five_partner, story only | Two characters slap a high five. |
 | fist_bump | interaction | 0.9 | - | - | paired: partner plays fist_bump_partner, story only | Two characters bump fists. |

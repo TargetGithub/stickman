@@ -113,7 +113,7 @@ export function turnJoints(j, facing, yaw, turn, scale) {
 export const nearSide = (yaw) => (yaw > 90 ? "l" : "r");
 
 /** Moves that carry a character across the stage: a travel beat without its own view turns back to the side. */
-export const TRAVEL_MOVES = ["walk", "run", "sneak", "tiptoe", "swim", "walk_together"];
+export const TRAVEL_MOVES = ["walk", "run", "sneak", "tiptoe", "swim", "walk_together", "skate"];
 
 /**
  * The view events a beat starts in a v3 scene (V3.6): its own view (lasting from it on), else the side view

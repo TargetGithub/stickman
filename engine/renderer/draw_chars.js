@@ -14,6 +14,7 @@ import { hash32 } from "../math.js";
 import { drawLookBehind, drawLookFront } from "./accessories_more.js";
 import { propTransform } from "../props.js";
 import { glowAt, drawGlow, petrifyAt, stoneFilter, thawLine } from "./colour.js";
+import { cloudAt, dimFilter, drawCloud } from "./cloud.js";
 import { holdableData } from "../objects.js";
 import { faceStyle } from "./face_state.js";
 import { lookAt } from "./looks.js";
@@ -47,7 +48,7 @@ export function drawLayerChars(ctx, r, n, f, chars, sv, list, layer) {
   for (const c of list) withLayer(ctx, layer, c.j.hip.x, () => drawChars(ctx, r, n, f, chars, sv, [c]));
 }
 
-/** Draw characters (largest first), with their looks, accessories and squash; glowing, petrified or thawing (A3). */
+/** Draw characters (largest first), with their looks, accessories and squash; glowing, petrified or thawing (A3), under a cloud. */
 export function drawChars(ctx, r, n, f, chars, sv, list) {
   for (const c of order(list)) {
     if (c.alpha <= 0.01) continue;
@@ -59,8 +60,11 @@ export function drawChars(ctx, r, n, f, chars, sv, list) {
       ctx.restore();
     }
     const stone = r.petrifyEvents.length ? petrifyAt(r.petrifyEvents.filter((e) => e.actor === c.id), f.videoT) : null;
+    // A feeling cloud (season 2): the character dims under it; the cloud and its rain are drawn on top.
+    const cloud = r.cloudChanges.length ? cloudAt(r.cloudChanges.filter((e) => e.params.who === c.id), f.videoT) : null;
     if (!stone) {
-      drawOne(ctx, r, n, f, chars, sv, c, r.castFilter);
+      drawOne(ctx, r, n, f, chars, sv, c, (cloud && dimFilter(cloud.size)) || r.castFilter);
+      if (cloud) drawCloud(ctx, c, cloud, f.videoT);
       continue;
     }
     drawOne(ctx, r, n, f, chars, sv, c, stoneFilter(stone.grey));
@@ -119,6 +123,7 @@ function drawOne(ctx, r, n, f, chars, sv, c, filter) {
     ...(sv.depth ? lineLook(r.sim.story?.look) : {}),
     // Belly jiggle (lively.js) for plans with a jiggle amount: the face, the time and the hip's last move.
     ...(!c.quad && r.catalog.bodies?.[c.plan]?.jiggle ? { jiggle: r.catalog.bodies[c.plan].jiggle, time: f.videoT, faceName: c.face, hipDy: c.j.hip.y - (past(1)?.hip?.y ?? c.j.hip.y) } : {}),
+    ...(c.draw === "wisp" ? { time: f.videoT, id: c.id } : {}),
     ...(c.quad ? { quad: c.quad, grip: c.grip, faceName: c.face, id: c.id, time: f.videoT, prevHip: past(1)?.hip, prevHead: past(1)?.head } : {}) };
   if (c.quad && yaw < 89.5) {
     // A four-legged character cross-fades from its side drawing to its front drawing, squashed mid-turn.

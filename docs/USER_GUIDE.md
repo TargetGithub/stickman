@@ -314,6 +314,7 @@ Sample: `scripts/samples/r1_becky.json`. Review sheets: `node tools/becky_sheet.
 
 ### 4.2 Glow, grey worlds and friends turned to stone
 
+- **Feeling cloud:** `{"who": "world", "do": "set_cloud", "params": {"who": "chintu", "size": 0.6, "dur": 1.5}}` grows a grey rain cloud over a character; `"pop": true` bursts it into a music note.
 - **Heart Glow:** `{"who": "world", "do": "set_glow", "params": {"who": "doopi", "color": "#ffd23f", "level": 0.6, "dur": 1.5}}` puts a soft pulsing halo behind a character. `"color": "rainbow"` cycles the colours; `"level": 0` turns it off. It stays on into later scenes.
 - **A grey world:** a scene's `"grade": {"saturation": 0.3}` makes the whole scene greyer (1 is full colour, 0 grey); add `"keepCast": true` to keep the characters in colour. `set_grade` changes it during a scene: `{"who": "world", "do": "set_grade", "params": {"saturation": 1, "dur": 2, "from": "doopi"}}` sends the colour out from Doopi in a wave with rainbow sparkles.
 - **Turned to stone:** `{"who": "mooka", "do": "petrify"}` freezes a character where it stands and drains its colour; it stays frozen into later scenes. `{"who": "mooka", "do": "return"}` brings the colour back from the feet up. In a kids story, a friend who is never thawed gets `W_KIDS_NO_HOPE`.

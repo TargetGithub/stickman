@@ -153,6 +153,7 @@ function dispatchWorld(director, beat, ctx) {
   emit({ type: "world", do: beat.do, params: p, beatId: beat.id });
   // A colour wave from a character (A3, F3): the renderer spreads the grade from them; sparkles burst there.
   if (beat.do === "set_grade" && ctx.world.byId.get(p.from)) emit({ type: "fx", names: ["colour_return"], actor: p.from, beatId: beat.id });
+  if (beat.do === "set_cloud" && p.pop && ctx.world.byId.get(p.who)) emit({ type: "fx", names: ["note_burst"], actor: p.who, beatId: beat.id }); // season 2
   if (beat.do === "activity") {
     // Ends with its activityEnd event (onEvents), not a timer.
     const started = startActivity(ctx.world, beat, p, storyT, ctx.catalog);
@@ -310,7 +311,7 @@ function execute(director, beat, ctx) {
   if (beat.say) {
     const dur = beat.sayDur ?? (world.pace ? pacedReadingTime(beat.say) : director.story ? readingTime(beat.say) : 1.2);
     // Under a pace the auto camera cuts to the listener for reactions (camera_cuts.js), so the say names it.
-    emit({ type: "say", actor: beat.who, text: beat.say, dur, beatId: beat.id, ...(beat.bubble ? { bubble: beat.bubble } : {}), ...(world.pace && beat.target ? { to: beat.target } : {}) });
+    emit({ type: "say", actor: beat.who, text: beat.say, dur, beatId: beat.id, ...(beat.bubble ? { bubble: beat.bubble } : {}), ...(beat.echo ? { echo: beat.echo } : {}), ...(world.pace && beat.target ? { to: beat.target } : {}) });
   }
 }
 

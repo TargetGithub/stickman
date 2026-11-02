@@ -172,8 +172,8 @@ export function withDepth(v2) {
 
 const pn = (min, max, d) => ({ type: "number", minimum: min, maximum: max, description: d });
 const PACE_SCHEMA = { type: "object", additionalProperties: false, description: "Snappy preschool-show timing (ADR-038): faster travel and gestures, tight dialogue, a cutting auto camera with medium shots, cut-to-arrival for long walks, bigger bubbles or subtitles. {} takes every default.", properties: {
-  travel: { type: "object", additionalProperties: false, description: "Speed multipliers per travel move (defaults: walk 1.7, run 1.25, sneak 2.5, tiptoe 2, walk_together 1.6, swim 1.3).",
-    properties: Object.fromEntries(["walk", "run", "sneak", "tiptoe", "walk_together", "swim"].map((m) => [m, pn(0.5, 4, `${m} speed multiplier.`)])) },
+  travel: { type: "object", additionalProperties: false, description: "Speed multipliers per travel move (defaults: walk 1.7, run 1.25, sneak 2.5, tiptoe 2, walk_together 1.6, swim 1.3, skate 1.2).",
+    properties: Object.fromEntries(["walk", "run", "sneak", "tiptoe", "walk_together", "swim", "skate"].map((m) => [m, pn(0.5, 4, `${m} speed multiplier.`)])) },
   moves: pn(0.5, 2, "Playback speed of other one-shot moves beats start (not attacks, defeats, paired moves, timed holds or speaking beats; default 1.25)."),
   gap: pn(0, 2, "Seconds between dialogue lines (default 0.2)."),
   maxTravel: pn(1, 30, "Seconds a walk may take on screen before it becomes a walk out, a cut and the arrival (default 3)."),

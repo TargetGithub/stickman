@@ -13,12 +13,12 @@ import { motionScale } from "../combat.js";
 import { travelFactor } from "./pace.js";
 
 /** Moves that take a `to`. */
-export const TO_MOVES = ["walk", "run", "sneak", "tiptoe", "walk_together", "swim"];
+export const TO_MOVES = ["walk", "run", "sneak", "tiptoe", "walk_together", "swim", "skate"];
 
 const ENTER_FADE = 0.35; // s
 const EXIT_FADE = 0.4; // s
 const DEFAULT_GAP = 110; // px at scale 1
-export const EXIT_REACH = { walk: 700, walk_together: 700, sneak: 400, tiptoe: 400, run: 1300 }; // px
+export const EXIT_REACH = { walk: 700, walk_together: 700, sneak: 400, tiptoe: 400, run: 1300, skate: 1000 }; // px
 
 /** Stage x of a `to` destination, or null when it names nothing in the scene. */
 export function destinationX(world, actor, to, move = "walk") {

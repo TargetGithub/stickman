@@ -72,6 +72,7 @@ export function createRenderer(catalog, sim, opts = {}) {
     looks: new Map((sim.story?.legacy === false ? sim.story.cast : []).map((c) => [c.id, lookFor(catalog, c)])),
     lookChanges: sim.events.filter((e) => e.type === "world" && e.do === "set_appearance"),
     glowChanges: sim.events.filter((e) => e.type === "world" && e.do === "set_glow"),
+    cloudChanges: sim.events.filter((e) => e.type === "world" && e.do === "set_cloud"),
     petrifyEvents: sim.events.filter((e) => (e.type === "defeat" && e.move === "petrify") || e.type === "thaw"),
     heldStates: sim.events.filter((e) => e.type === "object" && e.what === "state" && catalog.objects?.[e.kind]?.behavior === "holdable"),
     voices: new Map((sim.story?.cast || []).map((c) => [c.id, c.voice])),

@@ -10,7 +10,7 @@ export function withState(r, sv, name, data, t) {
   const def = r.catalog.objects?.[name];
   if (!def?.states || def.behavior !== "holdable") return data;
   const e = r.heldStates.findLast((x) => x.kind === name && x.videoT <= t);
-  return { ...data, state: e?.state ?? sv.set?.find((p) => p.object === name && p.state)?.state ?? def.states[0] };
+  return { ...data, time: t, state: e?.state ?? sv.set?.find((p) => p.object === name && p.state)?.state ?? def.states[0] };
 }
 
 /** Loose props: lying ones before the characters, thrown (flying) ones after. */

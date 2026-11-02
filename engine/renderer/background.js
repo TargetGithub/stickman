@@ -14,6 +14,7 @@ import { IRON_KINDS } from "./background_iron.js";
 import { SHADOW_KINDS } from "./background_shadow.js";
 import { MOON_KINDS } from "./background_moon.js";
 import { MEADOW_KINDS } from "./background_meadow.js";
+import { S2_KINDS } from "./background_s2.js";
 import { nightLook, drawNightBackground } from "./night.js";
 import { throughFilter } from "./filter_pass.js";
 
@@ -233,7 +234,7 @@ const KINDS = {
   },
 };
 
-Object.assign(KINDS, STORY_KINDS, VILLAGE_KINDS, FOREST_KINDS, FORT_KINDS, SEA_KINDS, IRON_KINDS, SHADOW_KINDS, MOON_KINDS, MEADOW_KINDS);
+Object.assign(KINDS, STORY_KINDS, VILLAGE_KINDS, FOREST_KINDS, FORT_KINDS, SEA_KINDS, IRON_KINDS, SHADOW_KINDS, MOON_KINDS, MEADOW_KINDS, S2_KINDS);
 
 export const LAYER_KINDS = Object.keys(KINDS);
 

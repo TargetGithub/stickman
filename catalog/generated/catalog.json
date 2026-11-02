@@ -497,6 +497,33 @@
         ]
       },
       {
+        "name": "skate",
+        "description": "Roller-skates forward: long gliding pushes from one foot then the other, arms swinging; loops like walk.",
+        "tags": ["travel", "loop", "fast", "skate", "doopi"],
+        "category": "movement",
+        "duration": 1.1,
+        "params": { "stride": 190 },
+        "flags": { "loop": true },
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": 10, "head": -6, "lUA": -35, "lFA": 30, "rUA": 40, "rFA": 35, "lTH": -30, "lSH": 12, "rTH": 10, "rSH": 22 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": 10, "head": -6, "lUA": 40, "lFA": 35, "rUA": -35, "rFA": 30, "lTH": 10, "lSH": 22, "rTH": -30, "rSH": 12 },
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": 10, "head": -6, "lUA": -35, "lFA": 30, "rUA": 40, "rFA": 35, "lTH": -30, "lSH": 12, "rTH": 10, "rSH": 22 }
+          }
+        ],
+        "root": [{ "t": 0, "dx": 0, "dy": 0 }, { "t": 1, "dx": "stride", "dy": 0 }],
+        "events": [{ "t": 0.05, "sfx": "footstep_soft" }, { "t": 0.55, "sfx": "footstep_soft" }]
+      },
+      {
         "name": "jab",
         "description": "A fast, light lead-hand punch; good for opening an exchange.",
         "tags": ["punch", "light", "fight"],
@@ -2336,6 +2363,27 @@
         "events": [{ "t": 0.03, "sfx": "sneeze" }, { "t": 0.53, "fx": ["tears"] }]
       },
       {
+        "name": "listen",
+        "description": "Listens closely: tilts the head and cups a hand behind the ear, then lowers it.",
+        "tags": ["emote", "gesture", "listen", "kind", "doopi"],
+        "category": "emote",
+        "duration": 1.8,
+        "keys": [
+          { "t": 0, "pose": "stand", "ease": "inOutQuad" },
+          {
+            "t": 0.25,
+            "pose": { "lean": 5, "head": 16, "lUA": 12, "lFA": 8, "rUA": 150, "rFA": 150, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "linear"
+          },
+          {
+            "t": 0.8,
+            "pose": { "lean": 6, "head": 18, "lUA": 12, "lFA": 8, "rUA": 150, "rFA": 150, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "ease": "inOutQuad"
+          },
+          { "t": 1, "pose": "stand" }
+        ]
+      },
+      {
         "name": "use",
         "description": "Uses the held object: a wand blows bubbles, a phone takes a photo.",
         "tags": ["object", "story"],
@@ -3602,6 +3650,36 @@
           { "t": 1, "pose": "stand", "propAngle": 20 }
         ],
         "events": [{ "t": 0.6, "sfx": "boing" }]
+      },
+      {
+        "name": "play_flute",
+        "description": "Plays a flute held sideways at the lips, swaying gently to the tune; loops for `cycles` (the bansuri when held).",
+        "tags": ["life", "music", "flute", "loop", "doopi"],
+        "category": "life",
+        "duration": 1.2,
+        "params": { "cycles": 3 },
+        "face": "happy",
+        "flags": { "loop": true },
+        "events": [{ "t": 0, "sfx": "flute_tune" }],
+        "keys": [
+          {
+            "t": 0,
+            "pose": { "lean": -2, "head": 4, "lUA": 62, "lFA": 100, "rUA": 48, "rFA": 118, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "propAngle": -85,
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 0.5,
+            "pose": { "lean": 3, "head": 8, "lUA": 64, "lFA": 98, "rUA": 50, "rFA": 116, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0, "dy": 3 },
+            "propAngle": -85,
+            "ease": "inOutQuad"
+          },
+          {
+            "t": 1,
+            "pose": { "lean": -2, "head": 4, "lUA": 62, "lFA": 100, "rUA": 48, "rFA": 118, "lTH": 6, "lSH": 0, "rTH": -6, "rSH": 0 },
+            "propAngle": -85
+          }
+        ]
       },
       {
         "name": "hug",
@@ -6946,9 +7024,135 @@
             "alpha": [1, 0]
           }
         ]
+      },
+      "note_burst": {
+        "description": "A feeling cloud pops: a soft gold glow and gold and white sparkles bursting out above the head.",
+        "tags": ["magic", "feeling", "celebrate", "doopi"],
+        "anchor": "head",
+        "layers": [
+          {
+            "shape": "glow",
+            "count": 1,
+            "offset": 60,
+            "speed": [0, 0],
+            "life": [0.7, 0.7],
+            "size": [40, 170],
+            "color": "rgba(255, 236, 160, 0.9)",
+            "alpha": [0.8, 0]
+          },
+          {
+            "shape": "star",
+            "count": 12,
+            "offset": 70,
+            "angle": [-170, -10],
+            "speed": [140, 320],
+            "drag": 1.1,
+            "life": [0.8, 1.3],
+            "size": [12, 3],
+            "color": ["#ffd23f", "#fff3a0", "#ffffff"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "hush_zip": {
+        "description": "The Hush zips away: a violet streak of little puffs and sparkles trailing behind it for about 1 s.",
+        "tags": ["hush", "magic", "motion", "lingers", "doopi"],
+        "anchor": "hip",
+        "sustain": { "duration": 1, "rate": 30 },
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 1,
+            "angle": [160, 200],
+            "speed": [40, 120],
+            "drag": 1,
+            "life": [0.5, 0.9],
+            "size": [18, 4],
+            "color": ["#c4a3ff", "#9a7ae0", "#e4d4ff"],
+            "alpha": [0.7, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 1,
+            "angle": [0, 360],
+            "speed": [20, 80],
+            "life": [0.4, 0.7],
+            "size": [5, 1],
+            "color": ["#ffffff", "#e4d4ff"],
+            "alpha": [0.9, 0]
+          }
+        ]
+      },
+      "fireflies": {
+        "description": "Fireflies: slow drifting yellow-green glows that rise and wander around a spot for about 3 s (repeat for longer).",
+        "tags": ["night", "forest", "calm", "lingers", "doopi"],
+        "anchor": "hip",
+        "sustain": { "duration": 3, "rate": 6 },
+        "layers": [
+          {
+            "shape": "glow",
+            "count": 1,
+            "offset": 150,
+            "spreadY": 200,
+            "angle": [-140, -40],
+            "speed": [10, 40],
+            "drag": 0.2,
+            "life": [2, 3],
+            "size": [14, 10],
+            "color": ["rgba(214, 255, 120, 0.95)", "rgba(255, 240, 140, 0.95)"],
+            "alpha": [0.95, 0]
+          },
+          {
+            "shape": "dot",
+            "count": 1,
+            "offset": 150,
+            "spreadY": 200,
+            "angle": [-140, -40],
+            "speed": [10, 40],
+            "drag": 0.2,
+            "life": [2, 3],
+            "size": [4, 3],
+            "color": ["#f4ffb0", "#ffffff"],
+            "alpha": [1, 0]
+          }
+        ]
+      },
+      "sandstorm": {
+        "description": "A band of blowing sand streaming sideways across the stage for about 3 s, low and dusty (repeat for longer).",
+        "tags": ["desert", "wind", "weather", "lingers", "doopi"],
+        "anchor": "feet",
+        "sustain": { "duration": 3, "rate": 24 },
+        "layers": [
+          {
+            "shape": "puff",
+            "count": 1,
+            "offset": 150,
+            "spreadY": 160,
+            "angle": [-8, 4],
+            "speed": [500, 900],
+            "drag": 0.2,
+            "life": [1, 1.6],
+            "size": [40, 120],
+            "color": ["#d9b77a", "#c9a060", "#e8cf9a"],
+            "alpha": [0.35, 0]
+          },
+          {
+            "shape": "line",
+            "count": 2,
+            "offset": 150,
+            "spreadY": 200,
+            "angle": [-4, 4],
+            "speed": [900, 1300],
+            "life": [0.3, 0.5],
+            "size": [40, 20],
+            "width": 2,
+            "color": ["#e8cf9a", "#f4e2b8"],
+            "alpha": [0.6, 0]
+          }
+        ]
       }
     },
-    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo", "colour_powder", "gloom_mist", "colour_return", "chilli_smoke", "whirlpool", "splash", "visor_beam", "avalanche", "mirror_ripple", "crystal_pull", "grow_giant", "giant_blast", "beam_clash"],
+    "fxNames": ["impact_small", "impact_med", "impact_big", "block_spark", "spark", "dust_land", "dust_run", "shockwave", "speed_lines", "aura", "explosion", "smoke", "stars_dizzy", "sweat_drop", "anger_mark", "heart", "exclaim", "question", "bolt", "prop_break", "afterimage", "slash_arc", "energy_ball", "bubble_pop", "zzz", "camera_flash", "sparkle", "sparkle_rise", "tears", "rope_bind", "cage_drop", "confetti", "halo", "colour_powder", "gloom_mist", "colour_return", "chilli_smoke", "whirlpool", "splash", "visor_beam", "avalanche", "mirror_ripple", "crystal_pull", "grow_giant", "giant_blast", "beam_clash", "note_burst", "hush_zip", "fireflies", "sandstorm"],
     "themes": {
       "white_stage": {
         "description": "A plain off-white stage with no scenery; clean and simple.",
@@ -7562,10 +7766,102 @@
           }
         ],
         "characterBg": "#4f8f45"
+      },
+      "clock_tower": {
+        "description": "Inside the Jhilmil City clock tower: old brick walls, big brass gears turning slowly and the round clock face seen from behind.",
+        "tags": ["story", "indoor", "city", "clock", "doopi"],
+        "sky": { "top": "#5a4436", "bottom": "#7a5c46" },
+        "ground": { "color": "#8a6444", "line": "#5e4230" },
+        "layers": [
+          { "kind": "bricks", "factor": 0.4, "color": "#8c5a40", "mortar": "#6a4230", "top": -1400 },
+          {
+            "kind": "clock_window",
+            "factor": 0.45,
+            "at": [720],
+            "y": -500,
+            "r": 300,
+            "frame": "#5a4a3c",
+            "glassTop": "#cfe8f4",
+            "glassBottom": "#8fc0dc",
+            "ticks": "#3a3046",
+            "hands": "#2a2230",
+            "speed": 1
+          },
+          { "kind": "gears_bg", "factor": 0.6, "spacing": 900, "size": 190, "y": -230, "color": "#c79a3e", "hub": "#8a6a2a", "rock": "#6e4c34", "speed": 0.15 },
+          { "kind": "planks", "color": "#74523a", "spacing": 170 }
+        ],
+        "characterBg": "#7a5c46"
+      },
+      "khel_arena": {
+        "description": "Khel Arena, a sunny sports ground: green grass with white lane lines, stands full of cheering fans with pennants, and a scoreboard.",
+        "tags": ["story", "outdoor", "sport", "crowd", "day", "doopi"],
+        "sky": { "top": "#5cb8f0", "bottom": "#d4efff" },
+        "ground": { "color": "#6cbf54", "line": "#4f9a3c" },
+        "layers": [
+          { "kind": "sun", "factor": 0.03, "x": 0.82, "y": 0.13, "r": 60, "color": "#fff4c0", "glow": "rgba(255, 240, 190, 0.5)" },
+          { "kind": "clouds", "factor": 0.05, "color": "rgba(255, 255, 255, 0.9)", "count": 5, "top": 0.05, "band": 0.15 },
+          { "kind": "hills", "factor": 0.12, "color": "#8cc6a0", "height": 200, "step": 320 },
+          {
+            "kind": "stands",
+            "factor": 0.45,
+            "y": -40,
+            "rows": 4,
+            "step": 64,
+            "tiers": ["#e9e4d4", "#d8d2c0"],
+            "roof": "#d0453a",
+            "fans": ["#e63946", "#2f7de1", "#f4c430", "#2bb39a", "#8e5bd8", "#ff7eb6"],
+            "skin": "#e0a77a",
+            "pennants": ["#e63946", "#ffd23f", "#2f7de1", "#2bb39a"],
+            "poleSpacing": 560
+          },
+          { "kind": "scoreboard", "factor": 0.5, "x": 1600, "y": -470, "w": 420, "color": "#2c2c38", "trim": "#ffd23f", "home": "#e63946", "away": "#2f7de1", "light": "#ffe66b" },
+          { "kind": "floorStripes", "color": "#ffffff", "at": [60, 200, 360], "width": 8 }
+        ],
+        "characterBg": "#5aa648"
+      },
+      "frozen_river": {
+        "description": "A snowy mountain valley with a frozen river crossing the floor between two snowy banks, and snowy pine trees.",
+        "tags": ["story", "outdoor", "snow", "river", "mountain", "doopi"],
+        "sky": { "top": "#a9cdee", "bottom": "#eef6ff" },
+        "ground": { "color": "#f4f8fc", "line": "#c9d8e8" },
+        "layers": [
+          { "kind": "mountains", "factor": 0.1, "color": "#b4cae2", "height": 460, "step": 300, "rough": 0.6, "caps": "#ffffff" },
+          { "kind": "mountains", "factor": 0.25, "color": "#94b0cc", "height": 300, "step": 240, "rough": 0.6, "caps": "#eef4fa" },
+          { "kind": "pines", "factor": 0.45, "spacing": 260, "height": 300, "color": "#3f6e5c", "snow": "#f4f8fc", "trunk": "#5a4232" },
+          { "kind": "pines", "factor": 0.7, "spacing": 520, "height": 420, "color": "#2f5e4c", "snow": "#ffffff", "trunk": "#4a3428" },
+          { "kind": "ice_river", "x0": 1350, "x1": 2250, "far": 0.3, "ice": "#bfe2f2", "shine": "#ffffff", "crack": "#8ab4cc", "bank": "#f4f8fc" },
+          { "kind": "snowfall", "count": 90, "color": "rgba(255, 255, 255, 0.9)", "speed": 70 }
+        ],
+        "characterBg": "#c7d9ee"
+      },
+      "clock_tower_still": {
+        "description": "The clock tower with every gear and hand stopped (the frozen city): the same room, perfectly still.",
+        "tags": ["story", "indoor", "city", "clock", "doopi"],
+        "sky": { "top": "#5a4436", "bottom": "#7a5c46" },
+        "ground": { "color": "#8a6444", "line": "#5e4230" },
+        "layers": [
+          { "kind": "bricks", "factor": 0.4, "color": "#8c5a40", "mortar": "#6a4230", "top": -1400 },
+          {
+            "kind": "clock_window",
+            "factor": 0.45,
+            "at": [720],
+            "y": -500,
+            "r": 300,
+            "frame": "#5a4a3c",
+            "glassTop": "#cfe8f4",
+            "glassBottom": "#8fc0dc",
+            "ticks": "#3a3046",
+            "hands": "#2a2230",
+            "speed": 0
+          },
+          { "kind": "gears_bg", "factor": 0.6, "spacing": 900, "size": 190, "y": -230, "color": "#c79a3e", "hub": "#8a6a2a", "rock": "#6e4c34", "speed": 0 },
+          { "kind": "planks", "color": "#74523a", "spacing": 170 }
+        ],
+        "characterBg": "#7a5c46"
       }
     },
-    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"],
-    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow", "gloom_horn", "sneeze", "crystal_chime", "pirate_horn", "splash", "robot_stomp", "robot_beep", "windup_click", "giggle", "giggle_crowd", "ooh", "raspberry", "slide_whistle", "squeak", "sprout_spring", "toot", "ding", "tick", "fizz", "rain", "twang", "drum", "train_whistle", "cha_ching", "clink", "rocket", "pour"],
+    "themeNames": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "frozen_river", "clock_tower_still"],
+    "sfxKeys": ["whoosh", "punch_light", "punch_heavy", "kick_light", "kick_heavy", "block", "parry", "slash", "sword_clash", "land", "land_heavy", "explosion", "energy_charge", "energy_fire", "shockwave", "ko", "bell", "pop", "boing", "slip", "crowd_cheer", "crowd_gasp", "step", "narrate_chime", "bubble_blow", "bubble_pop", "racket_hit", "ball_bounce", "door_open", "car_pass", "sparkle", "clang", "ball_kick", "footstep_soft", "footstep_hard", "sad_sting", "heartbeat", "magic_sparkle", "gasp", "laugh_small", "cry_small", "bark", "bark_small", "whimper", "growl_soft", "pant", "card_whoosh", "bonk", "pow", "gloom_horn", "sneeze", "crystal_chime", "pirate_horn", "splash", "robot_stomp", "robot_beep", "windup_click", "giggle", "giggle_crowd", "ooh", "raspberry", "slide_whistle", "squeak", "sprout_spring", "toot", "ding", "tick", "cloud_pop", "whisper", "flute_tune", "leaf_tune", "thunder", "clock_tick_big", "fizz", "rain", "twang", "drum", "train_whistle", "cha_ching", "clink", "rocket", "pour"],
     "blocklist": ["blood", "bloody", "gore", "gory", "suicide", "kill yourself", "kys"],
     "softWords": [
       { "word": "kill", "alt": "defeat", "audiences": ["kids", "general"] },
@@ -8282,6 +8578,115 @@
         "w": 300,
         "h": 330,
         "colors": { "cap": "#e4573d", "stem": "#f6ead2", "spots": "#fff8ec", "door": "#8a5a3c", "window": "#ffe7a3" }
+      },
+      "bansuri": {
+        "description": "A golden bamboo flute (the Banyan Flute); `use` plays a gentle tune.",
+        "tags": ["holdable", "music", "flute", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "use": { "fx": ["sparkle"], "sfx": "flute_tune" },
+        "hold": { "kind": "flute", "shape": "flute", "len": 70, "width": 9, "gripAt": 0.35, "grip": "rHand", "color": "#e2b443", "trim": "#9a6a1c", "hitRadius": 8 }
+      },
+      "leaf_whistle": {
+        "description": "A folded green leaf held to the lips as a whistle; `use` plays a reedy tune.",
+        "tags": ["holdable", "music", "leaf", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "use": { "sfx": "leaf_tune" },
+        "hold": { "kind": "leaf", "shape": "leaf", "len": 26, "width": 14, "gripAt": 0.3, "grip": "rHand", "color": "#4caf50", "trim": "#2e7d32", "hitRadius": 6 }
+      },
+      "glass_jar": {
+        "description": "A glass jar with a lid: set_object state empty, hush (the Hush trapped inside, blinking) or open (lid tipped up).",
+        "tags": ["holdable", "jar", "hush", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "states": ["empty", "hush", "open"],
+        "hold": { "kind": "jar", "shape": "jar", "len": 58, "width": 40, "gripAt": 0.5, "grip": "rHand", "color": "#d2ecf8", "trim": "#b8862f", "hitRadius": 12 }
+      },
+      "tiffin": {
+        "description": "A stacked steel tiffin carrier (three round lunch tins and a handle).",
+        "tags": ["holdable", "food", "lunch", "city", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "hold": { "kind": "tiffin", "shape": "tiffin", "len": 46, "width": 28, "gripAt": 0.5, "grip": "rHand", "color": "#c9d0d8", "trim": "#7a8490", "hitRadius": 10 }
+      },
+      "cloud_radar": {
+        "description": "Tinku's cloud radar: a little round screen in a scrap case; set_object state off, scan (sweeping) or found (a violet dot blinks).",
+        "tags": ["holdable", "gadget", "radar", "doopi"],
+        "behavior": "holdable",
+        "draw": "held",
+        "states": ["off", "scan", "found"],
+        "use": { "sfx": "robot_beep" },
+        "hold": { "kind": "radar", "shape": "radar", "len": 30, "width": 30, "gripAt": 0.5, "grip": "rHand", "color": "#5affa0", "trim": "#9aa3ad", "hitRadius": 10 }
+      },
+      "desert_well": {
+        "description": "A round stone well with a wooden winch; set_object state broken (snapped rope, bucket on the sand) or fixed.",
+        "tags": ["scenery", "desert", "water", "doopi"],
+        "behavior": "static",
+        "draw": "desert_well",
+        "w": 300,
+        "h": 340,
+        "states": ["broken", "fixed"],
+        "colors": { "stone": "#c9a77a", "mortar": "#a8865a", "hole": "#3a2a1c", "wood": "#8a5a34", "rope": "#d8c08a", "bucket": "#8a6a4a" }
+      },
+      "tower_clock": {
+        "description": "The clock tower's big clock: a round dial on a brass frame with a swinging pendulum; set_object state ticking or stopped.",
+        "tags": ["scenery", "clock", "city", "doopi"],
+        "behavior": "static",
+        "draw": "tower_clock",
+        "animated": true,
+        "w": 420,
+        "h": 760,
+        "states": ["ticking", "stopped"],
+        "colors": { "frame": "#6a4a34", "brass": "#d4a63e", "face": "#fbf3dc", "dim_face": "#c8c4bc" }
+      },
+      "carrom_board": {
+        "description": "A carrom board on a low stand, with coins and a striker, for a game with friends.",
+        "tags": ["scenery", "game", "home", "doopi"],
+        "behavior": "static",
+        "draw": "carrom_board",
+        "w": 380,
+        "h": 140,
+        "colors": { "legs": "#5a3a24", "frame": "#8a5a34", "board": "#f0d8a8", "lines": "#a0522d", "dark": "#3a2a20", "light": "#f6eedc", "queen": "#e63946", "striker": "#ffffff" }
+      },
+      "stone_door": {
+        "description": "The Echo Cave's carved stone door in a rock arch, with a spiral of glowing runes; set_object state closed or open (violet light spills out).",
+        "tags": ["scenery", "cave", "door", "magic", "doopi"],
+        "behavior": "static",
+        "draw": "stone_door",
+        "w": 500,
+        "h": 800,
+        "states": ["closed", "open"],
+        "colors": { "rock": "#5e5458", "slab": "#8a8290", "inside": "#1c1426", "light": "rgba(196, 163, 255, 0.85)", "carve": "#5a5262", "rune": "#c4a3ff" }
+      },
+      "banyan_crack": {
+        "description": "The crack in the Rainbow Banyan's trunk, placed over the tree; set_object state cracked or healed (a glowing golden seam).",
+        "tags": ["scenery", "banyan", "magic", "doopi"],
+        "behavior": "static",
+        "draw": "banyan_crack",
+        "w": 80,
+        "h": 420,
+        "states": ["cracked", "healed"],
+        "colors": { "dark": "#2a1a10", "seam": "#ffd23f", "glow": "#fff0a0" }
+      },
+      "paper_boat": {
+        "description": "A little folded paper boat bobbing on water, a drawing of a faraway island on its side.",
+        "tags": ["scenery", "water", "rain", "doopi"],
+        "behavior": "static",
+        "draw": "paper_boat",
+        "animated": true,
+        "w": 140,
+        "h": 100,
+        "colors": { "paper": "#f6f2e8", "ink": "#3a5a8a" }
+      },
+      "tiffin_stack": {
+        "description": "A courier's wooden crate full of steel tiffin carriers, ready to deliver.",
+        "tags": ["scenery", "food", "city", "doopi"],
+        "behavior": "static",
+        "draw": "tiffin_stack",
+        "w": 220,
+        "h": 180,
+        "colors": { "crate": "#b07a44", "slat": "#8a5a30", "steel": "#c9d0d8" }
       }
     },
     "faces": {
@@ -8541,6 +8946,18 @@
         "jiggle": 0.26,
         "squishy": 2.1
       },
+      "wisp": {
+        "description": "A floating puff of smoke with a curling tail instead of legs, puff hands and two glowing eyes (the Hush).",
+        "tags": ["magic", "floating", "spirit", "doopi"],
+        "rig": "humanoid",
+        "draw": "wisp",
+        "torsoWidth": 24,
+        "dims": { "headR": 26, "neck": 4, "torso": 46, "upperArm": 24, "forearm": 22, "thigh": 28, "shin": 26, "lineWidth": 8 },
+        "appearance": { "eyes": "big", "brows": "none" },
+        "avoid": ["axe_kick"],
+        "views": ["side", "three_quarter", "front", "back"],
+        "turn": { "shoulder": 16, "hip": 10, "foreshorten": 0.3 }
+      },
       "kid": {
         "description": "A small child stick figure with big eyes.",
         "tags": ["child", "short"],
@@ -8610,7 +9027,7 @@
         "turn": { "shoulder": 9, "hip": 9, "foreshorten": 0.2 }
       }
     },
-    "bodyNames": ["stickman", "buddy", "baaaana", "baaaana_tall", "baaaana_wide", "kid", "bulky", "robot", "slim", "elder", "dog_small"],
+    "bodyNames": ["stickman", "buddy", "baaaana", "baaaana_tall", "baaaana_wide", "wisp", "kid", "bulky", "robot", "slim", "elder", "dog_small"],
     "crowds": {
       "baaaana_crowd": {
         "description": "The Baaaana village crowd: round mint-green jelly beans with sprouts, lavender bellies, orange mittens and shoes; each member's shape, shade, height, sprout and mouth come from the seed.",
@@ -8644,7 +9061,7 @@
       "mouthStyle": ["line", "cartoon", "big_grin", "toothy"],
       "hair": ["none", "spiky", "bob", "ponytail", "cap", "bun"],
       "outfit": ["none", "shirt", "coat", "armor", "robe"],
-      "accessories": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key", "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes"],
+      "accessories": ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch", "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key", "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes", "skates"],
       "conflicts": [
         ["hat", "crown"],
         ["hat", "hair:cap"],
@@ -9585,6 +10002,28 @@
   },
   "presets": [
     {
+      "id": "bansuri_baba",
+      "name": "Bansuri Baba",
+      "description": "A travelling flute player: white beard, saffron turban and a long saffron scarf, gentle and wise; knows the Horn's old story.",
+      "role": "mentor",
+      "tags": ["elder", "flute", "wise", "traveller"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "elder",
+        "color": "#e8b48a",
+        "prop": "bansuri",
+        "appearance": {
+          "eyes": "oval",
+          "outfit": "robe",
+          "outfitColor": "#f2f0e6",
+          "accessories": { "beard": "#f4f4f4", "turban": "#ff9933", "scarf": "#ff9933" }
+        },
+        "voice": { "pitch": 0.85, "speed": 0.85, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
+    },
+    {
       "id": "becky",
       "name": "Becky",
       "description": "A brave little cream puppy with a brown eye patch and a red collar; sniffs out trouble and barks first.",
@@ -9597,7 +10036,30 @@
         "appearance": { "eyes": "big" },
         "voice": { "pitch": 1.4, "timbre": "bark" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
+    },
+    {
+      "id": "bijli",
+      "name": "Bijli",
+      "description": "Thunda's tiny little sister who guards the desert well: two buns, a bright yellow scarf, and the loudest voice in the series.",
+      "role": "friend",
+      "tags": ["kid", "tiny", "loud", "desert"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 0.68,
+        "color": "#ffd23f",
+        "appearance": {
+          "eyes": "big",
+          "brows": "thick",
+          "hair": "bun",
+          "hairColor": "#3a2414",
+          "accessories": { "scarf": "#e63946" }
+        },
+        "voice": { "pitch": 1.7, "speed": 1.15, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "bn_mooka",
@@ -9620,7 +10082,7 @@
         },
         "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "bo",
@@ -9635,7 +10097,7 @@
         "appearance": { "outfit": "coat", "outfitColor": "#f2c14e", "eyes": "glasses" },
         "voice": { "pitch": 0.9, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "banyan_moon"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "banyan_moon", "khel_arena", "frozen_river"]
     },
     {
       "id": "bobo",
@@ -9658,7 +10120,7 @@
         },
         "voice": { "pitch": 1.5, "speed": 1, "timbre": "soft" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "brute",
@@ -9674,7 +10136,23 @@
         "hp": 160,
         "voice": { "pitch": 0.6, "speed": 0.9, "timbre": "deep" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "banyan_moon"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "banyan_moon", "khel_arena", "frozen_river"]
+    },
+    {
+      "id": "chintu",
+      "name": "Chintu",
+      "description": "A Tokyo village boy in orange with spiky hair; kite-mad, a bit jealous, a good friend underneath.",
+      "role": "friend",
+      "tags": ["kid", "village", "kite"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "color": "#f4a261",
+        "appearance": { "hair": "spiky", "hairColor": "#2a1a14" },
+        "voice": { "pitch": 1.5, "speed": 1.15, "timbre": "squeaky" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
     },
     {
       "id": "crowd_adult",
@@ -9684,7 +10162,7 @@
       "tags": ["extra", "town"],
       "audience": ["kids", "general"],
       "cast": { "body": "stickman", "color": "#8d99ae" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest", "spice_kitchen", "spice_cellar", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest", "spice_kitchen", "spice_cellar", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "clock_tower", "frozen_river", "clock_tower_still"]
     },
     {
       "id": "crowd_kid",
@@ -9694,7 +10172,7 @@
       "tags": ["extra", "kid"],
       "audience": ["kids", "general"],
       "cast": { "body": "kid", "color": "#f4a261" },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
     },
     {
       "id": "dony",
@@ -9711,7 +10189,7 @@
         "appearance": { "hair": "cap", "hairColor": "#ffcc00", "accessories": { "scarf": "#ffcc00" } },
         "voice": { "pitch": 1.15, "speed": 1, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "doomi",
@@ -9736,7 +10214,7 @@
         },
         "voice": { "pitch": 1.35, "speed": 1, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
     },
     {
       "id": "doopi",
@@ -9758,7 +10236,47 @@
         },
         "voice": { "pitch": 1, "speed": 1.05, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
+    },
+    {
+      "id": "gappu",
+      "name": "Gappu",
+      "description": "The new boy in Tokyo: big round glasses, a mop of hair and a striped yellow shirt; tells giant stories because he wants friends.",
+      "role": "friend",
+      "tags": ["kid", "storyteller", "new", "glasses"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "color": "#ffcf6b",
+        "appearance": { "eyes": "glasses", "hair": "bob", "hairColor": "#3a2414", "outfit": "shirt", "outfitColor": "#4a90d9" },
+        "voice": { "pitch": 1.4, "speed": 1.15, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
+    },
+    {
+      "id": "ghadi_dada",
+      "name": "Ghadi Dada",
+      "description": "The lonely old keeper of the Jhilmil City clock tower: round glasses, a grey moustache, a brown coat and a cane; full of stories.",
+      "role": "friend",
+      "tags": ["elder", "clock", "lonely", "city"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "elder",
+        "scale": 0.95,
+        "color": "#d9a77c",
+        "prop": "cane",
+        "appearance": {
+          "eyes": "glasses",
+          "hair": "none",
+          "outfit": "coat",
+          "outfitColor": "#7a5236",
+          "accessories": { "moustache": "#c8c8c8" }
+        },
+        "voice": { "pitch": 0.8, "speed": 0.8, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
     },
     {
       "id": "ghoom",
@@ -9775,7 +10293,7 @@
         "appearance": { "eyes": "visor", "accessories": { "windup_key": "#e6b84a" } },
         "voice": { "pitch": 0.5, "speed": 0.8, "timbre": "robot" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "goon",
@@ -9791,7 +10309,7 @@
         "appearance": { "eyes": "sleepy", "outfit": "armor", "outfitColor": "#8a8496" },
         "voice": { "pitch": 0.7, "speed": 0.85, "timbre": "deep" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "guard",
@@ -9801,7 +10319,41 @@
       "tags": ["big", "strong"],
       "audience": ["kids", "general"],
       "cast": { "body": "bulky", "color": "#ffe14d", "voice": { "pitch": 0.75, "timbre": "deep" } },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
+    },
+    {
+      "id": "hush",
+      "name": "The Hush",
+      "description": "A small light-violet whisper of smoke with glowing eyes and a curling tail; makes big feelings bigger, sleepy and hungry rather than evil.",
+      "role": "villain",
+      "tags": ["magic", "whisper", "floating", "feelings"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "wisp",
+        "scale": 0.8,
+        "color": "#c4a3ff",
+        "appearance": { "eyes": "big" },
+        "voice": { "pitch": 1.3, "speed": 0.85, "timbre": "soft" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
+    },
+    {
+      "id": "hush_storm",
+      "name": "The Hush Storm",
+      "description": "The Hush grown huge on every feeling it gathered: a towering dark violet-grey storm puff with glowing eyes.",
+      "role": "villain",
+      "tags": ["magic", "storm", "giant", "feelings"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "wisp",
+        "scale": 3.2,
+        "color": "#7a6a9a",
+        "appearance": { "eyes": "big" },
+        "voice": { "pitch": 0.6, "speed": 0.8, "timbre": "deep" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest", "spice_cellar", "crystal_cave", "iron_workshop", "mountain_cave", "grey_peak", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "khel_arena", "frozen_river"]
     },
     {
       "id": "kai",
@@ -9816,7 +10368,7 @@
         "style": { "headband": "#ff3b5c" },
         "voice": { "pitch": 1, "timbre": "soft" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "kanta",
@@ -9839,7 +10391,7 @@
         },
         "voice": { "pitch": 0.85, "speed": 1.05, "timbre": "deep" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "kony",
@@ -9856,7 +10408,7 @@
         "appearance": { "hair": "cap", "hairColor": "#3a6fd8", "accessories": { "stub_horns": "#7a6a99" } },
         "voice": { "pitch": 1.7, "speed": 1.1, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "mallu",
@@ -9879,7 +10431,7 @@
         },
         "voice": { "pitch": 0.9, "speed": 0.9, "timbre": "deep" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "mirchi",
@@ -9902,7 +10454,7 @@
         },
         "voice": { "pitch": 1.25, "speed": 1.15, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "mooka",
@@ -9925,7 +10477,7 @@
         },
         "voice": { "pitch": 1.9, "speed": 1.3, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "motumal",
@@ -9941,7 +10493,7 @@
         "appearance": { "outfit": "coat", "outfitColor": "#ff9f1c", "accessories": { "moustache": "#2a1a14", "turban": "#f6c445" } },
         "voice": { "pitch": 0.75, "speed": 0.9, "timbre": "deep" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "nani",
@@ -9959,7 +10511,7 @@
         "appearance": { "eyes": "glasses", "hair": "bun", "hairColor": "#f2f2f2", "outfit": "robe", "outfitColor": "#8e5bd6" },
         "voice": { "pitch": 1.1, "speed": 0.85, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
     },
     {
       "id": "peepa",
@@ -9976,7 +10528,24 @@
         "appearance": { "eyes": "oval", "brows": "thick", "accessories": { "horns": "#e6b84a", "cape": "#2a1b3d" } },
         "voice": { "pitch": 0.7, "speed": 0.95, "timbre": "deep" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
+    },
+    {
+      "id": "pinky",
+      "name": "Pinky",
+      "description": "A small Tokyo village girl in pink with a ponytail; curious and giggly.",
+      "role": "friend",
+      "tags": ["kid", "village", "small"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "scale": 0.75,
+        "color": "#ffb3c7",
+        "appearance": { "hair": "ponytail", "hairColor": "#2a1a14", "eyes": "big" },
+        "voice": { "pitch": 1.8, "speed": 1.1, "timbre": "squeaky" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "pip",
@@ -9991,7 +10560,7 @@
         "appearance": { "eyes": "big", "accessories": { "antenna": "#ffcc00" } },
         "voice": { "pitch": 1.5, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "rook",
@@ -10008,7 +10577,7 @@
         "appearance": { "hair": "spiky", "hairColor": "#1e1e1e" },
         "voice": { "pitch": 0.95, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest", "spice_cellar", "crystal_cave", "iron_workshop", "mountain_cave", "grey_peak", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "whispering_forest", "spice_cellar", "crystal_cave", "iron_workshop", "mountain_cave", "grey_peak", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "frozen_river"]
     },
     {
       "id": "sage",
@@ -10024,7 +10593,7 @@
         "prop": "cane",
         "voice": { "pitch": 0.85, "speed": 0.85, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "spice_cellar", "crystal_cave", "iron_workshop", "mountain_cave", "grey_peak", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "gloom_throne_room", "spice_cellar", "crystal_cave", "iron_workshop", "mountain_cave", "grey_peak", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "khel_arena", "frozen_river"]
     },
     {
       "id": "sly",
@@ -10040,7 +10609,7 @@
         "appearance": { "accessories": { "mask": "#222222" } },
         "voice": { "pitch": 1.1, "speed": 1.2, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "khel_arena", "frozen_river"]
     },
     {
       "id": "tam",
@@ -10055,7 +10624,7 @@
         "appearance": { "hair": "spiky", "hairColor": "#3a2a1a" },
         "voice": { "pitch": 1.4, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "snow_mountain", "city_street", "villain_lair", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "frozen_river", "clock_tower_still"]
     },
     {
       "id": "tara",
@@ -10071,7 +10640,7 @@
         "appearance": { "eyes": "big", "hair": "ponytail", "hairColor": "#3a2414", "accessories": { "scarf": "#3fae5a" } },
         "voice": { "pitch": 1.45, "speed": 1.1, "timbre": "soft" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
     },
     {
       "id": "thunda",
@@ -10088,7 +10657,24 @@
         "appearance": { "outfit": "armor", "outfitColor": "#7a7a86", "accessories": { "moustache": "#2a1a14" } },
         "voice": { "pitch": 0.6, "speed": 0.85, "timbre": "deep" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
+    },
+    {
+      "id": "tinku",
+      "name": "Tinku",
+      "description": "Doomi's little scrap robot: a small box body with a wobbly antenna and a visor; beeps in tunes and carries the cloud radar.",
+      "role": "sidekick",
+      "tags": ["robot", "small", "gadget", "cute"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "robot",
+        "scale": 0.7,
+        "color": "#9fd8e8",
+        "appearance": { "eyes": "visor", "accessories": { "antenna": "#ff9f1c" } },
+        "voice": { "pitch": 1.8, "speed": 1.1, "timbre": "robot" }
+      },
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "tony",
@@ -10105,7 +10691,7 @@
         "appearance": { "hair": "cap", "hairColor": "#e63946", "accessories": { "stub_horns": "#7a6a99" } },
         "voice": { "pitch": 1.6, "speed": 1.2, "timbre": "squeaky" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "tutu",
@@ -10128,7 +10714,7 @@
         },
         "voice": { "pitch": 1.3, "speed": 0.9, "timbre": "soft" }
       },
-      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "khel_arena", "clock_tower_still"]
     },
     {
       "id": "vex",
@@ -10145,7 +10731,28 @@
         "voice": { "pitch": 0.7, "timbre": "deep" },
         "hp": 200
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "city_park", "villain_lair", "home_interior", "alley_night", "gloom_throne_room", "spice_cellar", "lotus_lake", "crystal_cave", "mountain_cave", "mirror_maze", "gloom_castle_gate", "khel_arena", "frozen_river"]
+    },
+    {
+      "id": "zippy",
+      "name": "Zippy",
+      "description": "A fast-talking tiffin courier girl of Jhilmil City on roller skates: red cap, courier backpack, always in a hurry, kind underneath.",
+      "role": "friend",
+      "tags": ["kid", "city", "fast", "skates"],
+      "series": "doopi",
+      "audience": ["kids", "general"],
+      "cast": {
+        "body": "kid",
+        "color": "#ff7a5c",
+        "appearance": {
+          "eyes": "big",
+          "hair": "cap",
+          "hairColor": "#d62828",
+          "accessories": { "backpack": "#2a9d8f", "skates": "#d62828" }
+        },
+        "voice": { "pitch": 1.5, "speed": 1.3, "timbre": "squeaky" }
+      },
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "desert_noon", "arena", "snow_mountain", "villain_lair", "alley_night", "tokyo_village", "gloom_throne_room", "whispering_forest", "spice_kitchen", "spice_cellar", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "clock_tower", "frozen_river", "clock_tower_still"]
     },
     {
       "id": "zizi",
@@ -10168,7 +10775,7 @@
         },
         "voice": { "pitch": 2, "speed": 1.4, "timbre": "squeaky" }
       },
-      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow"]
+      "goodThemes": ["white_stage", "dojo_dusk", "void_grid", "rooftop_city", "arena", "city_park", "city_street", "villain_lair", "home_interior", "alley_night", "tokyo_village", "banyan_hill", "gloom_throne_room", "whispering_forest", "mirchi_hill", "spice_kitchen", "spice_cellar", "lotus_lake", "pirate_deck", "crystal_cave", "underwater", "iron_canyon", "iron_workshop", "mountain_cave", "grey_peak", "shadow_valley", "mirror_maze", "gloom_castle_gate", "grey_moon", "banyan_moon", "baaaana_meadow", "clock_tower", "clock_tower_still"]
     }
   ],
   "roles": [
@@ -10252,6 +10859,12 @@
     { "name": "toot", "category": "object", "description": "A trumpet toot." },
     { "name": "ding", "category": "object", "description": "A triangle ding." },
     { "name": "tick", "category": "object", "description": "A clock going tick-tock." },
+    { "name": "cloud_pop", "category": "magic", "description": "A feeling cloud pops: a soft puff and a bright rising chime." },
+    { "name": "whisper", "category": "magic", "description": "A breathy hushhh, the Hush whispering nearby." },
+    { "name": "flute_tune", "category": "music", "description": "A short gentle bamboo flute tune." },
+    { "name": "leaf_tune", "category": "music", "description": "A reedy little tune on a leaf whistle." },
+    { "name": "thunder", "category": "weather", "description": "A far, rolling rumble of thunder (soft, no crack)." },
+    { "name": "clock_tick_big", "category": "object", "description": "A big tower clock ticking: a deep tick and tock." },
     { "name": "fizz", "category": "object", "description": "A bubbly fizz (baking soda and vinegar, a fizzy drink)." },
     { "name": "rain", "category": "weather", "description": "Gentle rain pattering down." },
     { "name": "twang", "category": "music", "description": "A plucked string or rubber band twanging." },
@@ -10268,7 +10881,7 @@
     "mouthStyle": { "line": "A simple line mouth (the default).", "cartoon": "A filled cartoon mouth.", "big_grin": "A wide D-shaped grin with teeth and tongue.", "toothy": "Smiles with two big front teeth." },
     "hair": { "none": "No hair.", "spiky": "Spiky hero hair.", "bob": "A rounded bob.", "ponytail": "A ponytail.", "cap": "A cap (counts as headwear).", "bun": "A round bun on top with a hairpin." },
     "outfit": { "none": "No outfit lines.", "shirt": "A shirt.", "coat": "A long coat.", "armor": "Armor plates.", "robe": "A long robe." },
-    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch.", "hair_flower": "A five-petal flower clip above the ear.", "sprout": "A two-leaf sprout on top of the head.", "mittens": "Round mitten hands.", "horns": "Two curly ram horns curving back.", "turban": "A wrapped turban with a jewel (headwear; covers the hair).", "moustache": "A big curly handlebar moustache.", "stub_horns": "Two tiny glued-on toy horns (remove for a gag).", "bracelet": "A left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order.", "chilli_hat": "A tall curved red-chilli hat with a green cap (headwear; covers the hair).", "pirate_hat": "A pirate tricorn with a gold trim and a fish emblem (headwear; covers the hair).", "beard": "A round fluffy beard.", "windup_key": "A big brass wind-up key in the back that turns slowly (Iron Ghoom).", "leaf_sprout": "One big leaf on a stem on top.", "curly_vine": "A curly vine with a small leaf on top.", "flower_bud": "A closed flower bud on top (swap for flower_bloom).", "flower_bloom": "An open flower on top.", "party_hat": "A striped party hat (headwear).", "whistle": "A whistle on a cord (color: the cord).", "clipboard": "A clipboard in the near hand.", "gloss": "A jelly shine on the head (white).", "shoes": "Round shoes on both feet." }
+    "accessories": { "headband": "A headband with trailing tails.", "scarf": "A scarf that flutters.", "cape": "A cape that flows behind.", "hat": "A hat on top of the head.", "antenna": "A little antenna (robots, aliens).", "bowtie": "A bow tie.", "mask": "A mask over the eyes.", "crown": "A crown.", "backpack": "A backpack.", "eyepatch": "An eyepatch.", "hair_flower": "A five-petal flower clip above the ear.", "sprout": "A two-leaf sprout on top of the head.", "mittens": "Round mitten hands.", "horns": "Two curly ram horns curving back.", "turban": "A wrapped turban with a jewel (headwear; covers the hair).", "moustache": "A big curly handlebar moustache.", "stub_horns": "Two tiny glued-on toy horns (remove for a gag).", "bracelet": "A left-wrist band with seven gems; `slots` 0-7 lights them in rainbow order.", "chilli_hat": "A tall curved red-chilli hat with a green cap (headwear; covers the hair).", "pirate_hat": "A pirate tricorn with a gold trim and a fish emblem (headwear; covers the hair).", "beard": "A round fluffy beard.", "windup_key": "A big brass wind-up key in the back that turns slowly (Iron Ghoom).", "leaf_sprout": "One big leaf on a stem on top.", "curly_vine": "A curly vine with a small leaf on top.", "flower_bud": "A closed flower bud on top (swap for flower_bloom).", "flower_bloom": "An open flower on top.", "party_hat": "A striped party hat (headwear).", "whistle": "A whistle on a cord (color: the cord).", "clipboard": "A clipboard in the near hand.", "gloss": "A jelly shine on the head (white).", "shoes": "Round shoes on both feet.", "skates": "Roller skates on both feet: a boot on a plate with two yellow wheels." }
   },
   "voices": [
     { "name": "soft", "description": "A gentle, warm voice (the default)." },
@@ -10426,6 +11039,10 @@
           "do": "set_glow",
           "params": { "who": "kai", "color": "#ffd23f", "level": 0.6, "dur": 1.5 }
         }
+      },
+      "set_cloud": {
+        "description": "A little grey rain cloud over a character's head: size 0-1 over dur (0 clears it), rain on or off; pop bursts it into a glowing music note.",
+        "example": { "at": 0, "who": "world", "do": "set_cloud", "params": { "who": "kai", "size": 0.5, "dur": 1.5 } }
       },
       "set_grade": {
         "description": "Scene colour: saturation 1 full, 0 grey, over dur; keepCast keeps the cast in colour; from: a wave out from a character.",

@@ -242,9 +242,45 @@ const RECIPES = {
     drive(o, 1.4);
   },
   pour: (o, r) => noise(o, r, { gain: 0.7, attack: 0.15, decay: 1.1, lp0: 1300, lp1: 2400, hp: 350, am: 0.35, amRate: 21 }),
+  // Doopi season 2: feeling clouds, the Hush, the flute and the clock tower.
+  cloud_pop: (o, r) => {
+    // A soft puff, then a bright rising three-note chime (the music note).
+    noise(o, r, { gain: 0.6, attack: 0.005, decay: 0.12, lp0: 2200, lp1: 600, hp: 150 });
+    sweepSine(o, { f0: 300, f1: 900, sweep: 0.08, decay: 0.1, gain: 0.5 });
+    [1318.5, 1568, 2093].forEach((f, k) => partials(o, [f, f * 2], { gain: 0.5, decay: 0.7, attack: 0.004, start: 0.1 + k * 0.11 }));
+  },
+  whisper: (o, r) => {
+    // "Hushhh": breathy high noise that swells and fades, with a faint sliding tone under it.
+    noise(o, r, { gain: 0.8, attack: 0.35, decay: 1.2, lp0: 7000, lp1: 4200, hp: 2400, am: 0.3, amRate: 5 });
+    sweepSine(o, { f0: 520, f1: 380, sweep: 1.4, attack: 0.3, decay: 1.2, gain: 0.08, vibrato: 0.02, vibratoRate: 5 });
+  },
+  flute_tune: (o, r) => {
+    // A short bansuri phrase: soft sine notes with breath and a gentle vibrato.
+    const notes = [[587, 0], [659, 0.32], [784, 0.64], [880, 0.96], [784, 1.4], [659, 1.72], [587, 2.04]];
+    for (const [f, start] of notes) {
+      sweepSine(o, { f0: f, f1: f, sweep: 1, attack: 0.06, decay: 0.42, gain: 0.6, start, vibrato: 0.008, vibratoRate: 5.5 });
+      sweepSine(o, { f0: f * 2, f1: f * 2, sweep: 1, attack: 0.06, decay: 0.3, gain: 0.08, start });
+    }
+    noise(o, r, { gain: 0.08, attack: 0.1, decay: 2.4, lp0: 5000, hp: 1500 });
+  },
+  leaf_tune: (o) => {
+    // A reedy leaf whistle: buzzy, slightly wobbly notes.
+    for (const [f, start] of [[880, 0], [988, 0.3], [880, 0.6], [784, 0.9]]) {
+      sweepSine(o, { f0: f * 0.98, f1: f, sweep: 0.05, attack: 0.03, decay: 0.3, gain: 0.6, start, vibrato: 0.02, vibratoRate: 7 });
+      sweepSine(o, { f0: f * 3, f1: f * 3, sweep: 1, attack: 0.03, decay: 0.2, gain: 0.12, start });
+    }
+    drive(o, 1.5);
+  },
+  thunder: (o, r) => {
+    // A far rumble, not a crack: gentle enough for little ears.
+    noise(o, r, { gain: 1, attack: 0.08, decay: 2.2, lp0: 400, lp1: 120, hp: 25, am: 0.5, amRate: 6 });
+    noise(o, r, { gain: 0.5, attack: 0.3, decay: 1.5, lp0: 250, hp: 20, start: 0.4 });
+    drive(o, 1.6);
+  },
+  clock_tick_big: (o) => { partials(o, [880, 1320], { gain: 0.7, decay: 0.08, attack: 0.001 }); partials(o, [660, 990], { gain: 0.6, decay: 0.09, attack: 0.001, start: 0.5 }); },
 };
 
-const LENGTH = { tick: 0.7, fizz: 1.4, rain: 2.2, twang: 1.2, drum: 0.6, train_whistle: 1.4, cha_ching: 1.1, clink: 0.4, rocket: 2.2, pour: 1.5, giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { cloud_pop: 0.9, whisper: 1.6, flute_tune: 2.5, leaf_tune: 1.3, thunder: 2.5, clock_tick_big: 1.0, tick: 0.7, fizz: 1.4, rain: 2.2, twang: 1.2, drum: 0.6, train_whistle: 1.4, cha_ching: 1.1, clink: 0.4, rocket: 2.2, pour: 1.5, giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

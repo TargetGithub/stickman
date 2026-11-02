@@ -18,7 +18,7 @@ export const V2_ENUMS = {
   outfit: ["none", "shirt", "coat", "armor", "robe"],
   accessory: ["headband", "scarf", "cape", "hat", "antenna", "bowtie", "mask", "crown", "backpack", "eyepatch",
     "hair_flower", "sprout", "mittens", "horns", "turban", "moustache", "stub_horns", "bracelet", "chilli_hat", "pirate_hat", "beard", "windup_key",
-    "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes"],
+    "leaf_sprout", "curly_vine", "flower_bud", "flower_bloom", "party_hat", "whistle", "clipboard", "gloss", "shoes", "skates"],
   timbre: ["soft", "squeaky", "deep", "robot", "bark"],
   time: ["dawn", "day", "dusk", "night"],
   weather: ["clear", "cloudy", "rain", "snow", "wind", "fog"],
@@ -95,6 +95,7 @@ export const V2_WORLD_COMMANDS = [
   "set_time", "set_weather", "set_music", "shot",
   "spawn_object", "remove_object", "set_object", "set_appearance",
   "set_glow", "set_grade", // A3: Heart Glow and how grey the world is
+  "set_cloud", // season 2: a feeling cloud over a character
   "sfx", // batch B: a sound on its own
   "set_light", // V3.3: the scene's light rig (v3 scenes)
   "set_camera", // V3.4: the v3 lens (dolly, truck, crane, tilt, roll, push, handheld, focus, dof, vignette, letterbox, moves)

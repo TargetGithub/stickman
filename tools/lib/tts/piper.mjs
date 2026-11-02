@@ -52,6 +52,12 @@ export function postFilters(inputRate, voice, bubble, tone = null) {
   if (tone?.vibrato) f.push(`vibrato=f=${tone.vibrato.f}:d=${tone.vibrato.d}`);
   if (tone?.tremolo) f.push(`tremolo=f=${tone.tremolo.f}:d=${tone.tremolo.d}`);
   if (voice.filter === "robot") f.push("aeval='val(0)*(0.55+0.45*sin(2*PI*55*t))':c=same", "aecho=0.8:0.5:6|11:0.35|0.25");
+  // whisper (Doopi season 2, the Hush): the voice's phase scrambled into breath (fixed-seed FFT noise, so the same
+  // line always sounds the same) over a quiet, muffled copy of the dry voice so small children still catch the
+  // words, then a soft cave-like echo.
+  if (voice.filter === "whisper") {
+    f.push("asplit=2[wa][wb];[wa]afftfilt=real='hypot(re,im)*cos((random(0)*2-1)*PI)':imag='hypot(re,im)*sin((random(1)*2-1)*PI)':win_size=512:overlap=0.75,highpass=f=240[ww];[wb]volume=0.35,lowpass=f=3000[wd];[ww][wd]amix=inputs=2:normalize=0", "aecho=0.8:0.6:90|170:0.32|0.18");
+  }
   f.push("aresample=48000");
   return f.join(",");
 }

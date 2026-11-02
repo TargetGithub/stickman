@@ -18,7 +18,7 @@ export const OBJECT_COMMANDS = {
     return spawnObject(world.objects, { object: p.kind, id: p.id, x: p.x, y: p.y, layer: p.layer, facing: p.facing, state: p.state }, t);
   },
   remove_object: (world, beat) => removeObject(world.objects, beat.object),
-  set_object: (world, beat, p) => setObject(world.objects, beat.object, p),
+  set_object: (world, beat, p) => (world.objects.byId.has(beat.object) ? setObject(world.objects, beat.object, p) : heldState(world, beat.object, p)),
 };
 
 /**
@@ -46,4 +46,15 @@ export function walkToSeat(director, beat, actor, ctx, command) {
   beat.state = "approached";
   director.waiting.set(actor.id, [beat, ...(director.waiting.get(actor.id) || []).filter((b) => b !== beat)]);
   return true;
+}
+
+/**
+ * set_object naming a character (Doopi season 2): changes the state of the stateful holdable they hold (the jar,
+ * the radar); the renderer shows held props in their kind's latest state.
+ */
+function heldState(world, id, p) {
+  const actor = world.byId.get(id);
+  const def = actor?.prop && world.objects.ctx.catalog.objects?.[actor.prop.name];
+  if (!def?.states || p.state === undefined) return [];
+  return [{ type: "object", what: "state", id, kind: actor.prop.name, x: actor.x, y: 0, state: p.state }];
 }

@@ -1,0 +1,330 @@
+{
+ "version": 3,
+ "meta": {
+  "title": "S2 review: the Hush and a feeling cloud",
+  "format": "landscape",
+  "seed": 9001,
+  "kind": "story",
+  "audience": "kids",
+  "speakerNames": true,
+  "autoCamera": "story",
+  "style": "soft",
+  "speech": "babble",
+  "lipSync": true,
+  "narrator": {
+   "model": "en_GB-cori-medium",
+   "rate": 0.8,
+   "pitch": 0
+  }
+ },
+ "cast": [
+  {
+   "id": "chintu",
+   "name": "Chintu",
+   "body": "kid",
+   "color": "#f4a261",
+   "appearance": {
+    "hair": "spiky",
+    "hairColor": "#2a1a14"
+   },
+   "voice": {
+    "pitch": 1.5,
+    "speed": 1.15,
+    "timbre": "squeaky",
+    "tts": {
+     "model": "en_US-john-medium",
+     "pitch": 6,
+     "rate": 1.1
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "doomi",
+   "name": "Doomi",
+   "body": "stickman",
+   "color": "#ff9ccc",
+   "appearance": {
+    "eyes": "big",
+    "mouthStyle": "cartoon",
+    "hair": "ponytail",
+    "hairColor": "#5a3a2c",
+    "cheeks": "#ff9db8",
+    "outfit": "shirt",
+    "outfitColor": "#ffd1e3",
+    "accessories": {
+     "hair_flower": "#ffffff"
+    }
+   },
+   "voice": {
+    "pitch": 1.35,
+    "speed": 1,
+    "timbre": "soft",
+    "tts": {
+     "model": "en_US-kristin-medium",
+     "pitch": 3,
+     "rate": 1.0
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "becky",
+   "name": "Becky",
+   "body": "dog_small",
+   "color": "#f3e3c3",
+   "appearance": {
+    "eyes": "big"
+   },
+   "voice": {
+    "pitch": 1.4,
+    "timbre": "bark",
+    "tts": {
+     "off": true
+    }
+   },
+   "limbStyle": "bendy"
+  },
+  {
+   "id": "hush",
+   "name": "The Hush",
+   "body": "wisp",
+   "scale": 0.55,
+   "color": "#c4a3ff",
+   "appearance": {
+    "eyes": "big"
+   },
+   "voice": {
+    "pitch": 1.3,
+    "speed": 0.85,
+    "timbre": "soft",
+    "tts": {
+     "model": "en_US-kristin-medium",
+     "pitch": 2,
+     "rate": 0.85
+    }
+   },
+   "limbStyle": "bendy"
+  }
+ ],
+ "locations": [
+  {
+   "id": "square",
+   "theme": "tokyo_village",
+   "stageWidth": 3200
+  },
+  {
+   "id": "forest",
+   "theme": "whispering_forest",
+   "stageWidth": 3200
+  }
+ ],
+ "scenes": [
+  {
+   "id": "day",
+   "location": "square",
+   "time": "day",
+   "cast": [
+    {
+     "id": "chintu",
+     "x": 1400,
+     "facing": 1,
+     "face": "neutral"
+    },
+    {
+     "id": "doomi",
+     "x": 1750,
+     "facing": -1,
+     "face": "happy"
+    },
+    {
+     "id": "becky",
+     "x": 1150,
+     "facing": 1
+    },
+    {
+     "id": "hush",
+     "x": 1050,
+     "facing": 1,
+     "face": "smug"
+    }
+   ],
+   "beats": [
+    {
+     "id": "h1",
+     "at": 0.3,
+     "who": "hush",
+     "do": "walk",
+     "to": {
+      "x": 1250
+     }
+    },
+    {
+     "id": "w1",
+     "at": {
+      "after": "h1"
+     },
+     "who": "hush",
+     "do": "talk",
+     "face": "smug",
+     "say": "Hushhh... she has a better kite..."
+    },
+    {
+     "id": "c1",
+     "at": {
+      "with": "w1",
+      "delay": 0.5
+     },
+     "who": "world",
+     "do": "set_cloud",
+     "params": {
+      "who": "chintu",
+      "size": 0.35,
+      "dur": 1.2
+     }
+    },
+    {
+     "id": "b1",
+     "at": {
+      "with": "w1"
+     },
+     "who": "becky",
+     "do": "growl",
+     "face": "angry"
+    },
+    {
+     "id": "c2",
+     "at": {
+      "after": "w1"
+     },
+     "who": "world",
+     "do": "set_cloud",
+     "params": {
+      "who": "chintu",
+      "size": 0.9,
+      "dur": 2
+     }
+    },
+    {
+     "id": "f1",
+     "at": {
+      "with": "c2"
+     },
+     "who": "chintu",
+     "do": "clench_fist",
+     "face": "angry"
+    },
+    {
+     "id": "d1",
+     "at": {
+      "after": "c2"
+     },
+     "who": "doomi",
+     "do": "talk",
+     "face": "sad",
+     "say": "Chintu, what's wrong?"
+    },
+    {
+     "id": "d2",
+     "at": {
+      "after": "d1"
+     },
+     "who": "chintu",
+     "do": "talk",
+     "face": "sad",
+     "say": "I feel jealous."
+    },
+    {
+     "id": "p1",
+     "at": {
+      "after": "d2"
+     },
+     "who": "world",
+     "do": "set_cloud",
+     "params": {
+      "who": "chintu",
+      "pop": true
+     }
+    },
+    {
+     "id": "z1",
+     "at": {
+      "with": "p1",
+      "delay": 0.3
+     },
+     "who": "hush",
+     "do": "run",
+     "fx": [
+      "hush_zip"
+     ],
+     "face": "scared",
+     "to": {
+      "x": 200
+     }
+    },
+    {
+     "id": "j1",
+     "at": {
+      "after": "p1"
+     },
+     "who": "chintu",
+     "do": "cheer",
+     "face": "happy"
+    }
+   ]
+  },
+  {
+   "id": "night",
+   "location": "forest",
+   "time": "night",
+   "cast": [
+    {
+     "id": "hush",
+     "x": 1500,
+     "facing": -1,
+     "face": "laugh"
+    },
+    {
+     "id": "doomi",
+     "x": 1800,
+     "facing": -1,
+     "face": "scared"
+    }
+   ],
+   "beats": [
+    {
+     "id": "n1",
+     "at": 0.3,
+     "who": "hush",
+     "do": "wave",
+     "face": "laugh",
+     "say": "Hushhh..."
+    },
+    {
+     "id": "n2",
+     "at": {
+      "after": "n1"
+     },
+     "who": "world",
+     "do": "set_cloud",
+     "params": {
+      "who": "doomi",
+      "size": 0.6,
+      "dur": 1
+     }
+    },
+    {
+     "id": "n3",
+     "at": {
+      "after": "n2"
+     },
+     "who": "doomi",
+     "do": "wait",
+     "params": {
+      "seconds": 2
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -133,6 +133,10 @@
       "params": { "who": "kai", "color": "#ffd23f", "level": 0.6, "dur": 1.5 }
     }
   },
+  "set_cloud": {
+    "description": "A little grey rain cloud over a character's head: size 0-1 over dur (0 clears it), rain on or off; pop bursts it into a glowing music note.",
+    "example": { "at": 0, "who": "world", "do": "set_cloud", "params": { "who": "kai", "size": 0.5, "dur": 1.5 } }
+  },
   "set_grade": {
     "description": "Scene colour: saturation 1 full, 0 grey, over dur; keepCast keeps the cast in colour; from: a wave out from a character.",
     "example": { "at": 0, "who": "world", "do": "set_grade", "params": { "saturation": 1, "dur": 2, "from": "kai" } }

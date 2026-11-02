@@ -136,14 +136,30 @@ function effects(src) {
     Object.entries(cats).map(([k, v]) => `- ${k}: ${v.join(", ")}`).join("\n"));
 }
 
+/** The series an entry belongs to (a tag naming a preset series), or null. */
+const seriesOf = (series, tags = []) => tags.find((t) => series.has(t)) ?? null;
+
+/** Series themes and objects take one line per series (ids, object states), like series presets. */
+function seriesPlaceLines(series, c) {
+  const themes = {};
+  const objects = {};
+  for (const t of c.themeNames) { const s = seriesOf(series, c.themes[t].tags); if (s) (themes[s] ||= []).push(t); }
+  for (const [n, o] of Object.entries(c.objects)) { const s = seriesOf(series, o.tags); if (s) (objects[s] ||= []).push(o.states ? `${n} (${o.states.join("/")})` : n); }
+  return [...Object.entries(themes).map(([s, list]) => `Series \`${s}\` themes (descriptions in catalog/world/themes.json): ${list.join(", ")}.`),
+    ...Object.entries(objects).map(([s, list]) => `Series \`${s}\` objects (descriptions in catalog/world/objects.json): ${list.join(", ")}.`)];
+}
+
 function places(src) {
   const { catalog: c, files } = src;
+  const series = new Set(src.presets.map((p) => p.series).filter(Boolean));
+  const own = (tags) => !seriesOf(series, tags);
   return doc("Places and objects",
-    "## Themes (v1 `meta.theme`; v2 `locations[].theme`)", table(["theme", "background", "good character colors", "about"], c.themeNames.map((t) => [t, c.themes[t].characterBg, colorAdvice(c.themes[t].characterBg), c.themes[t].description])),
+    "## Themes (v1 `meta.theme`; v2 `locations[].theme`)", table(["theme", "background", "good character colors", "about"], c.themeNames.filter((t) => own(c.themes[t].tags)).map((t) => [t, c.themes[t].characterBg, colorAdvice(c.themes[t].characterBg), c.themes[t].description])),
     `Time: ${V2_ENUMS.time.join(", ")}. Weather: ${V2_ENUMS.weather.join(", ")} (scene or location \`time\`, \`weather\`).`,
     "## Ambience (location or scene `ambience`)", files["world/ambience.json"].beds.map((b) => `- ${b.name}: ${b.description}`).join("\n"),
     "## Objects (location or scene `set`: `[{ \"id\", \"object\", \"x\", \"state\", \"layer\" }]`, or spawn_object)",
-    table(["object", "behavior", "states", "about"], Object.entries(c.objects).map(([n, o]) => [n, o.behavior, (o.states || []).join("/") || "-", o.description])),
+    table(["object", "behavior", "states", "about"], Object.entries(c.objects).filter(([, o]) => own(o.tags)).map(([n, o]) => [n, o.behavior, (o.states || []).join("/") || "-", o.description])),
+    ...seriesPlaceLines(series, c),
     "Behaviors: seat (sit on it with `sit` and `object`), holdable (hold as a prop, give, use), ball and floater (fly, set_object), vehicle (ride, set_object toX or exit), breakable (state broken).",
     "## Props (v1 `characters[].prop`; v2 `cast[].prop` takes props and holdables)", table(["prop", "kind", "about"], Object.entries(c.props).map(([n, p]) => [n, p.kind, p.description])),
     `## Extras (location or scene \`extras\`: \`[{ "count": 1-12, "behavior", "layer": "back" }]\`)\nBehaviors: ${V2_ENUMS.extrasBehavior.join(", ")}. Layers: ${V2_ENUMS.layer.join(", ")}.`,

@@ -148,6 +148,13 @@
             "off": {
               "type": "boolean",
               "description": "Keep babble for this voice even in tts renders."
+            },
+            "filter": {
+              "enum": [
+                "robot",
+                "whisper"
+              ],
+              "description": "A voice effect after synthesis: robot (ring-modulated) or whisper (breathy, soft echo)."
             }
           },
           "description": "Spoken voice for narration in tts renders (SPEECH_SPEC 3)."
@@ -410,6 +417,10 @@
                   "shoes": {
                     "type": "string",
                     "pattern": "^#[0-9a-fA-F]{6}$"
+                  },
+                  "skates": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
                   }
                 }
               }
@@ -466,6 +477,13 @@
                   "off": {
                     "type": "boolean",
                     "description": "Keep babble for this voice even in tts renders."
+                  },
+                  "filter": {
+                    "enum": [
+                      "robot",
+                      "whisper"
+                    ],
+                    "description": "A voice effect after synthesis: robot (ring-modulated) or whisper (breathy, soft echo)."
                   }
                 },
                 "description": "Spoken voice for --speech tts renders (SPEECH_SPEC 3); the engine ignores it."
@@ -1380,6 +1398,12 @@
                           ],
                           "description": "How 'say' is drawn (default speech)."
                         },
+                        "echo": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 3,
+                          "description": "The line echoes back this many times, fainter each time (mountains, caves)."
+                        },
                         "face": {
                           "type": "string",
                           "description": "Emotion from this beat on: a face from the catalog (E_FACE_UNKNOWN)."
@@ -1892,7 +1916,8 @@
         "whistle",
         "clipboard",
         "gloss",
-        "shoes"
+        "shoes",
+        "skates"
       ],
       "timbre": [
         "soft",

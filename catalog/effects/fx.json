@@ -1901,5 +1901,304 @@
         ]
       }
     ]
+  },
+  "note_burst": {
+    "description": "A feeling cloud pops: a soft gold glow and gold and white sparkles bursting out above the head.",
+    "tags": [
+      "magic",
+      "feeling",
+      "celebrate",
+      "doopi"
+    ],
+    "anchor": "head",
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "offset": 60,
+        "speed": [
+          0,
+          0
+        ],
+        "life": [
+          0.7,
+          0.7
+        ],
+        "size": [
+          40,
+          170
+        ],
+        "color": "rgba(255, 236, 160, 0.9)",
+        "alpha": [
+          0.8,
+          0
+        ]
+      },
+      {
+        "shape": "star",
+        "count": 12,
+        "offset": 70,
+        "angle": [
+          -170,
+          -10
+        ],
+        "speed": [
+          140,
+          320
+        ],
+        "drag": 1.1,
+        "life": [
+          0.8,
+          1.3
+        ],
+        "size": [
+          12,
+          3
+        ],
+        "color": [
+          "#ffd23f",
+          "#fff3a0",
+          "#ffffff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "hush_zip": {
+    "description": "The Hush zips away: a violet streak of little puffs and sparkles trailing behind it for about 1 s.",
+    "tags": [
+      "hush",
+      "magic",
+      "motion",
+      "lingers",
+      "doopi"
+    ],
+    "anchor": "hip",
+    "sustain": {
+      "duration": 1,
+      "rate": 30
+    },
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 1,
+        "angle": [
+          160,
+          200
+        ],
+        "speed": [
+          40,
+          120
+        ],
+        "drag": 1,
+        "life": [
+          0.5,
+          0.9
+        ],
+        "size": [
+          18,
+          4
+        ],
+        "color": [
+          "#c4a3ff",
+          "#9a7ae0",
+          "#e4d4ff"
+        ],
+        "alpha": [
+          0.7,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 1,
+        "angle": [
+          0,
+          360
+        ],
+        "speed": [
+          20,
+          80
+        ],
+        "life": [
+          0.4,
+          0.7
+        ],
+        "size": [
+          5,
+          1
+        ],
+        "color": [
+          "#ffffff",
+          "#e4d4ff"
+        ],
+        "alpha": [
+          0.9,
+          0
+        ]
+      }
+    ]
+  },
+  "fireflies": {
+    "description": "Fireflies: slow drifting yellow-green glows that rise and wander around a spot for about 3 s (repeat for longer).",
+    "tags": [
+      "night",
+      "forest",
+      "calm",
+      "lingers",
+      "doopi"
+    ],
+    "anchor": "hip",
+    "sustain": {
+      "duration": 3,
+      "rate": 6
+    },
+    "layers": [
+      {
+        "shape": "glow",
+        "count": 1,
+        "offset": 150,
+        "spreadY": 200,
+        "angle": [
+          -140,
+          -40
+        ],
+        "speed": [
+          10,
+          40
+        ],
+        "drag": 0.2,
+        "life": [
+          2,
+          3
+        ],
+        "size": [
+          14,
+          10
+        ],
+        "color": [
+          "rgba(214, 255, 120, 0.95)",
+          "rgba(255, 240, 140, 0.95)"
+        ],
+        "alpha": [
+          0.95,
+          0
+        ]
+      },
+      {
+        "shape": "dot",
+        "count": 1,
+        "offset": 150,
+        "spreadY": 200,
+        "angle": [
+          -140,
+          -40
+        ],
+        "speed": [
+          10,
+          40
+        ],
+        "drag": 0.2,
+        "life": [
+          2,
+          3
+        ],
+        "size": [
+          4,
+          3
+        ],
+        "color": [
+          "#f4ffb0",
+          "#ffffff"
+        ],
+        "alpha": [
+          1,
+          0
+        ]
+      }
+    ]
+  },
+  "sandstorm": {
+    "description": "A band of blowing sand streaming sideways across the stage for about 3 s, low and dusty (repeat for longer).",
+    "tags": [
+      "desert",
+      "wind",
+      "weather",
+      "lingers",
+      "doopi"
+    ],
+    "anchor": "feet",
+    "sustain": {
+      "duration": 3,
+      "rate": 24
+    },
+    "layers": [
+      {
+        "shape": "puff",
+        "count": 1,
+        "offset": 150,
+        "spreadY": 160,
+        "angle": [
+          -8,
+          4
+        ],
+        "speed": [
+          500,
+          900
+        ],
+        "drag": 0.2,
+        "life": [
+          1,
+          1.6
+        ],
+        "size": [
+          40,
+          120
+        ],
+        "color": [
+          "#d9b77a",
+          "#c9a060",
+          "#e8cf9a"
+        ],
+        "alpha": [
+          0.35,
+          0
+        ]
+      },
+      {
+        "shape": "line",
+        "count": 2,
+        "offset": 150,
+        "spreadY": 200,
+        "angle": [
+          -4,
+          4
+        ],
+        "speed": [
+          900,
+          1300
+        ],
+        "life": [
+          0.3,
+          0.5
+        ],
+        "size": [
+          40,
+          20
+        ],
+        "width": 2,
+        "color": [
+          "#e8cf9a",
+          "#f4e2b8"
+        ],
+        "alpha": [
+          0.6,
+          0
+        ]
+      }
+    ]
   }
 }

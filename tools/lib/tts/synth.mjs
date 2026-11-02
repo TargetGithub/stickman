@@ -14,6 +14,8 @@ export const CACHE_DIR = fileURLToPath(new URL("../../../assets/speech/cache/", 
 export const SPEECH_LUFS = -16;
 export const STYLE_DB = { speech: 0, shout: 2, whisper: -6 };
 export const NOISE = { scale: 0.333, w: 0.333 }; // fixed Piper noise: the same text always sounds the same
+export const ECHO_DELAY = 0.75; // s between the echoes of an echoing line
+export const ECHO_GAIN = 0.42; // each echo's volume relative to the one before
 const POST = 2; // bump when the trim or levelling below changes, so old cache files are not reused
 
 /**
@@ -155,6 +157,8 @@ export function speechClips(spoken, simEvents, { lead = 0.3 } = {}) {
   for (const l of spoken) {
     if (!at.has(l.id)) continue;
     clips.set(l.id, { t: at.get(l.id), sfx: `tts:${l.key}`, volume: 1 });
+    // An echoing line (beat echo, Doopi season 2): the same clip comes back ECHO_DELAY s apart, fainter each time.
+    for (let k = 1; k <= (l.echo ?? 0); k++) clips.set(`${l.id}#echo${k}`, { t: at.get(l.id) + ECHO_DELAY * k, sfx: `tts:${l.key}`, volume: ECHO_GAIN ** k });
     // The later bubbles of a line spoken as one clip only lose their babble.
     for (const p of (l.parts ?? []).slice(1)) clips.set(p.id, { t: at.get(p.id) ?? at.get(l.id), sfx: null, volume: 0 });
   }

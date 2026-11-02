@@ -53,6 +53,8 @@ export const WORLD_COMMANDS_V2 = {
   },
   // A3: a lasting glow around a character (level 0 turns it off) and the scene's colour grade.
   set_glow: { who: { character: true, required: true }, color: { glowColor: true }, level: { min: 0, max: 1, required: true }, dur: { min: 0, max: 10 } },
+  // Season 2: a feeling cloud over a character (size 0 clears it; pop bursts it into a music note).
+  set_cloud: { who: { character: true, required: true }, size: { min: 0, max: 1 }, pop: { enum: [true, false] }, rain: { enum: [true, false] }, note: HEX, dur: { min: 0, max: 10 } },
   // A sound on its own (batch B): an off-screen horn, thunder, a knock; x pans it (stage px).
   sfx: { name: { sfx: true, required: true }, volume: { min: 0, max: 1 }, x: { min: -2000, max: 14000 } },
   set_grade: { saturation: { min: 0, max: 1, required: true }, dur: { min: 0, max: 10 }, keepCast: { enum: [true, false] }, from: { character: true } },
@@ -125,6 +127,9 @@ export function checkText(text, path, blocklist, out) {
 function checkWorldParams(beat, path, ctx, out) {
   const spec = ctx.worldCommands[beat.do];
   const params = beat.params || {};
+  if (beat.do === "set_cloud" && !("size" in params) && !params.pop) {
+    out.push({ code: "E_WORLD_PARAM", path: `${path}.params`, message: "'set_cloud' needs params.size (0 clears the cloud) or pop: true.", fix: 'Add "size": 0.5, or "pop": true.' });
+  }
   for (const [name, rule] of Object.entries(spec)) {
     if (rule.required && !(name in params)) {
       out.push({ code: "E_WORLD_PARAM", path: `${path}.params`, message: `'${beat.do}' needs params.${name}.`, fix: `Add "${name}" to params.` });

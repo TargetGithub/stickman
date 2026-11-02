@@ -6,6 +6,7 @@ import { propTransform } from "../props.js";
 import { drawProp } from "./props.js";
 import { drawFace } from "./face.js";
 import { drawQuadruped } from "./quadruped.js";
+import { drawWisp } from "./wisp.js";
 import { drawTorso, drawOutfit, torsoPath } from "./bodies.js";
 import { boxHeadPath, drawBolts } from "./robot.js";
 import { drawHairBack, drawHair, drawMask, drawEyepatch, drawHeadTop, drawBowtie, drawBackpack } from "./appearance.js";
@@ -167,6 +168,7 @@ function heldProp(ctx, s, t) {
 export function drawCharacter(ctx, j, style) {
   const s = { ...DEFAULTS, ...style };
   if (s.draw === "quad") return drawQuadruped(ctx, j, s, shade); // four-legged plans (ADR-020)
+  if (s.draw === "wisp") return drawWisp(ctx, j, s); // floating puffs (season 2: the Hush)
   const dims = s.dims || BODY;
   const lw = dims.lineWidth * s.scale * (s.limbScale ?? 1); // look.limbs (v3, V3.9)
   const acc = s.look?.accessories || {};
