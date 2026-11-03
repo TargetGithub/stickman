@@ -10,7 +10,7 @@
     "voice": "soft",
     "voiceSpeed": 1,
     "music": "happy",
-    "musicGain": 0.18,
+    "musicGain": 0.2,
     "skills": [
       "fraction_operations_5"
     ],
@@ -61,7 +61,7 @@
             "material": "glass",
             "color": "white",
             "at": [
-              0.75,
+              1,
               0,
               0.6
             ],
@@ -79,7 +79,7 @@
             "material": "toy",
             "color": "pink",
             "at": [
-              0.75,
+              1,
               0.03,
               0.6
             ],
@@ -95,7 +95,7 @@
             "numerator": 2,
             "denominator": 5,
             "at": [
-              0.75,
+              1,
               1.5,
               0.6
             ],
@@ -108,7 +108,7 @@
             "shape": "cross",
             "color": "red",
             "at": [
-              0.75,
+              1,
               2.45,
               0.6
             ],
@@ -121,7 +121,7 @@
             "material": "glass",
             "color": "white",
             "at": [
-              1.85,
+              2.05,
               0,
               0.6
             ],
@@ -139,7 +139,7 @@
             "material": "toy",
             "color": "orange",
             "at": [
-              1.85,
+              2.05,
               0.03,
               0.6
             ],
@@ -155,7 +155,7 @@
             "numerator": 5,
             "denominator": 6,
             "at": [
-              1.85,
+              2.05,
               1.5,
               0.6
             ],
@@ -168,7 +168,7 @@
             "shape": "tick",
             "color": "green",
             "at": [
-              1.85,
+              2.05,
               2.45,
               0.6
             ],
@@ -179,34 +179,17 @@
             "kind": "critter",
             "species": "monkey",
             "at": [
-              -0.25,
+              2.85,
               0,
-              1.4
+              1
             ],
-            "size": 0.95,
+            "size": 0.9,
             "rotation": [
               0,
-              25,
+              -30,
               0
             ],
             "feeling": "surprised"
-          },
-          {
-            "id": "robo",
-            "kind": "character",
-            "character": "robot",
-            "at": [
-              2.85,
-              0,
-              -1
-            ],
-            "rotation": [
-              0,
-              -25,
-              0
-            ],
-            "clip": "ThumbsUp",
-            "feeling": "happy"
           }
         ]
       },
@@ -446,7 +429,24 @@
           }
         ]
       }
-    ]
+    ],
+    "cast": {
+      "monkey": {
+        "voice": "squeaky",
+        "pitch": 1.15,
+        "speed": 1.05
+      },
+      "robo": {
+        "voice": "soft",
+        "pitch": 1.05,
+        "speed": 1
+      },
+      "bear": {
+        "voice": "deep",
+        "pitch": 0.9,
+        "speed": 0.95
+      }
+    }
   },
   "stage": {
     "preset": "beach"
@@ -486,13 +486,13 @@
       "species": "monkey",
       "size": 1.15,
       "at": [
-        3.95,
+        3.45,
         0,
-        1.4
+        0.6
       ],
       "rotation": [
         0,
-        -15,
+        -25,
         0
       ]
     },
@@ -891,7 +891,7 @@
       "material": "matte",
       "at": [
         -0.5,
-        2.9,
+        3.05,
         -1.47
       ],
       "rotation": [
@@ -902,7 +902,7 @@
       "scale": [
         7.6,
         1,
-        3.3
+        3.7
       ]
     },
     {
@@ -913,7 +913,7 @@
       "material": "matte",
       "at": [
         -0.5,
-        2.9,
+        3.05,
         -1.42
       ],
       "rotation": [
@@ -924,7 +924,7 @@
       "scale": [
         7.3,
         1,
-        3
+        3.4
       ]
     },
     {
@@ -1249,10 +1249,10 @@
       "denominator": 2,
       "at": [
         1.548,
-        3.8000000000000003,
+        3.85,
         -1.3
       ],
-      "size": 0.4,
+      "size": 0.34,
       "color": "ink"
     },
     {
@@ -1262,10 +1262,10 @@
       "text": "=",
       "at": [
         2.05,
-        3.8000000000000003,
+        3.85,
         -1.3
       ],
-      "size": 0.4,
+      "size": 0.34,
       "color": "ink",
       "depth": 0.12
     },
@@ -1277,10 +1277,10 @@
       "denominator": 6,
       "at": [
         2.552,
-        3.8000000000000003,
+        3.85,
         -1.3
       ],
-      "size": 0.4,
+      "size": 0.34,
       "color": "orange"
     },
     {
@@ -1291,10 +1291,10 @@
       "denominator": 3,
       "at": [
         1.548,
-        2.85,
+        2.8,
         -1.3
       ],
-      "size": 0.4,
+      "size": 0.34,
       "color": "ink"
     },
     {
@@ -1304,10 +1304,10 @@
       "text": "=",
       "at": [
         2.05,
-        2.85,
+        2.8,
         -1.3
       ],
-      "size": 0.4,
+      "size": 0.34,
       "color": "ink",
       "depth": 0.12
     },
@@ -1319,10 +1319,10 @@
       "denominator": 6,
       "at": [
         2.552,
-        2.85,
+        2.8,
         -1.3
       ],
-      "size": 0.4,
+      "size": 0.34,
       "color": "orange"
     },
     {
@@ -1333,10 +1333,10 @@
       "denominator": 6,
       "at": [
         1.146,
-        1.9000000000000001,
+        1.75,
         -1.3
       ],
-      "size": 0.36,
+      "size": 0.34,
       "color": "ink"
     },
     {
@@ -1346,10 +1346,10 @@
       "text": "+",
       "at": [
         1.598,
-        1.9000000000000001,
+        1.75,
         -1.3
       ],
-      "size": 0.36,
+      "size": 0.34,
       "color": "ink",
       "depth": 0.12
     },
@@ -1361,10 +1361,10 @@
       "denominator": 6,
       "at": [
         2.05,
-        1.9000000000000001,
+        1.75,
         -1.3
       ],
-      "size": 0.36,
+      "size": 0.34,
       "color": "ink"
     },
     {
@@ -1374,10 +1374,10 @@
       "text": "=",
       "at": [
         2.502,
-        1.9000000000000001,
+        1.75,
         -1.3
       ],
-      "size": 0.36,
+      "size": 0.34,
       "color": "ink",
       "depth": 0.12
     },
@@ -1389,10 +1389,10 @@
       "denominator": 6,
       "at": [
         2.954,
-        1.9000000000000001,
+        1.75,
         -1.3
       ],
-      "size": 0.36,
+      "size": 0.34,
       "color": "green"
     },
     {
@@ -1417,11 +1417,11 @@
       "kind": "letter",
       "text": "Multiples of 2",
       "at": [
-        -2.9,
+        -2.65,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.2,
+      "size": 0.17,
       "color": "blue",
       "depth": 0.12
     },
@@ -1431,11 +1431,11 @@
       "kind": "letter",
       "text": "Multiples of 3",
       "at": [
-        -2.9,
+        -2.65,
         3.05,
         -1.3
       ],
-      "size": 0.2,
+      "size": 0.17,
       "color": "orange",
       "depth": 0.12
     },
@@ -1445,11 +1445,11 @@
       "kind": "letter",
       "text": "2",
       "at": [
-        -1.35,
+        -1,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "blue",
       "depth": 0.12
     },
@@ -1459,11 +1459,11 @@
       "kind": "letter",
       "text": "4",
       "at": [
-        -0.55,
+        -0.3,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "blue",
       "depth": 0.12
     },
@@ -1473,11 +1473,11 @@
       "kind": "letter",
       "text": "6",
       "at": [
-        0.25,
+        0.4,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "blue",
       "depth": 0.12
     },
@@ -1487,11 +1487,11 @@
       "kind": "letter",
       "text": "8",
       "at": [
-        1.05,
+        1.1,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "blue",
       "depth": 0.12
     },
@@ -1505,7 +1505,7 @@
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "blue",
       "depth": 0.12
     },
@@ -1515,11 +1515,11 @@
       "kind": "letter",
       "text": "12",
       "at": [
-        2.65,
+        2.7,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "blue",
       "depth": 0.12
     },
@@ -1529,11 +1529,11 @@
       "kind": "letter",
       "text": "3",
       "at": [
-        -0.95,
+        -0.65,
         3.05,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "orange",
       "depth": 0.12
     },
@@ -1543,11 +1543,11 @@
       "kind": "letter",
       "text": "6",
       "at": [
-        0.25,
+        0.4,
         3.05,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "orange",
       "depth": 0.12
     },
@@ -1557,11 +1557,11 @@
       "kind": "letter",
       "text": "9",
       "at": [
-        1.45,
+        1.5,
         3.05,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "orange",
       "depth": 0.12
     },
@@ -1571,11 +1571,11 @@
       "kind": "letter",
       "text": "12",
       "at": [
-        2.65,
+        2.7,
         3.05,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "orange",
       "depth": 0.12
     },
@@ -1711,11 +1711,11 @@
       "kind": "letter",
       "text": "Multiples of 4",
       "at": [
-        -2.9,
+        -2.65,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.2,
+      "size": 0.17,
       "color": "purple",
       "depth": 0.12
     },
@@ -1725,11 +1725,11 @@
       "kind": "letter",
       "text": "Multiples of 6",
       "at": [
-        -2.9,
+        -2.65,
         3.05,
         -1.3
       ],
-      "size": 0.2,
+      "size": 0.17,
       "color": "teal",
       "depth": 0.12
     },
@@ -1739,11 +1739,11 @@
       "kind": "letter",
       "text": "4",
       "at": [
-        -0.55,
+        -0.3,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "purple",
       "depth": 0.12
     },
@@ -1753,11 +1753,11 @@
       "kind": "letter",
       "text": "8",
       "at": [
-        1.05,
+        1.1,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "purple",
       "depth": 0.12
     },
@@ -1767,11 +1767,11 @@
       "kind": "letter",
       "text": "12",
       "at": [
-        2.65,
+        2.7,
         3.8000000000000003,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "purple",
       "depth": 0.12
     },
@@ -1781,11 +1781,11 @@
       "kind": "letter",
       "text": "6",
       "at": [
-        0.25,
+        0.4,
         3.05,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "teal",
       "depth": 0.12
     },
@@ -1795,11 +1795,11 @@
       "kind": "letter",
       "text": "12",
       "at": [
-        2.65,
+        2.7,
         3.05,
         -1.3
       ],
-      "size": 0.3,
+      "size": 0.26,
       "color": "teal",
       "depth": 0.12
     },
@@ -2773,7 +2773,7 @@
       "hidden": true,
       "id": "order1",
       "kind": "text_card",
-      "text": "Order 1: 1/2 cup yoghurt and 1/4 cup berries. How much in all?",
+      "text": "Order 1: 1/2 cup yogurt and 1/4 cup berries. How much in all?",
       "at": [
         -0.5,
         2.95,
@@ -3109,7 +3109,7 @@
       "text": "1. Why is 1/2 + 1/3 not 2/5?",
       "at": [
         -0.5,
-        3.4,
+        3.2,
         -1.3
       ],
       "width": 6.6,
@@ -3122,7 +3122,7 @@
       "text": "2. What is 1/2 + 1/4?",
       "at": [
         -0.5,
-        3.4,
+        3.2,
         -1.3
       ],
       "width": 6.6,
@@ -3135,7 +3135,7 @@
       "text": "3. What is 5/6 − 1/3?",
       "at": [
         -0.5,
-        3.4,
+        3.2,
         -1.3
       ],
       "width": 6.6,
@@ -3148,7 +3148,7 @@
       "text": "4. Is 3/4 + 2/3 more or less than 1?",
       "at": [
         -0.5,
-        3.4,
+        3.2,
         -1.3
       ],
       "width": 6.6,
@@ -3161,7 +3161,7 @@
       "text": "2/5 is less than 1/2. Rename first: 3/6 + 2/6 = 5/6",
       "at": [
         -0.5,
-        1.5,
+        1.45,
         -1.3
       ],
       "width": 6.6,
@@ -3175,7 +3175,7 @@
       "text": "2/4 + 1/4 = 3/4",
       "at": [
         -0.5,
-        1.5,
+        1.45,
         -1.3
       ],
       "width": 6.6,
@@ -3189,7 +3189,7 @@
       "text": "5/6 − 2/6 = 3/6 = 1/2",
       "at": [
         -0.5,
-        1.5,
+        1.45,
         -1.3
       ],
       "width": 6.6,
@@ -3203,7 +3203,7 @@
       "text": "More: 9/12 + 8/12 = 17/12 = 1 5/12",
       "at": [
         -0.5,
-        1.5,
+        1.45,
         -1.3
       ],
       "width": 6.6,
@@ -3263,7 +3263,8 @@
                 "sign"
               ],
               "framing": "medium",
-              "dur": 0
+              "dur": 0,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -3306,8 +3307,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Welcome to Monkey's Smoothie Shack! Today's special: banana mango!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -3329,8 +3329,7 @@
               "do": "say",
               "who": "monkey",
               "text": "One half cup of banana...",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "show",
@@ -3362,7 +3361,8 @@
                 "tag_b"
               ],
               "framing": "close",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             }
           ]
         },
@@ -3373,8 +3373,7 @@
               "do": "say",
               "who": "monkey",
               "text": "...plus one third cup of mango.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "show",
@@ -3407,8 +3406,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Top plus top, bottom plus bottom. Two fifths of a cup. Easy!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -3423,7 +3421,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact"
             }
           ]
         },
@@ -3461,7 +3460,8 @@
                 "tag_b"
               ],
               "framing": "close",
-              "dur": 1
+              "dur": 1,
+              "fit": "exact"
             },
             {
               "do": "hide",
@@ -3548,7 +3548,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -3629,7 +3630,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 0
+              "dur": 0,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -3729,8 +3731,7 @@
               "do": "say",
               "who": "monkey",
               "text": "And here's my two fifths!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "build",
@@ -3774,7 +3775,8 @@
                 "lab_f"
               ],
               "framing": "medium",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact"
             },
             {
               "do": "draw",
@@ -3814,8 +3816,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Oops! So my answer can't be right.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "feel",
@@ -3830,7 +3831,8 @@
                 "monkey"
               ],
               "framing": "medium",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact"
             }
           ]
         },
@@ -3850,7 +3852,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "hide",
@@ -4061,7 +4064,8 @@
                 "monkey"
               ],
               "framing": "wide",
-              "dur": 1.5
+              "dur": 1.5,
+              "fit": "exact"
             },
             {
               "do": "draw",
@@ -4124,7 +4128,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -4307,7 +4312,8 @@
                 "bar_t6"
               ],
               "framing": "close",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "move",
@@ -4354,7 +4360,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "pop",
@@ -4431,7 +4438,7 @@
             },
             {
               "do": "caption",
-              "text": "the denominator stays the same",
+              "text": "same denominator",
               "style": "label",
               "at": 0.6
             }
@@ -4455,7 +4462,8 @@
                 "monkey"
               ],
               "framing": "wide",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact"
             },
             {
               "do": "draw",
@@ -4492,8 +4500,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Three sixths of banana...",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "leap",
@@ -4517,8 +4524,7 @@
               "do": "say",
               "who": "monkey",
               "text": "...and two more sixths of mango!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "leap",
@@ -4545,9 +4551,15 @@
               "caption": true
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "s5",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 0.8
             }
           ]
@@ -4559,9 +4571,9 @@
               "do": "move",
               "target": "monkey",
               "to": [
-                3.95,
+                3.45,
                 0,
-                1.4
+                0.6
               ],
               "dur": 1.1,
               "at": 0
@@ -4571,7 +4583,7 @@
               "target": "monkey",
               "to": [
                 0,
-                -15,
+                -25,
                 0
               ],
               "at": 0
@@ -4595,7 +4607,8 @@
                 "tag_sum"
               ],
               "framing": "close",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact"
             },
             {
               "do": "hide",
@@ -4674,8 +4687,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Five sixths of a cup. Almost full, but not quite!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "look",
@@ -4699,10 +4711,12 @@
               "target": [
                 "table",
                 "monkey",
-                "cup_sum"
+                "cup_sum",
+                "sign"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             }
           ]
         },
@@ -4799,7 +4813,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -4948,8 +4963,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Six! It's in both lists!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "highlight",
@@ -5239,8 +5253,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Twelve!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "highlight",
@@ -5435,9 +5448,15 @@
               "at": 1
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "f5",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 2.2
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 2.2
             }
           ]
@@ -5449,8 +5468,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Could I just multiply the denominators? Four times six is twenty-four.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "look",
@@ -5671,7 +5689,8 @@
                 "monkey"
               ],
               "framing": "wide",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "show",
@@ -5788,8 +5807,7 @@
               "do": "say",
               "who": "monkey",
               "text": "I got four tenths!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "pop",
@@ -5827,8 +5845,7 @@
               "do": "say",
               "who": "monkey",
               "text": "My estimate caught my mistake! I forgot to rename.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "feel",
@@ -5851,8 +5868,7 @@
               "do": "say",
               "who": "monkey",
               "text": "One half is four eighths. Four eighths plus three eighths is seven eighths.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "pop",
@@ -5885,9 +5901,15 @@
               "at": 1.5
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "bb5",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 2.8
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 2.8
             }
           ]
@@ -6039,8 +6061,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Is it three fifths?",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "pop",
@@ -6106,9 +6127,15 @@
               "at": 1.5
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "cc5",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 3
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 3
             }
           ]
@@ -6202,10 +6229,12 @@
               "target": [
                 "table",
                 "monkey",
-                "bear"
+                "bear",
+                "sign"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -6228,8 +6257,7 @@
               "do": "say",
               "who": "bear",
               "text": "Hello! May I have some juice, please?",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "hop",
@@ -6245,8 +6273,7 @@
               "do": "say",
               "who": "monkey",
               "text": "I have three fourths of a cup. I'll pour one third of a cup for you, Bear.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "show",
@@ -6277,7 +6304,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -6351,8 +6379,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Twelve! Three fourths is nine twelfths, and one third is four twelfths.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "build",
@@ -6438,9 +6465,15 @@
               "at": 0.8
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "j9",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1.8
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1.8
             }
           ]
@@ -6463,7 +6496,8 @@
                 "monkey"
               ],
               "framing": "wide",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "draw",
@@ -6503,8 +6537,7 @@
               "do": "say",
               "who": "bear",
               "text": "Five twelfths left for Monkey, and a nice cup for me!",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "feel",
@@ -6605,7 +6638,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -6670,8 +6704,7 @@
               "do": "say",
               "who": "monkey",
               "text": "More! Both parts are more than a half.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -6825,8 +6858,7 @@
               "do": "say",
               "who": "monkey",
               "text": "One and five twelfths cups! I need a bigger blender.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -6834,9 +6866,15 @@
               "at": 0.3
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "mixed",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1.4
             }
           ]
@@ -6931,7 +6969,8 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 3
+              "height": 3,
+              "fit": "exact"
             },
             {
               "do": "show",
@@ -6996,8 +7035,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Then add the tops!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -7035,8 +7073,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Stays the same!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -7111,10 +7148,12 @@
               "target": [
                 "table",
                 "monkey",
-                "bear"
+                "bear",
+                "sign"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -7137,8 +7176,7 @@
               "do": "say",
               "who": "bear",
               "text": "Smoothie rush! I have three orders. Can you work them out?",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "hop",
@@ -7153,7 +7191,7 @@
             {
               "do": "say",
               "who": "robo",
-              "text": "Order one: one half cup of yoghurt and one quarter cup of berries. How much in all?",
+              "text": "Order one: one half cup of yogurt and one quarter cup of berries. How much in all?",
               "caption": true
             },
             {
@@ -7163,7 +7201,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "pop",
@@ -7173,7 +7212,7 @@
             {
               "do": "emphasize",
               "target": "order1",
-              "words": "1/2 cup yoghurt",
+              "words": "1/2 cup yogurt",
               "at": 1.2
             },
             {
@@ -7219,8 +7258,7 @@
               "do": "say",
               "who": "monkey",
               "text": "One half is two quarters. Two quarters plus one quarter is three quarters of a cup.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "pop",
@@ -7253,9 +7291,15 @@
               "at": 2.3
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "o15",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 3.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 3.6
             }
           ]
@@ -7267,8 +7311,7 @@
               "do": "say",
               "who": "bear",
               "text": "Three quarters. Perfect!",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "feel",
@@ -7387,8 +7430,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Six sixths. That's exactly one cup!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "pop",
@@ -7415,9 +7457,15 @@
               "at": 0.95
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "o29",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1.6
             }
           ]
@@ -7429,8 +7477,7 @@
               "do": "say",
               "who": "bear",
               "text": "Order three is about me. I walk five sixths of a kilometer on the beach.",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "hide",
@@ -7496,8 +7543,7 @@
               "do": "say",
               "who": "bear",
               "text": "I've walked one half of a kilometer so far. How far is left?",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             }
           ]
         },
@@ -7563,9 +7609,15 @@
               "at": 3
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "o37",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 3.4
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 3.4
             }
           ]
@@ -7577,8 +7629,7 @@
               "do": "say",
               "who": "bear",
               "text": "Only one third of a kilometer to go. Thank you!",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "feel",
@@ -7654,7 +7705,8 @@
                 "robo"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -7714,9 +7766,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans1",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -7772,9 +7830,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans2",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -7830,9 +7894,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans3",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -7888,9 +7958,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans4",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -7986,8 +8062,7 @@
               "do": "say",
               "who": "monkey",
               "text": "And here's a perfect five sixths cup smoothie for Bear!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hide",
@@ -7999,10 +8074,12 @@
               "target": [
                 "table",
                 "bear",
-                "monkey"
+                "monkey",
+                "sign"
               ],
               "framing": "medium",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact"
             },
             {
               "do": "hop",
@@ -8030,8 +8107,7 @@
               "do": "say",
               "who": "bear",
               "text": "Mmm. Delicious maths!",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "feel",
@@ -8071,7 +8147,8 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 3
+              "height": 3,
+              "fit": "exact"
             },
             {
               "do": "look",
@@ -8103,7 +8180,8 @@
               "do": "caption",
               "text": "with a grown-up",
               "style": "label",
-              "at": 1
+              "at": 1,
+              "pos": "top"
             }
           ]
         },

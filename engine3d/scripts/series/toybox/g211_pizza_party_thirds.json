@@ -92,7 +92,7 @@
       "species": "cat",
       "size": 1.05,
       "at": [
-       2,
+       1.75,
        0,
        1
       ],
@@ -109,9 +109,9 @@
       "species": "bear",
       "size": 0.9,
       "at": [
-       2.2,
+       2.6,
        0,
-       -0.9
+       -0.2
       ],
       "rotation": [
        0,
@@ -220,18 +220,18 @@
     "title": "1 PIZZA, 3 FRIENDS",
     "subtitle": "Cut it into thirds!",
     "titleColor": "orange",
-    "side": "left",
+    "side": "top",
     "badge": "GRADE 2",
     "stage": "classroom",
     "camera": {
      "position": [
-      -0.6,
-      1.6,
-      6.6
+      0,
+      1.4,
+      6.4
      ],
      "lookAt": [
-      -0.6,
-      1,
+      0,
+      1.55,
       0
      ],
      "fov": 38
@@ -244,30 +244,28 @@
       "color": "wood",
       "material": "matte",
       "at": [
-       2.2,
+       0.3,
        0,
        0
       ],
       "scale": [
-       2.4,
-       0.6,
+       2.2,
+       0.45,
        1.1
       ]
      },
      {
-      "id": "pizza",
-      "kind": "prop",
-      "model": "pizza",
-      "size": 1.9,
+      "id": "pie",
+      "kind": "fraction_circle",
+      "parts": 3,
+      "radius": 0.6,
+      "color": "orange",
+      "empty": "yellow",
+      "shaded": 1,
       "at": [
-       2.2,
-       0.6,
+       0.3,
+       0.45,
        0.1
-      ],
-      "rotation": [
-       20,
-       0,
-       0
       ]
      },
      {
@@ -275,9 +273,9 @@
       "kind": "character",
       "character": "robot",
       "at": [
-       0.75,
+       -1.95,
        0,
-       0.8
+       0.6
       ],
       "rotation": [
        0,
@@ -292,9 +290,9 @@
       "species": "cat",
       "size": 0.95,
       "at": [
-       3.55,
+       2.05,
        0,
-       0.8
+       0.7
       ],
       "rotation": [
        0,
@@ -309,15 +307,34 @@
       "species": "bear",
       "size": 1,
       "at": [
-       2.2,
+       2.75,
        0,
-       -1
+       -0.4
+      ],
+      "rotation": [
+       0,
+       -25,
+       0
       ],
       "feeling": "happy"
      }
     ]
    }
-  ]
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1.05
+   },
+   "cat": {
+    "voice": "squeaky",
+    "pitch": 1.1
+   },
+   "bear": {
+    "voice": "deep",
+    "pitch": 0.95
+   }
+  }
  },
  "stage": {
   "preset": "classroom"
@@ -348,20 +365,6 @@
     3.2,
     -6.42
    ]
-  },
-  {
-   "id": "board_rule",
-   "kind": "letter",
-   "text": "3 equal parts = thirds",
-   "color": "white",
-   "size": 0.3,
-   "depth": 0.04,
-   "at": [
-    0,
-    2.2,
-    -6.42
-   ],
-   "hidden": true
   },
   {
    "id": "counter",
@@ -445,78 +448,6 @@
    "hidden": true
   },
   {
-   "id": "f_pie",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    0,
-    0.8,
-    0
-   ],
-   "scale": [
-    1.7,
-    1.75,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_bar",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    0,
-    0.8,
-    0
-   ],
-   "scale": [
-    2.8,
-    1,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_two",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    0.4,
-    0.8,
-    0
-   ],
-   "scale": [
-    4,
-    1.6,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_three",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    0,
-    0.8,
-    0
-   ],
-   "scale": [
-    5,
-    2.3,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
    "id": "f_stk",
    "kind": "shape",
    "shape": "box",
@@ -541,103 +472,13 @@
    "color": "white",
    "material": "glass",
    "at": [
-    1.1,
-    0.8,
+    0.95,
+    0.55,
     0
    ],
    "scale": [
-    3.9,
-    1.75,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_piel",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    1.2,
-    0.8,
-    0
-   ],
-   "scale": [
-    4.3,
-    1.75,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_stack",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    0,
-    0.8,
-    0
-   ],
-   "scale": [
-    4.8,
-    2.7,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_same",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    -0.1,
-    0.8,
-    0
-   ],
-   "scale": [
-    4.4,
+    3.3,
     2,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_giant",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    1.2,
-    0.8,
-    0
-   ],
-   "scale": [
-    1.8,
-    1.7,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "f_q",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    0,
-    0.3,
-    0
-   ],
-   "scale": [
-    5,
-    1.8,
     0.3
    ],
    "hidden": true
@@ -1077,78 +918,6 @@
    "hidden": true
   },
   {
-   "id": "fq0",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    -2.45,
-    0.2,
-    0
-   ],
-   "scale": [
-    1.5,
-    1.7,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "fq1",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    -0.82,
-    0.2,
-    0
-   ],
-   "scale": [
-    1.5,
-    1.7,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "fq2",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    0.82,
-    0.2,
-    0
-   ],
-   "scale": [
-    1.5,
-    1.7,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
-   "id": "fq3",
-   "kind": "shape",
-   "shape": "box",
-   "color": "white",
-   "material": "glass",
-   "at": [
-    2.45,
-    0.2,
-    0
-   ],
-   "scale": [
-    1.5,
-    1.7,
-    0.3
-   ],
-   "hidden": true
-  },
-  {
    "id": "confetti",
    "kind": "confetti",
    "count": 160,
@@ -1288,9 +1057,10 @@
      "do": [
       {
        "do": "shot",
-       "target": "f_pie",
+       "target": "pz2",
        "framing": "medium",
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.3
       },
       {
        "do": "move",
@@ -1363,13 +1133,14 @@
       {
        "do": "shot",
        "target": [
-        "f_pie",
+        "pz2",
         "bear",
         "cat"
        ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.3
       }
      ]
     },
@@ -1400,10 +1171,11 @@
       },
       {
        "do": "shot",
-       "target": "f_pie",
+       "target": "pzc",
        "framing": "medium",
        "at": 1,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.3
       }
      ]
     },
@@ -1486,10 +1258,11 @@
       },
       {
        "do": "shot",
-       "target": "f_pie",
+       "target": "pz2",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.3
       },
       {
        "do": "caption",
@@ -1747,10 +1520,11 @@
       },
       {
        "do": "shot",
-       "target": "f_pie",
+       "target": "pzc",
        "framing": "medium",
        "at": 0.1,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.3
       }
      ]
     },
@@ -1937,10 +1711,11 @@
       },
       {
        "do": "shot",
-       "target": "f_pie",
+       "target": "pz3",
        "framing": "close",
        "at": 0.5,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.35
       }
      ]
     },
@@ -2184,11 +1959,6 @@
        "dur": 4
       },
       {
-       "do": "show",
-       "target": "board_rule",
-       "at": 0.4
-      },
-      {
        "do": "clip",
        "target": "robo",
        "at": 0.5,
@@ -2260,10 +2030,11 @@
       },
       {
        "do": "shot",
-       "target": "f_bar",
+       "target": "fb3",
        "framing": "medium",
        "at": 0.6,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.3
       }
      ]
     },
@@ -2359,10 +2130,11 @@
       },
       {
        "do": "shot",
-       "target": "f_piel",
+       "target": "pz3",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.3
       }
      ]
     },
@@ -2528,12 +2300,13 @@
       {
        "do": "shot",
        "target": [
-        "f_pie",
+        "pz3",
         "bear"
        ],
        "framing": "medium",
        "at": 0.3,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.3
       }
      ]
     },
@@ -2702,10 +2475,11 @@
       },
       {
        "do": "shot",
-       "target": "f_pie",
+       "target": "pz3",
        "framing": "medium",
        "at": 0.4,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.3
       }
      ]
     },
@@ -2755,10 +2529,11 @@
       },
       {
        "do": "shot",
-       "target": "f_bar",
+       "target": "fb3",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.3
       }
      ]
     }
@@ -2770,12 +2545,7 @@
    "beats": [
     {
      "dur": 0.6,
-     "do": [
-      {
-       "do": "hide",
-       "target": "board_rule"
-      }
-     ]
+     "do": []
     },
     {
      "dur": 0.6,
@@ -2802,10 +2572,15 @@
       },
       {
        "do": "shot",
-       "target": "f_two",
+       "target": [
+        "fbt",
+        "fbf"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.15,
+       "fit": "exact"
       }
      ]
     },
@@ -3128,10 +2903,18 @@
       },
       {
        "do": "shot",
-       "target": "f_three",
+       "target": [
+        "h2",
+        "h3",
+        "h4",
+        "c_half",
+        "c_thd",
+        "c_frth"
+       ],
        "framing": "medium",
        "at": 0.3,
-       "dur": 1.4
+       "dur": 1.4,
+       "pad": 0.2
       }
      ]
     },
@@ -3356,10 +3139,16 @@
       },
       {
        "do": "shot",
-       "target": "f_stack",
+       "target": [
+        "h2",
+        "h3",
+        "h4",
+        "f_stk"
+       ],
        "framing": "medium",
        "at": 0.4,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.3
       }
      ]
     },
@@ -3480,10 +3269,16 @@
       },
       {
        "do": "shot",
-       "target": "f_same",
+       "target": [
+        "tiny",
+        "giant",
+        "c_tiny",
+        "c_giant"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.2
       }
      ]
     },
@@ -3608,9 +3403,10 @@
       },
       {
        "do": "shot",
-       "target": "f_giant",
+       "target": "giant",
        "framing": "medium",
-       "dur": 1.4
+       "dur": 1.4,
+       "pad": 0.45
       }
      ]
     },
@@ -4026,10 +3822,31 @@
       },
       {
        "do": "shot",
-       "target": "f_q",
+       "target": [
+        "qa",
+        "qb",
+        "qc",
+        "qd",
+        "ql0",
+        "ql1",
+        "ql2",
+        "ql3"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.4
+       "dur": 1.4,
+       "pad": 0.45
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "at": 0.2,
+       "to": [
+        -4.4,
+        0,
+        0.3
+       ],
+       "dur": 1
       }
      ]
     },
@@ -4050,10 +3867,14 @@
       },
       {
        "do": "shot",
-       "target": "fq0",
+       "target": [
+        "qa",
+        "ql0"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.45
       }
      ]
     },
@@ -4103,10 +3924,14 @@
       },
       {
        "do": "shot",
-       "target": "fq1",
+       "target": [
+        "qb",
+        "ql1"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.4
       }
      ]
     },
@@ -4156,10 +3981,14 @@
       },
       {
        "do": "shot",
-       "target": "fq2",
+       "target": [
+        "qc",
+        "ql2"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.12
       }
      ]
     },
@@ -4216,10 +4045,14 @@
       },
       {
        "do": "shot",
-       "target": "fq3",
+       "target": [
+        "qd",
+        "ql3"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.12
       }
      ]
     },
@@ -4271,13 +4104,17 @@
       {
        "do": "shot",
        "target": [
-        "f_q",
+        "qa",
+        "qd",
+        "ql0",
+        "ql3",
         "robo",
         "cat"
        ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.45
       },
       {
        "do": "clip",
@@ -4341,10 +4178,11 @@
       },
       {
        "do": "shot",
-       "target": "f_pie",
+       "target": "pz3",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.3
       }
      ]
     },
@@ -4525,10 +4363,14 @@
       },
       {
        "do": "shot",
-       "target": "f_three",
+       "target": [
+        "h2",
+        "h3"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.2
       }
      ]
     },
@@ -4592,10 +4434,11 @@
       },
       {
        "do": "shot",
-       "target": "fq1",
+       "target": "qb",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.4
       }
      ]
     },
@@ -4673,10 +4516,14 @@
       },
       {
        "do": "shot",
-       "target": "f_same",
+       "target": [
+        "tiny",
+        "giant"
+       ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1
+       "dur": 1,
+       "pad": 0.2
       }
      ]
     },
@@ -4749,6 +4596,17 @@
        "framing": "medium",
        "at": 0.2,
        "dur": 1.5
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "at": 0,
+       "to": [
+        -3.55,
+        0,
+        0.7
+       ],
+       "dur": 1
       }
      ]
     },
@@ -4778,7 +4636,8 @@
        "text": "Grown-ups do the cutting",
        "style": "label",
        "at": 0.6,
-       "dur": 3
+       "dur": 3,
+       "pos": "top"
       }
      ]
     },

@@ -43,12 +43,12 @@
     "camera": {
      "position": [
       1.4,
-      1.85,
+      2.1,
       6.4
      ],
      "lookAt": [
       1.4,
-      1.45,
+      1.85,
       0
      ],
      "fov": 36
@@ -160,7 +160,7 @@
       "kind": "letter",
       "text": "?",
       "color": "orange",
-      "size": 0.75,
+      "size": 0.85,
       "at": [
        2.25,
        1.35,
@@ -188,7 +188,7 @@
    },
    {
     "name": "kite",
-    "title": "FIRST, NEXT, LAST",
+    "title": "FIRST TO LAST",
     "subtitle": "Turtle's windy kite day",
     "titleColor": "white",
     "side": "left",
@@ -276,12 +276,12 @@
     "stage": "forest",
     "camera": {
      "position": [
-      1.2,
+      1.5,
       1.3,
       5.4
      ],
      "lookAt": [
-      1.2,
+      1.5,
       1,
       0
      ],
@@ -294,7 +294,7 @@
       "model": "story_card",
       "size": 1.35,
       "at": [
-       2,
+       2.65,
        0.2,
        -0.3
       ]
@@ -306,7 +306,7 @@
       "color": "orange",
       "material": "toy",
       "at": [
-       1.85,
+       2.5,
        0.95,
        -0.05
       ],
@@ -324,7 +324,7 @@
       "color": "yellow",
       "material": "toy",
       "at": [
-       2.25,
+       2.9,
        0.75,
        -0.05
       ],
@@ -341,7 +341,7 @@
       "model": "magnifier",
       "size": 1.2,
       "at": [
-       2.05,
+       2.7,
        0.1,
        0.35
       ]
@@ -352,7 +352,7 @@
       "species": "cat",
       "size": 1.05,
       "at": [
-       3.6,
+       3.75,
        0,
        0.6
       ],
@@ -365,7 +365,21 @@
      }
     ]
    }
-  ]
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1.05
+   },
+   "cat": {
+    "voice": "squeaky",
+    "pitch": 1.1
+   },
+   "turtle": {
+    "voice": "deep",
+    "pitch": 0.95
+   }
+  }
  },
  "stage": {
   "preset": "forest"
@@ -581,9 +595,9 @@
    "species": "cat",
    "size": 0.9,
    "at": [
-    -5.3,
+    -5.75,
     0,
-    2.1
+    1.6
    ],
    "rotation": [
     0,
@@ -1092,22 +1106,6 @@
    "hidden": true
   },
   {
-   "id": "clue3",
-   "kind": "callout",
-   "text": "apple shared",
-   "point": [
-    4.9,
-    0.12,
-    -1
-   ],
-   "offset": [
-    0.4,
-    1.1,
-    0.6
-   ],
-   "hidden": true
-  },
-  {
    "id": "table",
    "kind": "prop",
    "model": "table",
@@ -1207,8 +1205,8 @@
    "id": "cup1",
    "kind": "text_card",
    "text": "Mix the batter.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     -4.6,
     0.3,
@@ -1220,8 +1218,8 @@
    "id": "cup2",
    "kind": "text_card",
    "text": "Pour it into cups.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     -3.3,
     0.6,
@@ -1233,8 +1231,8 @@
    "id": "cup3",
    "kind": "text_card",
    "text": "A grown-up bakes them.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     -2,
     0.9,
@@ -1246,8 +1244,8 @@
    "id": "cup4",
    "kind": "text_card",
    "text": "Add frosting when they are cool.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     -0.7,
     1.2,
@@ -1271,8 +1269,8 @@
    "id": "bath1",
    "kind": "text_card",
    "text": "Get Dog wet.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     -1.25,
     0,
@@ -1284,8 +1282,8 @@
    "id": "bath2",
    "kind": "text_card",
    "text": "Rub in the soap.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     -2.6,
     0,
@@ -1297,8 +1295,8 @@
    "id": "bath3",
    "kind": "text_card",
    "text": "Rinse off the bubbles.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     0.1,
     0,
@@ -1310,8 +1308,8 @@
    "id": "bath4",
    "kind": "text_card",
    "text": "Dry with a towel.",
-   "width": 1.2,
-   "size": 0.14,
+   "width": 1.25,
+   "size": 0.17,
    "at": [
     -3.95,
     0,
@@ -1345,24 +1343,6 @@
     0,
     -20,
     0
-   ],
-   "hidden": true
-  },
-  {
-   "id": "drops",
-   "kind": "weather",
-   "type": "rain",
-   "count": 60,
-   "area": [
-    1.4,
-    1
-   ],
-   "height": 1.5,
-   "speed": 0.6,
-   "at": [
-    4.7,
-    0,
-    1.4
    ],
    "hidden": true
   },
@@ -1486,6 +1466,118 @@
     1.8,
     1.4,
     0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr0",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr1",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr2",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr3",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr4",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr5",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr6",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dr7",
+   "kind": "shape",
+   "shape": "drop",
+   "color": "sky",
+   "material": "glossy",
+   "size": 0.13,
+   "at": [
+    4.7,
+    0.45,
+    1.4
    ],
    "hidden": true
   }
@@ -2187,12 +2279,12 @@
       {
        "do": "shot",
        "target": [
-        "f_story",
         "turtle",
         "house"
        ],
        "framing": "medium",
-       "dur": 1.6
+       "dur": 1.6,
+       "pad": 0.3
       },
       {
        "do": "caption",
@@ -2292,12 +2384,14 @@
       {
        "do": "shot",
        "target": [
-        "f_story",
-        "turtle"
+        "turtle",
+        "hill",
+        "house"
        ],
        "framing": "medium",
        "at": 0.4,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.1
       }
      ]
     },
@@ -2985,13 +3079,14 @@
       {
        "do": "shot",
        "target": [
-        "f_story",
         "turtle",
-        "squirrel"
+        "squirrel",
+        "kite"
        ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.45
       },
       {
        "do": "hide",
@@ -3487,6 +3582,41 @@
        "clip": "Yes"
       }
      ]
+    },
+    {
+     "dur": 5.6,
+     "do": [
+      {
+       "do": "say",
+       "who": "cat",
+       "caption": true,
+       "text": "First is the beginning. Next and then are the middle. Last is the end."
+      },
+      {
+       "do": "highlight",
+       "target": "step1",
+       "at": 0.2,
+       "dur": 1.6
+      },
+      {
+       "do": "highlight",
+       "target": "step2",
+       "at": 1.9,
+       "dur": 1.8
+      },
+      {
+       "do": "highlight",
+       "target": "step3",
+       "at": 1.9,
+       "dur": 1.8
+      },
+      {
+       "do": "highlight",
+       "target": "step4",
+       "at": 3.9,
+       "dur": 1.6
+      }
+     ]
     }
    ]
   },
@@ -3869,9 +3999,9 @@
        "do": "move",
        "target": "cat",
        "to": [
-        -5.3,
+        -5.75,
         0,
-        2.1
+        1.6
        ],
        "dur": 0
       }
@@ -4451,9 +4581,9 @@
        "at": 0.2,
        "points": [
         [
-         -5.3,
+         -5.75,
          0,
-         2.1
+         1.6
         ],
         [
          0,
@@ -4887,9 +5017,9 @@
          2.2
         ],
         [
-         -5.3,
+         -5.75,
          0,
-         2.1
+         1.6
         ]
        ],
        "dur": 1.2,
@@ -4924,12 +5054,20 @@
       {
        "do": "shot",
        "target": [
-        "f_stairs",
+        "step1",
+        "step2",
+        "step3",
+        "step4",
+        "cup1",
+        "cup2",
+        "cup3",
+        "cup4",
         "cupcake"
        ],
        "framing": "medium",
        "at": 0.4,
-       "dur": 1.4
+       "dur": 1.4,
+       "pad": 0.06
       }
      ]
     },
@@ -5009,6 +5147,23 @@
      ]
     },
     {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "caption": true,
+       "text": "Frosting on a hot cupcake would melt. The order matters!"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "cupcake"
+      }
+     ]
+    },
+    {
      "dur": 1.06,
      "do": [
       {
@@ -5074,12 +5229,17 @@
       {
        "do": "shot",
        "target": [
-        "f_stairs",
-        "f_row"
+        "step1",
+        "step4",
+        "bath1",
+        "bath2",
+        "bath3",
+        "bath4"
        ],
        "framing": "medium",
        "at": 0.3,
-       "dur": 1.4
+       "dur": 1.4,
+       "pad": 0.06
       }
      ]
     },
@@ -5274,7 +5434,7 @@
      ]
     },
     {
-     "dur": 1.3,
+     "dur": 2.8,
      "do": [
       {
        "do": "say",
@@ -5306,11 +5466,6 @@
        "dur": 0.8
       },
       {
-       "do": "show",
-       "target": "drops",
-       "at": 1
-      },
-      {
        "do": "wiggle",
        "target": "dog",
        "at": 1.2,
@@ -5325,7 +5480,272 @@
        ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.35
+      },
+      {
+       "do": "move",
+       "target": "dr0",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr0",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr0",
+       "to": [
+        5.51,
+        0.76,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr0",
+       "at": 2.55
+      },
+      {
+       "do": "move",
+       "target": "dr1",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr1",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr1",
+       "to": [
+        5.1,
+        1.09,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr1",
+       "at": 2.55
+      },
+      {
+       "do": "move",
+       "target": "dr2",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr2",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr2",
+       "to": [
+        4.45,
+        1.13,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr2",
+       "at": 2.55
+      },
+      {
+       "do": "move",
+       "target": "dr3",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr3",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr3",
+       "to": [
+        3.95,
+        0.86,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr3",
+       "at": 2.55
+      },
+      {
+       "do": "move",
+       "target": "dr4",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr4",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr4",
+       "to": [
+        3.89,
+        0.44,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr4",
+       "at": 2.55
+      },
+      {
+       "do": "move",
+       "target": "dr5",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr5",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr5",
+       "to": [
+        4.3,
+        0.11,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr5",
+       "at": 2.55
+      },
+      {
+       "do": "move",
+       "target": "dr6",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr6",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr6",
+       "to": [
+        4.95,
+        0.07,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr6",
+       "at": 2.55
+      },
+      {
+       "do": "move",
+       "target": "dr7",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1.25
+      },
+      {
+       "do": "pop",
+       "target": "dr7",
+       "at": 1.27
+      },
+      {
+       "do": "move",
+       "target": "dr7",
+       "to": [
+        5.45,
+        0.34,
+        1.65
+       ],
+       "at": 1.3,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr7",
+       "at": 2.55
       }
      ]
     },
@@ -5357,9 +5777,275 @@
        "dur": 2
       },
       {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 0.9,
+       "deg": 20,
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "dr0",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr0",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr0",
+       "to": [
+        5.51,
+        0.76,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
        "do": "hide",
-       "target": "drops",
-       "at": 2.6
+       "target": "dr0",
+       "at": 2.3
+      },
+      {
+       "do": "move",
+       "target": "dr1",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr1",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr1",
+       "to": [
+        5.1,
+        1.09,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr1",
+       "at": 2.3
+      },
+      {
+       "do": "move",
+       "target": "dr2",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr2",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr2",
+       "to": [
+        4.45,
+        1.13,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr2",
+       "at": 2.3
+      },
+      {
+       "do": "move",
+       "target": "dr3",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr3",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr3",
+       "to": [
+        3.95,
+        0.86,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr3",
+       "at": 2.3
+      },
+      {
+       "do": "move",
+       "target": "dr4",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr4",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr4",
+       "to": [
+        3.89,
+        0.44,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr4",
+       "at": 2.3
+      },
+      {
+       "do": "move",
+       "target": "dr5",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr5",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr5",
+       "to": [
+        4.3,
+        0.11,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr5",
+       "at": 2.3
+      },
+      {
+       "do": "move",
+       "target": "dr6",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr6",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr6",
+       "to": [
+        4.95,
+        0.07,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr6",
+       "at": 2.3
+      },
+      {
+       "do": "move",
+       "target": "dr7",
+       "to": [
+        4.7,
+        0.45,
+        1.4
+       ],
+       "dur": 0,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "dr7",
+       "at": 1.02
+      },
+      {
+       "do": "move",
+       "target": "dr7",
+       "to": [
+        5.45,
+        0.34,
+        1.65
+       ],
+       "at": 1.05,
+       "dur": 0.7,
+       "ease": "cubicOut"
+      },
+      {
+       "do": "hide",
+       "target": "dr7",
+       "at": 2.3
       }
      ]
     }
@@ -5480,7 +6166,7 @@
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -5522,11 +6208,24 @@
        "target": "card3",
        "at": 0.2,
        "dur": 2
+      },
+      {
+       "do": "shot",
+       "framing": "medium",
+       "at": 0.1,
+       "dur": 1.2,
+       "target": [
+        "card3",
+        "card4",
+        "step3",
+        "step4"
+       ],
+       "pad": 0.15
       }
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -5562,11 +6261,22 @@
        "text": "Why did Turtle ask Squirrel for help?",
        "caption": true,
        "who": "robo"
+      },
+      {
+       "do": "shot",
+       "framing": "medium",
+       "at": 0.1,
+       "dur": 1.2,
+       "target": [
+        "card4",
+        "step4"
+       ],
+       "pad": 0.5
       }
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -5608,11 +6318,24 @@
        "target": "step3",
        "at": 0.2,
        "dur": 1.5
+      },
+      {
+       "do": "shot",
+       "framing": "medium",
+       "at": 0.1,
+       "dur": 1.2,
+       "target": [
+        "card2",
+        "card3",
+        "step2",
+        "step3"
+       ],
+       "pad": 0.15
       }
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -5655,11 +6378,26 @@
        "target": "word2",
        "at": 0.4,
        "dur": 2
+      },
+      {
+       "do": "shot",
+       "framing": "medium",
+       "at": 0.1,
+       "dur": 1.2,
+       "target": [
+        "step1",
+        "step2",
+        "step3",
+        "step4",
+        "card1",
+        "card4"
+       ],
+       "pad": 0.05
       }
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -5767,6 +6505,54 @@
        "style": "label",
        "at": 0.5,
        "dur": 3.5
+      },
+      {
+       "do": "path",
+       "target": "turtle",
+       "at": 0.2,
+       "points": [
+        [
+         4.3,
+         0,
+         -1.3
+        ],
+        [
+         2.6,
+         0,
+         1.2
+        ],
+        [
+         0.6,
+         0,
+         1.6
+        ]
+       ],
+       "dur": 3,
+       "face": true
+      },
+      {
+       "do": "path",
+       "target": "squirrel",
+       "at": 0.5,
+       "points": [
+        [
+         5.15,
+         0,
+         -1.25
+        ],
+        [
+         3,
+         0,
+         1.4
+        ],
+        [
+         1.45,
+         0,
+         1.5
+        ]
+       ],
+       "dur": 2.6,
+       "face": true
       }
      ]
     },
@@ -5799,28 +6585,11 @@
        "do": "move",
        "target": "kite",
        "to": [
-        4.75,
+        0.95,
         0.35,
-        0.4
+        1.7
        ],
        "dur": 0
-      },
-      {
-       "do": "path",
-       "target": "turtle",
-       "points": [
-        [
-         4.3,
-         0,
-         -1.3
-        ],
-        [
-         4.4,
-         0,
-         0.3
-        ]
-       ],
-       "dur": 1
       },
       {
        "do": "burst",
@@ -5848,7 +6617,8 @@
       {
        "do": "shot",
        "target": [
-        "f_stairs",
+        "step1",
+        "step4",
         "robo",
         "cat",
         "turtle",
@@ -5857,7 +6627,28 @@
        ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "pad": 0.05
+      },
+      {
+       "do": "turn",
+       "target": "turtle",
+       "to": [
+        0,
+        -15,
+        0
+       ],
+       "dur": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "squirrel",
+       "to": [
+        0,
+        -20,
+        0
+       ],
+       "dur": 0.4
       }
      ]
     },
@@ -5868,9 +6659,9 @@
        "do": "move",
        "target": "kite",
        "to": [
-        4.95,
-        1,
-        0.2
+        1.15,
+        1.05,
+        1.5
        ],
        "dur": 2,
        "ease": "cubicOut"

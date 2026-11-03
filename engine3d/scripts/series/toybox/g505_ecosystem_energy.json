@@ -10,7 +10,7 @@
     "voice": "soft",
     "voiceSpeed": 1,
     "music": "calm",
-    "musicGain": 0.16,
+    "musicGain": 0.2,
     "skills": [
       "ecosystems_5"
     ],
@@ -93,7 +93,7 @@
             "kind": "critter",
             "species": "fox",
             "at": [
-              2.3,
+              2,
               0,
               0.3
             ],
@@ -143,7 +143,7 @@
               0.3
             ],
             "to": [
-              1.8,
+              1.55,
               0.5,
               0.3
             ],
@@ -156,9 +156,9 @@
             "kind": "critter",
             "species": "monkey",
             "at": [
-              3.6,
+              3,
               0,
-              1.2
+              0.9
             ],
             "size": 0.8,
             "rotation": [
@@ -232,7 +232,7 @@
             "kind": "critter",
             "species": "frog",
             "at": [
-              3,
+              2.6,
               0,
               1
             ],
@@ -260,12 +260,12 @@
             "id": "q2",
             "kind": "pointer",
             "from": [
-              2.8,
+              2.5,
               0.5,
               1
             ],
             "to": [
-              2.9,
+              2.85,
               1.4,
               -0.3
             ],
@@ -397,7 +397,34 @@
           }
         ]
       }
-    ]
+    ],
+    "cast": {
+      "monkey": {
+        "voice": "squeaky",
+        "pitch": 1.15,
+        "speed": 1.05
+      },
+      "robo": {
+        "voice": "soft",
+        "pitch": 1.05,
+        "speed": 1
+      },
+      "s_bear": {
+        "voice": "deep",
+        "pitch": 0.9,
+        "speed": 0.95
+      },
+      "w_bear": {
+        "voice": "deep",
+        "pitch": 0.9,
+        "speed": 0.95
+      },
+      "bear": {
+        "voice": "deep",
+        "pitch": 0.9,
+        "speed": 0.95
+      }
+    }
   },
   "stage": {
     "preset": "forest"
@@ -421,9 +448,9 @@
       "kind": "character",
       "character": "robot",
       "at": [
-        -6.3,
+        -4.8,
         0,
-        1.8
+        1.6
       ],
       "rotation": [
         0,
@@ -483,7 +510,7 @@
       "material": "matte",
       "at": [
         4.4,
-        2.6,
+        2.75,
         -1.07
       ],
       "rotation": [
@@ -492,9 +519,9 @@
         0
       ],
       "scale": [
-        4.7,
+        5.1,
         1,
-        2.9
+        3.5
       ]
     },
     {
@@ -505,7 +532,7 @@
       "material": "matte",
       "at": [
         4.4,
-        2.6,
+        2.75,
         -1.02
       ],
       "rotation": [
@@ -514,9 +541,9 @@
         0
       ],
       "scale": [
-        4.4,
+        4.8,
         1,
-        2.6
+        3.2
       ]
     },
     {
@@ -748,11 +775,11 @@
       "text": "sunlight + water + carbon dioxide → sugar (food) + oxygen",
       "at": [
         4.4,
-        2.9,
+        3.12,
         -1
       ],
-      "width": 4.2,
-      "size": 0.24
+      "width": 4.6,
+      "size": 0.28
     },
     {
       "hidden": true,
@@ -762,7 +789,7 @@
       "at": [
         4.4,
         2.15,
-        -1
+        -0.9
       ],
       "size": 0.26,
       "color": "green",
@@ -776,7 +803,7 @@
       "at": [
         4.4,
         1.55,
-        -1
+        -0.9
       ],
       "size": 0.24,
       "color": "red",
@@ -826,7 +853,7 @@
       "at": [
         4.4,
         1.55,
-        -1
+        -0.9
       ],
       "size": 0.15,
       "color": "green",
@@ -1373,11 +1400,11 @@
       "text": "The arrow means \"gives energy to\". It points from the eaten to the eater.",
       "at": [
         4.4,
-        2.5,
+        2.62,
         -1
       ],
-      "width": 4.2,
-      "size": 0.25
+      "width": 4.6,
+      "size": 0.3
     },
     {
       "hidden": true,
@@ -1389,7 +1416,7 @@
         0.05,
         1.55
       ],
-      "size": 0.15,
+      "size": 0.12,
       "color": "green",
       "depth": 0.04
     },
@@ -1397,13 +1424,13 @@
       "hidden": true,
       "id": "l1",
       "kind": "letter",
-      "text": "first consumer",
+      "text": "1st consumer",
       "at": [
-        -1.6,
+        -1.75,
         0.05,
         1.55
       ],
-      "size": 0.15,
+      "size": 0.12,
       "color": "orange",
       "depth": 0.04
     },
@@ -1411,13 +1438,13 @@
       "hidden": true,
       "id": "l2",
       "kind": "letter",
-      "text": "second consumer",
+      "text": "2nd consumer",
       "at": [
-        0.4,
+        0.55,
         0.05,
         1.55
       ],
-      "size": 0.15,
+      "size": 0.12,
       "color": "red",
       "depth": 0.04
     },
@@ -1626,7 +1653,7 @@
         0.05,
         1.55
       ],
-      "size": 0.14,
+      "size": 0.12,
       "color": "green",
       "depth": 0.04
     },
@@ -1634,13 +1661,13 @@
       "hidden": true,
       "id": "m2",
       "kind": "letter",
-      "text": "first consumer",
+      "text": "1st consumer",
       "at": [
         -2.6,
         0.05,
         1.55
       ],
-      "size": 0.14,
+      "size": 0.12,
       "color": "orange",
       "depth": 0.04
     },
@@ -1648,13 +1675,13 @@
       "hidden": true,
       "id": "m3",
       "kind": "letter",
-      "text": "second consumer",
+      "text": "2nd consumer",
       "at": [
         -0.8,
         0.05,
         1.55
       ],
-      "size": 0.14,
+      "size": 0.12,
       "color": "red",
       "depth": 0.04
     },
@@ -1662,13 +1689,13 @@
       "hidden": true,
       "id": "m4",
       "kind": "letter",
-      "text": "third consumer",
+      "text": "3rd consumer",
       "at": [
         1,
         0.05,
         1.55
       ],
-      "size": 0.14,
+      "size": 0.12,
       "color": "purple",
       "depth": 0.04
     },
@@ -1828,11 +1855,11 @@
       "text": "Decomposers break down dead leaves and living things into nutrients in the soil.",
       "at": [
         4.4,
-        2.5,
+        2.62,
         -1
       ],
-      "width": 4.2,
-      "size": 0.24
+      "width": 4.6,
+      "size": 0.3
     },
     {
       "hidden": true,
@@ -1841,11 +1868,11 @@
       "text": "Matter goes round and round. Energy does not: plants need new sunlight every day.",
       "at": [
         4.4,
-        2.5,
+        2.62,
         -1
       ],
-      "width": 4.2,
-      "size": 0.24,
+      "width": 4.6,
+      "size": 0.3,
       "color": "purple"
     },
     {
@@ -1855,11 +1882,11 @@
       "text": "Fun fact: earthworms have no lungs. They breathe through their skin!",
       "at": [
         4.4,
-        2.5,
+        2.62,
         -1
       ],
-      "width": 4.2,
-      "size": 0.24,
+      "width": 4.6,
+      "size": 0.3,
       "color": "teal"
     },
     {
@@ -2631,11 +2658,11 @@
       "text": "What if the grasshoppers disappeared?",
       "at": [
         4.4,
-        2.9,
+        3.04,
         -1
       ],
-      "width": 4.2,
-      "size": 0.26
+      "width": 4.6,
+      "size": 0.3
     },
     {
       "hidden": true,
@@ -2644,11 +2671,11 @@
       "text": "Frogs lose food. Hawks may eat more mice. Grass may grow taller.",
       "at": [
         4.4,
-        1.6,
+        1.4,
         -1
       ],
-      "width": 4.2,
-      "size": 0.24,
+      "width": 4.6,
+      "size": 0.28,
       "color": "green"
     },
     {
@@ -2711,7 +2738,7 @@
       "kind": "letter",
       "text": "grass: 1,000",
       "at": [
-        1.15,
+        1.75,
         0.18,
         1.6600000000000001
       ],
@@ -2725,7 +2752,7 @@
       "kind": "letter",
       "text": "bunnies: 100",
       "at": [
-        0.34999999999999987,
+        0.9499999999999998,
         0.68,
         1.5
       ],
@@ -2739,7 +2766,7 @@
       "kind": "letter",
       "text": "foxes: 10",
       "at": [
-        -0.25,
+        0.35,
         1.18,
         1.4
       ],
@@ -2754,11 +2781,11 @@
       "text": "About one tenth of the energy passes up each step. The rest is used to live and grow, or lost as heat.",
       "at": [
         4.4,
-        2.45,
+        2.34,
         -1
       ],
-      "width": 4.2,
-      "size": 0.22
+      "width": 4.6,
+      "size": 0.28
     },
     {
       "hidden": true,
@@ -2767,11 +2794,11 @@
       "text": "Fun fact: plants catch only a small part of the sunlight, yet it feeds almost every food chain on land.",
       "at": [
         4.4,
-        2.45,
+        2.34,
         -1
       ],
-      "width": 4.2,
-      "size": 0.22,
+      "width": 4.6,
+      "size": 0.28,
       "color": "teal"
     },
     {
@@ -3135,10 +3162,10 @@
       "text": "1. Where does almost all the energy in a food chain come from?",
       "at": [
         4.4,
-        2.75,
+        3.25,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25
     },
     {
@@ -3148,10 +3175,10 @@
       "text": "The Sun.",
       "at": [
         4.4,
-        1.5,
+        1.4,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25,
       "color": "green"
     },
@@ -3162,10 +3189,10 @@
       "text": "2. In Sun → grass → bunny → fox, which way do the arrows point?",
       "at": [
         4.4,
-        2.75,
+        3.25,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25
     },
     {
@@ -3175,10 +3202,10 @@
       "text": "From the eaten to the eater: the way energy flows.",
       "at": [
         4.4,
-        1.5,
+        1.4,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25,
       "color": "green"
     },
@@ -3189,10 +3216,10 @@
       "text": "3. Is a bear a herbivore, carnivore or omnivore?",
       "at": [
         4.4,
-        2.75,
+        3.25,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25
     },
     {
@@ -3202,10 +3229,10 @@
       "text": "Omnivore: plants and animals.",
       "at": [
         4.4,
-        1.5,
+        1.4,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25,
       "color": "green"
     },
@@ -3216,10 +3243,10 @@
       "text": "4. Why are there fewer foxes than bunnies?",
       "at": [
         4.4,
-        2.75,
+        3.25,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25
     },
     {
@@ -3229,10 +3256,10 @@
       "text": "Only about a tenth of the energy passes up each step.",
       "at": [
         4.4,
-        1.5,
+        1.4,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.25,
       "color": "green"
     },
@@ -3246,7 +3273,7 @@
         1.45,
         -1
       ],
-      "width": 4.2,
+      "width": 4.6,
       "size": 0.24
     },
     {
@@ -3259,8 +3286,8 @@
         1.6,
         -1
       ],
-      "width": 4.2,
-      "size": 0.22,
+      "width": 4.6,
+      "size": 0.28,
       "color": "red"
     },
     {
@@ -3296,7 +3323,9 @@
                 "sun"
               ],
               "framing": "medium",
-              "dur": 0
+              "dur": 0,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -3325,8 +3354,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Mmm, a banana! Where does a banana's energy come from?",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -3348,8 +3376,7 @@
               "do": "say",
               "who": "monkey",
               "text": "The banana plant! And the plant got it from... the soil?",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "point",
@@ -3448,7 +3475,9 @@
                 "monkey"
               ],
               "framing": "wide",
-              "dur": 3.2
+              "dur": 3.2,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "hide",
@@ -3532,7 +3561,9 @@
                 "sun"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -3642,7 +3673,9 @@
                 "bplant"
               ],
               "framing": "close",
-              "dur": 1.4
+              "dur": 1.4,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -3680,8 +3713,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Sunlight, water and carbon dioxide!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -3706,7 +3738,9 @@
                 "sboard"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "pop",
@@ -3727,8 +3761,7 @@
               "do": "say",
               "who": "monkey",
               "text": "So plants eat soil, right? That's why they grow in it!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "pop",
@@ -3762,9 +3795,15 @@
               "caption": true
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "soil_wrong",
-              "result": "incorrect",
+              "color": "red",
+              "dur": 2,
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
               "at": 0.6
             }
           ]
@@ -3776,8 +3815,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Plants are food factories! Powered by the Sun.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "feel",
@@ -3859,7 +3897,9 @@
                 "sboard"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -3951,12 +3991,16 @@
               "do": "shot",
               "target": [
                 "ring0",
+                "ring1",
                 "ring2",
-                "robo"
+                "rt0",
+                "rt2"
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 45
+              "height": 30,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -3967,6 +4011,28 @@
               "do": "look",
               "target": "monkey",
               "at": "ring1"
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                -5.4,
+                0,
+                -0.2
+              ],
+              "dur": 1,
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "monkey",
+              "to": [
+                4.5,
+                0,
+                1
+              ],
+              "dur": 1,
+              "at": 0
             }
           ]
         },
@@ -4011,6 +4077,21 @@
               "text": "herbivore",
               "style": "label",
               "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "ring0",
+                "ring1",
+                "rt0",
+                "rt1"
+              ],
+              "framing": "medium",
+              "fit": "exact",
+              "pad": 0.06,
+              "dur": 1.2,
+              "at": 0,
+              "height": 30
             }
           ]
         },
@@ -4049,6 +4130,21 @@
               "text": "carnivore",
               "style": "label",
               "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "ring0",
+                "ring1",
+                "rt0",
+                "rt1"
+              ],
+              "framing": "medium",
+              "fit": "exact",
+              "pad": 0.06,
+              "dur": 1.2,
+              "at": 0,
+              "height": 30
             }
           ]
         },
@@ -4085,8 +4181,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Carnivore! Hawks eat mice, frogs and bunnies.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "highlight",
@@ -4115,6 +4210,21 @@
               "text": "omnivore",
               "style": "label",
               "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "ring1",
+                "ring2",
+                "rt1",
+                "rt2"
+              ],
+              "framing": "medium",
+              "fit": "exact",
+              "pad": 0.06,
+              "dur": 1.2,
+              "at": 0,
+              "height": 30
             }
           ]
         },
@@ -4151,8 +4261,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Plants and animals: omnivore! And me too. I eat fruit, leaves and insects.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "highlight",
@@ -4164,6 +4273,21 @@
               "do": "hop",
               "target": "monkey",
               "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "ring0",
+                "ring2",
+                "rt0",
+                "rt2"
+              ],
+              "framing": "medium",
+              "fit": "exact",
+              "pad": 0.06,
+              "dur": 1.2,
+              "at": 0,
+              "height": 30
             }
           ]
         },
@@ -4174,8 +4298,7 @@
               "do": "say",
               "who": "s_bear",
               "text": "And I eat berries, acorns and insects. I'm an omnivore too!",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "show",
@@ -4190,11 +4313,16 @@
             {
               "do": "shot",
               "target": [
-                "ring2"
+                "ring1",
+                "ring2",
+                "rt1",
+                "rt2"
               ],
-              "framing": "close",
+              "framing": "medium",
               "dur": 1.2,
-              "height": 30
+              "height": 30,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -4326,7 +4454,9 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 12
+              "height": 12,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -4337,6 +4467,28 @@
               "do": "look",
               "target": "monkey",
               "at": "c_bunny"
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                -4.8,
+                0,
+                1.6
+              ],
+              "dur": 1,
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "monkey",
+              "to": [
+                3.4,
+                0,
+                2.5
+              ],
+              "dur": 1,
+              "at": 0
             }
           ]
         },
@@ -4376,8 +4528,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Let me draw the arrows! The fox points at what it eats.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "draw",
@@ -4532,7 +4683,9 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 10
+              "height": 10,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -4565,8 +4718,7 @@
               "do": "say",
               "who": "monkey",
               "text": "Now the dots flow all the way! Sun to grass to bunny to fox.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -4608,8 +4760,7 @@
               "do": "say",
               "who": "monkey",
               "text": "So every food chain starts with the Sun, then a producer.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "nod",
@@ -4761,7 +4912,9 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 12
+              "height": 12,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -4926,7 +5079,9 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 14
+              "height": 14,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -5027,6 +5182,19 @@
               "do": "pop",
               "target": "decomp",
               "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sboard",
+                "dplant",
+                "mush1"
+              ],
+              "framing": "medium",
+              "fit": "exact",
+              "pad": 0.06,
+              "dur": 1.2,
+              "at": 0
             }
           ]
         },
@@ -5061,8 +5229,7 @@
               "do": "say",
               "who": "monkey",
               "text": "So decomposers are nature's recyclers!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -5149,8 +5316,7 @@
               "do": "say",
               "who": "monkey",
               "text": "In damp, shady places, like under logs and leaves!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "point",
@@ -5392,9 +5558,11 @@
                 "w_hawk",
                 "w_sun"
               ],
-              "framing": "wide",
+              "framing": "medium",
               "dur": 1.4,
-              "height": 55
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -5593,15 +5761,27 @@
               "at": 0.4
             },
             {
-              "do": "orbit",
-              "around": [
-                -1,
-                0.2,
-                0.2
+              "do": "shot",
+              "target": [
+                "w_grass",
+                "w_acorn",
+                "w_berry",
+                "w_hopper",
+                "w_bunny",
+                "w_mouse",
+                "w_squirrel",
+                "w_frog",
+                "w_fox",
+                "w_bear",
+                "w_hawk"
               ],
-              "degrees": 50,
-              "dur": 6,
-              "height": 6.5
+              "framing": "medium",
+              "dur": 5,
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06,
+              "yaw": 25,
+              "at": 0
             }
           ]
         },
@@ -5612,8 +5792,7 @@
               "do": "say",
               "who": "w_bear",
               "text": "Look! I'm in lots of chains: berries, acorns and insects all give me energy.",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "hop",
@@ -5669,9 +5848,11 @@
                 "w_bear",
                 "w_hawk"
               ],
-              "framing": "wide",
+              "framing": "medium",
               "dur": 1.2,
-              "height": 55
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -5689,6 +5870,17 @@
               "target": "w_hopper",
               "dur": 2,
               "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sboard"
+              ],
+              "framing": "medium",
+              "fit": "exact",
+              "pad": 0.06,
+              "dur": 1.2,
+              "at": 0
             }
           ]
         },
@@ -5730,6 +5922,28 @@
               "sound": "whoosh",
               "volume": 0.3,
               "at": 0.1
+            },
+            {
+              "do": "shot",
+              "target": [
+                "w_grass",
+                "w_acorn",
+                "w_berry",
+                "w_hopper",
+                "w_bunny",
+                "w_mouse",
+                "w_squirrel",
+                "w_frog",
+                "w_fox",
+                "w_bear",
+                "w_hawk"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06,
+              "at": 0
             }
           ]
         },
@@ -5740,8 +5954,7 @@
               "do": "say",
               "who": "monkey",
               "text": "The frog loses its food! There might be fewer frogs.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "feel",
@@ -5787,6 +6000,17 @@
               "do": "pop",
               "target": "weba",
               "at": 3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sboard"
+              ],
+              "framing": "medium",
+              "fit": "exact",
+              "pad": 0.06,
+              "dur": 1.2,
+              "at": 0
             }
           ]
         },
@@ -5800,15 +6024,26 @@
               "caption": true
             },
             {
-              "do": "orbit",
-              "around": [
-                -1,
-                0.2,
-                0.2
+              "do": "shot",
+              "target": [
+                "w_grass",
+                "w_acorn",
+                "w_berry",
+                "w_hopper",
+                "w_bunny",
+                "w_mouse",
+                "w_squirrel",
+                "w_frog",
+                "w_fox",
+                "w_bear",
+                "w_hawk"
               ],
-              "degrees": -40,
-              "dur": 5,
-              "height": 6.5
+              "framing": "medium",
+              "dur": 2,
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06,
+              "at": 0
             }
           ]
         },
@@ -6126,7 +6361,9 @@
                 "sboard"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -6547,7 +6784,9 @@
                 "monkey"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -6568,8 +6807,7 @@
               "do": "say",
               "who": "monkey",
               "text": "About one tenth: two hundred!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -6585,8 +6823,7 @@
               "do": "say",
               "who": "monkey",
               "text": "That's why there's more grass than bunnies, and more bunnies than foxes!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -6602,7 +6839,9 @@
                 "monkey"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -6764,7 +7003,9 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 10
+              "height": 10,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -6807,8 +7048,7 @@
               "do": "say",
               "who": "monkey",
               "text": "The Sun!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -6846,8 +7086,7 @@
               "do": "say",
               "who": "monkey",
               "text": "To the eater!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "hop",
@@ -7215,9 +7454,11 @@
                 "w_hawk",
                 "w_mush"
               ],
-              "framing": "wide",
+              "framing": "medium",
               "dur": 1.2,
-              "height": 55
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -7228,6 +7469,17 @@
               "do": "look",
               "target": "monkey",
               "at": "w_hawk"
+            },
+            {
+              "do": "move",
+              "target": "monkey",
+              "to": [
+                4.9,
+                0,
+                2.6
+              ],
+              "dur": 1,
+              "at": 0
             }
           ]
         },
@@ -7272,7 +7524,9 @@
               ],
               "framing": "close",
               "dur": 1.2,
-              "height": 40
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -7293,8 +7547,7 @@
               "do": "say",
               "who": "monkey",
               "text": "It's backwards! The mouse gives energy to the hawk.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "mark",
@@ -7345,9 +7598,11 @@
                 "w_bear",
                 "w_hawk"
               ],
-              "framing": "wide",
+              "framing": "medium",
               "dur": 1.2,
-              "height": 55
+              "height": 40,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -7368,8 +7623,7 @@
               "do": "say",
               "who": "monkey",
               "text": "The Sun! Producers need sunlight.",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
               "do": "show",
@@ -7426,7 +7680,9 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 25
+              "height": 25,
+              "fit": "exact",
+              "pad": 0.06
             }
           ]
         },
@@ -7447,13 +7703,18 @@
               "do": "say",
               "who": "monkey",
               "text": "A mushroom can't make food from sunlight. It's a decomposer!",
-              "caption": true,
-              "voice": "squeaky"
+              "caption": true
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "mush_prod",
-              "result": "incorrect",
+              "color": "red",
+              "dur": 2,
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
               "at": 0.2
             },
             {
@@ -7467,9 +7728,15 @@
               "at": 1.8
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "mush_dec",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 2.6
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 2.6
             }
           ]
@@ -7736,7 +8003,9 @@
                 "sboard"
               ],
               "framing": "medium",
-              "dur": 1.2
+              "dur": 1.2,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",
@@ -7796,9 +8065,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans1",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -7854,9 +8129,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans2",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -7912,9 +8193,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans3",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -7970,9 +8257,15 @@
               "at": 0.2
             },
             {
-              "do": "mark",
+              "do": "highlight",
               "target": "ans4",
-              "result": "correct",
+              "color": "green",
+              "dur": 2,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
               "at": 1
             }
           ]
@@ -8051,8 +8344,7 @@
               "do": "say",
               "who": "bear",
               "text": "Everyone in the forest is connected!",
-              "caption": true,
-              "voice": "deep"
+              "caption": true
             },
             {
               "do": "hop",
@@ -8092,7 +8384,9 @@
               ],
               "framing": "medium",
               "dur": 1.2,
-              "height": 4
+              "height": 4,
+              "fit": "exact",
+              "pad": 0.06
             },
             {
               "do": "look",

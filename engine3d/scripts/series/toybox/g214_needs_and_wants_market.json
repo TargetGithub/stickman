@@ -43,12 +43,12 @@
     "camera": {
      "position": [
       0,
-      1.25,
+      1.55,
       6
      ],
      "lookAt": [
       0,
-      0.75,
+      0.85,
       0
      ],
      "fov": 36
@@ -96,7 +96,7 @@
       "at": [
        -1.15,
        0.04,
-       0.2
+       -0.25
       ]
      },
      {
@@ -107,7 +107,7 @@
       "at": [
        1.1,
        0.04,
-       0.2
+       -0.15
       ]
      },
      {
@@ -139,7 +139,7 @@
       "kind": "character",
       "character": "robot",
       "at": [
-       -2.45,
+       -1.95,
        0,
        0.5
       ],
@@ -157,9 +157,9 @@
       "species": "cat",
       "size": 0.95,
       "at": [
-       2.75,
+       2.85,
        0,
-       0.4
+       0.3
       ],
       "rotation": [
        0,
@@ -334,7 +334,7 @@
       "material": "toy",
       "at": [
        2,
-       1.75,
+       1.78,
        0.3
       ],
       "rotation": [
@@ -343,9 +343,9 @@
        0
       ],
       "scale": [
-       1.4,
+       1.6,
        1,
-       0.45
+       0.52
       ]
      },
      {
@@ -367,11 +367,11 @@
       "color": "red",
       "material": "glossy",
       "at": [
-       2.85,
+       3.05,
        1.95,
        0.45
       ],
-      "size": 0.35
+      "size": 0.3
      },
      {
       "id": "cat",
@@ -392,7 +392,21 @@
      }
     ]
    }
-  ]
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1.05
+   },
+   "cat": {
+    "voice": "squeaky",
+    "pitch": 1.1
+   },
+   "bear": {
+    "voice": "deep",
+    "pitch": 0.95
+   }
+  }
  },
  "stage": {
   "preset": "town"
@@ -536,18 +550,6 @@
    "hidden": true
   },
   {
-   "id": "banana",
-   "kind": "prop",
-   "model": "banana",
-   "size": 2.2,
-   "at": [
-    0,
-    0.8,
-    0.2
-   ],
-   "hidden": true
-  },
-  {
    "id": "socks",
    "kind": "prop",
    "model": "socks",
@@ -635,8 +637,8 @@
    "id": "lab0",
    "kind": "letter",
    "text": "FOOD",
-   "color": "white",
-   "size": 0.12,
+   "color": "ink",
+   "size": 0.13,
    "depth": 0.06,
    "at": [
     -2.25,
@@ -649,8 +651,8 @@
    "id": "lab1",
    "kind": "letter",
    "text": "WATER",
-   "color": "white",
-   "size": 0.12,
+   "color": "ink",
+   "size": 0.13,
    "depth": 0.06,
    "at": [
     -0.75,
@@ -663,8 +665,8 @@
    "id": "lab2",
    "kind": "letter",
    "text": "CLOTHING",
-   "color": "white",
-   "size": 0.12,
+   "color": "ink",
+   "size": 0.13,
    "depth": 0.06,
    "at": [
     0.75,
@@ -677,8 +679,8 @@
    "id": "lab3",
    "kind": "letter",
    "text": "SHELTER",
-   "color": "white",
-   "size": 0.12,
+   "color": "ink",
+   "size": 0.13,
    "depth": 0.06,
    "at": [
     2.25,
@@ -876,7 +878,7 @@
    "id": "p_water",
    "kind": "letter",
    "text": "1",
-   "color": "yellow",
+   "color": "ink",
    "size": 0.28,
    "depth": 0.06,
    "at": [
@@ -890,7 +892,7 @@
    "id": "p_sandwich",
    "kind": "letter",
    "text": "2",
-   "color": "yellow",
+   "color": "ink",
    "size": 0.28,
    "depth": 0.06,
    "at": [
@@ -904,7 +906,7 @@
    "id": "p_socks",
    "kind": "letter",
    "text": "1",
-   "color": "yellow",
+   "color": "ink",
    "size": 0.28,
    "depth": 0.06,
    "at": [
@@ -918,7 +920,7 @@
    "id": "p_cupcake",
    "kind": "letter",
    "text": "1",
-   "color": "yellow",
+   "color": "ink",
    "size": 0.28,
    "depth": 0.06,
    "at": [
@@ -932,7 +934,7 @@
    "id": "p_balloon",
    "kind": "letter",
    "text": "1",
-   "color": "yellow",
+   "color": "ink",
    "size": 0.28,
    "depth": 0.06,
    "at": [
@@ -946,7 +948,7 @@
    "id": "p_kite",
    "kind": "letter",
    "text": "3",
-   "color": "yellow",
+   "color": "ink",
    "size": 0.28,
    "depth": 0.06,
    "at": [
@@ -959,7 +961,7 @@
   {
    "id": "q1",
    "kind": "text_card",
-   "text": "A warm coat on a snowy day",
+   "text": "Warm mittens on a snowy day",
    "width": 3.6,
    "size": 0.24,
    "at": [
@@ -1091,12 +1093,12 @@
    "material": "glass",
    "at": [
     0,
-    0,
+    0.1,
     0.2
    ],
    "scale": [
-    6,
-    1.9,
+    5.6,
+    1.6,
     0.3
    ],
    "hidden": true
@@ -1144,13 +1146,26 @@
    "color": "white",
    "material": "glass",
    "at": [
-    0,
-    0.8,
+    0.3,
+    0.75,
     0.3
    ],
    "scale": [
-    3.8,
-    1.5,
+    5.4,
+    2.3,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qh",
+   "kind": "text_card",
+   "text": "A haircut",
+   "width": 3.6,
+   "size": 0.24,
+   "at": [
+    -0.5,
+    0.85,
     0.3
    ],
    "hidden": true
@@ -1424,7 +1439,8 @@
        "target": "f_counter",
        "framing": "medium",
        "at": 0.3,
-       "dur": 1.4
+       "dur": 1.4,
+       "height": 14
       },
       {
        "do": "caption",
@@ -1678,7 +1694,8 @@
        "do": "caption",
        "text": "Can we live without it?",
        "style": "label",
-       "dur": 4
+       "dur": 4,
+       "pos": "top"
       },
       {
        "do": "shot",
@@ -1970,7 +1987,8 @@
        "text": "want = a nice extra",
        "style": "label",
        "at": 0.3,
-       "dur": 3
+       "dur": 3,
+       "pos": "top"
       }
      ]
     },
@@ -2137,7 +2155,8 @@
        "target": "f_counter",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "height": 14
       },
       {
        "do": "clip",
@@ -2712,6 +2731,29 @@
        "volume": 0.5
       }
      ]
+    },
+    {
+     "dur": 6,
+     "do": [
+      {
+       "do": "say",
+       "who": "cat",
+       "caption": true,
+       "text": "Water, sandwich, apple, socks and mittens are needs. Balloon, kite and cupcake are wants."
+      },
+      {
+       "do": "highlight",
+       "target": "tray_need",
+       "at": 0.3,
+       "dur": 2.6
+      },
+      {
+       "do": "highlight",
+       "target": "tray_want",
+       "at": 3.4,
+       "dur": 2.4
+      }
+     ]
     }
    ]
   },
@@ -2797,14 +2839,16 @@
        ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "height": 14
       },
       {
        "do": "caption",
        "text": "goods = things you can hold",
        "style": "label",
        "at": 0.6,
-       "dur": 3.5
+       "dur": 3.5,
+       "pos": "top"
       }
      ]
     },
@@ -3009,7 +3053,8 @@
        "text": "services = work someone does for you",
        "style": "label",
        "at": 0.2,
-       "dur": 3.5
+       "dur": 3.5,
+       "pos": "top"
       }
      ]
     },
@@ -4186,7 +4231,8 @@
        "target": "f_counter",
        "framing": "medium",
        "at": 0.4,
-       "dur": 1.2
+       "dur": 1.2,
+       "height": 14
       }
      ]
     },
@@ -4311,7 +4357,7 @@
      "do": [
       {
        "do": "say",
-       "text": "A warm coat on a snowy day.",
+       "text": "Warm mittens on a snowy day.",
        "caption": true,
        "who": "robo"
       },
@@ -4337,7 +4383,7 @@
      ]
     },
     {
-     "dur": 2.6,
+     "dur": 3,
      "do": [
       {
        "do": "sound",
@@ -4352,7 +4398,7 @@
      "do": [
       {
        "do": "say",
-       "text": "A need, because it keeps us warm. And a good: you can hold it.",
+       "text": "A need, because they keep us warm. And a good: you can hold them.",
        "caption": true,
        "who": "cat",
        "voice": "squeaky"
@@ -4408,7 +4454,7 @@
      ]
     },
     {
-     "dur": 2.6,
+     "dur": 3,
      "do": [
       {
        "do": "sound",
@@ -4468,7 +4514,7 @@
      ]
     },
     {
-     "dur": 2.6,
+     "dur": 3,
      "do": [
       {
        "do": "sound",
@@ -4550,7 +4596,7 @@
      ]
     },
     {
-     "dur": 2.6,
+     "dur": 3,
      "do": [
       {
        "do": "sound",
@@ -4644,7 +4690,7 @@
      ]
     },
     {
-     "dur": 2.6,
+     "dur": 3,
      "do": [
       {
        "do": "sound",
@@ -4722,7 +4768,8 @@
        ],
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "height": 14
       },
       {
        "do": "clip",
@@ -4817,12 +4864,13 @@
        "target": "f_counter",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "height": 14
       }
      ]
     },
     {
-     "dur": 2.6,
+     "dur": 3,
      "do": [
       {
        "do": "sound",
@@ -4934,7 +4982,7 @@
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -4980,11 +5028,26 @@
       {
        "do": "hide",
        "target": "balloon"
+      },
+      {
+       "do": "pop",
+       "target": "qh",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "qh"
+       ],
+       "framing": "medium",
+       "pad": 0.25,
+       "at": 0.1,
+       "dur": 1
       }
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -5027,7 +5090,8 @@
        "target": "f_counter",
        "framing": "medium",
        "at": 0.2,
-       "dur": 1.2
+       "dur": 1.2,
+       "height": 14
       },
       {
        "do": "move",
@@ -5124,6 +5188,11 @@
        "target": "tok3",
        "at": 1.9000000000000001,
        "sound": false
+      },
+      {
+       "do": "hide",
+       "target": "qh",
+       "at": 0
       }
      ]
     },
@@ -5207,7 +5276,7 @@
      ]
     },
     {
-     "dur": 2.4,
+     "dur": 2.8,
      "do": [
       {
        "do": "sound",
@@ -5226,6 +5295,23 @@
        "caption": true,
        "who": "cat",
        "voice": "squeaky"
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "caption": true,
+       "text": "A want can wait. A need cannot!"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
       }
      ]
     },
@@ -5309,7 +5395,8 @@
        "text": "Ask a grown-up to help with scissors",
        "style": "label",
        "at": 0.5,
-       "dur": 3.5
+       "dur": 3.5,
+       "pos": "top"
       }
      ]
     },
@@ -5330,7 +5417,8 @@
         "bear"
        ],
        "framing": "medium",
-       "dur": 1
+       "dur": 1,
+       "height": 14
       },
       {
        "do": "burst",
