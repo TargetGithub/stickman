@@ -4,6 +4,7 @@
 
 import { EASE_NAMES } from "./ease.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
+import { checkThumbnails } from "./thumbnails.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
 const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot"]);
@@ -28,7 +29,7 @@ const TARGETS = {
 };
 // Moves that can target a named part of a critter or prop ("box#lid", "dog#head").
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
-const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "youtube", "description"]);
+const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description"]);
 const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2"];
 const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
@@ -62,6 +63,11 @@ export function validateScript(script, catalog) {
   if (meta.music != null && meta.music !== false && catalog.musicMoods?.length && !catalog.musicMoods.includes(meta.music)) err("E3D_MUSIC", "meta.music", `unknown music mood "${meta.music}" (known: ${catalog.musicMoods.join(", ")})`);
   if (meta.audience != null && !AUDIENCES.includes(meta.audience)) err("E3D_AUDIENCE", "meta.audience", `audience must be one of ${AUDIENCES.join(", ")}`);
   if (meta.thumbnail != null) checkThumbnail(meta.thumbnail);
+  if (meta.thumbnails != null) {
+    const t = checkThumbnails(meta.thumbnails, script, catalog, validateScript); // designed thumbnails (runtime/thumbnails.js)
+    errors.push(...t.errors);
+    warnings.push(...t.warnings);
+  }
   if (meta.voice != null && !catalog.voices.includes(meta.voice)) err("E3D_VOICE", "meta.voice", `unknown voice "${meta.voice}" (known: ${catalog.voices.join(", ")})`);
   if (script.stage?.preset != null) name(catalog.stages, script.stage.preset, "E3D_STAGE", "stage.preset", "stage");
   for (const k of ["position", "lookAt"]) if (script.camera?.[k] != null && !isVec(script.camera[k])) err("E3D_VEC", `camera.${k}`, "must be [x, y, z]");

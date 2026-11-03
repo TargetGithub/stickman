@@ -6,17 +6,16 @@
 // (no speech, no music) and composites the logo with the canvas backend (Andika Bold, one block colour per letter).
 // Usage: node tools/channel_art_toybox.mjs [--out out/channel/toybox] [--no-render]  (--no-render reuses the stills)
 
-import { mkdirSync, writeFileSync } from "node:fs";
-import { spawnSync } from "node:child_process";
-import { join, resolve } from "node:path";
+import { mkdirSync } from "node:fs";
+import { join } from "node:path";
 import { loadBackend } from "./lib/canvas.mjs";
+import { renderStill3d, stillPath3d, sticker as sticker3d, INK } from "./lib/art3d.mjs";
 
 const args = process.argv.slice(2);
 const outDir = args.includes("--out") ? args[args.indexOf("--out") + 1] : "out/channel/toybox";
 const sceneDir = join(outDir, ".scenes");
 // Number-block colours from the episodes (red, orange, yellow, green, blue, purple, pink).
 const LETTERS = ["#f2504b", "#f6923a", "#f5c43c", "#33c26b", "#3d86ea", "#9b5de5", "#f27bbd"];
-const INK = "#24305e";
 const STILL_T = 1.0;
 const backend = await loadBackend();
 
@@ -77,33 +76,13 @@ const SCENES = {
   }),
 };
 
-function render(name) {
-  const file = join(sceneDir, `${name}.json`);
-  writeFileSync(file, JSON.stringify(SCENES[name], null, 1));
-  const r = spawnSync(process.execPath, ["engine3d/tools/render3d.mjs", file, "--speech", "off", "--music", "off", "--stills", String(STILL_T), "--res", "4k", "--out", join(sceneDir, `${name}.mp4`)], { stdio: "inherit" });
-  if (r.status !== 0) throw new Error(`render3d failed for ${name}`);
-}
-const stillPath = (name) => resolve(sceneDir, `${name}_stills`, `${name}_4k_t${STILL_T.toFixed(2)}.png`);
+const render = (name) => renderStill3d(SCENES[name], { dir: sceneDir, name, t: STILL_T });
+const stillPath = (name) => stillPath3d(sceneDir, name, STILL_T);
 
-/** Text with a thick dark outline, a white rim and a soft drop shadow (sticker style). */
-function sticker(ctx, text, x, y, size, fill, { rim = size * 0.09 } = {}) {
-  ctx.font = `bold ${size}px Andika`;
+/** The logo's sticker letters (tools/lib/art3d.mjs): dark outline, white rim, soft drop shadow. */
+function sticker(ctx, text, x, y, size, fill) {
   ctx.textAlign = "center";
-  ctx.textBaseline = "alphabetic";
-  ctx.lineJoin = "round";
-  ctx.save();
-  ctx.shadowColor = "rgba(20,30,70,0.35)";
-  ctx.shadowOffsetY = size * 0.06;
-  ctx.shadowBlur = size * 0.08;
-  ctx.strokeStyle = INK;
-  ctx.lineWidth = rim * 2.6;
-  ctx.strokeText(text, x, y);
-  ctx.restore();
-  ctx.strokeStyle = "#ffffff";
-  ctx.lineWidth = rim * 1.2;
-  ctx.strokeText(text, x, y);
-  ctx.fillStyle = fill;
-  ctx.fillText(text, x, y);
+  sticker3d(ctx, text, x, y, size, fill, { rim: size * 0.054, outline: size * 0.063, ink: INK });
 }
 
 /** One word, one block colour per letter (from colour index c0), each letter tilted a little; centred on cx. */

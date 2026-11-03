@@ -35,14 +35,41 @@ node engine3d/tools/episode3d.mjs engine3d/scripts/series/toybox/pk01_count_to_t
 ```
 
 Each episode folder `out/series3d/toybox/<id>/` gets `review_1080p30.mp4` and/or `final_4k60.mp4` (with
-`*_stats.json`), `thumbnail.jpg` (1280×720, from `meta.thumbnail.t`), `contact.jpg` (12 frames) and
-`youtube.txt` (title, description, chapters from scene titles, tags, audience). Upload stays manual; mark
-every video **Made for kids**.
+`*_stats.json`), `thumbnail.jpg` (1280×720: the first designed concept, see below; older scripts without
+`meta.thumbnails` use the frame at `meta.thumbnail`), `contact.jpg` (12 frames) and `youtube.txt` (title,
+description, chapters from scene titles, tags, audience). `--out-dir <dir>` writes the kit somewhere else.
+Upload stays manual; mark every video **Made for kids**.
+
+## Thumbnails
+
+Thumbnails are designed, never a frame of the video: `meta.thumbnails` holds 2–3 concepts (at most 4), each its
+own small scene plus title text (fields: `engine3d/README.md`, "Designed thumbnails"). `episode3d.mjs` makes
+them; to work on them alone:
+
+```bash
+node engine3d/tools/thumbnail3d.mjs engine3d/scripts/series/toybox/<id>.json            # all concepts
+node engine3d/tools/thumbnail3d.mjs <script> --only lab                                  # one concept again
+node engine3d/tools/thumbnail3d.mjs <script> --no-render                                 # re-lay text on the last stills
+```
+
+Look at `thumbnails_sheet.jpg` (each concept big and at phone size) before uploading. Designing a concept:
+
+- **One clear teaching object** that names the topic at a glance (the pots in a row for growing, the clock for
+  time, the fraction pie), big and in focus. No clutter: three to five objects in all, a plain stage.
+- **1–2 expressive characters** (Robo and the grade's sidekick) with a `feeling` (`happy`, `surprised`) and,
+  for Robo, a `clip` (`Wave`, `ThumbsUp`, `Jump`), facing the camera or the object, never cut by the edge.
+- **A 1–3 word title** (≤ 18 characters) that says the topic or asks the question ("ARRAYS!", "LIGHT OR
+  DARK?"); the subtitle (≤ 32) adds the hook. Use the same words as the YouTube title.
+- **High contrast**: a title colour that differs from the background (yellow or white over sky and grass,
+  green or yellow over dark stages); the scrim and outline do the rest.
+- **Leave the title's side empty**: with `side: "left"` put everything at x > 0 (the right half of the frame);
+  keep the bottom-right corner free (YouTube's length stamp). `badge` names the grade (`PRE-K`, `GRADE 3`).
+- Make the concepts different (a question, the result, the character's reaction) so the best one can be picked.
 
 ## Script rules for this series
 
 - `meta`: `series: "toybox"`, `episode` = the file's prefix, `audience: babies | prek`, `skills` (real ids
-  only; a test checks), `thumbnail.t` at a moment with the title and a character on screen, and `youtube`
+  only; a test checks), `thumbnails` (designed concepts, below), and `youtube`
   `{ title (≤ 100 chars), description, tags }`.
 - One scene per chapter, with a `title`. YouTube needs at least three chapters of 10 s or more.
 - Babies: at least 8 s per idea, nothing faster than a gentle hop, chimes at volume ≤ 0.6, no confetti.
