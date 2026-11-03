@@ -277,10 +277,24 @@ const RECIPES = {
     noise(o, r, { gain: 0.5, attack: 0.3, decay: 1.5, lp0: 250, hp: 20, start: 0.4 });
     drive(o, 1.6);
   },
+  // Toy Box batch 3: a soft bee buzz and a gentle eggshell crack.
+  buzz: (o, r) => {
+    // A low, wobbly hum: a few harmonics with a slow fly-by vibrato and a wing flutter, gently driven.
+    [[205, 1], [410, 0.45], [615, 0.22], [820, 0.1]].forEach(([f, g]) => sweepSine(o, { f0: f * 0.96, f1: f * 1.04, sweep: 1.1, attack: 0.15, decay: 1.3, gain: g, vibrato: 0.035, vibratoRate: 5 }));
+    noise(o, r, { gain: 0.12, attack: 0.15, decay: 1.2, lp0: 1800, hp: 300, am: 0.6, amRate: 205 });
+    drive(o, 1.3);
+  },
+  crack: (o, r) => {
+    // Three little taps, then a soft snap with a tiny shell tinkle.
+    for (const [start, g] of [[0, 0.5], [0.13, 0.6], [0.24, 0.7]]) noise(o, r, { gain: g, attack: 0.001, decay: 0.018, lp0: 5000, hp: 1200, start, len: 0.04 });
+    noise(o, r, { gain: 1, attack: 0.002, decay: 0.05, lp0: 6000, lp1: 2500, hp: 900, start: 0.36, len: 0.12 });
+    sweepSine(o, { f0: 900, f1: 700, sweep: 0.03, decay: 0.04, gain: 0.25, start: 0.36 });
+    partials(o, [2600, 3900], { gain: 0.15, decay: 0.08, start: 0.4 });
+  },
   clock_tick_big: (o) => { partials(o, [880, 1320], { gain: 0.7, decay: 0.08, attack: 0.001 }); partials(o, [660, 990], { gain: 0.6, decay: 0.09, attack: 0.001, start: 0.5 }); },
 };
 
-const LENGTH = { cloud_pop: 0.9, whisper: 1.6, flute_tune: 2.5, leaf_tune: 1.3, thunder: 2.5, clock_tick_big: 1.0, tick: 0.7, fizz: 1.4, rain: 2.2, twang: 1.2, drum: 0.6, train_whistle: 1.4, cha_ching: 1.1, clink: 0.4, rocket: 2.2, pour: 1.5, giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
+const LENGTH = { buzz: 1.2, crack: 0.65, cloud_pop: 0.9, whisper: 1.6, flute_tune: 2.5, leaf_tune: 1.3, thunder: 2.5, clock_tick_big: 1.0, tick: 0.7, fizz: 1.4, rain: 2.2, twang: 1.2, drum: 0.6, train_whistle: 1.4, cha_ching: 1.1, clink: 0.4, rocket: 2.2, pour: 1.5, giggle: 0.7, giggle_crowd: 1.5, ooh: 0.8, raspberry: 0.7, slide_whistle: 0.9, sprout_spring: 0.45, toot: 0.45, ding: 1.2, gloom_horn: 2.4, pirate_horn: 1.9, splash: 0.9, robot_stomp: 1.0, robot_beep: 0.4, windup_click: 0.6, sneeze: 1.2, crystal_chime: 1.5, whimper: 0.9, growl_soft: 0.9, pant: 0.75, sad_sting: 2.2, heartbeat: 0.6, magic_sparkle: 1.2, gasp: 0.5, laugh_small: 0.6, cry_small: 1.1, card_whoosh: 0.8, narrate_chime: 1.2, car_pass: 1.6, door_open: 0.8, bubble_blow: 0.6, explosion: 1.6, ko: 2.0, bell: 1.6, crowd_cheer: 2.4, energy_charge: 1.2, sword_clash: 1.0, parry: 0.7, boing: 0.7, shockwave: 0.9, land_heavy: 0.6, crowd_gasp: 0.8, sparkle: 0.8, clang: 1.0 };
 
 export const RECIPE_KEYS = Object.keys(RECIPES);
 

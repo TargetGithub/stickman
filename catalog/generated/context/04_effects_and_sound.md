@@ -76,9 +76,9 @@ Sounds play by themselves from moves, hits, objects and cards; scripts never nam
 - comic: pop, boing, slip, bonk, pow, raspberry, slide_whistle, squeak, sprout_spring
 - crowd: crowd_cheer, crowd_gasp, giggle_crowd
 - story: narrate_chime, sad_sting, heartbeat, card_whoosh, gloom_horn, pirate_horn
-- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding, tick, clock_tick_big, fizz, cha_ching, clink, pour
+- object: bubble_blow, bubble_pop, racket_hit, ball_bounce, door_open, car_pass, clang, ball_kick, splash, windup_click, toot, ding, tick, clock_tick_big, fizz, cha_ching, clink, pour, crack
 - magic: sparkle, magic_sparkle, crystal_chime, cloud_pop, whisper
-- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh
+- voice: gasp, laugh_small, cry_small, bark, bark_small, whimper, growl_soft, pant, sneeze, robot_beep, giggle, ooh, buzz
 - music: flute_tune, leaf_tune, twang, drum
 - weather: thunder, rain
 - vehicle: train_whistle, rocket
