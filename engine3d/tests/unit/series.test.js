@@ -10,7 +10,7 @@ import { buildPlan } from "../../runtime/plan.js";
 const catalog = loadCatalog3d();
 const skills = JSON.parse(readFileSync(new URL("../../../catalog/education/skills.json", import.meta.url), "utf8")).skills;
 const dir = new URL("../../scripts/series/toybox/", import.meta.url);
-const files = readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
+const files = readdirSync(dir).filter((f) => f.endsWith(".json") && f !== "episodes.json").sort(); // episodes.json is the episode list
 
 test("the toybox series has baby and pre-K episodes", () => {
   assert.ok(files.filter((f) => f.startsWith("bb")).length >= 4);

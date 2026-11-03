@@ -20,7 +20,7 @@ cd engine3d && npm install && npx playwright install chromium
 | `assets/characters/` | glTF characters (CC0), with `LICENSES.md`. |
 | `scripts/` | JSON scripts (`count_to_five.json`); series in `scripts/series/<name>/` (Toy Box Friends: `scripts/series/toybox/SERIES.md`). |
 | `scenes/` | JS scene modules (`vowels.js`, `model_sheet.js` for checking the catalog by eye). |
-| `tools/` | `render3d.mjs` (render, stills, hashes, benchmarks), `episode3d.mjs` (an episode's YouTube kit), `compile3d.mjs` (join episodes), `determinism.sh`, `lib/` (server, WebSocket, browser, encoder, audio, memory). |
+| `tools/` | `render3d.mjs` (render, stills, hashes, benchmarks), `episode3d.mjs` (an episode's YouTube kit), `thumbnail3d.mjs` (designed thumbnails), `compile3d.mjs` (join episodes), `determinism.sh`, `lib/` (server, WebSocket, browser, encoder, audio, memory). |
 | `tests/` | `node --test`: timeline, validator fixtures, plan determinism, no-clock rule. |
 
 ## One timeline, two ways in
@@ -57,7 +57,42 @@ characters), `critter` (toy animals that bob, blink and wag), `prop`, `character
 `voiceSpeed`, `series`, `episode`, `audience` (babies, prek, k, grade1, grade2), `skills`, `thumbnail` and
 `youtube`. `thumbnail: { "scene": "<scene id>", "at": 2.5 }` picks the frame 2.5 s into that scene, measured on
 the plan timed with the real TTS clips, so it stays on the right picture when speech changes beat lengths;
-`thumbnail: { "t": 12 }` (absolute seconds) still works.
+`thumbnail: { "t": 12 }` (absolute seconds) still works. New episodes use designed thumbnails instead (below).
+
+### Designed thumbnails (`meta.thumbnails`)
+
+A thumbnail is never a video frame: each concept is a small scene of its own plus crisp 2D title text.
+
+```json
+"thumbnails": [{
+  "name": "lab", "title": "PLANT LAB!", "subtitle": "What do plants need?", "titleColor": "yellow",
+  "side": "left", "badge": "GRADE 2", "stage": "garden", "at": 1,
+  "camera": { "position": [0, 1.35, 5.6], "lookAt": [0, 1.05, 0], "fov": 34 },
+  "objects": [
+    { "id": "plant", "kind": "prop", "model": "flowering_plant", "at": [0.85, 0, 0], "size": 2.6 },
+    { "id": "cat", "kind": "critter", "species": "cat", "at": [2.05, 0, 0.9], "size": 1.1, "rotation": [0, -30, 0], "feeling": "happy" }
+  ]
+}]
+```
+
+| Field | |
+|---|---|
+| `name` | lower_snake_case, unique: names `thumbnail_<name>.jpg` |
+| `title` | ≤ 18 characters (1–3 words); `subtitle` ≤ 32; `badge` ≤ 12 (a grade pill, e.g. `GRADE 2`) |
+| `titleColor` | a colour name or `#rrggbb` (default yellow) |
+| `side` | `left` (default), `right`, `top`, `bottom`: where the title goes; keep that part of the picture empty |
+| `stage`, `camera`, `objects`, `lights` | the scene, checked with the script's own rules (`lights`: `{ rig, background, floor, rug }`). Objects are at rest; characters take `clip` and `feeling`, critters `feeling` |
+| `at` | seconds into the pose when the still is taken (default 1, 0.2–30) |
+
+1–4 concepts; the first is the episode's `thumbnail.jpg`. `runtime/thumbnails.js` turns a concept into a
+one-beat script and validates it (errors point into `meta.thumbnails[i]`). `tools/thumbnail3d.mjs <script>
+[--out dir] [--only name] [--no-render]` renders each concept as one 4K still (no speech, no music), lays the
+text over it at 1280×720 (Andika Bold with a dark outline, white rim and soft shadow, about a fifth of the
+height, shrunk or wrapped onto two lines to fit its box, over a soft gradient scrim; a grade badge and a small
+"Toy Box Friends" mark; nothing in the bottom-right corner, where YouTube shows the length) and writes
+`thumbnail_<name>.jpg`, `thumbnail.jpg` and `thumbnails_sheet.jpg` (all concepts, with phone-size copies).
+`episode3d.mjs` calls it for scripts with `meta.thumbnails`. Demo: `scripts/thumb_demo.json`. The 4K still and
+the text helpers are shared with the channel art (`tools/lib/art3d.mjs`).
 
 **Letter size.** A `letter`'s `size` is a type size, not its height: with Andika the cap height is about
 1.41 × `size`, the x-height 0.98 × `size`, and descenders reach 0.47 × `size` below the baseline. A letter
@@ -134,6 +169,8 @@ node engine3d/tools/render3d.mjs <input> --bench 150 --frames 300:450           
 node engine3d/tools/render3d.mjs <input> --hash out/x.json                         # sha256 per raw frame
 engine3d/tools/determinism.sh                                                      # GPU x2, 3 pages, SwiftShader x2
 node engine3d/tools/episode3d.mjs engine3d/scripts/series/toybox/pk01_count_to_ten.json --review --final
+node engine3d/tools/episode3d.mjs <script> --out-dir out/somewhere                     # all outputs there
+node engine3d/tools/thumbnail3d.mjs engine3d/scripts/thumb_demo.json --out out/demos/thumbnails
 node engine3d/tools/compile3d.mjs --name prek_mix_1 --title "..." pk01_count_to_ten pk02_shapes   # from finals
 ```
 

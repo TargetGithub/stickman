@@ -3,7 +3,9 @@
 //   node engine3d/tools/episode3d.mjs engine3d/scripts/series/toybox/pk01_count_to_ten.json --review   (1080p30)
 //   node engine3d/tools/episode3d.mjs <script> --final                                                    (4K60)
 //   node engine3d/tools/episode3d.mjs <script>                                                            (thumbnail + youtube.txt only)
-// Output: out/series3d/<meta.series>/<file name>/{review_1080p30.mp4, final_4k60.mp4, thumbnail.jpg, contact.jpg, youtube.txt}
+//   --out-dir <dir>   write everything there instead of out/series3d/<meta.series>/<file name>
+// Output: {review_1080p30.mp4, final_4k60.mp4, thumbnail.jpg, contact.jpg, youtube.txt}; scripts with
+// meta.thumbnails get designed thumbnails from thumbnail3d.mjs (thumbnail_<name>.jpg, thumbnails_sheet.jpg).
 
 import { mkdirSync, readFileSync, renameSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { basename, join, resolve } from "node:path";
@@ -14,11 +16,12 @@ import { speakPlan } from "./lib/audio3d.mjs";
 import { REPO } from "./lib/server.mjs";
 
 const args = process.argv.slice(2);
-const input = resolve(args.find((a) => !a.startsWith("--")));
+const outDir = args.includes("--out-dir") ? args[args.indexOf("--out-dir") + 1] : null;
+const input = resolve(args.find((a, i) => !a.startsWith("--") && args[i - 1] !== "--out-dir"));
 const script = JSON.parse(readFileSync(input, "utf8"));
 const meta = script.meta ?? {};
 const id = basename(input, ".json");
-const dir = join(REPO, "out/series3d", meta.series ?? "misc", id);
+const dir = outDir ? resolve(outDir) : join(REPO, "out/series3d", meta.series ?? "misc", id);
 mkdirSync(dir, { recursive: true });
 const render = (extra) => {
   const r = spawnSync(process.execPath, [join(REPO, "engine3d/tools/render3d.mjs"), input, ...extra], { stdio: "inherit" });
@@ -43,13 +46,19 @@ for (const [res, fps, file] of videos) {
 const catalog = loadCatalog3d();
 const plan = await buildPlan({ script, catalog, speech: speakPlan(await buildPlan({ script, catalog })) });
 
-// Thumbnail: the frame at meta.thumbnail ({ t } or { scene, at }; default 1 s), drawn at 4K and scaled to 1280x720.
-const tt = thumbnailTime(plan, meta.thumbnail);
-render(["--res", "4k", "--fps", "60", "--speech", "tts", "--stills", String(tt), "--out", join(dir, "thumb.mp4")]);
-const stillDir = join(dir, `${id}_stills`);
-const png = join(stillDir, `${id}_4k_t${tt.toFixed(2)}.png`);
-ff(["-i", png, "-vf", "scale=1280:720:flags=lanczos", "-q:v", "2", join(dir, "thumbnail.jpg")]);
-rmSync(stillDir, { recursive: true, force: true });
+if (meta.thumbnails?.length) {
+  // Designed thumbnails: each concept is its own small scene plus title text (tools/thumbnail3d.mjs).
+  const r = spawnSync(process.execPath, [join(REPO, "engine3d/tools/thumbnail3d.mjs"), input, "--out", dir], { stdio: "inherit" });
+  if (r.status !== 0) process.exit(r.status ?? 1);
+} else {
+  // Older scripts: the frame at meta.thumbnail ({ t } or { scene, at }; default 1 s), drawn at 4K and scaled to 1280x720.
+  const tt = thumbnailTime(plan, meta.thumbnail);
+  render(["--res", "4k", "--fps", "60", "--speech", "tts", "--stills", String(tt), "--out", join(dir, "thumb.mp4")]);
+  const stillDir = join(dir, `${id}_stills`);
+  const png = join(stillDir, `${id}_4k_t${tt.toFixed(2)}.png`);
+  ff(["-i", png, "-vf", "scale=1280:720:flags=lanczos", "-q:v", "2", join(dir, "thumbnail.jpg")]);
+  rmSync(stillDir, { recursive: true, force: true });
+}
 
 // Contact sheet from the newest video: 12 frames spread over the episode.
 const video = join(dir, videos[videos.length - 1]?.[2] ?? "review_1080p30.mp4");
