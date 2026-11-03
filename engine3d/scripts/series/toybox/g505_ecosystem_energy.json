@@ -1,0 +1,8192 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Toy Box Friends G5-05: energy in ecosystems. Producers make food from sunlight, consumers eat, decomposers recycle matter, arrows point the way energy flows, and about a tenth passes up each step of the energy pyramid. No animal ever catches another on screen: energy dots do the moving.",
+  "meta": {
+    "series": "toybox",
+    "episode": "g505",
+    "audience": "grade5",
+    "seed": 505,
+    "voice": "soft",
+    "voiceSpeed": 1,
+    "music": "calm",
+    "musicGain": 0.16,
+    "skills": [
+      "ecosystems_5"
+    ],
+    "title": "Ecosystem Energy: food chains and webs",
+    "youtube": {
+      "title": "Food Chains and Food Webs for Kids | Producers and Consumers | Grade 5 Science | Toy Box Friends",
+      "description": "Where does a banana's energy come from? Monkey says the soil, but glowing energy dots show it really started in the Sun! Robo, Monkey and Bear follow the energy through a forest.\nYou'll learn: producers make food from sunlight, water and carbon dioxide (photosynthesis); herbivores, carnivores and omnivores; food chain arrows point from the eaten to the eater, the way energy flows; decomposers recycle matter into the soil; food webs and what happens when one part disappears; and why only about a tenth of the energy passes up each step.\nTry at home: trace your lunch back to the Sun with arrows. Outdoors with a grown-up, look for decomposers under a log, but never touch or eat wild mushrooms, and wash your hands after.",
+      "tags": [
+        "food chain",
+        "food web",
+        "producers and consumers",
+        "decomposers",
+        "energy flow",
+        "energy pyramid",
+        "ecosystems for kids",
+        "photosynthesis for kids",
+        "grade 5 science",
+        "Toy Box Friends"
+      ]
+    },
+    "thumbnails": [
+      {
+        "name": "energy",
+        "title": "FOLLOW THE ENERGY",
+        "subtitle": "Sun → grass → bunny → fox",
+        "titleColor": "yellow",
+        "side": "top",
+        "badge": "GRADE 5",
+        "stage": "forest",
+        "camera": {
+          "position": [
+            0,
+            1.6,
+            7.2
+          ],
+          "lookAt": [
+            0,
+            0.9,
+            0
+          ],
+          "fov": 38
+        },
+        "objects": [
+          {
+            "id": "sun",
+            "kind": "prop",
+            "model": "sun",
+            "at": [
+              -3,
+              1.2,
+              0
+            ],
+            "size": 0.8
+          },
+          {
+            "id": "grass",
+            "kind": "prop",
+            "model": "grass",
+            "at": [
+              -1.4,
+              0,
+              0.3
+            ],
+            "size": 2.4
+          },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [
+              0.4,
+              0,
+              0.3
+            ],
+            "size": 0.8,
+            "feeling": "happy"
+          },
+          {
+            "id": "fox",
+            "kind": "critter",
+            "species": "fox",
+            "at": [
+              2.3,
+              0,
+              0.3
+            ],
+            "size": 0.85,
+            "feeling": "happy"
+          },
+          {
+            "id": "p1",
+            "kind": "pointer",
+            "from": [
+              -2.5,
+              0.95,
+              0.3
+            ],
+            "to": [
+              -1.75,
+              0.55,
+              0.3
+            ],
+            "width": 0.1,
+            "color": "gold",
+            "bend": 0.2
+          },
+          {
+            "id": "p2",
+            "kind": "pointer",
+            "from": [
+              -1,
+              0.5,
+              0.3
+            ],
+            "to": [
+              -0.05,
+              0.5,
+              0.3
+            ],
+            "width": 0.1,
+            "color": "gold",
+            "bend": 0.35
+          },
+          {
+            "id": "p3",
+            "kind": "pointer",
+            "from": [
+              0.85,
+              0.5,
+              0.3
+            ],
+            "to": [
+              1.8,
+              0.5,
+              0.3
+            ],
+            "width": 0.1,
+            "color": "gold",
+            "bend": 0.35
+          },
+          {
+            "id": "monkey",
+            "kind": "critter",
+            "species": "monkey",
+            "at": [
+              3.6,
+              0,
+              1.2
+            ],
+            "size": 0.8,
+            "rotation": [
+              0,
+              -30,
+              0
+            ],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "web",
+        "title": "FOOD WEB!",
+        "subtitle": "Who eats what?",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "forest",
+        "camera": {
+          "position": [
+            0,
+            1.5,
+            6.4
+          ],
+          "lookAt": [
+            0,
+            1.2,
+            0
+          ],
+          "fov": 38
+        },
+        "objects": [
+          {
+            "id": "bear",
+            "kind": "critter",
+            "species": "bear",
+            "at": [
+              1.6,
+              0,
+              0.2
+            ],
+            "size": 1,
+            "feeling": "happy"
+          },
+          {
+            "id": "hawk",
+            "kind": "critter",
+            "species": "hawk",
+            "at": [
+              2.9,
+              1.6,
+              -0.4
+            ],
+            "size": 0.7,
+            "feeling": "happy"
+          },
+          {
+            "id": "berry",
+            "kind": "prop",
+            "model": "berry_bush",
+            "at": [
+              0.4,
+              0,
+              0.9
+            ],
+            "size": 0.8
+          },
+          {
+            "id": "frog",
+            "kind": "critter",
+            "species": "frog",
+            "at": [
+              3,
+              0,
+              1
+            ],
+            "size": 0.6,
+            "feeling": "happy"
+          },
+          {
+            "id": "q1",
+            "kind": "pointer",
+            "from": [
+              0.6,
+              0.6,
+              0.9
+            ],
+            "to": [
+              1.2,
+              0.9,
+              0.3
+            ],
+            "width": 0.08,
+            "color": "gold",
+            "bend": 0.25
+          },
+          {
+            "id": "q2",
+            "kind": "pointer",
+            "from": [
+              2.8,
+              0.5,
+              1
+            ],
+            "to": [
+              2.9,
+              1.4,
+              -0.3
+            ],
+            "width": 0.08,
+            "color": "gold",
+            "bend": 0.3
+          }
+        ]
+      },
+      {
+        "name": "way",
+        "title": "WHICH WAY?",
+        "subtitle": "Arrows follow the energy",
+        "titleColor": "orange",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "forest",
+        "camera": {
+          "position": [
+            0,
+            1.5,
+            6.4
+          ],
+          "lookAt": [
+            0,
+            1.2,
+            0
+          ],
+          "fov": 38
+        },
+        "objects": [
+          {
+            "id": "grass",
+            "kind": "prop",
+            "model": "grass",
+            "at": [
+              0.6,
+              0,
+              0.4
+            ],
+            "size": 2.2
+          },
+          {
+            "id": "bunny",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [
+              2.6,
+              0,
+              0.4
+            ],
+            "size": 0.85,
+            "feeling": "happy"
+          },
+          {
+            "id": "good",
+            "kind": "pointer",
+            "from": [
+              1,
+              0.55,
+              0.5
+            ],
+            "to": [
+              2.1,
+              0.55,
+              0.5
+            ],
+            "width": 0.1,
+            "color": "green",
+            "bend": 0.35
+          },
+          {
+            "id": "bad",
+            "kind": "pointer",
+            "from": [
+              2.2,
+              1.6,
+              0.5
+            ],
+            "to": [
+              1,
+              1.6,
+              0.5
+            ],
+            "width": 0.1,
+            "color": "red",
+            "bend": 0.3
+          },
+          {
+            "id": "x",
+            "kind": "shape",
+            "shape": "cross",
+            "color": "red",
+            "at": [
+              1.6,
+              2.1,
+              0.5
+            ],
+            "size": 0.35
+          },
+          {
+            "id": "tick",
+            "kind": "shape",
+            "shape": "tick",
+            "color": "green",
+            "at": [
+              1.6,
+              0.95,
+              0.6
+            ],
+            "size": 0.35
+          },
+          {
+            "id": "monkey",
+            "kind": "critter",
+            "species": "monkey",
+            "at": [
+              3.5,
+              0,
+              1.2
+            ],
+            "size": 0.85,
+            "rotation": [
+              0,
+              -30,
+              0
+            ],
+            "feeling": "surprised"
+          }
+        ]
+      }
+    ]
+  },
+  "stage": {
+    "preset": "forest"
+  },
+  "camera": {
+    "position": [
+      0,
+      2.2,
+      9
+    ],
+    "lookAt": [
+      0,
+      1.2,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -6.3,
+        0,
+        1.8
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ]
+    },
+    {
+      "id": "monkey",
+      "kind": "critter",
+      "species": "monkey",
+      "size": 1.1,
+      "at": [
+        3.4,
+        0,
+        2.5
+      ],
+      "rotation": [
+        0,
+        -25,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 1,
+      "at": [
+        5.2,
+        0,
+        2.1
+      ],
+      "rotation": [
+        0,
+        -30,
+        0
+      ]
+    },
+    {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+        -3.6,
+        3.7,
+        -1.8
+      ],
+      "size": 1
+    },
+    {
+      "id": "sframe",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        4.4,
+        2.6,
+        -1.07
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        4.7,
+        1,
+        2.9
+      ]
+    },
+    {
+      "id": "sboard",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "cream",
+      "material": "matte",
+      "at": [
+        4.4,
+        2.6,
+        -1.02
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        4.4,
+        1,
+        2.6
+      ]
+    },
+    {
+      "id": "spost_l",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        2.5000000000000004,
+        0,
+        -1.1
+      ],
+      "scale": [
+        0.12,
+        1.2,
+        0.12
+      ]
+    },
+    {
+      "id": "spost_r",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        6.300000000000001,
+        0,
+        -1.1
+      ],
+      "scale": [
+        0.12,
+        1.2,
+        0.12
+      ]
+    },
+    {
+      "id": "bplant",
+      "kind": "prop",
+      "model": "banana_plant",
+      "at": [
+        -1.6,
+        0,
+        -0.4
+      ],
+      "size": 1.4
+    },
+    {
+      "id": "banana",
+      "kind": "prop",
+      "model": "banana",
+      "at": [
+        3.75,
+        0.55,
+        2.65
+      ],
+      "size": 0.7,
+      "rotation": [
+        0,
+        0,
+        30
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "edot",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -3.6,
+        3.7,
+        -1.6
+      ],
+      "size": 0.22
+    },
+    {
+      "hidden": true,
+      "id": "sunflow",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -3.3,
+          3.4,
+          -1.5
+        ],
+        [
+          -2.2,
+          2.7,
+          -0.9
+        ],
+        [
+          -1,
+          1.85,
+          -0.2
+        ]
+      ],
+      "smooth": true,
+      "count": 7,
+      "speed": 0.8,
+      "size": 0.12,
+      "color": "yellow"
+    },
+    {
+      "hidden": true,
+      "id": "waterflow",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -1.6,
+          0.05,
+          0.3
+        ],
+        [
+          -1.6,
+          0.9,
+          -0.3
+        ],
+        [
+          -1.3,
+          1.5,
+          -0.3
+        ],
+        [
+          -1,
+          1.85,
+          -0.2
+        ]
+      ],
+      "smooth": true,
+      "count": 7,
+      "speed": 0.5,
+      "size": 0.11,
+      "color": "blue"
+    },
+    {
+      "hidden": true,
+      "id": "co2flow",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          0.6,
+          2.6,
+          0.4
+        ],
+        [
+          -0.2,
+          2.2,
+          0.1
+        ],
+        [
+          -1,
+          1.85,
+          -0.2
+        ]
+      ],
+      "smooth": true,
+      "count": 6,
+      "speed": 0.5,
+      "size": 0.11,
+      "color": "grey"
+    },
+    {
+      "hidden": true,
+      "id": "o2flow",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -1,
+          1.85,
+          -0.2
+        ],
+        [
+          -0.2,
+          1.4,
+          0.6
+        ],
+        [
+          0.6,
+          1.3,
+          1
+        ]
+      ],
+      "smooth": true,
+      "count": 6,
+      "speed": 0.5,
+      "size": 0.11,
+      "color": "white"
+    },
+    {
+      "hidden": true,
+      "id": "sugar",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glossy",
+      "at": [
+        -1,
+        1.85,
+        -0.2
+      ],
+      "size": 0.25
+    },
+    {
+      "hidden": true,
+      "id": "photo",
+      "kind": "text_card",
+      "text": "sunlight + water + carbon dioxide → sugar (food) + oxygen",
+      "at": [
+        4.4,
+        2.9,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.24
+    },
+    {
+      "hidden": true,
+      "id": "photo_w",
+      "kind": "letter",
+      "text": "photosynthesis",
+      "at": [
+        4.4,
+        2.15,
+        -1
+      ],
+      "size": 0.26,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "soil_wrong",
+      "kind": "letter",
+      "text": "plants eat soil?",
+      "at": [
+        4.4,
+        1.55,
+        -1
+      ],
+      "size": 0.24,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "p_grass",
+      "kind": "prop",
+      "model": "grass",
+      "at": [
+        -4,
+        0.03,
+        1
+      ],
+      "size": 2
+    },
+    {
+      "hidden": true,
+      "id": "p_acorn",
+      "kind": "prop",
+      "model": "acorn",
+      "at": [
+        -2.8,
+        0.03,
+        1.2
+      ],
+      "size": 1.8
+    },
+    {
+      "hidden": true,
+      "id": "p_berry",
+      "kind": "prop",
+      "model": "berry_bush",
+      "at": [
+        0,
+        0.03,
+        0.9
+      ],
+      "size": 0.9
+    },
+    {
+      "hidden": true,
+      "id": "prod_w",
+      "kind": "letter",
+      "text": "producers make food",
+      "at": [
+        4.4,
+        1.55,
+        -1
+      ],
+      "size": 0.15,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ring0",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "green",
+      "material": "toy",
+      "at": [
+        -3.4,
+        0.02,
+        0.6
+      ],
+      "rotation": [
+        -90,
+        0,
+        0
+      ],
+      "size": 2.1,
+      "scale": [
+        1,
+        1,
+        0.35
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "rt0",
+      "kind": "letter",
+      "text": "herbivore",
+      "at": [
+        -3.4,
+        0.05,
+        1.95
+      ],
+      "size": 0.22,
+      "color": "green",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "ring1",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "red",
+      "material": "toy",
+      "at": [
+        -0.6,
+        0.02,
+        0.6
+      ],
+      "rotation": [
+        -90,
+        0,
+        0
+      ],
+      "size": 2.1,
+      "scale": [
+        1,
+        1,
+        0.35
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "rt1",
+      "kind": "letter",
+      "text": "carnivore",
+      "at": [
+        -0.6,
+        0.05,
+        1.95
+      ],
+      "size": 0.22,
+      "color": "red",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "ring2",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "purple",
+      "material": "toy",
+      "at": [
+        2.2,
+        0.02,
+        0.6
+      ],
+      "rotation": [
+        -90,
+        0,
+        0
+      ],
+      "size": 2.1,
+      "scale": [
+        1,
+        1,
+        0.35
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "rt2",
+      "kind": "letter",
+      "text": "omnivore",
+      "at": [
+        2.2,
+        0.05,
+        1.95
+      ],
+      "size": 0.22,
+      "color": "purple",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "s_bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+        -4,
+        0.03,
+        0.3
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "s_hopper",
+      "kind": "critter",
+      "species": "grasshopper",
+      "at": [
+        -3,
+        0.03,
+        0.9
+      ],
+      "size": 0.75,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "s_squirrel",
+      "kind": "critter",
+      "species": "squirrel",
+      "at": [
+        -3.4,
+        0.03,
+        0
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "s_frog",
+      "kind": "critter",
+      "species": "frog",
+      "at": [
+        -1.1,
+        0.03,
+        0.5
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "s_hawk",
+      "kind": "critter",
+      "species": "hawk",
+      "at": [
+        -0.1,
+        0.03,
+        0.4
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "s_mouse",
+      "kind": "critter",
+      "species": "mouse",
+      "at": [
+        1.5,
+        0.03,
+        0.9
+      ],
+      "size": 0.55,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "s_fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+        2.4,
+        0.03,
+        0.2
+      ],
+      "size": 0.65,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "s_bear",
+      "kind": "critter",
+      "species": "bear",
+      "at": [
+        2.9,
+        0.03,
+        1
+      ],
+      "size": 0.65,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "c_sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+        -5,
+        1.3,
+        0.8
+      ],
+      "size": 0.6
+    },
+    {
+      "hidden": true,
+      "id": "c_grass_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -3.6,
+        0.01,
+        0.8
+      ],
+      "scale": [
+        1.1,
+        0.04,
+        1.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "c_grass",
+      "kind": "prop",
+      "model": "grass",
+      "at": [
+        -3.6,
+        0.03,
+        0.8
+      ],
+      "size": 2
+    },
+    {
+      "hidden": true,
+      "id": "c_bunny_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -1.6,
+        0.01,
+        0.8
+      ],
+      "scale": [
+        1.1,
+        0.04,
+        1.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "c_bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+        -1.6,
+        0.03,
+        0.8
+      ],
+      "size": 0.65,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "c_fox_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        0.4,
+        0.01,
+        0.8
+      ],
+      "scale": [
+        1.1,
+        0.04,
+        1.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "c_fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+        0.4,
+        0.03,
+        0.8
+      ],
+      "size": 0.65,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "a1",
+      "kind": "pointer",
+      "from": [
+        -4.6,
+        1.2,
+        0.8
+      ],
+      "to": [
+        -3.95,
+        0.55,
+        0.8
+      ],
+      "width": 0.08,
+      "color": "gold",
+      "bend": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "a2",
+      "kind": "pointer",
+      "fromTarget": "c_grass",
+      "toTarget": "c_bunny",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.35
+    },
+    {
+      "hidden": true,
+      "id": "a3",
+      "kind": "pointer",
+      "fromTarget": "c_bunny",
+      "toTarget": "c_fox",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.35
+    },
+    {
+      "hidden": true,
+      "id": "w2",
+      "kind": "pointer",
+      "fromTarget": "c_bunny",
+      "toTarget": "c_grass",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "red",
+      "bend": 0.35
+    },
+    {
+      "hidden": true,
+      "id": "w3",
+      "kind": "pointer",
+      "fromTarget": "c_fox",
+      "toTarget": "c_bunny",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "red",
+      "bend": 0.35
+    },
+    {
+      "hidden": true,
+      "id": "eflow1",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -4.6,
+          1.2,
+          0.85
+        ],
+        [
+          -3.6,
+          0.7,
+          0.85
+        ],
+        [
+          -2.6,
+          1.05,
+          0.85
+        ],
+        [
+          -1.6,
+          0.9,
+          0.85
+        ],
+        [
+          -0.6,
+          1.25,
+          0.85
+        ],
+        [
+          0.4,
+          0.9,
+          0.85
+        ]
+      ],
+      "smooth": true,
+      "count": 10,
+      "speed": 0.9,
+      "size": 0.13,
+      "color": "gold"
+    },
+    {
+      "hidden": true,
+      "id": "eflow_stop",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -4.6,
+          1.2,
+          0.85
+        ],
+        [
+          -3.6,
+          0.7,
+          0.85
+        ]
+      ],
+      "smooth": true,
+      "count": 4,
+      "speed": 0.5,
+      "size": 0.13,
+      "color": "gold"
+    },
+    {
+      "hidden": true,
+      "id": "rule",
+      "kind": "text_card",
+      "text": "The arrow means \"gives energy to\". It points from the eaten to the eater.",
+      "at": [
+        4.4,
+        2.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25
+    },
+    {
+      "hidden": true,
+      "id": "lp",
+      "kind": "letter",
+      "text": "producer",
+      "at": [
+        -3.6,
+        0.05,
+        1.55
+      ],
+      "size": 0.15,
+      "color": "green",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "l1",
+      "kind": "letter",
+      "text": "first consumer",
+      "at": [
+        -1.6,
+        0.05,
+        1.55
+      ],
+      "size": 0.15,
+      "color": "orange",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "l2",
+      "kind": "letter",
+      "text": "second consumer",
+      "at": [
+        0.4,
+        0.05,
+        1.55
+      ],
+      "size": 0.15,
+      "color": "red",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "d_grass_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -4.4,
+        0.01,
+        0.8
+      ],
+      "scale": [
+        1.1,
+        0.04,
+        1.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "d_grass",
+      "kind": "prop",
+      "model": "grass",
+      "at": [
+        -4.4,
+        0.03,
+        0.8
+      ],
+      "size": 2
+    },
+    {
+      "hidden": true,
+      "id": "d_hopper_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -2.6,
+        0.01,
+        0.8
+      ],
+      "scale": [
+        1.1,
+        0.04,
+        1.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "d_hopper",
+      "kind": "critter",
+      "species": "grasshopper",
+      "at": [
+        -2.6,
+        0.03,
+        0.8
+      ],
+      "size": 0.8,
+      "rotation": [
+        0,
+        90,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "d_frog_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -0.8,
+        0.01,
+        0.8
+      ],
+      "scale": [
+        1.1,
+        0.04,
+        1.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "d_frog",
+      "kind": "critter",
+      "species": "frog",
+      "at": [
+        -0.8,
+        0.03,
+        0.8
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "d_hawk_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        1,
+        0.01,
+        0.8
+      ],
+      "scale": [
+        1.1,
+        0.04,
+        1.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "d_hawk",
+      "kind": "critter",
+      "species": "hawk",
+      "at": [
+        1,
+        0.03,
+        0.8
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "b1",
+      "kind": "pointer",
+      "fromTarget": "d_grass",
+      "toTarget": "d_hopper",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.35
+    },
+    {
+      "hidden": true,
+      "id": "b2",
+      "kind": "pointer",
+      "fromTarget": "d_hopper",
+      "toTarget": "d_frog",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.35
+    },
+    {
+      "hidden": true,
+      "id": "b3",
+      "kind": "pointer",
+      "fromTarget": "d_frog",
+      "toTarget": "d_hawk",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.35
+    },
+    {
+      "hidden": true,
+      "id": "m1",
+      "kind": "letter",
+      "text": "producer",
+      "at": [
+        -4.4,
+        0.05,
+        1.55
+      ],
+      "size": 0.14,
+      "color": "green",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "m2",
+      "kind": "letter",
+      "text": "first consumer",
+      "at": [
+        -2.6,
+        0.05,
+        1.55
+      ],
+      "size": 0.14,
+      "color": "orange",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "m3",
+      "kind": "letter",
+      "text": "second consumer",
+      "at": [
+        -0.8,
+        0.05,
+        1.55
+      ],
+      "size": 0.14,
+      "color": "red",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "m4",
+      "kind": "letter",
+      "text": "third consumer",
+      "at": [
+        1,
+        0.05,
+        1.55
+      ],
+      "size": 0.14,
+      "color": "purple",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "leaves",
+      "kind": "prop",
+      "model": "leaf_pile",
+      "at": [
+        -2.6,
+        0.03,
+        0.6
+      ],
+      "size": 1.4
+    },
+    {
+      "hidden": true,
+      "id": "dlog",
+      "kind": "prop",
+      "model": "log",
+      "at": [
+        -0.6,
+        0.03,
+        0.4
+      ],
+      "size": 1.4,
+      "rotation": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "mush1",
+      "kind": "prop",
+      "model": "mushroom",
+      "at": [
+        -1,
+        0.03,
+        1
+      ],
+      "size": 0.9
+    },
+    {
+      "hidden": true,
+      "id": "mush2",
+      "kind": "prop",
+      "model": "mushroom",
+      "at": [
+        -0.3,
+        0.03,
+        1.1
+      ],
+      "size": 0.7
+    },
+    {
+      "hidden": true,
+      "id": "mush3",
+      "kind": "prop",
+      "model": "mushroom",
+      "at": [
+        -1.7,
+        0.03,
+        1.2
+      ],
+      "size": 0.6
+    },
+    {
+      "hidden": true,
+      "id": "worm",
+      "kind": "critter",
+      "species": "worm",
+      "at": [
+        -3.6,
+        0.03,
+        1.4
+      ],
+      "size": 0.8
+    },
+    {
+      "hidden": true,
+      "id": "soil",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "brown",
+      "material": "matte",
+      "at": [
+        -1.8,
+        0,
+        0.9
+      ],
+      "scale": [
+        4.2,
+        0.03,
+        1.8
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "dplant",
+      "kind": "prop",
+      "model": "seedling",
+      "at": [
+        0.9,
+        0.03,
+        1
+      ],
+      "size": 1.6
+    },
+    {
+      "hidden": true,
+      "id": "nutflow",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -2.6,
+          0.2,
+          0.9
+        ],
+        [
+          -1.4,
+          0.06,
+          1.1
+        ],
+        [
+          0.2,
+          0.06,
+          1.1
+        ],
+        [
+          0.9,
+          0.1,
+          1
+        ],
+        [
+          0.9,
+          0.6,
+          1
+        ]
+      ],
+      "smooth": true,
+      "count": 9,
+      "speed": 0.5,
+      "size": 0.1,
+      "color": "brown"
+    },
+    {
+      "hidden": true,
+      "id": "decomp",
+      "kind": "text_card",
+      "text": "Decomposers break down dead leaves and living things into nutrients in the soil.",
+      "at": [
+        4.4,
+        2.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.24
+    },
+    {
+      "hidden": true,
+      "id": "matter",
+      "kind": "text_card",
+      "text": "Matter goes round and round. Energy does not: plants need new sunlight every day.",
+      "at": [
+        4.4,
+        2.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.24,
+      "color": "purple"
+    },
+    {
+      "hidden": true,
+      "id": "wormfact",
+      "kind": "text_card",
+      "text": "Fun fact: earthworms have no lungs. They breathe through their skin!",
+      "at": [
+        4.4,
+        2.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.24,
+      "color": "teal"
+    },
+    {
+      "hidden": true,
+      "id": "w_grass_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -3.9,
+        0.01,
+        2
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_grass",
+      "kind": "prop",
+      "model": "grass",
+      "at": [
+        -3.9,
+        0.03,
+        2
+      ],
+      "size": 1.8
+    },
+    {
+      "hidden": true,
+      "id": "w_acorn_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -1.2,
+        0.01,
+        2.3
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_acorn",
+      "kind": "prop",
+      "model": "acorn",
+      "at": [
+        -1.2,
+        0.03,
+        2.3
+      ],
+      "size": 1.6
+    },
+    {
+      "hidden": true,
+      "id": "w_berry_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        1.6,
+        0.01,
+        2
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_berry",
+      "kind": "prop",
+      "model": "berry_bush",
+      "at": [
+        1.6,
+        0.03,
+        2
+      ],
+      "size": 0.7
+    },
+    {
+      "hidden": true,
+      "id": "w_hopper_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -4.4,
+        0.01,
+        0.4
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_hopper",
+      "kind": "critter",
+      "species": "grasshopper",
+      "at": [
+        -4.4,
+        0.03,
+        0.4
+      ],
+      "size": 0.75,
+      "rotation": [
+        0,
+        90,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_bunny_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -2.6,
+        0.01,
+        0.5
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+        -2.6,
+        0.03,
+        0.5
+      ],
+      "size": 0.55,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_mouse_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -0.9,
+        0.01,
+        0.6
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_mouse",
+      "kind": "critter",
+      "species": "mouse",
+      "at": [
+        -0.9,
+        0.03,
+        0.6
+      ],
+      "size": 0.55,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_squirrel_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        0.7,
+        0.01,
+        0.5
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_squirrel",
+      "kind": "critter",
+      "species": "squirrel",
+      "at": [
+        0.7,
+        0.03,
+        0.5
+      ],
+      "size": 0.55,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_frog_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -4,
+        0.01,
+        -1.3
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_frog",
+      "kind": "critter",
+      "species": "frog",
+      "at": [
+        -4,
+        0.03,
+        -1.3
+      ],
+      "size": 0.55,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_fox_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        -1.8,
+        0.01,
+        -1.2
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+        -1.8,
+        0.03,
+        -1.2
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_bear_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        2.4,
+        0.01,
+        -0.7
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_bear",
+      "kind": "critter",
+      "species": "bear",
+      "at": [
+        2.4,
+        0.03,
+        -0.7
+      ],
+      "size": 0.75,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_hawk_m",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "grass",
+      "material": "matte",
+      "at": [
+        0.1,
+        0.01,
+        -2.2
+      ],
+      "scale": [
+        1,
+        0.04,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w_hawk",
+      "kind": "critter",
+      "species": "hawk",
+      "at": [
+        0.1,
+        0.03,
+        -2.2
+      ],
+      "size": 0.6,
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "web0",
+      "kind": "pointer",
+      "fromTarget": "w_grass",
+      "toTarget": "w_bunny",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web1",
+      "kind": "pointer",
+      "fromTarget": "w_grass",
+      "toTarget": "w_hopper",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web2",
+      "kind": "pointer",
+      "fromTarget": "w_grass",
+      "toTarget": "w_mouse",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web3",
+      "kind": "pointer",
+      "fromTarget": "w_acorn",
+      "toTarget": "w_squirrel",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web4",
+      "kind": "pointer",
+      "fromTarget": "w_acorn",
+      "toTarget": "w_mouse",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web5",
+      "kind": "pointer",
+      "fromTarget": "w_acorn",
+      "toTarget": "w_bear",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web6",
+      "kind": "pointer",
+      "fromTarget": "w_berry",
+      "toTarget": "w_bear",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web7",
+      "kind": "pointer",
+      "fromTarget": "w_berry",
+      "toTarget": "w_fox",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web8",
+      "kind": "pointer",
+      "fromTarget": "w_hopper",
+      "toTarget": "w_frog",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web9",
+      "kind": "pointer",
+      "fromTarget": "w_bunny",
+      "toTarget": "w_fox",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web10",
+      "kind": "pointer",
+      "fromTarget": "w_mouse",
+      "toTarget": "w_fox",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web11",
+      "kind": "pointer",
+      "fromTarget": "w_mouse",
+      "toTarget": "w_hawk",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web12",
+      "kind": "pointer",
+      "fromTarget": "w_squirrel",
+      "toTarget": "w_hawk",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web13",
+      "kind": "pointer",
+      "fromTarget": "w_frog",
+      "toTarget": "w_hawk",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web14",
+      "kind": "pointer",
+      "fromTarget": "w_bunny",
+      "toTarget": "w_hawk",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "web15",
+      "kind": "pointer",
+      "fromTarget": "w_hopper",
+      "toTarget": "w_bear",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "gold",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "w_sun",
+      "kind": "prop",
+      "model": "sun",
+      "at": [
+        -1.2,
+        2.6,
+        3.4
+      ],
+      "size": 0.6
+    },
+    {
+      "hidden": true,
+      "id": "sun0",
+      "kind": "pointer",
+      "fromTarget": "w_sun",
+      "toTarget": "w_grass",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "yellow",
+      "bend": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "sun1",
+      "kind": "pointer",
+      "fromTarget": "w_sun",
+      "toTarget": "w_acorn",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "yellow",
+      "bend": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "sun2",
+      "kind": "pointer",
+      "fromTarget": "w_sun",
+      "toTarget": "w_berry",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "yellow",
+      "bend": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "webq",
+      "kind": "text_card",
+      "text": "What if the grasshoppers disappeared?",
+      "at": [
+        4.4,
+        2.9,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.26
+    },
+    {
+      "hidden": true,
+      "id": "weba",
+      "kind": "text_card",
+      "text": "Frogs lose food. Hawks may eat more mice. Grass may grow taller.",
+      "at": [
+        4.4,
+        1.6,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.24,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "py1",
+      "kind": "shape",
+      "shape": "box",
+      "color": "grass",
+      "material": "toy",
+      "at": [
+        -1.6,
+        0,
+        1
+      ],
+      "scale": [
+        4.2,
+        0.5,
+        1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "py2",
+      "kind": "shape",
+      "shape": "box",
+      "color": "sand",
+      "material": "toy",
+      "at": [
+        -1.6,
+        0.5,
+        1
+      ],
+      "scale": [
+        2.6,
+        0.5,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "py3",
+      "kind": "shape",
+      "shape": "box",
+      "color": "orange",
+      "material": "toy",
+      "at": [
+        -1.6,
+        1,
+        1
+      ],
+      "scale": [
+        1.2,
+        0.5,
+        0.8
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "pyl1",
+      "kind": "letter",
+      "text": "grass: 1,000",
+      "at": [
+        1.15,
+        0.18,
+        1.6600000000000001
+      ],
+      "size": 0.16,
+      "color": "green",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "pyl2",
+      "kind": "letter",
+      "text": "bunnies: 100",
+      "at": [
+        0.34999999999999987,
+        0.68,
+        1.5
+      ],
+      "size": 0.16,
+      "color": "brown",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "pyl3",
+      "kind": "letter",
+      "text": "foxes: 10",
+      "at": [
+        -0.25,
+        1.18,
+        1.4
+      ],
+      "size": 0.16,
+      "color": "orange",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "pyramid_c",
+      "kind": "text_card",
+      "text": "About one tenth of the energy passes up each step. The rest is used to live and grow, or lost as heat.",
+      "at": [
+        4.4,
+        2.45,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.22
+    },
+    {
+      "hidden": true,
+      "id": "sunfact",
+      "kind": "text_card",
+      "text": "Fun fact: plants catch only a small part of the sunlight, yet it feeds almost every food chain on land.",
+      "at": [
+        4.4,
+        2.45,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.22,
+      "color": "teal"
+    },
+    {
+      "hidden": true,
+      "id": "g1_0",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -3.2,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_1",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -2.8400000000000003,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_2",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -2.4800000000000004,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_3",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -2.12,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_4",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.7600000000000002,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_5",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.4000000000000004,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_6",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.04,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_7",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.6800000000000002,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_8",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.3200000000000003,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g1_9",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0.03999999999999959,
+        0.52,
+        1.45
+      ],
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "g2_0",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -2.6,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_1",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -2.38,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_2",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -2.16,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_3",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.94,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_4",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.7200000000000002,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_5",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.5,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_6",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.28,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_7",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.06,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_8",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.8400000000000001,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g2_9",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.6200000000000001,
+        1.02,
+        1.35
+      ],
+      "size": 0.13
+    },
+    {
+      "hidden": true,
+      "id": "g3",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -1.6,
+        1.52,
+        1.25
+      ],
+      "size": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "bad_hawk",
+      "kind": "pointer",
+      "fromTarget": "w_hawk",
+      "toTarget": "w_mouse",
+      "from": [
+        0,
+        0.15,
+        0
+      ],
+      "to": [
+        0,
+        0.15,
+        0
+      ],
+      "width": 0.07,
+      "color": "red",
+      "bend": 0.4
+    },
+    {
+      "hidden": true,
+      "id": "mush_prod",
+      "kind": "letter",
+      "text": "producer",
+      "at": [
+        3,
+        0.05,
+        2.4
+      ],
+      "size": 0.16,
+      "color": "red",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "mush_dec",
+      "kind": "letter",
+      "text": "decomposer",
+      "at": [
+        3,
+        0.05,
+        2.4
+      ],
+      "size": 0.16,
+      "color": "green",
+      "depth": 0.04
+    },
+    {
+      "hidden": true,
+      "id": "w_mush",
+      "kind": "prop",
+      "model": "mushroom",
+      "at": [
+        3,
+        0.03,
+        1.6
+      ],
+      "size": 0.9
+    },
+    {
+      "hidden": true,
+      "id": "q1",
+      "kind": "text_card",
+      "text": "1. Where does almost all the energy in a food chain come from?",
+      "at": [
+        4.4,
+        2.75,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25
+    },
+    {
+      "hidden": true,
+      "id": "ans1",
+      "kind": "text_card",
+      "text": "The Sun.",
+      "at": [
+        4.4,
+        1.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q2",
+      "kind": "text_card",
+      "text": "2. In Sun → grass → bunny → fox, which way do the arrows point?",
+      "at": [
+        4.4,
+        2.75,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25
+    },
+    {
+      "hidden": true,
+      "id": "ans2",
+      "kind": "text_card",
+      "text": "From the eaten to the eater: the way energy flows.",
+      "at": [
+        4.4,
+        1.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q3",
+      "kind": "text_card",
+      "text": "3. Is a bear a herbivore, carnivore or omnivore?",
+      "at": [
+        4.4,
+        2.75,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25
+    },
+    {
+      "hidden": true,
+      "id": "ans3",
+      "kind": "text_card",
+      "text": "Omnivore: plants and animals.",
+      "at": [
+        4.4,
+        1.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q4",
+      "kind": "text_card",
+      "text": "4. Why are there fewer foxes than bunnies?",
+      "at": [
+        4.4,
+        2.75,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25
+    },
+    {
+      "hidden": true,
+      "id": "ans4",
+      "kind": "text_card",
+      "text": "Only about a tenth of the energy passes up each step.",
+      "at": [
+        4.4,
+        1.5,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.25,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "recap",
+      "kind": "text_card",
+      "text": "Producers make food from sunlight.\nConsumers eat. Decomposers recycle matter.\nArrows follow the energy.\nLess energy at each step.",
+      "at": [
+        4.4,
+        1.45,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.24
+    },
+    {
+      "hidden": true,
+      "id": "home_c",
+      "kind": "text_card",
+      "text": "Look, but don't touch or eat wild mushrooms. Go with a grown-up and wash your hands.",
+      "at": [
+        4.4,
+        1.6,
+        -1
+      ],
+      "width": 4.2,
+      "size": 0.22,
+      "color": "red"
+    },
+    {
+      "id": "stars",
+      "kind": "confetti",
+      "count": 140,
+      "area": [
+        12,
+        4
+      ],
+      "colors": [
+        "gold",
+        "yellow",
+        "green"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "title": "A banana full of sunshine",
+      "music": "calm",
+      "musicGain": 0.14,
+      "beats": [
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "monkey",
+                "bplant",
+                "sun"
+              ],
+              "framing": "medium",
+              "dur": 0
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0,
+              "to": "banana"
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Ecosystem Energy: food chains and webs",
+              "style": "title",
+              "dur": 2.2,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Mmm, a banana! Where does a banana's energy come from?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 1.6,
+              "to": "bplant"
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "The banana plant! And the plant got it from... the soil?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "point",
+              "target": "monkey",
+              "to": "bplant",
+              "at": 0.4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "monkey"
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's follow the energy. Watch the golden dot.",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.4,
+              "to": "sun"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.6,
+              "to": "sun"
+            }
+          ]
+        },
+        {
+          "dur": 4.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "edot",
+              "at": 0
+            },
+            {
+              "do": "path",
+              "target": "edot",
+              "points": [
+                [
+                  -3.6,
+                  3.7,
+                  -1.6
+                ],
+                [
+                  -2.4,
+                  2.9,
+                  -0.8
+                ],
+                [
+                  -1.2,
+                  2.3,
+                  -0.4
+                ],
+                [
+                  -1.45,
+                  1.75,
+                  -0.3
+                ],
+                [
+                  1.4,
+                  1.4,
+                  1.8
+                ],
+                [
+                  3.4,
+                  1,
+                  2.5
+                ]
+              ],
+              "dur": 3.8,
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "volume": 0.6,
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sun",
+                "bplant",
+                "monkey"
+              ],
+              "framing": "wide",
+              "dur": 3.2
+            },
+            {
+              "do": "hide",
+              "target": "edot",
+              "at": 4.1
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "hop",
+              "target": "monkey",
+              "height": 1.2,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "volume": 0.4,
+              "at": 0.05
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "From the Sun, to the leaf, to the banana, to you. Your jump started in the Sun!",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Today: how energy flows through an ecosystem.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "ecosystem",
+              "style": "label",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "producers",
+      "title": "Producers make food",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "bplant",
+                "sboard",
+                "sun"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "bplant"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "bplant"
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Green plants are producers. They make their own food. Here's how.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "producer",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Sunlight shines on the leaves.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "sunflow",
+              "at": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "volume": 0.4,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Water comes up from the roots.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "waterflow",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Carbon dioxide comes in from the air.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "co2flow",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The leaf turns them into sugar, its food, and gives off oxygen.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "sugar",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "o2flow",
+              "at": 1.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "bplant"
+              ],
+              "framing": "close",
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Quick check: what three things does a leaf need to make its food?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Sunlight, water and carbon dioxide!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "This is called photosynthesis.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "bplant",
+                "sboard"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "photo",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "photo_w",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "So plants eat soil, right? That's why they grow in it!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "soil_wrong",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Not quite. Soil gives water and nutrients, but plants make their own food from sunlight.",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "soil_wrong",
+              "result": "incorrect",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Plants are food factories! Powered by the Sun.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.1
+            },
+            {
+              "do": "nod",
+              "target": "monkey",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "In our forest, the producers are grass, oak trees with acorns, and berry bushes.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "sunflow",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "waterflow",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co2flow",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o2flow",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "sugar",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "soil_wrong",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "p_grass",
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "p_acorn",
+              "at": 2
+            },
+            {
+              "do": "pop",
+              "target": "p_berry",
+              "at": 2.8
+            },
+            {
+              "do": "pop",
+              "target": "prod_w",
+              "at": 3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "p_grass",
+                "p_berry",
+                "sboard"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "p_grass",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "p_acorn",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "p_berry",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "prod_w",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "photo",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "photo_w",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "bplant",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "banana",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consumers",
+      "title": "Consumers: who eats what?",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "ring0",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "rt0",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "ring1",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "rt1",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "ring2",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "rt2",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "ring0",
+                "ring2",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 45
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ring1"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ring1"
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Animals can't make their own food. They are consumers: they eat to get energy.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "consumer",
+              "style": "label",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Herbivores eat only plants. The bunny and the grasshopper eat grass.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_bunny",
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "s_hopper",
+              "at": 1.6
+            },
+            {
+              "do": "caption",
+              "text": "herbivore",
+              "style": "label",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The squirrel eats mostly acorns and seeds. Herbivore too!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_squirrel",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Carnivores eat other animals. The frog eats insects.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_frog",
+              "at": 0.8
+            },
+            {
+              "do": "caption",
+              "text": "carnivore",
+              "style": "label",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Is the hawk a herbivore, carnivore or omnivore?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_hawk",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Carnivore! Hawks eat mice, frogs and bunnies.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "highlight",
+              "target": "ring1",
+              "dur": 2,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Omnivores eat plants and animals. The mouse eats seeds and insects.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_mouse",
+              "at": 0.8
+            },
+            {
+              "do": "caption",
+              "text": "omnivore",
+              "style": "label",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The fox eats bunnies, mice and berries. Which group is the fox in?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s_fox",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Plants and animals: omnivore! And me too. I eat fruit, leaves and insects.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "highlight",
+              "target": "ring2",
+              "dur": 2,
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "s_bear",
+              "text": "And I eat berries, acorns and insects. I'm an omnivore too!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "show",
+              "target": "s_bear",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "s_bear",
+              "at": 0.3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "ring2"
+              ],
+              "framing": "close",
+              "dur": 1.2,
+              "height": 30
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "s_bunny",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s_hopper",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s_squirrel",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s_frog",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s_hawk",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s_mouse",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s_fox",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s_bear",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "ring0",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "ring1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "ring2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rt0",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rt1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rt2",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chain",
+      "title": "A food chain and the arrow rule",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "c_sun",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "c_grass",
+              "at": 0.16
+            },
+            {
+              "do": "show",
+              "target": "c_grass_m",
+              "at": 0.22
+            },
+            {
+              "do": "show",
+              "target": "c_bunny",
+              "at": 0.28
+            },
+            {
+              "do": "show",
+              "target": "c_bunny_m",
+              "at": 0.33999999999999997
+            },
+            {
+              "do": "show",
+              "target": "c_fox",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "c_fox_m",
+              "at": 0.45999999999999996
+            },
+            {
+              "do": "shot",
+              "target": [
+                "c_sun",
+                "c_fox",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 12
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "c_bunny"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "c_bunny"
+            }
+          ]
+        },
+        {
+          "dur": 2.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A food chain shows who eats what. Sun, grass, bunny, fox.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "c_grass",
+              "dur": 1,
+              "at": 1.4
+            },
+            {
+              "do": "highlight",
+              "target": "c_bunny",
+              "dur": 1,
+              "at": 2
+            },
+            {
+              "do": "highlight",
+              "target": "c_fox",
+              "dur": 1,
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Let me draw the arrows! The fox points at what it eats.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "draw",
+              "target": "w3",
+              "at": 1
+            },
+            {
+              "do": "draw",
+              "target": "w2",
+              "at": 1.8
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's send the energy along your arrows.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "eflow_stop",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "mark",
+              "target": "w3",
+              "result": "incorrect",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "boing",
+              "volume": 0.4,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The energy can't get from the Sun to the fox. The arrows point the wrong way!",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Which way should the arrows point?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The arrow means gives energy to. It points from the one that is eaten to the one that eats.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "w2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "w3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "eflow_stop",
+              "at": 0.2
+            },
+            {
+              "do": "draw",
+              "target": "a1",
+              "at": 0.6
+            },
+            {
+              "do": "draw",
+              "target": "a2",
+              "at": 1.4
+            },
+            {
+              "do": "draw",
+              "target": "a3",
+              "at": 2.2
+            },
+            {
+              "do": "pop",
+              "target": "rule",
+              "at": 1
+            },
+            {
+              "do": "emphasize",
+              "target": "rule",
+              "words": "gives energy to",
+              "at": 2.8
+            },
+            {
+              "do": "shot",
+              "target": [
+                "c_sun",
+                "c_fox",
+                "sboard"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 10
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "show",
+              "target": "eflow1",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.3,
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Now the dots flow all the way! Sun to grass to bunny to fox.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The grass is the producer. The bunny is the first consumer, and the fox is the second consumer.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "lp",
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "l1",
+              "at": 2.4
+            },
+            {
+              "do": "pop",
+              "target": "l2",
+              "at": 3.8
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "So every food chain starts with the Sun, then a producer.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here's another chain: Sun, grass, grasshopper, frog, hawk.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "c_sun",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c_grass",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c_grass_m",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c_bunny",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c_bunny_m",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c_fox",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c_fox_m",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "eflow1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "lp",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "d_grass",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "d_grass_m",
+              "at": 0.28
+            },
+            {
+              "do": "show",
+              "target": "d_hopper",
+              "at": 0.36
+            },
+            {
+              "do": "show",
+              "target": "d_hopper_m",
+              "at": 0.44
+            },
+            {
+              "do": "show",
+              "target": "d_frog",
+              "at": 0.52
+            },
+            {
+              "do": "show",
+              "target": "d_frog_m",
+              "at": 0.6000000000000001
+            },
+            {
+              "do": "show",
+              "target": "d_hawk",
+              "at": 0.6799999999999999
+            },
+            {
+              "do": "show",
+              "target": "d_hawk_m",
+              "at": 0.76
+            },
+            {
+              "do": "draw",
+              "target": "b1",
+              "at": 1.6
+            },
+            {
+              "do": "draw",
+              "target": "b2",
+              "at": 2.2
+            },
+            {
+              "do": "draw",
+              "target": "b3",
+              "at": 2.8
+            },
+            {
+              "do": "shot",
+              "target": [
+                "d_grass",
+                "d_hawk",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 12
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Producer, first consumer, second consumer, third consumer.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m1",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "m2",
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "m3",
+              "at": 2
+            },
+            {
+              "do": "pop",
+              "target": "m4",
+              "at": 3
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "d_grass",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "d_grass_m",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "d_hopper",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "d_hopper_m",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "d_frog",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "d_frog_m",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "d_hawk",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "d_hawk_m",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "b1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "b2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "m1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "m2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "m3",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "m4",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rule",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "decomposers",
+      "title": "Decomposers, the recyclers",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "soil",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "leaves",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "dlog",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "worm",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "dplant",
+              "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "leaves",
+                "dlog",
+                "dplant",
+                "worm",
+                "sboard"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 14
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "leaves"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "leaves"
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "What happens when leaves fall and living things die? Meet the decomposers.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "decomposer",
+              "style": "label",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Mushrooms and other fungi, tiny bacteria, and helpers like worms break them down.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "mush1",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "mush3",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "mush2",
+              "at": 0.8
+            },
+            {
+              "do": "grow",
+              "target": "mush1",
+              "to": 1.2,
+              "dur": 0.6,
+              "at": 1
+            },
+            {
+              "do": "wiggle",
+              "target": "worm",
+              "deg": 15,
+              "dur": 1.2,
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "They turn them into nutrients in the soil.",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "leaves",
+              "to": [
+                1,
+                0.4,
+                1
+              ],
+              "dur": 2,
+              "ease": "sineInOut",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "nutflow",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "decomp",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Then plants take the nutrients up through their roots.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "dplant",
+              "dur": 2,
+              "at": 0.4
+            },
+            {
+              "do": "grow",
+              "target": "dplant",
+              "to": 1.25,
+              "dur": 1.2,
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "So decomposers are nature's recyclers!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Yes! Matter goes round and round. But energy does not.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "decomp",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "matter",
+              "at": 0.4
+            },
+            {
+              "do": "emphasize",
+              "target": "matter",
+              "words": "Matter goes round and round",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Energy is used up or lost as heat, so plants need new sunlight every day.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "matter",
+              "words": "plants need new sunlight every day",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "If you went looking for decomposers, where would you find the most?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "In damp, shady places, like under logs and leaves!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "point",
+              "target": "monkey",
+              "to": "dlog",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact: earthworms have no lungs. They breathe through their skin.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "matter",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "wormfact",
+              "at": 0.4
+            },
+            {
+              "do": "wiggle",
+              "target": "worm",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And one honey fungus in Oregon spreads underground for about nine square kilometers!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "soil",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "leaves",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "dlog",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "worm",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "dplant",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "mush1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "mush2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "mush3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "nutflow",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "wormfact",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "web",
+      "title": "The food web",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "w_grass",
+              "at": 0.05
+            },
+            {
+              "do": "show",
+              "target": "w_grass_m",
+              "at": 0.08
+            },
+            {
+              "do": "show",
+              "target": "w_acorn",
+              "at": 0.11
+            },
+            {
+              "do": "show",
+              "target": "w_acorn_m",
+              "at": 0.14
+            },
+            {
+              "do": "show",
+              "target": "w_berry",
+              "at": 0.17
+            },
+            {
+              "do": "show",
+              "target": "w_berry_m",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "w_hopper",
+              "at": 0.23
+            },
+            {
+              "do": "show",
+              "target": "w_hopper_m",
+              "at": 0.26
+            },
+            {
+              "do": "show",
+              "target": "w_bunny",
+              "at": 0.29
+            },
+            {
+              "do": "show",
+              "target": "w_bunny_m",
+              "at": 0.32
+            },
+            {
+              "do": "show",
+              "target": "w_mouse",
+              "at": 0.35
+            },
+            {
+              "do": "show",
+              "target": "w_mouse_m",
+              "at": 0.38
+            },
+            {
+              "do": "show",
+              "target": "w_squirrel",
+              "at": 0.41
+            },
+            {
+              "do": "show",
+              "target": "w_squirrel_m",
+              "at": 0.44
+            },
+            {
+              "do": "show",
+              "target": "w_frog",
+              "at": 0.47
+            },
+            {
+              "do": "show",
+              "target": "w_frog_m",
+              "at": 0.5
+            },
+            {
+              "do": "show",
+              "target": "w_fox",
+              "at": 0.53
+            },
+            {
+              "do": "show",
+              "target": "w_fox_m",
+              "at": 0.56
+            },
+            {
+              "do": "show",
+              "target": "w_bear",
+              "at": 0.59
+            },
+            {
+              "do": "show",
+              "target": "w_bear_m",
+              "at": 0.62
+            },
+            {
+              "do": "show",
+              "target": "w_hawk",
+              "at": 0.65
+            },
+            {
+              "do": "show",
+              "target": "w_hawk_m",
+              "at": 0.68
+            },
+            {
+              "do": "show",
+              "target": "w_sun",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "w_grass",
+                "w_acorn",
+                "w_berry",
+                "w_hopper",
+                "w_bunny",
+                "w_mouse",
+                "w_squirrel",
+                "w_frog",
+                "w_fox",
+                "w_bear",
+                "w_hawk",
+                "w_sun"
+              ],
+              "framing": "wide",
+              "dur": 1.4,
+              "height": 55
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "w_mouse"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "w_mouse"
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "In a real forest, food chains join together. This is a food web.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "food web",
+              "style": "label",
+              "at": 0.6
+            },
+            {
+              "do": "draw",
+              "target": "sun0",
+              "dur": 0.6,
+              "at": 1.4
+            },
+            {
+              "do": "draw",
+              "target": "sun1",
+              "dur": 0.6,
+              "at": 1.7
+            },
+            {
+              "do": "draw",
+              "target": "sun2",
+              "dur": 0.6,
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Grass feeds the bunny, the grasshopper and the mouse.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "web0",
+              "dur": 0.6,
+              "at": 0.6
+            },
+            {
+              "do": "draw",
+              "target": "web1",
+              "dur": 0.6,
+              "at": 1.2999999999999998
+            },
+            {
+              "do": "draw",
+              "target": "web2",
+              "dur": 0.6,
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 2.05,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Acorns feed the squirrel, the mouse and the bear.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "web3",
+              "dur": 0.6,
+              "at": 0.5
+            },
+            {
+              "do": "draw",
+              "target": "web4",
+              "dur": 0.6,
+              "at": 1.2
+            },
+            {
+              "do": "draw",
+              "target": "web5",
+              "dur": 0.6,
+              "at": 1.9
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Berries feed the bear and the fox. The frog eats grasshoppers.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "web6",
+              "dur": 0.6,
+              "at": 0.6
+            },
+            {
+              "do": "draw",
+              "target": "web7",
+              "dur": 0.6,
+              "at": 1.4
+            },
+            {
+              "do": "draw",
+              "target": "web8",
+              "dur": 0.6,
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The fox eats bunnies and mice. The hawk eats mice, squirrels, frogs and bunnies.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "web9",
+              "dur": 0.6,
+              "at": 0.6
+            },
+            {
+              "do": "draw",
+              "target": "web10",
+              "dur": 0.6,
+              "at": 1.2
+            },
+            {
+              "do": "draw",
+              "target": "web11",
+              "dur": 0.6,
+              "at": 1.7999999999999998
+            },
+            {
+              "do": "draw",
+              "target": "web12",
+              "dur": 0.6,
+              "at": 2.4
+            },
+            {
+              "do": "draw",
+              "target": "web13",
+              "dur": 0.6,
+              "at": 3
+            },
+            {
+              "do": "draw",
+              "target": "web14",
+              "dur": 0.6,
+              "at": 3.6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And the bear eats insects too.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "web15",
+              "dur": 0.6,
+              "at": 0.4
+            },
+            {
+              "do": "orbit",
+              "around": [
+                -1,
+                0.2,
+                0.2
+              ],
+              "degrees": 50,
+              "dur": 6,
+              "height": 6.5
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "w_bear",
+              "text": "Look! I'm in lots of chains: berries, acorns and insects all give me energy.",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "w_bear",
+              "at": 0.2
+            },
+            {
+              "do": "highlight",
+              "target": "web5",
+              "dur": 2.2,
+              "at": 0.8
+            },
+            {
+              "do": "highlight",
+              "target": "web6",
+              "dur": 2.2,
+              "at": 1.4
+            },
+            {
+              "do": "highlight",
+              "target": "web15",
+              "dur": 2.2,
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One animal can be in many food chains. Now, a prediction.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "webq",
+              "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "w_grass",
+                "w_acorn",
+                "w_berry",
+                "w_hopper",
+                "w_bunny",
+                "w_mouse",
+                "w_squirrel",
+                "w_frog",
+                "w_fox",
+                "w_bear",
+                "w_hawk"
+              ],
+              "framing": "wide",
+              "dur": 1.2,
+              "height": 55
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "What if all the grasshoppers disappeared? What would happen?",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "w_hopper",
+              "dur": 2,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_hopper",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web8",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web15",
+              "at": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.3,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "The frog loses its food! There might be fewer frogs.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "w_frog",
+              "feeling": "worried",
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "w_frog",
+              "dur": 2,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And the hawk may hunt more mice instead. The grass may grow taller, with nobody nibbling it.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "web11",
+              "dur": 2.2,
+              "at": 1
+            },
+            {
+              "do": "grow",
+              "target": "w_grass",
+              "to": [
+                1,
+                1.4,
+                1
+              ],
+              "dur": 1.2,
+              "at": 2.6
+            },
+            {
+              "do": "pop",
+              "target": "weba",
+              "at": 3
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Changing one part of a web can change many others.",
+              "caption": true
+            },
+            {
+              "do": "orbit",
+              "around": [
+                -1,
+                0.2,
+                0.2
+              ],
+              "degrees": -40,
+              "dur": 5,
+              "height": 6.5
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "w_hopper",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web1",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "web8",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "web15",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "w_frog",
+              "feeling": "happy",
+              "at": 0.3
+            },
+            {
+              "do": "grow",
+              "target": "w_grass",
+              "to": [
+                1,
+                1,
+                1
+              ],
+              "dur": 0.6,
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "webq",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "weba",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pyramid",
+      "title": "The energy pyramid",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_grass",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_grass_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_acorn",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_acorn_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_berry",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_berry_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_hopper",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_hopper_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_bunny",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_bunny_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_mouse",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_mouse_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_squirrel",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_squirrel_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_frog",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_frog_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_fox",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_fox_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_bear",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_bear_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_hawk",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_hawk_m",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web0",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web1",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web2",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web3",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web4",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web5",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web6",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web7",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web8",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web9",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web10",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web11",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web12",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web13",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web14",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "web15",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "sun0",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "sun1",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "sun2",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "w_sun",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "bear",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "py1",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "py2",
+              "at": 0.5
+            },
+            {
+              "do": "show",
+              "target": "py3",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "pyl1",
+              "at": 0.5
+            },
+            {
+              "do": "show",
+              "target": "pyl2",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "pyl3",
+              "at": 0.7
+            },
+            {
+              "do": "shot",
+              "target": [
+                "py1",
+                "py3",
+                "sboard"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Why are there lots of plants, fewer bunnies and only a few foxes? Let's count energy.",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "py1"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.2,
+              "to": "py1"
+            }
+          ]
+        },
+        {
+          "dur": 1.27,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Say one thousand units of energy go into the grass.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "g1_0",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "g1_1",
+              "at": 0.48000000000000004
+            },
+            {
+              "do": "show",
+              "target": "g1_2",
+              "at": 0.56
+            },
+            {
+              "do": "show",
+              "target": "g1_3",
+              "at": 0.64
+            },
+            {
+              "do": "show",
+              "target": "g1_4",
+              "at": 0.72
+            },
+            {
+              "do": "show",
+              "target": "g1_5",
+              "at": 0.8
+            },
+            {
+              "do": "show",
+              "target": "g1_6",
+              "at": 0.88
+            },
+            {
+              "do": "show",
+              "target": "g1_7",
+              "at": 0.9600000000000001
+            },
+            {
+              "do": "show",
+              "target": "g1_8",
+              "at": 1.04
+            },
+            {
+              "do": "show",
+              "target": "g1_9",
+              "at": 1.12
+            },
+            {
+              "do": "caption",
+              "text": "1,000",
+              "style": "count",
+              "dur": 2,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.11,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The grass uses most of it to live and grow, and some is lost as heat.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "g1_1",
+              "dur": 0.3,
+              "at": 1
+            },
+            {
+              "do": "hide",
+              "target": "g1_2",
+              "dur": 0.3,
+              "at": 1.12
+            },
+            {
+              "do": "hide",
+              "target": "g1_3",
+              "dur": 0.3,
+              "at": 1.24
+            },
+            {
+              "do": "hide",
+              "target": "g1_4",
+              "dur": 0.3,
+              "at": 1.3599999999999999
+            },
+            {
+              "do": "hide",
+              "target": "g1_5",
+              "dur": 0.3,
+              "at": 1.48
+            },
+            {
+              "do": "hide",
+              "target": "g1_6",
+              "dur": 0.3,
+              "at": 1.6
+            },
+            {
+              "do": "hide",
+              "target": "g1_7",
+              "dur": 0.3,
+              "at": 1.72
+            },
+            {
+              "do": "hide",
+              "target": "g1_8",
+              "dur": 0.3,
+              "at": 1.8399999999999999
+            },
+            {
+              "do": "hide",
+              "target": "g1_9",
+              "dur": 0.3,
+              "at": 1.96
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "volume": 0.4,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Only about one hundred units pass up to the bunnies.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "g1_0",
+              "to": [
+                -1.6,
+                1.02,
+                1.35
+              ],
+              "dur": 0.8,
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "g1_0",
+              "dur": 0.2,
+              "at": 1
+            },
+            {
+              "do": "show",
+              "target": "g2_0",
+              "at": 1.1
+            },
+            {
+              "do": "show",
+              "target": "g2_1",
+              "at": 1.1500000000000001
+            },
+            {
+              "do": "show",
+              "target": "g2_2",
+              "at": 1.2000000000000002
+            },
+            {
+              "do": "show",
+              "target": "g2_3",
+              "at": 1.25
+            },
+            {
+              "do": "show",
+              "target": "g2_4",
+              "at": 1.3
+            },
+            {
+              "do": "show",
+              "target": "g2_5",
+              "at": 1.35
+            },
+            {
+              "do": "show",
+              "target": "g2_6",
+              "at": 1.4000000000000001
+            },
+            {
+              "do": "show",
+              "target": "g2_7",
+              "at": 1.4500000000000002
+            },
+            {
+              "do": "show",
+              "target": "g2_8",
+              "at": 1.5
+            },
+            {
+              "do": "show",
+              "target": "g2_9",
+              "at": 1.55
+            },
+            {
+              "do": "caption",
+              "text": "100",
+              "style": "count",
+              "dur": 2,
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.4499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And only about ten reach the foxes.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "g2_1",
+              "dur": 0.3,
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g2_2",
+              "dur": 0.3,
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "g2_3",
+              "dur": 0.3,
+              "at": 0.6000000000000001
+            },
+            {
+              "do": "hide",
+              "target": "g2_4",
+              "dur": 0.3,
+              "at": 0.7000000000000001
+            },
+            {
+              "do": "hide",
+              "target": "g2_5",
+              "dur": 0.3,
+              "at": 0.8
+            },
+            {
+              "do": "hide",
+              "target": "g2_6",
+              "dur": 0.3,
+              "at": 0.9
+            },
+            {
+              "do": "hide",
+              "target": "g2_7",
+              "dur": 0.3,
+              "at": 1
+            },
+            {
+              "do": "hide",
+              "target": "g2_8",
+              "dur": 0.3,
+              "at": 1.1
+            },
+            {
+              "do": "hide",
+              "target": "g2_9",
+              "dur": 0.3,
+              "at": 1.2000000000000002
+            },
+            {
+              "do": "move",
+              "target": "g2_0",
+              "to": [
+                -1.6,
+                1.52,
+                1.25
+              ],
+              "dur": 0.8,
+              "at": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "g2_0",
+              "dur": 0.2,
+              "at": 2.2
+            },
+            {
+              "do": "show",
+              "target": "g3",
+              "at": 2.3
+            },
+            {
+              "do": "caption",
+              "text": "10",
+              "style": "count",
+              "dur": 2,
+              "at": 2.3
+            },
+            {
+              "do": "sound",
+              "sound": "crystal_chime",
+              "volume": 0.4,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "About one tenth passes up at each step. It's a rough rule.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "pyramid_c",
+              "at": 0.4
+            },
+            {
+              "do": "camera",
+              "position": [
+                -1.6,
+                0.8,
+                6
+              ],
+              "lookAt": [
+                -1.6,
+                0.8,
+                1
+              ],
+              "fov": 40,
+              "dur": 0.01
+            },
+            {
+              "do": "camera",
+              "position": [
+                -1.6,
+                2.6,
+                6.2
+              ],
+              "lookAt": [
+                -1.6,
+                1.3,
+                1
+              ],
+              "fov": 40,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Check: if a field of clover had two thousand units, about how many would reach the next step?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            },
+            {
+              "do": "shot",
+              "target": [
+                "py1",
+                "py3",
+                "sboard",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "About one tenth: two hundred!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "That's why there's more grass than bunnies, and more bunnies than foxes!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "py1",
+                "py3",
+                "sboard",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact: plants catch only a small part of the sunlight.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "pyramid_c",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "sunfact",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "But it feeds almost every food chain on land!",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "py1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "py2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "py3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pyl1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pyl2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pyl3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "g3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sunfact",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chant",
+      "title": "The Sun-to-Me chant",
+      "music": "happy",
+      "musicGain": 0.2,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "bear",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "c_sun",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "c_grass",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "c_grass_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "c_bunny",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "c_bunny_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "c_fox",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "c_fox_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "a1",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "a2",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "a3",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "eflow1",
+              "at": 0.3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "c_sun",
+                "c_fox",
+                "monkey",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 10
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Where does the energy start?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "The Sun!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Which way do arrows go?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "To the eater!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Sun to the leaf and leaf to me! Follow the arrow, follow the energy!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Clap and pass it! Sun to the leaf and leaf to me! Follow the arrow, follow the energy!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 1
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 1.8
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 2.4
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "volume": 0.4,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.4,
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "c_sun",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "c_grass",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "c_grass_m",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "c_bunny",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "c_bunny_m",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "c_fox",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "c_fox_m",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "a1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "a2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "a3",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "eflow1",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fix",
+      "title": "Challenge: fix the web",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "w_grass",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_grass_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_acorn",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_acorn_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_berry",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_berry_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_hopper",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_hopper_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_bunny",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_bunny_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_mouse",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_mouse_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_squirrel",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_squirrel_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_frog",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_frog_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_fox",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_fox_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_bear",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_bear_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_hawk",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "w_hawk_m",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "web0",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web1",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web2",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web3",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web4",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web5",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web6",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web7",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web8",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web9",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web10",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web12",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web13",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web14",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "web15",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "bad_hawk",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "w_mush",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "mush_prod",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "bear",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "w_grass",
+                "w_acorn",
+                "w_berry",
+                "w_hopper",
+                "w_bunny",
+                "w_mouse",
+                "w_squirrel",
+                "w_frog",
+                "w_fox",
+                "w_bear",
+                "w_hawk",
+                "w_mush"
+              ],
+              "framing": "wide",
+              "dur": 1.2,
+              "height": 55
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "w_hawk"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "w_hawk"
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Detective challenge! This web has three mistakes. Can you find them?",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "find 3 mistakes",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Mistake one: look at the arrow between the hawk and the mouse.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "bad_hawk",
+              "dur": 2.4,
+              "color": "red",
+              "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "w_hawk",
+                "w_mouse"
+              ],
+              "framing": "close",
+              "dur": 1.2,
+              "height": 40
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 2.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "It's backwards! The mouse gives energy to the hawk.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "mark",
+              "target": "bad_hawk",
+              "result": "incorrect",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "bad_hawk",
+              "at": 1.6
+            },
+            {
+              "do": "draw",
+              "target": "web11",
+              "dur": 0.6,
+              "at": 1.8
+            },
+            {
+              "do": "mark",
+              "target": "w_mouse",
+              "result": "correct",
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Mistake two: something is missing that every web needs.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "w_grass",
+                "w_acorn",
+                "w_berry",
+                "w_hopper",
+                "w_bunny",
+                "w_mouse",
+                "w_squirrel",
+                "w_frog",
+                "w_fox",
+                "w_bear",
+                "w_hawk"
+              ],
+              "framing": "wide",
+              "dur": 1.2,
+              "height": 55
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "The Sun! Producers need sunlight.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "show",
+              "target": "w_sun",
+              "at": 0.3
+            },
+            {
+              "do": "draw",
+              "target": "sun0",
+              "dur": 0.6,
+              "at": 0.6
+            },
+            {
+              "do": "draw",
+              "target": "sun1",
+              "dur": 0.6,
+              "at": 0.8999999999999999
+            },
+            {
+              "do": "draw",
+              "target": "sun2",
+              "dur": 0.6,
+              "at": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "magic_sparkle",
+              "volume": 0.5,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Mistake three: this mushroom is labelled producer.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "w_mush",
+              "dur": 2,
+              "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "w_mush",
+                "mush_prod",
+                "w_bear"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 25
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 2.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "A mushroom can't make food from sunlight. It's a decomposer!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "mark",
+              "target": "mush_prod",
+              "result": "incorrect",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "mush_prod",
+              "at": 1.6
+            },
+            {
+              "do": "pop",
+              "target": "mush_dec",
+              "at": 1.8
+            },
+            {
+              "do": "mark",
+              "target": "mush_dec",
+              "result": "correct",
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three mistakes fixed. Great detective work!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "w_grass",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_grass_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_acorn",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_acorn_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_berry",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_berry_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_hopper",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_hopper_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_bunny",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_bunny_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_mouse",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_mouse_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_squirrel",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_squirrel_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_frog",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_frog_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_fox",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_fox_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_bear",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_bear_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_hawk",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_hawk_m",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web0",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web4",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web5",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web6",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web7",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web8",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web9",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web10",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web11",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web12",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web13",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web14",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "web15",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sun0",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sun1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sun2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_sun",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w_mush",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "mush_dec",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Quiz and recap",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "bear",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sboard"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "sboard"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "sboard"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": "sboard"
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question one. Where does almost all the energy in a food chain come from?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q1",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The Sun!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans1",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans1",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question two. In Sun, grass, bunny, fox, which way do the arrows point, and why?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans1",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "From the eaten to the eater, the way the energy flows.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans2",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans2",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question three. Is a bear a herbivore, a carnivore or an omnivore?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans2",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "An omnivore. Bears eat plants and animals.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans3",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans3",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question four. Why are there fewer foxes than bunnies?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans3",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Only about a tenth of the energy passes up at each step.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans4",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans4",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 4.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Recap! Producers make food from sunlight. Consumers eat. Decomposers recycle matter.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans4",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "recap",
+              "at": 0.3
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Producers make food from sunlight",
+              "at": 0.8
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Consumers eat",
+              "at": 3
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Decomposers recycle matter",
+              "at": 4
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Arrows follow the energy, and there's less energy at each step.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Arrows follow the energy",
+              "at": 0.3
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Less energy at each step",
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Everyone in the forest is connected!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Your turn: lunch chain",
+      "music": "happy",
+      "musicGain": 0.2,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "recap",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sboard",
+                "monkey",
+                "bear"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your turn! Pick a food from your lunch and trace it back to the Sun with arrows.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "Sun → wheat → bread → you",
+              "style": "label",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Outdoors, look for decomposers under a log. Look, but don't touch or eat wild mushrooms.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "home_c",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Go with a grown-up and wash your hands after. See you next time!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.6
+            },
+            {
+              "do": "burst",
+              "target": "stars",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.8
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.5,
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": []
+        }
+      ]
+    }
+  ]
+}

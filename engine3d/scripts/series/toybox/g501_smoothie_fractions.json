@@ -1,0 +1,8172 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Toy Box Friends G5-01: adding and subtracting fractions with unlike denominators at Monkey's smoothie shack. 1/2 + 1/3 is not 2/5: rename to a common denominator first.",
+  "meta": {
+    "series": "toybox",
+    "episode": "g501",
+    "audience": "grade5",
+    "seed": 501,
+    "voice": "soft",
+    "voiceSpeed": 1,
+    "music": "happy",
+    "musicGain": 0.18,
+    "skills": [
+      "fraction_operations_5"
+    ],
+    "title": "Adding Fractions with Unlike Denominators",
+    "youtube": {
+      "title": "Adding Fractions with Unlike Denominators | Common Denominators | Grade 5 Math | Toy Box Friends",
+      "description": "Monkey says 1/2 cup + 1/3 cup = 2/5 cup. But that's less than the banana alone! Robo shows why we can only add pieces of the same size: rename the fractions with a common denominator, add the numerators and keep the denominator.\nYou'll learn: why 1/2 + 1/3 is not 2/5, how to find a common denominator with lists of multiples, how to estimate with benchmark fractions (0, 1/2, 1), subtracting fractions, and answers greater than one (mixed numbers).\nTry at home with a grown-up: use measuring cups and water on a tray. Estimate first, then pour 1/2 cup and 1/3 cup into a 1-cup measure. Wipe up spills so nobody slips.",
+      "tags": [
+        "adding fractions",
+        "unlike denominators",
+        "common denominator",
+        "subtracting fractions",
+        "grade 5 math",
+        "5th grade fractions",
+        "equivalent fractions",
+        "fraction bars",
+        "math for kids",
+        "Toy Box Friends"
+      ]
+    },
+    "thumbnails": [
+      {
+        "name": "no",
+        "title": "2/5? NO!",
+        "subtitle": "Can 1/2 + 1/3 be 2/5?",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "beach",
+        "camera": {
+          "position": [
+            0,
+            1.45,
+            6.9
+          ],
+          "lookAt": [
+            0,
+            1.25,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "c25",
+            "kind": "shape",
+            "shape": "cup",
+            "material": "glass",
+            "color": "white",
+            "at": [
+              0.75,
+              0,
+              0.6
+            ],
+            "size": 0.85,
+            "scale": [
+              1,
+              1.5,
+              1
+            ]
+          },
+          {
+            "id": "c25_f",
+            "kind": "shape",
+            "shape": "cylinder",
+            "material": "toy",
+            "color": "pink",
+            "at": [
+              0.75,
+              0.03,
+              0.6
+            ],
+            "scale": [
+              0.72,
+              0.496,
+              0.72
+            ]
+          },
+          {
+            "id": "t25",
+            "kind": "fraction_text",
+            "numerator": 2,
+            "denominator": 5,
+            "at": [
+              0.75,
+              1.5,
+              0.6
+            ],
+            "size": 0.32,
+            "color": "red"
+          },
+          {
+            "id": "x",
+            "kind": "shape",
+            "shape": "cross",
+            "color": "red",
+            "at": [
+              0.75,
+              2.45,
+              0.6
+            ],
+            "size": 0.42
+          },
+          {
+            "id": "c56",
+            "kind": "shape",
+            "shape": "cup",
+            "material": "glass",
+            "color": "white",
+            "at": [
+              1.85,
+              0,
+              0.6
+            ],
+            "size": 0.85,
+            "scale": [
+              1,
+              1.5,
+              1
+            ]
+          },
+          {
+            "id": "c56_f",
+            "kind": "shape",
+            "shape": "cylinder",
+            "material": "toy",
+            "color": "orange",
+            "at": [
+              1.85,
+              0.03,
+              0.6
+            ],
+            "scale": [
+              0.72,
+              1.033,
+              0.72
+            ]
+          },
+          {
+            "id": "t56",
+            "kind": "fraction_text",
+            "numerator": 5,
+            "denominator": 6,
+            "at": [
+              1.85,
+              1.5,
+              0.6
+            ],
+            "size": 0.32,
+            "color": "green"
+          },
+          {
+            "id": "tick",
+            "kind": "shape",
+            "shape": "tick",
+            "color": "green",
+            "at": [
+              1.85,
+              2.45,
+              0.6
+            ],
+            "size": 0.5
+          },
+          {
+            "id": "monkey",
+            "kind": "critter",
+            "species": "monkey",
+            "at": [
+              -0.25,
+              0,
+              1.4
+            ],
+            "size": 0.95,
+            "rotation": [
+              0,
+              25,
+              0
+            ],
+            "feeling": "surprised"
+          },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [
+              2.85,
+              0,
+              -1
+            ],
+            "rotation": [
+              0,
+              -25,
+              0
+            ],
+            "clip": "ThumbsUp",
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "match",
+        "title": "MATCH THE PIECES",
+        "subtitle": "Rename, then add",
+        "titleColor": "white",
+        "side": "top",
+        "badge": "GRADE 5",
+        "stage": "beach",
+        "camera": {
+          "position": [
+            0,
+            1.15,
+            5.4
+          ],
+          "lookAt": [
+            0,
+            0.95,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "b1",
+            "kind": "fraction_bar",
+            "parts": 2,
+            "shaded": 1,
+            "length": 3.2,
+            "height": 0.45,
+            "color": "yellow",
+            "at": [
+              -0.5,
+              1.2,
+              0
+            ]
+          },
+          {
+            "id": "b2",
+            "kind": "fraction_bar",
+            "parts": 6,
+            "shaded": 3,
+            "length": 3.2,
+            "height": 0.45,
+            "color": "yellow",
+            "at": [
+              -0.5,
+              0.25,
+              0
+            ]
+          },
+          {
+            "id": "f1",
+            "kind": "fraction_text",
+            "numerator": 1,
+            "denominator": 2,
+            "at": [
+              -2.6,
+              1.28,
+              0
+            ],
+            "size": 0.3,
+            "color": "ink"
+          },
+          {
+            "id": "f2",
+            "kind": "fraction_text",
+            "numerator": 3,
+            "denominator": 6,
+            "at": [
+              -2.6,
+              0.33,
+              0
+            ],
+            "size": 0.3,
+            "color": "orange"
+          },
+          {
+            "id": "monkey",
+            "kind": "critter",
+            "species": "monkey",
+            "at": [
+              2.1,
+              0,
+              0.6
+            ],
+            "size": 1,
+            "rotation": [
+              0,
+              -25,
+              0
+            ],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "cup",
+        "title": "ADD FRACTIONS",
+        "subtitle": "1/2 cup + 1/3 cup = ?",
+        "titleColor": "pink",
+        "side": "right",
+        "badge": "GRADE 5",
+        "stage": "beach",
+        "camera": {
+          "position": [
+            0,
+            1.45,
+            6.9
+          ],
+          "lookAt": [
+            0,
+            1.25,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "c",
+            "kind": "shape",
+            "shape": "cup",
+            "material": "glass",
+            "color": "white",
+            "at": [
+              -1.3,
+              0,
+              0.4
+            ],
+            "size": 0.85,
+            "scale": [
+              1,
+              1.5,
+              1
+            ]
+          },
+          {
+            "id": "c_f",
+            "kind": "shape",
+            "shape": "cylinder",
+            "material": "toy",
+            "color": "orange",
+            "at": [
+              -1.3,
+              0.03,
+              0.4
+            ],
+            "scale": [
+              0.72,
+              1.033,
+              0.72
+            ]
+          },
+          {
+            "id": "e1",
+            "kind": "fraction_text",
+            "numerator": 1,
+            "denominator": 2,
+            "at": [
+              -2.304,
+              1.6,
+              0.4
+            ],
+            "size": 0.36,
+            "color": "ink"
+          },
+          {
+            "id": "e2",
+            "kind": "letter",
+            "text": "+",
+            "at": [
+              -1.852,
+              1.6,
+              0.4
+            ],
+            "size": 0.36,
+            "color": "ink",
+            "depth": 0.12
+          },
+          {
+            "id": "e3",
+            "kind": "fraction_text",
+            "numerator": 1,
+            "denominator": 3,
+            "at": [
+              -1.4,
+              1.6,
+              0.4
+            ],
+            "size": 0.36,
+            "color": "ink"
+          },
+          {
+            "id": "e4",
+            "kind": "letter",
+            "text": "=",
+            "at": [
+              -0.948,
+              1.6,
+              0.4
+            ],
+            "size": 0.36,
+            "color": "ink",
+            "depth": 0.12
+          },
+          {
+            "id": "e5",
+            "kind": "fraction_text",
+            "numerator": 5,
+            "denominator": 6,
+            "at": [
+              -0.496,
+              1.6,
+              0.4
+            ],
+            "size": 0.36,
+            "color": "green"
+          },
+          {
+            "id": "bear",
+            "kind": "critter",
+            "species": "bear",
+            "at": [
+              -2.45,
+              0,
+              1.3
+            ],
+            "size": 1,
+            "rotation": [
+              0,
+              30,
+              0
+            ],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
+  },
+  "stage": {
+    "preset": "beach"
+  },
+  "camera": {
+    "position": [
+      4.2,
+      1.8,
+      7.6
+    ],
+    "lookAt": [
+      5,
+      1.2,
+      0.8
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        2.5,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        35,
+        0
+      ]
+    },
+    {
+      "id": "monkey",
+      "kind": "critter",
+      "species": "monkey",
+      "size": 1.15,
+      "at": [
+        3.95,
+        0,
+        1.4
+      ],
+      "rotation": [
+        0,
+        -15,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "size": 1.1,
+      "at": [
+        7,
+        0,
+        1.6
+      ],
+      "rotation": [
+        0,
+        -35,
+        0
+      ]
+    },
+    {
+      "id": "palm1",
+      "kind": "prop",
+      "model": "palm_tree",
+      "at": [
+        -7.6,
+        0,
+        -3.2
+      ],
+      "size": 1.4
+    },
+    {
+      "id": "palm2",
+      "kind": "prop",
+      "model": "palm_tree",
+      "at": [
+        8.8,
+        0,
+        -2.6
+      ],
+      "size": 1.25
+    },
+    {
+      "id": "sea",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "sky",
+      "material": "water",
+      "at": [
+        0,
+        0.01,
+        -16
+      ],
+      "scale": [
+        60,
+        0.02,
+        14
+      ]
+    },
+    {
+      "id": "table",
+      "kind": "prop",
+      "model": "table",
+      "at": [
+        5.4,
+        0,
+        0.8
+      ],
+      "size": 1.15
+    },
+    {
+      "id": "sign",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "teal",
+      "material": "matte",
+      "at": [
+        5.4,
+        2.7,
+        0
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        2.9,
+        1,
+        0.55
+      ]
+    },
+    {
+      "id": "sign_post",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        5.4,
+        0,
+        -0.1
+      ],
+      "scale": [
+        0.09,
+        2.45,
+        0.09
+      ]
+    },
+    {
+      "id": "sign_txt",
+      "kind": "letter",
+      "text": "Smoothie Shack",
+      "at": [
+        5.4,
+        2.57,
+        0.05
+      ],
+      "size": 0.19,
+      "color": "white",
+      "depth": 0.05
+    },
+    {
+      "id": "blender",
+      "kind": "prop",
+      "model": "blender",
+      "at": [
+        5.45,
+        0.92,
+        0.45
+      ],
+      "size": 1
+    },
+    {
+      "id": "banana",
+      "kind": "prop",
+      "model": "banana",
+      "at": [
+        6.35,
+        0.92,
+        1.15
+      ],
+      "size": 0.9
+    },
+    {
+      "id": "mango",
+      "kind": "prop",
+      "model": "orange",
+      "at": [
+        6.45,
+        0.92,
+        0.6
+      ],
+      "size": 0.6,
+      "recolor": {
+        "orange": "gold"
+      }
+    },
+    {
+      "id": "berry",
+      "kind": "prop",
+      "model": "strawberry",
+      "at": [
+        4.45,
+        0.92,
+        0.55
+      ],
+      "size": 0.5
+    },
+    {
+      "id": "cup_b",
+      "kind": "shape",
+      "shape": "cup",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        4.95,
+        0.92,
+        1.1
+      ],
+      "size": 0.45,
+      "scale": [
+        1,
+        1.6,
+        1
+      ]
+    },
+    {
+      "id": "cup_m",
+      "kind": "shape",
+      "shape": "cup",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        5.85,
+        0.92,
+        1.1
+      ],
+      "size": 0.45,
+      "scale": [
+        1,
+        1.6,
+        1
+      ]
+    },
+    {
+      "id": "fill_b",
+      "kind": "shape",
+      "shape": "cylinder",
+      "material": "toy",
+      "color": "yellow",
+      "at": [
+        4.95,
+        0.935,
+        1.1
+      ],
+      "scale": [
+        0.37,
+        0.35,
+        0.37
+      ],
+      "hidden": true
+    },
+    {
+      "id": "fill_m",
+      "kind": "shape",
+      "shape": "cylinder",
+      "material": "toy",
+      "color": "gold",
+      "at": [
+        5.85,
+        0.935,
+        1.1
+      ],
+      "scale": [
+        0.37,
+        0.233,
+        0.37
+      ],
+      "hidden": true
+    },
+    {
+      "hidden": true,
+      "id": "tag_b",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 2,
+      "at": [
+        4.95,
+        1.74,
+        1.1
+      ],
+      "size": 0.2,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "tag_m",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 3,
+      "at": [
+        5.85,
+        1.74,
+        1.1
+      ],
+      "size": 0.2,
+      "color": "ink"
+    },
+    {
+      "id": "cup_25",
+      "kind": "shape",
+      "shape": "cup",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        5.85,
+        0.92,
+        1.1
+      ],
+      "size": 0.45,
+      "scale": [
+        1,
+        1.6,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "id": "fill_25",
+      "kind": "shape",
+      "shape": "cylinder",
+      "material": "toy",
+      "color": "pink",
+      "at": [
+        5.85,
+        0.935,
+        1.1
+      ],
+      "scale": [
+        0.37,
+        0.28,
+        0.37
+      ],
+      "hidden": true
+    },
+    {
+      "hidden": true,
+      "id": "tag_25",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 5,
+      "at": [
+        5.85,
+        1.74,
+        1.1
+      ],
+      "size": 0.2,
+      "color": "red"
+    },
+    {
+      "id": "cup_sum",
+      "kind": "shape",
+      "shape": "cup",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        5.4,
+        0.92,
+        1.1
+      ],
+      "size": 0.45,
+      "scale": [
+        1,
+        1.6,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "id": "fill_sum",
+      "kind": "shape",
+      "shape": "cylinder",
+      "material": "toy",
+      "color": "orange",
+      "at": [
+        5.4,
+        0.935,
+        1.1
+      ],
+      "scale": [
+        0.37,
+        0.0167,
+        0.37
+      ],
+      "hidden": true
+    },
+    {
+      "hidden": true,
+      "id": "tag_sum",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 6,
+      "at": [
+        5.4,
+        1.74,
+        1.1
+      ],
+      "size": 0.22,
+      "color": "green"
+    },
+    {
+      "id": "cup_bear",
+      "kind": "shape",
+      "shape": "cup",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        6.3,
+        0.92,
+        1.1
+      ],
+      "size": 0.45,
+      "scale": [
+        1,
+        1.6,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "id": "frame",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        -0.5,
+        2.9,
+        -1.47
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        7.6,
+        1,
+        3.3
+      ]
+    },
+    {
+      "id": "board",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "white",
+      "material": "matte",
+      "at": [
+        -0.5,
+        2.9,
+        -1.42
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        7.3,
+        1,
+        3
+      ]
+    },
+    {
+      "id": "leg_l",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        -3.7,
+        0,
+        -1.5
+      ],
+      "scale": [
+        0.12,
+        1.3,
+        0.12
+      ]
+    },
+    {
+      "id": "leg_r",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        2.7,
+        0,
+        -1.5
+      ],
+      "scale": [
+        0.12,
+        1.3,
+        0.12
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bar_h",
+      "kind": "fraction_bar",
+      "parts": 2,
+      "length": 4,
+      "height": 0.5,
+      "color": "yellow",
+      "at": [
+        -1.2,
+        3.7,
+        -1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bar_t",
+      "kind": "fraction_bar",
+      "parts": 3,
+      "length": 4,
+      "height": 0.5,
+      "color": "orange",
+      "at": [
+        -1.2,
+        2.75,
+        -1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bar_f",
+      "kind": "fraction_bar",
+      "parts": 5,
+      "length": 4,
+      "height": 0.5,
+      "color": "pink",
+      "at": [
+        -1.2,
+        1.8,
+        -1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "lab_h",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 2,
+      "at": [
+        -3.7,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.34,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "lab_t",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 3,
+      "at": [
+        -3.7,
+        2.85,
+        -1.3
+      ],
+      "size": 0.34,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "lab_f",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 5,
+      "at": [
+        -3.7,
+        1.9000000000000001,
+        -1.3
+      ],
+      "size": 0.34,
+      "color": "red"
+    },
+    {
+      "hidden": true,
+      "id": "cmp_line",
+      "kind": "pointer",
+      "from": [
+        -1.2,
+        4.32,
+        -1.24
+      ],
+      "to": [
+        -1.2,
+        1.6800000000000002,
+        -1.24
+      ],
+      "head": "none",
+      "width": 0.04,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "co_halves",
+      "kind": "callout",
+      "point": [
+        0.82,
+        3.95,
+        -1.25
+      ],
+      "text": "halves",
+      "offset": [
+        1.2,
+        0,
+        0.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "co_thirds",
+      "kind": "callout",
+      "point": [
+        0.82,
+        3,
+        -1.25
+      ],
+      "text": "thirds",
+      "offset": [
+        1.2,
+        0,
+        0.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "big_half",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 2,
+      "at": [
+        -2.2,
+        1.85,
+        -1.3
+      ],
+      "size": 0.5,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "w_num",
+      "kind": "letter",
+      "text": "numerator: how many",
+      "at": [
+        0.75,
+        2.4,
+        -1.3
+      ],
+      "size": 0.2,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "w_den",
+      "kind": "letter",
+      "text": "denominator: piece size",
+      "at": [
+        0.75,
+        1.77,
+        -1.3
+      ],
+      "size": 0.2,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ar_num",
+      "kind": "pointer",
+      "from": [
+        -1.45,
+        2.52,
+        -1.25
+      ],
+      "to": [
+        -1.85,
+        2.52,
+        -1.25
+      ],
+      "width": 0.07,
+      "color": "blue"
+    },
+    {
+      "hidden": true,
+      "id": "ar_den",
+      "kind": "pointer",
+      "from": [
+        -1.45,
+        1.9000000000000001,
+        -1.25
+      ],
+      "to": [
+        -1.85,
+        1.9000000000000001,
+        -1.25
+      ],
+      "width": 0.07,
+      "color": "purple"
+    },
+    {
+      "hidden": true,
+      "id": "nl_b",
+      "kind": "number_line",
+      "from": 0,
+      "to": 2,
+      "length": 7,
+      "step": 0.5,
+      "minor": 1,
+      "labels": [
+        "0",
+        "1/2",
+        "1",
+        "1 1/2",
+        "2"
+      ],
+      "at": [
+        -0.5,
+        0,
+        1.6
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "band",
+      "kind": "pointer",
+      "from": [
+        -2.25,
+        0.66,
+        1.66
+      ],
+      "to": [
+        -0.5,
+        0.66,
+        1.66
+      ],
+      "head": "none",
+      "width": 0.16,
+      "color": "gold"
+    },
+    {
+      "hidden": true,
+      "id": "bar_h6",
+      "kind": "fraction_bar",
+      "parts": 6,
+      "length": 4,
+      "height": 0.5,
+      "color": "yellow",
+      "at": [
+        -1.2,
+        3.7,
+        -1.3
+      ],
+      "shaded": 3
+    },
+    {
+      "hidden": true,
+      "id": "bar_t6",
+      "kind": "fraction_bar",
+      "parts": 6,
+      "length": 4,
+      "height": 0.5,
+      "color": "orange",
+      "at": [
+        -1.2,
+        2.75,
+        -1.3
+      ],
+      "shaded": 2
+    },
+    {
+      "hidden": true,
+      "id": "rh1",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 2,
+      "at": [
+        1.548,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "rh2",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        2.05,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "rh3",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 6,
+      "at": [
+        2.552,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "orange"
+    },
+    {
+      "hidden": true,
+      "id": "rt1",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 3,
+      "at": [
+        1.548,
+        2.85,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "rt2",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        2.05,
+        2.85,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "rt3",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 6,
+      "at": [
+        2.552,
+        2.85,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "orange"
+    },
+    {
+      "hidden": true,
+      "id": "s1",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 6,
+      "at": [
+        1.146,
+        1.9000000000000001,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "s2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        1.598,
+        1.9000000000000001,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "s3",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 6,
+      "at": [
+        2.05,
+        1.9000000000000001,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "s4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        2.502,
+        1.9000000000000001,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "s5",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 6,
+      "at": [
+        2.954,
+        1.9000000000000001,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "nl6",
+      "kind": "number_line",
+      "from": 0,
+      "to": 1,
+      "length": 4.8,
+      "step": 1,
+      "minor": 6,
+      "labels": "fractions",
+      "at": [
+        -1.6,
+        0,
+        1.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "m2_lab",
+      "kind": "letter",
+      "text": "Multiples of 2",
+      "at": [
+        -2.9,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.2,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m3_lab",
+      "kind": "letter",
+      "text": "Multiples of 3",
+      "at": [
+        -2.9,
+        3.05,
+        -1.3
+      ],
+      "size": 0.2,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m2_2",
+      "kind": "letter",
+      "text": "2",
+      "at": [
+        -1.35,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m2_4",
+      "kind": "letter",
+      "text": "4",
+      "at": [
+        -0.55,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m2_6",
+      "kind": "letter",
+      "text": "6",
+      "at": [
+        0.25,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m2_8",
+      "kind": "letter",
+      "text": "8",
+      "at": [
+        1.05,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m2_10",
+      "kind": "letter",
+      "text": "10",
+      "at": [
+        1.85,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m2_12",
+      "kind": "letter",
+      "text": "12",
+      "at": [
+        2.65,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m3_3",
+      "kind": "letter",
+      "text": "3",
+      "at": [
+        -0.95,
+        3.05,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m3_6",
+      "kind": "letter",
+      "text": "6",
+      "at": [
+        0.25,
+        3.05,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m3_9",
+      "kind": "letter",
+      "text": "9",
+      "at": [
+        1.45,
+        3.05,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m3_12",
+      "kind": "letter",
+      "text": "12",
+      "at": [
+        2.65,
+        3.05,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cd1",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 2,
+      "at": [
+        -2.307,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "cd2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.855,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cd3",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 3,
+      "at": [
+        -1.404,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "cd4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -0.952,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cd5",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 6,
+      "at": [
+        -0.5,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "cd6",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -0.048,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cd7",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 6,
+      "at": [
+        0.404,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "cd8",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.855,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cd9",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 6,
+      "at": [
+        1.307,
+        1.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "m4_lab",
+      "kind": "letter",
+      "text": "Multiples of 4",
+      "at": [
+        -2.9,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.2,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m6_lab",
+      "kind": "letter",
+      "text": "Multiples of 6",
+      "at": [
+        -2.9,
+        3.05,
+        -1.3
+      ],
+      "size": 0.2,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m4_4",
+      "kind": "letter",
+      "text": "4",
+      "at": [
+        -0.55,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m4_8",
+      "kind": "letter",
+      "text": "8",
+      "at": [
+        1.05,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m4_12",
+      "kind": "letter",
+      "text": "12",
+      "at": [
+        2.65,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m6_6",
+      "kind": "letter",
+      "text": "6",
+      "at": [
+        0.25,
+        3.05,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "m6_12",
+      "kind": "letter",
+      "text": "12",
+      "at": [
+        2.65,
+        3.05,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "bar_q12",
+      "kind": "fraction_bar",
+      "parts": 12,
+      "length": 4,
+      "height": 0.5,
+      "color": "purple",
+      "at": [
+        -1.2,
+        3.7,
+        -1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bar_s12",
+      "kind": "fraction_bar",
+      "parts": 12,
+      "length": 4,
+      "height": 0.5,
+      "color": "teal",
+      "at": [
+        -1.2,
+        2.75,
+        -1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "q12_l",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 4,
+      "at": [
+        -3.7,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.34,
+      "color": "purple"
+    },
+    {
+      "hidden": true,
+      "id": "s12_l",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 6,
+      "at": [
+        -3.7,
+        2.85,
+        -1.3
+      ],
+      "size": 0.34,
+      "color": "teal"
+    },
+    {
+      "hidden": true,
+      "id": "q1",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        1.342,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "q2",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 12,
+      "at": [
+        1.988,
+        3.8000000000000003,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "purple"
+    },
+    {
+      "hidden": true,
+      "id": "w1",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        1.342,
+        2.85,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "w2",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 12,
+      "at": [
+        1.988,
+        2.85,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "teal"
+    },
+    {
+      "hidden": true,
+      "id": "f1",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 12,
+      "at": [
+        -1.727,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "f2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.114,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "f3",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 12,
+      "at": [
+        -0.5,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "f4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.114,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "f5",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 12,
+      "at": [
+        0.727,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "g1",
+      "kind": "fraction_text",
+      "numerator": 6,
+      "denominator": 24,
+      "at": [
+        -2.341,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "g2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.727,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "g3",
+      "kind": "fraction_text",
+      "numerator": 4,
+      "denominator": 24,
+      "at": [
+        -1.114,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "g4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -0.5,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "g5",
+      "kind": "fraction_text",
+      "numerator": 10,
+      "denominator": 24,
+      "at": [
+        0.114,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "g6",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.727,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "g7",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 12,
+      "at": [
+        1.341,
+        1.85,
+        -1.3
+      ],
+      "size": 0.38,
+      "color": "green"
+    },
+    {
+      "id": "tok",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "gold",
+      "material": "glossy",
+      "size": 0.28,
+      "on": {
+        "line": "nl_b",
+        "value": 0
+      },
+      "hidden": true
+    },
+    {
+      "hidden": true,
+      "id": "b1",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 2,
+      "at": [
+        -2.4,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "b2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.835,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "b3",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 8,
+      "at": [
+        -1.271,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "b4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -0.706,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "b5",
+      "kind": "letter",
+      "text": "?",
+      "at": [
+        -0.17,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "b_wrong",
+      "kind": "fraction_text",
+      "numerator": 4,
+      "denominator": 10,
+      "at": [
+        2.05,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "red"
+    },
+    {
+      "hidden": true,
+      "id": "bb1",
+      "kind": "fraction_text",
+      "numerator": 4,
+      "denominator": 8,
+      "at": [
+        -2.43,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "bb2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.865,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "bb3",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 8,
+      "at": [
+        -1.3,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "bb4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -0.735,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "bb5",
+      "kind": "fraction_text",
+      "numerator": 7,
+      "denominator": 8,
+      "at": [
+        -0.171,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "c1",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 3,
+      "at": [
+        -2.4,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "c2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.835,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "c3",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 2,
+      "at": [
+        -1.271,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "c4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -0.706,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "c5",
+      "kind": "letter",
+      "text": "?",
+      "at": [
+        -0.17,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "c_wrong",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 5,
+      "at": [
+        2.05,
+        3.75,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "red"
+    },
+    {
+      "hidden": true,
+      "id": "cc1",
+      "kind": "fraction_text",
+      "numerator": 4,
+      "denominator": 6,
+      "at": [
+        -2.43,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "cc2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.865,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cc3",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 6,
+      "at": [
+        -1.3,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "cc4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -0.735,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cc5",
+      "kind": "fraction_text",
+      "numerator": 7,
+      "denominator": 6,
+      "at": [
+        -0.171,
+        2.4,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "bar_j",
+      "kind": "fraction_bar",
+      "parts": 12,
+      "length": 5.6,
+      "height": 0.5,
+      "color": "orange",
+      "at": [
+        -0.5,
+        3.25,
+        -1.3
+      ],
+      "label": true
+    },
+    {
+      "hidden": true,
+      "id": "j1",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 4,
+      "at": [
+        -2.94,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "j2",
+      "kind": "letter",
+      "text": "−",
+      "at": [
+        -2.438,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "j3",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 3,
+      "at": [
+        -1.936,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "j4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -1.434,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "j5",
+      "kind": "fraction_text",
+      "numerator": 9,
+      "denominator": 12,
+      "at": [
+        -0.788,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "j6",
+      "kind": "letter",
+      "text": "−",
+      "at": [
+        -0.142,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "j7",
+      "kind": "fraction_text",
+      "numerator": 4,
+      "denominator": 12,
+      "at": [
+        0.504,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "j8",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        1.15,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "j9",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 12,
+      "at": [
+        1.796,
+        1.95,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "nl12",
+      "kind": "number_line",
+      "from": 0,
+      "to": 1,
+      "length": 6.6,
+      "step": 1,
+      "minor": 12,
+      "labels": [
+        "0",
+        "",
+        "",
+        "",
+        "",
+        "5/12",
+        "",
+        "",
+        "",
+        "9/12",
+        "",
+        "",
+        "1"
+      ],
+      "at": [
+        -0.5,
+        0,
+        1.7
+      ]
+    },
+    {
+      "id": "tok12",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "orange",
+      "material": "glossy",
+      "size": 0.26,
+      "on": {
+        "line": "nl12",
+        "value": 0.75
+      },
+      "hidden": true
+    },
+    {
+      "hidden": true,
+      "id": "pie1",
+      "kind": "fraction_circle",
+      "parts": 12,
+      "radius": 0.8,
+      "color": "purple",
+      "at": [
+        -2.7,
+        1.55,
+        -1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "pie2",
+      "kind": "fraction_circle",
+      "parts": 12,
+      "radius": 0.8,
+      "color": "purple",
+      "at": [
+        -0.8,
+        1.55,
+        -1.3
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "k1",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 3,
+      "at": [
+        -2.696,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "k2",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -2.244,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "k3",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 4,
+      "at": [
+        -1.792,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "k4",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -1.341,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "k5",
+      "kind": "fraction_text",
+      "numerator": 8,
+      "denominator": 12,
+      "at": [
+        -0.759,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "k6",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -0.178,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "k7",
+      "kind": "fraction_text",
+      "numerator": 9,
+      "denominator": 12,
+      "at": [
+        0.404,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "k8",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.985,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "k9",
+      "kind": "fraction_text",
+      "numerator": 17,
+      "denominator": 12,
+      "at": [
+        1.566,
+        3.75,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "mixed_eq",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.75,
+        2.05,
+        -1.3
+      ],
+      "size": 0.5,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "mixed",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 12,
+      "at": [
+        1.95,
+        2.05,
+        -1.3
+      ],
+      "size": 0.5,
+      "color": "green",
+      "whole": 1
+    },
+    {
+      "hidden": true,
+      "id": "order1",
+      "kind": "text_card",
+      "text": "Order 1: 1/2 cup yoghurt and 1/4 cup berries. How much in all?",
+      "at": [
+        -0.5,
+        2.95,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.34
+    },
+    {
+      "hidden": true,
+      "id": "o11",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 4,
+      "at": [
+        -1.629,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o12",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.065,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o13",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 4,
+      "at": [
+        -0.5,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o14",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.065,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o15",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 4,
+      "at": [
+        0.63,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "order2",
+      "kind": "text_card",
+      "text": "Order 2: 1/3 cup mango, 1/2 cup banana and 1/6 cup oats.",
+      "at": [
+        -0.5,
+        2.95,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.34
+    },
+    {
+      "hidden": true,
+      "id": "o21",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 6,
+      "at": [
+        -2.73,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o22",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -2.165,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o23",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 6,
+      "at": [
+        -1.6,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o24",
+      "kind": "letter",
+      "text": "+",
+      "at": [
+        -1.036,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o25",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 6,
+      "at": [
+        -0.471,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o26",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.094,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o27",
+      "kind": "fraction_text",
+      "numerator": 6,
+      "denominator": 6,
+      "at": [
+        0.659,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o28",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        1.224,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o29",
+      "kind": "letter",
+      "text": "1",
+      "at": [
+        1.759,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "order3",
+      "kind": "text_card",
+      "text": "Bear walks 5/6 km of beach. He has walked 1/2 km. How far is left?",
+      "at": [
+        -0.5,
+        2.95,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.34
+    },
+    {
+      "hidden": true,
+      "id": "o31",
+      "kind": "fraction_text",
+      "numerator": 5,
+      "denominator": 6,
+      "at": [
+        -2.194,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o32",
+      "kind": "letter",
+      "text": "−",
+      "at": [
+        -1.63,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o33",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 6,
+      "at": [
+        -1.065,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o34",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        -0.5,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o35",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 6,
+      "at": [
+        0.065,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "o36",
+      "kind": "letter",
+      "text": "=",
+      "at": [
+        0.63,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o37",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 3,
+      "at": [
+        1.194,
+        1.65,
+        -1.3
+      ],
+      "size": 0.45,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "quiz1",
+      "kind": "text_card",
+      "text": "1. Why is 1/2 + 1/3 not 2/5?",
+      "at": [
+        -0.5,
+        3.4,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.36
+    },
+    {
+      "hidden": true,
+      "id": "quiz2",
+      "kind": "text_card",
+      "text": "2. What is 1/2 + 1/4?",
+      "at": [
+        -0.5,
+        3.4,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.36
+    },
+    {
+      "hidden": true,
+      "id": "quiz3",
+      "kind": "text_card",
+      "text": "3. What is 5/6 − 1/3?",
+      "at": [
+        -0.5,
+        3.4,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.36
+    },
+    {
+      "hidden": true,
+      "id": "quiz4",
+      "kind": "text_card",
+      "text": "4. Is 3/4 + 2/3 more or less than 1?",
+      "at": [
+        -0.5,
+        3.4,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.36
+    },
+    {
+      "hidden": true,
+      "id": "ans1",
+      "kind": "text_card",
+      "text": "2/5 is less than 1/2. Rename first: 3/6 + 2/6 = 5/6",
+      "at": [
+        -0.5,
+        1.5,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.34,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "ans2",
+      "kind": "text_card",
+      "text": "2/4 + 1/4 = 3/4",
+      "at": [
+        -0.5,
+        1.5,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.34,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "ans3",
+      "kind": "text_card",
+      "text": "5/6 − 2/6 = 3/6 = 1/2",
+      "at": [
+        -0.5,
+        1.5,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.34,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "ans4",
+      "kind": "text_card",
+      "text": "More: 9/12 + 8/12 = 17/12 = 1 5/12",
+      "at": [
+        -0.5,
+        1.5,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.34,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "recap",
+      "kind": "text_card",
+      "text": "1. Estimate first.\n2. Find a common denominator.\n3. Rename the fractions.\n4. Add or subtract the numerators.\n5. Keep the denominator. Simplify.",
+      "at": [
+        -0.5,
+        1.45,
+        -1.3
+      ],
+      "width": 6.6,
+      "size": 0.3
+    },
+    {
+      "id": "confetti",
+      "kind": "confetti",
+      "count": 160,
+      "area": [
+        12,
+        4
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bye",
+      "kind": "letter",
+      "text": "Rename, then add!",
+      "at": [
+        -0.5,
+        2.7,
+        -1.3
+      ],
+      "size": 0.42,
+      "color": "orange",
+      "depth": 0.12
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "title": "The 2/5 smoothie",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "monkey",
+                "table",
+                "sign"
+              ],
+              "framing": "medium",
+              "dur": 0
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "table"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "table"
+            },
+            {
+              "do": "hide",
+              "target": "tag_b",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "tag_m",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Adding Fractions with Unlike Denominators",
+              "style": "title",
+              "dur": 2.2,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Welcome to Monkey's Smoothie Shack! Today's special: banana mango!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 1.4,
+              "to": "robo"
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "One half cup of banana...",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "show",
+              "target": "fill_b",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "volume": 0.6,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "tag_b",
+              "at": 0.8
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.1,
+              "to": "cup_b"
+            },
+            {
+              "do": "shot",
+              "target": [
+                "cup_b",
+                "cup_m",
+                "tag_b"
+              ],
+              "framing": "close",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "...plus one third cup of mango.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "show",
+              "target": "fill_m",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "volume": 0.6,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "tag_m",
+              "at": 0.8
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.1,
+              "to": "cup_m"
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Top plus top, bottom plus bottom. Two fifths of a cup. Easy!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "monkey",
+                "table",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Hmm. Let me pour two fifths of a cup.",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "cup_m"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.2,
+              "to": "robo"
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "cup_b",
+                "cup_25",
+                "tag_b"
+              ],
+              "framing": "close",
+              "dur": 1
+            },
+            {
+              "do": "hide",
+              "target": "fill_m",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tag_m",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "cup_m",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "cup_25",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "fill_25",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "volume": 0.6,
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "tag_25",
+              "at": 1.1
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Look. The whole smoothie is smaller than the banana alone!",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "fill_b",
+              "dur": 2.4,
+              "at": 0.6
+            },
+            {
+              "do": "highlight",
+              "target": "fill_25",
+              "dur": 2.2,
+              "color": "pink",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Monkey, how can that be?",
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "monkey",
+                "table",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.2,
+              "to": "robo"
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "What do you think? Can the answer be two fifths?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.4,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "why",
+      "title": "Why it can't be 2/5",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "move",
+              "target": "robo",
+              "to": [
+                -4.45,
+                0,
+                1
+              ],
+              "dur": 0,
+              "at": 0
+            },
+            {
+              "do": "turn",
+              "target": "robo",
+              "to": [
+                0,
+                30,
+                0
+              ],
+              "dur": 0,
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 0
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's check with fraction bars. Every bar is the same whole: one cup.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "bar_h",
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "lab_h",
+              "sound": false,
+              "at": 1.2
+            },
+            {
+              "do": "point",
+              "target": "robo",
+              "to": "bar_h",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "This bar shows one half. That's the banana.",
+              "caption": true
+            },
+            {
+              "do": "shade",
+              "target": "bar_h",
+              "to": 1,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "This one shows one third. That's the mango.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "bar_t",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "lab_t",
+              "sound": false,
+              "at": 0.5
+            },
+            {
+              "do": "shade",
+              "target": "bar_t",
+              "to": 1,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "And here's my two fifths!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "build",
+              "target": "bar_f",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "lab_f",
+              "sound": false,
+              "at": 0.5
+            },
+            {
+              "do": "shade",
+              "target": "bar_f",
+              "to": 2,
+              "at": 1
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Compare the shaded parts. Two fifths is shorter than one half.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "bar_h",
+                "bar_f",
+                "lab_h",
+                "lab_f"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            },
+            {
+              "do": "draw",
+              "target": "cmp_line",
+              "dur": 1,
+              "at": 1.4
+            },
+            {
+              "do": "highlight",
+              "target": "bar_h#p1",
+              "dur": 2.4,
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "But adding mango should make the smoothie bigger, not smaller.",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "bar_f#p2",
+              "result": "incorrect",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Oops! So my answer can't be right.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.05,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The bottom number is the denominator. It names the size of the pieces.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "hide",
+              "target": "lab_f",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "bar_f",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "cmp_line",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "big_half",
+              "at": 0.5
+            },
+            {
+              "do": "draw",
+              "target": "ar_den",
+              "dur": 0.6,
+              "at": 1.6
+            },
+            {
+              "do": "pop",
+              "target": "w_den",
+              "at": 1.9
+            },
+            {
+              "do": "caption",
+              "text": "denominator",
+              "style": "label",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.05,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The top number is the numerator. It counts how many pieces.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "ar_num",
+              "dur": 0.6,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "w_num",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "numerator",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Halves are big pieces. Thirds are smaller pieces.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "ar_num",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ar_den",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "w_num",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "w_den",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "big_half",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_halves",
+              "at": 0.4
+            },
+            {
+              "do": "draw",
+              "target": "co_thirds",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "We can't add different-sized pieces as they are.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "bar_h#p1",
+              "dur": 1.6,
+              "at": 0.2
+            },
+            {
+              "do": "highlight",
+              "target": "bar_t#p1",
+              "dur": 1.6,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One meter plus one centimeter isn't two meter-centimeters!",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "1 m + 1 cm is not 2 \"m-cm\"",
+              "style": "label",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact: in North Africa, mathematicians like al-Hassar",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "fun fact",
+              "style": "label",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "wrote fractions with a line between the numbers, over eight hundred years ago.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now estimate. One half plus a bit more is more than one half.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_halves",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co_thirds",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "nl_b",
+                "robo",
+                "monkey"
+              ],
+              "framing": "wide",
+              "dur": 1.5
+            },
+            {
+              "do": "draw",
+              "target": "nl_b",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And one third is less than one half, so the total is less than one whole.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "band",
+              "dur": 1.6,
+              "at": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "between 1/2 and 1",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "band",
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "nl_b",
+              "at": 0.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "title": "Make the pieces match",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here's the trick. We slice the pieces until they're all the same size.",
+              "caption": true
+            },
+            {
+              "do": "point",
+              "target": "robo",
+              "to": "bar_h",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Slice each half into three. Now there are six pieces: sixths.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "bar_h",
+              "dur": 0.2,
+              "at": 1.4
+            },
+            {
+              "do": "show",
+              "target": "bar_h6",
+              "dur": 0.2,
+              "at": 1.5
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three of the six pieces are shaded. One half equals three sixths.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "rh1",
+              "sound": false,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "rh2",
+              "sound": false,
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "rh3",
+              "sound": "pop",
+              "at": 0.6
+            },
+            {
+              "do": "highlight",
+              "target": "rh3",
+              "dur": 1.8,
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now slice each third into two. That makes sixths too.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "bar_t",
+              "dur": 0.2,
+              "at": 1.4
+            },
+            {
+              "do": "show",
+              "target": "bar_t6",
+              "dur": 0.2,
+              "at": 1.5
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One third equals two sixths.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "rt1",
+              "sound": false,
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "rt2",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "rt3",
+              "sound": "pop",
+              "at": 0.5
+            },
+            {
+              "do": "highlight",
+              "target": "rt3",
+              "dur": 1.6,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Same-size pieces? Then they stack together.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "lab_h",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "lab_t",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "bar_h6",
+                "bar_t6"
+              ],
+              "framing": "close",
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "bar_t6#p1",
+              "to": [
+                2,
+                0.9500000000000002,
+                0.08
+              ],
+              "dur": 1.2,
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "bar_t6#p2",
+              "to": [
+                2,
+                0.9500000000000002,
+                0.08
+              ],
+              "dur": 1.2,
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 1.5
+            }
+          ]
+        },
+        {
+          "dur": 1.25,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three sixths plus two sixths is five sixths.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "s1",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "s2",
+              "sound": false,
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "s3",
+              "sound": false,
+              "at": 0.7
+            },
+            {
+              "do": "pop",
+              "target": "s4",
+              "sound": false,
+              "at": 0.9
+            },
+            {
+              "do": "pop",
+              "target": "s5",
+              "sound": "pop",
+              "at": 1.1
+            }
+          ]
+        },
+        {
+          "dur": 1.05,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The numerators add: three plus two is five.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "s1",
+              "dur": 1.4,
+              "color": "orange",
+              "at": 0.3
+            },
+            {
+              "do": "highlight",
+              "target": "s3",
+              "dur": 1.4,
+              "color": "orange",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The denominator stays six, because the piece size did not change.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "s5",
+              "dur": 2.2,
+              "color": "green",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "the denominator stays the same",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's check on a number line cut into sixths.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "nl6",
+                "robo",
+                "monkey"
+              ],
+              "framing": "wide",
+              "dur": 1.4
+            },
+            {
+              "do": "draw",
+              "target": "nl6",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "monkey",
+              "to": [
+                -4,
+                0.56,
+                1.7
+              ],
+              "dur": 1.2,
+              "at": 0.6
+            },
+            {
+              "do": "turn",
+              "target": "monkey",
+              "to": [
+                0,
+                30,
+                0
+              ],
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Three sixths of banana...",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "leap",
+              "target": "monkey",
+              "line": "nl6",
+              "values": [
+                0.16666666666666666,
+                0.3333333333333333,
+                0.5
+              ],
+              "dur": 0.55,
+              "height": 0.6,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "...and two more sixths of mango!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "leap",
+              "target": "monkey",
+              "line": "nl6",
+              "values": [
+                0.6666666666666666,
+                0.8333333333333334
+              ],
+              "dur": 0.55,
+              "height": 0.6,
+              "color": "red",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Five sixths. More than half, less than one whole. Just like our estimate.",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "s5",
+              "result": "correct",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "monkey",
+              "to": [
+                3.95,
+                0,
+                1.4
+              ],
+              "dur": 1.1,
+              "at": 0
+            },
+            {
+              "do": "turn",
+              "target": "monkey",
+              "to": [
+                0,
+                -15,
+                0
+              ],
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's pour it all into one cup.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "table",
+                "cup_sum",
+                "tag_sum"
+              ],
+              "framing": "close",
+              "dur": 1.4
+            },
+            {
+              "do": "hide",
+              "target": "cup_b",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "cup_25",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "fill_b",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "fill_25",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "tag_b",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "tag_25",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "cup_sum",
+              "at": 0.7
+            },
+            {
+              "do": "show",
+              "target": "fill_sum",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "grow",
+              "target": "fill_sum",
+              "to": [
+                1,
+                30,
+                1
+              ],
+              "dur": 2,
+              "ease": "sineInOut",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "volume": 0.7,
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "tag_sum",
+              "at": 2.1
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Five sixths of a cup. Almost full, but not quite!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0,
+              "to": "ahead"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.1
+            },
+            {
+              "do": "shot",
+              "target": [
+                "table",
+                "monkey",
+                "cup_sum"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "bar_h6",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "bar_t6",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rh1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rh2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rh3",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rt1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rt2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "rt3",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s3",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s4",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s5",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "nl6",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "common",
+      "title": "Finding a common denominator",
+      "music": "calm",
+      "musicGain": 0.15,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How did we know to use sixths? We look for a common denominator.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "common denominator",
+              "style": "label",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 3.9,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "List the multiples of each denominator. Multiples of two:",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m2_lab",
+              "sound": false,
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "m2_2",
+              "at": 2
+            },
+            {
+              "do": "pop",
+              "target": "m2_4",
+              "at": 2.35
+            },
+            {
+              "do": "pop",
+              "target": "m2_6",
+              "at": 2.7
+            },
+            {
+              "do": "pop",
+              "target": "m2_8",
+              "at": 3.05
+            },
+            {
+              "do": "pop",
+              "target": "m2_10",
+              "at": 3.4
+            },
+            {
+              "do": "pop",
+              "target": "m2_12",
+              "at": 3.75
+            }
+          ]
+        },
+        {
+          "dur": 1.7999999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Multiples of three:",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m3_lab",
+              "sound": false,
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "m3_3",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "m3_6",
+              "at": 0.95
+            },
+            {
+              "do": "pop",
+              "target": "m3_9",
+              "at": 1.2999999999999998
+            },
+            {
+              "do": "pop",
+              "target": "m3_12",
+              "at": 1.65
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Which number is in both lists first?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.4,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Six! It's in both lists!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "highlight",
+              "target": "m2_6",
+              "dur": 2.4,
+              "at": 0.3
+            },
+            {
+              "do": "highlight",
+              "target": "m3_6",
+              "dur": 2.4,
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "board"
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Yes. Six is a common multiple, so sixths work for halves and thirds.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "cd1",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "cd2",
+              "sound": false,
+              "at": 0.45
+            },
+            {
+              "do": "pop",
+              "target": "cd3",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "cd4",
+              "sound": false,
+              "at": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "cd5",
+              "sound": false,
+              "at": 0.9
+            },
+            {
+              "do": "pop",
+              "target": "cd6",
+              "sound": false,
+              "at": 1.05
+            },
+            {
+              "do": "pop",
+              "target": "cd7",
+              "sound": false,
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "cd8",
+              "sound": false,
+              "at": 1.35
+            },
+            {
+              "do": "pop",
+              "target": "cd9",
+              "sound": "pop",
+              "at": 1.5
+            }
+          ]
+        },
+        {
+          "dur": 0.85,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now a new one: one fourth plus one sixth.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "m2_2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m2_4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m2_6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m2_8",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m2_10",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m2_12",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m3_3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m3_6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m3_9",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m3_12",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m2_lab",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "m3_lab",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd7",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd8",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cd9",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "m4_lab",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "m6_lab",
+              "sound": false,
+              "at": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 4.05,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Multiples of four: four, eight, twelve. Multiples of six: six, twelve.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "m4_4",
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "m4_8",
+              "at": 1.65
+            },
+            {
+              "do": "pop",
+              "target": "m4_12",
+              "at": 2.1
+            },
+            {
+              "do": "pop",
+              "target": "m6_6",
+              "at": 3.4
+            },
+            {
+              "do": "pop",
+              "target": "m6_12",
+              "at": 3.9
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "What's the common denominator?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Twelve!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "highlight",
+              "target": "m4_12",
+              "dur": 2,
+              "at": 0.2
+            },
+            {
+              "do": "highlight",
+              "target": "m6_12",
+              "dur": 2,
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "board"
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Right. Cut both bars into twelfths.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "m4_lab",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "m6_lab",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "m4_4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "m4_8",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "m4_12",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "m6_6",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "m6_12",
+              "at": 0.2
+            },
+            {
+              "do": "build",
+              "target": "bar_q12",
+              "dur": 1.2,
+              "at": 0.6
+            },
+            {
+              "do": "build",
+              "target": "bar_s12",
+              "dur": 1.2,
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "q12_l",
+              "sound": false,
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "s12_l",
+              "sound": false,
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One fourth is three twelfths.",
+              "caption": true
+            },
+            {
+              "do": "shade",
+              "target": "bar_q12",
+              "to": 3,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "q1",
+              "sound": false,
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "q2",
+              "sound": "pop",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One sixth is two twelfths.",
+              "caption": true
+            },
+            {
+              "do": "shade",
+              "target": "bar_s12",
+              "to": 2,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "w1",
+              "sound": false,
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "w2",
+              "sound": "pop",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three twelfths plus two twelfths is five twelfths.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "f1",
+              "sound": false,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "f2",
+              "sound": false,
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "f3",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "f4",
+              "sound": false,
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "f5",
+              "sound": "pop",
+              "at": 1
+            },
+            {
+              "do": "mark",
+              "target": "f5",
+              "result": "correct",
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Could I just multiply the denominators? Four times six is twenty-four.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.2,
+              "to": "board"
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "That works too! Six twenty-fourths plus four twenty-fourths is ten twenty-fourths.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "f1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "f2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "f3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "f4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "f5",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "g1",
+              "sound": false,
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "g2",
+              "sound": false,
+              "at": 0.65
+            },
+            {
+              "do": "pop",
+              "target": "g3",
+              "sound": false,
+              "at": 0.9
+            },
+            {
+              "do": "pop",
+              "target": "g4",
+              "sound": false,
+              "at": 1.15
+            },
+            {
+              "do": "pop",
+              "target": "g5",
+              "sound": "pop",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Ten twenty-fourths simplifies to five twelfths. Same answer, just smaller pieces.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "g6",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "g7",
+              "sound": "pop",
+              "at": 0.9
+            },
+            {
+              "do": "highlight",
+              "target": "g7",
+              "dur": 2,
+              "color": "green",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact: ancient Egyptians had a special symbol just for two thirds.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "fun fact",
+              "style": "label",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "bar_q12",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "bar_s12",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "q12_l",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "s12_l",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "q2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "w1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "w2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g1",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g2",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g3",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g4",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g5",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g6",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g7",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bench",
+      "title": "The benchmark check",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "nl_b",
+                "robo",
+                "monkey"
+              ],
+              "framing": "wide",
+              "dur": 1.2
+            },
+            {
+              "do": "show",
+              "target": "nl_b",
+              "at": 0.1
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Before the exact answer, estimate with benchmarks: zero, one half and one.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "tok",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "benchmark",
+              "style": "label",
+              "at": 1.2
+            },
+            {
+              "do": "highlight",
+              "target": "nl_b",
+              "dur": 2,
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One half plus three eighths.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "b1",
+              "sound": false,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "b2",
+              "sound": false,
+              "at": 0.35
+            },
+            {
+              "do": "pop",
+              "target": "b3",
+              "sound": false,
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "b4",
+              "sound": false,
+              "at": 0.65
+            },
+            {
+              "do": "pop",
+              "target": "b5",
+              "sound": "pop",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three eighths is a bit less than a half. So the total is a bit less than one.",
+              "caption": true
+            },
+            {
+              "do": "leap",
+              "target": "tok",
+              "line": "nl_b",
+              "values": [
+                0.5,
+                0.875
+              ],
+              "dur": 0.8,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "I got four tenths!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "b_wrong",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four tenths is less than one half. It's even smaller than the first part!",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "b_wrong",
+              "result": "incorrect",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "My estimate caught my mistake! I forgot to rename.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "One half is four eighths. Four eighths plus three eighths is seven eighths.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "bb1",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "bb2",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "bb3",
+              "sound": false,
+              "at": 0.9
+            },
+            {
+              "do": "pop",
+              "target": "bb4",
+              "sound": false,
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "bb5",
+              "sound": "pop",
+              "at": 1.5
+            },
+            {
+              "do": "mark",
+              "target": "bb5",
+              "result": "correct",
+              "at": 2.8
+            }
+          ]
+        },
+        {
+          "dur": 1.05,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now two thirds plus one half. Is it more or less than one?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "b1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "b_wrong",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "bb1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "bb2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "bb3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "bb4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "bb5",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "c1",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "c2",
+              "sound": false,
+              "at": 0.45
+            },
+            {
+              "do": "pop",
+              "target": "c3",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "c4",
+              "sound": false,
+              "at": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "c5",
+              "sound": "pop",
+              "at": 0.9
+            },
+            {
+              "do": "leap",
+              "target": "tok",
+              "line": "nl_b",
+              "values": [
+                0
+              ],
+              "dur": 0.5,
+              "arcs": false,
+              "sound": false,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "More! Two thirds plus one half goes past one.",
+              "caption": true
+            },
+            {
+              "do": "leap",
+              "target": "tok",
+              "line": "nl_b",
+              "values": [
+                0.6666666666666666,
+                1.1666666666666667
+              ],
+              "dur": 0.8,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Is it three fifths?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "c_wrong",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three fifths is less than two thirds. Impossible! Rename to sixths.",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "c_wrong",
+              "result": "incorrect",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four sixths plus three sixths is seven sixths. That's more than one, as we estimated.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "cc1",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "cc2",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "cc3",
+              "sound": false,
+              "at": 0.9
+            },
+            {
+              "do": "pop",
+              "target": "cc4",
+              "sound": false,
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "cc5",
+              "sound": "pop",
+              "at": 1.5
+            },
+            {
+              "do": "mark",
+              "target": "cc5",
+              "result": "correct",
+              "at": 3
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "c1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "c2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "c3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "c4",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "c5",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "c_wrong",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cc1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cc2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cc3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cc4",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cc5",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "tok",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "nl_b",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "takeaway",
+      "title": "Taking away",
+      "beats": [
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "show",
+              "target": "bear",
+              "at": 0.1
+            },
+            {
+              "do": "shot",
+              "target": [
+                "table",
+                "monkey",
+                "bear"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.3,
+              "to": "bear"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "monkey"
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Hello! May I have some juice, please?",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "I have three fourths of a cup. I'll pour one third of a cup for you, Bear.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "show",
+              "target": "cup_bear",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "volume": 0.6,
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How much juice is left for Monkey? Three fourths minus one third.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.5,
+              "to": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.5,
+              "to": "board"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.5,
+              "to": "board"
+            },
+            {
+              "do": "pop",
+              "target": "j1",
+              "sound": false,
+              "at": 1.6
+            },
+            {
+              "do": "pop",
+              "target": "j2",
+              "sound": false,
+              "at": 1.8
+            },
+            {
+              "do": "pop",
+              "target": "j3",
+              "sound": "pop",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Different denominators again. What's the common denominator for four and three?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 1.6,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Twelve! Three fourths is nine twelfths, and one third is four twelfths.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "build",
+              "target": "bar_j",
+              "dur": 1,
+              "at": 0.2
+            },
+            {
+              "do": "shade",
+              "target": "bar_j",
+              "to": 9,
+              "dur": 1.4,
+              "at": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "j4",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "j5",
+              "sound": false,
+              "at": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "j6",
+              "sound": false,
+              "at": 2.4
+            },
+            {
+              "do": "pop",
+              "target": "j7",
+              "at": 3
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Take away four twelfths.",
+              "caption": true
+            },
+            {
+              "do": "shade",
+              "target": "bar_j",
+              "to": 5,
+              "dur": 1.2,
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "volume": 0.5,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Nine twelfths minus four twelfths is five twelfths.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "j8",
+              "sound": false,
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "j9",
+              "sound": "pop",
+              "at": 0.8
+            },
+            {
+              "do": "mark",
+              "target": "j9",
+              "result": "correct",
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "On the number line: start at nine twelfths and leap back four.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "nl12",
+                "robo",
+                "monkey"
+              ],
+              "framing": "wide",
+              "dur": 1.2
+            },
+            {
+              "do": "draw",
+              "target": "nl12",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "tok12",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "leap",
+              "target": "tok12",
+              "line": "nl12",
+              "values": [
+                0.6666666666666666,
+                0.5833333333333334,
+                0.5,
+                0.4166666666666667
+              ],
+              "dur": 0.6,
+              "height": 0.5,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Five twelfths left for Monkey, and a nice cup for me!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.2
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "bar_j",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j4",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j5",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j6",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j7",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j8",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "j9",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "nl12",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "tok12",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cup_bear",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whole",
+      "title": "More than one whole",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 0.85,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two thirds plus three fourths. Estimate first: more or less than one?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "k1",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "k2",
+              "sound": false,
+              "at": 0.5
+            },
+            {
+              "do": "pop",
+              "target": "k3",
+              "sound": "pop",
+              "at": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "More! Both parts are more than a half.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Rename with twelfths: eight twelfths plus nine twelfths is seventeen twelfths.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "k4",
+              "sound": false,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "k5",
+              "sound": false,
+              "at": 1.05
+            },
+            {
+              "do": "pop",
+              "target": "k6",
+              "sound": false,
+              "at": 1.5
+            },
+            {
+              "do": "pop",
+              "target": "k7",
+              "sound": false,
+              "at": 1.95
+            },
+            {
+              "do": "pop",
+              "target": "k8",
+              "sound": false,
+              "at": 2.4
+            },
+            {
+              "do": "pop",
+              "target": "k9",
+              "sound": "pop",
+              "at": 2.85
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Twelve twelfths fill one whole circle.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "pie1",
+              "dur": 0.8,
+              "at": 0.1
+            },
+            {
+              "do": "shade",
+              "target": "pie1",
+              "to": 12,
+              "dur": 2,
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 2.8
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Five more twelfths start the next one.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "pie2",
+              "dur": 0.8,
+              "at": 0.1
+            },
+            {
+              "do": "shade",
+              "target": "pie2",
+              "to": 5,
+              "dur": 1.2,
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Seventeen twelfths is one whole and five twelfths. We call that a mixed number.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "mixed_eq",
+              "sound": false,
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "mixed",
+              "at": 1.2
+            },
+            {
+              "do": "orbit",
+              "around": [
+                -0.5,
+                2.2,
+                -1.3
+              ],
+              "degrees": 18,
+              "dur": 5
+            },
+            {
+              "do": "caption",
+              "text": "mixed number",
+              "style": "label",
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "One and five twelfths cups! I need a bigger blender.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "mark",
+              "target": "mixed",
+              "result": "correct",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "pie1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pie2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "mixed",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "mixed_eq",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k4",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k5",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k6",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k7",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k8",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "k9",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chant",
+      "title": "The Same-Size chant",
+      "music": "happy",
+      "musicGain": 0.22,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "robo",
+                "monkey",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 3
+            },
+            {
+              "do": "show",
+              "target": "bar_h6",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "bar_t6",
+              "at": 0.3
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Rename, add the numerators, keep the denominator",
+              "style": "title",
+              "dur": 2.5,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Same-size pieces?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.3,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Then add the tops!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "bar_h6",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The bottom?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.3,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Stays the same!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.1
+            },
+            {
+              "do": "wiggle",
+              "target": "bar_t6",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Rename, then add, the bottom stays! Same-size pieces every day!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.4,
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "bar_h6",
+              "at": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "bar_t6",
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rush",
+      "title": "Smoothie rush",
+      "beats": [
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "table",
+                "monkey",
+                "bear"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.1,
+              "to": "monkey"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.1,
+              "to": "bear"
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Smoothie rush! I have three orders. Can you work them out?",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Order one: one half cup of yoghurt and one quarter cup of berries. How much in all?",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "order1",
+              "at": 0.3
+            },
+            {
+              "do": "emphasize",
+              "target": "order1",
+              "words": "1/2 cup yoghurt",
+              "at": 1.2
+            },
+            {
+              "do": "emphasize",
+              "target": "order1",
+              "words": "1/4 cup berries",
+              "at": 3.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.3,
+              "to": "board"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "board"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "One half is two quarters. Two quarters plus one quarter is three quarters of a cup.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "o11",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "o12",
+              "sound": false,
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "o13",
+              "sound": false,
+              "at": 1.3
+            },
+            {
+              "do": "pop",
+              "target": "o14",
+              "sound": false,
+              "at": 1.8
+            },
+            {
+              "do": "pop",
+              "target": "o15",
+              "sound": "pop",
+              "at": 2.3
+            },
+            {
+              "do": "mark",
+              "target": "o15",
+              "result": "correct",
+              "at": 3.6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Three quarters. Perfect!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.1
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Order two: one third mango, one half banana and one sixth oats.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "order1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o11",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o12",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o13",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o14",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o15",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "order2",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 2.85,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Sixths work for all three: two sixths plus three sixths plus one sixth.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "o21",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "o22",
+              "sound": false,
+              "at": 0.9
+            },
+            {
+              "do": "pop",
+              "target": "o23",
+              "sound": false,
+              "at": 1.5
+            },
+            {
+              "do": "pop",
+              "target": "o24",
+              "sound": false,
+              "at": 2.1
+            },
+            {
+              "do": "pop",
+              "target": "o25",
+              "sound": "pop",
+              "at": 2.7
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Six sixths. That's exactly one cup!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "o26",
+              "sound": false,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "o27",
+              "sound": false,
+              "at": 0.45
+            },
+            {
+              "do": "pop",
+              "target": "o28",
+              "sound": false,
+              "at": 0.7
+            },
+            {
+              "do": "pop",
+              "target": "o29",
+              "sound": "pop",
+              "at": 0.95
+            },
+            {
+              "do": "mark",
+              "target": "o29",
+              "result": "correct",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Order three is about me. I walk five sixths of a kilometer on the beach.",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hide",
+              "target": "order2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o21",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o22",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o23",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o24",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o25",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o26",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o27",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o28",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o29",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "order3",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "I've walked one half of a kilometer so far. How far is left?",
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 3.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Five sixths minus three sixths is two sixths, which is one third of a kilometer.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "o31",
+              "sound": false,
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "o32",
+              "sound": false,
+              "at": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "o33",
+              "sound": false,
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "o34",
+              "sound": false,
+              "at": 1.65
+            },
+            {
+              "do": "pop",
+              "target": "o35",
+              "sound": false,
+              "at": 2.1
+            },
+            {
+              "do": "pop",
+              "target": "o36",
+              "sound": false,
+              "at": 2.55
+            },
+            {
+              "do": "pop",
+              "target": "o37",
+              "sound": "pop",
+              "at": 3
+            },
+            {
+              "do": "mark",
+              "target": "o37",
+              "result": "correct",
+              "at": 3.4
+            }
+          ]
+        },
+        {
+          "dur": 0.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Only one third of a kilometer to go. Thank you!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "order3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "o31",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "o32",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "o33",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "o34",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "o35",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "o36",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "o37",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Quiz and recap",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question one. Why is one half plus one third not two fifths?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "quiz1",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two fifths is less than one half. The pieces were different sizes.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans1",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans1",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question two. What is one half plus one fourth?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "quiz2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "quiz1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans1",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three fourths!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans2",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans2",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question three. What is five sixths minus one third?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "quiz3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "quiz2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans2",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Five sixths minus two sixths is three sixths, which is one half.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans3",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans3",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question four. Is three fourths plus two thirds more or less than one?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "quiz4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "quiz3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans3",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "More! It's seventeen twelfths: one and five twelfths.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ans4",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "ans4",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's recap the steps.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "quiz4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ans4",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "recap",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Estimate first. Find a common denominator. Rename the fractions.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Estimate first",
+              "at": 0.2
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Find a common denominator",
+              "at": 1.2
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Rename the fractions",
+              "at": 2.8
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Add or subtract the numerators, keep the denominator, and simplify.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Add or subtract the numerators",
+              "at": 0.2
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Keep the denominator",
+              "at": 2.4
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Simplify",
+              "at": 3.6
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "And here's a perfect five sixths cup smoothie for Bear!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hide",
+              "target": "recap",
+              "at": 1
+            },
+            {
+              "do": "shot",
+              "target": [
+                "table",
+                "bear",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.2,
+              "to": "bear"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.4,
+              "to": "cup_sum"
+            }
+          ]
+        },
+        {
+          "dur": 0.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Mmm. Delicious maths!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "bear",
+              "feeling": "happy",
+              "at": 0.1
+            },
+            {
+              "do": "nod",
+              "target": "bear",
+              "at": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Your turn: kitchen cups",
+      "music": "happy",
+      "musicGain": 0.22,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "pop",
+              "target": "bye",
+              "at": 0.3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "robo",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 3
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your turn! With a grown-up, use measuring cups and water on a tray.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "with a grown-up",
+              "style": "label",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Estimate first: will one half cup plus one third cup fill one cup? Then pour and see.",
+              "caption": true
+            },
+            {
+              "do": "point",
+              "target": "robo",
+              "to": "table",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Wipe up spills so nobody slips. See you next time!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.4
+            },
+            {
+              "do": "burst",
+              "target": "confetti",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.5,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": []
+        }
+      ]
+    }
+  ]
+}

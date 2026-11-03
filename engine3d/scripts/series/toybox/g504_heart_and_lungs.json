@@ -1,0 +1,5392 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Toy Box Friends G5-04: a tour of the respiratory and circulatory systems on a see-through toy body: the air path, the great swap in the air sacs, the heart pump and the figure-8 loop, and an exercise test. No blood or gore: blood is dots.",
+  "meta": {
+    "series": "toybox",
+    "episode": "g504",
+    "audience": "grade5",
+    "seed": 504,
+    "voice": "soft",
+    "voiceSpeed": 1,
+    "music": "calm",
+    "musicGain": 0.15,
+    "skills": [
+      "body_systems_5"
+    ],
+    "title": "Body Systems Tour: heart and lungs",
+    "youtube": {
+      "title": "How Your Heart and Lungs Work Together | Body Systems for Kids | Grade 5 Science | Toy Box Friends",
+      "description": "Thump-thump! Monkey thinks his lungs pump his blood. Robo takes him on a tour of a see-through toy body to find out what really happens.\nYou'll learn: body systems are teams of organs; the air path (nose, windpipe, bronchi, lungs, air sacs) and the diaphragm; the great swap (oxygen in, carbon dioxide out); the heart's two sides and one-way valves; arteries, veins and capillaries; and why your heart beats faster when you exercise. Blood is shown as coloured dots: real blood is always red.\nTry at home: find your pulse with two fingers on your wrist, count for 15 seconds and multiply by 4. Press gently, exercise only if you feel well, and stop and tell a grown-up if you feel dizzy.",
+      "tags": [
+        "heart and lungs",
+        "circulatory system",
+        "respiratory system",
+        "body systems for kids",
+        "human body",
+        "how the heart works",
+        "how we breathe",
+        "grade 5 science",
+        "5th grade science",
+        "Toy Box Friends"
+      ]
+    },
+    "thumbnails": [
+      {
+        "name": "body",
+        "title": "HEART & LUNGS",
+        "subtitle": "How they work together",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "lab",
+        "camera": {
+          "position": [
+            0,
+            1.4,
+            6
+          ],
+          "lookAt": [
+            0,
+            1.2,
+            0
+          ],
+          "fov": 38
+        },
+        "objects": [
+          {
+            "id": "body",
+            "kind": "prop",
+            "model": "body_model",
+            "at": [
+              1.5,
+              0,
+              0
+            ],
+            "size": 2
+          },
+          {
+            "id": "monkey",
+            "kind": "critter",
+            "species": "monkey",
+            "at": [
+              2.95,
+              0,
+              0.9
+            ],
+            "size": 0.9,
+            "rotation": [
+              0,
+              -30,
+              0
+            ],
+            "feeling": "surprised"
+          },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [
+              0.3,
+              0,
+              0.3
+            ],
+            "rotation": [
+              0,
+              20,
+              0
+            ],
+            "clip": "Yes",
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "swap",
+        "title": "THE GREAT SWAP",
+        "subtitle": "Oxygen in, CO₂ out",
+        "titleColor": "white",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "lab",
+        "camera": {
+          "position": [
+            0,
+            1.4,
+            6
+          ],
+          "lookAt": [
+            0,
+            1.2,
+            0
+          ],
+          "fov": 38
+        },
+        "objects": [
+          {
+            "id": "sacs",
+            "kind": "prop",
+            "model": "air_sacs",
+            "at": [
+              1.5,
+              0,
+              0
+            ],
+            "size": 2.4
+          },
+          {
+            "id": "o0",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "yellow",
+            "material": "glossy",
+            "at": [
+              0.6,
+              2.2,
+              0.5
+            ],
+            "size": 0.16
+          },
+          {
+            "id": "o1",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "yellow",
+            "material": "glossy",
+            "at": [
+              0.8,
+              1.9,
+              0.5
+            ],
+            "size": 0.16
+          },
+          {
+            "id": "o2",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "yellow",
+            "material": "glossy",
+            "at": [
+              1,
+              1.7,
+              0.5
+            ],
+            "size": 0.16
+          },
+          {
+            "id": "c0",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "grey",
+            "material": "glossy",
+            "at": [
+              2,
+              1.7,
+              0.5
+            ],
+            "size": 0.16
+          },
+          {
+            "id": "c1",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "grey",
+            "material": "glossy",
+            "at": [
+              2.2,
+              1.95,
+              0.5
+            ],
+            "size": 0.16
+          },
+          {
+            "id": "c2",
+            "kind": "shape",
+            "shape": "sphere",
+            "color": "grey",
+            "material": "glossy",
+            "at": [
+              2.4,
+              2.2,
+              0.5
+            ],
+            "size": 0.16
+          },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [
+              3.1,
+              0,
+              -0.3
+            ],
+            "rotation": [
+              0,
+              -25,
+              0
+            ],
+            "clip": "Jump",
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "faster",
+        "title": "WHY FASTER?",
+        "subtitle": "80 → 120 beats a minute",
+        "titleColor": "orange",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "lab",
+        "camera": {
+          "position": [
+            0,
+            1.4,
+            6
+          ],
+          "lookAt": [
+            0,
+            1.2,
+            0
+          ],
+          "fov": 38
+        },
+        "objects": [
+          {
+            "id": "dog",
+            "kind": "critter",
+            "species": "dog",
+            "at": [
+              1.3,
+              0.35,
+              0.4
+            ],
+            "size": 1.1,
+            "feeling": "happy"
+          },
+          {
+            "id": "watch",
+            "kind": "prop",
+            "model": "stopwatch",
+            "at": [
+              2.7,
+              0,
+              0
+            ],
+            "size": 1.8
+          },
+          {
+            "id": "n",
+            "kind": "letter",
+            "text": "120",
+            "at": [
+              2.7,
+              1.25,
+              0.3
+            ],
+            "size": 0.36,
+            "color": "red"
+          },
+          {
+            "id": "h",
+            "kind": "shape",
+            "shape": "heart",
+            "color": "red",
+            "material": "glossy",
+            "at": [
+              0.4,
+              1.9,
+              0
+            ],
+            "size": 0.5
+          }
+        ]
+      }
+    ]
+  },
+  "stage": {
+    "preset": "lab"
+  },
+  "camera": {
+    "position": [
+      -1,
+      1.7,
+      6
+    ],
+    "lookAt": [
+      -1,
+      1.3,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -5.3,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "monkey",
+      "kind": "critter",
+      "species": "monkey",
+      "size": 1.1,
+      "at": [
+        -4,
+        0,
+        0.7
+      ],
+      "rotation": [
+        0,
+        25,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "dog",
+      "kind": "critter",
+      "species": "dog",
+      "size": 1,
+      "at": [
+        -0.6,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        -20,
+        0
+      ]
+    },
+    {
+      "id": "turntable",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "lab_teal",
+      "material": "glossy",
+      "at": [
+        -1.8,
+        0,
+        0.2
+      ],
+      "scale": [
+        1.4,
+        0.08,
+        1.4
+      ]
+    },
+    {
+      "id": "body",
+      "kind": "prop",
+      "model": "body_model",
+      "at": [
+        -1.8,
+        0.08,
+        0.2
+      ],
+      "size": 2
+    },
+    {
+      "id": "diaphragm",
+      "kind": "shape",
+      "shape": "dome",
+      "color": "rose",
+      "material": "toy",
+      "at": [
+        -1.8,
+        1.06,
+        0.2
+      ],
+      "scale": [
+        0.7,
+        0.13,
+        0.45
+      ]
+    },
+    {
+      "id": "ped",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "white",
+      "material": "glossy",
+      "at": [
+        2,
+        0,
+        -0.2
+      ],
+      "scale": [
+        0.9,
+        0.9,
+        0.9
+      ]
+    },
+    {
+      "id": "frame",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        5.6,
+        2.4,
+        -0.97
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        4.1,
+        1,
+        3.3
+      ]
+    },
+    {
+      "id": "board",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "white",
+      "material": "matte",
+      "at": [
+        5.6,
+        2.4,
+        -0.92
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        3.8,
+        1,
+        3
+      ]
+    },
+    {
+      "id": "leg_l",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        3.8999999999999995,
+        0,
+        -1
+      ],
+      "scale": [
+        0.1,
+        0.9,
+        0.1
+      ]
+    },
+    {
+      "id": "leg_r",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        7.3,
+        0,
+        -1
+      ],
+      "scale": [
+        0.1,
+        0.9,
+        0.1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "key",
+      "kind": "text_card",
+      "text": "red dots: lots of oxygen\nblue dots: less oxygen\nyellow: oxygen   grey: carbon dioxide (CO₂)",
+      "at": [
+        5.6,
+        0.98,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.17,
+      "bg": "cream"
+    },
+    {
+      "id": "heartglow",
+      "kind": "shape",
+      "shape": "heart",
+      "color": "red",
+      "material": "glow",
+      "at": [
+        -1.74,
+        1.2,
+        0.44
+      ],
+      "size": 0.3,
+      "hidden": true
+    },
+    {
+      "hidden": true,
+      "id": "co_sk",
+      "kind": "callout",
+      "point": [
+        -1.62,
+        0.6,
+        0.4
+      ],
+      "text": "skeletal: bones hold you up",
+      "offset": [
+        -1.3,
+        0.3,
+        0.3
+      ],
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "co_mu",
+      "kind": "callout",
+      "point": [
+        -2.3,
+        1.36,
+        0.32
+      ],
+      "text": "muscular: muscles move you",
+      "offset": [
+        -1.2,
+        0.5,
+        0.3
+      ],
+      "color": "red"
+    },
+    {
+      "hidden": true,
+      "id": "co_di",
+      "kind": "callout",
+      "point": [
+        -1.8,
+        1,
+        0.48
+      ],
+      "text": "digestive: energy from food",
+      "offset": [
+        1.3,
+        -0.3,
+        0.3
+      ],
+      "color": "orange"
+    },
+    {
+      "hidden": true,
+      "id": "co_ne",
+      "kind": "callout",
+      "point": [
+        -1.8,
+        2.24,
+        0.48
+      ],
+      "text": "nervous: brain sends messages",
+      "offset": [
+        1.3,
+        0.3,
+        0.3
+      ],
+      "color": "purple"
+    },
+    {
+      "hidden": true,
+      "id": "t_sys",
+      "kind": "text_card",
+      "text": "Body system = a team of organs working together",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "t_resp",
+      "kind": "letter",
+      "text": "respiratory: breathing",
+      "at": [
+        5.6,
+        2.45,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "t_circ",
+      "kind": "letter",
+      "text": "circulatory: the heart",
+      "at": [
+        5.6,
+        2.05,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "airflow",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -1.8,
+          2.16,
+          0.52
+        ],
+        [
+          -1.8,
+          1.96,
+          0.3
+        ],
+        [
+          -1.8,
+          1.72,
+          0.26
+        ],
+        [
+          -1.73,
+          1.52,
+          0.26
+        ],
+        [
+          -1.62,
+          1.4,
+          0.28
+        ]
+      ],
+      "smooth": true,
+      "count": 6,
+      "speed": 0.5,
+      "size": 0.09,
+      "color": "yellow"
+    },
+    {
+      "hidden": true,
+      "id": "airflow2",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          -1.8,
+          2.16,
+          0.52
+        ],
+        [
+          -1.8,
+          1.96,
+          0.3
+        ],
+        [
+          -1.8,
+          1.72,
+          0.26
+        ],
+        [
+          -1.87,
+          1.52,
+          0.26
+        ],
+        [
+          -1.98,
+          1.4,
+          0.28
+        ]
+      ],
+      "smooth": true,
+      "count": 6,
+      "speed": 0.5,
+      "size": 0.09,
+      "color": "yellow"
+    },
+    {
+      "hidden": true,
+      "id": "co_nose",
+      "kind": "callout",
+      "point": [
+        -1.8,
+        2.06,
+        0.5
+      ],
+      "text": "nose and mouth",
+      "offset": [
+        1.2,
+        -0.1,
+        0.25
+      ],
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "co_wp",
+      "kind": "callout",
+      "point": [
+        -1.8,
+        1.72,
+        0.28
+      ],
+      "text": "windpipe (trachea)",
+      "offset": [
+        1.3,
+        -0.2,
+        0.25
+      ],
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "co_br",
+      "kind": "callout",
+      "point": [
+        -1.88,
+        1.52,
+        0.28
+      ],
+      "text": "bronchi",
+      "offset": [
+        -1,
+        0.15,
+        0.25
+      ],
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "co_lu",
+      "kind": "callout",
+      "point": [
+        -1.58,
+        1.32,
+        0.32
+      ],
+      "text": "lungs",
+      "offset": [
+        1,
+        -0.25,
+        0.25
+      ],
+      "color": "rose"
+    },
+    {
+      "hidden": true,
+      "id": "co_dia",
+      "kind": "callout",
+      "point": [
+        -1.8,
+        1.12,
+        0.4
+      ],
+      "text": "diaphragm",
+      "offset": [
+        -1,
+        -0.35,
+        0.25
+      ],
+      "color": "purple"
+    },
+    {
+      "hidden": true,
+      "id": "tree",
+      "kind": "text_card",
+      "text": "Tubes branch smaller and smaller, like an upside-down tree, ending in millions of tiny air sacs.",
+      "at": [
+        5.6,
+        2,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "in_out",
+      "kind": "letter",
+      "text": "in: down   out: up",
+      "at": [
+        5.6,
+        3.3,
+        -0.9
+      ],
+      "size": 0.22,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "leftlung",
+      "kind": "text_card",
+      "text": "Fun fact: your left lung is a bit smaller, to make room for your heart.",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "sacs",
+      "kind": "prop",
+      "model": "air_sacs",
+      "at": [
+        2,
+        0.9,
+        -0.2
+      ],
+      "size": 1.7
+    },
+    {
+      "hidden": true,
+      "id": "o2in",
+      "kind": "flow",
+      "at": [
+        2,
+        0.9,
+        -0.2
+      ],
+      "points": [
+        [
+          -0.9,
+          1.6,
+          0.4
+        ],
+        [
+          -0.6,
+          1.25,
+          0.35
+        ],
+        [
+          -0.32,
+          1.1,
+          0.3
+        ]
+      ],
+      "smooth": true,
+      "count": 6,
+      "speed": 0.35,
+      "size": 0.09,
+      "color": "yellow"
+    },
+    {
+      "hidden": true,
+      "id": "co2out",
+      "kind": "flow",
+      "at": [
+        2,
+        0.9,
+        -0.2
+      ],
+      "points": [
+        [
+          0.32,
+          1.1,
+          0.3
+        ],
+        [
+          0.6,
+          1.3,
+          0.35
+        ],
+        [
+          0.9,
+          1.65,
+          0.4
+        ]
+      ],
+      "smooth": true,
+      "count": 6,
+      "speed": 0.35,
+      "size": 0.09,
+      "color": "grey"
+    },
+    {
+      "hidden": true,
+      "id": "capflow",
+      "kind": "flow",
+      "at": [
+        2,
+        0.9,
+        -0.2
+      ],
+      "points": [
+        [
+          -0.75,
+          0.75,
+          0.32
+        ],
+        [
+          -0.3,
+          0.95,
+          0.38
+        ],
+        [
+          0,
+          1.05,
+          0.4
+        ],
+        [
+          0.3,
+          0.95,
+          0.38
+        ],
+        [
+          0.75,
+          0.75,
+          0.32
+        ]
+      ],
+      "smooth": true,
+      "count": 9,
+      "speed": 0.4,
+      "size": 0.09,
+      "color": "blue",
+      "changes": [
+        {
+          "at": 0.45,
+          "color": "red"
+        }
+      ],
+      "track": true
+    },
+    {
+      "hidden": true,
+      "id": "cl1",
+      "kind": "letter",
+      "text": "lungs pump blood?",
+      "at": [
+        5.6,
+        3.45,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cl1f",
+      "kind": "letter",
+      "text": "lungs swap gases",
+      "at": [
+        5.6,
+        3.05,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cl2",
+      "kind": "letter",
+      "text": "only CO₂ out?",
+      "at": [
+        5.6,
+        2.5,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cl2f",
+      "kind": "letter",
+      "text": "less O₂, more CO₂",
+      "at": [
+        5.6,
+        2.1,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "sacfact",
+      "kind": "text_card",
+      "text": "Your lungs have hundreds of millions of tiny air sacs.",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "hcut",
+      "kind": "prop",
+      "model": "heart_cutaway",
+      "at": [
+        2,
+        0.9,
+        -0.2
+      ],
+      "size": 1.5
+    },
+    {
+      "hidden": true,
+      "id": "co_rs",
+      "kind": "callout",
+      "point": [
+        1.82,
+        1.5,
+        -0.04000000000000001
+      ],
+      "text": "right side → lungs",
+      "offset": [
+        -0.85,
+        0.45,
+        0.4
+      ],
+      "color": "blue"
+    },
+    {
+      "hidden": true,
+      "id": "co_ls",
+      "kind": "callout",
+      "point": [
+        2.18,
+        1.5,
+        -0.04000000000000001
+      ],
+      "text": "left side → body",
+      "offset": [
+        0.85,
+        0.45,
+        0.4
+      ],
+      "color": "red"
+    },
+    {
+      "hidden": true,
+      "id": "co_wall",
+      "kind": "callout",
+      "point": [
+        2,
+        1.35,
+        -0.04000000000000001
+      ],
+      "text": "wall",
+      "offset": [
+        0.6,
+        -0.5,
+        0.4
+      ],
+      "color": "ink"
+    },
+    {
+      "hidden": true,
+      "id": "co_valve",
+      "kind": "callout",
+      "point": [
+        1.685,
+        1.7400000000000002,
+        -0.020000000000000018
+      ],
+      "text": "valves: one-way doors",
+      "offset": [
+        -0.8,
+        0.75,
+        0.4
+      ],
+      "color": "purple"
+    },
+    {
+      "hidden": true,
+      "id": "fist",
+      "kind": "letter",
+      "text": "the size of your fist",
+      "at": [
+        5.6,
+        3.45,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ves1",
+      "kind": "letter",
+      "text": "arteries: away",
+      "at": [
+        5.6,
+        3,
+        -0.9
+      ],
+      "size": 0.2,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ves2",
+      "kind": "letter",
+      "text": "veins: back",
+      "at": [
+        5.6,
+        2.6,
+        -0.9
+      ],
+      "size": 0.2,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ves3",
+      "kind": "letter",
+      "text": "capillaries: tiny tubes",
+      "at": [
+        5.6,
+        2.2,
+        -0.9
+      ],
+      "size": 0.17,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "beats",
+      "kind": "text_card",
+      "text": "Fun fact: your heart beats about 100,000 times a day!",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "d_lungs",
+      "kind": "prop",
+      "model": "lungs",
+      "at": [
+        2,
+        2.15,
+        -0.5
+      ],
+      "size": 0.9
+    },
+    {
+      "hidden": true,
+      "id": "d_heart",
+      "kind": "prop",
+      "model": "heart",
+      "at": [
+        2,
+        1.05,
+        -0.4
+      ],
+      "size": 0.9
+    },
+    {
+      "hidden": true,
+      "id": "d_body",
+      "kind": "shape",
+      "shape": "capsule",
+      "color": "rose",
+      "material": "toy",
+      "at": [
+        2,
+        0.02,
+        -0.3
+      ],
+      "scale": [
+        1.4,
+        0.45,
+        0.4
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "dl_l",
+      "kind": "letter",
+      "text": "lungs",
+      "at": [
+        3.15,
+        2.5,
+        0.1
+      ],
+      "size": 0.16,
+      "color": "rose",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "dl_h",
+      "kind": "letter",
+      "text": "heart",
+      "at": [
+        3.15,
+        1.35,
+        0.1
+      ],
+      "size": 0.16,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "dl_b",
+      "kind": "letter",
+      "text": "body",
+      "at": [
+        3.15,
+        0.2,
+        0.1
+      ],
+      "size": 0.16,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "loop",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "closed": true,
+      "smooth": true,
+      "count": 16,
+      "speed": 0.6,
+      "size": 0.12,
+      "color": "red",
+      "track": true,
+      "points": [
+        [
+          2.15,
+          1.35,
+          0.2
+        ],
+        [
+          2.7,
+          0.9,
+          0.2
+        ],
+        [
+          2.7,
+          0.35,
+          0.2
+        ],
+        [
+          2,
+          0.12,
+          0.25
+        ],
+        [
+          1.3,
+          0.35,
+          0.2
+        ],
+        [
+          1.3,
+          0.9,
+          0.2
+        ],
+        [
+          1.85,
+          1.35,
+          0.2
+        ],
+        [
+          1.3,
+          1.9,
+          0.2
+        ],
+        [
+          1.3,
+          2.6,
+          0.2
+        ],
+        [
+          2,
+          2.85,
+          0.25
+        ],
+        [
+          2.7,
+          2.6,
+          0.2
+        ],
+        [
+          2.7,
+          1.9,
+          0.2
+        ]
+      ],
+      "changes": [
+        {
+          "at": 0.25,
+          "color": "blue"
+        },
+        {
+          "at": 0.75,
+          "color": "red"
+        }
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "bluenote",
+      "kind": "text_card",
+      "text": "Real blood is always red. Blue dots mean 'low on oxygen'.",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2,
+      "color": "blue"
+    },
+    {
+      "hidden": true,
+      "id": "watch",
+      "kind": "prop",
+      "model": "stopwatch",
+      "at": [
+        2,
+        0.9,
+        -0.2
+      ],
+      "size": 1.6
+    },
+    {
+      "hidden": true,
+      "id": "table",
+      "kind": "text_card",
+      "text": "At rest: 20 beats in 15 s, × 4 = 80 per minute. About 20 breaths a minute.",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "table2",
+      "kind": "text_card",
+      "text": "After 1 minute of jumping: 30 beats × 4 = 120 per minute. About 35 breaths.",
+      "at": [
+        5.6,
+        2,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2,
+      "color": "red"
+    },
+    {
+      "hidden": true,
+      "id": "n80",
+      "kind": "letter",
+      "text": "80",
+      "at": [
+        2,
+        2,
+        0.1
+      ],
+      "size": 0.36,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "n120",
+      "kind": "letter",
+      "text": "120",
+      "at": [
+        2,
+        2,
+        0.1
+      ],
+      "size": 0.36,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "safety",
+      "kind": "text_card",
+      "text": "Press gently. Exercise only if you feel well. Stop if you feel dizzy and tell a grown-up.",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "hidden": true,
+      "id": "h_ball",
+      "kind": "prop",
+      "model": "ball",
+      "at": [
+        0.2,
+        0,
+        1
+      ],
+      "size": 0.7
+    },
+    {
+      "hidden": true,
+      "id": "h_bed",
+      "kind": "prop",
+      "model": "bed",
+      "at": [
+        1.6,
+        0,
+        0.9
+      ],
+      "size": 0.45
+    },
+    {
+      "hidden": true,
+      "id": "h_jug",
+      "kind": "prop",
+      "model": "water_jug",
+      "at": [
+        3,
+        0,
+        1
+      ],
+      "size": 0.8
+    },
+    {
+      "hidden": true,
+      "id": "h_apple",
+      "kind": "prop",
+      "model": "apple",
+      "at": [
+        4.3,
+        0,
+        1.1
+      ],
+      "size": 0.6
+    },
+    {
+      "hidden": true,
+      "id": "hl1",
+      "kind": "letter",
+      "text": "move every day",
+      "at": [
+        0.2,
+        1,
+        1
+      ],
+      "size": 0.12,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "hl2",
+      "kind": "letter",
+      "text": "sleep",
+      "at": [
+        1.6,
+        1,
+        0.9
+      ],
+      "size": 0.12,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "hl3",
+      "kind": "letter",
+      "text": "water",
+      "at": [
+        3,
+        1,
+        1
+      ],
+      "size": 0.12,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "hl4",
+      "kind": "letter",
+      "text": "good food",
+      "at": [
+        4.3,
+        0.9,
+        1.1
+      ],
+      "size": 0.12,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "hl5",
+      "kind": "letter",
+      "text": "clean air: no smoke",
+      "at": [
+        5.6,
+        3.3,
+        -0.9
+      ],
+      "size": 0.18,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "q1",
+      "kind": "text_card",
+      "text": "1. Which organ pumps blood round the body?",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22
+    },
+    {
+      "hidden": true,
+      "id": "a1",
+      "kind": "text_card",
+      "text": "The heart.",
+      "at": [
+        5.6,
+        1.4,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q2",
+      "kind": "text_card",
+      "text": "2. What happens in the tiny air sacs?",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22
+    },
+    {
+      "hidden": true,
+      "id": "a2",
+      "kind": "text_card",
+      "text": "Oxygen goes into the blood; carbon dioxide comes out.",
+      "at": [
+        5.6,
+        1.4,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q3",
+      "kind": "text_card",
+      "text": "3. Where does the right side of the heart send blood?",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22
+    },
+    {
+      "hidden": true,
+      "id": "a3",
+      "kind": "text_card",
+      "text": "To the lungs.",
+      "at": [
+        5.6,
+        1.4,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q4",
+      "kind": "text_card",
+      "text": "4. Which muscle moves down when you breathe in?",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22
+    },
+    {
+      "hidden": true,
+      "id": "a4",
+      "kind": "text_card",
+      "text": "The diaphragm.",
+      "at": [
+        5.6,
+        1.4,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q5",
+      "kind": "text_card",
+      "text": "5. Why does your heart beat faster when you run?",
+      "at": [
+        5.6,
+        2.9,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22
+    },
+    {
+      "hidden": true,
+      "id": "a5",
+      "kind": "text_card",
+      "text": "Muscles need more oxygen, so blood must move faster.",
+      "at": [
+        5.6,
+        1.4,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.22,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "recap",
+      "kind": "text_card",
+      "text": "Lungs swap the air. The heart pumps the blood.\nArteries go away, veins come back.\nThey work as a team. Exercise speeds them up.",
+      "at": [
+        5.6,
+        1.2,
+        -0.9
+      ],
+      "width": 3.6,
+      "size": 0.2
+    },
+    {
+      "id": "stars",
+      "kind": "confetti",
+      "count": 140,
+      "area": [
+        12,
+        4
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "title": "Thump-thump in the dark",
+      "music": "calm",
+      "musicGain": 0.12,
+      "beats": [
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "lights",
+              "rig": "dim",
+              "dur": 0,
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body"
+              ],
+              "framing": "medium",
+              "dur": 0,
+              "height": 5
+            },
+            {
+              "do": "show",
+              "target": "heartglow",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Body Systems Tour: heart and lungs",
+              "style": "title",
+              "dur": 2.8,
+              "at": 0.3
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1.25,
+              "dur": 0.15,
+              "at": 0.3
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1,
+              "dur": 0.15,
+              "at": 0.6
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1.25,
+              "dur": 0.15,
+              "at": 1.5
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1,
+              "dur": 0.15,
+              "at": 1.8
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1.25,
+              "dur": 0.15,
+              "at": 2.7
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1,
+              "dur": 0.15,
+              "at": 3
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 0.25
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 1.45
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 2.65
+            },
+            {
+              "do": "camera",
+              "position": [
+                -0.9,
+                1.6,
+                4.2
+              ],
+              "lookAt": [
+                -1,
+                1.25,
+                0.2
+              ],
+              "fov": 40,
+              "dur": 3.2
+            }
+          ]
+        },
+        {
+          "dur": 1,
+          "do": [
+            {
+              "do": "show",
+              "target": "monkey",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "monkey",
+              "to": [
+                -4,
+                0,
+                0.7
+              ],
+              "dur": 0,
+              "at": 0
+            },
+            {
+              "do": "sound",
+              "sound": "footstep_soft",
+              "at": 0.2
+            },
+            {
+              "do": "lights",
+              "rig": "lab",
+              "dur": 1,
+              "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body",
+                "monkey",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Listen. Thump-thump, thump-thump. What do you think is making that sound?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "body"
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Phew! That's me after the race! Thump-thump, thump-thump!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 1.6,
+              "to": "body"
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "My lungs are pumping my blood so fast!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "point",
+              "target": "monkey",
+              "to": "body",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your lungs? Hmm. Which part really pumps the blood? Let's take a tour and find out.",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "monkey"
+            },
+            {
+              "do": "hide",
+              "target": "heartglow",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "systems",
+      "title": "The body systems team",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "body",
+                "robo",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "body"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "body"
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your body has systems. A system is a team of organs that work together.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_sys",
+              "at": 1.4
+            },
+            {
+              "do": "caption",
+              "text": "body system",
+              "style": "label",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The skeletal system: bones hold you up.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body"
+              ],
+              "framing": "medium",
+              "dur": 1
+            },
+            {
+              "do": "draw",
+              "target": "co_sk",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The muscular system: muscles move you.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_sk",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_mu",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The digestive system gets energy from food. The nervous system sends messages from your brain.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_mu",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_di",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "co_di",
+              "at": 2.5
+            },
+            {
+              "do": "draw",
+              "target": "co_ne",
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Today we visit two systems.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_sk",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "co_mu",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "co_di",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "co_ne",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The respiratory system, for breathing...",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_resp",
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "body#lungs",
+              "dur": 2,
+              "color": "pink",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "...and the circulatory system: the heart, blood vessels and blood.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "t_circ",
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "body#heart",
+              "dur": 2,
+              "color": "red",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "I have a battery, not a heart. But living bodies need oxygen every second.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Yes",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The systems need each other.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "body#arteries",
+              "dur": 2,
+              "color": "red",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your muscles can't move without oxygen from the lungs, carried by the blood.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "t_sys",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_resp",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "t_circ",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "air",
+      "title": "The air path",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "body"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "body"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "body"
+            },
+            {
+              "do": "show",
+              "target": "key",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Follow a yellow air dot. Air comes in through your nose or mouth.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "airflow",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "airflow2",
+              "at": 0.6
+            },
+            {
+              "do": "draw",
+              "target": "co_nose",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "It goes down the windpipe, also called the trachea.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_nose",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_wp",
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "body#windpipe",
+              "dur": 2,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The windpipe splits into two bronchi, one for each lung.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_wp",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_br",
+              "at": 0.5
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "yaw": 30
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Inside the lungs, the tubes get smaller and smaller, like an upside-down tree.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_br",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_lu",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "tree",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "They end in millions of tiny air sacs.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "tree",
+              "words": "millions of tiny air sacs",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Under the lungs is a sheet of muscle: the diaphragm.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_nose",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co_wp",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co_br",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co_lu",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "tree",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "yaw": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_dia",
+              "at": 0.6
+            },
+            {
+              "do": "highlight",
+              "target": "diaphragm",
+              "dur": 2,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "When you breathe in, does the diaphragm move up or down? Have a guess.",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Breathe in: the diaphragm tightens and moves down. The chest gets more room, and air flows in.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "in_out",
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "diaphragm",
+              "to": [
+                -1.8,
+                1,
+                0.2
+              ],
+              "dur": 1.6,
+              "at": 0.8
+            },
+            {
+              "do": "move",
+              "target": "body#lungs",
+              "to": [
+                0.012,
+                -0.006,
+                0
+              ],
+              "dur": 1.6,
+              "at": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.3,
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Breathe out: it relaxes and moves up, and air flows out.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "diaphragm",
+              "to": [
+                -1.8,
+                1.06,
+                0.2
+              ],
+              "dur": 1.6,
+              "at": 0.4
+            },
+            {
+              "do": "move",
+              "target": "body#lungs",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 1.6,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Hand on my belly. In... my belly moves out. Out... it goes back!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "height": 0.2,
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact: your left lung is a little smaller, to make room for your heart.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "in_out",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "leftlung",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "leftlung",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "co_dia",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "airflow",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "airflow2",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "swap",
+      "title": "The great swap",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "lights",
+              "rig": "dim",
+              "dur": 1.2,
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "sacs",
+              "at": 0.3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sacs"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "sacs"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "sacs"
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's zoom in on one bunch of air sacs. They look like a bunch of grapes.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "sacs#sacs",
+              "dur": 2,
+              "color": "pink",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Tiny blood tubes called capillaries wrap around them.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "sacs#capillaries",
+              "dur": 2,
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "capillaries",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Yellow oxygen passes from the air sac into the blood. The blue dots turn red!",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "o2in",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "capflow",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "bubble_pop",
+              "volume": 0.4,
+              "at": 1
+            },
+            {
+              "do": "orbit",
+              "around": [
+                2,
+                1.9,
+                -0.2
+              ],
+              "degrees": 40,
+              "dur": 5,
+              "radius": 3.4
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Grey carbon dioxide passes from the blood into the air sac, and we breathe it out.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "co2out",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "bubble_pop",
+              "volume": 0.4,
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "That's the great swap: oxygen in, carbon dioxide out.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "oxygen in, carbon dioxide out",
+              "style": "label",
+              "at": 0.4
+            },
+            {
+              "do": "lights",
+              "rig": "lab",
+              "dur": 1.2,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact: your lungs have hundreds of millions of air sacs.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "sacfact",
+              "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "sacs",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now, Monkey's claims. Do the lungs pump the blood?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "sacfact",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "cl1",
+              "at": 0.6
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "monkey"
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "No. The lungs swap gases. Another organ does the pumping.",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "cl1",
+              "result": "incorrect",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "cl1f",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "And we breathe out only carbon dioxide, right?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "cl2",
+              "at": 0.4
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Not quite. Breathed-out air is still mostly the same air...",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "cl2",
+              "result": "incorrect",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "cl2f",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "...just with less oxygen and more carbon dioxide.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Oops! Two mistakes caught. So who does the pumping?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "sacs",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "o2in",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "co2out",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "capflow",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "cl1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "cl2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "cl1f",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "cl2f",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heart",
+      "title": "The heart pump",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "hcut",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "hcut",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "hcut"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "hcut"
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The heart! It's a strong muscle in the middle of your chest, tipped a little to the left.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "body#heart",
+              "dur": 2,
+              "color": "red",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "It's about the size of your fist. Make a fist and look at it!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "fist",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "My heart is as big as this? And it never takes a day off!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "point",
+              "target": "monkey",
+              "to": "hcut",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here's a toy cutaway. There are two sides with a wall between them.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "hcut"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "draw",
+              "target": "co_wall",
+              "at": 0.8
+            },
+            {
+              "do": "highlight",
+              "target": "hcut#septum",
+              "dur": 2,
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The right side pumps blood to the lungs to pick up oxygen.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_wall",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_rs",
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "hcut#right_ventricle",
+              "dur": 2,
+              "color": "sky",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The left side pumps oxygen-rich blood out to the whole body.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_rs",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_ls",
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "hcut#left_ventricle",
+              "dur": 2,
+              "color": "rose",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 4.25,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Valves are little one-way doors. They open and close so blood flows only one way.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_ls",
+              "at": 0
+            },
+            {
+              "do": "draw",
+              "target": "co_valve",
+              "at": 0.4
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                -60
+              ],
+              "dur": 0.3,
+              "at": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_l",
+              "to": [
+                0,
+                0,
+                60
+              ],
+              "dur": 0.3,
+              "at": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.2,
+              "at": 1.7
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_l",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.2,
+              "at": 1.7
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                -60
+              ],
+              "dur": 0.3,
+              "at": 2.4
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_l",
+              "to": [
+                0,
+                0,
+                60
+              ],
+              "dur": 0.3,
+              "at": 2.4
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.2,
+              "at": 2.9
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_l",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.2,
+              "at": 2.9
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                -60
+              ],
+              "dur": 0.3,
+              "at": 3.6
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_l",
+              "to": [
+                0,
+                0,
+                60
+              ],
+              "dur": 0.3,
+              "at": 3.6
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.2,
+              "at": 4.1
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_l",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.2,
+              "at": 4.1
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Lub-dub! That sound is the valves closing.",
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                -60
+              ],
+              "dur": 0.2,
+              "at": 0.1
+            },
+            {
+              "do": "turn",
+              "target": "hcut#valve_r",
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.15,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Arteries carry blood away from the heart. Veins bring it back.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "co_wall",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co_rs",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co_ls",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "co_valve",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "fist",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "hcut",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "ves1",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "ves2",
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Capillaries are tiny tubes where oxygen and food pass to the body's cells.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ves3",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "So the heart pumps, and the lungs swap!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "nod",
+              "target": "monkey",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact: your heart beats about one hundred thousand times a day.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "ves1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ves2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ves3",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "beats",
+              "at": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.6,
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "hcut",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "beats",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "title": "The figure-8 team loop",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ped",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "d_lungs",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "d_heart",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "d_body",
+              "at": 0.30000000000000004
+            },
+            {
+              "do": "show",
+              "target": "dl_l",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "dl_h",
+              "at": 0.5
+            },
+            {
+              "do": "show",
+              "target": "dl_b",
+              "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "d_lungs",
+                "d_body",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "d_heart"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "d_heart"
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now the whole team. Watch the dots go round in a figure eight.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "loop",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The left side of the heart pumps red, oxygen-rich blood through arteries to the body.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "d_heart",
+              "dur": 1.6,
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "d_body",
+              "dur": 1.8,
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The muscles take the oxygen. The dots turn blue, and the cells make carbon dioxide.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "d_body",
+              "dur": 2.2,
+              "color": "sky",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Veins bring the blood back to the right side of the heart, then out to the lungs.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "d_lungs",
+              "dur": 1.8,
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The blue dots are back at the heart. Where do they go next?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "To the lungs, to swap!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "In the lungs, the blue dots swap and turn red, and go back to the left side again.",
+              "caption": true
+            },
+            {
+              "do": "orbit",
+              "around": [
+                2,
+                1.4,
+                0
+              ],
+              "degrees": 25,
+              "dur": 4.5,
+              "radius": 6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Real blood is always red. Our blue dots just mean low on oxygen.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "bluenote",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "Real blood is always red",
+              "style": "label",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Two loops joined at the heart! Lungs and heart are a team!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "d_lungs",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "d_heart",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "d_body",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "dl_l",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "dl_h",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "dl_b",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "loop",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "bluenote",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exercise",
+      "title": "The exercise test",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "ped",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "dog",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "watch",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "dog",
+                "watch",
+                "board",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "dog"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "dog"
+            },
+            {
+              "do": "look",
+              "target": "dog",
+              "at": 0.3,
+              "to": "robo"
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "dog",
+              "text": "I'm Dog, the runner. I'll be the test volunteer!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "First, at rest. Monkey, count Dog's pulse for fifteen seconds.",
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "watch#hand",
+              "to": [
+                0,
+                0,
+                -90
+              ],
+              "dur": 2,
+              "ease": "linear",
+              "at": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 1.95
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 2.7
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 3.45
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Twenty beats! Twenty times four is eighty beats a minute.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "table",
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "n80",
+              "at": 1.8
+            },
+            {
+              "do": "highlight",
+              "target": "n80",
+              "dur": 1.6,
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "What will happen after one minute of jumping? Higher, lower, or the same?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.4,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 4.3500000000000005,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's test it. Jump, Dog!",
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "watch#hand",
+              "to": [
+                0,
+                0,
+                -360
+              ],
+              "dur": 4,
+              "ease": "linear",
+              "at": 0.6
+            },
+            {
+              "do": "hide",
+              "target": "n80",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1 minute, sped up",
+              "style": "label",
+              "dur": 4,
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "height": 0.5,
+              "dur": 0.45,
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "height": 0.5,
+              "dur": 0.45,
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "height": 0.5,
+              "dur": 0.45,
+              "at": 1.8
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "height": 0.5,
+              "dur": 0.45,
+              "at": 2.4
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "height": 0.5,
+              "dur": 0.45,
+              "at": 3
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "height": 0.5,
+              "dur": 0.45,
+              "at": 3.6
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "height": 0.5,
+              "dur": 0.45,
+              "at": 4.2
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Thirty beats in fifteen seconds! Times four is one hundred twenty!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 0.65
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 1.1
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 1.55
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 2
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.8,
+              "at": 2.45
+            },
+            {
+              "do": "pop",
+              "target": "table2",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "n120",
+              "at": 2.2
+            },
+            {
+              "do": "mark",
+              "target": "n120",
+              "result": "correct",
+              "at": 3
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "dog",
+              "text": "And I'm breathing faster and deeper too. Puff, puff!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "dog",
+              "feeling": "surprised",
+              "at": 0.2
+            },
+            {
+              "do": "feel",
+              "target": "dog",
+              "feeling": "happy",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Working muscles need more oxygen and make more carbon dioxide.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "n120",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body",
+                "dog",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "So the heart pumps faster, and we breathe faster and deeper. After a rest, both slow down.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "body#heart",
+              "dur": 2,
+              "color": "red",
+              "at": 0.6
+            },
+            {
+              "do": "highlight",
+              "target": "body#lungs",
+              "dur": 2,
+              "color": "pink",
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "dog",
+              "text": "After two minutes of rest, my pulse is almost back to eighty. Phew!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "dog",
+              "feeling": "happy",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Press gently when you count. Only exercise if you feel well, and stop if you feel dizzy.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "table",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "table2",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "safety",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "safety",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "watch",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "ped",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chant",
+      "title": "The Pump-and-Swap chant",
+      "music": "happy",
+      "musicGain": 0.2,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "show",
+              "target": "heartglow",
+              "at": 0.2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body",
+                "robo",
+                "monkey",
+                "dog"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "dog",
+              "at": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Lungs?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Swap the air!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Heart?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Pumps the blood!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Breathe it in, swap it out, lub-dub, pump it all about!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One more time! Breathe it in, swap it out, lub-dub, pump it all about!",
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1.25,
+              "dur": 0.15,
+              "at": 0.3
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1,
+              "dur": 0.15,
+              "at": 0.6
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1.25,
+              "dur": 0.15,
+              "at": 1.5
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1,
+              "dur": 0.15,
+              "at": 1.8
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1.25,
+              "dur": 0.15,
+              "at": 2.7
+            },
+            {
+              "do": "grow",
+              "target": "heartglow",
+              "to": 1,
+              "dur": 0.15,
+              "at": 3
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 1.4
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 0.3
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "at": 1.5
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.4,
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "heartglow",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "healthy",
+      "title": "Keep your team healthy",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "h_ball",
+                "h_apple",
+                "board",
+                "dog"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "h_bed"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "h_bed"
+            },
+            {
+              "do": "look",
+              "target": "dog",
+              "at": "h_bed"
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How do we keep our team healthy? Move every day. It makes the heart muscle stronger.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "h_ball",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "hl1",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.65,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Sleep and water help the whole body!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "h_bed",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "hl2",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "h_jug",
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "hl3",
+              "at": 1.5
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "dog",
+              "text": "And good food for energy!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "h_apple",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "hl4",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Clean air with no smoke keeps the lungs healthy.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "hl5",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "What's one thing you can do today to keep your team healthy?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "I'll play outside and drink water. And no more racing without a rest!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "h_ball",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "h_bed",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "h_jug",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "h_apple",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "hl1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "hl2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "hl3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "hl4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "hl5",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Quiz and recap",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "key",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "body"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "dog",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question one. Which organ pumps blood round the body?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q1",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The heart!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a1",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a1",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question two. What happens in the tiny air sacs?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a1",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Oxygen goes into the blood, and carbon dioxide comes out.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a2",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a2",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question three. Where does the right side of the heart send blood?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a2",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "To the lungs, to pick up oxygen.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a3",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a3",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question four. Which muscle moves down when you breathe in?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a3",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The diaphragm.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a4",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a4",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question five. Why does your heart beat faster when you run?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q5",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a4",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your muscles need more oxygen, so the blood must move faster.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a5",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a5",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Recap! Lungs swap the air. The heart pumps the blood.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a5",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "recap",
+              "at": 0.3
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Lungs swap the air",
+              "at": 0.8
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "The heart pumps the blood",
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 4.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Arteries go away, veins come back. They work as a team, and exercise speeds them up.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Arteries go away, veins come back",
+              "at": 0.3
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "They work as a team",
+              "at": 2.6
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Exercise speeds them up",
+              "at": 4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "dog",
+              "text": "High five, Monkey!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "dog",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "look",
+              "target": "dog",
+              "at": 0,
+              "to": "monkey"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0,
+              "to": "dog"
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Great teamwork, inside and out.",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "ThumbsUp",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Your turn: find your pulse",
+      "music": "happy",
+      "musicGain": 0.2,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "recap",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "body",
+                "robo",
+                "monkey",
+                "dog"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "dog",
+              "at": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your turn! Put two fingers gently on the inside of your wrist.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "press gently",
+              "style": "label",
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Count the beats for fifteen seconds, then multiply by four.",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "March on the spot for one minute and count again. Rest, and count once more.",
+              "caption": true
+            },
+            {
+              "do": "point",
+              "target": "robo",
+              "to": "body",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Only if you feel well, with a grown-up. See you next time!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.6
+            },
+            {
+              "do": "burst",
+              "target": "stars",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.8
+            },
+            {
+              "do": "nod",
+              "target": "dog",
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "heartbeat",
+              "volume": 0.5,
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": []
+        }
+      ]
+    }
+  ]
+}

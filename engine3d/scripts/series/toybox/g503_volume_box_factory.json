@@ -1,0 +1,5668 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Toy Box Friends G5-03: volume as unit cubes in layers, V = l × w × h = B × h, joined boxes add, and 1,000 cm³ = 1 L, in a box factory.",
+  "meta": {
+    "series": "toybox",
+    "episode": "g503",
+    "audience": "grade5",
+    "seed": 503,
+    "voice": "soft",
+    "voiceSpeed": 1,
+    "music": "playful",
+    "musicGain": 0.18,
+    "skills": [
+      "volume_conversion_5"
+    ],
+    "title": "Volume Box Factory",
+    "youtube": {
+      "title": "Volume for Kids: Length × Width × Height and Unit Cubes | Grade 5 Math | Toy Box Friends",
+      "description": "A tall box and a wide box: which holds more cubes? At the Box Factory, Robo, Monkey and Penguin fill boxes layer by layer, lift the layers apart to find the hidden cubes, and discover the volume formula.\nYou'll learn: volume is the number of unit cubes that fill a solid (cubic centimetres, cm³), one layer × the number of layers, V = l × w × h = B × h, adding the volumes of joined boxes, and 1,000 cm³ = 1 litre (1 cm³ = 1 mL).\nTry at home: build boxes from blocks or dice and count the layers. Small cubes are a choking risk: keep them away from babies and toddlers.",
+      "tags": [
+        "volume for kids",
+        "volume of a rectangular prism",
+        "unit cubes",
+        "cubic centimetres",
+        "length width height",
+        "base times height",
+        "litres and millilitres",
+        "grade 5 math",
+        "5th grade geometry",
+        "Toy Box Friends"
+      ]
+    },
+    "thumbnails": [
+      {
+        "name": "hidden",
+        "title": "HIDDEN CUBES!",
+        "subtitle": "Count every layer",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "lab",
+        "camera": {
+          "position": [
+            0,
+            1.4,
+            6.4
+          ],
+          "lookAt": [
+            0,
+            1.15,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "t1",
+            "kind": "cubes",
+            "l": 4,
+            "w": 3,
+            "h": 1,
+            "cell": 0.4,
+            "color": "blue",
+            "at": [
+              1.4,
+              0.01,
+              0
+            ]
+          },
+          {
+            "id": "t2",
+            "kind": "cubes",
+            "l": 4,
+            "w": 3,
+            "h": 1,
+            "cell": 0.4,
+            "color": "green",
+            "at": [
+              1.4,
+              0.75,
+              0
+            ]
+          },
+          {
+            "id": "t3",
+            "kind": "cubes",
+            "l": 4,
+            "w": 3,
+            "h": 1,
+            "cell": 0.4,
+            "color": "yellow",
+            "at": [
+              1.4,
+              1.5,
+              0
+            ]
+          },
+          {
+            "id": "hid",
+            "kind": "cubes",
+            "l": 2,
+            "w": 1,
+            "h": 1,
+            "cell": 0.41,
+            "color": "gold",
+            "at": [
+              1.4,
+              0.03,
+              0.01
+            ]
+          },
+          {
+            "id": "monkey",
+            "kind": "critter",
+            "species": "monkey",
+            "at": [
+              2.75,
+              0,
+              0.9
+            ],
+            "size": 0.85,
+            "rotation": [
+              0,
+              -30,
+              0
+            ],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "same",
+        "title": "SAME VOLUME?",
+        "subtitle": "Tall box or wide box?",
+        "titleColor": "white",
+        "side": "top",
+        "badge": "GRADE 5",
+        "stage": "lab",
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            7
+          ],
+          "lookAt": [
+            0,
+            1,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "w",
+            "kind": "cubes",
+            "l": 4,
+            "w": 3,
+            "h": 2,
+            "cell": 0.35,
+            "color": "blue",
+            "at": [
+              -1.1,
+              0.01,
+              0
+            ]
+          },
+          {
+            "id": "t",
+            "kind": "cubes",
+            "l": 2,
+            "w": 2,
+            "h": 6,
+            "cell": 0.35,
+            "color": "purple",
+            "at": [
+              1,
+              0.01,
+              0
+            ]
+          },
+          {
+            "id": "eq",
+            "kind": "letter",
+            "text": "24 = 24",
+            "at": [
+              -0.05,
+              0.05,
+              1.6
+            ],
+            "size": 0.3,
+            "color": "orange"
+          },
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [
+              -3.1,
+              0,
+              -0.2
+            ],
+            "rotation": [
+              0,
+              25,
+              0
+            ],
+            "clip": "Yes",
+            "feeling": "surprised"
+          },
+          {
+            "id": "monkey",
+            "kind": "critter",
+            "species": "monkey",
+            "at": [
+              2.6,
+              0,
+              0.7
+            ],
+            "size": 0.95,
+            "rotation": [
+              0,
+              -25,
+              0
+            ],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "litre",
+        "title": "VOLUME!",
+        "subtitle": "1 L = 1,000 cm³",
+        "titleColor": "green",
+        "side": "left",
+        "badge": "GRADE 5",
+        "stage": "lab",
+        "camera": {
+          "position": [
+            0,
+            1.4,
+            6.4
+          ],
+          "lookAt": [
+            0,
+            1.15,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "tank",
+            "kind": "shape",
+            "shape": "box",
+            "material": "glass",
+            "color": "white",
+            "at": [
+              1.4,
+              0.01,
+              0
+            ],
+            "scale": [
+              1.5,
+              1.5,
+              1.5
+            ]
+          },
+          {
+            "id": "juice",
+            "kind": "shape",
+            "shape": "box",
+            "material": "toy",
+            "color": "orange",
+            "at": [
+              1.4,
+              0.03,
+              0
+            ],
+            "scale": [
+              1.44,
+              1.1,
+              1.44
+            ]
+          },
+          {
+            "id": "carton",
+            "kind": "prop",
+            "model": "juice_carton",
+            "at": [
+              2.55,
+              1.55,
+              0.3
+            ],
+            "size": 1.3,
+            "rotation": [
+              0,
+              -90,
+              50
+            ]
+          },
+          {
+            "id": "penguin",
+            "kind": "critter",
+            "species": "penguin",
+            "at": [
+              0,
+              0,
+              1.1
+            ],
+            "size": 0.9,
+            "rotation": [
+              0,
+              25,
+              0
+            ],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
+  },
+  "stage": {
+    "preset": "lab"
+  },
+  "camera": {
+    "position": [
+      -1,
+      2.8,
+      9.4
+    ],
+    "lookAt": [
+      -0.6,
+      1.2,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -4.7,
+        0,
+        1.3
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ]
+    },
+    {
+      "id": "monkey",
+      "kind": "critter",
+      "species": "monkey",
+      "size": 1.1,
+      "at": [
+        1.2,
+        0,
+        1.6
+      ],
+      "rotation": [
+        0,
+        -25,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "penguin",
+      "kind": "critter",
+      "species": "penguin",
+      "size": 1,
+      "at": [
+        4.6,
+        0,
+        1.3
+      ],
+      "rotation": [
+        0,
+        -30,
+        0
+      ]
+    },
+    {
+      "id": "belt",
+      "kind": "prop",
+      "model": "conveyor_belt",
+      "at": [
+        2.9,
+        0,
+        -0.9
+      ],
+      "size": 1.4
+    },
+    {
+      "id": "mat",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "lab_teal",
+      "material": "matte",
+      "at": [
+        -1.8,
+        0.01,
+        0.7
+      ],
+      "scale": [
+        3.8,
+        0.5,
+        1.6
+      ]
+    },
+    {
+      "id": "frame",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        -1.8,
+        3.35,
+        -1.47
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        5.5,
+        1,
+        3
+      ]
+    },
+    {
+      "id": "board",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "white",
+      "material": "matte",
+      "at": [
+        -1.8,
+        3.35,
+        -1.42
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        5.2,
+        1,
+        2.7
+      ]
+    },
+    {
+      "id": "leg_l",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        -4,
+        0,
+        -1.5
+      ],
+      "scale": [
+        0.12,
+        2,
+        0.12
+      ]
+    },
+    {
+      "id": "leg_r",
+      "kind": "shape",
+      "shape": "cylinder",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+        0.40000000000000013,
+        0,
+        -1.5
+      ],
+      "scale": [
+        0.12,
+        2,
+        0.12
+      ]
+    },
+    {
+      "id": "g_wide",
+      "kind": "shape",
+      "shape": "box",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        4,
+        1.08,
+        -0.9
+      ],
+      "scale": [
+        1.24,
+        0.63,
+        0.94
+      ]
+    },
+    {
+      "id": "g_tall",
+      "kind": "shape",
+      "shape": "box",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        4,
+        1.08,
+        -0.9
+      ],
+      "scale": [
+        0.64,
+        1.8299999999999998,
+        0.64
+      ],
+      "hidden": true
+    },
+    {
+      "hidden": true,
+      "id": "sign",
+      "kind": "letter",
+      "text": "Fill me with cubes!",
+      "at": [
+        -1.8,
+        4.2,
+        -1.3
+      ],
+      "size": 0.24,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "full_w",
+      "kind": "cubes",
+      "l": 4,
+      "w": 3,
+      "h": 2,
+      "cell": 0.3,
+      "color": "blue",
+      "at": [
+        -2.6,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "full_t",
+      "kind": "cubes",
+      "l": 2,
+      "w": 2,
+      "h": 6,
+      "cell": 0.3,
+      "color": "purple",
+      "at": [
+        -0.95,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "n_w",
+      "kind": "letter",
+      "text": "24",
+      "at": [
+        -2.6,
+        0.9,
+        0.7
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "n_t",
+      "kind": "letter",
+      "text": "24",
+      "at": [
+        -0.95,
+        1.9,
+        0.7
+      ],
+      "size": 0.3,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "sq",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "yellow",
+      "material": "toy",
+      "at": [
+        -2.6,
+        0.02,
+        0.8999999999999999
+      ],
+      "scale": [
+        0.6,
+        0.5,
+        0.6
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "unit",
+      "kind": "shape",
+      "shape": "cube",
+      "color": "orange",
+      "material": "toy",
+      "at": [
+        -1.2,
+        0.01,
+        0.8999999999999999
+      ],
+      "size": 0.6
+    },
+    {
+      "hidden": true,
+      "id": "l_sq",
+      "kind": "letter",
+      "text": "1 cm²",
+      "at": [
+        -3.1,
+        4.15,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "yellow",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "l_cu",
+      "kind": "letter",
+      "text": "1 cm³",
+      "at": [
+        -0.5,
+        4.15,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "l_area",
+      "kind": "letter",
+      "text": "area: squares",
+      "at": [
+        -3.1,
+        3.4,
+        -1.3
+      ],
+      "size": 0.15,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "l_vol",
+      "kind": "letter",
+      "text": "volume: cubes",
+      "at": [
+        -0.5,
+        3.4,
+        -1.3
+      ],
+      "size": 0.15,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "l_def",
+      "kind": "text_card",
+      "text": "A cube 1 cm on every edge is 1 cubic centimetre: 1 cm³. (Our cubes are drawn bigger.)",
+      "at": [
+        -1.8,
+        2.2,
+        -1.3
+      ],
+      "width": 4.8,
+      "size": 0.22,
+      "bg": "cream"
+    },
+    {
+      "hidden": true,
+      "id": "small",
+      "kind": "cubes",
+      "l": 2,
+      "w": 2,
+      "h": 2,
+      "cell": 0.3,
+      "color": "teal",
+      "at": [
+        -1.9,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "small_l",
+      "kind": "letter",
+      "text": "2 × 2 × 2 = 8 cm³",
+      "at": [
+        -1.8,
+        2.85,
+        -1.3
+      ],
+      "size": 0.26,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ex3",
+      "kind": "cubes",
+      "l": 3,
+      "w": 2,
+      "h": 3,
+      "cell": 0.3,
+      "color": "yellow",
+      "at": [
+        -1.9,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "ex3_l",
+      "kind": "letter",
+      "text": "6 × 3 layers = 18 cm³",
+      "at": [
+        -1.8,
+        2.25,
+        -1.3
+      ],
+      "size": 0.26,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cm2",
+      "kind": "letter",
+      "text": "24 cm²",
+      "at": [
+        -3,
+        2.25,
+        -1.3
+      ],
+      "size": 0.32,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "cm3",
+      "kind": "letter",
+      "text": "24 cm³",
+      "at": [
+        -0.6000000000000001,
+        2.25,
+        -1.3
+      ],
+      "size": 0.32,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "l1_front",
+      "kind": "cubes",
+      "l": 4,
+      "w": 1,
+      "h": 1,
+      "cell": 0.3,
+      "color": "blue",
+      "at": [
+        -2.6,
+        0.01,
+        1
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "l1_hid",
+      "kind": "cubes",
+      "l": 3,
+      "w": 2,
+      "h": 1,
+      "cell": 0.3,
+      "color": "blue",
+      "at": [
+        -2.75,
+        0.01,
+        0.5499999999999999
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "l1_gold",
+      "kind": "cubes",
+      "l": 3,
+      "w": 2,
+      "h": 1,
+      "cell": 0.3,
+      "color": "gold",
+      "at": [
+        -2.75,
+        0.01,
+        0.5499999999999999
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "l1_rb",
+      "kind": "cubes",
+      "l": 1,
+      "w": 2,
+      "h": 1,
+      "cell": 0.3,
+      "color": "blue",
+      "at": [
+        -2.1500000000000004,
+        0.01,
+        0.5499999999999999
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "l2",
+      "kind": "cubes",
+      "l": 4,
+      "w": 3,
+      "h": 1,
+      "cell": 0.3,
+      "color": "green",
+      "at": [
+        -2.6,
+        0.31,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "c12",
+      "kind": "letter",
+      "text": "4 × 3 = 12 in one layer",
+      "at": [
+        -1.8,
+        4.25,
+        -1.3
+      ],
+      "size": 0.24,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "c24",
+      "kind": "letter",
+      "text": "12 + 12 = 24 cubes",
+      "at": [
+        -1.8,
+        3.55,
+        -1.3
+      ],
+      "size": 0.28,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "c18",
+      "kind": "letter",
+      "text": "18?",
+      "at": [
+        -1.8,
+        2.8,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "c6",
+      "kind": "letter",
+      "text": "6 hidden cubes!",
+      "at": [
+        -1.8,
+        2.2,
+        -1.3
+      ],
+      "size": 0.26,
+      "color": "gold",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "f_b",
+      "kind": "letter",
+      "text": "B = l × w = 4 × 3 = 12",
+      "at": [
+        -1.8,
+        4.3,
+        -1.3
+      ],
+      "size": 0.24,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "f_v",
+      "kind": "letter",
+      "text": "V = B × h = 12 × 2 = 24",
+      "at": [
+        -1.8,
+        3.6,
+        -1.3
+      ],
+      "size": 0.22,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "f_lwh",
+      "kind": "letter",
+      "text": "V = l × w × h",
+      "at": [
+        -1.8,
+        2.85,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "f_t",
+      "kind": "letter",
+      "text": "tall: 2 × 2 × 6 = 24 cm³",
+      "at": [
+        -1.8,
+        2.25,
+        -1.3
+      ],
+      "size": 0.24,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "e_l",
+      "kind": "pointer",
+      "from": [
+        -3.2,
+        0.04,
+        1.27
+      ],
+      "to": [
+        -2,
+        0.04,
+        1.27
+      ],
+      "head": "arrow",
+      "tail": "arrow",
+      "width": 0.04,
+      "color": "red"
+    },
+    {
+      "hidden": true,
+      "id": "e_w",
+      "kind": "pointer",
+      "from": [
+        -1.88,
+        0.04,
+        1.15
+      ],
+      "to": [
+        -1.88,
+        0.04,
+        0.25
+      ],
+      "head": "arrow",
+      "tail": "arrow",
+      "width": 0.04,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "e_h",
+      "kind": "pointer",
+      "from": [
+        -3.3200000000000003,
+        0.02,
+        1.15
+      ],
+      "to": [
+        -3.3200000000000003,
+        0.62,
+        1.15
+      ],
+      "head": "arrow",
+      "tail": "arrow",
+      "width": 0.04,
+      "color": "blue"
+    },
+    {
+      "hidden": true,
+      "id": "t_l",
+      "kind": "letter",
+      "text": "l = 4",
+      "at": [
+        -2.6,
+        0.08,
+        1.5499999999999998
+      ],
+      "size": 0.12,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "t_w",
+      "kind": "letter",
+      "text": "w = 3",
+      "at": [
+        -1.55,
+        0.08,
+        0.7
+      ],
+      "size": 0.12,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "t_h",
+      "kind": "letter",
+      "text": "h = 2",
+      "at": [
+        -3.6500000000000004,
+        0.25,
+        1.15
+      ],
+      "size": 0.12,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "s0",
+      "kind": "cubes",
+      "l": 2,
+      "w": 3,
+      "h": 4,
+      "cell": 0.3,
+      "color": "orange",
+      "at": [
+        -3.5,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "sl0",
+      "kind": "letter",
+      "text": "2 × 3 × 4",
+      "at": [
+        -3.5,
+        1.3499999999999999,
+        0.7
+      ],
+      "size": 0.13,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "s1",
+      "kind": "cubes",
+      "l": 1,
+      "w": 4,
+      "h": 6,
+      "cell": 0.3,
+      "color": "green",
+      "at": [
+        -2.4,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "sl1",
+      "kind": "letter",
+      "text": "1 × 4 × 6",
+      "at": [
+        -2.4,
+        1.9499999999999997,
+        0.7
+      ],
+      "size": 0.13,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "s2",
+      "kind": "cubes",
+      "l": 2,
+      "w": 2,
+      "h": 6,
+      "cell": 0.3,
+      "color": "purple",
+      "at": [
+        -1.35,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "sl2",
+      "kind": "letter",
+      "text": "2 × 2 × 6",
+      "at": [
+        -1.35,
+        1.9499999999999997,
+        0.7
+      ],
+      "size": 0.13,
+      "color": "purple",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "s3",
+      "kind": "cubes",
+      "l": 1,
+      "w": 3,
+      "h": 8,
+      "cell": 0.3,
+      "color": "teal",
+      "at": [
+        -0.35,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "sl3",
+      "kind": "letter",
+      "text": "1 × 3 × 8",
+      "at": [
+        -0.35,
+        2.55,
+        0.7
+      ],
+      "size": 0.13,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "s24",
+      "kind": "letter",
+      "text": "all 24 cm³",
+      "at": [
+        -1.8,
+        3.55,
+        -1.3
+      ],
+      "size": 0.4,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "lb",
+      "kind": "cubes",
+      "l": 4,
+      "w": 3,
+      "h": 2,
+      "cell": 0.3,
+      "color": "orange",
+      "at": [
+        -2.2,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "lt",
+      "kind": "cubes",
+      "l": 2,
+      "w": 3,
+      "h": 2,
+      "cell": 0.3,
+      "color": "teal",
+      "at": [
+        -2.5,
+        0.61,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "lc",
+      "kind": "cubes",
+      "l": 2,
+      "w": 3,
+      "h": 4,
+      "cell": 0.3,
+      "color": "orange",
+      "at": [
+        -2.5,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "lr",
+      "kind": "cubes",
+      "l": 2,
+      "w": 3,
+      "h": 2,
+      "cell": 0.3,
+      "color": "teal",
+      "at": [
+        -1.9000000000000001,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "w1",
+      "kind": "letter",
+      "text": "Way 1: 4×3×2 + 2×3×2",
+      "at": [
+        -1.8,
+        4.3,
+        -1.3
+      ],
+      "size": 0.22,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "w1b",
+      "kind": "letter",
+      "text": "24 + 12 = 36 cm³",
+      "at": [
+        -1.8,
+        3.7,
+        -1.3
+      ],
+      "size": 0.28,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "w2",
+      "kind": "letter",
+      "text": "Way 2: 2×3×4 + 2×3×2",
+      "at": [
+        -1.8,
+        3,
+        -1.3
+      ],
+      "size": 0.22,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "w2b",
+      "kind": "letter",
+      "text": "24 + 12 = 36 cm³",
+      "at": [
+        -1.8,
+        2.4,
+        -1.3
+      ],
+      "size": 0.28,
+      "color": "ink",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "big",
+      "kind": "cubes",
+      "l": 10,
+      "w": 10,
+      "h": 10,
+      "cell": 0.1,
+      "color": "orange",
+      "at": [
+        -2.6,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "tank1",
+      "kind": "shape",
+      "shape": "box",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        -1,
+        0.01,
+        0.7
+      ],
+      "scale": [
+        1.04,
+        1.03,
+        1.04
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "juice",
+      "kind": "shape",
+      "shape": "box",
+      "material": "water",
+      "color": "orange",
+      "at": [
+        -1,
+        0.03,
+        0.7
+      ],
+      "scale": [
+        0.98,
+        0.02,
+        0.98
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "carton",
+      "kind": "prop",
+      "model": "juice_carton",
+      "at": [
+        -0.1,
+        1.25,
+        0.7
+      ],
+      "size": 1.2,
+      "rotation": [
+        0,
+        -90,
+        0
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "carton_l",
+      "kind": "letter",
+      "text": "1 L",
+      "at": [
+        -0.1,
+        0,
+        1.0499999999999998
+      ],
+      "size": 0.18,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "li1",
+      "kind": "letter",
+      "text": "10 × 10 × 10 = 1,000 cm³",
+      "at": [
+        -1.8,
+        4.3,
+        -1.3
+      ],
+      "size": 0.22,
+      "color": "orange",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "li2",
+      "kind": "letter",
+      "text": "1,000 cm³ = 1 L",
+      "at": [
+        -1.8,
+        3.6,
+        -1.3
+      ],
+      "size": 0.36,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "li3",
+      "kind": "letter",
+      "text": "1 cm³ = 1 mL",
+      "at": [
+        -1.8,
+        2.85,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "teal",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "tank2",
+      "kind": "shape",
+      "shape": "box",
+      "material": "glass",
+      "color": "white",
+      "at": [
+        -2,
+        0.01,
+        0.7
+      ],
+      "scale": [
+        1.54,
+        1.03,
+        1.04
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "water2",
+      "kind": "shape",
+      "shape": "box",
+      "material": "water",
+      "color": "sky",
+      "at": [
+        -2,
+        0.03,
+        0.7
+      ],
+      "scale": [
+        1.48,
+        0.02,
+        0.98
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "fish",
+      "kind": "critter",
+      "species": "fish",
+      "size": 0.35,
+      "at": [
+        -2,
+        0.35,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "ft1",
+      "kind": "letter",
+      "text": "30×20×20 = 12,000 cm³",
+      "at": [
+        -1.8,
+        4.3,
+        -1.3
+      ],
+      "size": 0.21,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ft2",
+      "kind": "letter",
+      "text": "= 12 L of water",
+      "at": [
+        -1.8,
+        3.6,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "blue",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "pool",
+      "kind": "text_card",
+      "text": "Fun fact: an Olympic pool holds about 2,500,000 litres!",
+      "at": [
+        -1.8,
+        2.15,
+        -1.3
+      ],
+      "width": 4.8,
+      "size": 0.22,
+      "bg": "cream"
+    },
+    {
+      "hidden": true,
+      "id": "o1",
+      "kind": "text_card",
+      "text": "Order 1: a box 5 cm × 4 cm × 3 cm. What is its volume?",
+      "at": [
+        -1.8,
+        3.65,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.27
+    },
+    {
+      "hidden": true,
+      "id": "o1a",
+      "kind": "letter",
+      "text": "5 × 4 × 3 = 60 cm³",
+      "at": [
+        -1.8,
+        2.75,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o2",
+      "kind": "text_card",
+      "text": "Order 2: a 4 × 3 base must hold 48 cm³. How tall?",
+      "at": [
+        -1.8,
+        3.65,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.27
+    },
+    {
+      "hidden": true,
+      "id": "o2a",
+      "kind": "letter",
+      "text": "48 ÷ 12 = 4 cm tall",
+      "at": [
+        -1.8,
+        2.75,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "o3",
+      "kind": "text_card",
+      "text": "Order 3: double the height of a 2 × 3 × 4 box. Volume?",
+      "at": [
+        -1.8,
+        3.65,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.27
+    },
+    {
+      "hidden": true,
+      "id": "o3a",
+      "kind": "letter",
+      "text": "2 × 3 × 8 = 48 cm³",
+      "at": [
+        -1.8,
+        2.75,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "green",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "ob1",
+      "kind": "cubes",
+      "l": 5,
+      "w": 4,
+      "h": 3,
+      "cell": 0.3,
+      "color": "orange",
+      "at": [
+        -2.4,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "ob2",
+      "kind": "cubes",
+      "l": 4,
+      "w": 3,
+      "h": 4,
+      "cell": 0.3,
+      "color": "teal",
+      "at": [
+        -2.4,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "ob3a",
+      "kind": "cubes",
+      "l": 2,
+      "w": 3,
+      "h": 4,
+      "cell": 0.3,
+      "color": "purple",
+      "at": [
+        -2.8,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "ob3b",
+      "kind": "cubes",
+      "l": 2,
+      "w": 3,
+      "h": 8,
+      "cell": 0.3,
+      "color": "purple",
+      "at": [
+        -1.6,
+        0.01,
+        0.7
+      ]
+    },
+    {
+      "hidden": true,
+      "id": "stamp",
+      "kind": "letter",
+      "text": "SHIPPED",
+      "at": [
+        -1.8,
+        2.2,
+        -1.3
+      ],
+      "size": 0.3,
+      "color": "red",
+      "depth": 0.12
+    },
+    {
+      "hidden": true,
+      "id": "q1",
+      "kind": "text_card",
+      "text": "1. A box is 3 cm × 4 cm × 5 cm. Its volume?",
+      "at": [
+        -1.8,
+        3.85,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3
+    },
+    {
+      "hidden": true,
+      "id": "a1",
+      "kind": "text_card",
+      "text": "3 × 4 × 5 = 60 cm³",
+      "at": [
+        -1.8,
+        2.25,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q2",
+      "kind": "text_card",
+      "text": "2. Why did Monkey count 18, not 24?",
+      "at": [
+        -1.8,
+        3.85,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3
+    },
+    {
+      "hidden": true,
+      "id": "a2",
+      "kind": "text_card",
+      "text": "He missed the 6 hidden cubes inside.",
+      "at": [
+        -1.8,
+        2.25,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q3",
+      "kind": "text_card",
+      "text": "3. How many cm³ are in 2 litres?",
+      "at": [
+        -1.8,
+        3.85,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3
+    },
+    {
+      "hidden": true,
+      "id": "a3",
+      "kind": "text_card",
+      "text": "2 × 1,000 = 2,000 cm³",
+      "at": [
+        -1.8,
+        2.25,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "q4",
+      "kind": "text_card",
+      "text": "4. A 24 cm³ box joins a 12 cm³ box. Volume?",
+      "at": [
+        -1.8,
+        3.85,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3
+    },
+    {
+      "hidden": true,
+      "id": "a4",
+      "kind": "text_card",
+      "text": "24 + 12 = 36 cm³",
+      "at": [
+        -1.8,
+        2.25,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.3,
+      "color": "green"
+    },
+    {
+      "hidden": true,
+      "id": "recap",
+      "kind": "text_card",
+      "text": "Volume counts cubes.\nOne layer × number of layers.\nV = l × w × h = B × h\nJoined boxes: add the volumes.\n1,000 cm³ = 1 L",
+      "at": [
+        -1.8,
+        2.15,
+        -1.3
+      ],
+      "width": 4.9,
+      "size": 0.24
+    },
+    {
+      "id": "confetti",
+      "kind": "confetti",
+      "count": 160,
+      "area": [
+        12,
+        4
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "title": "Which box holds more?",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "belt",
+                "mat",
+                "robo",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 0,
+              "height": 6
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "belt"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "belt"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "caption",
+              "text": "Volume Box Factory",
+              "style": "title",
+              "dur": 2.3,
+              "at": 0.2
+            },
+            {
+              "do": "turn",
+              "target": "belt#roller",
+              "by": 720,
+              "axis": "x",
+              "at": 0.2,
+              "dur": 2.2
+            },
+            {
+              "do": "path",
+              "target": "g_wide",
+              "points": [
+                [
+                  4,
+                  1.08,
+                  -0.9
+                ],
+                [
+                  1.8,
+                  1.08,
+                  -0.9
+                ],
+                [
+                  0,
+                  1.5,
+                  0.2
+                ],
+                [
+                  -2.6,
+                  0.01,
+                  0.7
+                ]
+              ],
+              "dur": 2.4,
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.4,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "g_tall",
+              "at": 0
+            },
+            {
+              "do": "path",
+              "target": "g_tall",
+              "points": [
+                [
+                  4,
+                  1.08,
+                  -0.9
+                ],
+                [
+                  1.8,
+                  1.08,
+                  -0.9
+                ],
+                [
+                  0.6,
+                  1.6,
+                  0.2
+                ],
+                [
+                  -0.95,
+                  0.01,
+                  0.7
+                ]
+              ],
+              "dur": 2.4,
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "sign",
+              "at": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.4,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Welcome to the Box Factory! Two new boxes. The sign says: fill me with cubes!",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "robo",
+                "monkey",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            },
+            {
+              "do": "point",
+              "target": "robo",
+              "to": "g_tall",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "The tall one holds way more. It's huge!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.1,
+              "to": "g_tall"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Which box holds more cubes? What do you think?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.4,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's fill them and count.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "g_tall"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "mat"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.2,
+              "to": "mat"
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "build",
+              "target": "full_w",
+              "order": "layers",
+              "dur": 1.4,
+              "sound": "block",
+              "at": 0
+            },
+            {
+              "do": "build",
+              "target": "full_t",
+              "order": "layers",
+              "dur": 1.8,
+              "sound": "block",
+              "at": 1.5
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The wide box holds twenty-four cubes. The tall box holds... twenty-four!",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "n_w",
+              "at": 0.8
+            },
+            {
+              "do": "caption",
+              "text": "24",
+              "style": "count",
+              "dur": 1.6,
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "n_t",
+              "at": 2.8
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "No way! They hold the same?",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "surprised",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "full_w",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "full_t",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "n_w",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "n_t",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g_wide",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "g_tall",
+              "at": 0.4
+            },
+            {
+              "do": "hide",
+              "target": "sign",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "what",
+      "title": "What is volume?",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "mat"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "mat"
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Volume is how much space something takes up. We measure it with cubes.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "volume",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here's a flat square, one centimeter on each side. It covers area.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "sq",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "l_sq",
+              "at": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "l_area",
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here's a cube, one centimeter on every edge. It takes up space.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "unit",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "l_cu",
+              "at": 1.4
+            },
+            {
+              "do": "pop",
+              "target": "l_vol",
+              "at": 1.8
+            },
+            {
+              "do": "spin",
+              "target": "unit",
+              "at": 1.6,
+              "turns": 1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Area counts squares on a flat surface. Volume counts the cubes that fill a solid.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "sq",
+              "dur": 1.8,
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "unit",
+              "dur": 1.8,
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "This cube is one cubic centimeter. We write it c m with a little three.",
+              "caption": true
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "mat"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "l_def",
+              "at": 0.6
+            },
+            {
+              "do": "emphasize",
+              "target": "l_def",
+              "words": "1 cubic centimetre",
+              "at": 2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Our cubes look bigger than one centimeter!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.2,
+              "to": "unit"
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Good eye! We drew them bigger so you can count them.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "l_def",
+              "words": "Our cubes are drawn bigger",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "drawn bigger",
+              "style": "label",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Try this small box: two cubes long, two wide and two high. How many cubes fill it?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "sq",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "unit",
+              "at": 0.2
+            },
+            {
+              "do": "build",
+              "target": "small",
+              "order": "layers",
+              "dur": 1.4,
+              "sound": "block",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Four on the bottom, four on top: eight cubes!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "small_l",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Yes. Its volume is eight cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "small_l",
+              "result": "correct",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "small",
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "small_l",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "sq",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "unit",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l_sq",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l_cu",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l_area",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l_vol",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l_def",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layers",
+      "title": "Fill and count in layers",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 30
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "mat"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "mat"
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The wide box is four cubes long and three cubes wide.",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "g_wide",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's fill the bottom layer, row by row.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "l1_front",
+              "dur": 1,
+              "at": 0.6
+            },
+            {
+              "do": "build",
+              "target": "l1_hid",
+              "order": "rows",
+              "dur": 1.6,
+              "at": 1.8
+            },
+            {
+              "do": "build",
+              "target": "l1_rb",
+              "dur": 0.6,
+              "at": 3.6
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four times three: twelve cubes in one layer.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "c12",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "12",
+              "style": "count",
+              "dur": 1.6,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The box is two cubes high, so we stack a second layer: twelve more.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "l2",
+              "dur": 1.6,
+              "at": 1
+            },
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "robo"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Twelve plus twelve is twenty-four cubes.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "c24",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "24",
+              "style": "count",
+              "dur": 1.6,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Wait, I only count eighteen! Front, top and side.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "c18",
+              "at": 0.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "g_wide",
+                "l2"
+              ],
+              "framing": "close",
+              "dur": 1.2,
+              "yaw": 30,
+              "height": 25
+            },
+            {
+              "do": "highlight",
+              "target": "l2",
+              "dur": 1.6,
+              "at": 1
+            },
+            {
+              "do": "highlight",
+              "target": "l1_front",
+              "dur": 1.6,
+              "at": 1.6
+            },
+            {
+              "do": "highlight",
+              "target": "l1_rb",
+              "dur": 1.6,
+              "at": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many cubes are hiding where you can't see them?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "l2"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's lift the top layer, like a cake.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "g_wide",
+              "at": 0.2
+            },
+            {
+              "do": "move",
+              "target": "l2",
+              "to": [
+                -2.6,
+                0.75,
+                0.7
+              ],
+              "dur": 1.2,
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.5,
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 4.4,
+          "do": [
+            {
+              "do": "orbit",
+              "around": [
+                -2.6,
+                0.3,
+                0.7
+              ],
+              "degrees": 60,
+              "dur": 4,
+              "radius": 3,
+              "height": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Look at the bottom layer. Six cubes were hiding at the back and in the middle.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "l1_hid",
+              "dur": 0.05,
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "l1_gold",
+              "dur": 0.05,
+              "at": 0.6
+            },
+            {
+              "do": "highlight",
+              "target": "l1_gold",
+              "dur": 2.4,
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "c6",
+              "at": 2
+            },
+            {
+              "do": "shot",
+              "target": [
+                "l1_front",
+                "l1_hid",
+                "l2"
+              ],
+              "framing": "close",
+              "dur": 1.2,
+              "height": 55
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Eighteen plus six hidden cubes is twenty-four. I'll never forget the hidden ones!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "mark",
+              "target": "c18",
+              "result": "incorrect",
+              "at": 0.8
+            },
+            {
+              "do": "mark",
+              "target": "c24",
+              "result": "correct",
+              "at": 2.8
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "l2",
+              "to": [
+                -2.6,
+                0.31,
+                0.7
+              ],
+              "dur": 0.8,
+              "at": 0.1
+            },
+            {
+              "do": "hide",
+              "target": "l1_gold",
+              "dur": 0.05,
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "l1_hid",
+              "dur": 0.05,
+              "at": 0.1
+            },
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's practise. This box is three long, two wide and three high. Count in layers.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "c12",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c24",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c18",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "c6",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "l1_front",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l1_hid",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l1_rb",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0.3
+            },
+            {
+              "do": "build",
+              "target": "ex3",
+              "order": "layers",
+              "dur": 2.4,
+              "sound": "block",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many cubes in one layer? And how many layers?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "monkey"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Three times two is six in a layer. Three layers: eighteen!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "ex3_l",
+              "at": 1.6
+            },
+            {
+              "do": "mark",
+              "target": "ex3_l",
+              "result": "correct",
+              "at": 3
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "ex3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "ex3_l",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "l1_front",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "l1_hid",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "l1_rb",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "l2",
+              "at": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "formula",
+      "title": "The formula",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "l2"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "l2"
+            }
+          ]
+        },
+        {
+          "dur": 2.9499999999999997,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's find a shortcut. Length four, width three, height two.",
+              "caption": true
+            },
+            {
+              "do": "draw",
+              "target": "e_l",
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "t_l",
+              "at": 1
+            },
+            {
+              "do": "draw",
+              "target": "e_w",
+              "at": 1.6
+            },
+            {
+              "do": "pop",
+              "target": "t_w",
+              "at": 1.8
+            },
+            {
+              "do": "draw",
+              "target": "e_h",
+              "at": 2.6
+            },
+            {
+              "do": "pop",
+              "target": "t_h",
+              "at": 2.8
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The base is the bottom layer. Its area, B, is length times width: twelve.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "f_b",
+              "at": 1.2
+            },
+            {
+              "do": "highlight",
+              "target": "l1_front",
+              "dur": 2.4,
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "base area",
+              "style": "label",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The height tells how many layers. Volume is B times h: twelve times two.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "f_v",
+              "at": 1.4
+            },
+            {
+              "do": "caption",
+              "text": "height",
+              "style": "label",
+              "at": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "That's the same as length times width times height.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "f_lwh",
+              "at": 0.6
+            },
+            {
+              "do": "highlight",
+              "target": "f_lwh",
+              "dur": 2.2,
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One layer?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Length times width!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many layers?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "The height!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now the tall box: two by two by six. The base is four cubes.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "e_l",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "e_w",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "e_h",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "t_l",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "t_w",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "t_h",
+              "at": 0
+            },
+            {
+              "do": "build",
+              "target": "full_t",
+              "order": "layers",
+              "dur": 2.4,
+              "sound": "block",
+              "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "full_t",
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Six layers of four: twenty-four cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "f_t",
+              "at": 0.8
+            },
+            {
+              "do": "orbit",
+              "around": [
+                -0.95,
+                0.8,
+                0.7
+              ],
+              "degrees": 30,
+              "dur": 3.5,
+              "radius": 4.5
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Same volume, different shape. So tall doesn't mean more!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "mark",
+              "target": "f_t",
+              "result": "correct",
+              "at": 0.6
+            },
+            {
+              "do": "nod",
+              "target": "monkey",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "I'll write it down: twenty-four square centimeters!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "mat"
+              ],
+              "framing": "medium",
+              "dur": 1
+            },
+            {
+              "do": "pop",
+              "target": "cm2",
+              "at": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Careful! Square centimeters are for flat area. Volume uses cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "cm2",
+              "result": "incorrect",
+              "at": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "cm3",
+              "at": 2.4
+            },
+            {
+              "do": "mark",
+              "target": "cm3",
+              "result": "correct",
+              "at": 3.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Cubes for volume. Little three, not little two!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "monkey",
+              "feeling": "happy",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "l1_front",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l1_hid",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l1_rb",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "full_t",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "f_b",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "f_v",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "f_lwh",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "f_t",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cm2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "cm3",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "same",
+      "title": "Same volume, different boxes",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "robo",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "mat"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "mat"
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Can you make other boxes from twenty-four cubes?",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.4,
+              "to": "monkey"
+            }
+          ]
+        },
+        {
+          "dur": 1.5499999999999998,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two by three by four.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "s0",
+              "order": "layers",
+              "dur": 1.2,
+              "sound": "block",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "sl0",
+              "at": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One by four by six.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "s1",
+              "order": "layers",
+              "dur": 1.4,
+              "sound": "block",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "sl1",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two by two by six.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "s2",
+              "order": "layers",
+              "dur": 1.4,
+              "sound": "block",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "sl2",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "And a tower: one by three by eight!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "build",
+              "target": "s3",
+              "order": "layers",
+              "dur": 1.6,
+              "sound": "block",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "sl3",
+              "at": 1.8
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Different shapes, but every one is twenty-four cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "s24",
+              "at": 0.4
+            },
+            {
+              "do": "orbit",
+              "around": [
+                -1.9,
+                0.8,
+                0.7
+              ],
+              "degrees": -35,
+              "dur": 4,
+              "radius": 5.2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Check one: two times three is six, times four is twenty-four.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "s0",
+              "dur": 2.4,
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Like cereal boxes! Some are tall and thin, some are short and wide.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Exactly. To compare, don't just look at height. Count the cubes, or multiply.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "s3",
+              "dur": 2,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "s0",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "s1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "s2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "s3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sl0",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sl1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sl2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "sl3",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "s24",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "joined",
+      "title": "Factory build: two boxes joined",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "mat"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "mat"
+            }
+          ]
+        },
+        {
+          "dur": 2.05,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "This shape is made of two boxes. How can we find its volume?",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "lb",
+              "order": "layers",
+              "dur": 1.2,
+              "sound": "block",
+              "at": 0.6
+            },
+            {
+              "do": "build",
+              "target": "lt",
+              "order": "layers",
+              "dur": 1,
+              "sound": "block",
+              "at": 1.9
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Way one: split it flat. The bottom box is four by three by two: twenty-four.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "lt",
+              "to": [
+                -2.5,
+                1.1099999999999999,
+                0.7
+              ],
+              "dur": 1,
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.4,
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "w1",
+              "at": 1.6
+            },
+            {
+              "do": "highlight",
+              "target": "lb",
+              "dur": 2,
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The top box is two by three by two: twelve. Twenty-four plus twelve is thirty-six.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "lt",
+              "dur": 2,
+              "at": 0.4
+            },
+            {
+              "do": "pop",
+              "target": "w1b",
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "move",
+              "target": "lt",
+              "to": [
+                -2.5,
+                0.61,
+                0.7
+              ],
+              "dur": 0.8,
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Way two: split it the other way. A tall column and a short box.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "lb",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "lt",
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "lc",
+              "dur": 0.01,
+              "at": 0.3
+            },
+            {
+              "do": "show",
+              "target": "lr",
+              "dur": 0.01,
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "lr",
+              "to": [
+                -1.3000000000000003,
+                0.01,
+                0.7
+              ],
+              "dur": 1,
+              "at": 1
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "volume": 0.4,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two by three by four is twenty-four. Two by three by two is twelve.",
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "lc",
+              "dur": 1.8,
+              "at": 0.3
+            },
+            {
+              "do": "highlight",
+              "target": "lr",
+              "dur": 1.8,
+              "at": 2
+            },
+            {
+              "do": "pop",
+              "target": "w2",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Thirty-six again! However you split it, the volumes add up.",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "w2b",
+              "at": 0.4
+            },
+            {
+              "do": "mark",
+              "target": "w2b",
+              "result": "correct",
+              "at": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Which split would you choose? Either way works, so pick the one that's easiest to multiply.",
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "ahead"
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Volumes of joined boxes add.",
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "lr",
+              "to": [
+                -1.9000000000000001,
+                0.01,
+                0.7
+              ],
+              "dur": 0.8,
+              "at": 0.2
+            },
+            {
+              "do": "orbit",
+              "around": [
+                -2.2,
+                0.5,
+                0.7
+              ],
+              "degrees": 45,
+              "dur": 4,
+              "radius": 4.2
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "lc",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "lr",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w1b",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "w2b",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "litre",
+      "title": "Litres and cubic centimetres",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "mat"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "mat"
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now a big one: ten by ten by ten.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "big",
+              "order": "layers",
+              "dur": 3,
+              "sound": "block",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "That's one thousand cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "li1",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1,000",
+              "style": "count",
+              "dur": 1.6,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.9500000000000001,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here's a hollow box the same size. Will one liter of juice fill it?",
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "tank1",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "penguin",
+              "at": 0.8
+            },
+            {
+              "do": "move",
+              "target": "penguin",
+              "to": [
+                2.5,
+                0,
+                1.2
+              ],
+              "dur": 1.4,
+              "at": 0.8
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.6,
+              "to": "tank1"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": 0.6,
+              "to": "tank1"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "Let's pour and see! One liter carton.",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "show",
+              "target": "carton",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "carton_l",
+              "at": 0.6
+            },
+            {
+              "do": "look",
+              "target": "penguin",
+              "at": 0.2,
+              "to": "tank1"
+            }
+          ]
+        },
+        {
+          "dur": 4.2,
+          "do": [
+            {
+              "do": "turn",
+              "target": "carton",
+              "to": [
+                0,
+                -90,
+                100
+              ],
+              "dur": 0.8,
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "juice",
+              "at": 0.5
+            },
+            {
+              "do": "grow",
+              "target": "juice",
+              "to": [
+                1,
+                48,
+                1
+              ],
+              "dur": 3,
+              "ease": "sineInOut",
+              "at": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "volume": 0.7,
+              "at": 0.6
+            },
+            {
+              "do": "shot",
+              "target": [
+                "tank1",
+                "big"
+              ],
+              "framing": "medium",
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 2.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "It fills it exactly! One thousand cubic centimeters is one liter.",
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "carton",
+              "to": [
+                0,
+                -90,
+                0
+              ],
+              "dur": 0.6,
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "li2",
+              "at": 0.8
+            },
+            {
+              "do": "mark",
+              "target": "li2",
+              "result": "correct",
+              "at": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "So one cubic centimeter is one milliliter.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "li3",
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1 cm³ = 1 mL",
+              "style": "label",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "So a one-liter milk carton holds one thousand cubic centimeters too!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "Fun fact: the liter was first defined as the space inside a cube ten centimeters on each side.",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "feel",
+              "target": "penguin",
+              "feeling": "happy",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A fish tank is thirty by twenty by twenty centimeters. How much water?",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "big",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "tank1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "juice",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "carton",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "carton_l",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "li1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "li2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "li3",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "tank2",
+              "at": 0.6
+            },
+            {
+              "do": "show",
+              "target": "water2",
+              "at": 0.7
+            },
+            {
+              "do": "pop",
+              "target": "ft1",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "grow",
+              "target": "water2",
+              "to": [
+                1,
+                46,
+                1
+              ],
+              "dur": 2.4,
+              "ease": "sineInOut",
+              "at": 0.1
+            },
+            {
+              "do": "sound",
+              "sound": "splash",
+              "volume": 0.4,
+              "at": 1
+            },
+            {
+              "do": "show",
+              "target": "fish",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.95,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Twelve thousand cubic centimeters: that's twelve liters.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "ft2",
+              "at": 0.4
+            },
+            {
+              "do": "mark",
+              "target": "ft2",
+              "result": "correct",
+              "at": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "And an Olympic pool holds about two and a half million liters!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "pool",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "tank2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "water2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "fish",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "ft1",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "ft2",
+              "at": 0.3
+            },
+            {
+              "do": "hide",
+              "target": "pool",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chant",
+      "title": "The Layer chant",
+      "music": "happy",
+      "musicGain": 0.22,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "robo",
+                "monkey",
+                "penguin"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "penguin",
+              "at": "ahead"
+            },
+            {
+              "do": "show",
+              "target": "l1_front",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "l1_hid",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "l1_rb",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Length times width makes a layer!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.4
+            },
+            {
+              "do": "highlight",
+              "target": "l1_hid",
+              "dur": 1.4,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 0.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Stack them high, the height's the player!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "show",
+              "target": "l2",
+              "at": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "penguin",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One layer?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Length times width!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "penguin",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many layers?",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "robo",
+              "height": 0.2,
+              "at": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "The height!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "hop",
+              "target": "penguin",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 3.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "All together: length times width makes a layer, stack them high, the height's the player!",
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.6
+            },
+            {
+              "do": "hop",
+              "target": "penguin",
+              "at": 1.4
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 2.6
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.4,
+              "at": 3.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "l1_front",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "l1_hid",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "l1_rb",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "l2",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "orders",
+      "title": "Penguin's orders",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "penguin",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "penguin"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "penguin"
+            },
+            {
+              "do": "look",
+              "target": "penguin",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "I'm the shipping clerk. Three orders to pack!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "penguin",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "o1",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "Order one: a box five by four by three centimeters. What's its volume?",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "emphasize",
+              "target": "o1",
+              "words": [
+                4,
+                11
+              ],
+              "at": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 3.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Five times four is twenty. Twenty times three is sixty cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "ob1",
+              "order": "layers",
+              "dur": 1.4,
+              "sound": "block",
+              "at": 0.2
+            },
+            {
+              "do": "pop",
+              "target": "o1a",
+              "at": 2.6
+            },
+            {
+              "do": "mark",
+              "target": "o1a",
+              "result": "correct",
+              "at": 3.4
+            },
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "Order two: a four by three base must hold forty-eight. How tall?",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hide",
+              "target": "o1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o1a",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ob1",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "o2",
+              "at": 0.3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "penguin",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 3.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "One layer is twelve. Forty-eight divided by twelve is four layers. Four centimeters tall!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "build",
+              "target": "ob2",
+              "order": "layers",
+              "dur": 1.6,
+              "sound": "block",
+              "at": 0.6
+            },
+            {
+              "do": "pop",
+              "target": "o2a",
+              "at": 2.6
+            },
+            {
+              "do": "mark",
+              "target": "o2a",
+              "result": "correct",
+              "at": 3.6
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "Order three: double the height of a two by three by four box. What happens?",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hide",
+              "target": "o2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "o2a",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ob2",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "o3",
+              "at": 0.3
+            },
+            {
+              "do": "build",
+              "target": "ob3a",
+              "order": "layers",
+              "dur": 1,
+              "sound": "block",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 3.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two by three by eight is forty-eight. Double the height, double the volume!",
+              "caption": true
+            },
+            {
+              "do": "build",
+              "target": "ob3b",
+              "order": "layers",
+              "dur": 1.6,
+              "sound": "block",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "o3a",
+              "at": 2.2
+            },
+            {
+              "do": "mark",
+              "target": "o3a",
+              "result": "correct",
+              "at": 3
+            },
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "Check: four by three by four is forty-eight. It fits!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 0.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "penguin",
+              "text": "All orders shipped!",
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "stamp",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "clink",
+              "at": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "penguin",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "o3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "o3a",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "ob3a",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "ob3b",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "stamp",
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Quiz and recap",
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "board",
+                "mat"
+              ],
+              "framing": "medium",
+              "dur": 1.2
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "board"
+            },
+            {
+              "do": "look",
+              "target": "penguin",
+              "at": "board"
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question one. A box is three by four by five centimeters. What is its volume?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q1",
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Sixty cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a1",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a1",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question two. Why did Monkey count eighteen instead of twenty-four?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a1",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "He missed the six hidden cubes inside and at the back.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a2",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a2",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question three. How many cubic centimeters are in two liters?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q3",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a2",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two thousand cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a3",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a3",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Question four. A twenty-four box joins a twelve box. What's the volume?",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "q4",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "q3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a3",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "volume": 0.7
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Thirty-six cubic centimeters.",
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "a4",
+              "at": 0.2
+            },
+            {
+              "do": "mark",
+              "target": "a4",
+              "result": "correct",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2.55,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's recap. Volume counts cubes: one layer times the number of layers.",
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "q4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "a4",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "recap",
+              "at": 0.3
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": "Volume counts cubes",
+              "at": 0.8
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": [
+                3,
+                8
+              ],
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 4.3500000000000005,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "V equals l times w times h. Joined boxes add. And one thousand cubic centimeters is one liter.",
+              "caption": true
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": [
+                9,
+                19
+              ],
+              "at": 0.4
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": [
+                20,
+                24
+              ],
+              "at": 2.4
+            },
+            {
+              "do": "emphasize",
+              "target": "recap",
+              "words": [
+                25,
+                29
+              ],
+              "at": 4.2
+            }
+          ]
+        },
+        {
+          "dur": 0.44999999999999996,
+          "do": [
+            {
+              "do": "say",
+              "who": "monkey",
+              "text": "And always look for the hidden cubes!",
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 0.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "title": "Your turn: block boxes",
+      "music": "happy",
+      "musicGain": 0.22,
+      "beats": [
+        {
+          "dur": null,
+          "do": [
+            {
+              "do": "hide",
+              "target": "recap",
+              "at": 0
+            },
+            {
+              "do": "shot",
+              "target": [
+                "mat",
+                "board",
+                "robo",
+                "monkey"
+              ],
+              "framing": "medium",
+              "dur": 1.2,
+              "height": 4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "monkey",
+              "at": "ahead"
+            },
+            {
+              "do": "look",
+              "target": "penguin",
+              "at": "ahead"
+            },
+            {
+              "do": "build",
+              "target": "ob3a",
+              "order": "layers",
+              "dur": 1,
+              "sound": false,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.15,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Your turn! Use building blocks or dice. Build a box three long, two wide and two high.",
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "count the layers",
+              "style": "label",
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 0.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Predict the count first, then build and check. Can you make three boxes of twelve?",
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.3499999999999999,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Small cubes are a choking risk, so keep them away from babies. See you next time!",
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "clip": "Wave",
+              "at": 0.6
+            },
+            {
+              "do": "burst",
+              "target": "confetti",
+              "at": 1
+            },
+            {
+              "do": "hop",
+              "target": "monkey",
+              "at": 1
+            },
+            {
+              "do": "hop",
+              "target": "penguin",
+              "at": 1.2
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "volume": 0.5,
+              "at": 1
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": []
+        }
+      ]
+    }
+  ]
+}
