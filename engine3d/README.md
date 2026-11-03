@@ -354,3 +354,5 @@ Options: `--jobs N` (pages rendering contiguous chunks in parallel), `--gl gpu|s
 `--encoder webcodecs` (default) encodes H.264 inside the page on the GPU and sends only compressed chunks to
 Node; `x264` and `vt` read every frame back and pipe raw RGBA to ffmpeg (slower: ~17 fps at 1080p, limited by
 Chromium's socket throughput). Hash and still modes always read back raw pixels.
+
+**Captions on screen.** A subtitle that wraps grows upward from a 3% bottom margin, so three-line subtitles stay inside the frame; a `label` caption (without `pos`) rises above whatever subtitle is showing, so the two never overlap. Both are renderer-only (`runtime/overlay.js`); plans are unchanged.

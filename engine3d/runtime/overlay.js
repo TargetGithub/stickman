@@ -75,7 +75,10 @@ export function createOverlay(width, height, captions) {
     const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, toneMapped: false, depthTest: false });
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(cv.width, cv.height), mat);
     const [x, y] = CAPTION_POS[c.pos] ?? [st.x, st.y];
-    mesh.position.set(width * x, height * y, 0); // x, y: fractions of the frame from the bottom left
+    // x, y: fractions of the frame from the bottom left. A subtitle that wraps grows upward from a bottom margin
+    // instead of running off the frame.
+    const lift = st === STYLES.subtitle && !c.pos ? Math.max(0, height * 0.03 + cv.height / 2 - height * y) : 0;
+    mesh.position.set(width * x, height * y + lift, 0);
     mesh.visible = false;
     scene.add(mesh);
     sprites.set(key, mesh);
@@ -87,6 +90,13 @@ export function createOverlay(width, height, captions) {
     camera,
     update(t) {
       for (const m of sprites.values()) m.visible = false;
+      // The top edge of the subtitle on screen, so a label above it moves up when it wraps onto two lines.
+      let subTop = 0;
+      for (const c of captions) {
+        if (t < c.start || t >= c.start + c.dur || (c.style ?? "subtitle") !== "subtitle" || c.pos) continue;
+        const m = sprite(c);
+        subTop = Math.max(subTop, m.position.y + m.geometry.parameters.height / 2);
+      }
       for (const c of captions) {
         if (t < c.start || t >= c.start + c.dur) continue;
         const m = sprite(c);
@@ -95,6 +105,11 @@ export function createOverlay(width, height, captions) {
         m.visible = true;
         m.scale.setScalar(Math.max(0.001, k * (0.6 + 0.4 * out)));
         m.material.opacity = Math.max(0, out);
+        if (c.style === "label" && !c.pos) {
+          const base = height * STYLES.label.y;
+          const half = m.geometry.parameters.height / 2;
+          m.position.y = Math.max(base, subTop + height * 0.015 + half);
+        }
       }
     },
   };
