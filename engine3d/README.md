@@ -15,7 +15,7 @@ cd engine3d && npm install && npx playwright install chromium
 
 | Path | What |
 |---|---|
-| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `director_extras.js`, `compile.js`, `validate.js`, `plan.js`. Page only (three.js): `stage.js`, `objects.js`, `objects_extra.js`, `models.js`, `faces.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`. |
+| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `director_extras.js`, `lipsync.js`, `look.js`, `camera_moves.js`, `bounds.js`, `stage_set.js`, `compile.js`, `validate.js`, `validate_look.js`, `plan.js`. Page only (three.js): `stage.js`, `objects.js`, `objects_extra.js`, `models.js`, `faces.js`, `talk.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`. |
 | `catalog/` | JSON catalog: colours, materials, shapes (solids and flat 2D shapes), fonts, characters (glTF), models (toy animals and props built from parts), stages and lights, sounds, object kinds, actions. `index.mjs` loads it in Node. |
 | `assets/characters/` | glTF characters (CC0), with `LICENSES.md`. |
 | `scripts/` | JSON scripts (`count_to_five.json`); series in `scripts/series/<name>/` (Toy Box Friends: `scripts/series/toybox/SERIES.md`). |
@@ -54,7 +54,7 @@ plan for TTS, the audio mix and the length.
 Object kinds: `shape` (add `face: true` for eyes and a smile), `number_block` (0–999), `letter` (up to 24
 characters), `critter` (toy animals that bob, blink and wag), `prop`, `character` (glTF), `confetti`, `bubbles`,
 `stars`, `clock`, `lamp`, `weather` and `group`. Script `meta` also takes `music` (a mood), `musicGain`,
-`voiceSpeed`, `series`, `episode`, `audience` (babies, prek, k, grade1, grade2), `skills`, `thumbnail` and
+`voiceSpeed`, `series`, `episode`, `audience` (babies, prek, k, grade1 to grade5), `skills`, `thumbnail` and
 `youtube`. `thumbnail: { "scene": "<scene id>", "at": 2.5 }` picks the frame 2.5 s into that scene, measured on
 the plan timed with the real TTS clips, so it stays on the right picture when speech changes beat lengths;
 `thumbnail: { "t": 12 }` (absolute seconds) still works.
@@ -115,6 +115,39 @@ fields: `catalog/kinds.json`. Actions and their parameters: `catalog/actions.jso
 **JS scene** (for custom animation): a module whose default export receives the director, plus optional
 `meta` `{ seed, voice, stage }`. It can loop, compute layouts and add `d.onFrame((t, { scene, camera, objects, THREE }) => …)`
 hooks for motion with no JSON action. Hooks must be pure functions of `t`. See `scenes/vowels.js`.
+
+### Talking, looking and framing (batch 3)
+
+| Need | How |
+|---|---|
+| A character's mouth moving with its voice | `say` with `who` (the speaker's object id: a critter, a character or a shape with `face: true`). Critters and face shapes open an oval mouth (with a tongue when wide) in place of their smile; birds drop a lower beak (`talk.jaw` in the model); Robo has no mouth, so his head nods a little with each loud syllable and tips slowly side to side, and his Surprised face morph opens slightly. The mouth follows the TTS clip's loudness envelope, smoothed to stay under about 12 Hz and shut in pauses; with `--speech off` a syllable pattern from the text stands in, so stills and reviews still move. Lines without `who` change nothing. |
+| A head turning toward something | `look` with `target` (a critter or Robo) and `at`: an object id, `[x, y, z]` or `"ahead"`. It eases over `dur` (0.6 s) and holds until the next look; a neck turns at most 70° (Robo 60°) and tips 25–30°. A number in `at` is the start time as for every action: then put what to look at in `to` (`{ "do": "look", "target": "cat", "at": 1.2, "to": "apple" }`). Angles are worked out from where both are when the turn ends. |
+| Framing without cropping | `shot` with `target` (an id or a list), `framing` (`wide` fills about 64% of the frame, `medium` 78%, `close` 90%), `yaw` (degrees round the targets, 0 = from the front, 90 = from the right), `height` (camera elevation in degrees, default 8), `dur` (0 = a cut), `ease`. The camera position comes from the targets' approximate boxes (`runtime/bounds.js`: shape size, critter and prop parts, Robo 1.6 m) at the end of the move, the current fov and 16:9; targets sit slightly above centre, clear of subtitles. |
+| A slow arc round a model | `orbit` with `around` ([x, y, z]), `degrees` (positive: the camera moves to its right), `dur`, optional `radius` and `height` (metres above `around`, blended in). It starts from wherever the camera is and turns to look at the point. |
+
+`shot`, `orbit` and `camera` all add camera segments: a later one takes over from where the camera is when it
+starts. An orbit is one timeline segment with a closed-form arc (`curve` in `timeline.js`), so a later move
+can start mid-orbit. Lip-sync data flows like clip lengths: `render3d` (via `tools/lib/audio3d.mjs`
+`speakPlan`) reads each spoken clip's loudness envelope (`tools/lib/tts/lipsync.mjs` `envelope()`, 100 values
+per second) for lines with `who` and passes it to the page in `speech`; the director turns it into the
+speaker's `talk` prop (`runtime/lipsync.js`), the same in Node and in the page.
+
+**Stages with set dressing.** `classroom` (peach wall, green chalkboard, window, plant, light wood floor), `lab`
+(white and teal, a bench of glassware along the back), `forest` (trees, bushes, a log, soft green light) and
+`pond` (water with lily pads, reeds, a rock) are presets with a `set`: a list of ordinary objects (shapes and
+props from the catalog) that join the plan before the script's own objects, with ids prefixed `set_`
+(`set_board`, `set_water`), so actions can target them. Set pieces stay behind z = -2.4 (the walls at z = -6.6),
+clear of the teaching area. `stage: { "preset": "classroom", "set": [] }` turns the dressing off; a script's
+`stage.set` replaces the preset's list. Script object ids may not start with `set_`.
+
+**Depth of field: not built.** A test with three's `BokehPass` (EffectComposer, 4× MSAA target, the extra depth
+pass) on `scripts/look_tour.json` at 4K60 (`--bench 240 --frames 300:540`) drew 37.6 fps against 183.3 fps
+without it (draw + readback: 36.2 vs 78.7): about 80% of the draw time, far over the 25% budget, and the
+WebCodecs render (54 fps at 4K60, encoder-bound) would drop below 37 fps. Soft focus can come later from a
+cheaper pass (blurred background layer) if a spec needs it.
+
+`scripts/look_tour.json` shows lip-sync (Robo, Duck, Cat and a talking circle), `look`, `shot` and `orbit` in
+the classroom in about 45 seconds.
 
 ## Rules (as for /engine)
 

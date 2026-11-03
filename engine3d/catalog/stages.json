@@ -1,5 +1,5 @@
 {
-  "description": "Stage presets: background, floor, fog and light rig. A script picks one with stage.preset and may override any field.",
+  "description": "Stage presets: background, floor, fog and light rig. A script picks one with stage.preset and may override any field. A preset's optional set lists ordinary objects (set dressing) that join the plan with ids prefixed set_; stage.set overrides it ([] for none).",
   "stages": {
     "playroom": {
       "background": "sky",
@@ -166,6 +166,824 @@
       "tags": [
         "space",
         "rockets"
+      ]
+    },
+    "classroom": {
+      "background": "wall_warm",
+      "floor": "wood",
+      "rug": null,
+      "fog": [
+        22,
+        55
+      ],
+      "lights": "classroom",
+      "set": [
+        {
+          "id": "wall",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "wall_warm",
+          "material": "matte",
+          "at": [
+            0,
+            6,
+            -6.6
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            120,
+            1,
+            12
+          ]
+        },
+        {
+          "id": "skirting",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "wood_dark",
+          "material": "matte",
+          "at": [
+            0,
+            0.16,
+            -6.55
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            120,
+            1,
+            0.32
+          ]
+        },
+        {
+          "id": "board_frame",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "wood",
+          "material": "matte",
+          "at": [
+            0,
+            2.75,
+            -6.52
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            6.5,
+            1,
+            3.1
+          ]
+        },
+        {
+          "id": "board",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "chalkboard",
+          "material": "matte",
+          "at": [
+            0,
+            2.75,
+            -6.48
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            6,
+            1,
+            2.6
+          ]
+        },
+        {
+          "id": "ledge",
+          "kind": "shape",
+          "shape": "box",
+          "color": "wood",
+          "material": "matte",
+          "at": [
+            0,
+            1.36,
+            -6.4
+          ],
+          "scale": [
+            6.2,
+            0.08,
+            0.22
+          ]
+        },
+        {
+          "id": "chalk",
+          "kind": "shape",
+          "shape": "capsule",
+          "color": "white",
+          "material": "matte",
+          "at": [
+            1.9,
+            1.44,
+            -6.38
+          ],
+          "rotation": [
+            0,
+            0,
+            90
+          ],
+          "scale": [
+            0.05,
+            0.22,
+            0.05
+          ]
+        },
+        {
+          "id": "window_frame",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "white",
+          "material": "matte",
+          "at": [
+            -6.4,
+            3,
+            -6.52
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            2.5,
+            1,
+            2.3
+          ]
+        },
+        {
+          "id": "window",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "sky",
+          "material": "glossy",
+          "at": [
+            -6.4,
+            3,
+            -6.48
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            2.2,
+            1,
+            2
+          ]
+        },
+        {
+          "id": "window_bar",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "white",
+          "material": "matte",
+          "at": [
+            -6.4,
+            3,
+            -6.45
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            0.08,
+            1,
+            2
+          ]
+        },
+        {
+          "id": "plant",
+          "kind": "prop",
+          "model": "plant",
+          "at": [
+            6.4,
+            0,
+            -5.9
+          ],
+          "size": 1.1
+        }
+      ],
+      "description": "A warm classroom: peach wall with a green chalkboard, a window and a plant, honey wood floor. Set pieces stay behind z = -5.9.",
+      "tags": [
+        "indoor",
+        "school",
+        "grade3",
+        "grade4",
+        "grade5"
+      ]
+    },
+    "lab": {
+      "background": "lab_white",
+      "floor": "lab_floor",
+      "rug": null,
+      "fog": [
+        22,
+        55
+      ],
+      "lights": "lab",
+      "set": [
+        {
+          "id": "wall",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "lab_white",
+          "material": "matte",
+          "at": [
+            0,
+            6,
+            -6.6
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            120,
+            1,
+            12
+          ]
+        },
+        {
+          "id": "stripe",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "lab_teal",
+          "material": "matte",
+          "at": [
+            0,
+            1.8,
+            -6.55
+          ],
+          "rotation": [
+            90,
+            0,
+            0
+          ],
+          "scale": [
+            120,
+            1,
+            0.18
+          ]
+        },
+        {
+          "id": "bench",
+          "kind": "shape",
+          "shape": "box",
+          "color": "lab_teal",
+          "material": "matte",
+          "at": [
+            0,
+            0,
+            -5.9
+          ],
+          "scale": [
+            9,
+            0.96,
+            0.95
+          ]
+        },
+        {
+          "id": "bench_top",
+          "kind": "shape",
+          "shape": "plate",
+          "color": "white",
+          "material": "glossy",
+          "at": [
+            0,
+            0.96,
+            -5.9
+          ],
+          "scale": [
+            9.3,
+            1,
+            1.1
+          ]
+        },
+        {
+          "id": "flask",
+          "kind": "shape",
+          "shape": "bottle",
+          "color": "teal",
+          "material": "glass",
+          "at": [
+            -3.2,
+            1,
+            -5.9
+          ],
+          "size": 0.55
+        },
+        {
+          "id": "cup",
+          "kind": "shape",
+          "shape": "cup",
+          "color": "blue",
+          "material": "glass",
+          "at": [
+            -2.4,
+            1,
+            -5.95
+          ],
+          "size": 0.4
+        },
+        {
+          "id": "tube",
+          "kind": "shape",
+          "shape": "tube",
+          "color": "green",
+          "material": "glass",
+          "at": [
+            2.6,
+            1,
+            -5.9
+          ],
+          "size": 0.42
+        },
+        {
+          "id": "jar",
+          "kind": "shape",
+          "shape": "pot",
+          "color": "white",
+          "material": "glossy",
+          "at": [
+            3.4,
+            1,
+            -5.95
+          ],
+          "size": 0.45
+        }
+      ],
+      "description": "A clean white and teal science lab with a bench of glassware along the back wall (behind z = -5).",
+      "tags": [
+        "indoor",
+        "science",
+        "grade3",
+        "grade4",
+        "grade5"
+      ]
+    },
+    "forest": {
+      "background": "forest_mist",
+      "floor": "moss",
+      "rug": null,
+      "fog": [
+        12,
+        34
+      ],
+      "lights": "forest",
+      "set": [
+        {
+          "id": "tree1",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            -7.2,
+            0,
+            -5.2
+          ],
+          "size": 2.1
+        },
+        {
+          "id": "tree2",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            -4.4,
+            0,
+            -7.4
+          ],
+          "size": 2.5
+        },
+        {
+          "id": "tree3",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            -1.2,
+            0,
+            -9.5
+          ],
+          "size": 2.8
+        },
+        {
+          "id": "tree4",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            2.6,
+            0,
+            -8.2
+          ],
+          "size": 2.4
+        },
+        {
+          "id": "tree5",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            5.4,
+            0,
+            -6
+          ],
+          "size": 2.2
+        },
+        {
+          "id": "tree6",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            8,
+            0,
+            -8.6
+          ],
+          "size": 2.6
+        },
+        {
+          "id": "tree7",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            -9.6,
+            0,
+            -9
+          ],
+          "size": 2.6
+        },
+        {
+          "id": "bush1",
+          "kind": "prop",
+          "model": "bush",
+          "at": [
+            -5.2,
+            0,
+            -3.6
+          ],
+          "size": 1
+        },
+        {
+          "id": "bush2",
+          "kind": "prop",
+          "model": "bush",
+          "at": [
+            6.6,
+            0,
+            -3.8
+          ],
+          "size": 0.9
+        },
+        {
+          "id": "log",
+          "kind": "prop",
+          "model": "log",
+          "at": [
+            3.6,
+            0,
+            -4.4
+          ],
+          "size": 1,
+          "rotation": [
+            0,
+            20,
+            0
+          ]
+        },
+        {
+          "id": "rock",
+          "kind": "prop",
+          "model": "rock",
+          "at": [
+            -2.8,
+            0,
+            -4.6
+          ],
+          "size": 0.8
+        }
+      ],
+      "description": "A soft green forest: trees, bushes, a log and a rock behind the teaching area (z < -3), misty green light.",
+      "tags": [
+        "outdoor",
+        "forest",
+        "habitats",
+        "science"
+      ]
+    },
+    "pond": {
+      "background": "sky",
+      "floor": "grass",
+      "rug": null,
+      "fog": [
+        20,
+        50
+      ],
+      "lights": "soft_day",
+      "set": [
+        {
+          "id": "bank",
+          "kind": "shape",
+          "shape": "disc",
+          "color": "sand",
+          "material": "matte",
+          "at": [
+            0,
+            0,
+            -5.2
+          ],
+          "scale": [
+            12.8,
+            0.03,
+            6.2
+          ]
+        },
+        {
+          "id": "water",
+          "kind": "shape",
+          "shape": "disc",
+          "color": "pond",
+          "material": "glossy",
+          "at": [
+            0,
+            0.002,
+            -5.2
+          ],
+          "scale": [
+            12,
+            0.04,
+            5.6
+          ]
+        },
+        {
+          "id": "pad1",
+          "kind": "prop",
+          "model": "lily_pad",
+          "at": [
+            -2.6,
+            0.008,
+            -4.3
+          ],
+          "size": 1.4
+        },
+        {
+          "id": "pad2",
+          "kind": "prop",
+          "model": "lily_pad",
+          "at": [
+            1.2,
+            0.008,
+            -5.9
+          ],
+          "size": 1.7,
+          "rotation": [
+            0,
+            70,
+            0
+          ]
+        },
+        {
+          "id": "pad3",
+          "kind": "prop",
+          "model": "lily_pad",
+          "at": [
+            3.7,
+            0.008,
+            -4
+          ],
+          "size": 1.2,
+          "rotation": [
+            0,
+            -40,
+            0
+          ]
+        },
+        {
+          "id": "reed1",
+          "kind": "shape",
+          "shape": "cylinder",
+          "color": "leaf",
+          "material": "matte",
+          "at": [
+            -6.2,
+            0,
+            -3.4
+          ],
+          "scale": [
+            0.05,
+            1.5,
+            0.05
+          ]
+        },
+        {
+          "id": "reed1_top",
+          "kind": "shape",
+          "shape": "capsule",
+          "color": "brown",
+          "material": "matte",
+          "at": [
+            -6.2,
+            1.26,
+            -3.4
+          ],
+          "scale": [
+            0.09,
+            0.24,
+            0.09
+          ]
+        },
+        {
+          "id": "reed2",
+          "kind": "shape",
+          "shape": "cylinder",
+          "color": "leaf",
+          "material": "matte",
+          "at": [
+            -5.85,
+            0,
+            -3.2
+          ],
+          "scale": [
+            0.05,
+            1.2,
+            0.05
+          ]
+        },
+        {
+          "id": "reed2_top",
+          "kind": "shape",
+          "shape": "capsule",
+          "color": "brown",
+          "material": "matte",
+          "at": [
+            -5.85,
+            1.008,
+            -3.2
+          ],
+          "scale": [
+            0.09,
+            0.192,
+            0.09
+          ]
+        },
+        {
+          "id": "reed3",
+          "kind": "shape",
+          "shape": "cylinder",
+          "color": "leaf",
+          "material": "matte",
+          "at": [
+            -6.5,
+            0,
+            -3
+          ],
+          "scale": [
+            0.05,
+            1,
+            0.05
+          ]
+        },
+        {
+          "id": "reed3_top",
+          "kind": "shape",
+          "shape": "capsule",
+          "color": "brown",
+          "material": "matte",
+          "at": [
+            -6.5,
+            0.84,
+            -3
+          ],
+          "scale": [
+            0.09,
+            0.16,
+            0.09
+          ]
+        },
+        {
+          "id": "reed4",
+          "kind": "shape",
+          "shape": "cylinder",
+          "color": "leaf",
+          "material": "matte",
+          "at": [
+            6,
+            0,
+            -3.5
+          ],
+          "scale": [
+            0.05,
+            1.4,
+            0.05
+          ]
+        },
+        {
+          "id": "reed4_top",
+          "kind": "shape",
+          "shape": "capsule",
+          "color": "brown",
+          "material": "matte",
+          "at": [
+            6,
+            1.176,
+            -3.5
+          ],
+          "scale": [
+            0.09,
+            0.22399999999999998,
+            0.09
+          ]
+        },
+        {
+          "id": "reed5",
+          "kind": "shape",
+          "shape": "cylinder",
+          "color": "leaf",
+          "material": "matte",
+          "at": [
+            6.35,
+            0,
+            -3.25
+          ],
+          "scale": [
+            0.05,
+            1.1,
+            0.05
+          ]
+        },
+        {
+          "id": "reed5_top",
+          "kind": "shape",
+          "shape": "capsule",
+          "color": "brown",
+          "material": "matte",
+          "at": [
+            6.35,
+            0.924,
+            -3.25
+          ],
+          "scale": [
+            0.09,
+            0.17600000000000002,
+            0.09
+          ]
+        },
+        {
+          "id": "rock",
+          "kind": "prop",
+          "model": "rock",
+          "at": [
+            -4.6,
+            0,
+            -2.9
+          ],
+          "size": 0.7
+        },
+        {
+          "id": "tree1",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            -8.8,
+            0,
+            -8.5
+          ],
+          "size": 2.4
+        },
+        {
+          "id": "tree2",
+          "kind": "prop",
+          "model": "tree",
+          "at": [
+            8.6,
+            0,
+            -8.8
+          ],
+          "size": 2.2
+        }
+      ],
+      "description": "A pond behind the teaching area (z < -2.4): blue water with lily pads, reeds at the edges, a rock and two trees.",
+      "tags": [
+        "outdoor",
+        "pond",
+        "habitats",
+        "life_cycles"
       ]
     }
   },
@@ -340,6 +1158,72 @@
       "tags": [
         "summer",
         "habitats"
+      ]
+    },
+    "classroom": {
+      "hemisphere": [
+        0.95,
+        "#fff6ea",
+        "#e9dcc8"
+      ],
+      "sun": {
+        "intensity": 2.2,
+        "dir": [
+          4,
+          9,
+          7
+        ],
+        "shadow": true
+      },
+      "environment": 0.55,
+      "description": "Warm indoor daylight from the windows, soft shadows.",
+      "tags": [
+        "indoor",
+        "school"
+      ]
+    },
+    "lab": {
+      "hemisphere": [
+        1.05,
+        "#ffffff",
+        "#d4ecea"
+      ],
+      "sun": {
+        "intensity": 1.9,
+        "dir": [
+          -3,
+          9,
+          7
+        ],
+        "shadow": true
+      },
+      "environment": 0.75,
+      "description": "Clean, even, slightly cool light with light shadows.",
+      "tags": [
+        "indoor",
+        "science"
+      ]
+    },
+    "forest": {
+      "hemisphere": [
+        1,
+        "#eaffdf",
+        "#5f8f50"
+      ],
+      "sun": {
+        "intensity": 1.7,
+        "dir": [
+          3,
+          10,
+          5
+        ],
+        "shadow": true
+      },
+      "environment": 0.45,
+      "description": "Soft green light under the trees, gentle shadows.",
+      "tags": [
+        "outdoor",
+        "forest"
       ]
     }
   }

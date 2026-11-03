@@ -1,7 +1,8 @@
 {
- "description": "Toy animals (critters) and props built from primitive parts: original designs. A part is { p: shape, at, s: size, c: colour, m: material, r: rotation, on: \"head\", mirror, hang, idle: { r, hz }, repeat: { n, radius }, name }. Critters face +z, stand on y = 0, about 1.1 m tall at size 1.",
+ "description": "Toy animals (critters) and props built from primitive parts: original designs. A part is { p: shape, at, s: size, c: colour, m: material, r: rotation, on: \"head\", mirror, hang, idle: { r, hz }, repeat: { n, radius }, name }. Critters face +z, stand on y = 0, about 1.1 m tall at size 1. A critter without a drawn mouth may give talk: { at (on the head), size (mouth width), jaw: an optional lower-beak part { p, at, s, c, drop } } for where it opens its mouth when it speaks (say.who).",
  "critters": {
   "duck": {
+   "talk": {"at": [0, -0.115, 0.36], "size": 0.15, "jaw": {"p": "sphere", "at": [0, -0.1, 0.3], "s": [0.27, 0.07, 0.23], "c": "orange", "drop": 0.07}},
    "color": "yellow",
    "sound": "Quack quack!",
    "description": "A round yellow duck with an orange beak and flapping wings.",
@@ -70,6 +71,7 @@
     }]
   },
   "chick": {
+   "talk": {"at": [0, -0.06, 0.38], "size": 0.08, "jaw": {"p": "sphere", "at": [0, -0.03, 0.4], "s": [0.1, 0.05, 0.12], "c": "orange", "drop": 0.04}},
    "color": "yellow",
    "sound": "Cheep cheep!",
    "description": "A fluffy little chick, round as a ball, with a tiny beak and a tuft.",

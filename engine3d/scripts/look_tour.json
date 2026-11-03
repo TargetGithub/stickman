@@ -1,0 +1,104 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Batch 3 look, voice and camera tour: Robo, Duck and Cat talk with lip-sync, look at each other and at an apple, the camera frames them with shot and circles them with orbit, in the classroom stage.",
+  "meta": { "title": "Look Tour", "seed": 31, "voice": "soft", "voiceSpeed": 1.0, "music": "calm", "musicGain": 0.2 },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 2.2, 10], "lookAt": [0, 1.2, 0], "fov": 40 },
+  "objects": [
+    { "id": "robo", "kind": "character", "character": "robot", "at": [-2.6, 0, 0.4] },
+    { "id": "duck", "kind": "critter", "species": "duck", "at": [0, 0, 0.8] },
+    { "id": "cat", "kind": "critter", "species": "cat", "at": [2.5, 0, 0.5], "rotation": [0, -10, 0] },
+    { "id": "apple", "kind": "prop", "model": "apple", "at": [0.4, 0, 2.6], "size": 0.9, "hidden": true },
+    { "id": "sun", "kind": "shape", "shape": "circle", "color": "yellow", "face": true, "size": 0.9, "at": [4.6, 1.6, -1.2], "hidden": true }
+  ],
+  "scenes": [
+    { "id": "hello", "title": "Hello", "beats": [
+      { "dur": 1.2, "do": [
+        { "do": "shot", "target": ["robo", "duck", "cat"], "framing": "wide", "dur": 0 },
+        { "do": "look", "target": "duck", "at": "robo", "dur": 0.6 },
+        { "do": "look", "target": "cat", "at": "robo", "dur": 0.8 }
+      ] },
+      { "dur": 1, "do": [
+        { "do": "say", "who": "robo", "text": "Hello, friends! Welcome to our classroom.", "caption": true },
+        { "do": "clip", "target": "robo", "clip": "Wave", "at": 0.2 }
+      ] },
+      { "dur": 0.8, "do": [] }
+    ] },
+    { "id": "duck", "title": "Duck talks", "beats": [
+      { "dur": 1.6, "do": [
+        { "do": "shot", "target": "duck", "framing": "close", "yaw": 10, "dur": 1.4 },
+        { "do": "look", "target": "duck", "at": "ahead", "dur": 0.5 },
+        { "do": "look", "target": "robo", "at": "duck", "dur": 0.7 },
+        { "do": "look", "target": "cat", "at": "duck", "dur": 0.7 }
+      ] },
+      { "dur": 1, "do": [
+        { "do": "say", "who": "duck", "text": "Quack! Hi, Robo. I love the big green chalkboard.", "caption": true, "voice": "squeaky" }
+      ] },
+      { "dur": 0.6, "do": [] }
+    ] },
+    { "id": "cat", "title": "Cat spots an apple", "beats": [
+      { "dur": 1.6, "do": [
+        { "do": "shot", "target": "cat", "framing": "medium", "yaw": -20, "height": 12, "dur": 1.4 },
+        { "do": "look", "target": "cat", "at": "ahead", "dur": 0.5 }
+      ] },
+      { "dur": 3, "do": [
+        { "do": "say", "who": "cat", "text": "Look down there. A shiny red apple!", "caption": true },
+        { "do": "pop", "target": "apple", "at": 0.9 },
+        { "do": "look", "target": "cat", "to": "apple", "at": 1.1, "dur": 0.6 },
+        { "do": "look", "target": "duck", "to": "apple", "at": 1.3, "dur": 0.6 },
+        { "do": "look", "target": "robo", "to": "apple", "at": 1.5, "dur": 0.7 }
+      ] },
+      { "dur": 0.8, "do": [] }
+    ] },
+    { "id": "around", "title": "All the way round", "beats": [
+      { "dur": 0.3, "do": [
+        { "do": "shot", "target": ["robo", "duck", "cat", "apple"], "framing": "medium", "dur": 1.2 }
+      ] },
+      { "dur": 6.5, "do": [
+        { "do": "orbit", "around": [0, 0.8, 1.2], "degrees": 75, "dur": 6.5, "height": 2.0 },
+        { "do": "say", "who": "robo", "text": "Let's walk our eyes all the way round it.", "at": 0.8, "caption": true }
+      ] },
+      { "dur": 1.5, "do": [
+        { "do": "orbit", "around": [0, 0.8, 1.2], "degrees": -75, "dur": 1.5 }
+      ] }
+    ] },
+    { "id": "chat", "title": "Round and red", "beats": [
+      { "dur": 1.4, "do": [
+        { "do": "move", "target": "apple", "to": [-1.3, 0, 2.3], "dur": 0.8 },
+        { "do": "shot", "target": ["duck", "cat"], "framing": "medium", "yaw": -15, "dur": 1.2 },
+        { "do": "look", "target": "duck", "at": "cat", "dur": 0.6 },
+        { "do": "look", "target": "cat", "at": "duck", "dur": 0.6 }
+      ] },
+      { "dur": 0.5, "do": [
+        { "do": "say", "who": "duck", "text": "Wow. It is so round.", "voice": "squeaky", "caption": true }
+      ] },
+      { "dur": 0.9, "do": [] },
+      { "dur": 0.5, "do": [
+        { "do": "say", "who": "cat", "text": "Round, red, and yummy.", "caption": true }
+      ] },
+      { "dur": 1.0, "do": [
+        { "do": "pop", "target": "sun" },
+        { "do": "look", "target": "cat", "at": "sun", "dur": 0.6 },
+        { "do": "look", "target": "duck", "at": "sun", "dur": 0.7 }
+      ] },
+      { "dur": 0.5, "do": [
+        { "do": "shot", "target": ["cat", "sun"], "framing": "medium", "dur": 1.0 },
+        { "do": "say", "who": "sun", "text": "Hello! I am a smiley circle.", "at": 0.6, "caption": true }
+      ] }
+    ] },
+    { "id": "bye", "title": "Goodbye", "beats": [
+      { "dur": 1.2, "do": [
+        { "do": "shot", "target": ["robo", "duck", "cat"], "framing": "wide", "height": 14, "dur": 1.4 },
+        { "do": "look", "target": "duck", "at": "ahead" },
+        { "do": "look", "target": "cat", "at": "ahead" },
+        { "do": "look", "target": "robo", "at": "ahead" }
+      ] },
+      { "dur": 3, "do": [
+        { "do": "say", "who": "robo", "text": "Great looking, everyone. See you next time!", "caption": true },
+        { "do": "clip", "target": "robo", "clip": "Wave", "at": 1.6 }
+      ] },
+      { "dur": 1.6, "do": [] }
+    ] }
+  ]
+}

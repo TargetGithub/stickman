@@ -1,11 +1,16 @@
 # Toy Box Friends (working title)
 
-A 3D learning series made with engine3d, for two audiences:
+A 3D learning series made with engine3d, from babies to grade 5:
 
 | Track | Ages | Pace and look | Voice | Music |
 |---|---|---|---|---|
 | **Babies** (`bb`) | 6–24 months | One thing at a time, slow moves, long holds, few words, no loud or sudden sounds, no flashing (stars twinkle below 0.5 Hz) | `soft`, voiceSpeed 0.78–0.82 | `lullaby` or `calm`, musicGain 0.28–0.38 |
 | **Pre-K** (`pk`) | 2–5 years | Clear teach → repeat → quiz pattern, short sentences, captions for key words, a cheer at the end | `soft` at 0.92–0.95; animal sounds in `deep` / `squeaky` | `bouncy`, `playful`, `happy`, musicGain about 0.25 |
+| **Grade 1** (`g1`), audience `grade1` | 6–7 years | Story problem → model → try together → quiz; up to 10 words a sentence | `soft` at 0.95–1.0 | `playful`, `happy`, musicGain about 0.22 |
+| **Grade 2** (`g2`), audience `grade2` | 7–8 years | Mission → explain why → practise → challenge; up to 14 words | `soft` at 1.0 | as grade 1 |
+| **Grade 3** (`g3`), audience `grade3` | 8–9 years | Question → build a model → find the rule → practise → check; up to 16 words; sidekick Fox | `soft` at 1.0 | `calm` or `playful`, musicGain 0.18–0.22 |
+| **Grade 4** (`g4`), audience `grade4` | 9–10 years | Puzzle → model two ways → explain → apply → check; up to 18 words; sidekick Owl | `soft` at 1.0 | as grade 3 |
+| **Grade 5** (`g5`), audience `grade5` | 10–11 years | Real problem → model → generalise → apply → check; up to 18 words; sidekick Monkey | `soft` at 1.0–1.02 | as grade 3 |
 
 Hosts: **Robo** (the CC0 robot) presents the pre-K episodes. The baby episodes have no host: the toy animals,
 shapes and balls are the whole show. All animals and props are original part-built models
@@ -41,7 +46,8 @@ every video **Made for kids**.
 
 ## Script rules for this series
 
-- `meta`: `series: "toybox"`, `episode` = the file's prefix, `audience: babies | prek`, `skills` (real ids
+- `meta`: `series: "toybox"`, `episode` = the file's prefix, `audience` (`babies`, `prek`, `k`, `grade1` …
+  `grade5`, matching the prefix: a test checks), `skills` (real ids
   only; a test checks), `thumbnail.t` at a moment with the title and a character on screen, and `youtube`
   `{ title (≤ 100 chars), description, tags }`.
 - One scene per chapter, with a `title`. YouTube needs at least three chapters of 10 s or more.
@@ -54,6 +60,15 @@ every video **Made for kids**.
   `{ "do": "sound", "sound": "ph_a_short" }`, then say the example word ("a... apple"). Names: `ph_<letter>`,
   `ph_<vowel>_short` / `_long`, `ph_oo`, `ph_sh`, `ph_ch`, `ph_th`, `ph_th_voiced`, `ph_wh`, `ph_ng`, `ph_qu`, `ph_x`
   (`engine3d/catalog/sounds.json`). Clips last 0.3–0.9 s; leave about 1 s before the next line.
+- Talking: every line a character says has `who` (its object id: `{ "do": "say", "who": "robo", "text": … }`),
+  so its mouth moves (Robo's head bobs). Narration nobody on screen says has no `who`.
+- Looking: turn listeners toward the speaker or the thing being taught with `look` (`at`: an id, a point or
+  `"ahead"`; with a start time use `"at": 1.2, "to": "apple"`). Turn them back `ahead` when the scene moves on.
+- Framing: use `shot` (`target`, `framing` wide / medium / close, optional `yaw`, `height`, `dur`) rather than
+  hand-placed `camera` positions, so nothing is cropped; `orbit` for slow turns round a 3D model (volume boxes,
+  the globe). Start each scene with a `wide` or `medium` shot of who is in it.
+- Grades 3–5 stages: `classroom`, `lab`, `forest`, `pond` come dressed (chalkboard, bench, trees, reeds) with
+  everything behind z = -2.4, so keep the lesson objects in front of that; `stage.set: []` removes the dressing.
 - An object resting on another moves with it (hop the blocks above too); `hop` adds to position, so moving
   objects can hop.
 

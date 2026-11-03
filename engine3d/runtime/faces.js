@@ -24,10 +24,11 @@ const smooth = (k) => k * k * (3 - 2 * k);
 
 /**
  * @param {{ parent: THREE.Object3D, eyes: THREE.Object3D[], eyeSize: number, mouth?: THREE.Mesh, head?: THREE.Object3D,
- *   material: Function }} o  eyes: the two eye groups (x > 0 first or second, either way); mouth: the smile mesh
+ *   material: Function, talk?: Function }} o  eyes: the two eye groups (x > 0 first or second, either way); mouth: the smile mesh;
+ *   talk: the open mouth for lip-sync (talk.js createTalkMouth), driven by the "talk" prop
  * @returns {(t:number, s:object, blink:number) => number[]}  sets brows, mouth and eye scale; returns the head tilt [pitch, roll] in degrees
  */
-export function createFaceRig({ parent, eyes, eyeSize, mouth, material }) {
+export function createFaceRig({ parent, eyes, eyeSize, mouth, material, talk }) {
   const browMat = material("ink", "matte");
   const brows = eyes.map((e) => {
     const b = new THREE.Mesh(shapeGeometry("box"), browMat);
@@ -80,6 +81,7 @@ export function createFaceRig({ parent, eyes, eyeSize, mouth, material }) {
       const sq = 1 - 0.35 * Math.sin(Math.PI * u);
       mouths[which].scale.x = (mouths[which].userData.sx ??= mouths[which].scale.x) * sq;
     }
+    talk?.(s.talk ?? 0, mouth ? mouths[(u < 0.5 ? from : to).mouth] : null);
     const open = Math.max(0.08, Math.min(1, s.eyes ?? 1)) * blink;
     const big = lerp(from.eye, to.eye, k);
     for (const e of eyes) {

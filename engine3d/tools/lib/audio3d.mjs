@@ -10,6 +10,7 @@ import { loadVoiceTable } from "../../../tools/lib/tts/index.mjs";
 import { mixdownStory, SR } from "../../../tools/lib/mixer.mjs";
 import { measureLoudness, normalizeLoudness } from "../../../tools/lib/loudness.mjs";
 import { readWav, writeWav } from "../../../tools/lib/wav.mjs";
+import { envelope, LIP_HZ } from "../../../tools/lib/tts/lipsync.mjs";
 import { loadCatalogSync } from "../../../catalog/index.js";
 import { REPO } from "./server.mjs";
 import { musicTimeline, renderMusicBed } from "./music3d.mjs";
@@ -17,7 +18,9 @@ import { ensurePhonemes } from "../phonemes.mjs";
 
 /**
  * Render (or reuse) a clip for every spoken line of a plan.
- * @returns {Record<string, { dur:number, key:string, file:string }>} line id → clip
+ * Each clip carries its loudness envelope (env, hz: tools/lib/tts/lipsync.mjs) for lines with a speaker
+ * (say.who): it travels to the page inside `speech`, like the clip lengths, so lip-sync is the same everywhere.
+ * @returns {Record<string, { dur:number, key:string, file:string, env?:number[], hz?:number }>} line id → clip
  */
 export function speakPlan(plan, { log = () => {} } = {}) {
   if (!plan.lines.length) return {};
@@ -30,7 +33,10 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   const mute = lines.find((l) => !l.voice);
   if (mute) throw new Error(`line ${mute.id} uses voice "${mute.who}", which has no TTS voice (use soft, squeaky, deep or robot)`);
   const out = {};
-  for (const l of synthesizeLines(lines, createPiperBackend(), { log })) out[l.id] = { dur: l.dur, key: l.key, file: l.file };
+  const talking = new Set(plan.lines.filter((l) => l.who != null).map((l) => l.id));
+  for (const l of synthesizeLines(lines, createPiperBackend(), { log })) {
+    out[l.id] = { dur: l.dur, key: l.key, file: l.file, ...(talking.has(l.id) ? { env: envelope(readWav(l.file).samples), hz: LIP_HZ } : {}) };
+  }
   return out;
 }
 

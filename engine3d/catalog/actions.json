@@ -137,9 +137,10 @@
       "params": {
         "text": "spoken words (required)",
         "voice": "a timbre from catalog/story/tts_voices.json or \"narrator\", default meta.voice",
-        "caption": "true to also show the words as a caption"
+        "caption": "true to also show the words as a caption",
+        "who": "the speaker's object id (a critter, a character or a shape with face: true): its mouth moves with the voice (Robo nods his head)"
       },
-      "description": "Speak a line with Piper TTS; the beat lasts at least as long as the voice.",
+      "description": "Speak a line with Piper TTS; the beat lasts at least as long as the voice. With who, the speaker lip-syncs to the clip's loudness.",
       "tags": [
         "voice"
       ]
@@ -304,6 +305,49 @@
       "tags": [
         "move",
         "maps"
+      ]
+    },
+    "look": {
+      "params": {
+        "target": "critter or character id",
+        "at": "what to look at: an object id, [x, y, z] or \"ahead\" (a number here is the start time; then put what to look at in to)",
+        "to": "what to look at, when at is the start time",
+        "dur": "default 0.6",
+        "ease": "default quadInOut"
+      },
+      "description": "Turn a critter's head (Robo's head) toward an object or a point, eased; it keeps looking there until the next look. Turns are limited to what a neck can do.",
+      "tags": [
+        "face",
+        "attention"
+      ]
+    },
+    "shot": {
+      "params": {
+        "target": "an object id or a list of ids to frame",
+        "framing": "wide, medium (default) or close",
+        "yaw": "degrees round the targets, 0 (default) = from the front, 90 = from the right",
+        "height": "camera elevation in degrees (default 8)",
+        "dur": "default 1.5 (0 = a cut)",
+        "ease": "default sineInOut"
+      },
+      "description": "Frame objects with the camera from their approximate sizes so nothing is cropped at 16:9 with the current fov; later camera moves take over.",
+      "tags": [
+        "camera"
+      ]
+    },
+    "orbit": {
+      "params": {
+        "around": "[x, y, z] to circle",
+        "degrees": "how far round (positive: the camera moves to its right)",
+        "dur": "default 4",
+        "radius": "metres, blends from the current distance",
+        "height": "metres above around, blends from the current height",
+        "ease": "default sineInOut"
+      },
+      "description": "Arc the camera smoothly round a point, starting from where it is and turning to look at the point (a 3D model, the Earth, a volume box).",
+      "tags": [
+        "camera",
+        "3d"
       ]
     }
   }

@@ -14,6 +14,7 @@ import { addFace, buildModel } from "./models.js";
 import { bubbleAt, bubblePaths, starField } from "./particles.js";
 import { buildClock, buildLamp, buildWeather } from "./objects_extra.js";
 import { morphFeeling } from "./faces.js";
+import { createCharacterRig } from "./talk.js";
 
 /** Load the fonts and characters a plan uses. @returns {Promise<{ fonts: Map, characters: Map }>} */
 export async function loadAssets(plan, catalog, base) {
@@ -85,7 +86,7 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080 
     if (o.face) {
       const h = (box.max.y - box.min.y) * size;
       const w = (box.max.x - box.min.x) * size;
-      const face = addFace(group, { center: [0, h * 0.5 + h * 0.06, box.max.z * size + 0.01 * size], size: Math.min(w, h) * 0.95 }, material);
+      const face = addFace(group, { center: [0, h * 0.5 + h * 0.06, box.max.z * size + 0.01 * size], size: Math.min(w, h) * 0.95, talks: !!o.talks }, material);
       return { group, update: (t, s) => face(t, s, blink(o.id, t)) };
     }
   } else if (o.kind === "critter" || o.kind === "prop") {
@@ -134,7 +135,8 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080 
     }
     const faces = [];
     model.traverse((m) => m.isMesh && m.morphTargetDictionary && faces.push(m));
-    return { group, mixer, actions, update: (t, s) => morphFeeling(faces, t, s) };
+    const rig = createCharacterRig(model, faces); // look and lip-sync on the head bone (talk.js)
+    return { group, mixer, actions, update: (t, s) => (morphFeeling(faces, t, s), rig(t, s)) };
   } else if (o.kind === "clock") {
     return { group, update: buildClock(o, group, { material, font: assets.fonts.get(o.font ?? "andika_bold"), textGeometry }) };
   } else if (o.kind === "lamp") {

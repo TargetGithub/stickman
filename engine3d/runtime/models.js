@@ -8,6 +8,7 @@ import * as THREE from "three";
 import { shadowed, shapeGeometry } from "./geometry.js";
 import { hash32 } from "./rng.js";
 import { createFaceRig } from "./faces.js";
+import { createTalkMouth, talkSpec } from "./talk.js";
 
 const DEG = Math.PI / 180;
 const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
@@ -59,7 +60,7 @@ function addEyes(parent, { at, size = 0.1, color = "ink" }, material) {
 }
 
 /** Eyes, cheeks and a smile on the front of anything (shapes with face: true); returns the face's feeling rig. */
-export function addFace(parent, { center, size, eyes, cheeks, mouth }, material) {
+export function addFace(parent, { center, size, eyes, cheeks, mouth, talks = false }, material) {
   const [cx, cy, cz] = center;
   const e = addEyes(parent, { at: [cx + (eyes?.gap ?? size * 0.26), cy + (eyes?.y ?? size * 0.08), cz], size: eyes?.size ?? size * 0.17 }, material);
   if (cheeks !== false) {
@@ -77,7 +78,9 @@ export function addFace(parent, { center, size, eyes, cheeks, mouth }, material)
     m.position.set(cx, cy - size * 0.12 + (mouth?.y ?? 0), cz);
     parent.add(m);
   }
-  return createFaceRig({ parent, eyes: e, eyeSize: eyes?.size ?? size * 0.17, mouth: m, material });
+  // A speaker (say with who) also gets an open mouth for lip-sync where its smile is.
+  const talk = talks ? createTalkMouth(parent, { at: m ? m.position.toArray() : [cx, cy - size * 0.12, cz], width: m ? m.scale.x : size * 0.3 }, material) : null;
+  return createFaceRig({ parent, eyes: e, eyeSize: eyes?.size ?? size * 0.17, mouth: m, material, talk });
 }
 
 /**
@@ -129,7 +132,8 @@ export function buildModel(o, model, material) {
     mouth.position.set(...model.mouth.at);
     head.add(mouth);
   }
-  const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material }) : null;
+  const talk = o.talks ? createTalkMouth(head, talkSpec(model), paint, color) : null;
+  const face = eyes.length ? createFaceRig({ parent: head, eyes, eyeSize: model.eyes.size ?? 0.1, mouth, material, talk }) : null;
   // Each critter blinks on its own beat (from its id), every ~3.6 s for 0.14 s.
   const phase = (hash32(o.id) % 3600) / 1000;
   const bob = model.bob ?? 0;
@@ -144,6 +148,11 @@ export function buildModel(o, model, material) {
         n.position.copy(p);
       }
       body.position.y = bob * (0.5 + 0.5 * Math.sin(t * Math.PI * 1.1 + phase));
+      // look (look.js): [yaw, pitch] in degrees on top of the rest pose, held until the next look.
+      if (s.look) {
+        head.rotation.y += s.look[0] * DEG;
+        head.rotation.x += s.look[1] * DEG;
+      }
       head.rotation.z += (model.bob ? 2.5 : 0) * DEG * Math.sin(t * 0.9 + phase);
       for (const m of idlers) {
         const { rest, idle, mirrored } = m.userData;
