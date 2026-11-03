@@ -111,6 +111,10 @@ Built in batch 3 (see `engine3d/README.md` once merged; names here are the contr
 | Stages | `classroom` (chalkboard wall, wood floor), `lab` (white and teal, benches), `forest`, `pond` (water, reeds), plus the 11 batch 2 stages. |
 | Audiences | `grade3`, `grade4`, `grade5`. |
 
+Built in `engine3d` (README "Talking, looking and framing"): the names above are exact. `look` also takes `to`
+(what to look at) for when `at` is a number (the start time, as in every action); stage set pieces are
+targetable as `set_<id>`.
+
 **Thumbnails** (designed, never a video frame): `meta.thumbnails` is a list of 2–3 concepts, each a small scene
 of its own: `{ "name": "a", "title": "ARRAYS!", "subtitle": "Multiply with rows", "titleColor": "yellow",
 "side": "left", "stage": "garden", "camera": {...}, "objects": [...] }`. `tools/thumbnail3d.mjs` renders each one

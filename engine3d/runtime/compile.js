@@ -30,9 +30,10 @@ export function compileScript(script, { catalog, speech = {} }) {
       let len = beat.dur ?? 1;
       const later = [];
       (beat.do ?? []).forEach((a, ai) => {
-        const start = t + (a.at ?? 0);
+        // look's at may name what to look at (an id or a point); a number is always the time.
+        const start = t + (typeof a.at === "number" ? a.at : 0);
         if (a.do === "say") {
-          const dur = d.say(a.text, { at: start, voice: a.voice, id: a.id ?? `${beatId}.${ai + 1}` });
+          const dur = d.say(a.text, { at: start, voice: a.voice, id: a.id ?? `${beatId}.${ai + 1}`, who: a.who });
           len = Math.max(len, (a.at ?? 0) + dur + SAY_TAIL);
           if (a.caption) later.push({ do: "caption", text: a.text, at: a.at, dur: a.dur ?? dur + SAY_TAIL });
         } else if (a.do === "caption") later.push(a);
@@ -72,6 +73,9 @@ function run(d, a, start) {
     case "path": return d.path(a.target, o);
     case "lights": return d.lights(o);
     case "camera": return d.camera(o);
+    case "shot": return d.shot(o);
+    case "orbit": return d.orbit(o);
+    case "look": return d.look(a.target, { ...o, to: a.to ?? (typeof a.at === "number" ? undefined : a.at) });
     case "sound": return d.sound(a.sound, o);
     default:
       if (TEACH_ACTIONS.includes(a.do)) return d[a.do](a.target, o);

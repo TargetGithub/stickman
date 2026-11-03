@@ -9,6 +9,10 @@ import { bubblePaths } from "./particles.js";
 import { installExtras, parseClock } from "./director_extras.js";
 import { installTeach, teachBases } from "./director_teach.js";
 import { TEACH_KINDS, placeOn } from "./teach_layout.js";
+import { installCameraMoves } from "./camera_moves.js";
+import { installLook } from "./look.js";
+import { addTalk } from "./lipsync.js";
+import { stageSet } from "./stage_set.js";
 
 const V = (v, d) => (Array.isArray(v) ? [...v] : typeof v === "number" ? [v, v, v] : [...d]);
 const LOOPING = new Set(["Idle", "Dance", "Walking", "Running"]);
@@ -32,6 +36,8 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   let stage = { preset: "playroom" };
   let endAt = 0;
   let lineNo = 0;
+  let dressed = false;
+  const talkers = new Set();
 
   // Named parts of critters and props ("box#lid") are sub-targets: they take rotation and position offsets.
   const parts = new Set();
@@ -56,6 +62,9 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     stage(s) {
       stage = { ...stage, ...s };
+      // The preset's set pieces (stage_set.js) join once, before the script's objects.
+      if (!dressed) for (const o of stageSet(stage, catalog)) d.add(o);
+      dressed = true;
       return d;
     },
 
@@ -236,10 +245,15 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       return d;
     },
     /** Speak a line; returns its length in seconds (the measured clip, else an estimate). */
-    say(text, { at: t = 0, voice: v = voice, id } = {}) {
+    say(text, { at: t = 0, voice: v = voice, id, who } = {}) {
       const lineId = id ?? `line${++lineNo}`;
       const dur = speech[lineId]?.dur ?? estimateSpeech(text);
-      lines.push({ id: lineId, text, voice: v, t, dur });
+      lines.push({ id: lineId, text, voice: v, t, dur, ...(who != null ? { who } : {}) });
+      // who: the speaker's mouth (or Robo's head) moves with the clip's loudness (lipsync.js).
+      if (who != null) {
+        obj(who).talks = true;
+        addTalk(tl, who, { t, dur, text, clip: speech[lineId], bases: talkers });
+      }
       audio.push({ t, speech: lineId, volume: 1, pan: 0 });
       endAt = Math.max(endAt, t + dur);
       return dur;
@@ -262,5 +276,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   };
   installExtras(d, { catalog, tl, obj, now, sound, getStage: () => stage, V });
   installTeach(d, { catalog, tl, obj, now, sound, objects });
+  installCameraMoves(d, { catalog, tl, obj, now, V });
+  installLook(d, { catalog, tl, obj, now, V });
   return d;
 }

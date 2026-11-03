@@ -1,5 +1,6 @@
-// Every series script validates, builds a plan of a sensible length, and names only real pre-K..K skills
-// (catalog/education/skills.json), so videos can link to the matching printables.
+// Every series script validates, builds a plan of a sensible length, and names only real skills
+// (catalog/education/skills.json), so videos can link to the matching printables. Episode scripts are
+// bb01_, pk01_ and g101_ ... g501_ (babies, pre-K, grades 1-5); episodes.json is the tracked list, not a script.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
@@ -10,7 +11,8 @@ import { buildPlan } from "../../runtime/plan.js";
 const catalog = loadCatalog3d();
 const skills = JSON.parse(readFileSync(new URL("../../../catalog/education/skills.json", import.meta.url), "utf8")).skills;
 const dir = new URL("../../scripts/series/toybox/", import.meta.url);
-const files = readdirSync(dir).filter((f) => f.endsWith(".json") && f !== "episodes.json").sort(); // episodes.json is the episode list
+const files = readdirSync(dir).filter((f) => /^(bb|pk|g[1-5])\d\d_.*\.json$/.test(f)).sort();
+const AUDIENCE = { bb: ["babies"], pk: ["prek", "k"], g1: ["grade1"], g2: ["grade2"], g3: ["grade3"], g4: ["grade4"], g5: ["grade5"] };
 
 test("the toybox series has baby and pre-K episodes", () => {
   assert.ok(files.filter((f) => f.startsWith("bb")).length >= 4);
@@ -24,6 +26,7 @@ for (const f of files) {
     assert.deepEqual(v.errors, []);
     assert.deepEqual(v.warnings, []);
     assert.equal(script.meta.episode, f.slice(0, 4));
+    if (script.meta.audience != null) assert.ok(AUDIENCE[f.slice(0, 2)].includes(script.meta.audience), `${f}: audience ${script.meta.audience}`);
     for (const s of script.meta.skills ?? []) assert.ok(skills[s], `unknown skill ${s}`);
     assert.ok(script.meta.youtube?.title && script.meta.youtube.title.length <= 100, "YouTube titles are at most 100 characters");
     const plan = await buildPlan({ script, catalog });

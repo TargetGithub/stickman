@@ -7,7 +7,9 @@
 import { ease } from "./ease.js";
 
 /** @typedef {number | boolean | string | number[]} Value */
-/** @typedef {{ start:number, dur:number, from?:Value, to:Value, ease?:string }} Segment */
+/** @typedef {{ start:number, dur:number, from?:Value, to:Value, ease?:string, curve?:(from:Value, k:number) => Value }} Segment */
+// curve: an optional closed-form path (a camera orbit arc, a talking mouth): the value at eased progress k is
+// curve(from, k) instead of the straight blend from → to. It must be a pure function.
 
 const lerp = (a, b, k) => {
   // Booleans and names (a feeling, a clip) switch at the end of their segment; they do not blend.
@@ -38,9 +40,9 @@ export function createTimeline() {
       if (!bases.has(target)) bases.set(target, new Map());
       bases.get(target).set(prop, value);
     },
-    tween(target, prop, { start, dur, from, to, ease: e = "quadInOut" }) {
+    tween(target, prop, { start, dur, from, to, ease: e = "quadInOut", curve }) {
       if (!(dur >= 0)) throw new Error(`tween ${target}.${prop}: dur must be >= 0`);
-      segs(target, prop).push({ start, dur, from, to, ease: e });
+      segs(target, prop).push(curve ? { start, dur, from, to, ease: e, curve } : { start, dur, from, to, ease: e });
       sorted = false;
     },
     set(target, prop, value, start) {
@@ -65,7 +67,8 @@ export function createTimeline() {
         if (s.start > t) break;
         const from = s.from ?? v ?? s.to;
         const u = s.dur > 0 ? (t - s.start) / s.dur : 1;
-        v = lerp(from, s.to, ease(s.ease, Math.min(1, u)));
+        const k = ease(s.ease, Math.min(1, u));
+        v = s.curve ? s.curve(from, k) : lerp(from, s.to, k);
       }
       return v;
     },

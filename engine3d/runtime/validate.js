@@ -6,6 +6,7 @@ import { EASE_NAMES } from "./ease.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
+import { addSetPieces, checkLookCamera, checkWho } from "./validate_look.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
 const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on"]);
@@ -32,7 +33,7 @@ const TARGETS = {
 // Moves that can target a named part of a critter or prop ("box#lid", "dog#head").
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
 const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description"]);
-const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2"];
+const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2", "grade3", "grade4", "grade5"];
 const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
 
@@ -77,6 +78,7 @@ export function validateScript(script, catalog) {
 
   // Objects.
   const ids = new Map();
+  addSetPieces(script, catalog, ids, err);
   (Array.isArray(script.objects) ? script.objects : []).forEach((o, i) => {
     const p = `objects[${i}]`;
     if (typeof o?.id !== "string" || !/^[a-z][a-z0-9_]*$/.test(o.id)) return err("E3D_ID", `${p}.id`, "id must be lower_snake_case");
@@ -150,10 +152,12 @@ export function validateScript(script, catalog) {
     const spec = catalog.actions[a?.do];
     if (!spec) return err("E3D_ACTION", `${p}.do`, `unknown action "${a?.do}" (known: ${Object.keys(catalog.actions).join(", ")})`);
     for (const k of Object.keys(a)) if (k !== "do" && k !== "at" && k !== "id" && !(k in spec.params)) warn("W3D_UNKNOWN_FIELD", `${p}.${k}`, `${a.do} has no parameter "${k}"`);
-    if (a.at != null && !isNum(a.at, 0, 60)) err("E3D_RANGE", `${p}.at`, "at must be 0-60 s from the beat start");
-    if (a.at != null && beat.dur != null && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
+    const timed = a.do !== "look" || typeof a.at === "number"; // look's at may name what to look at
+    if (a.at != null && timed && !isNum(a.at, 0, 60)) err("E3D_RANGE", `${p}.at`, "at must be 0-60 s from the beat start");
+    if (a.at != null && timed && beat.dur != null && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
+    if (checkLookCamera(a, p, ids, err)) return;
     for (const k of ["to", "position", "lookAt"]) {
       if (a[k] == null || a.do === "clock" || NUMBER_TO.has(a.do)) continue;
       const ok = a.do === "grow" ? isNum(a[k], 0.01, 100) || (isVec(a[k]) && a[k].every((x) => x >= 0.001)) : isVec(a[k]);
@@ -165,6 +169,7 @@ export function validateScript(script, catalog) {
         if (typeof a.text !== "string" || !a.text.trim()) err("E3D_TEXT", `${p}.text`, `${a.do} needs text`);
         else if (a.do === "caption" && a.text.length > 60) warn("W3D_LONG_CAPTION", `${p}.text`, "captions over 60 characters are hard for kids to read");
       }
+      if (a.do === "say") checkWho(a, p, ids, err);
       if (a.do === "say" && a.voice != null && !catalog.voices.includes(a.voice)) err("E3D_VOICE", `${p}.voice`, `unknown voice "${a.voice}"`);
       if (a.do === "say" && a.id != null) {
         if (lineIds.has(a.id)) err("E3D_DUP_ID", `${p}.id`, `line id "${a.id}" is used twice`);
