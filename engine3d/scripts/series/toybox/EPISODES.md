@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-70 episodes: 30 spec, 0 scripted, 40 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
+70 episodes: 0 spec, 30 scripted, 40 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -39,11 +39,11 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | pk14 | Where Is Duck? | Pre-K | Math | `position_words_prek` | `pk14_where_is_duck.json` | rendered | disk1:PREK-PLAYLIST/pk14_where_is_duck |
 | pk15 | How Do You Feel? | Pre-K | Social-emotional | `feelings_prek`, `listening_prek` | `pk15_how_do_you_feel.json` | rendered | disk1:PREK-PLAYLIST/pk15_how_do_you_feel |
 | pk16 | Healthy Habits: Wash, Brush, Sleep | Pre-K | Health | `healthy_habits_prek` | `pk16_healthy_habits.json` | rendered | out:pk16_healthy_habits |
-| pk17 | Letters M to S | Pre-K | English | `capital_letters_prek`, `letter_look_alikes_prek` | spec: specs/prek.md PK-17 | spec | – |
-| pk18 | Dot Dice: Zero to Five | Pre-K | Math | `count_to_5_prek`, `number_order_prek` | spec: specs/prek.md PK-18 | spec | – |
-| pk19 | Lines and Curves | Pre-K | Handwriting readiness | `prewriting_strokes_prek` | spec: specs/prek.md PK-19 | spec | – |
-| pk20 | Rhyme Time | Pre-K | English | `rhyming_k` | spec: specs/prek.md PK-20 | spec | – |
-| pk21 | Alive or Not? | Pre-K | Science | `living_things_k` | spec: specs/prek.md PK-21 | spec | – |
+| pk17 | Letters M to S | Pre-K | English | `capital_letters_prek`, `letter_look_alikes_prek` | `pk17_letters_m_to_s.json` | scripted | – |
+| pk18 | Dot Dice: Zero to Five | Pre-K | Math | `count_to_5_prek`, `number_order_prek` | `pk18_dot_dice.json` | scripted | – |
+| pk19 | Lines and Curves | Pre-K | Handwriting readiness | `prewriting_strokes_prek` | `pk19_lines_and_curves.json` | scripted | – |
+| pk20 | Rhyme Time | Pre-K | English | `rhyming_k` | `pk20_rhyme_time.json` | scripted | – |
+| pk21 | Alive or Not? | Pre-K | Science | `living_things_k` | `pk21_alive_or_not.json` | scripted | – |
 
 ## Grade 1 (15)
 
@@ -59,11 +59,11 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g108 | Four Seasons Tree | Grade 1 | Science | `weather_seasons_1` | `g108_four_seasons_tree.json` | rendered | disk1:GRADE1-PLAYLIST/g108_four_seasons_tree |
 | g109 | Shadow Puppets and Humming Strings | Grade 1 | Science | `nonfiction_facts_1` | `g109_shadows_and_sounds.json` | rendered | disk1:GRADE1-PLAYLIST/g109_shadows_and_sounds |
 | g110 | Town Rules and Good Citizens | Grade 1 | Social studies | `rules_citizenship_1` | `g110_town_rules.json` | rendered | disk1:GRADE1-PLAYLIST/g110_town_rules |
-| g111 | Blend Bridges | Grade 1 | English | `blends_1` | spec: specs/grade1.md G1-11 | spec | – |
-| g112 | Naming Words and Doing Words | Grade 1 | English | `nouns_verbs_1` | spec: specs/grade1.md G1-12 | spec | – |
-| g113 | Sentence Builders | Grade 1 | English | `sentences_1` | spec: specs/grade1.md G1-13 | spec | – |
-| g114 | Skip Count Parade | Grade 1 | Math | `skip_count_patterns_1` | spec: specs/grade1.md G1-14 | spec | – |
-| g115 | Story Detectives | Grade 1 | English | `story_details_1` | spec: specs/grade1.md G1-15 | spec | – |
+| g111 | Blend Bridges | Grade 1 | English | `blends_1` | `g111_blend_bridges.json` | scripted | – |
+| g112 | Naming Words and Doing Words | Grade 1 | English | `nouns_verbs_1` | `g112_naming_and_doing_words.json` | scripted | – |
+| g113 | Sentence Builders | Grade 1 | English | `sentences_1` | `g113_sentence_builders.json` | scripted | – |
+| g114 | Skip Count Parade | Grade 1 | Math | `skip_count_patterns_1` | `g114_skip_count_parade.json` | scripted | – |
+| g115 | Story Detectives | Grade 1 | English | `story_details_1` | `g115_story_detectives.json` | scripted | – |
 
 ## Grade 2 (15)
 
@@ -79,41 +79,41 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g208 | Habitat Hop | Grade 2 | Science | `habitats_2` | `g208_habitat_hop.json` | rendered | disk1:GRADE2-PLAYLIST/g208_habitat_hop |
 | g209 | Treasure Map Quest | Grade 2 | Social studies | `maps_2` | `g209_treasure_map_quest.json` | rendered | disk1:GRADE2-PLAYLIST/g209_treasure_map_quest |
 | g210 | Melt, Freeze, Fizz! | Grade 2 | Science | `states_of_matter_2` | `g210_melt_freeze_fizz.json` | rendered | disk1:GRADE2-PLAYLIST/g210_melt_freeze_fizz |
-| g211 | Pizza Party Thirds | Grade 2 | Math | `thirds_2` | spec: specs/grade2.md G2-11 | spec | – |
-| g212 | Quarters to a Dollar | Grade 2 | Math | `coins_quarters_2` | spec: specs/grade2.md G2-12 | spec | – |
-| g213 | First, Next, Then, Last | Grade 2 | English | `sequence_inference_2` | spec: specs/grade2.md G2-13 | spec | – |
-| g214 | Needs and Wants Market | Grade 2 | Social studies | `needs_wants_2` | spec: specs/grade2.md G2-14 | spec | – |
-| g215 | Number Pattern Machine | Grade 2 | Math | `number_sequences_2` | spec: specs/grade2.md G2-15 | spec | – |
+| g211 | Pizza Party Thirds | Grade 2 | Math | `thirds_2` | `g211_pizza_party_thirds.json` | scripted | – |
+| g212 | Quarters to a Dollar | Grade 2 | Math | `coins_quarters_2` | `g212_quarters_to_a_dollar.json` | scripted | – |
+| g213 | First, Next, Then, Last | Grade 2 | English | `sequence_inference_2` | `g213_first_next_then_last.json` | scripted | – |
+| g214 | Needs and Wants Market | Grade 2 | Social studies | `needs_wants_2` | `g214_needs_and_wants_market.json` | scripted | – |
+| g215 | Number Pattern Machine | Grade 2 | Math | `number_sequences_2` | `g215_number_pattern_machine.json` | scripted | – |
 
 ## Grade 3 (5)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
-| g301 | Array Garden | Grade 3 | Math | `times_tables_3`, `missing_factor_3` | spec: specs/grade3.md G3-01 | spec | – |
-| g302 | Fractions on a Number Line | Grade 3 | Math | `fractions_3` | spec: specs/grade3.md G3-02 | spec | – |
-| g303 | Area and Perimeter Playground | Grade 3 | Math | `area_perimeter_3` | spec: specs/grade3.md G3-03 | spec | – |
-| g304 | Word Builder Workshop | Grade 3 | English | `prefixes_suffixes_3` | spec: specs/grade3.md G3-04 | spec | – |
-| g305 | Life Cycles | Grade 3 | Science | `life_cycles_3` | spec: specs/grade3.md G3-05 | spec | – |
+| g301 | Array Garden | Grade 3 | Math | `times_tables_3`, `missing_factor_3` | `g301_array_garden.json` | scripted | – |
+| g302 | Fractions on a Number Line | Grade 3 | Math | `fractions_3` | `g302_fractions_on_a_number_line.json` | scripted | – |
+| g303 | Area and Perimeter Playground | Grade 3 | Math | `area_perimeter_3` | `g303_area_and_perimeter_playground.json` | scripted | – |
+| g304 | Word Builder Workshop | Grade 3 | English | `prefixes_suffixes_3` | `g304_word_builder_workshop.json` | scripted | – |
+| g305 | Life Cycles: Frog, Butterfly, Bean | Grade 3 | Science | `life_cycles_3` | `g305_life_cycles.json` | scripted | – |
 
 ## Grade 4 (5)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
-| g401 | Equivalent Fractions Bakery | Grade 4 | Math | `equivalent_fractions_4` | spec: specs/grade4.md G4-01 | spec | – |
-| g402 | Tenths Track | Grade 4 | Math | `decimals_tenths_4` | spec: specs/grade4.md G4-02 | spec | – |
-| g403 | Angle Explorers | Grade 4 | Math | `angles_4` | spec: specs/grade4.md G4-03 | spec | – |
-| g404 | Spinning Earth | Grade 4 | Science | `earth_space_4` | spec: specs/grade4.md G4-04 | spec | – |
-| g405 | Chain Reaction | Grade 4 | English | `cause_effect_4` | spec: specs/grade4.md G4-05 | spec | – |
+| g401 | Equivalent Fractions Bakery | Grade 4 | Math | `equivalent_fractions_4` | `g401_equivalent_fractions_bakery.json` | scripted | – |
+| g402 | Tenths Track | Grade 4 | Math | `decimals_tenths_4` | `g402_tenths_track.json` | scripted | – |
+| g403 | Angle Explorers | Grade 4 | Math | `angles_4` | `g403_angle_explorers.json` | scripted | – |
+| g404 | Spinning Earth | Grade 4 | Science | `earth_space_4` | `g404_spinning_earth.json` | scripted | – |
+| g405 | Chain Reaction | Grade 4 | English | `cause_effect_4` | `g405_chain_reaction.json` | scripted | – |
 
 ## Grade 5 (5)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
-| g501 | Adding Fractions with Unlike Denominators | Grade 5 | Math | `fraction_operations_5` | spec: specs/grade5.md G5-01 | spec | – |
-| g502 | Powers of Ten Elevator | Grade 5 | Math | `powers_of_ten_5` | spec: specs/grade5.md G5-02 | spec | – |
-| g503 | Volume Box Factory | Grade 5 | Math | `volume_conversion_5` | spec: specs/grade5.md G5-03 | spec | – |
-| g504 | Body Systems Tour | Grade 5 | Science | `body_systems_5` | spec: specs/grade5.md G5-04 | spec | – |
-| g505 | Ecosystem Energy | Grade 5 | Science | `ecosystems_5` | spec: specs/grade5.md G5-05 | spec | – |
+| g501 | Adding Fractions with Unlike Denominators | Grade 5 | Math | `fraction_operations_5` | `g501_smoothie_fractions.json` | scripted | – |
+| g502 | Powers of Ten Elevator | Grade 5 | Math | `powers_of_ten_5` | `g502_powers_of_ten_elevator.json` | scripted | – |
+| g503 | Volume Box Factory | Grade 5 | Math | `volume_conversion_5` | `g503_volume_box_factory.json` | scripted | – |
+| g504 | Body Systems Tour: heart and lungs | Grade 5 | Science | `body_systems_5` | `g504_heart_and_lungs.json` | scripted | – |
+| g505 | Ecosystem Energy: food chains and webs | Grade 5 | Science | `ecosystems_5` | `g505_ecosystem_energy.json` | scripted | – |
 
 ## Compilations
 
