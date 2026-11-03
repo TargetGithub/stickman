@@ -1,0 +1,8 @@
+{"expect": ["E3D_RANGE", "E3D_PARTS", "E3D_SHADED", "E3D_ITEM", "E3D_LABELS", "E3D_REQUIRED"], "script": {"kind": "video3d", "version": 1, "objects": [
+  {"id": "line", "kind": "number_line", "from": 5, "to": 2},
+  {"id": "words", "kind": "number_line", "labels": "roman"},
+  {"id": "bar", "kind": "fraction_bar", "parts": 0},
+  {"id": "pie", "kind": "fraction_circle", "parts": 4, "shaded": 5},
+  {"id": "arr", "kind": "array", "item": "unicorn"},
+  {"id": "arrow", "kind": "pointer", "to": [1, 0, 0]}
+], "scenes": [{"id": "s", "beats": [{"dur": 1, "do": [{"do": "show", "target": "bar"}]}]}]}}

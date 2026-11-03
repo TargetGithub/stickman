@@ -195,6 +195,8 @@ function make(name) {
     case "quarter_circle": return puffy(slice(Math.PI / 2));
     case "arrow": return puffy(rounded([[-0.5, -0.13], [0.12, -0.13], [0.12, -0.3], [0.5, 0], [0.12, 0.3], [0.12, 0.13], [-0.5, 0.13]], 0.04));
     case "cross": return bars([[1, 0.24, 45], [1, 0.24, -45]]);
+    // A tick mark (right answers): a short arm down to the joint and a long arm up to the right.
+    case "tick": return bars([[0.42, 0.2, -45, -0.21, -0.07], [0.78, 0.2, 48, 0.13, 0.05]]);
     case "snowflake": return snowflake();
     case "drop": return puffy(drop());
     case "leaf": return puffy(leaf(), 0.08, 0.04);

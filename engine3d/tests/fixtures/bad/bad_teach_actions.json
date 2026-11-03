@@ -1,0 +1,15 @@
+{"expect": ["E3D_SHADED", "E3D_LEAP_VALUE", "E3D_RESULT", "E3D_TARGET_KIND", "E3D_ORDER", "E3D_ON_LINE"], "script": {"kind": "video3d", "version": 1, "objects": [
+  {"id": "line", "kind": "number_line", "from": 0, "to": 10},
+  {"id": "frog", "kind": "critter", "species": "frog", "on": {"line": "line", "value": 0}},
+  {"id": "bar", "kind": "fraction_bar", "parts": 4},
+  {"id": "dots", "kind": "array", "rows": 2, "cols": 3},
+  {"id": "area", "kind": "grid", "rows": 2, "cols": 2}
+], "scenes": [{"id": "s", "beats": [{"dur": 2, "do": [
+  {"do": "shade", "target": "bar", "to": 9},
+  {"do": "leap", "target": "frog", "line": "line", "values": [2, 20]},
+  {"do": "leap", "target": "frog", "line": "bar", "values": [1]},
+  {"do": "mark", "target": "frog", "result": "maybe"},
+  {"do": "open", "target": "bar", "to": 45},
+  {"do": "build", "target": "dots", "order": "layers"},
+  {"do": "move", "target": "area#c1", "to": [0, 1, 0]}
+]}]}]}}
