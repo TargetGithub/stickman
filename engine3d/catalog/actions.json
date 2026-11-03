@@ -140,9 +140,12 @@
     "say": {
       "params": {
         "text": "spoken words (required)",
-        "voice": "a timbre from catalog/story/tts_voices.json or \"narrator\", default meta.voice",
+        "voice": "a timbre from catalog/story/tts_voices.json or \"narrator\", default the speaker's meta.cast voice, else meta.voice",
         "caption": "true to also show the words as a caption",
-        "who": "the speaker's object id (a critter, a character or a shape with face: true): its mouth moves with the voice (Robo nods his head)"
+        "who": "the speaker's object id (a critter, a character or a shape with face: true): its mouth moves with the voice (Robo nods his head)",
+        "pitch": "0.8-1.3 (default 1.1, or the speaker's meta.cast pitch): higher or lower voice; soft moves about 0.6 semitones per 10%",
+        "speed": "0.8-1.2 (default 1, or the speaker's meta.cast speed): times meta.voiceSpeed",
+        "at": "seconds from the beat start, or \"after\": start when the beat's previous line ends (its measured clip) plus 0.25 s, so two lines in one beat never overlap"
       },
       "description": "Speak a line with Piper TTS; the beat lasts at least as long as the voice. With who, the speaker lip-syncs to the clip's loudness.",
       "tags": [
@@ -154,7 +157,8 @@
         "text": "short text (required)",
         "dur": "default the rest of the beat",
         "style": "title (centre), label (a naming word above the subtitles), count (big numeral, right third), subtitle (bottom, wraps), default subtitle",
-        "color": "colors.json name for the text (colour lessons), default the style's"
+        "color": "colors.json name for the text (colour lessons), default the style's",
+        "pos": "left, right or top: put the caption there instead of its style's place (a count beside the picture, not over it)"
       },
       "description": "Show text over the picture.",
       "tags": [
@@ -169,6 +173,17 @@
       },
       "description": "Play a sound effect.",
       "tags": [
+        "audio"
+      ]
+    },
+    "music": {
+      "params": {
+        "gain": "0-1 (required): the bed's level, times the scene's own (0.15: a dip under a freeze; 1: back to normal)",
+        "dur": "ramp seconds, default 0.5"
+      },
+      "description": "Ramp the music bed's level inside a scene and hold it until the next music action: dip it for a freeze, a sound cue or a quiet moment, then bring it back with gain 1.",
+      "tags": [
+        "music",
         "audio"
       ]
     },
@@ -243,9 +258,9 @@
     },
     "paint": {
       "params": {
-        "target": "object id",
+        "target": "object id: a shape, letter (with colors: every character blends), number block, critter, prop, stroke, pointer, number line (its beam) or fraction bar or circle (its shaded colour)",
         "color": "colors.json name (required)",
-        "from": "colors.json name: blend only the parts drawn in this colour (after recolor) instead of the main colour; critters and props",
+        "from": "colors.json name: blend only the parts drawn in this colour (after recolor) instead of the main colour; critters and props, or a fraction bar or circle's empty colour (its unshaded parts)",
         "dur": "default 0.8",
         "ease": "ease name"
       },
@@ -257,7 +272,7 @@
     },
     "lights": {
       "params": {
-        "rig": "lights name (soft_day, studio, moonlight, evening, dim, overcast...)",
+        "rig": "lights name (soft_day, studio, moonlight, evening, dusk, dim, overcast...); a rig with its own background (dusk) brings it when background is not given",
         "background": "colors.json name",
         "floor": "colors.json name",
         "rug": "colors.json name",
@@ -269,6 +284,19 @@
         "stage",
         "time",
         "seasons"
+      ]
+    },
+    "stage": {
+      "params": {
+        "preset": "stages.json name (required)",
+        "dur": "default 2",
+        "ease": "default sineInOut"
+      },
+      "description": "Change the stage mid-episode: background, floor, rug, fog and light rig crossfade to another preset, and the old preset's set pieces fade out as the new one's fade in (a later preset's pieces are set_<preset>_<id>).",
+      "tags": [
+        "stage",
+        "scene",
+        "travel"
       ]
     },
     "clock": {
@@ -332,7 +360,8 @@
         "color": "new shade colour (optional)",
         "dur": "default 0.3 s a part",
         "sound": "one per part (optional)",
-        "cells": "piece numbers (from 1) to shade instead of to: exactly these, one after another; cells from an earlier cells list that are not listed again unshade ([] clears)"
+        "cells": "piece numbers (from 1) to shade instead of to: exactly these, one after another; cells from an earlier cells list that are not listed again unshade ([] clears)",
+        "rect": "[row, col, rows, cols] (row and col from 1, row 1 on top): shade a block of a grid or array, like cells listed row by row"
       },
       "description": "Shade parts in order (left to right, slices clockwise, cells row by row).",
       "tags": [
@@ -348,7 +377,7 @@
         "dur": "seconds per leap, default 0.7",
         "height": "arc height, default 0.8",
         "sound": "at each take-off, default boing",
-        "arcs": "true (default) draws each jump's arc on the line",
+        "arcs": "true (default) draws each jump's arc on the line; false leaps without arcs; clear wipes them later",
         "color": "arc colour, default orange"
       },
       "description": "Arc from value to value along a number line (skip counting, adding on, fractions), leaving the jump arcs.",
@@ -356,6 +385,18 @@
         "teaching",
         "counting",
         "move"
+      ]
+    },
+    "clear": {
+      "params": {
+        "target": "number_line id",
+        "dur": "default 0.4",
+        "sound": "optional sound"
+      },
+      "description": "Wipe the leap arcs drawn on a number line so far (they shrink away); later leaps draw new ones.",
+      "tags": [
+        "teaching",
+        "counting"
       ]
     },
     "draw": {
@@ -444,9 +485,11 @@
         "yaw": "degrees round the targets, 0 (default) = from the front, 90 = from the right",
         "height": "camera elevation in degrees (default 8)",
         "dur": "default 1.5 (0 = a cut)",
-        "ease": "default sineInOut"
+        "ease": "default sineInOut",
+        "pad": "extra margin, 0-2: 0.2 frames a box 20% bigger (default 0)",
+        "fit": "approx (default: positions only, the boxes look uses) or exact: thin shapes (plates, discs, bowls) at their real height and every turn applied (a sign stood up with rotation x 90, a turned number line, cards on a turned group)"
       },
-      "description": "Frame objects with the camera from their approximate sizes so nothing is cropped at 16:9 with the current fov; later camera moves take over.",
+      "description": "Frame objects with the camera from their approximate sizes so nothing is cropped at 16:9 with the current fov; children (anything with parent pointing at a target, recursively) and teaching-kit labels count, so a card with its word or a number line with its numbers is framed whole. Later camera moves take over.",
       "tags": [
         "camera"
       ]

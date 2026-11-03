@@ -8,13 +8,14 @@ import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
 import { addSetPieces, checkLookCamera, checkWho } from "./validate_look.js";
 import { KIT2_FIELDS, checkKit2Object, createKit2Checker } from "./validate_kit2.js";
+import { PAINT_KINDS, checkCast, checkLift, checkR3Action } from "./validate_r3.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
-const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on"]);
+const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on", "inherit"]);
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
-  letter: ["text", "color", "colors", "material", "font", "size", "depth"],
+  letter: ["text", "color", "colors", "material", "font", "size", "depth", "lift"],
   character: ["character", "clip", "feeling"],
   confetti: ["count", "colors", "area", "height"],
   critter: ["species", "color", "size", "feeling", "recolor"],
@@ -30,13 +31,13 @@ const FIELDS = {
 };
 const TARGETS = {
   clip: ["character"], burst: ["confetti", "bubbles"], sleep: ["critter", "shape"], wake: ["critter", "shape"],
-  feel: ["critter", "shape", "character"], paint: ["shape", "letter", "number_block", "critter", "prop"], clock: ["clock"], aim: ["lamp"],
+  feel: ["critter", "shape", "character"], paint: ["shape", "letter", "number_block", "critter", "prop", ...PAINT_KINDS], clock: ["clock"], aim: ["lamp"],
 };
 // Moves that can target a named part of a critter or prop ("box#lid", "dog#head").
 const PART_MOVES = new Set(["turn", "move", "wiggle", "spin"]);
-const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description"]);
+const META = new Set(["title", "seed", "voice", "voiceSpeed", "music", "musicGain", "series", "episode", "audience", "skills", "thumbnail", "thumbnails", "youtube", "description", "cast"]);
 const AUDIENCES = ["babies", "prek", "k", "grade1", "grade2", "grade3", "grade4", "grade5"];
-const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights"]);
+const NO_TARGET = new Set(["camera", "say", "caption", "sound", "lights", "stage", "music"]);
 const WEATHER = ["rain", "snow", "leaves", "petals"];
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
@@ -129,12 +130,15 @@ export function validateScript(script, catalog) {
     if (o.recolor != null) checkRecolor(o, p);
     checkTeachObject(o, p, { err, warn, ids, catalog, name });
     checkKit2Object(o, p, { err, warn, ids, catalog, name });
+    checkLift(o, p, err);
     if (o.kind === "shape" && o.face != null && typeof o.face !== "boolean") err("E3D_FACE", `${p}.face`, "face must be true or false");
     if (o.kind === "confetti") {
       for (const [j, c] of (o.colors ?? []).entries()) name(catalog.colors, c, "E3D_COLOR", `${p}.colors[${j}]`, "color");
       if (o.count != null && !(Number.isInteger(o.count) && o.count >= 1 && o.count <= 2000)) err("E3D_RANGE", `${p}.count`, "count must be 1-2000");
     }
   });
+
+  checkCast(meta, { err, warn, ids, catalog }); // character voices name objects
 
   // Scenes and beats.
   if (!Array.isArray(script.scenes) || !script.scenes.length) err("E3D_SCENES", "scenes", "scenes must be a non-empty list");
@@ -156,11 +160,13 @@ export function validateScript(script, catalog) {
     const spec = catalog.actions[a?.do];
     if (!spec) return err("E3D_ACTION", `${p}.do`, `unknown action "${a?.do}" (known: ${Object.keys(catalog.actions).join(", ")})`);
     for (const k of Object.keys(a)) if (k !== "do" && k !== "at" && k !== "id" && !(k in spec.params)) warn("W3D_UNKNOWN_FIELD", `${p}.${k}`, `${a.do} has no parameter "${k}"`);
-    const timed = a.do !== "look" || typeof a.at === "number"; // look's at may name what to look at
+    // look's at may name what to look at; a say's at may be "after" (queued after the beat's previous line).
+    const timed = (a.do !== "look" || typeof a.at === "number") && !(a.do === "say" && a.at === "after");
     if (a.at != null && timed && !isNum(a.at, 0, 60)) err("E3D_RANGE", `${p}.at`, "at must be 0-60 s from the beat start");
     if (a.at != null && timed && beat.dur != null && a.at >= beat.dur && a.do !== "say") warn("W3D_LATE", `${p}.at`, `starts after its beat's ${beat.dur} s`);
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
+    if (checkR3Action(a, p, { err, ids, catalog })) return; // stage, voices, shot pad, paint from on fractions
     if (checkLookCamera(a, p, ids, err)) return;
     if (kit2(a, p)) return; // shift, set, emphasize, reparent, point (validate_kit2.js)
     for (const k of ["to", "position", "lookAt"]) {
@@ -208,7 +214,9 @@ export function validateScript(script, catalog) {
     if (a.do === "feel" && o.kind === "shape" && !o.face) err("E3D_TARGET_KIND", `${p}.target`, `feel needs a face: "${a.target}" is a shape without face: true`);
     if (a.do === "paint" && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `paint needs a known color, got "${a.color}"`);
     if (a.do === "paint" && a.from != null) {
-      if (o.kind !== "critter" && o.kind !== "prop") err("E3D_TARGET_KIND", `${p}.from`, `paint from needs a critter or prop, "${a.target}" is a ${o.kind}`);
+      if (o.kind === "fraction_bar" || o.kind === "fraction_circle") {
+        // validate_r3.js: its colour or its empty colour
+      } else if (o.kind !== "critter" && o.kind !== "prop") err("E3D_TARGET_KIND", `${p}.from`, `paint from needs a critter or prop, "${a.target}" is a ${o.kind}`);
       else if (!catalog.colors[a.from]) err("E3D_COLOR", `${p}.from`, `unknown color "${a.from}"`);
       else if (!modelColors(o, catalog).includes(a.from)) err("E3D_PAINT_FROM", `${p}.from`, `"${a.target}" has no parts coloured "${a.from}" (it uses ${modelColors(o, catalog).join(", ")})`);
     }

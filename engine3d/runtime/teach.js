@@ -145,7 +145,7 @@ function buildFractionBar(o, group, { catalog, material, font, textGeometry }) {
       [...named.values()].forEach((g, i) => {
         offsetPiece(g, rests[i], state[`${o.id}#p${i + 1}`]);
         setPiece(g, built(i));
-        blendColor(mats[i], empty, s.shadeColor, pieceShade(o, s, state, i));
+        blendColor(mats[i], s.emptyColor ?? empty, s.shadeColor, pieceShade(o, s, state, i));
       });
       label?.(shadedCount(o, s, state), built(n - 1));
     },
@@ -199,7 +199,7 @@ function buildFractionCircle(o, group, { catalog, material, font, textGeometry }
       [...named.values()].forEach((g, i) => {
         offsetPiece(g, rests[i], state[`${o.id}#s${i + 1}`]);
         setPiece(g, built(i));
-        blendColor(mats[i], empty, s.shadeColor, pieceShade(o, s, state, i));
+        blendColor(mats[i], s.emptyColor ?? empty, s.shadeColor, pieceShade(o, s, state, i));
       });
       label?.(shadedCount(o, s, state), built(n - 1));
     },

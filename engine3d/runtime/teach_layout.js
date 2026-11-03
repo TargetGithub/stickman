@@ -10,7 +10,7 @@ export const KIT2_KINDS = ["stroke", "flow", "fraction_text", "place_value_chart
 /** Height of a number line's beam top above its at: objects placed `on` a line stand here. */
 export const LINE_TOP = 0.56;
 /** Most ticks a number line may have (labels stay readable). */
-export const MAX_TICKS = 61;
+export const MAX_TICKS = 201;
 
 /** Defaults per kind (what the builders and the director assume when a field is left out). */
 export const DEFAULTS = {
@@ -145,6 +145,19 @@ export function buildSteps(obj, order = "items") {
     if (order === "rows") return { steps: o.h * o.w, stepOf: (i) => Math.floor(i / o.l) };
   }
   return { steps: n, stepOf: (i) => i };
+}
+
+/**
+ * The cell numbers (from 1, row by row) of a block of a grid or array: rect [row, col, rows, cols], row and
+ * col from 1 (row 1 on top). null when the block does not fit.
+ */
+export function rectCells(o, rect) {
+  if (!Array.isArray(rect) || rect.length !== 4 || !rect.every((v) => Number.isInteger(v) && v >= 1)) return null;
+  const [r0, c0, nr, nc] = rect;
+  if (r0 + nr - 1 > o.rows || c0 + nc - 1 > o.cols) return null;
+  const out = [];
+  for (let r = r0; r < r0 + nr; r++) for (let c = c0; c < c0 + nc; c++) out.push((r - 1) * o.cols + c);
+  return out;
 }
 
 /** Grid cell / array item index → [row, col]; cube index → [x, y, z] units. */

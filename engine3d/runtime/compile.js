@@ -7,6 +7,8 @@ import { TEACH_ACTIONS } from "./director_teach.js";
 import { KIT2_ACTIONS } from "./director_kit2.js";
 
 export const SAY_TAIL = 0.35;
+/** Pause between a line and the next one queued with at: "after". */
+export const SAY_GAP = 0.25;
 
 /**
  * @param {object} script  a validated video3d script
@@ -30,18 +32,25 @@ export function compileScript(script, { catalog, speech = {} }) {
       const beatId = beat.id ?? `${scene.id}.${bi + 1}`;
       let len = beat.dur ?? 1;
       const later = [];
+      let sayEnd = 0; // where the beat's last line so far ends (seconds from the beat start)
       (beat.do ?? []).forEach((a, ai) => {
         // look's at may name what to look at (an id or a point); a number is always the time.
-        const start = t + (typeof a.at === "number" ? a.at : 0);
+        // A say with at: "after" starts when the beat's previous line ends (its measured clip), plus SAY_GAP.
+        const rel = a.do === "say" && a.at === "after" ? sayEnd + (sayEnd > 0 ? SAY_GAP : 0) : typeof a.at === "number" ? a.at : 0;
+        const start = t + rel;
         if (a.do === "say") {
-          const dur = d.say(a.text, { at: start, voice: a.voice, id: a.id ?? `${beatId}.${ai + 1}`, who: a.who });
-          len = Math.max(len, (a.at ?? 0) + dur + SAY_TAIL);
-          if (a.caption) later.push({ do: "caption", text: a.text, at: a.at, dur: a.dur ?? dur + SAY_TAIL });
+          // meta.cast gives a speaker its own voice, pitch and speed; the line's own settings win.
+          const cast = a.who != null ? meta.cast?.[a.who] ?? {} : {};
+          const voice = { voice: a.voice ?? cast.voice, pitch: a.pitch ?? cast.pitch, speed: a.speed ?? cast.speed };
+          const dur = d.say(a.text, { at: start, ...voice, id: a.id ?? `${beatId}.${ai + 1}`, who: a.who });
+          sayEnd = Math.max(sayEnd, rel + dur);
+          len = Math.max(len, (a.at === "after" ? rel : a.at ?? 0) + dur + SAY_TAIL);
+          if (a.caption) later.push({ do: "caption", text: a.text, at: rel, dur: a.dur ?? dur + SAY_TAIL });
         } else if (a.do === "caption") later.push(a);
         else run(d, a, start);
       });
       // Captions without a dur last to the end of their beat, known only now.
-      for (const c of later) d.caption(c.text, { at: t + (c.at ?? 0), dur: c.dur ?? Math.max(0.5, len - (c.at ?? 0)), style: c.style, color: c.color });
+      for (const c of later) d.caption(c.text, { at: t + (c.at ?? 0), dur: c.dur ?? Math.max(0.5, len - (c.at ?? 0)), style: c.style, color: c.color, pos: c.pos });
       t += len;
     });
   }
@@ -79,6 +88,8 @@ function run(d, a, start) {
     case "look": return d.look(a.target, { ...o, to: a.to ?? (typeof a.at === "number" ? undefined : a.at) });
     case "sound": return d.sound(a.sound, o);
     case "set": return d.setDigits(a.target, o);
+    case "stage": return d.changeStage(a.preset, o);
+    case "music": return d.music(o);
     default:
       if (TEACH_ACTIONS.includes(a.do) || KIT2_ACTIONS.includes(a.do)) return d[a.do](a.target, o);
       throw new Error(`unknown action "${a.do}"`);

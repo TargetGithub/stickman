@@ -172,13 +172,22 @@ export function installKit2(d, { catalog, tl, obj, now, sound, objects, V }) {
         reparented.add(id);
         tl.base(id, "parentRef", ref(o.parent, o.part));
       }
-      const W = objectWorld(id, t);
+      // Shown (or popped) right now, its scale still 0: hand over at the scale it is growing to, then grow in again.
+      const sNow = now(id, "scale", t) ?? [1, 1, 1];
+      const growing = sNow.some((x) => Math.abs(x) < 1e-6) && now(id, "visible", t) !== false;
+      let W = objectWorld(id, t);
+      if (growing) {
+        const r = parentRef(o, t);
+        const local = compose(now(id, "position", t), now(id, "rotation", t) ?? [0, 0, 0], o.scale);
+        W = r ? chain(nodeWorld(r, t), local) : local;
+      }
       const P = parent == null ? compose([0, 0, 0], [0, 0, 0], [1, 1, 1]) : nodeWorld(ref(parent, part), t);
       const L = decompose(chain(invert(P), W));
       tl.set(id, "parentRef", ref(parent, part), t);
       tl.set(id, "position", L.position, t);
       tl.set(id, "rotation", L.rotation, t);
-      tl.set(id, "scale", L.scale, t);
+      if (growing) tl.tween(id, "scale", { start: t, dur: 0.4, from: [0, 0, 0], to: L.scale, ease: "backOut" });
+      else tl.set(id, "scale", L.scale, t);
       if (to != null) tl.tween(id, "position", { start: t, dur, from: L.position, to: V(to), ease });
       if (rotation != null) tl.tween(id, "rotation", { start: t, dur, from: L.rotation, to: V(rotation), ease });
       return d;

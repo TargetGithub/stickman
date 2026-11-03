@@ -75,7 +75,7 @@ const textParams = (font, size, depth) => ({ font, size: size * 1.42, depth, cur
  * as the font lays out the whole string (advance widths, no kerning, like TextGeometry) and centred and
  * stood on the baseline exactly as the single mesh would be.
  */
-function colorLetters(o, font, size, depth, material) {
+function colorLetters(o, font, size, depth, material, lift = false) {
   const p = textParams(font, size, depth);
   const scale = p.size / font.data.resolution;
   let x = 0;
@@ -86,16 +86,18 @@ function colorLetters(o, font, size, depth, material) {
       const g = new TextGeometry(ch, p);
       g.translate(x, 0, 0);
       g.computeBoundingBox();
-      pieces.push({ g, color: o.colors[i] ?? o.color ?? "blue" });
+      pieces.push({ g, color: o.colors[i] ?? o.color ?? "blue", i });
     }
     x += (glyph?.ha ?? 0) * scale;
   }
   const b = new THREE.Box3();
   for (const { g } of pieces) b.union(g.boundingBox);
-  return pieces.map(({ g, color }) => {
-    g.translate(-(b.min.x + b.max.x) / 2, size * 0.025, -(b.min.z + b.max.z) / 2);
+  return pieces.map(({ g, color, i }) => {
+    g.translate(-(b.min.x + b.max.x) / 2, lift ? -b.min.y : size * 0.025, -(b.min.z + b.max.z) / 2);
     g.computeBoundingBox();
-    return new THREE.Mesh(g, material(color, o.material ?? "toy"));
+    const m = new THREE.Mesh(g, material(color, o.material ?? "toy"));
+    m.userData.char = i;
+    return m;
   });
 }
 
@@ -152,8 +154,17 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080,
   } else if (o.kind === "letter") {
     const font = assets.fonts.get(o.font ?? "andika_bold");
     // colors: one colour per character (blends, rhyme endings); the same letters, cut into one mesh each.
-    if (o.colors) for (const m of colorLetters(o, font, size, (o.depth ?? 0.35) * size, material)) group.add(shadowed(m));
-    else group.add(shadowed(new THREE.Mesh(textGeometry(o.text, font, size, (o.depth ?? 0.35) * size, { baseline: true }), material(o.color ?? "blue", o.material ?? "toy"))));
+    // lift: "descender" stands the text on its lowest point (a Q's tail, a g's loop) instead of the baseline.
+    const lift = o.lift === "descender";
+    if (o.colors) {
+      const meshes = colorLetters(o, font, size, (o.depth ?? 0.35) * size, material, lift);
+      for (const m of meshes) group.add(shadowed(m));
+      // Painted: each character has its own material, blended by its "tint@<index>" prop.
+      if (o.paintChars) {
+        for (const m of meshes) m.material = m.material.clone();
+        return { group, update: (t, s) => { for (const m of meshes) if (s[`tint@${m.userData.char}`]) m.material.color.setRGB(...s[`tint@${m.userData.char}`], THREE.SRGBColorSpace); } };
+      }
+    } else group.add(shadowed(new THREE.Mesh(textGeometry(o.text, font, size, (o.depth ?? 0.35) * size, { baseline: !lift }), material(o.color ?? "blue", o.material ?? "toy"))));
   } else if (o.kind === "character") {
     const ch = catalog.characters[o.character];
     const gltf = assets.characters.get(o.character);

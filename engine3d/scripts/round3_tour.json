@@ -1,0 +1,165 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "A tour of round 3: shots that frame children and teaching-kit labels (pad, fit exact), paint on strokes, pointers, number lines, fraction bars and many-coloured letters, a flat sorting hoop, letters lifted off their descenders, leap arcs cleared, two characters on one timbre with their own pitch, lines queued with at after, shade rect, a narrow text card with an apostrophe phrase, show then reparent, inherit size, a mark on a stood-up sign, caption pos, a music dip, the dusk rig and stage changes classroom to forest to pond.",
+  "meta": {
+    "title": "engine3d round 3 tour",
+    "seed": 33,
+    "voice": "soft",
+    "music": "calm",
+    "musicGain": 0.25,
+    "cast": {
+      "robo": { "voice": "soft", "pitch": 0.85, "speed": 0.95 },
+      "bunny": { "voice": "soft", "pitch": 1.3, "speed": 1.1 }
+    }
+  },
+  "stage": { "preset": "classroom" },
+  "camera": { "position": [0, 2.2, 9.6], "lookAt": [0, 1.3, 0], "fov": 40 },
+  "objects": [
+    { "id": "robo", "kind": "character", "character": "robot", "at": [-4.6, 0, 1.4], "rotation": [0, 25, 0] },
+    { "id": "bunny", "kind": "critter", "species": "bunny", "at": [4.6, 0, 1.4], "rotation": [0, -25, 0] },
+
+    { "id": "cards", "kind": "group", "at": [-2.4, 0, 0] },
+    { "id": "card", "kind": "shape", "shape": "plate", "color": "white", "material": "matte", "parent": "cards", "at": [0, 0.8, 0], "rotation": [90, 0, 0], "scale": [1.5, 1, 1.1] },
+    { "id": "word", "kind": "letter", "text": "cat", "color": "red", "size": 0.42, "parent": "cards", "at": [0, 1.62, 0.05] },
+    { "id": "nl", "kind": "number_line", "at": [2.2, 0, 0.2], "from": 0, "to": 10, "length": 4.4 },
+    { "id": "hopper", "kind": "shape", "shape": "sphere", "color": "orange", "size": 0.3, "on": { "line": "nl", "value": 0 } },
+
+    { "id": "wave", "kind": "stroke", "at": [-4.2, 0, 0.6], "points": [[0, 0.6, 0], [0.4, 1.0, 0], [0.8, 0.6, 0], [1.2, 1.0, 0], [1.6, 0.6, 0]], "smooth": true, "width": 0.09, "color": "blue", "hidden": true },
+    { "id": "arrow", "kind": "pointer", "at": [-1.6, 0.5, 0.6], "from": [0, 0, 0], "to": [1.6, 0.5, 0], "bend": 0.3, "color": "orange", "hidden": true },
+    { "id": "bar", "kind": "fraction_bar", "at": [-2.4, 1.7, 0.4], "parts": 4, "shaded": 2, "length": 2.4, "label": true, "hidden": true },
+    { "id": "rhyme", "kind": "letter", "text": "cat", "colors": ["blue", "orange", "orange"], "size": 0.5, "at": [0.6, 1.8, 0.3], "hidden": true },
+
+    { "id": "q_low", "kind": "letter", "text": "Quip", "color": "purple", "size": 0.6, "at": [-1.9, 0, 0.8], "hidden": true },
+    { "id": "q_lift", "kind": "letter", "text": "Quip", "color": "green", "size": 0.6, "lift": "descender", "at": [1.9, 0, 0.8], "hidden": true },
+    { "id": "hoop", "kind": "shape", "shape": "hoop", "color": "red", "size": 2.2, "at": [0, 0, 2.6], "hidden": true },
+    { "id": "ball1", "kind": "shape", "shape": "sphere", "color": "yellow", "size": 0.35, "at": [-0.4, 0, 2.5], "hidden": true },
+    { "id": "ball2", "kind": "shape", "shape": "cube", "color": "blue", "size": 0.32, "at": [0.4, 0, 2.8], "hidden": true },
+
+    { "id": "grid", "kind": "grid", "rows": 4, "cols": 5, "cell": 0.38, "upright": true, "at": [-3.2, 0.2, 0.2], "hidden": true },
+    { "id": "note", "kind": "text_card", "text": "\"I can't climb trees,\" said Owl.", "width": 0.9, "size": 0.11, "at": [-0.9, 0.9, 0.4], "hidden": true },
+    { "id": "turtle", "kind": "critter", "species": "turtle", "at": [1.5, 0, 0.9], "hidden": true },
+    { "id": "hat", "kind": "prop", "model": "hat", "at": [0.6, 0, 1.6], "hidden": true },
+    { "id": "story", "kind": "prop", "model": "story_card", "size": 0.6, "at": [-1.0, 0, 1.9], "hidden": true },
+    { "id": "mini_duck", "kind": "critter", "species": "duck", "size": 0.5, "parent": "story", "inherit": "size", "at": [0, 0.15, 0.3] },
+    { "id": "sign", "kind": "shape", "shape": "plate", "color": "yellow", "material": "matte", "at": [3.6, 1.3, 0], "rotation": [90, 0, 0], "scale": [1.2, 1, 0.8], "hidden": true }
+  ],
+  "scenes": [
+    {
+      "id": "framing",
+      "beats": [
+        { "dur": 2.4, "do": [
+          { "do": "shot", "target": "cards", "framing": "medium", "fit": "exact", "dur": 0 },
+          { "do": "caption", "text": "shot frames a group with its word", "style": "label" }
+        ] },
+        { "dur": 2.4, "do": [
+          { "do": "shot", "target": "nl", "framing": "medium", "dur": 1.2 },
+          { "do": "caption", "text": "and a number line with its numbers", "style": "label" }
+        ] },
+        { "dur": 2.4, "do": [
+          { "do": "shot", "target": ["cards", "nl"], "framing": "wide", "pad": 0.15, "dur": 1.2 },
+          { "do": "caption", "text": "pad: 0.15 leaves more room", "style": "label" }
+        ] }
+      ]
+    },
+    {
+      "id": "paint",
+      "beats": [
+        { "dur": 1.2, "do": [
+          { "do": "hide", "target": "cards" },
+          { "do": "show", "target": "wave" }, { "do": "show", "target": "arrow" }, { "do": "show", "target": "bar" }, { "do": "show", "target": "rhyme" },
+          { "do": "camera", "position": [-0.6, 1.9, 7.4], "lookAt": [-0.6, 1.1, 0], "dur": 1 }
+        ] },
+        { "dur": 3, "do": [
+          { "do": "paint", "target": "wave", "color": "green" },
+          { "do": "paint", "target": "arrow", "color": "purple", "at": 0.3 },
+          { "do": "paint", "target": "nl", "color": "red", "at": 0.6 },
+          { "do": "paint", "target": "bar", "color": "green", "at": 0.9 },
+          { "do": "paint", "target": "bar", "from": "cream", "color": "sky", "at": 1.2 },
+          { "do": "paint", "target": "rhyme", "color": "pink", "at": 1.5 },
+          { "do": "caption", "text": "paint: strokes, pointers, lines, fractions, letters", "style": "label" }
+        ] }
+      ]
+    },
+    {
+      "id": "letters",
+      "beats": [
+        { "dur": 3.2, "do": [
+          { "do": "hide", "target": "wave" }, { "do": "hide", "target": "arrow" }, { "do": "hide", "target": "bar" }, { "do": "hide", "target": "rhyme" },
+          { "do": "show", "target": "q_low" }, { "do": "show", "target": "q_lift" },
+          { "do": "show", "target": "hoop", "at": 0.3 }, { "do": "drop", "target": "ball1", "to": [-0.4, 0, 2.5], "at": 0.6 }, { "do": "drop", "target": "ball2", "to": [0.4, 0, 2.8], "at": 0.8 },
+          { "do": "camera", "position": [0, 1.6, 7.6], "lookAt": [0, 0.7, 1], "dur": 1 },
+          { "do": "caption", "text": "lift descender (right) and a flat hoop", "style": "label" }
+        ] }
+      ]
+    },
+    {
+      "id": "leaps",
+      "beats": [
+        { "dur": 3, "do": [
+          { "do": "hide", "target": "q_low" }, { "do": "hide", "target": "q_lift" },
+          { "do": "shot", "target": "nl", "framing": "medium", "dur": 1 },
+          { "do": "leap", "target": "hopper", "line": "nl", "values": [2, 4, 6], "at": 0.6, "sound": false }
+        ] },
+        { "dur": 2.6, "do": [
+          { "do": "clear", "target": "nl" },
+          { "do": "leap", "target": "hopper", "line": "nl", "values": [8, 10], "at": 0.6, "sound": false },
+          { "do": "caption", "text": "clear wipes the old arcs", "style": "label" }
+        ] }
+      ]
+    },
+    {
+      "id": "voices",
+      "beats": [
+        { "dur": 2, "do": [
+          { "do": "shot", "target": ["robo", "bunny"], "framing": "wide", "dur": 1.2 },
+          { "do": "say", "text": "I am Robo. My voice is low.", "who": "robo", "at": 0.3, "caption": true },
+          { "do": "say", "text": "I am Bunny! My voice is high!", "who": "bunny", "at": "after", "caption": true }
+        ] }
+      ]
+    },
+    {
+      "id": "extras",
+      "beats": [
+        { "dur": 1.4, "do": [
+          { "do": "hide", "target": "hoop" }, { "do": "hide", "target": "ball1" }, { "do": "hide", "target": "ball2" }, { "do": "hide", "target": "nl" }, { "do": "hide", "target": "hopper" },
+          { "do": "show", "target": "grid" }, { "do": "show", "target": "note" }, { "do": "show", "target": "turtle" }, { "do": "show", "target": "story" }, { "do": "show", "target": "sign" },
+          { "do": "camera", "position": [0, 2.0, 8.4], "lookAt": [0, 1.0, 0.6], "dur": 1 },
+          { "do": "music", "gain": 0.15, "dur": 0.4 }
+        ] },
+        { "dur": 3.4, "do": [
+          { "do": "shade", "target": "grid", "rect": [2, 2, 2, 3] },
+          { "do": "emphasize", "target": "note", "words": "can’t climb trees", "at": 0.4 },
+          { "do": "show", "target": "hat", "at": 0.6 },
+          { "do": "reparent", "target": "hat", "parent": "turtle", "part": "head", "to": [0, 0.28, 0], "at": 0.6 },
+          { "do": "mark", "target": "sign", "at": 1, "dur": 2.4, "sound": false },
+          { "do": "caption", "text": "6", "style": "count", "pos": "left", "at": 0.8 },
+          { "do": "music", "gain": 1, "dur": 0.8, "at": 2.6 }
+        ] },
+        { "dur": 2.4, "do": [
+          { "do": "shot", "target": "sign", "framing": "medium", "fit": "exact", "dur": 1 },
+          { "do": "caption", "text": "fit exact: a stood-up sign", "style": "label" }
+        ] }
+      ]
+    },
+    {
+      "id": "travel",
+      "beats": [
+        { "dur": 3.4, "do": [
+          { "do": "hide", "target": "grid" }, { "do": "hide", "target": "note" }, { "do": "hide", "target": "story" }, { "do": "hide", "target": "sign" },
+          { "do": "camera", "position": [0, 2.4, 10.5], "lookAt": [0, 1.4, -1], "dur": 1 },
+          { "do": "stage", "preset": "forest", "dur": 2.5, "at": 0.4 },
+          { "do": "caption", "text": "stage: classroom to forest", "style": "label" }
+        ] },
+        { "dur": 3.4, "do": [
+          { "do": "lights", "rig": "dusk", "dur": 2 },
+          { "do": "caption", "text": "lights: dusk", "style": "label" }
+        ] },
+        { "dur": 3.6, "do": [
+          { "do": "stage", "preset": "pond", "dur": 2.5 },
+          { "do": "caption", "text": "stage: forest to pond", "style": "label" }
+        ] }
+      ]
+    }
+  ]
+}

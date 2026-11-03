@@ -90,7 +90,7 @@ export function checkKit2Object(o, p, { err, ids, catalog, name }) {
   if (o.kind === "text_card") {
     if (typeof o.text !== "string" || !o.text.trim() || o.text.length > CARD_MAX_CHARS) err(o.text == null ? "E3D_REQUIRED" : "E3D_TEXT", `${p}.text`, `text must be 1-${CARD_MAX_CHARS} characters`);
     else if (cardHeight(o) / (1.4 * withDefaults(o).size) - 1 > CARD_MAX_LINES + 0.01) err("E3D_TEXT", `${p}.text`, `text needs more than ${CARD_MAX_LINES} lines at this width and size: shorten it, widen the card or use a smaller size`);
-    range("width", (v) => isNum(v, 1, 12), "width must be 1-12 m");
+    range("width", (v) => isNum(v, 0.5, 12), "width must be 0.5-12 m");
     range("size", (v) => isNum(v, 0.08, 0.6), "size must be 0.08-0.6 m");
   }
 }

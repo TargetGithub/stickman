@@ -113,6 +113,20 @@ function ring() {
   return s;
 }
 
+/**
+ * A sorting hoop: a thin flat band lying on the floor (outer radius 0.5, inner 0.45, 0.03 tall), its edges
+ * rounded: a soft rounded-rectangle cross-section turned round the y axis, counterclockwise like `tube`.
+ */
+function hoop(n = 28) {
+  const pts = [];
+  const sg = (v) => Math.sign(v) * Math.abs(v) ** 0.45;
+  for (let i = 0; i <= n; i++) {
+    const a = (i / n) * 2 * Math.PI;
+    pts.push([0.475 + 0.025 * sg(Math.cos(a)), 0.015 + 0.015 * sg(Math.sin(a))]);
+  }
+  return lathe(pts, 96);
+}
+
 /** A body of revolution from a profile [[radius, y], ...] going up the outside and back down the inside, centred. */
 function lathe(profile, segments = 56) {
   return new THREE.LatheGeometry(profile.map(([x, y]) => new THREE.Vector2(x, y)), segments).center();
@@ -201,6 +215,7 @@ function make(name) {
     case "drop": return puffy(drop());
     case "leaf": return puffy(leaf(), 0.08, 0.04);
     case "ring": return puffy(ring());
+    case "hoop": return hoop();
     // Open containers and round solids (lathed), 1 m tall unless noted.
     case "cup": return lathe([[0, 0], [0.5, 0], [0.5, 1], [0.45, 1], [0.45, 0.07], [0, 0.07]]);
     case "pot": return lathe([[0, 0], [0.36, 0], [0.46, 0.82], [0.52, 0.84], [0.52, 1], [0.44, 1], [0.41, 0.84], [0.32, 0.08], [0, 0.08]]);

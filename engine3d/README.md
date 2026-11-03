@@ -15,7 +15,7 @@ cd engine3d && npm install && npx playwright install chromium
 
 | Path | What |
 |---|---|
-| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `director_extras.js`, `lipsync.js`, `look.js`, `camera_moves.js`, `bounds.js`, `stage_set.js`, `compile.js`, `validate.js`, `validate_look.js`, `plan.js`, teaching kit `teach_layout.js`, `director_teach.js`, `director_kit2.js`, `validate_teach.js`, `validate_kit2.js`, `place_value.js`, `card_words.js`, `xform.js`. Page (three.js; the teach builders also load in Node for tests): `stage.js`, `objects.js`, `objects_extra.js`, `models.js`, `faces.js`, `talk.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`, `teach.js`, `teach_more.js`, `teach_draw.js`, `teach_text.js`, `teach_marks.js`, `teach_common.js`. |
+| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `director_extras.js`, `lipsync.js`, `look.js`, `camera_moves.js`, `bounds.js`, `bounds_teach.js`, `stage_set.js`, `stage_change.js`, `compile.js`, `validate.js`, `validate_look.js`, `validate_r3.js`, `plan.js`, teaching kit `teach_layout.js`, `director_teach.js`, `director_kit2.js`, `validate_teach.js`, `validate_kit2.js`, `place_value.js`, `card_words.js`, `xform.js`. Page (three.js; the teach builders also load in Node for tests): `stage.js`, `objects.js`, `objects_extra.js`, `models.js`, `faces.js`, `talk.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`, `teach.js`, `teach_more.js`, `teach_draw.js`, `teach_text.js`, `teach_marks.js`, `teach_common.js`. |
 | `catalog/` | JSON catalog: colours, materials, shapes (solids and flat 2D shapes), fonts, characters (glTF), models (toy animals and props built from parts), stages and lights, sounds, object kinds, actions. `index.mjs` loads it in Node. |
 | `assets/characters/` | glTF characters (CC0), with `LICENSES.md`. |
 | `scripts/` | JSON scripts (`count_to_five.json`); series in `scripts/series/<name>/` (Toy Box Friends: `scripts/series/toybox/SERIES.md`). |
@@ -243,6 +243,35 @@ taller and further down from the nose, so a talking cat reads in a medium shot.
 Validator codes: `E3D_POINTS`, `E3D_PEN`, `E3D_CHANGES`, `E3D_FRACTION`, `E3D_COLUMNS`, `E3D_PV_DIGITS`,
 `E3D_PV_RANGE`, `E3D_TEXT`, `E3D_SIZES`, `E3D_LABELS`, `E3D_ENDS`, `E3D_CELLS`, `E3D_EMPHASIZE`, `E3D_REPARENT`,
 `E3D_POINT`, `E3D_AXIS` (fixtures `tests/fixtures/bad/bad_kit2_*.json`).
+
+### Round 3 (framing, voices, stage changes and smaller fixes)
+
+Limits the batch 3 writers hit (`runtime/bounds_teach.js`, `stage_change.js`, `validate_r3.js`, plus small
+changes elsewhere). Every option is new; scripts that do not use them build the same plans as before.
+`scripts/round3_tour.json` shows them all in 44 seconds.
+
+| Need | How |
+|---|---|
+| A group framed whole (words above cards) | `shot` now frames each target's **children** (anything whose `parent` points at it, recursively; internal marks and arcs left out), counted whether shown yet or not, so a shot made before the words pop in leaves room for them. An empty `group` with children is framed by its children alone. **Teaching-kit kinds** get real boxes with their labels: a number line's beam, legs and numbers, fraction labels, array/grid/cube sizes, a pointer's arc, a callout's dot and card, an angle's rays (`teachBox`). Targets with neither keep their old box. |
+| More room round a shot | `shot` `pad` (0–2): the framed box grows by that share about its centre (`0.2`: 20% bigger). |
+| Plates, discs and stood-up signs framed tightly | `shot` `fit: "exact"`: thin shapes at their real height (plate 0.04, disc 0.12, bowl and dome 0.5) and every turn applied, the object's and its parents' (a sign with `rotation: [90, 0, 0]`, a turned number line, cards on a turned group). The default (`approx`) keeps the old position-only boxes, which `look` and `point` also use. |
+| Repaint teaching pieces | `paint` takes `stroke`, `pointer`, `number_line` (its beam and legs; ticks and numbers stay ink) and `fraction_bar` / `fraction_circle` (their shaded colour, as `shade color` does; `from: "<its empty colour>"`, e.g. `"cream"`, repaints the unshaded parts). A `letter` with `colors` blends **every** character from its own colour (timeline props `tint@<character index>`). |
+| A sorting hoop | Shape `hoop`: a flat band lying on the floor, 1 m across (outer radius 0.5, inner 0.45), 0.03 tall, rounded edges; `size: 2.2` for a 2.2 m hoop. `ring` stays the upright puffy cut-out. |
+| Q, g, j, p, q, y above the floor | `letter` `lift: "descender"`: the text stands on its lowest point instead of the baseline (Q's tail touches `at`'s y). Words without descenders hardly move, so use it per word, not for words that must share a baseline. |
+| Characters with their own voices | `meta.cast: { "<object id>": { "voice": "soft", "pitch": 0.8–1.3, "speed": 0.8–1.2 } }`. A `say` with `who` uses the speaker's entry unless it gives `voice`, `pitch` or `speed` itself (a `say` takes both too). Defaults are unchanged: pitch 1.1, speed 1 (× `meta.voiceSpeed`, default 0.95). Pitch goes through the 2D cast's `resolveVoice` (`tools/lib/tts/lines.mjs`): semitones = round(12 log2(pitch) × the timbre's pitchScale) + its offset, clamped to its range, and Piper's clip is shifted by ffmpeg at constant length; speed scales Piper's rate. On `soft`: 0.8 → −2, 0.9 → −1, 1.0 → 0, 1.1 → +1, 1.2 → +2, 1.3 → +3 semitones (`squeaky` is clamped to +3…+7, `deep` −6…−2). Pitch and rate are in the TTS cache key, so each voice gets its own clips. Use pitches at least 0.15 apart for two characters on one timbre. |
+| Two lines in one beat that must not overlap | `say` `at: "after"`: starts when the beat's previous line ends (its measured clip) plus 0.25 s; the beat stretches to fit. |
+| Travel mid-episode | Action `stage` `{ preset, dur (2), ease }`: background, floor, rug, fog distances, light rig (hemisphere, sun intensity and direction, environment; the shadow switches half way) crossfade to the preset, the old preset's set pieces fade out (opacity) and the new one's fade in. All set pieces of every preset the script visits are plan objects from the start: the first preset's keep `set_<id>`, later presets' are `set_<preset>_<id>` (`set_forest_tree1`), hidden until their preset comes, and actions may target them. A preset without a floor or rug fades them out; without fog it pushes the fog past the far plane. Everything is a timeline segment, so any frame is a pure function of t. `lights` after a change still blends from wherever the stage is. |
+| Clear leap arcs | Action `clear` `{ target: "<number line>", dur 0.4 }`: the arcs drawn on that line so far shrink away; later leaps draw new ones. `leap` `arcs: false` still leaps without arcs. |
+| A clearly darker evening | Light rig `dusk` (hemisphere 0.42, a low orange sun at 1.15, environment 0.2): dimmer and warmer than `evening`, which is unchanged. It brings its own background (`dusk_sky`, a rose-violet sky) when `lights` names none. |
+| A block of a grid | `shade` `rect: [row, col, rows, cols]` (from 1, row 1 on top) on a grid or array: those cells, row by row, like `cells`. |
+| A count beside the picture | `caption` `pos`: `left`, `right` or `top` puts the caption there (centre at 22% / 78% across, 62% up; top: 86% up) instead of its style's place. |
+| A music dip for a freeze | Action `music` `{ gain 0–1, dur 0.5 }`: the bed ramps to `gain` × the scene's level and holds until the next `music` (gain 1 brings it back); `plan.musicCues`, applied in `tools/lib/music3d.mjs` `applyMusicCues`. |
+| Children sized with their parent | `inherit: "size"` on a child with `parent` (no `part`): its `at` and `scale` are multiplied by the parent's `size` (a mini scene on a `story_card` of size 0.6). Default unchanged: a child is placed in metres. |
+| Other fixes | `show` then `reparent` at once (a hidden hat onto Turtle's head) hands over at the scale the object is growing to and grows it in on the new parent. `emphasize` ignores quotes, commas and apostrophes, straight or curly (`can’t` matches `can't`), and steps over words that are only punctuation. `text_card` `width` may be 0.5 m. Number lines may have up to 201 ticks (0–100 by halves, 0–20 with tenths…). A `mark` on a tilted object (a stood-up sign) floats upright above its world box. |
+
+Validator codes: `E3D_CAST`, `E3D_STAGE`, `E3D_LIFT`, `E3D_INHERIT`, `E3D_FIT`, `E3D_POS`, `E3D_PAINT_FROM`
+(fractions), `E3D_CELLS` (rect), `E3D_RANGE` (pitch, speed, pad), `E3D_REQUIRED` (music gain, stage preset)
+(fixture `tests/fixtures/bad/bad_r3.json`).
 
 **Scene music.** `meta.music` and `meta.musicGain` set the bed for the whole episode. A scene may override
 them with `"music": "calm"` (any mood in `catalog/story/music_moods.json`, or `false` for no music) and/or

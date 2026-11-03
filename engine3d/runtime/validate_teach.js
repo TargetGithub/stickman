@@ -17,7 +17,7 @@ export const TEACH_FIELDS = {
 
 export const TEACH_TARGETS = {
   build: Object.keys(BUILD_ORDERS), shade: ["fraction_bar", "fraction_circle", "grid", "array"], draw: ["pointer", "number_line", "callout", "stroke"],
-  open: ["angle"], trace: ["grid"],
+  open: ["angle"], trace: ["grid"], clear: ["number_line"],
 };
 /** Actions that may target any piece ("pie#s2", "grid#c5") as well as whole objects. */
 export const PIECE_ACTIONS = new Set(["mark", "highlight"]);
@@ -113,7 +113,7 @@ export function checkTeachAction(a, p, o, { err, ids, catalog }) {
   if (kinds && !kinds.includes(o.kind)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} needs a ${kinds.join(" or ")}, "${a.target}" is a ${o.kind}`);
   if (a.color != null && ["shade", "leap", "highlight"].includes(a.do) && !catalog.colors[a.color]) err("E3D_COLOR", `${p}.color`, `unknown color "${a.color}"`);
   if (a.do === "build" && a.order != null && !BUILD_ORDERS[o.kind].includes(a.order)) err("E3D_ORDER", `${p}.order`, `a ${o.kind} builds in order ${BUILD_ORDERS[o.kind].join(", ")}`);
-  if (a.do === "shade" && a.cells == null) {
+  if (a.do === "shade" && a.cells == null && a.rect == null) {
     const n = pieceCount(withDefaults(o));
     if (!isInt(a.to, 0, n)) err("E3D_SHADED", `${p}.to`, `shade to must be a whole number 0-${n} (the parts of "${a.target}")`);
   }

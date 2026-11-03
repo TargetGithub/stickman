@@ -11,6 +11,9 @@ const vec = (v, d = 1) => (Array.isArray(v) ? v : [v ?? d, v ?? d, v ?? d]);
 const FLAT = new Set(["circle", "square", "triangle", "rectangle", "oval", "diamond", "crescent", "pentagon", "hexagon", "octagon", "half_circle",
   "quarter_circle", "arrow", "cross", "snowflake", "drop", "leaf", "ring", "star", "heart"]);
 
+/** Heights of shapes lower than their 1 m box (geometry.js): a plate, a coin, a hoop, a bowl, a dome. */
+export const THIN = { plate: 0.04, disc: 0.12, hoop: 0.03, bowl: 0.5, dome: 0.5 };
+
 /** Box of a part-built model (critter or prop) in its own units: every part's centre ± half its scale. */
 function modelBox(m) {
   const min = [Infinity, Infinity, Infinity];
@@ -48,15 +51,17 @@ export function localBounds(o, catalog) {
     case "shape": {
       const flat = FLAT.has(o.shape);
       min = [-0.5, 0, flat ? -0.08 : -0.5];
-      max = [0.5, 1, flat ? 0.08 : 0.5];
+      max = [0.5, o.shape === "hoop" ? THIN.hoop : 1, flat ? 0.08 : 0.5]; // shot uses THIN for every thin shape
       break;
     }
     case "number_block": min = [-0.5, 0, -0.5]; max = [0.5, 1, 0.5]; break;
     case "letter": {
       // Andika: about 0.8 × size per character, caps 1.41 × size tall, descenders 0.47 below.
       const w = 0.4 * (o.text?.length ?? 1);
-      min = [-w, -0.47, -0.25];
-      max = [w, 1.45, 0.25];
+      // lift: "descender" raises the text so its lowest point (at most 0.47 below the baseline) is on at.
+      const up = o.lift === "descender" ? 0.47 : 0;
+      min = [-w, -0.47 + up, -0.25];
+      max = [w, 1.45 + up, 0.25];
       break;
     }
     case "critter":
@@ -103,7 +108,11 @@ const scaleBox = (b, s) => ({ min: b.min.map((x, i) => x * s[i]), max: b.max.map
  * @param {(id:string) => object} get  object by id
  */
 export function worldBounds(o, catalog, now, get, t) {
-  const b = localBounds(o, catalog);
+  return placeBox(o, localBounds(o, catalog), now, get, t);
+}
+
+/** A local box (already in the object's size and scale) moved to where the object is at t, riding on its parents. */
+export function placeBox(o, b, now, get, t) {
   let p = now(o.id, "position", t) ?? o.at ?? [0, 0, 0];
   let par = o.parent != null ? get(o.parent) : null;
   let k = par && o.part != null ? par.size ?? 1 : 1;
