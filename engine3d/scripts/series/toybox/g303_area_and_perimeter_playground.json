@@ -18,7 +18,7 @@
   "cast": {
    "robo": {
     "voice": "soft",
-    "pitch": 1
+    "pitch": 1.05
    },
    "fox": {
     "voice": "squeaky",
@@ -2051,8 +2051,8 @@
     -0.66
    ],
    "offset": [
-    0.4,
-    0.75,
+    0.9,
+    0.7,
     0.2
    ],
    "color": "blue",
@@ -2068,8 +2068,8 @@
     -0.66
    ],
    "offset": [
-    -0.2,
-    2,
+    0.6,
+    2.55,
     0.2
    ],
    "color": "orange",
@@ -4163,9 +4163,9 @@
        "do": "move",
        "target": "robo",
        "to": [
-        -3.6,
+        -6.4,
         0,
-        1.6
+        1.2
        ],
        "dur": 1
       },
@@ -4173,9 +4173,9 @@
        "do": "move",
        "target": "fox",
        "to": [
-        3.6,
+        6.4,
         0,
-        1.6
+        1.2
        ],
        "dur": 1
       },
@@ -4511,7 +4511,8 @@
        ],
        "framing": "medium",
        "height": 40,
-       "dur": 1.4
+       "dur": 1.4,
+       "pad": 0.2
       }
      ]
     },
@@ -4827,7 +4828,8 @@
        ],
        "framing": "medium",
        "height": 38,
-       "dur": 1.4
+       "dur": 1.4,
+       "pad": 0.15
       }
      ]
     },
@@ -5429,7 +5431,8 @@
         "robo"
        ],
        "framing": "medium",
-       "height": 35
+       "height": 35,
+       "pad": 0.2
       }
      ]
     }
@@ -7328,7 +7331,8 @@
         "w_area"
        ],
        "framing": "medium",
-       "dur": 1
+       "dur": 1,
+       "height": 24
       },
       {
        "do": "look",
@@ -7417,7 +7421,8 @@
         "w_per"
        ],
        "framing": "medium",
-       "dur": 1
+       "dur": 1,
+       "height": 24
       },
       {
        "do": "look",
@@ -7489,7 +7494,7 @@
      ]
     },
     {
-     "dur": 0.55,
+     "dur": 0.65,
      "do": [
       {
        "do": "say",
@@ -7517,7 +7522,15 @@
         "w_area"
        ],
        "framing": "medium",
-       "dur": 1
+       "dur": 1,
+       "height": 24
+      },
+      {
+       "do": "build",
+       "target": "jp3",
+       "at": 0.5,
+       "dur": 1.2,
+       "sound": false
       },
       {
        "do": "look",
@@ -7560,11 +7573,10 @@
        "sound": "ding"
       },
       {
-       "do": "build",
+       "do": "highlight",
        "target": "jp3",
        "at": 0.5,
-       "dur": 1.2,
-       "sound": false
+       "dur": 1.6
       }
      ]
     },
@@ -7634,7 +7646,8 @@
         "w_per"
        ],
        "framing": "medium",
-       "dur": 1
+       "dur": 1,
+       "height": 24
       },
       {
        "do": "look",
@@ -7743,7 +7756,8 @@
         "w_area"
        ],
        "framing": "medium",
-       "dur": 1
+       "dur": 1,
+       "height": 24
       },
       {
        "do": "look",
@@ -7860,21 +7874,21 @@
        "do": "move",
        "target": "robo",
        "to": [
-        -6.6,
+        -9,
         0,
         1
        ],
-       "dur": 1
+       "dur": 1.4
       },
       {
        "do": "move",
        "target": "fox",
        "to": [
-        6.6,
+        9,
         0,
         1
        ],
-       "dur": 1
+       "dur": 1.4
       },
       {
        "do": "shot",
@@ -8360,21 +8374,21 @@
        "do": "move",
        "target": "robo",
        "to": [
-        -3.8,
+        -9,
         0,
         1.6
        ],
-       "dur": 1
+       "dur": 0.01
       },
       {
        "do": "move",
        "target": "fox",
        "to": [
-        3.8,
+        9,
         0,
         1.6
        ],
-       "dur": 1
+       "dur": 0.01
       },
       {
        "do": "show",
@@ -8501,13 +8515,34 @@
        "at": 0.2
       },
       {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.4,
+        0,
+        1.4
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.4,
+        0,
+        1.4
+       ],
+       "dur": 0.01
+      },
+      {
        "do": "shot",
        "target": [
         "robo",
         "fox"
        ],
-       "framing": "wide",
-       "dur": 1.2
+       "framing": "medium",
+       "dur": 0,
+       "height": 10
       }
      ]
     },

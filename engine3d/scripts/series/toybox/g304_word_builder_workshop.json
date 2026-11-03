@@ -18,7 +18,7 @@
   "cast": {
    "robo": {
     "voice": "soft",
-    "pitch": 1
+    "pitch": 1.05
    },
    "fox": {
     "voice": "squeaky",
@@ -1216,9 +1216,9 @@
    "color": "grey",
    "material": "metal",
    "scale": [
-    0.62,
+    0.8,
     1,
-    0.4
+    0.45
    ]
   },
   {
@@ -1226,24 +1226,24 @@
    "kind": "prop",
    "model": "cupcake",
    "at": [
-    -0.15,
+    -0.2,
     0.03,
     0
    ],
    "parent": "tray",
-   "size": 0.9
+   "size": 1.4
   },
   {
    "id": "cake2",
    "kind": "prop",
    "model": "cupcake",
    "at": [
-    0.15,
+    0.2,
     0.03,
     0
    ],
    "parent": "tray",
-   "size": 0.9
+   "size": 1.4
   },
   {
    "id": "grownup",
@@ -1461,7 +1461,7 @@
     0.15
    ],
    "color": "red",
-   "size": 0.3,
+   "size": 0.2,
    "hidden": true
   },
   {
@@ -1470,11 +1470,11 @@
    "shape": "cube",
    "at": [
     2.2,
-    1.15,
+    1.05,
     0.15
    ],
    "color": "yellow",
-   "size": 0.3,
+   "size": 0.2,
    "hidden": true
   },
   {
@@ -1483,11 +1483,11 @@
    "shape": "cube",
    "at": [
     2.2,
-    1.45,
+    1.25,
     0.15
    ],
    "color": "sky",
-   "size": 0.3,
+   "size": 0.2,
    "hidden": true
   },
   {
@@ -1496,11 +1496,11 @@
    "shape": "cube",
    "at": [
     2.2,
-    1.75,
+    1.4500000000000002,
     0.15
    ],
    "color": "green",
-   "size": 0.3,
+   "size": 0.2,
    "hidden": true
   },
   {
@@ -4549,6 +4549,8 @@
        "target": [
         "w_safe_b",
         "w_un_b",
+        "bin_base",
+        "bin_pre",
         "bin_pre",
         "bin_base"
        ],
@@ -4586,20 +4588,13 @@
      ]
     },
     {
-     "dur": 0.45,
+     "dur": 0.4,
      "do": [
       {
        "do": "say",
        "who": "fox",
        "text": "Hold up your left hand. That's the front!",
        "caption": true
-      },
-      {
-       "do": "caption",
-       "text": "front",
-       "style": "label",
-       "at": 0.4,
-       "dur": 2
       }
      ]
     },
@@ -4652,7 +4647,9 @@
        "do": "shot",
        "target": [
         "w_un_b",
-        "w_safe_b"
+        "w_safe_b",
+        "bin_pre",
+        "bin_base"
        ],
        "framing": "close",
        "dur": 1
@@ -4723,6 +4720,8 @@
        "target": [
         "w_un_b",
         "w_safe_b",
+        "bin_pre",
+        "bin_base",
         "m_unsafe"
        ],
        "framing": "medium",
@@ -4847,20 +4846,13 @@
      ]
     },
     {
-     "dur": 0.45,
+     "dur": 0.4,
      "do": [
       {
        "do": "say",
        "who": "fox",
        "text": "Hold up your right hand. That's the end!",
        "caption": true
-      },
-      {
-       "do": "caption",
-       "text": "end",
-       "style": "label",
-       "at": 0.4,
-       "dur": 2
       }
      ]
     },
@@ -4883,7 +4875,9 @@
        "do": "shot",
        "target": [
         "w_care_b",
-        "w_ful_b"
+        "w_ful_b",
+        "bin_base",
+        "bin_suf"
        ],
        "framing": "medium",
        "dur": 1
@@ -4941,7 +4935,9 @@
        "do": "shot",
        "target": [
         "w_ful_b",
-        "w_care_b"
+        "w_care_b",
+        "bin_suf",
+        "bin_base"
        ],
        "framing": "close",
        "dur": 1
@@ -5096,6 +5092,8 @@
        "target": [
         "w_care_b",
         "w_ful_b",
+        "bin_base",
+        "bin_suf",
         "m_careful"
        ],
        "framing": "medium",
@@ -5241,6 +5239,8 @@
        "target": [
         "p_un_b",
         "p_happy_b",
+        "bin_pre",
+        "bin_base",
         "robo"
        ],
        "framing": "medium",
@@ -5274,6 +5274,8 @@
        "target": [
         "p_un_b",
         "p_happy_b",
+        "bin_pre",
+        "bin_base",
         "robo",
         "m_unhappy"
        ],
@@ -5333,7 +5335,9 @@
        "do": "shot",
        "target": [
         "p_un_b",
-        "p_kind_b"
+        "p_kind_b",
+        "bin_pre",
+        "bin_base"
        ],
        "framing": "medium",
        "dur": 0.8
@@ -5477,6 +5481,8 @@
        "target": [
         "p_un_b",
         "p_lock_b",
+        "bin_pre",
+        "bin_base",
         "lock"
        ],
        "framing": "medium",
@@ -5845,7 +5851,9 @@
        "do": "shot",
        "target": [
         "p_re_b",
-        "p_paint_b"
+        "p_paint_b",
+        "bin_pre",
+        "bin_base"
        ],
        "framing": "medium",
        "dur": 1
@@ -5898,7 +5906,9 @@
        "do": "shot",
        "target": [
         "p_re_b",
-        "p_paint_b"
+        "p_paint_b",
+        "bin_pre",
+        "bin_base"
        ],
        "framing": "close",
        "dur": 1
@@ -5924,6 +5934,8 @@
        "target": [
         "p_re_b",
         "p_paint_b",
+        "bin_pre",
+        "bin_base",
         "m_repaint"
        ],
        "framing": "medium",
@@ -6218,12 +6230,12 @@
        "points": [
         [
          2.2,
-         1.75,
+         1.45,
          0.15
         ],
         [
          2.7,
-         1.45,
+         1.25,
          0.35
         ],
         [
@@ -6241,12 +6253,12 @@
        "points": [
         [
          2.2,
-         1.45,
+         1.25,
          0.15
         ],
         [
          2.5,
-         1.15,
+         1.05,
          0.45
         ],
         [
@@ -6359,7 +6371,7 @@
        "target": "tw2",
        "to": [
         2.2,
-        1.45,
+        1.25,
         0.15
        ],
        "dur": 0.6,
@@ -6381,7 +6393,7 @@
        "target": "tw3",
        "to": [
         2.2,
-        1.75,
+        1.45,
         0.15
        ],
        "dur": 0.6,
@@ -6423,7 +6435,7 @@
       {
        "do": "say",
        "who": "fox",
-       "text": "Repaint, refill, rebuild, reread. Re- always means again.",
+       "text": "Repaint, refill, rebuild, reread. In these words, re- means again.",
        "caption": true
       },
       {
@@ -6692,6 +6704,8 @@
        "target": [
         "p_pre_b",
         "p_heat_b",
+        "bin_pre",
+        "bin_base",
         "oven"
        ],
        "framing": "medium",
@@ -6919,6 +6933,14 @@
        "do": "hide",
        "target": "tray",
        "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "wet"
+      },
+      {
+       "do": "hide",
+       "target": "wet_post"
       },
       {
        "do": "hide",
@@ -7152,7 +7174,9 @@
        "do": "shot",
        "target": [
         "s_care_b",
-        "s_less_b"
+        "s_less_b",
+        "bin_base",
+        "bin_suf"
        ],
        "framing": "medium",
        "dur": 0.8
@@ -7816,6 +7840,8 @@
        "target": [
         "s_paint_b",
         "s_er_b",
+        "bin_base",
+        "bin_suf",
         "dog"
        ],
        "framing": "medium",
@@ -7939,6 +7965,8 @@
        "target": [
         "s_build_b",
         "s_er_b",
+        "bin_base",
+        "bin_suf",
         "fox"
        ],
        "framing": "medium",
@@ -8080,6 +8108,9 @@
         "c_un_b",
         "c_help_b",
         "c_ful_b",
+        "bin_pre",
+        "bin_base",
+        "bin_suf",
         "bin_pre",
         "bin_suf"
        ],
@@ -8481,6 +8512,8 @@
        "target": [
         "d_help_b",
         "d_ful_b",
+        "bin_base",
+        "bin_suf",
         "m_helpful"
        ],
        "framing": "medium",
@@ -8554,7 +8587,10 @@
        "target": [
         "d_un_b",
         "d_help_b",
-        "d_ful_b"
+        "d_ful_b",
+        "bin_pre",
+        "bin_base",
+        "bin_suf"
        ],
        "framing": "medium",
        "dur": 1,
@@ -8621,6 +8657,9 @@
         "d_un_b",
         "d_help_b",
         "d_ful_b",
+        "bin_pre",
+        "bin_base",
+        "bin_suf",
         "m_unhelpful"
        ],
        "framing": "medium",
@@ -8792,6 +8831,8 @@
         "d_ful2_b",
         "d_care2_b",
         "d_less_b",
+        "bin_base",
+        "bin_suf",
         "m_cf",
         "m_cl"
        ],
@@ -8887,7 +8928,7 @@
       {
        "do": "say",
        "who": "robo",
-       "text": "I know one! Uncle starts with un-. So uncle means not cle!",
+       "text": "I know one! Uncle starts with un-. So uncle means not C, L, E!",
        "caption": true
       },
       {
@@ -9033,7 +9074,7 @@
       {
        "do": "say",
        "who": "fox",
-       "text": "Cle is not a word! So uncle has no prefix. It's just a base word.",
+       "text": "C, L, E is not a word! So uncle has no prefix. It's just a base word.",
        "caption": true,
        "at": 0.6
       },
@@ -9077,7 +9118,7 @@
       {
        "do": "say",
        "who": "robo",
-       "text": "Real! Is that re- plus al?",
+       "text": "Real! Is that re- plus A, L?",
        "caption": true
       }
      ]
@@ -9159,7 +9200,7 @@
       {
        "do": "say",
        "who": "fox",
-       "text": "Al is not a word. Alarm! Real is just a base word.",
+       "text": "A, L is not a word. Alarm! Real is just a base word.",
        "caption": true,
        "at": 0.6
       }
@@ -9460,7 +9501,9 @@
        "target": [
         "rnote",
         "ch0_0_b",
-        "ch0_1_b"
+        "ch0_1_b",
+        "bin_pre",
+        "bin_base"
        ],
        "framing": "medium",
        "dur": 1
@@ -9953,7 +9996,7 @@
       {
        "do": "say",
        "who": "robo",
-       "text": "One trick word! Is under un- plus der?",
+       "text": "One trick word! Is under un- plus D, E, R?",
        "caption": true,
        "at": 0.3
       },
@@ -10061,7 +10104,7 @@
       {
        "do": "say",
        "who": "fox",
-       "text": "No! Der is not a word. Under is a base word. Great decoding!",
+       "text": "No! D, E, R is not a word. Under is a base word. Great decoding!",
        "caption": true,
        "at": 0.5
       },
@@ -10104,6 +10147,18 @@
       {
        "do": "hide",
        "target": "alarm_base"
+      },
+      {
+       "do": "hide",
+       "target": "bin_pre"
+      },
+      {
+       "do": "hide",
+       "target": "bin_base"
+      },
+      {
+       "do": "hide",
+       "target": "bin_suf"
       },
       {
        "do": "shot",
@@ -10429,7 +10484,7 @@
       {
        "do": "say",
        "who": "fox",
-       "text": "No! Cle is not a word.",
+       "text": "No! C, L, E is not a word.",
        "caption": true
       },
       {
@@ -10460,12 +10515,26 @@
        "caption": true
       },
       {
+       "do": "pop",
+       "target": "bin_pre"
+      },
+      {
+       "do": "pop",
+       "target": "bin_base",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "bin_suf",
+       "at": 0.2
+      },
+      {
        "do": "shot",
        "target": [
-        "bench",
-        "peg",
-        "robo",
-        "fox"
+        "bin_pre",
+        "bin_base",
+        "bin_suf",
+        "bench_top"
        ],
        "framing": "medium",
        "dur": 1

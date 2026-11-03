@@ -18,7 +18,7 @@
   "cast": {
    "robo": {
     "voice": "soft",
-    "pitch": 1
+    "pitch": 1.05
    },
    "fox": {
     "voice": "squeaky",
@@ -419,12 +419,12 @@
     "camera": {
      "position": [
       0,
-      1.5,
-      6.9
+      1.55,
+      6.2
      ],
      "lookAt": [
       0,
-      1.25,
+      1.2,
       -0.2
      ],
      "fov": 38
@@ -483,7 +483,7 @@
       "id": "t_p3",
       "kind": "prop",
       "model": "lily_pad",
-      "size": 0.45,
+      "size": 0.75,
       "on": {
        "line": "t_three",
        "value": 0.3333
@@ -493,7 +493,7 @@
       "id": "t_p6",
       "kind": "prop",
       "model": "lily_pad",
-      "size": 0.45,
+      "size": 0.75,
       "on": {
        "line": "t_six",
        "value": 0.1667
@@ -513,7 +513,7 @@
        -0.6
       ],
       "to": [
-       -0.667,
+       -0.85,
        1.27,
        -0.6
       ],
@@ -535,7 +535,7 @@
        0.4
       ],
       "to": [
-       -1.333,
+       -1.5,
        0.67,
        0.4
       ],
@@ -548,7 +548,7 @@
       "kind": "critter",
       "species": "fox",
       "at": [
-       2.75,
+       2.35,
        0,
        1.6
       ],
@@ -1899,7 +1899,7 @@
    "size": 0.2,
    "at": [
     -3,
-    2.05,
+    1.7,
     1.2
    ],
    "hidden": true
@@ -4526,7 +4526,7 @@
         0.6,
         0.4
        ],
-       "degrees": 30,
+       "degrees": 12,
        "dur": 26
       },
       {
@@ -4622,7 +4622,8 @@
        "text": "4/4 = 1",
        "style": "count",
        "at": 1.1,
-       "dur": 2.2
+       "dur": 2.2,
+       "pos": "top"
       }
      ]
     },
@@ -4745,7 +4746,8 @@
        "text": "4/4 = 1",
        "style": "count",
        "at": 1.1,
-       "dur": 2.2
+       "dur": 2.2,
+       "pos": "top"
       }
      ]
     },
@@ -5427,6 +5429,11 @@
        "caption": true
       },
       {
+       "do": "hide",
+       "target": "nl6c",
+       "at": 0.1
+      },
+      {
        "do": "camera",
        "position": [
         0,
@@ -5567,6 +5574,21 @@
        "caption": true
       },
       {
+       "do": "hide",
+       "target": "x23",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "nl3c",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "nl6c",
+       "at": 0.2
+      },
+      {
        "do": "camera",
        "position": [
         0,
@@ -5636,6 +5658,11 @@
       {
        "do": "hide",
        "target": "x56",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "nl6c",
        "at": 0.1
       },
       {
@@ -5782,6 +5809,11 @@
        "do": "hide",
        "target": "x38",
        "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "nl3c",
+       "at": 0.1
       },
       {
        "do": "camera",
@@ -5988,6 +6020,11 @@
        "who": "robo",
        "text": "Five for five! Great placing!",
        "caption": true
+      },
+      {
+       "do": "show",
+       "target": "nl6c",
+       "at": 0.1
       },
       {
        "do": "clip",
@@ -6462,9 +6499,21 @@
      "dur": 0.75,
      "do": [
       {
+       "do": "hide",
+       "target": "nl2q"
+      },
+      {
+       "do": "hide",
+       "target": "nl3q"
+      },
+      {
+       "do": "hide",
+       "target": "nl6q"
+      },
+      {
        "do": "show",
        "target": "recap",
-       "at": 0.1
+       "at": 0.3
       },
       {
        "do": "camera",
@@ -6559,21 +6608,6 @@
       {
        "do": "hide",
        "target": "recap"
-      },
-      {
-       "do": "hide",
-       "target": "nl2q",
-       "at": 0.1
-      },
-      {
-       "do": "hide",
-       "target": "nl3q",
-       "at": 0.1
-      },
-      {
-       "do": "hide",
-       "target": "nl6q",
-       "at": 0.1
       },
       {
        "do": "show",
@@ -6763,14 +6797,14 @@
       {
        "do": "camera",
        "position": [
-        2.1,
-        1.4,
-        5
+        0,
+        2.3,
+        9
        ],
        "lookAt": [
-        2.8,
-        0.45,
-        0.4
+        0,
+        0.8,
+        0.2
        ],
        "fov": 40,
        "dur": 1.4
@@ -6844,19 +6878,14 @@
        "at": 0.6
       },
       {
-       "do": "camera",
-       "position": [
+       "do": "orbit",
+       "around": [
         0,
-        2.3,
-        9
-       ],
-       "lookAt": [
-        0,
-        0.8,
+        0.6,
         0.2
        ],
-       "fov": 40,
-       "dur": 2
+       "degrees": 10,
+       "dur": 4
       }
      ]
     },
