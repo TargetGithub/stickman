@@ -9,3 +9,4 @@ this folder (sorted by name); a model name may be defined only once across all f
 | `animals.json` | More toy animals for habitats, stories and phonics |
 | `home_school.json` | Home, health, food, school and maths props |
 | `outdoor_science.json` | Science kit, vehicles, town, playground, weather and plant props |
+| `batch3.json` | Toy Box batch 3: life cycles (frog, butterfly, bean), globe and sun lamp, heart, lungs and body model, maths tools, school and lab sets, nature critters, everyday and story props |

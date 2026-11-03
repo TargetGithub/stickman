@@ -1,17 +1,19 @@
 // Model sheet: every critter, prop and flat shape in a grid, for checking the catalog by eye.
 //   node engine3d/tools/render3d.mjs engine3d/scenes/model_sheet.js --speech off --music off --stills 1.5
 // Critters stand in the front rows, props behind them, flat shapes on the back wall. The camera frames the
-// whole grid, so it grows with the catalog.
+// whole grid, so it grows with the catalog. Other scenes can import modelSheet(d, { only: [names] }) to show
+// just some critters and props (for checking a new model file); flat shapes then show only if named too.
 
 export const meta = { seed: 3, stage: { preset: "studio", fog: null }, music: false };
 
 const COLS = 14;
 const GAP = 1.3;
 
-export default function modelSheet(d) {
-  const critters = Object.keys(d.catalog.critters);
-  const props = Object.keys(d.catalog.props);
-  const flats = Object.keys(d.catalog.shapes).filter((s) => d.catalog.shapes[s].tags?.includes("flat"));
+export default function modelSheet(d, { only } = {}) {
+  const keep = (name) => !only || only.includes(name);
+  const critters = Object.keys(d.catalog.critters).filter(keep);
+  const props = Object.keys(d.catalog.props).filter(keep);
+  const flats = Object.keys(d.catalog.shapes).filter((s) => d.catalog.shapes[s].tags?.includes("flat")).filter(keep);
   const colours = ["red", "blue", "yellow", "green", "orange", "purple", "gold", "pink", "teal"];
   let row = 0;
   const place = (list, add) => {
