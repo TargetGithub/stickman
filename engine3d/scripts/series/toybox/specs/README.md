@@ -7,9 +7,12 @@ and no JSON. The script follows `../SERIES.md` and the engine3d README.
 
 | File | Grade | Videos |
 |---|---|---|
-| [prek.md](prek.md) | Pre-K (ages 3–5) | PK-07 to PK-16 |
-| [grade1.md](grade1.md) | Grade 1 (ages 6–7) | G1-01 to G1-10 |
-| [grade2.md](grade2.md) | Grade 2 (ages 7–8) | G2-01 to G2-10 |
+| [prek.md](prek.md) | Pre-K (ages 3–5) | PK-07 to PK-21 |
+| [grade1.md](grade1.md) | Grade 1 (ages 6–7) | G1-01 to G1-15 |
+| [grade2.md](grade2.md) | Grade 2 (ages 7–8) | G2-01 to G2-15 |
+| [grade3.md](grade3.md) | Grade 3 (ages 8–9) | G3-01 to G3-05 |
+| [grade4.md](grade4.md) | Grade 4 (ages 9–10) | G4-01 to G4-05 |
+| [grade5.md](grade5.md) | Grade 5 (ages 10–11) | G5-01 to G5-05 |
 
 ## Topic allocation (no duplicates)
 

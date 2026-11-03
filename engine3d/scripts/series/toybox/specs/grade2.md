@@ -1654,3 +1654,891 @@ Notes for all ten:
     - Don't use the sink or float idea (PK-08); this episode is about changing state.
     - Don't say steam is the white cloud above a kettle; that cloud is tiny water drops. Avoid kettles and
       boiling altogether.
+
+---
+
+### G2-11 · Pizza Party Thirds
+**Grade 2 · Math / fractions · 7:30 · classroom** — share one whole fairly among three: thirds are three equal parts, and parts are only compared when the wholes are the same size.
+**Skills:** thirds_2 · **Standard:** CCSS 2.G.A.3
+
+1. **Big idea**
+   "Three equal parts of one whole are thirds. Three thirds make the whole again, and more equal parts means
+   smaller parts."
+
+2. **Learning goals**
+   - I can cut a circle and a rectangle into three equal parts and call each part one third.
+   - I can say one third, two thirds and three thirds, and I know three thirds make one whole.
+   - I can tell thirds (three equal parts) from three parts that are not equal.
+   - I can explain why a half, a third and a fourth of the same pizza get smaller, and why the wholes must be
+     the same size before we compare.
+
+3. **Hook (first 15 s)**
+   A class pizza party. One round pizza on the table, three hungry friends: Robo, Cat and Bear. Robo cuts it
+   once, straight down the middle: two pieces. Bear looks at the two pieces, then at three friends, and his
+   face drops (`feel` worried). Robo tries again and makes three pieces, but one is huge and two are tiny.
+   Cat: "Three pieces is not the same as three fair shares. So how do we do it?"
+
+4. **What makes it unique**
+   The Fair-Share Scanner: Cat lifts the slices and stacks them on top of each other. If they match exactly, a
+   green tick appears (`mark` correct); if one sticks out, a soft red cross (`mark` incorrect). Kids see
+   "equal" instead of being told it. The Same Size Whole trick is new to the series: Robo is sure his half of a
+   tiny snack pizza beats Cat's third of a giant party pizza, and the side-by-side comparison proves him wrong.
+   Thirds of one rectangle in two different shapes (tall strips and flat strips) show that equal parts can
+   look different and still be fair.
+
+5. **Cast and roles**
+   - **Robo** (host, pizza chef): makes the unfair cut and the "half always wins" mistake on purpose so kids
+     can fix him. Voice `soft` (`meta.voice`).
+   - **Cat** (sidekick, the Fair-Share Scanner): asks "but why?", stacks slices to check, keeps the rule
+     "same whole, then compare". Voice `squeaky`.
+   - **Bear** (guest, the third friend): the reason we need thirds; eats one third so kids can see two thirds
+     left. Voice `deep`.
+   - **Pig** (guest cameo, no lines): arrives late in chapter 6 so the class needs fourths; nods and hops.
+   - Every spoken line is a `say` with `who` (robo, cat, bear) so mouths move with the voice. Characters
+     stand behind or beside the table, never between the camera and the pizza.
+
+6. **Setting and look**
+   `classroom` stage (chalkboard wall, wood floor), `soft_day`. The chalkboard reads "Pizza Party!" One
+   long table (`table` prop) in the middle with plates (`plate` shape). Pizzas are `fraction_circle` objects in
+   warm cheese yellow with a tomato-red crust ring; a rectangle "flatbread tray" is a `fraction_bar`. The
+   catalog `pizza` prop appears only in the hook and the goodbye as the "real" pizza. Camera: top-down
+   demonstration shots for every cut (`shot` with height about 75°), medium two-shots for reactions, close-ups
+   for the scanner. Mood: warm, friendly, golden.
+
+7. **Storyline**
+
+   | # | Chapter | Time | What happens | Teaching move | Emotional beat |
+   |---|---|---|---|---|---|
+   | 1 | One pizza, three friends | 0:00–0:30 (30 s) | Two pieces for three friends; then three unequal pieces | Hook | Uh-oh |
+   | 2 | What is a fair share? | 0:30–1:15 (45 s) | Review: equal parts, the whole, halves (from G1-07) | Teach (review) | Confident |
+   | 3 | Cutting thirds | 1:15–2:30 (75 s) | Robo's crooked cut fails the scanner; three equal slices pass; the flatbread in thirds | Teach + explain why | Aha |
+   | 4 | One third, two thirds, three thirds | 2:30–3:30 (60 s) | Count the thirds; Bear eats one; two thirds left; three thirds make one whole | Show + try | Yum, proud |
+   | 5 | Thirds in different shapes | 3:30–4:15 (45 s) | Same flatbread cut in tall strips and in flat strips: both thirds | Show + explain why | Surprise |
+   | 6 | Halves, thirds, fourths | 4:15–5:15 (60 s) | Pig arrives: fourths; one slice of each lined up: more parts, smaller parts | Explain why | Clever |
+   | 7 | The Same Size Whole trick | 5:15–5:55 (40 s) | Tiny pizza half vs giant pizza third | Explain why | Funny twist |
+   | 8 | The Thirds chant | 5:55–6:20 (25 s) | Chant with slices sliding in and out | Practise | Joy |
+   | 9 | Challenge: Fair Share or Not? | 6:20–7:00 (40 s) | Four pictures; kids decide | Challenge | Sharp |
+   | 10 | Quiz and recap | 7:00–7:30 (30 s) | Five questions, recap, goodbye | Quiz | Proud |
+
+   Total: 450 s = 7:30.
+
+   **Chapter details**
+   - **Ch 2 review:** one pizza cut into 2 equal parts: halves. Cat lifts one half onto the other: they match.
+     "Equal parts are the same size. The whole is everything we started with."
+   - **Ch 3 cuts:** Robo's crooked cut is a half and two quarters (three parts, not equal). The scanner stacks
+     the small piece on the big one: it does not cover it (`mark` incorrect). The fair cut: three cuts from the
+     centre, like the letter Y, slices pulled out a little. Stacked, they match (`mark` correct). Then the
+     flatbread (a long rectangle) gets two cuts at equal spacing: three equal strips. Rule on the board: "3
+     equal parts = thirds. Each part is one third."
+   - **Ch 4 counting:** Cat taps each slice: "one third, two thirds, three thirds". Bear takes one slice
+     (it moves to his plate). The pizza shows two thirds left; caption "2 thirds left". Robo pushes the slice
+     back: "three thirds, one whole pizza again". Repeat with the flatbread.
+   - **Ch 5 shapes:** two identical flatbreads. One is cut into three tall strips, the other into three flat
+     strips. Robo: "These ones look different, so they can't both be thirds." Cat cuts one tall strip into
+     little squares and lays them over a flat strip: they cover it exactly. Same amount, different shape.
+   - **Ch 6 more parts:** three identical pizzas on the table, cut into 2, 3 and 4 equal parts. One slice from
+     each slides to the front and they are stacked: the half is biggest, then the third, then the fourth.
+     "More equal parts, smaller parts." Pig gets his fourth.
+   - **Ch 7 same size whole:** a tiny snack pizza (radius 0.25) and a giant party pizza (radius 0.8). Robo takes
+     a half of the tiny one; Cat takes a third of the giant one. Robo: "A half is bigger than a third, so I
+     win!" Stacked: Cat's third is much bigger. Cat: "A half is bigger than a third only when the wholes are
+     the same size."
+   - **Ch 9 challenge (all checked):** (a) a circle in 3 equal slices: thirds ✓. (b) a rectangle in 3 parts, one
+     wider than the others: not thirds ✗. (c) a square in 4 equal parts, 1 shaded: "Is this one third?" No, it
+     is one fourth; there are 4 equal parts ✗ (the "1 shaded, 3 not" trap). (d) a rectangle in 3 equal strips,
+     2 shaded: two thirds ✓.
+
+8. **Animation and staging list**
+
+   | Moment | Objects | Actions | Camera |
+   |---|---|---|---|
+   | Party opens | robo, cat, bear, `table`, `pizza` prop, letters "Pizza Party!" on the chalkboard | `show`, `clip` robo Wave, `look` bear at pizza | `shot` wide on table and cast, slow push-in |
+   | Two pieces | `fraction_circle` pz (parts 2) swaps in for the pizza prop | `move` pz#s1 and #s2 apart, `feel` bear worried | `shot` close, top-down |
+   | Crooked cut | one `half_circle` + two `quarter_circle` pieces in cheese yellow | `pop`, Cat `move`s a quarter onto the half, `mark` incorrect | Close top-down |
+   | Fair thirds | `fraction_circle` pz3 (parts 3) | `build` slices, `move` each slice out 0.12 m, stack two, `mark` correct, `sound` crystal_chime | Close top-down, then `shot` medium on Cat |
+   | Flatbread thirds | `fraction_bar` fb3 (parts 3) on the table | `build`, `callout` "one third" on #1 | `shot` close, height 60 |
+   | Counting thirds | pz3, bear, plate | `highlight` each slice in turn with `caption` count, `move` slice to Bear's plate, `nod` bear | Top-down, then medium on Bear |
+   | Whole again | pz3 | `move` slice back, `sound` ding, `caption` label "3 thirds = 1 whole" | Close |
+   | Two shapes of thirds | fb_tall (3 tall strips), fb_flat (3 flat strips), small square pieces | `move` squares over a flat strip, `mark` correct | Top-down, both bars in frame |
+   | Halves, thirds, fourths | pz2, pz3, pz4 (`fraction_circle` parts 2, 3, 4), pig | `move` one slice of each forward, stack them, `hop` pig, `callout` "half", "third", "fourth" | `shot` wide on three pizzas, then close on the stack |
+   | Same size whole | tiny pizza (radius 0.25), giant pizza (radius 0.8) | `shade` half of tiny, a third of giant, `move` both pieces together, `mark` incorrect on Robo's claim, `feel` robo surprised | `shot` medium on both pizzas, then close |
+   | Chant | pz3 | slices `move` out and back on the beat | `orbit` 40° round the table, slow |
+   | Fair or not | four cards (`plate` with fraction_bar/circle on each) | `sound` windup_click, `mark` each | `shot` medium on all four cards |
+   | Goodbye | `pizza` prop, confetti | `burst` confetti, `clip` robo Dance | Wide |
+
+9. **Experiment or hands-on activity**
+   - **Paper pizza:** cut a paper circle (a grown-up helps with scissors). Fold it so it makes three equal
+     slices is hard, so draw a Y from the centre with a grown-up's help, cut, then stack the slices to check they
+     match. Colour one third, then two thirds.
+   - **Paper strip thirds:** fold a paper strip into three like a letter (roll it into an S and line up the
+     edges). Open it: three equal parts. Fold a second strip the other way and compare shapes.
+   - **Snack time (with a grown-up):** share a quesadilla or a slice of toast into thirds. A grown-up does the
+     cutting. Ask: "Are the parts the same size? How do you know?"
+   - **Prediction:** "If we cut the same pizza into 4 instead of 3, will each slice be bigger or smaller?"
+
+10. **Interaction moments**
+    - Pause and guess (2–3 s, `windup_click`): "Is this fair?" after the crooked cut; "How much is left?" after
+      Bear eats; "Bigger or smaller?" before the fourths.
+    - Call and response: Robo: "Three the same?" Kids: "Thirds!" Robo: "Put them back?" Kids: "Whole!"
+    - Move-along: kids draw a big Y in the air with one finger to cut their own pizza into thirds.
+
+11. **Song or chant**
+    Original call-and-response chant at a steady clap. Hook line idea: "Three the same? That's thirds! All three
+    back? That's whole!" A second line adds "More parts, smaller parts". It starts in chapter 4 (first line
+    only), plays in full in chapter 8 and returns softly under the goodbye.
+
+12. **Fun fact(s)**
+    - The word "fraction" comes from a Latin word that means "to break" (chapter 3).
+    - Some pizza shops cut round pizzas into little squares instead of triangle slices, called a "tavern cut"
+      or "party cut" (chapter 5, to show that pieces can have different shapes).
+
+13. **Vocabulary and captions**
+    Labels: whole, equal parts, fair share, half, third, thirds, fourth, one third, two thirds, three thirds.
+    `count` captions while tapping slices ("1 third", "2 thirds", "3 thirds"). `subtitle` for the rules "3 equal
+    parts = thirds" and "More parts, smaller parts". Words only, no fraction notation (1/3 belongs to G3-02).
+
+14. **Quiz and recap**
+    1. How many thirds make one whole pizza? (3)
+    2. Bear ate one third of the pizza. How much is left? (two thirds)
+    3. Which is bigger: one half or one third of the same pizza? (one half)
+    4. A sandwich is cut into 3 pieces, but one piece is bigger. Are they thirds? (No, thirds must be equal.)
+    5. Is a third of a giant pizza the same size as a third of a tiny pizza? (No, the wholes are different sizes.)
+    Recap: three equal parts are thirds; three thirds make one whole; more parts means smaller parts; compare
+    only with same-size wholes. Praise: everyone holds up a fair slice; Cat: "Checked and fair."
+
+15. **Sound and music**
+    Music `happy`, gain 0.20, dipping to 0.12 under each cut and each scanner check. Voice 1.0. Effects:
+    crystal_chime (equal slices match), boing (Robo's crooked cut), windup_click (guesses), ding (correct),
+    pop (slices out), giggle (Bear's empty plate), crowd_cheer (goodbye).
+
+16. **Thumbnail and YouTube**
+    Designed thumbnails (`meta.thumbnails`), never a video frame:
+    - **a "THIRDS!"** (yellow title, left side): a big top-down pizza in three slices pulled apart with a thin
+      gap, one slice tilted up toward the camera; Cat on the right with a proud grin, Bear peeking over the
+      table edge, delighted. Warm classroom chalkboard behind, soft focus.
+    - **b "Fair Share?"** (white title with a red outline, top): two pizzas side by side, one cut fairly into
+      thirds with a green tick, one cut crookedly with a soft red cross; Robo in the middle, surprised face,
+      pointing at the crooked one.
+    - **c "1 Pizza, 3 Friends"** (orange title): Robo, Cat and Bear round one pizza, each holding an equal
+      slice, all smiling; bright playful background.
+    Title idea: "Pizza Party Thirds! Equal Parts for Kids | Halves, Thirds and Fourths | Grade 2 Math | Toy Box
+    Friends". Tags: thirds for kids, fractions for kids, equal parts, halves thirds fourths, fair share, grade 2
+    math, 2nd grade math, fraction pizza, partition shapes, math cartoon, Toy Box Friends.
+
+17. **Catalog gaps**
+    - Unequal parts: `fraction_circle` and `fraction_bar` only make equal parts. Stand-in: a `half_circle` and
+      two `quarter_circle` shapes for the crooked pizza; three `plate` pieces 0.5, 0.25 and 0.25 wide for the
+      unequal rectangle. A `sizes` list on `fraction_bar` would make this cleaner.
+    - Pizza look on a `fraction_circle`: no crust or topping dots. Stand-in: cheese-yellow `color`, a thin red
+      `torus` ring round it as the crust, a few small red `disc`s parented to each slice as pepperoni.
+    - Two-way cut of one bar (flat strips): stand-in: a `fraction_bar` with `rotation` 90° about y, so the
+      cuts run the other way.
+
+18. **Do and don't**
+    - Do say "equal parts" every time; thirds are three equal parts, not just three parts.
+    - Do keep the wholes the same size whenever two fractions are compared, and say so out loud.
+    - Don't count shaded and unshaded pieces as "1 out of 3" when there are 4 parts; count all the equal
+      parts.
+    - Don't write fraction numbers like 1/3; words only in grade 2 (the number line and notation are G3-02).
+    - Don't re-teach halves and quarters at length (G1-07); the review is under 45 s.
+    - The grown-up does all real cutting; show it on screen in the activity chapter.
+
+---
+
+### G2-12 · Quarters to a Dollar
+**Grade 2 · Math / money · 7:45 · town** — add the quarter to penny, nickel and dime, count coins starting with the biggest, and make one dollar.
+**Skills:** coins_quarters_2 · **Standard:** CCSS 2.MD.C.8
+
+1. **Big idea**
+   "A quarter is worth 25 cents, four quarters make one dollar, and we count coins starting with the one worth
+   the most."
+
+2. **Learning goals**
+   - I can name a quarter and say it is worth 25¢, and I remember the penny (1¢), nickel (5¢) and dime (10¢).
+   - I can count quarters by 25s: 25, 50, 75, 100.
+   - I can count a mix of coins by starting with the coin worth the most.
+   - I can show one dollar (100¢) in more than one way.
+
+3. **Hook (first 15 s)**
+   The town fair. A toy train waits by a sign: "Big Loop Ride: $1". Robo tips out his jar: 13 coins clink onto
+   the counter. Robo: "13 coins is 13 cents. Not enough!" He sighs (`feel` sad). Cat squints at the pile: "Coins
+   are not all worth one cent. Let's count it properly."
+
+4. **What makes it unique**
+   The Dollar Grid: a 10 × 10 grid of 100 squares is one dollar. A quarter "covers" 25 squares, and four
+   quarters fill the grid exactly, so kids see why it is called a quarter: it is one fourth of a dollar (a
+   callback to G1-07 quarters). The Coin Ladder, a number line from 0 to 100, lets a quarter take a big leap of
+   25. It is the only episode with the "biggest coin first" sorting tray and with Robo's size mistake (the
+   small dime is worth more than the big nickel).
+
+5. **Cast and roles**
+   - **Robo** (host, wants to ride the Big Loop): counts coins by how many there are, then by how big they
+     look, both on purpose. Voice `soft`.
+   - **Cat** (sidekick, coin checker): "but why is the little dime worth more?"; sorts coins biggest value
+     first. Voice `squeaky`.
+   - **Dog** (guest, train conductor at the ticket booth): announces prices, checks money at the
+     `cash_register`, sets the challenge piles. Voice `deep`.
+   - Lines use `say` with `who` (robo, cat, dog). Characters stand to the side of the counter; coins are
+     always framed with nothing in front of them.
+
+6. **Setting and look**
+   `town` stage, `soft_day`. A ticket booth: `table` with the `cash_register`, a price sign (`plate` with
+   letters). The `train_engine` and two `train_car`s on a short loop (`path`). Coins are the catalog `penny`,
+   `nickel`, `dime` and `quarter` props laid flat with value labels (`letter` "1¢", "5¢", "10¢", "25¢") parented
+   above them. The Coin Ladder is a `number_line` 0–100. The Dollar Grid is a `grid` 10 × 10 standing upright
+   behind the counter (four 5 × 5 quadrants). Camera: top-down on the counter for counting, medium on the booth, wide on the train.
+   Mood: sunny fair, bright and busy but tidy.
+
+7. **Storyline**
+
+   | # | Chapter | Time | What happens | Teaching move | Emotional beat |
+   |---|---|---|---|---|---|
+   | 1 | The Big Loop ride | 0:00–0:30 (30 s) | $1 ride; Robo's "13 coins = 13 cents" | Hook | Disappointed |
+   | 2 | Meet the coins | 0:30–1:30 (60 s) | Penny, nickel, dime review; meet the quarter; size is not value | Teach | Curious |
+   | 3 | Why "quarter"? | 1:30–2:20 (50 s) | The Dollar Grid: 100¢; a quarter covers 25; four quarters fill it | Explain why | Aha |
+   | 4 | Counting by 25s | 2:20–3:10 (50 s) | Coin Ladder leaps 25, 50, 75, 100; Small Loop 50¢, Tunnel 75¢ | Show + try | Momentum |
+   | 5 | Biggest coin first | 3:10–4:15 (65 s) | Messy count vs sorted count; Cat's 60¢ ticket; a 53¢ mix | Teach + try | Clever |
+   | 6 | The Quarter chant | 4:15–4:40 (25 s) | Chant | Practise | Joy |
+   | 7 | Robo's jar: make a dollar | 4:40–5:40 (60 s) | Sort and count Robo's 13 coins to 100¢ | Practise | Excited |
+   | 8 | Challenge: Dog's ticket booth | 5:40–6:45 (65 s) | Which piles make $1? | Challenge | Sharp |
+   | 9 | Quiz and recap | 6:45–7:30 (45 s) | Five questions, recap | Quiz | Proud |
+   | 10 | All aboard | 7:30–7:45 (15 s) | The ride, goodbye | Praise | Celebration |
+
+   Total: 465 s = 7:45.
+
+   **Coin facts used (chapter 2)**: penny 1¢ (copper colour, smooth edge), nickel 5¢ (silver, smooth edge),
+   dime 10¢ (silver, the smallest and thinnest, ridged edge), quarter 25¢ (silver, the biggest of the four,
+   ridged edge). Size test: the nickel is bigger than the dime but worth less.
+
+   **Worked counts (all checked)**
+
+   | Moment | Coins | Count aloud | Total |
+   |---|---|---|---|
+   | Ch 4 Small Loop | 2 quarters | 25, 50 | 50¢ |
+   | Ch 4 Tunnel Ride | 3 quarters | 25, 50, 75 | 75¢ |
+   | Ch 4 Big Loop | 4 quarters | 25, 50, 75, 100 | 100¢ = $1 |
+   | Ch 5 messy order | penny, quarter, nickel, dime | 1, 26, 31, 41 | 41¢ |
+   | Ch 5 sorted | quarter, dime, nickel, penny | 25, 35, 40, 41 | 41¢ (same total, easier steps) |
+   | Ch 5 Cat's ticket | 2 quarters, 1 dime | 25, 50, 60 | 60¢ |
+   | Ch 5 mix | 1 quarter, 2 dimes, 1 nickel, 3 pennies | 25, 35, 45, 50, 51, 52, 53 | 53¢ |
+   | Ch 7 Robo's jar (13 coins) | 2 quarters, 3 dimes, 3 nickels, 5 pennies | 25, 50, 60, 70, 80, 85, 90, 95, 96, 97, 98, 99, 100 | 100¢ = $1 |
+
+   **Challenge piles (chapter 8)**: (a) 4 quarters: $1 ✓. (b) 3 quarters, 2 dimes, 1 nickel: 25, 50, 75, 85,
+   95, 100 ✓. (c) 3 quarters and 2 dimes: 25, 50, 75, 85, 95 = 95¢, five cents short ✗ (Dog: "Which coin is
+   missing?" a nickel). (d) 10 dimes: 10, 20 ... 100 ✓. Bonus line: 100 pennies also make a dollar, but that
+   takes a long time to count.
+
+8. **Animation and staging list**
+
+   | Moment | Objects | Actions | Camera |
+   |---|---|---|---|
+   | Fair opens | train_engine, train_car ×2, sign "Big Loop Ride: $1" | train `path` round the loop, `sound` train_whistle | `shot` wide on train and booth |
+   | Coins tip out | jar (stand-in `cup` in `glass`), 13 coins | `drop` coins, `sound` clink, `feel` robo sad | `shot` close top-down on counter |
+   | Meet the coins | penny, nickel, dime, quarter with labels | `pop` each, `spin` to show the edge, `callout` "ridges" on dime and quarter | Close, `shot` height 70 |
+   | Size is not value | nickel and dime side by side | `grow` both 1.5× for a close look, `mark` incorrect on Robo's "nickel wins" | Close |
+   | Dollar Grid | four `grid` 5 × 5 quadrants butted together as one upright 10 × 10 grid, quarters | as each quarter flies onto a quadrant, `shade` that quadrant (all 25 squares) in its own colour, `caption` count 25, 50, 75, 100 | `shot` medium, grid fills the frame |
+   | Coin Ladder | `number_line` 0–100, step 25, minor 5; quarter | `leap` quarter along [0, 25, 50, 75, 100], `sound` boing | Side, whole line in frame |
+   | Sorting tray | four `plate` slots, labels 25¢, 10¢, 5¢, 1¢ | coins `move` into slots, `highlight` the quarter slot | Top-down |
+   | Messy vs sorted | two rows of four coins | running total `letter` updates, `mark` correct on sorted row | Top-down, both rows |
+   | Robo's jar | 13 coins | `move` into sorted rows, `highlight` each coin as counted, `caption` count | Top-down, slow push-in |
+   | Ticket bought | cash_register, ticket (`plate` "TICKET") | `turn` cash_register#drawer open, `sound` cha_ching, `pop` ticket | Medium on booth |
+   | Challenge piles | four piles on plates, labels a–d | `sound` windup_click, `mark` each pile | `shot` medium on all four piles |
+   | All aboard | train, robo, cat, dog | robo and cat `move` into cars, train `path`, `burst` confetti | Wide, then `orbit` 30° as it passes |
+
+9. **Experiment or hands-on activity**
+   - **Coin sort and count:** a grown-up gives a handful of real or play coins. Sort them into four piles,
+     biggest value first, then count: 25s, then 10s, then 5s, then 1s.
+   - **Make a dollar three ways:** with play coins, make 100¢ with quarters only, with dimes only, and with a mix.
+   - **Prediction:** "Will 3 quarters and 2 dimes be enough for a dollar?" (No, 95¢.)
+   - **Safety:** coins are small: keep them away from babies and toddlers, never put them in your mouth, and
+     wash your hands after counting real coins.
+
+10. **Interaction moments**
+    - Pause and guess (2–3 s, `windup_click`): "Which is worth more, the big nickel or the little dime?"; "What
+      comes after 50 when we count quarters?"; "Is pile c a dollar?"
+    - Call and response: Robo: "One quarter!" Kids: "Twenty-five!" Robo: "Four quarters!" Kids: "One dollar!"
+    - Move-along: kids take a giant step for each quarter (25), a medium step for a dime and a tiny step for a
+      penny.
+
+11. **Song or chant**
+    Original marching chant with a clap on each count. Hook line idea: "Twenty-five, fifty, seventy-five,
+    one whole dollar, ride time, ride!" It plays in chapter 6, returns while Robo's jar adds up in chapter 7, and
+    once more as the train leaves.
+
+12. **Fun fact(s)**
+    - The dime and the quarter have tiny ridges round their edge; the penny and nickel are smooth. You can tell
+      them apart by touch (chapter 2).
+    - The dime is the smallest and thinnest US coin, but it is worth more than a penny or a nickel (chapter 2).
+
+13. **Vocabulary and captions**
+    Labels: penny, nickel, dime, quarter, cent, cents, ¢, dollar, $1, value, total. `count` captions for every
+    running total ("25¢", "50¢" ...). `subtitle` for "4 quarters = 100¢ = $1" and "Start with the coin worth the
+    most". Write "75¢", not "$0.75" (decimals come later).
+
+14. **Quiz and recap**
+    1. How much is a quarter worth? (25¢)
+    2. How much are 3 quarters? (75¢)
+    3. How much are 1 quarter, 1 dime and 2 pennies? (25, 35, 36, 37: 37¢)
+    4. How many quarters make one dollar? (4)
+    5. Which coin do you count first, a dime or a quarter? (The quarter, because it is worth the most.)
+    Recap: a quarter is 25¢; four quarters make $1 (100¢); sort first, start with the biggest value; size does
+    not tell value. Praise: Dog punches a ticket for every viewer; Cat: "Counted, checked, all aboard."
+
+15. **Sound and music**
+    Music `bouncy`, gain 0.20, dipping to 0.12 during counting. Voice 1.0. Effects: clink (coins), boing
+    (ladder leaps), cha_ching (register), train_whistle (ride), windup_click (guesses), ding (correct totals),
+    crowd_cheer (ride).
+
+16. **Thumbnail and YouTube**
+    Designed thumbnails (`meta.thumbnails`):
+    - **a "4 = $1"** (gold title, left): four big shiny quarters fanned out in an arc, each with "25¢", a green
+      dollar bill behind them; Robo on the right, amazed (`feel` surprised); fair bunting behind.
+    - **b "Quarters!"** (white title, top): the Dollar Grid with four coloured blocks of 25 squares and a quarter
+      sitting on each block; Cat pointing, confident smile.
+    - **c "Count to $1"** (yellow title): the toy train with Robo and Cat waving from the cars, a coin trail
+      along the track; cheerful blue sky.
+    Title idea: "Quarters to a Dollar! Counting Coins for Kids | Penny, Nickel, Dime, Quarter | Grade 2 Math |
+    Toy Box Friends". Tags: counting coins, quarters for kids, money for kids, US coins, count to a dollar, grade
+    2 math, 2nd grade money, penny nickel dime quarter, coin counting, Toy Box Friends.
+
+17. **Catalog gaps**
+    - Shading one corner block of a grid: `shade` fills cells in order (rows), so 25 cells would be 2½ rows.
+      Stand-in: build the dollar grid from four 5 × 5 `grid` quadrants and shade each one whole. A `region`
+      (rows and columns) option on `shade` would be the real fix.
+    - Coin jar: stand-in: a `cup` in `glass` material (or the batch 3 `jar`).
+    - Ride ticket: stand-in: a small cream `plate` with `letter` "TICKET".
+    - Coin faces (heads and tails pictures): the coin props have no faces; the value labels are enough. Do not
+      add real portraits.
+
+18. **Do and don't**
+    - Do say the value and the name together every time ("a quarter, twenty-five cents").
+    - Do count from the biggest value down, and show that the messy order gives the same total but is harder.
+    - Don't say bigger coins are worth more; the dime proves it wrong.
+    - Don't use decimals ($0.75) or dollar notes other than the single $1 in the thumbnail and the hook sign.
+    - Don't re-teach penny, nickel and dime trades at length (G1-06); the review is one minute.
+    - Don't show coins near a mouth; keep the safety line in the activity chapter.
+
+---
+
+### G2-13 · First, Next, Then, Last
+**Grade 2 · English / reading · 7:15 · forest** — retell a story in order with signal words, and use clues to explain why a character acts.
+**Skills:** sequence_inference_2 · **Standard:** CCSS RL.2.1, RL.2.3, RL.2.5
+
+1. **Big idea**
+   "Stories happen in order, first, next, then, last, and clues in the story tell us why characters do what
+   they do."
+
+2. **Learning goals**
+   - I can put four story events in order and retell them with first, next, then and last.
+   - I can say what happens at the beginning, the middle and the end of a story.
+   - I can explain why a character does something and point to the clue that tells me.
+   - I can explain why order matters in real life, like making a sandwich.
+
+3. **Hook (first 15 s)**
+   Four picture cards fly off the story shelf and land in a jumbled row. Robo reads them in that order: "Turtle
+   says thank you to Squirrel. Then Turtle's kite gets stuck. Then Turtle finds his kite." He stops, puzzled
+   (`feel` worried). Cat: "Saying thank you before anyone helped? That can't be the right order."
+
+4. **What makes it unique**
+   The Story Stairs: four big steps labelled FIRST, NEXT, THEN, LAST. A picture card can only sit on a step
+   once the card below it is in place, and Robo climbs as the story is retold, so "you can't skip to the top"
+   becomes a physical idea. The Why Detective: Cat's magnifier zooms into a picture and a `callout` names the
+   clue (blowing leaves, short legs, an apple shared). It is the only episode that acts out one original story
+   in 3D and then asks "why".
+
+5. **Cast and roles**
+   - **Robo** (host and storyteller): reads cards in the wrong order, puts the top slice of a sandwich on first.
+     Voice `soft`.
+   - **Cat** (sidekick, the Why Detective with a magnifier): "but why did he do that?"; always names the clue.
+     Voice `squeaky`.
+   - **Turtle** (guest, the story's hero): flies a kite, gets stuck, asks for help, says thank you. Voice
+     `deep` (slow and kind).
+   - **Squirrel** (guest, no lines): the climber; chatters with the `giggle` sound and acts out the rescue.
+   - Lines use `say` with `who` (robo, cat, turtle). Characters stand beside the Story Stairs, never in front
+     of a card.
+
+6. **Setting and look**
+   `forest` stage, `soft_day`, with a gentle hill (a wide `dome` in grass green) and one tall `tree`. The story
+   is acted out in the forest; the Story Stairs (four `box` steps, each with a `letter` label) stand to the
+   left. Picture cards are `plate` cards showing a mini 3D moment (each card is a small group in front of a
+   cream card). Camera: wide on the forest for the story, medium on the stairs, close-ups through Cat's
+   magnifier for clues. Mood: breezy greens, warm and calm (no season talk: the blowing leaves are only a wind clue).
+
+7. **Storyline**
+
+   | # | Chapter | Time | What happens | Teaching move | Emotional beat |
+   |---|---|---|---|---|---|
+   | 1 | The jumbled story | 0:00–0:30 (30 s) | Cards land out of order; Robo reads nonsense | Hook | Funny, puzzled |
+   | 2 | The Story Stairs | 0:30–1:20 (50 s) | First, next, then, last; beginning, middle, end | Teach | Curious |
+   | 3 | Turtle's Windy Kite Day | 1:20–2:45 (85 s) | The story acted out in order | Show | Warm, a small worry, relief |
+   | 4 | Put it in order | 2:45–3:30 (45 s) | Kids order the cards; Robo swaps two | Try | Confident |
+   | 5 | The Why Detective | 3:30–4:40 (70 s) | Three why questions with clues; Turtle's feelings change | Explain why | Aha |
+   | 6 | The Order chant | 4:40–5:05 (25 s) | Chant on the stairs | Practise | Joy |
+   | 7 | Robo's sandwich mix-up | 5:05–5:50 (45 s) | Order matters in real life | Explain why | Silly |
+   | 8 | Challenge: What comes next? | 5:50–6:40 (50 s) | Cupcakes, Dog's bath | Challenge | Sharp |
+   | 9 | Quiz and recap | 6:40–7:15 (35 s) | Five questions, recap, goodbye | Quiz | Proud |
+
+   Total: 435 s = 7:15.
+
+   **The story (original): "Turtle's Windy Kite Day"**
+
+   | Step | Event | Clue shown on screen | Turtle's feeling |
+   |---|---|---|---|
+   | First | Turtle sees leaves blowing past his window and takes out his kite. | Leaves (`weather` leaves) blow sideways | Excited |
+   | Next | Turtle walks slowly up the hill and flies his kite high. | The kite string pulls tight | Happy |
+   | Then | A big gust pushes the kite into a tall tree. It is stuck. Turtle looks up; his legs are short and his shell is heavy. | Turtle tries to reach and can't | Worried |
+   | Last | Turtle asks Squirrel for help. Squirrel climbs up and wiggles the kite free. Turtle shares his apple slices with Squirrel. | Squirrel races up the trunk; the apple is shared | Thankful, happy |
+
+   **Why questions (chapter 5)**
+   1. Why did Turtle fly his kite today? (It was windy; the clue is the blowing leaves. Kites need wind.)
+   2. Why did Turtle ask Squirrel for help? (Squirrel is a good climber; Turtle can't climb trees.)
+   3. Why did Turtle share his apple? (To say thank you; he felt thankful.)
+   Feelings line: excited at the beginning, worried in the middle, thankful at the end (RL.2.3: how a character
+   responds to what happens).
+
+   **Real life (chapter 7)**: making a sandwich. 1. Wash your hands. 2. Take two slices of bread. 3. Put the
+   filling on one slice. 4. Put the other slice on top. Robo puts the top slice down first and then piles the
+   filling on top of it: it slides off (`boing`). Cat: "Each step needs the one before it."
+
+   **Challenge (chapter 8)**
+   - Cupcakes (show 3 steps, kids pick the last): mix the batter; pour it into cups; a grown-up bakes them;
+     what's last? (Add the frosting, once they are cool.)
+   - Dog's bath (cards jumbled, kids order): get Dog wet; rub in the soap; rinse off the bubbles; dry with a
+     towel. Robo suggests "dry first": Cat asks why that would not work.
+   - Why question: "Why did Dog shake?" (He was wet; the clue is the water drops.)
+
+8. **Animation and staging list**
+
+   | Moment | Objects | Actions | Camera |
+   |---|---|---|---|
+   | Cards fly | four cards (`plate` with mini scenes), story shelf (`box`) | `move` cards off the shelf, `drop` them in a row, `sound` whoosh | `shot` medium on the row |
+   | Jumbled read | robo, cards | `look` robo at each card, `highlight` the card being read, `feel` robo worried | Medium |
+   | Story Stairs | four `box` steps with `letter` FIRST, NEXT, THEN, LAST; labels BEGINNING, MIDDLE, END below | `build` steps bottom to top, `callout` "beginning" on step 1, "middle" on 2–3, "end" on 4 | `shot` wide, then medium |
+   | Story: first | turtle, window (`plate` frame), `weather` leaves, `kite` | leaves blow, `look` turtle at window, `feel` turtle happy, `move` kite into his hands | Wide forest, push-in |
+   | Story: next | turtle, hill (`dome`), kite | turtle walks up the hill (`path`), kite rises (`path`), string (thin `cylinder`) | Wide, low angle up the hill |
+   | Story: then | kite, `tree` | `move` kite into the tree, `wiggle` it, `feel` turtle worried, turtle `hop` (tries to reach) | `shot` medium on tree and turtle |
+   | Story: last | squirrel, kite, `apple` slices (`wedge`s) | squirrel climbs (`path` up the trunk), kite floats down, slices `move` from turtle to squirrel, `feel` both happy | Medium, then close on the shared apple |
+   | Put it in order | cards, stairs | cards `move` onto steps one by one, `mark` correct; Robo swaps two, `mark` incorrect, fix | `shot` medium on stairs |
+   | Why Detective | `magnifier`, clue spots in a card | `move` magnifier over the clue, `grow` the card 1.4×, `callout` "leaves blowing", `highlight` | Close through the lens |
+   | Chant | robo on the stairs | robo `move`s up one step per line, `clip` Jump at the top | `orbit` 30° round the stairs |
+   | Sandwich | bread slices (`plate`s), filling (`sandwich` prop parts or `plate`s) | wrong order: filling `move` off with boing; right order: stack | `shot` close, height 50 |
+   | Challenge | `cupcake` cards, Dog cards, `bathtub` | `sound` windup_click, cards `move` onto the stairs, `mark` | Medium |
+   | Goodbye | everyone at the stairs | `clip` robo Wave, `burst` stars | Wide |
+
+9. **Experiment or hands-on activity**
+   - **Story fingers:** retell a favourite story using four fingers: first (thumb), next, then, last. Then say
+     one "why" with "because" and the clue.
+   - **Four-box comic:** fold a paper in four and draw something you did today in order. Ask a grown-up to read
+     it back and guess why you did one thing.
+   - **Prediction:** before chapter 3's "then" step, ask "What do you think happens next?"
+   - **Safety:** kites only in open spaces away from trees and power lines, with a grown-up (said on screen in
+     the story chapter as a quick tip). Cooking steps in the challenge are done with a grown-up; Robo never
+     touches the oven.
+
+10. **Interaction moments**
+    - Pause and guess (2–3 s, `windup_click`): "What happens next?" before each story step; "Which card goes
+      first?"; "Why did Turtle ask Squirrel?"
+    - Call and response: Robo: "First!" Kids: "Next!" Robo: "Then!" Kids: "Last!"
+    - Move-along: kids climb four invisible stairs with their hands as the story is retold.
+
+11. **Song or chant**
+    Original stepping chant with one beat per stair. Hook line idea: "First step, next step, then the top, last
+    is where the story stops!" It plays in chapter 6 and quietly under the retell at the end of chapter 4.
+
+12. **Fun fact(s)**
+    - Squirrels can climb down a tree head first because they can turn their back feet around (chapter 3).
+    - Kites need wind to fly: moving air pushes up on the kite (chapter 5, the first clue).
+
+13. **Vocabulary and captions**
+    Labels: first, next, then, last, beginning, middle, end, order, clue, why, because. `subtitle` for each
+    story sentence as it is read (simple, up to 14 words). `title` style for the story title card.
+
+14. **Quiz and recap**
+    1. What happened first in Turtle's story? (He saw the wind and took out his kite.)
+    2. What happened right after the kite got stuck? (Turtle asked Squirrel for help; Squirrel climbed up.)
+    3. Why did Turtle ask Squirrel for help? (Squirrel can climb; Turtle can't.)
+    4. How did Turtle feel in the middle? (Worried.)
+    5. Which word comes after "next": first, then or last? (Then.)
+    Recap: stories go first, next, then, last; beginning, middle, end; clues tell us why. Praise: Turtle and
+    Squirrel fly the kite together; Cat: "Clue found, case closed."
+
+15. **Sound and music**
+    Music `calm`, gain 0.18 for the story; `playful` 0.22 for the stairs and the challenge. Voice 1.0, Turtle a
+    little slower (0.95 on his lines if per-line speed exists). Effects: whoosh (cards, gust), giggle (Squirrel),
+    boing (sandwich slip), windup_click (guesses), ding (right order), step (stair climb), crowd_cheer (end).
+
+16. **Thumbnail and YouTube**
+    Designed thumbnails (`meta.thumbnails`):
+    - **a "What's Next?"** (yellow title, top left): the four Story Stairs with picture cards, the top step
+      empty with a big "?" card hovering; Robo halfway up, curious face; forest behind.
+    - **b "First, Next, Last"** (white title with teal outline): Turtle looking up at his kite stuck in the tree,
+      a little worried; Squirrel mid-climb with a grin; soft green forest.
+    - **c "Story Order"** (orange title): Cat holding the magnifier up to the camera, one big clue (blowing
+      leaves) magnified in the lens, a sly smile.
+    Title idea: "First, Next, Then, Last! Story Order for Kids | Sequencing and Why Questions | Grade 2 Reading
+    | Toy Box Friends". Tags: sequencing for kids, story order, first next then last, beginning middle end,
+    retelling, reading comprehension, grade 2 reading, 2nd grade ELA, inference for kids, Toy Box Friends.
+
+17. **Catalog gaps**
+    - Picture cards with mini scenes: no "card" kind. Stand-in: a cream `plate` with a small `group` of shrunken
+      objects in front of it; the batch 3 `callout` labels each step.
+    - Kite string: stand-in: a thin `cylinder` between Turtle and the kite, re-placed per beat (a `pointer` with
+      `bend` 0.2 and no head would be better: a real gap, "a line between two moving objects").
+    - Apple slices: stand-in: three small `wedge` shapes in red and cream.
+    - Story shelf: stand-in: a `box` on legs.
+
+18. **Do and don't**
+    - Do show each event on screen before naming it; the picture does the telling.
+    - Do always say the clue when answering "why" ("I know because ...").
+    - Don't turn this into a cause-and-effect chain lesson with signal words (that is G4-05); keep "why" to
+      one clue at a time.
+    - Don't re-teach who and where (G1-15 story details); feelings appear only as clues to why.
+    - The stuck kite is a small problem, not danger: no falling, no crying, no high-peril music.
+    - Avoid the Lost Mitten passage in the catalog (it is for the worksheet); the episode story is original.
+
+---
+
+### G2-14 · Needs and Wants Market
+**Grade 2 · Social studies / economics · 7:30 · town** — sort needs from wants, goods from services, and choose needs first when you can't have everything.
+**Skills:** needs_wants_2 · **Standard:** C3 Framework D2.Eco.1.K-2, D2.Eco.2.K-2, D2.Eco.3.K-2 (approximate)
+
+1. **Big idea**
+   "Needs are what we must have to live and stay healthy, wants are nice extras, and when we can't have
+   everything we choose needs first."
+
+2. **Learning goals**
+   - I can name four needs: food, water, shelter and clothing that keeps us safe in the weather.
+   - I can sort things into needs and wants, and I know a want is fine to have, just not a must.
+   - I can tell goods (things you can hold) from services (work someone does for you).
+   - I can explain a choice: with only 5 tokens, I buy needs first and give up some wants.
+
+3. **Hook (first 15 s)**
+   Saturday market. Robo and Cat are getting ready for a sleep-out in a tent in the back garden tonight. Robo
+   waves his shopping list: "Balloon, kite, cupcake, a toy robot, more balloons!" Cat reads it and tilts her
+   head: "Robo, what will we drink? What will keep us warm tonight?" Robo freezes (`feel` surprised): "Oh. I
+   only wrote down fun things."
+
+4. **What makes it unique**
+   Two hands-on tests kids can use anywhere. The "Can we live without it?" test sorts needs from wants on a
+   big Needs Scale (a balance with NEED and WANT pans). The Basket Test sorts goods from services: if you can
+   put it in the basket, it's a good; a bus ride or a fixed wheel can't go in a basket, so it's a service. The
+   Five-Token Choice is the series' first look at scarcity: there is not enough for everything, so you choose.
+
+5. **Cast and roles**
+   - **Robo** (host, shopper): picks only wants at first, puts a "bus ride" in the basket; learns to choose.
+     Voice `soft`.
+   - **Cat** (sidekick, list checker): "but can we live without it?"; runs the Needs Scale. Voice `squeaky`.
+   - **Bear** (guest, market stall keeper): sells goods for tokens and also does a service (oils Robo's squeaky
+     wheel). Voice `deep`.
+   - Lines use `say` with `who` (robo, cat, bear). The cast stands beside the stall, never in front of the
+     scale or the basket.
+
+6. **Setting and look**
+   `town` stage, `soft_day`. One `market_stall` (batch 3 model) with a price board (prices in tokens). On the
+   counter: `water_jug`, `sandwich`, `apple`, `banana`, `socks`, `mittens`, `balloon`, `kite`, `cupcake`, `ball`.
+   A small tent in the back garden corner (stand-in: the `den` prop). The Needs Scale is the `balance_scale`
+   prop with NEED and WANT signs. A `basket` for the Basket Test. Tokens are yellow `disc`s with a star.
+   Camera: wide establishing shot of the market, medium on the stall, close on the scale pans and the basket.
+   Mood: sunny, friendly, tidy (one stall, not a crowded market).
+
+7. **Storyline**
+
+   | # | Chapter | Time | What happens | Teaching move | Emotional beat |
+   |---|---|---|---|---|---|
+   | 1 | Robo's shopping list | 0:00–0:30 (30 s) | A sleep-out list of only fun things | Hook | Funny |
+   | 2 | Needs: what we must have | 0:30–1:30 (60 s) | Food, water, shelter, clothing; the "live without it?" test | Teach | Thoughtful |
+   | 3 | Wants: nice extras | 1:30–2:20 (50 s) | Wants are fine; food is a need, a cupcake is a want | Teach + explain why | Reassured |
+   | 4 | The Needs Scale | 2:20–3:20 (60 s) | Sort eight things; fix Robo's two mistakes | Try | Busy, clever |
+   | 5 | Goods and services | 3:20–4:20 (60 s) | The Basket Test; Bear oils Robo's wheel | Teach | Aha |
+   | 6 | The Market chant | 4:20–4:45 (25 s) | Chant | Practise | Joy |
+   | 7 | The Five-Token Choice | 4:45–5:50 (65 s) | Not enough for everything; needs first, one want | Practise + explain why | Hard choice, then proud |
+   | 8 | Challenge: Need, Want, Good or Service? | 5:50–6:50 (60 s) | Quick-fire sorting | Challenge | Sharp |
+   | 9 | Quiz and recap | 6:50–7:20 (30 s) | Five questions, recap | Quiz | Proud |
+   | 10 | Sleep-out night | 7:20–7:30 (10 s) | The tent, water, warm socks, one balloon | Praise | Cosy |
+
+   Total: 450 s = 7:30.
+
+   **Sorting set (chapters 2–4)**
+
+   | Thing | Need or want | Why (the "live without it?" test) |
+   |---|---|---|
+   | Water jug | Need | Our bodies need water every day |
+   | Sandwich, apple, banana | Need (food) | Food gives us energy to live and grow |
+   | Tent (shelter for tonight) | Need (shelter) | Shelter keeps us safe and dry |
+   | Warm socks and mittens for a cool night | Need (clothing) | Clothes keep us warm in the weather |
+   | Balloon, kite, ball | Want | Fun, but we can live without them |
+   | Cupcake | Want | A treat; food is a need, but this treat is extra |
+
+   Robo's mistakes (chapter 4): he puts the kite on NEED ("I need it, I really, really want it!") and the
+   mittens on WANT. Cat uses the test on each: "Could you live and stay healthy without a kite? Yes. So it's a
+   want." Mittens on a cold night keep us warm: need.
+
+   **Goods and services (chapter 5)**: goods are things you can hold, buy and take home (socks, an apple, a
+   ball). Services are jobs someone does for you (oiling a squeaky wheel, a bus ride, a doctor's check-up, a
+   haircut). Basket Test: Robo tries to put "a bus ride" into the basket; the sign goes in, but the basket
+   stays empty: you can't hold a ride. Bear oils Robo's squeaky wheel: Robo pays a token for the work, not for
+   a thing.
+
+   **Five-Token Choice (chapter 7, all checked)**: prices are water 1, sandwich 2, socks 1, cupcake 1, balloon
+   1, kite 3. Robo has 5 tokens. Needs first: water 1 + sandwich 2 + socks 1 = 4 tokens. 5 − 4 = 1 token left:
+   one want, the balloon or the cupcake, not both. The kite (3) costs too much today. Cat: "Choosing means
+   giving something up. That's okay, we can save for the kite."
+
+   **Challenge (chapter 8)**: (1) a warm coat on a snowy day: need, good; (2) a video game: want, good; (3) a
+   check-up at the doctor: a service, and staying healthy is a need; (4) a skateboard: want, good; (5) a bus
+   ride to school: service.
+
+8. **Animation and staging list**
+
+   | Moment | Objects | Actions | Camera |
+   |---|---|---|---|
+   | Market opens | market_stall, bear, robo, cat, list (`plate` with `letter` lines) | `clip` robo Walking in, `pop` list items one by one | `shot` wide market, then medium on Robo |
+   | Cat reads list | list, cat | `look` cat at list, `feel` robo surprised | Medium two-shot |
+   | Four needs | water_jug, sandwich, den, socks; letters FOOD, WATER, SHELTER, CLOTHING | `pop` each with a `callout`, `highlight` each | `shot` close per item, then medium on all four |
+   | Live without it? | balloon vs water_jug | `move` each toward a `?` card, `mark` (need for water), `nod` cat | Close |
+   | Wants | balloon, kite, ball, cupcake | `pop`, `wiggle` balloon, `feel` robo happy | Medium |
+   | Needs Scale | balance_scale with NEED / WANT signs | items `move` onto pans, pan tilts (`turn` the scale's beam), Robo's kite on NEED gets `mark` incorrect, moves across | `shot` close on the pans, height 25 |
+   | Basket Test | basket, apple, socks, sign "BUS RIDE" | goods `drop` into basket with `sound` land; the bus sign hovers, `mark` incorrect, `callout` "service" | `shot` close top-down into the basket |
+   | Bear's service | bear, robo, oil can (stand-in `cylinder` + `cone`) | `move` can to Robo's wheel, `sound` squeak then stop, token `move`s to Bear | Medium |
+   | Five tokens | five token `disc`s, price tags | tokens `move` to each need one by one, running count `letter` 4 → 1 left, `highlight` the balloon and cupcake | `shot` medium on the counter, then close on the last token |
+   | Challenge | five picture cards (`plate`s) | `sound` windup_click, `mark` each, `callout` labels | Medium |
+   | Sleep-out | den, `moon`, `stars`, robo, cat | `lights` to `evening`, `stars` show, `feel` both happy | Wide, slow push-in |
+
+9. **Experiment or hands-on activity**
+   - **Flyer sort:** with a grown-up, cut pictures from a shop flyer and glue them in two columns: NEED and WANT.
+     Ask "Can we live without it?" for each one.
+   - **Basket Test at home:** walk round the house and name one good (something you can hold) and one service
+     (someone's work, like a mail carrier or a school bus).
+   - **Five-token game:** give yourself 5 counters and price five things; buy needs first and see what is left.
+   - **Prediction:** "Will 5 tokens be enough for everything on Robo's list?"
+   - **Safety:** scissors with a grown-up.
+
+10. **Interaction moments**
+    - Pause and guess (2–3 s, `windup_click`): "Need or want?" for each scale item; "Can a bus ride go in the
+      basket?"; "How many tokens are left?"
+    - Call and response: Robo: "Can we live without it?" Kids: "Yes? It's a want!" / "No? It's a need!"
+    - Move-along: kids hug themselves for a need ("keep it close") and wave a hand for a want ("nice extra").
+
+11. **Song or chant**
+    Original market-call chant with a clap and a stomp. Hook line idea: "Need it to live? Put it first! Want it
+    for fun? Wait your turn!" It plays in chapter 6 and returns as Robo spends his tokens in chapter 7.
+
+12. **Fun fact(s)**
+    - People can go weeks without food but only a few days without water, so water is one of our most important
+      needs (chapter 2). Say "only a few days", no numbers about harm.
+    - The word "economy" comes from a Greek word for running a home (chapter 7, choosing what to buy).
+
+13. **Vocabulary and captions**
+    Labels: need, want, food, water, shelter, clothing, goods, services, choice, token. `count` captions for
+    the tokens ("5", "4" ... "1 left"). `subtitle` for the two tests: "Can we live without it?" and "Can it go
+    in the basket?".
+
+14. **Quiz and recap**
+    1. Name two needs. (Any two: food, water, shelter, clothing.)
+    2. Is a balloon a need or a want? (A want.)
+    3. Is a haircut a good or a service? (A service: it's work someone does for you.)
+    4. Robo has 3 tokens: water costs 1, a sandwich 2, a kite 3. What should he buy? (Water and a sandwich.)
+    5. Is it bad to have wants? (No; wants are fine, we just choose needs first.)
+    Recap: needs keep us alive and healthy, wants are extras, goods are things, services are work, and choosing
+    means giving something up. Praise: Bear gives everyone a sticker; Cat: "Smart shopping."
+
+15. **Sound and music**
+    Music `playful`, gain 0.20, `calm` 0.16 for the sleep-out. Voice 1.0. Effects: cha_ching (token paid), land
+    (basket drops), squeak (Robo's wheel), windup_click (guesses), ding (right sorts), boing (Robo's wrong
+    sorts), crowd_cheer (end, soft).
+
+16. **Thumbnail and YouTube**
+    Designed thumbnails (`meta.thumbnails`):
+    - **a "Need or Want?"** (yellow title, top): the balance scale with a water jug on the NEED pan and a
+      balloon on the WANT pan; Robo on one side scratching his head, Cat on the other with a knowing smile.
+    - **b "Smart Shopping"** (white title, green outline): the market stall from the front, Robo holding five
+      shiny tokens, Bear behind the counter grinning; bright blue sky.
+    - **c "Goods or Services?"** (orange title): the basket with an apple and socks inside, a "bus ride" sign
+      floating above it with a soft red cross; Cat pointing.
+    Title idea: "Needs and Wants for Kids! Goods and Services at the Market | Grade 2 Social Studies | Toy Box
+    Friends". Tags: needs and wants, goods and services, economics for kids, grade 2 social studies, 2nd grade
+    social studies, making choices, scarcity for kids, shopping for kids, money choices, Toy Box Friends.
+
+17. **Catalog gaps**
+    - Tent: stand-in: the `den` prop, or a teal `pyramid` with a dark `triangle` door.
+    - Tokens: stand-in: yellow `disc`s with a small `star` on top.
+    - Oil can: stand-in: a small `cylinder` with a thin `cone` spout.
+    - Scale pans that tilt with what is on them: `balance_scale` needs its beam turned by hand each time; fine
+      for this episode.
+
+18. **Do and don't**
+    - Do say wants are okay; don't make a want sound naughty or greedy.
+    - Do use tokens, not coins: coin counting belongs to G2-12, and this episode is about choosing.
+    - Don't turn services into a community helpers lesson (reserved, community_helpers_k); three or four quick
+      examples only.
+    - Be careful with "clothing": a need is clothing that keeps us safe and warm; a fancy costume is a want.
+    - Don't show anyone without food or a home; keep it light and positive.
+    - Keep the sleep-out in the back garden with a grown-up nearby (said once).
+
+---
+
+### G2-15 · Number Pattern Machine
+**Grade 2 · Math / patterns · 7:30 · lab** — find the rule in a growing or shrinking number pattern, check it every step, continue it and fix it.
+**Skills:** number_sequences_2 · **Standard:** CCSS 2.NBT.B.8, 2.OA.C.3, 2.NBT.A.2 (approximate; rule patterns lead into 3.OA.D.9)
+
+1. **Big idea**
+   "A number pattern follows a rule, like add 3 or take away 2, and the same rule happens at every single
+   step."
+
+2. **Learning goals**
+   - I can find the rule of a pattern by checking the jump from each number to the next.
+   - I can continue a pattern and find a missing number.
+   - I can tell when a list is not a pattern with one rule (the jumps are not all the same).
+   - I can make my own pattern from a start number and a rule.
+
+3. **Hook (first 15 s)**
+   A shiny Pattern Machine (batch 3 `pattern_machine`) hums in the lab. Ping, ping, ping: number balls roll out:
+   2, 5, 8, 11. Then the machine clunks and stops. A light blinks, and the machine says in a robot voice:
+   "Next number please." Robo: "Twelve?" Buzz. Cat: "Let's find the machine's rule first."
+
+4. **What makes it unique**
+   The machine is a character with its own `robot` voice that only accepts the right next number. Every
+   pattern is shown twice: as balls on a shelf with pointer arrows labelled "+3" between them, and as equal
+   leaps on a number line, so kids see "same rule" as "same jump". Robo's glitch (he changes the rule halfway)
+   and the Broken Machine round (one wrong ball to find) make checking every step the hero skill.
+
+5. **Cast and roles**
+   - **Robo** (host, lab technician): guesses before checking, changes the rule halfway. Voice `soft`.
+   - **Cat** (sidekick, rule checker): "but why that number?"; checks every jump with a pointer. Voice
+     `squeaky`.
+   - **Pattern Machine** (a prop character): speaks short lines in the `robot` voice ("Rule accepted",
+     "Try again"); its light pulses while it talks.
+   - **Mouse** (guest, no lines, tiny lab assistant): loads the start number and rule cards into the machine,
+     squeaks (`squeak`) when it works.
+   - Lines use `say` with `who` (robo, cat, machine). The machine sits at the back left, the shelf of balls is
+     in the centre, characters at the sides.
+
+6. **Setting and look**
+   `lab` stage (white and teal, benches), `studio_bright`. The Pattern Machine on a bench with a slot for rule
+   cards and a chute. Number balls are `sphere`s with `number_block`-style digits (letters parented) in teal.
+   A long `number_line` (0–40, step 5, minor 5) runs along the front bench; a bouncing `ball` does the leaps.
+   Rule cards are `plate`s with "+3", "−2". Camera: medium on the machine, straight-on demonstration shot of the
+   shelf and line, close on each jump. Mood: clean, bright, a little sci-fi.
+
+7. **Storyline**
+
+   | # | Chapter | Time | What happens | Teaching move | Emotional beat |
+   |---|---|---|---|---|---|
+   | 1 | The jammed machine | 0:00–0:30 (30 s) | 2, 5, 8, 11 ... jam; Robo's wrong guess | Hook | Curious |
+   | 2 | Find the jump | 0:30–1:40 (70 s) | +3 each step on balls and on the number line; 14, 17 | Teach | Aha |
+   | 3 | Same rule every step | 1:40–2:30 (50 s) | Robo's glitch: 3, 6, 9, 13 | Explain why | Funny, careful |
+   | 4 | Going down | 2:30–3:20 (50 s) | 20, 18, 16, 14; 100, 95, 90, 85 | Show + try | Momentum |
+   | 5 | Missing numbers | 3:20–4:10 (50 s) | 4, 8, __, 16, 20; 7, 17, 27, 37 | Try | Confident |
+   | 6 | The Pattern chant | 4:10–4:35 (25 s) | Chant | Practise | Joy |
+   | 7 | Pattern spotlight: odd and even | 4:35–5:15 (40 s) | Add 2 from 1 or from 2 | Explain why | Wow |
+   | 8 | Make your own | 5:15–5:45 (30 s) | Mouse loads a start and a rule | Practise | Playful |
+   | 9 | Challenge: Fix the machine | 5:45–6:50 (65 s) | Three puzzles, one broken pattern | Challenge | Sharp |
+   | 10 | Quiz and recap | 6:50–7:30 (40 s) | Five questions, recap | Quiz | Proud |
+
+   Total: 450 s = 7:30.
+
+   **Patterns used (all checked)**
+
+   | Chapter | Pattern | Jumps | Rule | Next |
+   |---|---|---|---|---|
+   | 1–2 | 2, 5, 8, 11 | +3, +3, +3 | add 3 | 14, 17 |
+   | 3 (glitch) | 3, 6, 9, 13 | +3, +3, +4 | not one rule | 12 is right |
+   | 4 | 20, 18, 16, 14 | −2 each | take away 2 | 12, 10 |
+   | 4 | 100, 95, 90, 85 | −5 each | take away 5 | 80 |
+   | 5 | 4, 8, __, 16, 20 | +4 | add 4 | missing 12 |
+   | 5 | 7, 17, 27, 37 | +10 | add 10: the tens digit grows by 1, the ones digit stays 7 | 47 |
+   | 7 | 1, 3, 5, 7, 9 | +2 | add 2 from an odd start: all odd | 11 |
+   | 7 | 2, 4, 6, 8, 10 | +2 | add 2 from an even start: all even | 12 |
+   | 8 | start 6, rule +5 | +5 | 6, 11, 16, 21 (ones digit takes turns: 6, 1, 6, 1) | 26 |
+
+   **Challenge (chapter 9)**: (a) 30, 27, 24, 21, ? → take away 3 → 18. (b) 12, __, 22, 27 → add 5 → 17.
+   (c) Broken Machine: 6, 9, 12, 14, 18: jumps +3, +3, +2, +4; the 14 should be 15 (rule add 3).
+
+   Teaching move in chapter 2: Cat puts a pointer between each pair of balls and writes the jump on it. "We
+   check every jump, not just the first one." Then the same pattern on the number line: the ball leaps 2 → 5
+   → 8 → 11, every leap the same length. Prediction moment: "Where will the ball land next?" before it leaps to
+   14.
+
+8. **Animation and staging list**
+
+   | Moment | Objects | Actions | Camera |
+   |---|---|---|---|
+   | Machine runs | pattern_machine, number balls 2, 5, 8, 11 | balls `path` down the chute onto the shelf, `sound` pop each, then `wiggle` machine + `sound` clang | `shot` medium on machine and shelf |
+   | Robo's guess | robo, ball "12" | `pop` 12, `mark` incorrect, machine says "Try again" (`highlight` its light) | Medium |
+   | Find the jump | three `pointer`s with `bend` 0.3 and `callout` "+3" | `draw` each pointer in turn, `highlight` each callout | `shot` close on shelf, straight on |
+   | Number line leaps | `number_line` 0–40, `ball` | `leap` ball over [2, 5, 8, 11, 14, 17], `sound` boing per leap | Straight-on, whole line in frame |
+   | Robo's glitch | balls 3, 6, 9, 13, pointers +3, +3, +4 | `draw` pointers, `mark` incorrect on "+4", 13 `hide`, 12 `pop`, `mark` correct | Close |
+   | Going down | balls 20 → 14, pointers "−2" | leaps go left on the line, `feel` cat happy | Straight-on |
+   | Missing ball | gap in the shelf with a "?" card | `sound` windup_click, `pop` 12 into the gap, `sound` ding | Close |
+   | Tens digit spotlight | balls 7, 17, 27, 37 | `highlight` the ones digit 7 on each, `callout` "same ones digit" | `shot` close, height 15 |
+   | Odd and even | two shelves of balls; small pair dots under each (array of dots) | balls `pop`, `callout` "odd" / "even", even balls get paired dots, odd ones have one left over | `shot` medium on both shelves |
+   | Make your own | mouse, rule card "+5", start card "6" | mouse `move`s cards into the slot, `sound` squeak, balls roll out | Medium on machine |
+   | Fix the machine | broken row 6, 9, 12, 14, 18 | `draw` pointers, `highlight` 14, `mark` incorrect, swap to 15, machine "Rule accepted" | Close, then `orbit` 25° round the machine |
+   | Goodbye | confetti from the chute | `burst`, `clip` robo Dance | Wide |
+
+9. **Experiment or hands-on activity**
+   - **Block towers:** build towers 2, 4, 6 blocks tall. Predict the next tower, then build it. Try towers with
+     the rule "add 3": 1, 4, 7.
+   - **Pattern hunt:** look at house numbers on one side of a street (often 2, 4, 6 or 1, 3, 5) or a calendar
+     column (each number is 7 more than the one above).
+   - **Make a pattern for a grown-up:** pick a start and a rule, say four numbers, and let them find your rule.
+   - **Safety:** small blocks away from babies; look at house numbers with a grown-up, from the pavement.
+
+10. **Interaction moments**
+    - Pause and guess (2–3 s, `windup_click`): "What's the jump?"; "Where will the ball land?"; "Which ball is
+      broken?"
+    - Call and response: Robo: "Check the jump!" Kids: "Every step!"
+    - Move-along: kids jump forward three small hops for "add 3" and step back two for "take away 2".
+
+11. **Song or chant**
+    Original machine-beat chant with beeps on the off beat. Hook line idea: "Start, jump, the same jump again,
+    check every step and you'll know the plan!" It plays in chapter 6 and, shortened, before each challenge.
+
+12. **Fun fact(s)**
+    - Calendars hide a pattern: going down one row on a calendar adds 7, because a week has 7 days (chapter 5).
+    - On many streets, houses on one side have odd numbers and the other side even numbers (chapter 7).
+
+13. **Vocabulary and captions**
+    Labels: pattern, rule, jump, add, take away, next, missing, odd, even, check. `callout`s on every jump
+    ("+3", "−2"). `count` captions as balls roll out. `subtitle` "Same rule every step".
+
+14. **Quiz and recap**
+    1. 10, 14, 18, 22, ? (26; add 4)
+    2. What is the rule: 50, 40, 30, 20? (Take away 10.)
+    3. 5, 8, __, 14 (11; add 3)
+    4. Is 2, 4, 7, 9 a pattern with one rule? (No: the jumps are +2, +3, +2.)
+    5. Start at 1 and add 2: 1, 3, 5, 7. Are they odd or even? (All odd.)
+    Recap: find the jump, check every step, then continue or fill the gap; a rule can add or take away.
+    Praise: the machine plays a happy tune and says "Rule accepted"; Cat: "Checked every step."
+
+15. **Sound and music**
+    Music `playful`, gain 0.20, dipping to 0.12 while jumps are checked. Voice 1.0; the machine's lines in the
+    `robot` timbre (short, 3–6 words). Effects: pop (balls), boing (leaps), clang (jam), windup_click
+    (guesses), ding (right), robot_beep (machine thinks), squeak (Mouse), crowd_cheer (end).
+
+16. **Thumbnail and YouTube**
+    Designed thumbnails (`meta.thumbnails`):
+    - **a "What's Next?"** (yellow title, right): the Pattern Machine with balls 2, 5, 8, 11 on the shelf and a
+      glowing "?" ball in the chute; Cat leaning in, curious; teal lab glow.
+    - **b "+3 +3 +3"** (white title, teal outline): curved pointer arrows over four balls on a number line,
+      the bouncing ball mid-leap; Robo amazed.
+    - **c "Find the Rule!"** (orange title): Mouse popping a rule card into the machine, Robo giving a thumbs up.
+    Title idea: "Number Pattern Machine! Find the Rule in Number Patterns | Add and Take Away | Grade 2 Math |
+    Toy Box Friends". Tags: number patterns, find the rule, growing patterns, number sequences, skip counting,
+    odd and even, grade 2 math, 2nd grade math, what comes next, Toy Box Friends.
+
+17. **Catalog gaps**
+    - A talking prop: lip-sync works on critters and face shapes, not on a prop. Stand-in: `highlight` pulses on
+      the machine's light (or a small `shape` with `face: true` on its front panel) while it speaks. A
+      "speaking light" option for props would be the real fix.
+    - Number balls: stand-in: teal `sphere`s with a `letter` parented on the front.
+    - Chute: stand-in: a tilted `tube`; balls travel with `path`.
+
+18. **Do and don't**
+    - Do check every jump on screen; never find a rule from the first two numbers only.
+    - Don't use doubling or other multiply patterns (1, 2, 4, 8); keep rules to add or take away.
+    - Don't re-teach plain skip counting from 0 (G1-14) or hundreds counting (G2-04); start patterns from other
+      numbers and use rules like +3, +4, −2.
+    - Don't call the repeating colour patterns of PK-06 "number patterns"; this episode is about growing and
+      shrinking numbers.
+    - Keep numbers within 100.

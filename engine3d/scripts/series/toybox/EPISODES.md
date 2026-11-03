@@ -4,7 +4,7 @@
      `catalog/education/skills.json`. Do not edit by hand: change episodes.json (status, render, subject, planned
      specs, ideas) or the scripts, then run the tool. `cd engine3d && npm test` fails when this file is stale. -->
 
-40 episodes: 0 spec, 0 scripted, 40 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
+70 episodes: 30 spec, 0 scripted, 40 rendered, 0 uploaded. Status moves spec → scripted → rendered → uploaded.
 
 Render locations: `disk1:` = `/Volumes/DISK1MAC/AI Backup files - Youtube/Toybox`; `out:` = `out/series3d/toybox`.
 
@@ -19,7 +19,7 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | bb03 | Goodnight, Little Star | Babies | Music / bedtime | – | `bb03_goodnight_stars.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb03_goodnight_stars |
 | bb04 | Black and White Shapes | Babies | Shapes (sensory) | `basic_shapes_prek` | `bb04_contrast_shapes.json` | rendered | disk1:PREK-INITIAL VIDEOS/bb04_contrast_shapes |
 
-## Pre-K (16)
+## Pre-K (21)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
@@ -39,8 +39,13 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | pk14 | Where Is Duck? | Pre-K | Math | `position_words_prek` | `pk14_where_is_duck.json` | rendered | disk1:PREK-PLAYLIST/pk14_where_is_duck |
 | pk15 | How Do You Feel? | Pre-K | Social-emotional | `feelings_prek`, `listening_prek` | `pk15_how_do_you_feel.json` | rendered | disk1:PREK-PLAYLIST/pk15_how_do_you_feel |
 | pk16 | Healthy Habits: Wash, Brush, Sleep | Pre-K | Health | `healthy_habits_prek` | `pk16_healthy_habits.json` | rendered | out:pk16_healthy_habits |
+| pk17 | Letters M to S | Pre-K | English | `capital_letters_prek`, `letter_look_alikes_prek` | spec: specs/prek.md PK-17 | spec | – |
+| pk18 | Dot Dice: Zero to Five | Pre-K | Math | `count_to_5_prek`, `number_order_prek` | spec: specs/prek.md PK-18 | spec | – |
+| pk19 | Lines and Curves | Pre-K | Handwriting readiness | `prewriting_strokes_prek` | spec: specs/prek.md PK-19 | spec | – |
+| pk20 | Rhyme Time | Pre-K | English | `rhyming_k` | spec: specs/prek.md PK-20 | spec | – |
+| pk21 | Alive or Not? | Pre-K | Science | `living_things_k` | spec: specs/prek.md PK-21 | spec | – |
 
-## Grade 1 (10)
+## Grade 1 (15)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
@@ -54,8 +59,13 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g108 | Four Seasons Tree | Grade 1 | Science | `weather_seasons_1` | `g108_four_seasons_tree.json` | rendered | disk1:GRADE1-PLAYLIST/g108_four_seasons_tree |
 | g109 | Shadow Puppets and Humming Strings | Grade 1 | Science | `nonfiction_facts_1` | `g109_shadows_and_sounds.json` | rendered | disk1:GRADE1-PLAYLIST/g109_shadows_and_sounds |
 | g110 | Town Rules and Good Citizens | Grade 1 | Social studies | `rules_citizenship_1` | `g110_town_rules.json` | rendered | disk1:GRADE1-PLAYLIST/g110_town_rules |
+| g111 | Blend Bridges | Grade 1 | English | `blends_1` | spec: specs/grade1.md G1-11 | spec | – |
+| g112 | Naming Words and Doing Words | Grade 1 | English | `nouns_verbs_1` | spec: specs/grade1.md G1-12 | spec | – |
+| g113 | Sentence Builders | Grade 1 | English | `sentences_1` | spec: specs/grade1.md G1-13 | spec | – |
+| g114 | Skip Count Parade | Grade 1 | Math | `skip_count_patterns_1` | spec: specs/grade1.md G1-14 | spec | – |
+| g115 | Story Detectives | Grade 1 | English | `story_details_1` | spec: specs/grade1.md G1-15 | spec | – |
 
-## Grade 2 (10)
+## Grade 2 (15)
 
 | ID | Title | Grade | Subject | Skills | Script | Status | Render location |
 |---|---|---|---|---|---|---|---|
@@ -69,6 +79,41 @@ Update a status: `node engine3d/tools/episodes.mjs --set <id> <status> [location
 | g208 | Habitat Hop | Grade 2 | Science | `habitats_2` | `g208_habitat_hop.json` | rendered | disk1:GRADE2-PLAYLIST/g208_habitat_hop |
 | g209 | Treasure Map Quest | Grade 2 | Social studies | `maps_2` | `g209_treasure_map_quest.json` | rendered | disk1:GRADE2-PLAYLIST/g209_treasure_map_quest |
 | g210 | Melt, Freeze, Fizz! | Grade 2 | Science | `states_of_matter_2` | `g210_melt_freeze_fizz.json` | rendered | disk1:GRADE2-PLAYLIST/g210_melt_freeze_fizz |
+| g211 | Pizza Party Thirds | Grade 2 | Math | `thirds_2` | spec: specs/grade2.md G2-11 | spec | – |
+| g212 | Quarters to a Dollar | Grade 2 | Math | `coins_quarters_2` | spec: specs/grade2.md G2-12 | spec | – |
+| g213 | First, Next, Then, Last | Grade 2 | English | `sequence_inference_2` | spec: specs/grade2.md G2-13 | spec | – |
+| g214 | Needs and Wants Market | Grade 2 | Social studies | `needs_wants_2` | spec: specs/grade2.md G2-14 | spec | – |
+| g215 | Number Pattern Machine | Grade 2 | Math | `number_sequences_2` | spec: specs/grade2.md G2-15 | spec | – |
+
+## Grade 3 (5)
+
+| ID | Title | Grade | Subject | Skills | Script | Status | Render location |
+|---|---|---|---|---|---|---|---|
+| g301 | Array Garden | Grade 3 | Math | `times_tables_3`, `missing_factor_3` | spec: specs/grade3.md G3-01 | spec | – |
+| g302 | Fractions on a Number Line | Grade 3 | Math | `fractions_3` | spec: specs/grade3.md G3-02 | spec | – |
+| g303 | Area and Perimeter Playground | Grade 3 | Math | `area_perimeter_3` | spec: specs/grade3.md G3-03 | spec | – |
+| g304 | Word Builder Workshop | Grade 3 | English | `prefixes_suffixes_3` | spec: specs/grade3.md G3-04 | spec | – |
+| g305 | Life Cycles | Grade 3 | Science | `life_cycles_3` | spec: specs/grade3.md G3-05 | spec | – |
+
+## Grade 4 (5)
+
+| ID | Title | Grade | Subject | Skills | Script | Status | Render location |
+|---|---|---|---|---|---|---|---|
+| g401 | Equivalent Fractions Bakery | Grade 4 | Math | `equivalent_fractions_4` | spec: specs/grade4.md G4-01 | spec | – |
+| g402 | Tenths Track | Grade 4 | Math | `decimals_tenths_4` | spec: specs/grade4.md G4-02 | spec | – |
+| g403 | Angle Explorers | Grade 4 | Math | `angles_4` | spec: specs/grade4.md G4-03 | spec | – |
+| g404 | Spinning Earth | Grade 4 | Science | `earth_space_4` | spec: specs/grade4.md G4-04 | spec | – |
+| g405 | Chain Reaction | Grade 4 | English | `cause_effect_4` | spec: specs/grade4.md G4-05 | spec | – |
+
+## Grade 5 (5)
+
+| ID | Title | Grade | Subject | Skills | Script | Status | Render location |
+|---|---|---|---|---|---|---|---|
+| g501 | Adding Fractions with Unlike Denominators | Grade 5 | Math | `fraction_operations_5` | spec: specs/grade5.md G5-01 | spec | – |
+| g502 | Powers of Ten Elevator | Grade 5 | Math | `powers_of_ten_5` | spec: specs/grade5.md G5-02 | spec | – |
+| g503 | Volume Box Factory | Grade 5 | Math | `volume_conversion_5` | spec: specs/grade5.md G5-03 | spec | – |
+| g504 | Body Systems Tour | Grade 5 | Science | `body_systems_5` | spec: specs/grade5.md G5-04 | spec | – |
+| g505 | Ecosystem Energy | Grade 5 | Science | `ecosystems_5` | spec: specs/grade5.md G5-05 | spec | – |
 
 ## Compilations
 
@@ -92,31 +137,31 @@ for the next batches (`ideas` in episodes.json). Pick the next episodes from her
 
 ### Pre-K
 
-- Skills not covered: `first_words_prek` (Trace a first sight word); `prewriting_strokes_prek` (Trace lines and simple shapes to build pencil control); `simple_mazes_prek` (Find the way through a small maze).
+- Skills not covered: `first_words_prek` (Trace a first sight word); `simple_mazes_prek` (Find the way through a small maze).
 - Weather words for pre-K (kept apart from G1-08 seasons)
 - A pre-K mix 2 compilation from pk07-pk16
 
 ### K
 
-- Skills not covered: `rhyming_k` (Find words that rhyme); `lowercase_letters_k` (Trace lowercase letters); `word_families_k` (Read and find words in a word family); `sight_words_k` (Read kindergarten sight words in sentences); `decodable_story_k` (Read a very short decodable story and answer questions); `copy_words_k` (Trace a short word on handwriting lines); `number_line_10_k` (Fill in missing numbers to 10); `add_within_10_k` (Add within 10); `sub_within_10_k` (Subtract within 10); `make_ten_k` (Find the partner that makes 10); `teen_numbers_k` (See teen numbers as ten and some ones); `pennies_k` (Count pennies); `living_things_k` (Tell living from non-living things); `community_helpers_k` (Know community helpers and their jobs); `odd_one_out_k` (Sort things and find the one that does not belong); `dot_to_dot_k` (Join dots in order to 15).
+- Skills not covered: `lowercase_letters_k` (Trace lowercase letters); `word_families_k` (Read and find words in a word family); `sight_words_k` (Read kindergarten sight words in sentences); `decodable_story_k` (Read a very short decodable story and answer questions); `copy_words_k` (Trace a short word on handwriting lines); `number_line_10_k` (Fill in missing numbers to 10); `add_within_10_k` (Add within 10); `sub_within_10_k` (Subtract within 10); `make_ten_k` (Find the partner that makes 10); `teen_numbers_k` (See teen numbers as ten and some ones); `pennies_k` (Count pennies); `community_helpers_k` (Know community helpers and their jobs); `odd_one_out_k` (Sort things and find the one that does not belong); `dot_to_dot_k` (Join dots in order to 15).
 - No K-only episodes yet: K skills are taught inside pre-K and grade 1 episodes
 
 ### Grade 1
 
-- Skills not covered: `blends_1` (Find words that start with a blend); `sight_words_1` (Read first-grade sight words in sentences); `story_details_1` (Recall details and feelings in a short story); `copy_sentence_1` (Copy a short sentence with spaces between words); `nouns_verbs_1` (Tell naming words from action words); `sentences_1` (Start sentences with a capital and end with a mark); `skip_count_patterns_1` (Continue number patterns counting by 2s).
+- Skills not covered: `sight_words_1` (Read first-grade sight words in sentences); `copy_sentence_1` (Copy a short sentence with spaces between words).
 
 ### Grade 2
 
-- Skills not covered: `sight_words_2` (Read second-grade sight words in sentences); `sequence_inference_2` (Put story events in order and explain why a character acts); `main_idea_2` (Find the main idea of a nonfiction text); `write_sentences_2` (Write two or three sentences about a prompt); `thirds_2` (Name halves, thirds and quarters); `coins_quarters_2` (Count coins with quarters up to a dollar); `needs_wants_2` (Needs and wants, goods and services); `number_sequences_2` (Find the rule in a number sequence).
+- Skills not covered: `sight_words_2` (Read second-grade sight words in sentences); `main_idea_2` (Find the main idea of a nonfiction text); `write_sentences_2` (Write two or three sentences about a prompt).
 
 ### Grade 3
 
-- Skills not covered: `prefixes_suffixes_3` (Use prefixes and suffixes to read new words); `spelling_3` (Find and spell grade 3 words); `theme_character_3` (Describe a character and find a story's lesson); `text_evidence_3` (Answer with facts from a nonfiction text); `paragraph_3` (Write a short paragraph with a topic sentence); `add_3digit_3` (Add three-digit numbers with regrouping); `sub_3digit_3` (Subtract three-digit numbers with regrouping); `times_tables_3` (Multiplication facts to 10 x 10); `division_facts_3` (Division facts within 100); `missing_factor_3` (Find a missing factor); `word_problems_3` (Solve one- and two-step story problems); `fractions_3` (Understand and compare unit fractions); `place_value_4digit_3` (Write four-digit numbers in expanded form); `time_minute_3` (Tell time to the minute and work out elapsed time); `money_dollars_3` (Count coins and dollar notes); `area_perimeter_3` (Name shapes by attributes; find area and perimeter); `past_tense_3` (Use regular and irregular past-tense verbs); `synonyms_antonyms_3` (Find synonyms and antonyms); `matter_3` (Solids, liquids and gases); `communities_3` (Local government and kinds of communities); `riddles_3` (Solve riddles by careful reading); `big_mazes_3` (Solve a large maze).
+- Skills not covered: `spelling_3` (Find and spell grade 3 words); `theme_character_3` (Describe a character and find a story's lesson); `text_evidence_3` (Answer with facts from a nonfiction text); `paragraph_3` (Write a short paragraph with a topic sentence); `add_3digit_3` (Add three-digit numbers with regrouping); `sub_3digit_3` (Subtract three-digit numbers with regrouping); `division_facts_3` (Division facts within 100); `word_problems_3` (Solve one- and two-step story problems); `place_value_4digit_3` (Write four-digit numbers in expanded form); `time_minute_3` (Tell time to the minute and work out elapsed time); `money_dollars_3` (Count coins and dollar notes); `past_tense_3` (Use regular and irregular past-tense verbs); `synonyms_antonyms_3` (Find synonyms and antonyms); `matter_3` (Solids, liquids and gases); `communities_3` (Local government and kinds of communities); `riddles_3` (Solve riddles by careful reading); `big_mazes_3` (Solve a large maze).
 
 ### Grade 4
 
-- Skills not covered: `word_roots_4` (Use Greek and Latin roots to work out meanings); `spelling_4` (Find and spell grade 4 words); `problem_solution_4` (Find the problem and solution and describe a character); `cause_effect_4` (Explain causes and effects with text evidence); `opinion_writing_4` (Write an opinion with reasons); `add_sub_4digit_4` (Add and subtract four-digit numbers); `multi_digit_mul_4` (Multiply up to two digits by two digits); `remainders_4` (Divide with remainders); `long_division_4` (Long division by a one-digit divisor); `decimals_tenths_4` (Add and subtract decimals to tenths); `equivalent_fractions_4` (Shade equivalent fractions); `place_value_large_4` (Read and expand numbers to 99,999); `angles_4` (Classify angles and lines); `homophones_4` (Use the right homophone); `parts_of_speech_4` (Name nouns, verbs, adjectives and adverbs); `earth_space_4` (Earth's motion, the solar system and weathering); `geography_4` (Continents, oceans and landforms); `analogies_4` (Complete word analogies).
+- Skills not covered: `word_roots_4` (Use Greek and Latin roots to work out meanings); `spelling_4` (Find and spell grade 4 words); `problem_solution_4` (Find the problem and solution and describe a character); `opinion_writing_4` (Write an opinion with reasons); `add_sub_4digit_4` (Add and subtract four-digit numbers); `multi_digit_mul_4` (Multiply up to two digits by two digits); `remainders_4` (Divide with remainders); `long_division_4` (Long division by a one-digit divisor); `place_value_large_4` (Read and expand numbers to 99,999); `homophones_4` (Use the right homophone); `parts_of_speech_4` (Name nouns, verbs, adjectives and adverbs); `geography_4` (Continents, oceans and landforms); `analogies_4` (Complete word analogies).
 
 ### Grade 5
 
-- Skills not covered: `context_clues_5` (Work out new words from context clues); `spelling_5` (Find and spell grade 5 words); `theme_point_of_view_5` (Find the theme and point of view of a story); `main_idea_evidence_5` (Explain the main idea of a nonfiction text with evidence); `essay_5` (Plan and write an informative paragraph); `word_problems_5` (Solve multi-step problems with decimals and fractions); `negative_numbers_5` (Count back past zero on a number line); `multi_digit_mul_5` (Multiply a three-digit number by a two-digit number); `two_digit_divisors_5` (Long division with a two-digit divisor); `decimals_hundredths_5` (Add and subtract decimals to hundredths); `powers_of_ten_5` (Multiply by 10, 100 and 1,000); `fraction_operations_5` (Add, subtract and multiply fractions); `volume_conversion_5` (Find volume and convert units); `figurative_language_5` (Explain similes, metaphors and idioms); `body_systems_5` (Human body systems); `ecosystems_5` (Food chains, producers and consumers); `economics_5` (Budgets, supply and demand); `deduction_5` (Reason from clues to a conclusion); `huge_mazes_5` (Solve a very large maze).
+- Skills not covered: `context_clues_5` (Work out new words from context clues); `spelling_5` (Find and spell grade 5 words); `theme_point_of_view_5` (Find the theme and point of view of a story); `main_idea_evidence_5` (Explain the main idea of a nonfiction text with evidence); `essay_5` (Plan and write an informative paragraph); `word_problems_5` (Solve multi-step problems with decimals and fractions); `negative_numbers_5` (Count back past zero on a number line); `multi_digit_mul_5` (Multiply a three-digit number by a two-digit number); `two_digit_divisors_5` (Long division with a two-digit divisor); `decimals_hundredths_5` (Add and subtract decimals to hundredths); `figurative_language_5` (Explain similes, metaphors and idioms); `economics_5` (Budgets, supply and demand); `deduction_5` (Reason from clues to a conclusion); `huge_mazes_5` (Solve a very large maze).

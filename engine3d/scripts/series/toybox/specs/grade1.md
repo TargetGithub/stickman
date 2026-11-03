@@ -1,4 +1,4 @@
-# Grade 1 video specs (G1-01 to G1-10)
+# Grade 1 video specs (G1-01 to G1-15)
 
 These are the ten grade 1 specs for the "Toy Box Friends" engine3d series (ages 6–7). Each spec says what
 the video teaches and how it should feel. It is not a script: there is no final dialogue and no JSON. The
@@ -22,6 +22,11 @@ story problem → model → try together → quiz. Every video is **Made for kid
 | G1-08 | Four Seasons Tree | Science / weather | A fast-forward button | One tree, one camera spot, a whole year; Bear sleeps through winter | 6:15 |
 | G1-09 | Shadow Puppets and Humming Strings | Science experiment | Guess the mystery shadow | A two-act show (light, then sound) and rice that dances to a sound | 6:05 |
 | G1-10 | Town Rules and Good Citizens | Social studies | "What if there were no rules?" | The animals hold a real vote and Frog loses like a good sport | 6:05 |
+| G1-11 | Blend Bridges | English / phonics | Frog splashes off drifting stepping stones | Two sound stones lock into a bridge only when said fast; Frog's own name is a blend | 6:10 |
+| G1-12 | Naming Words and Doing Words | English / grammar | "Action!" and nothing happens | The Freeze Camera: naming words stay, doing words stop | 5:50 |
+| G1-13 | Sentence Builders | English / writing | A wobbly sentence beam drops its last word | Each rule has a visible job; one sentence built with three end marks | 6:00 |
+| G1-14 | Skip Count Parade | Math | Twenty socks and Frog counting by ones | The parade street is the number line; three jump sizes land on the same 10 | 6:15 |
+| G1-15 | Story Detectives | English / reading | A detective badge and a hat blowing past | The Look Back lens proves each answer; "Not in the story!" for Frog's made-up details | 6:20 |
 
 Running jokes (one per episode, never reused): G1-01 Frog wants his name in the 3-letter hut; G1-02 Frog
 says "shh" far too loudly; G1-03 Frog over-jumps into the space puddle; G1-04 Frog counts by ones and falls
@@ -1570,3 +1575,851 @@ confetti. Recap: "Rules keep us safe, fair and kind, and good citizens help thei
   short job line.
 - Show that losing a vote is okay and that the group's choice is respected.
 - Pacing: count each vote with a full beat (about 0.8 s) so kids can count along.
+
+---
+
+## Batch 3 (G1-11 to G1-15)
+
+The five batch 3 grade 1 specs keep the template, pacing and running-joke rule above, and design with the
+batch 3 building blocks in [batch3.md](batch3.md): `shot` and `orbit` for the camera, `say` with `who` for
+lip-sync, `look`, `mark`, `highlight`, `callout`, `pointer`, `number_line` with `leap`, `array`, `build`,
+the `classroom`, `pond` and `forest` stages, and the new models in `catalog/models/batch3.json`. Voices:
+Robo `soft` (the series host voice), Frog `squeaky`; guests as named. Every line names its speaker with
+`who`. Letter sounds are `ph_*` sound cues, never `say`.
+
+Running jokes (new, never reused): G1-11 Frog says the two sounds too slowly and the stepping stones drift
+apart (splash!); G1-12 Frog cannot stay still when the Freeze Camera clicks; G1-13 Frog reads a sentence
+with no end mark and cannot stop hopping; G1-14 Frog wants to count "by a million"; G1-15 Frog adds made-up
+details to the story ("and then a dragon came!").
+
+---
+
+### G1-11 · Blend Bridges: bl, cr, st and friends
+**Grade 1 · English / phonics · 6:10 · pond (three little islands joined by stepping stones)**
+**Skills:** blends_1 · **Standard:** CCSS RF.1.2.b (blend sounds, including consonant blends, into words), RF.1.3 (approximate)
+
+#### 1. Big idea
+In a blend, two consonants sit side by side and you still hear both sounds, said fast: f-r, fr, frog.
+
+#### 2. Learning goals
+- I can hear the two sounds in a blend at the start of a word (fl, cr, st).
+- I can blend the two sounds fast and then read the whole word (sl + ide, slide).
+- I can tell a blend (both sounds, s-t) from a digraph (one new sound, sh).
+- I can change the blend to make a new word (block, clock, flock).
+
+#### 3. Hook (first 15 s)
+Frog sits on a lily pad, staring at an island with a big flower on it. Between him and the island float
+two stepping stones with letters on them: **f** and **l**. Frog hops onto f and says "fff..." then waits...
+"lll". The stones drift apart: splash! Frog pops up, dripping: "I meant to do that!" Robo: "Frog, those two
+sounds want to be said together, fast. That's a blend. Let's build some bridges!"
+
+#### 4. What makes it unique
+**Sounds become bridges.** Each blend is two stepping stones. Said slowly with a gap, they drift apart (and
+Frog splashes). Said fast, they slide together and lock into a little bridge plank, and Frog hops across
+to the picture on the island. The letters keep their own colours on the plank, which shows the key idea:
+in a blend you still hear both letters. In the digraph check, s and h fuse into one new glowing tile (a
+callback to G1-02), so kids see the difference. Pay-off: Frog finds out his own name starts with a blend.
+
+#### 5. Cast and roles
+| Who | Voice | Role in this episode |
+|---|---|---|
+| Robo | `soft` | Host and bridge builder. Plays the two sounds slowly, then fast, then reads the word. Once reads "st" as one squashed sound; kids tell him to say both. |
+| Frog | `squeaky` | Sidekick. Running joke: says sounds too slowly and splashes. Pay-off in chapter 4: "F-r... fr... FROG! My name has a blend!" Then he never splashes again. |
+| Sheep (guest) | `soft` | The bridge keeper on the third island. Asks "Say the blend to cross!" and brings her two friends for the "flock" finale. |
+
+All lines use `who` (robo, frog, sheep). Frog `look`s at each stone as its sound plays.
+
+#### 6. Setting and look
+`pond` stage, `soft_day` light. Three islands (low green `disc`s in the water): the **L island** (bl, fl,
+cl, pl), the **R island** (fr, cr, dr, tr) and the **S island** (st, sn, sl, sw). Each blend has two stone
+`disc`s with `letter`s: the first letter blue, the second orange, so kids always see two letters. The
+picture for each word waits on the island edge. Bridge planks are wooden `plate`s that slide in under the
+locked stones. Camera: an opening wide `shot` over the whole pond (height 35°), a side-on medium for each
+crossing so the hop reads left to right like the word, a close `shot` on the stones when they lock, and
+one `orbit` round each island when it is complete. Mood: fresh greens, sparkling water, calm and bright.
+
+#### 7. Storyline
+| # | Chapter | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | Frog's splash | 0:00–0:25 (25 s) | Frog says f... l too slowly; the stones drift apart; splash. Robo: blends are said together, fast. | Hook | Funny, curious |
+| 2 | Two sounds, still two | 0:25–1:15 (50 s) | s and t: /s/ /t/, then fast: st. Both sounds are still there. Then s and h: they fuse into one new sound, sh. "A blend keeps both sounds. A digraph makes a new one." | Teach, compare | "Aha" |
+| 3 | The L bridges: bl, fl, cl, pl | 1:15–2:15 (60 s) | bl-ock, fl-ower, cl-ock, pl-ant. Each: slow, fast, word, bridge, hop. Frog splashes once on fl, then gets it. | Model, then try | Rhythm, giggles |
+| 4 | The R bridges: fr, cr, dr, tr | 2:15–3:15 (60 s) | fr-og (Frog's pay-off!), cr-ayon, dr-um, tr-ain. The kids say each blend before the stones lock. | Try together | Pride (Frog) |
+| 5 | The S bridges: st, sn, sl, sw | 3:15–4:10 (55 s) | Sheep keeps the gate: st-ar, sn-owman, sl-ide, sw-ing. Robo squashes st into one sound; kids fix him. | Try together, fix Robo | Playful |
+| 6 | Swap the blend | 4:10–4:50 (40 s) | The block bridge: swap bl for cl: clock! Swap cl for fl: flock! Sheep calls two friends: a flock of sheep. | Apply | Delight |
+| 7 | Bridge quiz | 4:50–5:45 (55 s) | Five questions with pauses (section 14). | Quiz | Focus, pride |
+| 8 | Frog crosses home | 5:45–6:10 (25 s) | All twelve bridges in a row; Frog hops every one without a splash, saying each blend. Chant. | Recap | Joy |
+| | **Total** | **6:10 (370 s)** | | | |
+
+#### 8. Animation and staging list
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Opening | `pond` stage, three island `disc`s, lily pads | slow pond establishing; `say` who robo | Wide `shot` on the three islands (height 35°), easing in 10% |
+| Stones drift (splash) | `st_f`, `st_l` (stone `disc`s, `letter` f blue, l orange) | `sound` ph_f; 1.5 s gap; `sound` ph_l; `move` the stones 0.6 m apart; Frog `path` short arc into the water; `sound` splash; `feel` frog surprised then happy | Medium side-on |
+| Blend locks | the two stones, `plank` (`plate`) | `sound` ph_s then ph_t about 1 s apart (slow), then again back to back (fast); `move` stones together (dur 0.5); `show` plank sliding under; `sound` block; `highlight` both letters together | Close `shot` on the stones (framing close) |
+| Digraph fuses | `st_s`, `st_h`, `tile_sh` (one glowing tile, `light` material edge) | `sound` ph_s, ph_h; the stones meet, `hide` both and `pop` tile_sh with `magic_sparkle`; `sound` ph_sh; `callout` "one new sound"; next to it the st plank with `callout` "both sounds" | Two-shot of plank and tile |
+| A crossing | plank, Frog, picture prop (`block`, `flower`, `clock` kind, `plant`) | after the blend, `say` the word who robo; Frog `hop`s across the plank (two hops); the picture `pop`s a word card (`letter` "block" with "bl" in blue/orange, "ock" in white) | Side-on medium, a short track with Frog |
+| Frog's name | `frog`, stones f and r, a `letter` card "frog" | `sound` ph_f, ph_r fast; `say` "frog!" who frog; Frog `feel` surprised, then `clip` robo ThumbsUp; `burst` stars (small) | Close on Frog |
+| R island pictures | `crayon`, `drum`, `train_engine` | `drum#skin` `wiggle` with `drum` sound; train `#wheels` turn; crayon draws a tiny line (`move`) | Medium |
+| S island gate | `sheep` critter by a `signpost` | Sheep `nod`s; `say` "Say the blend to cross!" who sheep | Medium |
+| Robo squashes st | stones s and t | Robo plays a single mushed cue (stand-in: ph_s only); `windup_click`; kids call "both sounds!"; `mark` incorrect, then redo; `mark` correct | Close |
+| S pictures | `star` shape (gold), `snowman`, `slide`, `swing` | each `pop`s; `swing#seat` rocks; star `spin`s slowly | Medium |
+| Swap the blend | `w_block` card with a removable "bl" part; `clock` kind; three `sheep` | `hide` "bl", `pop` "cl": the block picture swaps to a clock (`sound` tick); then "fl": two more sheep walk in beside Sheep; `caption` "a flock" | Close on the card, then wide on the flock, `orbit` 40° |
+| Quiz | stones and pictures | `windup_click` 2–3 s; `mark` correct; `sound` ding | Medium |
+| Home run | twelve planks in a row | Frog `leap`-style `path` across all twelve; each blend's cues play once, quickly; `burst` confetti | Tracking side-on, then wide |
+
+#### 9. Experiment or hands-on activity
+Activity: **Stepping-stone blends on the floor**.
+- With a grown-up, write letters on paper plates: s, t, f, l, c, r, d, p, n, w, and a few vowel-word endings
+  ("ar", "ag", "ip").
+- Lay two consonant plates side by side with a gap. Step on each and say its sound slowly. Then push the
+  plates together and step once, saying both sounds fast: st! Then step onto the ending: st-ar, star.
+- Try fl + ag (flag), dr + ip (drip), sn + ip (snip).
+- Prediction: "Will s and h keep both sounds?" Try it: it becomes sh, one new sound.
+- Safety: "With a grown-up." Paper plates can slip on smooth floors: tape them down or use them on a rug,
+  and step, don't jump.
+
+#### 10. Interaction moments
+- Call and response: Robo plays the two cues slowly; kids say the blend fast; then the word.
+- Pause and guess (2–3 s `windup_click`) before every lock: "Which picture is across this bridge?"
+- Move-along: two quick claps for the two sounds of a blend, one clap for a digraph.
+- Fix Robo: "Say both sounds!" when he squashes st.
+
+#### 11. Song or chant
+**"Two Sounds Fast"**, original. A stepping rhythm: step, step (one per letter), then a hop on the blend
+("f, r, HOP, fr!"), then the word on the landing ("frog!"). The chorus idea: "Two little sounds, quick
+quick quick, side by side and they both still stick." It plays at the end of chapters 3 and 4 and in full
+in chapter 8.
+
+#### 12. Fun fact(s)
+- A group of sheep is called a flock (chapter 6, said by Sheep).
+- Frogs can jump many times their own body length (chapter 1, when Frog splashes: "Frogs are great
+  jumpers... not great waiters").
+- Crayons are made mostly of wax, with colour mixed in (chapter 4, cr crayon).
+
+#### 13. Vocabulary and captions
+- Title: "Blend Bridges".
+- Labels: blend, two sounds, both sounds, digraph, one new sound, flock.
+- Word cards (blend letters in blue and orange, the rest in white): block, flower, clock, plant, frog,
+  crayon, drum, train, star, snowman, slide, swing.
+- Callouts: "both sounds" on a blend plank, "one new sound" on the sh tile.
+
+#### 14. Quiz and recap
+| # | Question | Answer |
+|---|---|---|
+| 1 | What blend starts "drum"? (cues `ph_d`, `ph_r`) | dr |
+| 2 | Is "sh" in "ship" a blend or a digraph? | A digraph: one new sound |
+| 3 | Which word starts with the st blend: star or sun? | Star |
+| 4 | Swap bl in "block" for cl. What is the new word? | Clock |
+| 5 | What blend starts Frog's name? | fr |
+
+Praise moment: Sheep says "Every bridge is open!" and the planks glow in a row. Recap: "A blend is two
+sounds, side by side, said fast. You can still hear both."
+
+#### 15. Sound and music
+- Music: `playful` at musicGain 0.22; dipped to 0.12 under every pair of sound cues.
+- Voice: Robo `soft` at 0.97; Frog `squeaky`; Sheep `soft`. Words are said only after the cues.
+- Sound cues: `ph_b` + `ph_l`, `ph_f` + `ph_l`, `ph_c` (or `ph_k`) + `ph_l`, `ph_p` + `ph_l`, `ph_f` + `ph_r`,
+  `ph_c` + `ph_r`, `ph_d` + `ph_r`, `ph_t` + `ph_r`, `ph_s` + `ph_t`, `ph_s` + `ph_n`, `ph_s` + `ph_l`,
+  `ph_s` + `ph_w`; digraph check `ph_s`, `ph_h`, `ph_sh`. Slow: about 1 s between cues; fast: back to back.
+- Effects: ch 1 splash; ch 2 block, magic_sparkle; ch 3–5 block (lock), boing soft (hop), drum, tick,
+  train_whistle soft; ch 6 tick; ch 7 windup_click, ding; ch 8 crowd_cheer.
+
+#### 16. Thumbnail and YouTube
+Designed concepts (`meta.thumbnails`):
+- **a** "BLENDS!" (yellow, left): Frog mid-hop over a wooden plank with blue "f" and orange "r" stones,
+  water splashing under him, a big grin; the flower island behind.
+- **b** "fr + og = frog" (white on teal, right): three stones in a row with the letters, Frog sitting on the
+  last one pointing at himself, surprised and delighted.
+- **c** "Two Sounds Fast" (orange, left): Robo and Sheep at a bridge gate, a gold star and a slide on the
+  island behind.
+- Title idea: "Consonant Blends for Kids! bl, fr, st | Blend Bridges | Toy Box Friends" (69 characters).
+- Tags: consonant blends, blends for kids, first grade phonics, grade 1 reading, l blends, r blends, s
+  blends, phonics song, learn to read, kids learning video, Toy Box Friends.
+
+#### 17. Catalog gaps
+| Gap | Stand-in from existing parts |
+|---|---|
+| One blend clip per blend (fr, st...) for the "fast" step | Two `ph_*` cues back to back. Gap: add blend entries to `catalog/sounds.json` (`ph_bl`, `ph_fl`, `ph_cl`, `ph_pl`, `ph_fr`, `ph_cr`, `ph_dr`, `ph_tr`, `ph_st`, `ph_sn`, `ph_sl`, `ph_sw`) with IPA, made by `tools/phonemes.mjs` |
+| A word card whose letters have different colours | Two or three `letter` objects side by side (blend part, rest of word). Small engine gap: per-character colours on `letter` |
+| Stepping stones and planks | `disc`s and `plate`s |
+| Flock of sheep | Three `sheep` critters |
+
+#### 18. Do and don't
+- Do make both sounds audible in every blend; never present "st" as one new sound.
+- Do keep the digraph contrast short (chapter 2 only); digraphs were taught in G1-02.
+- Do use only initial blends here; final blends (nest, jump) can be one bonus line at most.
+- Don't add a schwa after the first sound ("fuh-r"); the cues are pure sounds, and the voice says only the
+  whole word.
+- Don't let Frog's splashes become the point: two splashes, then he succeeds.
+- Pacing: hold the locked plank 2 s before Frog crosses so kids can read the two letters.
+
+---
+
+### G1-12 · Naming Words and Doing Words
+**Grade 1 · English / grammar · 5:50 · theatre (Robo's movie set)**
+**Skills:** nouns_verbs_1 · **Standard:** CCSS L.1.1.b (use common and proper nouns), L.1.1.e (use verbs), L.1.1.j (produce simple sentences), approximate
+
+#### 1. Big idea
+Naming words name a person, an animal, a place or a thing; doing words tell what someone does.
+
+#### 2. Learning goals
+- I can find naming words (nouns): people, animals, places and things.
+- I can find doing words (verbs): actions I can show.
+- I can sort words into naming words and doing words.
+- I can join a naming word and a doing word to make a sentence (The frog jumps).
+
+#### 3. Hook (first 15 s)
+A theatre with a big curtain. Robo, in a director's cap (batch3 `hat`), claps a clapperboard: "Lights,
+camera... ACTION!" Nothing happens. Bear and Penguin stand still, puzzled. Bear: "What do we do?" Robo looks
+at his script: all the words have fallen out into one messy pile. "Our movie needs two kinds of words: words
+that name who is in it, and words that say what they do!"
+
+#### 4. What makes it unique
+**The Freeze Camera.** When Robo clicks it, the whole set freezes: the actors are still there, but every
+action stops. That shows the difference in one picture: naming words are still there when you freeze (the
+bear, the drum, the pond), doing words are what stopped (claps, swims, slides). Every sentence in the movie
+is built from one blue naming card and one red doing card, so kids see a sentence needs both. Frog's joke:
+he can never quite freeze (his toe keeps tapping).
+
+#### 5. Cast and roles
+| Who | Voice | Role in this episode |
+|---|---|---|
+| Robo | `soft` | Director. Sorts the script words with the kids, says "Action!" and clicks the Freeze Camera. Once puts "jump" in the naming basket; kids fix him. |
+| Frog | `squeaky` | Sidekick and stunt actor. Acts every doing word with big energy. Running joke: he can't freeze. Pay-off: "Frog... freezes!" (he finally holds still, then "That was a doing word too!"). |
+| Bear (guest) | `deep` | Actor: claps, reads, sleeps, eats. |
+| Penguin (guest) | `squeaky` (a little lower than Frog) | Actor: waddles, slides, swims, flaps. |
+
+All lines use `who`. Actors `look` at the card being read before they act it out.
+
+#### 6. Setting and look
+`theatre` stage, a warm `studio` light that dims with `lights` (`dim`) when the curtain opens and comes back
+bright for each sort. Centre stage: two big baskets, a **blue** one for naming words and a **red** one for
+doing words, each with a `callout` label. Word cards are `letter` objects on matching coloured `plate`s
+(blue for naming, red for doing, white while not yet sorted). Small sets roll on: a pond (a blue `disc`
+with reeds), a `house`, a `bench` for the park. Camera: a wide "audience" `shot` of the whole stage, a
+medium on the actors for each action, and a close on each card as it flies into its basket; the Freeze
+Camera moment is a sudden still frame with a soft white flash border (no bright flash). Mood: show-time
+reds and golds.
+
+#### 7. Storyline
+| # | Chapter | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | Lights, camera... | 0:00–0:25 (25 s) | "Action!" but nothing happens: the script's words are in a pile. Two baskets wait. | Hook | Puzzle, funny |
+| 2 | Naming words: animals and things | 0:25–1:15 (50 s) | "A naming word names someone or something." frog, bear, penguin (animals); ball, drum, hat (things). Each card turns blue, its thing lights up, and it flies into the blue basket. | Teach | Steady |
+| 3 | Naming words: people and places | 1:15–1:55 (40 s) | People: teacher, baker, friend (word cards with a simple icon). Places: pond, house, park (the sets roll on). Four kinds of naming words: person, animal, place, thing. | Teach | "Places too!" |
+| 4 | Doing words: show me! | 1:55–2:50 (55 s) | "Can you do it? Show me!" jump (Frog), clap (Bear), slide (Penguin), swim, read, sleep. Each card turns red as the actor does it. Robo puts "jump" in the blue basket; kids fix him. | Teach, act along | Big energy |
+| 5 | The Freeze Camera | 2:50–3:35 (45 s) | Action, then FREEZE. The bear, the drum, the pond are still there: naming words. The clapping, sliding and swimming stopped: doing words. Frog's toe keeps tapping. | Show the difference | Laugh, "aha" |
+| 6 | Naming + doing = a sentence | 3:35–4:20 (45 s) | Blue card + red card: "The bear claps." Swap the doing word: "The bear sleeps." Swap the naming word: "The penguin sleeps." The actors change to match. | Model, try | Clever |
+| 7 | Sort it out quiz | 4:20–5:20 (60 s) | Five questions (section 14), with the actors acting the answers. | Quiz | Pride |
+| 8 | That's a wrap! | 5:20–5:50 (30 s) | The full movie plays: four sentences, each acted. Frog finally freezes. Curtain call, chant. | Recap | Joy |
+| | **Total** | **5:50 (350 s)** | | | |
+
+#### 8. Animation and staging list
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| The flop | `robo` with a director's `hat` (`parent: robo`), `clapper` (stand-in), `bear`, `penguin` | `sound` clink (clapper); `say` "Action!" who robo; actors `feel` worried; word cards `drop` into a messy pile (white plates) | Wide "audience" `shot` |
+| A naming card | `card_frog` (white plate, `letter` "frog") | `paint` the plate blue; `highlight` the real frog on stage; `path` the card in an arc into the blue basket; `sound` pop | Close on the card, then medium on the basket |
+| People cards | `card_teacher`, `card_baker`, `card_friend` with icons (`book`, `cupcake`, `heart`) | `pop` each with its icon; `paint` blue | Medium |
+| Places roll on | `pond_set` (blue `disc` with reeds), `house`, `bench` | `move` each set in from the wings; `callout` "a place" | Wide |
+| A doing card | `card_slide` | Penguin `path`s on her belly across the stage (rotate to lie down, `sound` slide_whistle soft); the card `paint`s red and flies into the red basket | Medium following Penguin |
+| Robo's mistake | `card_jump` | it flies into the blue basket; `windup_click`; kids call; `mark` incorrect on it; it hops across into the red basket; `mark` correct | Medium on the baskets |
+| Freeze Camera | everyone | `sound` click (stand-in `windup_click` short) and a soft white border (`caption` frame or a white `plate` ring around the screen edge, see gaps); every object holds still for 3 s except Frog's foot (`wiggle` frog small); `callout`s pop: "bear (still here)", "claps (stopped!)" | Locked wide (the camera does not move during the freeze) |
+| Sentence build | blue card + red card on a stand, `letter` "The" and "." | `move` the cards side by side; `say` the sentence who robo; the actor does the action; swap a card (`move` out, `move` in) and the actor changes | Close on the sentence, then medium on the actor |
+| Quiz | cards and actors | `windup_click` 2–3 s; the card flies to its basket; `mark` correct; `sound` ding | Medium |
+| Wrap | all, `confetti` | four sentences acted in turn; Frog holds still (`sleep`-style pause with eyes open, no motion) then `hop`s; `burst` confetti; `clip` robo Wave; the curtain (two big red `plate`s) `move`s closed | Wide, slow pull-back, `orbit` 20° |
+
+#### 9. Experiment or hands-on activity
+Activity: **Freeze-frame charades**.
+- A grown-up writes naming words (cat, ball, kitchen, teacher) on blue paper and doing words (hop, clap,
+  stretch, read) on red paper.
+- The child picks a red card and acts it; the grown-up guesses. Then "Freeze!": the child holds still and
+  says "I am still here, but the [action] stopped."
+- Make sentences: one blue card + one red card + "The" and a full stop: "The cat hops." Swap one card and
+  read the new sentence.
+- Walk round the home and name things in each group: a person, an animal (a toy one is fine), a place, a
+  thing.
+- Prediction: "If I freeze, which word stops: 'ball' or 'bounce'?"
+- Safety: "With a grown-up." Act in a clear space with soft landings; hop, don't jump off furniture.
+
+#### 10. Interaction moments
+- Call and response: Robo: "Is it a person, animal, place or thing?" Kids: "A thing! Naming word!" Robo:
+  "Can you do it?" Kids: "Yes! Doing word!"
+- Pause and guess (2–3 s `windup_click`) before each card flies: "Blue basket or red basket?"
+- Move-along: every doing word is acted by the kids too (jump, clap, swim arms, read with hands as a book,
+  sleep with head on hands).
+- Freeze game: kids freeze with the camera, then check if they moved like Frog.
+
+#### 11. Song or chant
+**"Name It, Do It"**, original. A four-beat clap: two claps for a naming word ("BEAR, BEAR!") with a point,
+then two stomps for a doing word ("CLAPS, CLAPS!") with the action, then "Name it, do it, that's a
+sentence!" It appears after chapter 2 (name half), after chapter 4 (do half) and in full in chapter 8.
+
+#### 12. Fun fact(s)
+- Penguins can slide on their bellies over ice and snow; it is called tobogganing (chapter 4).
+- Bears can stand up on their back legs to see and smell better (chapter 4, when Bear stands to clap).
+- A clapperboard helps film-makers match the sound to the picture (chapter 1).
+
+#### 13. Vocabulary and captions
+- Title: "Naming Words and Doing Words".
+- Labels: naming word, doing word, person, animal, place, thing, action, sentence.
+- Small subtitle: "naming word = noun", "doing word = verb" (shown, said once each).
+- Word cards: frog, bear, penguin, ball, drum, hat, teacher, baker, friend, pond, house, park (blue); jump,
+  clap, slide, swim, read, sleep, claps, sleeps (red).
+- Callouts in the freeze: "still here", "stopped".
+
+#### 14. Quiz and recap
+| # | Question | Answer |
+|---|---|---|
+| 1 | Is "pond" a naming word or a doing word? | Naming word (a place) |
+| 2 | Is "swim" a naming word or a doing word? | Doing word |
+| 3 | "The bear claps." Which is the doing word? | claps |
+| 4 | Which is a naming word: hat or hop? | hat |
+| 5 | Say a doing word for Penguin. | Any action: slides, swims, waddles, flaps (all correct) |
+
+Praise moment: Bear and Penguin take a bow, the audience `crowd_cheer`. Recap: "Naming words name a person,
+animal, place or thing. Doing words tell what they do. Put them together and you have a sentence."
+
+#### 15. Sound and music
+- Music: `happy` at musicGain 0.24 (theatre fanfare feel); dropped to 0 for the 3 s freeze (silence makes
+  the freeze clear), then back.
+- Voice: Robo `soft` at 0.97; Frog `squeaky`; Bear `deep`; Penguin `squeaky`.
+- Effects: ch 1 clink (clapper), sad_sting soft; ch 2–3 pop per card; ch 4 boing (jump), clap = `drum` soft,
+  slide_whistle (slide), splash (swim); ch 5 a short click, giggle; ch 6 whoosh for each swap; ch 7
+  windup_click, ding; ch 8 crowd_cheer.
+
+#### 16. Thumbnail and YouTube
+Designed concepts:
+- **a** "NAMING or DOING?" (yellow, left): the blue basket and the red basket, a blue card "bear" and a red
+  card "claps" flying in; Bear clapping with a big smile; Frog mid-jump.
+- **b** "FREEZE!" (white on red, right): the frozen stage with Penguin mid-slide and Bear mid-clap, Frog the
+  only one moving (his toe blurred), Robo holding the Freeze Camera with a surprised face.
+- **c** "Nouns & Verbs" (orange, left): Robo in a director's cap with a clapperboard, a blue "frog" card and
+  a red "jumps" card side by side forming a sentence.
+- Title idea: "Nouns and Verbs for Kids! Naming Words and Doing Words | Toy Box Friends" (70 characters).
+- Tags: nouns and verbs, naming words, doing words, action words, first grade grammar, grade 1 English,
+  parts of speech for kids, sentences for kids, kids learning video, Toy Box Friends.
+
+#### 17. Catalog gaps
+| Gap | Stand-in from existing parts |
+|---|---|
+| Clapperboard | A black `plate` with a thin hinged `plate` on top (`pivot` at one end) that `turn`s shut with `clink` |
+| People for "teacher, baker, friend" | No human figures in the catalog: word cards with an icon (`book`, `cupcake`, `heart`); gap only if a later episode needs people |
+| Freeze Camera border | Gap (small engine feature): a `frame` overlay (a soft white border or a camera viewfinder) that a `caption` style or action can show; stand-in: four thin white `plate`s near the camera |
+| Penguin sliding on its belly | `turn` the penguin to lie forward (about [80, 0, 0]) and `path` it; check the flippers do not clip the floor |
+| Curtain | Two big red `plate`s that `move` apart and together |
+| Director's cap | batch3 `hat`, recoloured |
+
+#### 18. Do and don't
+- Do teach "naming word" and "doing word" first; say "noun" and "verb" once each as the grown-up names.
+- Do include all four kinds of naming words (person, animal, place, thing).
+- Do use only clear action verbs (jump, clap, swim); avoid "is", "has" and words that can be both (a fish /
+  to fish, a kick / to kick) in this episode.
+- Don't teach describing words (adjectives are G2-02) or plurals.
+- Don't flash during the freeze: a still frame and a soft border only.
+- Pacing: every doing word gets a full second of action before the card moves.
+
+---
+
+### G1-13 · Sentence Builders
+**Grade 1 · English / writing · 6:00 · classroom (a building corner with a long sentence beam)**
+**Skills:** sentences_1 · **Standard:** CCSS L.1.2.a (capitalise), L.1.2.b (end punctuation), L.1.1.j (produce simple declarative, interrogative and exclamatory sentences), approximate
+
+#### 1. Big idea
+A sentence tells a whole idea; it starts with a capital letter, has spaces between words, and ends with a
+mark.
+
+#### 2. Learning goals
+- I can tell a sentence (a whole idea: who and what they do) from part of one.
+- I can start a sentence with a capital letter.
+- I can leave a finger space between words.
+- I can end a telling sentence with a period, an asking sentence with a question mark, and a strong feeling
+  with an exclamation mark.
+
+#### 3. Hook (first 15 s)
+In the classroom's building corner, Bear the builder (yellow hard hat) lifts word blocks onto a long beam:
+"the sun is hot". There is no capital, no spaces between some blocks, no end. The beam wobbles, and the
+last block rolls off the end. Frog starts reading and cannot stop: "the sun is hot and... and... and..."
+hopping in place. Robo: "This sentence needs builders. Let's learn the rules!"
+
+#### 4. What makes it unique
+**Every rule has a job you can see.** The capital is the big gold corner block that holds the start; finger
+spaces are little spacer pegs that keep words from squashing into "thesunishot"; the end mark is a
+stopper block that keeps the words from rolling off the end. Leave one out and something visibly goes
+wrong (the beam wobbles, words squash, Frog keeps hopping). Then one sentence, "It is raining", is built
+three times with three different end marks, and the voice changes each time: telling, asking, and a
+strong feeling.
+
+#### 5. Cast and roles
+| Who | Voice | Role in this episode |
+|---|---|---|
+| Robo | `soft` | Site manager. Explains each rule and reads each sentence, with his voice going up for questions. Once puts a period on a question; kids fix it. |
+| Frog | `squeaky` | Sidekick. Running joke: he reads aloud and can't stop until there is an end mark. Pay-off: in chapter 8 he places the last period himself and stops right on it: "I love a stopper!" |
+| Bear (guest) | `deep` | The builder with a yellow hard hat and a little crane. Lifts each word block onto the beam. |
+
+All lines use `who`. Bear `look`s at Robo for each instruction; Frog `look`s along the beam as he reads.
+
+#### 6. Setting and look
+`classroom` stage (batch3: chalkboard wall, wood floor), `studio` light. A long wooden sentence beam (a
+`plate`, 4 m) on two `block` supports, at eye height for the camera. Word blocks are `letter`s on pale
+wooden `block`s; the **capital** sits on a bigger gold block; the **spacer pegs** are small blue `capsule`s;
+the **end marks** sit on red stopper blocks (period, question mark, exclamation mark). The chalkboard shows
+the three rules as they are learned (a growing checklist). Camera: a straight-on medium `shot` of the
+beam (yaw 0) so the sentence reads left to right with nothing cropped; a close on the first and last
+blocks; a wide when the beam wobbles; one `orbit` round the finished "grand opening" sentence. Mood:
+sunny classroom, wood and primary colours.
+
+#### 7. Storyline
+| # | Chapter | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | The wobbly beam | 0:00–0:25 (25 s) | "the sun is hot" with no capital, squashed words and no end: wobble, roll, Frog can't stop. | Hook | Funny problem |
+| 2 | A whole idea | 0:25–1:10 (45 s) | "The red ball." What does it do? Not finished. "The red ball rolls." A whole idea: who (the ball) and what it does (rolls); the ball rolls across the floor. | Teach | "Oh, it needs both!" |
+| 3 | Rule 1: a capital start | 1:10–1:50 (40 s) | "frogs can hop." The small f can't hold the start; the beam tips. Swap in the gold capital F: steady. Names have capitals too: Bear. | Teach, show | Steady |
+| 4 | Rule 2: finger spaces | 1:50–2:30 (40 s) | "Thesunishot." Robo reads it as one long silly word. Spacer pegs push the words apart: "The sun is hot." Kids put a finger out. | Teach, try | Laugh |
+| 5 | Rule 3: the stopper | 2:30–3:20 (50 s) | "Frog hops" with no end: Frog hops on and on, off the end of the beam. The red period block slides in: Frog stops. A period ends a telling sentence. | Teach, cause and effect | Big laugh, then "aha" |
+| 6 | Asking and feeling marks | 3:20–4:10 (50 s) | "It is raining." (telling). "Is it raining?" (asking: the voice goes up). "It is raining!" (a strong feeling). Rain falls outside the classroom window each time. | Teach, compare | Curious, then excited |
+| 7 | Fix-it crew | 4:10–4:55 (45 s) | Three broken sentences; kids find what is missing before Bear fixes each: "my hat is red" (capital, period); "Whereisthedrum?" (spaces); "Do you like pizza." (wrong mark). Robo made the last one; kids fix him. | Try together | Pride |
+| 8 | Builder quiz | 4:55–5:40 (45 s) | Five questions (section 14). Frog places the last period himself. | Quiz | Focus, pay-off |
+| 9 | Grand opening | 5:40–6:00 (20 s) | The finished beam: "We built a sentence!" Chant and confetti. | Recap | Joy |
+| | **Total** | **6:00 (360 s)** | | | |
+
+#### 8. Animation and staging list
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Wobbly beam | `beam` (`plate`), word blocks `wb1`..`wb4`, `bear` with a yellow `hat` (`parent: bear, part: head`), `crane` (stand-in) | Bear `path`s each block up and onto the beam; the beam `wiggle`s (deg 4); the last block `move`s and `drop`s off the end; `sound` land; Frog `hop` x4 in place while `say`ing "and... and..." | Wide, then medium straight-on |
+| Whole idea | `card` "The red ball.", then the block "rolls", `ball` prop | `windup_click` ("What does it do?"); `pop` the "rolls" block; `move` and `spin` the ball across the floor; `callout` "who" on "The red ball" and "what it does" on "rolls" | Straight-on medium, then a low shot of the ball |
+| Capital start | small "f" block, gold "F" block | the beam tips at the start (`turn` beam by 3°); `hide` the small f, `drop` the gold F into place; the beam levels (`turn` back); `sound` block; `mark` correct; chalkboard checklist `pop`s "1 capital" | Close on the first block |
+| Finger spaces | "Thesunishot" as one tight row of blocks, four `capsule` pegs | Robo `say`s the squashed word; `giggle`; pegs `pop` in and the blocks `move` apart; `highlight` each space; checklist "2 spaces" | Straight-on |
+| The stopper | "Frog", "hops" blocks, Frog, red period block | Frog `path`s hop by hop along the beam and off the end onto a soft mat (`sound` boing soft each hop); the period block `move`s into place; Frog hops again and stops at it; `sound` ding; checklist "3 end mark" | Medium side, tracking with Frog |
+| Three marks | blocks "It is raining" + one end block that changes ., ?, !; `weather` rain outside the window | swap the end block (`hide`/`show`) each time; `say` with matching voice; rain `show`; for "?" Robo `look`s out the window; for "!" Frog `hop`s and `feel` surprised | Straight-on medium, a slow push-in on the mark each time |
+| Fix-it | three broken beams | `windup_click` 2–3 s; `highlight` the problem spot; `mark` incorrect; Bear fixes; `mark` correct | Close on the problem, then medium |
+| Quiz | sentence cards | `windup_click`; `mark` correct; Frog `move`s the period into place for question 5 | Medium |
+| Grand opening | the finished beam "We built a sentence!", `confetti`, a ribbon (`plate` red strip) | the ribbon `move`s apart; `burst` confetti; `clip` robo ThumbsUp; `crowd_cheer` | `orbit` 45° round the beam, ending wide |
+
+#### 9. Experiment or hands-on activity
+Activity: **Build a sentence with blocks or paper**.
+- With a grown-up, write words on sticky notes or paper strips: the, dog, cat, runs, naps, can, it, hop,
+  is, big, plus a capital-letter set (The, It, Can) and three end marks (. ? !).
+- Build a sentence on the floor: capital start, a finger space between each word, an end mark. Read it.
+- Swap the end mark and read it again: telling, asking, strong feeling.
+- Then write one sentence on paper with a pencil: capital, finger spaces, end mark. Check the three rules
+  with a tick.
+- Prediction: "What happens to your voice if we change the period to a question mark?"
+- Safety: "With a grown-up." Use safety scissors to cut strips, or tear them.
+
+#### 10. Interaction moments
+- Call and response: Robo: "A sentence starts with a..." Kids: "Capital!" "Between words we leave..."
+  "Spaces!" "And at the end we put..." "A mark!"
+- Pause and guess (2–3 s `windup_click`) before every fix in chapter 7 and before the end mark in chapter 6.
+- Move-along: hold up one finger for each finger space; make a fist "stop" for the period; draw a question
+  mark in the air; jump for the exclamation mark.
+- Read-along: kids read the finished sentences with Robo, with the right voice for each mark.
+
+#### 11. Song or chant
+**"Big Start, Space, Stop"**, original. A building rhythm: a stomp for the capital ("BIG start!"), two
+finger taps for spaces ("space, space"), and a clap for the end ("STOP!"). A second verse adds the marks:
+a falling "telling" tone, a rising "asking?" tone, and a cheer for "WOW!". It plays after chapter 5 and in
+full in chapter 9.
+
+#### 12. Fun fact(s)
+- People have been using question marks in writing for more than a thousand years (chapter 6).
+- Long ago, many books were written with no spaces between words at all (chapter 4).
+- In the UK and many other places, a period is called a full stop (chapter 5).
+
+#### 13. Vocabulary and captions
+- Title: "Sentence Builders".
+- Labels: sentence, capital letter, finger space, period, question mark, exclamation mark, telling, asking,
+  strong feeling, whole idea.
+- Chalkboard checklist: "1 capital", "2 spaces", "3 end mark".
+- Callouts: "who", "what it does".
+- Sentences on screen: The red ball rolls. Frogs can hop. The sun is hot. Frog hops. It is raining. Is it
+  raining? It is raining! My hat is red. Where is the drum? Do you like pizza? We built a sentence!
+
+#### 14. Quiz and recap
+| # | Question | Answer |
+|---|---|---|
+| 1 | Which is right: "the bus is big." or "The bus is big."? | "The bus is big." (capital start) |
+| 2 | What mark ends "Can you swim"? | A question mark |
+| 3 | What mark ends "We won" when we are very excited? | An exclamation mark |
+| 4 | How many words are in "I like my hat."? Count the spaces + 1. | 4 words |
+| 5 | Is "The tall tree." a whole sentence? | No: it doesn't say what the tree does (The tall tree sways.) |
+
+Praise moment: Bear lifts his hard hat: "Master builders!" Recap: "Big start, spaces, stop: a capital, finger
+spaces and an end mark, and a whole idea."
+
+#### 15. Sound and music
+- Music: `bouncy` at musicGain 0.24; dipped to 0.14 under each read sentence.
+- Voice: Robo `soft` at 0.97, with clear falling, rising and excited reads for the three marks; Frog
+  `squeaky`; Bear `deep`.
+- Effects: ch 1 land, boing; ch 2 ball_bounce; ch 3 block, ding; ch 4 giggle, pop per peg; ch 5 boing per
+  hop, ding at the stop; ch 6 rain soft, ooh; ch 7 windup_click, ding; ch 8 ding; ch 9 crowd_cheer.
+
+#### 16. Thumbnail and YouTube
+Designed concepts:
+- **a** "SENTENCE BUILDERS" (yellow, left): Bear in a yellow hard hat lowering a big red "?" stopper block
+  onto a beam that reads "Can you hop", Frog hanging off the end mid-hop, surprised.
+- **b** ". ? !" (huge marks in white, red and orange, right): the three end blocks side by side, Robo with a
+  questioning tilt, rain behind the window.
+- Title idea: "Capital Letters and Punctuation for Kids! Sentence Builders | Toy Box Friends" (75 characters).
+- Tags: writing sentences, capital letters, punctuation for kids, period question mark exclamation mark,
+  finger spaces, first grade writing, grade 1 English, kids learning video, Toy Box Friends.
+
+#### 17. Catalog gaps
+| Gap | Stand-in from existing parts |
+|---|---|
+| A little crane | A tall `cylinder` mast with a `block` arm and a thin `cylinder` cable; the word block `path`s along under the arm |
+| Punctuation glyphs | The `letter` font covers . ? ! (check the batch 2 font note lists ¢ : − < > + =; confirm "?" and "!" render; otherwise gap) |
+| Classroom window with rain outside | `classroom` stage: if it has no window, a light-blue `plate` "window" on the wall with `weather` rain in a small area behind it |
+| Hard hat | batch3 `hat`, recoloured yellow |
+
+#### 18. Do and don't
+- Do keep all three rules and the "whole idea" (who + what they do) in every sentence on screen; never show
+  a wrong sentence without fixing it.
+- Do use one sentence with three marks so kids hear that the mark changes how we read it.
+- Do say "period" and "full stop" are the same mark, once.
+- Don't teach commas, quotation marks or apostrophes.
+- Don't call a sentence "bad"; it is "missing a part" and the crew fixes it.
+- Pacing: hold each finished sentence for 2–3 s, straight-on, so every word and mark is readable.
+
+---
+
+### G1-14 · Skip Count Parade: 2s, 5s, 10s
+**Grade 1 · Math · 6:15 · town (parade street with a number line painted on the road)**
+**Skills:** skip_count_patterns_1 · **Standard:** CCSS 1.NBT.A.1 (count to 120), 1.OA.C.5 (relate counting to addition, e.g. counting on by 2), a preview of 2.NBT.A.2 (skip count by 5s and 10s), approximate
+
+#### 1. Big idea
+Skip counting is counting in equal jumps (by 2s, 5s or 10s), and it is a faster way to count groups.
+
+#### 2. Learning goals
+- I can count by 2s to 20 using pairs.
+- I can count by 5s to 50 and by 10s to 100.
+- I can see the pattern: by 2s the ones digits go 0, 2, 4, 6, 8; by 5s they end in 5 or 0; by 10s they
+  end in 0.
+- I can continue a skip-count pattern (12, 14, 16, ...).
+
+#### 3. Hook (first 15 s)
+Parade day in town. Bear beats a big drum and the parade is about to start, but the socks for the band are
+in a huge pile. "We need 20 socks... how many pairs?" Frog starts counting one sock at a time, very slowly:
+"One... two... three..." and starts to snore. Robo: "There's a faster way! Let's skip count!"
+
+#### 4. What makes it unique
+**The road is the number line.** A number line is painted down the parade street, and Frog leaps along it in
+equal jumps while the band counts: small jumps by 2s, bigger jumps by 5s, giant jumps by 10s. Each jump
+size matches a real group (a pair of socks is 2, one hand is 5 fingers, a bunch of balloons is 10), so the
+jump size always means something. In the "which jump?" chapter, three friends reach 10 three ways (five
+jumps of 2, two jumps of 5, one jump of 10) and land on the same spot. Frog's joke: he wants to count by a
+million; his pay-off is ten jumps of 10 all the way to 100, his biggest jump ever.
+
+#### 5. Cast and roles
+| Who | Voice | Role in this episode |
+|---|---|---|
+| Robo | `soft` | Parade leader. Counts with the kids and shows the patterns on the number chart. Once skips a number counting by 5s (5, 10, 20); kids catch it. |
+| Frog | `squeaky` | Sidekick. Leaps along the road for every count. Running joke: "Let's count by a MILLION!" Pay-off in chapter 6: by 10s to 100, "My biggest jump ever!" |
+| Bear (guest) | `deep` | Drummer. Beats the drum once on every skip-count number, so kids hear the rhythm. |
+| Bunny (guest) | `squeaky` | Balloon seller. Holds bunches of 10 balloons for the 10s. |
+
+All lines use `who`. The band `look`s at Frog as he lands on each number.
+
+#### 6. Setting and look
+`town` stage, bright `soft_day` light, bunting colours. A long `number_line` lies along the street (the
+road). For 2s it runs 0 to 20 (step 1, labels "numbers", every number shown); for 5s 0 to 50 (step 5,
+minor 5); for 10s 0 to 100 (step 10, minor 10). A "20 chart" (two rows of ten `number_block`s, 1–20) stands
+on a big board at the side for the 2s pattern. A clothesline across the street holds the socks in pairs.
+Camera: a high wide `shot` down the parade street for each count (the line reads left to right), a
+side-on tracking shot as Frog leaps, close-ups on the landing numbers, and the 20 chart straight-on.
+Mood: festive and bright, with each skip size in its own colour (2s green, 5s orange, 10s purple).
+
+#### 7. Storyline
+| # | Chapter | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | Parade day! | 0:00–0:25 (25 s) | The sock pile; Frog counts by ones and falls asleep. | Hook | Funny problem |
+| 2 | Why skip count? | 0:25–0:55 (30 s) | Robo hangs socks in pairs. "Each pair is 2. Count the pairs by 2s." Frog wants to count by a million. | Story problem | Curious |
+| 3 | Pairs: count by 2s | 0:55–2:00 (65 s) | Ten pairs on the line: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20. Frog leaps by 2s on the road, landing on each. 20 socks for the band! | Model, try together | Rhythm |
+| 4 | The 2s pattern | 2:00–2:35 (35 s) | On the 20 chart, every other number lights up: 2, 4, 6, 8, 10, 12... The ones digits go 2, 4, 6, 8, 0 again and again. Continue: 12, 14, 16, ? | Find the pattern | "I see it!" |
+| 5 | Hands: count by 5s | 2:35–3:30 (55 s) | Each marcher waves one hand: 5 fingers. Ten hands: 5, 10, 15 ... 50. Frog's jumps get bigger. Robo skips 15; kids catch it. They end in 5 or 0. | Model, fix Robo | Energy |
+| 6 | Balloons: count by 10s | 3:30–4:20 (50 s) | Bunny's bunches of 10 balloons: 10, 20, 30 ... 100. Frog's giant jumps to 100. They all end in 0. Frog's pay-off. | Model, try | Big pay-off |
+| 7 | Which jump? | 4:20–4:50 (30 s) | Get to 10 three ways: 2s (five jumps), 5s (two jumps), 10s (one jump). All land on 10. Bigger jumps, fewer jumps. | Compare | "Same spot!" |
+| 8 | Parade quiz | 4:50–5:45 (55 s) | Five questions with drum beats and pauses (section 14). | Quiz | Pride |
+| 9 | The grand march | 5:45–6:15 (30 s) | The parade marches; everyone counts by 10s to 100 with the drum. Chant, confetti. | Recap | Joy |
+| | **Total** | **6:15 (375 s)** | | | |
+
+#### 8. Animation and staging list
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Sock pile | batch3 `socks` (20, in a pile), `bear` with `drum` | `say` who frog counting by ones; Frog `sleep`; `sound` a soft snore (stand-in: none, `sleep` eyes only); Bear `wiggle` drum | Medium, then close on sleepy Frog |
+| Pairs on the line | `clothesline` (stand-in), sock pairs `pair1`..`pair10` | `build` style: each pair `pop`s onto the line in turn; a `count` caption above each: 2, 4, 6 ...; `sound` drum per pair | Straight-on wide along the line |
+| Frog leaps by 2s | `road2` (`number_line` 0–20, step 1, labels numbers, colour green) | `leap` Frog values [0, 2, 4, ..., 20] (dur 0.7, height 0.5); `highlight` each landing number; Bear `drum` on each landing | Side-on tracking `shot` that follows Frog; ends wide |
+| 20 chart | 20 `number_block`s in two rows of ten on a board | `paint` 2, 4, 6 ... 20 green in turn (`sound` ding soft); `highlight` the ones column 2, 4, 6, 8, 0 in both rows; `callout` "2, 4, 6, 8, 0 again!" | Straight-on medium, push-in to the ones digits |
+| Continue the pattern | `number_block`s 12, 14, 16, a blank card | `windup_click`; `pop` 18; `mark` correct | Close |
+| Hands by 5s | `hand` (stand-in: a `disc` palm with five `capsule` fingers, `group`) held up by ten marchers in turn | each hand `pop`s up; `callout` "5 fingers" on the first; `count` caption 5, 10 ... 50; `leap` Frog on `road5` (0–50, step 5) | High wide down the street, then side tracking |
+| Robo skips 15 | count captions | Robo `say`s "5, 10, 20"; `windup_click`; kids call; `mark` incorrect on 20, `pop` 15 back in its place, `mark` correct | Medium on Robo, then close |
+| Balloons by 10s | `bunny`, `array` (rows 10, cols 10, item `balloon`, `build` order rows, a row is one bunch) | `build` row by row with `sound` pop; `count` caption 10, 20 ... 100; Frog `leap`s on `road10` (0–100, step 10, colour purple, dur 0.9, height 1.2) | Wide, then a slow crane up (`camera` height rising) as the balloons fill |
+| Frog's pay-off | Frog at 100 | `feel` frog happy; `clip` robo ThumbsUp; `burst` stars | Close on Frog |
+| Which jump? | three short lines 0–10 stacked (green, orange, purple), Frog, Bunny, Bear as three jumpers | `leap` each: [0,2,4,6,8,10], [0,5,10], [0,10] at the same time; all land; `highlight` the three 10s; `pointer` from each 10 to a big "10" | Straight-on wide (all three lines in frame) |
+| Quiz | number line and cards | `windup_click`; `drum` on the answer; `mark` correct | Medium |
+| Grand march | all, `confetti`, `road10` | everyone `path`s along the road; Frog leaps by 10s; `burst` confetti; `clip` robo Dance | `orbit` 40° round the parade, ending high wide |
+
+#### 9. Experiment or hands-on activity
+Activity: **Skip-count sock sort**.
+- Pair up socks from the laundry (with a grown-up). Line up the pairs and count them by 2s: 2, 4, 6, 8...
+- Trace your hand on paper five times (or ask family members to hold up a hand). Count fingers by 5s: 5,
+  10, 15, 20, 25.
+- Make 10 groups of 10 small things (dry pasta, blocks, buttons for older children) and count by 10s to 100.
+- Hopscotch skip count: chalk a number line outside (0 to 20) and hop by 2s, saying each number.
+- Prediction: "If we count by 2s, will we land on 7?" (No: by 2s from 0 we land on 0, 2, 4, 6, 8...)
+- Safety: "With a grown-up." Small things like buttons and pasta are not for mouths; keep them away from
+  babies. Hop on a flat, safe surface.
+
+#### 10. Interaction moments
+- Count-along with the drum: kids say each number as Bear beats it, loud on the skip numbers, whispered in
+  between (for 2s: "one" whispered, "TWO" loud, "three" whispered, "FOUR" loud).
+- Pause and guess (2–3 s `windup_click`): "What comes next?" at 16, at 35 and at 70.
+- Move-along: clap twice per pair, wave a hand for each 5, jump for each 10.
+- Catch Robo: "You skipped 15!"
+
+#### 11. Song or chant
+**"Skip, Skip, March!"**, original. A marching beat (left, right) with a drum hit on each skip number. The
+hook idea: "Skip, skip, don't stop, count in jumps to the top!" Verse one counts by 2s to 20, verse two by
+5s to 50, verse three by 10s to 100. It is introduced in chapter 3, grows in chapters 5 and 6, and plays in
+full in chapter 9.
+
+#### 12. Fun fact(s)
+- Most people have 10 fingers and 10 toes, so counting by 10s is easy to show with your hands (chapter 6).
+- Socks come in pairs: a pair means 2 (chapter 2).
+- The number 100 is ten tens (chapter 6, as Frog lands).
+
+#### 13. Vocabulary and captions
+- Title: "Skip Count Parade".
+- Labels: skip count, pair, by 2s, by 5s, by 10s, pattern, jump.
+- Count style: every skip-count number as Frog lands (2, 4 ... 20; 5, 10 ... 50; 10, 20 ... 100).
+- Callouts: "5 fingers", "a bunch of 10", "2, 4, 6, 8, 0 again!".
+
+#### 14. Quiz and recap
+| # | Question | Answer |
+|---|---|---|
+| 1 | 2, 4, 6, __? | 8 |
+| 2 | 5, 10, 15, __? | 20 |
+| 3 | 10, 20, 30, __, 50 | 40 |
+| 4 | Six pairs of socks. Count by 2s. How many socks? | 12 (2, 4, 6, 8, 10, 12) |
+| 5 | Counting by 10s from 0, do we land on 35 or 70? | 70 (by 10s the numbers end in 0) |
+
+Praise moment: Bear plays a drum roll and the town cheers. Recap: "Skip counting is counting in equal jumps.
+By 2s: 2, 4, 6... By 5s: 5, 10, 15... By 10s: 10, 20, 30... all the way to 100!"
+
+#### 15. Sound and music
+- Music: `heroic` light march (or `happy` if heroic is too big) at musicGain 0.2, so the drum and the
+  counting stay clear.
+- Voice: Robo `soft` at 0.97; Frog `squeaky`; Bear `deep`; Bunny `squeaky`.
+- Effects: `drum` on every skip number (volume 0.5, steady); `boing` soft for Frog's take-offs, `land` for
+  landings; `pop` per balloon row; `ding` for patterns; `windup_click` before each guess; `crowd_cheer` at
+  100 and at the end.
+
+#### 16. Thumbnail and YouTube
+Designed concepts:
+- **a** "COUNT BY 2s, 5s, 10s!" (yellow, left): Frog mid-leap high over a street number line with a bright
+  purple arc from 40 to 50, balloons and socks on the clothesline behind; Frog thrilled.
+- **b** "Skip Count!" (white on green, right): the 20 chart with the even numbers glowing green, Robo
+  pointing at the 2, 4, 6, 8, 0 column, Bear with his drum smiling.
+- **c** "To 100!" (purple, left): Bunny holding ten bunches of balloons, Frog standing on a big "100"
+  number block, arms up.
+- Title idea: "Skip Counting by 2s, 5s and 10s for Kids! Parade Song | Toy Box Friends" (69 characters).
+- Tags: skip counting, count by 2s, count by 5s, count by 10s, counting to 100, first grade math, grade 1
+  math, number patterns, number line, kids learning video, Toy Box Friends.
+
+#### 17. Catalog gaps
+| Gap | Stand-in from existing parts |
+|---|---|
+| A hand with five fingers | Yes, gap: a `hand` prop (open hand, five fingers; a mitten-free glove would also do). Stand-in: a `disc` palm with four `capsule` fingers and a shorter thumb (`group`) |
+| Hundred chart (numbers in a 10 × 10 grid) | The 2s pattern uses a 20 chart of `number_block`s instead. Gap: `grid` with `labels: "numbers"` (1–100, shaded by `shade` or `highlight` per cell) |
+| A number line long enough for 0–100 on a street | `number_line` 0–100, `length` about 12 m, step 10; check labels stay readable from the high wide shot |
+| Clothesline | A thin `cylinder` between two `cylinder` poles; socks `parent`ed to it |
+| 100 balloons | `array` 10 × 10 with item `balloon`; if it is heavy to render, item `sphere` (small, balloon colours) for rows 6–10 |
+| Socks | batch3 `socks` |
+
+#### 18. Do and don't
+- Do tie every jump size to a real group (pair, hand, bunch of 10) at least once.
+- Do keep the jumps equal: the leaps must land exactly on the number marks.
+- Do start each count from 0 on the number line, and say "skip counting is a fast way to count groups".
+- Don't teach multiplication or "times" (that is G3-01); "equal groups" may be said once.
+- Don't count by 100s (G2-04) or by 5s on a clock (G2-05); no coins (G1-06).
+- Pacing: one count number per drum beat, about 0.8 s each, never faster.
+
+---
+
+### G1-15 · Story Detectives: who, where, what happened
+**Grade 1 · English / reading · 6:20 · pond (the story world), framed by a detective corner on the bank**
+**Skills:** story_details_1 · **Standard:** CCSS RL.1.1 (ask and answer questions about key details), RL.1.3 (describe characters, settings and major events using key details), approximate
+
+#### 1. Big idea
+Good readers find the clues in a story: who is in it, where it happens, what happens, and how the
+characters feel.
+
+#### 2. Learning goals
+- I can say who the characters are.
+- I can say where the story happens (the setting).
+- I can tell what happened, using details from the story.
+- I can say how a character feels and what clue shows it.
+- I can check an answer by looking back in the story, and tell when a detail is not in the story.
+
+#### 3. Hook (first 15 s)
+Robo pins a shiny detective badge on Frog. Four clue cards float up: a face (WHO), a little house pin
+(WHERE), a star (WHAT HAPPENED) and a heart (FEELINGS). Robo: "A story is full of clues. Watch closely,
+detectives. After the story, we solve the case!" A soft whoosh, and a red hat blows across the screen.
+
+#### 4. What makes it unique
+**Look back to check.** The story is acted out once all the way through, then the detectives answer
+questions and prove each answer with the **Look Back** lens: the story rewinds to the exact moment and the
+clue glows. Frog's joke drives the second key idea: he adds details that are not in the story ("and then
+a dragon took the hat!"), and the kids learn to say "Not in the story!" because a detective only uses what
+the story shows. A second, mirror story ("Squirrel's Acorn") lets the kids solve a case on their own.
+
+#### 5. Cast and roles
+| Who | Voice | Role in this episode |
+|---|---|---|
+| Robo | `soft` | Storyteller and chief detective. Narrates the story and holds the Look Back lens. |
+| Frog | `squeaky` | Junior detective. Running joke: invents details. Pay-off in chapter 8: he finds a real clue first and proves it with the Look Back lens. |
+| Turtle (guest) | `deep`, slow and gentle | Main character of story 1 (loses his red hat); the helper in story 2. |
+| Squirrel (guest) | `squeaky` | The helper in story 1; main character of story 2 (drops her acorn). |
+
+All lines use `who`. During the story, characters `look` at the hat (or the acorn) so kids' eyes follow.
+
+#### 6. Setting and look
+`pond` stage (batch3) for the stories: water, reeds, a tall `tree` by the bank, a `log`. The **detective
+corner** is a small rug (batch3 `rug`) on the bank with the four clue cards on a board (icons on `plate`s:
+a smiling face for WHO, a map pin for WHERE, a star for WHAT HAPPENED, a heart for FEELINGS). Light
+`soft_day`; during the story the light warms slightly (`lights` to a golden rig) so "story time" feels
+different from "detective time". The Look Back lens is a `magnifier` prop. Camera: story scenes are shot
+like a picture book: a wide establishing `shot`, a medium on the characters, close-ups on faces for
+feelings; detective time is a straight-on medium on the board; rewinds use a quick `whoosh` and the same
+camera as the original moment. Mood: warm, gentle, curious.
+
+#### 7. Storyline
+| # | Chapter | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | The detective badge | 0:00–0:25 (25 s) | Frog's badge, the four clue cards, a red hat blows past. | Hook | Curious |
+| 2 | Story time: Turtle's Windy Day | 0:25–1:35 (70 s) | The story (see below), told once all the way through. | Read-aloud | Calm, then worried, then happy |
+| 3 | Clue 1: Who? | 1:35–2:10 (35 s) | Who is in the story? Turtle and Squirrel. Who is it mostly about? Turtle. Characters can be animals or people. | Teach, look back | Steady |
+| 4 | Clue 2: Where? | 2:10–2:40 (30 s) | Where does it happen? By the pond. Clues: water, reeds, a tall tree. The place is called the setting. | Teach, look back | "I spotted it!" |
+| 5 | Clue 3: What happened? | 2:40–3:25 (45 s) | The wind blew Turtle's red hat into the tall tree; Squirrel climbed up and brought it down. Detail check: what colour was the hat? Frog: "And a dragon took it!" Not in the story. | Teach, check details | Laugh, then careful |
+| 6 | Clue 4: How did they feel? | 3:25–4:05 (40 s) | Turtle felt happy, then sad, then happy and thankful. Clues: his face, his words ("I can't climb trees"), his smile and "thank you". | Teach, use evidence | Warm |
+| 7 | Is it in the story? | 4:05–4:35 (30 s) | Frog says four things; kids say "In the story!" or "Not in the story!" and the Look Back lens checks each. | Try together | Fun, sharp |
+| 8 | Your turn: Squirrel's Acorn | 4:35–5:25 (50 s) | A short second story (see below). Kids answer the four clue cards on their own; Frog finds the first real clue and proves it. | Try on your own | Pride (pay-off) |
+| 9 | Detective quiz | 5:25–6:05 (40 s) | Five questions across both stories (section 14). | Quiz | Focus |
+| 10 | Case closed! | 6:05–6:20 (15 s) | Badges for everyone, chant, wave. | Recap | Joy |
+| | **Total** | **6:20 (380 s)** | | | |
+
+**Story 1, "Turtle's Windy Day"** (original; the writer may polish, sentences of up to 10 words): Turtle
+had a new red hat. He walked to the pond to show his friends. Then a big wind blew. Whoosh! The red hat
+flew up into a tall tree. Turtle looked up. He felt sad. "I can't climb trees," he said. Squirrel saw the
+hat. She ran up the tree, quick as a flash. She brought the red hat down. Turtle smiled a big smile. "Thank
+you, Squirrel!" he said.
+
+**Story 2, "Squirrel's Acorn"** (original): Squirrel sat on a log by the pond. She had a big acorn for lunch.
+Plop! The acorn fell into the water. Squirrel felt worried. She did not want to get wet. Turtle swam out
+to the acorn. He carried it back on his shell. Squirrel clapped. "Thank you, Turtle!" she said.
+
+#### 8. Animation and staging list
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Badge and cards | `frog`, `badge` (a gold `star` `parent`ed to Frog), cards `c_who`, `c_where`, `c_what`, `c_feel` | `pop` the badge; cards `pop` one by one with `ding`; a red `hat` `path`s across the frame; `sound` whoosh | Medium, then wide |
+| Story: Turtle walks | `turtle` with a red batch3 `hat` (`parent: turtle, part: head`) | `lights` warm; `path` Turtle along the bank slowly; `feel` turtle happy; Robo narrates (`say` who robo) | Wide establishing `shot` of the pond (height 20°) |
+| The wind | `weather` leaves, the hat | `show` the leaves; `sound` whoosh; the hat is un-parented (a second hat object takes over at the same spot: `hide` one, `show` the other) and `path`s up into the tree | Medium, tilting up to the tree |
+| Turtle is sad | `turtle` | `feel` turtle sad; `look` turtle at the hat; `say` "I can't climb trees," who turtle | Close on Turtle's face |
+| Squirrel helps | `squirrel`, `tree`, hat | Squirrel `path`s up the trunk and back down with the hat (`parent` the hat to the squirrel while she carries it); `sound` footstep_soft fast | Medium, tilt up and down |
+| Thank you | Turtle, Squirrel | the hat is back on Turtle's head; `feel` turtle happy; Turtle `nod`s; `say` "Thank you, Squirrel!" | Two-shot medium |
+| Look Back lens | `magnifier`, a "rewind" `caption` | `sound` whoosh (reverse feel); the scene's objects return to that moment (re-staged); `highlight` the clue (the hat's colour, the tree, Turtle's face); `callout` names it ("red hat", "tall tree", "sad face") | Same angle as the original moment |
+| Frog's made-up detail | Frog, a thought bubble (white `sphere`s) with a cartoon "dragon" word card (no dragon model; just the word) | `pop` the bubble; `windup_click`; kids call; `mark` incorrect on the bubble; the bubble `hide`s with a soft pop | Medium on Frog |
+| Clue board fills | four cards with answers | each answer `pop`s on its card: "Turtle, Squirrel", "by the pond", "the wind blew the hat into a tree; Squirrel got it", heart icons for "happy, sad, happy"; `mark` correct | Straight-on medium on the board |
+| In the story? | four statements as captions | `windup_click`; Look Back checks each; `mark` correct or incorrect | Medium |
+| Story 2 | `squirrel` with an acorn (the model holds one; a separate small brown `sphere` acorn falls), `log`, Turtle | the acorn `drop`s into the water (`sound` splash soft); `feel` squirrel worried; Turtle `path`s through the water; the acorn rides on his shell (`parent: turtle, part: shell`); `feel` squirrel happy | Wide, then medium |
+| Frog's pay-off | Frog, `magnifier` | Frog holds the lens up (the lens `move`s to Frog); `highlight` on the acorn in the water; `clip` robo ThumbsUp | Close on Frog |
+| Quiz | clue board | `windup_click`; `mark` correct; `sound` ding | Medium |
+| Case closed | everyone, `confetti` | badges `pop` for Turtle and Squirrel; `burst` confetti; `clip` robo Wave | `orbit` 30° round the group, ending wide |
+
+#### 9. Experiment or hands-on activity
+Activity: **Clue cards for any story**.
+- With a grown-up, draw four cards: a face (WHO), a house or pin (WHERE), a star (WHAT HAPPENED) and a heart
+  (FEELINGS).
+- Read a short picture book together. After reading, hold up each card and answer it.
+- Look back: open the book to the page that proves the answer ("Here! The hat is red").
+- Play "In the story or not?": the grown-up says one true detail and one silly made-up one; the child finds
+  the made-up one.
+- Prediction: before reading, look at the cover and guess who the story is about; check after.
+- Safety: none needed beyond normal reading; if you act a story out, use a clear space.
+
+#### 10. Interaction moments
+- Call and response with the cards: Robo holds up the face: "Who?" kids: "Turtle and Squirrel!" (and so on
+  for each card).
+- Pause and guess (2–3 s `windup_click`) before every Look Back: "What colour was the hat?"
+- Move-along: show each feeling on your face (happy, sad, happy and thankful) as Turtle does.
+- Shout-out: "Not in the story!" for Frog's made-up details.
+
+#### 11. Song or chant
+**"Who, Where, What, Feel"**, original. Four claps, one per clue card, each with a hand sign (point to a
+friend for who, draw a roof for where, star fingers for what happened, a hand on the heart for feel), then
+"Look back, look back, find the clue!" It plays after chapter 6 (the four clues together) and in full in
+chapter 10.
+
+#### 12. Fun fact(s)
+- Squirrels bury nuts in many hiding places and find a lot of them again by smell (chapter 8).
+- Turtles can pull their head and legs into their shell (chapter 2; Turtle tucks in a little when the
+  wind blows).
+- Some trees grow from acorns that squirrels buried and forgot (chapter 8, one line).
+
+#### 13. Vocabulary and captions
+- Title: "Story Detectives".
+- Labels: who, where, what happened, feelings, characters, setting, detail, clue, look back, not in the
+  story.
+- Clue board answers (on screen): Turtle, Squirrel; by the pond; the wind blew the red hat into a tall tree;
+  Squirrel brought it down; happy, sad, happy.
+- Story subtitles: each story sentence shown as a subtitle as Robo reads it.
+
+#### 14. Quiz and recap
+| # | Question | Answer |
+|---|---|---|
+| 1 | In "Turtle's Windy Day", who lost a hat? | Turtle |
+| 2 | What colour was the hat? | Red |
+| 3 | Where did the hat land? | In a tall tree |
+| 4 | How did Turtle feel when he couldn't reach it, and what was the clue? | Sad: his sad face and "I can't climb trees" |
+| 5 | In "Squirrel's Acorn", who helped, and how? | Turtle: he swam out and carried the acorn back on his shell |
+
+Praise moment: Robo gives every detective a badge: "Case closed! You found every clue." Recap: "Detectives
+ask who, where, what happened and how they feel, and they look back in the story to check."
+
+#### 15. Sound and music
+- Music: `calm` at musicGain 0.18 for both stories (the voice leads), `playful` at 0.24 for detective time
+  (scene `music` overrides).
+- Voice: Robo `soft` at 0.95 for the stories (a storytelling pace), 0.97 for detective time; Frog
+  `squeaky`; Turtle `deep` (slow); Squirrel `squeaky`.
+- Effects: ch 1 ding per card, whoosh; ch 2 whoosh (wind), footstep_soft; ch 3–6 whoosh for each Look Back,
+  sparkle on the clue; ch 5 boing soft for Frog's made-up dragon; ch 7 windup_click; ch 8 splash soft; ch 9
+  windup_click, ding; ch 10 crowd_cheer.
+
+#### 16. Thumbnail and YouTube
+Designed concepts:
+- **a** "STORY DETECTIVES" (yellow, left): Frog with a gold badge peering through a big magnifier at a red
+  hat caught in a tall tree, Turtle looking up with a sad face, Squirrel halfway up the trunk.
+- **b** "Who? Where? What?" (white on deep blue, right): the four clue cards in a fan, Robo holding the
+  magnifier, Frog pointing excitedly at the WHO card.
+- Title idea: "Story Detectives! Who, Where, What Happened | Reading for Kids | Toy Box Friends" (78
+  characters).
+- Tags: reading comprehension, story details, characters and setting, first grade reading, grade 1 English,
+  story elements for kids, read aloud, kids learning video, Toy Box Friends.
+
+#### 17. Catalog gaps
+| Gap | Stand-in from existing parts |
+|---|---|
+| Lifting an object off one parent onto another mid-scene (the hat from Turtle's head to the tree to Squirrel and back) | Several copies of the hat in the same spot, swapped with `hide` / `show` at each hand-over. Small engine gap: a `reparent` action (change `parent` at a time, keeping the world position) |
+| A rewind effect | `whoosh` + a "Look back" `caption` + re-staging the moment; gap (low priority): a `replay` action that re-plays a scene's earlier segment |
+| Squirrel climbing a trunk | `path` up the trunk, turned to face up (`turn` about z); check the feet stay on the bark |
+| Thought bubble | Three white `sphere`s of growing size and a `letter` word card |
+| Hat, rug | batch3 models |
+
+#### 18. Do and don't
+- Do play story 1 all the way through once before any question, then use Look Back for evidence.
+- Do teach "setting" as a word for "where", and "characters" for "who".
+- Do treat feelings with evidence: a face, a word, an action.
+- Don't teach story order with first, next, then, last (that is G2-13) or "why" questions beyond feelings;
+  "what happened" means the big event and how it ended.
+- Don't make the wind scary: a gentle gust, the hat floats, no one is in danger.
+- Pacing: hold each Look Back clue on screen for 2–3 s with its callout.

@@ -1,4 +1,4 @@
-# Pre-K video specs (PK-07 to PK-16)
+# Pre-K video specs (PK-07 to PK-21)
 
 These are the ten pre-K specs for batch 2 of "Toy Box Friends", for ages 3–5. Each one tells the script
 writer what the video teaches, what story carries it, and how the engine stages it. The writer uses only
@@ -23,6 +23,11 @@ of them blocks writing a script.
 | PK-14 | Where Is Duck? | Math / spatial words | Hide and seek | Kids find Duck from sound and tail clues, then Duck and kids find Robo, who is far too big to hide | 4:00 |
 | PK-15 | How Do You Feel? | Social-emotional | A party invitation | One birthday party gives five feelings, and a calm-down toolbox helps with each | 4:25 |
 | PK-16 | Healthy Habits: Wash, Brush, Sleep | Health | Robo's battery is low | Robo charges with a plug; kids charge with sleep, and Duck learns ducks have no teeth | 4:30 |
+| PK-17 | Letters M to S | English | Special delivery with no labels | Letter makeovers: O grows a tail into Q, P grows a leg into R | 4:50 |
+| PK-18 | Dot Dice: Zero to Five | Math | A die face with no dots | Quick-look flashes (see it, don't count it) and a 0–5 die with its own zero face | 4:10 |
+| PK-19 | Lines and Curves | Handwriting readiness | A line on the chalkboard starts to rain | Lines come alive: each stroke turns into the thing it looks like | 4:20 |
+| PK-20 | Rhyme Time | English | Duck's "quack, snack, back" song | Rhyme puzzle pieces click together; non-rhymes bump apart | 4:05 |
+| PK-21 | Alive or Not? | Science | Robo asks "Am I alive?" | The three clues are turned on Robo himself: he moves and talks, but is not alive | 4:30 |
 
 ---
 
@@ -1611,3 +1616,820 @@ soft `squeak` loop at low volume; moon `crystal_chime`; quiz `ding`; good mornin
 - Don't mention specific bedtimes or screens; say "lots of sleep" and show a calm routine.
 - Keep the sleep chapter calm: no sudden sounds, slow camera, soft light.
 
+---
+
+## Batch 3 (PK-17 to PK-21)
+
+The five batch 3 pre-K specs follow the same template and pacing, and design with the batch 3 building
+blocks in [batch3.md](batch3.md): `shot` and `orbit` for the camera, `say` with `who` for lip-sync, `look`,
+`mark` (green tick or soft red cross), `highlight`, `callout`, `number_line` with `leap`, and the new models
+in `catalog/models/batch3.json`. Voices: Robo `soft` (the series host voice; his "beep-boop" is the
+`robot_beep` sound), Duck `squeaky`, guests as named in each spec. Every spoken line names its speaker with
+`who` so mouths move with the voice. Letter sounds are always `ph_*` sound cues, never `say`.
+
+---
+
+### PK-17 · Letters M to S
+**Pre-K · English · 4:50 · town (Letter Street: seven little houses in a row)**
+**Skills:** capital_letters_prek, letter_look_alikes_prek · **Standard:** CCSS RF.K.1.d (recognise upper-case letters) and RF.K.3.a (letter sounds), approximate
+
+**1. Big idea.** M, N, O, P, Q, R and S each have a shape, a name and a sound, and one small change can turn
+one letter into another.
+
+**2. Learning goals.**
+- I can name the capital letters M, N, O, P, Q, R and S.
+- I can say each letter's sound and one word that starts with it.
+- I can see that Q is an O with a tail, and R is a P with a leg.
+- I can tell M from an upside-down W, and N from a Z lying on its side.
+
+**3. Hook (first 15 s).** A bell rings: "Special delivery!" Dog the mail carrier pulls a little red mail
+cart down Letter Street with seven brown parcels. Each house has a picture over its door, but no letter.
+Dog scratches his head: "The labels fell off! Which parcel goes to which house?" Robo: "Let's listen to the
+first sound!" Duck quacks and runs to the first door.
+
+**4. What makes it unique.** Kids match a letter to a house by its sound: the door shows a picture (a
+moon), the parcel shows a letter, and the first sound joins them. The twist is **letter makeovers**: an O
+parcel grows a little tail and becomes Q, and a P parcel grows a leg and becomes R, so kids see that a tiny
+part changes the whole letter. Two "mixed-up" parcels arrive the wrong way up (a W that turns over into M,
+a Z lying down that stands up into N). PK-12 was a train hunt with impostors; this is a delivery round
+where letters are built and changed.
+
+**5. Cast and roles.**
+
+| Who | Voice | Job |
+|---|---|---|
+| Robo | `soft` | Letter teacher. Names each shape ("M has two tall lines and two hills"). |
+| Duck | `squeaky` | Runs to each door first; quacks "Here!" Gets her own moment at Q ("quack!"). |
+| Dog (guest) | `deep` (never `bark`) | Mail carrier. Hands over each parcel, stamps it with a `ding` when it reaches the right house. |
+| Pig (guest) | `squeaky` | Lives in the P house; peeks out the window and waves when P arrives. |
+
+All lines use `who` (robo, duck, dog, pig) for lip-sync and head bob.
+
+**6. Setting and look.** `town` stage, `soft_day` light, a straight street running left to right with seven
+`house` props spaced 2.2 m apart; each has a picture sign over the door (the picture object sits on a small
+`plate` sign). The mail cart is a `basket` on two `disc` wheels pulled by Dog. Each letter keeps its own
+colour all episode: M red, N orange, O yellow, P green, Q yellow (O's colour, because it grew from O), R
+green (P's colour, it grew from P), S blue. Camera: a slow tracking shot down the street between houses, a
+`shot` close-up on each new letter, and a top-down at the makeovers so the tail and leg are easy to see.
+Mood: sunny morning, bright and tidy.
+
+**7. Storyline.**
+
+| # | Chapter (scene title) | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | Special delivery! | 0:00–0:20 (20 s) | Dog arrives with seven unlabelled parcels; seven houses with pictures. Mission: match each letter by its first sound. | Hook | Curious |
+| 2 | M for the moon house | 0:20–0:55 (35 s) | First parcel opens: it looks like W. Kids: "Turn it over!" It flips: M. Two tall lines, two hills. /m/ moon, mittens. Robo hums "mmm". Dog stamps it. | Teach, look-alike check | Silly, then proud |
+| 3 | N for the nest house | 0:55–1:25 (30 s) | A Z lies on its side in the parcel. Stand it up: N. Two tall lines and one slide. /n/ nest, nine. | Teach, look-alike check | "Oh!" |
+| 4 | O for the octopus house | 1:25–1:55 (30 s) | O rolls out like a wheel. One round line, no corners. /o/ octopus; Robo's torch goes on, off ("/o/ on, /o/ off"). | Teach, try | Giggly |
+| 5 | P for the pig house | 1:55–2:25 (30 s) | P: one tall line and a bump at the top. Pig waves from the window. /p/ pig, pumpkin. Pop your lips: /p/. | Teach, try | Bouncy |
+| 6 | Q is O with a tail | 2:25–3:00 (35 s) | A second yellow O wiggles; a little tail grows: Q! /kw/ queen bee (a bee in a tiny crown), quack. Duck: "My word!" | Teach, makeover | Delight |
+| 7 | R is P with a leg | 3:00–3:30 (30 s) | A second green P stamps its foot; a leg slides out: R! /r/ rocket, rainbow. Kids "roar" softly. | Teach, makeover | Surprise |
+| 8 | S for the sun house | 3:30–3:55 (25 s) | S slides in on a curvy path like a snake. /s/ sun, sock. Kids trace an S in the air. | Teach, move-along | Calm, sunny |
+| 9 | Letter Street, M to S | 3:55–4:15 (20 s) | The camera tracks back down the street; each letter hops in order; chant. | Repeat in order | Joy |
+| 10 | Mail check quiz | 4:15–4:40 (25 s) | Four quick questions with pauses. | Quiz | Pride |
+| 11 | All delivered! | 4:40–4:50 (10 s) | Dog rings the bell, everyone waves. | Cheer | Happy goodbye |
+
+Total: 290 s = 4:50.
+
+**8. Animation and staging list.**
+
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Delivery arrives | `dog` critter, `cart` (basket on disc wheels, group), `parcel1`..`parcel7` (brown `box` shapes, `paper` material) riding in the cart, seven `house` props with picture signs | `path` the cart along the street (face: true); `sound` bell; `say` who dog; `feel` dog worried | Wide establishing `shot` of the whole street (framing wide, height 15°) |
+| Picture signs | `moon`, `nest`, `octo` (stand-in), `pig` in the window, `bee` + `crown`, `rocket`, `sun` | `highlight` the sign of the house being visited | `shot` medium on the door, then close on the sign |
+| M flip | `l_m` (letter "M", red) starting with `rotation: [0, 0, 180]` so it reads as W | `pop` it out of `parcel1`; `windup_click` pause ("Is this M?"); `turn` to [0, 0, 0] (dur 0.8); `sound` ding; `mark` correct | Close `shot` on the letter, straight on |
+| M sound | `l_m`, `moon`, `mittens` | `sound` ph_m; 1 s later `say` "moon" who robo; `pop` the mittens beside the moon; `caption` label "M" | Medium |
+| N stands up | `l_n` (orange) starting at `rotation: [0, 0, 90]` (reads as a Z on its side) | `wiggle`; kids call; `turn` to upright; `sound` ph_n; `say` "nest... nine"; `pop` `number_block` 9 | Close, then medium |
+| O and the torch | `l_o` (yellow), `flashlight`, `octo` | `move` l_o rolling in (`spin` about z while moving); `sound` ph_o_short; `say` "octopus"; flashlight beam `show` / `hide` for on and off | Medium, slow push-in |
+| P and Pig | `l_p` (green), `pig`, `pumpkin` | `pop` l_p; `look` pig at l_p; `clip` robo Yes; `sound` ph_p; `say` "pig" who robo; Pig `hop`s | Medium two-shot |
+| Q makeover | `l_o2` (letter "O", yellow) and `l_q` (letter "Q", yellow) in the same spot, l_q hidden | `wiggle` l_o2; `hide` l_o2 and `show` l_q in one beat with `magic_sparkle`; a `callout` "tail!" pointing at the tail; `sound` ph_qu; `say` "queen bee", then Duck `say`s "quack!" (who duck) | Top-down `shot` (height 75°), then close |
+| R makeover | `l_p2` (green "P") and `l_r` (green "R"), same spot | `hop` l_p2 (it "stamps"); swap to l_r with `sparkle`; `callout` "leg!"; `sound` ph_r; `say` "rocket"; `rocket` flame flickers | Top-down, then medium |
+| S slides | `l_s` (blue), `sun`, `socks` | `path` l_s along a gentle S-curve; `sound` ph_s; `say` "sun... sock"; `clip` robo Wave (air trace) | Low medium, follows the path |
+| Letter Street | all seven letters on their doorsteps | `hop` each in order, one per beat; `caption` label "M N O P Q R S" | Tracking wide: `shot` on the list of ids, yaw sweeping 20° |
+| Quiz | letters | `grow` the asked letter to 1.25; `windup_click`; `ding`; `mark` correct on the answer | Static medium |
+| Goodbye | all, `confetti` | `burst` confetti; `clip` robo Wave; Dog `wiggle` (tail wag) | Wide |
+
+Cinematography notes: one camera move per chapter (track to the house, push to the letter), held still while
+a sound plays so kids watch the mouth and the letter, not the camera.
+
+**9. Experiment or hands-on activity.** "Mail carrier at home".
+- A grown-up writes M, N, O, P, Q, R, S on seven sticky notes (or paper squares).
+- The child is the mail carrier: stick each letter on something at home that starts with its sound (a mug
+  for M, a napkin for N, a pan or pillow for P, a rug for R, a sock for S). O and Q are hard, so an "on"
+  switch (O) and a picture of a queen in a book (Q) count.
+- Makeover game: draw an O and add a tail to make Q; draw a P and add a leg to make R.
+- Prediction: "What sound do you think 'pillow' starts with?" before sticking.
+- Safety: "With a grown-up." Stick notes only on things a grown-up says are okay; never on the stove,
+  sockets or anything hot.
+
+**10. Interaction moments.**
+- Call and response for each letter: "What letter?" "M!" "What does M say?" (the `ph_m` cue plays, then
+  kids echo).
+- Pause and guess (2–3 s `windup_click`) at the upside-down M, the lying-down N, and before each makeover
+  ("What will this O turn into?").
+- Move-along: rub your tummy for "mmm", pop your lips for /p/, roar softly for /r/, trace a big S in the air.
+- Kids are the helpers who tell Dog which house: "The moon house!"
+
+**11. Song or chant.** "Letter Street Delivery" chant, original. A walking beat (step, step, knock-knock),
+then a knock and the letter name, then its sound cue and its word ("knock-knock, M, /m/, moon"). After each
+delivery, the chant runs from M up to the newest letter. Full version in chapter 9 and over the goodbye.
+Do not use the tune of the alphabet song.
+
+**12. Fun facts.**
+- An octopus has eight arms (chapter 4; Robo counts them quickly on the picture).
+- A queen bee is the mother of her whole hive (chapter 6, said once, simply).
+- Mittens keep all four fingers together in one space, with the thumb on its own (chapter 2).
+
+**13. Vocabulary and captions.**
+
+| Word | Style | When |
+|---|---|---|
+| Letters M to S | title | Hook |
+| M, N, O, P, Q, R, S | label | Each letter's chapter |
+| moon, nest, octopus, pig, queen, rocket, sun | subtitle | With each letter's sound |
+| tail! / leg! | label (callout) | The makeovers |
+| M N O P Q R S | label | Letter Street |
+
+**14. Quiz and recap.**
+
+| # | Question | Answer |
+|---|---|---|
+| 1 | Which letter is an O with a tail? | Q |
+| 2 | Which letter is a P with a leg? | R |
+| 3 | Which letter says /s/, like sun? (cue `ph_s`) | S |
+| 4 | Is this M or W? (an upright M) | M: it stands on its two tall lines with its points up |
+
+Recap: Robo walks the street and each letter hops with its sound cue. Praise moment: Dog rings his bell
+twice, "Every parcel delivered! Great helpers!", confetti.
+
+**15. Sound and music.** Music `bouncy` at gain 0.24, dropped to 0.16 for each sound cue. Voice speed 0.92.
+Robo `soft`, Duck `squeaky`, Dog `deep`, Pig `squeaky`. Effects: `bell` for the cart (volume 0.5);
+`ph_m`, `ph_n`, `ph_o_short`, `ph_p`, `ph_qu`, `ph_r`, `ph_s` (each followed by about 1 s before the word);
+`ding` for each stamp; `magic_sparkle` and `sparkle` for the makeovers; `whoosh` soft for the S path;
+`windup_click` in the quiz.
+
+**16. Thumbnail and YouTube.** Designed thumbnails (`meta.thumbnails`), never a frame:
+- **a** "M to S!" (yellow, outlined, left side): Letter Street at a slight angle; the seven letters stand
+  on their doorsteps in rainbow order; Duck in front with wings up and a big open-beak smile; Dog behind
+  holding a parcel, surprised and happy.
+- **b** "O + tail = Q" (white on a deep blue sky, right side): a huge yellow O and Q side by side, the tail
+  glowing; Duck pointing at the tail with a surprised face (`feel` surprised); one sparkle.
+- **c** "Letter Mail!" (red, left): Robo holding a brown parcel with a green R peeking out of the top, Robo
+  waving; the rocket on the R house behind.
+- Title idea: "Letters M N O P Q R S! Alphabet Delivery for Preschool | Toy Box Friends"
+- Tags: alphabet for kids, letters M to S, letter sounds, phonics for preschool, capital letters, ABC for
+  toddlers, letter recognition, learn letters, kids learning video, 3D cartoon for kids, Toy Box Friends.
+
+**17. Catalog gaps.**
+
+| Need | Stand-in from existing parts | List as gap? |
+|---|---|---|
+| Octopus picture for O | A purple `sphere` head with two eyes (`face: true`) and eight short `capsule` arms in a ring under it (`kind: "group"`) | Yes: an `octopus` critter (it would also serve sea episodes) |
+| Mail cart | A `basket` on two `disc` wheels with a `cylinder` handle (`group`) | No |
+| Picture sign over each door | A small `plate` stood up on the house front with the picture object in front of it | No |
+| Letter makeover | Two letters in one spot, swapped with a sparkle (no letter morphing exists) | No, staging note |
+| Moon, nest, bee, crown, mittens, socks, pumpkin, rocket, flashlight, sun | All in the catalog or batch3.json | No |
+
+**18. Do and don't.**
+- Do use each letter's common sound: /m/, /n/, short /o/ (octopus, on), /p/, /kw/ for Q, /r/, /s/. No
+  long o, no soft s.
+- Do keep S words to a pure /s/: sun, sock. Don't use "sheep" or "shoe" (sh is a different sound).
+- Do say "Q nearly always comes with a u friend" only as a short aside; the lesson is the shape and /kw/.
+- Do keep each letter's colour the same all episode; Q shares O's yellow and R shares P's green on purpose,
+  so the makeover is easy to see.
+- Don't make the upside-down letters "wrong" or "naughty"; turning them is a game.
+- Don't repeat A to L; one line in the hook ("we know A to L!") is enough.
+- Hold each letter for at least 3 s on screen after its sound; pre-K eyes need time.
+
+---
+
+### PK-18 · Dot Dice: Zero to Five
+**Pre-K · Math · 4:10 · playroom (game night on the rug)**
+**Skills:** count_to_5_prek, number_order_prek · **Standard:** CCSS K.CC.A.3 (write and know 0–20, with 0 as no objects), K.CC.B.4 (one more), K.CC.A.2 (count on from a number), approximate
+
+**1. Big idea.** I can see how many dots there are with one quick look, and zero means none at all.
+
+**2. Learning goals.**
+- I can tell 1, 2, 3, 4 and 5 dots at a glance, without counting one by one.
+- I know zero means none: an empty face, an empty bowl.
+- I know the same number can look different (3 in a row, 3 in a triangle).
+- I can put 0, 1, 2, 3, 4, 5 in order and find a missing one.
+
+**3. Hook (first 15 s).** Game night. Bear rolls a big soft die across the rug; it tumbles and stops. Robo
+asks: "How many dots?" ... then he hides the die before anyone can count! "Can you see it in one look?" A
+second roll lands on a face with no dots at all. Duck gasps: "It's broken!" Robo: "Not broken. That's zero!"
+
+**4. What makes it unique.** It is a "quick look" game: every dot pattern is shown for 2 seconds and then
+hidden, so kids learn to see small amounts at a glance (subitising) instead of counting one by one (PK-01
+counted in a row). Robo's special classroom die has the faces 0 to 5, so zero gets its own face. The
+dominoes have blank halves, a real-world zero. Then the dots move into new shapes and kids find that the
+number stays the same.
+
+**5. Cast and roles.**
+
+| Who | Voice | Job |
+|---|---|---|
+| Robo | `soft` | Game host. Rolls, hides, asks "How many?" Makes one mistake on purpose ("these 3 are more because they are long"). |
+| Duck | `squeaky` | Answers first, sometimes too fast; at zero she is sure the die is broken. Hops along the number path. |
+| Bear (guest) | `deep` | Brings the big die; rolls with both paws; counts slowly to check each answer ("Let's check: 1, 2, 3."). |
+
+All lines use `who` for lip-sync. Bear and Duck `look` at the die each time it lands.
+
+**6. Setting and look.** `playroom`, warm `soft_day` light dimmed a little toward evening with `lights`
+(`evening`) in the hook, so it feels like game night. A low `table` in the middle; the big die (0.6 m cube
+with white dots) rolls on the rug in front of it. Dot patterns are always white dots on a red face, large
+and clean. Camera: a top-down `shot` (height 80°) every time a face shows, so the pattern is never seen at
+an angle; medium shots for the friends; one slow `orbit` round the table at the start of the game. Colour
+mood: cosy reds and cream.
+
+**7. Storyline.**
+
+| # | Chapter (scene title) | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | Game night! | 0:00–0:20 (20 s) | Bear's die rolls; Robo hides it; a blank face; "That's zero!" | Hook | Surprise, curiosity |
+| 2 | One and two | 0:20–0:50 (30 s) | Face 1 (a dot in the middle), face 2 (two corner dots). Quick look, hide, "How many?" Bear checks by counting. | Teach, quick look | Easy wins |
+| 3 | Three and four | 0:50–1:25 (35 s) | Face 3 (a slanted line), face 4 (four corners, like a window). Quick look, hide, answer, check. | Teach, quick look | "I see it!" |
+| 4 | Five: corners and a middle | 1:25–1:55 (30 s) | Face 5 is four corners plus one in the middle: "4 and 1 more is 5." | Teach, one more | Proud |
+| 5 | Zero means none | 1:55–2:25 (30 s) | The blank face. An empty bowl: zero cookies. A domino with one blank half: zero on that side. The numeral 0 appears. | Teach | Funny, then "aha" |
+| 6 | Same number, new shape | 2:25–2:55 (30 s) | Three dots slide from a slant into a row, then a triangle. Robo says the long row is "more". Kids fix him: still 3. | Show, fix Robo | Clever |
+| 7 | Line them up, 0 to 5 | 2:55–3:30 (35 s) | Number blocks 0 to 5 stand on a number path; Duck hops 0, 1, 2, 3, 4, 5. One block hides: which is missing? | Order, try | Bouncy |
+| 8 | Quick look quiz | 3:30–3:55 (25 s) | Four flashes with pauses. | Quiz | Pride |
+| 9 | Domino high five | 3:55–4:10 (15 s) | A domino with 5 dots on each side; everyone gives a high five; chant. | Cheer | Happy |
+
+Total: 250 s = 4:10.
+
+**8. Animation and staging list.**
+
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| The roll | `die` (stand-in, see gaps: a red `cube` with white `disc` dots as children), Bear | `clip` none; `hop` bear; `path` the die across the rug in two bounces while it `spin`s; it lands with the planned face up (the last `turn` sets the face); `sound` land soft | Wide, then top-down `shot` on the die (height 80°, dur 0.8) |
+| Quick look | the face's dots | Hold 2 s; `hide` the die (or `move` a `plate` cover over it, "a napkin"); `windup_click` 2–3 s; `say` "How many?" who robo | Top-down close |
+| Bear checks | dots | `show` again; each dot `pop`s a tiny `count` caption 1, 2, 3 as Bear counts; `say` who bear | Top-down close |
+| Window four | four corner dots | `highlight` the four corners in turn; `caption` label "4" | Close |
+| Five is 4 and 1 more | middle dot | `pop` the middle dot last with `ding`; `callout` "1 more" on it | Close |
+| Zero | blank face, `bowl` (empty), `domino` (batch3, one half blank), `number_block` 0 | `highlight` the blank face; Duck `feel` surprised; `move` the empty bowl in; `pop` 0; `caption` label "0 zero" | Medium, then close on the domino |
+| Same number | three `disc` dots on a `plate` | `move` the dots from slant to row (dur 1.2), then to a triangle; Robo `clip` No on the "more" claim when kids correct; `mark` correct on "3" | Top-down |
+| Number path | `number_line` (from 0, to 5, step 1, length 5, labels "numbers"), `number_block` 0..5 standing on it (`on: { line, value }`) | `build` the line (order items); `leap` Duck along values 0..5 (dur 0.6 each, `sound` boing soft); `hide` block 3; `windup_click`; `pop` it back | Wide side `shot`, then a slow track along the line |
+| Quiz | die faces | four flashes of 2 s each (3, 0, 5, 2); `windup_click`; `mark` correct | Top-down |
+| Domino high five | big `domino` with 5 and 5 | `grow` to 1.2; `burst` confetti; `clip` robo ThumbsUp; Bear and Duck `hop` | `orbit` 40° round the domino, ending wide |
+
+**9. Experiment or hands-on activity.** "Quick look cards".
+- With a grown-up, draw big dots on six cards: 0 (blank), 1, 2, 3, 4 and 5, in dice patterns.
+- The grown-up flashes a card for two seconds; the child says how many, then counts to check.
+- Then move real things (5 buttons or 5 grapes on a plate) into new shapes: still 5?
+- Find zero at home: an empty cup, an empty basket.
+- Prediction: "If I add one more dot to 4, how many will it be?"
+- Safety: "With a grown-up." Small things like buttons can go in the mouth, so use big blocks or toys for
+  little ones, and put everything away after.
+
+**10. Interaction moments.**
+- Quick look and shout: "How many?" after every 2 s flash, with a `windup_click` pause.
+- Fix Robo: "Is the long row more? No! It's still 3!"
+- Move-along: show the number with your fingers after each answer; for zero, a closed fist ("none").
+- Count along with Bear's check, and hop along with Duck on the number path.
+
+**11. Song or chant.** "Peek and Say" chant, original. Two claps, a peek (hands over eyes, then open), then
+the number ("peek... THREE!"). The zero verse ends with an open, empty hand and a whispered "zero... none!"
+It plays after chapters 3 and 5 and in full at the end (0 to 5).
+
+**12. Fun facts.**
+- On a normal die, the dots on opposite sides always add up to 7 (chapter 1, a quick "fun fact" caption;
+  Robo's 0–5 die is a special classroom die).
+- Dominoes can have a blank half, which means zero (chapter 5).
+- Most people can see up to about four things at once without counting (chapter 3, "you can see it in
+  one look!").
+
+**13. Vocabulary and captions.**
+
+| Word | Style | When |
+|---|---|---|
+| Dot Dice | title | Hook |
+| 0, 1, 2, 3, 4, 5 | count | Each face |
+| zero, none | label | Chapter 5 |
+| 4 and 1 more | label | Chapter 4 |
+| still 3 | label | Chapter 6 |
+| 0 1 2 3 4 5 | label | Number path |
+
+**14. Quiz and recap.**
+
+| # | Question | Answer |
+|---|---|---|
+| 1 | Quick look: a slanted line of dots. How many? | 3 |
+| 2 | A face with no dots. How many? | Zero (none) |
+| 3 | Four corners and one in the middle. How many? | 5 |
+| 4 | The number path says 0, 1, _, 3. What is missing? | 2 |
+
+Recap: the six faces in a row, 0 to 5, each hops as its number is said. Praise moment: Bear's deep "Great
+looking!", the domino high five and confetti.
+
+**15. Sound and music.** Music `playful` at gain 0.22, dipping to 0.12 in each quick-look hold so kids can
+think. Voice speed 0.92. Robo `soft`, Duck `squeaky`, Bear `deep`. Effects: die landing `land` (soft, 0.5);
+each counted dot `block` (soft tick); zero `ooh`; one more `ding`; number path `boing` soft per hop;
+`windup_click` before each answer; `crowd_cheer` gently at the end. No loud sudden sounds.
+
+**16. Thumbnail and YouTube.** Designed concepts (`meta.thumbnails`):
+- **a** "0 to 5!" (yellow, left): the big red die tilted toward the camera with the 5 face up, a smaller
+  die beside it showing the blank zero face; Duck behind them with a big surprised face; Bear smiling.
+- **b** "Zero = None" (white on cream, right): an empty bowl in the middle with a glowing 0 above it, Duck
+  peeking into the bowl with a puzzled tilt (`feel` surprised).
+- **c** "Quick Look!" (red, left): Robo with one hand over his eyes, peeking at a domino with 3 and 4
+  dots; sparkles.
+- Title idea: "Dot Dice! Count 0 to 5 in One Look | Preschool Math | Toy Box Friends"
+- Tags: counting for preschool, numbers 0 to 5, subitizing, dice dots, zero for kids, number order,
+  preschool math, toddler counting, kids learning video, 3D cartoon for kids, Toy Box Friends.
+
+**17. Catalog gaps.**
+
+| Need | Stand-in from existing parts | List as gap? |
+|---|---|---|
+| A big soft die with dot faces (and a 0–5 classroom die) | A red rounded `cube` (0.6 m) with white `disc` dots as children (`parent`), one set of dots per face | Yes: a `die` prop with a `faces` field (pips 0–6 per face) |
+| Dot pattern cover ("napkin") | A flat `plate` slid over the die, or `hide` / `show` | No |
+| Dominoes with blank halves | batch3 `dominoes`; check a half can be blank and pips can be set | Note for the model task |
+| A roll that lands on a chosen face | `path` with `spin`, then a final `turn` to the planned rotation (deterministic, no physics) | No, staging note |
+
+**18. Do and don't.**
+- Do show every face top-down and hold it 2 s before hiding; at an angle the pattern is hard to see.
+- Do always check the quick-look answer by counting once (Bear), so kids link seeing and counting.
+- Do say zero is a number that means none; never "zero is nothing at all, not a number".
+- Do keep the dice patterns standard (5 = four corners and a middle) so kids recognise real dice.
+- Don't add numbers past 5, and don't do adding sums (PK-10 did picnic adding); "1 more" is the only
+  addition idea.
+- Don't let the die roll look random or chaotic; it is a gentle tumble with a planned landing.
+
+---
+
+### PK-19 · Lines and Curves
+**Pre-K · Handwriting readiness · 4:20 · studio (a big chalkboard, then the beach for the wavy line)**
+**Skills:** prewriting_strokes_prek · **Standard:** pre-K fine-motor and early writing (approximate: CCSS L.K.1.a, print letters; Head Start ELOF P-PMP 6, fine motor)
+
+**1. Big idea.** Every picture and every letter is made of a few lines and curves, and we draw them from
+the top and from the left.
+
+**2. Learning goals.**
+- I can draw a standing line from top to bottom and a lying line from left to right.
+- I can draw a slanted line, a circle, a curve, a wavy line and a zigzag.
+- I can start a circle at the top and go round the "c" way.
+- I can find lines and curves in things around me and in letters.
+
+**3. Hook (first 15 s).** A big empty chalkboard. Robo taps it with a glowing chalk dot. The dot slides
+straight down and leaves a line... and suddenly raindrops start falling from it! Duck: "The line made rain!"
+Robo: "Every line can make something. Let's draw them all!"
+
+**4. What makes it unique.** **Lines come alive.** Each stroke kids trace turns into a real thing that does
+what the line looks like: a standing line becomes rain, a lying line becomes a road that a car drives on, a
+slanted line becomes a slide, a circle becomes a rolling ball, a curve becomes a rainbow, a wavy line
+becomes sea waves for a boat, and a zigzag becomes the points of a crown. At the end, lines join into a
+house and into letters (L, T, O), so kids see why strokes matter for writing. Turtle teaches "slow and
+careful", the real secret of a neat line.
+
+**5. Cast and roles.**
+
+| Who | Voice | Job |
+|---|---|---|
+| Robo | `soft` | Teacher with the glowing chalk dot. Shows the start dot and the way to go every time. Once draws a line from the bottom up; kids tell him to start at the top. |
+| Duck | `squeaky` | Tries each stroke first, too fast and wobbly the first time, then slow and smooth. |
+| Turtle (guest) | `deep`, slow | Walks along each finished line from the start dot: "Slow... and steady." The pace-setter. |
+
+All lines use `who` for lip-sync. Duck and Turtle `look` at the chalk dot as it moves, so kids' eyes
+follow too.
+
+**6. Setting and look.** `studio` stage with the batch3 `chalkboard` model, big and upright, facing the
+camera; a green start dot always marks where to begin and a small `arrow` shows the way. Light `studio`.
+Strokes are thick (about 6 cm) and glow pale yellow on the dark board. When a stroke comes alive, the thing
+appears in front of the board at the same spot. Chapter 7's wavy line moves to the `beach` stage for the
+boat (`lights` blend), then back. Camera: straight-on `shot` at the board (yaw 0) for every trace, so lines
+are never seen at an angle; a gentle push-in as the stroke starts; a medium shot to the side for the
+"come alive" moment. Mood: calm and focused, with a bright pop of colour at each reveal.
+
+**7. Storyline.**
+
+| # | Chapter (scene title) | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | The magic chalkboard | 0:00–0:20 (20 s) | The chalk dot draws a line that rains. "Let's draw them all!" | Hook | Wonder |
+| 2 | Standing line: top to bottom | 0:20–0:50 (30 s) | Start dot at the top, go down. Robo tries bottom-up: kids say "Start at the top!" Rain falls from the line. | Teach, fix Robo | "Like rain!" |
+| 3 | Lying line: left to right | 0:50–1:20 (30 s) | Start dot on the left, go across. It becomes a road; a toy car drives along it, left to right. | Teach, try | Vroom fun |
+| 4 | Slanted line | 1:20–1:45 (25 s) | Top to bottom, on a slant. It becomes a slide; Duck slides down. | Teach, try | Wheee |
+| 5 | Circle: round the "c" way | 1:45–2:20 (35 s) | Start at the top, go round to the left, back to the start. It becomes a ball that rolls away. Duck's first circle doesn't close; second one does. | Teach, try again | Proud |
+| 6 | Curve | 2:20–2:45 (25 s) | A curve like a hill: up, over, down. It becomes a rainbow. | Teach | Pretty |
+| 7 | Wavy line and zigzag | 2:45–3:20 (35 s) | Wavy: up and down, smooth. On the beach it becomes waves; a boat bobs. Zigzag: up, down, sharp points. It becomes a crown's points. Smooth vs pointy. | Teach, compare | Bobbing, then royal |
+| 8 | Lines make pictures and letters | 3:20–3:45 (25 s) | Four lines make a square; two slanted lines make a roof: a house. A standing and a lying line make L and T; a circle makes O. | Combine | "Wow!" |
+| 9 | Trace with me quiz | 3:45–4:10 (25 s) | Four "which line?" questions with pauses. | Quiz | Pride |
+| 10 | A wavy goodbye | 4:10–4:20 (10 s) | Everyone waves; the chalk dot draws a wavy line under "Bye!" | Cheer | Warm |
+
+Total: 260 s = 4:20.
+
+**8. Animation and staging list.**
+
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Chalk dot | `chalk` (a glowing `sphere` 0.07 m, `light` material), `start` (green `disc`), `way` (small `arrow`) | `pop` start and way; `path` the chalk through the stroke's points at an even speed (dur 2–3 s per stroke); the stroke appears behind it (stand-in, see gaps) | Straight-on `shot` on the board (framing medium, yaw 0), slow push-in |
+| Rain from the line | `weather` rain, limited to a narrow strip in front of the board | `show` weather rain for 3 s, then `hide`; `sound` rain soft | Medium side view |
+| Robo goes the wrong way | stroke 1 attempt | `path` the chalk bottom-up; `windup_click`; kids call; `mark` incorrect (soft red cross) on the bottom start; redraw from the top; `mark` correct | Straight-on |
+| Road and car | `car` prop | stroke turns into a grey road (`paint` the stroke grey); `move` the car left to right along it; `sound` car_pass soft | Medium, track with the car |
+| Slide | `slide` prop | the slanted stroke `hide`s as the slide `pop`s at the same angle; Duck `path`s down the chute; `sound` slide_whistle soft | Medium |
+| Circle | `ball` prop | chalk starts at the top and goes anticlockwise; Duck's first try leaves a gap (`callout` "join it up!"); second try closes; the ring becomes a ball that `move`s and `spin`s away; `sound` ball_bounce | Straight-on, then wide |
+| Curve to rainbow | `rainbow` prop | `pop` the rainbow over the curve; `sound` sparkle | `shot` medium |
+| Wavy line at the beach | `boat` prop, `beach` stage | `lights` to the beach rig; stroke becomes blue `water` waves (stand-in: a row of `half_circle`s in water material, alternating up and down); the boat `hop`s gently on them; `sound` splash soft | Wide, low |
+| Zigzag to crown | batch3 `crown` | the zigzag points `highlight`; the crown `pop`s on Duck's head (`parent: duck, part: head`); Duck `feel` happy | Close on Duck |
+| Lines make a house | four line strokes and two roof strokes; `house` prop | `draw` (or `path`) each in turn, `sound` block per stroke; the outline fades as the house `pop`s in its place | Straight-on, then medium |
+| Letters | `letter` L, T, O beside their strokes | each stroke set `highlight`s, then the letter `pop`s over it; `caption` "L = two lines" | Straight-on |
+| Quiz | four strokes on the board | `highlight` the asked one; `windup_click`; `mark` correct | Straight-on |
+| Goodbye | wavy stroke, `letter` "Bye!" | `clip` robo Wave; Turtle `nod`; `burst` stars | Wide pull-back |
+
+**9. Experiment or hands-on activity.** "Big arm, small finger, crayon".
+- Big arm: stand up and draw each line in the air with your whole arm (top to bottom, left to right).
+- Small finger: with a grown-up, pour a thin layer of salt, sand or flour on a tray and trace each line
+  with one finger; shake gently to erase.
+- Crayon: on big paper, start at a dot the grown-up draws and follow the arrow: standing line, lying line,
+  slanted line, circle, wavy line, zigzag.
+- Look around: find a standing line (a door edge), a circle (a plate), a wavy line (a curtain, a hose).
+- Prediction: "If we draw two slanted lines that meet at the top, what shape will it make?" (a roof, a
+  triangle top).
+- Safety: "With a grown-up." Crayons and salt are not for eating; wash hands after the tray.
+
+**10. Interaction moments.**
+- Trace-along: every stroke is traced slowly enough for a finger in the air (2–3 s), with Robo's "Ready...
+  start at the dot... go!"
+- Pause and guess (2–3 s `windup_click`): "What will this line turn into?" before every reveal.
+- Fix Robo: "Start at the top!" in chapter 2.
+- Move-along: body shapes: stand tall (standing line), lie flat arms out (lying line), lean (slanted), arms
+  in a circle over your head.
+
+**11. Song or chant.** "Dot, Go, Slow" chant, original. Three words on three taps: "Dot!" (point), "Go!"
+(move), "Slow!" (Turtle's deep voice). Then the line's way: "top to bottom" or "left to right" or "round and
+round". It repeats before each stroke and runs through all the lines in chapter 9's lead-in.
+
+**12. Fun facts.**
+- A rainbow looks like a curve because it is part of a circle of light (chapter 6).
+- People drew lines and circles on cave walls long before there were letters (chapter 8, a short line).
+- Sea waves go up and down as they travel, just like a wavy line (chapter 7).
+
+**13. Vocabulary and captions.**
+
+| Word | Style | When |
+|---|---|---|
+| Lines and Curves | title | Hook |
+| standing line, lying line, slanted line | label | Chapters 2–4 |
+| circle, curve | label | Chapters 5–6 |
+| wavy line, zigzag | label | Chapter 7 |
+| top to bottom / left to right | subtitle | With each stroke |
+| start at the dot | label | First stroke of each chapter |
+
+**14. Quiz and recap.**
+
+| # | Question | Answer |
+|---|---|---|
+| 1 | Where does a standing line start: top or bottom? | The top |
+| 2 | Which way does a lying line go? | Left to right |
+| 3 | Which is smooth: the wavy line or the zigzag? | The wavy line |
+| 4 | A standing line, then a lying line at its foot. Which letter is it? | L |
+
+Recap: all seven strokes appear in a row on the board, each with a tiny picture of what it became. Praise:
+Turtle says "Slow and steady... beautiful!" and the board sparkles.
+
+**15. Sound and music.** Music `calm` at gain 0.2 during tracing (focus), `happy` at 0.24 for each come-alive
+moment (scene `music` overrides). Voice speed 0.90 (slowest of the batch, to match the strokes). Robo
+`soft`, Duck `squeaky`, Turtle `deep` (slow). Effects: chalk squeaks are NOT used (unpleasant); a soft
+`sparkle` follows the chalk dot; reveals: `rain`, `car_pass`, `slide_whistle`, `ball_bounce`, `sparkle`,
+`splash`, `magic_sparkle`; `windup_click` before each guess.
+
+**16. Thumbnail and YouTube.** Designed concepts:
+- **a** "Lines & Curves!" (yellow, left): the dark chalkboard with glowing strokes (standing, wavy, zigzag,
+  circle) and each one half-turned into its thing (rain, waves, crown, ball); Duck in front holding the
+  glowing chalk dot, proud; Turtle smiling.
+- **b** "Draw With Me" (white, right): a close view of a glowing circle being drawn round the "c" way with
+  a green start dot and arrow; Robo pointing; a ball bouncing out of the circle.
+- Title idea: "Lines and Curves! Pre-Writing Practice for Preschool | Toy Box Friends"
+- Tags: pre-writing, pre writing strokes, tracing lines, fine motor skills, handwriting for preschool,
+  draw lines for kids, circle zigzag wavy line, kindergarten readiness, kids learning video, 3D cartoon for
+  kids, Toy Box Friends.
+
+**17. Catalog gaps.**
+
+| Need | Stand-in from existing parts | List as gap? |
+|---|---|---|
+| A stroke that draws itself along any path (lines, circles, waves, zigzags) | The chalk dot moves with `path`, and a trail of small glowing `disc` dots `pop`s behind it one by one (about 12 per stroke); straight lines and the curve can be a `pointer` without its head and `draw` | Yes: a `stroke` kind (`points`, `width`, `closed`, `smooth` true/false) that `draw` reveals from start to end. It would also serve handwriting, mazes and dot-to-dot later. |
+| Rain only in front of the board | `weather` rain in a small region | Check `weather` takes an area; if not, gap: an area for `weather` |
+| Waves from the wavy line | A row of blue `half_circle`s in `water` material, alternating flipped | No |
+| Chalkboard, crown | batch3 models | No |
+
+**18. Do and don't.**
+- Do always show the start dot and the direction arrow before the stroke moves; this is the lesson.
+- Do teach top to bottom and left to right every time; circles start at the top and go anticlockwise (the
+  way we write c, o, a).
+- Do move the chalk slowly (2–3 s a stroke) so kids can trace along; never speed a stroke up.
+- Do praise trying again: Duck's wobbly first try is fine, the second is smoother.
+- Don't teach pencil grip in this episode or ask kids to write letters; L, T, O are only "look what lines
+  make".
+- Don't use chalk-scraping sounds or sudden rain noise.
+
+---
+
+### PK-20 · Rhyme Time
+**Pre-K · English · 4:05 · pond (lily pads and reeds), with a small rug and jar on the bank**
+**Skills:** rhyming_k · **Standard:** CCSS RF.K.2.a (recognise and produce rhyming words), approximate
+
+**1. Big idea.** Words rhyme when they sound the same at the end, like mouse and house.
+
+**2. Learning goals.**
+- I can hear when two words sound the same at the end.
+- I can say if two words rhyme or not (bug, rug: yes; bug, sun: no).
+- I can find the one word that does not rhyme.
+- I can say a new word that rhymes (car, jar... star!).
+
+**3. Hook (first 15 s).** Duck is splashing by the pond, singing: "Quack, snack, back, sack!" Robo: "Duck,
+those words all end the same way. They rhyme!" Duck: "What's a rhyme?" A little bell chimes. Robo: "Let's
+listen to the ends of words and find out!"
+
+**4. What makes it unique.** **Rhyme puzzle pieces.** Every picture sits on a puzzle half. When two words
+rhyme, their halves slide together and click into one glowing piece; when they do not rhyme, they bump and
+bounce apart (a soft boing). Kids hear the rhyme and also see it: the word cards under the pictures show the
+matching ending in the same colour ("m-**ouse**", "h-**ouse**"). Duck's running gag: she thinks everything
+rhymes with "quack". Pay-off: at the end she finds real ones (quack, back, snack) and is right.
+
+**5. Cast and roles.**
+
+| Who | Voice | Job |
+|---|---|---|
+| Robo | `soft` | Rhyme teacher. Says each pair slowly, stretching the ending. Puts bug with sun on purpose, so kids can say "Not a rhyme!" |
+| Duck | `squeaky` | Wants every word to rhyme with "quack"; tries first; learns to listen to the end. |
+| Mouse (guest) | `squeaky` (a little higher, pitch up) | Lives in a little house on the bank; brings the first pair ("I'm a mouse in a house!") and is the "click" checker who listens with her big ears. |
+
+All lines use `who`; Mouse `look`s at each pair as it is said, ears up.
+
+**6. Setting and look.** `pond` stage, `soft_day` light: water in the middle, reeds, lily pads, a grassy
+bank in front. The puzzle halves float on the water like lily pads, then glide to the bank. Pictures are
+props on top of each half. Word cards are `letter` objects under each picture with the ending in a shared
+colour (pre-readers see the colour match, not the letters). Camera: a medium two-shot of each pair, a
+close `shot` when they click, and one slow `orbit` round the joined piece. Mood: fresh greens and blues,
+gentle ripples.
+
+**7. Storyline.**
+
+| # | Chapter (scene title) | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | Duck's quack song | 0:00–0:20 (20 s) | Duck sings quack, snack, back. "What's a rhyme?" | Hook | Silly, curious |
+| 2 | Mouse and house | 0:20–0:55 (35 s) | Mouse and her house float in on two halves. Say them slowly: m-ouse, h-ouse. The ends match: click! "Words that end the same rhyme." | Teach | "Aha" |
+| 3 | Frog and log | 0:55–1:20 (25 s) | Robo tries frog and dog... wait, that rhymes too! Then frog and log. Both rhyme: -og. Click, click. | Teach, repeat | Giggle |
+| 4 | Bee and tree | 1:20–1:45 (25 s) | A bee buzzes to a tree. bee, tree: -ee. Click. | Teach, try | Buzzy fun |
+| 5 | Rhyme or not? | 1:45–2:20 (35 s) | bug and rug: click. bug and sun: bump, boing, not a rhyme. Kids give thumbs up or down before each test. | Try together | Suspense, cheer |
+| 6 | Odd one out | 2:20–2:55 (35 s) | Three pictures: bee, tree, ball. Which does not rhyme? Ball. Then log, frog, cake: cake. | Practise | Clever |
+| 7 | Make a rhyme | 2:55–3:25 (30 s) | car, jar... what else? A star pops out of the sky: star! Duck tries "quack, back, snack": all real rhymes. Duck is right at last. | Produce rhymes | Pay-off joy |
+| 8 | Rhyme Time quiz | 3:25–3:50 (25 s) | Four quick questions with pauses. | Quiz | Pride |
+| 9 | The rhyme party | 3:50–4:05 (15 s) | All the joined pieces float in a ring; chant; wave. | Cheer | Happy |
+
+Total: 245 s = 4:05.
+
+**8. Animation and staging list.**
+
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Duck's song | `duck`, `pond` stage | Duck `hop`s on a lily pad; `say` who duck; `feel` happy; `sound` crystal_chime soft when Robo says "rhyme" | Medium |
+| Puzzle halves float in | `half_a`, `half_b` (flat `plate`s, stand-in for jigsaw halves, see gaps), `mouse` critter on one, `house` prop on the other | `move` both across the water with a gentle `wiggle` (bob); `say` "mouse" who robo, then "house" | Medium two-shot (`shot` target [half_a, half_b], framing medium) |
+| Word cards | `w_mouse` ("mouse", with "ouse" in purple), `w_house` (same ending colour) | `show` under the pictures; `highlight` the matching endings together | Close |
+| Click! | both halves | `move` together (dur 0.8); `sound` block then `crystal_chime`; `highlight` the joined piece; `mark` correct | Close `shot`, then `orbit` 30° |
+| Not a rhyme: bump | `bug` and `sun` halves | `move` together, then a short `move` apart with `boing` soft; `wiggle` both; `mark` incorrect (soft red cross) | Medium |
+| Frog and dog / log | `frog`, `dog`, `log` | Robo pairs frog and dog: they click too (both -og, a happy surprise); then log joins as a third: the -og piece grows | Medium wide |
+| Bee to the tree | batch3 `bee`, `tree` | `path` the bee in a loop to the tree; `sound` a soft buzz (stand-in: `squeak` low, or none); click | Medium |
+| Odd one out | three pictures on three halves | `highlight` each in turn as it is said; `windup_click`; the odd one `move`s out with `boing`; the two rhymes click | Wide on the three |
+| Make a rhyme | `car`, `jar`, `star` (shape) | car and jar click; `windup_click`; `drop` a gold `star` from the sky; `sound` sparkle; click into a three-piece | Medium, tilt up for the star |
+| Duck's pay-off | `duck`, word cards "quack", "back", "snack" | the three cards click; Duck `hop`s; `clip` robo ThumbsUp | Close on Duck |
+| Quiz | pairs on halves | `windup_click`; `mark` correct / incorrect | Medium |
+| Party | all joined pieces, `bubbles` | pieces `path` round in a slow ring; `burst` bubbles; `clip` robo Dance | Wide `orbit` 60° |
+
+**9. Experiment or hands-on activity.** "Rhyme basket".
+- With a grown-up, put a few things in a basket: a sock, a block, a toy car, a jar (plastic), a hat, a toy
+  cat... and a spoon.
+- Pull out two at a time and say them slowly: "sock, block": rhyme! "car, spoon": no.
+- Rhyme fishing: the grown-up says a word (bee), the child says any word that rhymes, real or silly (tree,
+  me, zee). Silly words count; they still rhyme!
+- Prediction: "Will cat and hat rhyme? Listen to the end."
+- Safety: "With a grown-up." Use a plastic jar, and keep small things out of reach of babies.
+
+**10. Interaction moments.**
+- Thumbs up (rhyme) or thumbs down (no rhyme) before every click or bump, with a 2–3 s `windup_click`.
+- Call and response: Robo says the first word, kids say the second ("mouse..." "house!").
+- Odd one out: kids shout the one that does not belong.
+- Make a rhyme: "car, jar, ... ?" pause, then the star drops.
+
+**11. Song or chant.** "Same at the End" chant, original. A splashy pat-pat rhythm on the knees, then two
+words and a clap on the matching ending ("mouse, house, CLAP, same at the end!"). Each chapter adds its pair.
+The full chant plays at the party, ending with Duck's "quack, back, snack!"
+
+**12. Fun facts.**
+- A mouse uses its whiskers to feel its way in the dark (chapter 2, said by Mouse).
+- Bees visit flowers to collect nectar and make honey (chapter 4).
+- Frogs can breathe through their skin as well as their lungs (chapter 3).
+
+**13. Vocabulary and captions.**
+
+| Word | Style | When |
+|---|---|---|
+| Rhyme Time | title | Hook |
+| rhyme | label | Chapter 2 and every click |
+| mouse, house, frog, log, bee, tree, bug, rug, car, jar, star | subtitle (word cards) | With each pair |
+| same at the end | label | Chapter 2 |
+| not a rhyme | label | Each bump |
+
+**14. Quiz and recap.**
+
+| # | Question | Answer |
+|---|---|---|
+| 1 | Do bug and rug rhyme? | Yes |
+| 2 | Do bee and sun rhyme? | No |
+| 3 | Which does not rhyme: frog, log, ball? | Ball |
+| 4 | What rhymes with jar? (car, house) | Car |
+
+Recap: the joined pieces line up and each pair is said once more. Praise: Mouse squeaks "You have great
+listening ears!" and bubbles float up.
+
+**15. Sound and music.** Music `happy` at gain 0.22; dipped to 0.14 while pairs are said, so endings are
+clear. Voice speed 0.92, with a small stretch on each ending. Robo `soft`, Duck `squeaky`, Mouse `squeaky`.
+Effects: `crystal_chime` on each click; `boing` soft on each bump; `splash` soft as halves glide; `sparkle`
+for the star; `windup_click` before every answer.
+
+**16. Thumbnail and YouTube.** Designed concepts:
+- **a** "Rhyme Time!" (yellow, left): two glowing puzzle halves clicking together at the pond, Mouse on one
+  and her little house on the other, both ends of the word cards in the same purple; Duck between them,
+  wings up, beaming.
+- **b** "Bee + Tree" (white with a green outline, right): a bee looping toward a big tree, a glowing join
+  line between them; Robo pointing, Duck with a surprised open beak.
+- **c** "Does it Rhyme?" (orange, left): Duck holding up a thumbs-up wing beside a frog and a log, a small
+  ball bouncing away on the other side.
+- Title idea: "Rhyme Time! Rhyming Words for Preschool | Mouse, House, Frog, Log | Toy Box Friends"
+- Tags: rhyming words, rhymes for kids, rhyming for preschool, phonological awareness, word families,
+  kindergarten reading, toddler learning, kids learning video, 3D cartoon for kids, Toy Box Friends.
+
+**17. Catalog gaps.**
+
+| Need | Stand-in from existing parts | List as gap? |
+|---|---|---|
+| Jigsaw puzzle halves that click together | Two flat `plate`s with a small `half_circle` tab on one and a matching gap shown by colour; they meet edge to edge | Yes, low priority: a `puzzle_piece` shape with a tab and a slot |
+| Word cards with a coloured ending | Two `letter` objects side by side ("m" + "ouse") with the ending in its own colour | No (a `letter` with per-character colours would be neater: small engine gap) |
+| Bee buzz | No buzz sound; use none, or a very soft low `squeak` | Yes: a `buzz` sound |
+| Bug, rug, jar, bee | batch3 models | No |
+
+**18. Do and don't.**
+- Do teach rhyme as "same at the end" (the vowel and what follows), and always say both words slowly.
+- Do include a pair that does not rhyme in every round, so kids really listen.
+- Do accept silly made-up rhymes as rhymes (zee, mee); they show the skill.
+- Don't use pairs that only share a first sound (bug, bat); that is alliteration, not rhyme.
+- Don't show a cat in a hat (a famous book image); keep all pictures original.
+- Don't use any nursery-rhyme lyrics; the chant is new.
+
+---
+
+### PK-21 · Alive or Not?
+**Pre-K · Science · 4:30 · garden, then forest**
+**Skills:** living_things_k · **Standard:** NGSS K-LS1-1 (what plants and animals need to survive) and K-ESS3-1 style sorting, approximate
+
+**1. Big idea.** Living things grow, need food and water, and make new living things like themselves.
+
+**2. Learning goals.**
+- I can say three clues that tell me something is alive: it grows, it needs food and water, it makes babies.
+- I know plants are alive, even though they do not walk.
+- I know some things move but are not alive, like a toy car or a cloud.
+- I can sort things into "alive" and "not alive".
+
+**3. Hook (first 15 s).** Robo is watering a flower. He stops and looks at his own hands. "Duck... the flower
+is alive. You are alive. Am I alive?" Duck: "You move! You talk! You must be!" Robo: "Hmm. Let's be
+detectives and find out."
+
+**4. What makes it unique.** **Robo's big question about himself.** The whole episode builds the three
+clues (grow, food and water, babies), then turns them on Robo. He moves, talks and lights up, but he needs a
+battery, not food; he does not grow; and there are no baby robots. Robo is not alive, and he is still
+everyone's friend. On the way, two "tricky" cases fix the commonest mix-ups: a toy car that moves (not
+alive) and a seed that just sits there (alive).
+
+**5. Cast and roles.**
+
+| Who | Voice | Job |
+|---|---|---|
+| Robo | `soft` | Asks the big question, holds the three clue cards, checks each thing with the kids. |
+| Duck | `squeaky` | Thinks "it moves, so it's alive", and learns better; finds the egg in the nest. |
+| Bunny (guest) | `soft` | A mother bunny with a baby bunny; shows growing (baby beside grown-up) and eating grass. |
+
+All lines use `who`. Bunny and baby `look` at each other; the baby `hop`s after its mother.
+
+**6. Setting and look.** `garden` stage, `soft_day`, for the clues; `forest` stage (batch3) for the tricky
+cases and the sorting, with `lights` easing to dappled light. Two big hoops lie on the grass for sorting: a
+green one labelled "alive" and a grey one labelled "not alive" (flat `ring`s with callout labels). The
+three clue cards stand on a little easel next to Robo: a grow arrow, a water drop and apple, and a big and
+small heart for babies. Camera: wide shots of the garden for context, close-ups to check each clue, a
+time-lapse-style locked camera for growing, and one slow `orbit` round Robo when he asks about himself.
+Mood: fresh and gentle; natural colours.
+
+**7. Storyline.**
+
+| # | Chapter (scene title) | Time | What happens | Teaching move | Emotional beat |
+|---|---|---|---|---|---|
+| 1 | Am I alive? | 0:00–0:20 (20 s) | Robo waters a flower and wonders about himself. | Hook | Curious, thoughtful |
+| 2 | Clue 1: living things grow | 0:20–1:00 (40 s) | A seed in a pot grows into a sprout, a seedling, a plant, a flower. Baby bunny beside mother bunny. A rock beside them stays the same. | Teach, compare | Wonder |
+| 3 | Clue 2: food and water | 1:00–1:35 (35 s) | The plant drinks from the watering can; the bunnies nibble grass; Duck drinks from the pond. The rock needs nothing. | Teach | Cosy |
+| 4 | Clue 3: new living things | 1:35–2:10 (35 s) | Duck finds an egg in a nest; it cracks open: a chick! Bunnies have baby bunnies. The flower makes seeds that can grow new plants. | Teach | Delight |
+| 5 | The car moves... is it alive? | 2:10–2:40 (30 s) | A wind-up toy car zooms past. Duck: "It moves, it's alive!" Check the clues: it does not grow, eat or have babies. Not alive. | Fix a mix-up | Surprise, "oh!" |
+| 6 | Tricky ones | 2:40–3:20 (40 s) | Seed: does not move, but grows into a plant: alive. Cloud: moves and gets bigger, but needs no food and has no babies: not alive. Mushroom and worm: alive. Ball: not. | Sort, try together | Clever |
+| 7 | Is Robo alive? | 3:20–3:45 (25 s) | The three clues on Robo: battery, not food; never grows; no baby robots. Not alive, still a friend. | Apply | Warm, funny |
+| 8 | Alive or not quiz | 3:45–4:15 (30 s) | Four things to sort with pauses. | Quiz | Pride |
+| 9 | Hoop song | 4:15–4:30 (15 s) | Everything in its hoop; chant; wave. | Cheer | Happy |
+
+Total: 270 s = 4:30.
+
+**8. Animation and staging list.**
+
+| Moment | Objects | Actions | Camera |
+|---|---|---|---|
+| Robo wonders | `robo`, `flowering_plant`, `watering_can` | `clip` robo Idle; `look` robo at his own hands (head down); `feel` robo surprised; `say` who robo | Medium, then slow `orbit` 30° |
+| Clue cards | `clue_grow` (green `arrow` up), `clue_food` (blue `drop` and an `apple`), `clue_baby` (big and small `heart`) on `plate` cards | each `pop`s as it is named; `callout` labels "grows", "food and water", "babies" | Close on the card |
+| Growing | `seed`, `sprout`, `seedling`, `plant`, `flowering_plant` (all share one pot, same spot), `rock` beside | swap stage by stage with `sprout_spring` (`hide` one, `show` the next, 1.5 s each); the rock stays; `caption` "grows!" then "stays the same" on the rock | Locked medium, pot centred (time-lapse feel) |
+| Baby and mother | `bunny` (size 1), `baby` (bunny, size 0.5) | baby `grow` to 0.8 slowly while a `callout` says "growing"; `look` baby at bunny | Medium two-shot |
+| Food and water | `watering_can`, batch3 `grass`, `duck` at the pond edge | `turn` the can to pour; `sound` pour; bunnies `nod` (nibbling) at the grass; Duck dips her head | Medium |
+| Egg hatches | batch3 `nest`, `egg`, `chick` | `wiggle` the egg twice; `sound` crack (stand-in `pop` soft); `hide` egg, `pop` chick; chick `feel` happy | Close `shot` on the nest |
+| Seeds from a flower | `flowering_plant`, small `seed`-like brown `sphere`s | three tiny seeds `drop` from the flower to the soil; `caption` "new plants" | Close |
+| Wind-up car | `car` prop | `sound` windup_click; `move` the car across fast; Duck `hop`s "alive!"; Robo holds up each clue: `mark` incorrect three times (does not grow, eat, have babies); `caption` "moves, but not alive" | Wide, then medium |
+| Tricky ones | `seed`, `cloud`, batch3 `mushroom`, batch3 `worm`, `ball` | each `highlight`s; `windup_click`; it `move`s into the right hoop; `mark` correct; cloud `grow`s to 1.3 and drifts, then into "not alive" | Wide on the two hoops (`shot` target [hoop_alive, hoop_not]) |
+| Is Robo alive? | `robo`, `battery_meter` | the battery meter `pop`s by Robo; `say` "I need a battery, not food"; `clip` robo No three times, gently; then `clip` robo Wave; Duck hugs (move close); `feel` robo happy | `orbit` 45° round Robo, ending medium |
+| Quiz | flower, rock, bunny, toy car | `windup_click`; into a hoop; `mark` correct | Wide |
+| Hoop song | all sorted things, `confetti` (leaves colours) | `clip` robo Dance; everything in "alive" `hop`s once; `burst` | Wide |
+
+**9. Experiment or hands-on activity.** "Alive walk and a bean in a cup".
+- Alive walk: with a grown-up, walk in a garden, park or home and point: alive or not? (a tree, a stone, a
+  bird, a bike, an ant, a puddle). Check with the three clues.
+- Bean in a cup: put damp cotton wool or a paper towel in a clear cup and press a dry bean against the
+  side. Keep it damp. Look each day: the seed grows a root, then a shoot.
+- Prediction: "Is the bean alive? It does not move." Result: it grows, so yes.
+- Safety: "With a grown-up." Don't eat the beans or seeds; wash hands after touching soil or bugs; look at
+  bugs and worms gently and put them back where you found them.
+
+**10. Interaction moments.**
+- Call and response with the clues: "Does it grow?" "Yes!" "Does it need food and water?" "Yes!" "Can it make
+  babies?" "Yes!" "Then it's..." "ALIVE!"
+- Pause and guess (2–3 s `windup_click`) before each thing goes into a hoop.
+- Move-along: grow from a crouch to tall (seed to plant); pretend to sip water; rock a pretend baby.
+- Point and sort: kids point to the green or grey hoop.
+
+**11. Song or chant.** "Grow, Eat, Babies" chant, original. A three-beat stomp (one per clue) with actions:
+grow (stretch up), eat (munch), babies (rock). The answer line ends in a shout ("ALIVE!") or a shrug ("not
+alive!"). It plays after chapter 4 and with each tricky case, and in full at the end.
+
+**12. Fun facts.**
+- A mushroom is alive, but it is not a plant (chapter 6; just "mushrooms are alive too!").
+- Some seeds can wait a very long time and still grow when they get water (chapter 6, with the seed).
+- A baby bunny is called a kit (chapter 2, said by Bunny).
+
+**13. Vocabulary and captions.**
+
+| Word | Style | When |
+|---|---|---|
+| Alive or Not? | title | Hook |
+| alive, not alive | label | Hoops, each sort |
+| grows, food and water, babies | label (callouts) | Clue cards |
+| moves, but not alive | label | Chapter 5 |
+| living things | subtitle | Chapter 2 |
+
+**14. Quiz and recap.**
+
+| # | Question | Answer |
+|---|---|---|
+| 1 | A flower: alive or not? | Alive (it grows, drinks, makes seeds) |
+| 2 | A rock: alive or not? | Not alive |
+| 3 | A toy car moves. Is it alive? | No |
+| 4 | A baby bunny: alive or not? | Alive |
+
+Recap: the three clue cards and the two full hoops. Praise moment: Robo says "You are great science
+detectives!" and the baby bunny hops to the camera.
+
+**15. Sound and music.** Music `calm` at gain 0.22 for the growing chapters, `playful` at 0.24 for the
+tricky ones. Voice speed 0.93. Robo `soft`, Duck `squeaky`, Bunny `soft` (pitch a little higher than
+Robo's). Effects: `sprout_spring` for each growth stage; `pour`; soft `pop` for the hatching; `windup_click`
+for the wind-up car and quiz pauses; `ding` on each correct sort; `crowd_cheer` soft at the end.
+
+**16. Thumbnail and YouTube.** Designed concepts:
+- **a** "Alive?" (yellow, left): Robo looking at his own hands with a puzzled face, a big question mark
+  callout; a growing plant on one side and a toy car on the other.
+- **b** "Alive or Not?" (white, right): two hoops on the grass, a chick and a sprouting seed in the green
+  one, a rock and a ball in the grey one; Duck between them pointing, eager.
+- **c** "It Grows!" (green, left): the five plant stages in a row from seed to flower, the baby bunny
+  peeking at them with a happy face.
+- Title idea: "Alive or Not? Living and Non-Living Things for Preschool | Toy Box Friends"
+- Tags: living and nonliving, living things for kids, preschool science, kindergarten science, plants are
+  alive, what is alive, life science for kids, kids learning video, 3D cartoon for kids, Toy Box Friends.
+
+**17. Catalog gaps.**
+
+| Need | Stand-in from existing parts | List as gap? |
+|---|---|---|
+| Egg cracking open | `wiggle` the egg, then swap to the chick with a soft `pop` | Yes, low priority: an egg with a named `top` part that can lift off, and a `crack` sound |
+| Sorting hoops | Flat `ring`s on the grass with `callout` labels | No |
+| Baby bunny | `bunny` critter at size 0.5 | No |
+| Seeds dropping from the flower | Tiny brown `sphere`s | No |
+| Grass, mushroom, worm, nest | batch3 models | No |
+
+**18. Do and don't.**
+- Do use exactly three clues (grows, needs food and water, makes new living things); all three must be yes.
+- Do say plants are alive and seeds are alive (resting, waiting to grow).
+- Do fix the "it moves, so it is alive" idea gently and twice (the car, the cloud).
+- Don't talk about death, dead leaves or "used to be alive"; keep it to living and never-living things.
+- Don't teach habitats, life cycles or food chains (G2-08, G3-05, G5-05); "babies" means only "makes new
+  ones like itself".
+- Keep Robo's answer kind: "I'm not alive, but I'm still your friend," never sad.
