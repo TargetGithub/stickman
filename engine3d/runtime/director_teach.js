@@ -3,10 +3,10 @@
 // helper objects for marks, glows and leap arcs). Pure: no three.js, no I/O, no clocks.
 
 import { rgb } from "./director_extras.js";
-import { BUILD_ORDERS, PIECE_PREFIX, approxHeight, buildSteps, linePoint, pieceCount, pieceNames, withDefaults } from "./teach_layout.js";
+import { BUILD_ORDERS, PIECE_PREFIX, approxHeight, buildSteps, linePoint, pieceCount, pieceNames, rectCells, withDefaults } from "./teach_layout.js";
 
 /** Actions this module adds (compile.js dispatches them as d[action](target, params)). */
-export const TEACH_ACTIONS = ["build", "shade", "leap", "draw", "open", "mark", "highlight", "trace"];
+export const TEACH_ACTIONS = ["build", "shade", "leap", "draw", "open", "mark", "highlight", "trace", "clear"];
 
 const SHADE_DEFAULT = { grid: "orange", array: "yellow" };
 // Pieces that `move`, `turn`, `wiggle` and `spin` can take (offsets from the rest pose, like a lid).
@@ -87,6 +87,7 @@ export function installTeach(d, { catalog, tl, obj, now, sound, objects }) {
     return id;
   };
   const cellSets = new Map(); // object id → piece numbers shaded with cells
+  const arcsOn = new Map(); // number line id → its leap arcs [{ id, start, cleared }]
   const once = new Set();
   const baseOnce = (target, prop, value) => !once.has(`${target}|${prop}`) && (once.add(`${target}|${prop}`), tl.base(target, prop, value));
   const shadeColor = (id, t, color, len) => {
@@ -139,10 +140,12 @@ export function installTeach(d, { catalog, tl, obj, now, sound, objects }) {
      * (piece numbers from 1) shades exactly those pieces instead, one after another; cells shaded by an
      * earlier `cells` and not listed again unshade ([] clears them).
      */
-    shade(id, { at: t = 0, to, cells, color, dur, sound: s } = {}) {
+    shade(id, { at: t = 0, to, cells, rect, color, dur, sound: s } = {}) {
       const o = kindOf(id, ["fraction_bar", "fraction_circle", "grid", "array"], "shade");
       const from = now(id, "shaded", t);
       const n = pieceCount(o);
+      // rect [row, col, rows, cols] (from 1, row 1 on top): a block of a grid or array, as cells row by row.
+      if (rect != null && !(cells = rectCells(withDefaults(o), rect))) throw new Error(`shade "${id}": rect must be [row, col, rows, cols] inside the ${o.kind}`);
       if (cells != null) return shadeCells(id, o, n, { t, cells, color, dur, s });
       if (!(Number.isInteger(to) && to >= 0 && to <= n)) throw new Error(`shade "${id}": to must be a whole number 0-${n}`);
       const len = dur ?? 0.2 + 0.3 * Math.abs(to - from);
@@ -172,9 +175,24 @@ export function installTeach(d, { catalog, tl, obj, now, sound, objects }) {
           const arc = helper(line, { kind: "pointer", parent: line, from: toLine(ln, p), to: toLine(ln, q), bend: height, width: 0.05, color });
           appear(arc, objects.get(arc), start);
           tl.tween(arc, "drawn", { start, dur, from: 0, to: 1, ease: "sineInOut" });
+          if (!arcsOn.has(line)) arcsOn.set(line, []);
+          arcsOn.get(line).push({ id: arc, start, cleared: false });
         }
         p = q;
       });
+      return d;
+    },
+
+    /** Wipe the leap arcs drawn on a number line so far (they shrink away); later leaps draw new ones. */
+    clear(id, { at: t = 0, dur = 0.4, sound: s } = {}) {
+      kindOf(id, ["number_line"], "clear");
+      for (const a of arcsOn.get(id) ?? []) {
+        if (a.cleared || a.start > t) continue;
+        a.cleared = true;
+        tl.tween(a.id, "scale", { start: t, dur, to: [0, 0, 0], ease: "backIn" });
+        tl.set(a.id, "visible", false, t + dur);
+      }
+      sound(s, t);
       return d;
     },
 

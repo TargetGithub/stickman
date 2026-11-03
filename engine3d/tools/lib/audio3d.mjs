@@ -13,7 +13,7 @@ import { readWav, writeWav } from "../../../tools/lib/wav.mjs";
 import { envelope, LIP_HZ } from "../../../tools/lib/tts/lipsync.mjs";
 import { loadCatalogSync } from "../../../catalog/index.js";
 import { REPO } from "./server.mjs";
-import { musicTimeline, renderMusicBed } from "./music3d.mjs";
+import { applyMusicCues, musicTimeline, renderMusicBed } from "./music3d.mjs";
 import { ensurePhonemes } from "../phonemes.mjs";
 
 /**
@@ -27,7 +27,10 @@ export function speakPlan(plan, { log = () => {} } = {}) {
   const table = loadVoiceTable();
   const lines = plan.lines.map((l) => ({
     id: l.id, who: l.voice, text: l.text, spoken: cleanText(l.text), bubble: "speech",
-    voice: l.voice === "narrator" ? narratorVoice({}, table) : resolveVoice({ timbre: l.voice, pitch: 1.1, speed: plan.meta?.voiceSpeed ?? 0.95 }, table),
+    // A line's pitch and speed (meta.cast, or the say itself) feed resolveVoice like a 2D cast voice: pitch becomes
+    // semitones (soft: round(12 log2(pitch) x 0.6), so 0.8 is -2, 1.1 +1, 1.3 +3) and speed scales the rate.
+    // Both are in the TTS cache key (synth.mjs cacheKey: pitch, rate), so characters on one timbre get their own clips.
+    voice: l.voice === "narrator" ? narratorVoice({}, table) : resolveVoice({ timbre: l.voice, pitch: l.pitch ?? 1.1, speed: (plan.meta?.voiceSpeed ?? 0.95) * (l.speed ?? 1) }, table),
   }));
   // A timbre that is off in the table (bark keeps 2D babble woofs) has no TTS model, so a 3D line cannot use it.
   const mute = lines.find((l) => !l.voice);
@@ -78,7 +81,7 @@ export function mixPlan(plan, speech, out, { music = plan.meta?.music ?? "bouncy
   let bed = null;
   if (music !== null) {
     const segs = musicTimeline(plan.scenes, scenes, { music: music || null, musicGain, duration: plan.duration });
-    bed = renderMusicBed(segs, { catalog: loadCatalogSync(), seed: plan.seed, duration: plan.duration });
+    bed = applyMusicCues(renderMusicBed(segs, { catalog: loadCatalogSync(), seed: plan.seed, duration: plan.duration }), plan.musicCues);
     log(`  music: ${segs.map((s) => `${s.mood ?? "none"}${s.gain !== musicGain && s.mood ? ` x${s.gain}` : ""}@${s.start.toFixed(1)}`).join(" -> ")}`);
   }
   const duck = speechDuck(spans);

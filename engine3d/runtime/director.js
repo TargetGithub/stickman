@@ -14,6 +14,7 @@ import { installCameraMoves } from "./camera_moves.js";
 import { installLook } from "./look.js";
 import { addTalk } from "./lipsync.js";
 import { stageSet } from "./stage_set.js";
+import { installStageChange } from "./stage_change.js";
 
 const V = (v, d) => (Array.isArray(v) ? [...v] : typeof v === "number" ? [v, v, v] : [...d]);
 const LOOPING = new Set(["Idle", "Dance", "Walking", "Running"]);
@@ -39,6 +40,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   const audio = [];
   const lines = [];
   const hooks = [];
+  const musicCues = []; // the music action: { t, gain, dur } ramps of the bed (tools/lib/music3d.mjs)
   let stage = { preset: "playroom" };
   let endAt = 0;
   let lineNo = 0;
@@ -81,6 +83,13 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       if (!catalog.kinds[spec.kind] && !spec.internal) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
       if (spec.parent != null && !objects.has(spec.parent)) throw new Error(`object "${spec.id}": parent "${spec.parent}" must be added first`);
       const o = { ...spec, at: V(spec.at, [0, 0, 0]), rotation: V(spec.rotation, [0, 0, 0]), scale: V(spec.scale, [1, 1, 1]) };
+      // inherit: "size" scales a child (its at and its scale) by its parent's size, like a part-rider: a mini
+      // scene on a story card of size 0.5 shrinks with the card.
+      if (spec.inherit === "size" && spec.part == null && spec.parent != null) {
+        const k = objects.get(spec.parent).size ?? 1;
+        o.at = o.at.map((x) => x * k);
+        o.scale = o.scale.map((x) => x * k);
+      }
       objects.set(o.id, o);
       tl.base(o.id, "position", o.at);
       tl.base(o.id, "rotation", o.rotation);
@@ -251,8 +260,9 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     // --- text and sound ---
 
-    caption(text, { at: t = 0, dur = 2, style = "subtitle", color } = {}) {
-      captions.push({ text: String(text), start: t, dur, style, ...(color ? { fill: catalog.colors[color].hex } : {}) });
+    caption(text, { at: t = 0, dur = 2, style = "subtitle", color, pos } = {}) {
+      // pos: left, right or top moves the caption there (a count beside the picture, not over it).
+      captions.push({ text: String(text), start: t, dur, style, ...(color ? { fill: catalog.colors[color].hex } : {}), ...(pos ? { pos } : {}) });
       endAt = Math.max(endAt, t + dur);
       return d;
     },
@@ -261,10 +271,11 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       return d;
     },
     /** Speak a line; returns its length in seconds (the measured clip, else an estimate). */
-    say(text, { at: t = 0, voice: v = voice, id, who } = {}) {
+    say(text, { at: t = 0, voice: v = voice, id, who, pitch, speed } = {}) {
       const lineId = id ?? `line${++lineNo}`;
       const dur = speech[lineId]?.dur ?? estimateSpeech(text);
-      lines.push({ id: lineId, text, voice: v, t, dur, ...(who != null ? { who } : {}) });
+      // pitch (0.8-1.3, default 1.1) and speed (0.8-1.2, times meta.voiceSpeed) only when given: a character's voice.
+      lines.push({ id: lineId, text, voice: v, t, dur, ...(who != null ? { who } : {}), ...(pitch != null ? { pitch } : {}), ...(speed != null ? { speed } : {}) });
       // who: the speaker's mouth (or Robo's head) moves with the clip's loudness (lipsync.js).
       if (who != null) {
         obj(who).talks = true;
@@ -285,14 +296,22 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       return d;
     },
 
+    /** Ramp the music bed to gain (0-1, times the scene's level) over dur seconds; gain 1 brings it back. */
+    music({ at: t = 0, gain = 1, dur = 0.5 } = {}) {
+      musicCues.push({ t, gain, dur });
+      return d;
+    },
+
     plan() {
       const duration = Math.max(endAt, tl.end(), ...captions.map((c) => c.start + c.dur)) + 0.5;
-      return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration };
+      const cues = musicCues.length ? { musicCues: [...musicCues].sort((a, b) => a.t - b.t) } : {};
+      return { seed, stage, objects: [...objects.values()], timeline: tl, captions, audio: audio.sort((a, b) => a.t - b.t), lines, hooks, duration, ...cues };
     },
   };
-  installExtras(d, { catalog, tl, obj, now, sound, getStage: () => stage, V });
+  const { stageBases } = installExtras(d, { catalog, tl, obj, now, sound, getStage: () => stage, V });
+  installStageChange(d, { catalog, tl, objects, getStage: () => stage, stageBases, setStage: (s) => d.stage(s) });
   installTeach(d, { catalog, tl, obj, now, sound, objects });
-  installCameraMoves(d, { catalog, tl, obj, now, V });
+  installCameraMoves(d, { catalog, tl, obj, now, V, objects });
   installLook(d, { catalog, tl, obj, now, V });
   const kit2 = installKit2(d, { catalog, tl, obj, now, sound, objects, V });
   return d;

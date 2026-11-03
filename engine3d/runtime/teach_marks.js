@@ -27,6 +27,28 @@ export function localBox(root) {
   return box.isEmpty() ? FALLBACK.clone() : box;
 }
 
+/** True when a node is tilted (its up is not the world up: a stood-up sign), so "above" in its space is not up. */
+function turned(node) {
+  node.updateWorldMatrix(true, false);
+  const q = node.getWorldQuaternion(new THREE.Quaternion());
+  return new THREE.Vector3(0, 1, 0).applyQuaternion(q).y < 0.999; // tilted, not just turned about y
+}
+
+/** The world box of a node's visible meshes (marks and glows left out). */
+function worldBox(root) {
+  const box = new THREE.Box3();
+  const walk = (n) => {
+    if (n.userData.overlay || (n !== root && !n.visible)) return;
+    if (n.isMesh && n.geometry) {
+      if (!n.geometry.boundingBox) n.geometry.computeBoundingBox();
+      box.union(n.geometry.boundingBox.clone().applyMatrix4(n.matrixWorld));
+    }
+    for (const c of n.children) walk(c);
+  };
+  walk(root);
+  return box.isEmpty() ? FALLBACK.clone().applyMatrix4(root.matrixWorld) : box;
+}
+
 /** The node a helper rides on: its parent's named piece, else the parent itself. */
 function host(o, handles) {
   const h = handles?.get(o.parent);
@@ -66,6 +88,7 @@ export function buildMark(o, group, { material, handles }) {
   const k = new THREE.Vector3();
   const size = new THREE.Vector3();
   const c = new THREE.Vector3();
+  const q = new THREE.Quaternion();
   return {
     update(t, s) {
       const n = host(o, handles);
@@ -75,8 +98,18 @@ export function buildMark(o, group, { material, handles }) {
       worldScale(group, k);
       const D = o.part ? Math.max(0.35, Math.min(0.6, Math.max(size.x * k.x, size.y * k.y) * 0.9)) : Math.max(0.5, Math.min(0.8, Math.max(size.x * k.x, size.y * k.y) * 0.45));
       inner.scale.set(D / k.x, D / k.y, D / k.z);
+      inner.quaternion.identity();
       if (o.part) inner.position.set(c.x, c.y, box.max.z + (D * 0.12) / k.z);
-      else inner.position.set(c.x, box.max.y + (0.14 + D / 2) / k.y, c.z + size.z * 0.25);
+      else if (n && turned(n)) {
+        // A turned target (a sign stood up with rotation x 90): float above its world box, upright, facing +z.
+        group.updateWorldMatrix(true, false);
+        const wb = worldBox(n);
+        wb.getSize(size);
+        wb.getCenter(c);
+        inner.position.copy(group.worldToLocal(new THREE.Vector3(c.x, wb.max.y + 0.14 + D / 2, c.z + size.z * 0.25)));
+        inner.quaternion.copy(group.getWorldQuaternion(q).invert());
+        inner.scale.setScalar(D).divide(k);
+      } else inner.position.set(c.x, box.max.y + (0.14 + D / 2) / k.y, c.z + size.z * 0.25);
       const u = s.ping >= 0 ? t - s.ping : -1;
       ring.visible = u >= 0 && u < 0.9;
       const f = clamp01(u / 0.9);

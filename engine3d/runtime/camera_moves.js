@@ -3,7 +3,8 @@
 // camera is. Both only add camera segments, so they mix with `camera`: a later segment takes over from the
 // value the camera has when it starts. Pure: no three.js, no clocks.
 
-import { unionBounds, worldBounds } from "./bounds.js";
+import { unionBounds } from "./bounds.js";
+import { padBox, shotBounds } from "./bounds_teach.js";
 
 const DEG = Math.PI / 180;
 export const ASPECT = 16 / 9;
@@ -68,15 +69,17 @@ export function orbitPoint(from, around, k, { degrees, radius, height }) {
  * @param {object} d  the director
  * @param {{ catalog, tl, obj, now, V }} k  director internals
  */
-export function installCameraMoves(d, { catalog, tl, obj, now, V }) {
+export function installCameraMoves(d, { catalog, tl, obj, now, V, objects }) {
   Object.assign(d, {
     /** Frame one or more objects (wide, medium or close) from a direction, easing there over dur (0 = a cut). */
-    shot({ at: t = 0, target, framing = "medium", yaw = 0, height = 8, dur = 1.5, ease = "sineInOut" } = {}) {
+    shot({ at: t = 0, target, framing = "medium", yaw = 0, height = 8, dur = 1.5, ease = "sineInOut", pad = 0, fit } = {}) {
       const ids = Array.isArray(target) ? target : [target];
       if (!ids.length) throw new Error("shot needs a target");
       // Frame where the targets are when the move ends (they may still be walking into place).
       const end = t + dur;
-      const box = unionBounds(ids.map((id) => worldBounds(obj(id), catalog, now, (p) => obj(p), end)));
+      // Children (words on cards) and teaching-kit labels count; pad grows the box about its centre.
+      const list = [...objects.values()];
+      const box = padBox(unionBounds(ids.map((id) => shotBounds(obj(id), catalog, now, (p) => obj(p), end, list, fit === "exact"))), pad);
       const f = frameBox(box, { framing, yaw, height, fov: now("camera", "fov", t) ?? 40 });
       tl.tween("camera", "position", { start: t, dur, to: f.position, ease });
       tl.tween("camera", "lookAt", { start: t, dur, to: f.lookAt, ease });

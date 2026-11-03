@@ -4,6 +4,7 @@
 
 import { FRAMING } from "./camera_moves.js";
 import { SET_PREFIX, stageSet } from "./stage_set.js";
+import { laterSetPieces } from "./stage_change.js";
 
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
 const isNum = (v, lo = -Infinity, hi = Infinity) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
@@ -66,7 +67,8 @@ export function checkLookCamera(a, p, ids, err) {
  */
 export function addSetPieces(script, catalog, ids, err) {
   if (script.stage?.set !== undefined && !Array.isArray(script.stage.set)) err("E3D_STAGE_SET", "stage.set", "set must be a list of objects ([] for none)");
-  for (const o of stageSet(script.stage ?? {}, catalog)) ids.set(o.id, o);
+  // Later presets of `stage` changes bring theirs as "set_<preset>_<id>" (stage_change.js).
+  for (const o of [...stageSet(script.stage ?? {}, catalog), ...laterSetPieces(script, catalog)]) ids.set(o.id, o);
   (Array.isArray(script.objects) ? script.objects : []).forEach((o, i) => {
     if (typeof o?.id === "string" && o.id.startsWith(SET_PREFIX)) err("E3D_ID", `objects[${i}].id`, `ids starting with "${SET_PREFIX}" are kept for stage set pieces`);
   });

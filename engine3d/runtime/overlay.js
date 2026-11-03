@@ -13,6 +13,8 @@ const STYLES = {
   // A word naming what is on screen (shape, colour, animal), above the subtitle line.
   label: { size: 0.1, x: 0.5, y: 0.22, fill: "#ffd23f", box: null, stroke: "#2b2d42" },
 };
+/** caption pos: where the caption's centre goes instead of its style's spot (fractions of the frame, from the bottom left). */
+export const CAPTION_POS = { left: [0.22, 0.62], right: [0.78, 0.62], top: [0.5, 0.86] };
 /** The page's canvas font family (Andika Bold, loaded by loadCaptionFont); text cards draw with it too. */
 export const FONT = "Andika3D";
 
@@ -29,7 +31,7 @@ export function createOverlay(width, height, captions) {
   const sprites = new Map();
 
   function sprite(c) {
-    const key = `${c.style}|${c.fill ?? ""}|${c.text}`;
+    const key = `${c.style}|${c.fill ?? ""}|${c.pos ?? ""}|${c.text}`;
     if (sprites.has(key)) return sprites.get(key);
     const st = STYLES[c.style] ?? STYLES.subtitle;
     const px = Math.round(height * st.size);
@@ -72,7 +74,8 @@ export function createOverlay(width, height, captions) {
     tex.colorSpace = THREE.SRGBColorSpace;
     const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, toneMapped: false, depthTest: false });
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(cv.width, cv.height), mat);
-    mesh.position.set(width * st.x, height * st.y, 0); // x, y: fractions of the frame from the bottom left
+    const [x, y] = CAPTION_POS[c.pos] ?? [st.x, st.y];
+    mesh.position.set(width * x, height * y, 0); // x, y: fractions of the frame from the bottom left
     mesh.visible = false;
     scene.add(mesh);
     sprites.set(key, mesh);

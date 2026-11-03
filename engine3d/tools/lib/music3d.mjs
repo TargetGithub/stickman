@@ -88,3 +88,29 @@ export function renderMusicBed(segs, { catalog, seed, duration, xfade = XFADE })
   }
   return bed;
 }
+
+/**
+ * The `music` action's level at t: 1 until the first cue, then each cue { t, gain, dur } ramps linearly from
+ * the level it finds to its gain over dur seconds (a dip under a freeze, back to 1 after). Closed-form in t.
+ * @param {Array<{ t:number, gain:number, dur:number }>} cues  in time order
+ */
+export function cueGainAt(cues, t) {
+  let g = 1;
+  for (const c of cues ?? []) {
+    if (c.t > t) break;
+    const k = c.dur > 0 ? Math.min(1, (t - c.t) / c.dur) : 1;
+    g += (c.gain - g) * k;
+  }
+  return g;
+}
+
+/** Scale a rendered bed (interleaved stereo at SR) by the music cues, in place. */
+export function applyMusicCues(bed, cues) {
+  if (!bed || !cues?.length) return bed;
+  for (let i = 0; i < bed.length / 2; i++) {
+    const g = cueGainAt(cues, i / SR);
+    bed[i * 2] *= g;
+    bed[i * 2 + 1] *= g;
+  }
+  return bed;
+}

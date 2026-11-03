@@ -2,6 +2,12 @@
 // clocks, lamp aim and paths. Like the rest of the director they only record timeline data. Pure: no
 // three.js, no I/O, no clocks.
 
+import { withDefaults } from "./teach_layout.js";
+
+/** Teaching-kit kinds paint can recolour (their `color`: a stroke, an arrow, a number line's beam, shaded fraction parts). */
+export const PAINT_KIT = ["stroke", "pointer", "number_line", "fraction_bar", "fraction_circle"];
+const FRACTIONS = ["fraction_bar", "fraction_circle"];
+
 /** Feelings a face can show (critters, shapes with face: true, and Robo through his face morphs). */
 export const FEELINGS = ["happy", "sad", "surprised", "angry", "worried", "sleepy"];
 
@@ -17,7 +23,8 @@ export const rgb = (hex) => [0, 2, 4].map((i) => parseInt(hex.slice(1 + i, 3 + i
 
 /** The colour name an object's main colour is drawn in (after its recolor map, for critters and props). */
 export function mainColor(o, catalog) {
-  const c = o.color ?? (o.kind === "critter" ? catalog.critters[o.species]?.color ?? "white" : o.kind === "prop" ? catalog.props[o.model]?.color ?? "white" : o.kind === "letter" ? "blue" : "red");
+  if (PAINT_KIT.includes(o.kind)) return withDefaults(o).color;
+  const c = o.color ??(o.kind === "critter" ? catalog.critters[o.species]?.color ?? "white" : o.kind === "prop" ? catalog.props[o.model]?.color ?? "white" : o.kind === "letter" ? "blue" : "red");
   return o.recolor?.[c] ?? c;
 }
 
@@ -78,6 +85,29 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
       if (!catalog.colors[color]) throw new Error(`unknown color "${color}"`);
       if (from != null && !catalog.colors[from]) throw new Error(`unknown color "${from}"`);
       const main = mainColor(o, catalog);
+      const to = rgb(catalog.colors[color].hex);
+      if (FRACTIONS.includes(o.kind)) {
+        // Fraction parts: the shaded colour (as shade's color does), or with from: <its empty colour> the empty parts.
+        const empty = withDefaults(o).empty;
+        if (from != null && from !== empty && from !== main) throw new Error(`paint "${id}": from must be its colour "${main}" or its empty colour "${empty}"`);
+        if (from === empty && from !== main) {
+          if (!o.paintEmpty) {
+            o.paintEmpty = true;
+            tl.base(id, "emptyColor", rgb(catalog.colors[empty].hex));
+          }
+          tl.tween(id, "emptyColor", { start: t, dur, to, ease });
+        } else tl.tween(id, "shadeColor", { start: t, dur, to, ease });
+        return d;
+      }
+      if (o.kind === "letter" && Array.isArray(o.colors) && from == null) {
+        // Letters in several colours: every character blends from its own colour (props "tint@<character index>").
+        if (!o.paintChars) {
+          o.paintChars = true;
+          Array.from(o.text).forEach((ch, i) => ch.trim() && tl.base(id, `tint@${i}`, rgb(catalog.colors[o.colors[i] ?? o.color ?? "blue"].hex)));
+        }
+        Array.from(o.text).forEach((ch, i) => ch.trim() && tl.tween(id, `tint@${i}`, { start: t, dur, to, ease }));
+        return d;
+      }
       if (from == null || from === main) {
         if (!o.paint) {
           o.paint = main;
@@ -108,7 +138,9 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
         tw("ground", rgb(r.hemisphere[2]));
         tw("environment", r.environment);
       }
-      if (background) tw("background", rgb(catalog.colors[background].hex));
+      // A rig may bring its own sky (dusk): used when the action names no background.
+      const bg = background ?? (rig ? catalog.lights[rig].background : null);
+      if (bg) tw("background", rgb(catalog.colors[bg].hex));
       if (floor && tl.valueAt("stage", "floor", t)) tw("floor", rgb(catalog.colors[floor].hex));
       if (rug && tl.valueAt("stage", "rug", t)) tw("rug", rgb(catalog.colors[rug].hex));
       return d;
@@ -171,4 +203,5 @@ export function installExtras(d, { catalog, tl, obj, now, sound, getStage, V }) 
       return d;
     },
   });
+  return { stageBases };
 }

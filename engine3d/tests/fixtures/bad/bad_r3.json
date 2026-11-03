@@ -1,0 +1,22 @@
+{"expect": ["E3D_CAST", "E3D_VOICE", "E3D_RANGE", "E3D_STAGE", "E3D_LIFT", "E3D_INHERIT", "E3D_FIT", "E3D_POS", "E3D_PAINT_FROM", "E3D_TARGET_KIND", "E3D_CELLS", "E3D_REQUIRED"], "script": {"kind": "video3d", "version": 1,
+  "meta": {"cast": {"ghost": {"voice": "soft"}, "cat": {"voice": "alien", "pitch": 2}, "box": {"pitch": 1}}},
+  "objects": [
+  {"id": "cat", "kind": "critter", "species": "cat"},
+  {"id": "box", "kind": "shape", "shape": "cube"},
+  {"id": "word", "kind": "letter", "text": "Qg", "lift": "up"},
+  {"id": "kid", "kind": "shape", "shape": "cube", "inherit": "size"},
+  {"id": "bar", "kind": "fraction_bar", "parts": 4},
+  {"id": "grid", "kind": "grid", "rows": 2, "cols": 2}
+], "scenes": [{"id": "s", "beats": [{"dur": 2, "do": [
+  {"do": "say", "text": "Hi", "who": "cat", "pitch": 1.5, "speed": 0.5},
+  {"do": "stage", "preset": "moon"},
+  {"do": "stage"},
+  {"do": "shot", "target": "cat", "fit": "tight", "pad": 5},
+  {"do": "caption", "text": "3", "style": "count", "pos": "middle"},
+  {"do": "paint", "target": "bar", "from": "red", "color": "blue"},
+  {"do": "clear", "target": "box"},
+  {"do": "shade", "target": "grid", "rect": [2, 2, 2, 2]},
+  {"do": "shade", "target": "bar", "rect": [1, 1, 1, 1]},
+  {"do": "music", "dur": 1},
+  {"do": "say", "text": "Late", "at": "later"}
+]}]}]}}
