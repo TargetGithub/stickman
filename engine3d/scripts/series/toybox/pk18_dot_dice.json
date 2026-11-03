@@ -1,0 +1,5951 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Game night with Robo, Duck and Bear: a big die rolls, shows its dots for a quick look, then hides. Kids learn to see 1 to 5 dots at a glance, that zero means none (a blank face, an empty bowl, a blank domino half), that 3 is still 3 in any shape, and the order 0 to 5 on a number path.",
+  "meta": {
+    "title": "Dot Dice: Zero to Five",
+    "series": "toybox",
+    "episode": "pk18",
+    "audience": "prek",
+    "seed": 18,
+    "voice": "soft",
+    "voiceSpeed": 0.92,
+    "music": "playful",
+    "musicGain": 0.2,
+    "skills": [
+      "count_to_5_prek",
+      "number_order_prek"
+    ],
+    "youtube": {
+      "title": "Dot Dice! Count 0 to 5 in One Look | Preschool Math | Toy Box Friends",
+      "description": "It's game night! Bear rolls a big dot die, Robo lets you take one quick look, then hides it: how many dots? Kids learn to see 1, 2, 3, 4 and 5 dots at a glance (without counting one by one), that zero means none (a blank face, an empty bowl, a blank domino half), that three dots are still three in a row or a triangle, and how to put 0 to 5 in order on a number path.\n\nTry it at home with a grown-up: draw big dots on six cards (0 to 5, in dice patterns). Flash a card for two seconds and say how many, then count to check. Move five big blocks or toys into new shapes: still five? Use big things, not small buttons, for little ones, and put everything away after.\n\nMade for kids. Toy Box Friends: 3D learning videos for preschool.",
+      "tags": [
+        "counting for preschool",
+        "numbers 0 to 5",
+        "subitizing",
+        "dice dots",
+        "zero for kids",
+        "number order",
+        "preschool math",
+        "toddler counting",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    },
+    "thumbnails": [
+      {
+        "name": "dice",
+        "title": "0 to 5!",
+        "subtitle": "Dot Dice game night",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "playroom",
+        "camera": {
+          "position": [
+            0,
+            1.2,
+            5.6
+          ],
+          "lookAt": [
+            0,
+            0.75,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "d5",
+            "kind": "prop",
+            "model": "die_5",
+            "at": [
+              1.25,
+              0,
+              0.6
+            ],
+            "size": 1.7,
+            "rotation": [
+              0,
+              -15,
+              0
+            ]
+          },
+          {
+            "id": "d0",
+            "kind": "prop",
+            "model": "die_blank",
+            "at": [
+              2.35,
+              0,
+              1
+            ],
+            "size": 0.7,
+            "rotation": [
+              0,
+              -25,
+              0
+            ]
+          },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [
+              0.35,
+              0,
+              1.3
+            ],
+            "size": 0.7,
+            "rotation": [
+              0,
+              15,
+              0
+            ],
+            "feeling": "surprised"
+          },
+          {
+            "id": "bear",
+            "kind": "critter",
+            "species": "bear",
+            "at": [
+              2.5,
+              0,
+              -0.9
+            ],
+            "size": 1.2,
+            "rotation": [
+              0,
+              -20,
+              0
+            ],
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "zero",
+        "title": "Zero = None",
+        "subtitle": "No dots, no cookies!",
+        "titleColor": "white",
+        "side": "right",
+        "badge": "PRE-K",
+        "stage": "playroom",
+        "lights": {
+          "background": "cream"
+        },
+        "camera": {
+          "position": [
+            0,
+            1.4,
+            5
+          ],
+          "lookAt": [
+            0,
+            0.8,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "bowl",
+            "kind": "shape",
+            "shape": "bowl",
+            "color": "blue",
+            "at": [
+              -1.1,
+              0,
+              0.6
+            ],
+            "size": 1.2
+          },
+          {
+            "id": "zero",
+            "kind": "number_block",
+            "value": 0,
+            "color": "orange",
+            "size": 0.75,
+            "at": [
+              -1.1,
+              0.9,
+              0.3
+            ]
+          },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [
+              -2.3,
+              0,
+              -0.3
+            ],
+            "size": 0.8,
+            "rotation": [
+              0,
+              30,
+              0
+            ],
+            "feeling": "surprised"
+          }
+        ]
+      },
+      {
+        "name": "look",
+        "title": "Quick Look!",
+        "subtitle": "How many dots?",
+        "titleColor": "red",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "playroom",
+        "camera": {
+          "position": [
+            0,
+            1.3,
+            5.4
+          ],
+          "lookAt": [
+            0,
+            0.9,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [
+              2.6,
+              0,
+              -0.2
+            ],
+            "rotation": [
+              0,
+              -25,
+              0
+            ],
+            "clip": "Wave",
+            "feeling": "happy"
+          },
+          {
+            "id": "dom",
+            "kind": "prop",
+            "model": "domino_1_2",
+            "at": [
+              1.2,
+              0,
+              0.7
+            ],
+            "size": 2.4,
+            "rotation": [
+              0,
+              10,
+              0
+            ]
+          },
+          {
+            "id": "star",
+            "kind": "shape",
+            "shape": "star",
+            "color": "gold",
+            "material": "glow",
+            "at": [
+              0.7,
+              1.5,
+              0.5
+            ],
+            "size": 0.3
+          }
+        ]
+      }
+    ]
+  },
+  "stage": {
+    "preset": "playroom"
+  },
+  "camera": {
+    "position": [
+      0,
+      1.8,
+      6.6
+    ],
+    "lookAt": [
+      0,
+      0.6,
+      0.5
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "die1",
+      "kind": "prop",
+      "model": "die_1",
+      "at": [
+        0,
+        0,
+        0.7
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "die2",
+      "kind": "prop",
+      "model": "die_2",
+      "at": [
+        0,
+        0,
+        0.7
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "die3",
+      "kind": "prop",
+      "model": "die_3",
+      "at": [
+        0,
+        0,
+        0.7
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "die4",
+      "kind": "prop",
+      "model": "die_4",
+      "at": [
+        0,
+        0,
+        0.7
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "die5",
+      "kind": "prop",
+      "model": "die_5",
+      "at": [
+        0,
+        0,
+        0.7
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "die0",
+      "kind": "prop",
+      "model": "die_blank",
+      "at": [
+        0,
+        0,
+        0.7
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "ring1_1",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0,
+        0.48,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring2_1",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.24,
+        0.7200000000000001,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring2_2",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0.24,
+        0.24,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring3_1",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.24,
+        0.7200000000000001,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring3_2",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0,
+        0.48,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring3_3",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0.24,
+        0.24,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring4_1",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.24,
+        0.7200000000000001,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring4_2",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0.24,
+        0.7200000000000001,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring4_3",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.24,
+        0.24,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring4_4",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0.24,
+        0.24,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring5_1",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.24,
+        0.7200000000000001,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring5_2",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0.24,
+        0.7200000000000001,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring5_3",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0,
+        0.48,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring5_4",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        -0.24,
+        0.24,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "ring5_5",
+      "kind": "shape",
+      "shape": "ring",
+      "color": "gold",
+      "material": "glow",
+      "at": [
+        0.24,
+        0.24,
+        1.23
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "napkin",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "cream",
+      "at": [
+        3.4,
+        0.5,
+        1.41
+      ],
+      "scale": [
+        1.2,
+        1,
+        1.1
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -2.7,
+        0,
+        0.1
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+        -1.5,
+        0,
+        1.3
+      ],
+      "size": 0.75,
+      "rotation": [
+        0,
+        20,
+        0
+      ]
+    },
+    {
+      "id": "bear",
+      "kind": "critter",
+      "species": "bear",
+      "at": [
+        2.3,
+        0,
+        0.2
+      ],
+      "size": 1.1,
+      "rotation": [
+        0,
+        -30,
+        0
+      ]
+    },
+    {
+      "id": "bowl",
+      "kind": "shape",
+      "shape": "bowl",
+      "color": "blue",
+      "at": [
+        -0.75,
+        0,
+        1.9
+      ],
+      "size": 0.7,
+      "hidden": true
+    },
+    {
+      "id": "domino0",
+      "kind": "prop",
+      "model": "domino_0_3",
+      "at": [
+        0.85,
+        0,
+        1.8
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "zero",
+      "kind": "number_block",
+      "value": 0,
+      "color": "orange",
+      "size": 0.5,
+      "at": [
+        0.05,
+        0,
+        1.6
+      ],
+      "hidden": true
+    },
+    {
+      "id": "board",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "red",
+      "at": [
+        0,
+        0.9,
+        1
+      ],
+      "scale": [
+        1.6,
+        1,
+        1.2
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "dot1",
+      "kind": "shape",
+      "shape": "circle",
+      "color": "white",
+      "at": [
+        -0.35,
+        1.25,
+        1.06
+      ],
+      "size": 0.24,
+      "hidden": true
+    },
+    {
+      "id": "dot2",
+      "kind": "shape",
+      "shape": "circle",
+      "color": "white",
+      "at": [
+        0,
+        0.9,
+        1.06
+      ],
+      "size": 0.24,
+      "hidden": true
+    },
+    {
+      "id": "dot3",
+      "kind": "shape",
+      "shape": "circle",
+      "color": "white",
+      "at": [
+        0.35,
+        0.55,
+        1.06
+      ],
+      "size": 0.24,
+      "hidden": true
+    },
+    {
+      "id": "line",
+      "kind": "number_line",
+      "from": 0,
+      "to": 5,
+      "length": 5,
+      "step": 1,
+      "labels": "none",
+      "color": "blue",
+      "at": [
+        0,
+        0,
+        1.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "nb0",
+      "kind": "number_block",
+      "value": 0,
+      "color": "orange",
+      "size": 0.34,
+      "at": [
+        -2.5,
+        0,
+        1.95
+      ],
+      "hidden": true
+    },
+    {
+      "id": "nb1",
+      "kind": "number_block",
+      "value": 1,
+      "color": "red",
+      "size": 0.34,
+      "at": [
+        -1.5,
+        0,
+        1.95
+      ],
+      "hidden": true
+    },
+    {
+      "id": "nb2",
+      "kind": "number_block",
+      "value": 2,
+      "color": "yellow",
+      "size": 0.34,
+      "at": [
+        -0.5,
+        0,
+        1.95
+      ],
+      "hidden": true
+    },
+    {
+      "id": "nb3",
+      "kind": "number_block",
+      "value": 3,
+      "color": "green",
+      "size": 0.34,
+      "at": [
+        0.5,
+        0,
+        1.95
+      ],
+      "hidden": true
+    },
+    {
+      "id": "nb4",
+      "kind": "number_block",
+      "value": 4,
+      "color": "blue",
+      "size": 0.34,
+      "at": [
+        1.5,
+        0,
+        1.95
+      ],
+      "hidden": true
+    },
+    {
+      "id": "nb5",
+      "kind": "number_block",
+      "value": 5,
+      "color": "purple",
+      "size": 0.34,
+      "at": [
+        2.5,
+        0,
+        1.95
+      ],
+      "hidden": true
+    },
+    {
+      "id": "big",
+      "kind": "prop",
+      "model": "domino_5_5",
+      "at": [
+        0,
+        0,
+        1
+      ],
+      "size": 2.4,
+      "hidden": true
+    },
+    {
+      "id": "party",
+      "kind": "confetti",
+      "count": 160,
+      "area": [
+        8,
+        4
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "night",
+      "title": "Game night!",
+      "beats": [
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "lights",
+              "rig": "evening",
+              "dur": 0.01,
+              "at": 0
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.8,
+                6.6
+              ],
+              "lookAt": [
+                0,
+                0.6,
+                0.5
+              ],
+              "fov": 40,
+              "dur": 0,
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "Dot Dice",
+              "style": "title",
+              "at": 0.2,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Dot Dice! It's game night!",
+              "at": 0.2,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.4,
+              "clip": "Wave"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "I brought my big die. Here it comes!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0,
+              "to": "bear"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0,
+              "to": "bear"
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die4",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die4",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die4",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die4",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many dots?",
+              "at": 0.3,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0.1,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0.1,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0.1,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Hey! It's hiding!",
+              "at": 0.6,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.4,
+              "feeling": "surprised"
+            }
+          ]
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Can you see it in one look? Four!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.2,
+              "feeling": "happy"
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 1.2,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 1.7,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die0",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die0",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die0",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die0",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "No dots! It's broken!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.1,
+              "feeling": "surprised"
+            },
+            {
+              "do": "sound",
+              "sound": "ooh",
+              "at": 0.3,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.3,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Not broken. That's zero! This is a special die.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.3,
+              "clip": "Yes"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 1.2,
+              "feeling": "happy"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Fun fact! On a normal die, opposite sides add up to seven.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "fun fact",
+              "style": "label",
+              "at": 0.3,
+              "dur": 2.6
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onetwo",
+      "title": "One and two",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's play quick look. Look fast, then I hide it!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die1",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die1",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die1",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die1",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die1"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die1"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die1"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Quick look!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.6,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": []
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many?",
+              "at": 0.6,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "One!",
+              "at": 0.2,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.25
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0.6,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 1.1,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Let's check.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "One.",
+              "at": 0.1,
+              "caption": false,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "ring1_1",
+              "at": 0.15,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.15,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.15,
+              "dur": 0.75
+            },
+            {
+              "do": "hide",
+              "target": "ring1_1",
+              "at": 1.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One! You saw it in one look.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die1",
+              "at": 0.1,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die2",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die2",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die2",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die2",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die2"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die2"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die2"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two in the corners. Quick look!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.6,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": []
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many?",
+              "at": 0.6,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Two!",
+              "at": 0.2,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.25
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0.6,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 1.1,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Let's check.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "dur": 2.35,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "One, two.",
+              "at": 0.1,
+              "caption": false,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "ring2_1",
+              "at": 0.15,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.15,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.15,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring2_2",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.9,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.9,
+              "dur": 0.75
+            },
+            {
+              "do": "hide",
+              "target": "ring2_1",
+              "at": 2.25
+            },
+            {
+              "do": "hide",
+              "target": "ring2_2",
+              "at": 2.25
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two! You saw it in one look.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die2",
+              "at": 0.1,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Show me two fingers!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.3,
+              "clip": "ThumbsUp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "threefour",
+      "title": "Three and four",
+      "beats": [
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die3",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die3",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die3",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die3",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die3"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die3"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die3"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A slanted line. Quick look!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.6,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": []
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many?",
+              "at": 0.6,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Three!",
+              "at": 0.2,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.25
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0.6,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 1.1,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Let's check.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "dur": 3.1,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "One, two, three.",
+              "at": 0.1,
+              "caption": false,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "ring3_1",
+              "at": 0.15,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.15,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.15,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring3_2",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.9,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.9,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring3_3",
+              "at": 1.65,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 1.65,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 1.65,
+              "dur": 0.75
+            },
+            {
+              "do": "hide",
+              "target": "ring3_1",
+              "at": 3
+            },
+            {
+              "do": "hide",
+              "target": "ring3_2",
+              "at": 3
+            },
+            {
+              "do": "hide",
+              "target": "ring3_3",
+              "at": 3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three! You saw it in one look.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die3",
+              "at": 0.1,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die4",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die4",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die4",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die4",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four corners, like a window!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 1.6,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "highlight",
+              "target": "die4",
+              "at": 0.2,
+              "dur": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many?",
+              "at": 0.6,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Four!",
+              "at": 0.2,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.25
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0.6,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 1.1,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Let's check.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "dur": 3.85,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "One, two, three, four.",
+              "at": 0.1,
+              "caption": false,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "ring4_1",
+              "at": 0.15,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.15,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.15,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring4_2",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.9,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.9,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring4_3",
+              "at": 1.65,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 1.65,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 1.65,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring4_4",
+              "at": 2.4,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 2.4,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 2.4,
+              "dur": 0.75
+            },
+            {
+              "do": "hide",
+              "target": "ring4_1",
+              "at": 3.75
+            },
+            {
+              "do": "hide",
+              "target": "ring4_2",
+              "at": 3.75
+            },
+            {
+              "do": "hide",
+              "target": "ring4_3",
+              "at": 3.75
+            },
+            {
+              "do": "hide",
+              "target": "ring4_4",
+              "at": 3.75
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four! You saw it in one look.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die4",
+              "at": 0.1,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "You can see up to four things in one look!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.3,
+              "dur": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Peek... four!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.6,
+              "height": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "five",
+      "title": "Five: corners and a middle",
+      "beats": [
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die4",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die4",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die4",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die4",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die4"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here are four corners. Four.",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.5,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 1.75,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now add one more, in the middle!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 1.6,
+              "dur": 0.05
+            },
+            {
+              "do": "show",
+              "target": "die5",
+              "at": 1.6,
+              "dur": 0.05
+            },
+            {
+              "do": "pop",
+              "target": "ring5_3",
+              "at": 1.65,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 1.65
+            }
+          ]
+        },
+        {
+          "dur": 2.5,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four, and one more, is five!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4 and 1 more",
+              "style": "label",
+              "at": 0.2,
+              "dur": 2.8
+            },
+            {
+              "do": "hide",
+              "target": "ring5_3",
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Five!",
+              "at": 0.2,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0.6,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 1.1,
+              "dur": 0.1
+            }
+          ]
+        },
+        {
+          "dur": 4.6,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "One, two, three, four, five.",
+              "at": 0.1,
+              "caption": false,
+              "voice": "deep"
+            },
+            {
+              "do": "pop",
+              "target": "ring5_1",
+              "at": 0.15,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.15,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.15,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring5_2",
+              "at": 0.9,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 0.9,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.9,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring5_3",
+              "at": 1.65,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 1.65,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 1.65,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring5_4",
+              "at": 2.4,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 2.4,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 2.4,
+              "dur": 0.75
+            },
+            {
+              "do": "pop",
+              "target": "ring5_5",
+              "at": 3.15,
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "block",
+              "at": 3.15,
+              "volume": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "5",
+              "style": "count",
+              "at": 3.15,
+              "dur": 0.75
+            },
+            {
+              "do": "hide",
+              "target": "ring5_1",
+              "at": 4.5
+            },
+            {
+              "do": "hide",
+              "target": "ring5_2",
+              "at": 4.5
+            },
+            {
+              "do": "hide",
+              "target": "ring5_3",
+              "at": 4.5
+            },
+            {
+              "do": "hide",
+              "target": "ring5_4",
+              "at": 4.5
+            },
+            {
+              "do": "hide",
+              "target": "ring5_5",
+              "at": 4.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Five! Corners and a middle.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die5",
+              "at": 0.1,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Show me five fingers! A high five!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.5,
+              "height": 0.25
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zero",
+      "title": "Zero means none",
+      "beats": [
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die0",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die0",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die0",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die0",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.8,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "The broken one again!",
+              "at": 0.3,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.2,
+              "feeling": "surprised"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "No dots means zero. Zero means none.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "die0",
+              "at": 0.3,
+              "dur": 2.2
+            },
+            {
+              "do": "caption",
+              "text": "0 zero",
+              "style": "label",
+              "at": 0.3,
+              "dur": 2.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "bowl",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Look in this bowl. How many cookies?",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                -0.6,
+                1.6,
+                4
+              ],
+              "lookAt": [
+                -0.6,
+                0.2,
+                1.9
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.2,
+              "to": "bowl"
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Zero cookies! None!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "caption",
+              "text": "none",
+              "style": "label",
+              "at": 0.3,
+              "dur": 2
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.2,
+              "feeling": "sad"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 1.6,
+              "feeling": "happy"
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "pop",
+              "target": "domino0",
+              "at": 0.1
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.8,
+                0.9,
+                3.9
+              ],
+              "lookAt": [
+                0.8,
+                0.45,
+                1.8
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "My domino has a blank half. Zero on top!",
+              "at": 0.4,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "highlight",
+              "target": "domino0#top_half",
+              "at": 1.6,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "zero",
+              "at": 0.2
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.2,
+                4.6
+              ],
+              "lookAt": [
+                0.05,
+                0.4,
+                1.7
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And this is how we write zero.",
+              "at": 0.5,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Show me zero. A closed fist!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "zero",
+              "at": 0.6,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Zero... none!",
+              "at": 0.2,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.6,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shape",
+      "title": "Same number, new shape",
+      "beats": [
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "bowl",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "domino0",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "zero",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "board",
+              "at": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "dot1",
+              "at": 0.7,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "dot2",
+              "at": 0.9,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "dot3",
+              "at": 1.1,
+              "sound": "pop"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.1,
+                4
+              ],
+              "lookAt": [
+                0,
+                0.95,
+                1
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three dots, in a slanted line.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.4,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Watch them move!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "dot1",
+              "at": 0.6,
+              "to": [
+                -0.45,
+                0.9,
+                1.06
+              ],
+              "dur": 1.2,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "move",
+              "target": "dot2",
+              "at": 0.6,
+              "to": [
+                0,
+                0.9,
+                1.06
+              ],
+              "dur": 1.2,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "move",
+              "target": "dot3",
+              "at": 0.6,
+              "to": [
+                0.45,
+                0.9,
+                1.06
+              ],
+              "dur": 1.2,
+              "ease": "sineInOut"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A long row! Now there are more dots, right?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.4,
+              "clip": "Yes"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.3,
+                5.2
+              ],
+              "lookAt": [
+                -0.4,
+                0.9,
+                0.8
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "No, Robo! Still three!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0,
+              "to": "duck"
+            }
+          ]
+        },
+        {
+          "dur": 2.5,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Let's check. One, two, three.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            },
+            {
+              "do": "hop",
+              "target": "dot1",
+              "at": 1.2,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "dot2",
+              "at": 1.7999999999999998,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "dot3",
+              "at": 2.4,
+              "height": 0.12,
+              "dur": 0.35
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 1.2,
+              "dur": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 1.7999999999999998,
+              "dur": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 2.4,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Oops! You're right. Still three.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.2,
+              "clip": "No"
+            },
+            {
+              "do": "mark",
+              "target": "board",
+              "at": 0.6,
+              "result": "correct"
+            },
+            {
+              "do": "caption",
+              "text": "still 3",
+              "style": "label",
+              "at": 0.6,
+              "dur": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now a triangle!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "dot1",
+              "at": 0.4,
+              "to": [
+                0,
+                1.3,
+                1.06
+              ],
+              "dur": 1.2,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "move",
+              "target": "dot2",
+              "at": 0.4,
+              "to": [
+                -0.38,
+                0.62,
+                1.06
+              ],
+              "dur": 1.2,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "move",
+              "target": "dot3",
+              "at": 0.4,
+              "to": [
+                0.38,
+                0.62,
+                1.06
+              ],
+              "dur": 1.2,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.1,
+                4
+              ],
+              "lookAt": [
+                0,
+                0.95,
+                1
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Still three! Same number, new shape!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "path",
+      "title": "Line them up, 0 to 5",
+      "beats": [
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "board",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dot1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dot2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dot3",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "line",
+              "at": 0.2
+            },
+            {
+              "do": "build",
+              "target": "line",
+              "at": 0.4,
+              "dur": 1.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "nb0",
+              "at": 0.6,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "nb1",
+              "at": 0.8999999999999999,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "nb2",
+              "at": 1.2,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "nb3",
+              "at": 1.5,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "nb4",
+              "at": 1.7999999999999998,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "nb5",
+              "at": 2.1,
+              "sound": "pop"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.8,
+                6.6
+              ],
+              "lookAt": [
+                0,
+                0.6,
+                0.5
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "at": 0,
+              "to": [
+                -3.6,
+                0,
+                -0.4
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "at": 0,
+              "to": [
+                3.6,
+                0,
+                -0.4
+              ],
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A number path! Zero, one, two, three, four, five.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "nb0",
+              "at": 0.8,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb1",
+              "at": 1.1,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb2",
+              "at": 1.4,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb3",
+              "at": 1.7,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb4",
+              "at": 2,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb5",
+              "at": 2.3,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "duck",
+              "at": 0,
+              "to": [
+                -2.5,
+                0.56,
+                1.3
+              ],
+              "dur": 0.8
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "at": 0,
+              "to": [
+                0,
+                70,
+                0
+              ],
+              "dur": 0.5
+            },
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "I'll hop it!",
+              "at": 0.6,
+              "caption": true,
+              "voice": "squeaky"
+            }
+          ]
+        },
+        {
+          "dur": 5.2,
+          "do": [
+            {
+              "do": "leap",
+              "target": "duck",
+              "line": "line",
+              "values": [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              "dur": 0.8,
+              "height": 0.6,
+              "at": 0.2,
+              "sound": "boing"
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.8,
+              "dur": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 1.6,
+              "dur": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 2.4,
+              "dur": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 3.2000000000000006,
+              "dur": 0.7
+            },
+            {
+              "do": "caption",
+              "text": "5",
+              "style": "count",
+              "at": 4,
+              "dur": 0.7
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.4
+              ],
+              "lookAt": [
+                0,
+                0.6,
+                0.9
+              ],
+              "fov": 40,
+              "dur": 4.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Five! I made it!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.9,
+          "do": [
+            {
+              "do": "move",
+              "target": "duck",
+              "at": 0,
+              "to": [
+                -3.1,
+                0,
+                2.3
+              ],
+              "dur": 0.8
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "at": 0.8,
+              "to": [
+                0,
+                20,
+                0
+              ],
+              "dur": 0.4
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Close your eyes!",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "hide",
+              "target": "nb3",
+              "at": 1.8,
+              "dur": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Open! Which number is missing?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "nb2",
+              "at": 1.4,
+              "dur": 0.8
+            },
+            {
+              "do": "highlight",
+              "target": "nb4",
+              "at": 1.6,
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Three!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "pop",
+              "target": "nb3",
+              "at": 0.4
+            },
+            {
+              "do": "mark",
+              "target": "nb3",
+              "at": 0.6,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Zero, one, two, three, four, five!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "nb0",
+              "at": 0.6,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb1",
+              "at": 0.8999999999999999,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb2",
+              "at": 1.2,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb3",
+              "at": 1.5,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb4",
+              "at": 1.7999999999999998,
+              "height": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "nb5",
+              "at": 2.1,
+              "height": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quiz",
+      "title": "Quick look quiz",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "nb0",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb5",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "line",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "at": 0,
+              "to": [
+                -2.7,
+                0,
+                0.1
+              ],
+              "dur": 1
+            },
+            {
+              "do": "move",
+              "target": "bear",
+              "at": 0,
+              "to": [
+                2.3,
+                0,
+                0.2
+              ],
+              "dur": 1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Quick look quiz! Ready?",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die3",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die3",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die3",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die3",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die3"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die3"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die3"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 0.6,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.6,
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.2,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.2,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many?",
+              "at": 0.5,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 0.5,
+              "dur": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three!",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die3",
+              "at": 0.6,
+              "result": "correct",
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die0",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die0",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die0",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die0",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die0"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 0.6,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.6,
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.2,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.2,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many?",
+              "at": 0.5,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 0.5,
+              "dur": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Zero! None!",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die0",
+              "at": 0.6,
+              "result": "correct",
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0,
+              "dur": 0.2
+            },
+            {
+              "do": "move",
+              "target": "die5",
+              "at": 0,
+              "to": [
+                1.7,
+                0.2,
+                0.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "show",
+              "target": "die5",
+              "at": 0.05,
+              "dur": 0.2
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.4
+            },
+            {
+              "do": "path",
+              "target": "die5",
+              "at": 0.2,
+              "points": [
+                [
+                  1.7,
+                  0.2,
+                  0.5
+                ],
+                [
+                  1.1,
+                  0.35,
+                  0.6
+                ],
+                [
+                  0.6,
+                  0,
+                  0.65
+                ],
+                [
+                  0.3,
+                  0.15,
+                  0.7
+                ],
+                [
+                  0,
+                  0,
+                  0.7
+                ]
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "spin",
+              "target": "die5",
+              "at": 0.2,
+              "axis": "z",
+              "turns": 1,
+              "dur": 1.4,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 0.95,
+              "volume": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "land",
+              "at": 1.6,
+              "volume": 0.3
+            },
+            {
+              "do": "look",
+              "target": "bear",
+              "at": 0.3,
+              "to": "die5"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.3,
+              "to": "die5"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": "die5"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 0.6,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                0.62,
+                3.61
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1.21
+              ],
+              "fov": 40,
+              "dur": 0.6,
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.2,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.2,
+              "volume": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "napkin",
+              "at": 0,
+              "dur": 0.1
+            },
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                0,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "whoosh",
+              "at": 0,
+              "volume": 0.3
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "How many?",
+              "at": 0.5,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "napkin",
+              "at": 0,
+              "to": [
+                3.4,
+                0.5,
+                1.41
+              ],
+              "dur": 0.5,
+              "ease": "quadIn"
+            },
+            {
+              "do": "hide",
+              "target": "napkin",
+              "at": 0.5,
+              "dur": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Five!",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "die5",
+              "at": 0.6,
+              "result": "correct",
+              "sound": false
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "die0",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "die1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "die2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "die3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "die4",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "die5",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "line",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "nb0",
+              "at": 0.3,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "nb1",
+              "at": 0.44999999999999996,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "nb3",
+              "at": 0.75,
+              "sound": "pop"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.8,
+                6.6
+              ],
+              "lookAt": [
+                0,
+                0.6,
+                0.5
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four. Zero, one... what's next?",
+              "at": 0.6,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.6,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "nb2",
+              "at": 0.2
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two! Zero, one, two, three.",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "mark",
+              "target": "nb2",
+              "at": 0.6,
+              "result": "correct"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bye",
+      "title": "Domino high five",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "nb0",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "nb3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "line",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "big",
+              "at": 0.3
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.7,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.2,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Five and five. High five!",
+              "at": 0.6,
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "grow",
+              "target": "big",
+              "at": 0.2,
+              "to": 1.2,
+              "dur": 0.6
+            },
+            {
+              "do": "burst",
+              "target": "party",
+              "at": 0.3
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.4,
+              "clip": "ThumbsUp"
+            },
+            {
+              "do": "hop",
+              "target": "bear",
+              "at": 0.5,
+              "height": 0.35
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.6,
+              "height": 0.4
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.4,
+              "volume": 0.3
+            },
+            {
+              "do": "orbit",
+              "around": [
+                0,
+                0.7,
+                1
+              ],
+              "degrees": 40,
+              "dur": 6,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bear",
+              "text": "Great looking, friends!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "deep"
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Zero, one, two, three, four, five! Bye-bye!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 1.6,
+              "clip": "Wave"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

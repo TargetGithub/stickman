@@ -1,0 +1,4460 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "Robo waters a flower and wonders: am I alive? With Duck and a mother bunny he finds three clues (living things grow, need food and water, and make new living things), sorts tricky things into alive and not alive hoops (a toy car, a seed, a cloud, a mushroom, a worm, a ball) and finds that he is not alive, but still everyone's friend.",
+  "meta": {
+    "title": "Alive or Not?",
+    "series": "toybox",
+    "episode": "pk21",
+    "audience": "prek",
+    "seed": 21,
+    "voice": "soft",
+    "voiceSpeed": 0.93,
+    "music": "calm",
+    "musicGain": 0.22,
+    "skills": [
+      "living_things_k"
+    ],
+    "youtube": {
+      "title": "Alive or Not? Living and Non-Living Things for Preschool | Toy Box Friends",
+      "description": "Is Robo alive? Robo, Duck and a mother bunny look for three clues: living things grow, living things need food and water, and living things make new living things like themselves. A seed grows into a flower, a baby bunny grows, a chick hatches from an egg. Then kids sort tricky things into the alive hoop and the not alive hoop: a toy car moves but is not alive, a seed sits still but is alive, a cloud grows but is not alive. And Robo? He's not alive, but he's still everyone's friend!\n\nTry it at home with a grown-up: go on an alive walk and point to things (a tree, a stone, a bird, a bike, an ant). Check the three clues! Or grow a bean in a cup: press a dry bean against damp paper towel in a clear cup and watch it grow a root and a shoot. Don't eat the beans, wash your hands after touching soil or bugs, and put little animals back gently where you found them.\n\nMade for kids. Toy Box Friends: 3D learning videos for preschool.",
+      "tags": [
+        "living and nonliving",
+        "living things for kids",
+        "preschool science",
+        "kindergarten science",
+        "plants are alive",
+        "what is alive",
+        "life science for kids",
+        "kids learning video",
+        "3D cartoon for kids",
+        "Toy Box Friends"
+      ]
+    },
+    "thumbnails": [
+      {
+        "name": "alive",
+        "title": "Alive?",
+        "subtitle": "Am I alive?",
+        "titleColor": "yellow",
+        "side": "left",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": {
+          "position": [
+            0,
+            1.35,
+            5.6
+          ],
+          "lookAt": [
+            0,
+            1,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "robo",
+            "kind": "character",
+            "character": "robot",
+            "at": [
+              1.7,
+              0,
+              0.3
+            ],
+            "rotation": [
+              0,
+              -10,
+              0
+            ],
+            "clip": "Idle",
+            "feeling": "surprised"
+          },
+          {
+            "id": "q",
+            "kind": "letter",
+            "text": "?",
+            "color": "orange",
+            "size": 0.5,
+            "at": [
+              2.35,
+              1.3,
+              0.3
+            ]
+          },
+          {
+            "id": "plant",
+            "kind": "prop",
+            "model": "flowering_plant",
+            "at": [
+              0.55,
+              0,
+              0.6
+            ],
+            "size": 1.4
+          },
+          {
+            "id": "car",
+            "kind": "prop",
+            "model": "car",
+            "at": [
+              2.8,
+              0,
+              0.1
+            ],
+            "size": 0.55,
+            "rotation": [
+              0,
+              -30,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "hoops",
+        "title": "Alive or Not?",
+        "subtitle": "Sort it out!",
+        "titleColor": "white",
+        "side": "right",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": {
+          "position": [
+            -0.2,
+            2.3,
+            4.9
+          ],
+          "lookAt": [
+            -0.2,
+            0.35,
+            0.2
+          ],
+          "fov": 38
+        },
+        "objects": [
+          {
+            "id": "h1",
+            "kind": "shape",
+            "shape": "plate",
+            "color": "green",
+            "at": [
+              -2.5,
+              0,
+              0.4
+            ],
+            "scale": [
+              1.6,
+              0.6,
+              1.4
+            ]
+          },
+          {
+            "id": "h2",
+            "kind": "shape",
+            "shape": "plate",
+            "color": "grey",
+            "at": [
+              -0.75,
+              0,
+              0.4
+            ],
+            "scale": [
+              1.6,
+              0.6,
+              1.4
+            ]
+          },
+          {
+            "id": "chick",
+            "kind": "critter",
+            "species": "chick",
+            "at": [
+              -2.85,
+              0,
+              0.55
+            ],
+            "size": 0.6,
+            "feeling": "happy"
+          },
+          {
+            "id": "sprout",
+            "kind": "prop",
+            "model": "sprout",
+            "at": [
+              -2.15,
+              0,
+              0.3
+            ],
+            "size": 1.2
+          },
+          {
+            "id": "rock",
+            "kind": "prop",
+            "model": "rock",
+            "at": [
+              -1,
+              0,
+              0.3
+            ],
+            "size": 0.9
+          },
+          {
+            "id": "ball",
+            "kind": "prop",
+            "model": "ball",
+            "at": [
+              -0.45,
+              0,
+              0.6
+            ],
+            "size": 0.55,
+            "color": "red"
+          },
+          {
+            "id": "duck",
+            "kind": "critter",
+            "species": "duck",
+            "at": [
+              -1.62,
+              0,
+              -0.5
+            ],
+            "size": 0.75,
+            "feeling": "happy"
+          }
+        ]
+      },
+      {
+        "name": "grows",
+        "title": "It Grows!",
+        "subtitle": "Living things grow",
+        "titleColor": "green",
+        "side": "top",
+        "badge": "PRE-K",
+        "stage": "garden",
+        "camera": {
+          "position": [
+            0,
+            1,
+            6.2
+          ],
+          "lookAt": [
+            0,
+            1.15,
+            0
+          ],
+          "fov": 36
+        },
+        "objects": [
+          {
+            "id": "s1",
+            "kind": "prop",
+            "model": "seed",
+            "at": [
+              -1.75,
+              0,
+              0
+            ],
+            "size": 1.8
+          },
+          {
+            "id": "s2",
+            "kind": "prop",
+            "model": "sprout",
+            "at": [
+              -0.6,
+              0,
+              0
+            ],
+            "size": 1.8
+          },
+          {
+            "id": "s3",
+            "kind": "prop",
+            "model": "seedling",
+            "at": [
+              0.55,
+              0,
+              0
+            ],
+            "size": 1.8
+          },
+          {
+            "id": "s4",
+            "kind": "prop",
+            "model": "plant",
+            "at": [
+              1.7,
+              0,
+              0
+            ],
+            "size": 1.8
+          },
+          {
+            "id": "s5",
+            "kind": "prop",
+            "model": "flowering_plant",
+            "at": [
+              2.85,
+              0,
+              0
+            ],
+            "size": 1.8
+          },
+          {
+            "id": "baby",
+            "kind": "critter",
+            "species": "bunny",
+            "at": [
+              -2.75,
+              0,
+              0.6
+            ],
+            "size": 0.7,
+            "rotation": [
+              0,
+              25,
+              0
+            ],
+            "feeling": "happy"
+          }
+        ]
+      }
+    ]
+  },
+  "stage": {
+    "preset": "garden"
+  },
+  "camera": {
+    "position": [
+      0,
+      1.8,
+      7
+    ],
+    "lookAt": [
+      0,
+      0.8,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "flower",
+      "kind": "prop",
+      "model": "flowering_plant",
+      "at": [
+        -0.6,
+        0,
+        0
+      ],
+      "size": 1.5
+    },
+    {
+      "id": "g_seed",
+      "kind": "prop",
+      "model": "seed",
+      "at": [
+        -0.6,
+        0,
+        0
+      ],
+      "size": 1.5,
+      "hidden": true
+    },
+    {
+      "id": "g_sprout",
+      "kind": "prop",
+      "model": "sprout",
+      "at": [
+        -0.6,
+        0,
+        0
+      ],
+      "size": 1.5,
+      "hidden": true
+    },
+    {
+      "id": "g_seedling",
+      "kind": "prop",
+      "model": "seedling",
+      "at": [
+        -0.6,
+        0,
+        0
+      ],
+      "size": 1.5,
+      "hidden": true
+    },
+    {
+      "id": "g_plant",
+      "kind": "prop",
+      "model": "plant",
+      "at": [
+        -0.6,
+        0,
+        0
+      ],
+      "size": 1.5,
+      "hidden": true
+    },
+    {
+      "id": "rock",
+      "kind": "prop",
+      "model": "rock",
+      "at": [
+        0.8,
+        0,
+        0.4
+      ],
+      "size": 1.1,
+      "hidden": true
+    },
+    {
+      "id": "can",
+      "kind": "prop",
+      "model": "watering_can",
+      "at": [
+        -1.5,
+        0,
+        0.35
+      ],
+      "size": 0.8,
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "hidden": false
+    },
+    {
+      "id": "bunny",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+        6.5,
+        0,
+        0.3
+      ],
+      "size": 1,
+      "rotation": [
+        0,
+        -40,
+        0
+      ]
+    },
+    {
+      "id": "baby",
+      "kind": "critter",
+      "species": "bunny",
+      "at": [
+        6,
+        0,
+        0.9
+      ],
+      "size": 0.5,
+      "rotation": [
+        0,
+        -40,
+        0
+      ]
+    },
+    {
+      "id": "grass1",
+      "kind": "prop",
+      "model": "grass",
+      "at": [
+        1.75,
+        0,
+        0.75
+      ],
+      "size": 1.2,
+      "hidden": true
+    },
+    {
+      "id": "grass2",
+      "kind": "prop",
+      "model": "grass",
+      "at": [
+        2.3,
+        0,
+        0.35
+      ],
+      "size": 1.2,
+      "hidden": true
+    },
+    {
+      "id": "bowl",
+      "kind": "shape",
+      "shape": "bowl",
+      "color": "blue",
+      "at": [
+        3.4,
+        0,
+        0.6
+      ],
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "bowl_water",
+      "kind": "shape",
+      "shape": "disc",
+      "color": "sky",
+      "material": "water",
+      "at": [
+        3.4,
+        0.17,
+        0.6
+      ],
+      "scale": [
+        0.4,
+        0.1,
+        0.4
+      ],
+      "hidden": true
+    },
+    {
+      "id": "nest",
+      "kind": "prop",
+      "model": "nest",
+      "at": [
+        0.9,
+        0,
+        0.6
+      ],
+      "size": 1.3,
+      "hidden": true
+    },
+    {
+      "id": "egg",
+      "kind": "prop",
+      "model": "egg_top",
+      "at": [
+        0.9,
+        0.12,
+        0.65
+      ],
+      "size": 0.8,
+      "hidden": true
+    },
+    {
+      "id": "chick",
+      "kind": "critter",
+      "species": "chick",
+      "at": [
+        0.9,
+        0.12,
+        0.7
+      ],
+      "size": 0.45,
+      "hidden": true
+    },
+    {
+      "id": "s1",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "brown",
+      "at": [
+        -0.75,
+        1.75,
+        0.15
+      ],
+      "size": 0.1,
+      "hidden": true
+    },
+    {
+      "id": "s2",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "brown",
+      "at": [
+        -0.6,
+        1.75,
+        0.15
+      ],
+      "size": 0.1,
+      "hidden": true
+    },
+    {
+      "id": "s3",
+      "kind": "shape",
+      "shape": "sphere",
+      "color": "brown",
+      "at": [
+        -0.45,
+        1.75,
+        0.15
+      ],
+      "size": 0.1,
+      "hidden": true
+    },
+    {
+      "id": "card1",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "cream",
+      "at": [
+        -1.7,
+        2.15,
+        -1.6
+      ],
+      "scale": [
+        1.2,
+        1,
+        1
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "card2",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "cream",
+      "at": [
+        0,
+        2.15,
+        -1.6
+      ],
+      "scale": [
+        1.2,
+        1,
+        1
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "card3",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "cream",
+      "at": [
+        1.7,
+        2.15,
+        -1.6
+      ],
+      "scale": [
+        1.2,
+        1,
+        1
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "c1_icon",
+      "kind": "shape",
+      "shape": "arrow",
+      "color": "green",
+      "at": [
+        -1.7,
+        2.23,
+        -1.54
+      ],
+      "size": 0.55,
+      "rotation": [
+        0,
+        0,
+        90
+      ],
+      "hidden": true
+    },
+    {
+      "id": "c2_drop",
+      "kind": "shape",
+      "shape": "drop",
+      "color": "blue",
+      "at": [
+        -0.22,
+        2.23,
+        -1.54
+      ],
+      "size": 0.42,
+      "hidden": true
+    },
+    {
+      "id": "c2_apple",
+      "kind": "prop",
+      "model": "apple",
+      "at": [
+        0.25,
+        2.03,
+        -1.5
+      ],
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "c3_big",
+      "kind": "shape",
+      "shape": "heart",
+      "color": "pink",
+      "at": [
+        1.55,
+        2.23,
+        -1.54
+      ],
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "c3_small",
+      "kind": "shape",
+      "shape": "heart",
+      "color": "pink",
+      "at": [
+        1.98,
+        2.11,
+        -1.54
+      ],
+      "size": 0.26,
+      "hidden": true
+    },
+    {
+      "id": "c1_txt",
+      "kind": "letter",
+      "text": "grows",
+      "color": "ink",
+      "size": 0.13,
+      "at": [
+        -1.7,
+        1.75,
+        -1.54
+      ],
+      "hidden": true
+    },
+    {
+      "id": "c2_txt",
+      "kind": "letter",
+      "text": "food and water",
+      "color": "ink",
+      "size": 0.1,
+      "at": [
+        0,
+        1.75,
+        -1.54
+      ],
+      "hidden": true
+    },
+    {
+      "id": "c3_txt",
+      "kind": "letter",
+      "text": "babies",
+      "color": "ink",
+      "size": 0.13,
+      "at": [
+        1.7,
+        1.75,
+        -1.54
+      ],
+      "hidden": true
+    },
+    {
+      "id": "hoop_alive",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "green",
+      "at": [
+        -2,
+        0,
+        0.6
+      ],
+      "scale": [
+        2.8,
+        0.6,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "id": "hoop_not",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "grey",
+      "at": [
+        2,
+        0,
+        0.6
+      ],
+      "scale": [
+        2.8,
+        0.6,
+        2
+      ],
+      "hidden": true
+    },
+    {
+      "id": "lab_alive",
+      "kind": "letter",
+      "text": "alive",
+      "color": "ink",
+      "size": 0.2,
+      "at": [
+        -2,
+        0.02,
+        1.65
+      ],
+      "hidden": true
+    },
+    {
+      "id": "lab_not",
+      "kind": "letter",
+      "text": "not alive",
+      "color": "charcoal",
+      "size": 0.2,
+      "at": [
+        2,
+        0.02,
+        1.65
+      ],
+      "hidden": true
+    },
+    {
+      "id": "car",
+      "kind": "prop",
+      "model": "car",
+      "at": [
+        -6,
+        0,
+        1.6
+      ],
+      "size": 0.75,
+      "hidden": true
+    },
+    {
+      "id": "bean",
+      "kind": "prop",
+      "model": "bean_seed",
+      "at": [
+        0,
+        0,
+        1.5
+      ],
+      "size": 1.6,
+      "hidden": true
+    },
+    {
+      "id": "cloud",
+      "kind": "prop",
+      "model": "cloud",
+      "at": [
+        0,
+        1.4,
+        0.9
+      ],
+      "size": 0.6,
+      "hidden": true
+    },
+    {
+      "id": "mushroom",
+      "kind": "prop",
+      "model": "mushroom",
+      "at": [
+        0,
+        0,
+        1.5
+      ],
+      "size": 1.3,
+      "hidden": true
+    },
+    {
+      "id": "worm",
+      "kind": "critter",
+      "species": "worm",
+      "at": [
+        0,
+        0,
+        1.5
+      ],
+      "size": 0.7,
+      "hidden": true
+    },
+    {
+      "id": "ball",
+      "kind": "prop",
+      "model": "ball",
+      "at": [
+        0,
+        0,
+        1.5
+      ],
+      "size": 0.7,
+      "color": "red",
+      "hidden": true
+    },
+    {
+      "id": "qflower",
+      "kind": "prop",
+      "model": "flowering_plant",
+      "at": [
+        0,
+        0,
+        1.5
+      ],
+      "size": 1.1,
+      "hidden": true
+    },
+    {
+      "id": "battery",
+      "kind": "prop",
+      "model": "battery_meter",
+      "at": [
+        -0.9,
+        0.9,
+        0.9
+      ],
+      "size": 0.9,
+      "hidden": true
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        -2.4,
+        0,
+        -0.3
+      ],
+      "rotation": [
+        0,
+        35,
+        0
+      ]
+    },
+    {
+      "id": "duck",
+      "kind": "critter",
+      "species": "duck",
+      "at": [
+        1.7,
+        0,
+        0.8
+      ],
+      "size": 0.75,
+      "rotation": [
+        0,
+        -30,
+        0
+      ]
+    },
+    {
+      "id": "tree1",
+      "kind": "prop",
+      "model": "tree",
+      "at": [
+        -5.6,
+        0,
+        -4.2
+      ],
+      "size": 2.2,
+      "hidden": true
+    },
+    {
+      "id": "tree2",
+      "kind": "prop",
+      "model": "tree",
+      "at": [
+        5.4,
+        0,
+        -4.6
+      ],
+      "size": 2.4,
+      "hidden": true
+    },
+    {
+      "id": "tree3",
+      "kind": "prop",
+      "model": "tree",
+      "at": [
+        0.4,
+        0,
+        -6.5
+      ],
+      "size": 2.6,
+      "hidden": true
+    },
+    {
+      "id": "leaves",
+      "kind": "confetti",
+      "count": 140,
+      "colors": [
+        "green",
+        "leaf",
+        "orange",
+        "yellow"
+      ],
+      "area": [
+        10,
+        4
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "hook",
+      "title": "Am I alive?",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                -0.2,
+                1.5,
+                6
+              ],
+              "lookAt": [
+                -0.2,
+                0.9,
+                0.2
+              ],
+              "fov": 40,
+              "dur": 0,
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "Alive or Not?",
+              "style": "title",
+              "at": 0.2,
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Alive or not?",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "can",
+              "at": 0.3,
+              "to": [
+                0,
+                0,
+                -20
+              ],
+              "dur": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "at": 0.5,
+              "volume": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Drink up, little flower.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "can",
+              "at": 1.6,
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.6
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0,
+              "to": "flower"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Hmm.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.3,
+              "to": [
+                -2.2,
+                0.6,
+                0.6
+              ],
+              "dur": 0.8
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "at": 0.3,
+              "feeling": "surprised"
+            },
+            {
+              "do": "orbit",
+              "around": [
+                -1.2,
+                0.9,
+                0
+              ],
+              "degrees": 25,
+              "dur": 5,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Duck... the flower is alive. You are alive. Am I alive?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.2,
+              "to": "robo"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "You move! You talk! You must be!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.3
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0,
+              "to": "duck"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Hmm. Let's be detectives and find out!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "at": 0.2,
+              "feeling": "happy"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.4,
+              "clip": "Yes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grow",
+      "title": "Clue 1: living things grow",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2,
+                3.6
+              ],
+              "lookAt": [
+                0,
+                1.95,
+                -1.6
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "card1",
+              "at": 0.4,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "c1_icon",
+              "at": 0.55,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "c1_txt",
+              "at": 0.7,
+              "sound": false
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Clue one. Living things grow.",
+              "at": 0.6,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "flower",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "can",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "g_seed",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "rock",
+              "at": 0.5
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.3,
+                4.6
+              ],
+              "lookAt": [
+                0.1,
+                0.7,
+                0.2
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.5,
+              "to": "g_seed"
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.5,
+              "to": "g_seed"
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Here is a seed. And here is a rock.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "g_seed",
+              "at": 0.4,
+              "dur": 1.2
+            },
+            {
+              "do": "highlight",
+              "target": "rock",
+              "at": 1.6,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Watch them!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "living things",
+              "style": "label",
+              "at": 0.2,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "g_seed",
+              "at": 0.1,
+              "dur": 0.25
+            },
+            {
+              "do": "show",
+              "target": "g_sprout",
+              "at": 0.15,
+              "dur": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 0.1,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "g_sprout",
+              "at": 0.1,
+              "dur": 0.25
+            },
+            {
+              "do": "show",
+              "target": "g_seedling",
+              "at": 0.15,
+              "dur": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 0.1,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "g_seedling",
+              "at": 0.1,
+              "dur": 0.25
+            },
+            {
+              "do": "show",
+              "target": "g_plant",
+              "at": 0.15,
+              "dur": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 0.1,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "g_plant",
+              "at": 0.1,
+              "dur": 0.25
+            },
+            {
+              "do": "show",
+              "target": "flower",
+              "at": 0.15,
+              "dur": 0.35
+            },
+            {
+              "do": "sound",
+              "sound": "sprout_spring",
+              "at": 0.1,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The seed grew into a flower!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "grows!",
+              "style": "label",
+              "at": 0.2,
+              "dur": 2.2
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.4,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And the rock? It stays the same.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "rock",
+              "at": 0.6,
+              "dur": 1.8
+            },
+            {
+              "do": "caption",
+              "text": "stays the same",
+              "style": "label",
+              "at": 1,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "move",
+              "target": "bunny",
+              "at": 0,
+              "to": [
+                2.3,
+                0,
+                0
+              ],
+              "dur": 2
+            },
+            {
+              "do": "move",
+              "target": "baby",
+              "at": 0,
+              "to": [
+                1.5,
+                0,
+                0.75
+              ],
+              "dur": 2
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0,
+              "height": 0.25,
+              "dur": 0.45
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0.1,
+              "height": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.5,
+              "height": 0.25,
+              "dur": 0.45
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0.6,
+              "height": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1,
+              "height": 0.25,
+              "dur": 0.45
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 1.1,
+              "height": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 1.5,
+              "height": 0.25,
+              "dur": 0.45
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 1.6,
+              "height": 0.2,
+              "dur": 0.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "at": 0,
+              "to": [
+                3.5,
+                0,
+                -0.1
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.5,
+                1.2,
+                4.2
+              ],
+              "lookAt": [
+                1.6,
+                0.6,
+                0.3
+              ],
+              "fov": 40,
+              "dur": 1.8,
+              "at": 0.4
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.4,
+              "to": "bunny"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bunny",
+              "text": "Hello! This is my baby. A baby bunny is called a kit.",
+              "at": 0.1,
+              "caption": true,
+              "voice": "soft"
+            },
+            {
+              "do": "look",
+              "target": "baby",
+              "at": 0.3,
+              "to": "bunny"
+            },
+            {
+              "do": "look",
+              "target": "bunny",
+              "at": 0.3,
+              "to": "baby"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bunny",
+              "text": "She is little now. She will grow big, like me!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "soft"
+            },
+            {
+              "do": "grow",
+              "target": "baby",
+              "at": 1,
+              "to": 1.4,
+              "dur": 2.2,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "caption",
+              "text": "growing",
+              "style": "label",
+              "at": 0.8,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Living things grow!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card1",
+              "at": 0.2,
+              "dur": 1.6
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2,
+                3.6
+              ],
+              "lookAt": [
+                0,
+                1.95,
+                -1.6
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "title": "Clue 2: food and water",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "card2",
+              "at": 0.1,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "c2_drop",
+              "at": 0.25,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "c2_apple",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "c2_txt",
+              "at": 0.5499999999999999,
+              "sound": false
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Clue two. Living things need food and water.",
+              "at": 0.4,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "show",
+              "target": "can",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "can",
+              "at": 0,
+              "to": [
+                -1.5,
+                0,
+                0.3
+              ],
+              "dur": 0
+            },
+            {
+              "do": "camera",
+              "position": [
+                -0.4,
+                1.4,
+                4
+              ],
+              "lookAt": [
+                -0.5,
+                0.9,
+                0.1
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0,
+              "to": "flower"
+            }
+          ]
+        },
+        {
+          "dur": 2.1,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The plant drinks water.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "turn",
+              "target": "can",
+              "at": 0.3,
+              "to": [
+                0,
+                0,
+                -20
+              ],
+              "dur": 0.8
+            },
+            {
+              "do": "sound",
+              "sound": "pour",
+              "at": 0.6,
+              "volume": 0.5
+            },
+            {
+              "do": "turn",
+              "target": "can",
+              "at": 2,
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "grass1",
+              "at": 0.1
+            },
+            {
+              "do": "pop",
+              "target": "grass2",
+              "at": 0.3
+            },
+            {
+              "do": "camera",
+              "position": [
+                1.8,
+                1.1,
+                3.8
+              ],
+              "lookAt": [
+                1.9,
+                0.5,
+                0.3
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The bunnies eat grass.",
+              "at": 0.5,
+              "caption": true
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 0.9,
+              "deg": 22
+            },
+            {
+              "do": "nod",
+              "target": "baby",
+              "at": 1.1,
+              "deg": 22
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 1.7,
+              "deg": 22
+            },
+            {
+              "do": "nod",
+              "target": "baby",
+              "at": 1.9,
+              "deg": 22
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "bunny",
+              "text": "Munch, munch! Yummy!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "soft"
+            },
+            {
+              "do": "nod",
+              "target": "bunny",
+              "at": 0.4,
+              "deg": 20
+            }
+          ]
+        },
+        {
+          "dur": 2.3,
+          "do": [
+            {
+              "do": "pop",
+              "target": "bowl",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "bowl_water",
+              "at": 0.1,
+              "sound": false
+            },
+            {
+              "do": "camera",
+              "position": [
+                2.8,
+                1.1,
+                4
+              ],
+              "lookAt": [
+                3.2,
+                0.5,
+                0.8
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "And I drink water. Sip, sip!",
+              "at": 0.6,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 1.4,
+              "deg": 30,
+              "dur": 0.6
+            },
+            {
+              "do": "nod",
+              "target": "duck",
+              "at": 2.2,
+              "deg": 30,
+              "dur": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.3,
+                4.6
+              ],
+              "lookAt": [
+                0.1,
+                0.7,
+                0.2
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The rock needs nothing. No food. No water.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "rock",
+              "at": 0.6,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Living things need food and water!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card2",
+              "at": 0.2,
+              "dur": 1.6
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2,
+                3.6
+              ],
+              "lookAt": [
+                0,
+                1.95,
+                -1.6
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "babies",
+      "title": "Clue 3: new living things",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "card3",
+              "at": 0.1,
+              "sound": "pop"
+            },
+            {
+              "do": "pop",
+              "target": "c3_big",
+              "at": 0.25,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "c3_small",
+              "at": 0.4,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "c3_txt",
+              "at": 0.5499999999999999,
+              "sound": false
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Clue three. Living things make babies, like themselves.",
+              "at": 0.4,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "rock",
+              "at": 0
+            },
+            {
+              "do": "pop",
+              "target": "nest",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "egg",
+              "at": 0.4
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.9,
+                1,
+                2.9
+              ],
+              "lookAt": [
+                0.9,
+                0.35,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.2,
+              "to": "nest"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "nest"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Look! An egg in a nest!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "wiggle",
+              "target": "egg",
+              "at": 0.2,
+              "deg": 10
+            },
+            {
+              "do": "wiggle",
+              "target": "egg",
+              "at": 1.2,
+              "deg": 12
+            },
+            {
+              "do": "sound",
+              "sound": "crack",
+              "at": 0.4,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "turn",
+              "target": "egg#top",
+              "at": 0.1,
+              "to": [
+                0,
+                0,
+                70
+              ],
+              "dur": 0.6
+            },
+            {
+              "do": "sound",
+              "sound": "crack",
+              "at": 0.1,
+              "volume": 0.5
+            },
+            {
+              "do": "hide",
+              "target": "egg",
+              "at": 0.9,
+              "dur": 0.3
+            },
+            {
+              "do": "pop",
+              "target": "chick",
+              "at": 1,
+              "sound": "pop"
+            },
+            {
+              "do": "feel",
+              "target": "chick",
+              "at": 1.2,
+              "feeling": "happy"
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "A baby chick! Hello!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "chick",
+              "at": 0.5,
+              "height": 0.15
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.2,
+              "feeling": "surprised"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 1.6,
+              "feeling": "happy"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                1.7,
+                1.1,
+                4
+              ],
+              "lookAt": [
+                1.8,
+                0.5,
+                0.3
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The bunny has a baby bunny.",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0.9,
+              "height": 0.25
+            }
+          ]
+        },
+        {
+          "dur": 1.4,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                -0.6,
+                1.5,
+                3.4
+              ],
+              "lookAt": [
+                -0.6,
+                1.1,
+                0
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.5,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "And the flower makes seeds.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "show",
+              "target": "s1",
+              "at": 0.6
+            },
+            {
+              "do": "move",
+              "target": "s1",
+              "at": 0.8,
+              "to": [
+                -0.75,
+                0.62,
+                0.15
+              ],
+              "dur": 0.7,
+              "ease": "bounceOut"
+            },
+            {
+              "do": "show",
+              "target": "s2",
+              "at": 0.8999999999999999
+            },
+            {
+              "do": "move",
+              "target": "s2",
+              "at": 1.1,
+              "to": [
+                -0.6,
+                0.62,
+                0.15
+              ],
+              "dur": 0.7,
+              "ease": "bounceOut"
+            },
+            {
+              "do": "show",
+              "target": "s3",
+              "at": 1.2
+            },
+            {
+              "do": "move",
+              "target": "s3",
+              "at": 1.4,
+              "to": [
+                -0.45,
+                0.62,
+                0.15
+              ],
+              "dur": 0.7,
+              "ease": "bounceOut"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Seeds grow new plants!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "new plants",
+              "style": "label",
+              "at": 0.4,
+              "dur": 2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Living things make new living things!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card3",
+              "at": 0.2,
+              "dur": 1.6
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2,
+                3.6
+              ],
+              "lookAt": [
+                0,
+                1.95,
+                -1.6
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Does it grow?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card1",
+              "at": 0.1,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Yes!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.1,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Does it need food and water?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card2",
+              "at": 0.1,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Yes!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.1,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Can it make babies?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card3",
+              "at": 0.1,
+              "dur": 1.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Yes!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.1,
+              "height": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Then it's... alive!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "sound",
+              "sound": "ding",
+              "at": 0.8
+            },
+            {
+              "do": "caption",
+              "text": "alive",
+              "style": "label",
+              "at": 0.8,
+              "dur": 1.6,
+              "color": "green"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "car",
+      "title": "The car moves... is it alive?",
+      "beats": [
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "lights",
+              "rig": "forest",
+              "background": "forest_mist",
+              "floor": "moss",
+              "dur": 2,
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "g_seed",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "g_sprout",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "g_seedling",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "g_plant",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "flower",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "can",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "grass1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "grass2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "bowl",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "bowl_water",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "nest",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "chick",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "s1",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "s2",
+              "at": 0.2
+            },
+            {
+              "do": "hide",
+              "target": "s3",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "tree1",
+              "at": 0.6,
+              "dur": 0.8
+            },
+            {
+              "do": "show",
+              "target": "tree2",
+              "at": 0.7,
+              "dur": 0.8
+            },
+            {
+              "do": "show",
+              "target": "tree3",
+              "at": 0.8,
+              "dur": 0.8
+            },
+            {
+              "do": "pop",
+              "target": "hoop_alive",
+              "at": 1
+            },
+            {
+              "do": "pop",
+              "target": "hoop_not",
+              "at": 1.2
+            },
+            {
+              "do": "pop",
+              "target": "lab_alive",
+              "at": 1.3,
+              "sound": false
+            },
+            {
+              "do": "pop",
+              "target": "lab_not",
+              "at": 1.5,
+              "sound": false
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "at": 0.2,
+              "to": [
+                -4.3,
+                0,
+                -0.7
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "robo",
+              "at": 0.2,
+              "to": [
+                0,
+                30,
+                0
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "at": 0.2,
+              "to": [
+                4.1,
+                0,
+                -0.5
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "at": 0.2,
+              "to": [
+                0,
+                -30,
+                0
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "bunny",
+              "at": 0.2,
+              "to": [
+                -2.9,
+                0,
+                0
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "baby",
+              "at": 0.2,
+              "to": [
+                -2.3,
+                0,
+                0.35
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.3,
+              "height": 0.3,
+              "dur": 0.9
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0.4,
+              "height": 0.25,
+              "dur": 0.9
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                0.5
+              ],
+              "fov": 40,
+              "dur": 2.2,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 3.1,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Let's sort! Alive things go on the green mat. Not alive things go on the grey mat.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "hoop_alive",
+              "at": 1,
+              "dur": 1.6
+            },
+            {
+              "do": "highlight",
+              "target": "hoop_not",
+              "at": 3,
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "show",
+              "target": "car",
+              "at": 0
+            },
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.1,
+              "volume": 0.6
+            },
+            {
+              "do": "move",
+              "target": "car",
+              "at": 0.5,
+              "to": [
+                0,
+                0,
+                1.5
+              ],
+              "dur": 1,
+              "ease": "quadOut"
+            },
+            {
+              "do": "sound",
+              "sound": "car_pass",
+              "at": 0.5,
+              "volume": 0.4
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.5,
+              "to": "car"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.5,
+              "to": "car"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Vroom! It moves! It's alive!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.3,
+              "height": 0.35
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.4,
+                5
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                1
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Hmm. Let's check the clues.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2,
+                3.6
+              ],
+              "lookAt": [
+                0,
+                1.95,
+                -1.6
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Does it grow?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card1",
+              "at": 0.1,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "No...",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "mark",
+              "target": "card1",
+              "at": 0.2,
+              "result": "incorrect"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Does it need food and water?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card2",
+              "at": 0.1,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "No...",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "mark",
+              "target": "card2",
+              "at": 0.2,
+              "result": "incorrect"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Can it make babies?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "card3",
+              "at": 0.1,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "No!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "mark",
+              "target": "card3",
+              "at": 0.2,
+              "result": "incorrect"
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                0.5
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "The car moves, but it is not alive.",
+              "at": 0.3,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "moves, but not alive",
+              "style": "label",
+              "at": 0.4,
+              "dur": 2.6
+            },
+            {
+              "do": "move",
+              "target": "car",
+              "at": 1.6,
+              "to": [
+                2.6,
+                0,
+                1
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "car",
+              "at": 1.6,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "turn",
+              "target": "car",
+              "at": 1.6,
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.6
+            }
+          ]
+        }
+      ],
+      "music": "playful",
+      "musicGain": 0.22
+    },
+    {
+      "id": "tricky",
+      "title": "Tricky ones",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2,
+                6.8
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                0.6
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "bean",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A seed. It doesn't move. Alive or not?",
+              "at": 0.5,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "bean",
+              "at": 0.8,
+              "dur": 1.6
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.2,
+              "to": "bean"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "bean"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Alive! A seed is resting. Give it water, and it grows!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "bean",
+              "at": 0.6,
+              "to": [
+                -1,
+                0,
+                1.2
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "bean",
+              "at": 0.6,
+              "height": 0.35,
+              "dur": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "mark",
+              "target": "hoop_alive",
+              "at": 0,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Some seeds wait a very long time, then grow!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "wiggle",
+              "target": "bean",
+              "at": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "cloud",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A cloud. It moves, and it grows bigger!",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "grow",
+              "target": "cloud",
+              "at": 1,
+              "to": 1.3,
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "cloud",
+              "at": 1,
+              "to": [
+                0.6,
+                1.5,
+                0.9
+              ],
+              "dur": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Is it alive?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "No! A cloud needs no food, and makes no babies.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "cloud",
+              "at": 0.8,
+              "to": [
+                2.3,
+                0.9,
+                -0.1
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "grow",
+              "target": "cloud",
+              "at": 0.8,
+              "to": 0.9,
+              "dur": 1.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "mark",
+              "target": "hoop_not",
+              "at": 0,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "mushroom",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A mushroom. Alive or not?",
+              "at": 0.5,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "mushroom",
+              "at": 0.8,
+              "dur": 1.6
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.2,
+              "to": "mushroom"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "mushroom"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Alive! Mushrooms are alive, too.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "mushroom",
+              "at": 0.6,
+              "to": [
+                -2.9,
+                0,
+                1.15
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "mushroom",
+              "at": 0.6,
+              "height": 0.35,
+              "dur": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "mark",
+              "target": "hoop_alive",
+              "at": 0,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "worm",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A worm. Alive or not?",
+              "at": 0.5,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "worm",
+              "at": 0.8,
+              "dur": 1.6
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.2,
+              "to": "worm"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "worm"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.7,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Alive! A worm grows, eats, and has babies.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "worm",
+              "at": 0.6,
+              "to": [
+                -1.5,
+                0,
+                0.15
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "worm",
+              "at": 0.6,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "wiggle",
+              "target": "worm",
+              "at": 1.6
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "mark",
+              "target": "hoop_alive",
+              "at": 0,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "ball",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "A ball. Alive or not?",
+              "at": 0.5,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "ball",
+              "at": 0.8,
+              "dur": 1.6
+            },
+            {
+              "do": "look",
+              "target": "duck",
+              "at": 0.2,
+              "to": "ball"
+            },
+            {
+              "do": "look",
+              "target": "robo",
+              "at": 0.2,
+              "to": "ball"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Not alive! A ball never grows.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "ball",
+              "at": 0.6,
+              "to": [
+                1.4,
+                0,
+                0.95
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "ball",
+              "at": 0.6,
+              "height": 0.35,
+              "dur": 0.9
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "mark",
+              "target": "hoop_not",
+              "at": 0,
+              "result": "correct"
+            }
+          ]
+        }
+      ],
+      "music": "playful",
+      "musicGain": 0.22
+    },
+    {
+      "id": "robo",
+      "title": "Is Robo alive?",
+      "beats": [
+        {
+          "dur": 2.8,
+          "do": [
+            {
+              "do": "path",
+              "target": "robo",
+              "at": 0,
+              "points": [
+                [
+                  -4.3,
+                  0,
+                  -0.7
+                ],
+                [
+                  -3.9,
+                  0,
+                  2
+                ],
+                [
+                  -0.3,
+                  0,
+                  2.2
+                ]
+              ],
+              "dur": 1.6,
+              "face": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0,
+              "clip": "Walking"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 1.6,
+              "clip": "Idle"
+            },
+            {
+              "do": "turn",
+              "target": "robo",
+              "at": 1.6,
+              "to": [
+                0,
+                0,
+                0
+              ],
+              "dur": 0.4
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "at": 0.3,
+              "to": [
+                1.4,
+                0,
+                2
+              ],
+              "dur": 1.4
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.2,
+                1.5,
+                6
+              ],
+              "lookAt": [
+                0.2,
+                0.9,
+                2.2
+              ],
+              "fov": 40,
+              "dur": 2,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Now... is Robo alive?",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "at": 0.2,
+              "feeling": "surprised"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.3,
+                5.2
+              ],
+              "lookAt": [
+                0.2,
+                0.9,
+                2.2
+              ],
+              "fov": 40,
+              "dur": 6,
+              "at": 0.2
+            }
+          ]
+        },
+        {
+          "dur": 1.5,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Do I need food? No.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "pop",
+              "target": "battery",
+              "at": 0.4
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 1.4,
+              "clip": "No"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "I need a battery, not food.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "highlight",
+              "target": "battery",
+              "at": 0.4,
+              "dur": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Do I grow? No. I stay the same size.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 1,
+              "clip": "No"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Can I make baby robots? No!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 1,
+              "clip": "No"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "So you are not alive?",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.2,
+              "feeling": "worried"
+            },
+            {
+              "do": "camera",
+              "position": [
+                0.4,
+                1.3,
+                5.6
+              ],
+              "lookAt": [
+                0.4,
+                0.8,
+                2.1
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "I'm not alive. But I'm still your friend!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "feel",
+              "target": "robo",
+              "at": 0.2,
+              "feeling": "happy"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.8,
+              "clip": "Wave"
+            },
+            {
+              "do": "feel",
+              "target": "duck",
+              "at": 0.8,
+              "feeling": "happy"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "duck",
+              "at": 0,
+              "to": [
+                0.6,
+                0,
+                2.3
+              ],
+              "dur": 0.8
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.9,
+              "height": 0.3
+            },
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Best friends!",
+              "at": 0.6,
+              "caption": true,
+              "voice": "squeaky"
+            }
+          ]
+        }
+      ],
+      "music": "playful",
+      "musicGain": 0.22
+    },
+    {
+      "id": "quiz",
+      "title": "Alive or not quiz",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "hide",
+              "target": "battery",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "robo",
+              "at": 0,
+              "to": [
+                -4.3,
+                0,
+                -0.7
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "robo",
+              "at": 0,
+              "to": [
+                0,
+                30,
+                0
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "move",
+              "target": "duck",
+              "at": 0,
+              "to": [
+                4.1,
+                0,
+                -0.5
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "turn",
+              "target": "duck",
+              "at": 0,
+              "to": [
+                0,
+                -30,
+                0
+              ],
+              "dur": 1.2
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                7.4
+              ],
+              "lookAt": [
+                0,
+                0.5,
+                0.5
+              ],
+              "fov": 40,
+              "dur": 1.4,
+              "at": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Quiz time! Point to the green mat or the grey mat.",
+              "at": 0.6,
+              "caption": true
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "pop",
+              "target": "qflower",
+              "at": 0.1
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "One. A flower. Alive or not?",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "1",
+              "style": "count",
+              "at": 0.4,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.3,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Alive! It grows and drinks.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "qflower",
+              "at": 0.3,
+              "to": [
+                -2,
+                0,
+                1.05
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "qflower",
+              "at": 0.3,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "mark",
+              "target": "hoop_alive",
+              "at": 1.2,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "rock",
+              "at": 0
+            },
+            {
+              "do": "move",
+              "target": "rock",
+              "at": 0,
+              "to": [
+                0,
+                0,
+                1.5
+              ],
+              "dur": 0
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Two. A rock. Alive or not?",
+              "at": 0.4,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "2",
+              "style": "count",
+              "at": 0.4,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.3,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Not alive!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "rock",
+              "at": 0.3,
+              "to": [
+                1.5,
+                0,
+                0.15
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "rock",
+              "at": 0.3,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "mark",
+              "target": "hoop_not",
+              "at": 1.2,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "car",
+              "at": 0,
+              "to": [
+                0,
+                0,
+                1.5
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "car",
+              "at": 0,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Three. The toy car moves. Is it alive?",
+              "at": 0.6,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "3",
+              "style": "count",
+              "at": 0.6,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.3,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "No! Not alive.",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "car",
+              "at": 0.3,
+              "to": [
+                2.6,
+                0,
+                1
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "car",
+              "at": 0.3,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "mark",
+              "target": "hoop_not",
+              "at": 1.2,
+              "result": "correct"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "baby",
+              "at": 0,
+              "to": [
+                0,
+                0,
+                1.5
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Four. A baby bunny. Alive or not?",
+              "at": 0.6,
+              "caption": true
+            },
+            {
+              "do": "caption",
+              "text": "4",
+              "style": "count",
+              "at": 0.6,
+              "dur": 2.4
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "sound",
+              "sound": "windup_click",
+              "at": 0.15,
+              "volume": 0.5
+            }
+          ]
+        },
+        {
+          "dur": 1.3,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Alive!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "move",
+              "target": "baby",
+              "at": 0.3,
+              "to": [
+                -2.3,
+                0,
+                0.35
+              ],
+              "dur": 0.9,
+              "ease": "sineInOut"
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0.3,
+              "height": 0.35,
+              "dur": 0.9
+            },
+            {
+              "do": "mark",
+              "target": "hoop_alive",
+              "at": 1.2,
+              "result": "correct"
+            }
+          ]
+        }
+      ],
+      "music": "playful",
+      "musicGain": 0.22
+    },
+    {
+      "id": "song",
+      "title": "Sorting song",
+      "beats": [
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "Grow, eat, babies... alive!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.2,
+              "clip": "Dance"
+            },
+            {
+              "do": "hop",
+              "target": "bunny",
+              "at": 0.5,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0.7,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "bean",
+              "at": 0.9,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "mushroom",
+              "at": 1.1,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "worm",
+              "at": 1.3,
+              "height": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "qflower",
+              "at": 1.5,
+              "height": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "robo",
+              "text": "You are great science detectives!",
+              "at": 0.1,
+              "caption": true
+            },
+            {
+              "do": "burst",
+              "target": "leaves",
+              "at": 0.2
+            },
+            {
+              "do": "sound",
+              "sound": "crowd_cheer",
+              "at": 0.3,
+              "volume": 0.3
+            },
+            {
+              "do": "hop",
+              "target": "duck",
+              "at": 0.6,
+              "height": 0.4
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "move",
+              "target": "baby",
+              "at": 0,
+              "to": [
+                0,
+                0,
+                3.2
+              ],
+              "dur": 1.6
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0,
+              "height": 0.3,
+              "dur": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 0.55,
+              "height": 0.3,
+              "dur": 0.5
+            },
+            {
+              "do": "hop",
+              "target": "baby",
+              "at": 1.1,
+              "height": 0.3,
+              "dur": 0.5
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1,
+                5.6
+              ],
+              "lookAt": [
+                0,
+                0.6,
+                2.8
+              ],
+              "fov": 40,
+              "dur": 2,
+              "at": 0.4
+            },
+            {
+              "do": "say",
+              "who": "bunny",
+              "text": "Bye-bye!",
+              "at": 1.4,
+              "caption": true,
+              "voice": "soft"
+            }
+          ]
+        },
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "say",
+              "who": "duck",
+              "text": "Bye-bye! Quack!",
+              "at": 0.1,
+              "caption": true,
+              "voice": "squeaky"
+            },
+            {
+              "do": "clip",
+              "target": "robo",
+              "at": 0.2,
+              "clip": "Wave"
+            }
+          ]
+        }
+      ],
+      "music": "playful",
+      "musicGain": 0.22
+    }
+  ]
+}
