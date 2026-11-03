@@ -1,16 +1,16 @@
-// three.js builders for more of the teaching kit: grids (area and perimeter), unit cubes (volume), pointers
-// (3D arrows), callouts (a label card with a leader line) and angles. Driven each frame by the object's
-// timeline props. Browser and Node.
+// three.js builders for more of the teaching kit: grids (area and perimeter, numbered cells, counted edges),
+// unit cubes (volume), callouts (a label card with a leader line) and angles. Pointers are in teach_draw.js.
+// Driven each frame by the object's timeline props. Browser and Node.
 
 import * as THREE from "three";
 import { cubeXYZ, rowCol } from "./teach_layout.js";
 import { localBox } from "./teach_marks.js";
-import { blendColor, builder, clamp01, colorRGB, drawableTube, labelMaker, ownMaterial, roundedBox, setPiece, solid } from "./teach_common.js";
+import { blendColor, builder, clamp01, colorRGB, drawableTube, labelMaker, ownMaterial, pieceShade, roundedBox, setPiece, solid } from "./teach_common.js";
 
 const UP = new THREE.Vector3(0, 1, 0);
 
 /** Unit squares on a board: upright like a wall chart, or flat on the floor (row 1 at the back). */
-export function buildGrid(o, group, { catalog, material }) {
+export function buildGrid(o, group, { catalog, material, font, textGeometry }) {
   const c = o.cell;
   const [W, H] = [o.cols * c, o.rows * c];
   const m = 0.08; // board margin
@@ -66,14 +66,17 @@ export function buildGrid(o, group, { catalog, material }) {
   }
   const dot = new THREE.Mesh(new THREE.SphereGeometry(Math.max(0.07, c * 0.16), 24, 16), glow);
   group.add(dot);
+  if (o.labels === "numbers") numberCells(o, cells, tileT, { material, font, textGeometry });
+  const counts = countLabels(o, { units, pointAt, place, material, font, textGeometry });
+  for (const l of counts) group.add(l);
   const base = colorRGB(catalog, o.color);
   return {
     named,
-    update(t, s) {
+    update(t, s, state) {
       const built = builder(o, s);
       cells.forEach(({ mesh, mat }, i) => {
         setPiece(mesh, built(i));
-        blendColor(mat, base, s.shadeColor, (s.shaded ?? 0) - i);
+        blendColor(mat, base, s.shadeColor, pieceShade(o, s, state, i));
       });
       board.visible = built(0) > 0;
       const d = (s.trace ?? 0) * units;
@@ -85,8 +88,55 @@ export function buildGrid(o, group, { catalog, material }) {
       dot.visible = d > 0 && d < units;
       const [u, v] = pointAt(d);
       dot.position.copy(place(u, v, 0.1));
+      // trace with count: each unit's number pops in as the dot finishes that unit.
+      counts.forEach((l, k) => setPiece(l, s.traceCount ? clamp01((d - (k + 0.75)) / 0.25) : 0));
     },
   };
+}
+
+/** Numbers 1..rows×cols on the cells, row by row (a hundred chart): on the front of upright tiles, on top of flat ones. */
+function numberCells(o, cells, tileT, { material, font, textGeometry }) {
+  const make = labelMaker(textGeometry, font, o.cell * 0.3, 0.02);
+  const ink = material("ink", "toy");
+  cells.forEach(({ mesh }, i) => {
+    const geo = make(String(i + 1));
+    // Three-digit numbers (100) shrink to fit the tile.
+    const k = Math.min(1, (o.cell * 0.84) / (geo.boundingBox.max.x - geo.boundingBox.min.x));
+    const h = (geo.boundingBox.max.y - geo.boundingBox.min.y) * k;
+    const label = new THREE.Mesh(geo, ink);
+    label.scale.set(k, k, 1);
+    if (o.upright) label.position.set(0, -h / 2, tileT / 2 + 0.008);
+    else {
+      label.rotation.x = -Math.PI / 2;
+      label.position.set(0, tileT / 2 + 0.008, h / 2);
+    }
+    mesh.add(label);
+  });
+}
+
+/** One number per unit edge (1, 2, 3... clockwise from the top-left corner), just outside the edge's middle. */
+function countLabels(o, { units, pointAt, place, material, font, textGeometry }) {
+  const c = o.cell;
+  const make = labelMaker(textGeometry, font, Math.max(0.12, c * 0.3), 0.04);
+  const mat = material("ink", "toy");
+  const out = [];
+  // Outward normals of the top, right, bottom and left edges in chart coordinates (u right, v up).
+  const normals = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const edgeOf = (k) => (k < o.cols ? 0 : k < o.cols + o.rows ? 1 : k < 2 * o.cols + o.rows ? 2 : 3);
+  for (let k = 0; k < units; k++) {
+    const geo = make(String(k + 1));
+    const [hw, h] = [(geo.boundingBox.max.x - geo.boundingBox.min.x) / 2, geo.boundingBox.max.y - geo.boundingBox.min.y];
+    const [u, v] = pointAt(k + 0.5);
+    const [nu, nv] = normals[edgeOf(k)];
+    const off = 0.14 + (nu ? hw : h / 2);
+    const p = place(u + nu * off, v + nv * off, 0.04);
+    const m = solid(geo, mat);
+    // Upright grids: centred on the spot; flat ones: standing on the board at the spot.
+    m.position.copy(p).add(new THREE.Vector3(0, o.upright ? -h / 2 : 0, 0));
+    m.visible = false;
+    out.push(m);
+  }
+  return out;
 }
 
 /** l × w × h unit cubes (layers stack up, alternate layers a little lighter); box: a clear box around them. */
@@ -118,36 +168,6 @@ export function buildCubes(o, group, { material }) {
     update(t, s) {
       const built = builder(o, s);
       cubes.forEach((m, i) => setPiece(m, built(i)));
-    },
-  };
-}
-
-/** A 3D arrow from `from` to `to` (relative to at), arched `bend` metres high; draw grows it tip first. */
-export function buildPointer(o, group, { material }) {
-  const a = new THREE.Vector3(...(o.from ?? [0, 0, 0]));
-  const b = new THREE.Vector3(...(o.to ?? [1, 0, 0]));
-  const mid = a.clone().add(b).multiplyScalar(0.5);
-  const curve = new THREE.QuadraticBezierCurve3(a, mid.clone().addScaledVector(UP, 2 * (o.bend ?? 0)), b);
-  const L = curve.getLength();
-  const w = o.width;
-  const headLen = Math.min(L * 0.45, w * 2.8);
-  const mat = material(o.color, "toy");
-  const tube = drawableTube(curve, w / 2, 64, 12);
-  const shaft = solid(tube.geo, mat);
-  const cap = solid(new THREE.SphereGeometry(w / 2, 16, 12), mat);
-  cap.position.copy(a);
-  const head = solid(new THREE.ConeGeometry(w * 1.35, headLen, 28).translate(0, -headLen / 2, 0), mat);
-  group.add(shaft, cap, head);
-  const tan = new THREE.Vector3();
-  return {
-    update(t, s) {
-      const k = clamp01(s.drawn ?? 1);
-      tube.show(Math.max(0, k - (headLen * 0.85) / L));
-      head.visible = cap.visible = k > 0.005;
-      curve.getPointAt(k, head.position);
-      curve.getTangentAt(Math.max(0.001, k), tan);
-      head.quaternion.setFromUnitVectors(UP, tan.normalize());
-      head.scale.setScalar(Math.max(1e-4, Math.min(1, (k * L) / headLen)));
     },
   };
 }

@@ -3,7 +3,7 @@
 // helper objects for marks, glows and leap arcs). Pure: no three.js, no I/O, no clocks.
 
 import { rgb } from "./director_extras.js";
-import { BUILD_ORDERS, approxHeight, buildSteps, linePoint, pieceCount, pieceNames, withDefaults } from "./teach_layout.js";
+import { BUILD_ORDERS, PIECE_PREFIX, approxHeight, buildSteps, linePoint, pieceCount, pieceNames, withDefaults } from "./teach_layout.js";
 
 /** Actions this module adds (compile.js dispatches them as d[action](target, params)). */
 export const TEACH_ACTIONS = ["build", "shade", "leap", "draw", "open", "mark", "highlight", "trace"];
@@ -86,6 +86,32 @@ export function installTeach(d, { catalog, tl, obj, now, sound, objects }) {
     d.add({ ...spec, id, hidden: true, internal: true });
     return id;
   };
+  const cellSets = new Map(); // object id → piece numbers shaded with cells
+  const once = new Set();
+  const baseOnce = (target, prop, value) => !once.has(`${target}|${prop}`) && (once.add(`${target}|${prop}`), tl.base(target, prop, value));
+  const shadeColor = (id, t, color, len) => {
+    if (color == null) return;
+    if (!catalog.colors[color]) throw new Error(`unknown color "${color}"`);
+    tl.tween(id, "shadeColor", { start: t, dur: Math.min(0.4, len), to: rgb(catalog.colors[color].hex), ease: "sineInOut" });
+  };
+  /** shade with cells: per-piece "shade" props (0-1) on "<id>#<piece>", one piece after another. */
+  function shadeCells(id, o, n, { t, cells, color, dur, s }) {
+    if (!Array.isArray(cells) || cells.some((c) => !(Number.isInteger(c) && c >= 1 && c <= n)) || new Set(cells).size !== cells.length) throw new Error(`shade "${id}": cells must be different piece numbers 1-${n}`);
+    const prev = cellSets.get(id) ?? new Set();
+    const fresh = cells.filter((c) => !prev.has(c));
+    const len = dur ?? 0.2 + 0.3 * Math.max(1, fresh.length);
+    shadeColor(id, t, color, len);
+    const piece = (c) => `${id}#${PIECE_PREFIX[o.kind]}${c}`;
+    const step = len / Math.max(1, fresh.length);
+    fresh.forEach((c, i) => {
+      baseOnce(piece(c), "shade", 0);
+      tl.tween(piece(c), "shade", { start: t + i * step, dur: Math.min(step, 0.3), from: 0, to: 1, ease: "linear" });
+      if (s) sound(s, t + i * step, { volume: 0.6, pan: pan(o) });
+    });
+    for (const c of prev) if (!cells.includes(c)) tl.tween(piece(c), "shade", { start: t, dur: 0.3, to: 0, ease: "linear" });
+    cellSets.set(id, new Set(cells));
+    return d;
+  }
 
   Object.assign(d, {
     /** The world point for a value on a number line (where `on: { line, value }` puts things). */
@@ -108,11 +134,16 @@ export function installTeach(d, { catalog, tl, obj, now, sound, objects }) {
       return d;
     },
 
-    /** Shade parts in order up to `to` (fewer shades parts back out); color changes the shade colour. */
-    shade(id, { at: t = 0, to, color, dur, sound: s } = {}) {
+    /**
+     * Shade parts in order up to `to` (fewer shades parts back out); color changes the shade colour. cells
+     * (piece numbers from 1) shades exactly those pieces instead, one after another; cells shaded by an
+     * earlier `cells` and not listed again unshade ([] clears them).
+     */
+    shade(id, { at: t = 0, to, cells, color, dur, sound: s } = {}) {
       const o = kindOf(id, ["fraction_bar", "fraction_circle", "grid", "array"], "shade");
       const from = now(id, "shaded", t);
       const n = pieceCount(o);
+      if (cells != null) return shadeCells(id, o, n, { t, cells, color, dur, s });
       if (!(Number.isInteger(to) && to >= 0 && to <= n)) throw new Error(`shade "${id}": to must be a whole number 0-${n}`);
       const len = dur ?? 0.2 + 0.3 * Math.abs(to - from);
       if (color != null) {
@@ -147,9 +178,9 @@ export function installTeach(d, { catalog, tl, obj, now, sound, objects }) {
       return d;
     },
 
-    /** Draw a pointer, number line or callout from its start to its end. */
+    /** Draw a pointer, number line, callout or stroke from its start to its end. */
     draw(id, { at: t = 0, dur = 1.2, sound: s } = {}) {
-      const o = kindOf(id, ["pointer", "number_line", "callout"], "draw");
+      const o = kindOf(id, ["pointer", "number_line", "callout", "stroke"], "draw");
       appear(id, o, t);
       tl.tween(id, "drawn", { start: t, dur, from: 0, to: 1, ease: "sineInOut" });
       sound(s, t, { pan: pan(o) });
@@ -196,10 +227,15 @@ export function installTeach(d, { catalog, tl, obj, now, sound, objects }) {
     },
 
     /** A glowing dot runs round a grid's edge, lighting one unit at a time (perimeter), with a count sound per unit. */
-    trace(id, { at: t = 0, dur, sound: s = "pop" } = {}) {
+    trace(id, { at: t = 0, dur, sound: s = "pop", count } = {}) {
       const o = withDefaults(kindOf(id, ["grid"], "trace"));
       const units = 2 * (o.rows + o.cols);
       const len = dur ?? Math.min(10, 0.45 * units);
+      // count: true pops 1, 2, 3... beside each unit edge as the dot passes it.
+      if (count != null || once.has(`${id}|traceCount`)) {
+        baseOnce(id, "traceCount", 0);
+        tl.set(id, "traceCount", count ? 1 : 0, t);
+      }
       tl.tween(id, "trace", { start: t, dur: len, from: 0, to: 1, ease: "linear" });
       if (s) for (let i = 1; i <= units; i++) sound(s, t + (len * i) / units, { volume: 0.5, pan: pan(o) });
       return d;

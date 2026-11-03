@@ -60,12 +60,43 @@ export function createMaterials(catalog) {
  */
 function textGeometry(text, font, size, depth, { baseline = false } = {}) {
   const bevel = size * 0.025;
-  const g = new TextGeometry(text, { font, size: size * 1.42, depth, curveSegments: 10, bevelEnabled: true, bevelThickness: depth * 0.18, bevelSize: bevel, bevelSegments: 4 });
+  const g = new TextGeometry(text, textParams(font, size, depth));
   g.computeBoundingBox();
   const b = g.boundingBox;
   g.translate(-(b.min.x + b.max.x) / 2, baseline ? bevel : -b.min.y, -(b.min.z + b.max.z) / 2);
   g.computeBoundingBox();
   return g;
+}
+
+const textParams = (font, size, depth) => ({ font, size: size * 1.42, depth, curveSegments: 10, bevelEnabled: true, bevelThickness: depth * 0.18, bevelSize: size * 0.025, bevelSegments: 4 });
+
+/**
+ * A letter object's text as one mesh per character, each in its colour (o.colors[i], else o.color), laid out
+ * as the font lays out the whole string (advance widths, no kerning, like TextGeometry) and centred and
+ * stood on the baseline exactly as the single mesh would be.
+ */
+function colorLetters(o, font, size, depth, material) {
+  const p = textParams(font, size, depth);
+  const scale = p.size / font.data.resolution;
+  let x = 0;
+  const pieces = [];
+  for (const [i, ch] of Array.from(o.text).entries()) {
+    const glyph = font.data.glyphs[ch] ?? font.data.glyphs["?"];
+    if (ch.trim()) {
+      const g = new TextGeometry(ch, p);
+      g.translate(x, 0, 0);
+      g.computeBoundingBox();
+      pieces.push({ g, color: o.colors[i] ?? o.color ?? "blue" });
+    }
+    x += (glyph?.ha ?? 0) * scale;
+  }
+  const b = new THREE.Box3();
+  for (const { g } of pieces) b.union(g.boundingBox);
+  return pieces.map(({ g, color }) => {
+    g.translate(-(b.min.x + b.max.x) / 2, size * 0.025, -(b.min.z + b.max.z) / 2);
+    g.computeBoundingBox();
+    return new THREE.Mesh(g, material(color, o.material ?? "toy"));
+  });
 }
 
 
@@ -75,7 +106,7 @@ function textGeometry(text, font, size, depth, { baseline = false } = {}) {
  */
 export function buildObject(o, { catalog, assets, material, seed, height = 1080, handles }) {
   // The teaching kit (teach.js): handles lets marks and glows measure the object they ride on.
-  if (isTeachKind(o.kind)) return buildTeach(o, { catalog, material, font: assets.fonts.get("andika_bold"), textGeometry, handles });
+  if (isTeachKind(o.kind)) return buildTeach(o, { catalog, material, font: assets.fonts.get("andika_bold"), textGeometry, handles, height });
   const group = new THREE.Group();
   group.name = o.id;
   const size = o.size ?? 1;
@@ -120,7 +151,9 @@ export function buildObject(o, { catalog, assets, material, seed, height = 1080,
     }
   } else if (o.kind === "letter") {
     const font = assets.fonts.get(o.font ?? "andika_bold");
-    group.add(shadowed(new THREE.Mesh(textGeometry(o.text, font, size, (o.depth ?? 0.35) * size, { baseline: true }), material(o.color ?? "blue", o.material ?? "toy"))));
+    // colors: one colour per character (blends, rhyme endings); the same letters, cut into one mesh each.
+    if (o.colors) for (const m of colorLetters(o, font, size, (o.depth ?? 0.35) * size, material)) group.add(shadowed(m));
+    else group.add(shadowed(new THREE.Mesh(textGeometry(o.text, font, size, (o.depth ?? 0.35) * size, { baseline: true }), material(o.color ?? "blue", o.material ?? "toy"))));
   } else if (o.kind === "character") {
     const ch = catalog.characters[o.character];
     const gltf = assets.characters.get(o.character);

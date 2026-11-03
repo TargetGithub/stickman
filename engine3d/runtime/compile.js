@@ -4,6 +4,7 @@
 
 import { createDirector } from "./director.js";
 import { TEACH_ACTIONS } from "./director_teach.js";
+import { KIT2_ACTIONS } from "./director_kit2.js";
 
 export const SAY_TAIL = 0.35;
 
@@ -77,8 +78,9 @@ function run(d, a, start) {
     case "orbit": return d.orbit(o);
     case "look": return d.look(a.target, { ...o, to: a.to ?? (typeof a.at === "number" ? undefined : a.at) });
     case "sound": return d.sound(a.sound, o);
+    case "set": return d.setDigits(a.target, o);
     default:
-      if (TEACH_ACTIONS.includes(a.do)) return d[a.do](a.target, o);
+      if (TEACH_ACTIONS.includes(a.do) || KIT2_ACTIONS.includes(a.do)) return d[a.do](a.target, o);
       throw new Error(`unknown action "${a.do}"`);
   }
 }

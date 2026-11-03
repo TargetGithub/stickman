@@ -1,0 +1,2242 @@
+{
+  "kind": "video3d",
+  "version": 1,
+  "description": "A tour of round 2 of the teaching kit: strokes with a pencil, coloured letters, stacked fractions, a place value chart with shifts, a text card with highlights, flows, unequal fraction parts, cell shading, a hundred chart, counted perimeter, pointer lines that follow moving objects, reparent, spin about a tilted axis, pointing, and talking props.",
+  "meta": {
+    "title": "engine3d teaching kit round 2 tour",
+    "seed": 44,
+    "voice": "soft",
+    "music": false
+  },
+  "stage": {
+    "preset": "playroom"
+  },
+  "camera": {
+    "position": [
+      0,
+      2.2,
+      9.4
+    ],
+    "lookAt": [
+      0,
+      1.6,
+      0
+    ],
+    "fov": 40
+  },
+  "objects": [
+    {
+      "id": "board",
+      "kind": "shape",
+      "shape": "plate",
+      "color": "white",
+      "material": "matte",
+      "at": [
+        0,
+        1.85,
+        -0.45
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "scale": [
+        7.2,
+        1,
+        3.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "straight",
+      "kind": "stroke",
+      "at": [
+        0,
+        0,
+        -0.3
+      ],
+      "points": [
+        [
+          -3.1,
+          2.7,
+          0
+        ],
+        [
+          -0.6,
+          2.7,
+          0
+        ]
+      ],
+      "color": "red",
+      "pen": "dot",
+      "hidden": true
+    },
+    {
+      "id": "wavy",
+      "kind": "stroke",
+      "at": [
+        0,
+        0,
+        -0.3
+      ],
+      "points": [
+        [
+          0.5,
+          2.38,
+          0
+        ],
+        [
+          0.83,
+          3.02,
+          0
+        ],
+        [
+          1.16,
+          2.38,
+          0
+        ],
+        [
+          1.49,
+          3.02,
+          0
+        ],
+        [
+          1.82,
+          2.38,
+          0
+        ],
+        [
+          2.15,
+          3.02,
+          0
+        ],
+        [
+          2.48,
+          2.38,
+          0
+        ],
+        [
+          2.81,
+          3.02,
+          0
+        ],
+        [
+          3.14,
+          2.38,
+          0
+        ]
+      ],
+      "smooth": true,
+      "color": "blue",
+      "pen": true,
+      "hidden": true
+    },
+    {
+      "id": "zigzag",
+      "kind": "stroke",
+      "at": [
+        0,
+        0,
+        -0.3
+      ],
+      "points": [
+        [
+          -3.1,
+          0.8,
+          0
+        ],
+        [
+          -2.67,
+          1.5,
+          0
+        ],
+        [
+          -2.24,
+          0.8,
+          0
+        ],
+        [
+          -1.81,
+          1.5,
+          0
+        ],
+        [
+          -1.38,
+          0.8,
+          0
+        ],
+        [
+          -0.95,
+          1.5,
+          0
+        ],
+        [
+          -0.52,
+          0.8,
+          0
+        ]
+      ],
+      "color": "green",
+      "pen": true,
+      "hidden": true
+    },
+    {
+      "id": "loops",
+      "kind": "stroke",
+      "at": [
+        0,
+        0,
+        -0.3
+      ],
+      "points": [
+        [
+          0.55,
+          0.75,
+          0
+        ],
+        [
+          0.479,
+          0.78,
+          0
+        ],
+        [
+          0.426,
+          0.867,
+          0
+        ],
+        [
+          0.408,
+          0.997,
+          0
+        ],
+        [
+          0.434,
+          1.15,
+          0
+        ],
+        [
+          0.51,
+          1.303,
+          0
+        ],
+        [
+          0.63,
+          1.433,
+          0
+        ],
+        [
+          0.785,
+          1.52,
+          0
+        ],
+        [
+          0.958,
+          1.55,
+          0
+        ],
+        [
+          1.132,
+          1.52,
+          0
+        ],
+        [
+          1.287,
+          1.433,
+          0
+        ],
+        [
+          1.407,
+          1.303,
+          0
+        ],
+        [
+          1.483,
+          1.15,
+          0
+        ],
+        [
+          1.509,
+          0.997,
+          0
+        ],
+        [
+          1.491,
+          0.867,
+          0
+        ],
+        [
+          1.438,
+          0.78,
+          0
+        ],
+        [
+          1.367,
+          0.75,
+          0
+        ],
+        [
+          1.295,
+          0.78,
+          0
+        ],
+        [
+          1.243,
+          0.867,
+          0
+        ],
+        [
+          1.224,
+          0.997,
+          0
+        ],
+        [
+          1.251,
+          1.15,
+          0
+        ],
+        [
+          1.326,
+          1.303,
+          0
+        ],
+        [
+          1.447,
+          1.433,
+          0
+        ],
+        [
+          1.602,
+          1.52,
+          0
+        ],
+        [
+          1.775,
+          1.55,
+          0
+        ],
+        [
+          1.949,
+          1.52,
+          0
+        ],
+        [
+          2.104,
+          1.433,
+          0
+        ],
+        [
+          2.224,
+          1.303,
+          0
+        ],
+        [
+          2.299,
+          1.15,
+          0
+        ],
+        [
+          2.326,
+          0.997,
+          0
+        ],
+        [
+          2.308,
+          0.867,
+          0
+        ],
+        [
+          2.255,
+          0.78,
+          0
+        ],
+        [
+          2.184,
+          0.75,
+          0
+        ],
+        [
+          2.112,
+          0.78,
+          0
+        ],
+        [
+          2.059,
+          0.867,
+          0
+        ],
+        [
+          2.041,
+          0.997,
+          0
+        ],
+        [
+          2.068,
+          1.15,
+          0
+        ],
+        [
+          2.143,
+          1.303,
+          0
+        ],
+        [
+          2.264,
+          1.433,
+          0
+        ],
+        [
+          2.419,
+          1.52,
+          0
+        ],
+        [
+          2.592,
+          1.55,
+          0
+        ],
+        [
+          2.766,
+          1.52,
+          0
+        ],
+        [
+          2.92,
+          1.433,
+          0
+        ],
+        [
+          3.041,
+          1.303,
+          0
+        ],
+        [
+          3.116,
+          1.15,
+          0
+        ],
+        [
+          3.143,
+          0.997,
+          0
+        ],
+        [
+          3.125,
+          0.867,
+          0
+        ],
+        [
+          3.072,
+          0.78,
+          0
+        ],
+        [
+          3,
+          0.75,
+          0
+        ]
+      ],
+      "smooth": true,
+      "color": "purple",
+      "width": 0.07,
+      "pen": "pencil",
+      "hidden": true
+    },
+    {
+      "id": "black",
+      "kind": "letter",
+      "text": "black",
+      "size": 0.65,
+      "at": [
+        -3.1,
+        2.4,
+        0
+      ],
+      "color": "blue",
+      "colors": [
+        "red",
+        "red"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "cat_word",
+      "kind": "letter",
+      "text": "cat",
+      "size": 0.65,
+      "at": [
+        0.5,
+        2.4,
+        0
+      ],
+      "color": "blue",
+      "colors": [
+        null,
+        "orange",
+        "orange"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "hat_word",
+      "kind": "letter",
+      "text": "hat",
+      "size": 0.65,
+      "at": [
+        3.5,
+        2.4,
+        0
+      ],
+      "color": "blue",
+      "colors": [
+        null,
+        "orange",
+        "orange"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "q1",
+      "kind": "fraction_text",
+      "numerator": 1,
+      "denominator": 4,
+      "size": 0.55,
+      "at": [
+        -3.6,
+        0.75,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "plus",
+      "kind": "letter",
+      "text": "+",
+      "size": 0.55,
+      "color": "ink",
+      "at": [
+        -2.75,
+        0.75,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "q2",
+      "kind": "fraction_text",
+      "numerator": 2,
+      "denominator": 4,
+      "size": 0.55,
+      "at": [
+        -1.9,
+        0.75,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "equals",
+      "kind": "letter",
+      "text": "=",
+      "size": 0.55,
+      "color": "ink",
+      "at": [
+        -1.05,
+        0.75,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "q3",
+      "kind": "fraction_text",
+      "numerator": 3,
+      "denominator": 4,
+      "size": 0.55,
+      "at": [
+        -0.2,
+        0.75,
+        0
+      ],
+      "color": "blue",
+      "hidden": true
+    },
+    {
+      "id": "mixed",
+      "kind": "fraction_text",
+      "whole": 1,
+      "numerator": 5,
+      "denominator": 12,
+      "size": 0.6,
+      "at": [
+        2.6,
+        0.75,
+        0
+      ],
+      "color": "purple",
+      "hidden": true
+    },
+    {
+      "id": "pv",
+      "kind": "place_value_chart",
+      "columns": [
+        "thousands",
+        "hundreds",
+        "tens",
+        "ones",
+        ".",
+        "tenths",
+        "hundredths"
+      ],
+      "digits": "35.2",
+      "cell": 0.85,
+      "at": [
+        0,
+        0.5,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "story",
+      "kind": "text_card",
+      "width": 7,
+      "size": 0.26,
+      "at": [
+        0,
+        0.45,
+        0
+      ],
+      "text": "The wind blew hard all night. In the morning, the big oak tree was lying across the road. Because the road was blocked, the school bus was late.",
+      "hidden": true
+    },
+    {
+      "id": "lungs",
+      "kind": "prop",
+      "model": "lungs",
+      "size": 2.2,
+      "at": [
+        -2.9,
+        0.2,
+        -0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "heart",
+      "kind": "prop",
+      "model": "heart",
+      "size": 1.7,
+      "at": [
+        0.3,
+        0.35,
+        -0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "blood",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0.5
+      ],
+      "closed": true,
+      "smooth": true,
+      "count": 18,
+      "speed": 0.9,
+      "size": 0.16,
+      "color": "blue",
+      "track": true,
+      "points": [
+        [
+          0.3,
+          2.3,
+          0
+        ],
+        [
+          -1.3,
+          3,
+          0
+        ],
+        [
+          -2.9,
+          3,
+          0
+        ],
+        [
+          -4.4,
+          1.8,
+          0
+        ],
+        [
+          -2.9,
+          0.45,
+          0
+        ],
+        [
+          -1.3,
+          0.45,
+          0
+        ],
+        [
+          0.3,
+          1.1,
+          0
+        ]
+      ],
+      "changes": [
+        {
+          "at": 0.38,
+          "color": "red"
+        },
+        {
+          "at": 0.97,
+          "color": "blue"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "sun",
+      "kind": "prop",
+      "model": "sun",
+      "size": 0.9,
+      "at": [
+        2.6,
+        2.7,
+        -0.6
+      ],
+      "hidden": true
+    },
+    {
+      "id": "plant",
+      "kind": "prop",
+      "model": "flowering_plant",
+      "size": 1.5,
+      "at": [
+        4.3,
+        0,
+        0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "energy",
+      "kind": "flow",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          3.1,
+          3,
+          -0.3
+        ],
+        [
+          3.9,
+          2.5,
+          0
+        ],
+        [
+          4.3,
+          1.5,
+          0.35
+        ]
+      ],
+      "smooth": true,
+      "count": 8,
+      "speed": 0.7,
+      "color": "yellow",
+      "changes": [
+        {
+          "at": 0.75,
+          "color": "green"
+        }
+      ],
+      "hidden": true
+    },
+    {
+      "id": "unfair",
+      "kind": "fraction_bar",
+      "parts": 3,
+      "sizes": [
+        0.5,
+        0.25,
+        0.25
+      ],
+      "length": 3,
+      "height": 0.6,
+      "at": [
+        -3.2,
+        1.9,
+        0
+      ],
+      "label": true,
+      "hidden": true
+    },
+    {
+      "id": "unfair_pie",
+      "kind": "fraction_circle",
+      "parts": 3,
+      "sizes": [
+        0.5,
+        0.3,
+        0.2
+      ],
+      "radius": 0.8,
+      "color": "green",
+      "at": [
+        -3.2,
+        0.05,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "hundred",
+      "kind": "grid",
+      "rows": 10,
+      "cols": 10,
+      "cell": 0.3,
+      "upright": true,
+      "labels": "numbers",
+      "color": "sky",
+      "at": [
+        1.4,
+        0.15,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "garden",
+      "kind": "grid",
+      "rows": 2,
+      "cols": 3,
+      "cell": 0.6,
+      "upright": true,
+      "color": "grass",
+      "at": [
+        -2.9,
+        0.4,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "line_ab",
+      "kind": "pointer",
+      "from": [
+        -4.2,
+        3,
+        0
+      ],
+      "to": [
+        -1.8,
+        3,
+        0
+      ],
+      "head": "none",
+      "width": 0.06,
+      "color": "ink",
+      "hidden": true
+    },
+    {
+      "id": "segment",
+      "kind": "pointer",
+      "from": [
+        -4.2,
+        2.3,
+        0
+      ],
+      "to": [
+        -1.8,
+        2.3,
+        0
+      ],
+      "head": "dot",
+      "tail": "dot",
+      "width": 0.06,
+      "color": "blue",
+      "hidden": true
+    },
+    {
+      "id": "ray",
+      "kind": "pointer",
+      "from": [
+        -4.2,
+        1.6,
+        0
+      ],
+      "to": [
+        -1.8,
+        1.6,
+        0
+      ],
+      "tail": "dot",
+      "width": 0.06,
+      "color": "green",
+      "hidden": true
+    },
+    {
+      "id": "both",
+      "kind": "pointer",
+      "from": [
+        -4.2,
+        0.9,
+        0
+      ],
+      "to": [
+        -1.8,
+        0.9,
+        0
+      ],
+      "tail": "arrow",
+      "width": 0.06,
+      "color": "purple",
+      "hidden": true
+    },
+    {
+      "id": "turtle",
+      "kind": "critter",
+      "species": "turtle",
+      "size": 0.9,
+      "at": [
+        0.4,
+        0,
+        0.6
+      ],
+      "hidden": true
+    },
+    {
+      "id": "kite",
+      "kind": "prop",
+      "model": "kite",
+      "size": 0.9,
+      "at": [
+        2.4,
+        2.4,
+        -0.4
+      ],
+      "hidden": true
+    },
+    {
+      "id": "string",
+      "kind": "pointer",
+      "fromTarget": "turtle",
+      "toTarget": "kite",
+      "from": [
+        0.25,
+        0.1,
+        0.2
+      ],
+      "to": [
+        0,
+        0.25,
+        0
+      ],
+      "head": "none",
+      "width": 0.025,
+      "color": "ink",
+      "bend": -0.25,
+      "hidden": true
+    },
+    {
+      "id": "bug",
+      "kind": "critter",
+      "species": "bug",
+      "size": 0.6,
+      "at": [
+        3.2,
+        0,
+        1.2
+      ],
+      "hidden": true
+    },
+    {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "size": 0.8,
+      "at": [
+        4.6,
+        0,
+        0.4
+      ],
+      "hidden": true
+    },
+    {
+      "id": "eats",
+      "kind": "pointer",
+      "fromTarget": "bug",
+      "toTarget": "frog",
+      "from": [
+        0,
+        0.35,
+        0
+      ],
+      "to": [
+        0,
+        0.35,
+        0
+      ],
+      "width": 0.07,
+      "color": "orange",
+      "bend": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "cat",
+      "kind": "critter",
+      "species": "cat",
+      "size": 1,
+      "at": [
+        -3.4,
+        0,
+        0.6
+      ],
+      "hidden": true
+    },
+    {
+      "id": "hat",
+      "kind": "prop",
+      "model": "hat",
+      "parent": "cat",
+      "part": "head",
+      "at": [
+        0,
+        0.28,
+        0
+      ],
+      "size": 0.5,
+      "hidden": true
+    },
+    {
+      "id": "dog",
+      "kind": "critter",
+      "species": "dog",
+      "size": 1,
+      "at": [
+        -1.5,
+        0,
+        0.6
+      ],
+      "hidden": true
+    },
+    {
+      "id": "globe",
+      "kind": "prop",
+      "model": "globe",
+      "size": 2,
+      "at": [
+        0.6,
+        0,
+        0.3
+      ],
+      "hidden": true
+    },
+    {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+        2.7,
+        0,
+        0
+      ],
+      "hidden": true
+    },
+    {
+      "id": "apple",
+      "kind": "prop",
+      "model": "apple",
+      "size": 0.6,
+      "at": [
+        4.6,
+        0,
+        1
+      ],
+      "hidden": true
+    },
+    {
+      "id": "owl",
+      "kind": "critter",
+      "species": "owl",
+      "size": 1.1,
+      "at": [
+        -3,
+        0,
+        0.6
+      ],
+      "hidden": true
+    },
+    {
+      "id": "monkey",
+      "kind": "critter",
+      "species": "monkey",
+      "size": 1.1,
+      "at": [
+        -0.6,
+        0,
+        0.6
+      ],
+      "hidden": true
+    },
+    {
+      "id": "machine",
+      "kind": "prop",
+      "model": "pattern_machine",
+      "size": 1.4,
+      "at": [
+        2.6,
+        0,
+        0.2
+      ],
+      "hidden": true
+    }
+  ],
+  "scenes": [
+    {
+      "id": "strokes",
+      "title": "Strokes",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "board",
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "stroke: draw with a pen",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "draw",
+              "target": "straight",
+              "dur": 1.8
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "draw",
+              "target": "wavy",
+              "dur": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "draw",
+              "target": "zigzag",
+              "dur": 2.2
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "draw",
+              "target": "loops",
+              "dur": 3
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "board",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "straight",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "wavy",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "zigzag",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "loops",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "words",
+      "title": "Letters and fractions",
+      "beats": [
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "black",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "cat_word",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "hat_word",
+              "at": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "letter colors: blends and rhymes",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "q1",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "plus",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "q2",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "equals",
+              "at": 0.30000000000000004
+            },
+            {
+              "do": "show",
+              "target": "q3",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "mixed",
+              "at": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "fraction_text: stacked, mixed",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "black",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "cat_word",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "hat_word",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "q1",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "plus",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "q2",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "equals",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "q3",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "mixed",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "place_value",
+      "title": "Place value",
+      "beats": [
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.6,
+                8
+              ],
+              "lookAt": [
+                0,
+                1.2,
+                0
+              ],
+              "dur": 0.8
+            },
+            {
+              "do": "show",
+              "target": "pv",
+              "at": 0
+            },
+            {
+              "do": "caption",
+              "text": "35.2",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "shift",
+              "target": "pv",
+              "places": 1
+            },
+            {
+              "do": "caption",
+              "text": "x 10 = 352",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "shift",
+              "target": "pv",
+              "places": 1
+            },
+            {
+              "do": "caption",
+              "text": "x 10 = 3520: a zero holds the ones",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "shift",
+              "target": "pv",
+              "places": -3,
+              "dur": 1.4
+            },
+            {
+              "do": "caption",
+              "text": "/ 1000 = 3.52",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 1.8,
+          "do": [
+            {
+              "do": "set",
+              "target": "pv",
+              "digits": "0.07"
+            },
+            {
+              "do": "caption",
+              "text": "set: 0.07",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "shift",
+              "target": "pv",
+              "places": 2
+            },
+            {
+              "do": "caption",
+              "text": "x 100 = 7",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "pv",
+              "at": 0
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                9.4
+              ],
+              "lookAt": [
+                0,
+                1.6,
+                0
+              ],
+              "dur": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reading",
+      "title": "Text card",
+      "beats": [
+        {
+          "dur": 1.6,
+          "do": [
+            {
+              "do": "show",
+              "target": "story",
+              "at": 0
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                1.5,
+                7.6
+              ],
+              "lookAt": [
+                0,
+                1.4,
+                0
+              ],
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "emphasize",
+              "target": "story",
+              "words": "Because the road was blocked",
+              "dur": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "emphasize: the cause",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "emphasize",
+              "target": "story",
+              "words": "the school bus was late",
+              "color": "mint",
+              "dur": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "and the effect",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "emphasize",
+              "target": "story",
+              "words": "The wind blew hard all night",
+              "clear": true,
+              "color": "pink"
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "story",
+              "at": 0
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                9.4
+              ],
+              "lookAt": [
+                0,
+                1.6,
+                0
+              ],
+              "dur": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flows",
+      "title": "Flows",
+      "beats": [
+        {
+          "dur": 4,
+          "do": [
+            {
+              "do": "show",
+              "target": "lungs",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "heart",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "blood",
+              "at": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "flow: blood turns red at the lungs",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "show",
+              "target": "sun",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "plant",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "energy",
+              "at": 0.2
+            },
+            {
+              "do": "caption",
+              "text": "flow: sunlight to the plant",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "lungs",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "heart",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "blood",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "sun",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "plant",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "energy",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fraction_kit",
+      "title": "Fraction kit options",
+      "beats": [
+        {
+          "dur": 2.4,
+          "do": [
+            {
+              "do": "show",
+              "target": "unfair",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "unfair_pie",
+              "at": 0.1
+            },
+            {
+              "do": "shade",
+              "target": "unfair",
+              "cells": [
+                2
+              ],
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "sizes: not fair shares",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2,
+          "do": [
+            {
+              "do": "mark",
+              "target": "unfair",
+              "result": "incorrect"
+            },
+            {
+              "do": "shade",
+              "target": "unfair_pie",
+              "cells": [
+                1,
+                3
+              ],
+              "at": 0.3
+            }
+          ]
+        },
+        {
+          "dur": 3.6,
+          "do": [
+            {
+              "do": "build",
+              "target": "hundred",
+              "order": "rows",
+              "dur": 1.4
+            },
+            {
+              "do": "shade",
+              "target": "hundred",
+              "cells": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14,
+                16,
+                18,
+                20
+              ],
+              "at": 1.4,
+              "dur": 2,
+              "sound": "pop"
+            },
+            {
+              "do": "caption",
+              "text": "labels numbers + shade cells",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.6,
+          "do": [
+            {
+              "do": "hide",
+              "target": "unfair",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "unfair_pie",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 5,
+          "do": [
+            {
+              "do": "show",
+              "target": "garden",
+              "at": 0
+            },
+            {
+              "do": "trace",
+              "target": "garden",
+              "count": true,
+              "at": 0.5,
+              "dur": 4.2
+            },
+            {
+              "do": "caption",
+              "text": "trace count: 10 units",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "garden",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "hundred",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pointers",
+      "title": "Pointer ends",
+      "beats": [
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "draw",
+              "target": "line_ab",
+              "at": 0,
+              "dur": 0.9
+            },
+            {
+              "do": "draw",
+              "target": "segment",
+              "at": 0.4,
+              "dur": 0.9
+            },
+            {
+              "do": "draw",
+              "target": "ray",
+              "at": 0.8,
+              "dur": 0.9
+            },
+            {
+              "do": "draw",
+              "target": "both",
+              "at": 1.2000000000000002,
+              "dur": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "line, segment, ray, double arrow",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 4,
+          "do": [
+            {
+              "do": "show",
+              "target": "turtle",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "kite",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "string",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "bug",
+              "at": 0.30000000000000004
+            },
+            {
+              "do": "show",
+              "target": "frog",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "eats",
+              "at": 0.5
+            },
+            {
+              "do": "path",
+              "target": "kite",
+              "points": [
+                [
+                  3,
+                  2.7,
+                  -0.4
+                ],
+                [
+                  2,
+                  2.9,
+                  -0.4
+                ],
+                [
+                  2.6,
+                  2.4,
+                  -0.4
+                ]
+              ],
+              "dur": 3.6,
+              "at": 0.3
+            },
+            {
+              "do": "move",
+              "target": "bug",
+              "to": [
+                2.4,
+                0,
+                1.6
+              ],
+              "dur": 3,
+              "at": 0.4
+            },
+            {
+              "do": "caption",
+              "text": "ends follow moving objects",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "line_ab",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "segment",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "ray",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "both",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "turtle",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "kite",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "string",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "bug",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "frog",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "eats",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "moves",
+      "title": "Reparent, spin axis, point, talk",
+      "beats": [
+        {
+          "dur": 1.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "cat",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "hat",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "dog",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "globe",
+              "at": 0.30000000000000004
+            },
+            {
+              "do": "show",
+              "target": "robo",
+              "at": 0.4
+            },
+            {
+              "do": "show",
+              "target": "apple",
+              "at": 0.5
+            },
+            {
+              "do": "caption",
+              "text": "reparent: hat to the dog",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 2.2,
+          "do": [
+            {
+              "do": "reparent",
+              "target": "hat",
+              "parent": "dog",
+              "part": "head",
+              "to": [
+                0,
+                0.3,
+                0
+              ],
+              "dur": 1.2,
+              "at": 0.2
+            },
+            {
+              "do": "spin",
+              "target": "globe#globe",
+              "axis": "z",
+              "turns": 2,
+              "dur": 8,
+              "ease": "linear"
+            }
+          ]
+        },
+        {
+          "dur": 2.6,
+          "do": [
+            {
+              "do": "shot",
+              "target": "globe",
+              "framing": "close",
+              "dur": 0.8
+            },
+            {
+              "do": "caption",
+              "text": "spin axis z: the tilted globe",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "shot",
+              "target": [
+                "robo",
+                "apple"
+              ],
+              "framing": "medium",
+              "dur": 0.8
+            },
+            {
+              "do": "point",
+              "target": "robo",
+              "to": "apple",
+              "hold": 1.8,
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "point: Robo",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 3,
+          "do": [
+            {
+              "do": "shot",
+              "target": "cat",
+              "framing": "medium",
+              "dur": 0.6
+            },
+            {
+              "do": "say",
+              "text": "I see a hat on the dog!",
+              "who": "cat",
+              "at": 0.6
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "cat",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "hat",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "dog",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "globe",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "robo",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "apple",
+              "at": 0
+            },
+            {
+              "do": "camera",
+              "position": [
+                0,
+                2.2,
+                9.4
+              ],
+              "lookAt": [
+                0,
+                1.6,
+                0
+              ],
+              "dur": 0.8
+            }
+          ]
+        },
+        {
+          "dur": 3.2,
+          "do": [
+            {
+              "do": "show",
+              "target": "owl",
+              "at": 0
+            },
+            {
+              "do": "show",
+              "target": "monkey",
+              "at": 0.1
+            },
+            {
+              "do": "show",
+              "target": "apple",
+              "at": 0.2
+            },
+            {
+              "do": "show",
+              "target": "machine",
+              "at": 0.30000000000000004
+            },
+            {
+              "do": "point",
+              "target": "owl",
+              "to": "apple",
+              "at": 0.6
+            },
+            {
+              "do": "point",
+              "target": "monkey",
+              "to": "machine",
+              "at": 0.9
+            },
+            {
+              "do": "caption",
+              "text": "owl wing, monkey arm",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 3.4,
+          "do": [
+            {
+              "do": "shot",
+              "target": "machine",
+              "framing": "medium",
+              "dur": 0.6
+            },
+            {
+              "do": "say",
+              "text": "Plus three, every time!",
+              "who": "machine",
+              "at": 0.6
+            },
+            {
+              "do": "caption",
+              "text": "a talking prop",
+              "style": "label",
+              "at": 0
+            }
+          ]
+        },
+        {
+          "dur": 0.8,
+          "do": [
+            {
+              "do": "hide",
+              "target": "owl",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "monkey",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "apple",
+              "at": 0
+            },
+            {
+              "do": "hide",
+              "target": "machine",
+              "at": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

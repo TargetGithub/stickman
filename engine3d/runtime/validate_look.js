@@ -8,15 +8,18 @@ import { SET_PREFIX, stageSet } from "./stage_set.js";
 const isVec = (v) => Array.isArray(v) && v.length === 3 && v.every((x) => typeof x === "number" && Number.isFinite(x));
 const isNum = (v, lo = -Infinity, hi = Infinity) => typeof v === "number" && Number.isFinite(v) && v >= lo && v <= hi;
 
-/** Objects that can speak with a moving mouth (or head): critters, characters and shapes with face: true. */
-export const canTalk = (o) => o.kind === "critter" || o.kind === "character" || (o.kind === "shape" && o.face === true);
+/**
+ * Objects that can speak with a moving mouth (or head): critters, characters, shapes with face: true, and props
+ * (a face opens its mouth, a light part pulses, anything else bobs with the voice).
+ */
+export const canTalk = (o) => o.kind === "critter" || o.kind === "character" || o.kind === "prop" || (o.kind === "shape" && o.face === true);
 
 /** say.who: the speaker's object id. */
 export function checkWho(a, p, ids, err) {
   if (a.who == null) return;
   const o = ids.get(a.who);
   if (!o) return err("E3D_WHO", `${p}.who`, `no object "${a.who}" to speak the line`);
-  if (!canTalk(o)) err("E3D_WHO", `${p}.who`, `"${a.who}" is a ${o.kind}${o.kind === "shape" ? " without face: true" : ""}: who must be a critter, a character or a shape with a face`);
+  if (!canTalk(o)) err("E3D_WHO", `${p}.who`, `"${a.who}" is a ${o.kind}${o.kind === "shape" ? " without face: true" : ""}: who must be a critter, a character, a prop or a shape with a face`);
 }
 
 /**

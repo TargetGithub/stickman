@@ -15,7 +15,7 @@ cd engine3d && npm install && npx playwright install chromium
 
 | Path | What |
 |---|---|
-| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `director_extras.js`, `lipsync.js`, `look.js`, `camera_moves.js`, `bounds.js`, `stage_set.js`, `compile.js`, `validate.js`, `validate_look.js`, `plan.js`. Page only (three.js): `stage.js`, `objects.js`, `objects_extra.js`, `models.js`, `faces.js`, `talk.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`. |
+| `runtime/` | Plain ES modules. Pure (Node + page): `timeline.js`, `ease.js`, `rng.js`, `particles.js`, `director.js`, `director_extras.js`, `lipsync.js`, `look.js`, `camera_moves.js`, `bounds.js`, `stage_set.js`, `compile.js`, `validate.js`, `validate_look.js`, `plan.js`, teaching kit `teach_layout.js`, `director_teach.js`, `director_kit2.js`, `validate_teach.js`, `validate_kit2.js`, `place_value.js`, `card_words.js`, `xform.js`. Page (three.js; the teach builders also load in Node for tests): `stage.js`, `objects.js`, `objects_extra.js`, `models.js`, `faces.js`, `talk.js`, `geometry.js`, `overlay.js`, `player.js`, `page.html`, `teach.js`, `teach_more.js`, `teach_draw.js`, `teach_text.js`, `teach_marks.js`, `teach_common.js`. |
 | `catalog/` | JSON catalog: colours, materials, shapes (solids and flat 2D shapes), fonts, characters (glTF), models (toy animals and props built from parts), stages and lights, sounds, object kinds, actions. `index.mjs` loads it in Node. |
 | `assets/characters/` | glTF characters (CC0), with `LICENSES.md`. |
 | `scripts/` | JSON scripts (`count_to_five.json`); series in `scripts/series/<name>/` (Toy Box Friends: `scripts/series/toybox/SERIES.md`). |
@@ -172,6 +172,77 @@ target's box as posed at `t`. Text uses the Andika font, which has `/` and `°`.
 ranges, piece names, line placement and leap values (codes `E3D_PARTS`, `E3D_SHADED`, `E3D_ITEM`, `E3D_LABELS`,
 `E3D_ON_LINE`, `E3D_ON_VALUE`, `E3D_LEAP_VALUE`, `E3D_ORDER`, `E3D_RESULT`, plus the usual ones).
 `scripts/teach_tour.json` shows every kind and action in about 70 seconds.
+
+### Teaching kit, round 2 (strokes, flows, text, reparent, point)
+
+Gaps the batch 3 specs found (`runtime/teach_draw.js`, `teach_text.js`, `director_kit2.js`, `validate_kit2.js`,
+`place_value.js`, `card_words.js`, `xform.js`). `scripts/round2_tour.json` shows every item in about 90 seconds.
+
+| Kind | Fields (defaults) | Notes |
+|---|---|---|
+| `stroke` | `points` (2–400 `[x, y, z]`, relative to `at`), `smooth` false, `closed` false, `width` 0.08, `color` blue, `pen` false | A round tube. `smooth`: a curve through the points (waves, loops); otherwise straight rods with round joints, so zigzag corners stay sharp. `draw` reveals it by length; `pen: true` / `"pencil"` shows a pencil at the tip while drawing, `"dot"` a glowing dot. Prewriting: draw strokes on an upright `plate` (z just in front of it). |
+| `flow` | `points`, `smooth` false, `closed` false, `count` 12, `speed` 0.6 m/s, `size` 0.14, `color` red, `changes` [], `track` false | Evenly spaced dots running along the path while shown, from `t` alone. `changes: [{ "at": 0.4, "color": "red" }]` turns dots that colour from that share of the path on (a short blend); list one change back for a loop (blue → red at the lungs, red → blue at the body). Open paths shrink dots in and out at the ends. `track` draws the path faintly. |
+| `fraction_text` | `numerator`, `denominator` (required: a number to 9999 or up to 4 characters), `whole`, `color` ink, `size` 0.5, `depth` 0.2 | A stacked fraction; `whole` makes a mixed number (full-size figure, centred on the bar). See "Fractions in equations" below. |
+| `place_value_chart` | `columns` [hundreds, tens, ones, ".", tenths, hundredths], `digits`, `cell` 0.8, `color` blue, `bg` white, `digitColor` ink, `zeroColor` orange | Upright, standing on `at`; 1.6 × `cell` tall, `cell` per column (the `"."` column 0.4 × `cell`). Headers are any strings (short ones like "H", "T", "O" work); all are drawn at one size that fits the longest. `digits` ("35.2") sit right-aligned at the point; with no `"."` column the last column is the ones. |
+| `text_card` | `text` (≤ 300 characters, ≤ 6 wrapped lines; `\n` breaks a line), `width` 4, `size` 0.2 (font size, m), `color` ink, `bg` white | Word-wrapped by the page and drawn into a canvas texture at the render height (crisp at 720p and 4K); `at` is the bottom centre. A line is 1.4 × `size`; the card is about (lines + 1) × 1.4 × `size` tall (`teach_layout.js cardHeight` is the estimate the validator and `shot` use, about 0.5 × `size` per character). |
+
+| Action | Params (defaults) | What it does |
+|---|---|---|
+| `shift` | `target` (chart), `places` (+ left: × 10 each, − right: ÷ 10), `dur` 1.2, `sound` whoosh | Digits slide; the point stays. Zeros pop in (in `zeroColor`) to hold empty places between the digits and the ones (35 × 100 → 3500, 35 ÷ 1000 → 0.035); leading zeros and zeros left trailing after the point fade out (0.07 × 100 → 7). The validator follows each chart through its shifts and sets and flags digits pushed off the chart (`E3D_PV_RANGE`). |
+| `set` | `target` (chart), `digits`, `pop` true, `dur` 0.4, `sound` (pop) | New digits pop in (old ones shrink away), or swap at once with `pop: false`. |
+| `emphasize` | `target` (card), `words` ("an exact phrase", first match, case and punctuation ignored; or `[start, end]` word numbers from 0), `color` yellow, `dur` 0.6, `clear` | A marker highlight sweeps behind the words, left to right across lines, and stays. `clear: true` wipes the earlier highlights first (alone, it just clears). Words are numbered by splitting on white space, so the plan never depends on text metrics. |
+| `reparent` | `target`, `parent` (id, or `null` for the world), `part`, `to`, `rotation`, `dur` 0.6, `ease` | The object rides on the new parent (or its named part) from `at`, keeping where it is in the world then; with `to` it then glides to that spot in the new parent's frame (a hat hopping from Turtle's head to Squirrel's: `"parent": "squirrel", "part": "head", "to": [0, 0.28, 0]`). |
+| `point` | `target` (Robo, or a critter or prop with an `arm`, `wing`, `hand`, `paw` or `flipper` part), `to` (id or `[x, y, z]`), `arm` (left/right, his own; default the side the target is on), `part`, `dur` 0.5, `hold` 1.5, `look` true | Robo: the upper arm and forearm bones turn (blended on top of the playing clip) so the arm points straight at the target, then lower again after `hold`. Critters: one copy of the part (the owl's left or right wing, the monkey's arm) turns so it points from its pivot at the target. The head `look`s there too and turns back after. |
+
+**Options on older kinds and actions.** `letter` takes `colors`: a colour per character (`[null, "orange",
+"orange"]` keeps the first in `color`), for blends and rhyme endings; the letters are cut into one mesh each, laid
+out and centred exactly as the one-mesh word (absent: unchanged). `fraction_bar` and `fraction_circle` take
+`sizes` (a share per part adding up to 1, for "not fair shares"). `shade` takes `cells` (piece numbers from 1)
+instead of `to`: exactly those pieces shade, one after another; pieces from an earlier `cells` that are not listed
+again unshade, and `[]` clears them; labels count shaded pieces either way. `trace` takes `count: true`: 1, 2,
+3... pop beside each unit edge as the dot finishes it. `grid` takes `labels: "numbers"` (1 to rows × cols in the
+cells, row by row: a hundred chart; three-digit numbers shrink to fit). `draw` also draws strokes. `spin` takes
+`axis` (`x`, `y` default, `z`) and `ease` (default cubicInOut; `linear` for steady turning); `turn` takes `by`
+(degrees) with `axis` instead of `to`. `say` `who` may now name a prop: a prop with a face (eyes or a mouth, like
+`pattern_machine`) opens its mouth, a `light` part swells and glows with the voice, and a prop with neither bobs.
+
+**Pointer lines.** `pointer` takes `head` (the `to` end: `arrow` default, `dot`, `none`) and `tail` (the
+`from` end: `none` default, `arrow`, `dot`): a line is `none`/`none` (give it `width` 0.03–0.06 and `color` ink),
+a segment `dot`/`dot`, a ray `dot` tail with an `arrow` head, a double arrow `arrow`/`arrow`; a drop line or a
+string is a thin `none`/`none` with `bend` (negative sags). `fromTarget` / `toTarget` (object ids placed before
+it) make an end follow that object: the end sits at the centre of the object's rest-pose box plus `from` / `to`
+as an offset in metres, worked out each frame from where the object is posed at `t` (a kite string from Turtle
+to the kite, food-web arrows between moving animals). The tube is rebuilt only when an end moves.
+
+**Fractions in equations.** Give a `fraction_text` the same `size` and the same `at` y as the `letter`s around
+it (their baseline): its bar sits on the maths axis, level with the bars of `+`, `−` and `=` (measured from the
+font's "+"). At size 1 it reaches 1.95 above the baseline and 0.5 below; it is about 0.72 wide per figure of the
+longer number plus 0.36 (a whole number adds 0.72 per figure plus 0.3), centred on its `at`. A `+` letter is
+about 0.9 × size wide; leave about 0.15 × size between pieces: "1/4 + 2/4 = 3/4" at size 0.55 fits with the pieces
+0.85 m apart.
+
+**Spinning about a tilted axis.** `spin` adds whole turns to one Euler angle (three.js order XYZ, so z is the
+innermost turn): `axis: "z"` spins about the object's own z axis after its x and y tilt. The batch3 `globe` prop's
+`#globe` part (the ball and its continents) is tilted 23° and spins about its own axis rod with `{ "do": "spin",
+"target": "globe#globe", "axis": "z", "turns": 3, "dur": 9, "ease": "linear" }` (checked in a still: the polar
+caps stay on the rod while the continents go round). For a tilted object of your own, tilt it with `rotation:
+[0, 0, 23]` on a `group` parent and spin the child about `y`, or tilt the object itself with x/y angles and spin
+it about `z`.
+
+**Reparent limits.** The world position comes from the plan's own transforms: positions, rotations and scales on
+the timeline, parents and named critter/prop parts (their catalog pivots and rest angles plus their timeline
+offsets). Idle motion (a body's bob, a head's sway, `look`, feeling tilts) and hops are left out, so a hat may
+shift by a centimetre or two at the hand-over; teaching-kit pieces are not parents. After a reparent, `move` and
+`path` points are in the new parent's frame; `show`, `pop` and `drop` still restore the spawn scale, so hand
+over between parents of similar size (or hide it first), and do not reparent while a `move` on the object is
+still running. `shot` and `look` boxes use the spawn parent.
+
+**Lip-sync polish.** Open mouths are at least 0.15 of a critter's size wide (the cat's smile is 0.1) and open
+taller and further down from the nose, so a talking cat reads in a medium shot.
+
+Validator codes: `E3D_POINTS`, `E3D_PEN`, `E3D_CHANGES`, `E3D_FRACTION`, `E3D_COLUMNS`, `E3D_PV_DIGITS`,
+`E3D_PV_RANGE`, `E3D_TEXT`, `E3D_SIZES`, `E3D_LABELS`, `E3D_ENDS`, `E3D_CELLS`, `E3D_EMPHASIZE`, `E3D_REPARENT`,
+`E3D_POINT`, `E3D_AXIS` (fixtures `tests/fixtures/bad/bad_kit2_*.json`).
 
 **Scene music.** `meta.music` and `meta.musicGain` set the bed for the whole episode. A scene may override
 them with `"music": "calm"` (any mood in `catalog/story/music_moods.json`, or `false` for no music) and/or

@@ -7,13 +7,14 @@ import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
 import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
 import { addSetPieces, checkLookCamera, checkWho } from "./validate_look.js";
+import { KIT2_FIELDS, checkKit2Object, createKit2Checker } from "./validate_kit2.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
 const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on"]);
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
-  letter: ["text", "color", "material", "font", "size", "depth"],
+  letter: ["text", "color", "colors", "material", "font", "size", "depth"],
   character: ["character", "clip", "feeling"],
   confetti: ["count", "colors", "area", "height"],
   critter: ["species", "color", "size", "feeling", "recolor"],
@@ -25,6 +26,7 @@ const FIELDS = {
   weather: ["type", "count", "area", "height", "speed", "colors"],
   group: [],
   ...TEACH_FIELDS,
+  ...KIT2_FIELDS,
 };
 const TARGETS = {
   clip: ["character"], burst: ["confetti", "bubbles"], sleep: ["critter", "shape"], wake: ["critter", "shape"],
@@ -126,6 +128,7 @@ export function validateScript(script, catalog) {
     if (o.kind === "prop" && !catalog.props[o.model]) err("E3D_MODEL", `${p}.model`, `unknown prop "${o.model}" (known: ${Object.keys(catalog.props).join(", ")})`);
     if (o.recolor != null) checkRecolor(o, p);
     checkTeachObject(o, p, { err, warn, ids, catalog, name });
+    checkKit2Object(o, p, { err, warn, ids, catalog, name });
     if (o.kind === "shape" && o.face != null && typeof o.face !== "boolean") err("E3D_FACE", `${p}.face`, "face must be true or false");
     if (o.kind === "confetti") {
       for (const [j, c] of (o.colors ?? []).entries()) name(catalog.colors, c, "E3D_COLOR", `${p}.colors[${j}]`, "color");
@@ -136,6 +139,7 @@ export function validateScript(script, catalog) {
   // Scenes and beats.
   if (!Array.isArray(script.scenes) || !script.scenes.length) err("E3D_SCENES", "scenes", "scenes must be a non-empty list");
   const lineIds = new Set();
+  const kit2 = createKit2Checker({ err, ids, catalog, partNames });
   (Array.isArray(script.scenes) ? script.scenes : []).forEach((s, si) => {
     const sp = `scenes[${si}]`;
     if (typeof s?.id !== "string") err("E3D_ID", `${sp}.id`, "scene id is required");
@@ -158,6 +162,7 @@ export function validateScript(script, catalog) {
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
     if (checkLookCamera(a, p, ids, err)) return;
+    if (kit2(a, p)) return; // shift, set, emphasize, reparent, point (validate_kit2.js)
     for (const k of ["to", "position", "lookAt"]) {
       if (a[k] == null || a.do === "clock" || NUMBER_TO.has(a.do)) continue;
       const ok = a.do === "grow" ? isNum(a[k], 0.01, 100) || (isVec(a[k]) && a[k].every((x) => x >= 0.001)) : isVec(a[k]);

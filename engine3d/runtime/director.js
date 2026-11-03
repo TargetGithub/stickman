@@ -8,7 +8,8 @@ import { deriveRng } from "./rng.js";
 import { bubblePaths } from "./particles.js";
 import { installExtras, parseClock } from "./director_extras.js";
 import { installTeach, teachBases } from "./director_teach.js";
-import { TEACH_KINDS, placeOn } from "./teach_layout.js";
+import { KIT2_KINDS, TEACH_KINDS, placeOn } from "./teach_layout.js";
+import { installKit2 } from "./director_kit2.js";
 import { installCameraMoves } from "./camera_moves.js";
 import { installLook } from "./look.js";
 import { addTalk } from "./lipsync.js";
@@ -18,6 +19,11 @@ const V = (v, d) => (Array.isArray(v) ? [...v] : typeof v === "number" ? [v, v, 
 const LOOPING = new Set(["Idle", "Dance", "Walking", "Running"]);
 // bounceOut first touches the ground at u = 1 / 2.75.
 const FIRST_CONTACT = 1 / 2.75;
+const AXES = ["x", "y", "z"];
+const axisIndex = (a) => {
+  if (!AXES.includes(a)) throw new Error(`axis must be x, y or z, got "${a}"`);
+  return AXES.indexOf(a);
+};
 
 /** Seconds a line takes before its TTS clip exists (the same estimate the 2D synth uses to flag odd clips). */
 export const estimateSpeech = (text) => 0.3 + 0.075 * text.length;
@@ -103,6 +109,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
       }
       if (o.kind === "lamp") tl.base(o.id, "aim", V(o.aim, [o.at[0], 0, o.at[2] - 2]));
       if (TEACH_KINDS.includes(o.kind)) teachBases(o, { tl, parts, catalog, objects });
+      if (KIT2_KINDS.includes(o.kind)) kit2.bases(o);
       if (o.kind === "character") tl.clip(o.id, o.clip ?? catalog.characters[o.character].idle, { start: 0, loop: true, fade: 0 });
       return d;
     },
@@ -154,13 +161,22 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
     move(id, { at: t = 0, to, dur = 1, ease = "quadInOut" } = {}) {
       return d.tween(id, "position", V(to), { at: t, dur, ease });
     },
-    turn(id, { at: t = 0, to, dur = 0.8, ease = "quadInOut" } = {}) {
+    /** Turn to angles `to`, or by `by` degrees about one axis (x, y or z) from where it is. */
+    turn(id, { at: t = 0, to, by, axis = "y", dur = 0.8, ease = "quadInOut" } = {}) {
+      if (by != null) {
+        const r = [...(now(id, "rotation", t) ?? [0, 0, 0])];
+        r[axisIndex(axis)] += by;
+        return d.tween(id, "rotation", r, { at: t, dur, ease });
+      }
       return d.tween(id, "rotation", V(to), { at: t, dur, ease });
     },
-    spin(id, { at: t = 0, turns = 1, dur = 1 } = {}) {
+    /** Whole turns about an axis (y, the default: round and round; z: a wheel or a tilted globe's own axis). */
+    spin(id, { at: t = 0, turns = 1, dur = 1, axis = "y", ease = "cubicInOut" } = {}) {
       const r = now(id, "rotation", t) ?? [0, 0, 0];
+      const to = [...r];
+      to[axisIndex(axis)] += 360 * turns;
       // Spin, then snap back to the start angle (the same pose, 360° on).
-      tl.tween(id, "rotation", { start: t, dur, from: r, to: [r[0], r[1] + 360 * turns, r[2]], ease: "cubicInOut" });
+      tl.tween(id, "rotation", { start: t, dur, from: r, to, ease });
       tl.set(id, "rotation", r, t + dur);
       return d;
     },
@@ -278,5 +294,6 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
   installTeach(d, { catalog, tl, obj, now, sound, objects });
   installCameraMoves(d, { catalog, tl, obj, now, V });
   installLook(d, { catalog, tl, obj, now, V });
+  const kit2 = installKit2(d, { catalog, tl, obj, now, sound, objects, V });
   return d;
 }

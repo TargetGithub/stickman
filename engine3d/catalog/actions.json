@@ -62,9 +62,11 @@
     "turn": {
       "params": {
         "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",
-        "to": "[x, y, z] degrees",
+        "to": "[x, y, z] degrees (or by and axis)",
         "dur": "default 0.8",
-        "ease": "ease name"
+        "ease": "ease name",
+        "by": "degrees to turn from where it is about axis (instead of to)",
+        "axis": "x, y (default) or z, with by"
       },
       "description": "Rotate to an orientation.",
       "tags": [
@@ -75,9 +77,11 @@
       "params": {
         "target": "object id, or <id>#<part> for a named part (offset from its rest pose)",
         "turns": "default 1",
-        "dur": "default 1"
+        "dur": "default 1",
+        "axis": "x, y (default) or z: the Euler component that turns. z keeps the x and y tilt (a tilted globe's #globe part, a wheel facing the camera)",
+        "ease": "default cubicInOut; linear for steady turning"
       },
-      "description": "Spin around the vertical axis and stop where it began.",
+      "description": "Spin whole turns about an axis (default the vertical) and stop where it began.",
       "tags": [
         "move",
         "fun"
@@ -327,7 +331,8 @@
         "to": "how many parts are shaded (a whole number up to the piece count); fewer unshades",
         "color": "new shade colour (optional)",
         "dur": "default 0.3 s a part",
-        "sound": "one per part (optional)"
+        "sound": "one per part (optional)",
+        "cells": "piece numbers (from 1) to shade instead of to: exactly these, one after another; cells from an earlier cells list that are not listed again unshade ([] clears)"
       },
       "description": "Shade parts in order (left to right, slices clockwise, cells row by row).",
       "tags": [
@@ -355,7 +360,7 @@
     },
     "draw": {
       "params": {
-        "target": "pointer, number_line or callout",
+        "target": "pointer, number_line, callout or stroke",
         "dur": "default 1.2",
         "sound": "optional"
       },
@@ -409,7 +414,8 @@
       "params": {
         "target": "grid id",
         "dur": "default 0.45 s a unit (at most 10)",
-        "sound": "one per unit, default pop; false for none"
+        "sound": "one per unit, default pop; false for none",
+        "count": "true: numbers 1, 2, 3... pop beside each unit edge as the dot passes"
       },
       "description": "A glowing dot runs round the grid's edge from the top-left corner, lighting one unit edge at a time (perimeter); the lit edge stays.",
       "tags": [
@@ -458,6 +464,81 @@
       "tags": [
         "camera",
         "3d"
+      ]
+    },
+    "shift": {
+      "params": {
+        "target": "place_value_chart id",
+        "places": "whole number: + moves the digits left (x 10 per place), - right (/ 10)",
+        "dur": "default 1.2",
+        "sound": "default whoosh"
+      },
+      "description": "Slide a place value chart's digits by powers of ten while the decimal point stays; zeros pop in to hold empty places and leading or trailing zeros drop out.",
+      "tags": [
+        "teaching",
+        "place value"
+      ]
+    },
+    "set": {
+      "params": {
+        "target": "place_value_chart id",
+        "digits": "the new digits, like \"0.35\"",
+        "pop": "true (default) pops them in; false swaps at once",
+        "dur": "default 0.4",
+        "sound": "default pop when popping"
+      },
+      "description": "Put new digits in a place value chart.",
+      "tags": [
+        "teaching",
+        "place value"
+      ]
+    },
+    "emphasize": {
+      "params": {
+        "target": "text_card id",
+        "words": "the phrase (\"the big storm\", first match, case and punctuation ignored) or [start, end] word numbers from 0",
+        "color": "marker colour, default yellow",
+        "dur": "sweep time, default 0.6",
+        "clear": "true wipes earlier highlights first (alone: just clear)",
+        "sound": "optional"
+      },
+      "description": "Sweep a marker-pen highlight behind a phrase on a text card; it stays until cleared.",
+      "tags": [
+        "teaching",
+        "reading"
+      ]
+    },
+    "reparent": {
+      "params": {
+        "target": "object id",
+        "parent": "new parent id, or null for the world",
+        "part": "a named part of the new parent (head, a pan...)",
+        "to": "optional spot in the new parent to glide to",
+        "rotation": "optional angles to turn to",
+        "dur": "glide time with to, default 0.6",
+        "ease": "default quadInOut"
+      },
+      "description": "Hand an object to another parent (a hat from one head to another) keeping where it is in the world at that moment; later moves are in the new parent's frame.",
+      "tags": [
+        "move",
+        "story"
+      ]
+    },
+    "point": {
+      "params": {
+        "target": "Robo, or a critter or prop with an arm or wing part",
+        "to": "an object id or [x, y, z]",
+        "arm": "left or right (his own); default the side the target is on",
+        "part": "the part to point with (default arm, wing, hand, paw or flipper)",
+        "dur": "raise time, default 0.5",
+        "hold": "seconds held, default 1.5",
+        "look": "default true: the head looks there too",
+        "sound": "optional"
+      },
+      "description": "Raise an arm (Robo) or an arm or wing (critters) toward something, hold it and lower it again, looking there.",
+      "tags": [
+        "attention",
+        "teaching"
       ]
     }
   }

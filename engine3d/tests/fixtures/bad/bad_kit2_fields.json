@@ -1,0 +1,14 @@
+{"expect": ["E3D_POINTS", "E3D_PEN", "E3D_CHANGES", "E3D_FRACTION", "E3D_REQUIRED", "E3D_COLUMNS", "E3D_PV_DIGITS", "E3D_PV_RANGE", "E3D_TEXT", "E3D_SIZES", "E3D_LABELS", "E3D_ENDS", "E3D_TARGET", "E3D_COLOR"], "script": {"kind": "video3d", "version": 1, "objects": [
+  {"id": "s1", "kind": "stroke", "points": [[0, 0, 0]], "pen": "brush"},
+  {"id": "f1", "kind": "flow", "points": [[0, 0, 0], [1, 0, 0]], "changes": [{"at": 2, "color": "red"}]},
+  {"id": "q1", "kind": "fraction_text", "numerator": "three quarters"},
+  {"id": "pv1", "kind": "place_value_chart", "columns": [".", "."]},
+  {"id": "pv2", "kind": "place_value_chart", "digits": "3,5"},
+  {"id": "pv3", "kind": "place_value_chart", "columns": ["tens", "ones"], "digits": "350"},
+  {"id": "card", "kind": "text_card", "text": "This card has far too many words for its very narrow width, so it would need many more than six lines to show them all, and the validator says so before anything is drawn.", "width": 1.5},
+  {"id": "bar", "kind": "fraction_bar", "parts": 3, "sizes": [0.5, 0.5, 0.5]},
+  {"id": "chart", "kind": "grid", "labels": "letters"},
+  {"id": "p1", "kind": "pointer", "from": [0, 0, 0], "to": [1, 0, 0], "head": "star"},
+  {"id": "p2", "kind": "pointer", "fromTarget": "nobody", "to": [1, 0, 0]},
+  {"id": "word", "kind": "letter", "text": "bl", "colors": ["red", "plaid"]}
+], "scenes": [{"id": "s", "beats": [{"dur": 2, "do": [{"do": "show", "target": "s1"}]}]}]}}
