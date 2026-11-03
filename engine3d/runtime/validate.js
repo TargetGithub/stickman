@@ -5,9 +5,10 @@
 import { EASE_NAMES } from "./ease.js";
 import { FEELINGS, modelColors, parseClock } from "./director_extras.js";
 import { checkThumbnails } from "./thumbnails.js";
+import { MOVABLE_PIECES, NUMBER_TO, PIECE_ACTIONS, TEACH_FIELDS, checkTeachAction, checkTeachObject, teachPieces } from "./validate_teach.js";
 
 const KNOWN_TOP = new Set(["kind", "version", "meta", "stage", "camera", "objects", "scenes", "description"]);
-const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot"]);
+const COMMON = new Set(["id", "kind", "at", "rotation", "scale", "hidden", "description", "parent", "part", "pivot", "on"]);
 const FIELDS = {
   shape: ["shape", "color", "material", "size", "face", "feeling"],
   number_block: ["value", "color", "digitColor", "size"],
@@ -22,6 +23,7 @@ const FIELDS = {
   lamp: ["color", "intensity", "distance", "angle", "soft", "aim", "beam", "shadow"],
   weather: ["type", "count", "area", "height", "speed", "colors"],
   group: [],
+  ...TEACH_FIELDS,
 };
 const TARGETS = {
   clip: ["character"], burst: ["confetti", "bubbles"], sleep: ["critter", "shape"], wake: ["critter", "shape"],
@@ -121,6 +123,7 @@ export function validateScript(script, catalog) {
     if (o.kind === "critter" && !catalog.critters[o.species]) err("E3D_SPECIES", `${p}.species`, `unknown species "${o.species}" (known: ${Object.keys(catalog.critters).join(", ")})`);
     if (o.kind === "prop" && !catalog.props[o.model]) err("E3D_MODEL", `${p}.model`, `unknown prop "${o.model}" (known: ${Object.keys(catalog.props).join(", ")})`);
     if (o.recolor != null) checkRecolor(o, p);
+    checkTeachObject(o, p, { err, warn, ids, catalog, name });
     if (o.kind === "shape" && o.face != null && typeof o.face !== "boolean") err("E3D_FACE", `${p}.face`, "face must be true or false");
     if (o.kind === "confetti") {
       for (const [j, c] of (o.colors ?? []).entries()) name(catalog.colors, c, "E3D_COLOR", `${p}.colors[${j}]`, "color");
@@ -152,7 +155,7 @@ export function validateScript(script, catalog) {
     if (a.dur != null && !isNum(a.dur, 0, 60)) err("E3D_RANGE", `${p}.dur`, "dur must be 0-60 s");
     if (a.ease != null && !EASE_NAMES.includes(a.ease)) err("E3D_EASE", `${p}.ease`, `unknown ease "${a.ease}" (known: ${EASE_NAMES.join(", ")})`);
     for (const k of ["to", "position", "lookAt"]) {
-      if (a[k] == null || a.do === "clock") continue;
+      if (a[k] == null || a.do === "clock" || NUMBER_TO.has(a.do)) continue;
       const ok = a.do === "grow" ? isNum(a[k], 0.01, 100) || (isVec(a[k]) && a[k].every((x) => x >= 0.001)) : isVec(a[k]);
       if (!ok) err("E3D_VEC", `${p}.${k}`, a.do === "grow" ? "to must be a scale number or [x, y, z] factors" : "must be [x, y, z]");
     }
@@ -182,9 +185,11 @@ export function validateScript(script, catalog) {
       const [base, part] = a.target.split("#");
       const owner = ids.get(base);
       if (!owner) return err("E3D_TARGET", `${p}.target`, `no object "${base}"`);
-      if (!PART_MOVES.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES].join(", ")})`);
+      if (!PART_MOVES.has(a.do) && !PIECE_ACTIONS.has(a.do)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot target a part (parts take ${[...PART_MOVES, ...PIECE_ACTIONS].join(", ")})`);
       if (!partNames(owner).includes(part)) return err("E3D_PART", `${p}.target`, `"${base}" has no named part "${part}" (known: ${partNames(owner).join(", ") || "none"})`);
+      if (PART_MOVES.has(a.do) && teachPieces(owner).length && !MOVABLE_PIECES.has(owner.kind)) return err("E3D_TARGET_KIND", `${p}.target`, `${a.do} cannot move a piece of a ${owner.kind} (only fraction bar parts and circle slices move)`);
       if (a.do === "move" && a.to == null) err("E3D_REQUIRED", `${p}.to`, "move needs to: [x, y, z]");
+      if (a.do === "mark" && a.result != null && a.result !== "correct" && a.result !== "incorrect") err("E3D_RESULT", `${p}.result`, 'result must be "correct" or "incorrect"');
       return;
     }
     const o = ids.get(a.target);
@@ -208,6 +213,7 @@ export function validateScript(script, catalog) {
       if (ch && !ch.clips[a.clip]) err("E3D_CLIP", `${p}.clip`, `${o.character} has no clip "${a.clip}" (known: ${Object.keys(ch.clips).join(", ")})`);
       if (ch && a.then != null && !ch.clips[a.then]) err("E3D_CLIP", `${p}.then`, `${o.character} has no clip "${a.then}"`);
     }
+    checkTeachAction(a, p, o, { err, ids, catalog });
     if ((a.do === "drop" || a.do === "move") && a.to == null) err("E3D_REQUIRED", `${p}.to`, `${a.do} needs to: [x, y, z]`);
   }
 
@@ -237,7 +243,7 @@ export function validateScript(script, catalog) {
 
   function partNames(o) {
     const m = o.kind === "critter" ? catalog.critters[o.species] : o.kind === "prop" ? catalog.props[o.model] : null;
-    return m ? ["head", "body", ...m.parts.filter((x) => x.name).map((x) => x.name)] : [];
+    return m ? ["head", "body", ...m.parts.filter((x) => x.name).map((x) => x.name)] : teachPieces(o);
   }
 }
 

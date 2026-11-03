@@ -70,7 +70,7 @@ export function createStage(canvas, plan, { catalog, assets, width, height }) {
   const look = new THREE.Vector3();
   const handles = new Map();
   for (const o of plan.objects) {
-    const h = buildObject(o, { catalog, assets, material, seed: plan.seed, height });
+    const h = buildObject(o, { catalog, assets, material, seed: plan.seed, height, handles });
     if (o.pivot) for (const c of h.group.children) c.position.sub(new THREE.Vector3(...o.pivot));
     if (o.paint) h.tinted = paintable(h.group, catalog.colors[o.paint].hex);
     // paint with from: one material list per colour, driven by the timeline prop "tint:<colour>".

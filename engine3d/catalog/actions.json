@@ -305,6 +305,116 @@
         "move",
         "maps"
       ]
+    },
+    "build": {
+      "params": {
+        "target": "number_line, fraction_bar, fraction_circle, array, grid or cubes",
+        "order": "items (default, one by one), rows or cols (array, grid), rows or layers (cubes)",
+        "dur": "seconds for the whole build, default about 0.4 s a step (shorter steps for big builds, at most 8)",
+        "sound": "one per step, default pop; false for none"
+      },
+      "description": "Show the object and reveal its pieces one by one, with a sound each (count along).",
+      "tags": [
+        "teaching",
+        "counting",
+        "appear"
+      ]
+    },
+    "shade": {
+      "params": {
+        "target": "fraction_bar, fraction_circle, grid or array",
+        "to": "how many parts are shaded (a whole number up to the piece count); fewer unshades",
+        "color": "new shade colour (optional)",
+        "dur": "default 0.3 s a part",
+        "sound": "one per part (optional)"
+      },
+      "description": "Shade parts in order (left to right, slices clockwise, cells row by row).",
+      "tags": [
+        "teaching",
+        "fractions"
+      ]
+    },
+    "leap": {
+      "params": {
+        "target": "object id (usually one standing on the line)",
+        "line": "number_line id",
+        "values": "list of values to leap to, in turn",
+        "dur": "seconds per leap, default 0.7",
+        "height": "arc height, default 0.8",
+        "sound": "at each take-off, default boing",
+        "arcs": "true (default) draws each jump's arc on the line",
+        "color": "arc colour, default orange"
+      },
+      "description": "Arc from value to value along a number line (skip counting, adding on, fractions), leaving the jump arcs.",
+      "tags": [
+        "teaching",
+        "counting",
+        "move"
+      ]
+    },
+    "draw": {
+      "params": {
+        "target": "pointer, number_line or callout",
+        "dur": "default 1.2",
+        "sound": "optional"
+      },
+      "description": "Show it and draw it from start to end (an arrow grows tip first, a callout runs its leader then pops its card).",
+      "tags": [
+        "teaching",
+        "appear"
+      ]
+    },
+    "open": {
+      "params": {
+        "target": "angle id",
+        "to": "degrees, 0-360",
+        "dur": "default 1.2",
+        "sound": "optional"
+      },
+      "description": "Open or close an angle; the arc and the degrees follow.",
+      "tags": [
+        "teaching",
+        "geometry"
+      ]
+    },
+    "mark": {
+      "params": {
+        "target": "object id, or <id>#<piece> (a slice, a cell, an item)",
+        "result": "correct (a green tick, default) or incorrect (a soft red cross)",
+        "dur": "seconds it stays, default 1.8",
+        "sound": "default ding (correct) or a soft boing (incorrect); false for none"
+      },
+      "description": "A badge with a ring over the target: a green tick for correct, a soft red cross for not quite (never scary).",
+      "tags": [
+        "teaching",
+        "quiz",
+        "reward"
+      ]
+    },
+    "highlight": {
+      "params": {
+        "target": "object id, or <id>#<piece>",
+        "color": "default gold",
+        "dur": "seconds, default 2",
+        "sound": "optional"
+      },
+      "description": "A soft glowing ring that pulses around the target (look here).",
+      "tags": [
+        "teaching",
+        "attention"
+      ]
+    },
+    "trace": {
+      "params": {
+        "target": "grid id",
+        "dur": "default 0.45 s a unit (at most 10)",
+        "sound": "one per unit, default pop; false for none"
+      },
+      "description": "A glowing dot runs round the grid's edge from the top-left corner, lighting one unit edge at a time (perimeter); the lit edge stays.",
+      "tags": [
+        "teaching",
+        "perimeter"
+      ]
     }
   }
 }

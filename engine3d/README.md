@@ -132,6 +132,47 @@ home and school, outdoor and science). `scenes/model_sheet.js` shows them all.
 
 `scripts/feature_tour.json` shows all of these in 50 seconds.
 
+### Teaching kit (batch 3, grades 3–5)
+
+Toy-material models for maths and science lessons (`runtime/teach*.js`, `director_teach.js`,
+`validate_teach.js`). Every piece is its own node driven by timeline props, so any frame is a pure function of
+`t`. Fields and defaults: `catalog/kinds.json`; actions: `catalog/actions.json`; the contract is
+`scripts/series/toybox/specs/batch3.md`.
+
+| Kind | Fields (defaults) | Pieces |
+|---|---|---|
+| `number_line` | `from` 0, `to` 10, `length` 8, `step` 1, `minor` 1, `labels` (`numbers`, `fractions`, `none` or a list), `color` blue | A beam on two legs (`at` is its centre on the floor); its top is 0.56 m up. Ticks hang down its front, numbers under them; `fractions` labels every tick (1/4, 2/4, 3/4, 1). |
+| `fraction_bar` | `parts` 4, `shaded` 0, `length` 3, `height` 0.5, `color` orange (shaded), `empty` cream, `label` | Parts `#p1`… (left to right) |
+| `fraction_circle` | `parts` 4, `shaded` 0, `radius` 1, `color`, `empty`, `label` | Slices `#s1`… from 12 o'clock, clockwise; stands on its rim facing the camera |
+| `array` | `rows` 3, `cols` 4, `item` (`dot`, a shape or a prop model), `gap` 0.2, `color` red, `size` 0.4, `trays` | Items `#i1`… row by row; stands up like a pegboard, row 1 on top |
+| `grid` | `rows` 3, `cols` 4, `cell` 0.5, `color` sky, `upright` | Cells `#c1`… row by row; flat on the floor unless `upright` |
+| `cubes` | `l` 3, `w` 2, `h` 2, `cell` 0.4, `color` orange, `box` | Cubes `#c1`… bottom layer first; alternate layers a little lighter |
+| `pointer` | `from`, `to` (required, relative to `at`), `color` orange, `width` 0.1, `bend` 0 | A chunky arrow, arched `bend` m high |
+| `callout` | `text`, `point` or `target`, `offset` [1.2, 1, 0], `color` ink, `bg` white | A card with a leader and a dot; with `target` the dot sits on the front of that object, 0.6 of the way up |
+| `angle` | `degrees` 45, `radius` 1.2, `color` blue, `arc` true, `label` true | Rays from the vertex (`at`; lift it off the floor); a square corner at 90°; "45°" outside the arc |
+
+**Standing on a line.** Any object can take `on: { "line": "<number_line id>", "value": 0.75 }` instead of
+`at`: the director turns it into a position from the line's `at`, `rotation` (y) and `from`/`to`/`length`
+(`teach_layout.js linePoint`), so Node and the page agree. JS scenes can call `d.lineAt(line, value)`.
+
+| Action | Params (defaults) | What it does |
+|---|---|---|
+| `build` | `target`, `order` (`items`; `rows`/`cols` for arrays and grids; `rows`/`layers` for cubes), `dur`, `sound` (pop, `false` for none) | Shows the object and pops its pieces in one step at a time, a sound per step (count along). |
+| `shade` | `target`, `to` (parts shaded), `color`, `dur`, `sound` | Shades parts in order (fewer unshades); labels follow. |
+| `leap` | `target`, `line`, `values`, `dur` 0.7 per leap, `height` 0.8, `sound` boing, `arcs` true, `color` orange | Arcs value to value and leaves each jump's arrow on the line (the arcs ride on the line, so hiding it hides them). |
+| `draw` | `target` (pointer, number line, callout), `dur` 1.2 | Grows it from start to end. |
+| `open` | `target` (angle), `to` degrees, `dur` 1.2 | Turns the second ray; arc and label follow. |
+| `mark` | `target` (object or `<id>#<piece>`), `result` correct/incorrect, `dur` 1.8, `sound` | A green tick or a soft coral cross badge with a ring: above an object, in front of a piece. Sounds `ding` or a soft `boing`. |
+| `highlight` | `target` (object or piece), `color` gold, `dur` 2 | A glowing rounded hoop that pulses round it (flat round flat things). |
+| `trace` | `target` (grid), `dur`, `sound` (pop per unit) | A glowing dot runs clockwise round the edge from the top-left corner, lighting each unit edge; the lit edge stays. |
+
+Fraction bar parts and circle slices also take `move`, `turn`, `wiggle` and `spin` (`"pie#s1"`: pull a slice
+out). Marks and glows are internal helper objects (`<id>~mark1`, kinds `_mark` and `_glow`) that fit the
+target's box as posed at `t`. Text uses the Andika font, which has `/` and `°`. The validator checks fields,
+ranges, piece names, line placement and leap values (codes `E3D_PARTS`, `E3D_SHADED`, `E3D_ITEM`, `E3D_LABELS`,
+`E3D_ON_LINE`, `E3D_ON_VALUE`, `E3D_LEAP_VALUE`, `E3D_ORDER`, `E3D_RESULT`, plus the usual ones).
+`scripts/teach_tour.json` shows every kind and action in about 70 seconds.
+
 **Scene music.** `meta.music` and `meta.musicGain` set the bed for the whole episode. A scene may override
 them with `"music": "calm"` (any mood in `catalog/story/music_moods.json`, or `false` for no music) and/or
 `"musicGain": 0.2` (0–1); a scene without them goes back to the episode's. Changes crossfade over 2 s centred

@@ -3,6 +3,7 @@
 // (plus SAY_TAIL), whichever is longer, so a measured TTS clip stretches its beat the way 2D speech does.
 
 import { createDirector } from "./director.js";
+import { TEACH_ACTIONS } from "./director_teach.js";
 
 export const SAY_TAIL = 0.35;
 
@@ -72,6 +73,8 @@ function run(d, a, start) {
     case "lights": return d.lights(o);
     case "camera": return d.camera(o);
     case "sound": return d.sound(a.sound, o);
-    default: throw new Error(`unknown action "${a.do}"`);
+    default:
+      if (TEACH_ACTIONS.includes(a.do)) return d[a.do](a.target, o);
+      throw new Error(`unknown action "${a.do}"`);
   }
 }

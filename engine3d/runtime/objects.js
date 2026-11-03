@@ -14,6 +14,7 @@ import { addFace, buildModel } from "./models.js";
 import { bubbleAt, bubblePaths, starField } from "./particles.js";
 import { buildClock, buildLamp, buildWeather } from "./objects_extra.js";
 import { morphFeeling } from "./faces.js";
+import { buildTeach, isTeachKind } from "./teach.js";
 
 /** Load the fonts and characters a plan uses. @returns {Promise<{ fonts: Map, characters: Map }>} */
 export async function loadAssets(plan, catalog, base) {
@@ -71,7 +72,9 @@ function textGeometry(text, font, size, depth, { baseline = false } = {}) {
  * @returns {{ group: THREE.Group, mixer?: THREE.AnimationMixer, actions?: Map, named?: Map, world?: THREE.Object3D[],
  *   update?: (t:number, s:object, state:object) => void }}  world: helpers the stage adds to the scene itself
  */
-export function buildObject(o, { catalog, assets, material, seed, height = 1080 }) {
+export function buildObject(o, { catalog, assets, material, seed, height = 1080, handles }) {
+  // The teaching kit (teach.js): handles lets marks and glows measure the object they ride on.
+  if (isTeachKind(o.kind)) return buildTeach(o, { catalog, material, font: assets.fonts.get("andika_bold"), textGeometry, handles });
   const group = new THREE.Group();
   group.name = o.id;
   const size = o.size ?? 1;

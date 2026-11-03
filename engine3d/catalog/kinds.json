@@ -1,5 +1,5 @@
 {
-  "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale, hidden, parent (ride on another object: at becomes relative to it), part (with parent: ride on one of its named parts, e.g. a balance pan on the beam or a hat on \"<critter>#head\"; then at is measured from that part's pivot, the centre of a head, in the parent's own units, so it and the child's size are multiplied by the parent's size, while a child without part is placed in metres) and pivot ([x, y, z]: the point the object turns and grows about) apply to every kind.",
+  "description": "Object kinds a script can place (objects[].kind). Each kind lists its fields; at (position, metres), rotation (degrees), scale, hidden, parent (ride on another object: at becomes relative to it), part (with parent: ride on one of its named parts, e.g. a balance pan on the beam or a hat on \"<critter>#head\"; then at is measured from that part's pivot, the centre of a head, in the parent's own units, so it and the child's size are multiplied by the parent's size, while a child without part is placed in metres) and pivot ([x, y, z]: the point the object turns and grows about) apply to every kind. Any teaching object (or any other object) may use on: { \"line\": \"<number_line id>\", \"value\": 0.75 } instead of at to stand on a number line at that value.",
   "kinds": {
     "shape": {
       "fields": {
@@ -183,6 +183,163 @@
       "description": "An empty holder: give other objects parent: <this id> and move, turn or grow them all as one (a rocket made of parts, a tray of cookies).",
       "tags": [
         "layout"
+      ]
+    },
+    "number_line": {
+      "fields": {
+        "from": "first value, default 0",
+        "to": "last value, default 10 (more than from)",
+        "length": "metres from the first to the last value, default 8",
+        "step": "a labelled tick every step, default 1",
+        "minor": "equal parts between labelled ticks, default 1 (4 for quarters)",
+        "labels": "\"numbers\" (default: labelled ticks), \"fractions\" (every tick, e.g. 1/4, 2/4, 3/4, 1), \"none\", or a list of strings (one per labelled tick, or one per tick)",
+        "color": "bar colour, default blue"
+      },
+      "description": "A toy number line along x (at is its centre, on the floor): a rounded beam on two legs, 0.56 m high, with ticks hanging down its front and the numbers under them. Objects stand on it with on: { line, value } and leap along it; build pops the ticks in one by one, draw grows it from the left.",
+      "tags": [
+        "maths",
+        "teaching",
+        "fractions",
+        "grade3",
+        "grade4",
+        "grade5"
+      ]
+    },
+    "fraction_bar": {
+      "fields": {
+        "parts": "equal parts, 1-24 (default 4)",
+        "shaded": "parts shaded from the left at the start, default 0",
+        "length": "metres, default 3",
+        "height": "metres, default 0.5",
+        "color": "shaded colour, default orange",
+        "empty": "unshaded colour, default cream",
+        "label": "true shows \"shaded/parts\" over the bar (it follows shade)"
+      },
+      "description": "A bar standing up, facing the camera, cut into equal parts with gaps between them. Parts are targets <id>#p1 ... for move, turn, mark and highlight.",
+      "tags": [
+        "maths",
+        "teaching",
+        "fractions",
+        "grade3",
+        "grade4"
+      ]
+    },
+    "fraction_circle": {
+      "fields": {
+        "parts": "equal slices, 1-24 (default 4)",
+        "shaded": "slices shaded at the start (from 12 o'clock, clockwise), default 0",
+        "radius": "metres, default 1",
+        "color": "shaded colour, default orange",
+        "empty": "unshaded colour, default cream",
+        "label": "true shows \"shaded/parts\" over the circle"
+      },
+      "description": "A pie standing on its rim, facing the camera, cut into equal slices from 12 o'clock going clockwise. Slices are targets <id>#s1 ... for move (pull a slice out), turn, mark and highlight.",
+      "tags": [
+        "maths",
+        "teaching",
+        "fractions",
+        "grade3",
+        "grade4"
+      ]
+    },
+    "array": {
+      "fields": {
+        "rows": "1-20 (default 3)",
+        "cols": "1-20 (default 4)",
+        "item": "dot (a ball, default), any shapes.json name, or a props model name",
+        "gap": "metres between items, default 0.2",
+        "color": "item colour, default red",
+        "size": "item size in metres, default 0.4",
+        "trays": "true puts a tray under each row (equal groups)"
+      },
+      "description": "Rows and columns of equal things standing up like a pegboard, row 1 on top (at is the bottom centre). Items are targets <id>#i1 ... (row by row) for mark and highlight.",
+      "tags": [
+        "maths",
+        "teaching",
+        "multiplication",
+        "grade3"
+      ]
+    },
+    "grid": {
+      "fields": {
+        "rows": "1-20 (default 3)",
+        "cols": "1-20 (default 4)",
+        "cell": "square size in metres, default 0.5",
+        "color": "square colour, default sky",
+        "upright": "true stands it like a wall chart; otherwise it lies flat on the floor (row 1 at the back)"
+      },
+      "description": "Unit squares on a white board for area and perimeter. Cells are targets <id>#c1 ... (row by row) for mark and highlight; shade colours them, trace runs round the edge.",
+      "tags": [
+        "maths",
+        "teaching",
+        "area",
+        "perimeter",
+        "grade3",
+        "grade4"
+      ]
+    },
+    "cubes": {
+      "fields": {
+        "l": "cubes along x, 1-10 (default 3)",
+        "w": "cubes front to back, 1-10 (default 2)",
+        "h": "layers, 1-10 (default 2)",
+        "cell": "cube size in metres, default 0.4",
+        "color": "default orange (alternate layers are a little lighter)",
+        "box": "true draws a clear box around them"
+      },
+      "description": "Unit cubes stacked into a box shape for volume (at is the bottom centre). Cubes are targets <id>#c1 ... (bottom layer first) for mark and highlight; build order layers stacks them layer by layer.",
+      "tags": [
+        "maths",
+        "teaching",
+        "volume",
+        "grade5"
+      ]
+    },
+    "pointer": {
+      "fields": {
+        "from": "[x, y, z] start (relative to at, so world when at is left out) (required)",
+        "to": "[x, y, z] tip (required)",
+        "color": "default orange",
+        "width": "shaft thickness in metres, default 0.1",
+        "bend": "arc height in metres, default 0 (straight)"
+      },
+      "description": "A chunky 3D arrow (cause and effect, food chains, energy flow); draw grows it from start to tip.",
+      "tags": [
+        "teaching",
+        "science",
+        "diagrams"
+      ]
+    },
+    "callout": {
+      "fields": {
+        "text": "the label, 1-40 characters (required)",
+        "point": "[x, y, z] the spot it names (relative to at)",
+        "target": "or an object id (placed before it): the leader points at 0.6 of its height",
+        "offset": "[x, y, z] from the point to the card's centre, default [1.2, 1, 0]",
+        "color": "text, leader and dot colour, default ink",
+        "bg": "card colour, default white"
+      },
+      "description": "A label on a card with a leader line and a dot at what it names (parts of a plant, a vertex); draw runs the leader out, then pops the card.",
+      "tags": [
+        "teaching",
+        "science",
+        "labels"
+      ]
+    },
+    "angle": {
+      "fields": {
+        "degrees": "0-360, default 45",
+        "radius": "ray length in metres, default 1.2",
+        "color": "ray colour, default blue",
+        "arc": "true (default) draws the arc between the rays (a square corner at 90)",
+        "label": "true (default) writes the degrees (\"45°\") outside the arc"
+      },
+      "description": "Two rays from a vertex (at; lift it off the floor) facing the camera: the first along +x, the second turned by degrees. open turns it wider or narrower.",
+      "tags": [
+        "maths",
+        "teaching",
+        "geometry",
+        "grade4"
       ]
     }
   }

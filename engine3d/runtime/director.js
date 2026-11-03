@@ -7,6 +7,8 @@ import { createTimeline } from "./timeline.js";
 import { deriveRng } from "./rng.js";
 import { bubblePaths } from "./particles.js";
 import { installExtras, parseClock } from "./director_extras.js";
+import { installTeach, teachBases } from "./director_teach.js";
+import { TEACH_KINDS, placeOn } from "./teach_layout.js";
 
 const V = (v, d) => (Array.isArray(v) ? [...v] : typeof v === "number" ? [v, v, v] : [...d]);
 const LOOPING = new Set(["Idle", "Dance", "Walking", "Running"]);
@@ -59,8 +61,9 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
 
     /** Place an object. Fields per kind: catalog/kinds.json. */
     add(spec) {
+      spec = placeOn(spec, objects); // on: { line, value } stands it on a number line
       if (!spec?.id || objects.has(spec.id) || spec.id === "camera" || spec.id === "stage") throw new Error(`object id "${spec?.id}" is missing or taken`);
-      if (!catalog.kinds[spec.kind]) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
+      if (!catalog.kinds[spec.kind] && !spec.internal) throw new Error(`object "${spec.id}": unknown kind "${spec.kind}"`);
       if (spec.parent != null && !objects.has(spec.parent)) throw new Error(`object "${spec.id}": parent "${spec.parent}" must be added first`);
       const o = { ...spec, at: V(spec.at, [0, 0, 0]), rotation: V(spec.rotation, [0, 0, 0]), scale: V(spec.scale, [1, 1, 1]) };
       objects.set(o.id, o);
@@ -90,6 +93,7 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
         tl.base(o.id, "minuteHand", o.minuteHand === false ? 0 : 1);
       }
       if (o.kind === "lamp") tl.base(o.id, "aim", V(o.aim, [o.at[0], 0, o.at[2] - 2]));
+      if (TEACH_KINDS.includes(o.kind)) teachBases(o, { tl, parts, catalog, objects });
       if (o.kind === "character") tl.clip(o.id, o.clip ?? catalog.characters[o.character].idle, { start: 0, loop: true, fade: 0 });
       return d;
     },
@@ -257,5 +261,6 @@ export function createDirector({ catalog, seed = 1, speech = {}, voice = "soft" 
     },
   };
   installExtras(d, { catalog, tl, obj, now, sound, getStage: () => stage, V });
+  installTeach(d, { catalog, tl, obj, now, sound, objects });
   return d;
 }

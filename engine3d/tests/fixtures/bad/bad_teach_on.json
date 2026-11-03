@@ -1,0 +1,5 @@
+{"expect": ["E3D_ON_LINE", "E3D_ON_VALUE"], "script": {"kind": "video3d", "version": 1, "objects": [
+  {"id": "line", "kind": "number_line", "from": 0, "to": 10},
+  {"id": "frog", "kind": "critter", "species": "frog", "on": {"line": "nope", "value": 2}},
+  {"id": "cat", "kind": "critter", "species": "cat", "on": {"line": "line", "value": 12}}
+], "scenes": [{"id": "s", "beats": [{"dur": 1, "do": [{"do": "show", "target": "frog"}]}]}]}}
