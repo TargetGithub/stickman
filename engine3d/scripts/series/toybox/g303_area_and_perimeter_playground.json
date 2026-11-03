@@ -1,0 +1,8976 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Fox designs a toy playground: 18 fence pieces fit round it but 18 grass mats don't cover it. Area covers with unit squares, perimeter walks the edge, and Sheep's 12 fence pieces make pens with areas 5, 8 and 9 square metres.",
+ "meta": {
+  "title": "Area and Perimeter Playground",
+  "series": "toybox",
+  "episode": "g303",
+  "audience": "grade3",
+  "seed": 303,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "happy",
+  "musicGain": 0.2,
+  "skills": [
+   "area_perimeter_3"
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1
+   },
+   "fox": {
+    "voice": "squeaky",
+    "pitch": 1.15
+   },
+   "sheep": {
+    "voice": "deep",
+    "pitch": 1.2
+   }
+  },
+  "youtube": {
+   "title": "Area and Perimeter Playground! Area and Perimeter for Kids | Grade 3 Math | Toy Box Friends",
+   "description": "Robo ordered 18 fence pieces and 18 grass mats for Fox's new playground. The fence fits perfectly, but the mats leave two bare squares. Why? Kids learn that area is how many unit squares cover a shape (square metres) and perimeter is the distance all the way round its edge (metres).\n\nWe name quadrilaterals by their sides and corners (rectangle, rhombus, square), cover a 4 by 5 play area with unit squares (4 x 5 = 20 square metres), walk its edge (4 + 5 + 4 + 5 = 18 metres), fix Robo's border-square mix-up, and help Sheep find the grassiest pen: with the same 12 fence pieces, pens of 1 by 5, 2 by 4 and 3 by 3 hold 5, 8 and 9 square metres. Then: area or perimeter for real jobs, a missing side, and a quiz.\n\nFor third graders (CCSS 3.G.A.1, 3.MD.C.5, 3.MD.C.6, 3.MD.C.7, 3.MD.D.8).\n\nTry at home: cover a book with sticky notes in rows and count them (area), then wrap a string round it and measure the string (perimeter). Draw every rectangle with a perimeter of 12 squares on graph paper: which holds the most? Use scissors with a grown-up.",
+   "tags": [
+    "area and perimeter",
+    "area for kids",
+    "perimeter for kids",
+    "square units",
+    "rectangles",
+    "quadrilaterals",
+    "grade 3 math",
+    "3rd grade geometry",
+    "measurement for kids",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "a",
+    "title": "Area or Perimeter?",
+    "subtitle": "Cover it or go around it?",
+    "titleColor": "yellow",
+    "side": "top",
+    "badge": "GRADE 3",
+    "stage": "garden",
+    "at": 1,
+    "camera": {
+     "position": [
+      0,
+      4.6,
+      6.6
+     ],
+     "lookAt": [
+      0,
+      0.2,
+      -0.3
+     ],
+     "fov": 40
+    },
+    "objects": [
+     {
+      "id": "g",
+      "kind": "grid",
+      "rows": 4,
+      "cols": 5,
+      "cell": 0.6,
+      "color": "green",
+      "at": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "e",
+      "kind": "stroke",
+      "at": [
+       0,
+       0.1,
+       0
+      ],
+      "points": [
+       [
+        -1.5,
+        0,
+        -1.2
+       ],
+       [
+        1.5,
+        0,
+        -1.2
+       ],
+       [
+        1.5,
+        0,
+        1.2
+       ],
+       [
+        -1.5,
+        0,
+        1.2
+       ]
+      ],
+      "closed": true,
+      "width": 0.1,
+      "color": "orange"
+     },
+     {
+      "id": "sb",
+      "kind": "prop",
+      "model": "sandbox",
+      "at": [
+       -0.75,
+       0.05,
+       -0.5
+      ],
+      "size": 0.75
+     },
+     {
+      "id": "sl",
+      "kind": "prop",
+      "model": "slide",
+      "at": [
+       0.75,
+       0.05,
+       -0.55
+      ],
+      "size": 0.8
+     },
+     {
+      "id": "fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+       2.55,
+       0,
+       0.9
+      ],
+      "size": 1.3,
+      "rotation": [
+       0,
+       -35,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       -2.55,
+       0,
+       0.9
+      ],
+      "rotation": [
+       0,
+       35,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "b",
+    "title": "Same Fence?",
+    "subtitle": "12 m of fence, 3 pens",
+    "titleColor": "white",
+    "side": "top",
+    "badge": "GRADE 3",
+    "stage": "garden",
+    "at": 1,
+    "camera": {
+     "position": [
+      0,
+      3.6,
+      6
+     ],
+     "lookAt": [
+      0,
+      0.25,
+      0.55
+     ],
+     "fov": 46
+    },
+    "objects": [
+     {
+      "id": "pa",
+      "kind": "grid",
+      "rows": 1,
+      "cols": 5,
+      "cell": 0.5,
+      "color": "green",
+      "at": [
+       -2.75,
+       0,
+       0.3
+      ]
+     },
+     {
+      "id": "pb",
+      "kind": "grid",
+      "rows": 2,
+      "cols": 4,
+      "cell": 0.5,
+      "color": "green",
+      "at": [
+       0,
+       0,
+       0.3
+      ]
+     },
+     {
+      "id": "pc",
+      "kind": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cell": 0.5,
+      "color": "green",
+      "at": [
+       2.65,
+       0,
+       0.3
+      ]
+     },
+     {
+      "id": "fa0",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -3.75,
+       0,
+       -1.3877787807814457e-17
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa1",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -3.25,
+       0,
+       -1.3877787807814457e-17
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa2",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -2.75,
+       0,
+       -1.3877787807814457e-17
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa3",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -2.25,
+       0,
+       -1.3877787807814457e-17
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa4",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.75,
+       0,
+       -1.3877787807814457e-17
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa5",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.45,
+       0,
+       0.3
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fa6",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.75,
+       0,
+       0.6000000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa7",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -2.25,
+       0,
+       0.6000000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa8",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -2.75,
+       0,
+       0.6000000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa9",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -3.25,
+       0,
+       0.6000000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa10",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -3.75,
+       0,
+       0.6000000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fa11",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -4.05,
+       0,
+       0.3
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fb0",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -0.75,
+       0,
+       -0.25
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb1",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -0.25,
+       0,
+       -0.25
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb2",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       0.25,
+       0,
+       -0.25
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb3",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       0.75,
+       0,
+       -0.25
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb4",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.05,
+       0,
+       0.04999999999999999
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fb5",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.05,
+       0,
+       0.55
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fb6",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       0.75,
+       0,
+       0.8500000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb7",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       0.25,
+       0,
+       0.8500000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb8",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -0.25,
+       0,
+       0.8500000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb9",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -0.75,
+       0,
+       0.8500000000000001
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fb10",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.05,
+       0,
+       0.55
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fb11",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.05,
+       0,
+       0.04999999999999999
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fc0",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       2.15,
+       0,
+       -0.5
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fc1",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       2.65,
+       0,
+       -0.5
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fc2",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       3.15,
+       0,
+       -0.5
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fc3",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       3.4499999999999997,
+       0,
+       -0.2
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fc4",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       3.4499999999999997,
+       0,
+       0.3
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fc5",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       3.4499999999999997,
+       0,
+       0.8
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fc6",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       3.15,
+       0,
+       1.1
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fc7",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       2.65,
+       0,
+       1.1
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fc8",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       2.15,
+       0,
+       1.1
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "fc9",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.8499999999999999,
+       0,
+       0.8
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fc10",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.8499999999999999,
+       0,
+       0.3
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "fc11",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.8499999999999999,
+       0,
+       -0.2
+      ],
+      "size": 0.5,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "la",
+      "kind": "letter",
+      "text": "5 sq m",
+      "at": [
+       -2.75,
+       0.16,
+       1.25
+      ],
+      "color": "ink",
+      "rotation": [
+       -15,
+       0,
+       0
+      ],
+      "size": 0.28,
+      "depth": 0.06
+     },
+     {
+      "id": "lb",
+      "kind": "letter",
+      "text": "8 sq m",
+      "at": [
+       0,
+       0.16,
+       1.5
+      ],
+      "color": "ink",
+      "rotation": [
+       -15,
+       0,
+       0
+      ],
+      "size": 0.28,
+      "depth": 0.06
+     },
+     {
+      "id": "lc",
+      "kind": "letter",
+      "text": "9 sq m",
+      "at": [
+       2.5,
+       0.16,
+       1.75
+      ],
+      "color": "red",
+      "rotation": [
+       -15,
+       0,
+       0
+      ],
+      "size": 0.3,
+      "depth": 0.06
+     },
+     {
+      "id": "sheep",
+      "kind": "critter",
+      "species": "sheep",
+      "at": [
+       2.65,
+       0,
+       0.25
+      ],
+      "size": 0.75,
+      "rotation": [
+       0,
+       -10,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "c",
+    "title": "Build It!",
+    "subtitle": "Area + perimeter playground",
+    "titleColor": "green",
+    "side": "top",
+    "badge": "GRADE 3",
+    "stage": "garden",
+    "at": 1,
+    "camera": {
+     "position": [
+      0.3,
+      1.9,
+      7.6
+     ],
+     "lookAt": [
+      0.1,
+      0.8,
+      0
+     ],
+     "fov": 40
+    },
+    "objects": [
+     {
+      "id": "g",
+      "kind": "grid",
+      "rows": 4,
+      "cols": 5,
+      "cell": 0.6,
+      "color": "green",
+      "at": [
+       0,
+       0,
+       -0.4
+      ]
+     },
+     {
+      "id": "f0",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.2,
+       0,
+       -1.6500000000000001
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "f1",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -0.6000000000000001,
+       0,
+       -1.6500000000000001
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "f2",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       0,
+       0,
+       -1.6500000000000001
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "f3",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       0.6000000000000001,
+       0,
+       -1.6500000000000001
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "f4",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.1999999999999997,
+       0,
+       -1.6500000000000001
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "f5",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.55,
+       0,
+       -1.3
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "f6",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.55,
+       0,
+       -0.7000000000000002
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "f7",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.55,
+       0,
+       -0.10000000000000009
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "f8",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       1.55,
+       0,
+       0.5
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "f14",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.55,
+       0,
+       0.5
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "f15",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.55,
+       0,
+       -0.10000000000000009
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "f16",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.55,
+       0,
+       -0.7000000000000002
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "f17",
+      "kind": "prop",
+      "model": "fence",
+      "at": [
+       -1.55,
+       0,
+       -1.3
+      ],
+      "size": 0.6,
+      "rotation": [
+       0,
+       90,
+       0
+      ]
+     },
+     {
+      "id": "sw",
+      "kind": "prop",
+      "model": "swing",
+      "at": [
+       -0.75,
+       0.05,
+       -0.8
+      ],
+      "size": 0.75
+     },
+     {
+      "id": "sl",
+      "kind": "prop",
+      "model": "slide",
+      "at": [
+       0.8,
+       0.05,
+       -0.8
+      ],
+      "size": 0.85
+     },
+     {
+      "id": "ss",
+      "kind": "prop",
+      "model": "seesaw",
+      "at": [
+       0.1,
+       0.05,
+       0.35
+      ],
+      "size": 0.6
+     },
+     {
+      "id": "fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+       2.45,
+       0,
+       1.3
+      ],
+      "size": 1.3,
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "sheep",
+      "kind": "critter",
+      "species": "sheep",
+      "at": [
+       1.4,
+       0,
+       1.6
+      ],
+      "size": 0.8,
+      "rotation": [
+       0,
+       -15,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       -2.3,
+       0,
+       1.3
+      ],
+      "rotation": [
+       0,
+       30,
+       0
+      ],
+      "clip": "Wave",
+      "feeling": "happy"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "garden"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.6,
+   10.5
+  ],
+  "lookAt": [
+   0,
+   0.9,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.4,
+    0,
+    1.4
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "fox",
+   "kind": "critter",
+   "species": "fox",
+   "at": [
+    3.4,
+    0,
+    1.4
+   ],
+   "size": 1.2,
+   "rotation": [
+    0,
+    -30,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "sheep",
+   "kind": "critter",
+   "species": "sheep",
+   "at": [
+    4.4,
+    0,
+    -0.6
+   ],
+   "size": 0.9,
+   "rotation": [
+    0,
+    -40,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "easel",
+   "kind": "prop",
+   "model": "chalkboard",
+   "at": [
+    1.2,
+    0,
+    -0.6
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "plan",
+   "kind": "grid",
+   "rows": 4,
+   "cols": 5,
+   "cell": 0.24,
+   "upright": true,
+   "color": "green",
+   "at": [
+    1.35,
+    0.92,
+    -0.52
+   ],
+   "hidden": true
+  },
+  {
+   "id": "plan_5",
+   "kind": "letter",
+   "text": "5 m",
+   "at": [
+    1.35,
+    2.02,
+    -0.5
+   ],
+   "color": "white",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "plan_4",
+   "kind": "letter",
+   "text": "4 m",
+   "at": [
+    0.48,
+    1.4,
+    -0.5
+   ],
+   "color": "white",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "plan_t",
+   "kind": "letter",
+   "text": "PLAN",
+   "at": [
+    2.15,
+    2.02,
+    -0.5
+   ],
+   "color": "yellow",
+   "size": 0.1,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "g45",
+   "kind": "grid",
+   "rows": 4,
+   "cols": 5,
+   "cell": 0.6,
+   "color": "sand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f0",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.2,
+    0,
+    -1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f1",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -0.6000000000000001,
+    0,
+    -1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f2",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    0,
+    0,
+    -1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f3",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    0.6000000000000001,
+    0,
+    -1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f4",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.1999999999999997,
+    0,
+    -1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f5",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.56,
+    0,
+    -0.8999999999999999
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f6",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.56,
+    0,
+    -0.30000000000000004
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f7",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.56,
+    0,
+    0.30000000000000004
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f8",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.56,
+    0,
+    0.9000000000000001
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f9",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.1999999999999997,
+    0,
+    1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f10",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    0.6000000000000001,
+    0,
+    1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f11",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    0,
+    0,
+    1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f12",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -0.6000000000000001,
+    0,
+    1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f13",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.2,
+    0,
+    1.26
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f14",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.56,
+    0,
+    0.9000000000000001
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f15",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.56,
+    0,
+    0.30000000000000004
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f16",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.56,
+    0,
+    -0.30000000000000004
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f17",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.56,
+    0,
+    -0.8999999999999999
+   ],
+   "size": 0.6,
+   "rotation": [
+    0,
+    90,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s45_top",
+   "kind": "letter",
+   "text": "5 m",
+   "at": [
+    0,
+    0.02,
+    -1.95
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "s45_right",
+   "kind": "letter",
+   "text": "4 m",
+   "at": [
+    2.75,
+    0.02,
+    0.1
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "s45_bottom",
+   "kind": "letter",
+   "text": "5 m",
+   "at": [
+    0,
+    0.02,
+    2.3
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "s45_left",
+   "kind": "letter",
+   "text": "4 m",
+   "at": [
+    -2.75,
+    0.02,
+    0.1
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "unit",
+   "kind": "shape",
+   "shape": "plate",
+   "at": [
+    0,
+    0.01,
+    2.35
+   ],
+   "color": "green",
+   "material": "matte",
+   "scale": [
+    0.54,
+    1,
+    0.54
+   ],
+   "hidden": true
+  },
+  {
+   "id": "unit_c",
+   "kind": "callout",
+   "text": "1 square metre",
+   "target": "unit",
+   "offset": [
+    -1,
+    0.4,
+    0
+   ],
+   "color": "leaf",
+   "hidden": true
+  },
+  {
+   "id": "edge_c",
+   "kind": "callout",
+   "text": "1 metre",
+   "point": [
+    -0.9,
+    0.06,
+    -1.25
+   ],
+   "offset": [
+    -1.6,
+    0.4,
+    0.5
+   ],
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "sq_c",
+   "kind": "callout",
+   "text": "1 square metre",
+   "point": [
+    0.9,
+    0.06,
+    -0.9
+   ],
+   "offset": [
+    1.6,
+    0.4,
+    0.5
+   ],
+   "color": "leaf",
+   "hidden": true
+  },
+  {
+   "id": "board",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0.25,
+    -0.75
+   ],
+   "color": "white",
+   "material": "matte",
+   "scale": [
+    9.6,
+    2.3,
+    0.08
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sh_sq",
+   "kind": "stroke",
+   "at": [
+    -3.6,
+    0.75,
+    -0.66
+   ],
+   "points": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     1.3,
+     0,
+     0
+    ],
+    [
+     1.3,
+     1.3,
+     0
+    ],
+    [
+     0,
+     1.3,
+     0
+    ]
+   ],
+   "closed": true,
+   "width": 0.08,
+   "color": "blue",
+   "hidden": true
+  },
+  {
+   "id": "sh_sq_n",
+   "kind": "letter",
+   "text": "square",
+   "at": [
+    -2.95,
+    0.38,
+    -0.66
+   ],
+   "color": "blue",
+   "size": 0.2,
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "sh_rect",
+   "kind": "stroke",
+   "at": [
+    -1.55,
+    0.75,
+    -0.66
+   ],
+   "points": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     2,
+     0,
+     0
+    ],
+    [
+     2,
+     1.1,
+     0
+    ],
+    [
+     0,
+     1.1,
+     0
+    ]
+   ],
+   "closed": true,
+   "width": 0.08,
+   "color": "green",
+   "hidden": true
+  },
+  {
+   "id": "sh_rect_n",
+   "kind": "letter",
+   "text": "rectangle",
+   "at": [
+    -0.55,
+    0.38,
+    -0.66
+   ],
+   "color": "green",
+   "size": 0.2,
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "sh_rh",
+   "kind": "stroke",
+   "at": [
+    0.95,
+    0.75,
+    -0.66
+   ],
+   "points": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     1.3,
+     0,
+     0
+    ],
+    [
+     1.95,
+     1.126,
+     0
+    ],
+    [
+     0.65,
+     1.126,
+     0
+    ]
+   ],
+   "closed": true,
+   "width": 0.08,
+   "color": "purple",
+   "hidden": true
+  },
+  {
+   "id": "sh_rh_n",
+   "kind": "letter",
+   "text": "rhombus",
+   "at": [
+    1.92,
+    0.38,
+    -0.66
+   ],
+   "color": "purple",
+   "size": 0.2,
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "sh_q",
+   "kind": "stroke",
+   "at": [
+    3.35,
+    0.75,
+    -0.66
+   ],
+   "points": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     1.8,
+     0,
+     0
+    ],
+    [
+     1.2,
+     1.15,
+     0
+    ],
+    [
+     0.5,
+     0.9,
+     0
+    ]
+   ],
+   "closed": true,
+   "width": 0.08,
+   "color": "red",
+   "hidden": true
+  },
+  {
+   "id": "sh_q_n",
+   "kind": "letter",
+   "text": "quadrilateral",
+   "at": [
+    4.25,
+    0.38,
+    -0.66
+   ],
+   "color": "red",
+   "size": 0.2,
+   "depth": 0.04,
+   "hidden": true
+  },
+  {
+   "id": "tester",
+   "kind": "angle",
+   "degrees": 90,
+   "radius": 0.45,
+   "label": false,
+   "color": "orange",
+   "at": [
+    -3.6,
+    0.75,
+    -0.62
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_sides",
+   "kind": "callout",
+   "text": "4 equal sides",
+   "point": [
+    -2.95,
+    2.05,
+    -0.66
+   ],
+   "offset": [
+    0.4,
+    0.75,
+    0.2
+   ],
+   "color": "blue",
+   "hidden": true
+  },
+  {
+   "id": "c_corners",
+   "kind": "callout",
+   "text": "4 square corners",
+   "point": [
+    -3.6,
+    0.85,
+    -0.66
+   ],
+   "offset": [
+    -0.2,
+    2,
+    0.2
+   ],
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "g33",
+   "kind": "grid",
+   "rows": 3,
+   "cols": 3,
+   "cell": 0.6,
+   "color": "sand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pen_a",
+   "kind": "grid",
+   "rows": 1,
+   "cols": 5,
+   "cell": 0.5,
+   "color": "sand",
+   "at": [
+    -2.75,
+    0,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pen_a_a",
+   "kind": "letter",
+   "text": "5 sq m",
+   "at": [
+    -2.75,
+    0.02,
+    1.1
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "pen_b",
+   "kind": "grid",
+   "rows": 2,
+   "cols": 4,
+   "cell": 0.5,
+   "color": "sand",
+   "at": [
+    0,
+    0,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pen_b_a",
+   "kind": "letter",
+   "text": "8 sq m",
+   "at": [
+    0,
+    0.02,
+    1.35
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "pen_c",
+   "kind": "grid",
+   "rows": 3,
+   "cols": 3,
+   "cell": 0.5,
+   "color": "sand",
+   "at": [
+    2.65,
+    0,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pen_c_a",
+   "kind": "letter",
+   "text": "9 sq m",
+   "at": [
+    2.65,
+    0.02,
+    1.6
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "sf0",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -2.75,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf1",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -2.25,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf2",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.75,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf3",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -1.25,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf4",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -0.75,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf5",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -0.25,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf6",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    0.25,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf7",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    0.75,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf8",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.25,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf9",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    1.75,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf10",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    2.25,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "sf11",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    2.75,
+    0,
+    2.1
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "w_area",
+   "kind": "letter",
+   "text": "AREA",
+   "at": [
+    0,
+    2.75,
+    0.3
+   ],
+   "color": "green",
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "w_per",
+   "kind": "letter",
+   "text": "PERIMETER",
+   "at": [
+    0,
+    2.75,
+    0.3
+   ],
+   "color": "orange",
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "j1",
+   "kind": "text_card",
+   "text": "Carpet for a floor",
+   "width": 6,
+   "size": 0.3,
+   "at": [
+    0,
+    1.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j2",
+   "kind": "text_card",
+   "text": "A ribbon round a picture frame",
+   "width": 6,
+   "size": 0.3,
+   "at": [
+    0,
+    1.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j3",
+   "kind": "text_card",
+   "text": "Tiles on a bathroom floor",
+   "width": 6,
+   "size": 0.3,
+   "at": [
+    0,
+    1.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j4",
+   "kind": "text_card",
+   "text": "A fence round a garden",
+   "width": 6,
+   "size": 0.3,
+   "at": [
+    0,
+    1.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "j5",
+   "kind": "text_card",
+   "text": "Paint for a wall",
+   "width": 6,
+   "size": 0.3,
+   "at": [
+    0,
+    1.75,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jp1",
+   "kind": "prop",
+   "model": "rug",
+   "at": [
+    0,
+    0.01,
+    0.7
+   ],
+   "size": 1.2,
+   "hidden": true
+  },
+  {
+   "id": "jp2",
+   "kind": "prop",
+   "model": "story_card",
+   "at": [
+    0,
+    0,
+    0.6
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "ribbon",
+   "kind": "stroke",
+   "at": [
+    0,
+    0,
+    0.66
+   ],
+   "points": [
+    [
+     -0.62,
+     0.08,
+     0
+    ],
+    [
+     0.62,
+     0.08,
+     0
+    ],
+    [
+     0.62,
+     0.98,
+     0
+    ],
+    [
+     -0.62,
+     0.98,
+     0
+    ]
+   ],
+   "closed": true,
+   "width": 0.06,
+   "color": "pink",
+   "pen": "dot",
+   "hidden": true
+  },
+  {
+   "id": "jp3",
+   "kind": "grid",
+   "rows": 3,
+   "cols": 4,
+   "cell": 0.35,
+   "color": "sky",
+   "at": [
+    0,
+    0,
+    0.7
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jp4a",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    -0.5,
+    0,
+    0.7
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "jp4b",
+   "kind": "prop",
+   "model": "fence",
+   "at": [
+    0.5,
+    0,
+    0.7
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "jp4c",
+   "kind": "prop",
+   "model": "flower",
+   "at": [
+    -0.4,
+    0,
+    0.2
+   ],
+   "size": 0.5,
+   "hidden": true
+  },
+  {
+   "id": "jp4d",
+   "kind": "prop",
+   "model": "flower",
+   "at": [
+    0.4,
+    0,
+    0.2
+   ],
+   "size": 0.5,
+   "color": "yellow",
+   "hidden": true
+  },
+  {
+   "id": "jp5",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0.1
+   ],
+   "color": "wall_warm",
+   "material": "matte",
+   "scale": [
+    2.2,
+    1.3,
+    0.1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "jp5b",
+   "kind": "prop",
+   "model": "paintbrush",
+   "at": [
+    1.45,
+    0,
+    0.5
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "g34",
+   "kind": "grid",
+   "rows": 3,
+   "cols": 4,
+   "cell": 0.5,
+   "color": "sand",
+   "at": [
+    -2.2,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sandbox",
+   "kind": "prop",
+   "model": "sandbox",
+   "at": [
+    -2.2,
+    0,
+    1.75
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "gl1",
+   "kind": "grid",
+   "rows": 2,
+   "cols": 4,
+   "cell": 0.5,
+   "color": "sky",
+   "at": [
+    2,
+    0,
+    -0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gl2",
+   "kind": "grid",
+   "rows": 2,
+   "cols": 2,
+   "cell": 0.5,
+   "color": "sky",
+   "at": [
+    1.5,
+    0.004,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gl1_c",
+   "kind": "callout",
+   "text": "8 sq m",
+   "point": [
+    2.5,
+    0.06,
+    -0.5
+   ],
+   "offset": [
+    1.2,
+    0.9,
+    -0.3
+   ],
+   "color": "blue",
+   "hidden": true
+  },
+  {
+   "id": "gl2_c",
+   "kind": "callout",
+   "text": "4 sq m",
+   "point": [
+    1.5,
+    0.06,
+    0.5
+   ],
+   "offset": [
+    -1.3,
+    0.9,
+    0.4
+   ],
+   "color": "blue",
+   "hidden": true
+  },
+  {
+   "id": "g23",
+   "kind": "grid",
+   "rows": 2,
+   "cols": 3,
+   "cell": 0.6,
+   "color": "sand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rect23",
+   "kind": "stroke",
+   "at": [
+    0,
+    0.09,
+    0
+   ],
+   "points": [
+    [
+     -0.9,
+     0,
+     -0.6
+    ],
+    [
+     0.9,
+     0,
+     -0.6
+    ],
+    [
+     0.9,
+     0,
+     0.6
+    ],
+    [
+     -0.9,
+     0,
+     0.6
+    ]
+   ],
+   "closed": true,
+   "width": 0.07,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "m_top",
+   "kind": "letter",
+   "text": "3 m",
+   "at": [
+    0,
+    0.02,
+    -1.45
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "m_bot",
+   "kind": "letter",
+   "text": "3 m",
+   "at": [
+    0,
+    0.02,
+    1.6
+   ],
+   "color": "ink",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "m_l",
+   "kind": "letter",
+   "text": "?",
+   "at": [
+    -1.6,
+    0.02,
+    0.15
+   ],
+   "color": "red",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.3
+  },
+  {
+   "id": "m_r",
+   "kind": "letter",
+   "text": "?",
+   "at": [
+    1.6,
+    0.02,
+    0.15
+   ],
+   "color": "red",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.3
+  },
+  {
+   "id": "m_l2",
+   "kind": "letter",
+   "text": "2 m",
+   "at": [
+    -1.8,
+    0.02,
+    0.15
+   ],
+   "color": "green",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "m_r2",
+   "kind": "letter",
+   "text": "2 m",
+   "at": [
+    1.8,
+    0.02,
+    0.15
+   ],
+   "color": "green",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.26
+  },
+  {
+   "id": "m_card",
+   "kind": "letter",
+   "text": "perimeter = 10 m",
+   "at": [
+    0,
+    0.02,
+    -2.25
+   ],
+   "color": "blue",
+   "rotation": [
+    -90,
+    0,
+    0
+   ],
+   "depth": 0.05,
+   "hidden": true,
+   "size": 0.3
+  },
+  {
+   "id": "g26",
+   "kind": "grid",
+   "rows": 2,
+   "cols": 6,
+   "cell": 0.5,
+   "color": "sand",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "recap",
+   "kind": "text_card",
+   "text": "AREA covers: count square units, or rows × columns (sq m).\nPERIMETER goes around: add the sides (m).\nSame perimeter, different areas!",
+   "width": 6.2,
+   "size": 0.27,
+   "at": [
+    0,
+    1.2,
+    -0.8
+   ],
+   "hidden": true
+  },
+  {
+   "id": "g45f",
+   "kind": "grid",
+   "rows": 4,
+   "cols": 5,
+   "cell": 0.6,
+   "color": "green",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "pg_sandbox",
+   "kind": "prop",
+   "model": "sandbox",
+   "at": [
+    -0.85,
+    0.05,
+    -0.55
+   ],
+   "size": 0.85,
+   "hidden": true
+  },
+  {
+   "id": "pg_slide",
+   "kind": "prop",
+   "model": "slide",
+   "at": [
+    0.75,
+    0.05,
+    -0.6
+   ],
+   "size": 0.85,
+   "hidden": true
+  },
+  {
+   "id": "pg_swing",
+   "kind": "prop",
+   "model": "swing",
+   "at": [
+    -0.8,
+    0.05,
+    0.6
+   ],
+   "size": 0.65,
+   "hidden": true
+  },
+  {
+   "id": "pg_seesaw",
+   "kind": "prop",
+   "model": "seesaw",
+   "at": [
+    0.8,
+    0.05,
+    0.65
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "pg_bench",
+   "kind": "prop",
+   "model": "bench",
+   "at": [
+    0,
+    0,
+    2.15
+   ],
+   "size": 0.8,
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 120,
+   "area": [
+    6,
+    3
+   ],
+   "height": 4
+  },
+  {
+   "id": "ribbon_prize",
+   "kind": "prop",
+   "model": "prize_ribbon",
+   "at": [
+    3.6,
+    0,
+    0.5
+   ],
+   "size": 1,
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "plan",
+   "title": "Fox's playground plan",
+   "beats": [
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Area and Perimeter Playground",
+       "style": "title",
+       "dur": 2.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 0
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Look, Robo! My plan for a new toy playground.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "easel",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "plan",
+       "at": 0.7
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3,
+        0,
+        0.4
+       ],
+       "at": 0.4,
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.5,
+       "to": "easel"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.5,
+       "to": "easel"
+      }
+     ]
+    },
+    {
+     "dur": 2.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The play area is four metres by five metres.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "easel",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "plan_5",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "plan_4",
+       "at": 2.4
+      },
+      {
+       "do": "highlight",
+       "target": "plan",
+       "at": 2.8,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I ordered eighteen fence pieces, one metre each. And eighteen grass mats.",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "easel"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "robo"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Same number. Done!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.4,
+        0,
+        1.4
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "hide",
+       "target": "easel"
+      },
+      {
+       "do": "hide",
+       "target": "plan"
+      },
+      {
+       "do": "hide",
+       "target": "plan_5"
+      },
+      {
+       "do": "hide",
+       "target": "plan_4"
+      },
+      {
+       "do": "build",
+       "target": "g45",
+       "dur": 1,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "g45",
+       "framing": "medium",
+       "height": 55,
+       "pad": 0.25
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "g45"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "g45"
+      }
+     ]
+    },
+    {
+     "dur": 4.2,
+     "do": [
+      {
+       "do": "drop",
+       "target": "f0",
+       "to": [
+        -1.2,
+        0,
+        -1.26
+       ],
+       "at": 0.2,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f1",
+       "to": [
+        -0.6000000000000001,
+        0,
+        -1.26
+       ],
+       "at": 0.38,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f2",
+       "to": [
+        0,
+        0,
+        -1.26
+       ],
+       "at": 0.56,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f3",
+       "to": [
+        0.6000000000000001,
+        0,
+        -1.26
+       ],
+       "at": 0.74,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f4",
+       "to": [
+        1.1999999999999997,
+        0,
+        -1.26
+       ],
+       "at": 0.9199999999999999,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f5",
+       "to": [
+        1.56,
+        0,
+        -0.8999999999999999
+       ],
+       "at": 1.0999999999999999,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f6",
+       "to": [
+        1.56,
+        0,
+        -0.30000000000000004
+       ],
+       "at": 1.28,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f7",
+       "to": [
+        1.56,
+        0,
+        0.30000000000000004
+       ],
+       "at": 1.46,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f8",
+       "to": [
+        1.56,
+        0,
+        0.9000000000000001
+       ],
+       "at": 1.64,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f9",
+       "to": [
+        1.1999999999999997,
+        0,
+        1.26
+       ],
+       "at": 1.8199999999999998,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f10",
+       "to": [
+        0.6000000000000001,
+        0,
+        1.26
+       ],
+       "at": 1.9999999999999998,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f11",
+       "to": [
+        0,
+        0,
+        1.26
+       ],
+       "at": 2.18,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f12",
+       "to": [
+        -0.6000000000000001,
+        0,
+        1.26
+       ],
+       "at": 2.3600000000000003,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f13",
+       "to": [
+        -1.2,
+        0,
+        1.26
+       ],
+       "at": 2.54,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f14",
+       "to": [
+        -1.56,
+        0,
+        0.9000000000000001
+       ],
+       "at": 2.72,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f15",
+       "to": [
+        -1.56,
+        0,
+        0.30000000000000004
+       ],
+       "at": 2.9,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "drop",
+       "target": "f16",
+       "to": [
+        -1.56,
+        0,
+        -0.30000000000000004
+       ],
+       "at": 3.08,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": "block"
+      },
+      {
+       "do": "drop",
+       "target": "f17",
+       "to": [
+        -1.56,
+        0,
+        -0.8999999999999999
+       ],
+       "at": 3.2600000000000002,
+       "height": 2.5,
+       "dur": 0.5,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "18 fence pieces",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The fence fits all the way round. Perfect!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "fox",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Will eighteen mats cover the play area? What do you think?",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "shade",
+       "target": "g45",
+       "cells": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+       ],
+       "color": "green",
+       "dur": 3.2,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "caption",
+       "text": "18 grass mats",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oh no! Two bare squares in the corner.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c19",
+       "at": 0.3,
+       "dur": 2.4,
+       "color": "red"
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c20",
+       "at": 0.3,
+       "dur": 2.4,
+       "color": "red"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g45",
+        "robo"
+       ],
+       "framing": "medium",
+       "height": 40
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Same number, but one fit and one didn't. Why? Let's build it and see!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "fox"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shapes",
+   "title": "Playground shapes",
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "g45"
+      },
+      {
+       "do": "hide",
+       "target": "f0",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f1",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f2",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f3",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f4",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f5",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f6",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f7",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f8",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f9",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f10",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f11",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f12",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f13",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f14",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f15",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f16",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f17",
+       "at": 0
+      },
+      {
+       "do": "show",
+       "target": "board",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -5.6,
+        0,
+        0.6
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        5.6,
+        0,
+        0.6
+       ],
+       "dur": 1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.25,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "board"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.4,
+       "to": "board"
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "First, playground shapes. Each of these has four sides.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "sh_sq",
+       "at": 0.8,
+       "dur": 1
+      },
+      {
+       "do": "draw",
+       "target": "sh_rect",
+       "at": 1.3,
+       "dur": 1
+      },
+      {
+       "do": "draw",
+       "target": "sh_rh",
+       "at": 1.8,
+       "dur": 1
+      },
+      {
+       "do": "draw",
+       "target": "sh_q",
+       "at": 2.3,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Any shape with four straight sides is a quadrilateral.",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "quadrilateral = 4 sides",
+       "style": "label",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "This is my corner tester. It checks for a square corner, also called a right angle.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2,
+        1.4,
+        4.6
+       ],
+       "lookAt": [
+        -2,
+        1.25,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "tester",
+       "at": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "square corner = right angle",
+       "style": "label",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The rectangle: every corner fits the tester. Four square corners.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "tester",
+       "to": [
+        -1.55,
+        0.75,
+        -0.61
+       ],
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "mark",
+       "target": "tester",
+       "at": 1.6,
+       "dur": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "sh_rect_n",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The square fits the tester too. And all four sides are the same length.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "tester",
+       "to": [
+        -3.6,
+        0.75,
+        -0.61
+       ],
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "mark",
+       "target": "tester",
+       "at": 1.4,
+       "dur": 1.4
+      },
+      {
+       "do": "draw",
+       "target": "c_sides",
+       "at": 2.6,
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "sh_sq_n",
+       "at": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What about this slanted one?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        2.2,
+        1.4,
+        4.6
+       ],
+       "lookAt": [
+        2.2,
+        1.25,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "c_sides"
+      },
+      {
+       "do": "move",
+       "target": "tester",
+       "to": [
+        0.95,
+        0.75,
+        -0.61
+       ],
+       "at": 0.8,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "No square corners. But its four sides are all equal. It's a rhombus.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "tester",
+       "result": "incorrect",
+       "at": 0.4,
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "sh_rh",
+       "at": 2.2,
+       "dur": 2,
+       "color": "purple"
+      },
+      {
+       "do": "pop",
+       "target": "sh_rh_n",
+       "at": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "This one has no equal sides and no square corners. It's still a quadrilateral.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "tester",
+       "to": [
+        3.35,
+        0.75,
+        -0.61
+       ],
+       "at": 0.4,
+       "dur": 0.8
+      },
+      {
+       "do": "mark",
+       "target": "tester",
+       "result": "incorrect",
+       "at": 1.3,
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "sh_q_n",
+       "at": 2.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "So a square is a rectangle and a rhombus?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.2
+       ],
+       "lookAt": [
+        0,
+        1.25,
+        -0.7
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "sh_sq"
+      }
+     ]
+    },
+    {
+     "dur": 3.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Yes! Four square corners make it a rectangle. Four equal sides make it a rhombus.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "sh_sq",
+       "at": 0.4,
+       "dur": 3.5,
+       "color": "blue"
+      },
+      {
+       "do": "draw",
+       "target": "c_corners",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "draw",
+       "target": "c_sides",
+       "at": 2.6,
+       "dur": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Our play area is a rectangle. Now let's measure it two ways.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "tester",
+       "at": 2.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "area",
+   "title": "Area: cover it with squares",
+   "musicGain": 0.14,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "board"
+      },
+      {
+       "do": "hide",
+       "target": "sh_sq"
+      },
+      {
+       "do": "hide",
+       "target": "sh_sq_n"
+      },
+      {
+       "do": "hide",
+       "target": "sh_rect"
+      },
+      {
+       "do": "hide",
+       "target": "sh_rect_n"
+      },
+      {
+       "do": "hide",
+       "target": "sh_rh"
+      },
+      {
+       "do": "hide",
+       "target": "sh_rh_n"
+      },
+      {
+       "do": "hide",
+       "target": "sh_q"
+      },
+      {
+       "do": "hide",
+       "target": "sh_q_n"
+      },
+      {
+       "do": "hide",
+       "target": "c_sides"
+      },
+      {
+       "do": "hide",
+       "target": "c_corners"
+      },
+      {
+       "do": "shade",
+       "target": "g45",
+       "cells": [],
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "g45",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        1.6
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.6,
+        0,
+        1.6
+       ],
+       "dur": 1
+      },
+      {
+       "do": "shot",
+       "target": "g45",
+       "framing": "medium",
+       "height": 58,
+       "pad": 0.3
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "g45"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "g45"
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Area is how many unit squares cover a shape.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "area",
+       "style": "label",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Here is one unit square. Each side is one metre long.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "unit",
+       "at": 0.4,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.516143993916109,
+        5.450395128461215
+       ],
+       "lookAt": [
+        0,
+        0,
+        2.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It covers one square metre. We write that as one sq m.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "highlight",
+       "target": "unit",
+       "at": 0.3,
+       "dur": 2.4,
+       "color": "green"
+      },
+      {
+       "do": "caption",
+       "text": "1 square metre = 1 sq m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let's lay squares row by row. Count with me!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "unit",
+       "at": 1.2
+      },
+      {
+       "do": "shot",
+       "target": "g45",
+       "framing": "medium",
+       "height": 68,
+       "pad": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 4.6,
+     "do": [
+      {
+       "do": "shade",
+       "target": "g45",
+       "to": 5,
+       "color": "green",
+       "at": 0,
+       "dur": 0.6,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 0.5,
+       "dur": 1
+      },
+      {
+       "do": "shade",
+       "target": "g45",
+       "to": 10,
+       "color": "green",
+       "at": 1.1,
+       "dur": 0.6,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "caption",
+       "text": "10",
+       "style": "count",
+       "at": 1.6,
+       "dur": 1
+      },
+      {
+       "do": "shade",
+       "target": "g45",
+       "to": 15,
+       "color": "green",
+       "at": 2.2,
+       "dur": 0.6,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "caption",
+       "text": "15",
+       "style": "count",
+       "at": 2.7,
+       "dur": 1
+      },
+      {
+       "do": "shade",
+       "target": "g45",
+       "to": 20,
+       "color": "green",
+       "at": 3.3000000000000003,
+       "dur": 0.6,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "caption",
+       "text": "20",
+       "style": "count",
+       "at": 3.8000000000000003,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Five, ten, fifteen, twenty.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Twenty squares cover it. The area is twenty square metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "area = 20 sq m",
+       "style": "label",
+       "at": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "g45",
+       "at": 2.6,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Counting takes a while. Is there a faster way?",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried"
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It has four rows, and five squares in each row.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c1",
+       "at": 0.6,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c6",
+       "at": 0.9,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c11",
+       "at": 1.2,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c16",
+       "at": 1.5,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "4 rows of 5",
+       "style": "label",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Rows times columns: four times five is twenty square metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "4 × 5 = 20 sq m",
+       "style": "label",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "So my eighteen mats were two short. Twenty squares need twenty mats!",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c19",
+       "at": 0.6,
+       "dur": 1.6
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c20",
+       "at": 0.6,
+       "dur": 1.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g45",
+        "robo"
+       ],
+       "framing": "medium",
+       "height": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Fun fact: bees build honeycomb from six-sided cells. They fit with no gaps, like floor tiles.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "fox"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "perimeter",
+   "title": "Perimeter: walk the edge",
+   "musicGain": 0.14,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "g45",
+        "s45_top",
+        "s45_bottom",
+        "s45_left",
+        "s45_right"
+       ],
+       "framing": "medium",
+       "height": 68,
+       "fit": "exact",
+       "pad": 0.5
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "g45"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "g45"
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Perimeter is the distance all the way around the edge.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "perimeter",
+       "style": "label",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Watch the glowing dot walk the edge, one metre at a time.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "g45#c1",
+       "at": 1,
+       "dur": 1.5,
+       "color": "orange"
+      }
+     ]
+    },
+    {
+     "dur": 9.6,
+     "do": [
+      {
+       "do": "trace",
+       "target": "g45",
+       "dur": 9,
+       "sound": "tick",
+       "count": true
+      },
+      {
+       "do": "pop",
+       "target": "s45_top",
+       "at": 2.5
+      },
+      {
+       "do": "pop",
+       "target": "s45_right",
+       "at": 4.5
+      },
+      {
+       "do": "pop",
+       "target": "s45_bottom",
+       "at": 7
+      },
+      {
+       "do": "pop",
+       "target": "s45_left",
+       "at": 9
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 2.5,
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "9",
+       "style": "count",
+       "at": 4.5,
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "14",
+       "style": "count",
+       "at": 7,
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "18",
+       "style": "count",
+       "at": 9,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Add the sides: four plus five plus four plus five is eighteen metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "highlight",
+       "target": "s45_top",
+       "at": 0.8,
+       "dur": 1,
+       "color": "orange"
+      },
+      {
+       "do": "highlight",
+       "target": "s45_right",
+       "at": 1.4,
+       "dur": 1,
+       "color": "orange"
+      },
+      {
+       "do": "highlight",
+       "target": "s45_bottom",
+       "at": 2,
+       "dur": 1,
+       "color": "orange"
+      },
+      {
+       "do": "highlight",
+       "target": "s45_left",
+       "at": 2.5999999999999996,
+       "dur": 1,
+       "color": "orange"
+      },
+      {
+       "do": "caption",
+       "text": "4 + 5 + 4 + 5 = 18 m",
+       "style": "label",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 1.26,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Eighteen metres of edge. That's why eighteen fence pieces fit!",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "f0",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "f1",
+       "at": 0.63
+      },
+      {
+       "do": "show",
+       "target": "f2",
+       "at": 0.6599999999999999
+      },
+      {
+       "do": "show",
+       "target": "f3",
+       "at": 0.69
+      },
+      {
+       "do": "show",
+       "target": "f4",
+       "at": 0.72
+      },
+      {
+       "do": "show",
+       "target": "f5",
+       "at": 0.75
+      },
+      {
+       "do": "show",
+       "target": "f6",
+       "at": 0.78
+      },
+      {
+       "do": "show",
+       "target": "f7",
+       "at": 0.8099999999999999
+      },
+      {
+       "do": "show",
+       "target": "f8",
+       "at": 0.84
+      },
+      {
+       "do": "show",
+       "target": "f9",
+       "at": 0.87
+      },
+      {
+       "do": "show",
+       "target": "f10",
+       "at": 0.8999999999999999
+      },
+      {
+       "do": "show",
+       "target": "f11",
+       "at": 0.9299999999999999
+      },
+      {
+       "do": "show",
+       "target": "f12",
+       "at": 0.96
+      },
+      {
+       "do": "show",
+       "target": "f13",
+       "at": 0.99
+      },
+      {
+       "do": "show",
+       "target": "f14",
+       "at": 1.02
+      },
+      {
+       "do": "show",
+       "target": "f15",
+       "at": 1.0499999999999998
+      },
+      {
+       "do": "show",
+       "target": "f16",
+       "at": 1.08
+      },
+      {
+       "do": "show",
+       "target": "f17",
+       "at": 1.1099999999999999
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 0.7
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g45",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 38,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Perimeter is a length, so we measure it in metres.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g45",
+        "s45_top",
+        "s45_bottom",
+        "s45_left",
+        "s45_right"
+       ],
+       "framing": "medium",
+       "height": 58,
+       "fit": "exact",
+       "pad": 0.1
+      },
+      {
+       "do": "draw",
+       "target": "edge_c",
+       "at": 1,
+       "dur": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Area counts squares, so we measure it in square metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "draw",
+       "target": "sq_c",
+       "at": 0.6,
+       "dur": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "perimeter: m    area: sq m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The fence goes around. The mats cover inside. Two different jobs!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Fun fact: perimeter comes from two Greek words, peri, around, and metron, measure.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "peri = around, metron = measure",
+       "style": "label",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "edge_c",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "sq_c",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mixup",
+   "title": "Robo's edge mix-up",
+   "musicGain": 0.14,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "g45"
+      },
+      {
+       "do": "hide",
+       "target": "f0",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f1",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f2",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f3",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f4",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f5",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f6",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f7",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f8",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f9",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f10",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f11",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f12",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f13",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f14",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f15",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f16",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f17",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "s45_top"
+      },
+      {
+       "do": "hide",
+       "target": "s45_right"
+      },
+      {
+       "do": "hide",
+       "target": "s45_bottom"
+      },
+      {
+       "do": "hide",
+       "target": "s45_left"
+      },
+      {
+       "do": "build",
+       "target": "g33",
+       "at": 0.3,
+       "dur": 0.8,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": "g33",
+       "framing": "medium",
+       "height": 65,
+       "pad": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "My turn! Here's a three by three square. I'll find its perimeter.",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "g33"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "g33"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I'll count the squares along the edge.",
+       "caption": true,
+       "at": 0
+      }
+     ]
+    },
+    {
+     "dur": 5.2,
+     "do": [
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1
+       ],
+       "color": "pink",
+       "at": 0,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1,
+        2
+       ],
+       "color": "pink",
+       "at": 0.6,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1,
+        2,
+        3
+       ],
+       "color": "pink",
+       "at": 1.2,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1,
+        2,
+        3,
+        6
+       ],
+       "color": "pink",
+       "at": 1.7999999999999998,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1,
+        2,
+        3,
+        6,
+        9
+       ],
+       "color": "pink",
+       "at": 2.4,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1,
+        2,
+        3,
+        6,
+        9,
+        8
+       ],
+       "color": "pink",
+       "at": 3,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1,
+        2,
+        3,
+        6,
+        9,
+        8,
+        7
+       ],
+       "color": "pink",
+       "at": 3.5999999999999996,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [
+        1,
+        2,
+        3,
+        6,
+        9,
+        8,
+        7,
+        4
+       ],
+       "color": "pink",
+       "at": 4.2,
+       "dur": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 1.9999999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 2.6,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "6",
+       "style": "count",
+       "at": 3.2,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "7",
+       "style": "count",
+       "at": 3.8,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "8",
+       "style": "count",
+       "at": 4.4,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Eight squares, so the perimeter is eight metres!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hmm. How many edge units are there really? Think!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "g33",
+       "result": "incorrect",
+       "at": 0.2,
+       "dur": 1.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 6.6,
+     "do": [
+      {
+       "do": "trace",
+       "target": "g33",
+       "dur": 6,
+       "sound": "tick",
+       "count": true
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Walk the edge, not the squares.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Three on each side, twelve in all. The perimeter is twelve metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "3 + 3 + 3 + 3 = 12 m",
+       "style": "label",
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "g33",
+       "at": 2.6,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Look at a corner square. It touches two edges, so it has two edge units.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "g33#c1",
+       "at": 0.5,
+       "dur": 3.5,
+       "color": "orange"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.3,
+        3.4711588243503693,
+        1.7936279424668788
+       ],
+       "lookAt": [
+        -0.3,
+        0,
+        0.175
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I counted each corner once. Count the edges, not the squares!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g33",
+        "robo"
+       ],
+       "framing": "medium",
+       "height": 35
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Around-and-Inside chant",
+   "music": "playful",
+   "musicGain": 0.22,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "shade",
+       "target": "g33",
+       "cells": [],
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -2.6,
+        0,
+        1.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        2.6,
+        0,
+        1.2
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.7,
+        6.2
+       ],
+       "lookAt": [
+        0,
+        0.5,
+        0
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Walk around the edge, perimeter!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "trace",
+       "target": "g33",
+       "at": 0.2,
+       "dur": 2.4,
+       "sound": "drum"
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Cover up the middle, area!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "to": 9,
+       "color": "green",
+       "at": 0.2,
+       "dur": 1.8,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Covering inside?",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Area!",
+       "style": "title",
+       "dur": 1.6,
+       "color": "green"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "g33",
+       "at": 0.1,
+       "deg": 6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Going around?",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Perimeter!",
+       "style": "title",
+       "dur": 1.6,
+       "color": "orange"
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1
+      },
+      {
+       "do": "trace",
+       "target": "g33",
+       "at": 0,
+       "dur": 1.6,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One more time, everybody!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "to": 0,
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Walk around the edge, perimeter!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "trace",
+       "target": "g33",
+       "at": 0.2,
+       "dur": 2.4,
+       "sound": "drum"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Cover up the middle, area!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "g33",
+       "to": 9,
+       "color": "green",
+       "at": 0.2,
+       "dur": 1.8,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.4,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Paint the middle with a flat hand. Walk the edge with two fingers!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pens",
+   "title": "Sheep's pen puzzle",
+   "beats": [
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "g33"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle"
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        5.6,
+        0,
+        -0.4
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -6.6,
+        0,
+        1
+       ],
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "sheep",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "sheep",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1.2,
+       "yaw": -10
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.6,
+       "to": "sheep"
+      }
+     ]
+    },
+    {
+     "dur": 2.53,
+     "do": [
+      {
+       "do": "say",
+       "who": "sheep",
+       "text": "Hello! I have exactly twelve fence pieces, and I want the grassiest pen.",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "sheep",
+       "at": 0.2,
+       "height": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "sf0",
+       "at": 1.5,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "sf1",
+       "at": 1.58,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf2",
+       "at": 1.66,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf3",
+       "at": 1.74,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf4",
+       "at": 1.82,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf5",
+       "at": 1.9,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf6",
+       "at": 1.98,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf7",
+       "at": 2.06,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf8",
+       "at": 2.14,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf9",
+       "at": 2.2199999999999998,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf10",
+       "at": 2.3,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "sf11",
+       "at": 2.38,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Twelve pieces make a perimeter of twelve metres. Let's try three pens.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "sf0",
+        "sf11",
+        "sheep"
+       ],
+       "framing": "medium",
+       "height": 35,
+       "dur": 1.4
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "pen_b"
+      },
+      {
+       "do": "look",
+       "target": "sheep",
+       "at": 0.4,
+       "to": "pen_b"
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "sheep",
+       "text": "Which pen will hold the most grass? Think!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "sheep"
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        6.6,
+        0,
+        1
+       ],
+       "at": 1,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "build",
+       "target": "pen_a",
+       "dur": 0.8,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "sf0",
+       "to": [
+        -3.75,
+        0,
+        -0.2
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf0",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 1.35,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf1",
+       "to": [
+        -3.25,
+        0,
+        -0.2
+       ],
+       "at": 0.92,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.92,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf2",
+       "to": [
+        -2.75,
+        0,
+        -0.2
+       ],
+       "at": 1.04,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.04,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf3",
+       "to": [
+        -2.25,
+        0,
+        -0.2
+       ],
+       "at": 1.1600000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.1600000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 1.7100000000000002,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf4",
+       "to": [
+        -1.75,
+        0,
+        -0.2
+       ],
+       "at": 1.28,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf4",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.28,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf5",
+       "to": [
+        -1.45,
+        0,
+        0.1
+       ],
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf5",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf6",
+       "to": [
+        -1.75,
+        0,
+        0.39999999999999997
+       ],
+       "at": 1.52,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf6",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.52,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.0700000000000003,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf7",
+       "to": [
+        -2.25,
+        0,
+        0.39999999999999997
+       ],
+       "at": 1.6400000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf7",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.6400000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf8",
+       "to": [
+        -2.75,
+        0,
+        0.39999999999999997
+       ],
+       "at": 1.76,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf8",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.76,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf9",
+       "to": [
+        -3.25,
+        0,
+        0.39999999999999997
+       ],
+       "at": 1.8800000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf9",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.8800000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.43,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf10",
+       "to": [
+        -3.75,
+        0,
+        0.39999999999999997
+       ],
+       "at": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf10",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf11",
+       "to": [
+        -4.05,
+        0,
+        0.1
+       ],
+       "at": 2.12,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf11",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 2.12,
+       "dur": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2.75,
+        4.15967591164727,
+        3.5742539910638698
+       ],
+       "lookAt": [
+        -2.75,
+        0,
+        0.975
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "sheep",
+       "at": 0.2,
+       "to": "pen_a"
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Pen A is one by five. One plus five plus one plus five is twelve metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "1 + 5 + 1 + 5 = 12 m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One row of five is five square metres.",
+       "caption": false
+      },
+      {
+       "do": "shade",
+       "target": "pen_a",
+       "to": 5,
+       "color": "green",
+       "at": 0.2,
+       "dur": 1.25,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "pop",
+       "target": "pen_a_a",
+       "at": 1.65
+      },
+      {
+       "do": "caption",
+       "text": "1 × 5 = 5 sq m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "build",
+       "target": "pen_b",
+       "dur": 0.8,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "sf0",
+       "to": [
+        -0.75,
+        0,
+        -0.45
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf0",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 1.35,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf1",
+       "to": [
+        -0.25,
+        0,
+        -0.45
+       ],
+       "at": 0.92,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.92,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf2",
+       "to": [
+        0.25,
+        0,
+        -0.45
+       ],
+       "at": 1.04,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.04,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf3",
+       "to": [
+        0.75,
+        0,
+        -0.45
+       ],
+       "at": 1.1600000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.1600000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 1.7100000000000002,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf4",
+       "to": [
+        1.05,
+        0,
+        -0.15000000000000002
+       ],
+       "at": 1.28,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf4",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 1.28,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf5",
+       "to": [
+        1.05,
+        0,
+        0.35
+       ],
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf5",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf6",
+       "to": [
+        0.75,
+        0,
+        0.65
+       ],
+       "at": 1.52,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf6",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.52,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.0700000000000003,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf7",
+       "to": [
+        0.25,
+        0,
+        0.65
+       ],
+       "at": 1.6400000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf7",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.6400000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf8",
+       "to": [
+        -0.25,
+        0,
+        0.65
+       ],
+       "at": 1.76,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf8",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.76,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf9",
+       "to": [
+        -0.75,
+        0,
+        0.65
+       ],
+       "at": 1.8800000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf9",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.8800000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.43,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf10",
+       "to": [
+        -1.05,
+        0,
+        0.35
+       ],
+       "at": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf10",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf11",
+       "to": [
+        -1.05,
+        0,
+        -0.15000000000000002
+       ],
+       "at": 2.12,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf11",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 2.12,
+       "dur": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.2572014427052585,
+        3.7601947064506884
+       ],
+       "lookAt": [
+        0,
+        0,
+        1.1
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Pen B is two by four. Two plus four plus two plus four is twelve metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "2 + 4 + 2 + 4 = 12 m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two rows of four is eight square metres.",
+       "caption": false
+      },
+      {
+       "do": "shade",
+       "target": "pen_b",
+       "to": 8,
+       "color": "green",
+       "at": 0.2,
+       "dur": 2,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "pop",
+       "target": "pen_b_a",
+       "at": 2.4
+      },
+      {
+       "do": "caption",
+       "text": "2 × 4 = 8 sq m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "build",
+       "target": "pen_c",
+       "dur": 0.8,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "sf0",
+       "to": [
+        2.15,
+        0,
+        -0.7000000000000001
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf0",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.8,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 1.35,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf1",
+       "to": [
+        2.65,
+        0,
+        -0.7000000000000001
+       ],
+       "at": 0.92,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf1",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 0.92,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf2",
+       "to": [
+        3.15,
+        0,
+        -0.7000000000000001
+       ],
+       "at": 1.04,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.04,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf3",
+       "to": [
+        3.4499999999999997,
+        0,
+        -0.4
+       ],
+       "at": 1.1600000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf3",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 1.1600000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 1.7100000000000002,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf4",
+       "to": [
+        3.4499999999999997,
+        0,
+        0.09999999999999998
+       ],
+       "at": 1.28,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf4",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 1.28,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf5",
+       "to": [
+        3.4499999999999997,
+        0,
+        0.6
+       ],
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf5",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf6",
+       "to": [
+        3.15,
+        0,
+        0.9
+       ],
+       "at": 1.52,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf6",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.52,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.0700000000000003,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf7",
+       "to": [
+        2.65,
+        0,
+        0.9
+       ],
+       "at": 1.6400000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf7",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.6400000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf8",
+       "to": [
+        2.15,
+        0,
+        0.9
+       ],
+       "at": 1.76,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf8",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.76,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf9",
+       "to": [
+        1.8499999999999999,
+        0,
+        0.6
+       ],
+       "at": 1.8800000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf9",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 1.8800000000000001,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.43,
+       "volume": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf10",
+       "to": [
+        1.8499999999999999,
+        0,
+        0.09999999999999998
+       ],
+       "at": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf10",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 2,
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "sf11",
+       "to": [
+        1.8499999999999999,
+        0,
+        -0.4
+       ],
+       "at": 2.12,
+       "dur": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "sf11",
+       "to": [
+        0,
+        90,
+        0
+       ],
+       "at": 2.12,
+       "dur": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        2.65,
+        4.978042324438221,
+        4.335626081048913
+       ],
+       "lookAt": [
+        2.65,
+        0,
+        1.225
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Pen C is three by three. Three plus three plus three plus three is twelve metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "3 + 3 + 3 + 3 = 12 m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three rows of three is nine square metres!",
+       "caption": false
+      },
+      {
+       "do": "shade",
+       "target": "pen_c",
+       "to": 9,
+       "color": "green",
+       "at": 0.2,
+       "dur": 2.25,
+       "sound": "sprout_spring"
+      },
+      {
+       "do": "pop",
+       "target": "pen_c_a",
+       "at": 2.65
+      },
+      {
+       "do": "caption",
+       "text": "3 × 3 = 9 sq m",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Same fence, three different areas: five, eight and nine square metres!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "pen_a",
+        "pen_b",
+        "pen_c",
+        "pen_a_a",
+        "pen_c_a"
+       ],
+       "framing": "medium",
+       "height": 45,
+       "fit": "exact",
+       "dur": 1.4
+      },
+      {
+       "do": "highlight",
+       "target": "pen_a_a",
+       "at": 1,
+       "dur": 1.4,
+       "color": "green"
+      },
+      {
+       "do": "highlight",
+       "target": "pen_b_a",
+       "at": 1.8,
+       "dur": 1.4,
+       "color": "green"
+      },
+      {
+       "do": "highlight",
+       "target": "pen_c_a",
+       "at": 2.6,
+       "dur": 1.4,
+       "color": "green"
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "sheep",
+       "text": "The square pen has the most grass. I'll take that one!",
+       "voice": "deep",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "happy"
+      },
+      {
+       "do": "mark",
+       "target": "pen_c",
+       "at": 0.5,
+       "dur": 1.8
+      },
+      {
+       "do": "path",
+       "target": "sheep",
+       "points": [
+        [
+         4.4,
+         0,
+         -0.6
+        ],
+        [
+         3.8,
+         0,
+         -0.4
+        ],
+        [
+         2.65,
+         0,
+         0.1
+        ]
+       ],
+       "at": 1.4,
+       "dur": 2,
+       "face": true
+      },
+      {
+       "do": "grow",
+       "target": "sheep",
+       "to": 0.75,
+       "at": 1.4,
+       "dur": 2,
+       "ease": "sineInOut"
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Same perimeter doesn't mean same area. Wow!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jobs",
+   "title": "Area or perimeter?",
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "pen_a"
+      },
+      {
+       "do": "hide",
+       "target": "pen_a_a"
+      },
+      {
+       "do": "hide",
+       "target": "pen_b"
+      },
+      {
+       "do": "hide",
+       "target": "pen_b_a"
+      },
+      {
+       "do": "hide",
+       "target": "pen_c"
+      },
+      {
+       "do": "hide",
+       "target": "pen_c_a"
+      },
+      {
+       "do": "hide",
+       "target": "sf0"
+      },
+      {
+       "do": "hide",
+       "target": "sf1"
+      },
+      {
+       "do": "hide",
+       "target": "sf2"
+      },
+      {
+       "do": "hide",
+       "target": "sf3"
+      },
+      {
+       "do": "hide",
+       "target": "sf4"
+      },
+      {
+       "do": "hide",
+       "target": "sf5"
+      },
+      {
+       "do": "hide",
+       "target": "sf6"
+      },
+      {
+       "do": "hide",
+       "target": "sf7"
+      },
+      {
+       "do": "hide",
+       "target": "sf8"
+      },
+      {
+       "do": "hide",
+       "target": "sf9"
+      },
+      {
+       "do": "hide",
+       "target": "sf10"
+      },
+      {
+       "do": "hide",
+       "target": "sf11"
+      },
+      {
+       "do": "hide",
+       "target": "sheep"
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.4,
+        0,
+        1.4
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.4,
+        0,
+        1.4
+       ],
+       "dur": 1
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Real jobs! Does each job need area, covering, or perimeter, going around?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox"
+       ],
+       "framing": "wide",
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Carpet for a floor?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "j1",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "jp1",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "j1",
+        "jp1",
+        "w_area"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "j1"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "j1"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Area! Carpet covers the floor.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_area",
+       "at": 0.2,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "j1"
+      },
+      {
+       "do": "hide",
+       "target": "w_area"
+      },
+      {
+       "do": "hide",
+       "target": "jp1"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A ribbon round a picture frame?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "j2",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "jp2",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "j2",
+        "jp2",
+        "w_per"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "j2"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "j2"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Perimeter! The ribbon goes around the frame.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_per",
+       "at": 0.2,
+       "sound": "ding"
+      },
+      {
+       "do": "draw",
+       "target": "ribbon",
+       "at": 0.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "j2"
+      },
+      {
+       "do": "hide",
+       "target": "w_per"
+      },
+      {
+       "do": "hide",
+       "target": "jp2"
+      },
+      {
+       "do": "hide",
+       "target": "ribbon"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Tiles on a bathroom floor?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "j3",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "jp3",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "j3",
+        "jp3",
+        "w_area"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "j3"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "j3"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Area! Tiles cover the floor.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_area",
+       "at": 0.2,
+       "sound": "ding"
+      },
+      {
+       "do": "build",
+       "target": "jp3",
+       "at": 0.5,
+       "dur": 1.2,
+       "sound": false
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "j3"
+      },
+      {
+       "do": "hide",
+       "target": "w_area"
+      },
+      {
+       "do": "hide",
+       "target": "jp3"
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A fence round a garden?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "j4",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "jp4a",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp4b",
+       "at": 0.55,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp4c",
+       "at": 0.7,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp4d",
+       "at": 0.85,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "j4",
+        "jp4a",
+        "jp4b",
+        "jp4c",
+        "jp4d",
+        "w_per"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "j4"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "j4"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Perimeter! A fence goes around.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_per",
+       "at": 0.2,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "j4"
+      },
+      {
+       "do": "hide",
+       "target": "w_per"
+      },
+      {
+       "do": "hide",
+       "target": "jp4a"
+      },
+      {
+       "do": "hide",
+       "target": "jp4b"
+      },
+      {
+       "do": "hide",
+       "target": "jp4c"
+      },
+      {
+       "do": "hide",
+       "target": "jp4d"
+      }
+     ]
+    },
+    {
+     "dur": 0.7,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Paint for a wall?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "j5",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "jp5",
+       "at": 0.4,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "jp5b",
+       "at": 0.55,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "j5",
+        "jp5",
+        "jp5b",
+        "w_area"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "j5"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "j5"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Area! Paint covers the wall.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_area",
+       "at": 0.2,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "j5"
+      },
+      {
+       "do": "hide",
+       "target": "w_area"
+      },
+      {
+       "do": "hide",
+       "target": "jp5"
+      },
+      {
+       "do": "hide",
+       "target": "jp5b"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: Finish the Playground",
+   "music": "playful",
+   "musicGain": 0.18,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Challenge time! Help us finish the playground. First, the sandbox.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "g34",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "sandbox",
+       "at": 0.9
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -6.6,
+        0,
+        1
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        6.6,
+        0,
+        1
+       ],
+       "dur": 1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g34",
+        "sandbox"
+       ],
+       "framing": "medium",
+       "height": 58,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "It's three metres by four metres. What is its area?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.2,
+     "do": [
+      {
+       "do": "shade",
+       "target": "g34",
+       "to": 12,
+       "color": "yellow",
+       "dur": 2.6,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "3 × 4 = 12 sq m",
+       "style": "label",
+       "at": 2.2,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Three rows of four: twelve square metres.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "g34",
+       "at": 0.8,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now its perimeter. How far around?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 6.38,
+     "do": [
+      {
+       "do": "trace",
+       "target": "g34",
+       "dur": 5.88,
+       "sound": "tick",
+       "count": true
+      },
+      {
+       "do": "caption",
+       "text": "3 + 4 + 3 + 4 = 14 m",
+       "style": "label",
+       "at": 5.4799999999999995,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Fourteen metres. Square metres for area, metres for perimeter.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "g34",
+       "at": 0.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "g34"
+      },
+      {
+       "do": "hide",
+       "target": "sandbox"
+      },
+      {
+       "do": "show",
+       "target": "gl1"
+      },
+      {
+       "do": "show",
+       "target": "gl2",
+       "at": 0.15
+      },
+      {
+       "do": "shot",
+       "target": [
+        "gl1",
+        "gl2"
+       ],
+       "framing": "medium",
+       "height": 60,
+       "pad": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Next, an L-shaped splash pad. How can we find its area?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Split it into two rectangles. Two rows of four is eight square metres.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shade",
+       "target": "gl1",
+       "to": 8,
+       "color": "blue",
+       "at": 0.6,
+       "dur": 1.6,
+       "sound": "pop"
+      },
+      {
+       "do": "draw",
+       "target": "gl1_c",
+       "at": 2.4,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Two rows of two is four. Eight plus four is twelve square metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "shade",
+       "target": "gl2",
+       "to": 4,
+       "color": "blue",
+       "at": 0.3,
+       "dur": 0.9,
+       "sound": "pop"
+      },
+      {
+       "do": "draw",
+       "target": "gl2_c",
+       "at": 1.2,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "8 + 4 = 12 sq m",
+       "style": "label",
+       "at": 2.4
+      },
+      {
+       "do": "mark",
+       "target": "gl2",
+       "at": 3.6,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "gl1"
+      },
+      {
+       "do": "hide",
+       "target": "gl2"
+      },
+      {
+       "do": "hide",
+       "target": "gl1_c"
+      },
+      {
+       "do": "hide",
+       "target": "gl2_c"
+      },
+      {
+       "do": "draw",
+       "target": "rect23",
+       "at": 0.4,
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "m_card",
+       "at": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g23",
+        "m_card",
+        "m_bot",
+        "m_l2",
+        "m_r2"
+       ],
+       "framing": "medium",
+       "height": 52,
+       "fit": "exact",
+       "pad": 0.35
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Last one. The rectangle's perimeter is ten metres. One side is three metres.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "m_top",
+       "at": 2.4
+      },
+      {
+       "do": "pop",
+       "target": "m_bot",
+       "at": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "How long is each missing side?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "m_l",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "m_r",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Three plus three is six. Ten take away six leaves four metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "caption",
+       "text": "3 + ? + 3 + ? = 10",
+       "style": "label",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Two equal sides share four, so each one is two metres.",
+       "voice": "squeaky",
+       "caption": false
+      },
+      {
+       "do": "hide",
+       "target": "m_l",
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "m_r",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "m_l2",
+       "at": 1.3
+      },
+      {
+       "do": "pop",
+       "target": "m_r2",
+       "at": 1.5
+      },
+      {
+       "do": "caption",
+       "text": "3 + 2 + 3 + 2 = 10 m",
+       "style": "label",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 4.7,
+     "do": [
+      {
+       "do": "show",
+       "target": "g23"
+      },
+      {
+       "do": "trace",
+       "target": "g23",
+       "at": 0.3,
+       "dur": 4.2,
+       "sound": "tick",
+       "count": true
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Measure twice: count the edge.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "mark",
+       "target": "g23",
+       "dur": 1.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "rect23"
+      },
+      {
+       "do": "hide",
+       "target": "m_card"
+      },
+      {
+       "do": "hide",
+       "target": "m_top"
+      },
+      {
+       "do": "hide",
+       "target": "m_bot"
+      },
+      {
+       "do": "hide",
+       "target": "m_l2"
+      },
+      {
+       "do": "hide",
+       "target": "m_r2"
+      },
+      {
+       "do": "hide",
+       "target": "g23"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.8,
+        0,
+        1.6
+       ],
+       "dur": 1
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.8,
+        0,
+        1.6
+       ],
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "g26",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "g26",
+       "framing": "medium",
+       "height": 55,
+       "pad": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Quiz! A rectangle is two squares by six squares. What is its area?",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two times six: twelve square units!",
+       "caption": false
+      },
+      {
+       "do": "shade",
+       "target": "g26",
+       "to": 12,
+       "color": "green",
+       "at": 0.2,
+       "dur": 1.4,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "2 × 6 = 12 square units",
+       "style": "label",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And its perimeter?",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.8,
+     "do": [
+      {
+       "do": "trace",
+       "target": "g26",
+       "dur": 4,
+       "sound": "tick",
+       "count": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two plus six plus two plus six is sixteen units!",
+       "caption": false,
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "2 + 6 + 2 + 6 = 16 units",
+       "style": "label",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A ribbon round a card: area or perimeter?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "g26",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox"
+       ],
+       "framing": "wide",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Perimeter! It goes around.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_per",
+       "at": 0.2,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Is a square a rectangle?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "w_per",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Yes! It has four sides and four square corners.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Two pens both have twelve metres of fence. Same area?",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Not always! Two by four holds eight square metres. Three by three holds nine.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 3.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Area covers: count squares, or rows times columns. Perimeter goes around: add the sides.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "recap",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": "recap",
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "AREA covers",
+       "at": 0.6,
+       "color": "mint"
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "PERIMETER goes around",
+       "at": 3.4,
+       "color": "yellow"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Same perimeter, different areas. And a square is a rectangle and a rhombus!",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Same perimeter, different areas!",
+       "at": 0.4,
+       "color": "pink"
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "recap"
+      },
+      {
+       "do": "show",
+       "target": "g45f"
+      },
+      {
+       "do": "show",
+       "target": "f0",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "f1",
+       "at": 0.23
+      },
+      {
+       "do": "show",
+       "target": "f2",
+       "at": 0.26
+      },
+      {
+       "do": "show",
+       "target": "f3",
+       "at": 0.29000000000000004
+      },
+      {
+       "do": "show",
+       "target": "f4",
+       "at": 0.32
+      },
+      {
+       "do": "show",
+       "target": "f5",
+       "at": 0.35
+      },
+      {
+       "do": "show",
+       "target": "f6",
+       "at": 0.38
+      },
+      {
+       "do": "show",
+       "target": "f7",
+       "at": 0.41000000000000003
+      },
+      {
+       "do": "show",
+       "target": "f8",
+       "at": 0.44
+      },
+      {
+       "do": "show",
+       "target": "f9",
+       "at": 0.47000000000000003
+      },
+      {
+       "do": "show",
+       "target": "f10",
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "f11",
+       "at": 0.53
+      },
+      {
+       "do": "show",
+       "target": "f12",
+       "at": 0.56
+      },
+      {
+       "do": "show",
+       "target": "f13",
+       "at": 0.5900000000000001
+      },
+      {
+       "do": "show",
+       "target": "f14",
+       "at": 0.62
+      },
+      {
+       "do": "show",
+       "target": "f15",
+       "at": 0.6499999999999999
+      },
+      {
+       "do": "show",
+       "target": "f16",
+       "at": 0.6799999999999999
+      },
+      {
+       "do": "show",
+       "target": "f17",
+       "at": 0.71
+      },
+      {
+       "do": "pop",
+       "target": "pg_sandbox",
+       "at": 0.5,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "pg_slide",
+       "at": 0.65,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pg_swing",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pg_seesaw",
+       "at": 0.95,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "pg_bench",
+       "at": 1.1,
+       "sound": false
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -2.7,
+        0,
+        1.6
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        -2.9,
+        0,
+        -0.9
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "turn",
+       "target": "fox",
+       "to": [
+        0,
+        40,
+        0
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "show",
+       "target": "sheep",
+       "at": 0.4
+      },
+      {
+       "do": "grow",
+       "target": "sheep",
+       "to": 0.9,
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "sheep",
+       "to": [
+        2.2,
+        0,
+        -2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "turn",
+       "target": "sheep",
+       "to": [
+        0,
+        -20,
+        0
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.3,
+        7.4
+       ],
+       "lookAt": [
+        0,
+        0.5,
+        0.2
+       ],
+       "fov": 40,
+       "dur": 0
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Twenty square metres of grass and eighteen metres of fence. The playground is open!",
+       "caption": true
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 1,
+       "sound": "crowd_cheer"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 1
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0,
+        0.5,
+        0.2
+       ],
+       "degrees": 70,
+       "dur": 10,
+       "at": 0.6,
+       "radius": 7,
+       "height": 4.2
+      },
+      {
+       "do": "feel",
+       "target": "sheep",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Measured twice, built once!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bye, builders!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.2
+      },
+      {
+       "do": "wiggle",
+       "target": "fox",
+       "at": 0.3
+      },
+      {
+       "do": "nod",
+       "target": "sheep",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

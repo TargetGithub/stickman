@@ -1,0 +1,7410 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Three mystery babies in Fox's jars by the pond: a tadpole, a caterpillar and a bean seed. Robo guesses fish, snake and rock; Fox builds three life-cycle wheels (frog, butterfly, bean), opens a cutaway bean seed, and compares how each living thing starts, grows, makes young and repeats.",
+ "meta": {
+  "title": "Life Cycles: Frog, Butterfly, Bean",
+  "series": "toybox",
+  "episode": "g305",
+  "audience": "grade3",
+  "seed": 305,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1
+   },
+   "fox": {
+    "voice": "squeaky",
+    "pitch": 1.15
+   }
+  },
+  "music": "calm",
+  "musicGain": 0.18,
+  "skills": [
+   "life_cycles_3"
+  ],
+  "youtube": {
+   "title": "Life Cycles for Kids! Frog, Butterfly and Bean Plant | Grade 3 Science | Toy Box Friends",
+   "description": "Fox has three mystery babies in jars by the pond: a wriggly tadpole, a stripy caterpillar and a bean seed. Robo guesses a baby fish, a baby snake and a little rock... not even close!\nBuild three life-cycle wheels and watch each one grow: frog (egg, tadpole, tadpole with legs, froglet, adult frog), butterfly (egg, caterpillar or larva, chrysalis or pupa, adult: complete metamorphosis) and bean plant (seed, sprout, young plant, flowers, pods with new seeds). Open a bean seed to see the seed coat, the tiny baby plant and its stored food, find out why a chrysalis is not a cocoon, and compare what all life cycles share: start life, grow, make young, and the cycle goes round again.\nFor third graders (NGSS 3-LS1-1).\n\nTry at home with a grown-up: fold a wet paper towel inside a clear jar, slide a dried bean between the towel and the glass, keep it damp and warm, and watch which comes out first, the root or the shoot. Wash your hands after touching soil, seeds or pond water, don't eat dried beans from the jar, and only look at ponds with a grown-up, staying back from deep water.",
+   "tags": [
+    "life cycles for kids",
+    "frog life cycle",
+    "butterfly life cycle",
+    "plant life cycle",
+    "metamorphosis",
+    "complete metamorphosis",
+    "tadpole to frog",
+    "caterpillar to butterfly",
+    "grade 3 science",
+    "3rd grade science",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "a",
+    "title": "LIFE CYCLES!",
+    "subtitle": "Frog, butterfly and bean",
+    "titleColor": "yellow",
+    "side": "top",
+    "badge": "GRADE 3",
+    "stage": "pond",
+    "camera": {
+     "position": [
+      0,
+      1.75,
+      6.2
+     ],
+     "lookAt": [
+      0,
+      1.35,
+      0
+     ],
+     "fov": 34
+    },
+    "objects": [
+     {
+      "id": "bean",
+      "kind": "prop",
+      "model": "bean_plant",
+      "at": [
+       -2.25,
+       0,
+       0.2
+      ],
+      "size": 1.3
+     },
+     {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "at": [
+       -1.2,
+       0,
+       0.5
+      ],
+      "size": 0.9,
+      "feeling": "happy",
+      "rotation": [
+       0,
+       15,
+       0
+      ]
+     },
+     {
+      "id": "fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+       0,
+       0,
+       0.6
+      ],
+      "size": 1.25,
+      "feeling": "happy"
+     },
+     {
+      "id": "cat",
+      "kind": "critter",
+      "species": "caterpillar",
+      "at": [
+       1.3,
+       0,
+       0.6
+      ],
+      "size": 0.75,
+      "rotation": [
+       0,
+       -15,
+       0
+      ]
+     },
+     {
+      "id": "bf",
+      "kind": "critter",
+      "species": "butterfly",
+      "at": [
+       2.2,
+       0,
+       0.2
+      ],
+      "size": 0.95,
+      "rotation": [
+       0,
+       -20,
+       0
+      ],
+      "feeling": "happy"
+     }
+    ]
+   },
+   {
+    "name": "b",
+    "title": "Egg to Butterfly",
+    "subtitle": "What's inside the chrysalis?",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 3",
+    "stage": "garden",
+    "camera": {
+     "position": [
+      1,
+      1.2,
+      5.6
+     ],
+     "lookAt": [
+      1,
+      0.95,
+      0
+     ],
+     "fov": 34
+    },
+    "objects": [
+     {
+      "id": "chr",
+      "kind": "prop",
+      "model": "chrysalis",
+      "at": [
+       1.15,
+       0,
+       0.3
+      ],
+      "size": 2.1
+     },
+     {
+      "id": "bf",
+      "kind": "critter",
+      "species": "butterfly",
+      "at": [
+       2.3,
+       0,
+       0.6
+      ],
+      "size": 1.1,
+      "rotation": [
+       0,
+       -25,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       3.3,
+       0,
+       -1.4
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "clip": "Jump",
+      "feeling": "surprised"
+     }
+    ]
+   },
+   {
+    "name": "c",
+    "title": "Tadpole to Frog",
+    "subtitle": "Watch it change!",
+    "titleColor": "green",
+    "side": "left",
+    "badge": "GRADE 3",
+    "stage": "pond",
+    "camera": {
+     "position": [
+      1,
+      1.35,
+      5.1
+     ],
+     "lookAt": [
+      1,
+      0.35,
+      0
+     ],
+     "fov": 34
+    },
+    "objects": [
+     {
+      "id": "pad1",
+      "kind": "prop",
+      "model": "lily_pad",
+      "at": [
+       1.35,
+       0,
+       0.7
+      ],
+      "size": 0.8
+     },
+     {
+      "id": "tad",
+      "kind": "critter",
+      "species": "tadpole",
+      "at": [
+       1.3,
+       0.03,
+       0.7
+      ],
+      "size": 0.7,
+      "rotation": [
+       0,
+       -35,
+       0
+      ]
+     },
+     {
+      "id": "pad2",
+      "kind": "prop",
+      "model": "lily_pad",
+      "at": [
+       2.2,
+       0,
+       0.4
+      ],
+      "size": 0.95
+     },
+     {
+      "id": "let",
+      "kind": "critter",
+      "species": "froglet",
+      "at": [
+       2.2,
+       0.05,
+       0.4
+      ],
+      "size": 0.75,
+      "rotation": [
+       0,
+       -10,
+       0
+      ]
+     },
+     {
+      "id": "pad3",
+      "kind": "prop",
+      "model": "lily_pad",
+      "at": [
+       3.1,
+       0,
+       0
+      ],
+      "size": 1.2
+     },
+     {
+      "id": "frog",
+      "kind": "critter",
+      "species": "frog",
+      "at": [
+       3.1,
+       0.05,
+       0
+      ],
+      "size": 1,
+      "feeling": "happy",
+      "rotation": [
+       0,
+       -20,
+       0
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "pond"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.6,
+   9.5
+  ],
+  "lookAt": [
+   0,
+   1,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -2.7,
+    0,
+    1.3
+   ],
+   "rotation": [
+    0,
+    25,
+    0
+   ]
+  },
+  {
+   "id": "fox",
+   "kind": "critter",
+   "species": "fox",
+   "at": [
+    2.7,
+    0,
+    1.3
+   ],
+   "size": 1.2,
+   "rotation": [
+    0,
+    -25,
+    0
+   ],
+   "feeling": "happy"
+  },
+  {
+   "id": "frog",
+   "kind": "critter",
+   "species": "frog",
+   "at": [
+    -4.5,
+    0,
+    -2.15
+   ],
+   "size": 0.85,
+   "hidden": true
+  },
+  {
+   "id": "table",
+   "kind": "prop",
+   "model": "table",
+   "at": [
+    0,
+    0,
+    0.5
+   ],
+   "size": 1.4,
+   "scale": [
+    1.6,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "jar1",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    -0.75,
+    1.12,
+    0.5
+   ],
+   "color": "white",
+   "material": "glass",
+   "scale": [
+    0.62,
+    0.62,
+    0.5
+   ]
+  },
+  {
+   "id": "jar2",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    1.12,
+    0.5
+   ],
+   "color": "white",
+   "material": "glass",
+   "scale": [
+    0.62,
+    0.62,
+    0.5
+   ]
+  },
+  {
+   "id": "jar3",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0.75,
+    1.12,
+    0.5
+   ],
+   "color": "white",
+   "material": "glass",
+   "scale": [
+    0.62,
+    0.62,
+    0.5
+   ]
+  },
+  {
+   "id": "jwater",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    -0.75,
+    1.1400000000000001,
+    0.5
+   ],
+   "color": "pond",
+   "material": "water",
+   "scale": [
+    0.56,
+    0.42,
+    0.44
+   ]
+  },
+  {
+   "id": "j_tad",
+   "kind": "critter",
+   "species": "tadpole",
+   "at": [
+    -0.8,
+    1.1400000000000001,
+    0.52
+   ],
+   "size": 0.5,
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "j_leaf",
+   "kind": "shape",
+   "shape": "leaf",
+   "at": [
+    0,
+    1.1600000000000001,
+    0.5
+   ],
+   "color": "leaf",
+   "size": 0.45,
+   "rotation": [
+    -90,
+    0,
+    20
+   ]
+  },
+  {
+   "id": "j_cat",
+   "kind": "critter",
+   "species": "caterpillar",
+   "at": [
+    0.08,
+    1.1800000000000002,
+    0.52
+   ],
+   "size": 0.38,
+   "rotation": [
+    0,
+    -20,
+    0
+   ]
+  },
+  {
+   "id": "j_paper",
+   "kind": "shape",
+   "shape": "plate",
+   "at": [
+    0.75,
+    1.1500000000000001,
+    0.5
+   ],
+   "color": "white",
+   "material": "paper",
+   "scale": [
+    0.5,
+    1,
+    0.5
+   ]
+  },
+  {
+   "id": "j_seed",
+   "kind": "prop",
+   "model": "bean_seed",
+   "at": [
+    0.75,
+    1.1900000000000002,
+    0.55
+   ],
+   "size": 1.3,
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "jn1",
+   "kind": "letter",
+   "text": "1",
+   "at": [
+    -0.75,
+    1.9200000000000002,
+    0.5
+   ],
+   "color": "blue",
+   "size": 0.22,
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "jn2",
+   "kind": "letter",
+   "text": "2",
+   "at": [
+    0,
+    1.9200000000000002,
+    0.5
+   ],
+   "color": "blue",
+   "size": 0.22,
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "jn3",
+   "kind": "letter",
+   "text": "3",
+   "at": [
+    0.75,
+    1.9200000000000002,
+    0.5
+   ],
+   "color": "blue",
+   "size": 0.22,
+   "depth": 0.05,
+   "hidden": true
+  },
+  {
+   "id": "before",
+   "kind": "text_card",
+   "text": "Robo's guesses\n1. a baby fish?\n2. a baby snake?\n3. a little rock?",
+   "width": 2.4,
+   "size": 0.24,
+   "at": [
+    -5,
+    0.9,
+    -0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "after",
+   "kind": "text_card",
+   "text": "What they become\n1. tadpole: a frog\n2. caterpillar: a butterfly\n3. bean seed: a bean plant",
+   "width": 3.4,
+   "size": 0.2,
+   "at": [
+    0,
+    1,
+    1.9
+   ],
+   "bg": "white",
+   "hidden": true
+  },
+  {
+   "id": "g1",
+   "kind": "shape",
+   "shape": "sphere",
+   "at": [
+    -1.25,
+    0,
+    0.4
+   ],
+   "color": "sky",
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "g2",
+   "kind": "shape",
+   "shape": "sphere",
+   "at": [
+    0,
+    0,
+    -0.85
+   ],
+   "color": "green",
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "g3",
+   "kind": "shape",
+   "shape": "sphere",
+   "at": [
+    1.25,
+    0,
+    0.4
+   ],
+   "color": "orange",
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "g4",
+   "kind": "shape",
+   "shape": "sphere",
+   "at": [
+    0,
+    0,
+    1.65
+   ],
+   "color": "pink",
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "ga1",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.2,
+    0
+   ],
+   "from": [
+    -1.003,
+    0,
+    0.153
+   ],
+   "to": [
+    -0.247,
+    0,
+    -0.603
+   ],
+   "color": "gold",
+   "width": 0.08,
+   "bend": 0.4,
+   "hidden": true
+  },
+  {
+   "id": "ga2",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.2,
+    0
+   ],
+   "from": [
+    0.247,
+    0,
+    -0.603
+   ],
+   "to": [
+    1.003,
+    0,
+    0.153
+   ],
+   "color": "gold",
+   "width": 0.08,
+   "bend": 0.4,
+   "hidden": true
+  },
+  {
+   "id": "ga3",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.2,
+    0
+   ],
+   "from": [
+    1.003,
+    0,
+    0.647
+   ],
+   "to": [
+    0.247,
+    0,
+    1.403
+   ],
+   "color": "gold",
+   "width": 0.08,
+   "bend": 0.4,
+   "hidden": true
+  },
+  {
+   "id": "ga4",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.2,
+    0
+   ],
+   "from": [
+    -0.247,
+    0,
+    1.403
+   ],
+   "to": [
+    -1.003,
+    0,
+    0.647
+   ],
+   "color": "gold",
+   "width": 0.08,
+   "bend": 0.4,
+   "hidden": true
+  },
+  {
+   "id": "gc1",
+   "kind": "callout",
+   "text": "1. start life",
+   "target": "g1",
+   "offset": [
+    -0.95,
+    0.55,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gc2",
+   "kind": "callout",
+   "text": "2. grow",
+   "target": "g2",
+   "offset": [
+    0,
+    0.9,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gc3",
+   "kind": "callout",
+   "text": "3. make young",
+   "target": "g3",
+   "offset": [
+    0.95,
+    0.55,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "gc4",
+   "kind": "callout",
+   "text": "4. again!",
+   "target": "g4",
+   "offset": [
+    0,
+    0.45,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fr_a1",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    -5.553,
+    0,
+    -0.24
+   ],
+   "to": [
+    -5.149,
+    0,
+    -0.796
+   ],
+   "color": "green",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "fr_a2",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    -4.503,
+    0,
+    -1.006
+   ],
+   "to": [
+    -3.847,
+    0,
+    -0.794
+   ],
+   "color": "green",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "fr_a3",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    -3.448,
+    0,
+    -0.244
+   ],
+   "to": [
+    -3.448,
+    0,
+    0.444
+   ],
+   "color": "green",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "fr_a4",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    -3.847,
+    0,
+    0.994
+   ],
+   "to": [
+    -4.503,
+    0,
+    1.206
+   ],
+   "color": "green",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "fr_a5",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    -5.149,
+    0,
+    0.996
+   ],
+   "to": [
+    -5.553,
+    0,
+    0.44
+   ],
+   "color": "green",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "fr_w1",
+   "kind": "shape",
+   "shape": "disc",
+   "at": [
+    -5.8,
+    0,
+    0.1
+   ],
+   "color": "pond",
+   "material": "water",
+   "scale": [
+    0.95,
+    0.03,
+    0.95
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fr_w2",
+   "kind": "shape",
+   "shape": "disc",
+   "at": [
+    -4.902,
+    0,
+    -1.136
+   ],
+   "color": "pond",
+   "material": "water",
+   "scale": [
+    0.95,
+    0.03,
+    0.95
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fr_w3",
+   "kind": "shape",
+   "shape": "disc",
+   "at": [
+    -3.448,
+    0,
+    -0.664
+   ],
+   "color": "pond",
+   "material": "water",
+   "scale": [
+    0.95,
+    0.03,
+    0.95
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fr_eggs",
+   "kind": "prop",
+   "model": "frog_eggs",
+   "at": [
+    -5.8,
+    0.03,
+    0.1
+   ],
+   "size": 2,
+   "hidden": true
+  },
+  {
+   "id": "fr_tad",
+   "kind": "critter",
+   "species": "tadpole",
+   "at": [
+    -5.002,
+    0,
+    -1.136
+   ],
+   "size": 0.85,
+   "rotation": [
+    0,
+    15,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fr_legs",
+   "kind": "critter",
+   "species": "tadpole_legs",
+   "at": [
+    -3.548,
+    0,
+    -0.664
+   ],
+   "size": 0.85,
+   "rotation": [
+    0,
+    -15,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fr_pad",
+   "kind": "prop",
+   "model": "lily_pad",
+   "at": [
+    -3.448,
+    0,
+    0.864
+   ],
+   "size": 0.95,
+   "hidden": true
+  },
+  {
+   "id": "fr_let",
+   "kind": "critter",
+   "species": "froglet",
+   "at": [
+    -3.448,
+    0.05,
+    0.864
+   ],
+   "size": 0.7,
+   "rotation": [
+    0,
+    -20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fr_l1",
+   "kind": "letter",
+   "text": "eggs",
+   "at": [
+    -5.8,
+    0.72,
+    0.1
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "fr_l2",
+   "kind": "letter",
+   "text": "tadpole",
+   "at": [
+    -4.902,
+    0.72,
+    -1.136
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "fr_l3",
+   "kind": "letter",
+   "text": "back legs",
+   "at": [
+    -3.448,
+    0.72,
+    -0.664
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "fr_l4",
+   "kind": "letter",
+   "text": "froglet",
+   "at": [
+    -3.448,
+    0.02,
+    1.364
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true,
+   "rotation": [
+    -40,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "fr_l5",
+   "kind": "letter",
+   "text": "adult frog",
+   "at": [
+    -4.902,
+    0.02,
+    1.836
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true,
+   "rotation": [
+    -40,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "bf_a1",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    -1.003,
+    0,
+    -0.197
+   ],
+   "to": [
+    -0.297,
+    0,
+    -0.903
+   ],
+   "color": "purple",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bf_a2",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    0.297,
+    0,
+    -0.903
+   ],
+   "to": [
+    1.003,
+    0,
+    -0.197
+   ],
+   "color": "purple",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bf_a3",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    1.003,
+    0,
+    0.397
+   ],
+   "to": [
+    0.297,
+    0,
+    1.103
+   ],
+   "color": "purple",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bf_a4",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    -0.297,
+    0,
+    1.103
+   ],
+   "to": [
+    -1.003,
+    0,
+    0.397
+   ],
+   "color": "purple",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "milk",
+   "kind": "prop",
+   "model": "milkweed",
+   "at": [
+    -1.8,
+    0,
+    -0.75
+   ],
+   "size": 1.15,
+   "hidden": true
+  },
+  {
+   "id": "bf_egg",
+   "kind": "prop",
+   "model": "butterfly_egg",
+   "at": [
+    -1.3,
+    0.02,
+    0.1
+   ],
+   "size": 1.3,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bf_cat",
+   "kind": "critter",
+   "species": "caterpillar",
+   "at": [
+    0.2,
+    0,
+    -1.2
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    0,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bf_chr",
+   "kind": "prop",
+   "model": "chrysalis",
+   "at": [
+    1.4000000000000001,
+    0,
+    0.1
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "bf_ad",
+   "kind": "critter",
+   "species": "butterfly",
+   "at": [
+    0,
+    0,
+    1.4
+   ],
+   "size": 0.75,
+   "hidden": true
+  },
+  {
+   "id": "bf_mom",
+   "kind": "critter",
+   "species": "butterfly",
+   "at": [
+    -3,
+    3.2,
+    1.5
+   ],
+   "size": 0.6,
+   "hidden": true
+  },
+  {
+   "id": "bf_l1",
+   "kind": "letter",
+   "text": "egg",
+   "at": [
+    -1.3,
+    0.65,
+    0.1
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "bf_l2",
+   "kind": "letter",
+   "text": "caterpillar",
+   "at": [
+    0,
+    0.72,
+    -1.2
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "bf_l3",
+   "kind": "letter",
+   "text": "chrysalis",
+   "at": [
+    1.3,
+    1.72,
+    0.1
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "bf_l4",
+   "kind": "letter",
+   "text": "adult butterfly",
+   "at": [
+    0,
+    0.02,
+    1.9
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true,
+   "rotation": [
+    -40,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "cocoon",
+   "kind": "shape",
+   "shape": "capsule",
+   "at": [
+    2.35,
+    0,
+    1.1
+   ],
+   "color": "white",
+   "material": "matte",
+   "size": 0.5,
+   "scale": [
+    0.6,
+    1,
+    0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cocoon_c",
+   "kind": "letter",
+   "text": "moth: silk cocoon",
+   "at": [
+    2.35,
+    0.72,
+    1.1
+   ],
+   "size": 0.11,
+   "depth": 0.03,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "bn_a1",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    3.447,
+    0,
+    -0.24
+   ],
+   "to": [
+    3.851,
+    0,
+    -0.796
+   ],
+   "color": "orange",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bn_a2",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    4.497,
+    0,
+    -1.006
+   ],
+   "to": [
+    5.153,
+    0,
+    -0.794
+   ],
+   "color": "orange",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bn_a3",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    5.552,
+    0,
+    -0.244
+   ],
+   "to": [
+    5.552,
+    0,
+    0.444
+   ],
+   "color": "orange",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bn_a4",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    5.153,
+    0,
+    0.994
+   ],
+   "to": [
+    4.497,
+    0,
+    1.206
+   ],
+   "color": "orange",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bn_a5",
+   "kind": "pointer",
+   "at": [
+    0,
+    0.14,
+    0
+   ],
+   "from": [
+    3.851,
+    0,
+    0.996
+   ],
+   "to": [
+    3.447,
+    0,
+    0.44
+   ],
+   "color": "orange",
+   "width": 0.07,
+   "bend": 0.35,
+   "hidden": true
+  },
+  {
+   "id": "bn_soil",
+   "kind": "shape",
+   "shape": "disc",
+   "at": [
+    3.2,
+    0,
+    0.1
+   ],
+   "color": "brown",
+   "material": "matte",
+   "scale": [
+    0.75,
+    0.03,
+    0.75
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bn_seed",
+   "kind": "prop",
+   "model": "bean_seed",
+   "at": [
+    3.2,
+    0.03,
+    0.1
+   ],
+   "size": 2,
+   "rotation": [
+    0,
+    20,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bn_sprout",
+   "kind": "prop",
+   "model": "bean_sprout",
+   "at": [
+    4.098,
+    0,
+    -1.136
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "bn_young",
+   "kind": "prop",
+   "model": "bean_plant",
+   "at": [
+    5.552,
+    0,
+    -0.664
+   ],
+   "size": 0.85,
+   "recolor": {
+    "white": "sand"
+   },
+   "hidden": true
+  },
+  {
+   "id": "bn_flower",
+   "kind": "prop",
+   "model": "bean_plant",
+   "at": [
+    5.552,
+    0,
+    0.864
+   ],
+   "size": 1.05,
+   "hidden": true
+  },
+  {
+   "id": "bn_pod",
+   "kind": "prop",
+   "model": "bean_pod_open",
+   "at": [
+    4.098,
+    0.07,
+    1.336
+   ],
+   "size": 1.1,
+   "rotation": [
+    0,
+    10,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bn_l1",
+   "kind": "letter",
+   "text": "seed",
+   "at": [
+    3.2,
+    0.52,
+    0.1
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "bn_l2",
+   "kind": "letter",
+   "text": "sprout",
+   "at": [
+    4.098,
+    0.9,
+    -1.136
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "bn_l3",
+   "kind": "letter",
+   "text": "young plant",
+   "at": [
+    5.552,
+    1.25,
+    -0.664
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true
+  },
+  {
+   "id": "bn_l4",
+   "kind": "letter",
+   "text": "flowers",
+   "at": [
+    5.552,
+    0.02,
+    1.364
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true,
+   "rotation": [
+    -40,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "bn_l5",
+   "kind": "letter",
+   "text": "pod with seeds",
+   "at": [
+    4.098,
+    0.02,
+    1.836
+   ],
+   "color": "ink",
+   "size": 0.12,
+   "depth": 0.03,
+   "hidden": true,
+   "rotation": [
+    -40,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "cut",
+   "kind": "prop",
+   "model": "bean_seed_cutaway",
+   "at": [
+    4.5,
+    1,
+    0.30000000000000004
+   ],
+   "size": 2,
+   "hidden": true
+  },
+  {
+   "id": "cut_stand",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    4.5,
+    0,
+    0.30000000000000004
+   ],
+   "color": "wood",
+   "size": 1,
+   "scale": [
+    0.5,
+    1,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cut_coat",
+   "kind": "letter",
+   "text": "seed coat",
+   "at": [
+    5.45,
+    1.45,
+    0.5
+   ],
+   "size": 0.1,
+   "depth": 0.03,
+   "color": "brown",
+   "hidden": true
+  },
+  {
+   "id": "cut_coat_p",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    5.45,
+    1.41,
+    0.5
+   ],
+   "to": [
+    5.16,
+    1.12,
+    0.30000000000000004
+   ],
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "cut_baby",
+   "kind": "letter",
+   "text": "baby plant",
+   "at": [
+    3.55,
+    1.42,
+    0.5
+   ],
+   "size": 0.1,
+   "depth": 0.03,
+   "color": "green",
+   "hidden": true
+  },
+  {
+   "id": "cut_baby_p",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    3.55,
+    1.38,
+    0.5
+   ],
+   "to": [
+    4.08,
+    1.16,
+    0.30000000000000004
+   ],
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "cut_food",
+   "kind": "letter",
+   "text": "stored food",
+   "at": [
+    4.62,
+    1.72,
+    0.5
+   ],
+   "size": 0.1,
+   "depth": 0.03,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "cut_food_p",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    4.62,
+    1.68,
+    0.5
+   ],
+   "to": [
+    4.78,
+    1.16,
+    0.30000000000000004
+   ],
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "stick",
+   "kind": "prop",
+   "model": "metre_stick",
+   "at": [
+    6.002,
+    0,
+    -0.664
+   ],
+   "rotation": [
+    0,
+    0,
+    90
+   ],
+   "size": 1,
+   "hidden": true
+  },
+  {
+   "id": "cmp_fr",
+   "kind": "text_card",
+   "text": "Frog\nstarts: egg in water\nyoung: tadpole\nmetamorphosis",
+   "width": 3.8,
+   "size": 0.28,
+   "at": [
+    -4.5,
+    1.75,
+    -1.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cmp_bf",
+   "kind": "text_card",
+   "text": "Butterfly\nstarts: egg on a leaf\nyoung: caterpillar\ncomplete metamorphosis",
+   "width": 3.8,
+   "size": 0.28,
+   "at": [
+    0,
+    1.75,
+    -1.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "cmp_bn",
+   "kind": "text_card",
+   "text": "Bean plant\nstarts: seed in soil\nyoung: small plant\nno big change of shape",
+   "width": 3.8,
+   "size": 0.28,
+   "at": [
+    4.5,
+    1.75,
+    -1.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rule",
+   "kind": "text_card",
+   "text": "All living things: start life, grow, make young, and the cycle goes on.",
+   "width": 7,
+   "size": 0.34,
+   "at": [
+    0,
+    0.1,
+    2.7
+   ],
+   "hidden": true
+  },
+  {
+   "id": "oc1",
+   "kind": "text_card",
+   "text": "egg",
+   "width": 1.3,
+   "size": 0.22,
+   "at": [
+    -2.1,
+    2.3,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "oc2",
+   "kind": "text_card",
+   "text": "chrysalis",
+   "width": 1.3,
+   "size": 0.22,
+   "at": [
+    -0.7,
+    2.3,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "oc3",
+   "kind": "text_card",
+   "text": "caterpillar",
+   "width": 1.3,
+   "size": 0.22,
+   "at": [
+    0.7,
+    2.3,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "oc4",
+   "kind": "text_card",
+   "text": "adult",
+   "width": 1.3,
+   "size": 0.22,
+   "at": [
+    2.1,
+    2.3,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bubbles",
+   "kind": "bubbles",
+   "count": 40,
+   "area": [
+    10,
+    3
+   ],
+   "at": [
+    0,
+    0,
+    -3
+   ]
+  }
+ ],
+ "scenes": [
+  {
+   "id": "mystery",
+   "title": "Three mystery babies",
+   "beats": [
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "bn_young#pod",
+       "to": [
+        0,
+        -3,
+        0
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "move",
+       "target": "bn_flower#pod",
+       "to": [
+        0,
+        -3,
+        0
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "caption",
+       "text": "Life Cycles",
+       "style": "title",
+       "dur": 2.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "table",
+        "robo",
+        "fox"
+       ],
+       "framing": "wide",
+       "dur": 0
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "table"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Welcome to my nature table by the pond! I found three mystery babies.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "jn1",
+       "at": 1.8
+      },
+      {
+       "do": "pop",
+       "target": "jn2",
+       "at": 2.1
+      },
+      {
+       "do": "pop",
+       "target": "jn3",
+       "at": 2.4
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 1.5,
+       "to": "table"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Mystery babies? Let me guess what they are.",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "jar1",
+        "jar2",
+        "jar3",
+        "jn1",
+        "jn3"
+       ],
+       "framing": "medium",
+       "height": 15,
+       "dur": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "shot",
+       "target": "jar1",
+       "framing": "close",
+       "height": 10,
+       "dur": 1
+      },
+      {
+       "do": "wiggle",
+       "target": "j_tad#tail",
+       "at": 0.4,
+       "deg": 25,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Number one swims. That's a baby fish!",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.4,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "shot",
+       "target": "jar2",
+       "framing": "close",
+       "height": 10,
+       "dur": 1
+      },
+      {
+       "do": "wiggle",
+       "target": "j_cat",
+       "at": 0.4,
+       "deg": 8,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Number two is long and wiggly. A baby snake!",
+       "caption": true,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "shot",
+       "target": "jar3",
+       "framing": "close",
+       "height": 10,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And number three doesn't move at all. It's a little rock.",
+       "caption": true,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "table",
+        "robo",
+        "before"
+       ],
+       "framing": "wide",
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "before",
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I wrote my guesses on the before board.",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.5,
+       "to": "before"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "volume": 0.7
+      },
+      {
+       "do": "feel",
+       "target": "fox",
+       "feeling": "happy"
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "height": 0.25,
+       "at": 0.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Not even close! Let's watch them grow and see.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Here's our question. What will each baby become?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "What will each baby become?",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "table",
+        "robo",
+        "fox"
+       ],
+       "framing": "wide",
+       "dur": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "table"
+      },
+      {
+       "do": "hide",
+       "target": "jar1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "jar2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "jar3",
+       "at": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "jwater"
+      },
+      {
+       "do": "hide",
+       "target": "j_tad"
+      },
+      {
+       "do": "hide",
+       "target": "j_leaf"
+      },
+      {
+       "do": "hide",
+       "target": "j_cat"
+      },
+      {
+       "do": "hide",
+       "target": "j_paper"
+      },
+      {
+       "do": "hide",
+       "target": "j_seed"
+      },
+      {
+       "do": "hide",
+       "target": "jn1"
+      },
+      {
+       "do": "hide",
+       "target": "jn2"
+      },
+      {
+       "do": "hide",
+       "target": "jn3"
+      },
+      {
+       "do": "hide",
+       "target": "before",
+       "at": 0.2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cycle",
+   "title": "What is a life cycle?",
+   "beats": [
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking",
+       "at": 0,
+       "then": "Idle"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -4.2,
+        0,
+        1
+       ],
+       "at": 0,
+       "dur": 1.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1.4
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        4.2,
+        0,
+        1
+       ],
+       "at": 0,
+       "dur": 1.4
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0,
+       "height": 0.15,
+       "dur": 1.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Fox, what is a life cycle?",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 1.5,
+       "to": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A life cycle is how a living thing changes during its life.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "life cycle",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 2,
+       "to": "g1"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 2,
+       "to": "g1"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "pop",
+       "target": "g1"
+      },
+      {
+       "do": "draw",
+       "target": "gc1",
+       "at": 0.3,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "First, it starts life.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "draw",
+       "target": "ga1",
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "g2",
+       "at": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "gc2",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Then it grows bigger.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "draw",
+       "target": "ga2",
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "g3",
+       "at": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "gc3",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "When it's grown up, it makes young of its own.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "draw",
+       "target": "ga3",
+       "dur": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "g4",
+       "at": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "gc4",
+       "at": 0.9,
+       "dur": 0.8
+      },
+      {
+       "do": "draw",
+       "target": "ga4",
+       "at": 2.2,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And those young start the whole cycle again!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.25,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+       ],
+       "framing": "medium",
+       "height": 40,
+       "dur": 5
+      },
+      {
+       "do": "highlight",
+       "target": "g1",
+       "at": 0.2,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "g2",
+       "at": 1.2,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "g3",
+       "at": 2.2,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "g4",
+       "at": 3.2,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Round and round, like a wheel. That's why it's called a cycle!",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Every living thing has a life cycle. But each kind changes in its own way.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "each kind changes in its own way",
+       "style": "label",
+       "at": 1.5,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Let's build a wheel for each of our mystery babies.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "g1",
+        "g2",
+        "g3",
+        "g4",
+        "robo",
+        "fox"
+       ],
+       "framing": "wide",
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "g1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "g2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "g3",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "g4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "ga1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "ga2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "ga3",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "ga4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "gc1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "gc2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "gc3",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "gc4",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "frog",
+   "title": "The frog's cycle",
+   "beats": [
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking",
+       "at": 0,
+       "then": "Idle"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -8.2,
+        0,
+        -1.6
+       ],
+       "at": 0,
+       "dur": 1.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1.8
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        -2,
+        0,
+        -0.4
+       ],
+       "at": 0,
+       "dur": 1.8
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0,
+       "height": 0.15,
+       "dur": 1.8
+      },
+      {
+       "do": "show",
+       "target": "frog",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "fr_w1",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "fr_w1",
+        "fr_w2",
+        "fr_w3",
+        "fr_pad",
+        "frog",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 32,
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Mystery baby number one lives in the pond. Let's start with a frog.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 2,
+       "to": "frog"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 2,
+       "to": "frog"
+      }
+     ]
+    },
+    {
+     "dur": 1.35,
+     "do": [
+      {
+       "do": "nod",
+       "target": "frog",
+       "at": 0.2
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy"
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Adult frogs lay their eggs in water.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "fr_eggs",
+       "at": 1.2,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 1.3,
+       "volume": 0.5
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 1.2,
+       "to": "fr_eggs"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 1.2,
+       "to": "fr_eggs"
+      }
+     ]
+    },
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "fr_w1"
+       ],
+       "framing": "close",
+       "height": 25,
+       "yaw": -25,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A clump of frog eggs is called frogspawn.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "week 1: frogspawn",
+       "style": "label",
+       "at": 0.5,
+       "dur": 4
+      },
+      {
+       "do": "highlight",
+       "target": "fr_eggs",
+       "at": 1,
+       "dur": 2.4
+      },
+      {
+       "do": "pop",
+       "target": "fr_l1",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Each tiny dark dot is a baby frog growing inside clear jelly.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "How long until they hatch?",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "About one to three weeks. Warm water makes them hatch faster.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.5,
+       "to": "fr_eggs"
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "draw",
+       "target": "fr_a1",
+       "dur": 1
+      },
+      {
+       "do": "show",
+       "target": "fr_w2",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "fr_tad",
+       "at": 0.9
+      },
+      {
+       "do": "sound",
+       "sound": "bubble_pop",
+       "at": 0.9
+      },
+      {
+       "do": "shot",
+       "target": [
+        "fr_w1",
+        "fr_w2",
+        "fr_eggs",
+        "fr_tad"
+       ],
+       "framing": "medium",
+       "height": 25,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Pop! Out comes a tadpole.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "week 3: tadpole",
+       "style": "label",
+       "at": 1.2,
+       "dur": 3
+      },
+      {
+       "do": "pop",
+       "target": "fr_l2",
+       "at": 1.6
+      },
+      {
+       "do": "wiggle",
+       "target": "fr_tad#tail",
+       "at": 1.4,
+       "deg": 25,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_tad",
+        "fr_w2"
+       ],
+       "framing": "medium",
+       "height": 15,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "tail to swim, gills to breathe",
+       "style": "label",
+       "at": 0.6,
+       "dur": 4.5
+      },
+      {
+       "do": "highlight",
+       "target": "fr_tad",
+       "at": 0.6,
+       "dur": 3
+      },
+      {
+       "do": "wiggle",
+       "target": "fr_tad#tail",
+       "at": 0.6,
+       "deg": 25,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It swims with its tail, and breathes underwater with gills, like a fish.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Ha! So my guess was half right. It looks like a baby fish.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It looks like one, but it's really a baby frog! It eats tiny water plants and grows for weeks.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "fr_tad#tail",
+       "at": 1.5,
+       "deg": 20,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_w2",
+        "fr_w3",
+        "fr_tad"
+       ],
+       "framing": "medium",
+       "height": 32,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "What will the tadpole grow next: back legs or front legs?",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "back legs or front legs?",
+       "style": "label",
+       "at": 0.5,
+       "dur": 5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "draw",
+       "target": "fr_a2",
+       "dur": 0.9
+      },
+      {
+       "do": "show",
+       "target": "fr_w3",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "fr_legs",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "fr_l3",
+       "at": 1.2
+      },
+      {
+       "do": "wiggle",
+       "target": "fr_legs#legs",
+       "at": 1.4,
+       "deg": 20,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Back legs come first! The front legs grow a few weeks later.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 1
+      },
+      {
+       "do": "caption",
+       "text": "week 8: back legs first",
+       "style": "label",
+       "at": 1,
+       "dur": 3
+      },
+      {
+       "do": "mark",
+       "target": "fr_legs",
+       "at": 1.6,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "draw",
+       "target": "fr_a3",
+       "dur": 0.9
+      },
+      {
+       "do": "show",
+       "target": "fr_pad",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "fr_let",
+       "at": 0.8
+      },
+      {
+       "do": "pop",
+       "target": "fr_l4",
+       "at": 1.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "fr_legs",
+        "fr_pad",
+        "fr_let"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now it's a froglet: four legs, and a tail that is shrinking away.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "week 12: froglet",
+       "style": "label",
+       "at": 0.9,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "shot",
+       "target": "fr_let",
+       "framing": "close",
+       "height": 15,
+       "dur": 1
+      },
+      {
+       "do": "grow",
+       "target": "fr_let",
+       "to": 1.08,
+       "at": 0.5,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Its new lungs breathe air, so it can climb out of the water.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "fr_let",
+       "at": 2.5,
+       "height": 0.25
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Fun fact: adult frogs breathe with lungs, and they take in air through their skin too.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "fun fact",
+       "style": "label",
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "draw",
+       "target": "fr_a4",
+       "dur": 0.9
+      },
+      {
+       "do": "shot",
+       "target": [
+        "fr_pad",
+        "frog",
+        "fr_let"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.2
+      },
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         -4.5,
+         0,
+         -2.15
+        ],
+        [
+         -5.2,
+         0.6,
+         -0.9
+        ],
+        [
+         -4.902,
+         0,
+         1.336
+        ]
+       ],
+       "dur": 1.2,
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 1.8,
+       "volume": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And finally, an adult frog, with no tail at all!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 1.9
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy",
+       "at": 1.9
+      },
+      {
+       "do": "pop",
+       "target": "fr_l5",
+       "at": 2.2
+      },
+      {
+       "do": "caption",
+       "text": "adult frog",
+       "style": "label",
+       "at": 2,
+       "dur": 3
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 2,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "For many frogs, egg to froglet takes about three or four months.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.5,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "draw",
+       "target": "fr_a5",
+       "dur": 1.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "fr_w1",
+        "fr_w2",
+        "fr_w3",
+        "fr_pad",
+        "frog",
+        "fr_a1",
+        "fr_a2",
+        "fr_a3",
+        "fr_a4",
+        "fr_a5"
+       ],
+       "framing": "medium",
+       "height": 35,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "When the adult lays eggs in the water, the cycle starts again.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "highlight",
+       "target": "fr_eggs",
+       "at": 1.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A big change of body shape like this has a name. Metamorphosis!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "metamorphosis = a big change of body shape",
+       "style": "label",
+       "at": 2.6,
+       "dur": 4.5
+      },
+      {
+       "do": "orbit",
+       "around": [
+        -4.5,
+        0.3,
+        0.1
+       ],
+       "degrees": 50,
+       "dur": 9,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Metamorphosis. Egg, tadpole, froglet, frog!",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "fr_eggs",
+       "at": 1.6,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "fr_tad",
+       "at": 2.3,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "fr_let",
+       "at": 3,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "frog",
+       "at": 3.6,
+       "dur": 0.8
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "butterfly",
+   "title": "The butterfly's cycle",
+   "beats": [
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking",
+       "at": 0,
+       "then": "Idle"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        -1.2
+       ],
+       "at": 0,
+       "dur": 2.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 2.2
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.1,
+        0,
+        -0.9
+       ],
+       "at": 0,
+       "dur": 2.2
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0,
+       "height": 0.15,
+       "dur": 2.2
+      },
+      {
+       "do": "show",
+       "target": "milk",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "milk",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Mystery baby number two was the stripy caterpillar. Let's start with a monarch butterfly.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 2,
+       "to": "milk"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 2,
+       "to": "milk"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "show",
+       "target": "bf_mom"
+      },
+      {
+       "do": "path",
+       "target": "bf_mom",
+       "points": [
+        [
+         -3,
+         3.2,
+         1.5
+        ],
+        [
+         -1.2,
+         2.4,
+         1
+        ],
+        [
+         -0.6,
+         1.6,
+         0.6
+        ],
+        [
+         -1.2,
+         0.9,
+         0.30000000000000004
+        ]
+       ],
+       "dur": 3,
+       "at": 0,
+       "face": true
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_mom#wing",
+       "at": 0,
+       "deg": 30,
+       "dur": 3
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "This plant is milkweed. A monarch lays her eggs on its leaves, one at a time.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "milkweed",
+       "style": "label",
+       "at": 0.4,
+       "dur": 3
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.5,
+       "to": "bf_mom"
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "show",
+       "target": "bf_egg",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "path",
+       "target": "bf_mom",
+       "points": [
+        [
+         -1.2,
+         0.9,
+         0.30000000000000004
+        ],
+        [
+         -1.5,
+         2.2,
+         1
+        ],
+        [
+         -2.5,
+         3.6,
+         0.5
+        ]
+       ],
+       "dur": 2.2,
+       "at": 0.6,
+       "face": true
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_mom#wing",
+       "at": 0.6,
+       "deg": 30,
+       "dur": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "bf_mom",
+       "at": 2.7
+      },
+      {
+       "do": "shot",
+       "target": "bf_egg",
+       "framing": "close",
+       "height": 30,
+       "yaw": -25,
+       "dur": 1.4,
+       "at": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Here is her egg on a milkweed leaf. A real one is about as small as a pinhead.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "day 1: egg on a milkweed leaf",
+       "style": "label",
+       "at": 1.2,
+       "dur": 4
+      },
+      {
+       "do": "pop",
+       "target": "bf_l1",
+       "at": 2.2
+      },
+      {
+       "do": "highlight",
+       "target": "bf_egg",
+       "at": 2.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "About four days later, it hatches.",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bf_a1",
+       "dur": 0.9
+      },
+      {
+       "do": "show",
+       "target": "bf_cat",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "bf_l2",
+       "at": 1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bf_egg",
+        "bf_cat"
+       ],
+       "framing": "medium",
+       "height": 25,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Out crawls a tiny caterpillar. Its first meal is usually its own eggshell!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "day 4: caterpillar",
+       "style": "label",
+       "at": 0.8,
+       "dur": 3.5
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_cat",
+       "at": 1.2,
+       "deg": 6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.65,
+     "do": [
+      {
+       "do": "shot",
+       "target": "bf_cat",
+       "framing": "close",
+       "height": 15,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Then it munches milkweed leaves, and grows, and grows.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "grow",
+       "target": "bf_cat",
+       "to": 1.2,
+       "at": 1.2,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "grow",
+       "target": "bf_cat",
+       "to": 1.4,
+       "at": 2.4,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 2.4,
+       "volume": 0.5
+      },
+      {
+       "do": "grow",
+       "target": "bf_cat",
+       "to": 1.6,
+       "at": 3.6,
+       "dur": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "pop",
+       "at": 3.6,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It grows so fast that it sheds its tight skin, again and again.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_cat",
+       "at": 0.6,
+       "deg": 8,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Scientists call this stage the larva.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "caterpillar = larva",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "So it's not a baby snake after all!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "No way! It's a baby butterfly. Look at all its little feet.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 2.2
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "bf_cat"
+      }
+     ]
+    },
+    {
+     "dur": 2.85,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bf_a2",
+       "dur": 0.9
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bf_cat",
+        "bf_chr"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "After about two weeks, it hangs from a twig and sheds its skin one last time.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "bf_chr",
+       "at": 2.8,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "shot",
+       "target": "bf_chr",
+       "framing": "close",
+       "height": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now it's a chrysalis, green with gold dots. Its science name is pupa.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "week 3: chrysalis (pupa)",
+       "style": "label",
+       "at": 0.4,
+       "dur": 4
+      },
+      {
+       "do": "pop",
+       "target": "bf_l3",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oh, I know this one! It's a cocoon!",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "bf_chr"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "mark",
+       "target": "bf_chr",
+       "result": "incorrect",
+       "at": 0.2,
+       "dur": 1.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bf_chr",
+        "cocoon",
+        "cocoon_c"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "pad": 0.15,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "cocoon",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "cocoon_c",
+       "at": 2.2,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Close, but no. A butterfly makes a chrysalis. A moth caterpillar spins a silk cocoon.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "cocoon_c"
+      },
+      {
+       "do": "hide",
+       "target": "cocoon",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": "bf_chr",
+       "framing": "close",
+       "height": 10,
+       "dur": 1.2
+      },
+      {
+       "do": "highlight",
+       "target": "bf_chr",
+       "color": "mint",
+       "at": 0.4,
+       "dur": 4.5
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It looks still. But inside, the caterpillar's body is changing into a butterfly's body.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "About ten days later, something comes out. What do you think it is?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "What comes out?",
+       "style": "label",
+       "at": 0.5,
+       "dur": 5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bf_a3",
+       "dur": 0.9
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bf_chr",
+        "bf_ad"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "bf_ad",
+       "at": 0.6,
+       "dur": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 0.7,
+       "volume": 0.5
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A butterfly! Its wings come out crumpled and wet.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "week 4: adult butterfly",
+       "style": "label",
+       "at": 0.7,
+       "dur": 3.5
+      },
+      {
+       "do": "pop",
+       "target": "bf_l4",
+       "at": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "shot",
+       "target": "bf_ad",
+       "framing": "close",
+       "height": 15,
+       "dur": 1
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_ad#wing",
+       "at": 0.5,
+       "deg": 35,
+       "dur": 3.5
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It pumps them open, lets them dry, and then it can fly.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Here's a surprise. A grown-up butterfly never grows any bigger.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "adults don't grow bigger",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 3.55,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bf_a4",
+       "dur": 1.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "milk",
+        "bf_egg",
+        "bf_chr",
+        "bf_ad",
+        "bf_a1",
+        "bf_a2",
+        "bf_a3",
+        "bf_a4"
+       ],
+       "framing": "medium",
+       "height": 35,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It drinks nectar from flowers, and lays eggs on milkweed. The cycle starts again!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "bf_egg",
+       "at": 3.5,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Egg, caterpillar, chrysalis, adult. Four stages that look completely different.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bf_egg",
+       "at": 0.1,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "bf_cat",
+       "at": 0.9,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "bf_chr",
+       "at": 1.9,
+       "dur": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "bf_ad",
+       "at": 2.9,
+       "dur": 0.9
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0,
+        0.4,
+        0.1
+       ],
+       "degrees": 45,
+       "dur": 9
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Four completely different stages is called complete metamorphosis.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "complete metamorphosis: 4 different-looking stages",
+       "style": "label",
+       "at": 0.5,
+       "dur": 5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Life Cycle chant",
+   "music": "playful",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "milk",
+        "bf_egg",
+        "bf_chr",
+        "bf_ad",
+        "bf_a1",
+        "bf_a2",
+        "bf_a3",
+        "bf_a4",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 25,
+       "dur": 1.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.2
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.4,
+       "height": 0.3
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Time for the life cycle chant! Start and grow, make young and go.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Round and round the life cycle flows!",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "frog",
+       "at": 0.4,
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "bf_ad",
+       "at": 1.2,
+       "dur": 1
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.6,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now act it out! Curl up small, like an egg.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bf_egg",
+       "at": 0.6,
+       "dur": 2
+      },
+      {
+       "do": "caption",
+       "text": "curl up!",
+       "style": "label",
+       "at": 0.8,
+       "dur": 2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Sitting",
+       "at": 1,
+       "then": "Idle"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Wiggle like a caterpillar!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bf_cat",
+       "at": 0.2,
+       "dur": 2
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_cat",
+       "at": 0.3,
+       "deg": 10,
+       "dur": 1.4
+      },
+      {
+       "do": "wiggle",
+       "target": "fox",
+       "at": 0.4,
+       "deg": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "wiggle!",
+       "style": "label",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hold still like a chrysalis.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bf_chr",
+       "at": 0.2,
+       "dur": 2
+      },
+      {
+       "do": "caption",
+       "text": "hold still...",
+       "style": "label",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now open your arms wide, like a butterfly!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bf_ad",
+       "at": 0.3,
+       "dur": 2
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_ad#wing",
+       "at": 0.4,
+       "deg": 35,
+       "dur": 2
+      },
+      {
+       "do": "caption",
+       "text": "fly!",
+       "style": "label",
+       "at": 0.5,
+       "dur": 2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "I say egg, you say caterpillar. Egg!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "Egg!",
+       "style": "label",
+       "at": 2,
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Caterpillar!",
+       "style": "label",
+       "dur": 1.7
+      },
+      {
+       "do": "highlight",
+       "target": "bf_cat",
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2,
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Chrysalis!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bf_chr",
+       "at": 0.1,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Butterfly!",
+       "style": "label",
+       "dur": 1.7
+      },
+      {
+       "do": "highlight",
+       "target": "bf_ad",
+       "dur": 1.6
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bean",
+   "title": "The bean's cycle",
+   "beats": [
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking",
+       "at": 0,
+       "then": "Idle"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        1.6,
+        0,
+        -1.9
+       ],
+       "at": 0,
+       "dur": 2.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 2.2
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        6.9,
+        0,
+        -0.4
+       ],
+       "at": 0,
+       "dur": 2.2
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0,
+       "height": 0.15,
+       "dur": 2.2
+      },
+      {
+       "do": "show",
+       "target": "bn_soil",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "bn_seed",
+       "at": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bn_seed",
+        "bn_sprout",
+        "bn_pod",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And mystery baby number three, my little rock?",
+       "caption": true,
+       "at": 0.8
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 2,
+       "to": "bn_seed"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 2,
+       "to": "bn_seed"
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It's a bean seed! A seed is how a bean plant's life starts.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "seed",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3
+      },
+      {
+       "do": "pop",
+       "target": "bn_l1",
+       "at": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "bn_seed",
+       "at": 0.6,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "show",
+       "target": "cut_stand"
+      },
+      {
+       "do": "show",
+       "target": "cut",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "cut",
+        "cut_stand",
+        "cut_coat",
+        "cut_baby",
+        "cut_food"
+       ],
+       "framing": "close",
+       "height": 35,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Let's cut one open and look inside.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "turn",
+       "target": "cut#left",
+       "to": [
+        0,
+        -75,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "cut#left",
+       "to": [
+        -0.14,
+        0,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "turn",
+       "target": "cut#right",
+       "to": [
+        0,
+        75,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "cut#right",
+       "to": [
+        0.14,
+        0,
+        0
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "volume": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "cut_coat",
+       "at": 1.4
+      },
+      {
+       "do": "draw",
+       "target": "cut_coat_p",
+       "at": 1.5,
+       "dur": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Outside is the seed coat, a tough jacket that keeps it safe.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "pop",
+       "target": "cut_baby"
+      },
+      {
+       "do": "draw",
+       "target": "cut_baby_p",
+       "at": 0.1,
+       "dur": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Inside is a tiny baby plant, already waiting.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "pop",
+       "target": "cut_food"
+      },
+      {
+       "do": "draw",
+       "target": "cut_food_p",
+       "at": 0.1,
+       "dur": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And all this is stored food. It feeds the baby plant until it has leaves.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Give the seed water, air and warmth, and it sprouts. Scientists say it germinates.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "germinate = sprout",
+       "style": "label",
+       "at": 2.5,
+       "dur": 3.5
+      },
+      {
+       "do": "hide",
+       "target": "cut_coat",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "cut_baby",
+       "at": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "cut_food",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "cut_coat_p",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "cut_baby_p",
+       "at": 0.25
+      },
+      {
+       "do": "hide",
+       "target": "cut_food_p",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "cut",
+       "at": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "cut_stand",
+       "at": 0.7
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bn_seed",
+        "bn_sprout",
+        "bn_young"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.4,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "What comes out first: the root or the shoot?",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "root or shoot?",
+       "style": "label",
+       "at": 0.4,
+       "dur": 5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bn_a1",
+       "dur": 0.9
+      },
+      {
+       "do": "show",
+       "target": "bn_sprout",
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0.7,
+       "volume": 0.6
+      },
+      {
+       "do": "shot",
+       "target": "bn_sprout",
+       "framing": "close",
+       "height": 10,
+       "dur": 1.2,
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The root! It grows out first, and it grows down.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 1
+      },
+      {
+       "do": "highlight",
+       "target": "bn_sprout",
+       "at": 1.6,
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "bn_sprout",
+       "at": 2.2,
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "week 2: root first",
+       "style": "label",
+       "at": 1,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Then the shoot pushes up toward the light.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "then the shoot grows up",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3
+      },
+      {
+       "do": "pop",
+       "target": "bn_l2",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A seed doesn't need light to sprout. But the young plant needs light to grow.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "sprouting: no light needed",
+       "style": "label",
+       "at": 0.3,
+       "dur": 2.6
+      },
+      {
+       "do": "caption",
+       "text": "growing: light needed",
+       "style": "label",
+       "at": 3,
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bn_a2",
+       "dur": 0.9
+      },
+      {
+       "do": "show",
+       "target": "bn_young",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0.7,
+       "volume": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "bn_l3",
+       "at": 1.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bn_sprout",
+        "bn_young",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 15,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Leaves open, and the young plant grows taller every week.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "week 4: young plant",
+       "style": "label",
+       "at": 1,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "show",
+       "target": "stick",
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "stick"
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "I'll measure it. Then measure twice, just to be sure!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "fox",
+       "at": 2.4
+      },
+      {
+       "do": "grow",
+       "target": "bn_young",
+       "to": 1.2,
+       "at": 2.6,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "hide",
+       "target": "stick"
+      },
+      {
+       "do": "draw",
+       "target": "bn_a3",
+       "dur": 0.9
+      },
+      {
+       "do": "show",
+       "target": "bn_flower",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "sound",
+       "sound": "sprout_spring",
+       "at": 0.7,
+       "volume": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "bn_l4",
+       "at": 1.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bn_young",
+        "bn_flower"
+       ],
+       "framing": "medium",
+       "height": 15,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Next come little white flowers.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "week 6: flowers",
+       "style": "label",
+       "at": 1,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bn_flower",
+        "bn_l4"
+       ],
+       "framing": "medium",
+       "height": 15,
+       "yaw": -15,
+       "pad": 0.3,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And the flowers become green bean pods.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "bn_flower#pod",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "at": 1.3,
+       "dur": 0.05
+      },
+      {
+       "do": "sound",
+       "sound": "magic_sparkle",
+       "at": 1.3,
+       "volume": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "bn_flower",
+       "at": 1.4,
+       "dur": 2
+      },
+      {
+       "do": "caption",
+       "text": "pods",
+       "style": "label",
+       "at": 1.2,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bn_a4",
+       "dur": 0.9
+      },
+      {
+       "do": "show",
+       "target": "bn_pod",
+       "at": 0.6,
+       "dur": 0.8
+      },
+      {
+       "do": "shot",
+       "target": "bn_pod",
+       "framing": "close",
+       "height": 30,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Open a pod and look. Inside are new bean seeds!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "week 8: pods with seeds",
+       "style": "label",
+       "at": 1,
+       "dur": 3
+      },
+      {
+       "do": "highlight",
+       "target": "bn_pod",
+       "at": 2.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "pop",
+       "target": "bn_l5",
+       "at": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "For a bush bean, seed to new pods takes about two months.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bn_seed",
+        "bn_sprout",
+        "bn_young",
+        "bn_flower",
+        "bn_pod",
+        "bn_a1",
+        "bn_a2",
+        "bn_a3",
+        "bn_a4",
+        "bn_a5"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "At the end of the season, the old plant dries up and dies.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "sad",
+       "at": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "draw",
+       "target": "bn_a5",
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "But its seeds can grow into new plants, so the cycle goes on.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "bn_seed",
+       "at": 2.4,
+       "dur": 2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "A plant has a life cycle too! Seed, sprout, plant, flowers, pods.",
+       "caption": true
+      },
+      {
+       "do": "orbit",
+       "around": [
+        4.5,
+        0.4,
+        0.1
+       ],
+       "degrees": -45,
+       "dur": 8
+      },
+      {
+       "do": "highlight",
+       "target": "bn_seed",
+       "at": 1.8,
+       "dur": 0.7
+      },
+      {
+       "do": "highlight",
+       "target": "bn_sprout",
+       "at": 2.4,
+       "dur": 0.7
+      },
+      {
+       "do": "highlight",
+       "target": "bn_young",
+       "at": 3,
+       "dur": 0.7
+      },
+      {
+       "do": "highlight",
+       "target": "bn_flower",
+       "at": 3.6,
+       "dur": 0.7
+      },
+      {
+       "do": "highlight",
+       "target": "bn_pod",
+       "at": 4.2,
+       "dur": 0.7
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "compare",
+   "title": "Compare the cycles",
+   "beats": [
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking",
+       "at": 0,
+       "then": "Idle"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -2.3,
+        0,
+        -1.7
+       ],
+       "at": 0,
+       "dur": 2.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 2.4
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        2.3,
+        0,
+        -1.7
+       ],
+       "at": 0,
+       "dur": 2.4
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0,
+       "height": 0.15,
+       "dur": 2.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "frog",
+        "bf_egg",
+        "bf_chr",
+        "bn_seed",
+        "bn_flower",
+        "bn_pod",
+        "milk",
+        "fr_a1",
+        "fr_a2",
+        "fr_a3",
+        "fr_a4",
+        "fr_a5",
+        "bn_a1",
+        "bn_a2",
+        "bn_a3",
+        "bn_a4",
+        "bn_a5"
+       ],
+       "framing": "wide",
+       "height": 25,
+       "dur": 2.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now we have three life-cycle wheels side by side. Let's compare them.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.8
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 2.4,
+       "to": "bf_egg"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 2.4,
+       "to": "bf_egg"
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "fr_tad",
+        "fr_let",
+        "frog",
+        "fr_legs",
+        "cmp_fr"
+       ],
+       "framing": "medium",
+       "height": 22,
+       "dur": 1.4
+      },
+      {
+       "do": "show",
+       "target": "cmp_fr",
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "How does each one start? The frog starts as an egg in water.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "fr_eggs",
+       "at": 2.2,
+       "dur": 2
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_fr",
+       "words": "starts: egg in water",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bf_egg",
+        "bf_cat",
+        "bf_chr",
+        "bf_ad",
+        "cmp_bf"
+       ],
+       "framing": "medium",
+       "height": 22,
+       "dur": 1.4
+      },
+      {
+       "do": "show",
+       "target": "cmp_bf",
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The butterfly starts as an egg on a leaf.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "bf_egg",
+       "at": 1.2,
+       "dur": 2
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_bf",
+       "words": "starts: egg on a leaf",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bn_seed",
+        "bn_sprout",
+        "bn_young",
+        "bn_flower",
+        "bn_pod",
+        "cmp_bn"
+       ],
+       "framing": "medium",
+       "height": 22,
+       "dur": 1.4
+      },
+      {
+       "do": "show",
+       "target": "cmp_bn",
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And the bean starts as a seed in the soil.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "bn_seed",
+       "at": 1.2,
+       "dur": 2
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_bn",
+       "words": "starts: seed in soil",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bf_ad"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Does the baby look like the grown-up?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "fr_tad",
+        "fr_let",
+        "frog",
+        "fr_legs",
+        "cmp_fr"
+       ],
+       "framing": "medium",
+       "height": 22,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Not for the frog. A tadpole looks nothing like a frog.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "fr_tad",
+       "at": 0.6,
+       "dur": 2
+      },
+      {
+       "do": "highlight",
+       "target": "frog",
+       "at": 2,
+       "dur": 2
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_fr",
+       "words": "young: tadpole",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bf_egg",
+        "bf_cat",
+        "bf_chr",
+        "bf_ad",
+        "cmp_bf"
+       ],
+       "framing": "medium",
+       "height": 22,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Not for the butterfly either. Caterpillar and butterfly look totally different.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "bf_cat",
+       "at": 0.8,
+       "dur": 2
+      },
+      {
+       "do": "highlight",
+       "target": "bf_ad",
+       "at": 2.4,
+       "dur": 2
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_bf",
+       "words": "young: caterpillar",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bn_seed",
+        "bn_sprout",
+        "bn_young",
+        "bn_flower",
+        "bn_pod",
+        "cmp_bn"
+       ],
+       "framing": "medium",
+       "height": 22,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The young bean plant looks partly like the grown one. It just has no flowers yet.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "bn_young",
+       "at": 1.5,
+       "dur": 2
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_bn",
+       "words": "young: small plant",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "cmp_fr",
+        "cmp_bf",
+        "cmp_bn"
+       ],
+       "framing": "medium",
+       "height": 8,
+       "dur": 1.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Frogs and butterflies change body shape: metamorphosis. A bean plant just grows and adds new parts.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_fr",
+       "words": "metamorphosis",
+       "at": 1.2,
+       "color": "mint"
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_bf",
+       "words": "complete metamorphosis",
+       "at": 1.6,
+       "color": "mint"
+      },
+      {
+       "do": "emphasize",
+       "target": "cmp_bn",
+       "words": "no big change of shape",
+       "at": 4.2,
+       "color": "pink"
+      }
+     ]
+    },
+    {
+     "dur": 3.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Frogs and butterflies make young by laying eggs. The bean makes seeds in pods.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "cmp_fr",
+       "at": 0.6,
+       "dur": 1.5
+      },
+      {
+       "do": "highlight",
+       "target": "cmp_bf",
+       "at": 1.4,
+       "dur": 1.5
+      },
+      {
+       "do": "highlight",
+       "target": "cmp_bn",
+       "at": 3.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "show",
+       "target": "rule",
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "rule"
+       ],
+       "framing": "medium",
+       "height": 8,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "So here's the rule. All three start life, grow, make young, and the cycle goes on.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "emphasize",
+       "target": "rule",
+       "words": "start life, grow, make young",
+       "at": 2.6,
+       "dur": 1.2
+      },
+      {
+       "do": "caption",
+       "text": "find the rule",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "rule"
+      },
+      {
+       "do": "hide",
+       "target": "cmp_fr",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "cmp_bf",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "cmp_bn",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bf_ad"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Robots don't grow or have young. So we don't have a life cycle. We're not alive!",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 3.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "That's right, Robo. And you kids grow too, but you don't change shape like a tadpole!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "giggle",
+       "at": 3.5,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 4.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Fun fact: some monarchs fly thousands of kilometres to spend the winter in Mexico.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "fun fact",
+       "style": "label",
+       "dur": 3
+      },
+      {
+       "do": "show",
+       "target": "bf_mom",
+       "at": 0.3
+      },
+      {
+       "do": "path",
+       "target": "bf_mom",
+       "points": [
+        [
+         -1,
+         2,
+         2
+        ],
+        [
+         1,
+         2.6,
+         1.6
+        ],
+        [
+         3,
+         3.4,
+         0.5
+        ],
+        [
+         6,
+         4.4,
+         -2
+        ]
+       ],
+       "dur": 4.5,
+       "at": 0.4,
+       "face": true
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_mom#wing",
+       "at": 0.4,
+       "deg": 30,
+       "dur": 4.5
+      },
+      {
+       "do": "hide",
+       "target": "bf_mom",
+       "at": 4.9
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "frog",
+        "bf_egg",
+        "bf_chr",
+        "bn_seed",
+        "bn_flower",
+        "bn_pod",
+        "milk",
+        "fr_a1",
+        "fr_a2",
+        "fr_a3",
+        "fr_a4",
+        "fr_a5",
+        "bn_a1",
+        "bn_a2",
+        "bn_a3",
+        "bn_a4",
+        "bn_a5"
+       ],
+       "framing": "wide",
+       "height": 20,
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Start and grow, make young and go.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "orbit",
+       "around": [
+        0,
+        0.6,
+        0
+       ],
+       "degrees": 20,
+       "dur": 6,
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Round and round the life cycle flows!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: What comes next?",
+   "music": "playful",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_legs",
+        "fr_let",
+        "fr_w3",
+        "fr_pad"
+       ],
+       "framing": "medium",
+       "height": 32,
+       "dur": 1.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Challenge time! What comes next? Number one: a tadpole with back legs.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "highlight",
+       "target": "fr_legs",
+       "at": 2.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Front legs, and then it becomes a froglet!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "fr_let",
+       "at": 0.6,
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "fr_let",
+       "at": 1.2,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bf_cat",
+        "bf_chr"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Number two: a caterpillar. What comes next?",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "bf_cat",
+       "at": 1,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A chrysalis!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "bf_chr",
+       "at": 0.3,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bn_flower",
+        "bn_pod"
+       ],
+       "framing": "medium",
+       "height": 32,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Number three: flowers on a bean plant. What comes next?",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "bn_flower",
+       "at": 1,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Pods with new seeds inside!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "bn_pod",
+       "at": 0.4,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "oc1",
+        "oc2",
+        "oc3",
+        "oc4"
+       ],
+       "framing": "medium",
+       "height": 8,
+       "dur": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "oc1",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "oc2",
+       "at": 0.9
+      },
+      {
+       "do": "pop",
+       "target": "oc3",
+       "at": 1.2
+      },
+      {
+       "do": "pop",
+       "target": "oc4",
+       "at": 1.5
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Number four is mine. Butterfly order: egg, chrysalis, caterpillar, adult.",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 1,
+       "to": "oc2"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 1,
+       "to": "oc2"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Is Robo right? Can you fix it?",
+       "voice": "squeaky",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "mark",
+       "target": "oc2",
+       "result": "incorrect",
+       "dur": 1.4
+      },
+      {
+       "do": "path",
+       "target": "oc2",
+       "points": [
+        [
+         -0.7,
+         2.3,
+         0.9
+        ],
+        [
+         0,
+         2.9,
+         1.1
+        ],
+        [
+         0.7,
+         2.3,
+         0.9
+        ]
+       ],
+       "dur": 1,
+       "at": 1.2
+      },
+      {
+       "do": "path",
+       "target": "oc3",
+       "points": [
+        [
+         0.7,
+         2.3,
+         0.9
+        ],
+        [
+         0,
+         1.7,
+         1.1
+        ],
+        [
+         -0.7,
+         2.3,
+         0.9
+        ]
+       ],
+       "dur": 1,
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.2,
+       "volume": 0.5
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The caterpillar comes before the chrysalis. Egg, caterpillar, chrysalis, adult!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "oc3",
+       "at": 2.6,
+       "dur": 1.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "oc1"
+      },
+      {
+       "do": "hide",
+       "target": "oc2",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "oc3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "oc4",
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "frog",
+        "bf_egg",
+        "bf_chr",
+        "bn_seed",
+        "bn_flower",
+        "bn_pod",
+        "milk",
+        "fr_a1",
+        "fr_a2",
+        "fr_a3",
+        "fr_a4",
+        "fr_a5",
+        "bn_a1",
+        "bn_a2",
+        "bn_a3",
+        "bn_a4",
+        "bn_a5"
+       ],
+       "framing": "wide",
+       "height": 25,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Last one. Which of our three does not go through metamorphosis?",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 3.45,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bn_seed",
+        "bn_sprout",
+        "bn_young",
+        "bn_flower",
+        "bn_pod",
+        "bn_l4",
+        "bn_l5"
+       ],
+       "framing": "medium",
+       "height": 25,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The bean plant! It grows bigger, but it never changes body shape.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bn_young",
+       "at": 0.4,
+       "dur": 2.5
+      },
+      {
+       "do": "mark",
+       "target": "bn_flower",
+       "at": 0.8,
+       "dur": 1.8
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 3.4,
+       "volume": 0.35
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bf_ad",
+        "bf_cat"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quick quiz! One: where does a frog lay its eggs?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "ahead"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "fr_w1"
+       ],
+       "framing": "medium",
+       "height": 30,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "In water!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "fr_eggs",
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bf_ad",
+        "bf_cat"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Two: what stage comes between caterpillar and butterfly?",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bf_chr",
+        "bf_cat",
+        "bf_ad"
+       ],
+       "framing": "medium",
+       "height": 25,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The chrysalis, also called the pupa.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "bf_chr",
+       "at": 0.4,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bf_ad",
+        "bf_cat"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three: what grows out of a bean seed first?",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bn_sprout"
+       ],
+       "framing": "close",
+       "height": 12,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The root!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "bn_sprout",
+       "at": 0.4,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bf_ad",
+        "bf_cat"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four: name one thing all three life cycles share.",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "frog",
+        "bf_egg",
+        "bf_chr",
+        "bn_seed",
+        "bn_flower",
+        "bn_pod",
+        "milk",
+        "fr_a1",
+        "fr_a2",
+        "fr_a3",
+        "fr_a4",
+        "fr_a5",
+        "bn_a1",
+        "bn_a2",
+        "bn_a3",
+        "bn_a4",
+        "bn_a5"
+       ],
+       "framing": "wide",
+       "height": 25,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "They all start life, grow, make young, and the cycle goes on.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bf_ad",
+        "bf_cat"
+       ],
+       "framing": "medium",
+       "height": 12,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Five: does a caterpillar turn into a butterfly inside a cocoon?",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "think...",
+       "style": "label",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bf_chr",
+        "bf_l3"
+       ],
+       "framing": "medium",
+       "height": 10,
+       "yaw": 15,
+       "pad": 0.2,
+       "dur": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "No! Butterflies make a chrysalis. Moths spin cocoons.",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "mark",
+       "target": "bf_chr",
+       "at": 0.9,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "show",
+       "target": "after",
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "after",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "height": 8,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Time to fix my before board. Here is the after board!",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.5,
+       "to": "after"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.5,
+       "to": "after"
+      }
+     ]
+    },
+    {
+     "dur": 3.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Frog: egg, tadpole, froglet, adult. Butterfly: egg, caterpillar, chrysalis, adult.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "after",
+       "words": "a frog",
+       "at": 0.8
+      },
+      {
+       "do": "emphasize",
+       "target": "after",
+       "words": "a butterfly",
+       "at": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Bean: seed, sprout, plant, flowers, and pods full of new seeds.",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "after",
+       "words": "a bean plant",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "hide",
+       "target": "after"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bn_seed",
+        "bn_sprout",
+        "bn_young"
+       ],
+       "framing": "medium",
+       "height": 25,
+       "dur": 1.6
+      },
+      {
+       "do": "highlight",
+       "target": "bn_sprout",
+       "at": 3,
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Try a bean in a jar at home, with a grown-up. Watch the root come out first!",
+       "voice": "squeaky",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "fr_eggs",
+        "frog",
+        "bf_egg",
+        "bf_chr",
+        "bn_seed",
+        "bn_flower",
+        "bn_pod",
+        "milk",
+        "fr_a1",
+        "fr_a2",
+        "fr_a3",
+        "fr_a4",
+        "fr_a5",
+        "bn_a1",
+        "bn_a2",
+        "bn_a3",
+        "bn_a4",
+        "bn_a5",
+        "robo",
+        "fox"
+       ],
+       "framing": "wide",
+       "height": 20,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Watched it, measured it, learned it!",
+       "voice": "squeaky",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      },
+      {
+       "do": "burst",
+       "target": "bubbles",
+       "at": 0.6,
+       "dur": 7
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.6,
+       "volume": 0.4
+      },
+      {
+       "do": "show",
+       "target": "bf_mom",
+       "at": 0.6
+      },
+      {
+       "do": "path",
+       "target": "bf_mom",
+       "points": [
+        [
+         -1.5,
+         2.2,
+         1.6
+        ],
+        [
+         0,
+         3,
+         1.2
+        ],
+        [
+         2,
+         3.4,
+         0
+        ],
+        [
+         4,
+         4.2,
+         -2
+        ]
+       ],
+       "dur": 4.5,
+       "at": 0.6,
+       "face": true
+      },
+      {
+       "do": "wiggle",
+       "target": "bf_mom#wing",
+       "at": 0.6,
+       "deg": 30,
+       "dur": 4.5
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.4,
+       "height": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "splash",
+       "at": 1.9,
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 3.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Bye for now, friends!",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        4.5,
+        15
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        0
+       ],
+       "at": 0.6,
+       "dur": 3
+      },
+      {
+       "do": "hide",
+       "target": "bf_mom",
+       "at": 3.2
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,6870 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Frog won't cross the pond on stepping stones of random sizes, so Fox builds a bridge he can trust: a fraction bar lies down and becomes a number line from 0 to 1. Frog's equal hops place 1/4, 2/4, 3/4 and 4/4 = 1, Robo learns to count hops (spaces) not ticks, thirds and sixths bridges place 2/3 and 5/6, and same-length lines show that 1/3 is bigger than 1/6.",
+ "meta": {
+  "title": "Fractions on a Number Line",
+  "series": "toybox",
+  "episode": "g302",
+  "audience": "grade3",
+  "seed": 302,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "calm",
+  "musicGain": 0.18,
+  "skills": [
+   "fractions_3"
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1
+   },
+   "fox": {
+    "voice": "squeaky",
+    "pitch": 1.15
+   }
+  },
+  "youtube": {
+   "title": "Fractions on a Number Line! Unit Fractions for Kids | Grade 3 Math | Toy Box Friends",
+   "description": "Frog only likes hops that are all the same size, so Fox builds him a bridge: a fraction bar cut into fourths lies down and becomes a number line from 0 to 1. Count Frog's equal hops to place 1/4, 2/4, 3/4 and 4/4, which is the same point as 1. Catch Robo's mistake (count the hops, not the tick marks), place 2/3 and 5/6 on thirds and sixths bridges, and compare fractions like 1/3 and 1/6 on lines of the same length.\n\nWhat kids learn: a fraction is a number with its own spot on the number line; the bottom number (denominator) tells how many equal parts make 1 whole; the top number (numerator) tells how many hops; 4/4 = 1; more equal parts make smaller parts. For third graders (CCSS 3.NF.A.1, 3.NF.A.2, 3.NF.A.3).\n\nTry at home: fold a paper strip in half and in half again to make fourths. Write 0 at one end, 1 at the other and 1/4, 2/4, 3/4 on the folds, then hop a toy along it. Use scissors with a grown-up, and at a real pond, look from the path with a grown-up.",
+   "tags": [
+    "fractions on a number line",
+    "unit fractions",
+    "compare fractions",
+    "grade 3 fractions",
+    "3rd grade math",
+    "numerator and denominator",
+    "fractions for kids",
+    "number line",
+    "math cartoon",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "hop",
+    "title": "Hop to 3/4!",
+    "subtitle": "Fractions on a number line",
+    "titleColor": "yellow",
+    "side": "top",
+    "badge": "GRADE 3",
+    "stage": "pond",
+    "camera": {
+     "position": [
+      0.2,
+      1.15,
+      5.4
+     ],
+     "lookAt": [
+      0.2,
+      1.05,
+      0.4
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "t_strip",
+      "kind": "shape",
+      "shape": "disc",
+      "at": [
+       0,
+       0.004,
+       0.55
+      ],
+      "color": "pond",
+      "material": "glossy",
+      "scale": [
+       3.6,
+       0.03,
+       1.5
+      ]
+     },
+     {
+      "id": "t_line",
+      "kind": "number_line",
+      "from": 0,
+      "to": 1,
+      "length": 4,
+      "step": 1,
+      "minor": 4,
+      "labels": "fractions",
+      "color": "blue",
+      "at": [
+       0,
+       0,
+       0.4
+      ]
+     },
+     {
+      "id": "t_pad",
+      "kind": "prop",
+      "model": "lily_pad",
+      "size": 0.45,
+      "on": {
+       "line": "t_line",
+       "value": 0.75
+      }
+     },
+     {
+      "id": "t_a1",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0
+      ],
+      "from": [
+       -2,
+       0.6,
+       0.4
+      ],
+      "to": [
+       -1,
+       0.6,
+       0.4
+      ],
+      "bend": 0.45,
+      "width": 0.05,
+      "color": "orange"
+     },
+     {
+      "id": "t_a2",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0
+      ],
+      "from": [
+       -1,
+       0.6,
+       0.4
+      ],
+      "to": [
+       0,
+       0.6,
+       0.4
+      ],
+      "bend": 0.45,
+      "width": 0.05,
+      "color": "orange"
+     },
+     {
+      "id": "t_a3",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0
+      ],
+      "from": [
+       0,
+       0.6,
+       0.4
+      ],
+      "to": [
+       0.8,
+       0.85,
+       0.4
+      ],
+      "bend": 0.15,
+      "width": 0.05,
+      "color": "orange",
+      "head": "none"
+     },
+     {
+      "id": "t_frog",
+      "kind": "critter",
+      "species": "frog",
+      "at": [
+       0.98,
+       0.7,
+       0.45
+      ],
+      "size": 0.7,
+      "feeling": "happy",
+      "rotation": [
+       0,
+       10,
+       0
+      ]
+     },
+     {
+      "id": "t_fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+       2.05,
+       0,
+       1.9
+      ],
+      "size": 0.85,
+      "feeling": "happy",
+      "rotation": [
+       0,
+       -30,
+       0
+      ]
+     }
+    ]
+   },
+   {
+    "name": "barline",
+    "title": "BAR TO LINE!",
+    "subtitle": "Fractions are numbers",
+    "titleColor": "white",
+    "side": "top",
+    "badge": "GRADE 3",
+    "stage": "pond",
+    "camera": {
+     "position": [
+      0,
+      1.05,
+      6.6
+     ],
+     "lookAt": [
+      0,
+      1.1,
+      0.4
+     ],
+     "fov": 40
+    },
+    "objects": [
+     {
+      "id": "t_bar",
+      "kind": "fraction_bar",
+      "parts": 4,
+      "length": 4,
+      "height": 0.4,
+      "color": "orange",
+      "empty": "cream",
+      "at": [
+       0,
+       0.98,
+       0.4
+      ]
+     },
+     {
+      "id": "t_line",
+      "kind": "number_line",
+      "from": 0,
+      "to": 1,
+      "length": 4,
+      "step": 1,
+      "minor": 4,
+      "labels": "fractions",
+      "color": "blue",
+      "at": [
+       0,
+       0,
+       0.4
+      ]
+     },
+     {
+      "id": "t_d0",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0.55
+      ],
+      "from": [
+       -2,
+       0.96,
+       0
+      ],
+      "to": [
+       -2,
+       0.6,
+       0
+      ],
+      "head": "arrow",
+      "width": 0.04,
+      "color": "ink"
+     },
+     {
+      "id": "t_d1",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0.55
+      ],
+      "from": [
+       -1,
+       0.96,
+       0
+      ],
+      "to": [
+       -1,
+       0.6,
+       0
+      ],
+      "head": "arrow",
+      "width": 0.04,
+      "color": "ink"
+     },
+     {
+      "id": "t_d2",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0.55
+      ],
+      "from": [
+       0,
+       0.96,
+       0
+      ],
+      "to": [
+       0,
+       0.6,
+       0
+      ],
+      "head": "arrow",
+      "width": 0.04,
+      "color": "ink"
+     },
+     {
+      "id": "t_d3",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0.55
+      ],
+      "from": [
+       1,
+       0.96,
+       0
+      ],
+      "to": [
+       1,
+       0.6,
+       0
+      ],
+      "head": "arrow",
+      "width": 0.04,
+      "color": "ink"
+     },
+     {
+      "id": "t_d4",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0.55
+      ],
+      "from": [
+       2,
+       0.96,
+       0
+      ],
+      "to": [
+       2,
+       0.6,
+       0
+      ],
+      "head": "arrow",
+      "width": 0.04,
+      "color": "ink"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       -3,
+       0,
+       0.6
+      ],
+      "rotation": [
+       0,
+       30,
+       0
+      ],
+      "clip": "Yes",
+      "feeling": "surprised"
+     },
+     {
+      "id": "t_frog",
+      "kind": "critter",
+      "species": "frog",
+      "at": [
+       3,
+       0,
+       0.9
+      ],
+      "size": 0.65,
+      "feeling": "happy",
+      "rotation": [
+       0,
+       -20,
+       0
+      ]
+     }
+    ]
+   },
+   {
+    "name": "compare",
+    "title": "1/3 or 1/6?",
+    "subtitle": "Which is bigger?",
+    "titleColor": "orange",
+    "side": "top",
+    "badge": "GRADE 3",
+    "stage": "pond",
+    "camera": {
+     "position": [
+      0,
+      1.5,
+      6.9
+     ],
+     "lookAt": [
+      0,
+      1.25,
+      -0.2
+     ],
+     "fov": 38
+    },
+    "objects": [
+     {
+      "id": "t_tier",
+      "kind": "shape",
+      "shape": "box",
+      "at": [
+       0,
+       0,
+       -0.6
+      ],
+      "color": "wood",
+      "material": "matte",
+      "scale": [
+       5.9,
+       0.6,
+       0.9
+      ]
+     },
+     {
+      "id": "t_six",
+      "kind": "number_line",
+      "from": 0,
+      "to": 1,
+      "length": 4,
+      "step": 1,
+      "minor": 6,
+      "labels": "fractions",
+      "color": "green",
+      "at": [
+       0,
+       0,
+       0.4
+      ]
+     },
+     {
+      "id": "t_three",
+      "kind": "number_line",
+      "from": 0,
+      "to": 1,
+      "length": 4,
+      "step": 1,
+      "minor": 3,
+      "labels": "fractions",
+      "color": "purple",
+      "at": [
+       0,
+       0.6,
+       -0.6
+      ]
+     },
+     {
+      "id": "t_p3",
+      "kind": "prop",
+      "model": "lily_pad",
+      "size": 0.45,
+      "on": {
+       "line": "t_three",
+       "value": 0.3333
+      }
+     },
+     {
+      "id": "t_p6",
+      "kind": "prop",
+      "model": "lily_pad",
+      "size": 0.45,
+      "on": {
+       "line": "t_six",
+       "value": 0.1667
+      }
+     },
+     {
+      "id": "t_d3",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0
+      ],
+      "from": [
+       -2,
+       1.27,
+       -0.6
+      ],
+      "to": [
+       -0.667,
+       1.27,
+       -0.6
+      ],
+      "tail": "dot",
+      "width": 0.08,
+      "color": "purple"
+     },
+     {
+      "id": "t_d6",
+      "kind": "pointer",
+      "at": [
+       0,
+       0,
+       0
+      ],
+      "from": [
+       -2,
+       0.67,
+       0.4
+      ],
+      "to": [
+       -1.333,
+       0.67,
+       0.4
+      ],
+      "tail": "dot",
+      "width": 0.08,
+      "color": "green"
+     },
+     {
+      "id": "t_fox",
+      "kind": "critter",
+      "species": "fox",
+      "at": [
+       2.75,
+       0,
+       1.6
+      ],
+      "size": 0.95,
+      "feeling": "surprised",
+      "rotation": [
+       0,
+       -35,
+       0
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "pond"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.2,
+   9.5
+  ],
+  "lookAt": [
+   0,
+   0.8,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3,
+    0,
+    2.6
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "fox",
+   "kind": "critter",
+   "species": "fox",
+   "at": [
+    3.1,
+    0,
+    2.6
+   ],
+   "size": 1.2,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "strip",
+   "kind": "shape",
+   "shape": "disc",
+   "at": [
+    0,
+    0.004,
+    0.55
+   ],
+   "color": "pond",
+   "material": "glossy",
+   "scale": [
+    3.6,
+    0.03,
+    1.5
+   ]
+  },
+  {
+   "id": "island",
+   "kind": "shape",
+   "shape": "disc",
+   "at": [
+    2.55,
+    0.012,
+    0.35
+   ],
+   "color": "sand",
+   "material": "matte",
+   "scale": [
+    1.5,
+    0.03,
+    1.6
+   ]
+  },
+  {
+   "id": "basket",
+   "kind": "prop",
+   "model": "basket",
+   "at": [
+    2.95,
+    0.03,
+    -0.15
+   ],
+   "size": 0.7
+  },
+  {
+   "id": "frog",
+   "kind": "critter",
+   "species": "frog",
+   "at": [
+    -2.55,
+    0,
+    0.6
+   ],
+   "size": 0.55,
+   "rotation": [
+    0,
+    20,
+    0
+   ]
+  },
+  {
+   "id": "rock1",
+   "kind": "prop",
+   "model": "rock",
+   "at": [
+    -1.2,
+    0,
+    0.55
+   ],
+   "size": 0.85,
+   "hidden": true
+  },
+  {
+   "id": "rock2",
+   "kind": "prop",
+   "model": "rock",
+   "at": [
+    -0.8,
+    0,
+    0.6
+   ],
+   "size": 0.75,
+   "hidden": true,
+   "rotation": [
+    0,
+    60,
+    0
+   ]
+  },
+  {
+   "id": "rock3",
+   "kind": "prop",
+   "model": "rock",
+   "at": [
+    0.9,
+    0,
+    0.5
+   ],
+   "size": 0.85,
+   "hidden": true,
+   "rotation": [
+    0,
+    -30,
+    0
+   ]
+  },
+  {
+   "id": "stick",
+   "kind": "prop",
+   "model": "metre_stick",
+   "at": [
+    6.5,
+    0.02,
+    1.25
+   ],
+   "size": 4,
+   "hidden": true
+  },
+  {
+   "id": "stick_lab",
+   "kind": "callout",
+   "text": "1 whole crossing",
+   "target": "stick",
+   "offset": [
+    0,
+    0.9,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tier1",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    -0.6
+   ],
+   "color": "wood",
+   "material": "matte",
+   "scale": [
+    5.9,
+    0.6,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tier2",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    -1.6
+   ],
+   "color": "wood",
+   "material": "matte",
+   "scale": [
+    5.9,
+    1.2,
+    0.9
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nlw",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 1,
+   "labels": "numbers",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl4a",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl4b",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl4c",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl4d",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl3a",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 3,
+   "labels": "fractions",
+   "color": "purple",
+   "at": [
+    0,
+    0.6,
+    -0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl3b",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 3,
+   "labels": "fractions",
+   "color": "purple",
+   "at": [
+    0,
+    0.6,
+    -0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl3c",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 3,
+   "labels": "fractions",
+   "color": "purple",
+   "at": [
+    0,
+    0.6,
+    -0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl6a",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 6,
+   "labels": "fractions",
+   "color": "green",
+   "at": [
+    0,
+    1.2,
+    -1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl6b",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 6,
+   "labels": "fractions",
+   "color": "green",
+   "at": [
+    0,
+    1.2,
+    -1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl6c",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 6,
+   "labels": "fractions",
+   "color": "green",
+   "at": [
+    0,
+    1.2,
+    -1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl8",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 8,
+   "labels": "fractions",
+   "color": "orange",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl4e",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0.6,
+    -0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl4q",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl2q",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 2,
+   "labels": "fractions",
+   "color": "teal",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl3q",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 3,
+   "labels": "fractions",
+   "color": "purple",
+   "at": [
+    0,
+    0.6,
+    -0.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl6q",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 6,
+   "labels": "fractions",
+   "color": "green",
+   "at": [
+    0,
+    1.2,
+    -1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "fb4",
+   "kind": "fraction_bar",
+   "parts": 4,
+   "length": 4,
+   "height": 0.5,
+   "color": "orange",
+   "empty": "cream",
+   "at": [
+    0,
+    1.5,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "drop0",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0.55
+   ],
+   "from": [
+    -2,
+    1,
+    0
+   ],
+   "to": [
+    -2,
+    0.5800000000000001,
+    0
+   ],
+   "head": "none",
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "drop1",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0.55
+   ],
+   "from": [
+    -1,
+    1,
+    0
+   ],
+   "to": [
+    -1,
+    0.5800000000000001,
+    0
+   ],
+   "head": "none",
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "drop2",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0.55
+   ],
+   "from": [
+    0,
+    1,
+    0
+   ],
+   "to": [
+    0,
+    0.5800000000000001,
+    0
+   ],
+   "head": "none",
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "drop3",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0.55
+   ],
+   "from": [
+    1,
+    1,
+    0
+   ],
+   "to": [
+    1,
+    0.5800000000000001,
+    0
+   ],
+   "head": "none",
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "drop4",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0.55
+   ],
+   "from": [
+    2,
+    1,
+    0
+   ],
+   "to": [
+    2,
+    0.5800000000000001,
+    0
+   ],
+   "head": "none",
+   "width": 0.04,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "whole",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "from": [
+    -2,
+    1.15,
+    0
+   ],
+   "to": [
+    2,
+    1.15,
+    0
+   ],
+   "head": "arrow",
+   "tail": "arrow",
+   "width": 0.06,
+   "color": "teal",
+   "hidden": true
+  },
+  {
+   "id": "whole_lab",
+   "kind": "letter",
+   "text": "1 whole: from 0 to 1",
+   "size": 0.22,
+   "color": "teal",
+   "at": [
+    0,
+    1.32,
+    0.4
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "p34",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl4a",
+    "value": 0.75
+   },
+   "hidden": true
+  },
+  {
+   "id": "p23",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl3a",
+    "value": 0.6667
+   },
+   "hidden": true
+  },
+  {
+   "id": "p56",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl6a",
+    "value": 0.8333
+   },
+   "hidden": true
+  },
+  {
+   "id": "c13",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl3b",
+    "value": 0.3333
+   },
+   "hidden": true
+  },
+  {
+   "id": "c16",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl6b",
+    "value": 0.1667
+   },
+   "hidden": true
+  },
+  {
+   "id": "c24",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl4d",
+    "value": 0.5
+   },
+   "hidden": true
+  },
+  {
+   "id": "c34",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl4d",
+    "value": 0.75
+   },
+   "hidden": true
+  },
+  {
+   "id": "x23",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl3c",
+    "value": 0.6667
+   },
+   "hidden": true
+  },
+  {
+   "id": "x16",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl6c",
+    "value": 0.1667
+   },
+   "hidden": true
+  },
+  {
+   "id": "x56",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl6c",
+    "value": 0.8333
+   },
+   "hidden": true
+  },
+  {
+   "id": "x38",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl8",
+    "value": 0.375
+   },
+   "hidden": true
+  },
+  {
+   "id": "x18",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl8",
+    "value": 0.125
+   },
+   "hidden": true
+  },
+  {
+   "id": "x14",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl4e",
+    "value": 0.25
+   },
+   "hidden": true
+  },
+  {
+   "id": "q16",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl6q",
+    "value": 0.1667
+   },
+   "hidden": true
+  },
+  {
+   "id": "q12",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl2q",
+    "value": 0.5
+   },
+   "hidden": true
+  },
+  {
+   "id": "q13",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl3q",
+    "value": 0.3333
+   },
+   "hidden": true
+  },
+  {
+   "id": "q26",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl6q",
+    "value": 0.3333
+   },
+   "hidden": true
+  },
+  {
+   "id": "q56",
+   "kind": "prop",
+   "model": "lily_pad",
+   "size": 0.4,
+   "on": {
+    "line": "nl6q",
+    "value": 0.8333
+   },
+   "hidden": true
+  },
+  {
+   "id": "d13",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    -2,
+    1.26,
+    -0.6
+   ],
+   "to": [
+    -0.667,
+    1.26,
+    -0.6
+   ],
+   "tail": "dot",
+   "head": "arrow",
+   "width": 0.07,
+   "color": "purple",
+   "hidden": true
+  },
+  {
+   "id": "d16",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    -2,
+    1.86,
+    -1.6
+   ],
+   "to": [
+    -1.333,
+    1.86,
+    -1.6
+   ],
+   "tail": "dot",
+   "head": "arrow",
+   "width": 0.07,
+   "color": "green",
+   "hidden": true
+  },
+  {
+   "id": "d18",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    -2,
+    0.66,
+    0.4
+   ],
+   "to": [
+    -1.5,
+    0.66,
+    0.4
+   ],
+   "tail": "dot",
+   "head": "arrow",
+   "width": 0.07,
+   "color": "orange",
+   "hidden": true
+  },
+  {
+   "id": "d14",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    -2,
+    1.26,
+    -0.6
+   ],
+   "to": [
+    -1,
+    1.26,
+    -0.6
+   ],
+   "tail": "dot",
+   "head": "arrow",
+   "width": 0.07,
+   "color": "blue",
+   "hidden": true
+  },
+  {
+   "id": "dq12",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    -2,
+    0.66,
+    0.4
+   ],
+   "to": [
+    0,
+    0.66,
+    0.4
+   ],
+   "tail": "dot",
+   "head": "arrow",
+   "width": 0.07,
+   "color": "teal",
+   "hidden": true
+  },
+  {
+   "id": "dq13",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    -2,
+    1.26,
+    -0.6
+   ],
+   "to": [
+    -0.667,
+    1.26,
+    -0.6
+   ],
+   "tail": "dot",
+   "head": "arrow",
+   "width": 0.07,
+   "color": "purple",
+   "hidden": true
+  },
+  {
+   "id": "end0",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    -2,
+    1.78,
+    -1.6
+   ],
+   "to": [
+    -2,
+    0.58,
+    0.4
+   ],
+   "head": "none",
+   "width": 0.035,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "end1",
+   "kind": "pointer",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "from": [
+    2,
+    1.78,
+    -1.6
+   ],
+   "to": [
+    2,
+    0.58,
+    0.4
+   ],
+   "head": "none",
+   "width": 0.035,
+   "color": "ink",
+   "hidden": true
+  },
+  {
+   "id": "big34",
+   "kind": "fraction_text",
+   "numerator": 3,
+   "denominator": 4,
+   "size": 0.55,
+   "color": "ink",
+   "at": [
+    -1.1,
+    1.45,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co_top",
+   "kind": "text_card",
+   "text": "top number: how many hops",
+   "width": 2.9,
+   "size": 0.2,
+   "color": "orange",
+   "at": [
+    0.75,
+    1.95,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "co_bot",
+   "kind": "text_card",
+   "text": "bottom number: equal parts in 1 whole",
+   "width": 2.9,
+   "size": 0.2,
+   "color": "blue",
+   "at": [
+    0.75,
+    1.15,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "big44",
+   "kind": "fraction_text",
+   "numerator": 4,
+   "denominator": 4,
+   "size": 0.42,
+   "color": "ink",
+   "at": [
+    0.45,
+    1.35,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "eq1",
+   "kind": "letter",
+   "text": "= 1",
+   "size": 0.42,
+   "color": "ink",
+   "at": [
+    1.45,
+    1.35,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tk1",
+   "kind": "letter",
+   "text": "1",
+   "size": 0.3,
+   "color": "red",
+   "at": [
+    -2,
+    1.41,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "tk2",
+   "kind": "letter",
+   "text": "2",
+   "size": 0.3,
+   "color": "red",
+   "at": [
+    -1,
+    1.41,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "tk3",
+   "kind": "letter",
+   "text": "3",
+   "size": 0.3,
+   "color": "red",
+   "at": [
+    0,
+    1.41,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "tk4",
+   "kind": "letter",
+   "text": "4",
+   "size": 0.3,
+   "color": "red",
+   "at": [
+    1,
+    1.41,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "tk5",
+   "kind": "letter",
+   "text": "5",
+   "size": 0.3,
+   "color": "red",
+   "at": [
+    2,
+    1.41,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "sp1",
+   "kind": "shape",
+   "shape": "box",
+   "color": "yellow",
+   "material": "glow",
+   "at": [
+    -1.5,
+    0.555,
+    0.4
+   ],
+   "scale": [
+    0.86,
+    0.035,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sn1",
+   "kind": "letter",
+   "text": "1",
+   "size": 0.26,
+   "color": "green",
+   "at": [
+    -1.5,
+    0.68,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "sp2",
+   "kind": "shape",
+   "shape": "box",
+   "color": "yellow",
+   "material": "glow",
+   "at": [
+    -0.5,
+    0.555,
+    0.4
+   ],
+   "scale": [
+    0.86,
+    0.035,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sn2",
+   "kind": "letter",
+   "text": "2",
+   "size": 0.26,
+   "color": "green",
+   "at": [
+    -0.5,
+    0.68,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "sp3",
+   "kind": "shape",
+   "shape": "box",
+   "color": "yellow",
+   "material": "glow",
+   "at": [
+    0.5,
+    0.555,
+    0.4
+   ],
+   "scale": [
+    0.86,
+    0.035,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sn3",
+   "kind": "letter",
+   "text": "3",
+   "size": 0.26,
+   "color": "green",
+   "at": [
+    0.5,
+    0.68,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "sp4",
+   "kind": "shape",
+   "shape": "box",
+   "color": "yellow",
+   "material": "glow",
+   "at": [
+    1.5,
+    0.555,
+    0.4
+   ],
+   "scale": [
+    0.86,
+    0.035,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sn4",
+   "kind": "letter",
+   "text": "4",
+   "size": 0.26,
+   "color": "green",
+   "at": [
+    1.5,
+    0.68,
+    0.45
+   ],
+   "depth": 0.06,
+   "hidden": true
+  },
+  {
+   "id": "claim5",
+   "kind": "text_card",
+   "text": "5 marks, so fifths?",
+   "width": 2.3,
+   "size": 0.2,
+   "at": [
+    -3,
+    2.05,
+    1.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rule_hops",
+   "kind": "text_card",
+   "text": "Count the hops, not the ticks!",
+   "width": 3.6,
+   "size": 0.24,
+   "at": [
+    0,
+    1.55,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "claim6",
+   "kind": "text_card",
+   "text": "6 is bigger than 3, so 1/6 is bigger?",
+   "width": 4.6,
+   "size": 0.28,
+   "at": [
+    0,
+    2.75,
+    -1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rule_more",
+   "kind": "text_card",
+   "text": "More equal parts make smaller parts.",
+   "width": 5,
+   "size": 0.3,
+   "at": [
+    0,
+    2.75,
+    -1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rule_same",
+   "kind": "text_card",
+   "text": "Compare fractions of the same whole: same-length lines.",
+   "width": 5.4,
+   "size": 0.28,
+   "at": [
+    0,
+    2.75,
+    -1.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "recap",
+   "kind": "text_card",
+   "text": "A fraction is a number on the line.\nBottom number: equal parts in 1 whole.\nTop number: how many hops.\n4/4 = 1. Compare on same-length lines.",
+   "width": 4.6,
+   "size": 0.22,
+   "at": [
+    0.2,
+    1,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bubbles",
+   "kind": "bubbles",
+   "count": 30,
+   "area": [
+    6,
+    2.5
+   ]
+  },
+  {
+   "id": "nl4f",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  },
+  {
+   "id": "strip2",
+   "kind": "fraction_bar",
+   "parts": 2,
+   "length": 2.4,
+   "height": 0.32,
+   "color": "white",
+   "empty": "white",
+   "at": [
+    0,
+    0.85,
+    2.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "strip4",
+   "kind": "fraction_bar",
+   "parts": 4,
+   "length": 2.4,
+   "height": 0.32,
+   "color": "white",
+   "empty": "white",
+   "at": [
+    0,
+    0.85,
+    2.6
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sl0",
+   "kind": "letter",
+   "text": "0",
+   "size": 0.14,
+   "color": "ink",
+   "depth": 0.03,
+   "at": [
+    -1.2,
+    0.62,
+    2.62
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sl1",
+   "kind": "letter",
+   "text": "1/4",
+   "size": 0.14,
+   "color": "ink",
+   "depth": 0.03,
+   "at": [
+    -0.6,
+    0.62,
+    2.62
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sl2",
+   "kind": "letter",
+   "text": "2/4",
+   "size": 0.14,
+   "color": "ink",
+   "depth": 0.03,
+   "at": [
+    0,
+    0.62,
+    2.62
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sl3",
+   "kind": "letter",
+   "text": "3/4",
+   "size": 0.14,
+   "color": "ink",
+   "depth": 0.03,
+   "at": [
+    0.5999999999999999,
+    0.62,
+    2.62
+   ],
+   "hidden": true
+  },
+  {
+   "id": "sl4",
+   "kind": "letter",
+   "text": "1",
+   "size": 0.14,
+   "color": "ink",
+   "depth": 0.03,
+   "at": [
+    1.2,
+    0.62,
+    2.62
+   ],
+   "hidden": true
+  },
+  {
+   "id": "nl4h",
+   "kind": "number_line",
+   "from": 0,
+   "to": 1,
+   "length": 4,
+   "step": 1,
+   "minor": 4,
+   "labels": "fractions",
+   "color": "blue",
+   "at": [
+    0,
+    0,
+    0.4
+   ],
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "crossing",
+   "title": "Frog's pond crossing",
+   "beats": [
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        9
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        0.2
+       ],
+       "fov": 40,
+       "dur": 0
+      },
+      {
+       "do": "caption",
+       "text": "Fractions on a Number Line",
+       "style": "title",
+       "dur": 3
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Frog wants to cross the pond to the picnic on the island.",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.5,
+       "to": "basket"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "robo"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.1,
+        1.45,
+        6
+       ],
+       "lookAt": [
+        0.1,
+        0.35,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 3.5,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I'll help! Stepping stones, coming right up!",
+       "caption": true
+      },
+      {
+       "do": "drop",
+       "target": "rock1",
+       "to": [
+        -1.2,
+        0,
+        0.55
+       ],
+       "at": 0.6,
+       "sound": "splash"
+      },
+      {
+       "do": "drop",
+       "target": "rock2",
+       "to": [
+        -0.8,
+        0,
+        0.6
+       ],
+       "at": 1.3,
+       "sound": "splash"
+      },
+      {
+       "do": "drop",
+       "target": "rock3",
+       "to": [
+        0.9,
+        0,
+        0.5
+       ],
+       "at": 2,
+       "sound": "splash"
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 1.2,
+       "to": "rock3"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Off you go, Frog! Hop, hop, hop!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "worried",
+       "at": 0.1
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "deg": 8,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "rock2",
+       "color": "pink",
+       "at": 0.3,
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "tiny gap",
+       "style": "label",
+       "at": 0.2,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "highlight",
+       "target": "rock3",
+       "color": "pink",
+       "dur": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "huge gap!",
+       "style": "label",
+       "dur": 1.4
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Some frogs can jump more than twenty times their own body length. Why won't he go?",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "frog"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Frog only likes hops that are all the same size. Let me measure the gap.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        9
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        0.2
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "show",
+       "target": "stick",
+       "dur": 0.3
+      },
+      {
+       "do": "move",
+       "target": "stick",
+       "to": [
+        0,
+        0.02,
+        1.25
+       ],
+       "dur": 1.6,
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Zero here at the bank, and the island is the end of one whole crossing.",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "stick"
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.5,
+       "to": "stick"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.1,
+        1.45,
+        6
+       ],
+       "lookAt": [
+        0.1,
+        0.35,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "draw",
+       "target": "stick_lab",
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Measured twice. Now let's build a bridge with equal hops. Let's build it and see!",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "rock1",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "rock2",
+       "at": 0.15
+      },
+      {
+       "do": "hide",
+       "target": "rock3",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "stick_lab",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "stick",
+       "at": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy",
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "barline",
+   "title": "From bar to line",
+   "beats": [
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "First, the bridge. Zero is at our bank, and one is at the island.",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "draw",
+       "target": "nlw",
+       "dur": 1.8,
+       "at": 0.8,
+       "sound": "whoosh"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.5,
+       "to": "nlw"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.5,
+       "to": "nlw"
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The whole crossing is the distance from zero to one.",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "whole",
+       "at": 0.6,
+       "dur": 1.2
+      },
+      {
+       "do": "show",
+       "target": "whole_lab",
+       "at": 1.6
+      },
+      {
+       "do": "caption",
+       "text": "whole = 0 to 1",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "But Frog needs smaller hops than that. One giant hop is too far!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "frog",
+       "deg": 8,
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "hide",
+       "target": "whole_lab",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "whole",
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "So here is my fraction bar. It is exactly as long as the bridge.",
+       "caption": true,
+       "at": 0.2
+      },
+      {
+       "do": "build",
+       "target": "fb4",
+       "at": 0.6,
+       "dur": 1.6,
+       "sound": "pop"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.15,
+        2,
+        8.6
+       ],
+       "lookAt": [
+        -0.1,
+        1.05,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "I cut it into four equal parts. That makes fourths.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "fb4#p1",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "fb4#p2",
+       "at": 1.3,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "fb4#p3",
+       "at": 1.8,
+       "dur": 0.8
+      },
+      {
+       "do": "highlight",
+       "target": "fb4#p4",
+       "at": 2.3,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Fourths! We cut shapes into fourths in grade two.",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "fb4"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Here's a question. If the bar lies down, will the tick marks be equally spaced?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "equal spaces?",
+       "style": "label",
+       "dur": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Let's build it and see. The bar lies down on the bridge.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "fb4",
+       "to": [
+        0,
+        0.95,
+        0.4
+       ],
+       "dur": 1.6,
+       "at": 0.6,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "look",
+       "target": "frog",
+       "at": 0.5,
+       "to": "fb4"
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Each cut drops straight down and makes a tick mark.",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "drop0",
+       "at": 0.5,
+       "dur": 0.6
+      },
+      {
+       "do": "draw",
+       "target": "drop1",
+       "at": 0.85,
+       "dur": 0.6
+      },
+      {
+       "do": "draw",
+       "target": "drop2",
+       "at": 1.2,
+       "dur": 0.6
+      },
+      {
+       "do": "draw",
+       "target": "drop3",
+       "at": 1.5499999999999998,
+       "dur": 0.6
+      },
+      {
+       "do": "draw",
+       "target": "drop4",
+       "at": 1.9,
+       "dur": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "crystal_chime",
+       "at": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "nlw",
+       "at": 2.4,
+       "dur": 0.05
+      },
+      {
+       "do": "build",
+       "target": "nl4a",
+       "at": 2.4,
+       "dur": 1.6,
+       "sound": "pop"
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "drop0",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "drop1",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "drop2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "drop3",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "drop4",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "fb4",
+       "at": 0.5,
+       "dur": 0.5
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 4.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Yes! The parts were equal, so the spaces are equal. Zero to one, cut into four equal spaces.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "4 equal spaces",
+       "style": "label",
+       "at": 0.3,
+       "dur": 4
+      },
+      {
+       "do": "show",
+       "target": "sp1",
+       "at": 1.4,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sp1",
+       "at": 4.4,
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "sp2",
+       "at": 1.8499999999999999,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sp2",
+       "at": 4.4,
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "sp3",
+       "at": 2.3,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sp3",
+       "at": 4.4,
+       "dur": 0.3
+      },
+      {
+       "do": "show",
+       "target": "sp4",
+       "at": 2.75,
+       "dur": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "sp4",
+       "at": 4.4,
+       "dur": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Fourths! Every space is the same size. Frog will love that.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 1.2,
+       "height": 0.3
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "frog"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fourths",
+   "title": "Fourths by hops",
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         -2.55,
+         0,
+         0.6
+        ],
+        [
+         -2.3,
+         0.9,
+         0.5
+        ],
+        [
+         -2,
+         0.56,
+         0.4
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "frog"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.4,
+       "to": "frog"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Frog starts at zero. Each hop is one fourth of the whole.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "0",
+       "style": "count",
+       "at": 0.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4a",
+       "values": [
+        0.25
+       ],
+       "dur": 0.7,
+       "height": 0.55,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "1/4",
+       "style": "count",
+       "at": 0.9,
+       "dur": 2.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One hop. One fourth.",
+       "caption": true,
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4a",
+       "values": [
+        0.5
+       ],
+       "dur": 0.7,
+       "height": 0.55,
+       "at": 0.2
+      },
+      {
+       "do": "caption",
+       "text": "2/4",
+       "style": "count",
+       "at": 0.9,
+       "dur": 2.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Two hops. Two fourths.",
+       "caption": true,
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Where will Frog land after three hops?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "3 hops = ?",
+       "style": "label",
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 1.35,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4a",
+       "values": [
+        0.75
+       ],
+       "dur": 0.7,
+       "height": 0.55,
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "p34",
+       "at": 0.85,
+       "sound": "pop"
+      },
+      {
+       "do": "caption",
+       "text": "3/4",
+       "style": "count",
+       "at": 0.8,
+       "dur": 3
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Three fourths! Three hops of one fourth.",
+       "caption": true,
+       "at": 0.9
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        1,
+        1.46,
+        3.6
+       ],
+       "lookAt": [
+        1,
+        0.51,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One more hop, all the way to the island.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4a",
+       "values": [
+        1
+       ],
+       "dur": 0.8,
+       "height": 0.55,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "4/4",
+       "style": "count",
+       "at": 0.9,
+       "dur": 3
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four hops! Four fourths, and he's at one.",
+       "caption": true,
+       "at": 1.1
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "show",
+       "target": "big44",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "eq1",
+       "at": 0.4
+      },
+      {
+       "do": "highlight",
+       "target": "big44",
+       "at": 0.6,
+       "dur": 2.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "So four fourths and one are the same spot. Four fourths equals one whole.",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.15,
+        2,
+        8.6
+       ],
+       "lookAt": [
+        -0.1,
+        1.05,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "big44",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "eq1",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "big34",
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now look at the fraction three fourths.",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The bottom number is four. Four equal parts make one whole.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "co_bot",
+       "at": 0.6
+      },
+      {
+       "do": "emphasize",
+       "target": "co_bot",
+       "words": "equal parts in 1 whole",
+       "at": 1.4,
+       "dur": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "denominator",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3.2
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The top number is three. That's how many hops Frog took.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "co_top",
+       "at": 0.6
+      },
+      {
+       "do": "emphasize",
+       "target": "co_top",
+       "words": "how many hops",
+       "at": 1.4,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "numerator",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3.2
+      },
+      {
+       "do": "highlight",
+       "target": "p34",
+       "at": 1.4,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Top number, numerator. Bottom number, denominator. Got it!",
+       "caption": true
+      },
+      {
+       "do": "nod",
+       "target": "frog",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Long ago, people in ancient Egypt wrote most fractions as one part, like one third.",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "big34"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Your turn! Bottom number?",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.1,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "How many parts make one!",
+       "style": "label",
+       "at": 0.6,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Top number?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "How many hops!",
+       "style": "label",
+       "at": 0.6,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Try it on your arm. Shoulder is zero, wrist is one. Four equal finger hops!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2,
+        1.6,
+        6.8
+       ],
+       "lookAt": [
+        -2.6,
+        0.9,
+        2.2
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "hide",
+       "target": "co_top"
+      },
+      {
+       "do": "hide",
+       "target": "co_bot",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "big34",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "p34",
+       "at": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ticks",
+   "title": "Count the hops, not the ticks",
+   "beats": [
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl4a",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl4b",
+       "dur": 0.05
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Wait. Let me count the marks myself.",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "nl4b"
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One, two, three, four, five.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "tk1",
+       "at": 0.3,
+       "sound": "tick"
+      },
+      {
+       "do": "pop",
+       "target": "tk2",
+       "at": 0.8500000000000001,
+       "sound": "tick"
+      },
+      {
+       "do": "pop",
+       "target": "tk3",
+       "at": 1.4000000000000001,
+       "sound": "tick"
+      },
+      {
+       "do": "pop",
+       "target": "tk4",
+       "at": 1.9500000000000002,
+       "sound": "tick"
+      },
+      {
+       "do": "pop",
+       "target": "tk5",
+       "at": 2.5,
+       "sound": "tick"
+      }
+     ]
+    },
+    {
+     "dur": 1.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Five marks, so fifths!",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "claim5",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "slide_whistle",
+       "at": 1.2,
+       "volume": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hmm. Fifths or fourths? What do you think?",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "fifths or fourths?",
+       "style": "label",
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "mark",
+       "target": "claim5",
+       "result": "incorrect"
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Count the hops, not the ticks. Hops are the spaces between marks.",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "tk1",
+       "at": 1.6
+      },
+      {
+       "do": "hide",
+       "target": "tk2",
+       "at": 1.6500000000000001
+      },
+      {
+       "do": "hide",
+       "target": "tk3",
+       "at": 1.7000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "tk4",
+       "at": 1.75
+      },
+      {
+       "do": "hide",
+       "target": "tk5",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 3.05,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4b",
+       "values": [
+        0.25,
+        0.5,
+        0.75,
+        1
+       ],
+       "dur": 0.7,
+       "height": 0.55,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "sp1",
+       "at": 0.75,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "sn1",
+       "at": 0.8,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0.8,
+       "dur": 0.7
+      },
+      {
+       "do": "show",
+       "target": "sp2",
+       "at": 1.45,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "sn2",
+       "at": 1.5,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 1.5,
+       "dur": 0.7
+      },
+      {
+       "do": "show",
+       "target": "sp3",
+       "at": 2.15,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "sn3",
+       "at": 2.2,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 2.2,
+       "dur": 0.7
+      },
+      {
+       "do": "show",
+       "target": "sp4",
+       "at": 2.8499999999999996,
+       "dur": 0.25
+      },
+      {
+       "do": "pop",
+       "target": "sn4",
+       "at": 2.8999999999999995,
+       "sound": false
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 2.8999999999999995,
+       "dur": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Four spaces, four equal hops. So these are fourths.",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "nl4b",
+       "result": "correct",
+       "at": 0.4
+      },
+      {
+       "do": "hide",
+       "target": "claim5",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 1.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The first mark is zero. That's where Frog starts. It isn't a hop.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.9,
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "frog",
+       "at": 1.2,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Five marks make four spaces. I'll count hops from now on.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "sp1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "sn1",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "sp2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "sn2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "sp3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "sn3",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "sp4",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "sn4",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "rule_hops",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        -0.15,
+        2,
+        8.6
+       ],
+       "lookAt": [
+        -0.1,
+        1.05,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "caption",
+       "text": "count the spaces",
+       "style": "label",
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "rule_hops"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thirds",
+   "title": "Thirds and sixths bridges",
+   "beats": [
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl4b",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl4f",
+       "dur": 0.05
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Let's build two more bridges, exactly the same length.",
+       "caption": true,
+       "at": 0.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        8.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.6
+      },
+      {
+       "do": "show",
+       "target": "tier1",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "tier2",
+       "at": 0.9
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.5,
+       "to": "tier1"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.5,
+       "to": "tier1"
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "This one is cut into three equal parts. Thirds.",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "nl3a",
+       "at": 0.4,
+       "dur": 1.6,
+       "sound": "whoosh"
+      },
+      {
+       "do": "caption",
+       "text": "thirds: 3 equal spaces",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And this one is cut into six equal parts. Sixths.",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "nl6a",
+       "at": 0.4,
+       "dur": 1.6,
+       "sound": "whoosh"
+      },
+      {
+       "do": "caption",
+       "text": "sixths: 6 equal spaces",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Same zero, same one, same length. Only the number of equal parts changes.",
+       "caption": true
+      },
+      {
+       "do": "draw",
+       "target": "end0",
+       "at": 0.8,
+       "dur": 0.8
+      },
+      {
+       "do": "draw",
+       "target": "end1",
+       "at": 1.4,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "end0"
+      },
+      {
+       "do": "hide",
+       "target": "end1"
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         -2,
+         0.56,
+         0.4
+        ],
+        [
+         -2.1,
+         1.9,
+         -0.1
+        ],
+        [
+         -2,
+         1.16,
+         -0.6
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Frog, show us two thirds.",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.2,
+        5.6
+       ],
+       "lookAt": [
+        0,
+        0.85,
+        -0.1
+       ],
+       "fov": 40,
+       "dur": 1.2,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.95,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl3a",
+       "values": [
+        0.3333,
+        0.6667
+       ],
+       "dur": 0.8,
+       "height": 0.3,
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "p23",
+       "at": 1.75
+      },
+      {
+       "do": "caption",
+       "text": "2/3",
+       "style": "count",
+       "at": 1.7,
+       "dur": 3
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Two hops of one third. Two thirds!",
+       "caption": true,
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl3a",
+       "values": [
+        1
+       ],
+       "dur": 0.8,
+       "height": 0.3,
+       "at": 0.1
+      },
+      {
+       "do": "caption",
+       "text": "3/3",
+       "style": "count",
+       "at": 0.9,
+       "dur": 2.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And three thirds lands on one, just like four fourths.",
+       "caption": true,
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         2,
+         1.16,
+         -0.6
+        ],
+        [
+         0,
+         2.6,
+         -1.1
+        ],
+        [
+         -2,
+         1.76,
+         -1.6
+        ]
+       ],
+       "dur": 1,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.2,
+        5.6
+       ],
+       "lookAt": [
+        0,
+        1.35,
+        -1.1
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now the sixths bridge. Where is five sixths?",
+       "caption": true,
+       "at": 1.1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 3.15,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl6a",
+       "values": [
+        0.1667,
+        0.3333,
+        0.5,
+        0.6667,
+        0.8333
+       ],
+       "dur": 0.55,
+       "height": 0.35,
+       "at": 0.1
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0.65,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 1.2000000000000002,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 1.7500000000000002,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "at": 2.3000000000000003,
+       "dur": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "at": 2.85,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "p56",
+       "at": 2.95
+      },
+      {
+       "do": "caption",
+       "text": "5/6",
+       "style": "count",
+       "at": 3,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Five hops of one sixth. Five sixths!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy"
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The bottom number tells how many equal parts. The top number counts the hops.",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        8.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Hop chant",
+   "music": "playful",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl4f",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl4c",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "nl3a",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl3b",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "p23",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "nl6a",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl6b",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "p56",
+       "dur": 0.05
+      },
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         1.333,
+         1.76,
+         -1.6
+        ],
+        [
+         0,
+         2.4,
+         -0.6
+        ],
+        [
+         -2,
+         0.56,
+         0.4
+        ]
+       ],
+       "dur": 1,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hop along with us!",
+       "caption": true,
+       "at": 1.1
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "orbit",
+       "around": [
+        0,
+        0.6,
+        0.4
+       ],
+       "degrees": 30,
+       "dur": 26
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Zero to one, cut it fair!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        0.25
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Count the hops to get you there!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        0.5
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Equal spaces, every one!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        0.75
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four hops of a fourth, and one is done!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        1
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.1
+      },
+      {
+       "do": "caption",
+       "text": "4/4 = 1",
+       "style": "count",
+       "at": 1.1,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.5,
+       "at": 0.05
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Again!",
+       "caption": true,
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Zero to one, cut it fair!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        0.25
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Count the hops to get you there!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        0.5
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Equal spaces, every one!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        0.75
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four hops of a fourth, and one is done!",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4c",
+       "values": [
+        1
+       ],
+       "dur": 0.6,
+       "height": 0.55,
+       "at": 0.4
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.1
+      },
+      {
+       "do": "caption",
+       "text": "4/4 = 1",
+       "style": "count",
+       "at": 1.1,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Bottom number?",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.6,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "How many parts make one!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "denominator",
+       "style": "label",
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Top number?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "How many hops!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "numerator",
+       "style": "label",
+       "dur": 2
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.4,
+       "height": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "compare",
+   "title": "Which is bigger?",
+   "beats": [
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl4c",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl4d",
+       "dur": 0.05
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        8.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Here's an easy one. One sixth is bigger than one third.",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "show",
+       "target": "claim6",
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Six is bigger than three, so one sixth must be bigger!",
+       "caption": true,
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        8.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.2,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hmm. Which is bigger, one third or one sixth? Think!",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "ahead"
+      }
+     ]
+    },
+    {
+     "dur": 2.8,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "caption",
+       "text": "1/3 or 1/6?",
+       "style": "label",
+       "dur": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Let's put both on the bridges. One hop of a third.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c13",
+       "at": 1.6
+      },
+      {
+       "do": "draw",
+       "target": "d13",
+       "at": 1.9,
+       "dur": 0.9
+      },
+      {
+       "do": "caption",
+       "text": "1/3",
+       "style": "count",
+       "at": 1.8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And one hop of a sixth.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "c16",
+       "at": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "d16",
+       "at": 1,
+       "dur": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "1/6",
+       "style": "count",
+       "at": 0.8,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One third is farther from zero, so one third is bigger.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "c13",
+       "at": 0.6,
+       "dur": 2.2
+      },
+      {
+       "do": "mark",
+       "target": "claim6",
+       "result": "incorrect",
+       "at": 1.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        8.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.2,
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Cut the same whole into more equal parts, and each part gets smaller.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "rule_more",
+       "at": 0.5
+      },
+      {
+       "do": "hide",
+       "target": "claim6",
+       "at": 0.2
+      },
+      {
+       "do": "highlight",
+       "target": "c16",
+       "at": 1.6,
+       "dur": 1.6,
+       "color": "pink"
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oh! Six parts are smaller parts. So one sixth is smaller than one third.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 2.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "rule_more"
+      },
+      {
+       "do": "hide",
+       "target": "d13",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "d16",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "c13",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "c16",
+       "at": 0.2
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.3
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now two fourths and three fourths. Same size parts. Two hops first.",
+       "caption": true
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4d",
+       "values": [
+        0.25,
+        0.5
+       ],
+       "dur": 0.65,
+       "height": 0.3,
+       "color": "blue",
+       "at": 2.4
+      },
+      {
+       "do": "pop",
+       "target": "c24",
+       "at": 3.7
+      },
+      {
+       "do": "caption",
+       "text": "2/4",
+       "style": "count",
+       "at": 3.7,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 3.55,
+     "do": [
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.7,
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Then three hops.",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4d",
+       "values": [
+        0.25,
+        0.5,
+        0.75
+       ],
+       "dur": 0.65,
+       "height": 0.6,
+       "color": "orange",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "c34",
+       "at": 3.4
+      },
+      {
+       "do": "caption",
+       "text": "3/4",
+       "style": "count",
+       "at": 3.4,
+       "dur": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 2.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Three hops go farther. So three fourths is bigger than two fourths!",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "c34",
+       "at": 0.6,
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "c34",
+       "result": "correct",
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c24"
+      },
+      {
+       "do": "hide",
+       "target": "c34",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "rule_same",
+       "at": 0.4
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        8.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One rule. We only compare fractions of the same whole, so our lines are the same length.",
+       "caption": true,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "draw",
+       "target": "end0",
+       "dur": 0.7
+      },
+      {
+       "do": "draw",
+       "target": "end1",
+       "at": 0.4,
+       "dur": 0.7
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Zeros line up. Ones line up. A fair comparison!",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "rule_same"
+      },
+      {
+       "do": "hide",
+       "target": "end0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "end1",
+       "at": 0.1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: Place the Lily Pads",
+   "music": "playful",
+   "musicGain": 0.2,
+   "beats": [
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl3b",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl3c",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "nl6b",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl6c",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "nl4d",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl4h",
+       "dur": 0.05
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        9
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        0.2
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Challenge time! Help us place the lily pads. Five tasks!",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Task one. Where does a lily pad go for two thirds?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.5,
+        5.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "caption",
+       "text": "1. 2/3",
+       "style": "label",
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.95,
+     "do": [
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         -2,
+         0.56,
+         0.4
+        ],
+        [
+         -2.1,
+         1.9,
+         -0.1
+        ],
+        [
+         -2,
+         1.16,
+         -0.6
+        ]
+       ],
+       "dur": 0.8,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl3c",
+       "values": [
+        0.3333,
+        0.6667
+       ],
+       "dur": 0.7,
+       "height": 0.3,
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "x23",
+       "at": 2.5
+      },
+      {
+       "do": "mark",
+       "target": "x23",
+       "result": "correct",
+       "at": 2.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Two hops of one third. Right here!",
+       "caption": true,
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         0.667,
+         1.16,
+         -0.6
+        ],
+        [
+         -1,
+         1.7,
+         0.2
+        ],
+        [
+         -2,
+         0.56,
+         0.4
+        ]
+       ],
+       "dur": 0.9,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Task two. Which is closer to one, five sixths or one sixth?",
+       "caption": true
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        5
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        -1.6
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "x16",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "x56",
+       "at": 1.9
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "highlight",
+       "target": "x56",
+       "dur": 2.2
+      },
+      {
+       "do": "mark",
+       "target": "x56",
+       "result": "correct",
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Five sixths! It's just one hop away from one.",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "x16"
+      },
+      {
+       "do": "hide",
+       "target": "x56",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "nl4h",
+       "dur": 0.05,
+       "at": 0.2
+      },
+      {
+       "do": "build",
+       "target": "nl8",
+       "at": 0.3,
+       "dur": 1.4,
+       "sound": "pop"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Task three. This bridge is cut into eight equal parts. Where is three eighths?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.35,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl8",
+       "values": [
+        0.125,
+        0.25,
+        0.375
+       ],
+       "dur": 0.6,
+       "height": 0.3,
+       "at": 0.1
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "at": 0.7,
+       "dur": 0.55
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "at": 1.3,
+       "dur": 0.55
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "at": 1.9,
+       "dur": 0.55
+      },
+      {
+       "do": "pop",
+       "target": "x38",
+       "at": 2
+      },
+      {
+       "do": "mark",
+       "target": "x38",
+       "result": "correct",
+       "at": 2.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The third hop. Three eighths!",
+       "caption": true,
+       "at": 2.1
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         -0.5,
+         0.56,
+         0.4
+        ],
+        [
+         -2,
+         1.9,
+         -0.1
+        ],
+        [
+         -2,
+         1.16,
+         -0.6
+        ]
+       ],
+       "dur": 0.9,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "hide",
+       "target": "x38",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.5,
+        5.6
+       ],
+       "lookAt": [
+        0,
+        1,
+        -0.6
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Task four. Is three thirds the same point as one?",
+       "caption": true,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl3c",
+       "values": [
+        0.3333,
+        0.6667,
+        1
+       ],
+       "dur": 0.6,
+       "height": 0.3,
+       "at": 0.1
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 1.9
+      },
+      {
+       "do": "highlight",
+       "target": "frog",
+       "at": 1.9,
+       "dur": 1.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Yes! Three hops of a third reach one.",
+       "caption": true,
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "x23",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "nl3c",
+       "dur": 0.05,
+       "at": 0.1
+      },
+      {
+       "do": "build",
+       "target": "nl4e",
+       "at": 0.2,
+       "dur": 1.2,
+       "sound": "pop"
+      },
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         2,
+         1.16,
+         -0.6
+        ],
+        [
+         2.6,
+         1.6,
+         0.4
+        ],
+        [
+         2,
+         0.56,
+         0.4
+        ]
+       ],
+       "dur": 0.9,
+       "at": 0.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.2,
+        5.6
+       ],
+       "lookAt": [
+        0,
+        0.85,
+        -0.1
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Task five. Which is bigger, one eighth or one fourth?",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "x18",
+       "at": 1.6
+      },
+      {
+       "do": "draw",
+       "target": "d18",
+       "at": 1.8,
+       "dur": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "x14",
+       "at": 2.2
+      },
+      {
+       "do": "draw",
+       "target": "d14",
+       "at": 2.4,
+       "dur": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "highlight",
+       "target": "x14",
+       "dur": 2
+      },
+      {
+       "do": "mark",
+       "target": "x14",
+       "result": "correct",
+       "at": 0.4
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One fourth! Fewer equal parts make bigger parts.",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Five for five! Great placing!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.3
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.5,
+       "height": 0.35
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        9
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        0.2
+       ],
+       "fov": 40,
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "x18"
+      },
+      {
+       "do": "hide",
+       "target": "x14"
+      },
+      {
+       "do": "hide",
+       "target": "d18",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "d14",
+       "at": 0.1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl8",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl4q",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "nl4e",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl3q",
+       "dur": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "nl6c",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl6q",
+       "dur": 0.05
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2,
+        0.56,
+        0.4
+       ],
+       "dur": 0.05
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        5
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        -1.6
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quick quiz! A line from zero to one has six equal parts. What is the first mark after zero?",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "pop",
+       "target": "q16"
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One sixth!",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "1/6",
+       "style": "count",
+       "at": 0.3,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "How many hops of one fourth get to one?",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "leap",
+       "target": "frog",
+       "line": "nl4q",
+       "values": [
+        0.25,
+        0.5,
+        0.75,
+        1
+       ],
+       "dur": 0.5,
+       "height": 0.3
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Four! Four fourths equals one.",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "caption",
+       "text": "4/4 = 1",
+       "style": "count",
+       "at": 2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "nl4q",
+       "dur": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl2q",
+       "dur": 0.05
+      },
+      {
+       "do": "move",
+       "target": "frog",
+       "to": [
+        -2.55,
+        0,
+        0.9
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.2,
+        5.6
+       ],
+       "lookAt": [
+        0,
+        0.85,
+        -0.1
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which is bigger, one half or one third?",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.55,
+     "do": [
+      {
+       "do": "pop",
+       "target": "q12"
+      },
+      {
+       "do": "draw",
+       "target": "dq12",
+       "at": 0.2,
+       "dur": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "q13",
+       "at": 0.4
+      },
+      {
+       "do": "draw",
+       "target": "dq13",
+       "at": 0.6,
+       "dur": 0.5
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One half. Two equal parts are bigger parts.",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "q12",
+       "result": "correct",
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q12"
+      },
+      {
+       "do": "hide",
+       "target": "q13"
+      },
+      {
+       "do": "hide",
+       "target": "dq12"
+      },
+      {
+       "do": "hide",
+       "target": "dq13"
+      },
+      {
+       "do": "hide",
+       "target": "q16"
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        3.1,
+        5
+       ],
+       "lookAt": [
+        0,
+        1.6,
+        -1.6
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which is bigger, two sixths or five sixths?",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "pop",
+       "target": "q26"
+      },
+      {
+       "do": "pop",
+       "target": "q56",
+       "at": 0.3
+      },
+      {
+       "do": "highlight",
+       "target": "q56",
+       "at": 0.6,
+       "dur": 1.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Five sixths. Five hops go farther than two.",
+       "caption": true,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "q26"
+      },
+      {
+       "do": "hide",
+       "target": "q56"
+      },
+      {
+       "do": "camera",
+       "position": [
+        -2,
+        1.6,
+        6.8
+       ],
+       "lookAt": [
+        -2.6,
+        0.9,
+        2.2
+       ],
+       "fov": 40,
+       "dur": 1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Last one. I once said a line with five marks shows fifths. Fix it!",
+       "caption": true,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.2,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Five marks make four spaces, so it shows fourths. Count the hops!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "5 marks = 4 spaces",
+       "style": "label",
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "show",
+       "target": "recap",
+       "at": 0.1
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.75,
+        8.4
+       ],
+       "lookAt": [
+        0,
+        0.7,
+        0.5
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Let's remember. A fraction is a number with its own spot on the line.",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "A fraction is a number on the line",
+       "at": 0.6,
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "The bottom number is how many equal parts make one. The top number is how many hops.",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Bottom number: equal parts in 1 whole",
+       "at": 0.3,
+       "dur": 1,
+       "color": "mint"
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Top number: how many hops",
+       "at": 2.6,
+       "dur": 0.8,
+       "color": "pink"
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Four fourths is one. And compare fractions on lines of the same length.",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": [
+        20,
+        22
+       ],
+       "at": 0.2,
+       "dur": 0.6,
+       "color": "sky"
+      },
+      {
+       "do": "emphasize",
+       "target": "recap",
+       "words": "Compare on same-length lines",
+       "at": 1.6,
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "recap"
+      },
+      {
+       "do": "hide",
+       "target": "nl2q",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "nl3q",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "nl6q",
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "strip2",
+       "at": 0.2
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        1.45,
+        5.4
+       ],
+       "lookAt": [
+        0,
+        0.95,
+        2.6
+       ],
+       "fov": 40,
+       "dur": 1.2
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Make one at home! Fold a paper strip in half.",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "caption",
+       "text": "paper strip",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.5,
+     "do": [
+      {
+       "do": "hide",
+       "target": "strip2",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "strip4",
+       "dur": 0.1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Then in half again. Four equal parts!",
+       "caption": true,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Write zero, one fourth, two fourths, three fourths, and one. Hop a toy along it!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "sl0",
+       "at": 0.2,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "sl1",
+       "at": 0.95,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "sl2",
+       "at": 1.7,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "sl3",
+       "at": 2.45,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "sl4",
+       "at": 3.2,
+       "sound": "pop"
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "hide",
+       "target": "strip4"
+      },
+      {
+       "do": "hide",
+       "target": "sl0",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "sl1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "sl2",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "sl3",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "sl4",
+       "at": 0.05
+      },
+      {
+       "do": "show",
+       "target": "nl2q",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "nl3q",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "nl6q",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.65,
+        0,
+        0.05
+       ],
+       "dur": 1.2,
+       "at": 0.3
+      },
+      {
+       "do": "path",
+       "target": "frog",
+       "points": [
+        [
+         -2.55,
+         0,
+         0.9
+        ],
+        [
+         0.2,
+         1.7,
+         0.6
+        ],
+        [
+         2.6,
+         0.03,
+         0.2
+        ]
+       ],
+       "dur": 1.4,
+       "at": 0.2
+      },
+      {
+       "do": "sound",
+       "sound": "land",
+       "at": 1.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        2.1,
+        1.4,
+        5
+       ],
+       "lookAt": [
+        2.8,
+        0.45,
+        0.4
+       ],
+       "fov": 40,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "feel",
+       "target": "frog",
+       "feeling": "happy"
+      },
+      {
+       "do": "hop",
+       "target": "frog",
+       "at": 0.2,
+       "height": 0.4
+      },
+      {
+       "do": "burst",
+       "target": "bubbles",
+       "at": 0.3
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.3,
+       "volume": 0.5
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Frog made it to the picnic! Measured twice, hopped right.",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "frog"
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.4,
+       "to": "frog"
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "See you next time, friends. Bye!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.4
+      },
+      {
+       "do": "wiggle",
+       "target": "fox",
+       "at": 0.6
+      },
+      {
+       "do": "camera",
+       "position": [
+        0,
+        2.3,
+        9
+       ],
+       "lookAt": [
+        0,
+        0.8,
+        0.2
+       ],
+       "fov": 40,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": []
+    }
+   ]
+  }
+ ]
+}

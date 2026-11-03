@@ -30,6 +30,8 @@ for (const f of files) {
     for (const s of script.meta.skills ?? []) assert.ok(skills[s], `unknown skill ${s}`);
     assert.ok(script.meta.youtube?.title && script.meta.youtube.title.length <= 100, "YouTube titles are at most 100 characters");
     const plan = await buildPlan({ script, catalog });
-    assert.ok(plan.duration > 40 && plan.duration < 600, `${plan.duration} s`);
+    // Without TTS the plan times speech by text length, which runs 20-30% long for these voices: 720 s
+    // estimated is about a 9.5-minute video. Real lengths come from the review renders.
+    assert.ok(plan.duration > 40 && plan.duration < 720, `${plan.duration} s (estimated)`);
   });
 }

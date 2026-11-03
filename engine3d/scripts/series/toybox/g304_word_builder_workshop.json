@@ -1,0 +1,10763 @@
+{
+ "kind": "video3d",
+ "version": 1,
+ "description": "Fox's note looks like secret code to Robo: useless, unsafe, repaint. On Fox's Word Builder bench, green prefix blocks (un-, re-, pre-) click onto the front of blue base words and orange suffix blocks (-ful, -less, -er) click onto the end, each with a little demonstration of the new meaning, and the Fake Prefix Alarm catches words like uncle that only look like they have a prefix.",
+ "meta": {
+  "title": "Word Builder Workshop",
+  "series": "toybox",
+  "episode": "g304",
+  "audience": "grade3",
+  "seed": 304,
+  "voice": "soft",
+  "voiceSpeed": 1,
+  "music": "playful",
+  "musicGain": 0.2,
+  "skills": [
+   "prefixes_suffixes_3"
+  ],
+  "cast": {
+   "robo": {
+    "voice": "soft",
+    "pitch": 1
+   },
+   "fox": {
+    "voice": "squeaky",
+    "pitch": 1.15
+   },
+   "dog": {
+    "voice": "deep",
+    "pitch": 0.9
+   }
+  },
+  "youtube": {
+   "title": "Word Builder Workshop! Prefixes and Suffixes for Kids | un, re, pre, ful, less, er | Toy Box Friends",
+   "description": "Robo finds a note that looks like secret code: useless, unsafe, repaint! Fox shows him it's not code at all, just word parts. On the Word Builder bench, kids find the base word in the middle, add a prefix at the front (un- means not, re- means again, pre- means before) and a suffix at the end (-ful means full of, -less means without, -er means a person or thing that does something), and see each new meaning acted out: Dog repaints the door, a padlock unlocks, Robo carries a tower of cups carefully, then carelessly. Then the Fake Prefix Alarm: is uncle really un + cle? Take the part off and check that what's left is a real word.\n\nFor third graders (CCSS RF.3.3a, L.3.4b, L.3.4c).\n\nTry at home: write un, re and pre on green paper, ful, less and er on orange paper, and base words like help, care, paint, fill and kind on blue paper. How many real words can you build? Act one out! Preheating an oven is a job for a grown-up.",
+   "tags": [
+    "prefixes and suffixes",
+    "prefixes for kids",
+    "suffixes for kids",
+    "base words",
+    "word parts",
+    "vocabulary for kids",
+    "grade 3 reading",
+    "3rd grade ELA",
+    "root words",
+    "Toy Box Friends"
+   ]
+  },
+  "thumbnails": [
+   {
+    "name": "unhappy",
+    "title": "UN + HAPPY",
+    "subtitle": "Prefixes and suffixes!",
+    "titleColor": "white",
+    "side": "left",
+    "badge": "GRADE 3",
+    "stage": "classroom",
+    "camera": {
+     "position": [
+      -0.3,
+      1.45,
+      6.6
+     ],
+     "lookAt": [
+      -0.3,
+      1,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "t_un",
+      "kind": "group",
+      "at": [
+       0.1,
+       0.6,
+       0.5
+      ],
+      "rotation": [
+       0,
+       6,
+       8
+      ]
+     },
+     {
+      "id": "t_un_b",
+      "kind": "shape",
+      "shape": "box",
+      "parent": "t_un",
+      "color": "green",
+      "material": "toy",
+      "scale": [
+       0.745,
+       0.5,
+       0.3
+      ]
+     },
+     {
+      "id": "t_un_t",
+      "kind": "letter",
+      "text": "un",
+      "parent": "t_un",
+      "at": [
+       0,
+       0.135,
+       0.15
+      ],
+      "size": 0.21,
+      "depth": 0.08,
+      "color": "white"
+     },
+     {
+      "id": "t_happy",
+      "kind": "group",
+      "at": [
+       1.2,
+       0.55,
+       0.45
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "t_happy_b",
+      "kind": "shape",
+      "shape": "box",
+      "parent": "t_happy",
+      "color": "blue",
+      "material": "toy",
+      "scale": [
+       1.451,
+       0.5,
+       0.3
+      ]
+     },
+     {
+      "id": "t_happy_t",
+      "kind": "letter",
+      "text": "happy",
+      "parent": "t_happy",
+      "at": [
+       0,
+       0.135,
+       0.15
+      ],
+      "size": 0.21,
+      "depth": 0.08,
+      "color": "white"
+     },
+     {
+      "id": "t_star",
+      "kind": "shape",
+      "shape": "star",
+      "color": "gold",
+      "material": "glow",
+      "size": 0.24,
+      "at": [
+       0.48,
+       1.2,
+       0.8
+      ]
+     },
+     {
+      "id": "t_bench",
+      "kind": "shape",
+      "shape": "box",
+      "color": "wood",
+      "material": "matte",
+      "at": [
+       0.75,
+       0,
+       0.3
+      ],
+      "scale": [
+       2.6,
+       0.55,
+       1
+      ]
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       2.4,
+       0,
+       0.95
+      ],
+      "rotation": [
+       0,
+       -30,
+       0
+      ],
+      "feeling": "sad",
+      "clip": "Idle"
+     }
+    ]
+   },
+   {
+    "name": "builder",
+    "title": "Word Builder!",
+    "subtitle": "un- re- pre- -ful -less -er",
+    "titleColor": "yellow",
+    "side": "left",
+    "badge": "GRADE 3",
+    "stage": "classroom",
+    "camera": {
+     "position": [
+      0.2,
+      1.3,
+      5.6
+     ],
+     "lookAt": [
+      0.2,
+      0.95,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "fox",
+      "kind": "critter",
+      "species": "fox",
+      "size": 1.5,
+      "at": [
+       1.3,
+       0,
+       0.5
+      ],
+      "rotation": [
+       0,
+       10,
+       0
+      ],
+      "feeling": "happy"
+     },
+     {
+      "id": "t_ful",
+      "kind": "group",
+      "at": [
+       2.3,
+       1.05,
+       0.7
+      ],
+      "rotation": [
+       0,
+       -15,
+       -8
+      ]
+     },
+     {
+      "id": "t_ful_b",
+      "kind": "shape",
+      "shape": "box",
+      "parent": "t_ful",
+      "color": "orange",
+      "material": "toy",
+      "scale": [
+       0.981,
+       0.5,
+       0.3
+      ]
+     },
+     {
+      "id": "t_ful_t",
+      "kind": "letter",
+      "text": "ful",
+      "parent": "t_ful",
+      "at": [
+       0,
+       0.135,
+       0.15
+      ],
+      "size": 0.21,
+      "depth": 0.08,
+      "color": "white"
+     },
+     {
+      "id": "t_care",
+      "kind": "group",
+      "at": [
+       2.45,
+       0,
+       0
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ]
+     },
+     {
+      "id": "t_care_b",
+      "kind": "shape",
+      "shape": "box",
+      "parent": "t_care",
+      "color": "blue",
+      "material": "toy",
+      "scale": [
+       1.021,
+       0.42,
+       0.252
+      ]
+     },
+     {
+      "id": "t_care_t",
+      "kind": "letter",
+      "text": "care",
+      "parent": "t_care",
+      "at": [
+       0,
+       0.1134,
+       0.126
+      ],
+      "size": 0.17639999999999997,
+      "depth": 0.08,
+      "color": "white"
+     },
+     {
+      "id": "t_bin1",
+      "kind": "shape",
+      "shape": "box",
+      "color": "green",
+      "material": "toy",
+      "at": [
+       1,
+       1.95,
+       -1.4
+      ],
+      "scale": [
+       1.1,
+       0.33,
+       0.1
+      ]
+     },
+     {
+      "id": "t_bin2",
+      "kind": "shape",
+      "shape": "box",
+      "color": "blue",
+      "material": "toy",
+      "at": [
+       2.2,
+       1.95,
+       -1.4
+      ],
+      "scale": [
+       1.1,
+       0.33,
+       0.1
+      ]
+     },
+     {
+      "id": "t_bin3",
+      "kind": "shape",
+      "shape": "box",
+      "color": "orange",
+      "material": "toy",
+      "at": [
+       3.4,
+       1.95,
+       -1.4
+      ],
+      "scale": [
+       1.1,
+       0.33,
+       0.1
+      ]
+     }
+    ]
+   },
+   {
+    "name": "question",
+    "title": "re-? -less?",
+    "subtitle": "What do word parts mean?",
+    "titleColor": "orange",
+    "side": "left",
+    "badge": "GRADE 3",
+    "stage": "classroom",
+    "camera": {
+     "position": [
+      0.3,
+      1.35,
+      5.8
+     ],
+     "lookAt": [
+      0.3,
+      1,
+      0
+     ],
+     "fov": 36
+    },
+    "objects": [
+     {
+      "id": "t_re",
+      "kind": "group",
+      "at": [
+       0.85,
+       0.1,
+       0.8
+      ],
+      "rotation": [
+       0,
+       12,
+       6
+      ]
+     },
+     {
+      "id": "t_re_b",
+      "kind": "shape",
+      "shape": "box",
+      "parent": "t_re",
+      "color": "green",
+      "material": "toy",
+      "scale": [
+       0.883,
+       0.45,
+       0.27
+      ]
+     },
+     {
+      "id": "t_re_t",
+      "kind": "letter",
+      "text": "re?",
+      "parent": "t_re",
+      "at": [
+       0,
+       0.12150000000000001,
+       0.135
+      ],
+      "size": 0.189,
+      "depth": 0.08,
+      "color": "white"
+     },
+     {
+      "id": "t_less",
+      "kind": "group",
+      "at": [
+       2.15,
+       0.1,
+       0.8
+      ],
+      "rotation": [
+       0,
+       -12,
+       -6
+      ]
+     },
+     {
+      "id": "t_less_b",
+      "kind": "shape",
+      "shape": "box",
+      "parent": "t_less",
+      "color": "orange",
+      "material": "toy",
+      "scale": [
+       1.306,
+       0.45,
+       0.27
+      ]
+     },
+     {
+      "id": "t_less_t",
+      "kind": "letter",
+      "text": "less?",
+      "parent": "t_less",
+      "at": [
+       0,
+       0.12150000000000001,
+       0.135
+      ],
+      "size": 0.189,
+      "depth": 0.08,
+      "color": "white"
+     },
+     {
+      "id": "robo",
+      "kind": "character",
+      "character": "robot",
+      "at": [
+       1.5,
+       0,
+       -0.6
+      ],
+      "rotation": [
+       0,
+       0,
+       0
+      ],
+      "feeling": "surprised",
+      "clip": "Idle"
+     }
+    ]
+   }
+  ]
+ },
+ "stage": {
+  "preset": "classroom"
+ },
+ "camera": {
+  "position": [
+   0,
+   2.3,
+   9.2
+  ],
+  "lookAt": [
+   0,
+   1.3,
+   0
+  ],
+  "fov": 40
+ },
+ "objects": [
+  {
+   "id": "bench",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "color": "wood",
+   "material": "matte",
+   "scale": [
+    6.6,
+    0.85,
+    1.3
+   ]
+  },
+  {
+   "id": "bench_top",
+   "kind": "shape",
+   "shape": "plate",
+   "at": [
+    0,
+    0.85,
+    0
+   ],
+   "color": "wood_dark",
+   "material": "matte",
+   "scale": [
+    6.7,
+    1,
+    1.4
+   ]
+  },
+  {
+   "id": "peg",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0.85,
+    -0.55
+   ],
+   "color": "sand",
+   "material": "matte",
+   "scale": [
+    6.6,
+    1.45,
+    0.08
+   ]
+  },
+  {
+   "id": "peg_trim",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    2.3,
+    -0.55
+   ],
+   "color": "wood_dark",
+   "material": "matte",
+   "scale": [
+    6.7,
+    0.08,
+    0.12
+   ]
+  },
+  {
+   "id": "hole0",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    -3,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole1",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    -2.455,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole2",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    -1.91,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole3",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    -1.3649999999999998,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole4",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    -0.8199999999999998,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole5",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    -0.2749999999999999,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole6",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    0.27000000000000046,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole7",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    0.8150000000000004,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole8",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    1.3600000000000003,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole9",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    1.9050000000000002,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole10",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    2.45,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "hole11",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    2.995,
+    1.08,
+    -0.5
+   ],
+   "color": "wood",
+   "material": "matte",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.06,
+    0.02,
+    0.06
+   ]
+  },
+  {
+   "id": "bin_pre",
+   "kind": "group",
+   "at": [
+    -2.1,
+    1.86,
+    -0.48
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bin_pre_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "bin_pre",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    1.85,
+    0.36,
+    0.1
+   ]
+  },
+  {
+   "id": "bin_pre_t",
+   "kind": "letter",
+   "text": "PREFIX",
+   "parent": "bin_pre",
+   "at": [
+    0,
+    0.08,
+    0.05
+   ],
+   "size": 0.13,
+   "depth": 0.03,
+   "color": "white"
+  },
+  {
+   "id": "bin_base",
+   "kind": "group",
+   "at": [
+    0,
+    1.86,
+    -0.48
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bin_base_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "bin_base",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.85,
+    0.36,
+    0.1
+   ]
+  },
+  {
+   "id": "bin_base_t",
+   "kind": "letter",
+   "text": "BASE WORD",
+   "parent": "bin_base",
+   "at": [
+    0,
+    0.08,
+    0.05
+   ],
+   "size": 0.13,
+   "depth": 0.03,
+   "color": "white"
+  },
+  {
+   "id": "bin_suf",
+   "kind": "group",
+   "at": [
+    2.1,
+    1.86,
+    -0.48
+   ],
+   "hidden": true
+  },
+  {
+   "id": "bin_suf_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "bin_suf",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    1.85,
+    0.36,
+    0.1
+   ]
+  },
+  {
+   "id": "bin_suf_t",
+   "kind": "letter",
+   "text": "SUFFIX",
+   "parent": "bin_suf",
+   "at": [
+    0,
+    0.08,
+    0.05
+   ],
+   "size": 0.13,
+   "depth": 0.03,
+   "color": "white"
+  },
+  {
+   "id": "alarm_base",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    3,
+    2.38,
+    -0.55
+   ],
+   "color": "charcoal",
+   "size": 0.36,
+   "scale": [
+    1,
+    0.25,
+    1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "alarm",
+   "kind": "shape",
+   "shape": "sphere",
+   "at": [
+    3,
+    2.43,
+    -0.55
+   ],
+   "color": "red",
+   "material": "glow",
+   "size": 0.36,
+   "hidden": true
+  },
+  {
+   "id": "robo",
+   "kind": "character",
+   "character": "robot",
+   "at": [
+    -3.85,
+    0,
+    1
+   ],
+   "rotation": [
+    0,
+    30,
+    0
+   ]
+  },
+  {
+   "id": "fox",
+   "kind": "critter",
+   "species": "fox",
+   "at": [
+    3.85,
+    0,
+    1
+   ],
+   "size": 1.2,
+   "rotation": [
+    0,
+    -30,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "dog",
+   "kind": "critter",
+   "species": "dog",
+   "at": [
+    -4.35,
+    0,
+    -0.5
+   ],
+   "size": 1.05,
+   "rotation": [
+    0,
+    25,
+    0
+   ],
+   "hidden": true
+  },
+  {
+   "id": "door",
+   "kind": "prop",
+   "model": "door",
+   "at": [
+    -5.5,
+    0,
+    -1.4
+   ],
+   "size": 1
+  },
+  {
+   "id": "note",
+   "kind": "text_card",
+   "text": "The old glue is useless.\nThe wet paint is unsafe to touch.\nPlease help me repaint the door.",
+   "width": 1.05,
+   "size": 0.085,
+   "at": [
+    -5.66,
+    0.9,
+    -1.18
+   ]
+  },
+  {
+   "id": "wet",
+   "kind": "text_card",
+   "text": "UNSAFE: wet paint",
+   "width": 1.25,
+   "size": 0.12,
+   "color": "red",
+   "at": [
+    -4.6,
+    0.55,
+    -1
+   ],
+   "hidden": true
+  },
+  {
+   "id": "wet_post",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    -4.6,
+    0,
+    -1.05
+   ],
+   "color": "wood_dark",
+   "scale": [
+    0.06,
+    0.6,
+    0.06
+   ],
+   "hidden": true
+  },
+  {
+   "id": "brush",
+   "kind": "prop",
+   "model": "paintbrush",
+   "at": [
+    -4.85,
+    0,
+    -0.85
+   ],
+   "size": 0.9,
+   "recolor": {
+    "blue": "yellow"
+   },
+   "hidden": true
+  },
+  {
+   "id": "lock",
+   "kind": "prop",
+   "model": "padlock",
+   "at": [
+    2.3,
+    0.85,
+    0.15
+   ],
+   "size": 1.6,
+   "hidden": true
+  },
+  {
+   "id": "glass",
+   "kind": "shape",
+   "shape": "cup",
+   "at": [
+    2.3,
+    0.85,
+    0.1
+   ],
+   "size": 0.75,
+   "material": "glass",
+   "color": "white",
+   "hidden": true
+  },
+  {
+   "id": "water",
+   "kind": "shape",
+   "shape": "cylinder",
+   "at": [
+    2.3,
+    0.89,
+    0.1
+   ],
+   "color": "blue",
+   "material": "water",
+   "scale": [
+    0.56,
+    0.62,
+    0.56
+   ],
+   "hidden": true
+  },
+  {
+   "id": "oven",
+   "kind": "prop",
+   "model": "oven",
+   "at": [
+    2.3,
+    0.85,
+    -0.12
+   ],
+   "size": 1.5,
+   "hidden": true
+  },
+  {
+   "id": "oven_light",
+   "kind": "shape",
+   "shape": "sphere",
+   "at": [
+    2.3,
+    1.9500000000000002,
+    0.43
+   ],
+   "color": "orange",
+   "material": "glow",
+   "size": 0.13,
+   "hidden": true
+  },
+  {
+   "id": "tray",
+   "kind": "group",
+   "at": [
+    1.3,
+    0.85,
+    0.42
+   ],
+   "hidden": true
+  },
+  {
+   "id": "tray_p",
+   "kind": "shape",
+   "shape": "plate",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "tray",
+   "color": "grey",
+   "material": "metal",
+   "scale": [
+    0.62,
+    1,
+    0.4
+   ]
+  },
+  {
+   "id": "cake1",
+   "kind": "prop",
+   "model": "cupcake",
+   "at": [
+    -0.15,
+    0.03,
+    0
+   ],
+   "parent": "tray",
+   "size": 0.9
+  },
+  {
+   "id": "cake2",
+   "kind": "prop",
+   "model": "cupcake",
+   "at": [
+    0.15,
+    0.03,
+    0
+   ],
+   "parent": "tray",
+   "size": 0.9
+  },
+  {
+   "id": "grownup",
+   "kind": "text_card",
+   "text": "Ovens: grown-ups only!",
+   "width": 2,
+   "size": 0.15,
+   "color": "red",
+   "at": [
+    2.2,
+    2.45,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ctray",
+   "kind": "group",
+   "parent": "robo",
+   "at": [
+    0,
+    0.8,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ctray_p",
+   "kind": "shape",
+   "shape": "plate",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ctray",
+   "color": "wood",
+   "material": "matte",
+   "scale": [
+    0.5,
+    1,
+    0.4
+   ]
+  },
+  {
+   "id": "cup0",
+   "kind": "shape",
+   "shape": "cup",
+   "at": [
+    0,
+    0.23,
+    0
+   ],
+   "parent": "ctray",
+   "size": 0.21,
+   "color": "red",
+   "rotation": [
+    180,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "cup1",
+   "kind": "shape",
+   "shape": "cup",
+   "at": [
+    0,
+    0.43000000000000005,
+    0
+   ],
+   "parent": "ctray",
+   "size": 0.21,
+   "color": "yellow",
+   "rotation": [
+    180,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "cup2",
+   "kind": "shape",
+   "shape": "cup",
+   "at": [
+    0,
+    0.6300000000000001,
+    0
+   ],
+   "parent": "ctray",
+   "size": 0.21,
+   "color": "green",
+   "rotation": [
+    180,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "cup3",
+   "kind": "shape",
+   "shape": "cup",
+   "at": [
+    0,
+    0.8300000000000001,
+    0
+   ],
+   "parent": "ctray",
+   "size": 0.21,
+   "color": "sky",
+   "rotation": [
+    180,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "cup4",
+   "kind": "shape",
+   "shape": "cup",
+   "at": [
+    0,
+    1.03,
+    0
+   ],
+   "parent": "ctray",
+   "size": 0.21,
+   "color": "purple",
+   "rotation": [
+    180,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "rug",
+   "kind": "prop",
+   "model": "rug",
+   "at": [
+    -2.4,
+    0,
+    2.6
+   ],
+   "size": 1.1,
+   "hidden": true
+  },
+  {
+   "id": "glue",
+   "kind": "shape",
+   "shape": "bottle",
+   "at": [
+    2.45,
+    0.85,
+    0.2
+   ],
+   "color": "white",
+   "size": 0.42,
+   "hidden": true
+  },
+  {
+   "id": "glue_cap",
+   "kind": "shape",
+   "shape": "cone",
+   "at": [
+    2.45,
+    1.27,
+    0.2
+   ],
+   "color": "orange",
+   "size": 0.12,
+   "hidden": true
+  },
+  {
+   "id": "paper",
+   "kind": "shape",
+   "shape": "plate",
+   "at": [
+    1.6,
+    1.45,
+    -0.47
+   ],
+   "color": "white",
+   "material": "paper",
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "scale": [
+    0.6,
+    1,
+    0.45
+   ],
+   "hidden": true
+  },
+  {
+   "id": "hammer",
+   "kind": "prop",
+   "model": "hammer",
+   "at": [
+    3.15,
+    0,
+    1.25
+   ],
+   "size": 1.1,
+   "hidden": true
+  },
+  {
+   "id": "tw0",
+   "kind": "shape",
+   "shape": "cube",
+   "at": [
+    2.2,
+    0.85,
+    0.15
+   ],
+   "color": "red",
+   "size": 0.3,
+   "hidden": true
+  },
+  {
+   "id": "tw1",
+   "kind": "shape",
+   "shape": "cube",
+   "at": [
+    2.2,
+    1.15,
+    0.15
+   ],
+   "color": "yellow",
+   "size": 0.3,
+   "hidden": true
+  },
+  {
+   "id": "tw2",
+   "kind": "shape",
+   "shape": "cube",
+   "at": [
+    2.2,
+    1.45,
+    0.15
+   ],
+   "color": "sky",
+   "size": 0.3,
+   "hidden": true
+  },
+  {
+   "id": "tw3",
+   "kind": "shape",
+   "shape": "cube",
+   "at": [
+    2.2,
+    1.75,
+    0.15
+   ],
+   "color": "green",
+   "size": 0.3,
+   "hidden": true
+  },
+  {
+   "id": "confetti",
+   "kind": "confetti",
+   "count": 90,
+   "area": [
+    8,
+    3
+   ],
+   "height": 5
+  },
+  {
+   "id": "sign_end",
+   "kind": "text_card",
+   "text": "Wonderful work!",
+   "width": 1.15,
+   "size": 0.13,
+   "color": "green",
+   "at": [
+    -5.66,
+    1,
+    -1.18
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_safe",
+   "kind": "group",
+   "at": [
+    0.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_safe_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "w_safe",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "w_safe_t",
+   "kind": "letter",
+   "text": "safe",
+   "parent": "w_safe",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "w_un",
+   "kind": "group",
+   "at": [
+    -1.5,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_un_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "w_un",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "w_un_t",
+   "kind": "letter",
+   "text": "un",
+   "parent": "w_un",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "w_care",
+   "kind": "group",
+   "at": [
+    0.6,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_care_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "w_care",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "w_care_t",
+   "kind": "letter",
+   "text": "care",
+   "parent": "w_care",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "w_ful",
+   "kind": "group",
+   "at": [
+    2,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "w_ful_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "w_ful",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "w_ful_t",
+   "kind": "letter",
+   "text": "ful",
+   "parent": "w_ful",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "m_unsafe",
+   "kind": "text_card",
+   "text": "unsafe = not safe",
+   "width": 3.6,
+   "size": 0.25,
+   "at": [
+    -0.2,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "m_careful",
+   "kind": "text_card",
+   "text": "careful = full of care",
+   "width": 3.6,
+   "size": 0.25,
+   "at": [
+    0,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_un",
+   "kind": "group",
+   "at": [
+    -1.9,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_un_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_un",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_un_t",
+   "kind": "letter",
+   "text": "un",
+   "parent": "p_un",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_happy",
+   "kind": "group",
+   "at": [
+    -0.1,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_happy_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_happy",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_happy_t",
+   "kind": "letter",
+   "text": "happy",
+   "parent": "p_happy",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_kind",
+   "kind": "group",
+   "at": [
+    -0.1,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_kind_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_kind",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_kind_t",
+   "kind": "letter",
+   "text": "kind",
+   "parent": "p_kind",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_fair",
+   "kind": "group",
+   "at": [
+    -0.1,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_fair_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_fair",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_fair_t",
+   "kind": "letter",
+   "text": "fair",
+   "parent": "p_fair",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_lock",
+   "kind": "group",
+   "at": [
+    0.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_lock_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_lock",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_lock_t",
+   "kind": "letter",
+   "text": "lock",
+   "parent": "p_lock",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_re",
+   "kind": "group",
+   "at": [
+    -1.9,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_re_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_re",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_re_t",
+   "kind": "letter",
+   "text": "re",
+   "parent": "p_re",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_paint",
+   "kind": "group",
+   "at": [
+    0.1,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_paint_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_paint",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_paint_t",
+   "kind": "letter",
+   "text": "paint",
+   "parent": "p_paint",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_fill",
+   "kind": "group",
+   "at": [
+    0.1,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_fill_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_fill",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_fill_t",
+   "kind": "letter",
+   "text": "fill",
+   "parent": "p_fill",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_build",
+   "kind": "group",
+   "at": [
+    0.1,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_build_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_build",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_build_t",
+   "kind": "letter",
+   "text": "build",
+   "parent": "p_build",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_pre",
+   "kind": "group",
+   "at": [
+    -0.9,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_pre_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_pre",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_pre_t",
+   "kind": "letter",
+   "text": "pre",
+   "parent": "p_pre",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_heat",
+   "kind": "group",
+   "at": [
+    0.7,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_heat_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_heat",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_heat_t",
+   "kind": "letter",
+   "text": "heat",
+   "parent": "p_heat",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "p_view",
+   "kind": "group",
+   "at": [
+    1.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "p_view_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "p_view",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "p_view_t",
+   "kind": "letter",
+   "text": "view",
+   "parent": "p_view",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "m_unhappy",
+   "kind": "text_card",
+   "text": "unhappy = not happy",
+   "width": 3.6,
+   "size": 0.25,
+   "at": [
+    -0.6,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "m_unlock",
+   "kind": "text_card",
+   "text": "unlock = the opposite of lock",
+   "width": 4,
+   "size": 0.25,
+   "at": [
+    -0.4,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "m_repaint",
+   "kind": "text_card",
+   "text": "repaint = paint again",
+   "width": 3.6,
+   "size": 0.25,
+   "at": [
+    -0.6,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "m_preheat",
+   "kind": "text_card",
+   "text": "preheat = heat before",
+   "width": 3.6,
+   "size": 0.25,
+   "at": [
+    0.1,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_care",
+   "kind": "group",
+   "at": [
+    0.8,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_care_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "s_care",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "s_care_t",
+   "kind": "letter",
+   "text": "care",
+   "parent": "s_care",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "s_ful",
+   "kind": "group",
+   "at": [
+    2.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_ful_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "s_ful",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "s_ful_t",
+   "kind": "letter",
+   "text": "ful",
+   "parent": "s_ful",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "s_less",
+   "kind": "group",
+   "at": [
+    2.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_less_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "s_less",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "s_less_t",
+   "kind": "letter",
+   "text": "less",
+   "parent": "s_less",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "s_use",
+   "kind": "group",
+   "at": [
+    0.2,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_use_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "s_use",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "s_use_t",
+   "kind": "letter",
+   "text": "use",
+   "parent": "s_use",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "s_paint",
+   "kind": "group",
+   "at": [
+    0.2,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_paint_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "s_paint",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "s_paint_t",
+   "kind": "letter",
+   "text": "paint",
+   "parent": "s_paint",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "s_build",
+   "kind": "group",
+   "at": [
+    0.2,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_build_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "s_build",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "s_build_t",
+   "kind": "letter",
+   "text": "build",
+   "parent": "s_build",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "s_er",
+   "kind": "group",
+   "at": [
+    2,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "s_er_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "s_er",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "s_er_t",
+   "kind": "letter",
+   "text": "er",
+   "parent": "s_er",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "c_un",
+   "kind": "group",
+   "at": [
+    -1.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_un_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "c_un",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "c_un_t",
+   "kind": "letter",
+   "text": "un",
+   "parent": "c_un",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "c_help",
+   "kind": "group",
+   "at": [
+    -0.2,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_help_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "c_help",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "c_help_t",
+   "kind": "letter",
+   "text": "help",
+   "parent": "c_help",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "c_ful",
+   "kind": "group",
+   "at": [
+    1,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "c_ful_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "c_ful",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "c_ful_t",
+   "kind": "letter",
+   "text": "ful",
+   "parent": "c_ful",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "d_un",
+   "kind": "group",
+   "at": [
+    -2.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_un_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "d_un",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "d_un_t",
+   "kind": "letter",
+   "text": "un",
+   "parent": "d_un",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "d_help",
+   "kind": "group",
+   "at": [
+    -0.3,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_help_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "d_help",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "d_help_t",
+   "kind": "letter",
+   "text": "help",
+   "parent": "d_help",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "d_ful",
+   "kind": "group",
+   "at": [
+    1.9,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_ful_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "d_ful",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "d_ful_t",
+   "kind": "letter",
+   "text": "ful",
+   "parent": "d_ful",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "m_helpful",
+   "kind": "text_card",
+   "text": "helpful = full of help",
+   "width": 3.6,
+   "size": 0.25,
+   "at": [
+    0,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "m_unhelpful",
+   "kind": "text_card",
+   "text": "unhelpful = not helpful",
+   "width": 3.6,
+   "size": 0.25,
+   "at": [
+    0,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_care",
+   "kind": "group",
+   "at": [
+    -1.6,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_care_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "d_care",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "d_care_t",
+   "kind": "letter",
+   "text": "care",
+   "parent": "d_care",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "d_care2",
+   "kind": "group",
+   "at": [
+    1.4,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_care2_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "d_care2",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "d_care2_t",
+   "kind": "letter",
+   "text": "care",
+   "parent": "d_care2",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "d_ful2",
+   "kind": "group",
+   "at": [
+    -0.2,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_ful2_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "d_ful2",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "d_ful2_t",
+   "kind": "letter",
+   "text": "ful",
+   "parent": "d_ful2",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "d_less",
+   "kind": "group",
+   "at": [
+    2.8,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "d_less_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "d_less",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "d_less_t",
+   "kind": "letter",
+   "text": "less",
+   "parent": "d_less",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "m_cf",
+   "kind": "text_card",
+   "text": "full of care",
+   "width": 2.4,
+   "size": 0.25,
+   "at": [
+    -1.45,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "m_cl",
+   "kind": "text_card",
+   "text": "without care",
+   "width": 2.4,
+   "size": 0.25,
+   "at": [
+    1.45,
+    1.4,
+    0.35
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_uncle",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_uncle_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_uncle",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_uncle_t",
+   "kind": "letter",
+   "text": "uncle",
+   "parent": "f_uncle",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_un",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_un_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_un",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_un_t",
+   "kind": "letter",
+   "text": "un",
+   "parent": "f_un",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_cle",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_cle_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_cle",
+   "color": "grey",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_cle_t",
+   "kind": "letter",
+   "text": "cle",
+   "parent": "f_cle",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_real",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_real_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_real",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_real_t",
+   "kind": "letter",
+   "text": "real",
+   "parent": "f_real",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_re",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_re_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_re",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_re_t",
+   "kind": "letter",
+   "text": "re",
+   "parent": "f_re",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_al",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_al_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_al",
+   "color": "grey",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_al_t",
+   "kind": "letter",
+   "text": "al",
+   "parent": "f_al",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_pretty",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_pretty_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_pretty",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.442,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_pretty_t",
+   "kind": "letter",
+   "text": "pretty",
+   "parent": "f_pretty",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_pre",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_pre_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_pre",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_pre_t",
+   "kind": "letter",
+   "text": "pre",
+   "parent": "f_pre",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "f_tty",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "f_tty_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "f_tty",
+   "color": "grey",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "f_tty_t",
+   "kind": "letter",
+   "text": "tty",
+   "parent": "f_tty",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "test",
+   "kind": "text_card",
+   "text": "The leftover test: take the part off. Is what's left a real word?",
+   "width": 3.8,
+   "size": 0.19,
+   "at": [
+    -0.3,
+    1.4,
+    0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "rnote",
+   "kind": "text_card",
+   "text": "I will reread the book, be fearless on the slide, preview the movie, and be a helpful builder.",
+   "width": 4.8,
+   "size": 0.25,
+   "at": [
+    -0.3,
+    1.95,
+    -0.3
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch0_0",
+   "kind": "group",
+   "at": [
+    -0.831,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch0_0_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch0_0",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch0_0_t",
+   "kind": "letter",
+   "text": "re",
+   "parent": "ch0_0",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch0_1",
+   "kind": "group",
+   "at": [
+    0.041,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch0_1_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch0_1",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch0_1_t",
+   "kind": "letter",
+   "text": "read",
+   "parent": "ch0_1",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch_m0",
+   "kind": "text_card",
+   "text": "reread = read again",
+   "width": 3.6,
+   "size": 0.22,
+   "at": [
+    -0.3,
+    1.42,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch1_0",
+   "kind": "group",
+   "at": [
+    -0.831,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch1_0_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch1_0",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch1_0_t",
+   "kind": "letter",
+   "text": "fear",
+   "parent": "ch1_0",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch1_1",
+   "kind": "group",
+   "at": [
+    0.231,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch1_1_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch1_1",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch1_1_t",
+   "kind": "letter",
+   "text": "less",
+   "parent": "ch1_1",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch_m1",
+   "kind": "text_card",
+   "text": "fearless = without fear",
+   "width": 3.6,
+   "size": 0.22,
+   "at": [
+    -0.3,
+    1.42,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch2_0",
+   "kind": "group",
+   "at": [
+    -0.831,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch2_0_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch2_0",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch2_0_t",
+   "kind": "letter",
+   "text": "pre",
+   "parent": "ch2_0",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch2_1",
+   "kind": "group",
+   "at": [
+    0.136,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch2_1_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch2_1",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch2_1_t",
+   "kind": "letter",
+   "text": "view",
+   "parent": "ch2_1",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch_m2",
+   "kind": "text_card",
+   "text": "preview = see before",
+   "width": 3.6,
+   "size": 0.22,
+   "at": [
+    -0.3,
+    1.42,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch3_0",
+   "kind": "group",
+   "at": [
+    -0.735,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch3_0_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch3_0",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.062,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch3_0_t",
+   "kind": "letter",
+   "text": "help",
+   "parent": "ch3_0",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch3_1",
+   "kind": "group",
+   "at": [
+    0.231,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch3_1_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch3_1",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch3_1_t",
+   "kind": "letter",
+   "text": "ful",
+   "parent": "ch3_1",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch_m3",
+   "kind": "text_card",
+   "text": "helpful = full of help",
+   "width": 3.6,
+   "size": 0.22,
+   "at": [
+    -0.3,
+    1.42,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch4_0",
+   "kind": "group",
+   "at": [
+    -0.64,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch4_0_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch4_0",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch4_0_t",
+   "kind": "letter",
+   "text": "build",
+   "parent": "ch4_0",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch4_1",
+   "kind": "group",
+   "at": [
+    0.326,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch4_1_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch4_1",
+   "color": "orange",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch4_1_t",
+   "kind": "letter",
+   "text": "er",
+   "parent": "ch4_1",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch_m4",
+   "kind": "text_card",
+   "text": "builder = one who builds",
+   "width": 3.6,
+   "size": 0.22,
+   "at": [
+    -0.3,
+    1.42,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch_under",
+   "kind": "group",
+   "at": [
+    -0.3,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch_under_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch_under",
+   "color": "blue",
+   "material": "toy",
+   "scale": [
+    1.252,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch_under_t",
+   "kind": "letter",
+   "text": "under",
+   "parent": "ch_under",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch_un",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch_un_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch_un",
+   "color": "green",
+   "material": "toy",
+   "scale": [
+    0.681,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch_un_t",
+   "kind": "letter",
+   "text": "un",
+   "parent": "ch_un",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "ch_der",
+   "kind": "group",
+   "at": [
+    0,
+    0.85,
+    0.2
+   ],
+   "hidden": true
+  },
+  {
+   "id": "ch_der_b",
+   "kind": "shape",
+   "shape": "box",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "parent": "ch_der",
+   "color": "grey",
+   "material": "toy",
+   "scale": [
+    0.871,
+    0.46,
+    0.3
+   ]
+  },
+  {
+   "id": "ch_der_t",
+   "kind": "letter",
+   "text": "der",
+   "parent": "ch_der",
+   "at": [
+    0,
+    0.13,
+    0.15
+   ],
+   "size": 0.17,
+   "depth": 0.05,
+   "color": "white"
+  },
+  {
+   "id": "qw_help",
+   "kind": "letter",
+   "text": "helpful",
+   "colors": [
+    "blue",
+    "blue",
+    "blue",
+    "blue",
+    "orange",
+    "orange",
+    "orange"
+   ],
+   "color": "blue",
+   "size": 0.34,
+   "depth": 0.12,
+   "at": [
+    1.75,
+    1.1,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qw0",
+   "kind": "letter",
+   "text": "reread",
+   "colors": [
+    "green",
+    "green",
+    "blue",
+    "blue",
+    "blue",
+    "blue"
+   ],
+   "color": "blue",
+   "size": 0.6,
+   "depth": 0.12,
+   "at": [
+    -0.2,
+    1.1,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qw1",
+   "kind": "letter",
+   "text": "fearless",
+   "colors": [
+    "blue",
+    "blue",
+    "blue",
+    "blue",
+    "orange",
+    "orange",
+    "orange",
+    "orange"
+   ],
+   "color": "blue",
+   "size": 0.6,
+   "depth": 0.12,
+   "at": [
+    -0.2,
+    1.1,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qw2",
+   "kind": "letter",
+   "text": "unfair",
+   "colors": [
+    "green",
+    "green",
+    "blue",
+    "blue",
+    "blue",
+    "blue"
+   ],
+   "color": "blue",
+   "size": 0.6,
+   "depth": 0.12,
+   "at": [
+    -0.2,
+    1.1,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qw3",
+   "kind": "letter",
+   "text": "preheat",
+   "colors": [
+    "green",
+    "green",
+    "green",
+    "blue",
+    "blue",
+    "blue",
+    "blue"
+   ],
+   "color": "blue",
+   "size": 0.34,
+   "depth": 0.12,
+   "at": [
+    -1.55,
+    1.1,
+    0.5
+   ],
+   "hidden": true
+  },
+  {
+   "id": "qw4",
+   "kind": "letter",
+   "text": "uncle",
+   "colors": [
+    "blue",
+    "blue",
+    "blue",
+    "blue",
+    "blue"
+   ],
+   "color": "blue",
+   "size": 0.6,
+   "depth": 0.12,
+   "at": [
+    -0.2,
+    1.1,
+    0.5
+   ],
+   "hidden": true
+  }
+ ],
+ "scenes": [
+  {
+   "id": "note",
+   "title": "The secret code note",
+   "beats": [
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Word Builder Workshop",
+       "style": "title",
+       "dur": 2.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "door",
+        "robo"
+       ],
+       "framing": "wide",
+       "dur": 0
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.6,
+       "to": "door"
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oh! There's a note on Fox's workshop door.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -4.25,
+        0,
+        0.35
+       ],
+       "dur": 1.4,
+       "at": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking",
+       "at": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1.7
+      },
+      {
+       "do": "shot",
+       "target": "note",
+       "framing": "medium",
+       "dur": 1.6,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The old glue is useless.",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "note",
+       "words": "useless",
+       "at": 0.6,
+       "dur": 0.6
+      },
+      {
+       "do": "shot",
+       "target": "note",
+       "framing": "close",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "The wet paint is unsafe to touch.",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "note",
+       "words": "unsafe",
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Please help me repaint the door.",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "note",
+       "words": "repaint",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Useless? Unsafe? Repaint? Fox is writing in secret code!",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "door"
+       ],
+       "framing": "medium",
+       "dur": 0.8
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.3
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "No",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "show",
+       "target": "fox",
+       "at": 0
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.2,
+       "height": 0.5,
+       "sound": "boing"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        1.1
+       ],
+       "dur": 1,
+       "at": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "dur": 0.6,
+       "at": 0.4
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking",
+       "at": 0.1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bench"
+       ],
+       "framing": "wide",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.6,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It's not code, Robo. They're word parts!",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0,
+       "to": "robo"
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Big words are built from little parts. Let's build them and see!",
+       "caption": true
+      },
+      {
+       "do": "wiggle",
+       "target": "fox",
+       "at": 1.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "parts",
+   "title": "Base words and word parts",
+   "musicGain": 0.15,
+   "beats": [
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "bench"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "bench"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "This is my Word Builder bench.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "bin_base",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Blue blocks are base words. A base word is a whole word by itself.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "w_safe",
+       "at": 1
+      },
+      {
+       "do": "highlight",
+       "target": "w_safe_b",
+       "at": 2.4,
+       "dur": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Safe. That's a base word.",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "w_safe_b",
+        "w_un_b",
+        "bin_pre",
+        "bin_base"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Green blocks are prefixes. A prefix goes at the front of a base word.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "bin_pre",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "w_un",
+       "at": 1.6
+      },
+      {
+       "do": "caption",
+       "text": "prefix: at the front",
+       "style": "label",
+       "at": 2.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hold up your left hand. That's the front!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "front",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "move",
+       "target": "w_un",
+       "to": [
+        -0.731,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "w_safe",
+       "to": [
+        0.14,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.9
+      },
+      {
+       "do": "highlight",
+       "target": "w_safe_b",
+       "at": 0.95,
+       "dur": 1.2,
+       "color": "gold"
+      },
+      {
+       "do": "highlight",
+       "target": "w_un_b",
+       "at": 0.95,
+       "dur": 1.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "w_un_b",
+        "w_safe_b"
+       ],
+       "framing": "close",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Un plus safe makes unsafe!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "un + safe = unsafe",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "So what does unsafe mean? Think!",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "w_un"
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Unsafe means not safe. The prefix un- means not.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "m_unsafe",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "w_un_b",
+        "w_safe_b",
+        "m_unsafe"
+       ],
+       "framing": "medium",
+       "dur": 0.8,
+       "at": 0.3
+      },
+      {
+       "do": "mark",
+       "target": "w_un_b",
+       "result": "correct",
+       "at": 2.6,
+       "sound": "ding"
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Like the wet paint! Not safe to touch.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "wet",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "wet_post",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "wet",
+        "door",
+        "robo"
+       ],
+       "framing": "medium",
+       "dur": 1,
+       "yaw": -20
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "wet"
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "w_un",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "w_safe",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "m_unsafe",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "bench"
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Orange blocks are suffixes. A suffix goes at the end.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "bin_suf",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "w_care",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "w_ful",
+       "at": 1.8
+      },
+      {
+       "do": "caption",
+       "text": "suffix: at the end",
+       "style": "label",
+       "at": 2.4,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hold up your right hand. That's the end!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "end",
+       "style": "label",
+       "at": 0.4,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "My turn! I'll put -ful here.",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0,
+       "to": "w_care"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "w_care_b",
+        "w_ful_b"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "w_ful",
+       "points": [
+        [
+         2,
+         0.85,
+         0.2
+        ],
+        [
+         1,
+         1.65,
+         0.5
+        ],
+        [
+         -0.531,
+         1.25,
+         0.5
+        ],
+        [
+         -0.531,
+         0.85,
+         0.2
+        ]
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "move",
+       "target": "w_care",
+       "to": [
+        0.435,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "w_ful_b",
+        "w_care_b"
+       ],
+       "framing": "close",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Fulcare!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "ful + care = fulcare?",
+       "style": "label",
+       "at": 0.1,
+       "dur": 2.2
+      },
+      {
+       "do": "mark",
+       "target": "w_ful_b",
+       "result": "incorrect",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Hmm. Fulcare is not a word. A suffix never goes at the front.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        10,
+        0
+       ],
+       "dur": 0.25,
+       "at": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        50,
+        0
+       ],
+       "dur": 0.3,
+       "at": 0.65
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "dur": 0.25,
+       "at": 0.95
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "w_ful",
+       "points": [
+        [
+         -0.531,
+         0.85,
+         0.2
+        ],
+        [
+         -0.531,
+         1.5499999999999998,
+         0.55
+        ],
+        [
+         0.531,
+         1.5499999999999998,
+         0.55
+        ],
+        [
+         0.531,
+         0.85,
+         0.2
+        ]
+       ],
+       "dur": 1.3
+      },
+      {
+       "do": "move",
+       "target": "w_care",
+       "to": [
+        -0.435,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.3,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.3
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Care plus -ful makes careful. Careful means full of care.",
+       "caption": true
+      },
+      {
+       "do": "mark",
+       "target": "w_ful_b",
+       "result": "correct",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "m_careful",
+       "at": 1.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "w_care_b",
+        "w_ful_b",
+        "m_careful"
+       ],
+       "framing": "medium",
+       "dur": 0.8,
+       "at": 1.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 3.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Prefix at the front, suffix at the end, base word in the middle!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "w_care",
+       "at": 3.2
+      },
+      {
+       "do": "hide",
+       "target": "w_ful",
+       "at": 3.25
+      },
+      {
+       "do": "hide",
+       "target": "m_careful",
+       "at": 3.3000000000000003
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "prefix",
+   "title": "The prefix bench: un-, re-, pre-",
+   "musicGain": 0.14,
+   "beats": [
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Let's start with three prefixes. First, un-.",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "p_un",
+       "at": 1.6
+      },
+      {
+       "do": "pop",
+       "target": "p_happy",
+       "at": 2
+      }
+     ]
+    },
+    {
+     "dur": 2.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I'm happy. Now add un-.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.2
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "p_un",
+       "to": [
+        -1.226,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.3,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "p_happy",
+       "to": [
+        -0.259,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.3,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 2.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_un_b",
+        "p_happy_b",
+        "robo"
+       ],
+       "framing": "medium",
+       "dur": 1,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Unhappy. Not happy.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "sad",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "m_unhappy",
+       "at": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_un_b",
+        "p_happy_b",
+        "robo",
+        "m_unhappy"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "hide",
+       "target": "p_happy",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "m_unhappy",
+       "at": 0.05
+      },
+      {
+       "do": "move",
+       "target": "p_un",
+       "to": [
+        -1.131,
+        0.85,
+        0.2
+       ],
+       "dur": 0.4,
+       "at": 0.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "pop",
+       "target": "p_kind",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "p_kind",
+       "to": [
+        -0.259,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01,
+       "at": 0.25,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_un_b",
+        "p_kind_b"
+       ],
+       "framing": "medium",
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Unkind means not kind.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "unkind = not kind",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "hide",
+       "target": "p_kind"
+      },
+      {
+       "do": "move",
+       "target": "p_un",
+       "to": [
+        -1.131,
+        0.85,
+        0.2
+       ],
+       "dur": 0.4,
+       "at": 0.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "pop",
+       "target": "p_fair",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "p_fair",
+       "to": [
+        -0.259,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01,
+       "at": 0.25,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Unfair means not fair.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "unfair = not fair",
+       "style": "label",
+       "at": 0.2,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Cheer up, Robo! Un- can also mean the opposite.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1.2
+      },
+      {
+       "do": "hide",
+       "target": "p_fair",
+       "at": 1.6
+      },
+      {
+       "do": "move",
+       "target": "p_un",
+       "to": [
+        -1.9,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.8,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Lock. The padlock is locked shut.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "lock",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "p_lock",
+       "at": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_un_b",
+        "p_lock_b",
+        "lock"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "p_un",
+       "to": [
+        -0.931,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "p_lock",
+       "to": [
+        -0.059,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Unlock is the opposite of lock.",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "lock#shackle",
+       "to": [
+        0,
+        0.07,
+        0
+       ],
+       "dur": 0.4,
+       "at": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "lock#shackle",
+       "to": [
+        0,
+        -110,
+        0
+       ],
+       "dur": 0.6,
+       "at": 1
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "m_unlock",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Unsafe, unhappy, unlock. Un- means not, or the opposite.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "un- = not, the opposite of",
+       "style": "label",
+       "at": 0.2,
+       "dur": 4
+      },
+      {
+       "do": "highlight",
+       "target": "p_un_b",
+       "at": 0.3,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 1.05,
+     "do": [
+      {
+       "do": "hide",
+       "target": "p_un",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "p_lock",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "m_unlock",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "lock",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -2.6,
+        0,
+        1.5
+       ],
+       "dur": 1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        -40,
+        0
+       ],
+       "dur": 0.6,
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "dog",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "brush",
+       "at": 0.3
+      },
+      {
+       "do": "shot",
+       "target": [
+        "door",
+        "dog",
+        "wet"
+       ],
+       "framing": "medium",
+       "dur": 1.2,
+       "yaw": -15
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.8,
+       "to": "dog"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "Hello! I'm Dog, the painter. I painted this door blue yesterday.",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": 0.2,
+       "to": "robo"
+      },
+      {
+       "do": "nod",
+       "target": "dog",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "But it needs a new colour. Time to paint it again!",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": 0.6,
+       "to": "door"
+      },
+      {
+       "do": "hide",
+       "target": "note",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 3.6,
+     "do": [
+      {
+       "do": "path",
+       "target": "brush",
+       "points": [
+        [
+         -4.85,
+         0,
+         -0.85
+        ],
+        [
+         -5.2,
+         1.3,
+         -1.05
+        ],
+        [
+         -5.9,
+         1.3,
+         -1.05
+        ],
+        [
+         -5.2,
+         0.9,
+         -1.05
+        ],
+        [
+         -5.9,
+         0.9,
+         -1.05
+        ],
+        [
+         -5.2,
+         0.5,
+         -1.05
+        ],
+        [
+         -5.9,
+         0.5,
+         -1.05
+        ]
+       ],
+       "dur": 3.2
+      },
+      {
+       "do": "paint",
+       "target": "door",
+       "color": "yellow",
+       "from": "blue",
+       "dur": 2.6,
+       "at": 0.6
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "whoosh",
+       "at": 1.8,
+       "volume": 0.5
+      },
+      {
+       "do": "wiggle",
+       "target": "dog",
+       "at": 1,
+       "deg": 8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "door",
+        "dog"
+       ],
+       "framing": "medium",
+       "dur": 1.2,
+       "yaw": -15
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "brush",
+       "to": [
+        -4.85,
+        0,
+        -0.85
+       ],
+       "dur": 0.6
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        1.1
+       ],
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "dur": 0.5,
+       "at": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_re_b",
+        "p_paint_b"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "p_re",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "p_paint",
+       "at": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "p_re",
+       "to": [
+        -1.226,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "p_paint",
+       "to": [
+        -0.259,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_re_b",
+        "p_paint_b"
+       ],
+       "framing": "close",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.05,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Re- plus paint makes repaint. Repaint means paint again.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "m_repaint",
+       "at": 2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_re_b",
+        "p_paint_b",
+        "m_repaint"
+       ],
+       "framing": "medium",
+       "dur": 0.8,
+       "at": 1.8
+      },
+      {
+       "do": "caption",
+       "text": "re- = again",
+       "style": "label",
+       "at": 0.5,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now watch the glass. Robo pours the water out.",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "p_paint",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "m_repaint",
+       "at": 0.05
+      },
+      {
+       "do": "move",
+       "target": "p_re",
+       "to": [
+        -1.9,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.3,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "pop",
+       "target": "glass",
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "water",
+       "at": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "glass",
+        "p_re_b"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "grow",
+       "target": "water",
+       "to": [
+        1,
+        0.08,
+        1
+       ],
+       "dur": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "pour",
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "pop",
+       "target": "p_fill",
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Empty! What word means fill it again?",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "p_fill"
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "move",
+       "target": "p_re",
+       "to": [
+        -1.131,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "p_fill",
+       "to": [
+        -0.259,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.8
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Refill! Fill again.",
+       "caption": true,
+       "at": 0.9
+      },
+      {
+       "do": "grow",
+       "target": "water",
+       "to": [
+        1,
+        1,
+        1
+       ],
+       "dur": 1.4,
+       "at": 1.2,
+       "ease": "sineInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "pour",
+       "at": 1.2,
+       "volume": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "p_fill",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "glass",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "water",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "p_re",
+       "to": [
+        -1.9,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "pop",
+       "target": "tw0",
+       "at": 0.3,
+       "sound": "pop"
+      },
+      {
+       "do": "pop",
+       "target": "tw1",
+       "at": 0.42,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "tw2",
+       "at": 0.54,
+       "sound": false
+      },
+      {
+       "do": "pop",
+       "target": "tw3",
+       "at": 0.6599999999999999,
+       "sound": false
+      },
+      {
+       "do": "shot",
+       "target": [
+        "tw3",
+        "tw0",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "I built a tower. Oops!",
+       "caption": true
+      },
+      {
+       "do": "turn",
+       "target": "fox",
+       "to": [
+        0,
+        -60,
+        0
+       ],
+       "dur": 0.3,
+       "at": 1
+      },
+      {
+       "do": "turn",
+       "target": "fox",
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "dur": 0.3,
+       "at": 1.4
+      },
+      {
+       "do": "path",
+       "target": "tw3",
+       "points": [
+        [
+         2.2,
+         1.75,
+         0.15
+        ],
+        [
+         2.7,
+         1.45,
+         0.35
+        ],
+        [
+         2.9,
+         0.85,
+         0.4
+        ]
+       ],
+       "dur": 0.6,
+       "at": 1.1
+      },
+      {
+       "do": "path",
+       "target": "tw2",
+       "points": [
+        [
+         2.2,
+         1.45,
+         0.15
+        ],
+        [
+         2.5,
+         1.15,
+         0.45
+        ],
+        [
+         2.6,
+         0.85,
+         0.5
+        ]
+       ],
+       "dur": 0.6,
+       "at": 1.2
+      },
+      {
+       "do": "turn",
+       "target": "tw3",
+       "to": [
+        0,
+        0,
+        -90
+       ],
+       "dur": 0.6,
+       "at": 1.1
+      },
+      {
+       "do": "turn",
+       "target": "tw2",
+       "to": [
+        0,
+        0,
+        -50
+       ],
+       "dur": 0.6,
+       "at": 1.2
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 1.7
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.8,
+       "volume": 0.4
+      },
+      {
+       "do": "feel",
+       "target": "fox",
+       "feeling": "surprised",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 3.15,
+     "do": [
+      {
+       "do": "pop",
+       "target": "p_build",
+       "at": 0.1
+      },
+      {
+       "do": "move",
+       "target": "p_re",
+       "to": [
+        -1.526,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.3,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "p_build",
+       "to": [
+        -0.559,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.35,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Time to rebuild. Build it again!",
+       "caption": true,
+       "at": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "tw2",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.5,
+       "at": 2
+      },
+      {
+       "do": "move",
+       "target": "tw2",
+       "to": [
+        2.2,
+        1.45,
+        0.15
+       ],
+       "dur": 0.6,
+       "at": 2
+      },
+      {
+       "do": "turn",
+       "target": "tw3",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.5,
+       "at": 2.5
+      },
+      {
+       "do": "move",
+       "target": "tw3",
+       "to": [
+        2.2,
+        1.75,
+        0.15
+       ],
+       "dur": 0.6,
+       "at": 2.5
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.6
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 3.1
+      },
+      {
+       "do": "feel",
+       "target": "fox",
+       "feeling": "happy",
+       "at": 3.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Repaint, refill, rebuild, reread. Re- always means again.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "re- = again",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3.5
+      },
+      {
+       "do": "highlight",
+       "target": "p_re_b",
+       "at": 0.3,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "p_re",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "p_build",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "tw0",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "tw1",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "tw2",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "tw3",
+       "at": 0.25
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        -2.9,
+        0,
+        0.4
+       ],
+       "dur": 0.05,
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "fox",
+       "at": 0
+      },
+      {
+       "do": "show",
+       "target": "fox",
+       "at": 0.5
+      },
+      {
+       "do": "turn",
+       "target": "fox",
+       "to": [
+        0,
+        20,
+        0
+       ],
+       "dur": 0.05,
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "dog",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "brush",
+       "at": 0
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        3.55,
+        0,
+        1.15
+       ],
+       "dur": 0.05,
+       "at": 0.3
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        -35,
+        0
+       ],
+       "dur": 0.05,
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "dog",
+       "at": 0.5
+      },
+      {
+       "do": "show",
+       "target": "oven",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "tray",
+       "at": 0.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.75,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Last prefix: pre-. Pre- means before.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p_pre",
+       "at": 1.4
+      },
+      {
+       "do": "pop",
+       "target": "p_heat",
+       "at": 1.7
+      },
+      {
+       "do": "caption",
+       "text": "pre- = before",
+       "style": "label",
+       "at": 1.4,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "We're baking cupcakes. Ovens are a job for a grown-up, like me.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "grownup",
+       "at": 0.6
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": 1.8,
+       "to": "oven"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "oven",
+        "dog",
+        "tray",
+        "grownup"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.15,
+     "do": [
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "First I heat the oven, before the cupcakes go in.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "oven_light",
+       "at": 1
+      },
+      {
+       "do": "highlight",
+       "target": "oven_light",
+       "at": 1.1,
+       "dur": 2,
+       "color": "orange"
+      },
+      {
+       "do": "sound",
+       "sound": "tick",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.4,
+     "do": [
+      {
+       "do": "move",
+       "target": "p_pre",
+       "to": [
+        -0.431,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "p_heat",
+       "to": [
+        0.535,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "p_pre_b",
+        "p_heat_b",
+        "oven"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "Pre- plus heat makes preheat. Heat before.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "m_preheat",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "m_preheat",
+       "at": 0
+      },
+      {
+       "do": "turn",
+       "target": "oven#door",
+       "to": [
+        85,
+        0,
+        0
+       ],
+       "dur": 0.7
+      },
+      {
+       "do": "path",
+       "target": "tray",
+       "points": [
+        [
+         1.3,
+         0.85,
+         0.42
+        ],
+        [
+         1.8,
+         1.45,
+         0.9
+        ],
+        [
+         2.3,
+         1.25,
+         0.9
+        ],
+        [
+         2.3,
+         1.21,
+         -0.1
+        ]
+       ],
+       "dur": 1.3,
+       "at": 0.6
+      },
+      {
+       "do": "turn",
+       "target": "oven#door",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.6,
+       "at": 1.9
+      },
+      {
+       "do": "sound",
+       "sound": "door_open",
+       "at": 0.1,
+       "volume": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "oven",
+        "dog",
+        "tray"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.45,
+     "do": [
+      {
+       "do": "hide",
+       "target": "p_heat",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "grownup",
+       "at": 0.05
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "And a preview lets you see a movie before it comes out.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "p_view",
+       "at": 0.5
+      },
+      {
+       "do": "move",
+       "target": "p_view",
+       "to": [
+        0.5355000000000001,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.6,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 2.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Fun fact! The word prefix has a prefix. Pre- plus fix: fixed on before.",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "pre + fix = prefix",
+       "style": "label",
+       "at": 1.4,
+       "dur": 3.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And re- and pre- came from Latin, but un- comes from Old English!",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "robo"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "suffix",
+   "title": "The suffix bench: -ful, -less, -er",
+   "musicGain": 0.14,
+   "beats": [
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "hide",
+       "target": "p_pre",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "p_view",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "oven",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "oven_light",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "tray",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "dog",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "fox",
+       "at": 0
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        3.85,
+        0,
+        1
+       ],
+       "dur": 0.05,
+       "at": 0.2
+      },
+      {
+       "do": "turn",
+       "target": "fox",
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "dur": 0.05,
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "fox",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "s_care",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now the suffixes, at the end. Care plus -ful makes careful.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "s_ful",
+       "at": 0.6
+      },
+      {
+       "do": "move",
+       "target": "s_care",
+       "to": [
+        0.764,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.8,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "s_ful",
+       "to": [
+        1.731,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.8,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 2.6
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Robo, show us careful. Carry these cups.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "ctray",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "rug",
+       "at": 0.4
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        70,
+        0
+       ],
+       "dur": 0.6,
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "rug",
+        "s_care_b"
+       ],
+       "framing": "medium",
+       "dur": 1.2
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "robo"
+      }
+     ]
+    },
+    {
+     "dur": 4.6,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -1.5,
+        0,
+        1.9
+       ],
+       "dur": 4.4,
+       "ease": "linear"
+      },
+      {
+       "do": "caption",
+       "text": "careful = full of care",
+       "style": "label",
+       "at": 0.4,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.45,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle"
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Slow and steady. Every cup stays up. I'm full of care!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "s_ful",
+       "at": 0
+      },
+      {
+       "do": "pop",
+       "target": "s_less",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "s_less",
+       "to": [
+        1.731,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01,
+       "at": 0.1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "s_care_b",
+        "s_less_b"
+       ],
+       "framing": "medium",
+       "dur": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now swap the suffix. Care plus -less makes careless.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "s_less_b",
+       "at": 1.2,
+       "dur": 1.8
+      }
+     ]
+    },
+    {
+     "dur": 2.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Careless means without care. Show us careless, Robo!",
+       "caption": true
+      },
+      {
+       "do": "caption",
+       "text": "careless = without care",
+       "style": "label",
+       "at": 0.3,
+       "dur": 3.5
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        -90,
+        0
+       ],
+       "dur": 0.4,
+       "at": 2.6
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "rug"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Running"
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.4,
+        0,
+        1.9
+       ],
+       "dur": 1.6,
+       "ease": "linear"
+      },
+      {
+       "do": "wiggle",
+       "target": "ctray",
+       "deg": 18,
+       "dur": 1.4,
+       "at": 0.2
+      },
+      {
+       "do": "reparent",
+       "target": "cup4",
+       "parent": null,
+       "at": 0.9
+      },
+      {
+       "do": "reparent",
+       "target": "cup3",
+       "parent": null,
+       "at": 1
+      },
+      {
+       "do": "path",
+       "target": "cup4",
+       "points": [
+        [
+         -3,
+         1.85,
+         1.9
+        ],
+        [
+         -2.6,
+         1.6,
+         2.3
+        ],
+        [
+         -2.1,
+         0.08,
+         2.7
+        ]
+       ],
+       "dur": 0.9,
+       "at": 0.95
+      },
+      {
+       "do": "path",
+       "target": "cup3",
+       "points": [
+        [
+         -3.1,
+         1.65,
+         1.9
+        ],
+        [
+         -2.8,
+         1.2,
+         2.3
+        ],
+        [
+         -2.6,
+         0.08,
+         2.5
+        ]
+       ],
+       "dur": 0.9,
+       "at": 1.05
+      },
+      {
+       "do": "turn",
+       "target": "cup4",
+       "to": [
+        90,
+        0,
+        30
+       ],
+       "dur": 0.8,
+       "at": 1
+      },
+      {
+       "do": "turn",
+       "target": "cup3",
+       "to": [
+        90,
+        0,
+        -40
+       ],
+       "dur": 0.8,
+       "at": 1.1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.85,
+       "volume": 0.5
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 1.95,
+       "volume": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Oops! Soft landing on the rug. Nothing broke.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "rug",
+        "cup3",
+        "cup4"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.35,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "But that was careless. I'll be careful from now on.",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 1.6
+      },
+      {
+       "do": "hide",
+       "target": "cup3",
+       "at": 2
+      },
+      {
+       "do": "hide",
+       "target": "cup4",
+       "at": 2.1
+      },
+      {
+       "do": "hide",
+       "target": "ctray",
+       "at": 2.2
+      },
+      {
+       "do": "hide",
+       "target": "rug",
+       "at": 2.3
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -3.6,
+        0,
+        1.1
+       ],
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        30,
+        0
+       ],
+       "dur": 0.6,
+       "at": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 1
+      },
+      {
+       "do": "hide",
+       "target": "s_care",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "s_less",
+       "at": 0.05
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.95,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Remember the old glue? Watch this paper.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "s_use",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "glue",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "glue_cap",
+       "at": 0.4
+      },
+      {
+       "do": "show",
+       "target": "paper",
+       "at": 0.9
+      },
+      {
+       "do": "shot",
+       "target": [
+        "glue",
+        "paper",
+        "s_use_b"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "path",
+       "target": "paper",
+       "points": [
+        [
+         1.6,
+         1.45,
+         -0.47
+        ],
+        [
+         1.7,
+         1.2,
+         -0.3
+        ],
+        [
+         1.8,
+         0.86,
+         0
+        ]
+       ],
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "paper",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 1
+      },
+      {
+       "do": "sound",
+       "sound": "boing",
+       "at": 0.9,
+       "volume": 0.5
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.9
+      },
+      {
+       "do": "shot",
+       "target": [
+        "s_use_b",
+        "glue",
+        "paper"
+       ],
+       "framing": "medium",
+       "dur": 0.8,
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "It won't stick. Glue that is useful is full of use.",
+       "caption": true
+      },
+      {
+       "do": "show",
+       "target": "s_ful",
+       "at": 0.2
+      },
+      {
+       "do": "move",
+       "target": "s_ful",
+       "to": [
+        0.635,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01,
+       "at": 0.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "s_use",
+       "to": [
+        -0.236,
+        0.85,
+        0.2
+       ],
+       "dur": 0.4,
+       "at": 0.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "This glue is useless. Without use!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "s_ful",
+       "at": 0.2
+      },
+      {
+       "do": "show",
+       "target": "s_less",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "s_less",
+       "to": [
+        0.7305,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01,
+       "at": 0.3,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.5
+      },
+      {
+       "do": "mark",
+       "target": "glue",
+       "result": "incorrect",
+       "at": 1.4
+      },
+      {
+       "do": "caption",
+       "text": "useless = without use",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "s_use",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "s_less",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "glue",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "glue_cap",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "paper",
+       "at": 0.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 3.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One more suffix: -er. It means a person or thing that does something.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "s_paint",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "s_er",
+       "at": 0.8
+      },
+      {
+       "do": "move",
+       "target": "s_paint",
+       "to": [
+        -0.941,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 2.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "s_er",
+       "to": [
+        0.026,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 2.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 3.2
+      },
+      {
+       "do": "caption",
+       "text": "-er = one who does",
+       "style": "label",
+       "at": 1.6,
+       "dur": 3.5
+      }
+     ]
+    },
+    {
+     "dur": 4.45,
+     "do": [
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        0.9,
+        0,
+        1.35
+       ],
+       "dur": 0.05,
+       "at": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        -20,
+        0
+       ],
+       "dur": 0.05,
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "dog",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "brush",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "brush",
+       "to": [
+        0.45,
+        0,
+        1.55
+       ],
+       "dur": 0.05,
+       "at": 0.2
+      },
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "Paint plus -er makes painter. A painter is a person who paints. That's me!",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "s_paint_b",
+        "s_er_b",
+        "dog"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 4.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "s_paint"
+      },
+      {
+       "do": "move",
+       "target": "s_er",
+       "to": [
+        2,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01,
+       "at": 0.1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "pop",
+       "target": "s_build",
+       "at": 0.3
+      },
+      {
+       "do": "show",
+       "target": "hammer",
+       "at": 0.3
+      },
+      {
+       "do": "hide",
+       "target": "dog",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "brush",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 4.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Build plus -er makes builder. A builder is a person who builds. That's me!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "s_build",
+       "to": [
+        0.259,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "s_er",
+       "to": [
+        1.226,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.9
+      },
+      {
+       "do": "turn",
+       "target": "hammer",
+       "to": [
+        0,
+        0,
+        25
+       ],
+       "dur": 0.2,
+       "at": 2.2
+      },
+      {
+       "do": "turn",
+       "target": "hammer",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.2,
+       "at": 2.4
+      },
+      {
+       "do": "sound",
+       "sound": "block",
+       "at": 2.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "s_build_b",
+        "s_er_b",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 4.2
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And a mixer is a thing that mixes! -er can name things too.",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.2,
+       "to": "robo"
+      },
+      {
+       "do": "caption",
+       "text": "mixer = a thing that mixes",
+       "style": "label",
+       "at": 0.6,
+       "dur": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chant",
+   "title": "The Word Builder chant",
+   "music": "playful",
+   "musicGain": 0.26,
+   "beats": [
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "s_build",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "s_er",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "hammer",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "wide",
+       "dur": 1
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "fox"
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Chant with me! Tap the beat on your knees!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Dance",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "c_un",
+       "at": 1
+      },
+      {
+       "do": "pop",
+       "target": "c_help",
+       "at": 1.3
+      },
+      {
+       "do": "pop",
+       "target": "c_ful",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Prefix at the front!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "c_un",
+       "at": 0.1,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "highlight",
+       "target": "bin_pre_b",
+       "at": 0.1,
+       "dur": 1.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "c_un_b",
+        "c_help_b",
+        "c_ful_b",
+        "bin_pre",
+        "bin_suf"
+       ],
+       "framing": "medium",
+       "dur": 1,
+       "pad": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Suffix at the end!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "c_ful",
+       "at": 0.1,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "highlight",
+       "target": "bin_suf_b",
+       "at": 0.1,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Base word in the middle is your best friend!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "c_help",
+       "at": 0.2,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "hop",
+       "target": "c_help",
+       "at": 1.2,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "highlight",
+       "target": "bin_base_b",
+       "at": 0.1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Prefix at the front!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "c_un",
+       "at": 0.1,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "highlight",
+       "target": "bin_pre_b",
+       "at": 0.1,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Suffix at the end!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "c_ful",
+       "at": 0.1,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "highlight",
+       "target": "bin_suf_b",
+       "at": 0.1,
+       "dur": 1.4
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Base word in the middle is your best friend!",
+       "caption": true
+      },
+      {
+       "do": "hop",
+       "target": "c_help",
+       "at": 0.2,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "hop",
+       "target": "c_help",
+       "at": 1.2,
+       "height": 0.35,
+       "sound": "drum"
+      },
+      {
+       "do": "highlight",
+       "target": "bin_base_b",
+       "at": 0.1,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 1.2,
+     "do": [
+      {
+       "do": "move",
+       "target": "c_un",
+       "to": [
+        -1.166,
+        0.85,
+        0.2
+       ],
+       "dur": 0.5,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "c_help",
+       "to": [
+        -0.295,
+        0.85,
+        0.2
+       ],
+       "dur": 0.5,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "c_ful",
+       "to": [
+        0.672,
+        0.85,
+        0.2
+       ],
+       "dur": 0.5,
+       "at": 0,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 0.5
+      },
+      {
+       "do": "caption",
+       "text": "un + help + ful",
+       "style": "label",
+       "at": 0.5,
+       "dur": 2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Re-?",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle"
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Again!",
+       "style": "count",
+       "dur": 1.8
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "-less?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Without!",
+       "style": "count",
+       "dur": 1.8
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "-ful?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 1.8,
+     "do": [
+      {
+       "do": "caption",
+       "text": "Full of!",
+       "style": "count",
+       "dur": 1.8
+      },
+      {
+       "do": "sound",
+       "sound": "drum",
+       "at": 0.1
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Jump",
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "double",
+   "title": "Double builds",
+   "musicGain": 0.14,
+   "beats": [
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "c_un",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "c_help",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "c_ful",
+       "at": 0.1
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "pop",
+       "target": "d_help",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 2.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "That chant word had a prefix and a suffix. Start with the base: help.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "d_help_b",
+       "at": 2.8,
+       "dur": 1.5
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Add -ful at the end. Helpful: full of help.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d_ful",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "d_help",
+       "to": [
+        -0.435,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.9,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "d_ful",
+       "to": [
+        0.531,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.9,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.7
+      },
+      {
+       "do": "pop",
+       "target": "m_helpful",
+       "at": 2.2
+      },
+      {
+       "do": "shot",
+       "target": [
+        "d_help_b",
+        "d_ful_b",
+        "m_helpful"
+       ],
+       "framing": "medium",
+       "dur": 1,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Now add un- at the front. Unhelpful!",
+       "caption": true
+      },
+      {
+       "do": "hide",
+       "target": "m_helpful",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "d_un",
+       "at": 0.4
+      },
+      {
+       "do": "move",
+       "target": "d_un",
+       "to": [
+        -0.966,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "d_help",
+       "to": [
+        -0.095,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "d_ful",
+       "to": [
+        0.872,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 1.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "d_un_b",
+        "d_help_b",
+        "d_ful_b"
+       ],
+       "framing": "medium",
+       "dur": 1,
+       "at": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Un, help, -ful. What does it mean? Peel it from the outside!",
+       "caption": true
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "worried",
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "move",
+       "target": "d_un",
+       "to": [
+        -1.466,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.3,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 3.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Helpful means full of help. Unhelpful means not helpful.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "m_unhelpful",
+       "at": 1.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "d_un_b",
+        "d_help_b",
+        "d_ful_b",
+        "m_unhelpful"
+       ],
+       "framing": "medium",
+       "dur": 0.8,
+       "at": 1.5
+      },
+      {
+       "do": "move",
+       "target": "d_un",
+       "to": [
+        -0.966,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 2.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 3.1
+      },
+      {
+       "do": "mark",
+       "target": "d_help_b",
+       "result": "correct",
+       "at": 3.4
+      }
+     ]
+    },
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "d_un",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "d_help",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "d_ful",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "m_unhelpful",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "One base, two suffixes. Careful and careless are opposites!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "d_care",
+       "at": 0.2
+      },
+      {
+       "do": "pop",
+       "target": "d_ful2",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "d_care2",
+       "at": 0.4
+      },
+      {
+       "do": "pop",
+       "target": "d_less",
+       "at": 0.5
+      },
+      {
+       "do": "move",
+       "target": "d_care",
+       "to": [
+        -1.885,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "d_ful2",
+       "to": [
+        -0.919,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "d_care2",
+       "to": [
+        0.919,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "d_less",
+       "to": [
+        1.981,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.2,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "sound",
+       "sound": "clink",
+       "at": 2
+      },
+      {
+       "do": "pop",
+       "target": "m_cf",
+       "at": 2.4
+      },
+      {
+       "do": "pop",
+       "target": "m_cl",
+       "at": 2.8
+      }
+     ]
+    },
+    {
+     "dur": 1.6,
+     "do": [
+      {
+       "do": "shot",
+       "target": [
+        "d_care_b",
+        "d_ful2_b",
+        "d_care2_b",
+        "d_less_b",
+        "m_cf",
+        "m_cl"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "alarm",
+   "title": "The Fake Prefix Alarm",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "d_care",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "d_ful2",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "d_care2",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "d_less",
+       "at": 0.15000000000000002
+      },
+      {
+       "do": "hide",
+       "target": "m_cf",
+       "at": 0.2
+      },
+      {
+       "do": "hide",
+       "target": "m_cl",
+       "at": 0.25
+      },
+      {
+       "do": "show",
+       "target": "alarm_base",
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "alarm",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "alarm",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 1.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "This is my Fake Prefix Alarm. Some words only look like they have a prefix.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "alarm",
+       "at": 1.8,
+       "dur": 1.5,
+       "color": "red"
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I know one! Uncle starts with un-. So uncle means not cle!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "f_uncle",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_uncle_b",
+        "alarm",
+        "robo"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "f_uncle",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "f_un",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "f_cle",
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "f_un",
+       "to": [
+        -0.435,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "f_cle",
+       "to": [
+        0.341,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      }
+     ]
+    },
+    {
+     "dur": 1.45,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Let's test it. Take un- off. What's left?",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "f_un",
+       "to": [
+        -1.6,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 1.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "pop",
+       "target": "test",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "f_un_b",
+        "f_cle_b",
+        "test",
+        "alarm"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.2,
+       "to": "f_cle"
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "mark",
+       "target": "f_cle_b",
+       "result": "incorrect",
+       "at": 0.1
+      },
+      {
+       "do": "highlight",
+       "target": "alarm",
+       "at": 0.1,
+       "dur": 2.4,
+       "color": "red"
+      },
+      {
+       "do": "sound",
+       "sound": "bell",
+       "at": 0.1,
+       "volume": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Cle is not a word! So uncle has no prefix. It's just a base word.",
+       "caption": true,
+       "at": 0.6
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "surprised",
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "f_un",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f_cle",
+       "at": 0.05
+      },
+      {
+       "do": "pop",
+       "target": "f_real",
+       "at": 0.3
+      },
+      {
+       "do": "feel",
+       "target": "robo",
+       "feeling": "happy",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Real! Is that re- plus al?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "f_real",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "f_re",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "f_al",
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "f_re",
+       "to": [
+        -0.341,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "f_al",
+       "to": [
+        0.341,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "f_re",
+       "to": [
+        -1.6,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.5,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "mark",
+       "target": "f_al_b",
+       "result": "incorrect",
+       "at": 0
+      },
+      {
+       "do": "highlight",
+       "target": "alarm",
+       "at": 0,
+       "dur": 2.2,
+       "color": "red"
+      },
+      {
+       "do": "sound",
+       "sound": "bell",
+       "at": 0,
+       "volume": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Al is not a word. Alarm! Real is just a base word.",
+       "caption": true,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "f_re",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f_al",
+       "at": 0.05
+      },
+      {
+       "do": "pop",
+       "target": "f_pretty",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Your turn. Pretty. Take pre- off. Is the leftover a word?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "f_pretty",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "f_pre",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "f_tty",
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "f_pre",
+       "to": [
+        -0.435,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "f_tty",
+       "to": [
+        0.435,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "f_pre",
+       "to": [
+        -1.6,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.5,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "mark",
+       "target": "f_tty_b",
+       "result": "incorrect",
+       "at": 0
+      },
+      {
+       "do": "highlight",
+       "target": "alarm",
+       "at": 0,
+       "dur": 2.2,
+       "color": "red"
+      },
+      {
+       "do": "sound",
+       "sound": "bell",
+       "at": 0,
+       "volume": 0.6
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "No! Pretty has no prefix. The alarm caught it!",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "challenge",
+   "title": "Challenge: Decode the Note",
+   "music": "playful",
+   "musicGain": 0.16,
+   "beats": [
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "f_pre",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "f_tty",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "test",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "alarm",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "alarm_base",
+       "at": 0.1
+      },
+      {
+       "do": "pop",
+       "target": "rnote",
+       "at": 0.4
+      },
+      {
+       "do": "shot",
+       "target": [
+        "rnote",
+        "bench"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Now I wrote a note in word parts. Can you decode it?",
+       "caption": true
+      },
+      {
+       "do": "look",
+       "target": "robo",
+       "at": 0.3,
+       "to": "rnote"
+      },
+      {
+       "do": "look",
+       "target": "fox",
+       "at": 0.3,
+       "to": "rnote"
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "I will reread the book, be fearless on the slide,",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "reread",
+       "at": 0.5,
+       "color": "mint"
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "fearless",
+       "at": 2.2,
+       "color": "mint"
+      }
+     ]
+    },
+    {
+     "dur": 2.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "preview the movie, and be a helpful builder.",
+       "caption": true
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "preview",
+       "at": 0.2,
+       "color": "mint"
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "helpful",
+       "at": 1.7,
+       "color": "mint"
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "builder",
+       "at": 2.2,
+       "color": "mint"
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "reread",
+       "at": 0.2,
+       "color": "yellow",
+       "clear": true
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "First word: reread. What does it mean?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch0_0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "ch0_1",
+       "at": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "rnote",
+        "ch0_0_b",
+        "ch0_1_b"
+       ],
+       "framing": "medium",
+       "dur": 1
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "move",
+       "target": "ch0_0",
+       "to": [
+        -1.181,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "ch0_1",
+       "to": [
+        0.39099999999999996,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Re- means again. Reread means read again.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ch_m0",
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "ch0_0_b",
+       "result": "correct",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch0_0",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "ch0_1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "ch_m0",
+       "at": 0.1
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "fearless",
+       "at": 0.2,
+       "color": "yellow",
+       "clear": true
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Next: fearless. What does it mean?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch1_0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "ch1_1",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "move",
+       "target": "ch1_0",
+       "to": [
+        -1.181,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "ch1_1",
+       "to": [
+        0.581,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "-less means without. Fearless means without fear.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ch_m1",
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "ch1_1_b",
+       "result": "correct",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch1_0",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "ch1_1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "ch_m1",
+       "at": 0.1
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "preview",
+       "at": 0.2,
+       "color": "yellow",
+       "clear": true
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Next: preview. What does it mean?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch2_0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "ch2_1",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "move",
+       "target": "ch2_0",
+       "to": [
+        -1.181,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "ch2_1",
+       "to": [
+        0.486,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Pre- means before. Preview means to see before.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ch_m2",
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "ch2_0_b",
+       "result": "correct",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch2_0",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "ch2_1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "ch_m2",
+       "at": 0.1
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "helpful",
+       "at": 0.2,
+       "color": "yellow",
+       "clear": true
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Next: helpful. What does it mean?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch3_0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "ch3_1",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "move",
+       "target": "ch3_0",
+       "to": [
+        -1.085,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "ch3_1",
+       "to": [
+        0.581,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "-ful means full of. Helpful means full of help.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ch_m3",
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "ch3_1_b",
+       "result": "correct",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch3_0",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "ch3_1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "ch_m3",
+       "at": 0.1
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "words": "builder",
+       "at": 0.2,
+       "color": "yellow",
+       "clear": true
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Next: builder. What does it mean?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch4_0",
+       "at": 0.5
+      },
+      {
+       "do": "pop",
+       "target": "ch4_1",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 2.6,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      },
+      {
+       "do": "move",
+       "target": "ch4_0",
+       "to": [
+        -0.99,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      },
+      {
+       "do": "move",
+       "target": "ch4_1",
+       "to": [
+        0.6759999999999999,
+        0.85,
+        0.2
+       ],
+       "dur": 0.6,
+       "at": 0.4,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 1.25,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "A builder is a person who builds.",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "ch_m4",
+       "at": 0.6
+      },
+      {
+       "do": "mark",
+       "target": "ch4_1_b",
+       "result": "correct",
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.75,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch4_0",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "ch4_1",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "ch_m4",
+       "at": 0.1
+      },
+      {
+       "do": "emphasize",
+       "target": "rnote",
+       "clear": true
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "One trick word! Is under un- plus der?",
+       "caption": true,
+       "at": 0.3
+      },
+      {
+       "do": "pop",
+       "target": "ch_under",
+       "at": 0.6
+      },
+      {
+       "do": "show",
+       "target": "alarm_base",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "alarm",
+       "at": 0.7
+      }
+     ]
+    },
+    {
+     "dur": 0.6,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch_under",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "ch_un",
+       "dur": 0.1
+      },
+      {
+       "do": "show",
+       "target": "ch_der",
+       "dur": 0.1
+      },
+      {
+       "do": "move",
+       "target": "ch_un",
+       "to": [
+        -0.736,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "ch_der",
+       "to": [
+        0.04,
+        0.85,
+        0.2
+       ],
+       "dur": 0.01
+      },
+      {
+       "do": "move",
+       "target": "ch_un",
+       "to": [
+        -1.9,
+        0.85,
+        0.2
+       ],
+       "dur": 0.8,
+       "at": 0.4,
+       "ease": "quadInOut"
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "mark",
+       "target": "ch_der_b",
+       "result": "incorrect",
+       "at": 0
+      },
+      {
+       "do": "highlight",
+       "target": "alarm",
+       "at": 0,
+       "dur": 2.2,
+       "color": "red"
+      },
+      {
+       "do": "sound",
+       "sound": "bell",
+       "at": 0,
+       "volume": 0.6
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "No! Der is not a word. Under is a base word. Great decoding!",
+       "caption": true,
+       "at": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "ThumbsUp",
+       "at": 1.6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "title": "Quiz and recap",
+   "beats": [
+    {
+     "dur": 0.8,
+     "do": [
+      {
+       "do": "hide",
+       "target": "ch_un",
+       "at": 0
+      },
+      {
+       "do": "hide",
+       "target": "ch_der",
+       "at": 0.05
+      },
+      {
+       "do": "hide",
+       "target": "rnote",
+       "at": 0.1
+      },
+      {
+       "do": "hide",
+       "target": "alarm"
+      },
+      {
+       "do": "hide",
+       "target": "alarm_base"
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "bench",
+        "peg"
+       ],
+       "framing": "wide",
+       "dur": 1.2
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Quiz time! Five quick questions.",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "pop",
+       "target": "qw0",
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "1",
+       "style": "count",
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What does reread mean?",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench_top",
+        "peg",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1,
+       "height": 12
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Read again!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2,
+       "volume": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "qw0"
+      },
+      {
+       "do": "pop",
+       "target": "qw1",
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "2",
+       "style": "count",
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What does fearless mean?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Without fear!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2,
+       "volume": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "qw1"
+      },
+      {
+       "do": "caption",
+       "text": "3",
+       "style": "count",
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Which word means not fair?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "pop",
+       "target": "qw2",
+       "at": 0.1
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Unfair!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2,
+       "volume": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "hide",
+       "target": "qw2"
+      },
+      {
+       "do": "pop",
+       "target": "qw_help",
+       "at": 0.6
+      },
+      {
+       "do": "pop",
+       "target": "qw3",
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "4",
+       "style": "count",
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "What is the base word in preheat? And in helpful?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Heat and help!",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2,
+       "volume": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "hide",
+       "target": "qw3"
+      },
+      {
+       "do": "hide",
+       "target": "qw_help"
+      },
+      {
+       "do": "pop",
+       "target": "qw4",
+       "at": 0.3
+      },
+      {
+       "do": "caption",
+       "text": "5",
+       "style": "count",
+       "dur": 2
+      },
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "Does uncle have the prefix un-?",
+       "caption": true
+      }
+     ]
+    },
+    {
+     "dur": 2.4,
+     "do": [
+      {
+       "do": "sound",
+       "sound": "windup_click",
+       "volume": 0.8
+      }
+     ]
+    },
+    {
+     "dur": 0.4,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "No! Cle is not a word.",
+       "caption": true
+      },
+      {
+       "do": "sound",
+       "sound": "ding",
+       "at": 0.2,
+       "volume": 0.7
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.3,
+       "height": 0.3
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "hide",
+       "target": "qw4"
+      },
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Here's the recap. The base word is in the middle.",
+       "caption": true
+      },
+      {
+       "do": "shot",
+       "target": [
+        "bench",
+        "peg",
+        "robo",
+        "fox"
+       ],
+       "framing": "medium",
+       "dur": 1
+      },
+      {
+       "do": "highlight",
+       "target": "bin_base_b",
+       "at": 0.6,
+       "dur": 2.5
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Prefixes go at the front: un- means not, re- again, pre- before.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bin_pre_b",
+       "at": 0.4,
+       "dur": 3.5
+      },
+      {
+       "do": "caption",
+       "text": "un- not · re- again · pre- before",
+       "style": "label",
+       "at": 0.6,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Suffixes go at the end: full of, without, and one who does.",
+       "caption": true
+      },
+      {
+       "do": "highlight",
+       "target": "bin_suf_b",
+       "at": 0.4,
+       "dur": 3.5
+      },
+      {
+       "do": "caption",
+       "text": "-ful full of · -less without · -er one who",
+       "style": "label",
+       "at": 0.6,
+       "dur": 4
+      }
+     ]
+    },
+    {
+     "dur": 0.55,
+     "do": [
+      {
+       "do": "say",
+       "who": "robo",
+       "text": "And check that the leftover is a real word!",
+       "caption": true
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Yes",
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "hide",
+       "target": "wet"
+      },
+      {
+       "do": "hide",
+       "target": "wet_post"
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -4.3,
+        0,
+        0.1
+       ],
+       "dur": 0.05,
+       "at": 0.1
+      },
+      {
+       "do": "turn",
+       "target": "dog",
+       "to": [
+        0,
+        25,
+        0
+       ],
+       "dur": 0.05,
+       "at": 0.1
+      },
+      {
+       "do": "show",
+       "target": "dog",
+       "at": 0.3
+      },
+      {
+       "do": "move",
+       "target": "robo",
+       "to": [
+        -2.3,
+        0,
+        1.7
+       ],
+       "dur": 0.8
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        -30,
+        0
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Walking"
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Idle",
+       "at": 0.8
+      },
+      {
+       "do": "shot",
+       "target": [
+        "door",
+        "dog",
+        "sign_end"
+       ],
+       "framing": "medium",
+       "dur": 1.2,
+       "yaw": -20
+      }
+     ]
+    },
+    {
+     "dur": 0.85,
+     "do": [
+      {
+       "do": "say",
+       "who": "dog",
+       "text": "The door is finished. Wonderful work, everyone!",
+       "caption": true
+      },
+      {
+       "do": "pop",
+       "target": "sign_end",
+       "at": 0.8
+      },
+      {
+       "do": "look",
+       "target": "dog",
+       "at": 0.5,
+       "to": "sign_end"
+      }
+     ]
+    },
+    {
+     "dur": 1.65,
+     "do": [
+      {
+       "do": "say",
+       "who": "fox",
+       "text": "Wonderful: wonder plus -ful. Built, checked, beautiful!",
+       "caption": true
+      },
+      {
+       "do": "move",
+       "target": "fox",
+       "to": [
+        -0.6,
+        0,
+        1.9
+       ],
+       "dur": 1.2
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.1,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 0.6,
+       "height": 0.3,
+       "dur": 0.5
+      },
+      {
+       "do": "move",
+       "target": "dog",
+       "to": [
+        -3.6,
+        0,
+        1.2
+       ],
+       "dur": 1
+      },
+      {
+       "do": "turn",
+       "target": "robo",
+       "to": [
+        0,
+        0,
+        0
+       ],
+       "dur": 0.5
+      },
+      {
+       "do": "shot",
+       "target": [
+        "robo",
+        "fox",
+        "dog",
+        "door"
+       ],
+       "framing": "medium",
+       "dur": 1.2,
+       "at": 0.2
+      },
+      {
+       "do": "burst",
+       "target": "confetti",
+       "at": 0.6,
+       "sound": "magic_sparkle"
+      },
+      {
+       "do": "sound",
+       "sound": "crowd_cheer",
+       "at": 0.6,
+       "volume": 0.5
+      },
+      {
+       "do": "clip",
+       "target": "robo",
+       "clip": "Wave",
+       "at": 1
+      },
+      {
+       "do": "hop",
+       "target": "fox",
+       "at": 1.4
+      },
+      {
+       "do": "hop",
+       "target": "dog",
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "dur": 2.5,
+     "do": [
+      {
+       "do": "orbit",
+       "around": [
+        -2.2,
+        0.9,
+        1.4
+       ],
+       "degrees": 14,
+       "dur": 2.5
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
